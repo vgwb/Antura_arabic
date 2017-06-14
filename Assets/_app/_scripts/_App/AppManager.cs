@@ -37,7 +37,6 @@ namespace EA4S
 
         public bool IsPaused { get; private set; }
         
-        private PlayerProfileManager _playerProfileManager;
 
         /// <summary>
         /// Gets or sets the player profile manager.
@@ -58,8 +57,9 @@ namespace EA4S
                 _playerProfileManager = value;
             }
         }
+        private PlayerProfileManager _playerProfileManager;
 
-        public Profile.PlayerProfile Player
+        public PlayerProfile Player
         {
             get { return PlayerProfileManager != null ? PlayerProfileManager.CurrentPlayer : null; }
             set { PlayerProfileManager.CurrentPlayer = value; }
@@ -140,7 +140,6 @@ namespace EA4S
 
         #region Settings behaviours
 
-        // refactor: should be moved to AppManager
         public void ToggleQualitygfx()
         {
             AppSettings.HighQualityGfx = !AppSettings.HighQualityGfx;
