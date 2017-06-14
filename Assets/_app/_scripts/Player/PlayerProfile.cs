@@ -33,15 +33,25 @@ namespace EA4S.Profile
         public bool HasFinishedTheGame;
         public bool HasFinishedTheGameWithAllStars;
 
-        //int to track first visit
-        //First contact (ProfileCompletion = 1 & 2)
-        //BookVisited: ProfileCompletion = 3
         public ProfileCompletionState ProfileCompletion = ProfileCompletionState.New;
-
-        public string MoodLastVisit;
 
         public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
         public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
+
+        /// <value>
+        ///  True if player already answered to mood question for today.
+        /// </value>
+        public bool MoodAlreadyAnswered
+        {
+            get
+            {
+                int secondAmount = AppManager.I.Teacher.logAI.SecondsFromLastMoodLog();
+                if (secondAmount > 86400)
+                    return false;
+                else
+                    return true;
+            }
+        }
 
         #region Bones/coins
         public int TotalNumberOfBones = 8;
@@ -57,9 +67,7 @@ namespace EA4S.Profile
         }
         #endregion
 
-        #region API
-
-        #region management
+        #region Management
 
         /// <summary>
         /// Saves this instance.
@@ -71,27 +79,8 @@ namespace EA4S.Profile
 
         #endregion
 
-        #region properties
+        #region Journey position        
 
-        /// <summary>
-        /// True if player already answered to mood question for today.
-        /// </summary>
-        /// <value>
-        ///   True if player already answered to mood question for today.
-        /// </value>
-        public bool MoodAlreadyAnswered {
-            get {
-                int secondAmount = AppManager.I.Teacher.logAI.SecondsFromLastMoodLog();
-                if (secondAmount > 86400)
-                    return false;
-                else
-                    return true;
-            }
-        }
-
-        #endregion
-
-        #region journey position        
         /// <summary>
         /// Sets the actual journey position and save to profile.
         /// @note: check valid data before insert.
@@ -118,7 +107,6 @@ namespace EA4S.Profile
             CurrentJourneyPosition = _journeyPosition;
             if (_save)
                 Save();
-
         }
 
         /// <summary>
@@ -189,15 +177,15 @@ namespace EA4S.Profile
         /// </summary>
         public void ResetMaxJourneyPosition(bool _save = true)
         {
-            MaxJourneyPosition = new JourneyPosition(1, 1, 1);
-            CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
+            MaxJourneyPosition = JourneyPosition.InitialJourneyPosition;
+            CurrentJourneyPosition = JourneyPosition.InitialJourneyPosition;
             if (_save) {
                 Save();
             }
         }
         #endregion
 
-        #region Antura Customization
+        #region Antura Customization and Rewards
 
         private AnturaCustomization _currentAnturaCustomizations;
         /// <summary>
@@ -241,24 +229,11 @@ namespace EA4S.Profile
         }
 
  
-
-        #endregion
-
         /// <summary>
         /// Resets the rewards unlocked data.
         /// </summary>
         public void ResetRewardsUnlockedData() {
             RewardsUnlocked = new List<RewardPackUnlockData>();
-        }
-
-        public string Key {
-            get {
-                throw new NotImplementedException();
-            }
-
-            set {
-                throw new NotImplementedException();
-            }
         }
 
         /// <summary>
@@ -331,6 +306,8 @@ namespace EA4S.Profile
         /// Used to store antura custumization data in json and load it at runtime.
         /// </summary>
         string jsonAnturaCustimizationData = string.Empty;
+
+        #endregion
 
         #region API
 
@@ -423,7 +400,7 @@ namespace EA4S.Profile
         /// </summary>
         public void AddRewardUnlockedRange(List<RewardPackUnlockData> rewardPackUnlockDatas)
         {
-            Debug.Log(this.RewardsUnlocked); 
+            //Debug.Log(this.RewardsUnlocked); 
             AppManager.I.Player.RewardsUnlocked.AddRange(rewardPackUnlockDatas);
             AppManager.I.DB.UpdateRewardPackUnlockDataAll(rewardPackUnlockDatas);
         }
@@ -596,14 +573,12 @@ namespace EA4S.Profile
         }
         #endregion
 
-        #region player icon data
+        #region Player icon data
         public PlayerIconData GetPlayerIconData()
         {
             PlayerIconData returnIconData = new PlayerIconData() { Uuid = this.Uuid, AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint, IsDemoUser = this.IsDemoUser, HasFinishedTheGame = this.HasFinishedTheGame, HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars };
             return returnIconData;
         }
-        #endregion
-
         #endregion
 
     }
