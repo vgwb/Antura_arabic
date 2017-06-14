@@ -93,7 +93,7 @@ namespace EA4S
             }
 #endif
 
-            DB = new DatabaseManager(AppSettings.UseTestDatabase);
+            DB = new DatabaseManager();
             // refactor: standardize initialisation of managers
             LogManager = new LogManager();
             VocabularyHelper = new VocabularyHelper(DB);

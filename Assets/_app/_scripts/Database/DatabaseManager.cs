@@ -75,10 +75,10 @@ namespace EA4S.Database
 
         #endregion
 
-        public DatabaseManager(bool useTestDatabase)
+        public DatabaseManager()
         {
             // Only the static DB is available until the player profile is also assigned
-            LoadStaticDB(useTestDatabase);
+            LoadStaticDB();
         }
 
         private void SetPlayerProfile(string playerUuid)
@@ -93,13 +93,9 @@ namespace EA4S.Database
         }
 
 
-        void LoadStaticDB(bool useTestDatabase)
+        void LoadStaticDB()
         {
             var dbName = STATIC_DATABASE_NAME;
-            if (useTestDatabase) {
-                dbName = STATIC_DATABASE_NAME_TEST;
-            }
-
             this.staticDb = DatabaseObject.LoadDB(dbName);
         }
 

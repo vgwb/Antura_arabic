@@ -23,8 +23,5 @@ namespace EA4S.Core
 
         // the list of saved players
         public List<PlayerIconData> SavedPlayers = new List<PlayerIconData>();
-
-        // used for development
-        public bool UseTestDatabase;
     }
 }
