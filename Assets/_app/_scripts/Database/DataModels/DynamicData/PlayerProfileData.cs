@@ -154,11 +154,11 @@ namespace EA4S.Database
         {
         }
 
-        public PlayerProfileData(SavedPlayerData data, int age, int totalBones, ProfileCompletionState profileCompletion, string currentAnturaCustomization = null)
+        public PlayerProfileData(PlayerIconData iconData, int age, int totalBones, ProfileCompletionState profileCompletion, string currentAnturaCustomization = null)
         {
             Id = UNIQUE_ID;  // Only one record
             Age = age;
-            SetPlayerIconData(data);
+            SetPlayerIconData(iconData);
             ProfileCompletion = profileCompletion;
             TotalBones = totalBones;
             SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
@@ -172,20 +172,20 @@ namespace EA4S.Database
             return (TotalScore >= 0.999f);
         }
 
-        public void SetPlayerIconData(SavedPlayerData data)
+        public void SetPlayerIconData(PlayerIconData iconData)
         {
-            Uuid = data.Uuid;
-            AvatarId = data.AvatarId;
-            Gender = data.Gender;
-            Tint = data.Tint;
-            IsDemoUser = data.IsDemoUser;
-            JourneyCompleted = data.HasFinishedTheGame;
-            TotalScore = (data.HasFinishedTheGameWithAllStars ? 1f : 0f);
+            Uuid = iconData.Uuid;
+            AvatarId = iconData.AvatarId;
+            Gender = iconData.Gender;
+            Tint = iconData.Tint;
+            IsDemoUser = iconData.IsDemoUser;
+            JourneyCompleted = iconData.HasFinishedTheGame;
+            TotalScore = (iconData.HasFinishedTheGameWithAllStars ? 1f : 0f);
         }
 
-        public SavedPlayerData GetPlayerIconData()
+        public PlayerIconData GetPlayerIconData()
         {
-            return new SavedPlayerData(Uuid, AvatarId, Gender, Tint, IsDemoUser, JourneyCompleted, HasFinishedTheGameWithAllStars());
+            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, JourneyCompleted, HasFinishedTheGameWithAllStars());
         }
 
         #region Journey Position

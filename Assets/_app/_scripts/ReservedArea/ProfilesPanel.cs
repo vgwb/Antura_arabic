@@ -39,7 +39,7 @@ namespace EA4S.ReservedArea
                 Destroy(t.gameObject);
             }
 
-            List<SavedPlayerData> players = AppManager.I.PlayerProfileManager.GetSavedPlayers();
+            List<PlayerIconData> players = AppManager.I.PlayerProfileManager.GetSavedPlayers();
 
             // reverse the list for RIGHT 2 LEFT layout
             players.Reverse();
@@ -124,7 +124,7 @@ namespace EA4S.ReservedArea
 
         public void OnCreateDemoPlayer()
         {
-            if (AppManager.I.PlayerProfileManager.ExistsDemoUser()) {
+            if (AppManager.I.PlayerProfileManager.IsDemoUserExisting()) {
                 GlobalUI.ShowPrompt(Database.LocalizationDataId.ReservedArea_DemoUserAlreadyExists);
             } else {
                 GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, DoCreateDemoPlayer, DoNothing);

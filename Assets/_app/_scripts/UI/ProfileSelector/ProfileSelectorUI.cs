@@ -29,7 +29,7 @@ namespace EA4S.UI
 
         public PlayerProfileManager ProfileManager { get { return AppManager.I.PlayerProfileManager; } }
         int maxProfiles;
-        List<SavedPlayerData> playerIconDatas;
+        List<PlayerIconData> playerIconDatas;
         PlayerIcon[] playerIcons;
         Tween btAddTween, btPlayTween;
 
@@ -91,9 +91,9 @@ namespace EA4S.UI
         /// <summary>
         /// Selects the profile.
         /// </summary>
-        internal void SelectProfile(SavedPlayerData savedPlayerData)
+        internal void SelectProfile(PlayerIconData playerIconData)
         {
-            ProfileManager.SetPlayerAsCurrentByUUID(savedPlayerData.Uuid);
+            ProfileManager.SetPlayerAsCurrentByUUID(playerIconData.Uuid);
             AudioManager.I.PlaySound(SfxSelectProfile);
             LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();
@@ -114,9 +114,9 @@ namespace EA4S.UI
                 PlayerIcon playerIcon = playerIcons[i];
                 if (i >= totProfiles) playerIcon.gameObject.SetActive(false);
                 else {
-                    SavedPlayerData data = playerIconDatas[i];
+                    PlayerIconData iconData = playerIconDatas[i];
                     playerIcon.gameObject.SetActive(true);
-                    playerIcon.Init(data);
+                    playerIcon.Init(iconData);
                     playerIcon.Select(AppManager.I.Player.Uuid);
                 }
             }
@@ -176,8 +176,8 @@ namespace EA4S.UI
         void OnSelectProfile(PlayerIcon playerIcon)
         {
             int index = Array.IndexOf(playerIcons, playerIcon);
-            SavedPlayerData savedPlayerData = playerIconDatas[index];
-            SelectProfile(savedPlayerData);
+            PlayerIconData playerIconData = playerIconDatas[index];
+            SelectProfile(playerIconData);
         }
 
         #endregion

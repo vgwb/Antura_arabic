@@ -3,7 +3,6 @@ using EA4S.Core;
 using EA4S.Database;
 using EA4S.Rewards;
 using UnityEngine;
-using System.Linq;
 
 namespace EA4S.Profile
 {
@@ -12,67 +11,12 @@ namespace EA4S.Profile
     /// </summary>
     public class PlayerProfileManager
     {
-        /*
-        const string SETTINGS_PREFS_KEY = "OPTIONS";
-
-        private AppSettings _settings;
-
-        private AppSettings Settings
-        {
-            get { return _settings; }
-            set
-            {
-                if (value != _settings)
-                {
-                    _settings = value;
-                    // Auto save at any change
-                    SaveSettings();
-                }
-                else
-                {
-                    _settings = value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Loads the app settings with default fallback value.
-        /// </summary>
-        private AppSettings LoadSettings(AppSettings _defaultSettings) 
-        {
-            if (PlayerPrefs.HasKey(SETTINGS_PREFS_KEY))
-            {
-                var serializedObjs = PlayerPrefs.GetString(SETTINGS_PREFS_KEY);
-                Settings = JsonUtility.FromJson<AppSettings>(serializedObjs);
-                return _settings;
-            }
-            else
-            {
-                // Players list not created yet.
-                Settings = _defaultSettings;
-                LoadSettings(_defaultSettings);
-                SaveSettings();
-                return _defaultSettings;
-            }
-        }
-
-        /// <summary>
-        /// Save all player profiles.
-        /// </summary>
-        private void SaveSettings()
-        {
-            string serializedObjs = JsonUtility.ToJson(Settings);
-            PlayerPrefs.SetString(SETTINGS_PREFS_KEY, serializedObjs);
-            PlayerPrefs.Save();
-        }
-        */
-
-
         #region Current Player
 
         private PlayerProfile _currentPlayer;
+
         /// <summary>
-        /// Actual Player.
+        /// The player that is currently playing.
         /// </summary>
         public PlayerProfile CurrentPlayer {
             get { return _currentPlayer; }
@@ -86,7 +30,7 @@ namespace EA4S.Profile
                         LogManager.I.LogInfo(InfoEvent.AppSessionEnd, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
                     }
                     AppManager.I.AppSettings.LastActivePlayerUUID = value.Uuid;
-                    SaveGameSettings();
+                    AppManager.I.AppSettingsManager.SaveSettings();
                     LogManager.I.LogInfo(InfoEvent.AppSessionStart, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
                     AppManager.I.NavigationManager.InitialisePlayerNavigationData(_currentPlayer);
 
@@ -100,24 +44,49 @@ namespace EA4S.Profile
 
         #endregion
 
-        #region API        
+        #region Player UUID
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlayerProfileManager"/> class.
+        /// Sets the player as current player profile loading from db by UUID.
         /// </summary>
-        public PlayerProfileManager()
+        /// <param name="playerUUID">The player UUID.</param>
+        /// <returns></returns>
+        public PlayerProfile SetPlayerAsCurrentByUUID(string playerUUID)
         {
-            // ReloadGameSettings();
+            PlayerProfile returnProfile = GetPlayerProfileByUUID(playerUUID);
+            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile;
+            return returnProfile;
         }
 
         /// <summary>
-        /// Reloads the game settings (AppSettings) from PlayerPrefs.
+        /// Gets the player profile from db by UUID.
+        /// </summary>
+        /// <param name="playerUUID">The player UUID.</param>
+        /// <returns></returns>
+        public PlayerProfile GetPlayerProfileByUUID(string playerUUID)
+        {
+            PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(playerUUID);
+
+            // If null, the player does not exist.
+            // The DB got desynced. Remove this player!
+            if (profileFromDB == null)
+            {
+                Debug.LogError("ERROR: no profile data for player UUID " + playerUUID);
+            }
+
+            return new PlayerProfile().FromData(profileFromDB);
+        }
+        #endregion
+
+        #region Settings        
+
+        /// <summary>
+        /// Reloads the AppSettings from PlayerPrefs.
         /// TODO: rebuild database only for desynchronized profile
         /// </summary>
-        public void ReloadGameSettings(bool alsoLoadCurrentPlayer = true)
+        public void LoadSettings(bool alsoLoadCurrentPlayer = true)
         {
-            AppManager.I.AppSettingsManager.LoadSettings(new AppSettings());
-            //AppManager.I.AppSettings = new AppSettings() { };
-            //AppManager.I.AppSettings = LoadSettings(new AppSettings()) as AppSettings;
+            AppManager.I.AppSettingsManager.LoadSettings();
 
             if (alsoLoadCurrentPlayer)
             {
@@ -144,11 +113,43 @@ namespace EA4S.Profile
                     } else {
                         //UnityEngine.Debug.Log("DB OUT OF SYNC. RESET");
                         ResetEverything();
-                        ReloadGameSettings();
+                        LoadSettings();
                     }
                 }
             }
         }
+
+        #endregion
+
+        #region Saved Players
+
+        /// <summary>
+        /// Return the list of existing player profiles.
+        /// </summary>
+        /// <returns></returns>
+        public List<PlayerIconData> GetSavedPlayers()
+        {
+            return AppManager.I.AppSettings.SavedPlayers;
+        }
+
+        /// <summary>
+        /// Updates the PlayerIconData for current player in list of SavedPlayers in GameSettings.
+        /// </summary>
+        public void UpdateCurrentPlayerIconDataInSettings()
+        {
+            for (int i = 0; i < AppManager.I.AppSettings.SavedPlayers.Count; i++)
+            {
+                if (AppManager.I.AppSettings.SavedPlayers[i].Uuid == _currentPlayer.Uuid)
+                {
+                    AppManager.I.AppSettings.SavedPlayers[i] = CurrentPlayer.GetPlayerIconData();
+                }
+            }
+            AppManager.I.AppSettingsManager.SaveSettings();
+        }
+
+        #endregion
+
+        #region Player Profile Creation
 
         /// <summary>
         /// Creates the player profile.
@@ -175,8 +176,8 @@ namespace EA4S.Profile
             // Added to list
             AppManager.I.AppSettings.SavedPlayers.Add(returnProfile.GetPlayerIconData());
             // Set player profile as current player
-            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
-            // Create new antura skin
+            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile;
+            // Create new Antura skin
             RewardSystemManager.UnlockFirstSetOfRewards();
 
             // Call Event Profile creation
@@ -186,47 +187,22 @@ namespace EA4S.Profile
             return returnProfile.Uuid;
         }
 
-        public bool ExistsDemoUser()
-        {
-            bool demoUserExists = false;
-            var playerList = GetSavedPlayers();
-            foreach (var player in playerList) {
-                if (player.IsDemoUser) {
-                    demoUserExists = true;
-                }
-            }
-            return demoUserExists;
-        }
+        #endregion
+
+        #region Player Profile Save/Load
 
         /// <summary>
-        /// Sets the player as current player profile loading from db by UUID.
+        /// Saves the player profile.
         /// </summary>
-        /// <param name="playerUUID">The player UUID.</param>
-        /// <returns></returns>
-        public PlayerProfile SetPlayerAsCurrentByUUID(string playerUUID)
+        /// <param name="_playerProfile">The player profile.</param>
+        public void SavePlayerProfile(PlayerProfile _playerProfile)
         {
-            PlayerProfile returnProfile = GetPlayerProfileByUUID(playerUUID);
-            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile;
-            return returnProfile;
+            AppManager.I.DB.UpdatePlayerProfileData(_playerProfile.ToData());
         }
 
-        /// <summary>
-        /// Gets the player profile from db by UUID.
-        /// </summary>
-        /// <param name="playerUUID">The player UUID.</param>
-        /// <returns></returns>
-        public PlayerProfile GetPlayerProfileByUUID(string playerUUID)
-        {
-            PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(playerUUID);
+        #endregion
 
-            // If null, the player does not exist.
-            // The DB got desyinced. Remove this player!
-            if (profileFromDB == null) {
-                Debug.LogError("ERROR: no profile data for player UUID " + playerUUID);
-            }
-
-            return new PlayerProfile().FromData(profileFromDB);
-        }
+        #region Player Profile Deletion
 
         /// <summary>
         /// Deletes the player profile.
@@ -239,79 +215,28 @@ namespace EA4S.Profile
             // it prevents errors if rewards unlock coroutine is still running
             AppManager.I.StopAllCoroutines();
             // TODO: check if is necessary to hard delete DB
-            SavedPlayerData savedPlayerData = GetSavedPlayers().Find(p => p.Uuid == playerUUID);
-            if (savedPlayerData.Uuid == string.Empty)
+            PlayerIconData playerIconData = GetSavedPlayers().Find(p => p.Uuid == playerUUID);
+            if (playerIconData.Uuid == string.Empty)
                 return null;
             // if setted as active player in gamesettings remove from it
-            if (savedPlayerData.Uuid == AppManager.I.AppSettings.LastActivePlayerUUID) {
+            if (playerIconData.Uuid == AppManager.I.AppSettings.LastActivePlayerUUID)
+            {
                 // if possible set the first available player...
-                SavedPlayerData newActiveSavedPlayer = GetSavedPlayers().Find(p => p.Uuid != playerUUID);
-                if (newActiveSavedPlayer.Uuid != null) {
-                    AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(newActiveSavedPlayer.Uuid);
-                } else {
+                PlayerIconData newActivePlayerIcon = GetSavedPlayers().Find(p => p.Uuid != playerUUID);
+                if (newActivePlayerIcon.Uuid != null)
+                {
+                    AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(newActivePlayerIcon.Uuid);
+                }
+                else {
                     // ...else set to null
                     AppManager.I.PlayerProfileManager._currentPlayer = null;
                 }
             }
-            AppManager.I.AppSettings.SavedPlayers.Remove(savedPlayerData);
+            AppManager.I.AppSettings.SavedPlayers.Remove(playerIconData);
 
-            SaveGameSettings();
+            AppManager.I.AppSettingsManager.SaveSettings();
             return returnProfile;
         }
-
-        #region Saved Player Profiles
-
-        /// <summary>
-        /// Return the list of existing player profiles.
-        /// </summary>
-        /// <returns></returns>
-        public List<SavedPlayerData> GetSavedPlayers()
-        {
-            return AppManager.I.AppSettings.SavedPlayers;
-        }
-
-        /// <summary>
-        /// Saves the player settings.
-        /// </summary>
-        /// <param name="_playerProfile">The player profile.</param>
-        public void SavePlayerSettings(PlayerProfile _playerProfile)
-        {
-            AppManager.I.DB.UpdatePlayerProfileData(_playerProfile.ToData());
-        }
-
-        /// <summary>
-        /// Updates the PlayerIconData for current player in list of SavedPlayers in GameSettings.
-        /// </summary>
-        public void UpdateCurrentPlayerIconDataInSettings()
-        {
-            for (int i = 0; i < AppManager.I.AppSettings.SavedPlayers.Count; i++) {
-                if (AppManager.I.AppSettings.SavedPlayers[i].Uuid == _currentPlayer.Uuid) {
-                    AppManager.I.AppSettings.SavedPlayers[i] = CurrentPlayer.GetPlayerIconData();
-                }
-            }
-            SaveGameSettings();
-        }
-
-        #endregion
-
-        /// <summary>
-        /// Saves the game settings.
-        /// </summary>
-        public void SaveGameSettings()
-        {
-            //Settings = AppManager.I.AppSettings;
-            //SaveSettings();
-            AppManager.I.AppSettingsManager.SaveSettings();
-        }
-
-       /* /// <summary>
-        /// WARNING! Deletes all profiles.
-        /// </summary>
-        public void DeleteAllProfiles()
-        {
-            //SaveSettings();
-            AppManager.I.AppSettingsManager.SaveSettings();
-        }*/
 
         /// <summary>
         /// Resets everything.
@@ -321,7 +246,7 @@ namespace EA4S.Profile
             // Reset all the Databases
             if (AppManager.I.AppSettings.SavedPlayers != null)
             {
-                foreach (SavedPlayerData pp in AppManager.I.AppSettings.SavedPlayers)
+                foreach (PlayerIconData pp in AppManager.I.AppSettings.SavedPlayers)
                 {
                     AppManager.I.DB.LoadDatabaseForPlayer(pp.Uuid);
                     AppManager.I.DB.DropProfile();
@@ -331,8 +256,7 @@ namespace EA4S.Profile
 
             // Reset all settings too
             AppManager.I.AppSettingsManager.DeleteAllSettings();
-            //PlayerPrefs.DeleteAll();
-            ReloadGameSettings(alsoLoadCurrentPlayer: false);
+            LoadSettings(alsoLoadCurrentPlayer: false);
             //SaveGameSettings();
         }
 
@@ -346,6 +270,24 @@ namespace EA4S.Profile
         /// </summary>
         public static event ProfileEventHandler OnProfileChanged;
         public static event ProfileEventHandler OnNewProfileCreated;
+        #endregion
+
+        #region Checks
+
+        public bool IsDemoUserExisting()
+        {
+            bool demoUserExists = false;
+            var playerList = GetSavedPlayers();
+            foreach (var player in playerList)
+            {
+                if (player.IsDemoUser)
+                {
+                    demoUserExists = true;
+                }
+            }
+            return demoUserExists;
+        }
+
         #endregion
     }
 }

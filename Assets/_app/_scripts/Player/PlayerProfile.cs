@@ -62,29 +62,13 @@ namespace EA4S.Profile
         #region management
 
         /// <summary>
-        /// Automatically select first avatar profile.
-        /// </summary>
-        public PlayerProfile()
-        {
-
-        }
-
-        /// <summary>
         /// Saves this instance.
         /// </summary>
         public void Save()
         {
-            AppManager.I.PlayerProfileManager.SavePlayerSettings(this);
+            AppManager.I.PlayerProfileManager.SavePlayerProfile(this);
         }
 
-        /// <summary>
-        /// TBD if accessible form player instance.
-        /// Saves the general game settings.
-        /// </summary>
-        public void SaveGameSettings()
-        {
-            AppManager.I.PlayerProfileManager.SaveGameSettings();
-        }
         #endregion
 
         #region properties
@@ -95,9 +79,9 @@ namespace EA4S.Profile
             return tokens[0];
         }
 
-        public SavedPlayerData GetIcon()
+        public PlayerIconData GetIcon()
         {
-            return new SavedPlayerData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars);
+            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars);
         }
 
         public Sprite GetAvatar()
@@ -595,7 +579,7 @@ namespace EA4S.Profile
         /// <returns></returns>
         public PlayerProfileData ToData()
         {
-            PlayerProfileData newProfileData = new PlayerProfileData(new SavedPlayerData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars), Age, TotalNumberOfBones, ProfileCompletion);
+            PlayerProfileData newProfileData = new PlayerProfileData(new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars), Age, TotalNumberOfBones, ProfileCompletion);
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
             string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
@@ -629,10 +613,10 @@ namespace EA4S.Profile
         #endregion
 
         #region player icon data
-        public SavedPlayerData GetPlayerIconData()
+        public PlayerIconData GetPlayerIconData()
         {
-            SavedPlayerData returnData = new SavedPlayerData() { Uuid = this.Uuid, AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint, IsDemoUser = this.IsDemoUser, HasFinishedTheGame = this.HasFinishedTheGame, HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars };
-            return returnData;
+            PlayerIconData returnIconData = new PlayerIconData() { Uuid = this.Uuid, AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint, IsDemoUser = this.IsDemoUser, HasFinishedTheGame = this.HasFinishedTheGame, HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars };
+            return returnIconData;
         }
         #endregion
 

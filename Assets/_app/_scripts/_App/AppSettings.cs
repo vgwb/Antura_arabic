@@ -22,7 +22,7 @@ namespace EA4S.Core
         public string ApplicationVersion;
 
         // the list of saved players
-        public List<SavedPlayerData> SavedPlayers = new List<SavedPlayerData>();
+        public List<PlayerIconData> PlayersIconData = new List<PlayerIconData>();
 
     }
 }

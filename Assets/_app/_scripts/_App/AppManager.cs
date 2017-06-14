@@ -12,74 +12,6 @@ using EA4S.UI;
 
 namespace EA4S
 {
-
-    public class AppSettingsManager
-    {
-        const string SETTINGS_PREFS_KEY = "OPTIONS";
-
-        // [HideInInspector]
-        //public AppSettings AppSettings = new AppSettings();
-
-        private AppSettings _settings = new AppSettings();
-
-        public AppSettings Settings
-        {
-            get { return _settings; }
-            set
-            {
-                if (value != _settings)
-                {
-                    _settings = value;
-                    // Auto save at any change
-                    SaveSettings();
-                }
-                else
-                {
-                    _settings = value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Loads the app settings with default fallback value.
-        /// </summary>
-        public AppSettings LoadSettings(AppSettings defaultSettings) 
-        {
-            if (PlayerPrefs.HasKey(SETTINGS_PREFS_KEY))
-            {
-                var serializedObjs = PlayerPrefs.GetString(SETTINGS_PREFS_KEY);
-                Settings = JsonUtility.FromJson<AppSettings>(serializedObjs);
-            }
-            else
-            {
-                Settings = defaultSettings;
-                //LoadSettings(defaultSettings);
-                // SaveSettings();
-                // return defaultSettings;
-            }
-            return _settings;
-        }
-
-        /// <summary>
-        /// Save all settings. This also saves player profiles.
-        /// </summary>
-        public void SaveSettings()
-        {
-            string serializedObjs = JsonUtility.ToJson(Settings);
-            PlayerPrefs.SetString(SETTINGS_PREFS_KEY, serializedObjs);
-            PlayerPrefs.Save();
-        }
-
-        /// <summary>
-        /// Delete all settings. This also deletes all player profiles.
-        /// </summary>
-        public void DeleteAllSettings()
-        {
-            PlayerPrefs.DeleteAll();
-        }
-
-    }
-
     /// <summary>
     /// Core of the application.
     /// Works as a general manager and entry point for all other systems and managers.
@@ -112,7 +44,7 @@ namespace EA4S
 
         /// <summary>
         /// Gets or sets the player profile manager.
-        /// Reload GameSettings at any playerProfileManager changes.
+        /// Reload settings at any playerProfileManager changes.
         /// </summary>
         /// <value>
         /// The player profile manager.
@@ -123,7 +55,7 @@ namespace EA4S
             set {
                 if (_playerProfileManager != value) {
                     _playerProfileManager = value;
-                    _playerProfileManager.ReloadGameSettings();
+                    _playerProfileManager.LoadSettings();
                     return;
                 }
                 _playerProfileManager = value;
@@ -187,7 +119,7 @@ namespace EA4S
 
             // Update settings
             AppSettings.ApplicationVersion = AppConstants.AppVersion;
-            PlayerProfileManager.SaveGameSettings();
+            AppManager.I.AppSettingsManager.SaveSettings();
         }
 
         #endregion
@@ -222,7 +154,7 @@ namespace EA4S
         public void ToggleEnglishSubtitles()
         {
             AppSettings.EnglishSubtitles = !AppSettings.EnglishSubtitles;
-            PlayerProfileManager.SaveGameSettings();
+            AppManager.I.AppSettingsManager.SaveSettings();
         }
 
         #endregion

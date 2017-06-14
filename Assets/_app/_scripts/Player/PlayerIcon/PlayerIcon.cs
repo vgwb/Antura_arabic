@@ -42,13 +42,13 @@ namespace EA4S.Profile
 
         #region Public
 
-        public void Init(SavedPlayerData savedPlayerData)
+        public void Init(PlayerIconData playerIconData)
         {
-            Uuid = savedPlayerData.Uuid;
+            Uuid = playerIconData.Uuid;
             //Debug.Log("playerIconData " + playerIconData.Uuid + " " + playerIconData.Gender + " " + playerIconData.AvatarId + " " + playerIconData.Tint + " " + playerIconData.IsDemoUser + " > " + playerIconData.HasFinishedTheGame + "/" + playerIconData.HasFinishedTheGameWithAllStars);
-            EndgameState endgameState = savedPlayerData.HasFinishedTheGameWithAllStars ? EndgameState.FinishedWAllStars
-                : savedPlayerData.HasFinishedTheGame ? EndgameState.Finished : EndgameState.Unfinished;
-            SetAppearance(savedPlayerData.Gender, savedPlayerData.AvatarId, savedPlayerData.Tint, savedPlayerData.IsDemoUser, endgameState);
+            EndgameState endgameState = playerIconData.HasFinishedTheGameWithAllStars ? EndgameState.FinishedWAllStars
+                : playerIconData.HasFinishedTheGame ? EndgameState.Finished : EndgameState.Unfinished;
+            SetAppearance(playerIconData.Gender, playerIconData.AvatarId, playerIconData.Tint, playerIconData.IsDemoUser, endgameState);
         }
 
         [DeMethodButton("DEBUG: Select", mode = DeButtonMode.PlayModeOnly)]
