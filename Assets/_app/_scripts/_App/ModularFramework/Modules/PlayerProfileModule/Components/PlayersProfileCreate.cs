@@ -18,14 +18,14 @@ namespace EA4S.Core
         /// Create a new profile with data filled in UI form and set newly profile as active.
         /// </summary>
         /// <param name="closeWindow">If true close this window after creation.</param>
-        public void CreateNewPlayerProfile(bool closeWindow) {
-            IPlayerProfile newPP = EA4S.AppManager.I.PlayerProfile.CreateNewPlayer(new PlayerProfile() {
+        /*public void CreateNewPlayerProfile(bool closeWindow) {
+            IPlayerProfile newPP = EA4S.AppManager.I.PlayerProfileModule.CreateNewPlayer(new PlayerProfile() {
                 Key = Username.text,
             });
        //     if (closeWindow)
         //        EA4S.AppManager.Instance.UIModule.HideUIContainer(Key);
-            EA4S.AppManager.I.PlayerProfile.SetActivePlayer<PlayerProfile>(newPP.Key);
-        }
+            EA4S.AppManager.I.PlayerProfileModule.SetActivePlayer<PlayerProfile>(newPP.Key);
+        }*/
 
         #endregion
     }

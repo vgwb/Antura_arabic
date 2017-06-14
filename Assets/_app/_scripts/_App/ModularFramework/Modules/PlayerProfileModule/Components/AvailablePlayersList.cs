@@ -51,16 +51,16 @@ namespace EA4S.Core
         /// <summary>
         /// Retrive list of available players and visual refresh list.
         /// </summary>
-        public void RefreshList() {
+        /*public void RefreshList() {
             ClearList();
             GetPlayers();
             foreach (var p in PlayersIds) {
                 PlayerProfileSetActive newComponent = Instantiate(SingleItemPrefab).GetComponent<PlayerProfileSetActive>();
                 newComponent.transform.SetParent(ListContainer);
-                newComponent.Init(AppManager.I.PlayerProfile.LoadPlayerSettings<PlayerProfile>(p));
+                newComponent.Init(AppManager.I.PlayerProfileModule.LoadPlayerSettings<PlayerProfile>(p));
                 newComponent.gameObject.name = newComponent.Player.Key;
             }
-        }
+        }*/
 
         /// <summary>
         /// Clear profile list from all visual items.
@@ -74,10 +74,10 @@ namespace EA4S.Core
         /// <summary>
         /// Delete all available profile, clear list and set actual profile to null.
         /// </summary>
-        public void DeleteAllProfiles() {
-            AppManager.I.PlayerProfile.DeleteAllPlayerProfiles();
+       /* public void DeleteAllProfiles() {
+            AppManager.I.PlayerProfileModule.DeleteAllPlayerProfiles();
             ClearList();
-        }
+        }*/
 
         #endregion
 

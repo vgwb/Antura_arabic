@@ -4,6 +4,7 @@ using EA4S.Core;
 using UnityEngine;
 
 namespace EA4S.Core { 
+    /*
     [AddComponentMenu("Modular Framework/Modules Installers/PlayerProfileModuleDefault")]
     public class PlayerProfileModuleDefaultInstaller : ModuleInstaller<IPlayerProfileModule> {
         public PlayerProfileModuleDefaultSettings settings;
@@ -13,7 +14,7 @@ namespace EA4S.Core {
                 ModuleActivationState = ModuleActivationStates.Activated;
             return concreteInstance;
         }
-    }
+    }*/
 }
 
 /// <summary>

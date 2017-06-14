@@ -3,11 +3,12 @@ using System;
 
 namespace EA4S.Core
 {
+    /*
     [Serializable]
     public class ModuleManager {
 
         [SerializeField]
-        public PlayerProfileModule PlayerProfile = new PlayerProfileModule() { MultipleProfileSupported = true };
+        //public PlayerProfileModule PlayerProfile = new PlayerProfileModule() { MultipleProfileSupported = true };
         public DataModule DataModule = new DataModule();
 
         public void ModuleAutoInstallerOverride(GameObject _gamemanagerGO) {
@@ -16,13 +17,13 @@ namespace EA4S.Core
                 IDataModule dm = _gamemanagerGO.GetComponentInChildren<ModuleInstaller<IDataModule>>().InstallModule();
                 DataModule.SetupModule(dm, dm.Settings);
             }
-            // PlayerProfileModule Install
+           /* // PlayerProfileModule Install
             if (_gamemanagerGO.GetComponentInChildren<ModuleInstaller<IPlayerProfileModule>>()) {
                 IPlayerProfileModule moduleInstance = _gamemanagerGO.GetComponentInChildren<ModuleInstaller<IPlayerProfileModule>>().InstallModule();
                 PlayerProfile.SetupModule(moduleInstance, moduleInstance.Settings);
-            }
-        }
-    }
+            }*/
+   /*     }
+    }*/
     
     public abstract class ModuleInstaller<T> : MonoBehaviour {
         public abstract T InstallModule();

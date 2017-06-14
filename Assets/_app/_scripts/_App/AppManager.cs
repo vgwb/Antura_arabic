@@ -39,13 +39,10 @@ namespace EA4S
 
         #region Modules DEPRECATED
 
-        [HideInInspector]
-        public ModuleManager Modules = new ModuleManager();
+        //[HideInInspector]
+        //public ModuleManager Modules = new ModuleManager();
 
-        public PlayerProfileModule PlayerProfile
-        {
-            get { return Modules.PlayerProfile; }
-        }
+        public PlayerProfileModule PlayerProfileModule;
 
         #endregion
 
@@ -96,7 +93,8 @@ namespace EA4S
             base.Initialise();
 
             // Modules Setup
-            Modules.ModuleAutoInstallerOverride(this.gameObject);
+            //Modules.ModuleAutoInstallerOverride(this.gameObject);
+            PlayerProfileModule = new PlayerProfileModule();
 
             alreadySetup = true;
 

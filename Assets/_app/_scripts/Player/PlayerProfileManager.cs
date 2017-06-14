@@ -62,7 +62,7 @@ namespace EA4S.Profile
         public void ReloadGameSettings(bool alsoLoadCurrentPlayer = true)
         {
             AppManager.I.AppSettings = new AppSettings() { };
-            AppManager.I.AppSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            AppManager.I.AppSettings = AppManager.I.PlayerProfileModule.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
 
             if (alsoLoadCurrentPlayer) {
                 // No last active? Get the first one.
@@ -239,8 +239,8 @@ namespace EA4S.Profile
         /// </summary>
         public void SaveGameSettings()
         {
-            AppManager.I.Modules.PlayerProfile.Options = AppManager.I.AppSettings;
-            AppManager.I.Modules.PlayerProfile.SaveAllOptions();
+            AppManager.I.PlayerProfileModule.Options = AppManager.I.AppSettings;
+            AppManager.I.PlayerProfileModule.SaveAllOptions();
         }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace EA4S.Profile
         /// </summary>
         public void DeleteAllProfiles()
         {
-            AppManager.I.Modules.PlayerProfile.DeleteAllPlayerProfiles();
+            AppManager.I.PlayerProfileModule.DeleteAllPlayerProfiles();
         }
 
         /// <summary>

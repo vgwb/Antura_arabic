@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace EA4S.Core
 {
+    /*
     /// <summary>
     /// Concrete implementation for module type PlayerProfileModule.
     /// </summary>
@@ -165,4 +166,5 @@ namespace EA4S.Core
         }
         #endregion
     }
+    */
 }

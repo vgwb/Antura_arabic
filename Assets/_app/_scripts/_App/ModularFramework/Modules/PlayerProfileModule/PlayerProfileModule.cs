@@ -5,181 +5,209 @@ using System.Collections.Generic;
 
 namespace EA4S.Core
 {
-    /// <summary>
-    /// This is the Context implementation of this Module type with all functionalities provided from the Strategy interface.
-    /// </summary>
-    public class PlayerProfileModule : IPlayerProfileModule {
+    public partial class PlayerProfileModule : IPlayerProfileModule
+    {
+        public IPlayerProfile ActivePlayer { get; set; }
 
-        /// <summary>
-        /// Actual active player profile.
-        /// </summary>
-        public IPlayerProfile ActivePlayer {
-            get { return ConcreteModuleImplementation.ActivePlayer; }
-            set { ConcreteModuleImplementation.ActivePlayer = value; }
-        }
-        /// <summary>
-        /// List of Available players profiles.
-        /// </summary>
-        public GlobalOptions Options {
-            get { return ConcreteModuleImplementation.Options; }
-            set { ConcreteModuleImplementation.Options = value; }
-        }
+        #region IModule Implementation
 
-        public bool MultipleProfileSupported = false;
-
-        #region IModule implementation
-        /// <summary>
-        /// Concrete Module Implementation.
-        /// </summary>
         public IPlayerProfileModule ConcreteModuleImplementation { get; set; }
-        public IModuleSettings Settings { get; set; }
-        
-        /// <summary>
-        /// Module Setup.
-        /// </summary>
-        /// <param name="_concreteModule">Concrete module implementation to set as active module behaviour.</param>
-        /// <returns></returns>
-        public IPlayerProfileModule SetupModule(IPlayerProfileModule _concreteModule, IModuleSettings _settings = null) {
-            ConcreteModuleImplementation = _concreteModule.SetupModule(_concreteModule, _settings);
-            if (ConcreteModuleImplementation == null)
-                OnSetupError();
-            return ConcreteModuleImplementation;
+        private GlobalOptions options;
+
+        public GlobalOptions Options
+        {
+            get { return options; }
+            set
+            {
+                if (value != options)
+                {
+                    options = value;
+                    // Auto save at any change
+                    SaveAllOptions();
+                }
+                else
+                {
+                    options = value;
+                }
+            }
         }
 
-        /// <summary>
-        /// Called if an error occurred during the setup.
-        /// </summary>
-        void OnSetupError() {
-            Debug.LogErrorFormat("Module {0} setup return an error.", this.GetType());
+        public IModuleSettings Settings { get; set; }
+
+        public IPlayerProfileModule SetupModule(IPlayerProfileModule _concreteModule, IModuleSettings _settings = null)
+        {
+            Settings = _settings;
+            // Add Here setup stuffs for this concrete implementation
+            return this;
         }
 
         #endregion
 
         /// <summary>
-        /// Create new player with informations provided.
-        /// </summary>
-        /// <param name="_newPlayer"></param>
-        /// <param name="_extProfile"></param>
-        /// <returns>Player created or null if player with user id already exist.</returns>
-        public IPlayerProfile CreateNewPlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
-            return ConcreteModuleImplementation.CreateNewPlayer(_newPlayer, _extProfile);
-        }
-
-        /// <summary>
-        /// Delete player with corresponding Id.
-        /// </summary>
-        /// <param name="_playerId"></param>
-        public void DeletePlayer(string _playerId) {
-            ConcreteModuleImplementation.DeletePlayer(_playerId);
-        }
-
-        /// <summary>
-        /// Update player profile with data in param.
+        /// Create new player profile, if not exist already, and save updated list of available players on PlayerPrefs.
         /// </summary>
         /// <param name="_newPlayer"></param>
         /// <param name="_extProfile"></param>
         /// <returns></returns>
-        public IPlayerProfile UpdatePlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
-            return ConcreteModuleImplementation.UpdatePlayer(_newPlayer, _extProfile);
+        public IPlayerProfile CreateNewPlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null)
+        {
+            return null;
         }
 
         /// <summary>
-        /// Set Active player as Active Player.
+        /// Delete player.
         /// </summary>
         /// <param name="_playerId"></param>
-        public void SetActivePlayer<T>(string _playerId) where T : IPlayerProfile {
-            ConcreteModuleImplementation.SetActivePlayer<T>(_playerId);
+        public void DeletePlayer(string _playerId)
+        {
         }
 
         /// <summary>
-        /// Save player settins.
+        /// Load player settings.
+        /// </summary>
+        /// <param name="_playerId"></param>
+        public IPlayerProfile LoadPlayerSettings<T>(string _playerId) where T : IPlayerProfile
+        {
+            if (PlayerPrefs.HasKey(GetStoreKeyForPlayer(_playerId)))
+            {
+                string serializableProfile = PlayerPrefs.GetString(GetStoreKeyForPlayer(_playerId));
+                IPlayerProfile returnProfile = JsonUtility.FromJson<T>(serializableProfile);
+                returnProfile.Key = _playerId;
+                return returnProfile;
+            }
+            else
+            {
+                Debug.LogFormat("Profile {0} not found.", _playerId);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Save player settings on PlayerPrefs (do not update list of players and global options).
         /// </summary>
         /// <param name="_newPlayer"></param>
         /// <param name="_extProfile"></param>
-        public void SavePlayerSettings(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
-            ConcreteModuleImplementation.SavePlayerSettings(_newPlayer, _extProfile);
+        public void SavePlayerSettings(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null)
+        {
+            string storeKey = GetStoreKeyForPlayer(_newPlayer.Key);
+            string serializedObjs = JsonUtility.ToJson(_newPlayer);
+            if (serializedObjs != null)
+                PlayerPrefs.SetString(storeKey, serializedObjs);
+            else
+                Debug.Log("Unable to serialize player profile : " + _newPlayer.Key);
+            PlayerPrefs.Save();
         }
 
         /// <summary>
-        /// Load player settings from previous saved.
+        /// Set the active player.
         /// </summary>
         /// <param name="_playerId"></param>
-        public IPlayerProfile LoadPlayerSettings<T>(string _playerId) where T : IPlayerProfile {
-            return ConcreteModuleImplementation.LoadPlayerSettings<T>(_playerId);
+        public void SetActivePlayer<T>(string _playerId) where T : IPlayerProfile
+        {
+            IPlayerProfile pp = LoadPlayerSettings<T>(_playerId);
+            if (pp == null)
+            {
+                Debug.LogError("Player not found");
+            }
+            else
+            {
+                ActivePlayer = pp;
+            }
         }
 
         /// <summary>
-        /// Load all global options included list of players profiles.
+        /// Update player settings (and if, extended profile).
         /// </summary>
+        /// <param name="_newPlayer"></param>
+        /// <param name="_extProfile"></param>
         /// <returns></returns>
+        public IPlayerProfile UpdatePlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null)
+        {
+            SavePlayerSettings(_newPlayer);
+            return _newPlayer;
+        }
+
+        ///// <summary>
+        ///// Loads the global options.
+        ///// </summary>
+        ///// <returns></returns>
         //public IGlobalOptions LoadGlobalOptions<T>() where T : IGlobalOptions {
-        //    return ConcreteModuleImplementation.LoadGlobalOptions<T>();
+        //    return LoadGlobalOptions<T>(Activator.CreateInstance<T>());
         //}
 
-        public GlobalOptions LoadGlobalOptions<T>(T _defaultOptions) where T : GlobalOptions {
-            return ConcreteModuleImplementation.LoadGlobalOptions<T>(_defaultOptions);
+        /// <summary>
+        /// Loads the global options with default fallback value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="_defaultOptions">The default options.</param>
+        /// <returns></returns>
+        public GlobalOptions LoadGlobalOptions<T>(T _defaultOptions) where T : GlobalOptions
+        {
+            string serializedObjs;
+            if (PlayerPrefs.HasKey(OPTIONS_PREFS_KEY))
+            {
+                serializedObjs = PlayerPrefs.GetString(OPTIONS_PREFS_KEY);
+                Options = JsonUtility.FromJson<T>(serializedObjs);
+                return options;
+            }
+            else
+            {
+                // Players list not created yet.
+                Options = _defaultOptions;
+                LoadGlobalOptions<T>(_defaultOptions);
+                SaveAllOptions();
+                return _defaultOptions;
+            }
         }
 
         /// <summary>
-        /// Store alla player profiles.
+        /// Save all player profiles.
         /// </summary>
-        public void SaveAllOptions() {
-            ConcreteModuleImplementation.SaveAllOptions();
+        public void SaveAllOptions()
+        {
+            string serializedObjs = JsonUtility.ToJson(Options);
+            PlayerPrefs.SetString(OPTIONS_PREFS_KEY, serializedObjs);
+            PlayerPrefs.Save();
         }
+
+        #region Data Store
+
+        const string OPTIONS_PREFS_KEY = "OPTIONS";
+        const string PLAYER_PREFS_KEY = "PLAYER";
+
+        /// <summary>
+        /// Return correct player pref key.
+        /// </summary>
+        /// <param name="_playerId"></param>
+        /// <returns></returns>
+        static string GetStoreKeyForPlayer(string _playerId)
+        {
+            return string.Format("{0}_{1}", PLAYER_PREFS_KEY, _playerId);
+        }
+
+        #endregion
 
         /// <summary>
         /// WARNING! Delete all stored profiles and set actual profile to null.
         /// </summary>
-        public void DeleteAllPlayerProfiles() {
+        public void DeleteAllPlayerProfiles()
+        {
             SaveAllOptions();
             ActivePlayer = null;
         }
+
     }
-
-    #region Interfaces
-
-    /// <summary>
-    /// Strategy interface. 
-    /// Provide All the functionalities required for any Concrete implementation of the module.
-    /// </summary>
-    public interface IPlayerProfileModule : IModule<IPlayerProfileModule> {
-        IPlayerProfile ActivePlayer { get; set; }
-        GlobalOptions Options { get; set; }
-        // Player creation
-        IPlayerProfile CreateNewPlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null);
-        void DeletePlayer(string _playerId);
-        // Mod Player 
-        IPlayerProfile UpdatePlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null);
-        // Change player
-        void SetActivePlayer<T>(string _playerId) where T : IPlayerProfile;
-        // Save and load
-        void SavePlayerSettings(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null);
-        IPlayerProfile LoadPlayerSettings<T>(string _playerId) where T : IPlayerProfile;
-        // Save and load Players
-        //IGlobalOptions LoadGlobalOptions<T>() where T : IGlobalOptions;
-        GlobalOptions LoadGlobalOptions<T>(T _defaultOptions) where T : GlobalOptions;
-        void SaveAllOptions();
-    }
-
-    ///// <summary>
-    ///// Data struct to store organized data info for players profiles into module.
-    ///// </summary>
-    //[Serializable]
-    //public class PlayersData {
-    //    public string Dummy;
-    //    public List<string> AvailablePlayers;
-    //}
 
     /// <summary>
     /// Interface for optional Extended player profile.
     /// </summary>
-    public interface IPlayerExtendedProfile {
+    public interface IPlayerExtendedProfile
+    {
         string PlayerRef { get; set; }
     }
 
-    public interface IPlayerProfile {
+    public interface IPlayerProfile
+    {
         string Key { get; set; }
     }
-
-    #endregion
 }
