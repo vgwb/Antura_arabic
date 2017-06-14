@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114186848390050168}
   - component: {fileID: 114414868995619734}
   m_Layer: 5
-  m_Name: UI Debug Btn
+  m_Name: UI Debug Panel Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
