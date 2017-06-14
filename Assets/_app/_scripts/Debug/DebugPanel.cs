@@ -9,7 +9,11 @@ namespace EA4S.Debugging
 	{
 		public static DebugPanel I;
 
+		[Header("References")]
 		public GameObject Panel;
+		public GameObject Container;
+		public GameObject PrefabRow;
+		public GameObject PrefabButton;
 
 		private int clickCounter;
 
@@ -20,6 +24,10 @@ namespace EA4S.Debugging
 			} else {
 				I = this;
 				DontDestroyOnLoad(gameObject);
+			}
+
+			if (Panel.activeSelf) {
+				Panel.SetActive(false);
 			}
 		}
 
