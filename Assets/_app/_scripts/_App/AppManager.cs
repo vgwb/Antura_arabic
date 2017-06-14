@@ -32,6 +32,7 @@ namespace EA4S
         public DatabaseManager DB;
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
+        [HideInInspector]
         public NavigationManager NavigationManager;
         public PlayerProfileManager PlayerProfileManager;
 
