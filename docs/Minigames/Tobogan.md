@@ -9,7 +9,7 @@ Total tests: 3
 
 
 ### Shared Difficulty
-- Number of balls decreases
+- ????? (TODO, not clear)
 
 
 ### Shortcuts
@@ -41,3 +41,4 @@ Player must find the correct word.
 ## Optimization
 
 ## Open Questions
+- Explain difficulty use
