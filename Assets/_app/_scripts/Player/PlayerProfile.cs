@@ -22,7 +22,7 @@ namespace EA4S.Profile
     /// A Player Profile contains persistent data on details and on the progression status of a single player.
     /// </summary>
     [Serializable]
-    public class PlayerProfile : IPlayerProfile
+    public class PlayerProfile
     {
         public string Uuid;
         public int AvatarId;

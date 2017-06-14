@@ -12,7 +12,74 @@ namespace EA4S.Profile
     /// </summary>
     public class PlayerProfileManager
     {
-        private PlayerProfileModule PlayerProfileModule = new PlayerProfileModule();
+        #region Global Options
+
+        const string OPTIONS_PREFS_KEY = "OPTIONS";
+
+        private GlobalOptions options;
+
+        public GlobalOptions Options
+        {
+            get { return options; }
+            set
+            {
+                if (value != options)
+                {
+                    options = value;
+                    // Auto save at any change
+                    SaveAllOptions();
+                }
+                else
+                {
+                    options = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Loads the global options with default fallback value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="_defaultOptions">The default options.</param>
+        /// <returns></returns>
+        public GlobalOptions LoadGlobalOptions<T>(T _defaultOptions) where T : GlobalOptions
+        {
+            if (PlayerPrefs.HasKey(OPTIONS_PREFS_KEY))
+            {
+                var serializedObjs = PlayerPrefs.GetString(OPTIONS_PREFS_KEY);
+                Options = JsonUtility.FromJson<T>(serializedObjs);
+                return options;
+            }
+            else
+            {
+                // Players list not created yet.
+                Options = _defaultOptions;
+                LoadGlobalOptions<T>(_defaultOptions);
+                SaveAllOptions();
+                return _defaultOptions;
+            }
+        }
+
+        /// <summary>
+        /// Save all player profiles.
+        /// </summary>
+        public void SaveAllOptions()
+        {
+            string serializedObjs = JsonUtility.ToJson(Options);
+            PlayerPrefs.SetString(OPTIONS_PREFS_KEY, serializedObjs);
+            PlayerPrefs.Save();
+        }
+
+        /// <summary>
+        /// WARNING! Delete all stored profiles and set actual profile to null.
+        /// </summary>
+        public void DeleteAllPlayerProfiles()
+        {
+            SaveAllOptions();
+        }
+
+        #endregion
+
 
         #region Properties
 
@@ -63,7 +130,7 @@ namespace EA4S.Profile
         public void ReloadGameSettings(bool alsoLoadCurrentPlayer = true)
         {
             AppManager.I.AppSettings = new AppSettings() { };
-            AppManager.I.AppSettings = PlayerProfileModule.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            AppManager.I.AppSettings = LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
 
             if (alsoLoadCurrentPlayer) {
                 // No last active? Get the first one.
@@ -240,8 +307,8 @@ namespace EA4S.Profile
         /// </summary>
         public void SaveGameSettings()
         {
-            PlayerProfileModule.Options = AppManager.I.AppSettings;
-            PlayerProfileModule.SaveAllOptions();
+            Options = AppManager.I.AppSettings;
+            SaveAllOptions();
         }
 
         /// <summary>
@@ -249,7 +316,7 @@ namespace EA4S.Profile
         /// </summary>
         public void DeleteAllProfiles()
         {
-            PlayerProfileModule.DeleteAllPlayerProfiles();
+            DeleteAllPlayerProfiles();
         }
 
         /// <summary>
