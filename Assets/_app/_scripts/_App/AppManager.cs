@@ -36,16 +36,7 @@ namespace EA4S
         public NavigationManager NavigationManager;
 
         public bool IsPaused { get; private set; }
-
-        #region Modules DEPRECATED
-
-        //[HideInInspector]
-        //public ModuleManager Modules = new ModuleManager();
-
-        public PlayerProfileModule PlayerProfileModule;
-
-        #endregion
-
+        
         private PlayerProfileManager _playerProfileManager;
 
         /// <summary>
@@ -91,10 +82,6 @@ namespace EA4S
                 return;
 
             base.Initialise();
-
-            // Modules Setup
-            //Modules.ModuleAutoInstallerOverride(this.gameObject);
-            PlayerProfileModule = new PlayerProfileModule();
 
             alreadySetup = true;
 

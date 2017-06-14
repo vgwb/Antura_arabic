@@ -12,6 +12,7 @@ namespace EA4S.Profile
     /// </summary>
     public class PlayerProfileManager
     {
+        private PlayerProfileModule PlayerProfileModule = new PlayerProfileModule();
 
         #region Properties
 
@@ -62,7 +63,7 @@ namespace EA4S.Profile
         public void ReloadGameSettings(bool alsoLoadCurrentPlayer = true)
         {
             AppManager.I.AppSettings = new AppSettings() { };
-            AppManager.I.AppSettings = AppManager.I.PlayerProfileModule.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            AppManager.I.AppSettings = PlayerProfileModule.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
 
             if (alsoLoadCurrentPlayer) {
                 // No last active? Get the first one.
@@ -239,8 +240,8 @@ namespace EA4S.Profile
         /// </summary>
         public void SaveGameSettings()
         {
-            AppManager.I.PlayerProfileModule.Options = AppManager.I.AppSettings;
-            AppManager.I.PlayerProfileModule.SaveAllOptions();
+            PlayerProfileModule.Options = AppManager.I.AppSettings;
+            PlayerProfileModule.SaveAllOptions();
         }
 
         /// <summary>
@@ -248,7 +249,7 @@ namespace EA4S.Profile
         /// </summary>
         public void DeleteAllProfiles()
         {
-            AppManager.I.PlayerProfileModule.DeleteAllPlayerProfiles();
+            PlayerProfileModule.DeleteAllPlayerProfiles();
         }
 
         /// <summary>
