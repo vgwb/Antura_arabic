@@ -7,15 +7,10 @@ using EA4S.Profile;
 
 namespace EA4S.Core
 {
-    public class PlayersProfileCreate : UIContainer {
+    public class PlayersProfileCreate : MonoBehaviour {
 
         public Text Username;
         public Button CreateButton;
-
-        public override void OnEnable() {
-            base.OnEnable();
-            // Remove UniRx refactoring request: any reactive interaction within this class must be called manually.
-        }
 
         #region API
 
@@ -27,8 +22,8 @@ namespace EA4S.Core
             IPlayerProfile newPP = EA4S.AppManager.Instance.PlayerProfile.CreateNewPlayer(new PlayerProfile() {
                 Key = Username.text,
             });
-            if (closeWindow)
-                EA4S.AppManager.Instance.UIModule.HideUIContainer(Key);
+       //     if (closeWindow)
+        //        EA4S.AppManager.Instance.UIModule.HideUIContainer(Key);
             EA4S.AppManager.Instance.PlayerProfile.SetActivePlayer<PlayerProfile>(newPP.Key);
         }
 

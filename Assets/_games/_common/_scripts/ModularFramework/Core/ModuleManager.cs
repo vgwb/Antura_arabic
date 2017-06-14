@@ -7,13 +7,13 @@ namespace EA4S.Core
     public class ModuleManager {
 
         [SerializeField]
-        public UIModule UIModule = new UIModule();
+    //    public UIModule UIModule = new UIModule();
         public LocalizationModule LocalizationModule = new LocalizationModule();
         public PlayerProfileModule PlayerProfile = new PlayerProfileModule() { MultipleProfileSupported = true };
         public DataModule DataModule = new DataModule();
 
         public void ModulesSetup() {
-            UIModule.SetupModule(new UIModuleDefault());
+   //         UIModule.SetupModule(new UIModuleDefault());
         }
 
         /// <summary>
@@ -39,10 +39,10 @@ namespace EA4S.Core
                 PlayerProfile.SetupModule(moduleInstance, moduleInstance.Settings);
             }
             // UIModule Install
-            if (_gamemanagerGO.GetComponentInChildren<ModuleInstaller<IUIModule>>()) {
+     /*       if (_gamemanagerGO.GetComponentInChildren<ModuleInstaller<IUIModule>>()) {
                 IUIModule moduleInstance = _gamemanagerGO.GetComponentInChildren<ModuleInstaller<IUIModule>>().InstallModule();
                 UIModule.SetupModule(moduleInstance, moduleInstance.Settings);
-            }
+            }*/
         }
     }
     

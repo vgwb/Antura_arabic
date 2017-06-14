@@ -14,7 +14,7 @@ namespace EA4S
 {
     /// <summary>
     /// Core of the application.
-    /// Functions as a general manager and entry point for all other systems and managers.
+    /// Works as a general manager and entry point for all other systems and managers.
     /// </summary>
     public class AppManager : Singleton<AppManager>
     {
@@ -25,7 +25,6 @@ namespace EA4S
             base.Awake();
             DontDestroyOnLoad(this);
         }
-
 
         public TeacherAI Teacher;
         public VocabularyHelper VocabularyHelper;
@@ -42,11 +41,6 @@ namespace EA4S
 
         [HideInInspector]
         public ModuleManager Modules = new ModuleManager();
-
-        public UIModule UIModule
-        {
-            get { return Modules.UIModule; }
-        }
 
         public PlayerProfileModule PlayerProfile
         {
@@ -119,11 +113,6 @@ namespace EA4S
                 SRDebug.Init();
             }
 #endif
-            // GameplayModule
-            /*if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
-                IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
-                Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
-            }*/
 
             DB = new DatabaseManager(AppSettings.UseTestDatabase);
             // refactor: standardize initialisation of managers

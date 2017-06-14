@@ -10,7 +10,7 @@ namespace EA4S.Core
     /// If Buttons public variables are not null onclick event will be auto wired for execute correct function.
     /// </summary>
     [AddComponentMenu("Modular Framework/PlayerProfile Module/AvailablePlayersList")]
-    public class AvailablePlayersList : UIContainer {
+    public class AvailablePlayersList : MonoBehaviour {
 
         #region Graphic Elements
         public Transform ListContainer;
@@ -35,18 +35,18 @@ namespace EA4S.Core
 
         public List<string> PlayersIds;
 
-        public override void OnEnable() {
+        /*public override void OnEnable() {
             base.OnEnable();
             // Remove UniRx refactoring request: any reactive interaction within this class must be called manually.
-        }
+        }*/
 
         #region component API
         /// <summary>
         /// Open creation profile windows.
         /// </summary>
-        public void OpenCreatePlayerProfileWindow() {
+        /*public void OpenCreatePlayerProfileWindow() {
             AppManager.Instance.UIModule.ShowUIContainer("NewProfileWindow");
-        }
+        }*/
 
         /// <summary>
         /// Retrive list of available players and visual refresh list.
