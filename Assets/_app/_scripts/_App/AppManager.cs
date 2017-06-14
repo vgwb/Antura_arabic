@@ -18,6 +18,7 @@ namespace EA4S
     /// </summary>
     public class AppManager : Singleton<AppManager>
     {
+        [HideInInspector]
         public AppSettings AppSettings = new AppSettings();
 
         protected override void Awake()
