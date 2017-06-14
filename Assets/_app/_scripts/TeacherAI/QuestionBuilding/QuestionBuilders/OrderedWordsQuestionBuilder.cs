@@ -38,8 +38,8 @@ namespace EA4S.Teacher
 
         private QuestionPackData CreateSingleQuestionPackData()
         {
-            var teacher = AppManager.Instance.Teacher;
-            var vocabularyHelper = AppManager.Instance.VocabularyHelper;
+            var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             // Ordered words
             var words = teacher.VocabularyAi.SelectData(

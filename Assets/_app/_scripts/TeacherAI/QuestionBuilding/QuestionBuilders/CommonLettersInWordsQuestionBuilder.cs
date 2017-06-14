@@ -56,8 +56,8 @@ namespace EA4S.Teacher
         private QuestionPackData CreateSingleQuestionPackData()
         {
             QuestionPackData pack = null;
-            var teacher = AppManager.Instance.Teacher;
-            var vocabularyHelper = AppManager.Instance.VocabularyHelper;
+            var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             // @note this specific builder works differently, because we first need to get words and then their letters
             // this is a special case because the focus in both on words and on letters

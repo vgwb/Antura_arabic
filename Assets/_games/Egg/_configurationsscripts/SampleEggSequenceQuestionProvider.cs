@@ -20,7 +20,7 @@ namespace EA4S.Minigames.Egg
 
             while (correctAnswers.Count < 8)
             {
-                var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+                var letter = AppManager.I.Teacher.GetRandomTestLetterLL();
 
                 if (!CheckIfContains(correctAnswers, letter))
                 {

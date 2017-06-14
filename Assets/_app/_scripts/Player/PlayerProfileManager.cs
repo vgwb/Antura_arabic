@@ -23,16 +23,16 @@ namespace EA4S.Profile
             get { return currentPlayer; }
             set {
                 if (currentPlayer != value) {
-                    AppManager.Instance.Player = currentPlayer = value;
-                    AppManager.Instance.Teacher.SetPlayerProfile(value);
+                    AppManager.I.Player = currentPlayer = value;
+                    AppManager.I.Teacher.SetPlayerProfile(value);
                     // refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
-                    if (AppManager.Instance.DB.HasLoadedPlayerProfile()) {
+                    if (AppManager.I.DB.HasLoadedPlayerProfile()) {
                         LogManager.I.LogInfo(InfoEvent.AppSessionEnd, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
                     }
-                    AppManager.Instance.AppSettings.LastActivePlayerUUID = value.Uuid;
+                    AppManager.I.AppSettings.LastActivePlayerUUID = value.Uuid;
                     SaveGameSettings();
                     LogManager.I.LogInfo(InfoEvent.AppSessionStart, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
-                    AppManager.Instance.NavigationManager.InitialisePlayerNavigationData(currentPlayer);
+                    AppManager.I.NavigationManager.InitialisePlayerNavigationData(currentPlayer);
 
                     currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
                     if (OnProfileChanged != null)
@@ -61,24 +61,24 @@ namespace EA4S.Profile
         /// </summary>
         public void ReloadGameSettings(bool alsoLoadCurrentPlayer = true)
         {
-            AppManager.Instance.AppSettings = new AppSettings() { };
-            AppManager.Instance.AppSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            AppManager.I.AppSettings = new AppSettings() { };
+            AppManager.I.AppSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
 
             if (alsoLoadCurrentPlayer) {
                 // No last active? Get the first one.
-                if (AppManager.Instance.AppSettings.LastActivePlayerUUID == string.Empty) {
-                    if (AppManager.Instance.AppSettings.SavedPlayers.Count > 0) {
+                if (AppManager.I.AppSettings.LastActivePlayerUUID == string.Empty) {
+                    if (AppManager.I.AppSettings.SavedPlayers.Count > 0) {
                         //UnityEngine.Debug.Log("No last! Get the first.");
-                        AppManager.Instance.AppSettings.LastActivePlayerUUID = AppManager.Instance.AppSettings.SavedPlayers[0].Uuid;
+                        AppManager.I.AppSettings.LastActivePlayerUUID = AppManager.I.AppSettings.SavedPlayers[0].Uuid;
                     } else {
-                        AppManager.Instance.Player = null;
+                        AppManager.I.Player = null;
                         Debug.Log("Actual Player == null!!");
                     }
                 } else {
-                    string playerUUID = AppManager.Instance.AppSettings.LastActivePlayerUUID;
+                    string playerUUID = AppManager.I.AppSettings.LastActivePlayerUUID;
 
                     // Check whether the SQL DB is in-sync first
-                    PlayerProfileData profileFromDB = AppManager.Instance.DB.LoadDatabaseForPlayer(playerUUID);
+                    PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(playerUUID);
 
                     // If null, the player does not actually exist.
                     // The DB got desyinced. Do not load it!
@@ -115,11 +115,11 @@ namespace EA4S.Profile
             returnProfile.ProfileCompletion = (isDemoUser ? ProfileCompletionState.GameCompletedAndFinalShowed : ProfileCompletionState.New);
 
             // DB Creation
-            AppManager.Instance.DB.CreateDatabaseForPlayer(returnProfile.ToData());
+            AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
             // Added to list
-            AppManager.Instance.AppSettings.SavedPlayers.Add(returnProfile.GetPlayerIconData());
+            AppManager.I.AppSettings.SavedPlayers.Add(returnProfile.GetPlayerIconData());
             // Set player profile as current player
-            AppManager.Instance.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
+            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
             // Create new antura skin
             RewardSystemManager.UnlockFirstSetOfRewards();
 
@@ -150,7 +150,7 @@ namespace EA4S.Profile
         public PlayerProfile SetPlayerAsCurrentByUUID(string playerUUID)
         {
             PlayerProfile returnProfile = GetPlayerProfileByUUID(playerUUID);
-            AppManager.Instance.PlayerProfileManager.CurrentPlayer = returnProfile;
+            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile;
             return returnProfile;
         }
 
@@ -161,7 +161,7 @@ namespace EA4S.Profile
         /// <returns></returns>
         public PlayerProfile GetPlayerProfileByUUID(string playerUUID)
         {
-            PlayerProfileData profileFromDB = AppManager.Instance.DB.LoadDatabaseForPlayer(playerUUID);
+            PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(playerUUID);
 
             // If null, the player does not exist.
             // The DB got desyinced. Remove this player!
@@ -181,23 +181,23 @@ namespace EA4S.Profile
         {
             PlayerProfile returnProfile = new PlayerProfile();
             // it prevents errors if rewards unlock coroutine is still running
-            AppManager.Instance.StopAllCoroutines();
+            AppManager.I.StopAllCoroutines();
             // TODO: check if is necessary to hard delete DB
             PlayerIconData playerIconData = GetSavedPlayers().Find(p => p.Uuid == playerUUID);
             if (playerIconData.Uuid == string.Empty)
                 return null;
             // if setted as active player in gamesettings remove from it
-            if (playerIconData.Uuid == AppManager.Instance.AppSettings.LastActivePlayerUUID) {
+            if (playerIconData.Uuid == AppManager.I.AppSettings.LastActivePlayerUUID) {
                 // if possible set the first available player...
                 PlayerIconData newActivePlayer = GetSavedPlayers().Find(p => p.Uuid != playerUUID);
                 if (newActivePlayer.Uuid != null) {
-                    AppManager.Instance.PlayerProfileManager.SetPlayerAsCurrentByUUID(newActivePlayer.Uuid);
+                    AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(newActivePlayer.Uuid);
                 } else {
                     // ...else set to null
-                    AppManager.Instance.PlayerProfileManager.currentPlayer = null;
+                    AppManager.I.PlayerProfileManager.currentPlayer = null;
                 }
             }
-            AppManager.Instance.AppSettings.SavedPlayers.Remove(playerIconData);
+            AppManager.I.AppSettings.SavedPlayers.Remove(playerIconData);
 
             SaveGameSettings();
             return returnProfile;
@@ -209,7 +209,7 @@ namespace EA4S.Profile
         /// <returns></returns>
         public List<PlayerIconData> GetSavedPlayers()
         {
-            return AppManager.Instance.AppSettings.SavedPlayers;
+            return AppManager.I.AppSettings.SavedPlayers;
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace EA4S.Profile
         /// <param name="_playerProfile">The player profile.</param>
         public void SavePlayerSettings(PlayerProfile _playerProfile)
         {
-            AppManager.Instance.DB.UpdatePlayerProfileData(_playerProfile.ToData());
+            AppManager.I.DB.UpdatePlayerProfileData(_playerProfile.ToData());
         }
 
         /// <summary>
@@ -226,9 +226,9 @@ namespace EA4S.Profile
         /// </summary>
         public void UpdateCurrentPlayerIconDataInSettings()
         {
-            for (int i = 0; i < AppManager.Instance.AppSettings.SavedPlayers.Count; i++) {
-                if (AppManager.Instance.AppSettings.SavedPlayers[i].Uuid == currentPlayer.Uuid) {
-                    AppManager.Instance.AppSettings.SavedPlayers[i] = CurrentPlayer.GetPlayerIconData();
+            for (int i = 0; i < AppManager.I.AppSettings.SavedPlayers.Count; i++) {
+                if (AppManager.I.AppSettings.SavedPlayers[i].Uuid == currentPlayer.Uuid) {
+                    AppManager.I.AppSettings.SavedPlayers[i] = CurrentPlayer.GetPlayerIconData();
                 }
             }
             SaveGameSettings();
@@ -239,8 +239,8 @@ namespace EA4S.Profile
         /// </summary>
         public void SaveGameSettings()
         {
-            AppManager.Instance.Modules.PlayerProfile.Options = AppManager.Instance.AppSettings;
-            AppManager.Instance.Modules.PlayerProfile.SaveAllOptions();
+            AppManager.I.Modules.PlayerProfile.Options = AppManager.I.AppSettings;
+            AppManager.I.Modules.PlayerProfile.SaveAllOptions();
         }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace EA4S.Profile
         /// </summary>
         public void DeleteAllProfiles()
         {
-            AppManager.Instance.Modules.PlayerProfile.DeleteAllPlayerProfiles();
+            AppManager.I.Modules.PlayerProfile.DeleteAllPlayerProfiles();
         }
 
         /// <summary>
@@ -257,14 +257,14 @@ namespace EA4S.Profile
         public void ResetEverything()
         {
             // Reset all the Databases
-            if (AppManager.Instance.AppSettings.SavedPlayers != null) {
-                foreach (PlayerIconData pp in AppManager.Instance.AppSettings.SavedPlayers) {
+            if (AppManager.I.AppSettings.SavedPlayers != null) {
+                foreach (PlayerIconData pp in AppManager.I.AppSettings.SavedPlayers) {
                     //UnityEngine.Debug.Log(pp);
-                    AppManager.Instance.DB.LoadDatabaseForPlayer(pp.Uuid);
-                    AppManager.Instance.DB.DropProfile();
+                    AppManager.I.DB.LoadDatabaseForPlayer(pp.Uuid);
+                    AppManager.I.DB.DropProfile();
                 }
             }
-            AppManager.Instance.DB.UnloadCurrentProfile();
+            AppManager.I.DB.UnloadCurrentProfile();
 
             // Reset all settings too
             UnityEngine.PlayerPrefs.DeleteAll();

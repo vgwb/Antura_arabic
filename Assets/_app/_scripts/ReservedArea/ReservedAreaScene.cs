@@ -73,7 +73,7 @@ namespace EA4S.Scenes
 
         void DoOpenSupportForm()
         {
-            AppManager.Instance.OpenSupportForm();
+            AppManager.I.OpenSupportForm();
         }
         #endregion
 

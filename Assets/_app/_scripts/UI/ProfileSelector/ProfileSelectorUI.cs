@@ -27,7 +27,7 @@ namespace EA4S.UI
         public Sfx SfxCreateNewProfile;
         public Sfx SfxSelectProfile;
 
-        public PlayerProfileManager ProfileManager { get { return AppManager.Instance.PlayerProfileManager; } }
+        public PlayerProfileManager ProfileManager { get { return AppManager.I.PlayerProfileManager; } }
         int maxProfiles;
         List<PlayerIconData> playerIconDatas;
         PlayerIcon[] playerIcons;
@@ -46,7 +46,7 @@ namespace EA4S.UI
         void Start()
         {
             // By default, the letter shows a truly random letter
-            LLObjectView.Initialize(AppManager.Instance.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
+            LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             //LLObjectView.Initialize(new EA4S.MinigamesAPI.LL_LetterData("alef_fathah_tanwin"));
 
             Setup();
@@ -54,7 +54,7 @@ namespace EA4S.UI
             btAddTween = BtAdd.transform.DORotate(new Vector3(0, 0, -45), 0.3f).SetAutoKill(false).Pause()
                 .SetEase(Ease.OutBack)
                 .OnRewind(() => {
-                    if (AppManager.Instance.AppSettings.SavedPlayers == null || AppManager.Instance.AppSettings.SavedPlayers.Count == 0) BtAdd.Pulse();
+                    if (AppManager.I.AppSettings.SavedPlayers == null || AppManager.I.AppSettings.SavedPlayers.Count == 0) BtAdd.Pulse();
                 });
             btPlayTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(BtPlay.RectT.DOAnchorPosY(-210, 0.2f).From(true))
@@ -95,7 +95,7 @@ namespace EA4S.UI
         {
             ProfileManager.SetPlayerAsCurrentByUUID(playerIconData.Uuid);
             AudioManager.I.PlaySound(SfxSelectProfile);
-            LLObjectView.Initialize(AppManager.Instance.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
+            LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();
         }
 
@@ -117,7 +117,7 @@ namespace EA4S.UI
                     PlayerIconData data = playerIconDatas[i];
                     playerIcon.gameObject.SetActive(true);
                     playerIcon.Init(data);
-                    playerIcon.Select(AppManager.Instance.Player.Uuid);
+                    playerIcon.Select(AppManager.I.Player.Uuid);
                 }
             }
 
@@ -142,7 +142,7 @@ namespace EA4S.UI
 
             BtPlay.gameObject.SetActive(true);
             // PLAYER REFACTORING WITH UUID
-            PlayerIcon activePlayerIcon = GetPlayerIconByUUID(AppManager.Instance.Player.Uuid);
+            PlayerIcon activePlayerIcon = GetPlayerIconByUUID(AppManager.I.Player.Uuid);
             if (activePlayerIcon != null) BtPlay.RectT.SetAnchoredPosX(activePlayerIcon.UIButton.RectT.anchoredPosition.x);
             btPlayTween.PlayForward();
         }
@@ -169,7 +169,7 @@ namespace EA4S.UI
             if (_bt == BtAdd) {
                 // Bt Add
                 _bt.StopPulsing();
-                AppManager.Instance.NavigationManager.GoToPlayerCreation();
+                AppManager.I.NavigationManager.GoToPlayerCreation();
             }
         }
 

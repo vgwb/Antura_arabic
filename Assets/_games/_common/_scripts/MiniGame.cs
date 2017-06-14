@@ -52,7 +52,7 @@ namespace EA4S.MinigamesCommon
         {
             StarsScore = stars;
 
-            AppManager.Instance.NavigationManager.EndMinigame(stars);
+            AppManager.I.NavigationManager.EndMinigame(stars);
 
             if (OnGameEnded != null)
                 OnGameEnded(stars, score);
@@ -121,7 +121,7 @@ namespace EA4S.MinigamesCommon
             // TODO: move this outside this method (actually it is useless with the current implementation of PauseMenu)
             inputManager.Enabled = !(GlobalUI.PauseMenu.IsMenuOpen);
 
-            if ((AppManager.Instance.IsPaused || hasToPause) && !SceneTransitioner.IsShown && this.GetCurrentState() != OutcomeState)
+            if ((AppManager.I.IsPaused || hasToPause) && !SceneTransitioner.IsShown && this.GetCurrentState() != OutcomeState)
                 GlobalUI.PauseMenu.OpenMenu(true);
             hasToPause = false;
 

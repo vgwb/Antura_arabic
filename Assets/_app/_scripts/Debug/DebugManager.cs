@@ -71,12 +71,12 @@ namespace EA4S.Debugging
         ///   <c>true</c> if [first contact passed]; otherwise, <c>false</c>.
         /// </value>
         public bool FirstContactPassed {
-            get { return !AppManager.Instance.Player.IsFirstContact(); }
+            get { return !AppManager.I.Player.IsFirstContact(); }
             set {
                 if (value) {
-                    AppManager.Instance.Player.FirstContactPassed(2);
+                    AppManager.I.Player.FirstContactPassed(2);
                 } else {
-                    AppManager.Instance.Player.ResetPlayerProfileCompletion();
+                    AppManager.I.Player.ResetPlayerProfileCompletion();
                 }
             }
         }
@@ -121,11 +121,11 @@ namespace EA4S.Debugging
         public void LaunchMiniGame(MiniGameCode miniGameCodeSelected)
         {
             Debug.Log("LaunchMiniGame " + miniGameCodeSelected.ToString());
-            AppManager.Instance.Player.CurrentJourneyPosition.Stage = Stage;
-            AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
-            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = PlaySession;
+            AppManager.I.Player.CurrentJourneyPosition.Stage = Stage;
+            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
+            AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;
 
-            AppManager.Instance.GameLauncher.LaunchGame(miniGameCodeSelected, new MinigameLaunchConfiguration(Difficulty, NumberOfRounds), forceNewPlaySession: true);
+            AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected, new MinigameLaunchConfiguration(Difficulty, NumberOfRounds), forceNewPlaySession: true);
         }
 
     }

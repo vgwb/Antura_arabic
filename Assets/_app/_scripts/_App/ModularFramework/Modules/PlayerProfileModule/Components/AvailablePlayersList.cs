@@ -57,7 +57,7 @@ namespace EA4S.Core
             foreach (var p in PlayersIds) {
                 PlayerProfileSetActive newComponent = Instantiate(SingleItemPrefab).GetComponent<PlayerProfileSetActive>();
                 newComponent.transform.SetParent(ListContainer);
-                newComponent.Init(AppManager.Instance.PlayerProfile.LoadPlayerSettings<PlayerProfile>(p));
+                newComponent.Init(AppManager.I.PlayerProfile.LoadPlayerSettings<PlayerProfile>(p));
                 newComponent.gameObject.name = newComponent.Player.Key;
             }
         }
@@ -75,7 +75,7 @@ namespace EA4S.Core
         /// Delete all available profile, clear list and set actual profile to null.
         /// </summary>
         public void DeleteAllProfiles() {
-            AppManager.Instance.PlayerProfile.DeleteAllPlayerProfiles();
+            AppManager.I.PlayerProfile.DeleteAllPlayerProfiles();
             ClearList();
         }
 

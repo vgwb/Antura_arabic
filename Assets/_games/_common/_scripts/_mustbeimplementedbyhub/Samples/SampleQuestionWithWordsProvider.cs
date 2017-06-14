@@ -23,7 +23,7 @@ namespace EA4S.MinigamesAPI.Sample
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-                LL_WordData newWordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+                LL_WordData newWordData = AppManager.I.Teacher.GetRandomTestWordDataLL();
 
                 if (newWordData == null)
                     return;
@@ -33,7 +33,7 @@ namespace EA4S.MinigamesAPI.Sample
                 // At least 4 wrong words
                 while (wrongAnswers.Count < 4)
                 {
-                    var word = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+                    var word = AppManager.I.Teacher.GetRandomTestWordDataLL();
 
                     if (!correctAnswers.Contains(word) && !wrongAnswers.Contains(word))
                     {

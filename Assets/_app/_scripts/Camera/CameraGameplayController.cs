@@ -24,7 +24,7 @@ namespace EA4S.CameraControl
 
         void Start()
         {
-            EnableFX(AppManager.Instance.AppSettings.HighQualityGfx);
+            EnableFX(AppManager.I.AppSettings.HighQualityGfx);
         }
 
         public void EnableFX(bool status)

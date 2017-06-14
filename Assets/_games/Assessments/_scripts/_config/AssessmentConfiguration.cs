@@ -319,7 +319,7 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_WordsWithLetter_Builder()
         {
             // This assessment changes behaviour based on the current stage
-            var jp = AppManager.Instance.Player.CurrentJourneyPosition;
+            var jp = AppManager.I.Player.CurrentJourneyPosition;
             switch (jp.Stage)
             {
                 case 1:
@@ -369,7 +369,7 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
             // This assessment changes behaviour based on the current stage
-            var jp = AppManager.Instance.Player.CurrentJourneyPosition;
+            var jp = AppManager.I.Player.CurrentJourneyPosition;
             switch (jp.Stage)
             {
                 case 1:

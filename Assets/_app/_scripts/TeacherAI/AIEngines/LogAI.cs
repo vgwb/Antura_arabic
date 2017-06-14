@@ -77,11 +77,11 @@ namespace EA4S.Teacher
 
         public void LogInfo(int appSession, InfoEvent infoEvent, string parametersString = "")
         {
-            if (!AppManager.Instance.DB.HasLoadedPlayerProfile()) {
+            if (!AppManager.I.DB.HasLoadedPlayerProfile()) {
                 Debug.Log("No player profile DB to log to. Player profile is probably not set");
                 return;
             }
-            var data = new LogInfoData(appSession, infoEvent, AppManager.Instance.NavigationManager.GetCurrentScene(), parametersString);
+            var data = new LogInfoData(appSession, infoEvent, AppManager.I.NavigationManager.GetCurrentScene(), parametersString);
             db.Insert(data);
         }
 
@@ -144,7 +144,7 @@ namespace EA4S.Teacher
             string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name);
             List<VocabularyScoreData> scoreDataList = db.Query<VocabularyScoreData>(query);
 
-            var currentPSContents = AppManager.Instance.Teacher.VocabularyAi.GetContentsAtJourneyPosition(pos);
+            var currentPSContents = AppManager.I.Teacher.VocabularyAi.GetContentsAtJourneyPosition(pos);
             var letters = currentPSContents.GetHashSet<LetterData>();
             var words = currentPSContents.GetHashSet<WordData>();
             var phrases = currentPSContents.GetHashSet<PhraseData>();
@@ -183,7 +183,7 @@ namespace EA4S.Teacher
 
         public void LogLearn(int appSession, JourneyPosition pos, MiniGameCode miniGameCode, List<LearnResultParameters> resultsList)
         {
-            var currentJourneyContents = AppManager.Instance.Teacher.VocabularyAi.CurrentJourneyContents;
+            var currentJourneyContents = AppManager.I.Teacher.VocabularyAi.CurrentJourneyContents;
             if (currentJourneyContents == null) return; // No logging if we do not have contents (for example through a direct Play)
 
             var learnRules = GetLearnRules(miniGameCode);
@@ -238,15 +238,15 @@ namespace EA4S.Teacher
                         switch (result.dataType)
                         {
                             case VocabularyDataType.Letter:
-                                data = AppManager.Instance.DB.GetLetterDataById(result.elementId);
+                                data = AppManager.I.DB.GetLetterDataById(result.elementId);
                                 containedInJourney = currentJourneyContents.Contains(data as LetterData);
                                 break;
                             case VocabularyDataType.Word:
-                                data = AppManager.Instance.DB.GetWordDataById(result.elementId);
+                                data = AppManager.I.DB.GetWordDataById(result.elementId);
                                 containedInJourney = currentJourneyContents.Contains(data as WordData);
                                 break;
                             case VocabularyDataType.Phrase:
-                                data = AppManager.Instance.DB.GetPhraseDataById(result.elementId);
+                                data = AppManager.I.DB.GetPhraseDataById(result.elementId);
                                 containedInJourney = currentJourneyContents.Contains(data as PhraseData);
                                 break;
                         }

@@ -22,7 +22,7 @@ namespace EA4S.Minigames.ColorTickle
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-                LL_LetterData _NewLetterData = AppManager.Instance.Teacher.GetRandomTestLetterLL(new LetterFilters(excludeDiacritics:LetterFilters.ExcludeDiacritics.All));
+                LL_LetterData _NewLetterData = AppManager.I.Teacher.GetRandomTestLetterLL(new LetterFilters(excludeDiacritics:LetterFilters.ExcludeDiacritics.All));
 
                 if (_NewLetterData == null)
                     return;

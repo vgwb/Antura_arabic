@@ -20,10 +20,10 @@ namespace EA4S.MinigamesAPI
 
         public string Id {
             get { return Data.Id; }
-            set { Data = AppManager.Instance.DB.GetWordDataById(value); }  // refactor: inject the value, no reference to the DB
+            set { Data = AppManager.I.DB.GetWordDataById(value); }  // refactor: inject the value, no reference to the DB
         }
 
-        public LL_ImageData(string _id) : this(AppManager.Instance.DB.GetWordDataById(_id))  // refactor: inject the value, no reference to the DB
+        public LL_ImageData(string _id) : this(AppManager.I.DB.GetWordDataById(_id))  // refactor: inject the value, no reference to the DB
         {
         }
 
@@ -44,7 +44,7 @@ namespace EA4S.MinigamesAPI
         }
 
         public string DrawingCharForLivingLetter {
-            get { return AppManager.Instance.VocabularyHelper.GetWordDrawing(Data); }  // refactor: inject the value, no reference to the DB
+            get { return AppManager.I.VocabularyHelper.GetWordDrawing(Data); }  // refactor: inject the value, no reference to the DB
         }
 
         /// <summary>

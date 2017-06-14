@@ -19,7 +19,7 @@ namespace EA4S.UI
             if (initialized) return;
 
             initialized = true;
-            AppManager.Instance.NavigationManager.OnSceneStartTransition += OnSceneStartTransition;
+            AppManager.I.NavigationManager.OnSceneStartTransition += OnSceneStartTransition;
         }
 
         #region Public Methods

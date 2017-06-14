@@ -69,7 +69,7 @@ namespace EA4S.UI
 
         public void SetValueAuto()
         {
-            totBones = AppManager.Instance.Player.GetTotalNumberOfBones();
+            totBones = AppManager.I.Player.GetTotalNumberOfBones();
         }
 
         public void SetValue(int _bones)

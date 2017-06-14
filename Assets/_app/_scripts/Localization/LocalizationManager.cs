@@ -7,22 +7,22 @@ namespace EA4S.Core
     {
         public static string GetTranslation(Database.LocalizationDataId id)
         {
-            return GetLocalizationData(id).GetLocalizedText((EA4S.AppManager.Instance as EA4S.AppManager).Player.Gender);
+            return GetLocalizationData(id).GetLocalizedText((EA4S.AppManager.I as EA4S.AppManager).Player.Gender);
         }
 
         public static string GetTranslation(string id)
         {
-            return GetLocalizationData(id).GetLocalizedText((EA4S.AppManager.Instance as EA4S.AppManager).Player.Gender); 
+            return GetLocalizationData(id).GetLocalizedText((EA4S.AppManager.I as EA4S.AppManager).Player.Gender); 
         }
 
         public static Database.LocalizationData GetLocalizationData(Database.LocalizationDataId id)
         {
-            return (EA4S.AppManager.Instance as EA4S.AppManager).DB.GetLocalizationDataById(id.ToString());
+            return (EA4S.AppManager.I as EA4S.AppManager).DB.GetLocalizationDataById(id.ToString());
         }
 
         public static Database.LocalizationData GetLocalizationData(string id)
         {
-            return (EA4S.AppManager.Instance as EA4S.AppManager).DB.GetLocalizationDataById(id);
+            return (EA4S.AppManager.I as EA4S.AppManager).DB.GetLocalizationDataById(id);
         }
 
         public static Database.LocalizationData GetWordCategoryData(Database.WordDataCategory cat)

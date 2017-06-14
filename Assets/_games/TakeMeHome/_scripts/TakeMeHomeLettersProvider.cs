@@ -15,7 +15,7 @@ namespace EA4S.Minigames.TakeMeHome
             letters = new List<LL_LetterData>();
             for (int i =0; i < 7;++i)
             {
-                letters.Add(AppManager.Instance.Teacher.GetRandomTestLetterLL());
+                letters.Add(AppManager.I.Teacher.GetRandomTestLetterLL());
             }
         }
 

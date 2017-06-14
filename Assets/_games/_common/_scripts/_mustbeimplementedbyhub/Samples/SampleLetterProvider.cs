@@ -15,7 +15,7 @@ namespace EA4S.MinigamesAPI.Sample
         
         public ILivingLetterData GetNextData()
         {
-            return AppManager.Instance.Teacher.GetRandomTestLetterLL();
+            return AppManager.I.Teacher.GetRandomTestLetterLL();
         }
     }
 }

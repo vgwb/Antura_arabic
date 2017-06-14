@@ -39,7 +39,7 @@ namespace EA4S.Minigames.MakeFriends
         [Header("Difficulty Override")]
         public bool overrideDifficulty;
         public MakeFriendsVariation difficultySetting;
-        new public static MakeFriendsGame Instance;
+        public static MakeFriendsGame Instance {  get { return I as MakeFriendsGame; } }
 
         [HideInInspector]
         public MakeFriendsConfiguration Configuration { get { return MakeFriendsConfiguration.Instance; } }
@@ -129,7 +129,7 @@ namespace EA4S.Minigames.MakeFriends
         protected override void Awake()
         {
             base.Awake();
-            Instance = this;
+            //Instance = this;
         }
 
         protected override void Start()
@@ -291,13 +291,13 @@ namespace EA4S.Minigames.MakeFriends
                         //Debug.Log("Considering as choice: " + letter.TextForLivingLetter);
                         if (choiceLetters.Exists(x => x.Id == letter.Id))
                         {
-                            letter = AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandom();
+                            letter = AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom();
                             //Debug.Log("Using random choice instead: " + letter);
                         }
                     }
                     else
                     {
-                        letter = AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandom();
+                        letter = AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom();
                         //Debug.Log("No more word letters, using random: " + letter.TextForLivingLetter);
                     }
                 } while (choiceLetters.Exists(x => x.Id == letter.Id));

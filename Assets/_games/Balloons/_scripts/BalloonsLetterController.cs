@@ -262,7 +262,7 @@ namespace EA4S.Balloons
         {
             if (letterData is LL_WordData)
             {
-                var splitLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.Instance.DB, ((LL_WordData)letterData).Data);
+                var splitLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, ((LL_WordData)letterData).Data);
 
                 int charPosition = 0;
                 List<int> foundLetterIndices = new List<int>();

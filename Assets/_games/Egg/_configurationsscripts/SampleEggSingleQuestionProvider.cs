@@ -18,11 +18,11 @@ namespace EA4S.Minigames.Egg
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-            correctAnswers.Add(AppManager.Instance.Teacher.GetRandomTestLetterLL());
+            correctAnswers.Add(AppManager.I.Teacher.GetRandomTestLetterLL());
 
             while (wrongAnswers.Count < 8)
             {
-                var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+                var letter = AppManager.I.Teacher.GetRandomTestLetterLL();
 
                 if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter))
                 {

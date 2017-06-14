@@ -563,7 +563,7 @@ namespace EA4S.Minigames.ThrowBalls
                 {
                     var letterToFlash = (LL_LetterData)currentLettersForLettersInWord[currentLettersForLettersInWord.Count - numLettersRemaining];
                     int numTimesLetterHasBeenFlashed = flashedLettersInLiWVariation.Count(x => x.Id == letterToFlash.Id);
-                    var letterDataToFlash = ArabicAlphabetHelper.FindLetter(AppManager.Instance.DB, word, letterToFlash.Data)[numTimesLetterHasBeenFlashed];
+                    var letterDataToFlash = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word, letterToFlash.Data)[numTimesLetterHasBeenFlashed];
                     flashedLettersInLiWVariation.Add(letterToFlash);
 
                     flashingTextCoroutine = ArabicTextUtilities.GetWordWithFlashingText(word, letterDataToFlash.fromCharacterIndex, Color.green, FLASHING_TEXT_CYCLE_DURATION, int.MaxValue,

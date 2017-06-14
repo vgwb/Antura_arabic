@@ -19,12 +19,12 @@ namespace EA4S.Core
         /// </summary>
         /// <param name="closeWindow">If true close this window after creation.</param>
         public void CreateNewPlayerProfile(bool closeWindow) {
-            IPlayerProfile newPP = EA4S.AppManager.Instance.PlayerProfile.CreateNewPlayer(new PlayerProfile() {
+            IPlayerProfile newPP = EA4S.AppManager.I.PlayerProfile.CreateNewPlayer(new PlayerProfile() {
                 Key = Username.text,
             });
        //     if (closeWindow)
         //        EA4S.AppManager.Instance.UIModule.HideUIContainer(Key);
-            EA4S.AppManager.Instance.PlayerProfile.SetActivePlayer<PlayerProfile>(newPP.Key);
+            EA4S.AppManager.I.PlayerProfile.SetActivePlayer<PlayerProfile>(newPP.Key);
         }
 
         #endregion

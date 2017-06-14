@@ -102,7 +102,7 @@ namespace EA4S.UI
             if (_doShow) {
                 I.disableBackButtonOnClick = _disableOnClick;
                 I.BackButton.Bt.interactable = true;
-                I.onGoBack = _callback == null ? AppManager.Instance.NavigationManager.GoBack : _callback;
+                I.onGoBack = _callback == null ? AppManager.I.NavigationManager.GoBack : _callback;
             }
         }
 

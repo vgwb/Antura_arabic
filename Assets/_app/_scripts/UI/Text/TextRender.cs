@@ -55,7 +55,7 @@ namespace EA4S.UI
         void Awake()
         {
             if (isEnglishSubtitle) {
-                gameObject.SetActive(AppManager.Instance.AppSettings.EnglishSubtitles);
+                gameObject.SetActive(AppManager.I.AppSettings.EnglishSubtitles);
             }
 
             m_TextComponent = gameObject.GetComponent<TMP_Text>();
@@ -172,7 +172,7 @@ namespace EA4S.UI
             // Debug.Log("SetSentence " + sentenceId);
             Database.LocalizationData row = LocalizationManager.GetLocalizationData(sentenceId);
             isArabic = true;
-            text = row.GetLocalizedText(AppManager.Instance.Player.Gender);
+            text = row.GetLocalizedText(AppManager.I.Player.Gender);
         }
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace EA4S.UI
                 bool changed = false;
 
                 for (int charPosition = 0; charPosition < characterCount - 1; charPosition++) {
-                    modificationDelta = AppManager.Instance.VocabularyHelper.FindDiacriticCombo2Fix(
+                    modificationDelta = AppManager.I.VocabularyHelper.FindDiacriticCombo2Fix(
                         ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character),
                         ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
                     );

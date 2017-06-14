@@ -22,9 +22,9 @@ namespace EA4S.GamesSelector
         void Start()
         {
             // Fill with data
-            JourneyPosition journeyPos = AppManager.Instance.Player.CurrentJourneyPosition;
-            PlaySessionData playSessionData = AppManager.Instance.DB.GetPlaySessionDataById(journeyPos.ToStringId());
-            LearningBlockData learningBlock = AppManager.Instance.DB.GetLearningBlockDataById(playSessionData.Stage + "." + playSessionData.LearningBlock.ToString());
+            JourneyPosition journeyPos = AppManager.I.Player.CurrentJourneyPosition;
+            PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.ToStringId());
+            LearningBlockData learningBlock = AppManager.I.DB.GetLearningBlockDataById(playSessionData.Stage + "." + playSessionData.LearningBlock.ToString());
             TitleCode.text = journeyPos.ToString();
             TitleArabic.text = learningBlock.Title_Ar;
             TitleEnglish.text = learningBlock.Title_En;
@@ -37,11 +37,11 @@ namespace EA4S.GamesSelector
                 AudioManager.I.PlayDialogue(learningBlock.GetTitleSoundFilename());
             }
 
-            if (!journeyPos.IsMinor(AppManager.Instance.Player.MaxJourneyPosition)) {
+            if (!journeyPos.IsMinor(AppManager.I.Player.MaxJourneyPosition)) {
                 // First time playing this session: 0 stars
                 SetStars(0);
             } else {
-                int unlockedRewards = RewardSystemManager.GetUnlockedRewardForPlaysession(AppManager.Instance.Player.CurrentJourneyPosition);
+                int unlockedRewards = RewardSystemManager.GetUnlockedRewardForPlaysession(AppManager.I.Player.CurrentJourneyPosition);
                 SetStars(unlockedRewards + 1);
             }
             //            PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.PlaySession);

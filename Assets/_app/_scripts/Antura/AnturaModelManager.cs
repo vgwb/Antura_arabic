@@ -45,8 +45,8 @@ namespace EA4S.Antura
         }
 
         void Start() {
-            if (AppManager.Instance.Player != null) {
-                AnturaCustomization c = AppManager.Instance.Player.CurrentAnturaCustomizations;
+            if (AppManager.I.Player != null) {
+                AnturaCustomization c = AppManager.I.Player.CurrentAnturaCustomizations;
                 AnturaModelManager.Instance.LoadAnturaCustomization(c);
             }
         }
@@ -94,7 +94,7 @@ namespace EA4S.Antura
             returnCustomization.TileTextureId = LoadedTileTexture.GetIdAccordingToDBRules();
             returnCustomization.DecalTexture = LoadedDecal;
             returnCustomization.DecalTextureId = LoadedDecal.GetIdAccordingToDBRules();
-            AppManager.Instance.Player.SaveCustomization(returnCustomization);
+            AppManager.I.Player.SaveCustomization(returnCustomization);
             return returnCustomization;
         }
 
@@ -276,12 +276,12 @@ namespace EA4S.Antura
         }
 
         private void PlayerProfileManager_OnProfileChanged() {
-            LoadAnturaCustomization(AppManager.Instance.Player.CurrentAnturaCustomizations);
+            LoadAnturaCustomization(AppManager.I.Player.CurrentAnturaCustomizations);
         }
 
         private void RewardSystemManager_OnRewardItemChanged(RewardPackUnlockData rewardPackUnlockData) {
             LoadRewardPackOnAntura(rewardPackUnlockData);
-            AppManager.Instance.Player.SetRewardPackUnlockedToNotNew(rewardPackUnlockData.GetIdAccordingToDBRules());
+            AppManager.I.Player.SetRewardPackUnlockedToNotNew(rewardPackUnlockData.GetIdAccordingToDBRules());
             SaveAnturaCustomization();
         }
 
@@ -314,11 +314,11 @@ namespace EA4S.Antura
         /// </summary>
         /// <param name="_listOfIdsAsJsonString">The list of ids as json string.</param>
         public void LoadFromListOfIds(string _listOfIdsAsJsonString) {
-            if (AppManager.Instance.Player == null) {
+            if (AppManager.I.Player == null) {
                     Debug.Log("No default reward already created. Unable to load customization now");
                     return;
             }
-            List<RewardPackUnlockData> unlocked = AppManager.Instance.Player.RewardsUnlocked;
+            List<RewardPackUnlockData> unlocked = AppManager.I.Player.RewardsUnlocked;
             AnturaCustomization tmp = JsonUtility.FromJson<AnturaCustomization>(_listOfIdsAsJsonString);
             if (tmp != null) {
                 FornituresIds = tmp.FornituresIds;

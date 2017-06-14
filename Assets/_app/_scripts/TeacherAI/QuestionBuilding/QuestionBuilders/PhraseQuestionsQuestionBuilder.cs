@@ -49,8 +49,8 @@ namespace EA4S.Teacher
 
         private QuestionPackData CreateSingleQuestionPackData()
         {
-            var teacher = AppManager.Instance.Teacher;
-            var vocabularyHelper = AppManager.Instance.VocabularyHelper;
+            var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             // Get a question phrase at random
             int nToUse = 1;

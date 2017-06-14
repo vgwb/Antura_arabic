@@ -47,7 +47,7 @@ namespace EA4S.Book
         {
             AudioManager.I.PlayDialogue(LocalizationDataId.UI_LearningBlock);
             DetailPanel.SetActive(false);
-            LearningBlockPanel(AppManager.Instance.Player.CurrentJourneyPosition.Stage);
+            LearningBlockPanel(AppManager.I.Player.CurrentJourneyPosition.Stage);
         }
 
         void LearningBlockPanel(int _stage = 1)
@@ -58,9 +58,9 @@ namespace EA4S.Book
             ListPanel.SetActive(true);
             emptyListContainers();
 
-            List<LearningBlockData> list = AppManager.Instance.DB.FindLearningBlockData((x) => (x.Stage == currentStage));
+            List<LearningBlockData> list = AppManager.I.DB.FindLearningBlockData((x) => (x.Stage == currentStage));
 
-            List<LearningBlockInfo> info_list = AppManager.Instance.ScoreHelper.GetAllLearningBlockInfo();
+            List<LearningBlockInfo> info_list = AppManager.I.ScoreHelper.GetAllLearningBlockInfo();
             foreach (var info_item in info_list) {
                 if (list.Contains(info_item.data)) {
                     btnGO = Instantiate(LearningBlockItemPrefab);
@@ -69,7 +69,7 @@ namespace EA4S.Book
                 }
             }
 
-            var listStages = AppManager.Instance.DB.GetAllStageData();
+            var listStages = AppManager.I.DB.GetAllStageData();
             listStages.Reverse();
             foreach (var stage in listStages) {
                 btnGO = Instantiate(CategoryItemPrefab);

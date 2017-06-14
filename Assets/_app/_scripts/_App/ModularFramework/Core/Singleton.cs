@@ -6,7 +6,7 @@ namespace EA4S.Core {
     public class Singleton<T> : MonoBehaviour where T : Component
     {
         // Static singleton property
-        public static T Instance { get; private set; }
+        public static T I { get; private set; }
         public string TypeName { get; private set; }
 
         protected bool IsDuplicatedInstance = false;
@@ -15,8 +15,8 @@ namespace EA4S.Core {
             TypeName = typeof(T).FullName;
 
             // checks if there is already another instance of this type.
-            if (Instance != null) {
-                if (Instance != this) {
+            if (I != null) {
+                if (I != this) {
                     // destroys immediately to break the chain of events associated to this object.
                     //DestroyImmediate(gameObject);
                     IsDuplicatedInstance = true;
@@ -26,13 +26,13 @@ namespace EA4S.Core {
             }
 
             // Here we save our singleton instance
-            Instance = this as T;
+            I = this as T;
 
             Initialise();
         }
 
         void OnDestroy() {
-            if (Instance == this)
+            if (I == this)
                 Finalise();
         }
 

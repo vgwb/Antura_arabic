@@ -23,7 +23,7 @@ namespace EA4S.Rewards
         {
             GlobalUI.ShowPauseMenu(false);
             AudioManager.I.PlayMusic(Music.Theme10);
-            Debug.Log("RewardsManager playsession: " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
+            Debug.Log("RewardsManager playsession: " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
             AnturaAnimController.State = AnturaAnimation;
             SceneTransitioner.Close();
@@ -37,7 +37,7 @@ namespace EA4S.Rewards
 
         IEnumerator StartReward()
         {
-            if (AppManager.Instance.Player.IsFirstContact()) {
+            if (AppManager.I.Player.IsFirstContact()) {
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Reward_Intro);
             } else {
                 int rnd = Random.Range(1, 3);
@@ -73,12 +73,12 @@ namespace EA4S.Rewards
         /// <returns></returns>
         public RewardPackUnlockData GetRewardToInstantiate()
         {
-            if (AppManager.Instance.Player.IsFirstContact()) {
-                return AppManager.Instance.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
+            if (AppManager.I.Player.IsFirstContact()) {
+                return AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
             } else {
                 RewardPackUnlockData newRewardToInstantiate = RewardSystemManager.GetNextRewardPack(true)[0];
-                AppManager.Instance.Player.AddRewardUnlocked(newRewardToInstantiate);
-                AppManager.Instance.Player.AdvanceMaxJourneyPosition();
+                AppManager.I.Player.AddRewardUnlocked(newRewardToInstantiate);
+                AppManager.I.Player.AdvanceMaxJourneyPosition();
                 return newRewardToInstantiate;
             }
         }
@@ -97,7 +97,7 @@ namespace EA4S.Rewards
 
         public void Continue()
         {
-            AppManager.Instance.NavigationManager.GoToNextScene();
+            AppManager.I.NavigationManager.GoToNextScene();
         }
 
     }

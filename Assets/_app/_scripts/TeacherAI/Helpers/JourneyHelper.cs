@@ -23,9 +23,9 @@ namespace EA4S.Teacher
 
         public PlaySessionData GetCurrentPlaySessionData()
         {
-            var currentJourneyPosition = AppManager.Instance.Player.CurrentJourneyPosition;
-            var currentPlaySessionId = AppManager.Instance.JourneyHelper.JourneyPositionToPlaySessionId(currentJourneyPosition);
-            var playSessionData = AppManager.Instance.DB.GetPlaySessionDataById(currentPlaySessionId);
+            var currentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
+            var currentPlaySessionId = AppManager.I.JourneyHelper.JourneyPositionToPlaySessionId(currentJourneyPosition);
+            var playSessionData = AppManager.I.DB.GetPlaySessionDataById(currentPlaySessionId);
             return playSessionData;
         }
 
@@ -84,12 +84,12 @@ namespace EA4S.Teacher
 
         public bool PlayerIsAtFinalJourneyPosition()
         {
-            return AppManager.Instance.Player.CurrentJourneyPosition.Equals(GetFinalJourneyPosition());
+            return AppManager.I.Player.CurrentJourneyPosition.Equals(GetFinalJourneyPosition());
         }
 
         public JourneyPosition GetMinimumJourneyPositionForMiniGame(MiniGameCode minigameCode)
         {
-            var finalPos = AppManager.Instance.JourneyHelper.GetFinalJourneyPosition();
+            var finalPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
             int NBasePlaySession = 2;
 
             for (int s = 1; s <= finalPos.Stage; s++)
@@ -99,15 +99,15 @@ namespace EA4S.Teacher
                     for (int ps = 1; ps <= NBasePlaySession; ps++)
                     {
                         var jp = new JourneyPosition(s, lb, ps);
-                        if (AppManager.Instance.DB.HasPlaySessionDataById(jp.ToStringId()))
-                            if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(jp, minigameCode))
+                        if (AppManager.I.DB.HasPlaySessionDataById(jp.ToStringId()))
+                            if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(jp, minigameCode))
                                 return new JourneyPosition(s, lb, ps);
                     }
                     int assessmentCode = 100;
                     var jp_assessment = new JourneyPosition(s, lb, assessmentCode);
 
-                    if (AppManager.Instance.DB.HasPlaySessionDataById(jp_assessment.ToStringId()))
-                        if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(jp_assessment, minigameCode))
+                    if (AppManager.I.DB.HasPlaySessionDataById(jp_assessment.ToStringId()))
+                        if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(jp_assessment, minigameCode))
                             return new JourneyPosition(s, lb, assessmentCode);
                 }
             }
@@ -132,7 +132,7 @@ namespace EA4S.Teacher
             }
 
             // Find all previous scores
-            List<JourneyScoreData> scoreData_list = AppManager.Instance.ScoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
+            List<JourneyScoreData> scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
             for (int i = 0; i < learningBlockInfo_list.Count; i++) {
                 var info = learningBlockInfo_list[i];
                 var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.LearningBlock && x.ElementId == info.data.Id);
@@ -162,7 +162,7 @@ namespace EA4S.Teacher
             }
 
             // Find all previous scores
-            List<JourneyScoreData> scoreData_list = AppManager.Instance.ScoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
+            List<JourneyScoreData> scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
             for (int i = 0; i < playSessionInfo_list.Count; i++) {
                 var info = playSessionInfo_list[i];
                 var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.PlaySession && x.ElementId == info.data.Id);

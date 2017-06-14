@@ -28,7 +28,7 @@ namespace EA4S.Book
             myManager = _manager;
             BackgroundImage = GetComponent<Image>();
 
-            if (miniGameInfo.unlocked || AppManager.Instance.Player.IsDemoUser) {
+            if (miniGameInfo.unlocked || AppManager.I.Player.IsDemoUser) {
                 isLocked = false;
             } else {
                 isLocked = true;

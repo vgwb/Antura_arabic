@@ -41,8 +41,8 @@ namespace EA4S.Teacher
 
         public QuestionPackData CreateAlphabetQuestionPackData()
         {
-            var teacher = AppManager.Instance.Teacher;
-            var vocabularyHelper = AppManager.Instance.VocabularyHelper;
+            var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             ConfigAI.AppendToTeacherReport("New Question Pack");
 

@@ -47,11 +47,6 @@ namespace EA4S
             get { return Modules.PlayerProfile; }
         }
 
-        public LocalizationModule Localization
-        {
-            get { return Modules.LocalizationModule; }
-        }
-
         #endregion
 
         private PlayerProfileManager _playerProfileManager;
@@ -101,7 +96,6 @@ namespace EA4S
             base.Initialise();
 
             // Modules Setup
-            Modules.ModulesSetup();
             Modules.ModuleAutoInstallerOverride(this.gameObject);
 
             alreadySetup = true;
