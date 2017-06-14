@@ -18,11 +18,6 @@ namespace EA4S
     /// </summary>
     public class AppManager : Singleton<AppManager>
     {
-        public AppSettings AppSettings
-        {
-            get { return AppSettingsManager.Settings; }
-        }
-
         protected override void Awake()
         {
             base.Awake();
@@ -38,34 +33,16 @@ namespace EA4S
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
         public NavigationManager NavigationManager;
+        public PlayerProfileManager PlayerProfileManager;
 
-        public bool IsPaused { get; private set; }
-        
-
-        /// <summary>
-        /// Gets or sets the player profile manager.
-        /// Reload settings at any playerProfileManager changes.
-        /// </summary>
-        /// <value>
-        /// The player profile manager.
-        /// </value>
-        public PlayerProfileManager PlayerProfileManager
+        public AppSettings AppSettings
         {
-            get { return _playerProfileManager; }
-            set {
-                if (_playerProfileManager != value) {
-                    _playerProfileManager = value;
-                    _playerProfileManager.LoadSettings();
-                    return;
-                }
-                _playerProfileManager = value;
-            }
+            get { return AppSettingsManager.Settings; }
         }
-        private PlayerProfileManager _playerProfileManager;
 
         public PlayerProfile Player
         {
-            get { return PlayerProfileManager != null ? PlayerProfileManager.CurrentPlayer : null; }
+            get { return PlayerProfileManager.CurrentPlayer; }
             set { PlayerProfileManager.CurrentPlayer = value; }
         }
 
@@ -111,6 +88,8 @@ namespace EA4S
             NavigationManager.Initialize();
 
             PlayerProfileManager = new PlayerProfileManager();
+            PlayerProfileManager.LoadSettings();
+
             gameObject.AddComponent<DebugManager>();
             gameObject.AddComponent<KeeperManager>();
 
@@ -123,7 +102,6 @@ namespace EA4S
         }
 
         #endregion
-
 
         void Update()
         {
@@ -143,7 +121,7 @@ namespace EA4S
             }
         }
 
-        #region Settings behaviours
+        #region Setting
 
         public void ToggleQualitygfx()
         {
@@ -160,6 +138,8 @@ namespace EA4S
         #endregion
 
         #region Pause
+        public bool IsPaused { get; private set; }
+
         void OnApplicationPause(bool pauseStatus)
         {
             IsPaused = pauseStatus;
