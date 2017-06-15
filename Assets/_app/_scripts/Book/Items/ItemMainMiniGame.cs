@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using EA4S.Core;
 using EA4S.Database;
 using EA4S.UI;
 

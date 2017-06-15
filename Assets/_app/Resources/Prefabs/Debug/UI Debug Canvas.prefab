@@ -1877,9 +1877,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1590612911351328}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 114935988747555566}
+        m_MethodName: OnClickOpen
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
