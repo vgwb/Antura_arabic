@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using System.Linq;
 using EA4S.Audio;
 using EA4S.Core;
 using EA4S.Database;
@@ -59,7 +57,7 @@ namespace EA4S.Book
 
         void MinigamesPanel()
         {
-            emptyListContainers();
+            emptyContainer(ElementsContainer);
 
             var mainMiniGamesList = MinigamesUtilities.GetMainMiniGameList();
             foreach (var game in mainMiniGamesList) {
@@ -134,13 +132,11 @@ namespace EA4S.Book
             AppManager.I.GameLauncher.LaunchGame(currentMiniGame.Code, forceNewPlaySession: true);
         }
 
-        void emptyListContainers()
+        void emptyContainer(GameObject container)
         {
-            foreach (Transform t in ElementsContainer.transform) {
+            foreach (Transform t in container.transform) {
                 Destroy(t.gameObject);
             }
         }
-       
-
     }
 }

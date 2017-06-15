@@ -18,7 +18,8 @@ namespace EA4S.Debugging
 		public GameObject PrefabButton;
 
 		private int clickCounter;
-
+		private GameObject btnGO;
+		
 		void Awake()
 		{
 			if (I != null) {
@@ -48,6 +49,7 @@ namespace EA4S.Debugging
 
 		private void open()
 		{
+			buildUI();
 			Panel.SetActive(true);
 		}
 
@@ -55,6 +57,24 @@ namespace EA4S.Debugging
 		{
 			clickCounter = 0;
 			Panel.SetActive(false);
+		}
+
+		private void buildUI()
+		{
+			var mainMiniGamesList = MinigamesUtilities.GetMainMiniGameList();
+
+			emptyContainer(Container);
+				
+			foreach (var mainMiniGame in mainMiniGamesList) {
+				var newRow = Instantiate(PrefabRow);
+				newRow.transform.SetParent(Container.transform, false);
+
+				foreach (var gameVariation in mainMiniGame.variations) {
+					btnGO = Instantiate(PrefabButton);
+					btnGO.transform.SetParent(newRow.transform, false);
+					btnGO.GetComponent<DebugButton>().Init(this, gameVariation);
+				}
+			}
 		}
 		
 		public void LaunchMinigame(MiniGameCode minigameCode)
@@ -86,6 +106,13 @@ namespace EA4S.Debugging
 		public void AlphabetSong()
 		{
 			LaunchMinigame(MiniGameCode.AlphabetSong_alphabet);
+		}
+		
+		void emptyContainer(GameObject container)
+		{
+			foreach (Transform t in container.transform) {
+				Destroy(t.gameObject);
+			}
 		}
 	}
 }
