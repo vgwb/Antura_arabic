@@ -19,7 +19,7 @@
         /// Enabled the Advanced Debug Panel.
         /// Set to FALSE for production.
         /// </summary>
-        public const bool DebugPanelEnabled = false;
+        public const bool DebugPanelEnabled = true;
 
         /// <summary>
         /// Tracks common events using Unity Analytics.
