@@ -79,7 +79,8 @@ namespace EA4S.Debugging
 		
 		public void LaunchMinigame(MiniGameCode minigameCode)
 		{
-			if (!AppConstants.DebugStopPlayAtWrongPlaySessions || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(new JourneyPosition(DebugManager.I.Stage, DebugManager.I.LearningBlock, DebugManager.I.PlaySession), minigameCode)) {
+			if (!AppConstants.DebugStopPlayAtWrongPlaySessions
+			    || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(new JourneyPosition(DebugManager.I.Stage, DebugManager.I.LearningBlock, DebugManager.I.PlaySession), minigameCode)) {
 				WidgetPopupWindow.I.Close();
 				DebugManager.I.LaunchMiniGame(minigameCode);
 				close();
