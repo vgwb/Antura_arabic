@@ -25,8 +25,8 @@ namespace EA4S.Core
         public delegate void OnSkipCurrentSceneDelegate();
         public static event OnSkipCurrentSceneDelegate OnSkipCurrentScene;
 
-        public delegate void OnEndCurrentMinigameDelegate(int value);
-        public static event OnEndCurrentMinigameDelegate OnEndCurrentMinigame;
+        public delegate void OnForceCurrentMinigameEndDelegate(int value);
+        public static event OnForceCurrentMinigameEndDelegate OnForceCurrentMinigameEnd;
 
         public bool CheatMode = false;
 
@@ -108,22 +108,22 @@ namespace EA4S.Core
 
             if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0)) {
                 Debug.Log("DEBUG - 0");
-                OnEndCurrentMinigame(0);
+                OnForceCurrentMinigameEnd(0);
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) {
                 Debug.Log("DEBUG - 1");
-                OnEndCurrentMinigame(1);
+                OnForceCurrentMinigameEnd(1);
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2)) {
                 Debug.Log("DEBUG - 2");
-                OnEndCurrentMinigame(2);
+                OnForceCurrentMinigameEnd(2);
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3)) {
                 Debug.Log("DEBUG - 3");
-                OnEndCurrentMinigame(3);
+                OnForceCurrentMinigameEnd(3);
             }
         }
 

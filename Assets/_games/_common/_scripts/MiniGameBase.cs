@@ -23,11 +23,6 @@ namespace EA4S.MinigamesCommon
             //Debug.LogFormat("Gameplay {0} ready with data: {1}", GameplayInfo.GameId, GameplayInfo);
         }
 
-        protected virtual void OnDisable()
-        {
-            OnMinigameQuit();
-        }
-
         /// <summary>
         /// Invoke when the current minigame ends.
         /// </summary>

@@ -127,17 +127,6 @@ namespace EA4S.MinigamesCommon
 
             inputManager.Update(Time.deltaTime);
             audioManager.Update();
-
-#if UNITY_EDITOR
-            if (Input.GetKeyDown(KeyCode.Alpha0))
-                EndGame(0, 0);
-            else if (Input.GetKeyDown(KeyCode.Alpha1))
-                EndGame(1, 1);
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-                EndGame(2, 2);
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-                EndGame(3, 3);
-#endif
         }
 
         void FixedUpdate()
@@ -160,8 +149,26 @@ namespace EA4S.MinigamesCommon
         void OnApplicationPause(bool pause)
         {
             if (pause)
+            {
                 hasToPause = true;
-
+            }
         }
+        
+        void OnEnable()
+        {
+            DebugManager.OnForceCurrentMinigameEnd += ForceCurrentMinigameEnd;
+        }
+
+        void OnDisable()
+        {
+            base.OnMinigameQuit();
+            DebugManager.OnForceCurrentMinigameEnd -= ForceCurrentMinigameEnd;
+        }
+        
+        void ForceCurrentMinigameEnd(int value)
+        {
+            EndGame(value, value);
+        }
+
     }
 }
