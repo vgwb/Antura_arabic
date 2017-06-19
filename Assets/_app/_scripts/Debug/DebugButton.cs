@@ -34,8 +34,7 @@ namespace EA4S.Debugging
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            switch (action)
-            {
+            switch (action) {
                 case DebugButtonAction.MiniGame:
                     ColorButton();
                     manager.LaunchMinigame(minigameInfo.data.Code);
@@ -49,16 +48,13 @@ namespace EA4S.Debugging
         void ColorButton()
         {
             // Debug.Log(Title.text + " " + played);
-            ColorBlock colorblock = ColorBlock.defaultColorBlock;
-            if (played)
-            {
-                colorblock.normalColor = Color.gray;
+            var colors = GetComponent<Button>().colors;
+            if (played) {
+                colors.normalColor = Color.gray;
+            } else {
+                colors.normalColor = Color.white;
             }
-            else
-            {
-                colorblock.normalColor = Color.white;
-            }
-            GetComponent<Button>().colors = colorblock;
+            GetComponent<Button>().colors = colors;
         }
     }
 }
