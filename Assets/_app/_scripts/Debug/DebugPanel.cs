@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using EA4S.Core;
 using EA4S.UI;
 
-namespace EA4S.Debugging
+namespace EA4S.Core
 {
 	public class DebugPanel : MonoBehaviour
 	{

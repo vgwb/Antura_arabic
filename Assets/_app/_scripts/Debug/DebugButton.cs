@@ -5,7 +5,7 @@ using EA4S.Core;
 using EA4S.Database;
 using EA4S.UI;
 
-namespace EA4S.Debugging
+namespace EA4S.Core
 {
 	public class DebugButton : MonoBehaviour, IPointerClickHandler
 	{

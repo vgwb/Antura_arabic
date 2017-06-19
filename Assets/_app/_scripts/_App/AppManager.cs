@@ -3,7 +3,6 @@ using EA4S.Audio;
 using EA4S.CameraControl;
 using EA4S.Core;
 using EA4S.Database;
-using EA4S.Debugging;
 using EA4S.Profile;
 using EA4S.Rewards;
 using EA4S.Teacher;
@@ -114,10 +113,6 @@ namespace EA4S
                 }
             }
 
-            // shortcut to Reserved Area
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R)) {
-                NavigationManager.GoToReservedArea();
-            }
         }
 
         #region Setting
