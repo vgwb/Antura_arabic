@@ -6,7 +6,7 @@ public class WorldPrefabsEditorWindow : EditorWindow
     WorldID world = WorldID.Default;
     WorldID lastWorld = WorldID.Default;
 
-    [MenuItem("Tools/EA4S Antura/World Prefabs")]
+    [MenuItem("Tools/Antura/World Prefabs", false, 301)]
     static void Init()
     {
         // Get existing open window or if none, make a new one:

@@ -70,13 +70,11 @@
         public const string UrlCommunityTelegram = "https://t.me/antura";
         public const string UrlCommunityFacebook = "https://www.facebook.com/antura.initiative";
         public const string UrlSupportForm = "https://docs.google.com/forms/d/e/1FAIpQLScWxs5I0w-k8GlIgPFKoWBitMVJ9gxxJlKvGKOXzZsnAA0qNw/viewform";
+        public const string UrlGithubRepository = "https://github.com/vgwb/Antura_arabic";
+        public const string UrlDeveloperDocs = "https://vgwb.github.io/Antura_arabic/";
 
         // files
         public const string PdfAndroidInstall = "AndroidInstallHelp.pdf";
-
-#if UNITY_EDITOR
-        public const string UrlGithubRepository = "https://github.com/vgwb/Antura_arabic";
-#endif
 
         // Application details (used by Teacher and maybe other)
         public const float minimumAge = 4;
