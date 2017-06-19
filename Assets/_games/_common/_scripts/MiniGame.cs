@@ -156,13 +156,13 @@ namespace EA4S.MinigamesCommon
         
         void OnEnable()
         {
-            DebugManager.OnForceCurrentMinigameEnd += ForceCurrentMinigameEnd;
+            Debugging.DebugManager.OnForceCurrentMinigameEnd += ForceCurrentMinigameEnd;
         }
 
         void OnDisable()
         {
             base.OnMinigameQuit();
-            DebugManager.OnForceCurrentMinigameEnd -= ForceCurrentMinigameEnd;
+            Debugging.DebugManager.OnForceCurrentMinigameEnd -= ForceCurrentMinigameEnd;
         }
         
         void ForceCurrentMinigameEnd(int value)

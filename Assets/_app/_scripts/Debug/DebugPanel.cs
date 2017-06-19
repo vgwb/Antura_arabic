@@ -2,117 +2,167 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using EA4S.Core;
 using EA4S.UI;
 
-namespace EA4S.Core
+namespace EA4S.Debugging
 {
-	public class DebugPanel : MonoBehaviour
-	{
-		public static DebugPanel I;
+    public enum DebugButtonAction
+    {
+        MiniGame,
+        Reset
+    }
 
-		[Header("References")]
-		public GameObject Panel;
-		public GameObject Container;
-		public GameObject PrefabRow;
-		public GameObject PrefabButton;
+    public class DebugPanel : MonoBehaviour
+    {
+        public static DebugPanel I;
 
-		private int clickCounter;
-		private GameObject btnGO;
-		
-		void Awake()
-		{
-			if (I != null) {
-				Destroy(gameObject);
-			} else {
-				I = this;
-				DontDestroyOnLoad(gameObject);
-			}
+        [Header("References")] public GameObject Panel;
+        public GameObject Container;
+        public GameObject PrefabRow;
+        public GameObject PrefabButton;
 
-			if (Panel.activeSelf) {
-				Panel.SetActive(false);
-			}
-		}
+        private int clickCounter;
+        private GameObject btnGO;
+        private bool firstRun;
+        private Dictionary<MiniGameCode, bool> playedMinigames = new Dictionary<MiniGameCode, bool>();
 
-		public void OnClickOpen()
-		{
-			clickCounter++;
-			if (clickCounter >= 3) {
-				open();
-			}
-		}
+        void Awake()
+        {
+            if (I != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                I = this;
+                DontDestroyOnLoad(gameObject);
+            }
 
-		public void OnClickClose()
-		{
-			close();
-		}
+            if (Panel.activeSelf)
+            {
+                Panel.SetActive(false);
+            }
+            firstRun = true;
+        }
 
-		private void open()
-		{
-			buildUI();
-			Panel.SetActive(true);
-		}
+        public void OnClickOpen()
+        {
+            clickCounter++;
+            if (clickCounter >= 3)
+            {
+                open();
+            }
+        }
 
-		private void close()
-		{
-			clickCounter = 0;
-			Panel.SetActive(false);
-		}
+        public void OnClickClose()
+        {
+            close();
+        }
 
-		private void buildUI()
-		{
-			var mainMiniGamesList = MinigamesUtilities.GetMainMiniGameList();
+        private void open()
+        {
+            buildUI();
+            Panel.SetActive(true);
+        }
 
-			emptyContainer(Container);
-				
-			foreach (var mainMiniGame in mainMiniGamesList) {
-				var newRow = Instantiate(PrefabRow);
-				newRow.transform.SetParent(Container.transform, false);
+        private void close()
+        {
+            clickCounter = 0;
+            Panel.SetActive(false);
+        }
 
-				foreach (var gameVariation in mainMiniGame.variations) {
-					btnGO = Instantiate(PrefabButton);
-					btnGO.transform.SetParent(newRow.transform, false);
-					btnGO.GetComponent<DebugButton>().Init(this, gameVariation);
-				}
-			}
-		}
-		
-		public void LaunchMinigame(MiniGameCode minigameCode)
-		{
-			if (!AppConstants.DebugStopPlayAtWrongPlaySessions
-			    || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(new JourneyPosition(DebugManager.I.Stage, DebugManager.I.LearningBlock, DebugManager.I.PlaySession), minigameCode)) {
-				WidgetPopupWindow.I.Close();
-				DebugManager.I.LaunchMiniGame(minigameCode);
-				close();
-			} else {
-				if (AppConstants.DebugStopPlayAtWrongPlaySessions) {
-					JourneyPosition minJ = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
-					if (minJ == null) {
-						Debug.LogWarningFormat("Minigame {0} could not be selected for any PlaySession. Please check the PlaySession data table.", minigameCode);
-					} else {
-						Debug.LogErrorFormat("Minigame {0} cannot be selected this PlaySession. Min: {1}", minigameCode, minJ.ToString());
-					}
-				}
-			}
-		}
-		
-		public void GoHome()
-		{
-			// refactor: move to DebugManager
-			WidgetPopupWindow.I.Close();
-			AppManager.I.NavigationManager.GoToHome(debugMode: true);
-			close();
-		}
-		
-		public void AlphabetSong()
-		{
-			LaunchMinigame(MiniGameCode.AlphabetSong_alphabet);
-		}
-		
-		void emptyContainer(GameObject container)
-		{
-			foreach (Transform t in container.transform) {
-				Destroy(t.gameObject);
-			}
-		}
-	}
+        public void Reset()
+        {
+            playedMinigames.Clear();
+            buildUI();
+        }
+
+        private void buildUI()
+        {
+            var mainMiniGamesList = MinigamesUtilities.GetMainMiniGameList();
+
+            emptyContainer(Container);
+
+            var newRow = Instantiate(PrefabRow);
+            newRow.transform.SetParent(Container.transform, false);
+            btnGO = Instantiate(PrefabButton);
+            btnGO.transform.SetParent(newRow.transform, false);
+            btnGO.GetComponent<DebugButton>().Init(this, DebugButtonAction.Reset, "Reset Playtest");
+
+            foreach (var mainMiniGame in mainMiniGamesList)
+            {
+                newRow = Instantiate(PrefabRow);
+                newRow.transform.SetParent(Container.transform, false);
+
+                foreach (var gameVariation in mainMiniGame.variations)
+                {
+                    btnGO = Instantiate(PrefabButton);
+                    btnGO.transform.SetParent(newRow.transform, false);
+                    bool gamePlayed;
+                    playedMinigames.TryGetValue(gameVariation.data.Code, out gamePlayed);
+                    btnGO.GetComponent<DebugButton>().Init(this, DebugButtonAction.MiniGame, gameVariation, gamePlayed);
+                }
+            }
+            firstRun = false;
+        }
+
+        public void LaunchMinigame(MiniGameCode minigameCode)
+        {
+            playedMinigames[minigameCode] = true;
+            DebugManager.I.Stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
+            DebugManager.I.LearningBlock = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
+            DebugManager.I.PlaySession = AppManager.I.Player.CurrentJourneyPosition.PlaySession;
+
+            if (!AppConstants.DebugStopPlayAtWrongPlaySessions
+                || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(
+                    new JourneyPosition(DebugManager.I.Stage, DebugManager.I.LearningBlock, DebugManager.I.PlaySession),
+                    minigameCode))
+            {
+                WidgetPopupWindow.I.Close();
+                DebugManager.I.LaunchMiniGame(minigameCode);
+                close();
+            }
+            else
+            {
+                if (AppConstants.DebugStopPlayAtWrongPlaySessions)
+                {
+                    JourneyPosition minJ =
+                        AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
+                    if (minJ == null)
+                    {
+                        Debug.LogWarningFormat(
+                            "Minigame {0} could not be selected for any PlaySession. Please check the PlaySession data table.",
+                            minigameCode);
+                    }
+                    else
+                    {
+                        Debug.LogErrorFormat("Minigame {0} cannot be selected this PlaySession. Min: {1}", minigameCode,
+                            minJ.ToString());
+                    }
+                }
+            }
+        }
+
+        public void GoHome()
+        {
+            // refactor: move to DebugManager
+            WidgetPopupWindow.I.Close();
+            AppManager.I.NavigationManager.GoToHome(debugMode: true);
+            close();
+        }
+
+        public void AlphabetSong()
+        {
+            LaunchMinigame(MiniGameCode.AlphabetSong_alphabet);
+        }
+
+        void emptyContainer(GameObject container)
+        {
+            foreach (Transform t in container.transform)
+            {
+                Destroy(t.gameObject);
+            }
+        }
+    }
 }

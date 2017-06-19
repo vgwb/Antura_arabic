@@ -61,7 +61,7 @@ namespace EA4S.Intro
 
         void OnEnable()
         {
-            DebugManager.OnSkipCurrentScene += SkipScene;
+            Debugging.DebugManager.OnSkipCurrentScene += SkipScene;
         }
 
         private void CountDown_onTimesUp()
@@ -71,7 +71,7 @@ namespace EA4S.Intro
 
         void OnDisable()
         {
-            DebugManager.OnSkipCurrentScene -= SkipScene;
+            Debugging.DebugManager.OnSkipCurrentScene -= SkipScene;
 
             if (countDown != null) {
                 countDown.onTimesUp -= CountDown_onTimesUp;

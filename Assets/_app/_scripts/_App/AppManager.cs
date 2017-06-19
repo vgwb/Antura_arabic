@@ -88,7 +88,7 @@ namespace EA4S
             PlayerProfileManager = new PlayerProfileManager();
             PlayerProfileManager.LoadSettings();
 
-            gameObject.AddComponent<DebugManager>();
+            gameObject.AddComponent<Debugging.DebugManager>();
             gameObject.AddComponent<KeeperManager>();
 
             RewardSystemManager.Init();

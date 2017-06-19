@@ -77,12 +77,12 @@ namespace EA4S.Intro
 
         void OnEnable()
         {
-            DebugManager.OnSkipCurrentScene += SkipScene;
+            Debugging.DebugManager.OnSkipCurrentScene += SkipScene;
         }
 
         void OnDisable()
         {
-            DebugManager.OnSkipCurrentScene -= SkipScene;
+            Debugging.DebugManager.OnSkipCurrentScene -= SkipScene;
         }
 
         void SkipScene()

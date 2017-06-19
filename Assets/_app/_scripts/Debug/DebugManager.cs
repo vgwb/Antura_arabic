@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System;
+using EA4S.Core;
 using EA4S.MinigamesAPI;
 
-namespace EA4S.Core
+namespace EA4S.Debugging
 {
     // refactor: this enum could be used throughout the application instead of just being in the DebugManager
     public enum DifficultyLevel
@@ -23,28 +24,37 @@ namespace EA4S.Core
         public static DebugManager I;
 
         public delegate void OnSkipCurrentSceneDelegate();
+
         public static event OnSkipCurrentSceneDelegate OnSkipCurrentScene;
 
         public delegate void OnForceCurrentMinigameEndDelegate(int value);
+
         public static event OnForceCurrentMinigameEndDelegate OnForceCurrentMinigameEnd;
 
         public bool CheatMode = false;
 
         private bool _ignoreJourneyData = false;
-        public bool IgnoreJourneyData {
+
+        public bool IgnoreJourneyData
+        {
             get { return _ignoreJourneyData; }
-            set {
+            set
+            {
                 _ignoreJourneyData = value;
                 Teacher.ConfigAI.forceJourneyIgnore = _ignoreJourneyData;
             }
         }
 
         private DifficultyLevel _difficultyLevel = DifficultyLevel.Normal;
-        public DifficultyLevel DifficultyLevel {
+
+        public DifficultyLevel DifficultyLevel
+        {
             get { return _difficultyLevel; }
-            set {
+            set
+            {
                 _difficultyLevel = value;
-                switch (_difficultyLevel) {
+                switch (_difficultyLevel)
+                {
                     case DifficultyLevel.VeryEasy:
                         Difficulty = 0.1f;
                         break;
@@ -72,12 +82,17 @@ namespace EA4S.Core
         /// <value>
         ///   <c>true</c> if [first contact passed]; otherwise, <c>false</c>.
         /// </value>
-        public bool FirstContactPassed {
+        public bool FirstContactPassed
+        {
             get { return !AppManager.I.Player.IsFirstContact(); }
-            set {
-                if (value) {
+            set
+            {
+                if (value)
+                {
                     AppManager.I.Player.FirstContactPassed(2);
-                } else {
+                }
+                else
+                {
                     AppManager.I.Player.ResetPlayerProfileCompletion();
                 }
             }
@@ -97,31 +112,37 @@ namespace EA4S.Core
         void Update()
         {
             // shortcut to Reserved Area
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R)) {
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R))
+            {
                 AppManager.I.NavigationManager.GoToReservedArea();
             }
-            
-            if (Input.GetKeyDown(KeyCode.Space)) {
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
                 Debug.Log("DEBUG - SPACE : skip");
                 OnSkipCurrentScene();
             }
 
-            if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0)) {
+            if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0))
+            {
                 Debug.Log("DEBUG - 0");
                 OnForceCurrentMinigameEnd(0);
             }
 
-            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) {
+            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+            {
                 Debug.Log("DEBUG - 1");
                 OnForceCurrentMinigameEnd(1);
             }
 
-            if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2)) {
+            if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
+            {
                 Debug.Log("DEBUG - 2");
                 OnForceCurrentMinigameEnd(2);
             }
 
-            if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3)) {
+            if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
+            {
                 Debug.Log("DEBUG - 3");
                 OnForceCurrentMinigameEnd(3);
             }
@@ -134,8 +155,8 @@ namespace EA4S.Core
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;
 
-            AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected, new MinigameLaunchConfiguration(Difficulty, NumberOfRounds), forceNewPlaySession: true);
+            AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected,
+                new MinigameLaunchConfiguration(Difficulty, NumberOfRounds), forceNewPlaySession: true);
         }
-
     }
 }
