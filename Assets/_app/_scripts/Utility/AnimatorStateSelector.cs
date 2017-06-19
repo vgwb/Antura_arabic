@@ -10,6 +10,5 @@ namespace EA4S.Utilities
         {
             gameObject.GetComponent<Animator>().Play(AnimatorState);
         }
-
     }
 }

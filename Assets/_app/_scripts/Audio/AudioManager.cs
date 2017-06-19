@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Database;
 using DG.DeAudio;
 using EA4S.Core;
+using EA4S.Database;
 using EA4S.Helpers;
 using EA4S.MinigamesCommon;
 
@@ -264,8 +264,9 @@ namespace EA4S.Audio
         {
             Debug.Log("PlayDialogue " + data.Id);
 
-            if (clearPreviousCallback)
+            if (clearPreviousCallback) {
                 dialogueEndedCallbacks.Clear();
+            }
 
             if (!string.IsNullOrEmpty(data.GetLocalizedAudioFileName(AppManager.I.Player.Gender))) {
                 AudioClip clip = GetAudioClip(data);
@@ -286,26 +287,30 @@ namespace EA4S.Audio
 
         public IAudioSource PlayDialogue(Database.LocalizationData data, System.Action callback, bool clearPreviousCallback = false)
         {
-            if (clearPreviousCallback)
+            if (clearPreviousCallback) {
                 dialogueEndedCallbacks.Clear();
+            }
 
             if (!string.IsNullOrEmpty(data.GetLocalizedAudioFileName(AppManager.I.Player.Gender))) {
                 AudioClip clip = GetAudioClip(data);
                 var wrapper = new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
-                if (callback != null)
+                if (callback != null) {
                     dialogueEndedCallbacks[wrapper] = callback;
+                }
                 return wrapper;
             } else {
-                if (callback != null)
+                if (callback != null) {
                     callback();
+                }
             }
             return null;
         }
 
         public void StopDialogue(bool clearPreviousCallback)
         {
-            if (clearPreviousCallback)
+            if (clearPreviousCallback) {
                 dialogueEndedCallbacks.Clear();
+            }
 
             keeperGroup.Stop();
         }
@@ -455,7 +460,6 @@ namespace EA4S.Audio
 
         public void OnBeforeSerialize()
         {
-
         }
 
         public IAudioSource PlaySound(AudioClip clip)
@@ -481,8 +485,9 @@ namespace EA4S.Audio
         /// <param name="source"></param>
         public void OnAudioStarted(AudioSourceWrapper source)
         {
-            if (!playingAudio.Contains(source))
+            if (!playingAudio.Contains(source)) {
                 playingAudio.Add(source);
+            }
         }
     }
 }

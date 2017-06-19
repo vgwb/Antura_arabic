@@ -15,13 +15,11 @@ namespace EA4S.Scenes
         // refactor: Remove the static access. The ProfileSelectorUI can directly access the HomeManager. Better yet, remove the Play() method from here and place something similar in AppManager.
         public static HomeScene I;
 
-        [Header("Scene Setup")]
-        public Music SceneMusic;
+        [Header("Scene Setup")] public Music SceneMusic;
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
         public LLAnimationStates LLAnimation = LLAnimationStates.LL_dancing;
 
-        [Header("References")]
-        public AnturaAnimationController AnturaAnimController;
+        [Header("References")] public AnturaAnimationController AnturaAnimController;
         public LetterObjectView LLAnimController;
         public GameObject DialogReservedArea;
         public GameObject ProfileSelectorUI;
@@ -68,6 +66,7 @@ namespace EA4S.Scenes
         }
 
         private bool reservedAreaIsOpen = false;
+
         public void OnClickReservedAreaButton()
         {
             if (reservedAreaIsOpen) {

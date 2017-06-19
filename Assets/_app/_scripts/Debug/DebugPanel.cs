@@ -24,7 +24,6 @@ namespace EA4S.Debugging
 
         private int clickCounter;
         private GameObject btnGO;
-        private bool firstRun;
         private Dictionary<MiniGameCode, bool> playedMinigames = new Dictionary<MiniGameCode, bool>();
 
         void Awake()
@@ -43,7 +42,6 @@ namespace EA4S.Debugging
             {
                 Panel.SetActive(false);
             }
-            firstRun = true;
         }
 
         public void OnClickOpen()
@@ -104,7 +102,6 @@ namespace EA4S.Debugging
                     btnGO.GetComponent<DebugButton>().Init(this, DebugButtonAction.MiniGame, gameVariation, gamePlayed);
                 }
             }
-            firstRun = false;
         }
 
         public void LaunchMinigame(MiniGameCode minigameCode)

@@ -7,29 +7,28 @@ namespace EA4S.Core
     {
         public static string GetTranslation(Database.LocalizationDataId id)
         {
-            return GetLocalizationData(id).GetLocalizedText((EA4S.AppManager.I as EA4S.AppManager).Player.Gender);
+            return GetLocalizationData(id).GetLocalizedText(AppManager.I.Player.Gender);
         }
 
         public static string GetTranslation(string id)
         {
-            return GetLocalizationData(id).GetLocalizedText((EA4S.AppManager.I as EA4S.AppManager).Player.Gender); 
+            return GetLocalizationData(id).GetLocalizedText(AppManager.I.Player.Gender); 
         }
 
         public static Database.LocalizationData GetLocalizationData(Database.LocalizationDataId id)
         {
-            return (EA4S.AppManager.I as EA4S.AppManager).DB.GetLocalizationDataById(id.ToString());
+            return AppManager.I.DB.GetLocalizationDataById(id.ToString());
         }
 
         public static Database.LocalizationData GetLocalizationData(string id)
         {
-            return (EA4S.AppManager.I as EA4S.AppManager).DB.GetLocalizationDataById(id);
+            return AppManager.I.DB.GetLocalizationDataById(id);
         }
 
         public static Database.LocalizationData GetWordCategoryData(Database.WordDataCategory cat)
         {
             Database.LocalizationDataId loc = Database.LocalizationDataId.UI_None;
             switch (cat) {
-
                 case Database.WordDataCategory.Adjectives: loc = Database.LocalizationDataId.UI_WordCat_Adjectives; break;
                 case Database.WordDataCategory.Animal: loc = Database.LocalizationDataId.UI_Animals; break;
                 case Database.WordDataCategory.BodyPart: loc = Database.LocalizationDataId.UI_BodyParts; break;

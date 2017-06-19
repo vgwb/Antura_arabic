@@ -46,7 +46,8 @@ namespace EA4S.Core
             if (autoClose) {
                 WidgetSubtitles.I.DisplaySentence(data, 2, isKeeper, null);
                 currentCallback = _callback;
-                AudioManager.I.PlayDialogue(data, () => {
+                AudioManager.I.PlayDialogue(data, () =>
+                {
                     CloseDialog();
                     if (currentCallback != null)
                         currentCallback();

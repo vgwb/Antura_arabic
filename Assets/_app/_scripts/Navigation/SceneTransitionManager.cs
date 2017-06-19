@@ -79,11 +79,11 @@ namespace EA4S.Core
         public void LoadSceneWithTransition(string _sceneToLoad, SceneTransitionSettings _transitionSettings)
         {
             _isTransitioning = true;
-            if (OnSceneStartTransition != null) OnSceneStartTransition();
+            if (OnSceneStartTransition != null) {
+                OnSceneStartTransition();
+            }
 
-            SceneTransitioner.Show(true, delegate {
-                OnSceneTransitionComplete(_sceneToLoad);
-            });
+            SceneTransitioner.Show(true, delegate { OnSceneTransitionComplete(_sceneToLoad); });
         }
 
         void OnSceneTransitionComplete(string _sceneToLoad)
@@ -97,9 +97,8 @@ namespace EA4S.Core
 
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
-            if (SceneTransitioner.IsShown)
-            {
-                (EA4S.AppManager.I as EA4S.AppManager).StartCoroutine(CloseSceneTransitionerCO(transitionCloseTime));
+            if (SceneTransitioner.IsShown) {
+                AppManager.I.StartCoroutine(CloseSceneTransitionerCO(transitionCloseTime));
             }
         }
 
@@ -109,30 +108,11 @@ namespace EA4S.Core
             SceneTransitioner.Show(false);
 
             _isTransitioning = false;
-            if (OnSceneEndTransition != null) OnSceneEndTransition();
+            if (OnSceneEndTransition != null) {
+                OnSceneEndTransition();
+            }
         }
 
         #endregion
-    }
-
-    /// <summary>
-    /// Settings for the transition between scenes.
-    /// </summary>
-    public class SceneTransitionSettings
-    {
-
-        /// <summary>
-        /// Duration of transition.
-        /// </summary>
-        public int Duration = 1;
-
-        /// <summary>
-        /// Transition mode
-        /// </summary>
-        public enum Mode
-        {
-            Default, // fade to/from black.
-        }
-
     }
 }

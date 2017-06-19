@@ -33,8 +33,6 @@ namespace EA4S.ReservedArea
 
         void RefreshPlayerIcons()
         {
-            GameObject newIcon;
-
             foreach (Transform t in PlayerIconContainer.transform) {
                 Destroy(t.gameObject);
             }
@@ -44,7 +42,7 @@ namespace EA4S.ReservedArea
             // reverse the list for RIGHT 2 LEFT layout
             players.Reverse();
             foreach (var player in players) {
-                newIcon = Instantiate(PlayerIconPrefab);
+                var newIcon = Instantiate(PlayerIconPrefab);
                 newIcon.transform.SetParent(PlayerIconContainer.transform, false);
                 newIcon.GetComponent<PlayerIcon>().Init(player);
                 newIcon.GetComponent<UIButton>().Bt.onClick.AddListener(() => OnSelectPlayerProfile(player.Uuid));
@@ -64,11 +62,7 @@ namespace EA4S.ReservedArea
         public void OnSelectPlayerProfile(string uuid)
         {
             //Debug.Log("OnSelectPlayerProfile " + uuid);
-            if (SelectedPlayerId != uuid) {
-                SelectedPlayerId = uuid;
-            } else {
-                SelectedPlayerId = "";
-            }
+            SelectedPlayerId = SelectedPlayerId != uuid ? uuid : "";
             RefreshUI();
         }
 
@@ -187,7 +181,7 @@ namespace EA4S.ReservedArea
 
             // Add scores for all play sessions
             Debug.Log("Start adding PS scores");
-            List<LogPlaySessionScoreParams> logPlaySessionScoreParamsList = new List<LogPlaySessionScoreParams>();
+            var logPlaySessionScoreParamsList = new List<LogPlaySessionScoreParams>();
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
                 if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
@@ -202,7 +196,7 @@ namespace EA4S.ReservedArea
 
             // Add scores for all minigames
             Debug.Log("Start adding MiniGame scores");
-            List<LogMiniGameScoreParams> logMiniGameScoreParamses = new List<LogMiniGameScoreParams>();
+            var logMiniGameScoreParamses = new List<LogMiniGameScoreParams>();
             var allMiniGameInfo = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
             for (int i = 0; i < allMiniGameInfo.Count; i++) {
                 int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);

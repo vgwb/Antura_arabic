@@ -12,12 +12,13 @@ namespace EA4S.Rewards
     /// </summary>
     public class GameResultUI : MonoBehaviour
     {
+        public static GameResultUI I;
+        
         public EndgameResultPanel EndgameResultPanel;
         public EndsessionResultPanel EndsessionResultPanel;
         public BonesCounter BonesCounter;
         public Vector2 BonesCounterEndgamePos, BonesCounterEndsessionPos;
 
-        public static GameResultUI I;
         const string ResourcesPath = "Prefabs/UI/GameResultUI";
 
         #region Unity + Init

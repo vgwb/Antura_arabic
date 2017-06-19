@@ -16,8 +16,7 @@ namespace EA4S.Rewards
     public class RewardsManager : MonoBehaviour
     {
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
-        [Header("References")]
-        public AnturaAnimationController AnturaAnimController;
+        [Header("References")] public AnturaAnimationController AnturaAnimController;
 
         void Start()
         {
@@ -99,6 +98,5 @@ namespace EA4S.Rewards
         {
             AppManager.I.NavigationManager.GoToNextScene();
         }
-
     }
 }

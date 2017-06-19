@@ -5,6 +5,5 @@ namespace EA4S.Helpers
 {
     public static class UIHelper
     {
-        
     }
 }

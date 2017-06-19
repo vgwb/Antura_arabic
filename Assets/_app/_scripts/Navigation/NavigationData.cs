@@ -77,7 +77,7 @@ namespace EA4S.Core
 
         public bool SetNextMinigame()
         {
-            int NextIndex = CurrentMiniGameIndexInPlaySession + 1;
+            var NextIndex = CurrentMiniGameIndexInPlaySession + 1;
             if (NextIndex < CurrentPlaySessionMiniGames.Count) {
                 CurrentMiniGameIndexInPlaySession = NextIndex;
                 return true;
@@ -85,13 +85,14 @@ namespace EA4S.Core
             return false;
         }
 
-        public MiniGameData CurrentMiniGameData {
-            get {
+        public MiniGameData CurrentMiniGameData
+        {
+            get
+            {
                 if (CurrentPlaySessionMiniGames == null) return null;
                 if (CurrentPlaySessionMiniGames.Count == 0) return null;
                 return CurrentPlaySessionMiniGames[CurrentMiniGameIndexInPlaySession];
             }
         }
     }
-
 }

@@ -3,19 +3,16 @@ using System;
 using System.Collections.Generic;
 using EA4S.Database;
 using EA4S.Environment;
-using EA4S.Rewards;
 using EA4S.Profile;
+using EA4S.Rewards;
 
 namespace EA4S.Core
 {
-
     /// <summary>
     /// Controls the navigation among different scenes in the application.
     /// </summary>
     public class NavigationManager : MonoBehaviour
     {
-        private static bool VERBOSE = false;
-
         public const AppScene INITIAL_SCENE = AppScene.Home;
 
         public NavigationData NavData;
@@ -29,16 +26,19 @@ namespace EA4S.Core
 
         public bool IsLoadingMinigame { get; private set; }
 
-        public bool IsTransitioningScenes {
+        public bool IsTransitioningScenes
+        {
             get { return SceneTransitionManager.IsTransitioning; }
         }
 
-        public Action OnSceneStartTransition {
+        public Action OnSceneStartTransition
+        {
             get { return SceneTransitionManager.OnSceneStartTransition; }
             set { SceneTransitionManager.OnSceneStartTransition = value; }
         }
 
-        public Action OnSceneEndTransition {
+        public Action OnSceneEndTransition
+        {
             get { return SceneTransitionManager.OnSceneEndTransition; }
             set { SceneTransitionManager.OnSceneEndTransition = value; }
         }
@@ -46,6 +46,16 @@ namespace EA4S.Core
         #endregion
 
         #region Initialization
+
+        void OnEnable()
+        {
+            SceneTransitionManager.OnEnable();
+        }
+
+        void OnDisable()
+        {
+            SceneTransitionManager.OnDisable();
+        }
 
         /// <summary>
         /// Initialize the NavigationManager and its data.
@@ -102,7 +112,8 @@ namespace EA4S.Core
         /// </summary>
         public void GoToNextScene()
         {
-            if (VERBOSE) Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToNextScene");
+            if (AppConstants.VerboseLogging)
+                Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToNextScene");
             switch (NavData.CurrentScene) {
                 case AppScene.Home:
 
@@ -169,7 +180,9 @@ namespace EA4S.Core
 
             if (NavData.PrevSceneStack.Count > 0) {
                 var prevScene = NavData.PrevSceneStack.Pop();
-                if (VERBOSE) Debug.LogFormat(" ---- NAV MANAGER ({0}) from scene {1} to {2} ---- ", "GoBack", NavData.CurrentScene, prevScene);
+                if (AppConstants.VerboseLogging) {
+                    Debug.LogFormat(" ---- NAV MANAGER ({0}) from scene {1} to {2} ---- ", "GoBack", NavData.CurrentScene, prevScene);
+                }
                 GoToScene(prevScene);
             }
         }
@@ -190,7 +203,7 @@ namespace EA4S.Core
                         // so we Increment MaxJourneyPosition to let him/her progress
                         if (NavData.CurrentPlayer.CurrentJourneyPosition.Equals(NavData.CurrentPlayer.MaxJourneyPosition)) {
                             // wrong MaxJourneyPosition...
-                            (EA4S.AppManager.I as EA4S.AppManager).Player.AdvanceMaxJourneyPosition();
+                            AppManager.I.Player.AdvanceMaxJourneyPosition();
                         }
                         GoToScene(AppScene.Map);
                         return;
@@ -214,11 +227,11 @@ namespace EA4S.Core
         {
             IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
 
-            if (VERBOSE) Debug.LogFormat(" ==== Loading scene {0} ====", sceneName);
+            if (AppConstants.VerboseLogging) Debug.LogFormat(" ==== Loading scene {0} ====", sceneName);
             SceneTransitionManager.LoadSceneWithTransition(sceneName);
 
             if (AppConstants.UseUnityAnalytics && !Application.isEditor) {
-                UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
+                UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> {{"scene", sceneName}});
             }
             LogManager.I.LogInfo(InfoEvent.EnterScene, "{\"Scene\":\"" + sceneName + "\"}");
         }
@@ -228,7 +241,9 @@ namespace EA4S.Core
             // The stack is updated only for some transitions
             if (backableTransitions.Contains(new KeyValuePair<AppScene, AppScene>(NavData.CurrentScene, newScene))) {
                 if (NavData.PrevSceneStack.Count == 0 || NavData.PrevSceneStack.Peek() != NavData.CurrentScene) {
-                    if (VERBOSE) Debug.LogError("Added BACKABLE transition " + NavData.CurrentScene + " to " + newScene);
+                    if (AppConstants.VerboseLogging) {
+                        Debug.LogError("Added BACKABLE transition " + NavData.CurrentScene + " to " + newScene);
+                    }
                     NavData.PrevSceneStack.Push(NavData.CurrentScene);
                 }
             }
@@ -240,7 +255,7 @@ namespace EA4S.Core
         /// <param name="_miniGame">The mini game.</param>
         private void InternalLaunchGameScene(MiniGameData _miniGame)
         {
-            (EA4S.AppManager.I as EA4S.AppManager).GameLauncher.LaunchGame(_miniGame.Code);
+            AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
         }
 
         #endregion
@@ -292,7 +307,8 @@ namespace EA4S.Core
                 case AppScene.Map:
                     // First contact: we go to the Rewards scene instead
                     if (NavData.CurrentPlayer.IsFirstContact()) {
-                        UpdatePrevSceneStack(AppScene.AnturaSpace); // We force the prev scene stack to hold the Map <-> AnturaSpace transition
+                        // We force the prev scene stack to hold the Map <-> AnturaSpace transition
+                        UpdatePrevSceneStack(AppScene.AnturaSpace);
                         CustomGoTo(AppScene.Rewards);
                     } else
                         CustomGoTo(AppScene.AnturaSpace);
@@ -309,7 +325,8 @@ namespace EA4S.Core
             switch (NavData.CurrentScene) {
                 case AppScene.Map:
                 case AppScene.PlayerCreation:
-                    NavData.PrevSceneStack.Clear(); // We also clear the navigation data
+                    // We also clear the navigation data
+                    NavData.PrevSceneStack.Clear();
                     GoToScene(AppScene.Home);
                     break;
                 default:
@@ -341,7 +358,7 @@ namespace EA4S.Core
         /// </summary>
         public void GotoMinigameScene()
         {
-            bool canTravel = false;
+            bool canTravel;
 
             switch (NavData.CurrentScene) {
                 // Normal flow
@@ -362,13 +379,14 @@ namespace EA4S.Core
             } else {
                 throw new Exception("Cannot go to a minigame from the current scene!");
             }
-
         }
 
         #endregion
 
         // refactor: move these a more coherent manager, which handles the state of a play session between minigames
+
         #region temp for demo
+
         List<EndsessionResultData> EndSessionResults = new List<EndsessionResultData>();
 
         /// <summary>
@@ -379,9 +397,9 @@ namespace EA4S.Core
         {
             if (NavData.CurrentMiniGameData == null)
                 return;
-            EndsessionResultData res = new EndsessionResultData(_stars, NavData.CurrentMiniGameData.GetIconResourcePath(), NavData.CurrentMiniGameData.GetBadgeIconResourcePath());
+            var res = new EndsessionResultData(_stars, NavData.CurrentMiniGameData.GetIconResourcePath(),
+                NavData.CurrentMiniGameData.GetBadgeIconResourcePath());
             EndSessionResults.Add(res);
-
         }
 
         /// <summary>
@@ -390,7 +408,7 @@ namespace EA4S.Core
         /// <returns></returns>
         public List<EndsessionResultData> UseEndSessionResults()
         {
-            List<EndsessionResultData> returnResult = EndSessionResults;
+            var returnResult = EndSessionResults;
             EndSessionResults = new List<EndsessionResultData>();
             return returnResult;
         }
@@ -445,16 +463,19 @@ namespace EA4S.Core
             // log
             // GoToScene ...
         }
+
         #endregion
 
 
         #region Minigame Launching
 
-        public MiniGameData CurrentMiniGameData {
+        public MiniGameData CurrentMiniGameData
+        {
             get { return NavData.CurrentMiniGameData; }
         }
 
-        public List<MiniGameData> CurrentPlaySessionMiniGames {
+        public List<MiniGameData> CurrentPlaySessionMiniGames
+        {
             get { return NavData.CurrentPlaySessionMiniGames; }
         }
 
@@ -463,11 +484,11 @@ namespace EA4S.Core
             ResetEndSessionResults();
             NavData.RealPlaySession = (dataToUse == null);
 
-            (EA4S.AppManager.I as EA4S.AppManager).Teacher.InitialiseNewPlaySession();
+            AppManager.I.Teacher.InitialiseNewPlaySession();
             NavData.SetFirstMinigame();
 
             if (NavData.RealPlaySession) {
-                NavData.CurrentPlaySessionMiniGames = (EA4S.AppManager.I as EA4S.AppManager).Teacher.SelectMiniGames();
+                NavData.CurrentPlaySessionMiniGames = AppManager.I.Teacher.SelectMiniGames();
             } else {
                 NavData.CurrentPlaySessionMiniGames = new List<MiniGameData>();
                 NavData.CurrentPlaySessionMiniGames.Add(dataToUse);
@@ -481,7 +502,7 @@ namespace EA4S.Core
             LogManager.I.StartPlaySession();
 
             // From the map
-            if ((EA4S.AppManager.I as EA4S.AppManager).JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
+            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                 // Direct to the current minigame (which is an assessment)
                 InternalLaunchGameScene(NavData.CurrentMiniGameData);
             } else {
@@ -495,19 +516,19 @@ namespace EA4S.Core
             // Game selector -> go to the first game
             NavData.SetFirstMinigame();
             // TODO: ???
-            WorldManager.I.CurrentWorld = (WorldID)(NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
+            WorldManager.I.CurrentWorld = (WorldID) (NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
             InternalLaunchGameScene(NavData.CurrentMiniGameData);
         }
 
         private void GoToNextGameOfPlaySession()
         {
             // From one game to the next
-            if ((EA4S.AppManager.I as EA4S.AppManager).JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
+            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                 // We finished the whole game: no reward, go directly to the end scene instead
-                if ((EA4S.AppManager.I as EA4S.AppManager).JourneyHelper.PlayerIsAtFinalJourneyPosition()) {
-                    if (!(EA4S.AppManager.I as EA4S.AppManager).Player.HasFinalBeenShown()) {
-                        (EA4S.AppManager.I as EA4S.AppManager).Player.SetGameCompleted();
-                        (EA4S.AppManager.I as EA4S.AppManager).Player.SetFinalShown();
+                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition()) {
+                    if (!AppManager.I.Player.HasFinalBeenShown()) {
+                        AppManager.I.Player.SetGameCompleted();
+                        AppManager.I.Player.SetFinalShown();
                         GoToScene(AppScene.Ending);
                     } else {
                         GoToScene(AppScene.Map);
@@ -525,7 +546,7 @@ namespace EA4S.Core
                 } else {
                     // Finished all minigames for the current play session
                     if (NavData.RealPlaySession) {
-                        (EA4S.AppManager.I as EA4S.AppManager).Player.CheckGameFinishedWithAllStars();
+                        AppManager.I.Player.CheckGameFinishedWithAllStars();
 
                         // Go to the reward scene.
                         GoToScene(AppScene.PlaySessionResult);
@@ -538,20 +559,5 @@ namespace EA4S.Core
         }
 
         #endregion
-
-        #region Scene Transition
-
-        void OnEnable()
-        {
-            SceneTransitionManager.OnEnable();
-        }
-
-        void OnDisable()
-        {
-            SceneTransitionManager.OnDisable();
-        }
-
-        #endregion
-
     }
 }
