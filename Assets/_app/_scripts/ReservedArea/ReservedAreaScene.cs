@@ -16,7 +16,7 @@ namespace EA4S.Scenes
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true);
 
-            SupportText.text = AppConstants.AppVersion + " " + "OPEN BETA";
+            SupportText.text = AppConstants.AppVersion;
         }
 
         public void OnOpenUrlWebsite()
@@ -112,6 +112,14 @@ namespace EA4S.Scenes
             //Debug.Log("Copied " + sourceFilename + " to " + savePath + " , bytes downloaded, File size : " + myPDF.Length);
 
             //Application.OpenURL(savePath);
+        }
+
+        /// <summary>
+        /// exports all dbs found in folder /db2export
+        /// </summary>
+        public void ExportAllDb()
+        {
+            
         }
     }
 }
