@@ -75,6 +75,8 @@
 
         // files
         public const string PdfAndroidInstall = "AndroidInstallHelp.pdf";
+        public const string DbExportFolder = "export";
+        public const string DbImportFolder = "import";
 
         // Application details (used by Teacher and maybe other)
         public const float minimumAge = 4;
@@ -100,6 +102,11 @@
         public static string GetPlayerDatabaseFilenameForExport(string playerUuid)
         {
             return "export_Antura_Player_" + playerUuid + "_" + System.DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
+        }
+        
+        public static string GetJoinedDatabaseFilename()
+        {
+            return "Antura_Joined_" + System.DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
         }
     }
 }

@@ -4,6 +4,7 @@ public class PlatformVisibility : MonoBehaviour
 {
     public bool MobileOnly;
     public bool AndroidOnly;
+    public bool DesktopOnly;
 
     void Start()
     {
@@ -12,6 +13,10 @@ public class PlatformVisibility : MonoBehaviour
                 gameObject.SetActive(false);
             }
             if (AndroidOnly && Application.platform != RuntimePlatform.Android) {
+                gameObject.SetActive(false);
+            }
+            
+            if (DesktopOnly && Application.platform != RuntimePlatform.WindowsPlayer) {
                 gameObject.SetActive(false);
             }
         }

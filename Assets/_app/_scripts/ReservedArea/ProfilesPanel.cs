@@ -103,11 +103,11 @@ namespace EA4S.ReservedArea
             if (AppManager.I.DB.ExportDatabaseOfPlayer(SelectedPlayerId)) {
                 string dbPath;
                 if (Application.platform == RuntimePlatform.IPhonePlayer) {
-                    dbPath = string.Format(@"{0}/{1}", "export", AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
+                    dbPath = string.Format(@"{0}/{1}", AppConstants.DbExportFolder, AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
                     GlobalUI.ShowPrompt("", "Get the DB from iTunes app:\n" + dbPath);
                 } else {
                     // Android or Desktop
-                    dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, "export", AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
+                    dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, AppConstants.DbExportFolder, AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
                     GlobalUI.ShowPrompt("", "The DB is here:\n" + dbPath);
                 }
             } else {

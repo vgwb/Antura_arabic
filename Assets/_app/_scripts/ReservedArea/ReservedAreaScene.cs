@@ -89,37 +89,25 @@ namespace EA4S.Scenes
 
         public void OpenPDF(string filename)
         {
-            //string sourcePath = System.IO.Path.Combine(Application.streamingAssetsPath, filename);
             string destPath;
-            TextAsset pdfTemp = Resources.Load("Pdf/" + filename, typeof(TextAsset)) as TextAsset;
-            if (Application.platform == RuntimePlatform.Android) {
-                //destPath = Application.persistentDataPath + "/Data/" + filename;
-                destPath = Application.persistentDataPath + "/" + filename;
-            } else {
-                destPath = Application.persistentDataPath + "/" + filename;
-                //destPath =  System.IO.Path.Combine(Application.persistentDataPath, filename);
-            }
+            var pdfTemp = Resources.Load("Pdf/" + filename, typeof(TextAsset)) as TextAsset;
+            destPath = Application.persistentDataPath + "/" + filename;
 
             File.WriteAllBytes(destPath, pdfTemp.bytes);
             Debug.Log("Copied " + pdfTemp.name + " to " + destPath + " , File size : " + pdfTemp.bytes.Length);
             Application.OpenURL(destPath);
-
-            //var sourceFilename = System.IO.Path.Combine(Application.streamingAssetsPath, filename);
-            //var savePath = System.IO.Path.Combine(Application.persistentDataPath, filename);
-
-            //var myPDF = File.ReadAllBytes(sourceFilename);
-            //File.WriteAllBytes(savePath, myPDF);
-            //Debug.Log("Copied " + sourceFilename + " to " + savePath + " , bytes downloaded, File size : " + myPDF.Length);
-
-            //Application.OpenURL(savePath);
         }
 
         /// <summary>
-        /// exports all dbs found in folder /db2export
+        /// exports all databases found in 
         /// </summary>
-        public void ExportAllDb()
+        public void OnExportJoinedDatabase()
         {
-            
+            // import from
+            var importFolder = string.Format(@"{0}/{1}", Application.persistentDataPath, AppConstants.DbImportFolder);
+ 
+            var exportedJoinedDb = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, AppConstants.DbExportFolder, AppConstants.GetJoinedDatabaseFilename());
+    
         }
     }
 }
