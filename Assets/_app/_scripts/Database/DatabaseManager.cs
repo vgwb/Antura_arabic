@@ -557,6 +557,7 @@ namespace EA4S.Database
         {
             if (!File.Exists(importFilePath))
             {
+                Debug.LogError("Cannot find database file for import: " + importFilePath);
                 return null;
             }
 
@@ -565,6 +566,7 @@ namespace EA4S.Database
             string newFilePath = DBService.GetDatabaseFilePath(fileName, AppConstants.DBPlayersFolder);
             if (File.Exists(newFilePath))
             {
+                Debug.LogError("Database already exists. Cannot import: " + importFilePath);
                 return null;
             }
 
