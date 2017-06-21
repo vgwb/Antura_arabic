@@ -104,7 +104,8 @@ namespace EA4S.Scenes
         /// </summary>
         public void OnExportJoinedDatabase()
         {
-            if (AppManager.I.DB.ExportJoinedDatabase())
+            string errorString = "";
+            if (AppManager.I.DB.ExportJoinedDatabase(out errorString))
             {
                 string dbPath = DBService.GetDatabaseFilePath(AppConstants.GetJoinedDatabaseFilename(), AppConstants.DBJoinedFolder);
                 GlobalUI.ShowPrompt("", "The joined DB is here:\n" + dbPath);
@@ -112,6 +113,15 @@ namespace EA4S.Scenes
             else {
                 GlobalUI.ShowPrompt("", "Could not export the joined database.\n");
             }
+        }
+
+        /// <summary>
+        /// Imports a set of database
+        /// </summary>
+        public void OnImportDatabases()
+        {
+            AppManager.I.PlayerProfileManager.ImportAllPlayerProfiles();
+            AppManager.I.NavigationManager.ReloadScene();
         }
     }
 }

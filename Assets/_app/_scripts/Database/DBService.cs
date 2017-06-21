@@ -43,15 +43,12 @@ namespace EA4S.Database
             if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
 
             var dbPath = GetDatabaseFilePath(fileName, dirName);
-            return new DBService(dbPath, createIfNotFound);
+            return new DBService(createIfNotFound, dbPath);
         }
 
-        public static DBService OpenFromFilePath(bool createIfNotFound, string filePath, string dirName = AppConstants.DBPlayersFolder)
+        public static DBService OpenFromFilePath(bool createIfNotFound, string filePath)
         {
-            var dirPath = GetDatabaseDirectoryPath(dirName);
-            if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
-
-            return new DBService(filePath, createIfNotFound);
+            return new DBService(createIfNotFound, filePath);
         }
 
         public static DBService OpenFromPlayerUUID(bool createIfNotFound, string playerUuid, string fileName = "", string dirName = AppConstants.DBPlayersFolder)
@@ -61,7 +58,7 @@ namespace EA4S.Database
             if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
 
             var dbPath = GetDatabaseFilePath(fileName, dirName);
-            return new DBService(dbPath, createIfNotFound);
+            return new DBService(createIfNotFound, dbPath);
         }
 
         public static DBService ExportAndOpenFromPlayerUUID(string playerUuid, string fileName = "", string dirName = AppConstants.DBPlayersFolder)
@@ -98,7 +95,7 @@ namespace EA4S.Database
 
         SQLiteConnection _connection;
 
-        private DBService(string dbPath, bool createIfNotFound)
+        private DBService(bool createIfNotFound, string dbPath)
         {
             //Debug.Log("Opening DBService at " + dbPath);
 
@@ -133,12 +130,6 @@ namespace EA4S.Database
                 //Debug.Log("Database ready at path " + dbPath + "   Version: " + (info != null ? info.DynamicDbVersion : "NONE"));
             }
 
-        }
-
-        public void ForceFileDeletion()
-        {
-            Debug.LogWarning("Deleting database at path " + _connection.DatabasePath);
-            File.Delete(_connection.DatabasePath);
         }
 
         #region Creation
@@ -187,6 +178,16 @@ namespace EA4S.Database
         public void RecreateAllTables()
         {
             GenerateTables(true, true);
+        }
+
+        #endregion
+
+        #region Deletion
+
+        public void ForceFileDeletion()
+        {
+            Debug.LogWarning("Deleting database at path " + _connection.DatabasePath);
+            File.Delete(_connection.DatabasePath);
         }
 
         #endregion
@@ -246,7 +247,12 @@ namespace EA4S.Database
             return _connection.Table<LogInfoData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
         }
 
-        public PlayerProfileData FindPlayerProfileDataById(string target_id)
+        public PlayerProfileData GetPlayerProfileData()
+        {
+            return FindPlayerProfileDataById(PlayerProfileData.UNIQUE_ID);
+        }
+
+        private PlayerProfileData FindPlayerProfileDataById(string target_id)
         {
             return _connection.Table<PlayerProfileData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
         }

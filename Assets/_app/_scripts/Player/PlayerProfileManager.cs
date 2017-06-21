@@ -261,6 +261,34 @@ namespace EA4S.Profile
 
         #endregion
 
+        #region Import
+
+        public void ImportAllPlayerProfiles()
+        {
+            string[] importFilePaths = AppManager.I.DB.GetImportFilePaths();
+            foreach (var filePath in importFilePaths)
+            {
+                // Check whether that is a DB and load it
+                if (filePath.Contains(".sqlite3"))
+                {
+                    ImportPlayerProfile(filePath);
+                }
+            }
+            AppManager.I.AppSettingsManager.SaveSettings();
+        }
+
+        public void ImportPlayerProfile(string filePath)
+        {
+            PlayerProfileData importedPlayerProfileData = AppManager.I.DB.ImportDynamicDatabase(filePath);
+            if (importedPlayerProfileData != null)
+            {
+                PlayerProfile importedPlayerProfile = new PlayerProfile().FromData(importedPlayerProfileData);
+                AppManager.I.AppSettings.SavedPlayers.Add(importedPlayerProfile.GetPlayerIconData());
+            }
+        }
+
+        #endregion
+
         #region Events
         public delegate void ProfileEventHandler();
 

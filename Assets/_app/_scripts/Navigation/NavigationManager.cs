@@ -187,6 +187,11 @@ namespace EA4S.Core
             }
         }
 
+        public void ReloadScene()
+        {
+            GoToScene(GetCurrentScene());
+        }
+
         #endregion
 
         #region Direct navigation (private)

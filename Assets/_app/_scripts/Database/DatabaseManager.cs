@@ -144,7 +144,7 @@ namespace EA4S.Database
 
         public PlayerProfileData GetPlayerProfileData()
         {
-            var data = dynamicDb.FindPlayerProfileDataById(PlayerProfileData.UNIQUE_ID);
+            var data = dynamicDb.GetPlayerProfileData();
             return data;
         }
 
@@ -493,22 +493,20 @@ namespace EA4S.Database
             return true;
         }
 
-        public bool ExportJoinedDatabase()
+        public bool ExportJoinedDatabase(out string errorString)
         {
-            var importDirectory = DBService.GetDatabaseDirectoryPath(AppConstants.DbImportFolder);
-
             // Load all the databases we can find and get the player UUIDs
             List<string> allUUIDs = new List<string>();
-            if (Directory.Exists(importDirectory))
+            var filePaths = GetImportFilePaths();
+            if (filePaths != null)
             {
-                string[] filePaths = Directory.GetFiles(importDirectory);
                 foreach (var filePath in filePaths)
                 {
                     // Check whether that is a DB and load it
                     if (filePath.Contains(".sqlite3"))
                     {
-                        var importDbService = DBService.OpenFromFilePath(false, filePath, AppConstants.DbImportFolder);
-                        var playerProfileData = importDbService.FindPlayerProfileDataById(PlayerProfileData.UNIQUE_ID);
+                        var importDbService = DBService.OpenFromFilePath(false, filePath);
+                        var playerProfileData = importDbService.GetPlayerProfileData();
                         allUUIDs.Add(playerProfileData.Uuid);
                         importDbService.CloseConnection();
                     }
@@ -516,7 +514,8 @@ namespace EA4S.Database
             }
             else
             {
-                Debug.LogError("Could not find the import folder.");
+                errorString = "Could not find the import folder.";
+                Debug.LogError(errorString);
                 return false;
             }
             
@@ -539,7 +538,43 @@ namespace EA4S.Database
             }
 
             joinedDbService.CloseConnection();
+            errorString = "";
             return true;
+        }
+
+        public string[] GetImportFilePaths()
+        {
+            var importDirectory = DBService.GetDatabaseDirectoryPath(AppConstants.DbImportFolder);
+            if (Directory.Exists(importDirectory))
+            {
+                string[] filePaths = Directory.GetFiles(importDirectory);
+                return filePaths;
+            }
+            return null;
+        }
+
+        public PlayerProfileData ImportDynamicDatabase(string importFilePath)
+        {
+            if (!File.Exists(importFilePath))
+            {
+                return null;
+            }
+
+            // Copy the file
+            string fileName = Path.GetFileName(importFilePath);
+            string newFilePath = DBService.GetDatabaseFilePath(fileName, AppConstants.DBPlayersFolder);
+            if (File.Exists(newFilePath))
+            {
+                return null;
+            }
+
+            File.Copy(importFilePath, newFilePath);
+
+            // Load the new DB and get its player profile data
+            var importDbService = DBService.OpenFromFilePath(false, newFilePath);
+            var playerProfileData = importDbService.GetPlayerProfileData();
+            importDbService.CloseConnection();
+            return playerProfileData;
         }
 
         private void InjectExportedDB(string uuid, DBService exportDbService, DBService joinedDbService)
