@@ -566,15 +566,15 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     Analytics: 0
-    Build: 1
+    Build: 0
     Collab: 0
     ErrorHub: 0
     Game_Performance: 0
     Hub: 0
     Purchasing: 0
-    UNet: 1
+    UNet: 0
     Unity_Ads: 0
   cloudProjectId: ca7a3389-ec6c-44b1-a44d-aa0da4930165
-  projectName: EA4S_Antura
+  projectName: Antura_arabic
   organizationId: vgwb
   cloudEnabled: 0
