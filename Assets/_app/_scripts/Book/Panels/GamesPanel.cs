@@ -59,7 +59,7 @@ namespace EA4S.Book
         {
             emptyContainer(ElementsContainer);
 
-            var mainMiniGamesList = MinigamesUtilities.GetMainMiniGameList();
+            var mainMiniGamesList = MiniGamesUtilities.GetMainMiniGameList();
             foreach (var game in mainMiniGamesList) {
                 btnGO = Instantiate(MinigameItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);

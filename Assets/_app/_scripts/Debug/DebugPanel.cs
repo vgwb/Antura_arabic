@@ -78,7 +78,7 @@ namespace EA4S.Debugging
 
         private void buildUI()
         {
-            var mainMiniGamesList = MinigamesUtilities.GetMainMiniGameList();
+            var mainMiniGamesList = MiniGamesUtilities.GetMainMiniGameList();
 
             emptyContainer(Container);
 

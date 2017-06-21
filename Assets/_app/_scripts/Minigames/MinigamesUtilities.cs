@@ -5,7 +5,7 @@ using EA4S.Database;
 
 namespace EA4S.Core
 {
-    public static class MinigamesUtilities
+    public static class MiniGamesUtilities
     {
         
         public static List<MainMiniGame> GetMainMiniGameList()
