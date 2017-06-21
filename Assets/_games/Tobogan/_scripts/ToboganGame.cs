@@ -131,7 +131,7 @@ namespace EA4S.Minigames.Tobogan
             Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
         }
 
-        public override Vector3 GetGravity()
+        protected override Vector3 GetGravity()
         {
             return Vector3.up * (-80);
         }

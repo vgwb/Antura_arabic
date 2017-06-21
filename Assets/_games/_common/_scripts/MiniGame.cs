@@ -1,4 +1,5 @@
 ﻿using EA4S.Core;
+using EA4S.Debugging;
 using EA4S.UI;
 using UnityEngine;
 
@@ -8,11 +9,49 @@ namespace EA4S.MinigamesCommon
     /// Base abstract class for all minigame in-scene managers.
     /// Main entry point for the logic of a minigame.
     /// </summary>
-    // refactor: this could be merged with MiniGameBase
     // refactor: this could be better organized to signal what the minigame needs to access, and what the core needs
-    public abstract class MiniGame : MiniGameBase, IGame
+    public abstract class MiniGame : SingletonMonoBehaviour<MiniGame>, IGame
     {
-        bool hasToPause;
+        #region Configuration
+
+        /// <summary>
+        /// The current game context. Managers are accessed through this.
+        /// </summary>
+        public IGameContext Context { get; private set; }
+
+        /// <summary>
+        /// Specify which is the game configuration class for this game
+        /// </summary>
+        protected abstract IGameConfiguration GetConfiguration();
+
+        #endregion
+
+        #region State Manager
+
+        /// <summary>
+        /// Access the GameStateManager that controls the minigame's FSM.
+        /// </summary>
+        public StateManager StateManager { get { return stateManager; } }
+        StateManager stateManager = new StateManager();
+
+        public IState GetCurrentState()
+        {
+            return StateManager.CurrentState;
+        }
+
+        public void SetCurrentState(IState state)
+        {
+            StateManager.CurrentState = state;
+        }
+
+        /// <summary>
+        /// Specify which is the first state of this game using this method
+        /// </summary>
+        protected abstract IState GetInitialState();
+
+        #endregion
+
+        #region Outcome
 
         /// <summary>
         /// State reached when the minigame ends. 
@@ -20,29 +59,80 @@ namespace EA4S.MinigamesCommon
         /// </summary>
         private OutcomeGameState OutcomeState;
 
+        /// <summary>
+        /// The score in number of stars assigned to this minigame.
+        /// </summary>
         public int StarsScore { get; private set; }
 
-        public IGameContext Context { get; private set; }
+        #endregion
+
+        #region Events
 
         /// <summary>
         /// Event raised whenever the game ends.
         /// </summary>
         public event GameResultAction OnGameEnded;
 
-        /// <summary>
-        /// Specify which is the first state of this game using this method
-        /// </summary>
-        protected abstract IState GetInitialState();
+        #endregion
+
+        #region Common State
 
         /// <summary>
-        /// Specify which is the game configuration class for this game
+        /// Signals whether the MiniGame has been initialized.
         /// </summary>
-        protected abstract IGameConfiguration GetConfiguration();
+        bool initialized;
+
+        /// <summary>
+        /// Value of gravity before the game was started.
+        /// </summary>
+        Vector3 oldGravity;
+
+        /// <summary>
+        /// Signals whether the minigame must pause.
+        /// </summary>
+        bool hasToPause;
+
+        /// <summary>
+        /// Gravity 
+        /// </summary>
+        protected virtual Vector3 GetGravity()
+        {
+            return Vector3.up * (-80);
+        }
+
+        #endregion
+
+        #region Initialisation
+
+        protected virtual void Start()
+        {
+            Initialize(GetConfiguration().Context);
+        }
+
+        /// <summary>
+        /// Initializes the minigame with the given context.
+        /// </summary>
+        void Initialize(IGameContext context)
+        {
+            Context = context;
+            OutcomeState = new OutcomeGameState(this);
+
+            OnInitialize(context);
+            this.SetCurrentState(GetInitialState());
+
+            oldGravity = Physics.gravity;
+            Physics.gravity = GetGravity();
+            initialized = true;
+        }
 
         /// <summary>
         /// Implement game's construction steps inside this method.
         /// </summary>
         protected abstract void OnInitialize(IGameContext context);
+
+        #endregion
+
+        #region End Game
 
         /// <summary>
         /// This must be called whenever the minigame ends.
@@ -63,50 +153,14 @@ namespace EA4S.MinigamesCommon
             this.SetCurrentState(OutcomeState);
         }
 
-        /// <summary>
-        /// Check if the game is in OutcomeState
-        /// </summary>
-        public bool IsEnded()
+        void ForceCurrentMinigameEnd(int value)
         {
-            return stateManager.CurrentState == OutcomeState;
+            EndGame(value, value);
         }
 
+        #endregion
 
-        /// <summary>
-        /// Access the GameStateManager that controls the minigame's FSM.
-        /// </summary>
-        public StateManager StateManager { get { return stateManager; } }
-        StateManager stateManager = new StateManager();
-
-        bool initialized = false;
-        Vector3 oldGravity;
-
-        /// <summary>
-        /// Initializes the minigame with the given context.
-        /// </summary>
-        void Initialize(IGameContext context)
-        {
-            Context = context;
-
-            OutcomeState = new OutcomeGameState(this);
-
-            base.Start();
-            OnInitialize(context);
-            this.SetCurrentState(GetInitialState());
-
-            oldGravity = Physics.gravity;
-            Physics.gravity = GetGravity();
-            initialized = true;
-        }
-
-        void OnDestroy()
-        {
-            if (initialized)
-                Physics.gravity = oldGravity;
-
-            if (Context != null)
-                Context.Reset();
-        }
+        #region Update
 
         /// <summary>
         /// Do not override Update/FixedUpdate; just implement Update and UpdatePhysics inside game states
@@ -134,17 +188,9 @@ namespace EA4S.MinigamesCommon
             stateManager.UpdatePhysics(Time.fixedDeltaTime);
         }
 
-        protected override void Start()
-        {
-            base.Start();
+        #endregion 
 
-            Initialize(GetConfiguration().Context);
-        }
-
-        public virtual Vector3 GetGravity()
-        {
-            return Vector3.up * (-80);
-        }
+        #region System Events
 
         void OnApplicationPause(bool pause)
         {
@@ -156,19 +202,24 @@ namespace EA4S.MinigamesCommon
         
         void OnEnable()
         {
-            Debugging.DebugManager.OnForceCurrentMinigameEnd += ForceCurrentMinigameEnd;
+            DebugManager.OnForceCurrentMinigameEnd += ForceCurrentMinigameEnd;
         }
 
         void OnDisable()
         {
-            base.OnMinigameQuit();
-            Debugging.DebugManager.OnForceCurrentMinigameEnd -= ForceCurrentMinigameEnd;
+            DebugManager.OnForceCurrentMinigameEnd -= ForceCurrentMinigameEnd;
         }
-        
-        void ForceCurrentMinigameEnd(int value)
+
+        void OnDestroy()
         {
-            EndGame(value, value);
+            if (initialized)
+                Physics.gravity = oldGravity;
+
+            if (Context != null)
+                Context.Reset();
         }
+
+        #endregion
 
     }
 }

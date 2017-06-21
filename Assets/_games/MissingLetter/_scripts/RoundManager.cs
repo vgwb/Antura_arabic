@@ -3,11 +3,9 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 using EA4S.Audio;
-using EA4S.Core;
 using EA4S.Helpers;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
 using EA4S.UI;
 
 namespace EA4S.Minigames.MissingLetter

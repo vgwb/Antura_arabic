@@ -273,7 +273,7 @@ namespace EA4S.Minigames.TakeMeHome
 			this.SetCurrentState(EndState);
 		}
 
-        public override Vector3 GetGravity()
+	    protected override Vector3 GetGravity()
         {
             return Vector3.up * (-20);
         }
