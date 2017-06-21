@@ -120,31 +120,31 @@ namespace EA4S.Debugging
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("DEBUG - SPACE : skip");
-                OnSkipCurrentScene();
+                if (OnSkipCurrentScene != null) OnSkipCurrentScene();
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0))
             {
                 Debug.Log("DEBUG - 0");
-                OnForceCurrentMinigameEnd(0);
+                if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(0);
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Debug.Log("DEBUG - 1");
-                OnForceCurrentMinigameEnd(1);
+                if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(1);
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
             {
                 Debug.Log("DEBUG - 2");
-                OnForceCurrentMinigameEnd(2);
+                if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(2);
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
             {
                 Debug.Log("DEBUG - 3");
-                OnForceCurrentMinigameEnd(3);
+                if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(3);
             }
         }
 
