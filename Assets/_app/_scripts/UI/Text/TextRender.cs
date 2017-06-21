@@ -170,9 +170,8 @@ namespace EA4S.UI
         public void SetSentence(Database.LocalizationDataId sentenceId)
         {
             // Debug.Log("SetSentence " + sentenceId);
-            Database.LocalizationData row = LocalizationManager.GetLocalizationData(sentenceId);
             isArabic = true;
-            text = row.GetLocalizedText(AppManager.I.Player.Gender);
+            text = LocalizationManager.GetTranslation(sentenceId);
         }
 
         /// <summary>

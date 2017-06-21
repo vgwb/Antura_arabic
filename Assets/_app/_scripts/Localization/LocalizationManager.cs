@@ -7,12 +7,30 @@ namespace EA4S.Core
     {
         public static string GetTranslation(Database.LocalizationDataId id)
         {
-            return GetLocalizationData(id).GetLocalizedText(AppManager.I.Player.Gender);
+            return GetLocalizationData(id).GetLocalizedText(CurrentPlayerGender);
         }
 
         public static string GetTranslation(string id)
         {
-            return GetLocalizationData(id).GetLocalizedText(AppManager.I.Player.Gender); 
+            return GetLocalizationData(id).GetLocalizedText(CurrentPlayerGender);
+        }
+
+        public static string GetLocalizedAudioFileName(string id)
+        {
+            return GetLocalizationData(id).GetLocalizedAudioFileName(CurrentPlayerGender);
+        }
+        public static string GetLocalizedAudioFileName(string id, PlayerGender forcedGender)
+        {
+            return GetLocalizationData(id).GetLocalizedAudioFileName(forcedGender);
+        }
+
+        private static PlayerGender CurrentPlayerGender
+        {
+            get
+            {
+                if (AppManager.I.Player == null) return PlayerGender.M;
+                return AppManager.I.Player.Gender;
+            }
         }
 
         public static Database.LocalizationData GetLocalizationData(Database.LocalizationDataId id)

@@ -268,7 +268,7 @@ namespace EA4S.Audio
                 dialogueEndedCallbacks.Clear();
             }
 
-            if (!string.IsNullOrEmpty(data.GetLocalizedAudioFileName(GetPlayerGender()))) {
+            if (!string.IsNullOrEmpty(LocalizationManager.GetLocalizedAudioFileName(data.Id))) {
                 AudioClip clip = GetAudioClip(data);
                 return new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
             }
@@ -291,7 +291,7 @@ namespace EA4S.Audio
                 dialogueEndedCallbacks.Clear();
             }
 
-            if (!string.IsNullOrEmpty(data.GetLocalizedAudioFileName(GetPlayerGender()))) {
+            if (!string.IsNullOrEmpty(LocalizationManager.GetLocalizedAudioFileName(data.Id))) {
                 AudioClip clip = GetAudioClip(data);
                 var wrapper = new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
                 if (callback != null) {
@@ -326,13 +326,13 @@ namespace EA4S.Audio
 
         public AudioClip GetAudioClip(LocalizationData data)
         {
-            var localizedAudioFileName = data.GetLocalizedAudioFileName(GetPlayerGender());
+            var localizedAudioFileName = LocalizationManager.GetLocalizedAudioFileName(data.Id);
             var res = GetCachedResource("AudioArabic/Dialogs/" + localizedAudioFileName);
             
             // Fallback to neutral version if not found
             if (res == null)
             {
-                var neutralAudioFileName = data.GetLocalizedAudioFileName(PlayerGender.M);
+                var neutralAudioFileName = LocalizationManager.GetLocalizedAudioFileName(data.Id, PlayerGender.M);
                 if (localizedAudioFileName != neutralAudioFileName)
                 {
                     Debug.LogWarning("Female audio file expected for localization ID " + data.Id + " was not found");
