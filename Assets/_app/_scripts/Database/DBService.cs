@@ -137,7 +137,8 @@ namespace EA4S.Database
 
         public void ForceFileDeletion()
         {
-            Debug.LogError("MySQL File deletion not yet implemented.");
+            Debug.LogWarning("Deleting database at path " + _connection.DatabasePath);
+            File.Delete(_connection.DatabasePath);
         }
 
         #region Creation

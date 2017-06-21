@@ -517,30 +517,25 @@ namespace EA4S.Database
             else
             {
                 Debug.LogError("Could not find the import folder.");
+                return false;
             }
-
-            //foreach (var uuid in allUUIDs)  Debug.Log(uuid);
-            //Debug.Log("TOT: " + allUUIDs.Count);
-
+            
             // Create the joined DB
             var joinedDbService = DBService.OpenFromFileName(true, AppConstants.GetJoinedDatabaseFilename(), AppConstants.DBJoinedFolder);
-
             InjectStaticData(joinedDbService);
             InjectEnums(joinedDbService);
-
-            Debug.Log("Joined DB created");
 
             // Export and inject all the DBs
             foreach (var uuid in allUUIDs)
             {
                 // Export
                 var exportDbService = DBService.ExportAndOpenFromPlayerUUID(uuid,  dirName: AppConstants.DbImportFolder);
-                Debug.Log("Exported DB " + uuid);
                 InjectUUID(uuid, exportDbService);
 
                 // Inject
                 InjectExportedDB(uuid, exportDbService, joinedDbService);
                 exportDbService.CloseConnection();
+                exportDbService.ForceFileDeletion();
             }
 
             joinedDbService.CloseConnection();
@@ -564,7 +559,6 @@ namespace EA4S.Database
                 }
 
                 joinedDbService.InsertAllObjects(iDataList);
-                //Debug.Log("Has " + list.Count + " of " + dynamicDataType);
             }
         }
 

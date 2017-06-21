@@ -3,6 +3,7 @@ using EA4S.UI;
 using UnityEngine;
 using System;
 using System.IO;
+using EA4S.Database;
 
 namespace EA4S.Scenes
 {
@@ -105,17 +106,8 @@ namespace EA4S.Scenes
         {
             if (AppManager.I.DB.ExportJoinedDatabase())
             {
-              /*  string dbPath;
-                if (Application.platform == RuntimePlatform.IPhonePlayer)
-                {
-                    dbPath = string.Format(@"{0}/{1}", AppConstants.DbExportFolder, AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
-                    GlobalUI.ShowPrompt("", "Get the DB from iTunes app:\n" + dbPath);
-                }
-                else {
-                    // Android or Desktop
-                    dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, AppConstants.DbExportFolder, AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
-                    GlobalUI.ShowPrompt("", "The DB is here:\n" + dbPath);
-                }*/
+                string dbPath = DBService.GetDatabaseFilePath(AppConstants.GetJoinedDatabaseFilename(), AppConstants.DBJoinedFolder);
+                GlobalUI.ShowPrompt("", "The joined DB is here:\n" + dbPath);
             }
             else {
                 GlobalUI.ShowPrompt("", "Could not export the joined database.\n");
