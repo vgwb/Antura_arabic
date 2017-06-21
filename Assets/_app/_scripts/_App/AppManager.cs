@@ -8,6 +8,7 @@ using EA4S.Rewards;
 using EA4S.Teacher;
 using EA4S.MinigamesAPI;
 using EA4S.UI;
+using EA4S.Utilities;
 
 namespace EA4S
 {

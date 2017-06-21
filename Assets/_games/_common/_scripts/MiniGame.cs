@@ -1,6 +1,6 @@
-﻿using EA4S.Core;
-using EA4S.Debugging;
+﻿using EA4S.Debugging;
 using EA4S.UI;
+using EA4S.Utilities;
 using UnityEngine;
 
 namespace EA4S.MinigamesCommon

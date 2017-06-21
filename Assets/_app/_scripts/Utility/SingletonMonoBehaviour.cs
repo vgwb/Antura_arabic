@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Core {
+namespace EA4S.Utilities {
 
     public class SingletonMonoBehaviour<T> : MonoBehaviour where T : Component
     {
