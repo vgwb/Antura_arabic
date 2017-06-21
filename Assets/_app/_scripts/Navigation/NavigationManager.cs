@@ -242,7 +242,7 @@ namespace EA4S.Core
             if (backableTransitions.Contains(new KeyValuePair<AppScene, AppScene>(NavData.CurrentScene, newScene))) {
                 if (NavData.PrevSceneStack.Count == 0 || NavData.PrevSceneStack.Peek() != NavData.CurrentScene) {
                     if (AppConstants.VerboseLogging) {
-                        Debug.LogError("Added BACKABLE transition " + NavData.CurrentScene + " to " + newScene);
+                        Debug.Log("Added BACKABLE transition " + NavData.CurrentScene + " to " + newScene);
                     }
                     NavData.PrevSceneStack.Push(NavData.CurrentScene);
                 }
