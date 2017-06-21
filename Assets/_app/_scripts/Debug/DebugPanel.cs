@@ -72,6 +72,14 @@ namespace EA4S.Debugging
             AppManager.I.NavigationManager.GoToHome(debugMode: true);
             close();
         }
+        
+        public void OnCreateTestProfile()
+        {
+            // refactor: move to DebugManager
+            AppManager.I.PlayerProfileManager.CreatePlayerProfile(4, PlayerGender.F, 1, PlayerTint.Blue);
+            AppManager.I.NavigationManager.GoToHome(debugMode: true);
+            close();
+        }
 
         public void OnReportBug()
         {
@@ -102,9 +110,11 @@ namespace EA4S.Debugging
 
         private void buildUI()
         {
-            InputStage.text = AppManager.I.Player.CurrentJourneyPosition.Stage.ToString();
-            InputLearningBlock.text = AppManager.I.Player.CurrentJourneyPosition.LearningBlock.ToString();
-            InputPlaySession.text = AppManager.I.Player.CurrentJourneyPosition.PlaySession.ToString();
+            if (AppManager.I.Player != null) {
+                InputStage.text = AppManager.I.Player.CurrentJourneyPosition.Stage.ToString();
+                InputLearningBlock.text = AppManager.I.Player.CurrentJourneyPosition.LearningBlock.ToString();
+                InputPlaySession.text = AppManager.I.Player.CurrentJourneyPosition.PlaySession.ToString();
+            }
 
             var mainMiniGamesList = MiniGamesUtilities.GetMainMiniGameList();
 
