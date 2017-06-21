@@ -1,7 +1,6 @@
-using EA4S.Core;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Core
 {
     public class AppSettingsManager
     {
