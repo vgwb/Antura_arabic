@@ -45,7 +45,17 @@ namespace EA4S.Minigames.Egg
         public bool stagePositiveResult { get; set; }
 
         bool tutorial;
-        public bool ShowTutorial { get { if (tutorial) { tutorial = false; return true; } else return false; } }
+
+        public bool ShowTutorial
+        {
+            get
+            {
+                if (tutorial) {
+                    tutorial = false;
+                    return true;
+                } else return false;
+            }
+        }
 
         public EggChallenge CurrentQuestion;
 
@@ -81,17 +91,18 @@ namespace EA4S.Minigames.Egg
 
             bool isSingleVariation = EggConfiguration.Instance.Variation == EggConfiguration.EggVariation.Single;
 
-            eggController.Initialize(letterObjectPrefab, shadowPrefab, eggBox.GetEggLocalPositions(), eggBox.GetLocalLettersMaxPositions(), EggConfiguration.Instance.Context.GetAudioManager());
+            eggController.Initialize(letterObjectPrefab, shadowPrefab, eggBox.GetEggLocalPositions(), eggBox.GetLocalLettersMaxPositions(),
+                EggConfiguration.Instance.Context.GetAudioManager());
             eggButtonBox.Initialize(eggButtonPrefab, context.GetAudioManager(), isSingleVariation ? 30 : 20, isSingleVariation);
             runLettersBox.Initialize(letterObjectPrefab, shadowPrefab);
             antura.Initialize(anturaPrefab);
         }
 
         bool overlayWidgetInitialized;
+
         public void InitializeOverlayWidget()
         {
-            if(!overlayWidgetInitialized)
-            {
+            if (!overlayWidgetInitialized) {
                 overlayWidgetInitialized = true;
                 Context.GetOverlayWidget().Initialize(true, false, false);
                 Context.GetOverlayWidget().SetStarsThresholds(1, 2, 4);
