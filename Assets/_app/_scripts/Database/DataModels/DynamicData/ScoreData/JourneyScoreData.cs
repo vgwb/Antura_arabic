@@ -8,7 +8,7 @@ namespace EA4S.Database
     /// Score (in stars) relative to a journey element or a minigame. Updated at runtime.
     /// </summary>
     [System.Serializable]
-    public class JourneyScoreData : IData, IScoreData
+    public class JourneyScoreData : IData, IScoreData, IDataEditable
     {
         /// <summary>
         /// Primary key for the database.
@@ -91,6 +91,11 @@ namespace EA4S.Database
         public string GetId()
         {
             return Id;
+        }
+
+        public void SetId(string _Id)
+        {
+            Id = _Id;
         }
 
         public override string ToString()

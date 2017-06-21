@@ -1,4 +1,6 @@
-﻿namespace EA4S.Core
+﻿using System.Linq;
+
+namespace EA4S.Core
 {
     /// <summary>
     /// Container for application-wide static constants.
@@ -75,8 +77,10 @@
 
         // files
         public const string PdfAndroidInstall = "AndroidInstallHelp.pdf";
+        public const string DBPlayersFolder = "players";
         public const string DbExportFolder = "export";
         public const string DbImportFolder = "import";
+        public const string DBJoinedFolder = "joined";
 
         // Application details (used by Teacher and maybe other)
         public const float minimumAge = 4;
@@ -93,6 +97,11 @@
         public const string AvatarsResourcesDir = "Images/Avatars/";
 
         #endregion
+
+        public static string GetPlayerUUIDFromDatabaseFilename(string fileName)
+        {
+            return fileName.Split('/').Last().Split('\\').Last().Replace("Antura_Player_", "").Replace(".sqlite3", "");
+        }
 
         public static string GetPlayerDatabaseFilename(string playerUuid)
         {

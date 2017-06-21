@@ -9,7 +9,7 @@ namespace EA4S.Database
     /// Serialized information about the player. Used by the Player Profile.
     /// </summary>
     [System.Serializable]
-    public class PlayerProfileData : IData
+    public class PlayerProfileData : IData, IDataEditable
     {
         public const string UNIQUE_ID = "1";
 
@@ -220,7 +220,12 @@ namespace EA4S.Database
 
         public string GetId()
         {
-            return Id.ToString();
+            return Id;
+        }
+
+        public void SetId(string _Id)
+        {
+            Id = _Id;
         }
 
         public override string ToString()

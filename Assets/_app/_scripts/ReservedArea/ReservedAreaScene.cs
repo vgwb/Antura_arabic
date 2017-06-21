@@ -103,11 +103,23 @@ namespace EA4S.Scenes
         /// </summary>
         public void OnExportJoinedDatabase()
         {
-            // import from
-            var importFolder = string.Format(@"{0}/{1}", Application.persistentDataPath, AppConstants.DbImportFolder);
- 
-            var exportedJoinedDb = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, AppConstants.DbExportFolder, AppConstants.GetJoinedDatabaseFilename());
-    
+            if (AppManager.I.DB.ExportJoinedDatabase())
+            {
+              /*  string dbPath;
+                if (Application.platform == RuntimePlatform.IPhonePlayer)
+                {
+                    dbPath = string.Format(@"{0}/{1}", AppConstants.DbExportFolder, AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
+                    GlobalUI.ShowPrompt("", "Get the DB from iTunes app:\n" + dbPath);
+                }
+                else {
+                    // Android or Desktop
+                    dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, AppConstants.DbExportFolder, AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
+                    GlobalUI.ShowPrompt("", "The DB is here:\n" + dbPath);
+                }*/
+            }
+            else {
+                GlobalUI.ShowPrompt("", "Could not export the joined database.\n");
+            }
         }
     }
 }
