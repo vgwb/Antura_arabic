@@ -29,27 +29,27 @@ public partial class SROptions
         }
     }
 
-    [Category("Report Bug")]
-    [Sort(1)]
-    public void ReportBug()
-    {
-        AppManager.I.OpenSupportForm();
-    }
+//    [Category("Report Bug")]
+//    [Sort(1)]
+//    public void ReportBug()
+//    {
+//        AppManager.I.OpenSupportForm();
+//    }
 
     [Category("Options")]
     [Sort(1)]
     public bool Cheat { get { return DebugManager.I.CheatMode; } set { DebugManager.I.CheatMode = value; } }
 
-    [Category("Options")]
-    [Sort(1)]
-    public void ResetAll()
-    {
-        // refactor: move to DebugManager
-        AppManager.I.PlayerProfileManager.ResetEverything();
-        SRDebug.Instance.HideDebugPanel();
-        AppManager.I.NavigationManager.GoToHome(debugMode: true);
-        Debug.Log("Reset ALL players and DB.");
-    }
+//    [Category("Options")]
+//    [Sort(1)]
+//    public void ResetAll()
+//    {
+//        // refactor: move to DebugManager
+//        AppManager.I.PlayerProfileManager.ResetEverything();
+//        SRDebug.Instance.HideDebugPanel();
+//        AppManager.I.NavigationManager.GoToHome(debugMode: true);
+//        Debug.Log("Reset ALL players and DB.");
+//    }
 
     [Category("Options")]
     [Sort(1)]

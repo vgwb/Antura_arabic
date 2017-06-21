@@ -23,6 +23,8 @@ namespace EA4S.Debugging
     {
         public static DebugManager I;
 
+        public bool DebugPanelActivated;
+
         public delegate void OnSkipCurrentSceneDelegate();
 
         public static event OnSkipCurrentSceneDelegate OnSkipCurrentScene;
@@ -31,7 +33,12 @@ namespace EA4S.Debugging
 
         public static event OnForceCurrentMinigameEndDelegate OnForceCurrentMinigameEnd;
 
-        public bool CheatMode = false;
+        public float Difficulty = 0.5f;
+        public int Stage = 1;
+        public int LearningBlock = 1;
+        public int PlaySession = 1;
+        public int NumberOfRounds = 1;
+
 
         private bool _ignoreJourneyData = false;
 
@@ -53,8 +60,7 @@ namespace EA4S.Debugging
             set
             {
                 _difficultyLevel = value;
-                switch (_difficultyLevel)
-                {
+                switch (_difficultyLevel) {
                     case DifficultyLevel.VeryEasy:
                         Difficulty = 0.1f;
                         break;
@@ -87,22 +93,16 @@ namespace EA4S.Debugging
             get { return !AppManager.I.Player.IsFirstContact(); }
             set
             {
-                if (value)
-                {
+                if (value) {
                     AppManager.I.Player.FirstContactPassed(2);
-                }
-                else
-                {
+                } else {
                     AppManager.I.Player.ResetPlayerProfileCompletion();
                 }
             }
         }
 
-        public float Difficulty = 0.5f;
-        public int Stage = 1;
-        public int LearningBlock = 1;
-        public int PlaySession = 1;
-        public int NumberOfRounds = 1;
+
+        #region Unity events
 
         void Awake()
         {
@@ -111,42 +111,42 @@ namespace EA4S.Debugging
 
         void Update()
         {
-            // shortcut to Reserved Area
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R))
-            {
-                AppManager.I.NavigationManager.GoToReservedArea();
-            }
+            if (!DebugPanelActivated) {
+                // shortcut to Reserved Area
+                if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R)) {
+                    AppManager.I.NavigationManager.GoToReservedArea();
+                }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("DEBUG - SPACE : skip");
-                if (OnSkipCurrentScene != null) OnSkipCurrentScene();
-            }
+                if (Input.GetKeyDown(KeyCode.Space)) {
+                    Debug.Log("DEBUG - SPACE : skip");
+                    if (OnSkipCurrentScene != null) OnSkipCurrentScene();
+                }
 
-            if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0))
-            {
-                Debug.Log("DEBUG - 0");
-                if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(0);
-            }
+                if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0)) {
+                    Debug.Log("DEBUG - 0");
+                    if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(0);
+                }
 
-            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                Debug.Log("DEBUG - 1");
-                if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(1);
-            }
+                if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) {
+                    Debug.Log("DEBUG - 1");
+                    if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(1);
+                }
 
-            if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                Debug.Log("DEBUG - 2");
-                if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(2);
-            }
+                if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2)) {
+                    Debug.Log("DEBUG - 2");
+                    if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(2);
+                }
 
-            if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                Debug.Log("DEBUG - 3");
-                if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(3);
+                if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3)) {
+                    Debug.Log("DEBUG - 3");
+                    if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(3);
+                }
             }
         }
+
+        #endregion
+
+        #region Actions
 
         public void LaunchMiniGame(MiniGameCode miniGameCodeSelected)
         {
@@ -158,5 +158,14 @@ namespace EA4S.Debugging
             AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected,
                 new MinigameLaunchConfiguration(Difficulty, NumberOfRounds), forceNewPlaySession: true);
         }
+
+        public void ResetAll()
+        {
+            AppManager.I.PlayerProfileManager.ResetEverything();
+            AppManager.I.NavigationManager.GoToHome(debugMode: true);
+            Debug.Log("Reset ALL players and DB.");
+        }
+
+        #endregion
     }
 }

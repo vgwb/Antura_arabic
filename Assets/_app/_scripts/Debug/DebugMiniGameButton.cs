@@ -7,25 +7,17 @@ using EA4S.UI;
 
 namespace EA4S.Debugging
 {
-    public class DebugButton : MonoBehaviour, IPointerClickHandler
+    public class DebugMiniGameButton : MonoBehaviour, IPointerClickHandler
     {
         public TextRender Title;
         private DebugPanel manager;
-        private DebugButtonAction action;
         private MiniGameInfo minigameInfo;
         private bool played;
 
-        public void Init(DebugPanel _manager, DebugButtonAction _action, string _title)
+        public void Init(DebugPanel _manager, MiniGameInfo _MiniGameInfo, bool _played)
         {
             manager = _manager;
-            action = _action;
-            Title.text = _title;
-        }
 
-        public void Init(DebugPanel _manager, DebugButtonAction _action, MiniGameInfo _MiniGameInfo, bool _played)
-        {
-            manager = _manager;
-            action = _action;
             minigameInfo = _MiniGameInfo;
             Title.text = _MiniGameInfo.data.Title_En;
             played = _played;
@@ -34,15 +26,8 @@ namespace EA4S.Debugging
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            switch (action) {
-                case DebugButtonAction.MiniGame:
-                    ColorButton();
-                    manager.LaunchMinigame(minigameInfo.data.Code);
-                    break;
-                case DebugButtonAction.Reset:
-                    manager.Reset();
-                    break;
-            }
+            ColorButton();
+            manager.LaunchMinigame(minigameInfo.data.Code);
         }
 
         void ColorButton()
