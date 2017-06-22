@@ -7,7 +7,7 @@ namespace EA4S.AnturaSpace
         float timer = 2.0f;
         AnturaAnimationStates state;
 
-        public AnturaAnimateState(AnturaSpaceManager controller) : base(controller)
+        public AnturaAnimateState(AnturaSpaceScene controller) : base(controller)
         {
         }
 

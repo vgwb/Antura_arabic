@@ -1,10 +1,8 @@
-﻿using System;
-using EA4S.Audio;
-using EA4S.Core;
-using EA4S.UI;
-using UnityEngine;
-using System.Collections.Generic;
+﻿using EA4S.Audio;
 using EA4S.MinigamesCommon;
+using EA4S.UI;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace EA4S.AnturaSpace
 {
@@ -12,10 +10,11 @@ namespace EA4S.AnturaSpace
     /// Manages the AnturaSpace scene.
     /// </summary>
     // refactor: group this class with other scene managers
-    public class AnturaSpaceManager : MonoBehaviour
+    public class AnturaSpaceScene : SceneBase
     {
         const int MaxBonesInScene = 5;
 
+        [Header("References")]
         public AnturaLocomotion Antura;
         public AnturaSpaceUI UI;
         public AnturaSpaceTutorial Tutorial;
@@ -38,13 +37,13 @@ namespace EA4S.AnturaSpace
         }
         List<GameObject> bones = new List<GameObject>();
 
-        public readonly AnturaIdleState Idle;
-        public readonly AnturaCustomizationState Customization;
-        public readonly AnturaDrawingAttentionState DrawingAttention;
-        public readonly AnturaAnimateState Animate;
-        public readonly AnturaSleepingState Sleeping;
-        public readonly AnturaWaitingThrowState WaitingThrow;
-        public readonly AnturaCatchingState Catching;
+        public AnturaIdleState Idle;
+        public AnturaCustomizationState Customization;
+        public AnturaDrawingAttentionState DrawingAttention;
+        public AnturaAnimateState Animate;
+        public AnturaSleepingState Sleeping;
+        public AnturaWaitingThrowState WaitingThrow;
+        public AnturaCatchingState Catching;
 
         StateManager stateManager = new StateManager();
         public AnturaState CurrentState {
@@ -65,7 +64,106 @@ namespace EA4S.AnturaSpace
         }
 
         public float AnturaHappiness { get; private set; }
+        public bool InCustomizationMode { get; private set; }
+        public float LastTimeCatching { get; set; }
 
+        void Awake()
+        {
+            InitStates();
+            
+            UI.onEnterCustomization += OnEnterCustomization;
+            UI.onExitCustomization += OnExitCustomization;
+
+            Antura.onTouched += () => {
+                if (CurrentState != null) CurrentState.OnTouched();
+
+                if (CurrentState == Customization)
+                    UI.ToggleModsPanel();
+            };
+
+            LastTimeCatching = Time.realtimeSinceStartup;
+        }
+        
+        public void InitStates()
+        {
+            Idle = new AnturaIdleState(this);
+            Customization = new AnturaCustomizationState(this);
+            DrawingAttention = new AnturaDrawingAttentionState(this);
+            Sleeping = new AnturaSleepingState(this);
+            WaitingThrow = new AnturaWaitingThrowState(this);
+            Catching = new AnturaCatchingState(this);
+            Animate = new AnturaAnimateState(this);
+        }
+
+        protected override void Start()
+        {
+            GlobalUI.ShowPauseMenu(false);
+
+            if (!AppManager.I.Player.IsFirstContact()) {
+                ShowBackButton();
+            }
+
+            CurrentState = Idle;
+        }
+        
+        public void Update()
+        {
+            AnturaHappiness -= Time.deltaTime / 40.0f;
+            if (AnturaHappiness < 0)
+                AnturaHappiness = 0;
+
+            stateManager.Update(Time.deltaTime);
+
+            if (!Tutorial.IsRunning)
+                UI.ShowBonesButton(MustShowBonesButton && (bones.Count < MaxBonesInScene));
+
+            UI.BonesCount = AppManager.I.Player.GetTotalNumberOfBones();
+
+            if (DraggingBone != null && !Input.GetMouseButton(0)) {
+                AudioManager.I.PlaySound(Sfx.ThrowObj);
+                DraggingBone.GetComponent<BoneBehaviour>().LetGo();
+                DraggingBone = null;
+            }
+        }
+
+        public void FixedUpdate()
+        {
+            stateManager.UpdatePhysics(Time.fixedDeltaTime);
+        }
+
+        public void ShowBackButton()
+        {
+            GlobalUI.ShowBackButton(true, OnExit);
+        }
+
+        void OnExit()
+        {
+            //if (AnturaSpaceUI.I.IsModsPanelOpen) AnturaSpaceUI.I.ToggleModsPanel();
+            //else AppManager.I.NavigationManager.GoBack();
+            AppManager.I.NavigationManager.GoBack();
+        }
+
+        void OnEnterCustomization()
+        {
+            GlobalUI.ShowBackButton(false);
+            ShowBackButton();
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
+            InCustomizationMode = true;
+            CurrentState = Customization;
+        }
+
+        void OnExitCustomization()
+        {
+            GlobalUI.ShowBackButton(false);
+            ShowBackButton();
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
+            InCustomizationMode = false;
+            CurrentState = Idle;
+        }
+        
+        #region bones actions
+        
+        
         public void ThrowBone()
         {
             if (DraggingBone != null)
@@ -83,9 +181,7 @@ namespace EA4S.AnturaSpace
                 AudioManager.I.PlaySound(Sfx.KO);
         }
 
-        public bool InCustomizationMode { get; private set; }
-        public float LastTimeCatching { get; set; }
-
+ 
         /// <summary>
         /// Drag a bone around.
         /// </summary>
@@ -130,99 +226,7 @@ namespace EA4S.AnturaSpace
             }
         }
 
-        public AnturaSpaceManager()
-        {
-            Idle = new AnturaIdleState(this);
-            Customization = new AnturaCustomizationState(this);
-            DrawingAttention = new AnturaDrawingAttentionState(this);
-            Sleeping = new AnturaSleepingState(this);
-            WaitingThrow = new AnturaWaitingThrowState(this);
-            Catching = new AnturaCatchingState(this);
-            Animate = new AnturaAnimateState(this);
-        }
-
-        void Awake()
-        {
-            UI.onEnterCustomization += OnEnterCustomization;
-            UI.onExitCustomization += OnExitCustomization;
-
-            Antura.onTouched += () => {
-                if (CurrentState != null) CurrentState.OnTouched();
-
-                if (CurrentState == Customization)
-                    UI.ToggleModsPanel();
-            };
-
-            LastTimeCatching = Time.realtimeSinceStartup;
-        }
-
-        public void Update()
-        {
-            AnturaHappiness -= Time.deltaTime / 40.0f;
-            if (AnturaHappiness < 0)
-                AnturaHappiness = 0;
-
-            stateManager.Update(Time.deltaTime);
-
-            if (!Tutorial.IsRunning)
-                UI.ShowBonesButton(MustShowBonesButton && (bones.Count < MaxBonesInScene));
-
-            UI.BonesCount = AppManager.I.Player.GetTotalNumberOfBones();
-
-            if (DraggingBone != null && !Input.GetMouseButton(0)) {
-                AudioManager.I.PlaySound(Sfx.ThrowObj);
-                DraggingBone.GetComponent<BoneBehaviour>().LetGo();
-                DraggingBone = null;
-            }
-        }
-
-        public void FixedUpdate()
-        {
-            stateManager.UpdatePhysics(Time.fixedDeltaTime);
-        }
-
-        public Music backgroundMusic;
-
-        void Start()
-        {
-            GlobalUI.ShowPauseMenu(false);
-
-            if (!AppManager.I.Player.IsFirstContact()) {
-                ShowBackButton();
-            }
-
-            AudioManager.I.PlayMusic(backgroundMusic);
-            CurrentState = Idle;
-        }
-
-        public void ShowBackButton()
-        {
-            GlobalUI.ShowBackButton(true, OnExit);
-        }
-
-        void OnExit()
-        {
-            //if (AnturaSpaceUI.I.IsModsPanelOpen) AnturaSpaceUI.I.ToggleModsPanel();
-            //else AppManager.I.NavigationManager.GoBack();
-            AppManager.I.NavigationManager.GoBack();
-        }
-
-        void OnEnterCustomization()
-        {
-            GlobalUI.ShowBackButton(false);
-            ShowBackButton();
-            AudioManager.I.PlaySound(Sfx.UIButtonClick);
-            InCustomizationMode = true;
-            CurrentState = Customization;
-        }
-
-        void OnExitCustomization()
-        {
-            GlobalUI.ShowBackButton(false);
-            ShowBackButton();
-            AudioManager.I.PlaySound(Sfx.UIButtonClick);
-            InCustomizationMode = false;
-            CurrentState = Idle;
-        }
+        
+        #endregion
     }
 }

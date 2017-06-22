@@ -9,7 +9,7 @@ namespace EA4S.AnturaSpace
 
         GameObject waitForLaunchPoint;
 
-        public AnturaWaitingThrowState(AnturaSpaceManager controller) : base(controller)
+        public AnturaWaitingThrowState(AnturaSpaceScene controller) : base(controller)
         {
         }
 

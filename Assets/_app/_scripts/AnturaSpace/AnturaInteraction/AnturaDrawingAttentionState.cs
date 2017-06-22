@@ -7,7 +7,7 @@ namespace EA4S.AnturaSpace
         float shoutTimer;
         float timeInThisState;
 
-        public AnturaDrawingAttentionState(AnturaSpaceManager controller) : base(controller)
+        public AnturaDrawingAttentionState(AnturaSpaceScene controller) : base(controller)
         {
         }
 

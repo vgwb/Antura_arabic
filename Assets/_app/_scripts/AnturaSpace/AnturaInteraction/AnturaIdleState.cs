@@ -10,7 +10,7 @@ namespace EA4S.AnturaSpace
 
         float timeToStayInThisState;
 
-        public AnturaIdleState(AnturaSpaceManager controller) : base(controller)
+        public AnturaIdleState(AnturaSpaceScene controller) : base(controller)
         {
         }
 

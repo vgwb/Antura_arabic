@@ -10,7 +10,7 @@ namespace EA4S.AnturaSpace
         bool boneEaten = false;
         Rigidbody boneRigidBody;
 
-        public AnturaCatchingState(AnturaSpaceManager controller) : base(controller)
+        public AnturaCatchingState(AnturaSpaceScene controller) : base(controller)
         {
         }
 
