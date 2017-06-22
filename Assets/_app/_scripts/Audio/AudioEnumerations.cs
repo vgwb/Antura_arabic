@@ -11,7 +11,8 @@
         Theme8 = 8,
         Theme9 = 9,
         Theme10 = 10,
-        Custom = -1
+        Custom = -1,
+        DontChange = -2,
     }
 
     // last is 70

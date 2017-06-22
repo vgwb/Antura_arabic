@@ -11,9 +11,9 @@ namespace EA4S
 
         protected virtual void Start()
         {
-         //   if (SceneMusic != Music.Custom) {
+            if (SceneMusic != Music.DontChange) {
                 AudioManager.I.PlayMusic(SceneMusic);
-         //   }
+            }
         }
     }
 }
