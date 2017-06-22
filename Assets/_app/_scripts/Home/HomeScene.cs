@@ -10,16 +10,17 @@ namespace EA4S.Scenes
     /// <summary>
     /// Controls the _Start scene, providing an entry point for all users prior to having selected a player profile. 
     /// </summary>
-    public class HomeScene : MonoBehaviour
+    public class HomeScene : SceneBase
     {
         // refactor: Remove the static access. The ProfileSelectorUI can directly access the HomeManager. Better yet, remove the Play() method from here and place something similar in AppManager.
         public static HomeScene I;
 
-        [Header("Scene Setup")] public Music SceneMusic;
+        [Header("Setup")]
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
         public LLAnimationStates LLAnimation = LLAnimationStates.LL_dancing;
 
-        [Header("References")] public AnturaAnimationController AnturaAnimController;
+        [Header("References")] 
+        public AnturaAnimationController AnturaAnimController;
         public LetterObjectView LLAnimController;
         public GameObject DialogReservedArea;
         public GameObject ProfileSelectorUI;
@@ -29,10 +30,9 @@ namespace EA4S.Scenes
             I = this;
         }
 
-        void Start()
+        protected override void Start()
         {
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
-            AudioManager.I.PlayMusic(SceneMusic);
             AudioManager.I.PlaySound(Sfx.GameTitle);
 
             AnturaAnimController.State = AnturaAnimation;

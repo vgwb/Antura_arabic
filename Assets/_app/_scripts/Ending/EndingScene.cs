@@ -1,5 +1,4 @@
 ﻿using EA4S.Animation;
-using EA4S.Audio;
 using EA4S.CameraEffects;
 using EA4S.Core;
 using EA4S.UI;
@@ -13,10 +12,9 @@ namespace EA4S.Scenes
     /// <summary>
     /// Manages the Ending scene, which shows a non-interactive introduction to the game.
     /// </summary>
-    public class EndingScene : MonoBehaviour
+    public class EndingScene : SceneBase
     {
-        [Header("Scene Setup")]
-        public Music SceneMusic;
+        [Header("References")]
 
         public LetterObjectView[] Letters;
         public Antura.AnturaAnimationController Antura;
@@ -50,10 +48,10 @@ namespace EA4S.Scenes
         public TextRender text;
         public CanvasRenderer panel;
 
-        void Start()
+        protected override void Start()
         {
+            base.Start();
             GlobalUI.ShowPauseMenu(false);
-            AudioManager.I.PlayMusic(SceneMusic);
             
             m_CameraEndPosition = Camera.main.transform.position;
             m_CameraStartPosition = m_CameraEndPosition + cameraOffset;

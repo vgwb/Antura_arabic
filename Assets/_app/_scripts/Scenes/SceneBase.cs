@@ -9,7 +9,7 @@ namespace EA4S
         [Header("Scene Setup")]
         public Music SceneMusic;
 
-        void Start()
+        protected virtual void Start()
         {
             AudioManager.I.PlayMusic(SceneMusic);
         }

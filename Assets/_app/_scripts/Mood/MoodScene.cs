@@ -8,14 +8,12 @@ namespace EA4S.Scenes
     /// <summary>
     /// Manager for the Mood scene.
     /// </summary>
-    public class MoodScene : MonoBehaviour
+    public class MoodScene : SceneBase
     {
-        [Header("Scene Setup")]
-        public Music SceneMusic;
 
-        void Start()
+        protected override void Start()
         {
-            AudioManager.I.PlayMusic(SceneMusic);
+            base.Start();
             GlobalUI.ShowPauseMenu(false);
 
             if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession) < 2) {

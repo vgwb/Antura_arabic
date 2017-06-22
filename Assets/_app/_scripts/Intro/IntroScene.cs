@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using EA4S.Animation;
-using EA4S.Audio;
 using EA4S.CameraEffects;
 using EA4S.Core;
 using EA4S.MinigamesCommon;
@@ -12,11 +11,9 @@ namespace EA4S.Intro
     /// <summary>
     /// Manages the Intro scene, which shows a non-interactive introduction to the game.
     /// </summary>
-    public class IntroScene : MonoBehaviour
+    public class IntroScene : SceneBase
     {
-        [Header("Scene Setup")]
-        public Music SceneMusic;
-
+        [Header("References")]
         public IntroFactory factory;
 
         CountdownTimer countDown;
@@ -43,11 +40,11 @@ namespace EA4S.Intro
 
         float time;
 
-        void Start()
+        protected override void Start()
         {
+            base.Start();
             GlobalUI.ShowPauseMenu(false);
-            AudioManager.I.PlayMusic(SceneMusic);
-
+ 
             countDown = new CountdownTimer(m_EndDelay);
             m_CameraEndPosition = Camera.main.transform.position;
             m_CameraStartPosition = m_CameraEndPosition + cameraOffset;
