@@ -12,7 +12,7 @@ namespace EA4S.Intro
     /// <summary>
     /// Manages the Intro scene, which shows a non-interactive introduction to the game.
     /// </summary>
-    public class IntroManager : MonoBehaviour
+    public class IntroScene : MonoBehaviour
     {
         [Header("Scene Setup")]
         public Music SceneMusic;

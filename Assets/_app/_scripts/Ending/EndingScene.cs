@@ -1,21 +1,19 @@
-﻿using System.Collections;
-using EA4S.Animation;
+﻿using EA4S.Animation;
 using EA4S.Audio;
 using EA4S.CameraEffects;
 using EA4S.Core;
-using EA4S.MinigamesCommon;
 using EA4S.UI;
-using UnityEngine;
 using EA4S.LivingLetters;
 using EA4S.Helpers;
-using EA4S.MinigamesAPI;
+using System.Collections;
+using UnityEngine;
 
-namespace EA4S.Intro
+namespace EA4S.Scenes
 {
     /// <summary>
-    /// Manages the Intro scene, which shows a non-interactive introduction to the game.
+    /// Manages the Ending scene, which shows a non-interactive introduction to the game.
     /// </summary>
-    public class EndingManager : MonoBehaviour
+    public class EndingScene : MonoBehaviour
     {
         [Header("Scene Setup")]
         public Music SceneMusic;
