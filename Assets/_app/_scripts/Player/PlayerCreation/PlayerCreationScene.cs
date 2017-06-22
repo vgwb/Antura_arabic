@@ -1,20 +1,13 @@
 ﻿using UnityEngine;
 using EA4S.Core;
-using EA4S.Audio;
 
 namespace EA4S.Scenes
 {
-    public class PlayerCreationScene : MonoBehaviour
+    public class PlayerCreationScene : SceneBase
     {
-        [Header("Scene Setup")]
-        public Music SceneMusic;
 
-        void Start()
+        protected override void Start()
         {
-            if (SceneMusic != Music.Custom) {
-                AudioManager.I.PlayMusic(SceneMusic);
-            }
-
         }
 
         public static void CreatePlayer(int age, PlayerGender gender, int avatarID, PlayerTint color)

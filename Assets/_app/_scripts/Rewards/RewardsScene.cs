@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
-using EA4S.Antura;
-using EA4S.Audio;
+﻿using EA4S.Antura;
 using EA4S.Core;
 using EA4S.Database;
 using EA4S.UI;
+using UnityEngine;
+using System.Collections;
 
 namespace EA4S.Rewards
 {
@@ -13,15 +12,17 @@ namespace EA4S.Rewards
     /// Accessed after a learning block is completed.
     /// </summary>
     [RequireComponent(typeof(RewardsAnimator))]
-    public class RewardsManager : MonoBehaviour
+    public class RewardsScene : SceneBase
     {
+        [Header("Setup")]
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
-        [Header("References")] public AnturaAnimationController AnturaAnimController;
+        [Header("References")]
+        public AnturaAnimationController AnturaAnimController;
 
-        void Start()
+        protected override void Start()
         {
+            base.Start();
             GlobalUI.ShowPauseMenu(false);
-            AudioManager.I.PlayMusic(Music.Theme10);
             Debug.Log("RewardsManager playsession: " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
             AnturaAnimController.State = AnturaAnimation;

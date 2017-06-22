@@ -6,7 +6,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Rewards
 {
-    [RequireComponent(typeof(RewardsManager))]
+    [RequireComponent(typeof(RewardsScene))]
     /// <summary>
     /// Animates the appearance of the reward scene
     /// </summary>
@@ -29,7 +29,7 @@ namespace EA4S.Rewards
 
         Database.RewardPackUnlockData rewardPackUnlockData = null;
         GameObject newRewardInstantiatedGO;
-        RewardsManager rewardManager;
+        RewardsScene rewardsSceneController;
         float rotationAngleView = 0;
 
         IAudioSource alarmClockSound;
@@ -41,11 +41,11 @@ namespace EA4S.Rewards
             Pedestal.gameObject.SetActive(true);
 
             // Reward 
-            rewardManager = GetComponent<RewardsManager>();
-            rewardManager.ClearLoadedRewardsOnAntura();
-            rewardPackUnlockData = rewardManager.GetRewardToInstantiate();
+            rewardsSceneController = GetComponent<RewardsScene>();
+            rewardsSceneController.ClearLoadedRewardsOnAntura();
+            rewardPackUnlockData = rewardsSceneController.GetRewardToInstantiate();
             rotationAngleView = RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPackUnlockData.GetRewardCategory());
-            newRewardInstantiatedGO = rewardManager.InstantiateReward(rewardPackUnlockData);
+            newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPackUnlockData);
 
             if (newRewardInstantiatedGO) {
                 newRewardInstantiatedGO.transform.DOScale(0.00001f, 0f).SetEase(Ease.OutBack);
@@ -142,7 +142,7 @@ namespace EA4S.Rewards
         }
 
         void InstantiateReward() {
-            newRewardInstantiatedGO = rewardManager.InstantiateReward(rewardPackUnlockData);
+            newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPackUnlockData);
         }
 
         void playParticle() {

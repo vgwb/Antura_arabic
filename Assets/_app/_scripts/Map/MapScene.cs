@@ -1,4 +1,5 @@
-﻿using EA4S.Audio;
+﻿using EA4S;
+using EA4S.Audio;
 using EA4S.Core;
 using UnityEngine;
 
@@ -7,14 +8,12 @@ namespace EA4S.Map
     /// <summary>
     /// Manages the Map scene, from which the next Play Session can be started.
     /// </summary>
-    public class MapManager : MonoBehaviour
+    public class MapScene : SceneBase
     {
-        [Header("Scene Setup")]
-        public Music SceneMusic;
 
-        void Start()
+        protected override void Start()
         {
-            AudioManager.I.PlayMusic(SceneMusic);
+            base.Start();
             //KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro);
         }
 

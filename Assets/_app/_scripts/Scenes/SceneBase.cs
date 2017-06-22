@@ -6,12 +6,14 @@ namespace EA4S
 {
     public class SceneBase : SingletonMonoBehaviour<SceneBase>
     {
-        [Header("Scene Setup")]
+        [Header("Base Scene Setup")]
         public Music SceneMusic;
 
         protected virtual void Start()
         {
-            AudioManager.I.PlayMusic(SceneMusic);
+         //   if (SceneMusic != Music.Custom) {
+                AudioManager.I.PlayMusic(SceneMusic);
+         //   }
         }
     }
 }
