@@ -1,16 +1,12 @@
-﻿using UnityEngine;
-#if !UNITY_EDITOR
-using System.Collections;
-using System.IO;
-#endif
-using System.Collections.Generic;
+﻿using EA4S.Core;
+using UnityEngine;
 using SQLite;
-using System.Linq.Expressions;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using EA4S.Core;
+using System.Linq.Expressions;
 
 namespace EA4S.Database
 {
