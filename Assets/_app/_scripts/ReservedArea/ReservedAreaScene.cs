@@ -1,13 +1,13 @@
 ﻿using EA4S.Core;
+using EA4S.Database;
 using EA4S.UI;
 using UnityEngine;
 using System;
 using System.IO;
-using EA4S.Database;
 
 namespace EA4S.Scenes
 {
-    public class ReservedAreaScene : MonoBehaviour
+    public class ReservedAreaScene : SceneBase
     {
         [Header("References")]
         public TextRender SupportText;

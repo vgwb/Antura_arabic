@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.Database;
+﻿using EA4S.Core;
 using System.Linq;
+using UnityEngine;
 
 namespace EA4S.Rewards
 {
@@ -10,7 +8,7 @@ namespace EA4S.Rewards
     /// Manager for the Play Session Result scene.
     /// Accessed a play session is completed.
     /// </summary>
-    public class PlaySessionResultManager : MonoBehaviour
+    public class PlaySessionResultManager : SceneBase
     {
         void Start()
         {
