@@ -14,20 +14,25 @@ namespace EA4S.Debugging
         private MiniGameInfo minigameInfo;
         private bool played;
 
-        public void Init(DebugPanel _manager, MiniGameInfo _MiniGameInfo, bool _played)
+        public float difficulty;
+
+        public void Init(DebugPanel _manager, MiniGameInfo _MiniGameInfo, bool _played, float _difficulty = 0.0f)
         {
             manager = _manager;
-
             minigameInfo = _MiniGameInfo;
-            Title.text = _MiniGameInfo.data.Title_En;
             played = _played;
+            difficulty = _difficulty;
+
+            Title.text = _MiniGameInfo.data.Code.ToString().Replace(_MiniGameInfo.data.Main+"_", "");
+            if (_difficulty > 0) Title.text = "D: " + _difficulty;
+
             ColorButton();
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
             ColorButton();
-            manager.LaunchMinigame(minigameInfo.data.Code);
+            manager.LaunchMiniGame(minigameInfo.data.Code, difficulty);
         }
 
         void ColorButton()

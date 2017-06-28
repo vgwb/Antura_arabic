@@ -38,7 +38,7 @@ namespace EA4S.Debugging
         public int LearningBlock = 1;
         public int PlaySession = 1;
         public int NumberOfRounds = 1;
-
+        public bool TutorialEnabled = true;
 
         private bool _ignoreJourneyData = false;
 
@@ -148,15 +148,20 @@ namespace EA4S.Debugging
 
         #region Actions
 
-        public void LaunchMiniGame(MiniGameCode miniGameCodeSelected)
+        public void LaunchMiniGame(MiniGameCode miniGameCodeSelected, float difficulty, bool tutorialEnabled)
         {
-            Debug.Log("LaunchMiniGame " + miniGameCodeSelected.ToString());
             AppManager.I.Player.CurrentJourneyPosition.Stage = Stage;
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;
+            AppManager.I.Player.CurrentJourneyPosition.SetPosition(Stage, LearningBlock, PlaySession);
+
+            Difficulty = difficulty;
+            TutorialEnabled = tutorialEnabled;
+
+            Debug.Log("LaunchMiniGame " + miniGameCodeSelected + " PS: " + AppManager.I.Player.CurrentJourneyPosition + " Diff: " + difficulty + " Tutorial: " + tutorialEnabled);
 
             AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected,
-                new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, tutorialEnabled: false), forceNewPlaySession: true);
+                new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, tutorialEnabled: TutorialEnabled), forceNewPlaySession: true);
         }
 
         public void ResetAll()

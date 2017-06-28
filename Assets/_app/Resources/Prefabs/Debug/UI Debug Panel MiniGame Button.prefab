@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Title: {fileID: 114949962062126076}
+  difficulty: 0
 --- !u!114 &114186848390050168
 MonoBehaviour:
   m_ObjectHideFlags: 1
