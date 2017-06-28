@@ -26,7 +26,7 @@ namespace EA4S.Minigames.Scanner
         public Transform fallOffPoint;
         public Transform midPoint;
 
-        public LivingLetterController letterObjectView;
+        public LivingLetterController LLController;
         public GameObject rainbowJet;
         public SkinnedMeshRenderer sm;
         [HideInInspector]
@@ -51,9 +51,9 @@ namespace EA4S.Minigames.Scanner
         void Awake()
         {
             status = LLStatus.None;
-            letterObjectView = livingLetter.GetComponent<LivingLetterController>();
+            LLController = livingLetter.GetComponent<LivingLetterController>();
             startingPosition = transform.position;
-            startingRotation = letterObjectView.transform.rotation;
+            startingRotation = LLController.transform.rotation;
         }
 
         public void Reset(bool stopCO = true)
@@ -65,10 +65,10 @@ namespace EA4S.Minigames.Scanner
 			if (game.gameActive)
 			{
 				status = LLStatus.None;
-				letterObjectView.Falling = false;
-				letterObjectView.SetState(LLAnimationStates.LL_still);
+				LLController.Falling = false;
+				LLController.SetState(LLAnimationStates.LL_still);
 				gotSuitcase = false;
-	            letterObjectView.transform.rotation = startingRotation;
+	            LLController.transform.rotation = startingRotation;
 	            transform.position = startingPosition;
 
 	            fallOffX = fallOffPoint.position.x;
@@ -88,7 +88,7 @@ namespace EA4S.Minigames.Scanner
 
 		public void StartSliding()
 		{
-			letterObjectView.Falling = true;
+			LLController.Falling = true;
 			status = LLStatus.Sliding;
 		}
 
@@ -96,12 +96,12 @@ namespace EA4S.Minigames.Scanner
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKey(KeyCode.E) && letterObjectView.Data != null)
+            if (Input.GetKey(KeyCode.E) && LLController.Data != null)
             {
                 if(wordSound == null)
-                    wordSound = game.Context.GetAudioManager().PlayLetterData(letterObjectView.Data, true);
+                    wordSound = game.Context.GetAudioManager().PlayLetterData(LLController.Data, true);
                 if (!wordSound.IsPlaying)
-                    wordSound = game.Context.GetAudioManager().PlayLetterData(letterObjectView.Data, true);
+                    wordSound = game.Context.GetAudioManager().PlayLetterData(LLController.Data, true);
 
                 wordSound.Position = 0;
             }
@@ -143,8 +143,8 @@ namespace EA4S.Minigames.Scanner
 			onFlying(this);
 			status = LLStatus.Happy;
 
-            letterObjectView.State = LLAnimationStates.LL_dancing;
-            letterObjectView.DoDancingWin();
+            LLController.State = LLAnimationStates.LL_dancing;
+            LLController.DoDancingWin();
             //letterObjectView.DoSmallJump();            
             // Rotate in case not facing the camera
             StartCoroutine(RotateGO(livingLetter, new Vector3(0, 180, 0), 1f));
@@ -156,13 +156,13 @@ namespace EA4S.Minigames.Scanner
 //			letterObjectView.Crouching = false;
 
 			// Starting flight
-			letterObjectView.DoHorray();
+			LLController.DoHorray();
             yield return new WaitForSeconds(0.75f);
             rainbowJet.SetActive(true);
             //yield return new WaitForSeconds(0.15f);
 			status = LLStatus.Flying;
             
-			letterObjectView.SetState(LLAnimationStates.LL_still);
+			LLController.SetState(LLAnimationStates.LL_still);
             yield return new WaitForSeconds(2f);
 //            Reset();
         }
@@ -172,13 +172,13 @@ namespace EA4S.Minigames.Scanner
 			if (status == LLStatus.StandingOnBelt)
 			{
 				status = LLStatus.Sad;
-				letterObjectView.DoAngry();
+				LLController.DoAngry();
             	yield return new WaitForSeconds(1.5f);
 			}
 			Debug.Log(status);
 			if (status != LLStatus.Flying || status != LLStatus.Falling || status != LLStatus.None)
 			{
-				letterObjectView.Poof();
+				LLController.Poof();
 				yield return new WaitForSeconds(0.2f);
 			}
 			else
@@ -195,18 +195,18 @@ namespace EA4S.Minigames.Scanner
 			gotSuitcase = false;
 			status = LLStatus.None;
             onStartFallOff(this);
-            letterObjectView.SetState(LLAnimationStates.LL_idle);
-			letterObjectView.DoSmallJump();
+            LLController.SetState(LLAnimationStates.LL_idle);
+			LLController.DoSmallJump();
             StartCoroutine(RotateGO(livingLetter, new Vector3(90, 90, 0), 1f));
             yield return new WaitForSeconds(0.25f);
             AudioManager.I.PlaySound(Sfx.LetterSad);
             yield return new WaitForSeconds(0.25f);
-            letterObjectView.Falling = true;
+            LLController.Falling = true;
             status = LLStatus.Falling;
 
             yield return new WaitForSeconds(0.1f);
 
-            letterObjectView.Poof();
+            LLController.Poof();
             showLLMesh(false);
 
             yield return new WaitForSeconds(0.9f);
@@ -218,7 +218,7 @@ namespace EA4S.Minigames.Scanner
 
         void OnMouseUp()
         {
-            letterObjectView.SetState(LLAnimationStates.LL_tickling);
+            LLController.SetState(LLAnimationStates.LL_tickling);
             game.Context.GetAudioManager().PlaySound(Sfx.LL_Annoyed);
         }
 
@@ -239,14 +239,14 @@ namespace EA4S.Minigames.Scanner
         {
             StopAllCoroutines();
             //			letterObjectView.SetState(LLAnimationStates.LL_idle);
-            letterObjectView.DoHorray();
+            LLController.DoHorray();
         }
 
         public void WrongMove()
         {
             StopAllCoroutines();
-            letterObjectView.SetState(LLAnimationStates.LL_idle);
-            letterObjectView.DoAngry();
+            LLController.SetState(LLAnimationStates.LL_idle);
+            LLController.DoAngry();
         }
 
 
@@ -279,7 +279,7 @@ namespace EA4S.Minigames.Scanner
                 do {
                     index = UnityEngine.Random.Range(0, animations.Length);
                 } while (index == oldIndex);
-                letterObjectView.SetState(animations[index]);
+                LLController.SetState(animations[index]);
                 yield return new WaitForSeconds(UnityEngine.Random.Range(2f, 4f));
             } while (status == LLStatus.StandingOnBelt);
         }
@@ -294,7 +294,7 @@ namespace EA4S.Minigames.Scanner
                     status = LLStatus.StandingOnBelt;
                     gameObject.GetComponent<SphereCollider>().enabled = false; // disable feet collider
 					bodyCollider.enabled = true; // enable body collider
-                    letterObjectView.Falling = false;
+                    LLController.Falling = false;
                     StartCoroutine(RotateGO(livingLetter, new Vector3(0, turnAngle, 0), 1f));
                     StartCoroutine(AnimateLL());
                 }
@@ -306,7 +306,7 @@ namespace EA4S.Minigames.Scanner
             SkinnedMeshRenderer[] LLMesh = GetComponentsInChildren<SkinnedMeshRenderer>();
             foreach (SkinnedMeshRenderer sm in LLMesh)
                 sm.enabled = show;
-            letterObjectView.contentTransform.gameObject.SetActive(show);
+            LLController.contentTransform.gameObject.SetActive(show);
         }
 
         public void setColor(Color col)

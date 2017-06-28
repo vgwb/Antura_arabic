@@ -277,13 +277,13 @@ namespace EA4S.Minigames.Scanner
             rb.isKinematic = false;
             rb.useGravity = true;
             rb.AddForce(Vector3.forward * Random.Range(6, 10) + Vector3.up * Random.Range(12, 15), ForceMode.Impulse);
-            ll.letterObjectView.OnJumpStart();
-            ll.letterObjectView.OnJumpMaximumHeightReached();
+            ll.LLController.OnJumpStart();
+            ll.LLController.OnJumpMaximumHeightReached();
 
             ll.slidingTime = slideTime;
 
             yield return new WaitForSeconds(0.45f);
-            ll.letterObjectView.Poof();
+            ll.LLController.Poof();
             ll.showLLMesh(false);
 
             yield return new WaitForSeconds(1.55f);

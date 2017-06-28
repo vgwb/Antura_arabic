@@ -169,7 +169,7 @@ namespace EA4S.Minigames.Scanner
         public void PlayWord(float deltaTime, ScannerLivingLetter LL)
         {
             Debug.Log("Play word: " + deltaTime);
-            IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(LL.letterObjectView.Data, true);
+            IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(LL.LLController.Data, true);
             //float scaledDelta = (maxPlaySpeed - minPlaySpeed) / (max - min) * (deltaTime - max) + maxPlaySpeed;
             wordSound.Pitch = Mathf.Clamp(scannerDevice.smoothedDraggingSpeed * 4f, minPlaySpeed, maxPlaySpeed);
         }

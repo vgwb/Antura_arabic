@@ -2162,7 +2162,7 @@ MonoBehaviour:
   collForScan: {fileID: 4236271006558236}
   fallOffPoint: {fileID: 4000012762341688}
   midPoint: {fileID: 4000010346749206}
-  letterObjectView: {fileID: 114000010402415976}
+  LLController: {fileID: 114000010402415976}
   rainbowJet: {fileID: 1000012696403056}
   sm: {fileID: 137000013722214376}
   mat: {fileID: 0}
