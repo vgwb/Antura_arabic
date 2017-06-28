@@ -34,15 +34,10 @@ namespace EA4S.Map
         {
             Floating();
 
-            /* FIRST CONTACT FEATURE */
             if (!AppManager.I.Player.IsFirstContact()) {
                 AmIFirstorLastPos();
             }
-            /* --------------------- */
 
-
-            //    stageScript.positionPin++;
-            //  MoveTo(stageScript.positionsPlayerPin[1].transform.position, true);
         }
         void Floating()
         {
@@ -262,21 +257,21 @@ namespace EA4S.Map
         void LookAt(bool leftPin)
         {
             rotateTween.Kill();
-            Quaternion currRotation = this.transform.rotation;
-            this.transform.LookAt(leftPin
+            Quaternion currRotation = transform.rotation;
+            transform.LookAt(leftPin
                 ? stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform.position
                 : stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position
             );
-            Quaternion toRotation = this.transform.rotation;
-            this.transform.rotation = currRotation;
-            rotateTween = this.transform.DORotate(toRotation.eulerAngles, 0.3f).SetEase(Ease.InOutQuad);
+            Quaternion toRotation = transform.rotation;
+            transform.rotation = currRotation;
+            rotateTween = transform.DORotate(toRotation.eulerAngles, 0.3f).SetEase(Ease.InOutQuad);
         }
 
         // If animate is TRUE, animates the movement, otherwise applies the movement immediately
         void MoveTo(Vector3 position, bool animate = false)
         {
             if (moveTween != null) { moveTween.Complete(); }
-            if (animate) { moveTween = this.transform.DOMove(position, 0.25f); } else { this.transform.position = position; }
+            if (animate) { moveTween = transform.DOMove(position, 0.25f); } else { transform.position = position; }
         }
 
         public void AmIFirstorLastPos()

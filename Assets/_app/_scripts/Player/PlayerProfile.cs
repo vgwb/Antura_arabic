@@ -22,6 +22,7 @@ namespace EA4S.Profile
         public bool IsDemoUser;
         public bool HasFinishedTheGame;
         public bool HasFinishedTheGameWithAllStars;
+        public int TotalNumberOfBones = 8;
 
         public ProfileCompletionState ProfileCompletion = ProfileCompletionState.New;
 
@@ -44,17 +45,19 @@ namespace EA4S.Profile
         }
 
         #region Bones/coins
-        public int TotalNumberOfBones = 8;
+        
         public int GetTotalNumberOfBones()
         {
             return TotalNumberOfBones;
         }
+        
         public int AddBones(int _bonesToAdd)
         {
             TotalNumberOfBones += _bonesToAdd;
             Save();
             return TotalNumberOfBones;
         }
+        
         #endregion
 
         #region Management
@@ -173,6 +176,18 @@ namespace EA4S.Profile
                 Save();
             }
         }
+        
+        /// <summary>
+        /// checks if we are at the max joiurney position
+        /// </summary>
+        /// <returns></returns>
+        public bool IsAtMaxJourneyPosition()
+        {
+            return (CurrentJourneyPosition.Stage == MaxJourneyPosition.Stage) &&
+                   (CurrentJourneyPosition.LearningBlock == MaxJourneyPosition.LearningBlock) &&
+                   (CurrentJourneyPosition.PlaySession == MaxJourneyPosition.PlaySession);
+        }
+        
         #endregion
 
         #region Antura Customization and Rewards

@@ -1,6 +1,4 @@
-﻿using EA4S;
-using EA4S.Core;
-using EA4S.UI;
+﻿using EA4S.UI;
 using UnityEngine;
 
 namespace EA4S.Map
@@ -11,7 +9,7 @@ namespace EA4S.Map
 
         void Start()
         {
-            GameObject icoNew = this.GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
+            GameObject icoNew = GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
             icoNew.SetActive(!AppManager.I.Player.IsFirstContact() && AppManager.I.Player.ThereIsSomeNewReward());
         }
 

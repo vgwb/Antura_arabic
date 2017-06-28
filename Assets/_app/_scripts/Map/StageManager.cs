@@ -98,7 +98,7 @@ namespace EA4S.Map
 
         void OnDestroy()
         {
-            this.StopAllCoroutines();
+            StopAllCoroutines();
         }
 
         void updateStageIndicator()
@@ -131,23 +131,17 @@ namespace EA4S.Map
             bool isSecondStep = SimulateFirstContact ? firstContactSimulationStep == 2 : AppManager.I.Player.IsFirstContact(2);
 
             if (isFirstStep) {
-                // First contact step 1:
-
-                // ..and set first contact done.
-                DesactivateUI();
+               DesactivateUI();
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_Intro, true, true, AnturaText);
                 AppManager.I.Player.FirstContactPassed();
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
             } else if (isSecondStep) {
-                // First contact step 2:
-
-                // ..and set first contact done.             
                 ActivateUI();
                 AppManager.I.Player.FirstContactPassed(2);
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_First, true, true, PlayDialogFirstStage);
                 Debug.Log("First Contact Step2 finished! Good Luck!");
                 //tuto anim on the play button
-                this.StartCoroutine(CO_Tutorial_PlayButton());
+                StartCoroutine(CO_Tutorial_PlayButton());
             }
         }
         void AnturaText()
@@ -168,7 +162,7 @@ namespace EA4S.Map
         void ActivateAnturaButton()
         {
             anturaButton.SetActive(true);
-            this.StartCoroutine(CO_Tutorial());
+            StartCoroutine(CO_Tutorial());
         }
 
         IEnumerator CO_Tutorial()
@@ -214,12 +208,12 @@ namespace EA4S.Map
         /// </summary>
         public void StageLeft()
         {
-            if ((currentStageNumber < maxNumberOfStages) && (!inTransition)) {
+            if (currentStageNumber < maxNumberOfStages && !inTransition) {
                 previousStageNumber = currentStageNumber;
                 currentStageNumber++;
                 CalculateSettingsStage();
 
-                if ((currentStageNumber <= maxStageUnlocked) && (AppManager.I.Player.CurrentJourneyPosition.Stage != currentStageNumber)) {
+                if (currentStageNumber <= maxStageUnlocked && AppManager.I.Player.CurrentJourneyPosition.Stage != currentStageNumber) {
                     AppManager.I.Player.CurrentJourneyPosition.Stage++;
                     CalculatePosPin();
                 } else {
@@ -236,13 +230,13 @@ namespace EA4S.Map
         /// </summary>
         public void StageRight()
         {
-            if ((currentStageNumber >= 1) && (!inTransition)) {
+            if (currentStageNumber >= 1 && !inTransition) {
 
                 previousStageNumber = currentStageNumber;
                 currentStageNumber--;
                 CalculateSettingsStage();
 
-                if ((currentStageNumber <= maxStageUnlocked) && (AppManager.I.Player.CurrentJourneyPosition.Stage != currentStageNumber)) {
+                if (currentStageNumber <= maxStageUnlocked && AppManager.I.Player.CurrentJourneyPosition.Stage != currentStageNumber) {
                     AppManager.I.Player.CurrentJourneyPosition.Stage--;
                     CalculatePosPin();
                 } else if (AppManager.I.Player.CurrentJourneyPosition.Stage == currentStageNumber) {

@@ -7,9 +7,10 @@ namespace EA4S.Map
     {
         public int numberStage;
         public bool dialoguePlayed;
+        
         void OnTriggerEnter(Collider other)
         {
-            bool isMaxPosition = IsMaxJourneyPosition();
+            bool isMaxPosition = AppManager.I.Player.IsAtMaxJourneyPosition();
             if ((other.gameObject.tag == "Player") && (isMaxPosition) && (numberStage > 1) && (!dialoguePlayed)) {
                 Database.LocalizationDataId[] data = new Database.LocalizationDataId[7];
                 data[2] = Database.LocalizationDataId.Map_Intro_Map2;
@@ -21,16 +22,6 @@ namespace EA4S.Map
                 dialoguePlayed = true;
             }
         }
-
-        bool IsMaxJourneyPosition()
-        {
-            if ((AppManager.I.Player.CurrentJourneyPosition.Stage == AppManager.I.Player.MaxJourneyPosition.Stage) &&
-                (AppManager.I.Player.CurrentJourneyPosition.LearningBlock == AppManager.I.Player.MaxJourneyPosition.LearningBlock) &&
-                (AppManager.I.Player.CurrentJourneyPosition.PlaySession == AppManager.I.Player.MaxJourneyPosition.PlaySession)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+       
     }
 }

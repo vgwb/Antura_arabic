@@ -62,14 +62,14 @@ namespace EA4S.Map
 
             z = 1;
             float d = Vector3.Distance(p1, p2);
-            float x = (((d - 5) - (2 * 0.5f * steps))) / (steps + 1);
+            float x = (d - 5 - 2 * 0.5f * steps) / (steps + 1);
             for (p = 1; p <= steps; p++) {
                 v = (p * x + (0.5f * z) + 2.5f) * Vector3.Normalize(p1 - p2) + p2;
                 z += 2;
 
                 rot.eulerAngles = new Vector3(90, 0, 0);
                 GameObject dotGo;
-                dotGo = Instantiate(dot, v, rot) as GameObject;
+                dotGo = Instantiate(dot, v, rot);
                 dotGo.GetComponent<Dot>().learningBlockActual = i + 1;
                 dotGo.GetComponent<Dot>().playSessionActual = p;
                 dotGo.GetComponent<Dot>().pos = nPos;
@@ -88,7 +88,7 @@ namespace EA4S.Map
                 nPos++;
 
                 //if first playsession of the map
-                if ((i == 0) && (p == 1)) {
+                if (i == 0 && p == 1) {
                     dotGo.AddComponent<Dialogues>();
                     dotGo.GetComponent<Dialogues>().numberStage = numberStage;
                 }
@@ -96,19 +96,19 @@ namespace EA4S.Map
         }
         void CalculatePlaySessionAvailables()
         {
-            int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
-            int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
-            for (int i = 0; i < l; i++) {
+            var l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
+            var p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
+            for (var i = 0; i < l; i++) {
                 if (ropes[i].GetComponent<Rope>().learningBlockRope == l) {
                     if (p == 100) {
                         p = ropes[i].GetComponent<Rope>().dots.Count;
                     }
-                    for (int j = 0; j < p; j++) {
+                    for (var j = 0; j < p; j++) {
                         ropes[i].GetComponent<Rope>().dots[j].SetActive(true);
                         positionPinMax = ropes[i].GetComponent<Rope>().dots[j].GetComponent<Dot>().pos;
                     }
                 } else {
-                    for (int m = 0; m < ropes[i].GetComponent<Rope>().dots.Count; m++) {
+                    for (var m = 0; m < ropes[i].GetComponent<Rope>().dots.Count; m++) {
                         ropes[i].GetComponent<Rope>().dots[m].SetActive(true);
                     }
                 }
@@ -119,7 +119,7 @@ namespace EA4S.Map
         {
             if (isAvailableTheWholeMap) {
                 positionPinMax = positionsPlayerPin.Count - 1;
-                for (int i = 1; i < (pines.Length - 1); i++) {
+                for (var i = 1; i < (pines.Length - 1); i++) {
                     pines[i].tag = "Pin";
                     pines[i].GetComponent<MapPin>().unlocked = true;
                     ropes[i].transform.GetChild(0).tag = "Rope";
@@ -129,7 +129,7 @@ namespace EA4S.Map
             } else {
                 int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
                 int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
-                for (int i = 1; i < l; i++) {
+                for (var i = 1; i < l; i++) {
                     pines[i].tag = "Pin";
                     pines[i].GetComponent<MapPin>().unlocked = true;
                     ropes[i].transform.GetChild(0).tag = "Rope";
@@ -145,7 +145,7 @@ namespace EA4S.Map
         void NumberPlaySessionsPerLEB()
         {
             psData = GetAllPlaySessionDataForStage(numberStage);
-            for (int d = 0; d < psData.Count; d++) {
+            for (var d = 0; d < psData.Count; d++) {
                 if (psData[d].PlaySession != 100) {
                     switch (psData[d].LearningBlock) {
                         case 1:
@@ -198,18 +198,6 @@ namespace EA4S.Map
 
                     }
                 }
-            }
-        }
-
-        private class PlaySessionState
-        {
-            public Database.PlaySessionData data;
-            public float score;
-
-            public PlaySessionState(Database.PlaySessionData _data, float _score)
-            {
-                this.data = _data;
-                this.score = _score;
             }
         }
 

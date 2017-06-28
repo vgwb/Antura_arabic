@@ -6,15 +6,9 @@ namespace EA4S.Map
 {
     public class MapStageIndicator : MonoBehaviour
     {
-        #region Serialized
-
         public MapStageIndicatorIcon Icon;
 
-        #endregion
-
         readonly List<MapStageIndicatorIcon> icons = new List<MapStageIndicatorIcon>();
-
-        #region Unity + INIT
 
         /// <summary>
         /// Initializes the widget
@@ -26,7 +20,9 @@ namespace EA4S.Map
         public void Init(int currStage, int totStages)
         {
             // Create correct number of stages
-            if (icons.Count == 0) { icons.Add(Icon); }
+            if (icons.Count == 0) {
+                icons.Add(Icon);
+            }
             int len = icons.Count;
             if (len < totStages) {
                 for (int i = len; i < totStages; ++i) {
@@ -44,9 +40,9 @@ namespace EA4S.Map
 
             // Set current stage
             len = icons.Count;
-            for (int i = 0; i < len; ++i) { icons[i].Select(i == len - currStage - 1); }
+            for (int i = 0; i < len; ++i) {
+                icons[i].Select(i == len - currStage - 1);
+            }
         }
-
-        #endregion
     }
 }

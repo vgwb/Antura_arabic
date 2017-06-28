@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Map
 {
     public class Rope : MonoBehaviour
     {
