@@ -23,7 +23,7 @@ namespace EA4S.Debugging
     {
         public static DebugManager I;
 
-        public bool DebugPanelActivated;
+        public bool DebugPanelOpened;
 
         public delegate void OnSkipCurrentSceneDelegate();
 
@@ -39,7 +39,7 @@ namespace EA4S.Debugging
         public int PlaySession = 1;
         public int NumberOfRounds = 1;
 
-
+        private GameObject debugPanelGO;
         private bool _ignoreJourneyData = false;
 
         public bool IgnoreJourneyData
@@ -107,11 +107,15 @@ namespace EA4S.Debugging
         void Awake()
         {
             I = this;
+
+            if (AppConstants.DebugPanelEnabled) {
+                ActivateDebugPanel();
+            }
         }
 
         void Update()
         {
-            if (!DebugPanelActivated) {
+            if (!DebugPanelOpened) {
                 // shortcut to Reserved Area
                 if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R)) {
                     AppManager.I.NavigationManager.GoToReservedArea();
@@ -147,6 +151,14 @@ namespace EA4S.Debugging
         #endregion
 
         #region Actions
+
+        public void ActivateDebugPanel()
+        {
+            if (debugPanelGO == null) {
+                AppConstants.DebugPanelEnabled = true;
+                debugPanelGO = Instantiate(Resources.Load("Prefabs/Debug/UI Debug Canvas") as GameObject);
+            }
+        }
 
         public void LaunchMiniGame(MiniGameCode miniGameCodeSelected)
         {

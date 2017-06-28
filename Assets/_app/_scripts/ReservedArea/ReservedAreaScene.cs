@@ -4,6 +4,7 @@ using EA4S.UI;
 using UnityEngine;
 using System;
 using System.IO;
+using EA4S.Debugging;
 
 namespace EA4S.Scenes
 {
@@ -22,6 +23,7 @@ namespace EA4S.Scenes
             SupportText.text = AppConstants.AppVersion;
         }
 
+        #region Buttons
         public void OnOpenUrlWebsite()
         {
             Application.OpenURL(AppConstants.UrlWebsite);
@@ -48,6 +50,16 @@ namespace EA4S.Scenes
             OpenPDF(AppConstants.PdfAndroidInstall);
         }
 
+        private int clickCounter = 0;
+        public void OnClickEnableDebugPanel()
+        {
+            clickCounter++;
+            if (clickCounter >= 3) {
+                DebugManager.I.ActivateDebugPanel();
+            }
+        }
+        #endregion
+        
         #region RATE
         public void OnOpenRateApp()
         {

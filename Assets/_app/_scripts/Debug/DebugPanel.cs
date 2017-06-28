@@ -94,14 +94,14 @@ namespace EA4S.Debugging
         {
             buildUI();
             Panel.SetActive(true);
-            DebugManager.I.DebugPanelActivated = true;
+            DebugManager.I.DebugPanelOpened = true;
         }
 
         private void close()
         {
             clickCounter = 0;
             Panel.SetActive(false);
-            DebugManager.I.DebugPanelActivated = false;
+            DebugManager.I.DebugPanelOpened = false;
         }
 
         #endregion
