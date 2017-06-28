@@ -27,7 +27,7 @@ namespace EA4S.Utilities {
             // Here we save our singleton instance
             I = this as T;
 
-            Initialise();
+            Init();
         }
 
         void OnDestroy() {
@@ -35,7 +35,7 @@ namespace EA4S.Utilities {
                 Finalise();
         }
 
-        protected virtual void Initialise() {
+        protected virtual void Init() {
         }
 
         protected virtual void Finalise() {

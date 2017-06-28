@@ -60,7 +60,7 @@ namespace EA4S.Core
         /// <summary>
         /// Initialize the NavigationManager and its data.
         /// </summary>
-        public void Initialize()
+        public void Init()
         {
             NavData.Setup();
             InitializeAllowedTransitions();
@@ -91,9 +91,9 @@ namespace EA4S.Core
         /// Sets the player navigation data.
         /// </summary>
         /// <param name="_playerProfile">The player profile.</param>
-        public void InitialisePlayerNavigationData(PlayerProfile _playerProfile)
+        public void InitPlayerNavigationData(PlayerProfile _playerProfile)
         {
-            NavData.Initialize(_playerProfile);
+            NavData.Init(_playerProfile);
         }
 
         #endregion
@@ -484,12 +484,12 @@ namespace EA4S.Core
             get { return NavData.CurrentPlaySessionMiniGames; }
         }
 
-        public void InitialiseNewPlaySession(MiniGameData dataToUse = null)
+        public void InitNewPlaySession(MiniGameData dataToUse = null)
         {
             ResetEndSessionResults();
             NavData.RealPlaySession = (dataToUse == null);
 
-            AppManager.I.Teacher.InitialiseNewPlaySession();
+            AppManager.I.Teacher.InitNewPlaySession();
             NavData.SetFirstMinigame();
 
             if (NavData.RealPlaySession) {
@@ -503,7 +503,7 @@ namespace EA4S.Core
         private void GoToPlaySession()
         {
             // This must be called before any play session is started
-            InitialiseNewPlaySession();
+            InitNewPlaySession();
             LogManager.I.StartPlaySession();
 
             // From the map

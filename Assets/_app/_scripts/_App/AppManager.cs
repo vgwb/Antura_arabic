@@ -58,12 +58,12 @@ namespace EA4S
         /// <summary>
         /// Game entry point.
         /// </summary>
-        protected override void Initialise()
+        protected override void Init()
         {
             if (alreadySetup)
                 return;
 
-            base.Initialise();
+            base.Init();
 
             alreadySetup = true;
 
@@ -84,7 +84,7 @@ namespace EA4S
             GameLauncher = new MiniGameLauncher(Teacher);
 
             NavigationManager = gameObject.AddComponent<NavigationManager>();
-            NavigationManager.Initialize();
+            NavigationManager.Init();
 
             PlayerProfileManager = new PlayerProfileManager();
             PlayerProfileManager.LoadSettings();
@@ -97,7 +97,7 @@ namespace EA4S
 
             // Update settings
             AppSettings.ApplicationVersion = AppConstants.AppVersion;
-            AppManager.I.AppSettingsManager.SaveSettings();
+            AppSettingsManager.SaveSettings();
         }
 
         #endregion
@@ -127,7 +127,7 @@ namespace EA4S
         public void ToggleEnglishSubtitles()
         {
             AppSettings.EnglishSubtitles = !AppSettings.EnglishSubtitles;
-            AppManager.I.AppSettingsManager.SaveSettings();
+            AppSettingsManager.SaveSettings();
         }
 
         #endregion
