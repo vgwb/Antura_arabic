@@ -23,7 +23,7 @@ namespace EA4S.Minigames.MixedLetters
 
         public void EnterState()
         {
-            if (game.PerformTutorial)
+            if (game.TutorialEnabled)
             {
                 game.DisableRepeatPromptButton();
                 game.GenerateNewWord();
@@ -42,7 +42,7 @@ namespace EA4S.Minigames.MixedLetters
 
         private void OnTitleVoiceOverDone()
         {
-            if (!game.PerformTutorial)
+            if (!game.TutorialEnabled)
             {
                 game.SetCurrentState(game.IntroductionState);
                 return;

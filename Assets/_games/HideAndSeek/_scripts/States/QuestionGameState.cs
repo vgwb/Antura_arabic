@@ -29,7 +29,7 @@ namespace EA4S.Minigames.HideAndSeek
 
         void OnQuestionCompleted()
         {
-            if (game.PerformTutorial)
+            if (game.TutorialEnabled)
             {
                 game.SetCurrentState(game.TutorialState);
             }

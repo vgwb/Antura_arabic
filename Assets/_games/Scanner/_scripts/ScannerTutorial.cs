@@ -43,7 +43,7 @@ namespace EA4S.Minigames.Scanner
             get
             {
                 if (game.roundsManager.numberOfRoundsPlayed <= 0 && 
-                    game.PerformTutorial)
+                    game.TutorialEnabled)
                 {
                     return true;
                 }

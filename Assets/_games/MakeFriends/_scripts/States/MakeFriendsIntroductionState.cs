@@ -41,7 +41,7 @@ namespace EA4S.Minigames.MakeFriends
             {
                 takenAction = true;
 
-                if (game.PerformTutorial)
+                if (game.TutorialEnabled)
                 {
                     game.PlayTutorial();
                 }

@@ -21,7 +21,7 @@ namespace EA4S.Minigames.MissingLetter
 
         void OnQuestionCompleted()
         {
-            if (M_oGgame.PerformTutorial)
+            if (M_oGgame.TutorialEnabled)
             {
                 M_oGgame.SetCurrentState(M_oGgame.TutorialState);
             }
@@ -33,7 +33,7 @@ namespace EA4S.Minigames.MissingLetter
 
         public void Update(float delta)
         {
-            if (M_oGgame.PerformTutorial)
+            if (M_oGgame.TutorialEnabled)
             {
                 M_oGgame.SetCurrentState(M_oGgame.TutorialState);
             }
