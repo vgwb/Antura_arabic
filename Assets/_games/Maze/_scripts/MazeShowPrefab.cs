@@ -17,7 +17,7 @@ namespace EA4S.Minigames.Maze
 
             transform.DOMove(new Vector3(0, 0, -1), 1.0f).OnComplete(()=> {
                 //MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterId);
-                MazeGameManager.instance.showCharacterMovingIn();
+                MazeGame.instance.showCharacterMovingIn();
 
             });
 		}

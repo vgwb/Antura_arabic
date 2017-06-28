@@ -19,6 +19,7 @@ namespace EA4S.Minigames.SickLetters
         void Start() {
             game = GetComponent<SickLettersGame>();
 
+            Debug.Log("Enabled tutorial? " + game.enableTutorial);
 
             if (!game.enableTutorial)
             {

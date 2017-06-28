@@ -28,6 +28,12 @@ namespace EA4S.Minigames.TakeMeHome
 
         private void playedIntroSFX()
         {
+            if (!game.PerformTutorial)
+            {
+                game.SetCurrentState(game.IntroductionState);
+                return;
+            }
+
             UnityEngine.Debug.Log("Played Intro");
             game.spawnLetteAtTube();
         }

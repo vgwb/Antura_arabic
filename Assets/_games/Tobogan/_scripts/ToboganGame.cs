@@ -52,8 +52,8 @@ namespace EA4S.Minigames.Tobogan
             }
         }
 
-        bool tutorial;
-        public bool showTutorial { get { if (tutorial) { tutorial = false; return true; } else return false; } }
+        bool tutorialFlag;
+        public bool showTutorial { get { if (tutorialFlag) { tutorialFlag = false; return true; } else return false; } }
 
         public ToboganQuestionState QuestionState { get; private set; }
         public ToboganPlayState PlayState { get; private set; }
@@ -78,7 +78,7 @@ namespace EA4S.Minigames.Tobogan
 
         protected override void OnInitialize(IGameContext context)
         {
-            tutorial = true;
+            tutorialFlag = GetConfiguration().PerformTutorial;
 
             pipesAnswerController.SetSignHidingProbability(ToboganConfiguration.Instance.Difficulty);
             SunMoonQuestions = new SunMoonTutorialQuestionProvider(ToboganConfiguration.Instance.Questions);

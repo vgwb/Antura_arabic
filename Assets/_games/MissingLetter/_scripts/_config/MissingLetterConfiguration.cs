@@ -19,6 +19,7 @@ namespace EA4S.Minigames.MissingLetter
         public IQuestionProvider Questions { get; set; }
 
         public float Difficulty { get; set; }
+        public bool PerformTutorial { get; set; }
 
         #region Game configurations
         public MissingLetterVariation Variation { get; set; }
@@ -48,6 +49,7 @@ namespace EA4S.Minigames.MissingLetter
             Difficulty = 0.5f;
             //Variation = MissingLetterVariation.MissingLetter;
             Variation = MissingLetterVariation.MissingForm;
+            PerformTutorial = true;
         }
 
         public IQuestionBuilder SetupBuilder() {

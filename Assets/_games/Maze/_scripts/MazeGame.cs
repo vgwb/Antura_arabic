@@ -10,9 +10,9 @@ using DG.Tweening;
 
 namespace EA4S.Minigames.Maze
 {
-    public class MazeGameManager : MiniGame
+    public class MazeGame : MiniGame
     {
-        public static MazeGameManager instance;
+        public static MazeGame instance;
 
         private const int MAX_NUM_ROUNDS = 6;
 
@@ -127,7 +127,8 @@ namespace EA4S.Minigames.Maze
 
         public void startGame()
         {
-            isTutorialMode = true;
+            isTutorialMode = GetConfiguration().PerformTutorial;
+
             setupIndices();
 
             fleePositions = new List<Vector3>();
@@ -158,6 +159,7 @@ namespace EA4S.Minigames.Maze
             MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Title, () =>
             {
                 initCurrentLetter();
+                if (!isTutorialMode) initUI();
             });
 
             Context.GetAudioManager().PlayMusic(Music.Theme8);
@@ -203,8 +205,12 @@ namespace EA4S.Minigames.Maze
             currentMazeLetter.NotifyDrawnLetterWrongly();
         }
 
-        public void initUI()
+        private bool uiInitialized = false;
+        private void initUI()
         {
+            if (uiInitialized) return;
+            uiInitialized = true;
+
             //ui:
             MinigamesUI.Init(MinigamesUIElement.Starbar | MinigamesUIElement.Timer);
 
@@ -328,7 +334,6 @@ namespace EA4S.Minigames.Maze
                             isTutorialMode = false;
                             initUI();
                         }
-
 
                         roundNumberText.text = "#" + (roundNumber + 1);
                         restartCurrentLetter(won);

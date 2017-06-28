@@ -10,7 +10,7 @@ namespace EA4S.Minigames.Maze
         {
             if (other.gameObject.name == "MazeLetter")
             {
-                MazeGameManager.instance.OnDrawnLetterWrongly();
+                MazeGame.instance.OnDrawnLetterWrongly();
             }
         }
     }

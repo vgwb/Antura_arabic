@@ -101,7 +101,7 @@ namespace EA4S.Minigames.MixedLetters
                 separateLetterController.SetIsKinematic(false);
                 separateLetterController.SetCorrectDropZone(MixedLettersGame.instance.dropZoneControllers[indexToSpawn]);
                 MixedLettersGame.instance.dropZoneControllers[indexToSpawn].correctLetter = separateLetterController;
-                separateLetterController.SetIsSubjectOfTutorial(MixedLettersGame.instance.roundNumber == 0 && indexToSpawn == 0);
+                separateLetterController.SetIsSubjectOfTutorial(MixedLettersGame.instance.roundNumber == 0 && indexToSpawn == 0 && MixedLettersGame.instance.PerformTutorial);
                 separateLetterController.AddForce(new Vector3(throwLetterToTheRight ? Random.Range(2f, 6f) : Random.Range(-6f, -2f), Constants.GRAVITY.y * -0.45f), ForceMode.VelocityChange);
 
                 throwLetterToTheRight = !throwLetterToTheRight;

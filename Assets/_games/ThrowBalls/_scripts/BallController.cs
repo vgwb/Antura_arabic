@@ -191,7 +191,7 @@ namespace EA4S.Minigames.ThrowBalls
                 case State.Idle:
                     rigidBody.isKinematic = false;
 
-                    if (!GameState.instance.IsTutorialLevel())
+                    if (!GameState.instance.IsTutorialRound())
                     {
                         AnturaController.instance.Enable();
                         AnturaController.instance.Reset();

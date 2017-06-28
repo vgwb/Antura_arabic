@@ -16,6 +16,7 @@ namespace EA4S.Minigames.Egg
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
         public float Difficulty { get; set; }
+        public bool PerformTutorial { get; set; }
         public EggVariation Variation { get; set; }
 
         /////////////////
@@ -44,6 +45,8 @@ namespace EA4S.Minigames.Egg
                 Questions = new SampleEggSequenceQuestionProvider();
             else
                 Questions = new SampleEggSingleQuestionProvider();
+
+            PerformTutorial = true;
         }
 
         public IQuestionBuilder SetupBuilder()

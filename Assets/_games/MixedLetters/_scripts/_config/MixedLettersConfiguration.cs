@@ -16,6 +16,7 @@ namespace EA4S.Minigames.MixedLetters
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
         public float Difficulty { get; set; }
+        public bool PerformTutorial { get; set; }
         public MixedLettersVariation Variation { get; set; }
 
         /////////////////
@@ -40,6 +41,7 @@ namespace EA4S.Minigames.MixedLetters
             Variation = MixedLettersVariation.Alphabet;
             Context = new MinigamesGameContext(MiniGameCode.MixedLetters_alphabet, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
+            PerformTutorial = true;
         }
 
         public IQuestionBuilder SetupBuilder() {
@@ -58,6 +60,8 @@ namespace EA4S.Minigames.MixedLetters
                     builder = new LettersInWordQuestionBuilder(nPacks, maximumWordLength: 6, useAllCorrectLetters: true, parameters: builderParams);
                     break;
             }
+
+            UnityEngine.Debug.Log("Chosen variation: " + Variation);
 
             return builder;
         }

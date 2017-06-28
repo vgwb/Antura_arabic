@@ -86,7 +86,7 @@ namespace EA4S.Minigames.Maze
             launchPositionColor = Color.Lerp(yellowParticleSystemColor, Color.white, 0.2f);
             launchPositionColor.a = 1f;
 
-            highlightFX = Instantiate(MazeGameManager.instance.arrowTargetPrefab);
+            highlightFX = Instantiate(MazeGame.instance.arrowTargetPrefab);
             highlightFX.transform.position = transform.position;
             highlightFX.transform.localScale = Vector3.one * 2f;
             highlightFX.transform.parent = gameObject.transform;

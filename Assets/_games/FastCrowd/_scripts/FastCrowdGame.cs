@@ -128,7 +128,7 @@ namespace EA4S.Minigames.FastCrowd
         {
             //float difficulty = FastCrowdConfiguration.Instance.Difficulty;
 
-            showTutorial = true;
+            showTutorial = GetConfiguration().PerformTutorial;
 
             IntroductionState = new FastCrowdIntroductionState(this);
             QuestionState = new FastCrowdQuestionState(this);

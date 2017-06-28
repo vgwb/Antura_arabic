@@ -57,6 +57,11 @@ namespace EA4S.Minigames.MakeFriends
         private int _currentScore = 0;
         private bool isTutorialRound;
 
+        public bool PerformTutorial
+        {
+            get { return GetConfiguration().PerformTutorial; }
+        }
+
         public int CurrentScore
         {
             get { return _currentScore; }

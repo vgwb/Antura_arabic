@@ -15,8 +15,9 @@ namespace EA4S.Minigames.TakeMeHome
 
 		public void EnterState()
 		{
-            
-			game.IncrementRound();
+            game.initUI();
+
+            game.IncrementRound();
 
 			if (game.currentRound > 6) {
 				game.SetCurrentState(game.EndState);

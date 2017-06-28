@@ -9,6 +9,7 @@ namespace EA4S.Minigames.SickLetters
         // Game configuration
         public IGameContext Context { get; set; }
         public float Difficulty { get; set; }
+        public bool PerformTutorial { get; set; }
         public IQuestionProvider Questions { get; set; }
         //public SickLettersQuestionProvider SickLettersQuestions { get; set; }
 
@@ -34,6 +35,7 @@ namespace EA4S.Minigames.SickLetters
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Context = new MinigamesGameContext(MiniGameCode.SickLetters, System.DateTime.Now.Ticks.ToString());
             Questions = new SickLettersQuestionProvider();
+            PerformTutorial = true;
             //SickLettersQuestions = new SickLettersQuestionProvider();
             Difficulty = 0.1f;
             EA4S.Teacher.ConfigAI.verboseTeacher = true;

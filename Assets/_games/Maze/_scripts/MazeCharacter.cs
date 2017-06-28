@@ -366,12 +366,12 @@ namespace EA4S.Minigames.Maze
                 transform.DOKill(false);
                 toggleVisibility(true);
 
-                MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
+                MazeGame.instance.ColorCurrentLinesAsIncorrect();
 
             },
                 () =>
                 {
-                    MazeGameManager.instance.lostCurrentLetter();
+                    MazeGame.instance.lostCurrentLetter();
                 }));
         }
 
@@ -402,7 +402,7 @@ namespace EA4S.Minigames.Maze
         public void setClickedDot()
         {
             toggleVisibility(false);
-            MazeGameManager.instance.moveToNext(true);
+            MazeGame.instance.moveToNext(true);
         }
 
         public void nextPath()
@@ -484,7 +484,7 @@ namespace EA4S.Minigames.Maze
 
         public bool canMouseBeDown()
         {
-            if (_fruits == null || MazeGameManager.instance.isShowingAntura) return false;
+            if (_fruits == null || MazeGame.instance.isShowingAntura) return false;
 
             if (_fruits.Count == 0)
                 return false;
@@ -497,7 +497,7 @@ namespace EA4S.Minigames.Maze
 
             if (((pos - _fruits[0].transform.position).sqrMagnitude) <= 1)
             {
-                MazeGameManager.instance.appendToLine(_fruits[0].transform.position);
+                MazeGame.instance.appendToLine(_fruits[0].transform.position);
                 return true;
             }
 
@@ -555,7 +555,7 @@ namespace EA4S.Minigames.Maze
                 characterIsMoving = false;
                 toggleVisibility(false);
                 transform.DOKill(false);
-                MazeGameManager.instance.moveToNext(true);
+                MazeGame.instance.moveToNext(true);
 
                 if (currentFruitList == Fruits.Count - 1)
                 {
@@ -588,7 +588,7 @@ namespace EA4S.Minigames.Maze
 
                     MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
 
-                    if (!MazeGameManager.instance.isTutorialMode)
+                    if (!MazeGame.instance.isTutorialMode)
                     {
                         MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
                     }
@@ -677,7 +677,7 @@ namespace EA4S.Minigames.Maze
 
             if (previousPosition != initialPosition && previousPosition != targetPos)
             {
-                MazeGameManager.instance.appendToLine(targetPos);
+                MazeGame.instance.appendToLine(targetPos);
             }
 
             var raycastSource = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(Camera.main.transform.position.y - raycastCheckTarget.y));
@@ -686,15 +686,15 @@ namespace EA4S.Minigames.Maze
             if (previousPosition != targetPos)
             {
                 characterWayPoints.Add(targetPos + new Vector3(0, 0.5f, 0));
-                var oldDrawingToolPosition = MazeGameManager.instance.drawingTool.transform.position;
+                var oldDrawingToolPosition = MazeGame.instance.drawingTool.transform.position;
                 var newDrawingToolPosition = targetPos + new Vector3(0, 0.5f, 0);
-                MazeGameManager.instance.drawingTool.transform.position = newDrawingToolPosition;
+                MazeGame.instance.drawingTool.transform.position = newDrawingToolPosition;
 
-                if (MazeGameManager.instance.pointsList.Count >= 2)
+                if (MazeGame.instance.pointsList.Count >= 2)
                 {
                     RaycastHit hitInfo;
 
-                    raycastCheckTarget = MazeGameManager.instance.pointsList[MazeGameManager.instance.pointsList.Count - 2];
+                    raycastCheckTarget = MazeGame.instance.pointsList[MazeGame.instance.pointsList.Count - 2];
                     raycastCheckTarget.y = TrackBounds.instance.transform.position.y;
 
                     if (Physics.Raycast(raycastSource, raycastCheckTarget - raycastSource, out hitInfo, Vector3.Distance(raycastSource, raycastCheckTarget), LayerMask.GetMask("TrackBounds")))
@@ -704,7 +704,7 @@ namespace EA4S.Minigames.Maze
                         var adjustedLinePoint = Camera.main.WorldToScreenPoint(collisionPoint);
                         adjustedLinePoint = new Vector3(adjustedLinePoint.x, adjustedLinePoint.y, -distance);
                         adjustedLinePoint = Camera.main.ScreenToWorldPoint(adjustedLinePoint);
-                        MazeGameManager.instance.AdjustLastPointOfLine(adjustedLinePoint);
+                        MazeGame.instance.AdjustLastPointOfLine(adjustedLinePoint);
 
                         var pointOfImpact = Camera.main.WorldToScreenPoint(collisionPoint);
                         pointOfImpact = new Vector3(pointOfImpact.x, pointOfImpact.y, Camera.main.transform.position.y - transform.position.y - 2f);
@@ -720,7 +720,7 @@ namespace EA4S.Minigames.Maze
 
                 toggleVisibility(true);
                 initMovement();
-                MazeGameManager.instance.timer.StopTimer();
+                MazeGame.instance.timer.StopTimer();
             }
 
         }
@@ -771,7 +771,7 @@ namespace EA4S.Minigames.Maze
                 isAppearing = false;
 
                 //transform.rotation = initialRotation;
-                MazeGameManager.instance.showCurrentTutorial();
+                MazeGame.instance.showCurrentTutorial();
             });
 
         }
@@ -814,7 +814,7 @@ namespace EA4S.Minigames.Maze
             fleePathPoints.Add(midPoint);
             fleePathPoints.Add(endPoint);
 
-            LL.Initialize(MazeGameManager.instance.currentLL);
+            LL.Initialize(MazeGame.instance.currentLL);
 
             var fleePathPointsArray = fleePathPoints.ToArray();
 
@@ -834,7 +834,7 @@ namespace EA4S.Minigames.Maze
                 //wait then show cracks:
                 StartCoroutine(waitAndPerformCallback(3.5f, () =>
                 {
-                    MazeGameManager.instance.showAllCracks();
+                    MazeGame.instance.showAllCracks();
                     donotHandleBorderCollision = true;
                     characterIsMoving = false;
                     transform.DOKill(false);
@@ -848,7 +848,7 @@ namespace EA4S.Minigames.Maze
 
                     ragdoll.deleteOnRagdollHit = false;
 
-                    MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
+                    MazeGame.instance.ColorCurrentLinesAsIncorrect();
 
                     var tickPosition = transform.position;
                     tickPosition.z -= 1f;
@@ -857,7 +857,7 @@ namespace EA4S.Minigames.Maze
                     Tutorial.TutorialUI.MarkNo(tickPosition, Tutorial.TutorialUI.MarkSize.Normal);
                     MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
 
-                    if (!MazeGameManager.instance.isTutorialMode)
+                    if (!MazeGame.instance.isTutorialMode)
                     {
                         MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
                     }
@@ -865,7 +865,7 @@ namespace EA4S.Minigames.Maze
                 },
                 () =>
                 {
-                    MazeGameManager.instance.lostCurrentLetter();
+                    MazeGame.instance.lostCurrentLetter();
                 }));
             });
         }
@@ -914,7 +914,7 @@ namespace EA4S.Minigames.Maze
 
             celebrationPathPoints.Add(offscreenPoint);
 
-            LL.Initialize(MazeGameManager.instance.currentLL);
+            LL.Initialize(MazeGame.instance.currentLL);
             LL.Horraying = true;
 
             bool braked = false;
@@ -964,7 +964,7 @@ namespace EA4S.Minigames.Maze
                 case LLState.Braked:
                     if (stateTime > DELAY_TO_PRONOUNCE_LETTER && !pronouncedLetter)
                     {
-                        letterPronounciation = MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(MazeGameManager.instance.currentLL);
+                        letterPronounciation = MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(MazeGame.instance.currentLL);
                         pronouncedLetter = true;
                     }
 

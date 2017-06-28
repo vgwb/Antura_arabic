@@ -98,7 +98,7 @@ namespace EA4S.Minigames.Maze
 
             //currentWayPoint = 0;
             isShownOnce = true;
-            MazeGameManager.instance.timer.StartTimer();
+            MazeGame.instance.timer.StartTimer();
             if (wayPoints.Count == 1)
                 TutorialUI.ClickRepeat(wayPoints[0]);
             else

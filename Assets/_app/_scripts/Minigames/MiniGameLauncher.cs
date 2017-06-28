@@ -3,7 +3,6 @@ using EA4S.MinigamesCommon;
 using EA4S.Teacher;
 using UnityEngine;
 using EA4S.Assessment;
-using EA4S.Audio;
 
 namespace EA4S.MinigamesAPI
 {
@@ -44,10 +43,11 @@ namespace EA4S.MinigamesAPI
 
             if (AppConstants.VerboseLogging) Debug.Log("StartGame " + _gameCode.ToString());
 
-            // Retrieve the configuration for the given minigame
+            // Assign the configuration for the given minigame
             string minigameSession = System.DateTime.Now.Ticks.ToString();
             IGameConfiguration currentGameConfig = ConfigureMiniGame(_gameCode, minigameSession);
             currentGameConfig.Difficulty = _launchConfiguration.Difficulty;
+            currentGameConfig.PerformTutorial = _launchConfiguration.PerformTutorial;
 
             // Set also the number of rounds
             // @note: only for assessment, for now
@@ -61,7 +61,7 @@ namespace EA4S.MinigamesAPI
             var questionPacks = questionPacksGenerator.GenerateQuestionPacks(questionBuilder);
             currentGameConfig.Questions = new SequentialQuestionPackProvider(questionPacks);
 
-            // Comunicate to LogManager the start of a new single minigame play session.
+            // Communicate to LogManager the start of a new single minigame play session.
             if (AppConstants.DebugLogInserts) Debug.Log("InitGameplayLogSession " + _gameCode.ToString());
             LogManager.I.LogInfo(InfoEvent.GameStart, "{\"minigame\":\"" + _gameCode.ToString() + "\"}");
             LogManager.I.StartMiniGame();

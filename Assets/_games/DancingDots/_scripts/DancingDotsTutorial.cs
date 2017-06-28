@@ -27,8 +27,8 @@ namespace EA4S.Minigames.DancingDots
         }
         void Start()
         {
-            
-            StartCoroutine(coDoTutorial());
+            if (gameManager.PerformTutorial)
+                StartCoroutine(coDoTutorial());
             
             //warm up
             TutorialUI.DrawLine(-100 * Vector3.up, -100 * Vector3.up, TutorialUI.DrawLineMode.Arrow);

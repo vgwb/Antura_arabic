@@ -44,14 +44,14 @@ namespace EA4S.Minigames.Egg
 
         public bool stagePositiveResult { get; set; }
 
-        bool tutorial;
+        bool tutorialFlag;
 
         public bool ShowTutorial
         {
             get
             {
-                if (tutorial) {
-                    tutorial = false;
+                if (tutorialFlag) {
+                    tutorialFlag = false;
                     return true;
                 } else return false;
             }
@@ -83,7 +83,7 @@ namespace EA4S.Minigames.Egg
 
             CurrentQuestion = null;
 
-            tutorial = true;
+            tutorialFlag = GetConfiguration().PerformTutorial;
             overlayWidgetInitialized = false;
 
             currentStage = 0;

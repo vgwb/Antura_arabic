@@ -19,6 +19,7 @@ namespace EA4S.Minigames.ReadingGame
         public ReadingGameVariation Variation { get; set; }
 
         public float Difficulty { get; set; }
+        public bool PerformTutorial { get; set; }
 
         public int GetDiscreteDifficulty(int maximum)
         {
@@ -53,6 +54,7 @@ namespace EA4S.Minigames.ReadingGame
 
             Context = new MinigamesGameContext(MiniGameCode.ReadingGame, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.0f;
+            PerformTutorial = true;
         }
 
         public IQuestionBuilder SetupBuilder() {

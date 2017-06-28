@@ -30,7 +30,7 @@ namespace EA4S.Minigames.Maze
 
             gameObject.name = name;
 
-            GameObject character = (GameObject)Instantiate(MazeGameManager.instance.characterPrefab, transform);
+            GameObject character = (GameObject)Instantiate(MazeGame.instance.characterPrefab, transform);
             character.name = "Mazecharacter";
             character.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
             MazeCharacter mazeCharacter = character.GetComponent<MazeCharacter>();
@@ -122,7 +122,7 @@ namespace EA4S.Minigames.Maze
         private void AddDotAndHideArrow(Transform arrowParent)
         {
             GameObject firstArrow = arrowParent.GetChild(0).gameObject;
-            GameObject newDot = Instantiate(MazeGameManager.instance.dotPrefab, firstArrow.transform);
+            GameObject newDot = Instantiate(MazeGame.instance.dotPrefab, firstArrow.transform);
             newDot.name = "Dot";
             newDot.transform.localPosition = Vector3.zero;
             newDot.transform.rotation = firstArrow.transform.rotation;

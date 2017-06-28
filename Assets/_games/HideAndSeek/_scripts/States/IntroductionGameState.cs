@@ -22,7 +22,12 @@ namespace EA4S.Minigames.HideAndSeek
 
             if (timer < 0)
             {
-                game.SetCurrentState(game.TutorialState);//questionState
+                if (game.PerformTutorial)
+                {
+                    game.SetCurrentState(game.TutorialState);
+                } else {
+                    game.SetCurrentState(game.QuestionState);
+                }
             }
         }
 

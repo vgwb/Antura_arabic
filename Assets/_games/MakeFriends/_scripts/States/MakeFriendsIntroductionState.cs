@@ -7,7 +7,6 @@ namespace EA4S.Minigames.MakeFriends
         MakeFriendsGame game;
 
         float timer = 1.5f;
-        bool playTutorial = true;
         bool takenAction = false;
 
         public MakeFriendsIntroductionState(MakeFriendsGame game)
@@ -42,9 +41,9 @@ namespace EA4S.Minigames.MakeFriends
             {
                 takenAction = true;
 
-                if (playTutorial)
+                if (game.PerformTutorial)
                 {
-                    this.game.PlayTutorial();
+                    game.PlayTutorial();
                 }
                 else
                 {

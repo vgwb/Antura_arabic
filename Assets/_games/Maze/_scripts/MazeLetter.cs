@@ -20,7 +20,7 @@ namespace EA4S.Minigames.Maze
 
         void Update()
         {
-            if (MazeGameManager.instance.gameEnded)
+            if (MazeGame.instance.gameEnded)
             {
                 return;
             }
@@ -34,10 +34,10 @@ namespace EA4S.Minigames.Maze
             //should we replay tutorial?
             if (!isDrawing)
             {
-                if (!MazeGameManager.instance.currentCharacter || MazeGameManager.instance.currentCharacter.isFleeing || MazeGameManager.instance.currentCharacter.isAppearing)
+                if (!MazeGame.instance.currentCharacter || MazeGame.instance.currentCharacter.isFleeing || MazeGame.instance.currentCharacter.isAppearing)
                     return;
 
-                if (!MazeGameManager.instance.isTutorialMode && MazeGameManager.instance.currentTutorial && MazeGameManager.instance.currentTutorial.isShownOnce && MazeGameManager.instance.isShowingAntura == false)
+                if (!MazeGame.instance.isTutorialMode && MazeGame.instance.currentTutorial && MazeGame.instance.currentTutorial.isShownOnce && MazeGame.instance.isShowingAntura == false)
                 {
                     anturaSeconds += Time.deltaTime;
 
@@ -50,14 +50,14 @@ namespace EA4S.Minigames.Maze
                     if (anturaSeconds >= 10)
                     {
                         anturaSeconds = 0;
-                        MazeGameManager.instance.onIdleTime();
+                        MazeGame.instance.onIdleTime();
                     }
 
                 }
 
-                if (MazeGameManager.instance.currentTutorial != null &&
-                    MazeGameManager.instance.currentTutorial.isStopped == false &&
-                    MazeGameManager.instance.currentTutorial.isShownOnce == true)
+                if (MazeGame.instance.currentTutorial != null &&
+                    MazeGame.instance.currentTutorial.isStopped == false &&
+                    MazeGame.instance.currentTutorial.isShownOnce == true)
                 {
 
                     idleSeconds += Time.deltaTime;
@@ -65,7 +65,7 @@ namespace EA4S.Minigames.Maze
                     if (idleSeconds >= 5)
                     {
                         idleSeconds = 0;
-                        MazeGameManager.instance.currentTutorial.showCurrentTutorial();
+                        MazeGame.instance.currentTutorial.showCurrentTutorial();
                     }
                 }
             }
@@ -87,10 +87,10 @@ namespace EA4S.Minigames.Maze
 
             Debug.Log("started Drawing!");
 
-            MazeGameManager.instance.drawingTool.SetActive(true);
+            MazeGame.instance.drawingTool.SetActive(true);
 
             idleSeconds = 0;
-            MazeGameManager.instance.currentTutorial.stopCurrentTutorial();
+            MazeGame.instance.currentTutorial.stopCurrentTutorial();
             anturaSeconds = 0;
 
             mazeCharacter.ChangeStartingFXHighlight();
@@ -103,7 +103,7 @@ namespace EA4S.Minigames.Maze
         {
             if (CanLaunchRocket())
             {
-                MazeGameManager.instance.drawingTool.SetActive(false);
+                MazeGame.instance.drawingTool.SetActive(false);
                 LaunchRocket();
             }
         }
@@ -114,12 +114,12 @@ namespace EA4S.Minigames.Maze
             {
                 mazeCharacter.loseState = MazeCharacter.LoseState.OutOfBounds;
 
-                MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
+                MazeGame.instance.ColorCurrentLinesAsIncorrect();
 
                 Tutorial.TutorialUI.MarkNo(pointOfImpact);
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
 
-                if (!MazeGameManager.instance.isTutorialMode)
+                if (!MazeGame.instance.isTutorialMode)
                 {
                     MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
                 }
@@ -130,7 +130,7 @@ namespace EA4S.Minigames.Maze
 
         private bool CanLaunchRocket()
         {
-            return MazeGameManager.instance.tutorialForLetterisComplete() && isDrawing;
+            return MazeGame.instance.tutorialForLetterisComplete() && isDrawing;
         }
 
         private void LaunchRocket()
@@ -141,7 +141,7 @@ namespace EA4S.Minigames.Maze
 
             
 
-            MazeGameManager.instance.timer.StopTimer();
+            MazeGame.instance.timer.StopTimer();
         }
 
         public void NotifyFruitGotMouseOver(MazeArrow fruit)

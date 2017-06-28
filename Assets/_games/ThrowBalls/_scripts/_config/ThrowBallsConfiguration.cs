@@ -17,6 +17,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         #region Game configurations
         public float Difficulty { get; set; }
+        public bool PerformTutorial { get; set; }
         public ThrowBallsVariation Variation { get; set; }
         #endregion
 
@@ -35,14 +36,11 @@ namespace EA4S.Minigames.ThrowBalls
         private ThrowBallsConfiguration() {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-
             Questions = new ThrowBallsQuestionProvider();
-
             Variation = ThrowBallsVariation.letters;
-
             Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_letters, System.DateTime.Now.Ticks.ToString());
-            
             Difficulty = 0.7f;
+            PerformTutorial = true;
         }
 
         #region external configuration call

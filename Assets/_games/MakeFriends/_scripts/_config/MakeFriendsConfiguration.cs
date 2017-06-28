@@ -18,6 +18,7 @@ namespace EA4S.Minigames.MakeFriends
         public IQuestionProvider Questions { get; set; }
 
         public float Difficulty { get; set; }
+        public bool PerformTutorial { get; set; }
 
         public MakeFriendsVariation Variation {
             get {
@@ -99,6 +100,7 @@ namespace EA4S.Minigames.MakeFriends
             Questions = new MakeFriendsQuestionProvider();
             Context = new MinigamesGameContext(MiniGameCode.MakeFriends, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0f;
+            PerformTutorial = true;
         }
 
         public IQuestionBuilder SetupBuilder()

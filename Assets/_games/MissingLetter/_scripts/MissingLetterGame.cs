@@ -192,6 +192,12 @@ namespace EA4S.Minigames.MissingLetter
         public MissingLetterPlayState PlayState { get; private set; }
         public MissingLetterResultState ResultState { get; private set; }
         public MissingLetterTutorialState TutorialState { get; private set; }
+
+        public bool PerformTutorial
+        {
+            get { return GetConfiguration().PerformTutorial; }
+        }
+
         #endregion
 
     }

@@ -58,7 +58,6 @@ namespace EA4S.Minigames.TakeMeHome
                 else
                 {
                     game.SetCurrentState(game.IntroductionState);
-                    game.initUI();
                 }
                     
             }

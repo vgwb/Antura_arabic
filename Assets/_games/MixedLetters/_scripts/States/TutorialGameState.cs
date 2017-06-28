@@ -23,22 +23,31 @@ namespace EA4S.Minigames.MixedLetters
 
         public void EnterState()
         {
-            game.DisableRepeatPromptButton();
-            game.GenerateNewWord();
+            if (game.PerformTutorial)
+            {
+                game.DisableRepeatPromptButton();
+                game.GenerateNewWord();
 
-            VictimLLController.instance.HideVictoryRays();
-            VictimLLController.instance.Reset();
-            VictimLLController.instance.Enable();
+                VictimLLController.instance.HideVictoryRays();
+                VictimLLController.instance.Reset();
+                VictimLLController.instance.Enable();
 
-            Vector3 victimLLPosition = VictimLLController.instance.transform.position;
-            victimLLPosition.x = Random.Range(0, 40) % 2 == 0 ? 0.5f : -0.5f;
-            VictimLLController.instance.SetPosition(victimLLPosition);
+                Vector3 victimLLPosition = VictimLLController.instance.transform.position;
+                victimLLPosition.x = Random.Range(0, 40) % 2 == 0 ? 0.5f : -0.5f;
+                VictimLLController.instance.SetPosition(victimLLPosition);
+            }
 
             audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_spelling_Title : Database.LocalizationDataId.MixedLetters_alphabet_Title, OnTitleVoiceOverDone);
         }
 
         private void OnTitleVoiceOverDone()
         {
+            if (!game.PerformTutorial)
+            {
+                game.SetCurrentState(game.IntroductionState);
+                return;
+            }
+
             game.StartCoroutine(OnTitleVoiceOverDoneCoroutine());
         }
 

@@ -11,11 +11,12 @@ namespace EA4S.Minigames.ColorTickle
         ColorTickleGame game;
 
         float timer = 1f;
+        private bool PerformTutorial;
 
-
-        public IntroductionGameState(ColorTickleGame game)
+        public IntroductionGameState(ColorTickleGame game, bool PerformTutorial)
         {
             this.game = game;
+            this.PerformTutorial = PerformTutorial;
         }
 
         public void EnterState()
@@ -48,7 +49,12 @@ namespace EA4S.Minigames.ColorTickle
 				}
 				game.tutorialLetter.gameObject.SetActive(false);
 
-				game.SetCurrentState(game.TutorialState);
+                if (PerformTutorial)
+                {
+                    game.SetCurrentState(game.TutorialState);
+                } else {
+                    game.SetCurrentState(game.PlayState);
+                }
             }
         }
 

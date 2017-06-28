@@ -15,7 +15,9 @@ namespace EA4S.Minigames.TakeMeHome
         public ILivingLetterDataProvider Letters { get; set; }
 		#region Game configurations
 		public float Difficulty { get; set; }
-		#endregion
+	    public bool PerformTutorial { get; set; }
+
+	    #endregion
 
 		/////////////////
 		// Singleton Pattern
@@ -38,6 +40,7 @@ namespace EA4S.Minigames.TakeMeHome
 			Letters = new TakeMeHomeLettersProvider();
             Questions = new SampleQuestionProvider();
             Difficulty = 0;
+		    PerformTutorial = true;
 		}
 
 		#region external configuration call

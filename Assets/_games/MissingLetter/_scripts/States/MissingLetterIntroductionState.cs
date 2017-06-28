@@ -36,7 +36,12 @@ namespace EA4S.Minigames.MissingLetter
 
             if (m_fTimer < 0)
             {
-                m_oGame.SetCurrentState(m_oGame.TutorialState);
+                if (m_oGame.PerformTutorial)
+                {
+                    m_oGame.SetCurrentState(m_oGame.TutorialState);
+                } else {
+                    m_oGame.SetCurrentState(m_oGame.QuestionState);
+                }
             }
         }
 

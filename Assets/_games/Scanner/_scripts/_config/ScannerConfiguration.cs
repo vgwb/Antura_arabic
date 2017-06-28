@@ -15,7 +15,8 @@ namespace EA4S.Minigames.Scanner
 
         #region Game configurations
         public float Difficulty { get; set; }
-		public ScannerVariation Variation { get; set; }
+	    public bool PerformTutorial { get; set; }
+	    public ScannerVariation Variation { get; set; }
         #endregion
 //		public LetterBehaviour.BehaviourSettings BehaviourSettings { get; set; }
 
@@ -43,7 +44,8 @@ namespace EA4S.Minigames.Scanner
 
             Questions = new SampleQuestionProvider();
             Context = new MinigamesGameContext(MiniGameCode.Scanner, System.DateTime.Now.Ticks.ToString());
-        }
+		    PerformTutorial = true;
+		}
 
         #region external configuration call
         public static void SetConfiguration(float _difficulty, int _variation) {

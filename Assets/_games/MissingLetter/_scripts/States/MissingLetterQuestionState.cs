@@ -21,12 +21,26 @@ namespace EA4S.Minigames.MissingLetter
 
         void OnQuestionCompleted()
         {
-            M_oGgame.SetCurrentState(M_oGgame.TutorialState);
+            if (M_oGgame.PerformTutorial)
+            {
+                M_oGgame.SetCurrentState(M_oGgame.TutorialState);
+            }
+            else
+            {
+                M_oGgame.SetCurrentState(M_oGgame.PlayState);
+            }
         }
 
         public void Update(float delta)
         {
-            M_oGgame.SetCurrentState(M_oGgame.TutorialState);
+            if (M_oGgame.PerformTutorial)
+            {
+                M_oGgame.SetCurrentState(M_oGgame.TutorialState);
+            }
+            else
+            {
+                M_oGgame.SetCurrentState(M_oGgame.PlayState);
+            }
         }
 
         public void UpdatePhysics(float delta)

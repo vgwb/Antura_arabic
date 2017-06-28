@@ -8,13 +8,15 @@
     {
         public float Difficulty;
         public int NumberOfRounds;
+        public bool PerformTutorial;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MinigameLaunchConfiguration"/> class.
         /// </summary>
-        public MinigameLaunchConfiguration(float _Difficulty = 0, int _NumberOfRounds = 1) {
+        public MinigameLaunchConfiguration(float _Difficulty = 0, int _NumberOfRounds = 1, bool _PerformTutorial = true) {
             Difficulty = _Difficulty;
             NumberOfRounds = _NumberOfRounds;
+            PerformTutorial = _PerformTutorial;
         }
 
     }

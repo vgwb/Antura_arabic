@@ -12,6 +12,7 @@ namespace EA4S.Minigames.DancingDots {
 
         #region Game configurations
         public float Difficulty { get; set; }
+        public bool PerformTutorial { get; set; }
         public DancingDotsVariation Variation { get; set; }
         #endregion
 
@@ -37,6 +38,7 @@ namespace EA4S.Minigames.DancingDots {
 
             Variation = DancingDotsVariation.V_1;
 			Questions = new DancingDotsQuestionProvider();
+            PerformTutorial = true;
         }
 
         #region external configuration call
@@ -54,7 +56,7 @@ namespace EA4S.Minigames.DancingDots {
         {
             IQuestionBuilder builder = null;
 
-            int nPacks = 7; // extra one for the tutorial
+            int nPacks = PerformTutorial ? 7 : 6; // extra one for the tutorial
             int nCorrect = 1;
             int nWrong = 0;
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.Minigames.FastCrowd;
+using UnityEngine;
 using EA4S.MinigamesCommon;
 using EA4S.UI;
 
@@ -7,6 +8,8 @@ namespace EA4S.Minigames.MixedLetters
     public class IntroductionGameState : IState
     {
         MixedLettersGame game;
+
+        private bool uiInitialised = false;
 
         private float anturaEnterTimer;
         private bool anturaEntered = false;
@@ -77,8 +80,9 @@ namespace EA4S.Minigames.MixedLetters
             victimLLPosition.x = Random.Range(0, 40) % 2 == 0 ? 0.5f : -0.5f;
             VictimLLController.instance.SetPosition(victimLLPosition);*/
             
-            if (game.roundNumber == 1)
+            if (!uiInitialised)
             {
+                uiInitialised = true;
                 MinigamesUI.Init(MinigamesUIElement.Timer | MinigamesUIElement.Starbar);
                 MinigamesUI.Timer.Setup(timePerRound);
             }

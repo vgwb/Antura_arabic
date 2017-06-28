@@ -225,12 +225,14 @@ namespace EA4S.Minigames.ThrowBalls
             }
         }
 
+        private bool uiInitialised = false;
         public IEnumerator StartNewRound()
         {
             ResetScene();
 
-            if (roundNumber == 1)
+            if (!uiInitialised && !IsTutorialRound())
             {
+                uiInitialised = true;
                 MinigamesUI.Init(MinigamesUIElement.Lives | MinigamesUIElement.Starbar);
                 MinigamesUI.Lives.Setup(MAX_NUM_BALLS);
             }
@@ -257,7 +259,7 @@ namespace EA4S.Minigames.ThrowBalls
 
             int indexOfCorrectLetter = 0;
 
-            if (game.Difficulty <= ThrowBallsGame.ThrowBallsDifficulty.Easy || IsTutorialLevel())
+            if (game.Difficulty <= ThrowBallsGame.ThrowBallsDifficulty.Easy || IsTutorialRound())
             {
                 for (int i = 0; i < NumLettersInCurrentRound; i++)
                 {
@@ -305,7 +307,7 @@ namespace EA4S.Minigames.ThrowBalls
             UIController.instance.EnableLetterHint();
             UIController.instance.SetLivingLetterData(question);
 
-            if (IsTutorialLevel())
+            if (IsTutorialRound())
             {
                 switch (ThrowBallsConfiguration.Instance.Variation)
                 {
@@ -339,8 +341,9 @@ namespace EA4S.Minigames.ThrowBalls
 
             List<int> sortedIndices = SortLettersByZIndex(currentLettersForLettersInWord.Count);
 
-            if (roundNumber == 1)
-            {
+            if (!uiInitialised && !IsTutorialRound())
+            { 
+                uiInitialised = true;
                 MinigamesUI.Init(MinigamesUIElement.Lives | MinigamesUIElement.Starbar);
                 MinigamesUI.Lives.Setup(MAX_NUM_BALLS);
             }
@@ -386,7 +389,7 @@ namespace EA4S.Minigames.ThrowBalls
 
             BallController.instance.Enable();
 
-            if (IsTutorialLevel())
+            if (IsTutorialRound())
             {
                 switch (ThrowBallsConfiguration.Instance.Variation)
                 {
@@ -485,7 +488,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         public void OnBallLost()
         {
-            if (isRoundOngoing && roundNumber > 0)
+            if (isRoundOngoing && !IsTutorialRound())
             {
                 numBalls--;
 
@@ -498,7 +501,7 @@ namespace EA4S.Minigames.ThrowBalls
                 }
             }
 
-            else if (roundNumber == 0)
+            else if (IsTutorialRound())
             {
                 ShowTutorialUI();
             }
@@ -599,7 +602,7 @@ namespace EA4S.Minigames.ThrowBalls
         {
             if (isRoundOngoing)
             {
-                if (roundNumber > 0)
+                if (!IsTutorialRound())
                 {
                     numRoundsWon++;
 
@@ -733,7 +736,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         private void ConfigureLetterPropAndMotionVariation(LetterController letterController)
         {
-            if (IsTutorialLevel())
+            if (IsTutorialRound())
             {
                 letterController.SetMotionVariation(LetterController.MotionVariation.Idle);
                 letterController.SetPropVariation(LetterController.PropVariation.Nothing);
@@ -842,7 +845,7 @@ namespace EA4S.Minigames.ThrowBalls
                 letter.SetActive(false);
             }
 
-            Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(NumLettersInCurrentRound, roundNumber == 0);
+            Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(NumLettersInCurrentRound, IsTutorialRound());
 
             for (int i = 0; i < NumLettersInCurrentRound; i++)
             {
@@ -854,7 +857,7 @@ namespace EA4S.Minigames.ThrowBalls
 
             numBalls = MAX_NUM_BALLS;
 
-            if (roundNumber > 1)
+            if (roundNumber > 1 || !game.PerformTutorial && roundNumber > 0)
             {
                 MinigamesUI.Lives.ResetToMax();
             }
@@ -870,7 +873,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         public void Update(float delta)
         {
-            if (roundNumber == 0)
+            if (IsTutorialRound())
             {
                 if (Input.touchCount > 0)
                 {
@@ -901,7 +904,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         public void UpdatePhysics(float delta)
         {
-            if (isVoiceOverDone && roundNumber == 0 && isIdle && !BallController.instance.IsLaunched())
+            if (isVoiceOverDone && IsTutorialRound() && isIdle && !BallController.instance.IsLaunched())
             {
                 timeLeftToShowTutorialUI -= Time.fixedDeltaTime;
 
@@ -924,9 +927,9 @@ namespace EA4S.Minigames.ThrowBalls
             timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
         }
 
-        public bool IsTutorialLevel()
+        public bool IsTutorialRound()
         {
-            return roundNumber == 0;
+            return roundNumber == 0 && game.PerformTutorial;
         }
     }
 }

@@ -7,12 +7,13 @@ namespace EA4S.Balloons
         BalloonsGame game;
 
         float timer = 1.5f;
-        bool playTutorial = true;
+        bool playTutorial;
         bool takenAction = false;
 
-        public BalloonsIntroductionState(BalloonsGame game)
+        public BalloonsIntroductionState(BalloonsGame game, bool PerformTutorial)
         {
             this.game = game;
+            this.playTutorial = PerformTutorial;
         }
 
         public void EnterState()

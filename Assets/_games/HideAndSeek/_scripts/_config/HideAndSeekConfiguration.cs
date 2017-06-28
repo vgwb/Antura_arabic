@@ -13,6 +13,7 @@ namespace EA4S.Minigames.HideAndSeek
         public IQuestionProvider Questions { get; set; }
 
         public float Difficulty { get; set; }
+        public bool PerformTutorial { get; set; }
 
         /////////////////
         // Singleton Pattern
@@ -35,6 +36,7 @@ namespace EA4S.Minigames.HideAndSeek
             Context = new MinigamesGameContext(MiniGameCode.HideSeek, System.DateTime.Now.Ticks.ToString());
             Questions = new SampleQuestionProvider();
             Difficulty = 0.5f;
+            PerformTutorial = true;
         }
 
         public IQuestionBuilder SetupBuilder() {
