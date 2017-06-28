@@ -9,7 +9,6 @@ namespace EA4S.AnturaSpace
     /// <summary>
     /// Manages the AnturaSpace scene.
     /// </summary>
-    // refactor: group this class with other scene managers
     public class AnturaSpaceScene : SceneBase
     {
         const int MaxBonesInScene = 5;
@@ -67,7 +66,7 @@ namespace EA4S.AnturaSpace
         public bool InCustomizationMode { get; private set; }
         public float LastTimeCatching { get; set; }
 
-        void Awake()
+        protected override void Initialise()
         {
             InitStates();
             
@@ -97,6 +96,8 @@ namespace EA4S.AnturaSpace
 
         protected override void Start()
         {
+            base.Start();
+
             GlobalUI.ShowPauseMenu(false);
 
             if (!AppManager.I.Player.IsFirstContact()) {

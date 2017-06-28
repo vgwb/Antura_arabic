@@ -7105,6 +7105,7 @@ MonoBehaviour:
   BtAdd: {fileID: 1518872125}
   BtPlay: {fileID: 1864890498}
   ProfilesPanel: {fileID: 1777868502}
+  HomeScene: {fileID: 1465923914}
   SfxOpenCreateProfile: 31
   SfxCreateNewProfile: 8
   SfxSelectProfile: 9

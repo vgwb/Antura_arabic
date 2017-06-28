@@ -10,8 +10,10 @@ namespace EA4S.Rewards
     /// </summary>
     public class PlaySessionResultManager : SceneBase
     {
-        void Start()
+        protected override void Start()
         {
+            base.Start();
+
             // Calculate items to unlock count
             var itemsToUnlock = AppManager.I.NavigationManager.CalculateUnlockItemCount();
             var earnedStars = AppManager.I.NavigationManager.CalculateStarsCount();

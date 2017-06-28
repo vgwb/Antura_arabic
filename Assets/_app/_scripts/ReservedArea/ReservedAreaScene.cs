@@ -12,8 +12,10 @@ namespace EA4S.Scenes
         [Header("References")]
         public TextRender SupportText;
 
-        void Start()
+        protected override void Start()
         {
+            base.Start();
+
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true);
 

@@ -22,6 +22,7 @@ namespace EA4S.UI
         public UIButton BtAdd;
         public UIButton BtPlay;
         public GameObject ProfilesPanel;
+        public HomeScene HomeScene;
         [Header("Audio")]
         public Sfx SfxOpenCreateProfile;
         public Sfx SfxCreateNewProfile;
@@ -68,7 +69,7 @@ namespace EA4S.UI
             BtAdd.Bt.onClick.AddListener(() => OnClick(BtAdd));
             BtPlay.Bt.onClick.AddListener(() => {
                 AudioManager.I.PlaySound(Sfx.UIButtonClick);
-                HomeScene.I.Play();
+                HomeScene.Play();
             });
             foreach (PlayerIcon pIcon in playerIcons) {
                 PlayerIcon p = pIcon;

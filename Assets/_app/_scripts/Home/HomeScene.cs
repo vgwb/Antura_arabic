@@ -12,9 +12,6 @@ namespace EA4S.Scenes
     /// </summary>
     public class HomeScene : SceneBase
     {
-        // refactor: Remove the static access. The ProfileSelectorUI can directly access the HomeManager. Better yet, remove the Play() method from here and place something similar in AppManager.
-        public static HomeScene I;
-
         [Header("Setup")]
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
         public LLAnimationStates LLAnimation = LLAnimationStates.LL_dancing;
@@ -25,13 +22,9 @@ namespace EA4S.Scenes
         public GameObject DialogReservedArea;
         public GameObject ProfileSelectorUI;
 
-        void Awake()
-        {
-            I = this;
-        }
-
         protected override void Start()
         {
+            base.Start();
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
             AudioManager.I.PlaySound(Sfx.GameTitle);
 
@@ -64,6 +57,8 @@ namespace EA4S.Scenes
 
             AppManager.I.NavigationManager.GoToNextScene();
         }
+
+        #region Reserved Area
 
         private bool reservedAreaIsOpen = false;
 
@@ -101,5 +96,7 @@ namespace EA4S.Scenes
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
             reservedAreaIsOpen = false;
         }
+
+        #endregion
     }
 }
