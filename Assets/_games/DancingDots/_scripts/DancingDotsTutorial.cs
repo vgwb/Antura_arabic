@@ -27,7 +27,7 @@ namespace EA4S.Minigames.DancingDots
         }
         void Start()
         {
-            if (gameManager.PerformTutorial)
+            if (gameManager.TutorialEnabled)
                 StartCoroutine(coDoTutorial());
             
             //warm up

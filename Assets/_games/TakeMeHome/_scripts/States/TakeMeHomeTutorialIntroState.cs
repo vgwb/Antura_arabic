@@ -28,7 +28,7 @@ namespace EA4S.Minigames.TakeMeHome
 
         private void playedIntroSFX()
         {
-            if (!game.PerformTutorial)
+            if (!game.TutorialEnabled)
             {
                 game.SetCurrentState(game.IntroductionState);
                 return;

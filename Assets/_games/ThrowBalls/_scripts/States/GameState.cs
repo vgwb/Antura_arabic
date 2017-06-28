@@ -857,7 +857,7 @@ namespace EA4S.Minigames.ThrowBalls
 
             numBalls = MAX_NUM_BALLS;
 
-            if (roundNumber > 1 || !game.PerformTutorial && roundNumber > 0)
+            if (roundNumber > 1 || !game.TutorialEnabled && roundNumber > 0)
             {
                 MinigamesUI.Lives.ResetToMax();
             }
@@ -929,7 +929,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         public bool IsTutorialRound()
         {
-            return roundNumber == 0 && game.PerformTutorial;
+            return roundNumber == 0 && game.TutorialEnabled;
         }
     }
 }
