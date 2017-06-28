@@ -8,7 +8,7 @@ namespace EA4S.Map
     /// Controls the generation of the Map's pins and dots based on the journey's progression data.
     /// </summary>
     // refactor: rename to StageMap or similar, as there is no mini-map in the game.
-    public class MiniMap : MonoBehaviour
+    public class StageMap : MonoBehaviour
     {
         [Header("Letter")]
         public GameObject letter;
@@ -54,10 +54,8 @@ namespace EA4S.Map
 
         void CalculateStepsBetweenPines(Vector3 p1, Vector3 p2)
         {
-            // Debug.Log("DISTANCE "+Vector3.Distance(p1, p2));
-            //float step = 1f / (numStepsBetweenPines + 1);
-            //for (float perc = step; perc < 1f; perc += step) {
-            // Vector3 v = Vector3.Lerp(p1, p2, perc);
+            // Debug.Log("DISTANCE " + Vector3.Distance(p1, p2));
+
             float d = Vector3.Distance(p1, p2);
             float x = ((d - 5) - 2) / 3;
             for (p = 1; p < 3; p++) {
@@ -133,24 +131,12 @@ namespace EA4S.Map
                 for (int i = 1; i < (m + 1); i++) {
                     posPines[i].tag = "Pin";
                     posPines[i].GetComponent<MapPin>().unlocked = true;
-                    if ((i == m) && (p == 100)) {
+                    if (i == m && p == 100) {
                         return;
                     } else {
                         ropes[i].transform.GetChild(0).tag = "Rope";
                     }
                 }
-            }
-        }
-
-        private class PlaySessionState
-        {
-            public Database.PlaySessionData data;
-            public float score;
-
-            public PlaySessionState(Database.PlaySessionData _data, float _score)
-            {
-                this.data = _data;
-                this.score = _score;
             }
         }
 
