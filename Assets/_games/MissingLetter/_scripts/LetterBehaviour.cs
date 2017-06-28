@@ -57,7 +57,7 @@ namespace EA4S.Minigames.MissingLetter
         /// </summary>
         public void Refresh()
         {
-            mLetter.Initialize(mLetterData);
+            mLetter.Init(mLetterData);
         }
 
         /// <summary>
@@ -317,11 +317,11 @@ namespace EA4S.Minigames.MissingLetter
             set
             {
                 mLetterData = value;
-                mLetter.Initialize(value);
+                mLetter.Init(value);
             }
         }
 
-        public LetterObjectView mLetter;
+        public LivingLetterController mLetter;
 
         [SerializeField]
         private GameObject m_oLetterLightRef;

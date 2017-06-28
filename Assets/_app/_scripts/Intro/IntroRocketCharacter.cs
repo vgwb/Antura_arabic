@@ -12,7 +12,7 @@ namespace EA4S.Intro
     public class IntroRocketCharacter : MonoBehaviour
     {
 
-        public LetterObjectView LL;
+        public LivingLetterController LL;
         //public List<GameObject> particles;
 
         [HideInInspector]
@@ -24,7 +24,7 @@ namespace EA4S.Intro
 
         void Start()
         {
-            LL.Initialize(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom()); 
+            LL.Init(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom()); 
             LL.SetState(LLAnimationStates.LL_rocketing);
             LL.Horraying = true;
         }

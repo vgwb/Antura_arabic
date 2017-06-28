@@ -17,13 +17,13 @@ namespace EA4S.Minigames.FastCrowd
 
         public override void EnterState()
         {
-            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_dragging);
+            letter.gameObject.GetComponent<LivingLetterController>().SetState(LLAnimationStates.LL_dragging);
             
         }
 
         public override void ExitState()
         {
-            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
+            letter.gameObject.GetComponent<LivingLetterController>().SetState(LLAnimationStates.LL_idle);
         }
 
         public override void Update(float delta)

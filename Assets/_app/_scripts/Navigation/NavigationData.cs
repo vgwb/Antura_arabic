@@ -65,7 +65,7 @@ namespace EA4S.Core
             PrevSceneStack = new Stack<AppScene>();
         }
 
-        public void Initialize(PlayerProfile _playerProfile)
+        public void Init(PlayerProfile _playerProfile)
         {
             CurrentPlayer = _playerProfile;
         }

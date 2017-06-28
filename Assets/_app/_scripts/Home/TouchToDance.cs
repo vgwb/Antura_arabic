@@ -10,10 +10,10 @@ namespace EA4S.LivingLetters
     {
         public void OnMouseDown()
         {
-            var view = GetComponent<LetterObjectView>();
+            var view = GetComponent<LivingLetterController>();
             view.ToggleDance();
             var letter = AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true);
-            view.Initialize(letter);
+            view.Init(letter);
 
             AudioManager.I.PlayLetter(letter.Data, true);
         }

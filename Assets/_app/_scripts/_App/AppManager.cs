@@ -58,20 +58,14 @@ namespace EA4S
         /// <summary>
         /// Game entry point.
         /// </summary>
-        protected override void Initialise()
+        protected override void Init()
         {
             if (alreadySetup)
                 return;
 
-            base.Initialise();
+            base.Init();
 
             alreadySetup = true;
-
-            // Debugger setup
-            Debug.logger.logEnabled = AppConstants.VerboseLogging;
-            if (AppConstants.DebugPanelEnabled) {
-                Instantiate (Resources.Load ("Prefabs/Debug/UI Debug Canvas") as GameObject);
-            }
 
             AppSettingsManager = new AppSettingsManager();
             DB = new DatabaseManager();
@@ -84,20 +78,23 @@ namespace EA4S
             GameLauncher = new MiniGameLauncher(Teacher);
 
             NavigationManager = gameObject.AddComponent<NavigationManager>();
-            NavigationManager.Initialize();
+            NavigationManager.Init();
 
             PlayerProfileManager = new PlayerProfileManager();
             PlayerProfileManager.LoadSettings();
 
-            gameObject.AddComponent<Debugging.DebugManager>();
             gameObject.AddComponent<KeeperManager>();
 
             RewardSystemManager.Init();
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
+            // Debugger setup
+            Debug.logger.logEnabled = AppConstants.VerboseLogging;
+            gameObject.AddComponent<Debugging.DebugManager>();
+
             // Update settings
             AppSettings.ApplicationVersion = AppConstants.AppVersion;
-            AppManager.I.AppSettingsManager.SaveSettings();
+            AppSettingsManager.SaveSettings();
         }
 
         #endregion
@@ -107,13 +104,13 @@ namespace EA4S
             // Exit with Android back button
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 if (Application.platform == RuntimePlatform.Android) {
-                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
+                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () =>
+                    {
                         Debug.Log("Application Quit");
                         Application.Quit();
                     }, () => { });
                 }
             }
-
         }
 
         #region Setting
@@ -127,12 +124,13 @@ namespace EA4S
         public void ToggleEnglishSubtitles()
         {
             AppSettings.EnglishSubtitles = !AppSettings.EnglishSubtitles;
-            AppManager.I.AppSettingsManager.SaveSettings();
+            AppSettingsManager.SaveSettings();
         }
 
         #endregion
 
         #region Pause
+
         public bool IsPaused { get; private set; }
 
         void OnApplicationPause(bool pauseStatus)
@@ -151,6 +149,7 @@ namespace EA4S
             }
             AudioManager.I.OnAppPause(IsPaused);
         }
+
         #endregion
 
         public void OpenSupportForm()
@@ -163,6 +162,7 @@ namespace EA4S
         }
 
         #region TMPro hack
+
         /// <summary>
         /// TextMesh Pro hack to manage Diacritic Symbols correct positioning
         /// </summary>
@@ -184,6 +184,7 @@ namespace EA4S
                 _tmp_text.UpdateVertexData();
             }
         }
+
         #endregion
     }
 }

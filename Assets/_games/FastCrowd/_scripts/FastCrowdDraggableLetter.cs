@@ -4,7 +4,7 @@ using EA4S.LivingLetters;
 namespace EA4S.Minigames.FastCrowd
 {
     [RequireComponent(typeof(StrollingLivingLetter))]
-    [RequireComponent(typeof(LetterObjectView))]
+    [RequireComponent(typeof(LivingLetterController))]
     public class FastCrowdDraggableLetter : MonoBehaviour
     {
         StrollingLivingLetter letter;
@@ -144,7 +144,7 @@ namespace EA4S.Minigames.FastCrowd
                     currentDropArea = singleArea;
 
                     //bool matching = dropArea.GetActiveData().Key == GetComponent<LetterObjectView>().Model.Data.Key;
-                    bool matching = dropArea.GetActiveData().Equals(GetComponent<LetterObjectView>().Data);
+                    bool matching = dropArea.GetActiveData().Equals(GetComponent<LivingLetterController>().Data);
 
                     dropArea.SetMatchingOutline(true, matching);
                 }

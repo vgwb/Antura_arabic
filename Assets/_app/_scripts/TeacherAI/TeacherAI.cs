@@ -64,7 +64,7 @@ namespace EA4S.Teacher
         private void ResetPlaySession()
         {
             var currentPlaySessionId = JourneyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
-            minigameSelectionAI.InitialiseNewPlaySession();
+            minigameSelectionAI.InitNewPlaySession();
             VocabularyAi.LoadCurrentPlaySessionData(currentPlaySessionId);
         }
 
@@ -72,7 +72,7 @@ namespace EA4S.Teacher
 
         #region MiniGames
 
-        public void InitialiseNewPlaySession()
+        public void InitNewPlaySession()
         {
             ResetPlaySession();
         }

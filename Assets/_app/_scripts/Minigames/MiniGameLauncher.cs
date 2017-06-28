@@ -38,7 +38,7 @@ namespace EA4S.MinigamesAPI
             Database.MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
 
             if (forceNewPlaySession) {
-                AppManager.I.NavigationManager.InitialiseNewPlaySession(miniGameData);
+                AppManager.I.NavigationManager.InitNewPlaySession(miniGameData);
             }
 
             if (AppConstants.VerboseLogging) Debug.Log("StartGame " + _gameCode.ToString());

@@ -66,7 +66,7 @@ namespace EA4S.AnturaSpace
         public bool InCustomizationMode { get; private set; }
         public float LastTimeCatching { get; set; }
 
-        protected override void Initialise()
+        protected override void Init()
         {
             InitStates();
             

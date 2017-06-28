@@ -130,11 +130,6 @@ namespace EA4S.ReservedArea
             StartCoroutine(CreateDemoPlayer());
         }
 
-        public void OnImportProfile()
-        {
-            Debug.Log("IMPORT");
-        }
-
         #region Demo User Helpers
 
         IEnumerator CreateDemoPlayer()

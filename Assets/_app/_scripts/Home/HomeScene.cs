@@ -18,7 +18,7 @@ namespace EA4S.Scenes
 
         [Header("References")] 
         public AnturaAnimationController AnturaAnimController;
-        public LetterObjectView LLAnimController;
+        public LivingLetterController LLAnimController;
         public GameObject DialogReservedArea;
         public GameObject ProfileSelectorUI;
 

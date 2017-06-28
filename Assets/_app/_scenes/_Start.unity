@@ -1468,7 +1468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -26.112099}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 153, y: -32}
+  m_AnchoredPosition: {x: 153, y: -32.00003}
   m_SizeDelta: {x: 165, y: 278}
   m_Pivot: {x: 0.5, y: 0.2}
 --- !u!114 &723588311
@@ -6927,7 +6927,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 480, y: -268}
+  m_AnchoredPosition: {x: 479.99997, y: -268}
   m_SizeDelta: {x: 125.5, y: 123.399994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1885934136
@@ -7106,10 +7106,10 @@ MonoBehaviour:
   BtPlay: {fileID: 1864890498}
   ProfilesPanel: {fileID: 1777868502}
   HomeScene: {fileID: 1465923914}
+  LLInStage: {fileID: 1647213318}
   SfxOpenCreateProfile: 31
   SfxCreateNewProfile: 8
   SfxSelectProfile: 9
-  LLObjectView: {fileID: 1647213318}
 --- !u!1 &2104538624
 GameObject:
   m_ObjectHideFlags: 0

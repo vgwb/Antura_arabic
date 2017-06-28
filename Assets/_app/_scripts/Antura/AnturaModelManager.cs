@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Core;
 using EA4S.Database;
 using EA4S.Profile;
 using EA4S.Rewards;
@@ -15,7 +13,6 @@ namespace EA4S.Antura
     // refactor: the class needs a complete refactoring
     public class AnturaModelManager : MonoBehaviour
     {
-
         // refactor: remove static instance
         public static AnturaModelManager Instance;
 
@@ -191,50 +188,25 @@ namespace EA4S.Antura
 
             // Load Model
             string boneParent = reward.BoneAttach;
-            Transform transformParent = transform;
             GameObject rewardModel = null;
             switch (boneParent) {
                 case "dog_head":
-                    transformParent = Dog_head;
-                    //if (Dog_head_pointer)
-                    //    Destroy(Dog_head_pointer.gameObject);
-                    //Dog_head_pointer = ModelsManager.MountModel(reward.ID, transformParent).transform;
-                    rewardModel = ModelsManager.MountModel(reward.ID, transformParent);
+                    rewardModel = ModelsManager.MountModel(reward.ID, Dog_head);
                     break;
                 case "dog_spine01":
-                    transformParent = Dog_spine01;
-                    //if (Dog_spine01_pointer)
-                    //    Destroy(Dog_spine01_pointer.gameObject);
-                    //Dog_spine01_pointer = ModelsManager.MountModel(reward.ID, transformParent).transform;
-                    rewardModel = ModelsManager.MountModel(reward.ID, transformParent);
+                    rewardModel = ModelsManager.MountModel(reward.ID, Dog_spine01);
                     break;
                 case "dog_jaw":
-                    transformParent = Dog_jaw;
-                    //if (Dog_jaw_pointer)
-                    //    Destroy(Dog_jaw_pointer.gameObject);
-                    //Dog_jaw_pointer = ModelsManager.MountModel(reward.ID, transformParent).transform;
-                    rewardModel = ModelsManager.MountModel(reward.ID, transformParent);
+                    rewardModel = ModelsManager.MountModel(reward.ID, Dog_jaw);
                     break;
                 case "dog_Tail4":
-                    transformParent = Dog_Tail3;
-                    //if (Dog_Tail3_pointer)
-                    //    Destroy(Dog_Tail3_pointer.gameObject);
-                    //Dog_Tail3_pointer = ModelsManager.MountModel(reward.ID, transformParent).transform;
-                    rewardModel = ModelsManager.MountModel(reward.ID, transformParent);
+                    rewardModel = ModelsManager.MountModel(reward.ID, Dog_Tail3);
                     break;
                 case "dog_R_ear04":
-                    transformParent = Dog_R_ear04;
-                    //if (dog_R_ear04_pointer)
-                    //    Destroy(dog_R_ear04_pointer.gameObject);
-                    //dog_R_ear04_pointer = ModelsManager.MountModel(reward.ID, transformParent).transform;
-                    rewardModel = ModelsManager.MountModel(reward.ID, transformParent);
+                    rewardModel = ModelsManager.MountModel(reward.ID, Dog_R_ear04);
                     break;
                 case "dog_L_ear04":
-                    transformParent = Dog_L_ear04;
-                    //if (dog_L_ear04_pointer)
-                    //    Destroy(dog_L_ear04_pointer.gameObject);
-                    //dog_L_ear04_pointer = ModelsManager.MountModel(reward.ID, transformParent).transform;
-                    rewardModel = ModelsManager.MountModel(reward.ID, transformParent);
+                    rewardModel = ModelsManager.MountModel(reward.ID, Dog_L_ear04);
                     break;
                 default:
                     break;
@@ -255,6 +227,7 @@ namespace EA4S.Antura
         /// The category list
         /// </summary>
         List<string> categoryList = new List<string>();
+        
         /// <summary>
         /// Charges the category list.
         /// </summary>
@@ -269,7 +242,6 @@ namespace EA4S.Antura
 
         #region events
 
-        #region subscriptions
         void OnEnable() {
             RewardSystemManager.OnRewardChanged += RewardSystemManager_OnRewardItemChanged;
             PlayerProfileManager.OnProfileChanged += PlayerProfileManager_OnProfileChanged;
@@ -289,84 +261,8 @@ namespace EA4S.Antura
             RewardSystemManager.OnRewardChanged -= RewardSystemManager_OnRewardItemChanged;
             PlayerProfileManager.OnProfileChanged -= PlayerProfileManager_OnProfileChanged;
         }
+        
         #endregion
-
-        #endregion
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [Serializable]
-    public class AnturaCustomization {
-        [NonSerialized]
-        public List<RewardPackUnlockData> Fornitures = new List<RewardPackUnlockData>();
-        public List<string> FornituresIds = new List<string>();
-        [NonSerialized]
-        public RewardPackUnlockData TileTexture = new RewardPackUnlockData();
-        public string TileTextureId = null;
-        [NonSerialized]
-        public RewardPackUnlockData DecalTexture = new RewardPackUnlockData();
-        public string DecalTextureId = null;
-
-        /// <summary>
-        /// Loads all rewards in "this" object instance from list of reward ids.
-        /// </summary>
-        /// <param name="_listOfIdsAsJsonString">The list of ids as json string.</param>
-        public void LoadFromListOfIds(string _listOfIdsAsJsonString) {
-            if (AppManager.I.Player == null) {
-                    Debug.Log("No default reward already created. Unable to load customization now");
-                    return;
-            }
-            List<RewardPackUnlockData> unlocked = AppManager.I.Player.RewardsUnlocked;
-            AnturaCustomization tmp = JsonUtility.FromJson<AnturaCustomization>(_listOfIdsAsJsonString);
-            if (tmp != null) {
-                FornituresIds = tmp.FornituresIds;
-                TileTextureId = tmp.TileTextureId;
-                DecalTextureId = tmp.DecalTextureId;
-            }
-            if (string.IsNullOrEmpty(TileTextureId)) {
-                RewardPackUnlockData defaultTileTexturePack = unlocked.Find(r => r.Type == RewardTypes.texture);
-                TileTextureId = defaultTileTexturePack.GetIdAccordingToDBRules();
-            }
-            if (string.IsNullOrEmpty(DecalTextureId)) {
-                RewardPackUnlockData defaultDecalTexturePack = unlocked.Find(r => r.Type == RewardTypes.decal);
-                DecalTextureId = defaultDecalTexturePack.GetIdAccordingToDBRules();
-            }
-            Fornitures = new List<RewardPackUnlockData>();
-            foreach (string itemId in FornituresIds) {
-                // Load Fornitures for any id from db
-                RewardPackUnlockData pack = unlocked.Find(r => r.Id == itemId);
-                Fornitures.Add(pack);
-            }
-
-            // Load TileTexture from TileTextureId
-            if (TileTextureId != null)
-                TileTexture = unlocked.Find(r => r.Id == TileTextureId);
-
-            // Load DecalTexture from DecalTextureId
-            if (DecalTextureId != null)
-                DecalTexture = unlocked.Find(r => r.Id == DecalTextureId);
-
-        }
-
-        /// <summary>
-        /// Return all rewards objects to json list of ids (to be stored on db).
-        /// </summary>
-        public string GetJsonListOfIds() {
-            ////// Fornitures
-            //FornituresIds = new List<string>();
-            //foreach (RewardPackUnlockData pack in Fornitures) {
-            //    FornituresIds.Add(pack.GetIdAccordingToDBRules());
-            //}
-
-            ////// TileTextureId
-            //TileTextureId = TileTexture.GetIdAccordingToDBRules();
-
-            ////// DecalTextureId
-            //DecalTextureId = DecalTexture.GetIdAccordingToDBRules();
-            return JsonUtility.ToJson(this);
-        }
 
     }
 }

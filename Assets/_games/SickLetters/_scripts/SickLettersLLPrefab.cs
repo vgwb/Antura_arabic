@@ -17,7 +17,7 @@ namespace EA4S.Minigames.SickLetters
         public TextMeshPro dotlessLetter, correctDot, correctDiac;
         public SickLettersDraggableDD correctDotCollider, correctDiacCollider;
         public SickLettersGame game;
-        public LetterObjectView letterView;
+        public LivingLetterController letterView;
         public letterStatus LLStatus = letterStatus.idle;
         public Animator letterAnimator;
         public List<SickLettersDraggableDD> thisLLWrongDDs = new List<SickLettersDraggableDD>();
@@ -32,7 +32,7 @@ namespace EA4S.Minigames.SickLetters
             shadowStartSize = shadow.localScale;
             shadow.localScale = Vector3.zero;
             LLMesh = GetComponentsInChildren<SkinnedMeshRenderer>();
-            letterView = GetComponent<LetterObjectView>();
+            letterView = GetComponent<LivingLetterController>();
             letterAnimator = GetComponent<Animator>();
             statPos = transform.position;
             
@@ -108,7 +108,7 @@ namespace EA4S.Minigames.SickLetters
         public void getNewLetterData()
         {
             ILivingLetterData newLetter = game.questionManager.getNewLetter();
-            letterView.Initialize(newLetter);
+            letterView.Init(newLetter);
             letterView.Label.GetComponent<TextRender>().SetLetterData(newLetter);
 
 

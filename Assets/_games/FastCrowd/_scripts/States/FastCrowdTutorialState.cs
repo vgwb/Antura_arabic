@@ -127,7 +127,7 @@ namespace EA4S.Minigames.FastCrowd
 
             StrollingLivingLetter tutorialLetter = game.QuestionManager.crowd.GetLetter(game.QuestionManager.dropContainer.GetActiveData());
 
-            Vector3 startLine = tutorialLetter.gameObject.GetComponent<LetterObjectView>().contentTransform.position;
+            Vector3 startLine = tutorialLetter.gameObject.GetComponent<LivingLetterController>().contentTransform.position;
             Vector3 endLine = game.QuestionManager.dropContainer.transform.position;
 
             List<StrollingLivingLetter> nearLetters = new List<StrollingLivingLetter>();

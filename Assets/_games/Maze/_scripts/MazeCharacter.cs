@@ -82,7 +82,7 @@ namespace EA4S.Minigames.Maze
 
         public List<Vector3> characterWayPoints;
 
-        public LetterObjectView LL;
+        public LivingLetterController LL;
         private Transform LLParent;
 
         public MeshCollider myCollider;
@@ -814,7 +814,7 @@ namespace EA4S.Minigames.Maze
             fleePathPoints.Add(midPoint);
             fleePathPoints.Add(endPoint);
 
-            LL.Initialize(MazeGame.instance.currentLL);
+            LL.Init(MazeGame.instance.currentLL);
 
             var fleePathPointsArray = fleePathPoints.ToArray();
 
@@ -914,7 +914,7 @@ namespace EA4S.Minigames.Maze
 
             celebrationPathPoints.Add(offscreenPoint);
 
-            LL.Initialize(MazeGame.instance.currentLL);
+            LL.Init(MazeGame.instance.currentLL);
             LL.Horraying = true;
 
             bool braked = false;

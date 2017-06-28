@@ -74,12 +74,12 @@ namespace EA4S.Minigames.ColorTickle
                 game.myLetters[i] = Object.Instantiate(game.letterPrefab);
                 game.myLetters[i].SetActive(true);
                 // HACK fix for the automatic reset of the color after update at Unity 5.4.2
-                game.myLetters[i].GetComponent<LetterObjectView>().Label.color = Color.white;
+                game.myLetters[i].GetComponent<LivingLetterController>().Label.color = Color.white;
 
                 _qp = ColorTickleConfiguration.Instance.Questions.GetNextQuestion();
                 _lldata = _qp.GetCorrectAnswers().ToList()[0];
                
-                game.myLetters[i].GetComponent<LetterObjectView>().Initialize(_lldata);
+                game.myLetters[i].GetComponent<LivingLetterController>().Init(_lldata);
                 
                 game.myLetters[i].GetComponent<ColorTickle_LLController>().movingToDestination = false;
                 
@@ -92,8 +92,8 @@ namespace EA4S.Minigames.ColorTickle
             game.tutorialLetter = Object.Instantiate(game.letterPrefab);
             game.tutorialLetter.SetActive(true);
             // HACK fix for the automatic reset of the color after update at Unity 5.4.2
-            game.tutorialLetter.GetComponent<LetterObjectView>().Label.color = Color.white;
-            game.tutorialLetter.GetComponent<LetterObjectView>().Initialize(LLdata);
+            game.tutorialLetter.GetComponent<LivingLetterController>().Label.color = Color.white;
+            game.tutorialLetter.GetComponent<LivingLetterController>().Init(LLdata);
             game.tutorialLetter.GetComponent<ColorTickle_LLController>().movingToDestination = false;
         }
 

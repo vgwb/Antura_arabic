@@ -18,7 +18,7 @@ namespace EA4S.Minigames.Tobogan
         public Transform livingLetterTransform;
         public BoxCollider boxCollider;
 
-        public LetterObjectView letter;
+        public LivingLetterController letter;
 
         Tweener moveTweener;
         Tweener rotationTweener;
@@ -107,7 +107,7 @@ namespace EA4S.Minigames.Tobogan
         public void PlayWalkAnimation()
         {
             letter.SetState(LLAnimationStates.LL_walking);
-            letter.SetWalkingSpeed(LetterObjectView.WALKING_SPEED);
+            letter.SetWalkingSpeed(LivingLetterController.WALKING_SPEED);
 
             livingLetterTransform.localPosition = normalPosition;
         }
@@ -121,7 +121,7 @@ namespace EA4S.Minigames.Tobogan
 
         public void SetQuestionText(ILivingLetterData livingLetterData)
         {
-            letter.Initialize(livingLetterData);
+            letter.Init(livingLetterData);
         }
 
         public void SetQuestionText(LL_WordData word, LL_LetterData markedLetter, Color color)
@@ -131,7 +131,7 @@ namespace EA4S.Minigames.Tobogan
             if (parts.Count > 0)
                 text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[0], color, ArabicTextUtilities.MarkType.SingleLetter);
 
-            letter.Initialize(word, text, 1.3f);
+            letter.Init(word, text, 1.3f);
         }
 
         public void SetQuestionText(LL_WordData word, int letterToMark, Color color)
@@ -142,12 +142,12 @@ namespace EA4S.Minigames.Tobogan
             if (parts.Count > letterToMark)
                 text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[letterToMark], color, ArabicTextUtilities.MarkType.SingleLetter);
 
-            letter.Initialize(word, text, 1.3f);
+            letter.Init(word, text, 1.3f);
         }
 
         public void ClearQuestionText()
         {
-            letter.Initialize(null);
+            letter.Init(null);
         }
 
         void MoveTo(Vector3 position, float duration)

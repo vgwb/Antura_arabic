@@ -5,7 +5,7 @@ namespace EA4S.Test
 {
     public class LetterObjectViewTester : MonoBehaviour
     {
-        LetterObjectView letter;
+        LivingLetterController letter;
 
         public LLAnimationStates targetState;
         public bool doTransition;
@@ -35,7 +35,7 @@ namespace EA4S.Test
 
         void Start ()
         {
-            letter = GetComponent<LetterObjectView>();
+            letter = GetComponent<LivingLetterController>();
         }
 	
         void Update ()

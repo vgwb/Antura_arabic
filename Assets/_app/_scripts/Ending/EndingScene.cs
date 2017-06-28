@@ -16,7 +16,7 @@ namespace EA4S.Scenes
     {
         [Header("References")]
 
-        public LetterObjectView[] Letters;
+        public LivingLetterController[] Letters;
         public Antura.AnturaAnimationController Antura;
 
         public float m_StateDelay = 1.0f;
@@ -60,7 +60,7 @@ namespace EA4S.Scenes
             var lettersData = AppManager.I.Teacher.GetAllTestLetterDataLL();
             foreach (var l in Letters)
             {
-                l.Initialize(lettersData.GetRandom());
+                l.Init(lettersData.GetRandom());
                 l.State = LLAnimationStates.LL_dancing;
             }
 
