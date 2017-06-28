@@ -14,7 +14,7 @@ namespace EA4S.Template
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
         public float Difficulty { get; set; }
-        public bool PerformTutorial { get; set; }
+        public bool TutorialEnabled { get; set; }
 
         /////////////////
         // Singleton Pattern

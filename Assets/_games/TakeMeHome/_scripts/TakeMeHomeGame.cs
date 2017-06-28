@@ -88,9 +88,9 @@ namespace EA4S.Minigames.TakeMeHome
 			}
 		}
 
-	    public bool PerformTutorial
+	    public bool TutorialEnabled
 	    {
-	        get { return GetConfiguration().PerformTutorial; }
+	        get { return GetConfiguration().TutorialEnabled; }
 	    }
 
 

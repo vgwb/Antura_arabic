@@ -47,7 +47,7 @@ namespace EA4S.MinigamesAPI
             string minigameSession = System.DateTime.Now.Ticks.ToString();
             IGameConfiguration currentGameConfig = ConfigureMiniGame(_gameCode, minigameSession);
             currentGameConfig.Difficulty = _launchConfiguration.Difficulty;
-            currentGameConfig.PerformTutorial = _launchConfiguration.PerformTutorial;
+            currentGameConfig.TutorialEnabled = _launchConfiguration.TutorialEnabled;
 
             // Set also the number of rounds
             // @note: only for assessment, for now

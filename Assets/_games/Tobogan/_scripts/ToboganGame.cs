@@ -78,7 +78,7 @@ namespace EA4S.Minigames.Tobogan
 
         protected override void OnInitialize(IGameContext context)
         {
-            tutorialFlag = GetConfiguration().PerformTutorial;
+            tutorialFlag = GetConfiguration().TutorialEnabled;
 
             pipesAnswerController.SetSignHidingProbability(ToboganConfiguration.Instance.Difficulty);
             SunMoonQuestions = new SunMoonTutorialQuestionProvider(ToboganConfiguration.Instance.Questions);

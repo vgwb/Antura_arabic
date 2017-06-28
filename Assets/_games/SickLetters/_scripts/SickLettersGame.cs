@@ -34,7 +34,7 @@ namespace EA4S.Minigames.SickLetters
         [HideInInspector]
         public bool disableInput;
 
-        public bool enableTutorial { get { return GetConfiguration().PerformTutorial; } }
+        public bool TutorialEnabled { get { return GetConfiguration().TutorialEnabled; } }
 
         public int gameDuration = 120 ,  targetScale = 10, maxWieght;
         public float vaseWidth = 5.20906f;

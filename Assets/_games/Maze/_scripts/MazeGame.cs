@@ -127,7 +127,7 @@ namespace EA4S.Minigames.Maze
 
         public void startGame()
         {
-            isTutorialMode = GetConfiguration().PerformTutorial;
+            isTutorialMode = GetConfiguration().TutorialEnabled;
 
             setupIndices();
 

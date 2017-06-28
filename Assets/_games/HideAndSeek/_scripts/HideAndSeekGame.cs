@@ -41,7 +41,7 @@ namespace EA4S.Minigames.HideAndSeek
             }
         }
 
-        public bool PerformTutorial { get { return GetConfiguration().PerformTutorial;  } }
+        public bool TutorialEnabled { get { return GetConfiguration().TutorialEnabled;  } }
 
         protected override void OnInitialize(IGameContext context)
         {

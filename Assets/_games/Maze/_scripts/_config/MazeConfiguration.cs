@@ -17,7 +17,7 @@ namespace EA4S.Minigames.Maze
         public ILivingLetterDataProvider Letters { get; set; }
         #region Game configurations
         public float Difficulty { get; set; }
-        public bool PerformTutorial { get; set; }
+        public bool TutorialEnabled { get; set; }
         public MazeVariation Variation { get; set; }
         #endregion
 
@@ -43,7 +43,7 @@ namespace EA4S.Minigames.Maze
 
             Context = new MinigamesGameContext(MiniGameCode.Maze, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
-            PerformTutorial = false;
+            TutorialEnabled = false;
         }
 
         #region external configuration call

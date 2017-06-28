@@ -166,7 +166,7 @@ namespace EA4S.Balloons
 
         protected override void OnInitialize(IGameContext context)
         {
-            IntroductionState = new BalloonsIntroductionState(this, GetConfiguration().PerformTutorial);
+            IntroductionState = new BalloonsIntroductionState(this, GetConfiguration().TutorialEnabled);
             QuestionState = new BalloonsQuestionState(this);
             PlayState = new BalloonsPlayState(this);
             ResultState = new BalloonsResultState(this);

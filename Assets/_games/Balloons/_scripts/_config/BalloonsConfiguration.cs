@@ -24,7 +24,7 @@ namespace EA4S.Balloons
         #region Game configurations
 
         public float Difficulty { get; set; }
-        public bool PerformTutorial { get; set; }
+        public bool TutorialEnabled { get; set; }
 
         public BalloonsVariation Variation { get; set; }
 
@@ -54,7 +54,7 @@ namespace EA4S.Balloons
             Questions = new SampleQuestionProvider();
 
             Variation = BalloonsVariation.Spelling;
-            PerformTutorial = true;
+            TutorialEnabled = true;
 
             Context = new MinigamesGameContext(MiniGameCode.Balloons_spelling, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;

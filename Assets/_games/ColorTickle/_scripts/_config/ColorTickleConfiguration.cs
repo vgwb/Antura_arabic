@@ -10,7 +10,7 @@ namespace EA4S.Minigames.ColorTickle
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
         public float Difficulty { get; set; }
-        public bool PerformTutorial { get; set; }
+        public bool TutorialEnabled { get; set; }
 
         /////////////////
         // Singleton Pattern
@@ -32,7 +32,7 @@ namespace EA4S.Minigames.ColorTickle
             Questions = new ColorTickleLetterProvider();
             Context = new MinigamesGameContext(MiniGameCode.ColorTickle, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
-            PerformTutorial = true;
+            TutorialEnabled = true;
         }
 
         public IQuestionBuilder SetupBuilder() {

@@ -62,8 +62,8 @@ namespace EA4S.Minigames.Scanner
         public Animator trapDoor;
 
         public ScannerTutorial tut;
-        public bool PerformTutorial {
-            get { return GetConfiguration().PerformTutorial; }
+        public bool TutorialEnabled {
+            get { return GetConfiguration().TutorialEnabled; }
         }
 
         public int STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD;

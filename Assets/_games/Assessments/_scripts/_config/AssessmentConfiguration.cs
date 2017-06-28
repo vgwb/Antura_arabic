@@ -47,7 +47,7 @@ namespace EA4S.Assessment
         /// </summary>
         public float Difficulty { get; set; }
 
-        public bool PerformTutorial { get; set; }
+        public bool TutorialEnabled { get; set; }
 
 
         /// <summary>

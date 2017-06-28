@@ -193,9 +193,9 @@ namespace EA4S.Minigames.MissingLetter
         public MissingLetterResultState ResultState { get; private set; }
         public MissingLetterTutorialState TutorialState { get; private set; }
 
-        public bool PerformTutorial
+        public bool TutorialEnabled
         {
-            get { return GetConfiguration().PerformTutorial; }
+            get { return GetConfiguration().TutorialEnabled; }
         }
 
         #endregion

@@ -49,6 +49,6 @@ namespace EA4S.MinigamesCommon
         /// <summary>
         /// Should this MiniGame perform the tutorial when starting?
         /// </summary>
-        bool PerformTutorial { get; set; }
+        bool TutorialEnabled { get; set; }
     }
 }

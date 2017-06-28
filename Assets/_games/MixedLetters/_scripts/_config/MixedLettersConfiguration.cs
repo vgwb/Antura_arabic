@@ -16,7 +16,7 @@ namespace EA4S.Minigames.MixedLetters
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
         public float Difficulty { get; set; }
-        public bool PerformTutorial { get; set; }
+        public bool TutorialEnabled { get; set; }
         public MixedLettersVariation Variation { get; set; }
 
         /////////////////
@@ -41,7 +41,7 @@ namespace EA4S.Minigames.MixedLetters
             Variation = MixedLettersVariation.Alphabet;
             Context = new MinigamesGameContext(MiniGameCode.MixedLetters_alphabet, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
-            PerformTutorial = true;
+            TutorialEnabled = true;
         }
 
         public IQuestionBuilder SetupBuilder() {

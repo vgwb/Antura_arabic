@@ -124,8 +124,8 @@ namespace EA4S.Minigames.MixedLetters
             }
         }
 
-        public bool PerformTutorial {
-            get { return GetConfiguration().PerformTutorial; }
+        public bool TutorialEnabled {
+            get { return GetConfiguration().TutorialEnabled; }
         }
 
         public Button repeatPromptButton;
@@ -363,7 +363,7 @@ namespace EA4S.Minigames.MixedLetters
                     {
                         SeparateLetterController letter = SeparateLettersSpawnerController.instance.separateLetterControllers[j];
                         letter.SetIsSubjectOfTutorial(
-                            roundNumber == 0 && PerformTutorial 
+                            roundNumber == 0 && TutorialEnabled 
                             &&  letter == dropZone.correctLetter);
                     }
 

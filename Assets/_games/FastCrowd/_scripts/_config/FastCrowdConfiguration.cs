@@ -21,7 +21,7 @@ namespace EA4S.Minigames.FastCrowd
         public IQuestionProvider Questions { get; set; }
         #region Game configurations
         public float Difficulty { get; set; }
-        public bool PerformTutorial { get; set; }
+        public bool TutorialEnabled { get; set; }
         public FastCrowdVariation Variation { get; set; }
 
         #endregion
@@ -56,7 +56,7 @@ namespace EA4S.Minigames.FastCrowd
 
             //Questions = new SampleQuestionWordsVariationProvider();
             //Variation = FastCrowdVariation.Words;
-            PerformTutorial = true;
+            TutorialEnabled = true;
 
             Context = new MinigamesGameContext(MiniGameCode.FastCrowd_spelling, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;

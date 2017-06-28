@@ -26,7 +26,7 @@ namespace EA4S.Minigames.DancingDots
         public PlayGameState PlayState { get; private set; }
         public ResultGameState ResultState { get; private set; }
 
-        public bool PerformTutorial { get { return GetConfiguration().PerformTutorial; }}
+        public bool TutorialEnabled { get { return GetConfiguration().TutorialEnabled; }}
 
         protected override void OnInitialize(IGameContext context)
         {
@@ -76,7 +76,7 @@ namespace EA4S.Minigames.DancingDots
 
         public bool isTutRound {
             get {
-                if (numberOfRoundsPlayed == 0 && GetConfiguration().PerformTutorial)
+                if (numberOfRoundsPlayed == 0 && GetConfiguration().TutorialEnabled)
                     return true;
                 else
                     return false;

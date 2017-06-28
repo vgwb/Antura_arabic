@@ -22,9 +22,9 @@ namespace EA4S.Minigames.ThrowBalls
             }
         }
 
-        public bool PerformTutorial
+        public bool TutorialEnabled
         {
-            get { return GetConfiguration().PerformTutorial; }
+            get { return GetConfiguration().TutorialEnabled; }
         }
 
         public GameObject ball;

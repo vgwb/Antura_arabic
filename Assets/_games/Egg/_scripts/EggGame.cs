@@ -83,7 +83,7 @@ namespace EA4S.Minigames.Egg
 
             CurrentQuestion = null;
 
-            tutorialFlag = GetConfiguration().PerformTutorial;
+            tutorialFlag = GetConfiguration().TutorialEnabled;
             overlayWidgetInitialized = false;
 
             currentStage = 0;

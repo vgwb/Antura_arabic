@@ -18,7 +18,7 @@ namespace EA4S.Minigames.Tobogan
         public IQuestionProvider Questions { get; set; }
 
         public float Difficulty { get; set; }
-        public bool PerformTutorial { get; set; }
+        public bool TutorialEnabled { get; set; }
         public ToboganVariation Variation { get; set; }
 
         public int GetDiscreteDifficulty(int maximum)
@@ -56,7 +56,7 @@ namespace EA4S.Minigames.Tobogan
 
             Context = new MinigamesGameContext(MiniGameCode.Tobogan_letters, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.0f;
-            PerformTutorial = true;
+            TutorialEnabled = true;
         }
 
         public IQuestionBuilder SetupBuilder() {
