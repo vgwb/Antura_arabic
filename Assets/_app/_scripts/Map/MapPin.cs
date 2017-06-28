@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using EA4S.Audio;
-using EA4S.Map;
 
-namespace EA4S
+namespace EA4S.Map
 {
     public class MapPin : MonoBehaviour
     {

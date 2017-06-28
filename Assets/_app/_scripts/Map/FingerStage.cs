@@ -10,24 +10,6 @@ namespace EA4S.Map
         public bool swipe;
         public GameObject left;
         public GameObject right;
-        /*void Update () {
-            if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-            {
-                Touch touch = Input.GetTouch(0);
-                float x = touch.deltaPosition.x - touch.position.x;
-                float y = touch.deltaPosition.y - touch.position.y;
-
-                float width = Screen.width;
-                float height = Screen.height;
-
-
-                if((Mathf.Abs(x) > width * 0.5f) && (Mathf.Abs(y) < height*0.1f))
-                {
-                    if (x < 0) right.SetActive(true);
-                    if ((touch.deltaPosition.x - touch.position.x) > 0) right.SetActive(true);
-                }
-            }
-        }*/
         StageManager stageManager;
         float xDown, xUp, x;
         float yDown, yUp, y;
