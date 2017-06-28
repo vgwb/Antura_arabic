@@ -67,12 +67,6 @@ namespace EA4S
 
             alreadySetup = true;
 
-            // Debugger setup
-            Debug.logger.logEnabled = AppConstants.VerboseLogging;
-            if (AppConstants.DebugPanelEnabled) {
-                Instantiate (Resources.Load ("Prefabs/Debug/UI Debug Canvas") as GameObject);
-            }
-
             AppSettingsManager = new AppSettingsManager();
             DB = new DatabaseManager();
             // refactor: standardize initialisation of managers
@@ -89,11 +83,14 @@ namespace EA4S
             PlayerProfileManager = new PlayerProfileManager();
             PlayerProfileManager.LoadSettings();
 
-            gameObject.AddComponent<Debugging.DebugManager>();
             gameObject.AddComponent<KeeperManager>();
 
             RewardSystemManager.Init();
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
+
+            // Debugger setup
+            Debug.logger.logEnabled = AppConstants.VerboseLogging;
+            gameObject.AddComponent<Debugging.DebugManager>();
 
             // Update settings
             AppSettings.ApplicationVersion = AppConstants.AppVersion;
@@ -107,13 +104,13 @@ namespace EA4S
             // Exit with Android back button
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 if (Application.platform == RuntimePlatform.Android) {
-                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
+                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () =>
+                    {
                         Debug.Log("Application Quit");
                         Application.Quit();
                     }, () => { });
                 }
             }
-
         }
 
         #region Setting
@@ -133,6 +130,7 @@ namespace EA4S
         #endregion
 
         #region Pause
+
         public bool IsPaused { get; private set; }
 
         void OnApplicationPause(bool pauseStatus)
@@ -151,6 +149,7 @@ namespace EA4S
             }
             AudioManager.I.OnAppPause(IsPaused);
         }
+
         #endregion
 
         public void OpenSupportForm()
@@ -163,6 +162,7 @@ namespace EA4S
         }
 
         #region TMPro hack
+
         /// <summary>
         /// TextMesh Pro hack to manage Diacritic Symbols correct positioning
         /// </summary>
@@ -184,6 +184,7 @@ namespace EA4S
                 _tmp_text.UpdateVertexData();
             }
         }
+
         #endregion
     }
 }
