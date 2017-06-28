@@ -30,20 +30,20 @@ namespace EA4S.Minigames.FastCrowd
 
             if (distance.sqrMagnitude < 0.05f)
             {
-                letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
+                letter.gameObject.GetComponent<LivingLetterController>().SetState(LLAnimationStates.LL_idle);
             }
             else
             {
                 // set letter animation
-                letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_walking);
-                letter.gameObject.GetComponent<LetterObjectView>().SetWalkingSpeed(LetterObjectView.RUN_SPEED);
+                letter.gameObject.GetComponent<LivingLetterController>().SetState(LLAnimationStates.LL_walking);
+                letter.gameObject.GetComponent<LivingLetterController>().SetWalkingSpeed(LivingLetterController.RUN_SPEED);
                 speed = RUN_SPEED;
             }
         }
 
         public override void ExitState()
         {
-            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
+            letter.gameObject.GetComponent<LivingLetterController>().SetState(LLAnimationStates.LL_idle);
         }
 
         public override void Update(float delta)
@@ -66,7 +66,7 @@ namespace EA4S.Minigames.FastCrowd
 
                 if (distance.sqrMagnitude < 0.05f)
                 {
-                    letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
+                    letter.gameObject.GetComponent<LivingLetterController>().SetState(LLAnimationStates.LL_idle);
                 }
             }
         }

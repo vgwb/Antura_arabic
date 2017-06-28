@@ -321,7 +321,7 @@ namespace EA4S.Minigames.MissingLetter
             }
         }
 
-        public LetterObjectView mLetter;
+        public LivingLetterController mLetter;
 
         [SerializeField]
         private GameObject m_oLetterLightRef;

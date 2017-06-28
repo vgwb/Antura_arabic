@@ -8,7 +8,7 @@ namespace EA4S.Minigames.Egg
 {
     public class EggRunLetter
     {
-        LetterObjectView letterObject;
+        LivingLetterController letterObject;
         Transform shadowTransform;
 
         Tween moveTweener;
@@ -36,7 +36,7 @@ namespace EA4S.Minigames.Egg
             outPositions[0] = leftOutPosition;
             outPositions[1] = rightOutPosition;
 
-            letterObject = UnityEngine.Object.Instantiate(letterObjectPrefab).GetComponent<LetterObjectView>();
+            letterObject = UnityEngine.Object.Instantiate(letterObjectPrefab).GetComponent<LivingLetterController>();
             letterObject.transform.SetParent(parent);
             letterObject.Initialize(letterData);
 
@@ -106,7 +106,7 @@ namespace EA4S.Minigames.Egg
         void PlayRunAnimation()
         {
             letterObject.SetState(LLAnimationStates.LL_walking);
-            letterObject.SetWalkingSpeed(LetterObjectView.RUN_SPEED);
+            letterObject.SetWalkingSpeed(LivingLetterController.RUN_SPEED);
         }
 
         public void DestroyRunLetter()

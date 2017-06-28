@@ -48,7 +48,7 @@ namespace EA4S.Minigames.ThrowBalls
         public GameObject shadow;
 
         [HideInInspector]
-        public LetterObjectView letterObjectView;
+        public LivingLetterController letterObjectView;
 
         public GameObject victoryRays;
 
@@ -57,7 +57,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         void Awake()
         {
-            letterObjectView = GetComponent<LetterObjectView>();
+            letterObjectView = GetComponent<LivingLetterController>();
 
             foreach (Collider collider in GetComponentsInChildren<Collider>())
             {

@@ -22,7 +22,7 @@ namespace EA4S.Minigames.ColorTickle
         ColorsUIManager m_ColorsUIManager;
 
         // LL components
-        LetterObjectView m_LetterObjectView;
+        LivingLetterController m_LetterObjectView;
         TMPTextColoring m_TMPTextColoringLetter;
         SurfaceColoring m_SurfaceColoringLetter;
         ColorTickle_LLController m_LLController;
@@ -220,7 +220,7 @@ namespace EA4S.Minigames.ColorTickle
 
 		private void InitLetter()
 		{
-            m_LetterObjectView = m_CurrentLetter.GetComponent<LetterObjectView>();
+            m_LetterObjectView = m_CurrentLetter.GetComponent<LivingLetterController>();
 
             m_TMPTextColoringLetter = m_CurrentLetter.GetComponent<TMPTextColoring>();
             m_SurfaceColoringLetter = m_CurrentLetter.GetComponent<SurfaceColoring>();

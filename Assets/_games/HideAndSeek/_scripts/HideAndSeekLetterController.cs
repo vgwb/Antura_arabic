@@ -23,7 +23,7 @@ namespace EA4S.Minigames.HideAndSeek
         void Start()
         {
             idleTime = 0.5f + 4f * (1 - HideAndSeekConfiguration.Instance.Difficulty);
-            view = GetComponent<LetterObjectView>();
+            view = GetComponent<LivingLetterController>();
         }
 
         public void PlayResultAnimation(bool win)
@@ -180,7 +180,7 @@ namespace EA4S.Minigames.HideAndSeek
         private Animator anim;
 
         [HideInInspector]
-        public LetterObjectView view;
+        public LivingLetterController view;
 
         Tweener moveTweener;
 

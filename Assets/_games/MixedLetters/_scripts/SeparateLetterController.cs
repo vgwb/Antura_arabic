@@ -24,7 +24,7 @@ namespace EA4S.Minigames.MixedLetters
         public DropZoneController droppedZone;
         private DropZoneController correctDropZone;
 
-        public LetterObjectView letterObjectView;
+        public LivingLetterController letterObjectView;
 
         private enum State
         {

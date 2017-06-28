@@ -16,7 +16,7 @@ namespace EA4S.Minigames.FastCrowd
         public LettersWalkableArea walkableArea;
         public AnturaRunnerController antura;
 
-        public LetterObjectView livingLetterPrefab;
+        public LivingLetterController livingLetterPrefab;
         public GameObject puffPrefab;
 
         public int MaxConcurrentLetters = 5;
@@ -44,7 +44,7 @@ namespace EA4S.Minigames.FastCrowd
         {
             for (int i = 0; i < letters.Count; i++)
             {
-                LetterObjectView lov = letters[i].gameObject.GetComponent<LetterObjectView>();
+                LivingLetterController lov = letters[i].gameObject.GetComponent<LivingLetterController>();
 
                 if(lov.Data.Equals(data))
                 {
@@ -71,10 +71,10 @@ namespace EA4S.Minigames.FastCrowd
             letterGOs.Clear();
         }
 
-        protected virtual LetterObjectView SpawnLetter()
+        protected virtual LivingLetterController SpawnLetter()
         {
             // Spawn!
-            LetterObjectView letterObjectView = Instantiate(livingLetterPrefab);
+            LivingLetterController letterObjectView = Instantiate(livingLetterPrefab);
             letterObjectView.gameObject.SetActive(true);
             letterObjectView.transform.SetParent(transform, true);
 

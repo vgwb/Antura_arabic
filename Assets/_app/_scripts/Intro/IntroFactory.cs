@@ -18,7 +18,7 @@ namespace EA4S.Intro
         public LettersWalkableArea walkableArea;
         public AnturaRunnerController antura;
 
-        public LetterObjectView livingLetterPrefab;
+        public LivingLetterController livingLetterPrefab;
         public GameObject puffPrefab;
 
         public int MaxConcurrentLetters = 5;
@@ -61,10 +61,10 @@ namespace EA4S.Intro
             letterGOs.Clear();
         }
 
-        protected virtual LetterObjectView SpawnLetter()
+        protected virtual LivingLetterController SpawnLetter()
         {
             // Spawn!
-            LetterObjectView letterObjectView = Instantiate(livingLetterPrefab);
+            LivingLetterController letterObjectView = Instantiate(livingLetterPrefab);
             letterObjectView.gameObject.SetActive(true);
             letterObjectView.transform.SetParent(transform, true);
 

@@ -16,7 +16,7 @@ namespace EA4S.Scenes
     {
         [Header("References")]
 
-        public LetterObjectView[] Letters;
+        public LivingLetterController[] Letters;
         public Antura.AnturaAnimationController Antura;
 
         public float m_StateDelay = 1.0f;

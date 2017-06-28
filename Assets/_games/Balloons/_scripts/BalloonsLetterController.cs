@@ -15,7 +15,7 @@ namespace EA4S.Balloons
         private const float FLASH_CYCLE_DURATION = 0.2f;
         private const int NUM_FLASH_CYCLES = 3;
 
-        public LetterObjectView LLPrefab;
+        public LivingLetterController LLPrefab;
         public FloatingLetterController parentFloatingLetter;
         public Animator animator;
         public Collider letterCollider;
@@ -55,13 +55,13 @@ namespace EA4S.Balloons
         private float unfocusProgress;
         private float unfocusProgressPercentage;
 
-        private LetterObjectView letterObjectView;
+        private LivingLetterController letterObjectView;
         private IEnumerator flashLetterInWordCoroutine;
         private List<SpringJoint> springJoints;
 
         private void Awake()
         {
-            letterObjectView = GetComponent<LetterObjectView>();
+            letterObjectView = GetComponent<LivingLetterController>();
 
             springJoints = new List<SpringJoint>();
 

@@ -8,7 +8,7 @@ namespace EA4S.Minigames.MakeFriends
 {
     public class MakeFriendsLivingLetter : MonoBehaviour
     {
-        public LetterObjectView LLPrefab;
+        public LivingLetterController LLPrefab;
         public bool focusOnTouch;
         public Animator animator;
         public Collider letterCollider;

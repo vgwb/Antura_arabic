@@ -82,7 +82,7 @@ namespace EA4S.Minigames.Maze
 
         public List<Vector3> characterWayPoints;
 
-        public LetterObjectView LL;
+        public LivingLetterController LL;
         private Transform LLParent;
 
         public MeshCollider myCollider;

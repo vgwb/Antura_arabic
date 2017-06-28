@@ -14,7 +14,7 @@ namespace EA4S.Minigames.ColorTickle
         float m_PercentageLetterColored;
 
         // LL components
-        LetterObjectView m_LetterObjectView;
+        LivingLetterController m_LetterObjectView;
         TMPTextColoring m_TMPTextColoringLetter;
         SurfaceColoring m_SurfaceColoringLetter;
         ColorTickle_LLController m_LLController;
@@ -119,7 +119,7 @@ namespace EA4S.Minigames.ColorTickle
 
         private void InitTutorialLetter()
         {
-            m_LetterObjectView = m_TutorialLetter.GetComponent<LetterObjectView>();
+            m_LetterObjectView = m_TutorialLetter.GetComponent<LivingLetterController>();
 
             m_TMPTextColoringLetter = m_TutorialLetter.GetComponent<TMPTextColoring>();
             m_SurfaceColoringLetter = m_TutorialLetter.GetComponent<SurfaceColoring>();

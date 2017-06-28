@@ -34,7 +34,7 @@ namespace EA4S.UI
         PlayerIcon[] playerIcons;
         Tween btAddTween, btPlayTween;
 
-        public LetterObjectView LLObjectView; // ?
+        public LivingLetterController LLObjectView; // ?
 
         #region Unity
 

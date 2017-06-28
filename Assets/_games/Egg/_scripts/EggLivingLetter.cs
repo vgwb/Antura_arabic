@@ -8,7 +8,7 @@ namespace EA4S.Minigames.Egg
 {
     public class EggLivingLetter
     {
-        LetterObjectView livingLetter;
+        LivingLetterController livingLetter;
         Transform shadowTransform;
 
         Vector3 startPosition;
@@ -25,7 +25,7 @@ namespace EA4S.Minigames.Egg
 
         public EggLivingLetter(Transform parent, GameObject letterObjectViewPrefab, GameObject shadowPrefab, ILivingLetterData livingLetterData, Vector3 startPosition, Vector3 shadowPosition, Vector3 endPosition, float delay, Action endCallback)
         {
-            livingLetter = UnityEngine.Object.Instantiate(letterObjectViewPrefab).GetComponent<LetterObjectView>();
+            livingLetter = UnityEngine.Object.Instantiate(letterObjectViewPrefab).GetComponent<LivingLetterController>();
 
             livingLetter.transform.SetParent(parent);
             livingLetter.transform.localPosition = startPosition;

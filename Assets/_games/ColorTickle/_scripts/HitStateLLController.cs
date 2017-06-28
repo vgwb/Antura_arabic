@@ -16,7 +16,7 @@ namespace EA4S.Minigames.ColorTickle
         //        }
 
         #region PRIVATE MEMBERS
-        LetterObjectView m_LetterObjectView;
+        LivingLetterController m_LetterObjectView;
         eHitState m_HitState;
         bool m_Tickle;
         float m_TickleTime;
@@ -38,7 +38,7 @@ namespace EA4S.Minigames.ColorTickle
         // Use this for initialization
         void Start()
         {
-            m_LetterObjectView = gameObject.GetComponent<LetterObjectView>();
+            m_LetterObjectView = gameObject.GetComponent<LivingLetterController>();
             m_HitState = eHitState.HIT_NONE;
             m_Tickle = false;
             m_TickleTime = 2.0f;

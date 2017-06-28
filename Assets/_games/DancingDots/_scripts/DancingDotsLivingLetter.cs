@@ -19,7 +19,7 @@ namespace EA4S.Minigames.DancingDots
 	{
 
 		[Header("References")]
-		public LetterObjectView letterObjectView;
+		public LivingLetterController letterObjectView;
 		public TextMeshPro hintText;
 		public TextMeshPro dotlessText;
 		public GameObject fullTextGO, contentGO;

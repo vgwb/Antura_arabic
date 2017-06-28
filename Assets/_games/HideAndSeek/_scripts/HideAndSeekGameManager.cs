@@ -114,7 +114,7 @@ namespace EA4S.Minigames.HideAndSeek
 
             foreach (GameObject x in ArrayLetters)
             {
-                x.GetComponent<LetterObjectView>().Poof();
+                x.GetComponent<LivingLetterController>().Poof();
                 AudioManager.I.PlaySound(Sfx.Poof);
                 x.SetActive(false);
             }
@@ -272,7 +272,7 @@ namespace EA4S.Minigames.HideAndSeek
                     scriptComponent.SetStartPosition(ArrayPlaceholder[index].transform.position);
                     scriptComponent.id = index;
                     SetLetterMovement(index, scriptComponent);
-                    ArrayLetters[i].GetComponentInChildren<LetterObjectView>().Initialize(letterList[i]);
+                    ArrayLetters[i].GetComponentInChildren<LivingLetterController>().Initialize(letterList[i]);
 
                     ArrayLetters[i].transform.DOMove(ArrayPlaceholder[index].transform.position, 0.5f);
                 }

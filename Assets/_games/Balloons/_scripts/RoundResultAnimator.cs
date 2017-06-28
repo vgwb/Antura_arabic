@@ -8,7 +8,7 @@ namespace EA4S.Balloons
 {
     public class RoundResultAnimator : MonoBehaviour
     {
-        public LetterObjectView LLPrefab;
+        public LivingLetterController LLPrefab;
         public ParticleSystem vfx;
         public Vector3 wrongMarkPosition1;
         public Vector3 wrongMarkPosition2;

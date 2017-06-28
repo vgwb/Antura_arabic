@@ -18,7 +18,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 		public Transform livingLetterTransform;
 		public BoxCollider boxCollider;
 
-		public LetterObjectView letter;
+		public LivingLetterController letter;
 
 		Tweener moveTweener;
 		Tweener rotationTweener;
@@ -69,7 +69,7 @@ public class TakeMeHomeLL : MonoBehaviour {
             ContentOffset = letter.contentTransform.position - transform.position;
         }
 
-		public void Initialize(float _maxY, LetterObjectView _letter, Vector3 tubePosition)
+		public void Initialize(float _maxY, LivingLetterController _letter, Vector3 tubePosition)
 		{
 			tubeSpawnPosition = tubePosition - Vector3.up * 4;
 
@@ -95,7 +95,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 		public void PlayWalkAnimation()
 		{
 			letter.SetState(LLAnimationStates.LL_walking);
-            letter.SetWalkingSpeed(LetterObjectView.WALKING_SPEED);
+            letter.SetWalkingSpeed(LivingLetterController.WALKING_SPEED);
 
 			//livingLetterTransform.localPosition = normalPosition;
 		}
@@ -396,7 +396,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 
                 letter.SetState(LLAnimationStates.LL_walking);
-                letter.SetWalkingSpeed(LetterObjectView.RUN_SPEED);
+                letter.SetWalkingSpeed(LivingLetterController.RUN_SPEED);
 
                 if (moveTweener != null)
                 {
@@ -468,7 +468,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 		{
 			yield return new WaitForSeconds (seconds);
 			letter.SetState(LLAnimationStates.LL_walking);
-			letter.SetWalkingSpeed(LetterObjectView.RUN_SPEED);
+			letter.SetWalkingSpeed(LivingLetterController.RUN_SPEED);
 
 			if (moveTweener != null)
 			{

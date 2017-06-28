@@ -6,12 +6,12 @@ namespace EA4S.Intro
 
     public class IntroStrollingLetterFallingState : IntroStrollingLetterState
     {
-        LetterObjectView view;
+        LivingLetterController view;
         float fallSpeed = 0;
 
         public IntroStrollingLetterFallingState(IntroStrollingLetter letter) : base(letter)
         {
-            view = letter.gameObject.GetComponent<LetterObjectView>();
+            view = letter.gameObject.GetComponent<LivingLetterController>();
         }
 
         public override void EnterState()

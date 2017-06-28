@@ -18,7 +18,7 @@ namespace EA4S.Minigames.Tobogan
         public Transform livingLetterTransform;
         public BoxCollider boxCollider;
 
-        public LetterObjectView letter;
+        public LivingLetterController letter;
 
         Tweener moveTweener;
         Tweener rotationTweener;
@@ -107,7 +107,7 @@ namespace EA4S.Minigames.Tobogan
         public void PlayWalkAnimation()
         {
             letter.SetState(LLAnimationStates.LL_walking);
-            letter.SetWalkingSpeed(LetterObjectView.WALKING_SPEED);
+            letter.SetWalkingSpeed(LivingLetterController.WALKING_SPEED);
 
             livingLetterTransform.localPosition = normalPosition;
         }

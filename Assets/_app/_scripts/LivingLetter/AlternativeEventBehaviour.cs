@@ -7,12 +7,12 @@ namespace EA4S.LivingLetters
     {
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            animator.GetComponent<LetterObjectView>().OnIdleAlternativeEnter();
+            animator.GetComponent<LivingLetterController>().OnIdleAlternativeEnter();
         }
 
         override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            animator.GetComponent<LetterObjectView>().OnIdleAlternativeExit();
+            animator.GetComponent<LivingLetterController>().OnIdleAlternativeExit();
         }
     }
 }

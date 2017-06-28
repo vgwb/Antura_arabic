@@ -12,7 +12,7 @@ namespace EA4S.Intro
     public class IntroRocketCharacter : MonoBehaviour
     {
 
-        public LetterObjectView LL;
+        public LivingLetterController LL;
         //public List<GameObject> particles;
 
         [HideInInspector]

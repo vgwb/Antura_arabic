@@ -26,7 +26,7 @@ namespace EA4S.Minigames.Scanner
         public Transform fallOffPoint;
         public Transform midPoint;
 
-        public LetterObjectView letterObjectView;
+        public LivingLetterController letterObjectView;
         public GameObject rainbowJet;
         public SkinnedMeshRenderer sm;
         [HideInInspector]
@@ -51,7 +51,7 @@ namespace EA4S.Minigames.Scanner
         void Awake()
         {
             status = LLStatus.None;
-            letterObjectView = livingLetter.GetComponent<LetterObjectView>();
+            letterObjectView = livingLetter.GetComponent<LivingLetterController>();
             startingPosition = transform.position;
             startingRotation = letterObjectView.transform.rotation;
         }

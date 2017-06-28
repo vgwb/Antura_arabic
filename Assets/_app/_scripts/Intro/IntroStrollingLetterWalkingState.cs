@@ -32,18 +32,18 @@ namespace EA4S.Intro
             if (!letter.walkableArea.IsInside(letter.transform.position, true))
                 running = true;
 
-            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_walking);
+            letter.gameObject.GetComponent<LivingLetterController>().SetState(LLAnimationStates.LL_walking);
             if (running)
             {
                 // set letter animation
-                letter.gameObject.GetComponent<LetterObjectView>().SetWalkingSpeed(LetterObjectView.RUN_SPEED);
+                letter.gameObject.GetComponent<LivingLetterController>().SetWalkingSpeed(LivingLetterController.RUN_SPEED);
                 speed = RUN_SPEED;
             }
             else
             {
 
                 // set letter animation
-                letter.gameObject.GetComponent<LetterObjectView>().SetWalkingSpeed(LetterObjectView.WALKING_SPEED);
+                letter.gameObject.GetComponent<LivingLetterController>().SetWalkingSpeed(LivingLetterController.WALKING_SPEED);
                 speed = WALK_SPEED;
             }
 
@@ -57,7 +57,7 @@ namespace EA4S.Intro
 
         public override void ExitState()
         {
-            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
+            letter.gameObject.GetComponent<LivingLetterController>().SetState(LLAnimationStates.LL_idle);
         }
 
         public override void Update(float delta)
