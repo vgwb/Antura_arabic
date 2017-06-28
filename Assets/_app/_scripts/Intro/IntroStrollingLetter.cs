@@ -121,7 +121,6 @@ namespace EA4S.Intro
 
             if (currentData != null)
             {
-                //bool matching = GetComponent<LetterObjectView>().Model.Data.Key == currentData.Key;
                 bool matching = GetComponent<LivingLetterController>().Data == currentData;
 
                 if (onDropped != null)

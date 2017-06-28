@@ -11,8 +11,8 @@ namespace EA4S.Intro
     /// <summary>
     /// Controls the instantiation of game objects in the Intro scene.
     /// </summary>
-    public class IntroFactory : MonoBehaviour {
-
+    public class IntroFactory : MonoBehaviour
+    {
         public event System.Action<ILivingLetterData, bool> onDropped;
 
         public LettersWalkableArea walkableArea;
@@ -26,29 +26,18 @@ namespace EA4S.Intro
         protected List<IntroStrollingLetter> letters = new List<IntroStrollingLetter>();
         List<GameObject> letterGOs = new List<GameObject>();
 
-        //Queue<ILivingLetterData> toAdd = new Queue<ILivingLetterData>();
-
         Queue<IntroStrollingLetter> toDestroy = new Queue<IntroStrollingLetter>();
-        //float destroyTimer = 0;
 
-        [HideInInspector]
-        public bool StartSpawning = false;
+        [HideInInspector] public bool StartSpawning = false;
 
         public void GetNearLetters(List<IntroStrollingLetter> output, Vector3 position, float radius)
         {
-            for (int i = 0, count = letters.Count; i < count; ++i)
-            {
-                if (Vector3.Distance(letters[i].transform.position, position) < radius)
-                {
+            for (int i = 0, count = letters.Count; i < count; ++i) {
+                if (Vector3.Distance(letters[i].transform.position, position) < radius) {
                     output.Add(letters[i]);
                 }
             }
         }
-
-        //public void AddLivingLetter(ILivingLetterData letter)
-        //{
-        //    toAdd.Enqueue(letter);
-        //}
 
         public void Clean()
         {
@@ -64,61 +53,57 @@ namespace EA4S.Intro
         protected virtual LivingLetterController SpawnLetter()
         {
             // Spawn!
-            LivingLetterController letterObjectView = Instantiate(livingLetterPrefab);
-            letterObjectView.gameObject.SetActive(true);
-            letterObjectView.transform.SetParent(transform, true);
+            LivingLetterController LLController = Instantiate(livingLetterPrefab);
+            LLController.gameObject.SetActive(true);
+            LLController.transform.SetParent(transform, true);
 
             Vector3 newPosition = walkableArea.GetFurthestSpawn(letterGOs); // Find isolated spawn point
 
-            letterObjectView.transform.position = newPosition;
-            letterObjectView.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.value * 360, 0);
-            //letterObjectView.Init(toAdd.Dequeue());
-            letterObjectView.Init(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom());
+            LLController.transform.position = newPosition;
+            LLController.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.value * 360, 0);
+            LLController.Init(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom());
 
-            letterObjectView.gameObject.AddComponent<Rigidbody>().isKinematic = true;
+            LLController.gameObject.AddComponent<Rigidbody>().isKinematic = true;
 
-            foreach (var collider in letterObjectView.gameObject.GetComponentsInChildren<Collider>())
+            foreach (var collider in LLController.gameObject.GetComponentsInChildren<Collider>()) {
                 collider.isTrigger = true;
+            }
 
-            var characterController = letterObjectView.gameObject.AddComponent<CharacterController>();
+            var characterController = LLController.gameObject.AddComponent<CharacterController>();
             characterController.height = 6;
             characterController.center = Vector3.up * 3;
             characterController.radius = 1.5f;
-            letterObjectView.gameObject.AddComponent<LetterCharacterController>();
+            LLController.gameObject.AddComponent<LetterCharacterController>();
 
-            var livingLetter = letterObjectView.gameObject.AddComponent<IntroStrollingLetter>();
+            var livingLetter = LLController.gameObject.AddComponent<IntroStrollingLetter>();
             livingLetter.factory = this;
 
-            var pos = letterObjectView.transform.position;
+            var pos = LLController.transform.position;
             pos.y = 10;
-            letterObjectView.transform.position = pos;
+            LLController.transform.position = pos;
 
             letters.Add(livingLetter);
             letterGOs.Add(livingLetter.gameObject);
 
             livingLetter.onDropped += (result) =>
             {
-                if (result)
-                {
+                if (result) {
                     letters.Remove(livingLetter);
                     letterGOs.Remove(livingLetter.gameObject);
                     toDestroy.Enqueue(livingLetter);
                 }
 
                 if (onDropped != null)
-                    onDropped(letterObjectView.Data, result);
+                    onDropped(LLController.Data, result);
             };
 
-            return letterObjectView;
+            return LLController;
         }
 
         void Update()
         {
-            //if (toAdd.Count > 0)
-            if (StartSpawning)
-            {
-                if (letters.Count < MaxConcurrentLetters)
-                {
+            if (StartSpawning) {
+                if (letters.Count < MaxConcurrentLetters) {
                     SpawnLetter();
                 }
             }
@@ -140,9 +125,6 @@ namespace EA4S.Intro
             //        Destroy(t.gameObject);
             //    }
             //}
-
         }
-
-
     }
 }

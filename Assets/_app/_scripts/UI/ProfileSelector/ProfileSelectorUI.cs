@@ -22,6 +22,8 @@ namespace EA4S.UI
         public UIButton BtPlay;
         public GameObject ProfilesPanel;
         public HomeScene HomeScene;
+        public LivingLetterController LLInStage;
+
         [Header("Audio")]
         public Sfx SfxOpenCreateProfile;
         public Sfx SfxCreateNewProfile;
@@ -33,7 +35,6 @@ namespace EA4S.UI
         PlayerIcon[] playerIcons;
         Tween btAddTween, btPlayTween;
 
-        public LivingLetterController LLObjectView;
 
         #region Unity
 
@@ -46,7 +47,7 @@ namespace EA4S.UI
         void Start()
         {
             // By default, the letter shows a truly random letter
-            LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
+            LLInStage.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
  
             Setup();
 
@@ -94,7 +95,7 @@ namespace EA4S.UI
         {
             ProfileManager.SetPlayerAsCurrentByUUID(playerIconData.Uuid);
             AudioManager.I.PlaySound(SfxSelectProfile);
-            LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
+            LLInStage.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();
         }
 
