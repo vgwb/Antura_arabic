@@ -24,7 +24,7 @@ namespace EA4S.LivingLetters
     /// Controller of Living Letter characters. Functions as a view for learning data.
     /// Manages the Living Letter animations and initialises the view content.
     /// </summary>
-    public class LetterObjectView : MonoBehaviour
+    public class LivingLetterController : MonoBehaviour
     {
         public const float WALKING_SPEED = 0.0f;
         public const float RUN_SPEED = 1.0f;
