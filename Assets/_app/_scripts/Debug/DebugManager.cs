@@ -156,7 +156,7 @@ namespace EA4S.Debugging
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;
 
             AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected,
-                new MinigameLaunchConfiguration(Difficulty, NumberOfRounds), forceNewPlaySession: true);
+                new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, tutorialEnabled: false), forceNewPlaySession: true);
         }
 
         public void ResetAll()
