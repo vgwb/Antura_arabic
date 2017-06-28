@@ -29,7 +29,7 @@ namespace EA4S.Minigames.Egg
 
             livingLetter.transform.SetParent(parent);
             livingLetter.transform.localPosition = startPosition;
-            livingLetter.Initialize(livingLetterData);
+            livingLetter.Init(livingLetterData);
             livingLetter.transform.localScale *= startScale;
             livingLetter.gameObject.SetActive(false);
 

@@ -272,7 +272,7 @@ namespace EA4S.Minigames.HideAndSeek
                     scriptComponent.SetStartPosition(ArrayPlaceholder[index].transform.position);
                     scriptComponent.id = index;
                     SetLetterMovement(index, scriptComponent);
-                    ArrayLetters[i].GetComponentInChildren<LivingLetterController>().Initialize(letterList[i]);
+                    ArrayLetters[i].GetComponentInChildren<LivingLetterController>().Init(letterList[i]);
 
                     ArrayLetters[i].transform.DOMove(ArrayPlaceholder[index].transform.position, 0.5f);
                 }

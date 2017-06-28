@@ -7,19 +7,6 @@ using TMPro;
 
 namespace EA4S.LivingLetters
 {
-    public enum LLAnimationStates
-    {
-        LL_still, // it's like idle, but does not trigger random animations
-        LL_idle,
-        LL_walking,
-        LL_dragging,
-        LL_hanging,
-        LL_dancing,
-        LL_rocketing,
-        LL_tickling,
-        LL_limbless
-    }
-
     /// <summary>
     /// Controller of Living Letter characters. Functions as a view for learning data.
     /// Manages the Living Letter animations and initialises the view content.
@@ -33,7 +20,7 @@ namespace EA4S.LivingLetters
 
         #region public properties
 
-        [Header("GO Elements")]
+        [Header("References")]
         public Transform innerTransform;
         public Transform contentTransform;
         public RectTransform textTransform;
@@ -46,13 +33,12 @@ namespace EA4S.LivingLetters
 
         Vector3 startScale;
         Vector2 startTextScale;
-        //float lastScale = 1.0f;
+
         [Range(1, 2)]
         public float Scale = 1.0f;
 
         public GameObject[] normalGraphics;
         public GameObject[] limblessGraphics;
-
         public GameObject poofPrefab;
 
         public float DancingSpeed = 1;
@@ -168,7 +154,7 @@ namespace EA4S.LivingLetters
 
         #endregion
 
-        #region Init
+        #region Unity events
         void Awake()
         {
             startScale = transform.localScale;
@@ -188,7 +174,7 @@ namespace EA4S.LivingLetters
         /// Initializes object with the specified data.
         /// </summary>
         /// <param name="data">The data.</param>
-        public void Initialize(ILivingLetterData data)
+        public void Init(ILivingLetterData data)
         {
             idleTimer = Random.Range(3, 8);
             Data = data;
@@ -200,7 +186,7 @@ namespace EA4S.LivingLetters
         /// <param name="data">Used as data reference.</param>
         /// <param name="customText">The text.</param>
         /// <param name="scale">The scale used to resize the LL.</param>
-        public void Initialize(ILivingLetterData data, string customText, float scale)
+        public void Init(ILivingLetterData data, string customText, float scale)
         {
             idleTimer = Random.Range(3, 8);
 

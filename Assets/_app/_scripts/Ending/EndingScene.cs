@@ -60,7 +60,7 @@ namespace EA4S.Scenes
             var lettersData = AppManager.I.Teacher.GetAllTestLetterDataLL();
             foreach (var l in Letters)
             {
-                l.Initialize(lettersData.GetRandom());
+                l.Init(lettersData.GetRandom());
                 l.State = LLAnimationStates.LL_dancing;
             }
 

@@ -81,7 +81,7 @@ namespace EA4S.Minigames.TakeMeHome
 
 			letterObjectView.transform.position = newPosition;
 			//letterObjectView.transform.rotation = Quaternion.identity
-			letterObjectView.Initialize (data);
+			letterObjectView.Init (data);
 
 			var ll = letterObjectView.gameObject.AddComponent<TakeMeHomeLL>();
 			ll.Initialize (plane.transform.position.y,letterObjectView,GetComponent<TakeMeHomeGame> ().spawnTube.transform.position);

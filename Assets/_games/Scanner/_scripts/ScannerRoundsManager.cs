@@ -101,7 +101,7 @@ namespace EA4S.Minigames.Scanner
 			for (int i = 0; i < game.scannerLL.Count; i++)
 			{
 				game.scannerLL[i].Reset();
-				game.scannerLL[i].letterObjectView.Initialize(correctAnswers[i]);
+				game.scannerLL[i].letterObjectView.Init(correctAnswers[i]);
 
                 if (game.scannerLL.Count == 3)
                     game.scannerLL[i].slidingTime = Time.time + 8 * i;

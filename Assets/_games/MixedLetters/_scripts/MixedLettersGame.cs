@@ -286,12 +286,12 @@ namespace EA4S.Minigames.MixedLetters
                 spellingQuestionPack = newQuestionPack;
                 question = newQuestionPack.GetQuestion();
 
-                VictimLLController.instance.letterObjectView.Initialize(question);
+                VictimLLController.instance.letterObjectView.Init(question);
             }
 
             else
             {
-                VictimLLController.instance.letterObjectView.Initialize(null);
+                VictimLLController.instance.letterObjectView.Init(null);
 
                 string victimLLWord = "";
 

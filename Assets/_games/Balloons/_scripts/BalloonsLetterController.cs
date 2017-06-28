@@ -99,7 +99,7 @@ namespace EA4S.Balloons
         public void Init(ILivingLetterData _data)
         {
             letterData = _data;
-            LLPrefab.Initialize(_data);
+            LLPrefab.Init(_data);
             ConfigureJointAnchors(_data);
         }
 

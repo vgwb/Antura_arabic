@@ -108,7 +108,7 @@ namespace EA4S.Minigames.SickLetters
         public void getNewLetterData()
         {
             ILivingLetterData newLetter = game.questionManager.getNewLetter();
-            letterView.Initialize(newLetter);
+            letterView.Init(newLetter);
             letterView.Label.GetComponent<TextRender>().SetLetterData(newLetter);
 
 

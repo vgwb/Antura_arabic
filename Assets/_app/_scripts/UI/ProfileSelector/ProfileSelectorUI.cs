@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using DG.DeExtensions;
+﻿using DG.DeExtensions;
 using DG.Tweening;
 using EA4S.Audio;
-using EA4S.Core;
 using EA4S.LivingLetters;
 using EA4S.Profile;
-using UnityEngine;
 using EA4S.Scenes;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace EA4S.UI
 {
@@ -34,7 +33,7 @@ namespace EA4S.UI
         PlayerIcon[] playerIcons;
         Tween btAddTween, btPlayTween;
 
-        public LivingLetterController LLObjectView; // ?
+        public LivingLetterController LLObjectView;
 
         #region Unity
 
@@ -47,9 +46,8 @@ namespace EA4S.UI
         void Start()
         {
             // By default, the letter shows a truly random letter
-            LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
-            //LLObjectView.Initialize(new EA4S.MinigamesAPI.LL_LetterData("alef_fathah_tanwin"));
-
+            LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
+ 
             Setup();
 
             btAddTween = BtAdd.transform.DORotate(new Vector3(0, 0, -45), 0.3f).SetAutoKill(false).Pause()
@@ -96,7 +94,7 @@ namespace EA4S.UI
         {
             ProfileManager.SetPlayerAsCurrentByUUID(playerIconData.Uuid);
             AudioManager.I.PlaySound(SfxSelectProfile);
-            LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
+            LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();
         }
 
