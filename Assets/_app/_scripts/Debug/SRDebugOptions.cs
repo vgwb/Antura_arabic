@@ -8,14 +8,14 @@ using EA4S.Debugging;
 using EA4S.Rewards;
 using EA4S.UI;
 
-// refactoring: this is tied to SRDebugger, but we have a DebugManager. Move all debug logic there and make this behave only as a wrapping interface.
+// TODO refactoring: this is tied to SRDebugger, but we have a DebugManager. Move all debug logic there and make this behave only as a wrapping interface.
 public partial class SROptions
 {
     [Category("Options")]
     [Sort(80)]
     public void ToggleQuality()
     {
-        // refactor: move to DebugManager
+        // TODO refactor: move to DebugManager
         AppManager.I.ToggleQualitygfx();
         SRDebug.Instance.HideDebugPanel();
     }
@@ -30,7 +30,7 @@ public partial class SROptions
 
 
 
-    // refactor: minigame-specific debug options should not be here, place them in other partial classes if truly needed
+    // TODO refactor: minigame-specific debug options should not be here, place them in other partial classes if truly needed
 
     /// MakeFriends
     [Category("MakeFriends")]

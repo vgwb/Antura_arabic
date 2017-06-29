@@ -6,7 +6,7 @@ namespace EA4S.Core
 {
     public static class AppSceneHelper
     {
-        // refactor: scene names should match AppScene so that this can be removed
+        // TODO refactor: scene names should match AppScene so that this can be removed
         public static string GetSceneName(AppScene scene, Database.MiniGameData minigameData = null)
         {
             switch (scene) {

@@ -25,7 +25,7 @@ namespace EA4S.Profile
                 {
                     AppManager.I.Player = _currentPlayer = value;
                     AppManager.I.Teacher.SetPlayerProfile(value);
-                    // refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
+                    // TODO refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
                     if (AppManager.I.DB.HasLoadedPlayerProfile()) {
                         LogManager.I.LogInfo(InfoEvent.AppSessionEnd, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
                     }

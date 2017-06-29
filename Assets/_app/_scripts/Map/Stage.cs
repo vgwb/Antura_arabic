@@ -201,7 +201,7 @@ namespace EA4S.Map
             }
         }
 
-        // refactor: these methods are not called at all, but are needed by the Map to show the state of a play session. The map should be improved to use these.
+        // TODO refactor: these methods are not called at all, but are needed by the Map to show the state of a play session. The map should be improved to use these.
 
         /// <summary>
         /// Returns a list of all play session data with its score (if a score exists) for the given stage

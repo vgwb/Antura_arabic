@@ -69,7 +69,7 @@ namespace EA4S
 
             AppSettingsManager = new AppSettingsManager();
             DB = new DatabaseManager();
-            // refactor: standardize initialisation of managers
+            // TODO refactor: standardize initialisation of managers
             LogManager = new LogManager();
             VocabularyHelper = new VocabularyHelper(DB);
             JourneyHelper = new JourneyHelper(DB);

@@ -8,7 +8,7 @@ namespace EA4S.MinigamesAPI
     /// <summary>
     /// View of a WordData shown as a drawing or image on a LivingLetter.
     /// </summary>
-    // refactor: rename to better indicate that this is a view
+    // TODO refactor: rename to better indicate that this is a view
     public class LL_ImageData : ILivingLetterData
     {
 
@@ -20,10 +20,10 @@ namespace EA4S.MinigamesAPI
 
         public string Id {
             get { return Data.Id; }
-            set { Data = AppManager.I.DB.GetWordDataById(value); }  // refactor: inject the value, no reference to the DB
+            set { Data = AppManager.I.DB.GetWordDataById(value); }  // TODO refactor: inject the value, no reference to the DB
         }
 
-        public LL_ImageData(string _id) : this(AppManager.I.DB.GetWordDataById(_id))  // refactor: inject the value, no reference to the DB
+        public LL_ImageData(string _id) : this(AppManager.I.DB.GetWordDataById(_id))  // TODO refactor: inject the value, no reference to the DB
         {
         }
 
@@ -40,11 +40,11 @@ namespace EA4S.MinigamesAPI
         /// Living Letter Text To Display.
         /// </summary>
         public string TextForLivingLetter {
-            get { return ArabicAlphabetHelper.ProcessArabicString(Data.Arabic); }  // refactor: remove reference to the Arabic language
+            get { return ArabicAlphabetHelper.ProcessArabicString(Data.Arabic); }  // TODO refactor: remove reference to the Arabic language
         }
 
         public string DrawingCharForLivingLetter {
-            get { return AppManager.I.VocabularyHelper.GetWordDrawing(Data); }  // refactor: inject the value, no reference to the DB
+            get { return AppManager.I.VocabularyHelper.GetWordDrawing(Data); }  // TODO refactor: inject the value, no reference to the DB
         }
 
         /// <summary>

@@ -4,7 +4,7 @@ using EA4S.Database;
 
 namespace EA4S.Teacher
 {   
-    // refactor: merge JourneyPosition, JourneyHelper
+    // TODO refactor: merge JourneyPosition, JourneyHelper
     public class JourneyHelper
     {
         private DatabaseManager dbManager;

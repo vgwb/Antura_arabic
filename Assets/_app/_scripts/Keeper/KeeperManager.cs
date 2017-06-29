@@ -17,7 +17,7 @@ namespace EA4S.Core
             I = this;
         }
 
-        // refactor: remove or complete this
+        // TODO refactor: remove or complete this
         public void PlaySceneIntroduction(AppScene scene)
         {
             switch (scene) {

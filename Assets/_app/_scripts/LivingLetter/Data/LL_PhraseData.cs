@@ -8,7 +8,7 @@ namespace EA4S.MinigamesAPI
     /// <summary>
     /// View of a PhraseData shown as text on a LivingLetter.
     /// </summary>
-    // refactor: rename to better indicate that this is a view
+    // TODO refactor: rename to better indicate that this is a view
     public class LL_PhraseData : ILivingLetterData
     {
 
@@ -20,10 +20,10 @@ namespace EA4S.MinigamesAPI
 
         public string Id {
             get { return Data.Id; }
-            set { Data = AppManager.I.DB.GetPhraseDataById(value); } // refactor: inject the value, no reference to the DB
+            set { Data = AppManager.I.DB.GetPhraseDataById(value); } // TODO refactor: inject the value, no reference to the DB
         }
 
-        public LL_PhraseData(string _id) : this(_id, AppManager.I.DB.GetPhraseDataById(_id)) // refactor: inject the value, no reference to the DB
+        public LL_PhraseData(string _id) : this(_id, AppManager.I.DB.GetPhraseDataById(_id)) // TODO refactor: inject the value, no reference to the DB
         {
         }
 

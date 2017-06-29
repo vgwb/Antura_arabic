@@ -388,7 +388,7 @@ namespace EA4S.Core
 
         #endregion
 
-        // refactor: move these a more coherent manager, which handles the state of a play session between minigames
+        // TODO refactor: move these a more coherent manager, which handles the state of a play session between minigames
 
         #region temp for demo
 

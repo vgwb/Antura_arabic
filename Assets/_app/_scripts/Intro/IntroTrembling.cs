@@ -2,7 +2,7 @@
 
 namespace EA4S.Intro
 {
-    // refactor: could not find any reference to this script in the Intro scene
+    // TODO refactor: could not find any reference to this script in the Intro scene
     public class IntroTrembling : MonoBehaviour
     {
         public Transform tremblingCenter;

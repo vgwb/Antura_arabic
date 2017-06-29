@@ -79,7 +79,7 @@ namespace EA4S.MinigamesAPI
         /// <summary>
         /// Prepare the configuration for a given minigame.
         /// </summary>
-        // refactor: this depends on the specific minigames, should be abstracted
+        // TODO refactor: this depends on the specific minigames, should be abstracted
         public IGameConfiguration ConfigureMiniGame(MiniGameCode code, string sessionName)
         {
             var defaultContext = new MinigamesGameContext(code, sessionName);

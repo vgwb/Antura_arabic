@@ -33,8 +33,8 @@ namespace EA4S.Database
     ///     <seealso cref="PhraseData" />
     ///     <seealso cref="WordData" />
     /// </summary>
-    // refactor: this requires heavy refactoring!
-    // refactor: we could make this general in respect to the language
+    // TODO refactor: this requires heavy refactoring!
+    // TODO refactor: we could make this general in respect to the language
     [Serializable]
     public class LetterData : IVocabularyData, IConvertibleToLivingLetterData
     {

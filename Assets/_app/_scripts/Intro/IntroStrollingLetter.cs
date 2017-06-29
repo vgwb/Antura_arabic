@@ -14,7 +14,7 @@ namespace EA4S.Intro
 
         StateManager stateManager = new StateManager();
 
-        // refactor: the use of FSMs is not standardized across the codebase
+        // TODO refactor: the use of FSMs is not standardized across the codebase
         public IntroStrollingLetterWalkingState WalkingState { get; private set; }
         public IntroStrollingLetterIdleState IdleState { get; private set; }
         public IntroStrollingLetterFallingState FallingState { get; private set; }
