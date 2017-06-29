@@ -51,7 +51,7 @@ namespace EA4S.Scenes
 
             GlobalUI.ShowPauseMenu(true);
 
-            // refactor: move this initialisation logic to the AppManager
+            // TODO refactor: move this initialisation logic to the AppManager
             LogManager.I.InitNewSession();
             LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new DeviceInfo()));
 

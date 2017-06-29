@@ -8,7 +8,7 @@ namespace EA4S.Intro
     /// <summary>
     /// A special LivingLetter character with special animations.
     /// </summary>
-    // refactor: remove the references to the Maze minigame
+    // TODO refactor: remove the references to the Maze minigame
     public class IntroRocketCharacter : MonoBehaviour
     {
 

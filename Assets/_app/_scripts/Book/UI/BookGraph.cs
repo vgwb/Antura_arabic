@@ -6,7 +6,7 @@ namespace EA4S.Book
     /// <summary>
     /// Displays data using a bar graph.
     /// </summary>
-    // refactor: rename to BarGraph
+    // TODO refactor: rename to BarGraph
     public class BookGraph : MonoBehaviour
     {
         public GameObject barPrefabGo;

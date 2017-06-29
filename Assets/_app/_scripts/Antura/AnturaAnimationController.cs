@@ -373,21 +373,3 @@ namespace EA4S.Antura
         }
     }
 }
-
-namespace EA4S
-{
-    // conventions: requires renaming
-    public enum AnturaAnimationStates
-    {
-        idle,
-        walking,
-        sitting,
-        sleeping,
-        sheeping,
-        sucking,
-        bellyUp,
-        digging,
-        dancing,
-        bitingTail
-    }
-}

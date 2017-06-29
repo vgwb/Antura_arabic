@@ -5,8 +5,8 @@ namespace EA4S.Core
     /// <summary>
     /// Container for application-wide static constants.
     /// </summary>
-    // refactor: enforce code convention
-    // refactor: reorganize all constants (some are statics, others are consts)
+    // TODO refactor: enforce code convention
+    // TODO refactor: reorganize all constants (some are statics, others are consts)
     public static class AppConstants
     {
 

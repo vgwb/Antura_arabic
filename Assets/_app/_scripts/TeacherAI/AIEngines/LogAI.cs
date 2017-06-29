@@ -56,7 +56,7 @@ namespace EA4S.Teacher
 
         public void LogMood(int appSession, int mood)
         {
-            // refactor: this should have a session like the rest of the logging methods
+            // TODO refactor: this should have a session like the rest of the logging methods
             float realMood = Mathf.InverseLerp(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue, mood);
             var data = new LogMoodData(appSession, realMood);
             db.Insert(data);
@@ -263,7 +263,7 @@ namespace EA4S.Teacher
             db.InsertOrReplaceAll(scoreDataList);
         }
 
-        // refactor: these rules should be moved out of the LogAI and be instead placed in the games' configuration, as they belong to the games 
+        // TODO refactor: these rules should be moved out of the LogAI and be instead placed in the games' configuration, as they belong to the games 
         private MiniGameLearnRules GetLearnRules(MiniGameCode code)
         {
             MiniGameLearnRules rules = new MiniGameLearnRules();

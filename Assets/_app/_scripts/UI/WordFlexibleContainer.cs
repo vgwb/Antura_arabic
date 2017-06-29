@@ -6,7 +6,7 @@ namespace EA4S.UI
     /// <summary>
     /// A flexible container for text.
     /// </summary>
-// refactor: place in a namespace
+// TODO refactor: place in a namespace
     public class WordFlexibleContainer : MonoBehaviour
     {
         public TextRender Label;

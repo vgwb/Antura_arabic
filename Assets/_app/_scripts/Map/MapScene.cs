@@ -22,7 +22,7 @@ namespace EA4S.Map
 
         public void Play()
         {
-            // refactor: move this initalisation to a better place, maybe inside the MiniGameLauncher.
+            // TODO refactor: move this initalisation to a better place, maybe inside the MiniGameLauncher.
             AppManager.I.NavigationManager.GoToNextScene();
         }
 

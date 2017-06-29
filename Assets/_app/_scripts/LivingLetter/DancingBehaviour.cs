@@ -2,7 +2,7 @@
 
 namespace EA4S.LivingLetters
 {
-    // refactor: group these behaviours in a folder
+    // TODO refactor: group these behaviours in a folder
     public class DancingBehaviour : StateMachineBehaviour
     {
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

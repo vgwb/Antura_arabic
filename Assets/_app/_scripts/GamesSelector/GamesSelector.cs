@@ -230,13 +230,13 @@ namespace EA4S.GamesSelector
         {
             OnComplete += GoToMinigame;
 
-            // refactor: the current list of minigames should be injected by the navigation manager instead
+            // TODO refactor: the current list of minigames should be injected by the navigation manager instead
             var minigames = AppManager.I.NavigationManager.CurrentPlaySessionMiniGames;
             if (minigames.Count > 0)
                 Show(minigames);
         }
 
-        // refactor: this should be injected
+        // TODO refactor: this should be injected
         void GoToMinigame()
         {
             AppManager.I.NavigationManager.GoToNextScene();

@@ -7,11 +7,11 @@ namespace EA4S.MinigamesAPI
     /// <summary>
     /// View of a LetterData shown as a single letter on a LivingLetter.
     /// </summary>
-    // refactor: rename to better indicate that this is a view
+    // TODO refactor: rename to better indicate that this is a view
     public class LL_LetterData : ILivingLetterData
     {
         public Database.LetterData Data;
-        public Database.LetterForm Form = Database.LetterForm.Isolated; // refactor: this is tied to the Arabic language
+        public Database.LetterForm Form = Database.LetterForm.Isolated; // TODO refactor: this is tied to the Arabic language
 
         public LivingLetterDataType DataType {
             get { return LivingLetterDataType.Letter; }
@@ -22,7 +22,7 @@ namespace EA4S.MinigamesAPI
             set { Data = AppManager.I.DB.GetLetterDataById(value); }
         }
 
-        public LL_LetterData(string _id) : this(AppManager.I.DB.GetLetterDataById(_id)) /// refactor: inject the value, no reference to the DB
+        public LL_LetterData(string _id) : this(AppManager.I.DB.GetLetterDataById(_id)) /// TODO refactor: inject the value, no reference to the DB
         {
         }
 

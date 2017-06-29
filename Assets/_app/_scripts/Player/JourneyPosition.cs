@@ -3,8 +3,8 @@
     /// <summary>
     /// Represents the position of the player in the learning journey.
     /// </summary>
-    // refactor: this being a class may create some pesky bugs. Make it a struct?
-    // refactor: merge JourneyPosition, JourneyHelper
+    // TODO refactor: this being a class may create some pesky bugs. Make it a struct?
+    // TODO refactor: merge JourneyPosition, JourneyHelper
     [System.Serializable]
     public class JourneyPosition
     {
@@ -48,7 +48,7 @@
             return base.GetHashCode();
         }
 
-        // refactor: this is used by part of the application to convert hourney to an ID for DB purposes. Make this more robust.
+        // TODO refactor: this is used by part of the application to convert hourney to an ID for DB purposes. Make this more robust.
         public override string ToString()
         {
             return Stage + "." + LearningBlock + "." + PlaySession;

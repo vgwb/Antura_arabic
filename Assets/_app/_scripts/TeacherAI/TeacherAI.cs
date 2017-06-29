@@ -31,7 +31,7 @@ namespace EA4S.Teacher
         DifficultySelectionAI difficultySelectionAI;
 
         // Helpers
-        // refactor: these helpers should be separated from the TeacherAI.
+        // TODO refactor: these helpers should be separated from the TeacherAI.
         private VocabularyHelper VocabularyHelper;
         private JourneyHelper JourneyHelper;
         private ScoreHelper ScoreHelper;
@@ -201,7 +201,7 @@ namespace EA4S.Teacher
 
         #region Learning Blocks
 
-        // refactor: Not used. 
+        // TODO refactor: Not used. 
         public float GetLearningBlockScore(LearningBlockData lb)
         {
             var allScores = ScoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(lb.Stage, lb.LearningBlock);
@@ -212,7 +212,7 @@ namespace EA4S.Teacher
 
         #region Assessment
 
-        // refactor: Only for tests purpose. Remove from the teacher.
+        // TODO refactor: Only for tests purpose. Remove from the teacher.
         public List<LetterData> GetFailedAssessmentLetters(MiniGameCode assessmentCode) // also play session
         {
             // @note: this code shows how to work on the dynamic and static db together
@@ -226,7 +226,7 @@ namespace EA4S.Teacher
             return letters;
         }
 
-        // refactor: Only for tests purpose. Remove from the teacher.
+        // TODO refactor: Only for tests purpose. Remove from the teacher.
         public List<WordData> GetFailedAssessmentWords(MiniGameCode assessmentCode)
         {
             string query =
@@ -243,7 +243,7 @@ namespace EA4S.Teacher
 
         #region Journeymap
 
-        // refactor: Only for tests purpose. Remove from the teacher.
+        // TODO refactor: Only for tests purpose. Remove from the teacher.
         public List<LogPlayData> GetScoreHistoryForCurrentJourneyPosition()
         {
             // @note: shows how to work with playerprofile as well as the database
@@ -258,7 +258,7 @@ namespace EA4S.Teacher
 
         #region Mood
 
-        // refactor: Refactor access to the data through an AnalyticsManager, instead of passing through the TeacherAI.
+        // TODO refactor: Refactor access to the data through an AnalyticsManager, instead of passing through the TeacherAI.
         public List<LogMoodData> GetLastMoodData(int number)
         {
             string query = string.Format("SELECT * FROM " + typeof(LogMoodData).Name + " ORDER BY Timestamp LIMIT {0}", number);
@@ -271,7 +271,7 @@ namespace EA4S.Teacher
 
         #region Fake data for question providers
 
-        // refactor: Refactor access to test data throught a TestDataManager, instead of passing through the TeacherAI.
+        // TODO refactor: Refactor access to test data throught a TestDataManager, instead of passing through the TeacherAI.
         private static bool giveWarningOnFake = false;
 
         public List<LL_LetterData> GetAllTestLetterDataLL(LetterFilters filters = null, bool useMaxJourneyData = false)

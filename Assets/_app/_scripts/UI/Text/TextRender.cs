@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-// refactor: remove reference to Arabic
+// TODO refactor: remove reference to Arabic
 namespace EA4S.UI
 {
     public class TextRender : MonoBehaviour

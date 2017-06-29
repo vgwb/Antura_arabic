@@ -10,10 +10,10 @@ namespace EA4S.Antura
     /// Handles loading and assignment of visual reward props appearing on Antura.
     /// </summary>
     // convention: rename variables
-    // refactor: the class needs a complete refactoring
+    // TODO refactor: the class needs a complete refactoring
     public class AnturaModelManager : MonoBehaviour
     {
-        // refactor: remove static instance
+        // TODO refactor: remove static instance
         public static AnturaModelManager Instance;
 
         [Header("Bones Attach")]
