@@ -30,6 +30,13 @@ namespace EA4S.Debugging
         public int LearningBlock = 1;
         public int PlaySession = 1;
 
+        public void SetDebugJourneyPos(JourneyPosition jp)
+        {
+            Stage = jp.Stage;
+            LearningBlock = jp.LearningBlock;
+            PlaySession = jp.PlaySession;
+        }
+
         public float Difficulty = 0.5f;
         public int NumberOfRounds = 1;
         public bool TutorialEnabled = true;
@@ -46,6 +53,11 @@ namespace EA4S.Debugging
         /// Stops a MiniGame from playing if the PlaySession database does not allow that MiniGame to be played at a given position.
         /// </summary>
         public bool SafeLaunch = true;
+
+        /// <summary>
+        /// If SafeLaunch is on, the DebugManager will correct the journey position so the minimum JP is selected
+        /// </summary>
+        public bool AutoCorrectJourneyPos = true;
 
         private bool _ignoreJourneyData = false;
         public bool IgnoreJourneyData
@@ -190,7 +202,7 @@ namespace EA4S.Debugging
             AppManager.I.NavigationManager.GoToReservedArea(debugMode: true);
         }
 
-        public void ForwardMaxPosition()
+        public void ForwardMaxJourneyPos()
         {
             JourneyPosition newPos = AppManager.I.JourneyHelper.FindNextJourneyPosition(AppManager.I.Player.MaxJourneyPosition);
             if (newPos != null)
@@ -211,7 +223,7 @@ namespace EA4S.Debugging
             GoToMap();
         }
 
-        public void ResetMaxPosition()
+        public void ResetMaxJourneyPos()
         {
             AppManager.I.Player.ResetMaxJourneyPosition();
         }
@@ -264,5 +276,6 @@ namespace EA4S.Debugging
         #endregion
 
         #endregion
+
     }
 }

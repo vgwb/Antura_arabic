@@ -22,11 +22,13 @@ namespace EA4S.Debugging
         public Toggle TutorialEnabledToggle;
         public Toggle VerboseTeacherToggle;
         public Toggle SafeLaunchToggle;
+        public Toggle AutoCorrectJourneyPosToggle;
         public Toggle CheatEnabledToggle;
 
         public bool TutorialEnabled { get { return DebugManager.I.TutorialEnabled; } set { DebugManager.I.TutorialEnabled = value; } }
         public bool VerboseTeacher { get { return DebugManager.I.VerboseTeacher; } set { DebugManager.I.VerboseTeacher = value; } }
         public bool SafeLaunch { get { return DebugManager.I.SafeLaunch; } set { DebugManager.I.SafeLaunch = value; } }
+        public bool AutoCorrectJourneyPos { get { return DebugManager.I.AutoCorrectJourneyPos; } set { DebugManager.I.AutoCorrectJourneyPos = value; } }
         public bool CheatEnabled { get { return DebugManager.I.CheatEnabled; } set { DebugManager.I.CheatEnabled = value; } }
 
         private int clickCounter;
@@ -165,6 +167,7 @@ namespace EA4S.Debugging
 
             TutorialEnabledToggle.isOn = TutorialEnabled;
             CheatEnabledToggle.isOn = CheatEnabled;
+            AutoCorrectJourneyPosToggle.isOn = AutoCorrectJourneyPos;
             VerboseTeacherToggle.isOn = VerboseTeacher;
             SafeLaunchToggle.isOn = SafeLaunch;
 
@@ -198,8 +201,6 @@ namespace EA4S.Debugging
             }
         }
 
-
-
         #endregion
 
         #region Actions
@@ -207,21 +208,17 @@ namespace EA4S.Debugging
         public void LaunchMiniGame(MiniGameCode minigameCode, float difficulty)
         {
             playedMinigames[minigameCode] = true;
-            DebugManager.I.Stage = int.Parse(InputStage.text);
-            DebugManager.I.LearningBlock = int.Parse(InputLearningBlock.text);
-            DebugManager.I.PlaySession = int.Parse(InputPlaySession.text);
 
-            if (!DebugManager.I.SafeLaunch
-                || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(
-                    new JourneyPosition(DebugManager.I.Stage, DebugManager.I.LearningBlock, DebugManager.I.PlaySession),
-                    minigameCode)) {
-                WidgetPopupWindow.I.Close();
-                DebugManager.I.LaunchMiniGame(minigameCode, difficulty);
-                Close();
+            var debugPs = new JourneyPosition(int.Parse(InputStage.text), int.Parse(InputLearningBlock.text), int.Parse(InputPlaySession.text));
+
+            if (!DebugManager.I.SafeLaunch || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(debugPs, minigameCode))
+            {
+                LaunchMiniGameAtJourneyPosition(minigameCode, difficulty, debugPs);
+
             } else {
-                if (DebugManager.I.SafeLaunch) {
-                    JourneyPosition minJ =
-                        AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
+                if (DebugManager.I.SafeLaunch)
+                {
+                    JourneyPosition minJ = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
                     if (minJ == null) {
                         Debug.LogWarningFormat(
                             "Minigame {0} could not be selected for any PlaySession. Please check the PlaySession data table.",
@@ -229,9 +226,22 @@ namespace EA4S.Debugging
                     } else {
                         Debug.LogErrorFormat("Minigame {0} cannot be selected this PlaySession. Min: {1}", minigameCode,
                             minJ.ToString());
+
+                        if (AutoCorrectJourneyPos)
+                        {
+                            LaunchMiniGameAtJourneyPosition(minigameCode, difficulty, minJ);
+                        }
                     }
                 }
             }
+        }
+
+        private void LaunchMiniGameAtJourneyPosition(MiniGameCode minigameCode, float difficulty, JourneyPosition journeyPosition)
+        {
+            WidgetPopupWindow.I.Close();
+            DebugManager.I.SetDebugJourneyPos(journeyPosition);
+            DebugManager.I.LaunchMiniGame(minigameCode, difficulty);
+            Close();
         }
 
         #endregion
