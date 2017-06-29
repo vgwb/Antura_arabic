@@ -40,15 +40,13 @@ namespace EA4S.Debugging
 
         public float Difficulty = 0.5f;
         public int NumberOfRounds = 1;
-        public bool TutorialEnabled = true;
+        public bool TutorialEnabled = false;
 
         #endregion
 
         #region App Options
 
         public bool VerboseTeacher { get { return Teacher.ConfigAI.verboseTeacher; } set { Teacher.ConfigAI.verboseTeacher = value; } }
-
-        public bool CheatEnabled = false;
 
         /// <summary>
         /// Stops a MiniGame from playing if the PlaySession database does not allow that MiniGame to be played at a given position.

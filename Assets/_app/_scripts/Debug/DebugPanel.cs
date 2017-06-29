@@ -23,13 +23,11 @@ namespace EA4S.Debugging
         public Toggle VerboseTeacherToggle;
         public Toggle SafeLaunchToggle;
         public Toggle AutoCorrectJourneyPosToggle;
-        public Toggle CheatEnabledToggle;
 
         public bool TutorialEnabled { get { return DebugManager.I.TutorialEnabled; } set { DebugManager.I.TutorialEnabled = value; } }
         public bool VerboseTeacher { get { return DebugManager.I.VerboseTeacher; } set { DebugManager.I.VerboseTeacher = value; } }
         public bool SafeLaunch { get { return DebugManager.I.SafeLaunch; } set { DebugManager.I.SafeLaunch = value; } }
         public bool AutoCorrectJourneyPos { get { return DebugManager.I.AutoCorrectJourneyPos; } set { DebugManager.I.AutoCorrectJourneyPos = value; } }
-        public bool CheatEnabled { get { return DebugManager.I.CheatEnabled; } set { DebugManager.I.CheatEnabled = value; } }
 
         private int clickCounter;
         private Dictionary<MiniGameCode, bool> playedMinigames = new Dictionary<MiniGameCode, bool>();
@@ -166,7 +164,6 @@ namespace EA4S.Debugging
             }
 
             TutorialEnabledToggle.isOn = TutorialEnabled;
-            CheatEnabledToggle.isOn = CheatEnabled;
             AutoCorrectJourneyPosToggle.isOn = AutoCorrectJourneyPos;
             VerboseTeacherToggle.isOn = VerboseTeacher;
             SafeLaunchToggle.isOn = SafeLaunch;
