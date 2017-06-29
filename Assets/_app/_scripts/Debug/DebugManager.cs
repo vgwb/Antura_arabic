@@ -1,19 +1,11 @@
 ﻿using UnityEngine;
-using System;
 using EA4S.Core;
+using EA4S.Database;
 using EA4S.MinigamesAPI;
+using EA4S.Rewards;
 
 namespace EA4S.Debugging
 {
-    // refactor: this enum could be used throughout the application instead of just being in the DebugManager
-    public enum DifficultyLevel
-    {
-        VeryEasy = 0,
-        Easy = 1,
-        Normal = 2,
-        Hard = 3,
-        VeryHard = 4
-    }
 
     /// <summary>
     /// General manager for debug purposes.
@@ -26,23 +18,36 @@ namespace EA4S.Debugging
         public bool DebugPanelOpened;
 
         public delegate void OnSkipCurrentSceneDelegate();
-
         public static event OnSkipCurrentSceneDelegate OnSkipCurrentScene;
-
         public delegate void OnForceCurrentMinigameEndDelegate(int value);
-
         public static event OnForceCurrentMinigameEndDelegate OnForceCurrentMinigameEnd;
 
-        public float Difficulty = 0.5f;
+        private GameObject debugPanelGO;
+
+        #region Launch Options
+
         public int Stage = 1;
         public int LearningBlock = 1;
         public int PlaySession = 1;
+
+        public float Difficulty = 0.5f;
         public int NumberOfRounds = 1;
         public bool TutorialEnabled = true;
 
-        private GameObject debugPanelGO;
-        private bool _ignoreJourneyData = false;
+        #endregion
 
+        #region App Options
+
+        public bool VerboseTeacher { get { return Teacher.ConfigAI.verboseTeacher; } set { Teacher.ConfigAI.verboseTeacher = value; } }
+
+        public bool CheatEnabled = false;
+
+        /// <summary>
+        /// Stops a MiniGame from playing if the PlaySession database does not allow that MiniGame to be played at a given position.
+        /// </summary>
+        public bool SafeLaunch = true;
+
+        private bool _ignoreJourneyData = false;
         public bool IgnoreJourneyData
         {
             get { return _ignoreJourneyData; }
@@ -53,35 +58,7 @@ namespace EA4S.Debugging
             }
         }
 
-        private DifficultyLevel _difficultyLevel = DifficultyLevel.Normal;
-
-        public DifficultyLevel DifficultyLevel
-        {
-            get { return _difficultyLevel; }
-            set
-            {
-                _difficultyLevel = value;
-                switch (_difficultyLevel) {
-                    case DifficultyLevel.VeryEasy:
-                        Difficulty = 0.1f;
-                        break;
-                    case DifficultyLevel.Easy:
-                        Difficulty = 0.3f;
-                        break;
-                    case DifficultyLevel.Normal:
-                        Difficulty = 0.5f;
-                        break;
-                    case DifficultyLevel.Hard:
-                        Difficulty = 0.7f;
-                        break;
-                    case DifficultyLevel.VeryHard:
-                        Difficulty = 1.0f;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-        }
+        #endregion
 
         /// <summary>
         /// Gets or sets a value indicating whether [first contact passed].
@@ -161,7 +138,9 @@ namespace EA4S.Debugging
             }
         }
 
-        public void LaunchMiniGame(MiniGameCode miniGameCodeSelected, float difficulty, bool tutorialEnabled)
+        #region Launch
+
+        public void LaunchMiniGame(MiniGameCode miniGameCodeSelected, float difficulty)
         {
             AppManager.I.Player.CurrentJourneyPosition.Stage = Stage;
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
@@ -169,10 +148,8 @@ namespace EA4S.Debugging
             AppManager.I.Player.CurrentJourneyPosition.SetPosition(Stage, LearningBlock, PlaySession);
 
             Difficulty = difficulty;
-            TutorialEnabled = tutorialEnabled;
 
-            Debug.Log("LaunchMiniGame " + miniGameCodeSelected + " PS: " + AppManager.I.Player.CurrentJourneyPosition + " Diff: " + difficulty + " Tutorial: " + tutorialEnabled);
-
+            Debug.Log("LaunchMiniGame " + miniGameCodeSelected + " PS: " + AppManager.I.Player.CurrentJourneyPosition + " Diff: " + Difficulty + " Tutorial: " + TutorialEnabled);
             AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected,
                 new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, tutorialEnabled: TutorialEnabled), forceNewPlaySession: true);
         }
@@ -183,6 +160,108 @@ namespace EA4S.Debugging
             AppManager.I.NavigationManager.GoToHome(debugMode: true);
             Debug.Log("Reset ALL players and DB.");
         }
+
+        #endregion
+
+        #region Navigation
+
+        public void GoToHome()
+        {
+            AppManager.I.NavigationManager.GoToHome(debugMode: true);
+        }
+
+        public void GoToMap()
+        {
+            AppManager.I.NavigationManager.GoToMap(debugMode: true);
+        }
+
+        public void GoToNext()
+        {
+            AppManager.I.NavigationManager.GoToNextScene();
+        }
+
+        public void GoToEnd()
+        {
+            AppManager.I.NavigationManager.GoToEnding(debugMode: true);
+        }
+
+        public void GoToReservedArea()
+        {
+            AppManager.I.NavigationManager.GoToReservedArea(debugMode: true);
+        }
+
+        public void ForwardMaxPosition()
+        {
+            JourneyPosition newPos = AppManager.I.JourneyHelper.FindNextJourneyPosition(AppManager.I.Player.MaxJourneyPosition);
+            if (newPos != null)
+            {
+                AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
+            }
+        }
+
+        public void SecondToLastJourneyPos()
+        {
+            JourneyPosition newPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
+            newPos.PlaySession = 2;
+            if (newPos != null)
+            {
+                AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
+                FirstContactPassed = true;
+            }
+            GoToMap();
+        }
+
+        public void ResetMaxPosition()
+        {
+            AppManager.I.Player.ResetMaxJourneyPosition();
+        }
+
+        #endregion
+
+        #region Profiles
+
+        public void CreateTestProfile()
+        {
+            AppManager.I.PlayerProfileManager.CreatePlayerProfile(4, PlayerGender.F, 1, PlayerTint.Blue);
+            AppManager.I.NavigationManager.GoToHome(debugMode: true);
+        }
+        
+        #region Rewards
+
+        public void UnlockAll()
+        {
+            AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6, 15, 100), true);
+        }
+
+        public void UnlockFirstReward()
+        {
+            RewardSystemManager.UnlockFirstSetOfRewards();
+        }
+
+        public void UnlockNextPlaySessionRewards()
+        {
+            //JourneyPosition CurrentJourney = AppManager.I.Player.CurrentJourneyPosition;
+            foreach (RewardPackUnlockData pack in RewardSystemManager.GetNextRewardPack())
+            {
+                AppManager.I.Player.AddRewardUnlocked(pack);
+                Debug.LogFormat("Pack added: {0}", pack.ToString());
+            }
+            JourneyPosition next = AppManager.I.JourneyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
+            if (next != null)
+            {
+                AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(next.Stage, next.LearningBlock, next.PlaySession));
+                AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(next.Stage, next.LearningBlock, next.PlaySession));
+            }
+        }
+
+        public void UnlockAllRewards()
+        {
+            RewardSystemManager.UnlockAllRewards();
+        }
+
+        #endregion
+
+        #endregion
 
         #endregion
     }

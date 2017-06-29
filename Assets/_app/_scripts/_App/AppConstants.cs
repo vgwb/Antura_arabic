@@ -41,12 +41,6 @@ namespace EA4S.Core
         /// </summary>
         public static bool DebugLogInserts = false;
 
-        /// <summary>
-        /// Stops a MiniGame from playing if the PlaySession database does not allow that MiniGame to be played at a given position.
-        /// Used only for debug purposes (with the Debug Panel)
-        /// </summary>
-        public static bool DebugStopPlayAtWrongPlaySessions = true;
-
         #endregion
 
         #region Application Constants

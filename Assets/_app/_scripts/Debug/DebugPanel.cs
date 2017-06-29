@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using EA4S.Core;
 using EA4S.UI;
@@ -20,7 +18,16 @@ namespace EA4S.Debugging
         public InputField InputStage;
         public InputField InputLearningBlock;
         public InputField InputPlaySession;
-        public Toggle ToggleTutorialEnabled;
+
+        public Toggle TutorialEnabledToggle;
+        public Toggle VerboseTeacherToggle;
+        public Toggle SafeLaunchToggle;
+        public Toggle CheatEnabledToggle;
+
+        public bool TutorialEnabled { get { return DebugManager.I.TutorialEnabled; } set { DebugManager.I.TutorialEnabled = value; } }
+        public bool VerboseTeacher { get { return DebugManager.I.VerboseTeacher; } set { DebugManager.I.VerboseTeacher = value; } }
+        public bool SafeLaunch { get { return DebugManager.I.SafeLaunch; } set { DebugManager.I.SafeLaunch = value; } }
+        public bool CheatEnabled { get { return DebugManager.I.CheatEnabled; } set { DebugManager.I.CheatEnabled = value; } }
 
         private int clickCounter;
         private Dictionary<MiniGameCode, bool> playedMinigames = new Dictionary<MiniGameCode, bool>();
@@ -41,18 +48,24 @@ namespace EA4S.Debugging
 
         #region Buttons
 
+        #region Open / Close
+
         public void OnClickOpen()
         {
             clickCounter++;
             if (clickCounter >= 3) {
-                open();
+                Open();
             }
         }
 
         public void OnClickClose()
         {
-            close();
+            Close();
         }
+
+        #endregion
+
+        #region Launching
 
         public void ResetPlayTest()
         {
@@ -60,27 +73,60 @@ namespace EA4S.Debugging
             BuildUI();
         }
 
+        #endregion
+
+        #region Navigation
+
+        public void GoToHome()
+        {
+            DebugManager.I.GoToHome();
+            Close();
+        }
+
+        public void GoToMap()
+        {
+            DebugManager.I.GoToMap();
+            Close();
+        }
+
+        public void GoToNext()
+        {
+            DebugManager.I.GoToNext();
+            Close();
+        }
+
+        public void GoToEnd()
+        {
+            DebugManager.I.GoToEnd();
+            Close();
+        }
+
+        public void GoToReservedArea()
+        {
+            //WidgetPopupWindow.I.Close();
+            DebugManager.I.GoToReservedArea();
+            Close();
+        }
+
+        #endregion
+
+        #region Profiles
+
         public void ResetAll()
         {
-            close();
+            Close();
             DebugManager.I.ResetAll();
         }
 
-        public void GoHome()
-        {
-            // refactor: move to DebugManager
-            WidgetPopupWindow.I.Close();
-            AppManager.I.NavigationManager.GoToHome(debugMode: true);
-            close();
-        }
-        
         public void OnCreateTestProfile()
         {
-            // refactor: move to DebugManager
-            AppManager.I.PlayerProfileManager.CreatePlayerProfile(4, PlayerGender.F, 1, PlayerTint.Blue);
-            AppManager.I.NavigationManager.GoToHome(debugMode: true);
-            close();
+            DebugManager.I.CreateTestProfile();
+            Close();
         }
+
+        public bool FirstContactPassed { get { return DebugManager.I.FirstContactPassed; } set { DebugManager.I.FirstContactPassed = value; } }
+
+        #endregion
 
         public void OnReportBug()
         {
@@ -91,14 +137,14 @@ namespace EA4S.Debugging
 
         #region Internal
 
-        private void open()
+        private void Open()
         {
             BuildUI();
             Panel.SetActive(true);
             DebugManager.I.DebugPanelOpened = true;
         }
 
-        private void close()
+        private void Close()
         {
             clickCounter = 0;
             Panel.SetActive(false);
@@ -116,6 +162,11 @@ namespace EA4S.Debugging
                 InputLearningBlock.text = AppManager.I.Player.CurrentJourneyPosition.LearningBlock.ToString();
                 InputPlaySession.text = AppManager.I.Player.CurrentJourneyPosition.PlaySession.ToString();
             }
+
+            TutorialEnabledToggle.isOn = TutorialEnabled;
+            CheatEnabledToggle.isOn = CheatEnabled;
+            VerboseTeacherToggle.isOn = VerboseTeacher;
+            SafeLaunchToggle.isOn = SafeLaunch;
 
             var mainMiniGamesList = MiniGamesUtilities.GetMainMiniGameList();
             var difficultiesForTesting = MiniGamesUtilities.GetMiniGameDifficultiesForTesting();
@@ -160,17 +211,15 @@ namespace EA4S.Debugging
             DebugManager.I.LearningBlock = int.Parse(InputLearningBlock.text);
             DebugManager.I.PlaySession = int.Parse(InputPlaySession.text);
 
-            bool tutorialEnabled = ToggleTutorialEnabled.isOn;
-
-            if (!AppConstants.DebugStopPlayAtWrongPlaySessions
+            if (!DebugManager.I.SafeLaunch
                 || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(
                     new JourneyPosition(DebugManager.I.Stage, DebugManager.I.LearningBlock, DebugManager.I.PlaySession),
                     minigameCode)) {
                 WidgetPopupWindow.I.Close();
-                DebugManager.I.LaunchMiniGame(minigameCode, difficulty, tutorialEnabled);
-                close();
+                DebugManager.I.LaunchMiniGame(minigameCode, difficulty);
+                Close();
             } else {
-                if (AppConstants.DebugStopPlayAtWrongPlaySessions) {
+                if (DebugManager.I.SafeLaunch) {
                     JourneyPosition minJ =
                         AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
                     if (minJ == null) {
