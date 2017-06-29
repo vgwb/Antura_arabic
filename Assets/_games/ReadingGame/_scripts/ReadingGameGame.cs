@@ -17,6 +17,7 @@ namespace EA4S.Minigames.ReadingGame
 
         public int CurrentScore { get; private set; }
         public int CurrentQuestionNumber { get; set; }
+        public bool TutorialEnabled { get { return GetConfiguration().TutorialEnabled; } }
 
         [HideInInspector]
         public bool isTimesUp;

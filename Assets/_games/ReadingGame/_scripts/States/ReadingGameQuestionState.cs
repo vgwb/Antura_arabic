@@ -71,13 +71,24 @@ namespace EA4S.Minigames.ReadingGame
                         var firstBar = game.barSet.GetNextBar();
                         var handleOffset = firstBar.glass.handleOffset.position - firstBar.glass.transform.position;
 
-                        TutorialUI.DrawLine(firstBar.start.transform.position + handleOffset, firstBar.endCompleted.transform.position + handleOffset, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
+                        if (game.TutorialEnabled)
+                        {
+                            TutorialUI.DrawLine(firstBar.start.transform.position + handleOffset, firstBar.endCompleted.transform.position + handleOffset, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
+                        }
                         game.barSet.SwitchToNextBar();
 
-                        game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.AlphabetSong_alphabet_Tuto, () =>
+                        if (game.TutorialEnabled)
+                        {
+                            game.Context.GetAudioManager()
+                                .PlayDialogue(Database.LocalizationDataId.AlphabetSong_alphabet_Tuto, () =>
+                                {
+                                    completed = true;
+                                });
+                        }
+                        else
                         {
                             completed = true;
-                        });
+                        }
                     });
                 }
             }
