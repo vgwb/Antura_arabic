@@ -21,7 +21,7 @@ namespace EA4S.Core
         /// Enabled the Advanced Debug Panel.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool DebugPanelEnabled = true;
+        public const bool DebugPanelEnabledAtStartup = false;
 
         /// <summary>
         /// Tracks common events using Unity Analytics.

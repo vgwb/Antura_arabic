@@ -15,6 +15,7 @@ namespace EA4S.Debugging
     {
         public static DebugManager I;
 
+        public bool DebugPanelEnabled;
         public bool DebugPanelOpened;
 
         public delegate void OnSkipCurrentSceneDelegate();
@@ -98,8 +99,8 @@ namespace EA4S.Debugging
         {
             I = this;
 
-            if (AppConstants.DebugPanelEnabled) {
-                ActivateDebugPanel();
+            if (AppConstants.DebugPanelEnabledAtStartup) {
+                EnableDebugPanel();
             }
         }
 
@@ -142,10 +143,10 @@ namespace EA4S.Debugging
 
         #region Actions
 
-        public void ActivateDebugPanel()
+        public void EnableDebugPanel()
         {
+            DebugPanelEnabled = true;
             if (debugPanelGO == null) {
-                AppConstants.DebugPanelEnabled = true;
                 debugPanelGO = Instantiate(Resources.Load("Prefabs/Debug/UI Debug Canvas") as GameObject);
             }
         }

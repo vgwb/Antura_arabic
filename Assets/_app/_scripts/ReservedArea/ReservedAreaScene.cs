@@ -55,7 +55,9 @@ namespace EA4S.Scenes
         {
             clickCounter++;
             if (clickCounter >= 3) {
-                DebugManager.I.ActivateDebugPanel();
+                if (!DebugManager.I.DebugPanelEnabled) {
+                    DebugManager.I.EnableDebugPanel();
+                }
             }
         }
         #endregion
