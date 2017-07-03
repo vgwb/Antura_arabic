@@ -4,7 +4,7 @@ using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using EA4S.Tutorial;
 
-namespace EA4S.Balloons
+namespace EA4S.Minigames.Balloons
 {
     public class RoundResultAnimator : MonoBehaviour
     {

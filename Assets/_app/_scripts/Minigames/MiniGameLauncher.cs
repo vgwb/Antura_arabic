@@ -2,7 +2,6 @@
 using EA4S.MinigamesCommon;
 using EA4S.Teacher;
 using UnityEngine;
-using EA4S.Assessment;
 
 namespace EA4S.MinigamesAPI
 {
@@ -51,8 +50,8 @@ namespace EA4S.MinigamesAPI
 
             // Set also the number of rounds
             // @note: only for assessment, for now
-            if (currentGameConfig is IAssessmentConfiguration) {
-                IAssessmentConfiguration assessmentConfig = currentGameConfig as IAssessmentConfiguration;
+            if (currentGameConfig is Assessment.IAssessmentConfiguration) {
+                Assessment.IAssessmentConfiguration assessmentConfig = currentGameConfig as Assessment.IAssessmentConfiguration;
                 assessmentConfig.NumberOfRounds = _launchConfiguration.NumberOfRounds;
             }
 
@@ -162,24 +161,24 @@ namespace EA4S.MinigamesAPI
                     currentGameConfig = Assessment.AssessmentConfiguration.Instance;
                     break;
                 case MiniGameCode.Balloons_counting:
-                    Balloons.BalloonsConfiguration.Instance.Variation = Balloons.BalloonsVariation.Counting;
-                    Balloons.BalloonsConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = Balloons.BalloonsConfiguration.Instance;
+                    Minigames.Balloons.BalloonsConfiguration.Instance.Variation = Minigames.Balloons.BalloonsVariation.Counting;
+                    Minigames.Balloons.BalloonsConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.Balloons.BalloonsConfiguration.Instance;
                     break;
                 case MiniGameCode.Balloons_letter:
-                    Balloons.BalloonsConfiguration.Instance.Variation = Balloons.BalloonsVariation.Letter;
-                    Balloons.BalloonsConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = Balloons.BalloonsConfiguration.Instance;
+                    Minigames.Balloons.BalloonsConfiguration.Instance.Variation = Minigames.Balloons.BalloonsVariation.Letter;
+                    Minigames.Balloons.BalloonsConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.Balloons.BalloonsConfiguration.Instance;
                     break;
                 case MiniGameCode.Balloons_spelling:
-                    Balloons.BalloonsConfiguration.Instance.Variation = Balloons.BalloonsVariation.Spelling;
-                    Balloons.BalloonsConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = Balloons.BalloonsConfiguration.Instance;
+                    Minigames.Balloons.BalloonsConfiguration.Instance.Variation = Minigames.Balloons.BalloonsVariation.Spelling;
+                    Minigames.Balloons.BalloonsConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.Balloons.BalloonsConfiguration.Instance;
                     break;
                 case MiniGameCode.Balloons_words:
-                    Balloons.BalloonsConfiguration.Instance.Variation = Balloons.BalloonsVariation.Words;
-                    Balloons.BalloonsConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = Balloons.BalloonsConfiguration.Instance;
+                    Minigames.Balloons.BalloonsConfiguration.Instance.Variation = Minigames.Balloons.BalloonsVariation.Words;
+                    Minigames.Balloons.BalloonsConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.Balloons.BalloonsConfiguration.Instance;
                     break;
                 case MiniGameCode.ColorTickle:
                     Minigames.ColorTickle.ColorTickleConfiguration.Instance.Context = defaultContext;

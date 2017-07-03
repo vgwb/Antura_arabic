@@ -1,7 +1,6 @@
-﻿using EA4S.MinigamesCommon;
-using EA4S.UI;
+﻿using EA4S.UI;
 
-namespace EA4S.Balloons
+namespace EA4S.Minigames.Balloons
 {
     public class BalloonsPlayState : IState
     {

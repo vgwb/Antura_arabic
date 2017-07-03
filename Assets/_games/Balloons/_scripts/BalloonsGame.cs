@@ -10,7 +10,7 @@ using EA4S.UI;
 using TMPro;
 using DG.Tweening;
 
-namespace EA4S.Balloons
+namespace EA4S.Minigames.Balloons
 {
     public class BalloonsGame : MiniGame
     {

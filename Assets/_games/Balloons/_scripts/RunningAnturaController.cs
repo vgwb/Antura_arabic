@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using EA4S.Antura;
 
-namespace EA4S.Balloons
+namespace EA4S.Minigames.Balloons
 {
     public class RunningAnturaController : MonoBehaviour
     {
