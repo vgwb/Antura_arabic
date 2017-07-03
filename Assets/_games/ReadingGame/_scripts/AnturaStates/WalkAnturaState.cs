@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.Antura;
+using UnityEngine;
 
 namespace EA4S.Minigames.ReadingGame
 {

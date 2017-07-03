@@ -11,7 +11,7 @@ namespace EA4S.AnturaSpace
     /// </summary>
     public class AnturaSpaceScene : SceneBase
     {
-        const int MaxBonesInScene = 5;
+        private const int MaxBonesInScene = 5;
 
         [Header("References")]
         public AnturaLocomotion Antura;
@@ -34,7 +34,7 @@ namespace EA4S.AnturaSpace
                 return bones[0].transform;
             }
         }
-        List<GameObject> bones = new List<GameObject>();
+        private List<GameObject> bones = new List<GameObject>();
 
         public AnturaIdleState Idle;
         public AnturaCustomizationState Customization;
@@ -44,7 +44,7 @@ namespace EA4S.AnturaSpace
         public AnturaWaitingThrowState WaitingThrow;
         public AnturaCatchingState Catching;
 
-        StateManager stateManager = new StateManager();
+        private StateManager stateManager = new StateManager();
         public AnturaState CurrentState {
             get {
                 return (AnturaState)stateManager.CurrentState;
@@ -74,10 +74,13 @@ namespace EA4S.AnturaSpace
             UI.onExitCustomization += OnExitCustomization;
 
             Antura.onTouched += () => {
-                if (CurrentState != null) CurrentState.OnTouched();
+                if (CurrentState != null) {
+                    CurrentState.OnTouched();
+                }
 
-                if (CurrentState == Customization)
+                if (CurrentState == Customization) {
                     UI.ToggleModsPanel();
+                }
             };
 
             LastTimeCatching = Time.realtimeSinceStartup;
@@ -110,13 +113,15 @@ namespace EA4S.AnturaSpace
         public void Update()
         {
             AnturaHappiness -= Time.deltaTime / 40.0f;
-            if (AnturaHappiness < 0)
+            if (AnturaHappiness < 0) {
                 AnturaHappiness = 0;
+            }
 
             stateManager.Update(Time.deltaTime);
 
-            if (!Tutorial.IsRunning)
+            if (!Tutorial.IsRunning) {
                 UI.ShowBonesButton(MustShowBonesButton && (bones.Count < MaxBonesInScene));
+            }
 
             UI.BonesCount = AppManager.I.Player.GetTotalNumberOfBones();
 
@@ -139,8 +144,6 @@ namespace EA4S.AnturaSpace
 
         void OnExit()
         {
-            //if (AnturaSpaceUI.I.IsModsPanelOpen) AnturaSpaceUI.I.ToggleModsPanel();
-            //else AppManager.I.NavigationManager.GoBack();
             AppManager.I.NavigationManager.GoBack();
         }
 
@@ -167,8 +170,9 @@ namespace EA4S.AnturaSpace
         
         public void ThrowBone()
         {
-            if (DraggingBone != null)
+            if (DraggingBone != null) {
                 return;
+            }
 
             if (bones.Count < MaxBonesInScene && AppManager.I.Player.TotalNumberOfBones > 0) {
                 AudioManager.I.PlaySound(Sfx.ThrowObj);
@@ -178,8 +182,9 @@ namespace EA4S.AnturaSpace
                 bone.GetComponent<BoneBehaviour>().SimpleThrow();
                 bones.Add(bone);
                 --AppManager.I.Player.TotalNumberOfBones;
-            } else
+            } else {
                 AudioManager.I.PlaySound(Sfx.KO);
+            }
         }
 
  
@@ -220,8 +225,9 @@ namespace EA4S.AnturaSpace
                 poof.gameObject.AddComponent<AutoDestroy>().duration = 2;
                 AudioManager.I.PlaySound(Sfx.Poof);
                 AnturaHappiness += 0.2f;
-                if (AnturaHappiness > 1)
+                if (AnturaHappiness > 1) {
                     AnturaHappiness = 1;
+                }
 
                 Destroy(bone);
             }

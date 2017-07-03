@@ -14,7 +14,7 @@ namespace EA4S.Antura
     public class AnturaModelManager : MonoBehaviour
     {
         // TODO refactor: remove static instance
-        public static AnturaModelManager Instance;
+        public static AnturaModelManager I;
 
         [Header("Bones Attach")]
         public Transform Dog_head;
@@ -37,14 +37,14 @@ namespace EA4S.Antura
         #region Life cycle
 
         void Awake() {
-            Instance = this;
+            I = this;
             chargeCategoryList();
         }
 
         void Start() {
             if (AppManager.I.Player != null) {
                 AnturaCustomization c = AppManager.I.Player.CurrentAnturaCustomizations;
-                AnturaModelManager.Instance.LoadAnturaCustomization(c);
+                AnturaModelManager.I.LoadAnturaCustomization(c);
             }
         }
 

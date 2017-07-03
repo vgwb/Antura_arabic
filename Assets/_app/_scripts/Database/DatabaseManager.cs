@@ -520,7 +520,7 @@ namespace EA4S.Database
             }
             
             // Create the joined DB
-            var joinedDbService = DBService.OpenFromFileName(true, AppConstants.GetJoinedDatabaseFilename(), AppConstants.DBJoinedFolder);
+            var joinedDbService = DBService.OpenFromFileName(true, AppConstants.GetJoinedDatabaseFilename(), AppConstants.DbJoinedFolder);
             InjectStaticData(joinedDbService);
             InjectEnums(joinedDbService);
 
@@ -563,7 +563,7 @@ namespace EA4S.Database
 
             // Copy the file
             string fileName = Path.GetFileName(importFilePath);
-            string newFilePath = DBService.GetDatabaseFilePath(fileName, AppConstants.DBPlayersFolder);
+            string newFilePath = DBService.GetDatabaseFilePath(fileName, AppConstants.DbPlayersFolder);
             if (File.Exists(newFilePath))
             {
                 Debug.LogError("Database already exists. Cannot import: " + importFilePath);

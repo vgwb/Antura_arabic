@@ -54,7 +54,7 @@ namespace EA4S.Map
         {
             if (!Application.isEditor) SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
 
-            maxNumberOfStages = AppConstants.maximumStage;
+            maxNumberOfStages = AppConstants.MaximumStage;
             currentStageNumber = AppManager.I.Player.CurrentJourneyPosition.Stage;
             maxStageUnlocked = AppManager.I.Player.MaxJourneyPosition.Stage;
             int nStage;

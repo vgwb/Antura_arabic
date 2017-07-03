@@ -64,7 +64,7 @@ namespace EA4S.Rewards
         public void ClearLoadedRewardsOnAntura()
         {
             // Clean and Charge antura reward.
-            AnturaModelManager.Instance.ClearLoadedRewards();
+            AnturaModelManager.I.ClearLoadedRewards();
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace EA4S.Rewards
         /// <returns></returns>
         public GameObject InstantiateReward(RewardPackUnlockData _rewardToInstantiate)
         {
-            return AnturaModelManager.Instance.LoadRewardPackOnAntura(_rewardToInstantiate);
+            return AnturaModelManager.I.LoadRewardPackOnAntura(_rewardToInstantiate);
         }
 
         #endregion

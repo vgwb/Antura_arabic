@@ -145,7 +145,7 @@ namespace EA4S.UI
         {
             if (I == this) I = null;
             // TODO: is better move this in "exit scene" method?
-            AnturaModelManager.Instance.SaveAnturaCustomization();
+            AnturaModelManager.I.SaveAnturaCustomization();
             this.StopAllCoroutines();
             showCategoriesTween.Kill();
             showItemsTween.Kill();
@@ -287,9 +287,9 @@ namespace EA4S.UI
             if (_rewardData == null) {
                 foreach (AnturaSpaceItemButton item in btsItems) item.Toggle(false);
                 if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
-                    AnturaModelManager.Instance.ClearLoadedRewardInCategory("EAR_L");
-                    AnturaModelManager.Instance.ClearLoadedRewardInCategory("EAR_R");
-                } else AnturaModelManager.Instance.ClearLoadedRewardInCategory(currCategory.ToString());
+                    AnturaModelManager.I.ClearLoadedRewardInCategory("EAR_L");
+                    AnturaModelManager.I.ClearLoadedRewardInCategory("EAR_R");
+                } else AnturaModelManager.I.ClearLoadedRewardInCategory(currCategory.ToString());
                 return;
             }
 

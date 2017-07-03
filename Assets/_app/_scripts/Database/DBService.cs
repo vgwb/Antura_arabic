@@ -33,7 +33,7 @@ namespace EA4S.Database
 
         #region Factory Methods
 
-        public static DBService OpenFromFileName(bool createIfNotFound, string fileName, string dirName = AppConstants.DBPlayersFolder)
+        public static DBService OpenFromFileName(bool createIfNotFound, string fileName, string dirName = AppConstants.DbPlayersFolder)
         {
             var dirPath = GetDatabaseDirectoryPath(dirName);
             if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
@@ -47,7 +47,7 @@ namespace EA4S.Database
             return new DBService(createIfNotFound, filePath);
         }
 
-        public static DBService OpenFromPlayerUUID(bool createIfNotFound, string playerUuid, string fileName = "", string dirName = AppConstants.DBPlayersFolder)
+        public static DBService OpenFromPlayerUUID(bool createIfNotFound, string playerUuid, string fileName = "", string dirName = AppConstants.DbPlayersFolder)
         {
             if (fileName == "") fileName = AppConstants.GetPlayerDatabaseFilename(playerUuid);
             var dirPath = GetDatabaseDirectoryPath(dirName);
@@ -57,7 +57,7 @@ namespace EA4S.Database
             return new DBService(createIfNotFound, dbPath);
         }
 
-        public static DBService ExportAndOpenFromPlayerUUID(string playerUuid, string fileName = "", string dirName = AppConstants.DBPlayersFolder)
+        public static DBService ExportAndOpenFromPlayerUUID(string playerUuid, string fileName = "", string dirName = AppConstants.DbPlayersFolder)
         {
             if (fileName == "") fileName = AppConstants.GetPlayerDatabaseFilename(playerUuid);
             ExportFromPlayerUUID(playerUuid, fileName, dirName);

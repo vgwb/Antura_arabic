@@ -37,7 +37,7 @@ namespace EA4S.Teacher
 
             // Age
             var playerAge = playerProfile.Age;
-            float ageDifficulty = Mathf.Clamp01(Mathf.InverseLerp(AppConstants.minimumAge, AppConstants.maximumAge, playerAge));
+            float ageDifficulty = Mathf.Clamp01(Mathf.InverseLerp(AppConstants.MinimumAge, AppConstants.MaximumAge, playerAge));
             float weightedAgeDifficulty = ageDifficulty * ageWeightContribution / totalWeight;
 
             // Performance

@@ -53,7 +53,7 @@ namespace EA4S
         /// Prevent multiple setups.
         /// Set to true after first setup.
         /// </summary>
-        bool alreadySetup = false;
+        private bool alreadySetup;
 
         /// <summary>
         /// Game entry point.
@@ -179,7 +179,7 @@ namespace EA4S
 
         void On_TMPro_Text_Changed(Object obj)
         {
-            TMPro.TMP_Text _tmp_text = obj as TMPro.TMP_Text;
+            var _tmp_text = obj as TMPro.TMP_Text;
             if (_tmp_text != null && VocabularyHelper.FixDiacriticPositions(_tmp_text.textInfo)) {
                 _tmp_text.UpdateVertexData();
             }

@@ -10,32 +10,7 @@ namespace EA4S
 
     // refactor: why is this in the Test scripts?s
     public class RewardsUI : MonoBehaviour {
-
-        #region life cycle
-        void Awake() {
-            ElementContainer = GetComponentInChildren<GridLayoutGroup>();
-        }
-
-        // Use this for initialization
-        void Start() {
-            ClearList();
-            AddListenersMatColor1();
-            AddListenersMatColor2();
-            SetMaterial1("white_dark");
-            SetMaterial2("white_pure");
-        }
-
-        // Update is called once per frame
-        void Update() {
-            if(AnturaModelManager.Instance.transformParent != null)
-                Camera.main.transform.LookAt(AnturaModelManager.Instance.transformParent.position);
-            else
-                Camera.main.transform.LookAt(AnturaModelManager.Instance.transform.position);
-        }
-        #endregion
-
-        #region Rewards
-
+ 
         [Header("Rewards elements")]
         public GridLayoutGroup ElementContainer;
         public GameObject ElementPrefab;
@@ -46,14 +21,37 @@ namespace EA4S
         /// <summary>
         /// The actual reward enabled for material modification.
         /// </summary>
-        Reward actualReward;
+        private Reward actualReward;
 
-        GameObject actualRewardGO;
+        private GameObject actualRewardGO;
+        
+        void Awake() {
+            ElementContainer = GetComponentInChildren<GridLayoutGroup>();
+        }
+
+        void Start() {
+            ClearList();
+            AddListenersMatColor1();
+            AddListenersMatColor2();
+            SetMaterial1("white_dark");
+            SetMaterial2("white_pure");
+        }
+
+        void Update()
+        {
+            if (AnturaModelManager.I.transformParent != null) {
+                Camera.main.transform.LookAt(AnturaModelManager.I.transformParent.position);
+            } else {
+                Camera.main.transform.LookAt(AnturaModelManager.I.transform.position);
+            }
+        }
+        
+        #region Rewards
 
         void ClearList() {
             foreach (Button b in ElementContainer.GetComponentsInChildren<Button>()) {
                 b.onClick.RemoveAllListeners();
-                GameObject.Destroy(b.gameObject);    
+                Destroy(b.gameObject);    
             }
             
         }
@@ -61,11 +59,12 @@ namespace EA4S
         void LoadRewarsList(string _position = "") {
             ClearList();
             List<Reward> rewards;
-            if (_position != "")
+            if (_position != "") {
                 rewards = RewardSystemManager.GetConfig().Rewards.FindAll(r => r.BoneAttach == _position);
-            else
+            } else {
                 rewards = RewardSystemManager.GetConfig().Rewards;
-
+            }
+            
             foreach (Reward reward in rewards) {
                 Button b = Instantiate<Button>(ElementPrefab.GetComponent<Button>());
                 b.transform.SetParent(ElementContainer.transform);
@@ -141,18 +140,13 @@ namespace EA4S
         public Image ActiveMaterial1Image;
         public Image ActiveMaterial2Image;
 
-        //string material1;
-        //string material2;
-
         public void SetMaterial1(string _materialName) {
-            //material1 = _materialName;
             ActiveMaterial1Image.material = MaterialManager.LoadMaterial(_materialName, PaletteType.specular_saturated_2side);
             if (actualReward != null)
                 LoadRewardOnDog(actualReward.RewardName);
         }
 
         public void SetMaterial2(string _materialName) {
-            //material2 = _materialName;
             ActiveMaterial2Image.material = MaterialManager.LoadMaterial(_materialName, PaletteType.specular_saturated_2side);
             if (actualReward != null)
                 LoadRewardOnDog(actualReward.RewardName);
@@ -163,7 +157,7 @@ namespace EA4S
                 string selectedButtonName = b.GetComponent<Image>().material.name;
                 b.name = selectedButtonName;
                 b.onClick.AddListener(delegate {
-                    SetMaterial1(selectedButtonName.ToString());
+                    SetMaterial1(selectedButtonName);
                 });
             }
         }
@@ -172,7 +166,7 @@ namespace EA4S
                 string selectedButtonName = b.GetComponent<Image>().material.name;
                 b.name = selectedButtonName;
                 b.onClick.AddListener(delegate {
-                    SetMaterial2(selectedButtonName.ToString());
+                    SetMaterial2(selectedButtonName);
                 });
             }
         }

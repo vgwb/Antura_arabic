@@ -1,14 +1,14 @@
-﻿using System;
+﻿using EA4S.Antura;
+using System;
 using UnityEngine;
 
 namespace EA4S.AnturaSpace
 {
     public class AnturaIdleState : AnturaState
     {
-        float sitTimer;
-        float animateTimer;
-
-        float timeToStayInThisState;
+        private float sitTimer;
+        private float animateTimer;
+        private float timeToStayInThisState;
 
         public AnturaIdleState(AnturaSpaceScene controller) : base(controller)
         {

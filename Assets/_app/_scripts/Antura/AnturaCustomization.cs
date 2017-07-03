@@ -66,17 +66,6 @@ namespace EA4S.Antura
         /// Return all rewards objects to json list of ids (to be stored on db).
         /// </summary>
         public string GetJsonListOfIds() {
-            ////// Fornitures
-            //FornituresIds = new List<string>();
-            //foreach (RewardPackUnlockData pack in Fornitures) {
-            //    FornituresIds.Add(pack.GetIdAccordingToDBRules());
-            //}
-
-            ////// TileTextureId
-            //TileTextureId = TileTexture.GetIdAccordingToDBRules();
-
-            ////// DecalTextureId
-            //DecalTextureId = DecalTexture.GetIdAccordingToDBRules();
             return JsonUtility.ToJson(this);
         }
 

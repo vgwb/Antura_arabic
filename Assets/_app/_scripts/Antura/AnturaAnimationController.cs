@@ -11,10 +11,9 @@ namespace EA4S.Antura
         public const float WALKING_SPEED = 0.0f;
         public const float RUN_SPEED = 1.0f;
 
-        AnturaAnimationStates backState = AnturaAnimationStates.idle;
-        bool hasToGoBackState = false;
-
-        AnturaAnimationStates state = AnturaAnimationStates.idle;
+        private AnturaAnimationStates backState = AnturaAnimationStates.idle;
+        private bool hasToGoBackState;
+        private AnturaAnimationStates state = AnturaAnimationStates.idle;
 
         public AnturaAnimationStates State
         {
@@ -36,7 +35,7 @@ namespace EA4S.Antura
         System.Action onChargeEnded;
         System.Action onGrabbed;
 
-        float walkingSpeed;
+        private float walkingSpeed;
 
         public float WalkingSpeed
         {
@@ -44,7 +43,7 @@ namespace EA4S.Antura
             set { walkingSpeed = value; }
         }
 
-        bool isAngry;
+        private bool isAngry;
 
         public bool IsAngry
         {
@@ -57,8 +56,7 @@ namespace EA4S.Antura
         }
 
 
-        bool isExcited;
-
+        private bool isExcited;
         public bool IsExcited
         {
             get { return isExcited; }
@@ -69,8 +67,7 @@ namespace EA4S.Antura
             }
         }
 
-        bool isSad;
-
+        private bool isSad;
         public bool IsSad
         {
             get { return isSad; }
@@ -82,8 +79,8 @@ namespace EA4S.Antura
         }
 
         // Check if animation is actually moving legs
-        int walkRefCount = 0;
-        int jumpRefCount = 0;
+        private int walkRefCount = 0;
+        private int jumpRefCount = 0;
 
         public bool IsAnimationActuallyWalking
         {

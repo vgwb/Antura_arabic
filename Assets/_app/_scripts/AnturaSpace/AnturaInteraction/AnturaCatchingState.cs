@@ -5,10 +5,9 @@ namespace EA4S.AnturaSpace
 {
     public class AnturaCatchingState : AnturaState
     {
-        GameObject bone;
-
-        bool boneEaten = false;
-        Rigidbody boneRigidBody;
+        private GameObject bone;
+        private bool boneEaten;
+        private Rigidbody boneRigidBody;
 
         public AnturaCatchingState(AnturaSpaceScene controller) : base(controller)
         {

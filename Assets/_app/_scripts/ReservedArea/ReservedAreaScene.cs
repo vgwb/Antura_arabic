@@ -123,7 +123,7 @@ namespace EA4S.Scenes
             string errorString = "";
             if (AppManager.I.DB.ExportJoinedDatabase(out errorString))
             {
-                string dbPath = DBService.GetDatabaseFilePath(AppConstants.GetJoinedDatabaseFilename(), AppConstants.DBJoinedFolder);
+                string dbPath = DBService.GetDatabaseFilePath(AppConstants.GetJoinedDatabaseFilename(), AppConstants.DbJoinedFolder);
                 GlobalUI.ShowPrompt("", "The joined DB is here:\n" + dbPath);
             }
             else {

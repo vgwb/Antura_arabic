@@ -5,7 +5,7 @@ public class Pedestal : MonoBehaviour
     [Range(0, 360)]
     public float Angle;
 
-    public bool Activated = false;
+    public bool Activated;
 
     float targetAngle;
 

@@ -169,7 +169,7 @@ namespace EA4S.ReservedArea
             // Add some mood data
             int nMoodData = 15;
             for (int i = 0; i < nMoodData; i++) {
-                logAi.LogMood(0, Random.Range(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue + 1));
+                logAi.LogMood(0, Random.Range(AppConstants.MinimumMoodValue, AppConstants.MaximumMoodValue + 1));
                 Debug.Log("Add mood " + i);
                 yield return null;
             }
@@ -180,7 +180,7 @@ namespace EA4S.ReservedArea
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
                 if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
-                    int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);
+                    int score = useBestScores ? AppConstants.MaximumMinigameScore : Random.Range(AppConstants.MinimumMinigameScore, AppConstants.MaximumMinigameScore);
                     logPlaySessionScoreParamsList.Add(new LogPlaySessionScoreParams(allPlaySessionInfos[i].data.GetJourneyPosition(), score, 12f));
                     //Debug.Log("Add play session score for " + allPlaySessionInfos[i].data.Id);
                 }
@@ -194,7 +194,7 @@ namespace EA4S.ReservedArea
             var logMiniGameScoreParamses = new List<LogMiniGameScoreParams>();
             var allMiniGameInfo = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
             for (int i = 0; i < allMiniGameInfo.Count; i++) {
-                int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);
+                int score = useBestScores ? AppConstants.MaximumMinigameScore : Random.Range(AppConstants.MinimumMinigameScore, AppConstants.MaximumMinigameScore);
                 logMiniGameScoreParamses.Add(new LogMiniGameScoreParams(JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, score, 12f));
                 //Debug.Log("Add minigame score " + i);
             }

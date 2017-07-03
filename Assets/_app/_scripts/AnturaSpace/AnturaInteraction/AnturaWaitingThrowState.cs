@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.Antura;
+using UnityEngine;
 
 namespace EA4S.AnturaSpace
 {
@@ -16,7 +17,7 @@ namespace EA4S.AnturaSpace
         public override void EnterState()
         {
             base.EnterState();
-            shoutTimer = UnityEngine.Random.Range(1, 3);
+            shoutTimer = Random.Range(1, 3);
             timeInThisState = 0;
             controller.MustShowBonesButton = true;
             controller.Antura.AnimationController.State = AnturaAnimationStates.idle;
@@ -50,9 +51,9 @@ namespace EA4S.AnturaSpace
                 shoutTimer -= delta;
 
                 if (shoutTimer <= 0) {
-                    shoutTimer = UnityEngine.Random.Range(1.5f, 4);
+                    shoutTimer = Random.Range(1.5f, 4);
 
-                    if (UnityEngine.Random.value < 0.3f) {
+                    if (Random.value < 0.3f) {
                         controller.Antura.AnimationController.DoSniff();
                         Audio.AudioManager.I.PlaySound(Sfx.DogSnorting);
                     } else

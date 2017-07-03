@@ -57,7 +57,7 @@ namespace EA4S.Teacher
         public void LogMood(int appSession, int mood)
         {
             // TODO refactor: this should have a session like the rest of the logging methods
-            float realMood = Mathf.InverseLerp(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue, mood);
+            float realMood = Mathf.InverseLerp(AppConstants.MinimumMoodValue, AppConstants.MaximumMoodValue, mood);
             var data = new LogMoodData(appSession, realMood);
             db.Insert(data);
         }
@@ -303,7 +303,7 @@ namespace EA4S.Teacher
             // We also log play skills related to that minigame, as read from MiniGameData
             var minigameData = db.GetMiniGameDataByCode(miniGameCode);
             List<PlayResultParameters> results = new List<PlayResultParameters>();
-            float normalizedScore = Mathf.InverseLerp(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore, score);
+            float normalizedScore = Mathf.InverseLerp(AppConstants.MinimumMinigameScore, AppConstants.MaximumMinigameScore, score);
             foreach (var weightedPlaySkill in minigameData.AffectedPlaySkills) {
                 results.Add(new PlayResultParameters(PlayEvent.Skill, weightedPlaySkill.Skill, normalizedScore));
             }

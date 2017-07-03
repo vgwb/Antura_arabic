@@ -4,8 +4,7 @@ namespace EA4S.Core
 {
     public class AppSettingsManager
     {
-        const string SETTINGS_PREFS_KEY = "OPTIONS";
-
+        private const string SETTINGS_PREFS_KEY = "OPTIONS";
         private AppSettings _settings = new AppSettings();
 
         public AppSettings Settings
@@ -48,7 +47,7 @@ namespace EA4S.Core
         /// </summary>
         public void SaveSettings()
         {
-            string serializedObjs = JsonUtility.ToJson(Settings);
+            var serializedObjs = JsonUtility.ToJson(Settings);
             PlayerPrefs.SetString(SETTINGS_PREFS_KEY, serializedObjs);
             PlayerPrefs.Save();
         }

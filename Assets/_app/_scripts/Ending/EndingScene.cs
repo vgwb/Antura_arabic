@@ -1,4 +1,5 @@
-﻿using EA4S.Animation;
+﻿using EA4S.Antura;
+using EA4S.Animation;
 using EA4S.CameraEffects;
 using EA4S.Core;
 using EA4S.UI;
@@ -17,7 +18,7 @@ namespace EA4S.Scenes
         [Header("References")]
 
         public LivingLetterController[] Letters;
-        public Antura.AnturaAnimationController Antura;
+        public AnturaAnimationController Antura;
 
         public float m_StateDelay = 1.0f;
         public float m_EndDelay = 2.0f;

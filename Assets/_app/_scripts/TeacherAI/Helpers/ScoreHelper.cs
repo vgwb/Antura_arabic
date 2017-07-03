@@ -279,7 +279,7 @@ namespace EA4S.Teacher
             var allMiniGameInfo = GetAllMiniGameInfo();
             foreach (var miniGameInfo in allMiniGameInfo)
             {
-                if (miniGameInfo.score != AppConstants.maximumMinigameScore)
+                if (miniGameInfo.score != AppConstants.MaximumMinigameScore)
                 {
                     return false;
                 }

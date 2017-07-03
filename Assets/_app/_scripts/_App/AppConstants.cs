@@ -71,21 +71,21 @@ namespace EA4S.Core
 
         // files
         public const string PdfAndroidInstall = "AndroidInstallHelp.pdf";
-        public const string DBPlayersFolder = "players";
+        public const string DbPlayersFolder = "players";
         public const string DbExportFolder = "export";
         public const string DbImportFolder = "import";
-        public const string DBJoinedFolder = "joined";
+        public const string DbJoinedFolder = "joined";
 
         // Application details (used by Teacher and maybe other)
-        public const float minimumAge = 4;
-        public const float maximumAge = 10;
-        public const int minimumStage = 1;
-        public const int maximumStage = 6;
-        public const int minimumMoodValue = 1;
-        public const int maximumMoodValue = 5;
+        public const float MinimumAge = 4;
+        public const float MaximumAge = 10;
+        public const int MinimumStage = 1;
+        public const int MaximumStage = 6;
+        public const int MinimumMoodValue = 1;
+        public const int MaximumMoodValue = 5;
         public const int MaxNumberOfPlayerProfiles = 5;
-        public const int minimumMinigameScore = 0;
-        public const int maximumMinigameScore = 3;
+        public const int MinimumMinigameScore = 0;
+        public const int MaximumMinigameScore = 3;
 
         // Resource Paths
         public const string AvatarsResourcesDir = "Images/Avatars/";

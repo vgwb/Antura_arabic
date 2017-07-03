@@ -117,21 +117,23 @@ namespace EA4S.AnturaSpace
                 s_oParticleRootContainer.transform.position = Vector3.zero;
             }
 
-            m_v3LastPosition = transform.position;//Store dragging data to prepare for the releasing throw
+            //Store dragging data to prepare for the releasing throw
+            m_v3LastPosition = transform.position;
             m_fTimeProgression = 0;
             m_lastPositionTime = Time.realtimeSinceStartup;
         }
 
         void Update()
         {
-
-            if (m_bIsDragged) //if this bone is being dragged
+            //if this bone is being dragged
+            if (m_bIsDragged) 
             {
                 m_fTimeProgression += Time.deltaTime;
 
                 if (m_fTimeProgression >= m_fTimeSampling)
                 {
-                    m_v3LastPosition = transform.position;//Store dragging data to prepare for the releasing throw
+                    //Store dragging data to prepare for the releasing throw
+                    m_v3LastPosition = transform.position;
                     m_fTimeProgression = 0;
                     m_lastPositionTime = Time.realtimeSinceStartup;
                 }
@@ -190,7 +192,8 @@ namespace EA4S.AnturaSpace
         public void SimpleThrow()
         {
 
-            m_oBoneRigidbody.isKinematic = true; //resets actives forces
+            //resets actives forces
+            m_oBoneRigidbody.isKinematic = true;
             m_oBoneRigidbody.isKinematic = false;
 
             //disable collision and enabled after 0.5 sec for avoid that Antura collision shot bone away
@@ -207,10 +210,11 @@ namespace EA4S.AnturaSpace
 
         public void Drag()
         {
+            //resets actives forces
+            m_oBoneRigidbody.isKinematic = true;
 
-            m_oBoneRigidbody.isKinematic = true; //resets actives forces
-
-            gameObject.GetComponentInChildren<Collider>().isTrigger = true; //this way Antura won't eat it since collision won't happen
+            //this way Antura won't eat it since collision won't happen
+            gameObject.GetComponentInChildren<Collider>().isTrigger = true;
 
             m_bIsDragged = true;
 
@@ -244,7 +248,7 @@ namespace EA4S.AnturaSpace
         {
             if (m_oParticleInstance == null)
             {
-                m_oParticleInstance = Instantiate<GameObject>(m_oParticle);
+                m_oParticleInstance = Instantiate(m_oParticle);
 
                 //put cookie in the root
                 if (s_oParticleRootContainer != null)
@@ -255,7 +259,8 @@ namespace EA4S.AnturaSpace
 
             }
 
-            m_oParticleInstance.transform.position = transform.position;//put particle on cookie
+            //put particle on cookie
+            m_oParticleInstance.transform.position = transform.position;
 
             m_oParticleInstance.SetActive(true);
             foreach (var particles in m_oParticleInstance.GetComponentsInChildren<ParticleSystem>(true))
@@ -265,7 +270,8 @@ namespace EA4S.AnturaSpace
 
             poofSound = AudioManager.I.PlaySound(m_oSfxOnPoof);
 
-            CancelInvoke("StopPoof");//if we were quick maybe the particle hasn't stopped yet, so try to cancel the old one;
+            //if we were quick maybe the particle hasn't stopped yet, so try to cancel the old one;
+            CancelInvoke("StopPoof");
             Invoke("StopPoof", m_oParticleTime);
         }
         #endregion
