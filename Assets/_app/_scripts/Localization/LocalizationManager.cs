@@ -1,3 +1,5 @@
+using EA4S.Profile;
+
 namespace EA4S.Core
 {
     /// <summary>

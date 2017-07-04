@@ -5,6 +5,7 @@ using EA4S.Core;
 using EA4S.Database;
 using EA4S.Helpers;
 using EA4S.MinigamesCommon;
+using EA4S.Profile;
 
 namespace EA4S.Audio
 {

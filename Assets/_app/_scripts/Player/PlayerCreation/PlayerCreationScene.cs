@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using EA4S.Core;
+﻿using EA4S.Core;
+using EA4S.Profile;
+using UnityEngine;
 
 namespace EA4S.Scenes
 {
