@@ -114,7 +114,7 @@ namespace EA4S.Minigames.ColorTickle
 
         protected override void OnInitialize(IGameContext context)
         {
-            IntroductionState = new IntroductionGameState(this);
+            IntroductionState = new IntroductionGameState(this, GetConfiguration().TutorialEnabled);
             TutorialState = new TutorialGameState(this);
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);

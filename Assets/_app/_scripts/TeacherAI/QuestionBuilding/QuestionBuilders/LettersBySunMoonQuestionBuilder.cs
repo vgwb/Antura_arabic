@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.Helpers;
 
 namespace EA4S.Teacher
@@ -9,7 +10,7 @@ namespace EA4S.Teacher
     /// * Correct answers: Sun or Moon
     /// * Wrong answers: Sun or Moon
     /// </summary>
-    // refactor: this question builder is tied to the arabic language and should thus be separated from the others
+    // TODO refactor: this question builder is tied to the arabic language and should thus be separated from the others
     public class LettersBySunMoonQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters

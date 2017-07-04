@@ -5,12 +5,12 @@ namespace EA4S.Minigames.FastCrowd
 {
     public class StrollingLetterFallingState : StrollingLetterState
     {
-        LetterObjectView view;
+        LivingLetterController view;
         float fallSpeed = 0;
 
         public StrollingLetterFallingState(StrollingLivingLetter letter) : base(letter)
         {
-            view = letter.gameObject.GetComponent<LetterObjectView>();
+            view = letter.gameObject.GetComponent<LivingLetterController>();
         }
 
         public override void EnterState()

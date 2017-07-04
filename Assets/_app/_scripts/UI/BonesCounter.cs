@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using EA4S.Core;
 using TMPro;
 using UnityEngine;
 

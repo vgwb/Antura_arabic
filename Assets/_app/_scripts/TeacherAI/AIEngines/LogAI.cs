@@ -56,8 +56,8 @@ namespace EA4S.Teacher
 
         public void LogMood(int appSession, int mood)
         {
-            // refactor: this should have a session like the rest of the logging methods
-            float realMood = Mathf.InverseLerp(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue, mood);
+            // TODO refactor: this should have a session like the rest of the logging methods
+            float realMood = Mathf.InverseLerp(AppConstants.MinimumMoodValue, AppConstants.MaximumMoodValue, mood);
             var data = new LogMoodData(appSession, realMood);
             db.Insert(data);
         }
@@ -263,7 +263,7 @@ namespace EA4S.Teacher
             db.InsertOrReplaceAll(scoreDataList);
         }
 
-        // refactor: these rules should be moved out of the LogAI and be instead placed in the games' configuration, as they belong to the games 
+        // TODO refactor: these rules should be moved out of the LogAI and be instead placed in the games' configuration, as they belong to the games 
         private MiniGameLearnRules GetLearnRules(MiniGameCode code)
         {
             MiniGameLearnRules rules = new MiniGameLearnRules();
@@ -303,7 +303,7 @@ namespace EA4S.Teacher
             // We also log play skills related to that minigame, as read from MiniGameData
             var minigameData = db.GetMiniGameDataByCode(miniGameCode);
             List<PlayResultParameters> results = new List<PlayResultParameters>();
-            float normalizedScore = Mathf.InverseLerp(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore, score);
+            float normalizedScore = Mathf.InverseLerp(AppConstants.MinimumMinigameScore, AppConstants.MaximumMinigameScore, score);
             foreach (var weightedPlaySkill in minigameData.AffectedPlaySkills) {
                 results.Add(new PlayResultParameters(PlayEvent.Skill, weightedPlaySkill.Skill, normalizedScore));
             }

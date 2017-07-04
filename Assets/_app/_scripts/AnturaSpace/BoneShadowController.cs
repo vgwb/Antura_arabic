@@ -8,18 +8,13 @@ namespace EA4S.AnturaSpace
     /// </summary>
     public class BoneShadowController : MonoBehaviour
     {
-        #region EXPOSED MEMBERS
         [SerializeField]
         private float m_fWorldY;
         [SerializeField]
         private Transform m_oTarget;
-        #endregion
 
-        #region EXPOSED MEMBERS
         private Quaternion m_oOriginalRotation;
-        #endregion
 
-        #region INTERNALS
         void Start()
         {
             m_oOriginalRotation = gameObject.transform.rotation;
@@ -27,9 +22,12 @@ namespace EA4S.AnturaSpace
 
         void Update()
         {
-            gameObject.transform.rotation = m_oOriginalRotation; //restore rotation to default
-            gameObject.transform.position = new Vector3(m_oTarget.position.x, m_fWorldY, m_oTarget.position.z);// position under the target at the given height
-        }
-        #endregion
+            //restore rotation to default
+            gameObject.transform.rotation = m_oOriginalRotation;
+            
+            // position under the target at the given height
+            gameObject.transform.position = new Vector3(m_oTarget.position.x, m_fWorldY, m_oTarget.position.z);
+            }
+
     }
 }

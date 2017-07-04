@@ -7,7 +7,7 @@ namespace EA4S.Minigames.TakeMeHome
 
     public class TakeMeHomeLetterManager : MonoBehaviour {
 		public GameObject plane;
-		public LetterObjectView LLPrefab;		
+		public LivingLetterController LLPrefab;		
 
 		TakeMeHomeLL dragging;
 
@@ -73,7 +73,7 @@ namespace EA4S.Minigames.TakeMeHome
 		{
 			//
 
-			LetterObjectView letterObjectView = Instantiate(LLPrefab);
+			LivingLetterController letterObjectView = Instantiate(LLPrefab);
 			letterObjectView.gameObject.SetActive (true);
 			letterObjectView.transform.localScale = new Vector3 (0.8f, 0.8f, 0.8f);
 			letterObjectView.transform.SetParent(transform, true);
@@ -81,7 +81,7 @@ namespace EA4S.Minigames.TakeMeHome
 
 			letterObjectView.transform.position = newPosition;
 			//letterObjectView.transform.rotation = Quaternion.identity
-			letterObjectView.Initialize (data);
+			letterObjectView.Init (data);
 
 			var ll = letterObjectView.gameObject.AddComponent<TakeMeHomeLL>();
 			ll.Initialize (plane.transform.position.y,letterObjectView,GetComponent<TakeMeHomeGame> ().spawnTube.transform.position);

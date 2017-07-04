@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.MinigamesAPI;
 
 namespace EA4S.Minigames.Maze

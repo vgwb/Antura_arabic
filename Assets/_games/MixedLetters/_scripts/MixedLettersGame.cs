@@ -57,7 +57,6 @@ namespace EA4S.Minigames.MixedLetters
                 {
                     _promptLettersInOrder = spellingQuestionPack.GetCorrectAnswers().ToList();
                 }
-
                 else
                 {
                     int startIndex = 0;
@@ -67,6 +66,9 @@ namespace EA4S.Minigames.MixedLetters
                         startIndex += ALPHABET_PICKING_ORDER[i];
                     }
 
+                    // @note: there is a bug here when starting the game with no content, sometimes the picking order will be larger then entireAlphabet.Count
+                    // this is because the sample pack provides a pack for the Spelling version but we need to work with the Alphabet. Ignore errors.
+                    if (ALPHABET_PICKING_ORDER[roundNumber] > entireAlphabet.Count) Debug.LogError("Error with the Alphabet pack. This appears only when testing the game directly, so retry. See the code for further information.", this);
                     _promptLettersInOrder = entireAlphabet.GetRange(startIndex, ALPHABET_PICKING_ORDER[roundNumber]);
                 }
 
@@ -120,6 +122,10 @@ namespace EA4S.Minigames.MixedLetters
             {
                 return isSpelling;
             }
+        }
+
+        public bool TutorialEnabled {
+            get { return GetConfiguration().TutorialEnabled; }
         }
 
         public Button repeatPromptButton;
@@ -280,12 +286,12 @@ namespace EA4S.Minigames.MixedLetters
                 spellingQuestionPack = newQuestionPack;
                 question = newQuestionPack.GetQuestion();
 
-                VictimLLController.instance.letterObjectView.Initialize(question);
+                VictimLLController.instance.letterObjectView.Init(question);
             }
 
             else
             {
-                VictimLLController.instance.letterObjectView.Initialize(null);
+                VictimLLController.instance.letterObjectView.Init(null);
 
                 string victimLLWord = "";
 
@@ -356,7 +362,9 @@ namespace EA4S.Minigames.MixedLetters
                     for (int j = 0; j < PromptLettersInOrder.Count; j++)
                     {
                         SeparateLetterController letter = SeparateLettersSpawnerController.instance.separateLetterControllers[j];
-                        letter.SetIsSubjectOfTutorial(roundNumber == 0 && letter == dropZone.correctLetter);
+                        letter.SetIsSubjectOfTutorial(
+                            roundNumber == 0 && TutorialEnabled 
+                            &&  letter == dropZone.correctLetter);
                     }
 
                     return;

@@ -26,7 +26,7 @@ namespace EA4S.MinigamesAPI
         /// <summary>
         /// Identification string for the specific data.
         /// </summary>
-        // refactor: this should be part of the inner data
+        // TODO refactor: this should be part of the inner data
         string Id { get; set; }
 
         bool Equals(ILivingLetterData data);

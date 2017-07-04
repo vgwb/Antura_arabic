@@ -10,7 +10,7 @@ using EA4S.UI;
 using TMPro;
 using DG.Tweening;
 
-namespace EA4S.Balloons
+namespace EA4S.Minigames.Balloons
 {
     public class BalloonsGame : MiniGame
     {
@@ -166,7 +166,7 @@ namespace EA4S.Balloons
 
         protected override void OnInitialize(IGameContext context)
         {
-            IntroductionState = new BalloonsIntroductionState(this);
+            IntroductionState = new BalloonsIntroductionState(this, GetConfiguration().TutorialEnabled);
             QuestionState = new BalloonsQuestionState(this);
             PlayState = new BalloonsPlayState(this);
             ResultState = new BalloonsResultState(this);

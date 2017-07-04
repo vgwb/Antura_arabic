@@ -41,6 +41,8 @@ namespace EA4S.Minigames.HideAndSeek
             }
         }
 
+        public bool TutorialEnabled { get { return GetConfiguration().TutorialEnabled;  } }
+
         protected override void OnInitialize(IGameContext context)
         {
             IntroductionState = new IntroductionGameState(this);

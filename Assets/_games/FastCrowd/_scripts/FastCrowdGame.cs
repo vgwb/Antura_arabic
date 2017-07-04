@@ -128,7 +128,7 @@ namespace EA4S.Minigames.FastCrowd
         {
             //float difficulty = FastCrowdConfiguration.Instance.Difficulty;
 
-            showTutorial = true;
+            showTutorial = GetConfiguration().TutorialEnabled;
 
             IntroductionState = new FastCrowdIntroductionState(this);
             QuestionState = new FastCrowdQuestionState(this);
@@ -177,7 +177,7 @@ namespace EA4S.Minigames.FastCrowd
             Context.GetOverlayWidget().SetStarsThresholds(stars1Threshold, stars2Threshold, stars3Threshold);
         }
 
-        public override Vector3 GetGravity()
+        protected override Vector3 GetGravity()
         {
             return Vector3.up * (-40);
         }

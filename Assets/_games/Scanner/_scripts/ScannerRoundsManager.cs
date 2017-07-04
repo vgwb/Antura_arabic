@@ -101,7 +101,7 @@ namespace EA4S.Minigames.Scanner
 			for (int i = 0; i < game.scannerLL.Count; i++)
 			{
 				game.scannerLL[i].Reset();
-				game.scannerLL[i].letterObjectView.Initialize(correctAnswers[i]);
+				game.scannerLL[i].LLController.Init(correctAnswers[i]);
 
                 if (game.scannerLL.Count == 3)
                     game.scannerLL[i].slidingTime = Time.time + 8 * i;
@@ -259,7 +259,7 @@ namespace EA4S.Minigames.Scanner
             TutorialUI.MarkYes(GO.transform.position + Vector3.up * 3 + Vector3.right, TutorialUI.MarkSize.Normal);
             AudioManager.I.PlaySound(Sfx.StampOK);
             AudioManager.I.PlayDialogue("Keeper_Good_" + UnityEngine.Random.Range(1, 12));
-            game.LogAnswer(livingLetter.letterObjectView.Data, true);
+            game.LogAnswer(livingLetter.LLController.Data, true);
             game.tut.playTut = false;
 
             livingLetter.RoundWon();
@@ -285,7 +285,7 @@ namespace EA4S.Minigames.Scanner
             TutorialUI.MarkNo(GO.transform.position + Vector3.up*2 + Vector3.right * 1.5f, TutorialUI.MarkSize.Normal);
             AudioManager.I.PlaySound(Sfx.KO);
             AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
-            game.LogAnswer(livingLetter.letterObjectView.Data, false);
+            game.LogAnswer(livingLetter.LLController.Data, false);
             game.CreatePoof(GO.transform.position,2f,true);
             game.Context.GetOverlayWidget().SetLives(game.allowedFailedMoves - numberOfFailedMoves);
 

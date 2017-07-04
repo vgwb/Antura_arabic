@@ -13,7 +13,7 @@ namespace EA4S.Intro
         public override void EnterState()
         {
             // Set letter animation
-            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
+            letter.gameObject.GetComponent<LivingLetterController>().SetState(LLAnimationStates.LL_idle);
 
             // Wait a random time in idle
             timer = 1.0f + 3.0f * UnityEngine.Random.value;

@@ -8,7 +8,7 @@ namespace EA4S.Antura
     public class AnturaWalkBehaviour : StateMachineBehaviour
     {
 
-        // refactor: cache AnturaAnimationController
+        // TODO refactor: cache AnturaAnimationController
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             animator.GetComponent<AnturaAnimationController>()

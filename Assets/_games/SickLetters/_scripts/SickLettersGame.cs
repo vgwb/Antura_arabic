@@ -34,7 +34,8 @@ namespace EA4S.Minigames.SickLetters
         [HideInInspector]
         public bool disableInput;
 
-        public bool enableTutorial = true;
+        public bool TutorialEnabled { get { return GetConfiguration().TutorialEnabled; } }
+
         public int gameDuration = 120 ,  targetScale = 10, maxWieght;
         public float vaseWidth = 5.20906f;
         public bool LLCanDance = false, with7arakat;
@@ -97,7 +98,7 @@ namespace EA4S.Minigames.SickLetters
         public Transform Poof(Transform t)
         {
             SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
-            var puffGo = GameObject.Instantiate(LLPrefab.GetComponent<LetterObjectView>().poofPrefab);
+            var puffGo = GameObject.Instantiate(LLPrefab.GetComponent<LivingLetterController>().poofPrefab);
             puffGo.AddComponent<AutoDestroy>().duration = 2;
             puffGo.SetActive(true);
             puffGo.transform.position = t.position - Vector3.forward * 2;
@@ -188,7 +189,7 @@ namespace EA4S.Minigames.SickLetters
             int i = 0;
             foreach (SickLettersDraggableDD dd in LLPrefab.thisLLWrongDDs)
             {
-                if (dd && dd.transform.root.GetComponent<LetterObjectView>())//if (dd && !dd.deattached)
+                if (dd && dd.transform.root.GetComponent<LivingLetterController>())//if (dd && !dd.deattached)
                     i++;
             }
 

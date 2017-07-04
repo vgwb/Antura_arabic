@@ -24,7 +24,7 @@ namespace EA4S.Minigames.MixedLetters
         public DropZoneController droppedZone;
         private DropZoneController correctDropZone;
 
-        public LetterObjectView letterObjectView;
+        public LivingLetterController letterObjectView;
 
         private enum State
         {
@@ -302,7 +302,7 @@ namespace EA4S.Minigames.MixedLetters
         public void SetLetter(LL_LetterData letterData)
         {
             this.letterData = letterData;
-            letterObjectView.Initialize(letterData);
+            letterObjectView.Init(letterData);
         }
 
         public LL_LetterData GetLetter()

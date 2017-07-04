@@ -1,33 +1,30 @@
 ﻿using UnityEngine;
-using ModularFramework.Core;
-using ModularFramework.Modules;
 using EA4S.Audio;
 using EA4S.CameraControl;
 using EA4S.Core;
 using EA4S.Database;
-using EA4S.Debugging;
 using EA4S.Profile;
 using EA4S.Rewards;
 using EA4S.Teacher;
 using EA4S.MinigamesAPI;
 using EA4S.UI;
+using EA4S.Utilities;
 
 namespace EA4S
 {
     /// <summary>
     /// Core of the application.
-    /// Functions as a general manager and entry point for all other systems and managers.
+    /// Works as a general manager and entry point for all other systems and managers.
     /// </summary>
-    public class AppManager : GameManager
+    public class AppManager : SingletonMonoBehaviour<AppManager>
     {
-        public new AppSettings GameSettings = new AppSettings();
-
-        // refactor: AppManager.Instance should be the only entry point to the singleton
-        public static AppManager I
+        protected override void Awake()
         {
-            get { return GameManager.Instance as AppManager; }
+            base.Awake();
+            DontDestroyOnLoad(this);
         }
 
+        public AppSettingsManager AppSettingsManager;
         public TeacherAI Teacher;
         public VocabularyHelper VocabularyHelper;
         public ScoreHelper ScoreHelper;
@@ -35,61 +32,44 @@ namespace EA4S
         public DatabaseManager DB;
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
+        [HideInInspector]
         public NavigationManager NavigationManager;
+        public PlayerProfileManager PlayerProfileManager;
 
-        public bool IsPaused { get; private set; }
-
-        private PlayerProfileManager _playerProfileManager;
-        /// <summary>
-        /// Gets or sets the player profile manager.
-        /// Reload GameSettings at any playerProfileManager changes.
-        /// </summary>
-        /// <value>
-        /// The player profile manager.
-        /// </value>
-        public PlayerProfileManager PlayerProfileManager
+        public AppSettings AppSettings
         {
-            get { return _playerProfileManager; }
-            set {
-                if (_playerProfileManager != value) {
-                    _playerProfileManager = value;
-                    _playerProfileManager.ReloadGameSettings();
-                    return;
-                }
-                _playerProfileManager = value;
-            }
+            get { return AppSettingsManager.Settings; }
         }
 
-        public Profile.PlayerProfile Player
+        public PlayerProfile Player
         {
-            get { return PlayerProfileManager != null ? PlayerProfileManager.CurrentPlayer : null; }
+            get { return PlayerProfileManager.CurrentPlayer; }
             set { PlayerProfileManager.CurrentPlayer = value; }
         }
 
         #region Initialisation
 
         /// <summary>
+        /// Prevent multiple setups.
+        /// Set to true after first setup.
+        /// </summary>
+        private bool alreadySetup;
+
+        /// <summary>
         /// Game entry point.
         /// </summary>
-        protected override void GameSetup()
+        protected override void Init()
         {
-            base.GameSetup();
+            if (alreadySetup)
+                return;
 
-            // Debugger setup
-            Debug.logger.logEnabled = AppConstants.VerboseLogging;
-#if SRDebuggerEnabled
-            if (AppConstants.DebugPanelEnabled) {
-                SRDebug.Init();
-            }
-#endif
-            // GameplayModule
-            if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
-                IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
-                Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
-            }
+            base.Init();
 
-            DB = new DatabaseManager(GameSettings.UseTestDatabase);
-            // refactor: standardize initialisation of managers
+            alreadySetup = true;
+
+            AppSettingsManager = new AppSettingsManager();
+            DB = new DatabaseManager();
+            // TODO refactor: standardize initialisation of managers
             LogManager = new LogManager();
             VocabularyHelper = new VocabularyHelper(DB);
             JourneyHelper = new JourneyHelper(DB);
@@ -98,59 +78,61 @@ namespace EA4S
             GameLauncher = new MiniGameLauncher(Teacher);
 
             NavigationManager = gameObject.AddComponent<NavigationManager>();
-            NavigationManager.Initialize();
+            NavigationManager.Init();
 
             PlayerProfileManager = new PlayerProfileManager();
-            gameObject.AddComponent<DebugManager>();
+            PlayerProfileManager.LoadSettings();
+
             gameObject.AddComponent<KeeperManager>();
 
             RewardSystemManager.Init();
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
+            // Debugger setup
+            Debug.logger.logEnabled = AppConstants.VerboseLogging;
+            gameObject.AddComponent<Debugging.DebugManager>();
+
             // Update settings
-            GameSettings.ApplicationVersion = AppConstants.AppVersion;
-            PlayerProfileManager.SaveGameSettings();
+            AppSettings.ApplicationVersion = AppConstants.AppVersion;
+            AppSettingsManager.SaveSettings();
         }
 
         #endregion
-
 
         void Update()
         {
             // Exit with Android back button
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 if (Application.platform == RuntimePlatform.Android) {
-                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
+                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () =>
+                    {
                         Debug.Log("Application Quit");
                         Application.Quit();
                     }, () => { });
                 }
             }
-
-            // shortcut to Reserved Area
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R)) {
-                NavigationManager.GoToReservedArea();
-            }
         }
 
-        #region Settings behaviours
+        #region Setting
 
-        // refactor: should be moved to AppManager
         public void ToggleQualitygfx()
         {
-            GameSettings.HighQualityGfx = !GameSettings.HighQualityGfx;
-            CameraGameplayController.I.EnableFX(GameSettings.HighQualityGfx);
+            AppSettings.HighQualityGfx = !AppSettings.HighQualityGfx;
+            CameraGameplayController.I.EnableFX(AppSettings.HighQualityGfx);
         }
 
         public void ToggleEnglishSubtitles()
         {
-            GameSettings.EnglishSubtitles = !GameSettings.EnglishSubtitles;
-            PlayerProfileManager.SaveGameSettings();
+            AppSettings.EnglishSubtitles = !AppSettings.EnglishSubtitles;
+            AppSettingsManager.SaveSettings();
         }
 
         #endregion
 
         #region Pause
+
+        public bool IsPaused { get; private set; }
+
         void OnApplicationPause(bool pauseStatus)
         {
             IsPaused = pauseStatus;
@@ -167,6 +149,7 @@ namespace EA4S
             }
             AudioManager.I.OnAppPause(IsPaused);
         }
+
         #endregion
 
         public void OpenSupportForm()
@@ -179,6 +162,7 @@ namespace EA4S
         }
 
         #region TMPro hack
+
         /// <summary>
         /// TextMesh Pro hack to manage Diacritic Symbols correct positioning
         /// </summary>
@@ -195,11 +179,12 @@ namespace EA4S
 
         void On_TMPro_Text_Changed(Object obj)
         {
-            TMPro.TMP_Text _tmp_text = obj as TMPro.TMP_Text;
+            var _tmp_text = obj as TMPro.TMP_Text;
             if (_tmp_text != null && VocabularyHelper.FixDiacriticPositions(_tmp_text.textInfo)) {
                 _tmp_text.UpdateVertexData();
             }
         }
+
         #endregion
     }
 }

@@ -4,11 +4,11 @@ using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using EA4S.Tutorial;
 
-namespace EA4S.Balloons
+namespace EA4S.Minigames.Balloons
 {
     public class RoundResultAnimator : MonoBehaviour
     {
-        public LetterObjectView LLPrefab;
+        public LivingLetterController LLPrefab;
         public ParticleSystem vfx;
         public Vector3 wrongMarkPosition1;
         public Vector3 wrongMarkPosition2;
@@ -23,7 +23,7 @@ namespace EA4S.Balloons
             vfx.gameObject.SetActive(true);
             if (livingLetterData != null)
             {
-                LLPrefab.Initialize(livingLetterData);
+                LLPrefab.Init(livingLetterData);
             }
             LLPrefab.DoHorray();
             vfx.Play();
@@ -38,7 +38,7 @@ namespace EA4S.Balloons
             vfx.gameObject.SetActive(false);
             if (livingLetterData != null)
             {
-                LLPrefab.Initialize(livingLetterData);
+                LLPrefab.Init(livingLetterData);
             }
             LLPrefab.DoAngry();
             TutorialUI.MarkNo(Random.value <= 0.5f ? wrongMarkPosition1 : wrongMarkPosition2, TutorialUI.MarkSize.Huge);

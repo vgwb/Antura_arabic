@@ -9,6 +9,7 @@ using EA4S.Assessment;
 using EA4S.Audio;
 using EA4S.Database;
 using System.Linq;
+using EA4S.Core;
 using EA4S.Helpers;
 
 namespace EA4S.Teacher.Test

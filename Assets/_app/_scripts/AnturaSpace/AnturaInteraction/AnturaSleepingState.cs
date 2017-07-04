@@ -1,13 +1,14 @@
-﻿using System;
+﻿using EA4S.Antura;
+using System;
 using UnityEngine;
 
 namespace EA4S.AnturaSpace
 {
     public class AnturaSleepingState : AnturaState
     {
-        float timer = 0.5f;
+        private float timer = 0.5f;
 
-        public AnturaSleepingState(AnturaSpaceManager controller) : base(controller)
+        public AnturaSleepingState(AnturaSpaceScene controller) : base(controller)
         {
         }
 
@@ -33,10 +34,12 @@ namespace EA4S.AnturaSpace
             if (controller.Antura.HasReachedTarget) {
                 timer -= delta;
 
-                if (timer <= 0)
+                if (timer <= 0) {
                     controller.Antura.AnimationController.State = AnturaAnimationStates.sleeping;
-            } else if (controller.Antura.AnimationController.State == AnturaAnimationStates.sleeping)
+                }
+            } else if (controller.Antura.AnimationController.State == AnturaAnimationStates.sleeping) {
                 controller.Antura.AnimationController.State = AnturaAnimationStates.idle;
+            }
         }
 
         public override void ExitState()

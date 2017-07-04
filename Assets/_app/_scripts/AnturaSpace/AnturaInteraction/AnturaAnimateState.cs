@@ -1,13 +1,14 @@
-﻿using System;
+﻿using EA4S.Antura;
+using System;
 
 namespace EA4S.AnturaSpace
 {
     public class AnturaAnimateState : AnturaState
     {
-        float timer = 2.0f;
-        AnturaAnimationStates state;
+        private float timer = 2.0f;
+        private AnturaAnimationStates state;
 
-        public AnturaAnimateState(AnturaSpaceManager controller) : base(controller)
+        public AnturaAnimateState(AnturaSpaceScene controller) : base(controller)
         {
         }
 
@@ -22,14 +23,15 @@ namespace EA4S.AnturaSpace
             } else {
                 float p = UnityEngine.Random.value * controller.AnturaHappiness;
 
-                if (p < 0.25f)
+                if (p < 0.25f) {
                     state = AnturaAnimationStates.digging;
-                else if (p < 0.45f)
+                } else if (p < 0.45f) {
                     state = AnturaAnimationStates.sheeping;
-                else if (p < 0.7f)
+                } else if (p < 0.7f) {
                     state = AnturaAnimationStates.bellyUp;
-                else
+                } else {
                     state = AnturaAnimationStates.dancing;
+                }
             }
         }
 

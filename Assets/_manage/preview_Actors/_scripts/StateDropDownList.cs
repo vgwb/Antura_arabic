@@ -11,7 +11,7 @@ namespace EA4S.Test
             options.Clear();
             options.AddRange(addOptionsFromEnum<LLAnimationStates>());
             onValueChanged.AddListener(delegate {
-                foreach (var l in FindObjectsOfType<LetterObjectView>()) {
+                foreach (var l in FindObjectsOfType<LivingLetterController>()) {
                     l.SetState((LLAnimationStates)Enum.Parse(typeof(LLAnimationStates), options[value].text));
                 }
             });

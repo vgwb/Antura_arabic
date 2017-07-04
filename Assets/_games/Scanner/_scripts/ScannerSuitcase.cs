@@ -226,7 +226,7 @@ namespace EA4S.Minigames.Scanner
 			{
                 shadow.transform.localScale = Vector3.zero;
                 ScannerLivingLetter LL = player.transform.parent.GetComponent<ScannerLivingLetter>();
-				if (isCorrectAnswer && LL.letterObjectView.Data.Id == wordId)
+				if (isCorrectAnswer && LL.LLController.Data.Id == wordId)
 				{
                     LL.gotSuitcase = true;
 					transform.parent = player.transform;

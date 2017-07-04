@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
+using EA4S.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

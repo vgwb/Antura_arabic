@@ -358,11 +358,11 @@ namespace EA4S.Minigames.Tobogan
             if (fallingLetter == null)
                 return;
 
-            fallingLetter.GetComponentInChildren<LetterObjectView>().Falling = false;
-            fallingLetter.GetComponentInChildren<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
+            fallingLetter.GetComponentInChildren<LivingLetterController>().Falling = false;
+            fallingLetter.GetComponentInChildren<LivingLetterController>().SetState(LLAnimationStates.LL_idle);
 
             for (int i=0; i< stackedLetters.Count; ++i)
-                stackedLetters[i].GetComponentInChildren<LetterObjectView>().SetState(LLAnimationStates.LL_still);
+                stackedLetters[i].GetComponentInChildren<LivingLetterController>().SetState(LLAnimationStates.LL_still);
 
             currentHeight += LETTER_HEIGHT;
             stackedLetters.Add(fallingLetter);
@@ -394,7 +394,7 @@ namespace EA4S.Minigames.Tobogan
             letter.transform.position = transform.position + fallingSpawnHeight * Vector3.up;
             letter.gameObject.SetActive(true);
             fallingLetter = letter;
-            letter.GetComponentInChildren<LetterObjectView>().Falling = true;
+            letter.GetComponentInChildren<LivingLetterController>().Falling = true;
             spawnTimer = 0;
 
             ToboganConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.UIPopup);

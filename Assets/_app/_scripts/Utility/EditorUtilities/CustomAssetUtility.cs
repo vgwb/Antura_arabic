@@ -8,7 +8,7 @@ namespace EA4S.EditorUtilities
     /// <summary>
     /// Utility class used to create custom assets in the project folder.
     /// </summary>
-    // refactor: move to utilities
+    // TODO refactor: move to utilities
     public static class CustomAssetUtility
     {
         public static T CreateAsset<T>(string targetPath, string assetName) where T : ScriptableObject
@@ -31,7 +31,8 @@ namespace EA4S.EditorUtilities
                 path = path.Replace(Path.GetFileName(AssetDatabase.GetAssetPath(Selection.activeObject)), "");
             }
 
-            string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(path + "/New " + typeof(T).ToString() + ".asset");
+            string assetPathAndName =
+                AssetDatabase.GenerateUniqueAssetPath(path + "/New " + typeof(T).ToString() + ".asset");
 
             AssetDatabase.CreateAsset(asset, assetPathAndName);
 

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 

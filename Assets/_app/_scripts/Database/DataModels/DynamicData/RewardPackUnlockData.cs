@@ -9,7 +9,7 @@ namespace EA4S.Database
     /// Serialized data relative to a reward, used for unlocking. Updated at runtime.
     /// </summary>
     [System.Serializable]
-    public class RewardPackUnlockData : IData
+    public class RewardPackUnlockData : IData, IDataEditable
     {
         /// <summary>
         /// Primary key for the database.
@@ -147,6 +147,11 @@ namespace EA4S.Database
         public string GetId()
         {
             return Id;
+        }
+
+        public void SetId(string _Id)
+        {
+            Id = _Id;
         }
 
         public override string ToString()

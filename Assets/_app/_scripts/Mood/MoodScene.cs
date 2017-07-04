@@ -8,14 +8,12 @@ namespace EA4S.Scenes
     /// <summary>
     /// Manager for the Mood scene.
     /// </summary>
-    public class MoodScene : MonoBehaviour
+    public class MoodScene : SceneBase
     {
-        [Header("Scene Setup")]
-        public Music SceneMusic;
 
-        void Start()
+        protected override void Start()
         {
-            AudioManager.I.PlayMusic(SceneMusic);
+            base.Start();
             GlobalUI.ShowPauseMenu(false);
 
             if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession) < 2) {
@@ -49,7 +47,6 @@ namespace EA4S.Scenes
 
         void exitScene()
         {
-            AppManager.I.Player.MoodLastVisit = System.DateTime.Today.ToString();
             AppManager.I.Player.Save();
             AppManager.I.NavigationManager.GoToNextScene();
         }

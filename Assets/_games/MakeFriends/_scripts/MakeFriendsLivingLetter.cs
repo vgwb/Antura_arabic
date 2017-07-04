@@ -8,7 +8,7 @@ namespace EA4S.Minigames.MakeFriends
 {
     public class MakeFriendsLivingLetter : MonoBehaviour
     {
-        public LetterObjectView LLPrefab;
+        public LivingLetterController LLPrefab;
         public bool focusOnTouch;
         public Animator animator;
         public Collider letterCollider;
@@ -64,7 +64,7 @@ namespace EA4S.Minigames.MakeFriends
         public void Init(LL_WordData _data)
         {
             wordData = _data;
-            LLPrefab.Initialize(_data);
+            LLPrefab.Init(_data);
 
             //var text = ArabicFixer.Fix(_data.Data.Arabic);
             //tmpText.text = text;

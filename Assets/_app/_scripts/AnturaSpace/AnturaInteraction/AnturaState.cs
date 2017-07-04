@@ -3,9 +3,9 @@ namespace EA4S.AnturaSpace
 {
     public class AnturaState : IState
     {
-        protected AnturaSpaceManager controller;
+        protected AnturaSpaceScene controller;
 
-        public AnturaState(AnturaSpaceManager controller)
+        public AnturaState(AnturaSpaceScene controller)
         {
             this.controller = controller;
         }

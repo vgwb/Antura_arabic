@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using DG.DeInspektor.Attributes;
+using EA4S.Core;
 
 namespace EA4S.UI
 {

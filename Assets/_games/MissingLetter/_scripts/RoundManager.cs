@@ -6,7 +6,6 @@ using EA4S.Audio;
 using EA4S.Helpers;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
 using EA4S.UI;
 
 namespace EA4S.Minigames.MissingLetter
@@ -328,7 +327,7 @@ namespace EA4S.Minigames.MissingLetter
         {
             LL_WordData word = (LL_WordData)m_oCurrQuestionPack.GetQuestion();
 
-            LetterObjectView letterView = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
+            LivingLetterController letterView = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
 
             var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, letter.Data);
             
@@ -349,7 +348,7 @@ namespace EA4S.Minigames.MissingLetter
                 }
             }
 
-            LetterObjectView tmp = m_aoCurrentQuestionScene[index].GetComponent<LetterBehaviour>().mLetter;
+            LivingLetterController tmp = m_aoCurrentQuestionScene[index].GetComponent<LetterBehaviour>().mLetter;
             tmp.Label.text = "";
             return index;
         }
@@ -357,7 +356,7 @@ namespace EA4S.Minigames.MissingLetter
 
         void RestoreQuestion(bool result)
         {
-            LetterObjectView letterView = m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().mLetter;
+            LivingLetterController letterView = m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().mLetter;
 
             foreach (GameObject _obj in m_aoCurrentQuestionScene)
             {

@@ -1,13 +1,14 @@
-﻿using System;
+﻿using EA4S.Antura;
+using System;
 
 namespace EA4S.AnturaSpace
 {
     public class AnturaDrawingAttentionState : AnturaState
     {
-        float shoutTimer;
-        float timeInThisState;
+        private float shoutTimer;
+        private float timeInThisState;
 
-        public AnturaDrawingAttentionState(AnturaSpaceManager controller) : base(controller)
+        public AnturaDrawingAttentionState(AnturaSpaceScene controller) : base(controller)
         {
         }
 
@@ -53,8 +54,9 @@ namespace EA4S.AnturaSpace
                     if (UnityEngine.Random.value < 0.3f) {
                         controller.Antura.AnimationController.DoSniff();
                         Audio.AudioManager.I.PlaySound(Sfx.DogSnorting);
-                    } else
+                    } else {
                         controller.Antura.AnimationController.DoShout(() => { Audio.AudioManager.I.PlaySound(Sfx.DogBarking); });
+                    }
                 }
             }
 

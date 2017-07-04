@@ -16,11 +16,6 @@ namespace EA4S.MinigamesCommon
 
         bool oldState;
     
-        void Start()
-        {
-
-        }
-
         void OnPreRender()
         {
             oldState = RenderSettings.fog;

@@ -10,31 +10,22 @@ namespace EA4S.Scenes
     /// <summary>
     /// Controls the _Start scene, providing an entry point for all users prior to having selected a player profile. 
     /// </summary>
-    public class HomeScene : MonoBehaviour
+    public class HomeScene : SceneBase
     {
-        // refactor: Remove the static access. The ProfileSelectorUI can directly access the HomeManager. Better yet, remove the Play() method from here and place something similar in AppManager.
-        public static HomeScene I;
-
-        [Header("Scene Setup")]
-        public Music SceneMusic;
+        [Header("Setup")]
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
         public LLAnimationStates LLAnimation = LLAnimationStates.LL_dancing;
 
-        [Header("References")]
+        [Header("References")] 
         public AnturaAnimationController AnturaAnimController;
-        public LetterObjectView LLAnimController;
+        public LivingLetterController LLAnimController;
         public GameObject DialogReservedArea;
         public GameObject ProfileSelectorUI;
 
-        void Awake()
+        protected override void Start()
         {
-            I = this;
-        }
-
-        void Start()
-        {
+            base.Start();
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
-            AudioManager.I.PlayMusic(SceneMusic);
             AudioManager.I.PlaySound(Sfx.GameTitle);
 
             AnturaAnimController.State = AnturaAnimation;
@@ -46,7 +37,7 @@ namespace EA4S.Scenes
 
         void TutorCreateProfile()
         {
-            if (AppManager.I.PlayerProfileManager.GetSavedPlayers().Count < 1) {
+            if (AppManager.I.PlayerProfileManager.GetPlayersIconData().Count < 1) {
                 AudioManager.I.PlayDialogue(Database.LocalizationDataId.Action_Createprofile);
             }
         }
@@ -60,14 +51,17 @@ namespace EA4S.Scenes
 
             GlobalUI.ShowPauseMenu(true);
 
-            // refactor: move this initialisation logic to the AppManager
+            // TODO refactor: move this initialisation logic to the AppManager
             LogManager.I.InitNewSession();
             LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new DeviceInfo()));
 
             AppManager.I.NavigationManager.GoToNextScene();
         }
 
+        #region Reserved Area
+
         private bool reservedAreaIsOpen = false;
+
         public void OnClickReservedAreaButton()
         {
             if (reservedAreaIsOpen) {
@@ -102,5 +96,7 @@ namespace EA4S.Scenes
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
             reservedAreaIsOpen = false;
         }
+
+        #endregion
     }
 }

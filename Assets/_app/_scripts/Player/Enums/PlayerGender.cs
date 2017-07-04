@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace EA4S.Profile
 {
     /// <summary>
     /// Player gender

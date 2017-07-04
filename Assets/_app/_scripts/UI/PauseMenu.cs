@@ -110,8 +110,8 @@ namespace EA4S.UI
 
             // Set toggles
             BtMusic.Toggle(AudioManager.I.MusicEnabled);
-            BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
-            BtEnglish.Toggle(AppManager.I.GameSettings.EnglishSubtitles);
+            BtFx.Toggle(AppManager.I.AppSettings.HighQualityGfx);
+            BtEnglish.Toggle(AppManager.I.AppSettings.EnglishSubtitles);
 
             if (_open) {
                 //timeScaleAtMenuOpen = Time.timeScale;
@@ -167,11 +167,11 @@ namespace EA4S.UI
                         break;
                     case MenuButtonType.FxToggle: // FX on/off
                         AppManager.I.ToggleQualitygfx();
-                        BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
+                        BtFx.Toggle(AppManager.I.AppSettings.HighQualityGfx);
                         break;
                     case MenuButtonType.EnglishToggle:
                         AppManager.I.ToggleEnglishSubtitles();
-                        BtEnglish.Toggle(AppManager.I.GameSettings.EnglishSubtitles);
+                        BtEnglish.Toggle(AppManager.I.AppSettings.EnglishSubtitles);
                         break;
                     case MenuButtonType.Credits:
                         Credits.Show(true);

@@ -10,7 +10,7 @@ namespace EA4S.Minigames.MixedLetters
         private const float BIG_SCALE_VALUE = 1.5f;
 
         public static VictimLLController instance;
-        public LetterObjectView letterObjectView;
+        public LivingLetterController letterObjectView;
 
         public GameObject victoryRays;
 

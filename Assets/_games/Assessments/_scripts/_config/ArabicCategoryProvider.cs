@@ -1,5 +1,6 @@
 using EA4S.MinigamesAPI;
 using System;
+using EA4S.Core;
 using UnityEngine;
 
 namespace EA4S.Assessment

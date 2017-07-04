@@ -1,27 +1,18 @@
 # Minigame Reading Game
 
-## Developer notes
-
-## Warnings to be fixed
-
-
 ## Testing procedure
-
 Total tests: 2
-- Variations: 2
+- Variations
+    1. Alphabet Song
+    2. Reading Game
 - Difficulty Levels: ininfluent
 
 ### Shortcuts
-TODO
-
+_none_
 
 ## Variations
-
-### Alphabet Song
-#### Description
+### 1. Alphabet Song
 Player must follow the song.
- 
-#### Configuration Notes
 
 #### Difficulty
 Ignored
@@ -30,15 +21,9 @@ Ignored
 - 3 stars if...
 - 2 stars if...
 - 1 star if...
-
-
-
-
-### Reading Game
-#### Description
+---
+### 2. Reading Game
 Player must find the correct letters in order.
- 
-#### Configuration Notes
 
 #### Difficulty
 Time to answer decreases with difficulty.
@@ -47,4 +32,11 @@ Time to answer decreases with difficulty.
 - 3 stars if...
 - 2 stars if...
 - 1 star if...
+---
+## Developer notes
 
+## Issues
+
+## Warnings to be fixed
+
+## Optimization

@@ -1,12 +1,11 @@
 ﻿using EA4S.Audio;
 using EA4S.Helpers;
 using EA4S.MinigamesCommon;
-using EA4S.Utilities;
+using EA4S.UI;
 using UnityEngine;
 using UnityEngine.UI;
-using EA4S.UI;
 
-namespace EA4S.Management.Test
+namespace EA4S.Test
 {
     /// <summary>
     /// Test class for testing the audio manager.

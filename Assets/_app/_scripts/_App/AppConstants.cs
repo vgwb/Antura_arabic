@@ -1,17 +1,19 @@
-﻿namespace EA4S.Core
+﻿using System.Linq;
+
+namespace EA4S.Core
 {
     /// <summary>
     /// Container for application-wide static constants.
     /// </summary>
-    // refactor: enforce code convention
-    // refactor: reorganize all constants (some are statics, others are consts)
+    // TODO refactor: enforce code convention
+    // TODO refactor: reorganize all constants (some are statics, others are consts)
     public static class AppConstants
     {
 
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.0.7b1";
+        public const string AppVersion = "1.0.7b4";
 
         #region Debug Options
 
@@ -19,7 +21,7 @@
         /// Enabled the Advanced Debug Panel.
         /// Set to FALSE for production.
         /// </summary>
-        public const bool DebugPanelEnabled = false;
+        public static bool DebugPanelEnabledAtStartup = true;
 
         /// <summary>
         /// Tracks common events using Unity Analytics.
@@ -38,12 +40,6 @@
         /// Set to FALSE for production.
         /// </summary>
         public static bool DebugLogInserts = false;
-
-        /// <summary>
-        /// Stops a MiniGame from playing if the PlaySession database does not allow that MiniGame to be played at a given position.
-        /// Used only for debug purposes (with the Debug Panel)
-        /// </summary>
-        public static bool DebugStopPlayAtWrongPlaySessions = true;
 
         #endregion
 
@@ -70,29 +66,36 @@
         public const string UrlCommunityTelegram = "https://t.me/antura";
         public const string UrlCommunityFacebook = "https://www.facebook.com/antura.initiative";
         public const string UrlSupportForm = "https://docs.google.com/forms/d/e/1FAIpQLScWxs5I0w-k8GlIgPFKoWBitMVJ9gxxJlKvGKOXzZsnAA0qNw/viewform";
+        public const string UrlGithubRepository = "https://github.com/vgwb/Antura_arabic";
+        public const string UrlDeveloperDocs = "https://vgwb.github.io/Antura_arabic/";
 
         // files
         public const string PdfAndroidInstall = "AndroidInstallHelp.pdf";
-
-#if UNITY_EDITOR
-        public const string UrlGithubRepository = "https://github.com/vgwb/Antura_arabic";
-#endif
+        public const string DbPlayersFolder = "players";
+        public const string DbExportFolder = "export";
+        public const string DbImportFolder = "import";
+        public const string DbJoinedFolder = "joined";
 
         // Application details (used by Teacher and maybe other)
-        public const float minimumAge = 4;
-        public const float maximumAge = 10;
-        public const int minimumStage = 1;
-        public const int maximumStage = 6;
-        public const int minimumMoodValue = 1;
-        public const int maximumMoodValue = 5;
+        public const float MinimumAge = 4;
+        public const float MaximumAge = 10;
+        public const int MinimumStage = 1;
+        public const int MaximumStage = 6;
+        public const int MinimumMoodValue = 1;
+        public const int MaximumMoodValue = 5;
         public const int MaxNumberOfPlayerProfiles = 5;
-        public const int minimumMinigameScore = 0;
-        public const int maximumMinigameScore = 3;
+        public const int MinimumMinigameScore = 0;
+        public const int MaximumMinigameScore = 3;
 
         // Resource Paths
         public const string AvatarsResourcesDir = "Images/Avatars/";
 
         #endregion
+
+        public static string GetPlayerUUIDFromDatabaseFilename(string fileName)
+        {
+            return fileName.Split('/').Last().Split('\\').Last().Replace("Antura_Player_", "").Replace(".sqlite3", "");
+        }
 
         public static string GetPlayerDatabaseFilename(string playerUuid)
         {
@@ -102,6 +105,11 @@
         public static string GetPlayerDatabaseFilenameForExport(string playerUuid)
         {
             return "export_Antura_Player_" + playerUuid + "_" + System.DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
+        }
+        
+        public static string GetJoinedDatabaseFilename()
+        {
+            return "Antura_Joined_" + System.DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
         }
     }
 }

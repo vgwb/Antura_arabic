@@ -6,13 +6,13 @@ namespace EA4S.Minigames.SickLetters
     public class SickLettersLLCollider : MonoBehaviour
     {
 
-        LetterObjectView letterView;
+        LivingLetterController letterView;
         Transform thisTransform, origParent;
         Vector3 origLocalPos;
 
         void Start()
         {
-            letterView = transform.root.GetComponent<LetterObjectView>();
+            letterView = transform.root.GetComponent<LivingLetterController>();
             origLocalPos = transform.localPosition;
             thisTransform = transform;
             origParent = transform.parent;

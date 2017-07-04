@@ -45,7 +45,7 @@ namespace EA4S.Minigames.FastCrowd
             {
                 dragging.StartDragging(draggingPosition - dragging.transform.position);
 
-                var data = dragging.GetComponent<LetterObjectView>().Data;
+                var data = dragging.GetComponent<LivingLetterController>().Data;
 
                 FastCrowdConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
             }
@@ -58,9 +58,9 @@ namespace EA4S.Minigames.FastCrowd
             dragging = null;
         }
         
-        protected override LetterObjectView SpawnLetter()
+        protected override LivingLetterController SpawnLetter()
         {
-            LetterObjectView l = base.SpawnLetter();
+            LivingLetterController l = base.SpawnLetter();
 
             l.gameObject.AddComponent<FastCrowdDraggableLetter>();
 

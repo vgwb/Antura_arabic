@@ -33,18 +33,16 @@ namespace EA4S.ReservedArea
 
         void RefreshPlayerIcons()
         {
-            GameObject newIcon;
-
             foreach (Transform t in PlayerIconContainer.transform) {
                 Destroy(t.gameObject);
             }
 
-            List<PlayerIconData> players = AppManager.I.PlayerProfileManager.GetSavedPlayers();
+            List<PlayerIconData> players = AppManager.I.PlayerProfileManager.GetPlayersIconData();
 
             // reverse the list for RIGHT 2 LEFT layout
             players.Reverse();
             foreach (var player in players) {
-                newIcon = Instantiate(PlayerIconPrefab);
+                var newIcon = Instantiate(PlayerIconPrefab);
                 newIcon.transform.SetParent(PlayerIconContainer.transform, false);
                 newIcon.GetComponent<PlayerIcon>().Init(player);
                 newIcon.GetComponent<UIButton>().Bt.onClick.AddListener(() => OnSelectPlayerProfile(player.Uuid));
@@ -64,11 +62,7 @@ namespace EA4S.ReservedArea
         public void OnSelectPlayerProfile(string uuid)
         {
             //Debug.Log("OnSelectPlayerProfile " + uuid);
-            if (SelectedPlayerId != uuid) {
-                SelectedPlayerId = uuid;
-            } else {
-                SelectedPlayerId = "";
-            }
+            SelectedPlayerId = SelectedPlayerId != uuid ? uuid : "";
             RefreshUI();
         }
 
@@ -109,11 +103,11 @@ namespace EA4S.ReservedArea
             if (AppManager.I.DB.ExportDatabaseOfPlayer(SelectedPlayerId)) {
                 string dbPath;
                 if (Application.platform == RuntimePlatform.IPhonePlayer) {
-                    dbPath = string.Format(@"{0}/{1}", "export", AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
+                    dbPath = string.Format(@"{0}/{1}", AppConstants.DbExportFolder, AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
                     GlobalUI.ShowPrompt("", "Get the DB from iTunes app:\n" + dbPath);
                 } else {
                     // Android or Desktop
-                    dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, "export", AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
+                    dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, AppConstants.DbExportFolder, AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
                     GlobalUI.ShowPrompt("", "The DB is here:\n" + dbPath);
                 }
             } else {
@@ -124,7 +118,7 @@ namespace EA4S.ReservedArea
 
         public void OnCreateDemoPlayer()
         {
-            if (AppManager.I.PlayerProfileManager.ExistsDemoUser()) {
+            if (AppManager.I.PlayerProfileManager.IsDemoUserExisting()) {
                 GlobalUI.ShowPrompt(Database.LocalizationDataId.ReservedArea_DemoUserAlreadyExists);
             } else {
                 GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, DoCreateDemoPlayer, DoNothing);
@@ -134,11 +128,6 @@ namespace EA4S.ReservedArea
         void DoCreateDemoPlayer()
         {
             StartCoroutine(CreateDemoPlayer());
-        }
-
-        public void OnImportProfile()
-        {
-            Debug.Log("IMPORT");
         }
 
         #region Demo User Helpers
@@ -180,18 +169,18 @@ namespace EA4S.ReservedArea
             // Add some mood data
             int nMoodData = 15;
             for (int i = 0; i < nMoodData; i++) {
-                logAi.LogMood(0, Random.Range(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue + 1));
+                logAi.LogMood(0, Random.Range(AppConstants.MinimumMoodValue, AppConstants.MaximumMoodValue + 1));
                 Debug.Log("Add mood " + i);
                 yield return null;
             }
 
             // Add scores for all play sessions
             Debug.Log("Start adding PS scores");
-            List<LogPlaySessionScoreParams> logPlaySessionScoreParamsList = new List<LogPlaySessionScoreParams>();
+            var logPlaySessionScoreParamsList = new List<LogPlaySessionScoreParams>();
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
                 if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
-                    int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);
+                    int score = useBestScores ? AppConstants.MaximumMinigameScore : Random.Range(AppConstants.MinimumMinigameScore, AppConstants.MaximumMinigameScore);
                     logPlaySessionScoreParamsList.Add(new LogPlaySessionScoreParams(allPlaySessionInfos[i].data.GetJourneyPosition(), score, 12f));
                     //Debug.Log("Add play session score for " + allPlaySessionInfos[i].data.Id);
                 }
@@ -202,10 +191,10 @@ namespace EA4S.ReservedArea
 
             // Add scores for all minigames
             Debug.Log("Start adding MiniGame scores");
-            List<LogMiniGameScoreParams> logMiniGameScoreParamses = new List<LogMiniGameScoreParams>();
+            var logMiniGameScoreParamses = new List<LogMiniGameScoreParams>();
             var allMiniGameInfo = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
             for (int i = 0; i < allMiniGameInfo.Count; i++) {
-                int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);
+                int score = useBestScores ? AppConstants.MaximumMinigameScore : Random.Range(AppConstants.MinimumMinigameScore, AppConstants.MaximumMinigameScore);
                 logMiniGameScoreParamses.Add(new LogMiniGameScoreParams(JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, score, 12f));
                 //Debug.Log("Add minigame score " + i);
             }

@@ -23,8 +23,8 @@ namespace EA4S.Minigames.Maze
 			DisplayTime ();*/
 
             // this.StopAllCoroutines();
-            if (!MazeGameManager.instance.isTutorialMode)
-                MinigamesUI.Timer.Setup(MazeGameManager.instance.gameTime);
+            if (!MazeGame.instance.isTutorialMode)
+                MinigamesUI.Timer.Setup(MazeGame.instance.gameTime);
 
 
         }
@@ -32,10 +32,12 @@ namespace EA4S.Minigames.Maze
         public void Update()
         {
 
-            if (!MazeGameManager.instance.isTutorialMode && MinigamesUI.Timer.Duration == MinigamesUI.Timer.Elapsed)
+            if (!MazeGame.instance.isTutorialMode &&
+                MinigamesUI.Timer != null &&
+                MinigamesUI.Timer.Duration == MinigamesUI.Timer.Elapsed)
             {
                 StopTimer();
-                MazeGameManager.instance.onTimeUp();
+                MazeGame.instance.onTimeUp();
             }
 
             /*if (isRunning) {
@@ -59,7 +61,7 @@ namespace EA4S.Minigames.Maze
         {
             //isRunning = true;
             //   this.StopAllCoroutines();
-            if (!MazeGameManager.instance.isTutorialMode)
+            if (!MazeGame.instance.isTutorialMode)
                 MinigamesUI.Timer.Play();
 
         }
@@ -67,7 +69,7 @@ namespace EA4S.Minigames.Maze
         public void StopTimer()
         {
             // this.StopAllCoroutines();
-            if (!MazeGameManager.instance.isTutorialMode)
+            if (!MazeGame.instance.isTutorialMode)
                 MinigamesUI.Timer.Pause();
             /*isRunning = false;
 			playedSfx = false;

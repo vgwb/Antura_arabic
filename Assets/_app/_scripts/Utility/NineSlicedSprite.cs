@@ -34,12 +34,10 @@ namespace EA4S.Utilities
 
         public float initialWidth;
         private float width = 1;
+
         public float Width
         {
-            get
-            {
-                return width;
-            }
+            get { return width; }
             set
             {
                 if (width == value)
@@ -52,12 +50,10 @@ namespace EA4S.Utilities
 
         public float initialHeight;
         private float height = 1.0f;
+
         public float Height
         {
-            get
-            {
-                return height;
-            }
+            get { return height; }
             set
             {
                 if (height == value)
@@ -70,12 +66,10 @@ namespace EA4S.Utilities
 
         public float initialBorderScale = 1;
         private float borderScale = 1.0f;
+
         public float BorderScale
         {
-            get
-            {
-                return borderScale;
-            }
+            get { return borderScale; }
             set
             {
                 if (borderScale == value)
@@ -88,12 +82,10 @@ namespace EA4S.Utilities
 
         public Sprite initialSprite;
         private Sprite sprite;
+
         public Sprite Sprite
         {
-            get
-            {
-                return sprite;
-            }
+            get { return sprite; }
             set
             {
                 if (sprite == value)
@@ -107,12 +99,12 @@ namespace EA4S.Utilities
         public Material initialMaterial;
         Material material;
         Material originalMaterial;
+
         public Material Material
         {
             get
             {
-                if (material == null)
-                {
+                if (material == null) {
                     meshRenderer.sharedMaterial = material = new Material(initialMaterial);
                 }
 
@@ -167,8 +159,7 @@ namespace EA4S.Utilities
 
         void Update()
         {
-            if (!Application.isPlaying)
-            {
+            if (!Application.isPlaying) {
                 Sprite = initialSprite;
                 Width = initialWidth;
                 Height = initialHeight;
@@ -183,8 +174,7 @@ namespace EA4S.Utilities
         void CreateSlicedMesh()
         {
             dirty = false;
-            if (mesh != null)
-            {
+            if (mesh != null) {
                 if (Application.isPlaying)
                     GameObject.Destroy(mesh);
                 else
@@ -203,7 +193,7 @@ namespace EA4S.Utilities
             float marginRight = sprite.border.z / sprite.rect.size.x;
             float marginTop = sprite.border.w / sprite.rect.size.y;
 
-            float borderLeft = marginLeft*BorderScale;
+            float borderLeft = marginLeft * BorderScale;
             float borderBottom = marginBottom * BorderScale;
             float borderRight = marginRight * BorderScale;
             float borderTop = marginTop * BorderScale;
@@ -214,32 +204,34 @@ namespace EA4S.Utilities
             {
                 -centerOffset + new Vector3(0, 0, 0),
                 -centerOffset + new Vector3(borderLeft, 0, 0),
-                -centerOffset + new Vector3(width-borderRight, 0, 0),
+                -centerOffset + new Vector3(width - borderRight, 0, 0),
                 -centerOffset + new Vector3(width, 0, 0),
 
                 -centerOffset + new Vector3(0, borderBottom, 0),
                 -centerOffset + new Vector3(borderLeft, borderBottom, 0),
-                -centerOffset + new Vector3(width-borderRight, borderBottom, 0),
+                -centerOffset + new Vector3(width - borderRight, borderBottom, 0),
                 -centerOffset + new Vector3(width, borderBottom, 0),
 
-                -centerOffset + new Vector3(0, height-borderTop, 0),
-                -centerOffset + new Vector3(borderLeft, height-borderTop, 0),
-                -centerOffset + new Vector3(width-borderRight, height-borderTop, 0),
-                -centerOffset + new Vector3(width, height-borderTop, 0),
+                -centerOffset + new Vector3(0, height - borderTop, 0),
+                -centerOffset + new Vector3(borderLeft, height - borderTop, 0),
+                -centerOffset + new Vector3(width - borderRight, height - borderTop, 0),
+                -centerOffset + new Vector3(width, height - borderTop, 0),
 
                 -centerOffset + new Vector3(0, height, 0),
                 -centerOffset + new Vector3(borderLeft, height, 0),
-                -centerOffset + new Vector3(width-borderRight, height, 0),
+                -centerOffset + new Vector3(width - borderRight, height, 0),
                 -centerOffset + new Vector3(width, height, 0)
             };
 
 
             mesh.uv = new Vector2[]
             {
-                new Vector2(0, 0), new Vector2(marginLeft, 0), new Vector2(1-marginRight, 0), new Vector2(1, 0),
-                new Vector2(0, marginBottom), new Vector2(marginLeft, marginBottom), new Vector2(1-marginRight, marginBottom), new Vector2(1, marginBottom),
-                new Vector2(0, 1-marginTop), new Vector2(marginLeft, 1-marginTop), new Vector2(1-marginRight, 1-marginTop), new Vector2(1, 1-marginTop),
-                new Vector2(0, 1), new Vector2(marginLeft, 1), new Vector2(1-marginRight, 1), new Vector2(1, 1)
+                new Vector2(0, 0), new Vector2(marginLeft, 0), new Vector2(1 - marginRight, 0), new Vector2(1, 0),
+                new Vector2(0, marginBottom), new Vector2(marginLeft, marginBottom),
+                new Vector2(1 - marginRight, marginBottom), new Vector2(1, marginBottom),
+                new Vector2(0, 1 - marginTop), new Vector2(marginLeft, 1 - marginTop),
+                new Vector2(1 - marginRight, 1 - marginTop), new Vector2(1, 1 - marginTop),
+                new Vector2(0, 1), new Vector2(marginLeft, 1), new Vector2(1 - marginRight, 1), new Vector2(1, 1)
             };
 
             mesh.triangles = slicedTriangles;

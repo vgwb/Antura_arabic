@@ -14,10 +14,10 @@ namespace EA4S.Teacher
 
         public MiniGameSelectionAI(DatabaseManager _dbManager)
         {
-            this.dbManager = _dbManager;
+            dbManager = _dbManager;
         }
 
-        public void InitialiseNewPlaySession()
+        public void InitNewPlaySession()
         {
             // Nothing to be done here
         }

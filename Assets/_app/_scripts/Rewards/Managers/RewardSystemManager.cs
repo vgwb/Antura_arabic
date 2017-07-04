@@ -298,7 +298,7 @@ namespace EA4S.Rewards
         /// <param name="_categoryRewardId"></param>
         public static void DeselectAllRewardItemsForCategory(string _categoryRewardId = "")
         {
-            AnturaModelManager.Instance.ClearLoadedRewardInCategory(_categoryRewardId);
+            AnturaModelManager.I.ClearLoadedRewardInCategory(_categoryRewardId);
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-// refactor: remove reference to Arabic
+// TODO refactor: remove reference to Arabic
 namespace EA4S.UI
 {
     public class TextRender : MonoBehaviour
@@ -55,7 +55,7 @@ namespace EA4S.UI
         void Awake()
         {
             if (isEnglishSubtitle) {
-                gameObject.SetActive(AppManager.I.GameSettings.EnglishSubtitles);
+                gameObject.SetActive(AppManager.I.AppSettings.EnglishSubtitles);
             }
 
             m_TextComponent = gameObject.GetComponent<TMP_Text>();
@@ -170,9 +170,8 @@ namespace EA4S.UI
         public void SetSentence(Database.LocalizationDataId sentenceId)
         {
             // Debug.Log("SetSentence " + sentenceId);
-            Database.LocalizationData row = LocalizationManager.GetLocalizationData(sentenceId);
             isArabic = true;
-            text = row.GetLocalizedText(AppManager.I.Player.Gender);
+            text = LocalizationManager.GetTranslation(sentenceId);
         }
 
         /// <summary>

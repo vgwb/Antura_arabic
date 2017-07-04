@@ -12,11 +12,11 @@ namespace EA4S.Antura
             if (animationTimer > 0)
                 return;
 
-            var rnd = UnityEngine.Random.value;
+            var rnd = Random.value;
 
             if (rnd < 0.3f)
             {
-                GetComponent<AnturaAnimationController>().DoSniff(null, () => { Audio.AudioManager.I.PlaySound(Sfx.DogSnorting); });
+                GetComponent<AnturaAnimationController>().DoSniff(null, () => { AudioManager.I.PlaySound(Sfx.DogSnorting); });
             }
             else if (rnd < 0.5f)
             {

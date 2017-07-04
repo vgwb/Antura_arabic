@@ -1,84 +1,131 @@
-﻿using UnityEngine;
-#if !UNITY_EDITOR
-using System.Collections;
-using System.IO;
-#endif
-using System.Collections.Generic;
+﻿using EA4S.Core;
+using UnityEngine;
 using SQLite;
-using System.Linq.Expressions;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using EA4S.Core;
+using System.Linq.Expressions;
 
 namespace EA4S.Database
 {
     /// <summary>
     /// Service that connects to SQLite.
-    ///  we are using Mysqlite from https://github.com/codecoding/SQLite4Unity3d 
+    /// we are using Mysqlite from https://github.com/codecoding/SQLite4Unity3d 
     /// and engine from https://github.com/praeclarum/sqlite-net
     /// </summary>
     public class DBService
     {
-        SQLiteConnection _connection;
+        #region Paths
 
-        public DBService(string playerUuid, bool isForExport = false)
+        public static string GetDatabaseFilePath(string fileName, string dirName)
         {
-            var folderName = "players";
-            var databaseName = AppConstants.GetPlayerDatabaseFilename(playerUuid);
-            var dirPath = string.Format(@"{0}/{1}", Application.persistentDataPath, folderName);
-            var dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, folderName, databaseName);
+            return string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, dirName, fileName);
+        }
 
-            if (isForExport) {
-                var folderNameExport = "export";
-                var databaseNameExport = AppConstants.GetPlayerDatabaseFilenameForExport(playerUuid);
-                var dirPathExport = string.Format(@"{0}/{1}", Application.persistentDataPath, folderNameExport);
-                var dbPathExport = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, folderNameExport, databaseNameExport);
+        public static string GetDatabaseDirectoryPath(string dirName)
+        {
+            return string.Format(@"{0}/{1}", Application.persistentDataPath, dirName);
+        }
 
-                // Copy the real DB
-                if (File.Exists(dbPath)) {
-                    if (!Directory.Exists(dirPathExport)) {
-                        Directory.CreateDirectory(dirPathExport);
-                    }
+        #endregion
 
-                    File.Copy(dbPath, dbPathExport);
+        #region Factory Methods
 
-                } else {
-                    Debug.LogError("Could not find database for export.");
-                }
+        public static DBService OpenFromFileName(bool createIfNotFound, string fileName, string dirName = AppConstants.DbPlayersFolder)
+        {
+            var dirPath = GetDatabaseDirectoryPath(dirName);
+            if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
 
-                dirPath = dirPathExport;
-                dbPath = dbPathExport;
+            var dbPath = GetDatabaseFilePath(fileName, dirName);
+            return new DBService(createIfNotFound, dbPath);
+        }
 
-            } else {
-                if (!Directory.Exists(dirPath)) {
-                    Directory.CreateDirectory(dirPath);
-                }
+        public static DBService OpenFromFilePath(bool createIfNotFound, string filePath)
+        {
+            return new DBService(createIfNotFound, filePath);
+        }
+
+        public static DBService OpenFromPlayerUUID(bool createIfNotFound, string playerUuid, string fileName = "", string dirName = AppConstants.DbPlayersFolder)
+        {
+            if (fileName == "") fileName = AppConstants.GetPlayerDatabaseFilename(playerUuid);
+            var dirPath = GetDatabaseDirectoryPath(dirName);
+            if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
+
+            var dbPath = GetDatabaseFilePath(fileName, dirName);
+            return new DBService(createIfNotFound, dbPath);
+        }
+
+        public static DBService ExportAndOpenFromPlayerUUID(string playerUuid, string fileName = "", string dirName = AppConstants.DbPlayersFolder)
+        {
+            if (fileName == "") fileName = AppConstants.GetPlayerDatabaseFilename(playerUuid);
+            ExportFromPlayerUUID(playerUuid, fileName, dirName);
+            return OpenFromPlayerUUID(false, playerUuid, AppConstants.GetPlayerDatabaseFilenameForExport(playerUuid), AppConstants.DbExportFolder);
+        }
+
+        public static void ExportFromPlayerUUID(string playerUuid, string fileName, string dirName)
+        {
+            var dbPath = GetDatabaseFilePath(fileName, dirName);
+
+            if (!File.Exists(dbPath))
+            {
+                Debug.LogError("Could not find database for export at path: " + dbPath);
+                return;
             }
 
+            var dirNameExport = AppConstants.DbExportFolder;
+            var dirPathExport = GetDatabaseDirectoryPath(dirNameExport);
+            if (!Directory.Exists(dirPathExport))
+            {
+                Directory.CreateDirectory(dirPathExport);
+            }
+
+            var dbNameExport = AppConstants.GetPlayerDatabaseFilenameForExport(playerUuid);
+            var dbPathExport = GetDatabaseFilePath(dbNameExport, dirNameExport);
+
+            File.Copy(dbPath, dbPathExport);
+        }
+
+        #endregion
+
+        SQLiteConnection _connection;
+
+        private DBService(bool createIfNotFound, string dbPath)
+        {
+            //Debug.Log("Opening DBService at " + dbPath);
+
+            _connection = null;
             // Try to open an existing DB connection, or create a new DB if it does not exist already
             try {
                 _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
             } catch {
-                _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
-                RegenerateDatabase();
+                if (createIfNotFound)
+                {
+                    _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
+                    RegenerateDatabase();
+                }
+                else
+                {
+                    Debug.LogWarning("Could not find database at: " + dbPath);
+                }
             }
 
-            // Check that the DB version is correct, otherwise recreate the tables
-            GenerateTable<DatabaseInfoData>(true, false); // Makes sure that the database info data table exists
-            var info = _connection.Find<DatabaseInfoData>(1);
-            if (info == null || info.DynamicDbVersion != AppConstants.DynamicDbSchemeVersion) {
-                var lastVersion = info != null ? info.DynamicDbVersion : "NONE";
-                Debug.LogWarning("SQL database for player " + playerUuid + " is outdated. Recreating it (from " + lastVersion + " to " + AppConstants.DynamicDbSchemeVersion + ")");
-                RegenerateDatabase();
+            if (_connection != null)
+            {
+                // Check that the DB version is correct, otherwise recreate the tables
+                GenerateTable<DatabaseInfoData>(true, false); // Makes sure that the database info data table exists
+                var info = _connection.Find<DatabaseInfoData>(1);
+                if (info == null || info.DynamicDbVersion != AppConstants.DynamicDbSchemeVersion)
+                {
+                    var lastVersion = info != null ? info.DynamicDbVersion : "NONE";
+                    Debug.LogWarning("SQL database at path " + dbPath + " is outdated. Recreating it (from " +
+                                     lastVersion + " to " + AppConstants.DynamicDbSchemeVersion + ")");
+                    RegenerateDatabase();
+                }
+                //Debug.Log("Database ready at path " + dbPath + "   Version: " + (info != null ? info.DynamicDbVersion : "NONE"));
             }
 
-            //Debug.Log("Database ready with UUID " + playerUuid + "   Version: " + (info != null ? info.DynamicDbVersion : "NONE"));
-        }
-
-        public void ForceFileDeletion()
-        {
-            Debug.LogError("MySQL File deletion not yet implemented.");
         }
 
         #region Creation
@@ -131,6 +178,16 @@ namespace EA4S.Database
 
         #endregion
 
+        #region Deletion
+
+        public void ForceFileDeletion()
+        {
+            Debug.LogWarning("Deleting database at path " + _connection.DatabasePath);
+            File.Delete(_connection.DatabasePath);
+        }
+
+        #endregion
+
         #region Insert
 
         public void Insert<T>(T data) where T : IData, new()
@@ -148,6 +205,14 @@ namespace EA4S.Database
         }
 
         public void InsertAll<T>(IEnumerable<T> objects) where T : IData, new()
+        {
+            if (AppConstants.DebugLogInserts)
+                foreach (var obj in objects)
+                    Debug.Log("DB Insert: " + obj);
+            _connection.InsertAll(objects);
+        }
+
+        public void InsertAllObjects(IEnumerable objects) 
         {
             if (AppConstants.DebugLogInserts)
                 foreach (var obj in objects)
@@ -178,7 +243,12 @@ namespace EA4S.Database
             return _connection.Table<LogInfoData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
         }
 
-        public PlayerProfileData FindPlayerProfileDataById(string target_id)
+        public PlayerProfileData GetPlayerProfileData()
+        {
+            return FindPlayerProfileDataById(PlayerProfileData.UNIQUE_ID);
+        }
+
+        private PlayerProfileData FindPlayerProfileDataById(string target_id)
         {
             return _connection.Table<PlayerProfileData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
         }
@@ -248,7 +318,6 @@ namespace EA4S.Database
 
         public void GenerateStaticExportTables()
         {
-            // Static DB data
             GenerateTable<StageData>(true, false, customTableName: "static_" + typeof(StageData).Name);
             GenerateTable<PlaySessionData>(true, false, customTableName: "static_" + typeof(PlaySessionData).Name);
             GenerateTable<LearningBlockData>(true, false, customTableName: "static_" + typeof(LearningBlockData).Name);

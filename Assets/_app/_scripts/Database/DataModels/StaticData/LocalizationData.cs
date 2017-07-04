@@ -1,3 +1,4 @@
+using EA4S.Profile;
 using System;
 using SQLite;
 using UnityEngine;

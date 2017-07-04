@@ -19,7 +19,7 @@ namespace EA4S.Helpers
         /// </summary>
         public static IOrderedEnumerable<TEnum> SortEnums<TEnum>()
         {
-            return ((TEnum[])Enum.GetValues(typeof(TEnum))).OrderBy(v => v.ToString());
+            return ((TEnum[]) Enum.GetValues(typeof(TEnum))).OrderBy(v => v.ToString());
         }
 
         #endregion
@@ -57,7 +57,7 @@ namespace EA4S.Helpers
         /// <param name="_source">Source.</param>
         static string ReverseMultiParagraphText(string _source)
         {
-            char[] split = { '\n' };
+            char[] split = {'\n'};
             string[] paragraphs = _source.Split(split);
             string result = "";
             foreach (string paragraph in paragraphs) {
@@ -70,22 +70,27 @@ namespace EA4S.Helpers
         #endregion
 
         #region DateTime
+
         private static DateTime TIME_START = new DateTime(1970, 1, 1, 0, 0, 0);
+
         public static int GetRelativeTimestampFromNow(int deltaDays)
         {
             var timeSpan = new TimeSpan(deltaDays, 0, 0, 0, 0);
-            return GetTimestampForNow() + (int)timeSpan.TotalSeconds;
+            return GetTimestampForNow() + (int) timeSpan.TotalSeconds;
         }
+
         public static int GetTimestampForNow()
         {
             var timeSpan = (DateTime.UtcNow - TIME_START);
-            return (int)timeSpan.TotalSeconds;
+            return (int) timeSpan.TotalSeconds;
         }
+
         public static DateTime FromTimestamp(int timestamp)
         {
             var span = TimeSpan.FromSeconds(timestamp);
             return TIME_START + span;
         }
+
         public static TimeSpan GetTimeSpanBetween(int timestamp_from, int timestamp_to)
         {
             return FromTimestamp(timestamp_to) - FromTimestamp(timestamp_from);
@@ -174,7 +179,6 @@ namespace EA4S.Helpers
                 default:
                     drawingColor = Color.black;
                     break;
-
             }
             return drawingColor;
         }
@@ -191,7 +195,8 @@ namespace EA4S.Helpers
 
         public static string ToDebugString<T>(this IEnumerable<T> list)
         {
-            return "{" + string.Join(",", list.ToList().ConvertAll(x => x == null ? "NONE" : x.ToString()).ToArray()) + "}";
+            return "{" + string.Join(",", list.ToList().ConvertAll(x => x == null ? "NONE" : x.ToString()).ToArray()) +
+                   "}";
         }
 
         public static string ToDebugString<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)

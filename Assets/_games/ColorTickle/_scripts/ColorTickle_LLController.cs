@@ -28,7 +28,7 @@ namespace EA4S.Minigames.ColorTickle
         #endregion
 
         #region PRIVATE MEMBERS
-        private LetterObjectView m_oLetter;
+        private LivingLetterController m_oLetter;
         private Vector3 m_v3Destination;
         #endregion
 
@@ -82,7 +82,7 @@ namespace EA4S.Minigames.ColorTickle
         #region INTERNALS
         void Start()
         {
-            m_oLetter = gameObject.GetComponent<LetterObjectView>();
+            m_oLetter = gameObject.GetComponent<LivingLetterController>();
             if (!m_bSetStartPosition)
             {
                 m_v3StartPosition = m_oLetter.gameObject.transform.position;

@@ -1,4 +1,5 @@
-﻿using EA4S.Helpers;
+﻿using EA4S.Core;
+using EA4S.Helpers;
 using EA4S.LivingLetters;
 using UnityEngine;
 
@@ -7,11 +8,11 @@ namespace EA4S.Intro
     /// <summary>
     /// A special LivingLetter character with special animations.
     /// </summary>
-    // refactor: remove the references to the Maze minigame
+    // TODO refactor: remove the references to the Maze minigame
     public class IntroRocketCharacter : MonoBehaviour
     {
 
-        public LetterObjectView LL;
+        public LivingLetterController LL;
         //public List<GameObject> particles;
 
         [HideInInspector]
@@ -23,7 +24,7 @@ namespace EA4S.Intro
 
         void Start()
         {
-            LL.Initialize(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom()); 
+            LL.Init(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom()); 
             LL.SetState(LLAnimationStates.LL_rocketing);
             LL.Horraying = true;
         }

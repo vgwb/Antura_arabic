@@ -1,3 +1,5 @@
+using EA4S.Profile;
+
 namespace EA4S.Core
 {
     /// <summary>
@@ -7,12 +9,30 @@ namespace EA4S.Core
     {
         public static string GetTranslation(Database.LocalizationDataId id)
         {
-            return GetLocalizationData(id).GetLocalizedText(AppManager.I.Player.Gender);
+            return GetLocalizationData(id).GetLocalizedText(CurrentPlayerGender);
         }
 
         public static string GetTranslation(string id)
         {
-            return GetLocalizationData(id).GetLocalizedText(AppManager.I.Player.Gender); 
+            return GetLocalizationData(id).GetLocalizedText(CurrentPlayerGender);
+        }
+
+        public static string GetLocalizedAudioFileName(string id)
+        {
+            return GetLocalizationData(id).GetLocalizedAudioFileName(CurrentPlayerGender);
+        }
+        public static string GetLocalizedAudioFileName(string id, PlayerGender forcedGender)
+        {
+            return GetLocalizationData(id).GetLocalizedAudioFileName(forcedGender);
+        }
+
+        private static PlayerGender CurrentPlayerGender
+        {
+            get
+            {
+                if (AppManager.I.Player == null) return PlayerGender.M;
+                return AppManager.I.Player.Gender;
+            }
         }
 
         public static Database.LocalizationData GetLocalizationData(Database.LocalizationDataId id)
@@ -29,7 +49,6 @@ namespace EA4S.Core
         {
             Database.LocalizationDataId loc = Database.LocalizationDataId.UI_None;
             switch (cat) {
-
                 case Database.WordDataCategory.Adjectives: loc = Database.LocalizationDataId.UI_WordCat_Adjectives; break;
                 case Database.WordDataCategory.Animal: loc = Database.LocalizationDataId.UI_Animals; break;
                 case Database.WordDataCategory.BodyPart: loc = Database.LocalizationDataId.UI_BodyParts; break;

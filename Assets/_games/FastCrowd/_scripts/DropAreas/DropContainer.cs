@@ -126,7 +126,7 @@ namespace EA4S.Minigames.FastCrowd
 
         #region results events delegates
 
-        private void Droppable_OnWrongMatch(LetterObjectView _letterView)
+        private void Droppable_OnWrongMatch(LivingLetterController _letterView)
         {
             AudioManager.I.PlaySound(Sfx.KO);
         }
@@ -134,7 +134,7 @@ namespace EA4S.Minigames.FastCrowd
         /// <summary>
         /// Risen on letter or world match.
         /// </summary>
-        private void Droppable_OnRightMatch(LetterObjectView _letterView)
+        private void Droppable_OnRightMatch(LivingLetterController _letterView)
         {
             AudioManager.I.PlaySound(Sfx.OK);
             NextArea();

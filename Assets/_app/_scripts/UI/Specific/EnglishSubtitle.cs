@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.Core;
+using UnityEngine;
 
 namespace EA4S.UI
 {
@@ -9,7 +10,7 @@ namespace EA4S.UI
     {
         void Start()
         {
-            gameObject.SetActive(AppManager.I.GameSettings.EnglishSubtitles);
+            gameObject.SetActive(AppManager.I.AppSettings.EnglishSubtitles);
         }
 
     }

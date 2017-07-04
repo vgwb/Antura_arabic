@@ -88,7 +88,13 @@ namespace EA4S.Minigames.TakeMeHome
 			}
 		}
 
-		public TakeMeHomeIntroductionState IntroductionState { get; private set; }
+	    public bool TutorialEnabled
+	    {
+	        get { return GetConfiguration().TutorialEnabled; }
+	    }
+
+
+	    public TakeMeHomeIntroductionState IntroductionState { get; private set; }
 		public TakeMeHomePlayState PlayState { get; private set; }
 		public TakeMeHomeResultState ResultState { get; private set; }
 		public TakeMeHomeEndState EndState { get; private set; }
@@ -99,7 +105,7 @@ namespace EA4S.Minigames.TakeMeHome
         public TakeMeHomeTutorialResetState TutorialResetState { get; private set; }
 
 
-        public void InitTubes()
+	    public void InitTubes()
 		{
 			letterManager = GetComponent<TakeMeHomeLetterManager> ();
 			activeTubes = new List<GameObject> ();
@@ -273,7 +279,7 @@ namespace EA4S.Minigames.TakeMeHome
 			this.SetCurrentState(EndState);
 		}
 
-        public override Vector3 GetGravity()
+	    protected override Vector3 GetGravity()
         {
             return Vector3.up * (-20);
         }

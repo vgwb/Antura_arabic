@@ -7,7 +7,7 @@ namespace EA4S.Database
     /// Serialized information on the database. Used for versioning.
     /// </summary>
     [System.Serializable]
-    public class DatabaseInfoData : IData
+    public class DatabaseInfoData : IData, IDataEditable
     {
         public const string UNIQUE_ID = "1";
 
@@ -67,5 +67,9 @@ namespace EA4S.Database
             );
         }
 
+        public void SetId(string _Id)
+        {
+            Id = _Id;
+        }
     }
 }

@@ -129,9 +129,7 @@ namespace EA4S.Minigames.FastCrowd
 
             if (currentData != null)
             {
-                //bool matching = GetComponent<LetterObjectView>().Model.Data.Key == currentData.Key;
-                //bool matching = GetComponent<LetterObjectView>().Data == currentData;
-                bool matching = GetComponent<LetterObjectView>().Data.Equals(currentData);
+                bool matching = GetComponent<LivingLetterController>().Data.Equals(currentData);
 
                 if (onDropped != null)
                     onDropped(matching);

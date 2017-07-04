@@ -42,8 +42,11 @@ namespace EA4S.Minigames.Scanner
         {
             get
             {
-                if (game.roundsManager.numberOfRoundsPlayed <= 0)
+                if (game.roundsManager.numberOfRoundsPlayed <= 0 && 
+                    game.TutorialEnabled)
+                {
                     return true;
+                }
                 else
                 {
                     game.beltSpeed = originalLLOnBeltSpeed;
@@ -203,7 +206,7 @@ namespace EA4S.Minigames.Scanner
             currentLL = targetLL;
 
             foreach (ScannerSuitcase sc in game.suitcases)
-                if (targetLL.letterObjectView.Data.Id == sc.wordId)
+                if (targetLL.LLController.Data.Id == sc.wordId)
                 {
                     currentSuitcases = sc;
                     source = sc.transform;
@@ -227,7 +230,7 @@ namespace EA4S.Minigames.Scanner
                     i++;
                     //Debug.LogWarning(ll.transform.position +" "+ll.transform+""+ ll.gotSuitcase);
                     currentLL = ll;
-                    target = currentLL.letterObjectView.transform;
+                    target = currentLL.LLController.transform;
                     return target;
                 }
 

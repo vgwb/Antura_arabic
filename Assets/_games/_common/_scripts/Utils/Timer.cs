@@ -39,7 +39,6 @@
             if (IsRunning)
             {
                 time += delta;
-
             }
         }
     }

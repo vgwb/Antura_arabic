@@ -7,7 +7,7 @@ namespace EA4S.Database
     /// Summary score results relative to a vocabulary element. Updated at runtime.
     /// </summary>
     [System.Serializable]
-    public class VocabularyScoreData : IData, IScoreData
+    public class VocabularyScoreData : IData, IScoreData, IDataEditable
     {
         /// <summary>
         /// Primary key for the database.
@@ -75,6 +75,11 @@ namespace EA4S.Database
         public string GetId()
         {
             return Id;
+        }
+
+        public void SetId(string _Id)
+        {
+            Id = _Id;
         }
 
         public override string ToString()

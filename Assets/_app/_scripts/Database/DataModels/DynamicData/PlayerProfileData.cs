@@ -9,7 +9,7 @@ namespace EA4S.Database
     /// Serialized information about the player. Used by the Player Profile.
     /// </summary>
     [System.Serializable]
-    public class PlayerProfileData : IData
+    public class PlayerProfileData : IData, IDataEditable
     {
         public const string UNIQUE_ID = "1";
 
@@ -172,15 +172,15 @@ namespace EA4S.Database
             return (TotalScore >= 0.999f);
         }
 
-        public void SetPlayerIconData(PlayerIconData data)
+        public void SetPlayerIconData(PlayerIconData iconData)
         {
-            Uuid = data.Uuid;
-            AvatarId = data.AvatarId;
-            Gender = data.Gender;
-            Tint = data.Tint;
-            IsDemoUser = data.IsDemoUser;
-            JourneyCompleted = data.HasFinishedTheGame;
-            TotalScore = (data.HasFinishedTheGameWithAllStars ? 1f : 0f);
+            Uuid = iconData.Uuid;
+            AvatarId = iconData.AvatarId;
+            Gender = iconData.Gender;
+            Tint = iconData.Tint;
+            IsDemoUser = iconData.IsDemoUser;
+            JourneyCompleted = iconData.HasFinishedTheGame;
+            TotalScore = (iconData.HasFinishedTheGameWithAllStars ? 1f : 0f);
         }
 
         public PlayerIconData GetPlayerIconData()
@@ -220,7 +220,12 @@ namespace EA4S.Database
 
         public string GetId()
         {
-            return Id.ToString();
+            return Id;
+        }
+
+        public void SetId(string _Id)
+        {
+            Id = _Id;
         }
 
         public override string ToString()

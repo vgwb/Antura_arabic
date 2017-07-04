@@ -1,18 +1,32 @@
 ﻿using UnityEngine;
 
-public class PlatformVisibility : MonoBehaviour
+namespace EA4S.Utilities
 {
-    public bool MobileOnly;
-    public bool AndroidOnly;
-
-    void Start()
+    public class PlatformVisibility : MonoBehaviour
     {
-        if (!Application.isEditor) {
-            if (MobileOnly && (Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer)) {
-                gameObject.SetActive(false);
-            }
-            if (AndroidOnly && Application.platform != RuntimePlatform.Android) {
-                gameObject.SetActive(false);
+        public bool MobileOnly;
+        public bool AndroidOnly;
+        public bool DesktopOnly;
+
+        void Start()
+        {
+            if (!Application.isEditor)
+            {
+                if (MobileOnly &&
+                    (Application.platform != RuntimePlatform.Android &&
+                     Application.platform != RuntimePlatform.IPhonePlayer))
+                {
+                    gameObject.SetActive(false);
+                }
+                if (AndroidOnly && Application.platform != RuntimePlatform.Android)
+                {
+                    gameObject.SetActive(false);
+                }
+
+                if (DesktopOnly && Application.platform != RuntimePlatform.WindowsPlayer)
+                {
+                    gameObject.SetActive(false);
+                }
             }
         }
     }

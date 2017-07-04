@@ -5,6 +5,7 @@ using EA4S.MinigamesCommon;
 using EA4S.UI;
 using EA4S.Utilities;
 using System;
+using EA4S.Core;
 using TMPro;
 using UnityEngine;
 

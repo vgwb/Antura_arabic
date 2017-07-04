@@ -3,7 +3,7 @@
     /// <summary>
     /// Enumerator specifying a minigame (or minigame variation) that is supported by the core application. 
     /// </summary>
-    // refactor: this enum depends on the specific implemented minigames and should be grouped with them 
+    // TODO refactor: this enum depends on the specific implemented minigames and should be grouped with them 
     // last is 35 and 114
     public enum MiniGameCode
     {

@@ -45,5 +45,10 @@ namespace EA4S.MinigamesCommon
         /// The difficulty.
         /// </value>
         float Difficulty { get; set; }
+
+        /// <summary>
+        /// Should this MiniGame perform the tutorial when starting?
+        /// </summary>
+        bool TutorialEnabled { get; set; }
     }
 }

@@ -1240,7 +1240,7 @@ GameObject:
   - component: {fileID: 1814291034}
   - component: {fileID: 1814291035}
   m_Layer: 0
-  m_Name: RewardsManager
+  m_Name: Scene Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1257,6 +1257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d3031e35dd5854ba0a46ec0386ab38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneMusic: 10
   AnturaAnimation: 2
   AnturaAnimController: {fileID: 866367118}
 --- !u!114 &1814291035

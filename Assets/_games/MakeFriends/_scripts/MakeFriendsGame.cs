@@ -39,9 +39,7 @@ namespace EA4S.Minigames.MakeFriends
         [Header("Difficulty Override")]
         public bool overrideDifficulty;
         public MakeFriendsVariation difficultySetting;
-        new public static MakeFriendsGame Instance;
-        [Header("Gameplay Info")]
-        new public MakeFriendsGameplayInfo GameplayInfo;
+        public static MakeFriendsGame Instance {  get { return I as MakeFriendsGame; } }
 
         [HideInInspector]
         public MakeFriendsConfiguration Configuration { get { return MakeFriendsConfiguration.Instance; } }
@@ -58,6 +56,11 @@ namespace EA4S.Minigames.MakeFriends
         private int currentRound = 0;
         private int _currentScore = 0;
         private bool isTutorialRound;
+
+        public bool TutorialEnabled
+        {
+            get { return GetConfiguration().TutorialEnabled; }
+        }
 
         public int CurrentScore
         {
@@ -131,7 +134,7 @@ namespace EA4S.Minigames.MakeFriends
         protected override void Awake()
         {
             base.Awake();
-            Instance = this;
+            //Instance = this;
         }
 
         protected override void Start()
@@ -581,11 +584,4 @@ namespace EA4S.Minigames.MakeFriends
         }
     }
 
-
-    [Serializable]
-    public class MakeFriendsGameplayInfo : AnturaGameplayInfo
-    {
-        [Tooltip("Play session duration in seconds.")]
-        public float PlayTime = 0f;
-    }
 }

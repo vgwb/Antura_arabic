@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Database;
 using DG.DeAudio;
 using EA4S.Core;
+using EA4S.Database;
 using EA4S.Helpers;
 using EA4S.MinigamesCommon;
+using EA4S.Profile;
 
 namespace EA4S.Audio
 {
@@ -264,10 +265,11 @@ namespace EA4S.Audio
         {
             Debug.Log("PlayDialogue " + data.Id);
 
-            if (clearPreviousCallback)
+            if (clearPreviousCallback) {
                 dialogueEndedCallbacks.Clear();
+            }
 
-            if (!string.IsNullOrEmpty(data.GetLocalizedAudioFileName(AppManager.I.Player.Gender))) {
+            if (!string.IsNullOrEmpty(LocalizationManager.GetLocalizedAudioFileName(data.Id))) {
                 AudioClip clip = GetAudioClip(data);
                 return new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
             }
@@ -286,42 +288,52 @@ namespace EA4S.Audio
 
         public IAudioSource PlayDialogue(Database.LocalizationData data, System.Action callback, bool clearPreviousCallback = false)
         {
-            if (clearPreviousCallback)
+            if (clearPreviousCallback) {
                 dialogueEndedCallbacks.Clear();
+            }
 
-            if (!string.IsNullOrEmpty(data.GetLocalizedAudioFileName(AppManager.I.Player.Gender))) {
+            if (!string.IsNullOrEmpty(LocalizationManager.GetLocalizedAudioFileName(data.Id))) {
                 AudioClip clip = GetAudioClip(data);
                 var wrapper = new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
-                if (callback != null)
+                if (callback != null) {
                     dialogueEndedCallbacks[wrapper] = callback;
+                }
                 return wrapper;
             } else {
-                if (callback != null)
+                if (callback != null) {
                     callback();
+                }
             }
             return null;
         }
 
         public void StopDialogue(bool clearPreviousCallback)
         {
-            if (clearPreviousCallback)
+            if (clearPreviousCallback) {
                 dialogueEndedCallbacks.Clear();
+            }
 
             keeperGroup.Stop();
         }
+
+        private PlayerGender GetPlayerGender()
+        {
+            return AppManager.I.Player != null ? AppManager.I.Player.Gender : PlayerGender.M;
+        }
+
         #endregion
 
         #region Audio clip management
 
         public AudioClip GetAudioClip(LocalizationData data)
         {
-            var localizedAudioFileName = data.GetLocalizedAudioFileName(AppManager.I.Player.Gender);
+            var localizedAudioFileName = LocalizationManager.GetLocalizedAudioFileName(data.Id);
             var res = GetCachedResource("AudioArabic/Dialogs/" + localizedAudioFileName);
             
             // Fallback to neutral version if not found
             if (res == null)
             {
-                var neutralAudioFileName = data.GetLocalizedAudioFileName(PlayerGender.M);
+                var neutralAudioFileName = LocalizationManager.GetLocalizedAudioFileName(data.Id, PlayerGender.M);
                 if (localizedAudioFileName != neutralAudioFileName)
                 {
                     Debug.LogWarning("Female audio file expected for localization ID " + data.Id + " was not found");
@@ -455,7 +467,6 @@ namespace EA4S.Audio
 
         public void OnBeforeSerialize()
         {
-
         }
 
         public IAudioSource PlaySound(AudioClip clip)
@@ -481,8 +492,9 @@ namespace EA4S.Audio
         /// <param name="source"></param>
         public void OnAudioStarted(AudioSourceWrapper source)
         {
-            if (!playingAudio.Contains(source))
+            if (!playingAudio.Contains(source)) {
                 playingAudio.Add(source);
+            }
         }
     }
 }

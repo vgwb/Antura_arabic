@@ -13,7 +13,7 @@ namespace Replacement
 
         static string outputText;
 
-        [MenuItem("Tools/Replacement/Find All Components Of Type")]
+        [MenuItem("Tools/Antura/Replacement/Find All Components Of Type")]
         static void Init()
         {
             GetWindow<FindAllComponentsOfType>().Show();

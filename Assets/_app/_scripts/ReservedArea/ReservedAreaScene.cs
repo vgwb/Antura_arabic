@@ -1,24 +1,29 @@
 ﻿using EA4S.Core;
+using EA4S.Database;
 using EA4S.UI;
 using UnityEngine;
 using System;
 using System.IO;
+using EA4S.Debugging;
 
 namespace EA4S.Scenes
 {
-    public class ReservedAreaScene : MonoBehaviour
+    public class ReservedAreaScene : SceneBase
     {
         [Header("References")]
         public TextRender SupportText;
 
-        void Start()
+        protected override void Start()
         {
+            base.Start();
+
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true);
 
-            SupportText.text = AppConstants.AppVersion + " " + "OPEN BETA";
+            SupportText.text = AppConstants.AppVersion;
         }
 
+        #region Buttons
         public void OnOpenUrlWebsite()
         {
             Application.OpenURL(AppConstants.UrlWebsite);
@@ -45,6 +50,18 @@ namespace EA4S.Scenes
             OpenPDF(AppConstants.PdfAndroidInstall);
         }
 
+        private int clickCounter = 0;
+        public void OnClickEnableDebugPanel()
+        {
+            clickCounter++;
+            if (clickCounter >= 3) {
+                if (!DebugManager.I.DebugPanelEnabled) {
+                    DebugManager.I.EnableDebugPanel();
+                }
+            }
+        }
+        #endregion
+        
         #region RATE
         public void OnOpenRateApp()
         {
@@ -89,29 +106,38 @@ namespace EA4S.Scenes
 
         public void OpenPDF(string filename)
         {
-            //string sourcePath = System.IO.Path.Combine(Application.streamingAssetsPath, filename);
             string destPath;
-            TextAsset pdfTemp = Resources.Load("Pdf/" + filename, typeof(TextAsset)) as TextAsset;
-            if (Application.platform == RuntimePlatform.Android) {
-                //destPath = Application.persistentDataPath + "/Data/" + filename;
-                destPath = Application.persistentDataPath + "/" + filename;
-            } else {
-                destPath = Application.persistentDataPath + "/" + filename;
-                //destPath =  System.IO.Path.Combine(Application.persistentDataPath, filename);
-            }
+            var pdfTemp = Resources.Load("Pdf/" + filename, typeof(TextAsset)) as TextAsset;
+            destPath = Application.persistentDataPath + "/" + filename;
 
             File.WriteAllBytes(destPath, pdfTemp.bytes);
             Debug.Log("Copied " + pdfTemp.name + " to " + destPath + " , File size : " + pdfTemp.bytes.Length);
             Application.OpenURL(destPath);
+        }
 
-            //var sourceFilename = System.IO.Path.Combine(Application.streamingAssetsPath, filename);
-            //var savePath = System.IO.Path.Combine(Application.persistentDataPath, filename);
+        /// <summary>
+        /// exports all databases found in 
+        /// </summary>
+        public void OnExportJoinedDatabase()
+        {
+            string errorString = "";
+            if (AppManager.I.DB.ExportJoinedDatabase(out errorString))
+            {
+                string dbPath = DBService.GetDatabaseFilePath(AppConstants.GetJoinedDatabaseFilename(), AppConstants.DbJoinedFolder);
+                GlobalUI.ShowPrompt("", "The joined DB is here:\n" + dbPath);
+            }
+            else {
+                GlobalUI.ShowPrompt("", "Could not export the joined database.\n");
+            }
+        }
 
-            //var myPDF = File.ReadAllBytes(sourceFilename);
-            //File.WriteAllBytes(savePath, myPDF);
-            //Debug.Log("Copied " + sourceFilename + " to " + savePath + " , bytes downloaded, File size : " + myPDF.Length);
-
-            //Application.OpenURL(savePath);
+        /// <summary>
+        /// Imports a set of database
+        /// </summary>
+        public void OnImportDatabases()
+        {
+            AppManager.I.PlayerProfileManager.ImportAllPlayerProfiles();
+            AppManager.I.NavigationManager.ReloadScene();
         }
     }
 }

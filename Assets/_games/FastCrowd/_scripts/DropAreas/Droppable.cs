@@ -6,7 +6,7 @@ namespace EA4S.Minigames.FastCrowd {
     /// <summary>
     /// Add functionality to be droppable on DropSingleArea.
     /// </summary>
-    [RequireComponent(typeof(LetterObjectView))]
+    [RequireComponent(typeof(LivingLetterController))]
     [RequireComponent(typeof(Collider))]
     public class Droppable : MonoBehaviour
     {
@@ -14,7 +14,7 @@ namespace EA4S.Minigames.FastCrowd {
         DropSingleArea dropAreaActive;
         
         
-        public delegate void DropEvent(LetterObjectView _letterView);
+        public delegate void DropEvent(LivingLetterController _letterView);
         
         void OnTriggerEnter(Collider other) {
             DropSingleArea da = other.GetComponent<DropSingleArea>();

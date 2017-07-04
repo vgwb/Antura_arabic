@@ -1,5 +1,5 @@
-﻿using EA4S.Audio;
-using EA4S.Core;
+﻿using EA4S.Antura;
+using EA4S.Audio;
 using EA4S.Tutorial;
 using EA4S.UI;
 using System.Collections;
@@ -28,7 +28,7 @@ namespace EA4S.AnturaSpace
         }
 
         #region EXPOSED MEMBERS
-        private AnturaSpaceManager m_sceneManager;
+        private AnturaSpaceScene _mScene;
         [SerializeField]
         private Camera m_oCameraUI;
 
@@ -72,10 +72,10 @@ namespace EA4S.AnturaSpace
                 return;
             }
 
-            m_sceneManager = FindObjectOfType<AnturaSpaceManager>();
-            m_sceneManager.Antura.transform.position = m_sceneManager.SceneCenter.position;
-            m_sceneManager.Antura.AnimationController.State = AnturaAnimationStates.sleeping;
-            m_sceneManager.CurrentState = m_sceneManager.Sleeping;
+            _mScene = FindObjectOfType<AnturaSpaceScene>();
+            _mScene.Antura.transform.position = _mScene.SceneCenter.position;
+            _mScene.Antura.AnimationController.State = AnturaAnimationStates.sleeping;
+            _mScene.CurrentState = _mScene.Sleeping;
 
             TutorialUI.SetCamera(m_oCameraUI);
 
@@ -195,12 +195,12 @@ namespace EA4S.AnturaSpace
                     TutorialUI.Clear(false);
 
                     m_oCustomizationButton.onClick.RemoveListener(AdvanceTutorial);
-                    m_sceneManager.UI.SetTutorialMode(true);
+                    _mScene.UI.SetTutorialMode(true);
 
                     StartCoroutine(WaitAndSpawn(
                         () =>
                         {
-                            m_oCategoryButton = m_sceneManager.UI.GetNewCategoryButton();
+                            m_oCategoryButton = _mScene.UI.GetNewCategoryButton();
                             if (m_oCategoryButton == null)
                             {
                                 AdvanceTutorial();
@@ -230,7 +230,7 @@ namespace EA4S.AnturaSpace
                        () =>
                        {
                            // Register on item button
-                           m_oItemButton = m_sceneManager.UI.GetNewItemButton();
+                           m_oItemButton = _mScene.UI.GetNewItemButton();
 
                            if (m_oItemButton == null)
                            {
@@ -247,7 +247,7 @@ namespace EA4S.AnturaSpace
                 case eAnturaSpaceTutoState.SELECT_ITEM:
                     m_eTutoState = eAnturaSpaceTutoState.TOUCH_ANTURA;
                     TutorialUI.Clear(false);
-                    m_sceneManager.UI.SetTutorialMode(false);
+                    _mScene.UI.SetTutorialMode(false);
 
                     //Unregister from Item button
                     if (m_oItemButton != null)
@@ -273,7 +273,7 @@ namespace EA4S.AnturaSpace
 
                     m_oAnturaBehaviour.onTouched -= AdvanceTutorial;
 
-                    m_sceneManager.ShowBackButton();
+                    _mScene.ShowBackButton();
 
                     AudioManager.I.StopDialogue(false);
 
@@ -305,7 +305,7 @@ namespace EA4S.AnturaSpace
 
         IEnumerator WaitAnturaInCenter(System.Action callback)
         {
-            while(!m_sceneManager.Antura.IsNearTargetPosition || m_sceneManager.Antura.IsSliping)
+            while(!_mScene.Antura.IsNearTargetPosition || _mScene.Antura.IsSliping)
                 yield return null;
 
             if (callback != null)

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using EA4S.Audio;
+using EA4S.Core;
 using UnityStandardAssets.ImageEffects;
 
 namespace EA4S.CameraControl
@@ -11,7 +12,7 @@ namespace EA4S.CameraControl
     /// </summary>
     public class CameraGameplayController : MonoBehaviour
     {
-        // refactor: remove the static access
+        // TODO refactor: remove the static access
         public static CameraGameplayController I;
         public GameObject CallbackManager;
         public bool FxEnabled { get; private set; }
@@ -23,7 +24,7 @@ namespace EA4S.CameraControl
 
         void Start()
         {
-            EnableFX(AppManager.I.GameSettings.HighQualityGfx);
+            EnableFX(AppManager.I.AppSettings.HighQualityGfx);
         }
 
         public void EnableFX(bool status)
@@ -55,7 +56,7 @@ namespace EA4S.CameraControl
 
         void MovementCompleted()
         {
-            // refactor: can be implemented with an observer pattern instead
+            // TODO refactor: can be implemented with an observer pattern instead
             CallbackManager.SendMessage("CameraReady", SendMessageOptions.DontRequireReceiver);
         }
 

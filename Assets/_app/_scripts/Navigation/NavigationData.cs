@@ -6,7 +6,7 @@ namespace EA4S.Core
 {
     public static class AppSceneHelper
     {
-        // refactor: scene names should match AppScene so that this can be removed
+        // TODO refactor: scene names should match AppScene so that this can be removed
         public static string GetSceneName(AppScene scene, Database.MiniGameData minigameData = null)
         {
             switch (scene) {
@@ -65,7 +65,7 @@ namespace EA4S.Core
             PrevSceneStack = new Stack<AppScene>();
         }
 
-        public void Initialize(PlayerProfile _playerProfile)
+        public void Init(PlayerProfile _playerProfile)
         {
             CurrentPlayer = _playerProfile;
         }
@@ -77,7 +77,7 @@ namespace EA4S.Core
 
         public bool SetNextMinigame()
         {
-            int NextIndex = CurrentMiniGameIndexInPlaySession + 1;
+            var NextIndex = CurrentMiniGameIndexInPlaySession + 1;
             if (NextIndex < CurrentPlaySessionMiniGames.Count) {
                 CurrentMiniGameIndexInPlaySession = NextIndex;
                 return true;
@@ -85,13 +85,14 @@ namespace EA4S.Core
             return false;
         }
 
-        public MiniGameData CurrentMiniGameData {
-            get {
+        public MiniGameData CurrentMiniGameData
+        {
+            get
+            {
                 if (CurrentPlaySessionMiniGames == null) return null;
                 if (CurrentPlaySessionMiniGames.Count == 0) return null;
                 return CurrentPlaySessionMiniGames[CurrentMiniGameIndexInPlaySession];
             }
         }
     }
-
 }

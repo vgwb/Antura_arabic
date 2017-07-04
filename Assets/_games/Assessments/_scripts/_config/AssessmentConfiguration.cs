@@ -47,6 +47,9 @@ namespace EA4S.Assessment
         /// </summary>
         public float Difficulty { get; set; }
 
+        public bool TutorialEnabled { get; set; }
+
+
         /// <summary>
         /// How many questions showed simultaneously on the screen.
         /// </summary>

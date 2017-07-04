@@ -5,11 +5,11 @@ namespace EA4S.Minigames.Maze
 {
     public class MazeLL : MonoBehaviour
     {
-        public LetterObjectView letter;
+        public LivingLetterController letter;
         // Use this for initialization
         void Start()
         {
-            letter = GetComponent<LetterObjectView>();
+            letter = GetComponent<LivingLetterController>();
             letter.SetState(LLAnimationStates.LL_rocketing);
         }
 

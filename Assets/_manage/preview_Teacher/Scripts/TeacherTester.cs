@@ -6,6 +6,7 @@ using EA4S.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using EA4S.Assessment;
+using EA4S.Core;
 
 namespace EA4S.Teacher.Test
 {
@@ -165,7 +166,7 @@ namespace EA4S.Teacher.Test
                 jp = new Core.JourneyPosition(currentJourneyStage, currentJourneyLB, isAssessment ? 100 : 1);
             }
             AppManager.I.Player.CurrentJourneyPosition.SetPosition(jp.Stage, jp.LearningBlock, jp.PlaySession);
-            AppManager.I.Teacher.InitialiseNewPlaySession();
+            AppManager.I.Teacher.InitNewPlaySession();
         }
 
         void SetVerboseAI(bool choice)

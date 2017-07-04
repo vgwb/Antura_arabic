@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.Core;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using EA4S.Database;

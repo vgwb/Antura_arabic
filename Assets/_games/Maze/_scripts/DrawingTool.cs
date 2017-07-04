@@ -10,7 +10,7 @@ namespace EA4S.Minigames.Maze
         {
             if (other.gameObject.name.IndexOf("fruit_") == 0)
             {
-                MazeGameManager.instance.OnFruitGotDrawnOver(other.gameObject.GetComponent<MazeArrow>());
+                MazeGame.instance.OnFruitGotDrawnOver(other.gameObject.GetComponent<MazeArrow>());
             }
         }
     }

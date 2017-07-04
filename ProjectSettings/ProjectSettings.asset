@@ -128,6 +128,7 @@ PlayerSettings:
   m_HolographicPauseOnTrackingLoss: 1
   xboxOneDisableKinectGpuReservation: 0
   protectGraphicsMemory: 0
+  useHDRDisplay: 0
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 14
   AndroidPreferredInstallLocation: 1
@@ -575,6 +576,6 @@ PlayerSettings:
     UNet: 1
     Unity_Ads: 0
   cloudProjectId: ca7a3389-ec6c-44b1-a44d-aa0da4930165
-  projectName: EA4S_Antura
+  projectName: Antura_arabic
   organizationId: vgwb
   cloudEnabled: 0

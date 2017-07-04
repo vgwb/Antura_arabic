@@ -24,15 +24,15 @@ namespace EA4S.Minigames.FastCrowd
             scaredTimer = ScaredDuration;
 
             // set letter animation
-            letter.gameObject.GetComponent<LetterObjectView>().HasFear = true;
-            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_walking);
-            letter.gameObject.GetComponent<LetterObjectView>().SetWalkingSpeed(LetterObjectView.RUN_SPEED);
+            letter.gameObject.GetComponent<LivingLetterController>().HasFear = true;
+            letter.gameObject.GetComponent<LivingLetterController>().SetState(LLAnimationStates.LL_walking);
+            letter.gameObject.GetComponent<LivingLetterController>().SetWalkingSpeed(LivingLetterController.RUN_SPEED);
         }
 
         public override void ExitState()
         {
-            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
-            letter.gameObject.GetComponent<LetterObjectView>().HasFear = false;
+            letter.gameObject.GetComponent<LivingLetterController>().SetState(LLAnimationStates.LL_idle);
+            letter.gameObject.GetComponent<LivingLetterController>().HasFear = false;
         }
 
         public override void Update(float delta)

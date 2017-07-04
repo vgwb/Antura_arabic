@@ -7,7 +7,7 @@ namespace EA4S.Database
     /// Saved data on achievements related to a MiniGame. Updated at runtime.
     /// </summary>
     [System.Serializable]
-    public class MiniGameScoreData : IData, IScoreData
+    public class MiniGameScoreData : IData, IScoreData, IDataEditable
     {
         /// <summary>
         /// Primary key for the database.
@@ -67,6 +67,11 @@ namespace EA4S.Database
         public string GetId()
         {
             return Id;
+        }
+
+        public void SetId(string _Id)
+        {
+            Id = _Id;
         }
 
         public override string ToString()

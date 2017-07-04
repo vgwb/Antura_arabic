@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using EA4S.Utilities;
-using EA4S.Helpers;
 using System.Collections.Generic;
+using EA4S.Helpers;
 
 namespace EA4S.Core
 {
@@ -142,7 +141,7 @@ namespace EA4S.Core
 
         public void StartApp()
         {
-            LogInfo(InfoEvent.AppSessionStart, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
+            LogInfo(InfoEvent.AppSessionStart, "{\"AppSession\":\"" + AppSession + "\"}");
         }
         #endregion
     }

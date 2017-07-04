@@ -2,7 +2,7 @@
 
 namespace EA4S.UI
 {
-    // refactor: not clear where this is used
+    // TODO refactor: not clear where this is used
     public class LivesContainer : MonoBehaviour
     {
         public GameObject Heart1;

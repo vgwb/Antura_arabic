@@ -9,6 +9,7 @@ using EA4S.Profile;
 using EA4S.Rewards;
 using EA4S.Teacher;
 using EA4S.UI;
+using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 // refactor: standardize random use across the codebase
 using RND = UnityEngine.Random;
@@ -29,15 +30,13 @@ namespace EA4S.Database.Management
         public Text OutputText;
         public TextRender OutputTextArabic;
 
-        public bool useTestDatabase;
-
         private ScoreHelper scoreHelper;
 
         void Awake()
         {
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
 
-            dbManager = new DatabaseManager(useTestDatabase);
+            dbManager = new DatabaseManager();
             var vocabularyHelper = new VocabularyHelper(dbManager);
             var journeyHelper = new JourneyHelper(dbManager);
             scoreHelper = new ScoreHelper(dbManager);

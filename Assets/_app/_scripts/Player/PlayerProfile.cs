@@ -1,5 +1,4 @@
 ﻿using System;
-using ModularFramework.Modules;
 using UnityEngine;
 using System.Collections.Generic;
 using EA4S.Antura;
@@ -9,21 +8,11 @@ using EA4S.Rewards;
 
 namespace EA4S.Profile
 {
-    public enum ProfileCompletionState
-    {
-        New = 0,
-        FirstContact1 = 1,
-        FirstContact2 = 5,
-        BookVisited = 10,
-        GameCompleted = 100,
-        GameCompletedAndFinalShowed = 101,
-    }
-
     /// <summary>
     /// A Player Profile contains persistent data on details and on the progression status of a single player.
     /// </summary>
     [Serializable]
-    public class PlayerProfile : IPlayerProfile
+    public class PlayerProfile
     {
         public string Uuid;
         public int AvatarId;
@@ -33,87 +22,20 @@ namespace EA4S.Profile
         public bool IsDemoUser;
         public bool HasFinishedTheGame;
         public bool HasFinishedTheGameWithAllStars;
+        public int TotalNumberOfBones = 8;
 
-        //int to track first visit
-        //First contact (ProfileCompletion = 1 & 2)
-        //BookVisited: ProfileCompletion = 3
         public ProfileCompletionState ProfileCompletion = ProfileCompletionState.New;
-
-        public string MoodLastVisit;
 
         public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
         public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
 
-        #region Bones/coins
-        public int TotalNumberOfBones = 8;
-        public int GetTotalNumberOfBones()
-        {
-            return TotalNumberOfBones;
-        }
-        public int AddBones(int _bonesToAdd)
-        {
-            TotalNumberOfBones += _bonesToAdd;
-            Save();
-            return TotalNumberOfBones;
-        }
-        #endregion
-
-        #region API
-
-        #region management
-
-        /// <summary>
-        /// Automatically select first avatar profile.
-        /// </summary>
-        public PlayerProfile()
-        {
-
-        }
-
-        /// <summary>
-        /// Saves this instance.
-        /// </summary>
-        public void Save()
-        {
-            AppManager.I.PlayerProfileManager.SavePlayerSettings(this);
-        }
-
-        /// <summary>
-        /// TBD if accessible form player instance.
-        /// Saves the general game settings.
-        /// </summary>
-        public void SaveGameSettings()
-        {
-            AppManager.I.PlayerProfileManager.SaveGameSettings();
-        }
-        #endregion
-
-        #region properties
-
-        public string GetShortUuid()
-        {
-            string[] tokens = Uuid.Split('-');
-            return tokens[0];
-        }
-
-        public PlayerIconData GetIcon()
-        {
-            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars);
-        }
-
-        public Sprite GetAvatar()
-        {
-            return Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + AvatarId);
-        }
-
-        /// <summary>
-        /// True if player already answered to mood question for today.
-        /// </summary>
         /// <value>
-        ///   True if player already answered to mood question for today.
+        ///  True if player already answered to mood question for today.
         /// </value>
-        public bool MoodAlreadyAnswered {
-            get {
+        public bool MoodAlreadyAnswered
+        {
+            get
+            {
                 int secondAmount = AppManager.I.Teacher.logAI.SecondsFromLastMoodLog();
                 if (secondAmount > 86400)
                     return false;
@@ -122,9 +44,36 @@ namespace EA4S.Profile
             }
         }
 
+        #region Bones/coins
+        
+        public int GetTotalNumberOfBones()
+        {
+            return TotalNumberOfBones;
+        }
+        
+        public int AddBones(int _bonesToAdd)
+        {
+            TotalNumberOfBones += _bonesToAdd;
+            Save();
+            return TotalNumberOfBones;
+        }
+        
         #endregion
 
-        #region journey position        
+        #region Management
+
+        /// <summary>
+        /// Saves this instance.
+        /// </summary>
+        public void Save()
+        {
+            AppManager.I.PlayerProfileManager.SavePlayerProfile(this);
+        }
+
+        #endregion
+
+        #region Journey position        
+
         /// <summary>
         /// Sets the actual journey position and save to profile.
         /// @note: check valid data before insert.
@@ -151,7 +100,6 @@ namespace EA4S.Profile
             CurrentJourneyPosition = _journeyPosition;
             if (_save)
                 Save();
-
         }
 
         /// <summary>
@@ -222,15 +170,27 @@ namespace EA4S.Profile
         /// </summary>
         public void ResetMaxJourneyPosition(bool _save = true)
         {
-            MaxJourneyPosition = new JourneyPosition(1, 1, 1);
-            CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
+            MaxJourneyPosition = JourneyPosition.InitialJourneyPosition;
+            CurrentJourneyPosition = JourneyPosition.InitialJourneyPosition;
             if (_save) {
                 Save();
             }
         }
+        
+        /// <summary>
+        /// checks if we are at the max joiurney position
+        /// </summary>
+        /// <returns></returns>
+        public bool IsAtMaxJourneyPosition()
+        {
+            return (CurrentJourneyPosition.Stage == MaxJourneyPosition.Stage) &&
+                   (CurrentJourneyPosition.LearningBlock == MaxJourneyPosition.LearningBlock) &&
+                   (CurrentJourneyPosition.PlaySession == MaxJourneyPosition.PlaySession);
+        }
+        
         #endregion
 
-        #region Antura Customization
+        #region Antura Customization and Rewards
 
         private AnturaCustomization _currentAnturaCustomizations;
         /// <summary>
@@ -274,24 +234,11 @@ namespace EA4S.Profile
         }
 
  
-
-        #endregion
-
         /// <summary>
         /// Resets the rewards unlocked data.
         /// </summary>
         public void ResetRewardsUnlockedData() {
             RewardsUnlocked = new List<RewardPackUnlockData>();
-        }
-
-        public string Key {
-            get {
-                throw new NotImplementedException();
-            }
-
-            set {
-                throw new NotImplementedException();
-            }
         }
 
         /// <summary>
@@ -364,6 +311,8 @@ namespace EA4S.Profile
         /// Used to store antura custumization data in json and load it at runtime.
         /// </summary>
         string jsonAnturaCustimizationData = string.Empty;
+
+        #endregion
 
         #region API
 
@@ -456,7 +405,7 @@ namespace EA4S.Profile
         /// </summary>
         public void AddRewardUnlockedRange(List<RewardPackUnlockData> rewardPackUnlockDatas)
         {
-            Debug.Log(this.RewardsUnlocked); 
+            //Debug.Log(this.RewardsUnlocked); 
             AppManager.I.Player.RewardsUnlocked.AddRange(rewardPackUnlockDatas);
             AppManager.I.DB.UpdateRewardPackUnlockDataAll(rewardPackUnlockDatas);
         }
@@ -629,14 +578,12 @@ namespace EA4S.Profile
         }
         #endregion
 
-        #region player icon data
+        #region Player icon data
         public PlayerIconData GetPlayerIconData()
         {
-            PlayerIconData returnData = new PlayerIconData() { Uuid = this.Uuid, AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint, IsDemoUser = this.IsDemoUser, HasFinishedTheGame = this.HasFinishedTheGame, HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars };
-            return returnData;
+            PlayerIconData returnIconData = new PlayerIconData() { Uuid = this.Uuid, AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint, IsDemoUser = this.IsDemoUser, HasFinishedTheGame = this.HasFinishedTheGame, HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars };
+            return returnIconData;
         }
-        #endregion
-
         #endregion
 
     }

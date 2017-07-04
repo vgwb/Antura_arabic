@@ -1,6 +1,6 @@
 ﻿namespace EA4S.Teacher
 {
-    // refactor: remove references to Arabic
+    // TODO refactor: remove references to Arabic
 
     /// <summary>
     /// Parameters used by a QuestionBuilder to filter what letters can be selected.

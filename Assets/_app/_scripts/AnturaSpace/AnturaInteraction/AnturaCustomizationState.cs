@@ -1,11 +1,12 @@
-﻿using System;
+﻿using EA4S.Antura;
+using System;
 using UnityEngine;
 
 namespace EA4S.AnturaSpace
 {
     public class AnturaCustomizationState : AnturaState
     {
-        public AnturaCustomizationState(AnturaSpaceManager controller) : base(controller)
+        public AnturaCustomizationState(AnturaSpaceScene controller) : base(controller)
         {
         }
 

@@ -14,7 +14,7 @@ namespace EA4S.Intro
 
         StateManager stateManager = new StateManager();
 
-        // refactor: the use of FSMs is not standardized across the codebase
+        // TODO refactor: the use of FSMs is not standardized across the codebase
         public IntroStrollingLetterWalkingState WalkingState { get; private set; }
         public IntroStrollingLetterIdleState IdleState { get; private set; }
         public IntroStrollingLetterFallingState FallingState { get; private set; }
@@ -121,8 +121,7 @@ namespace EA4S.Intro
 
             if (currentData != null)
             {
-                //bool matching = GetComponent<LetterObjectView>().Model.Data.Key == currentData.Key;
-                bool matching = GetComponent<LetterObjectView>().Data == currentData;
+                bool matching = GetComponent<LivingLetterController>().Data == currentData;
 
                 if (onDropped != null)
                     onDropped(matching);

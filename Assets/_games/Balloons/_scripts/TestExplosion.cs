@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace EA4S.Balloons
+namespace EA4S.Minigames.Balloons
 {
     public class TestExplosion : MonoBehaviour
     {

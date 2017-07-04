@@ -7,7 +7,7 @@ namespace EA4S.Editor
 
     public class InfoView : EditorWindow
     {
-        [MenuItem("Tools/EA4S Antura/Info")]
+        [MenuItem("Tools/Antura/Info", false, 300)]
         static void ShowWindow()
         {
             EditorWindow.GetWindow(typeof(EA4S.Editor.InfoView));
@@ -15,7 +15,7 @@ namespace EA4S.Editor
 
         void OnGUI()
         {
-            this.titleContent.text = "EA4S Antura";
+            this.titleContent.text = "Antura";
             EditorGUILayout.LabelField("Version " + AppConstants.AppVersion);
 
             DrawFooterLayout(Screen.width);
@@ -29,7 +29,11 @@ namespace EA4S.Editor
             var margin = (EditorStyles.miniButton.padding.left) / 2f;
             width = width - margin * 2;
 
-            if (GUILayout.Button("GitHub project")) {
+            if (GUILayout.Button("Developer docs")) {
+                Application.OpenURL(AppConstants.UrlDeveloperDocs);
+            }
+            
+            if (GUILayout.Button("Source Code (GitHub project)")) {
                 Application.OpenURL(AppConstants.UrlGithubRepository);
             }
 

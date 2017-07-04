@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using EA4S.Core;
 using EA4S.Helpers;
 using EA4S.Teacher;
@@ -75,10 +76,10 @@ namespace EA4S.Database
 
         #endregion
 
-        public DatabaseManager(bool useTestDatabase)
+        public DatabaseManager()
         {
             // Only the static DB is available until the player profile is also assigned
-            LoadStaticDB(useTestDatabase);
+            LoadStaticDB();
         }
 
         private void SetPlayerProfile(string playerUuid)
@@ -93,13 +94,9 @@ namespace EA4S.Database
         }
 
 
-        void LoadStaticDB(bool useTestDatabase)
+        void LoadStaticDB()
         {
             var dbName = STATIC_DATABASE_NAME;
-            if (useTestDatabase) {
-                dbName = STATIC_DATABASE_NAME_TEST;
-            }
-
             this.staticDb = DatabaseObject.LoadDB(dbName);
         }
 
@@ -107,7 +104,7 @@ namespace EA4S.Database
 
         private void LoadDynamicDbForPlayerProfile(string playerUuid)
         {
-            dynamicDb = new DBService(playerUuid);
+            dynamicDb = DBService.OpenFromPlayerUUID(true, playerUuid);
         }
 
         public void UnloadCurrentProfile()
@@ -147,7 +144,7 @@ namespace EA4S.Database
 
         public PlayerProfileData GetPlayerProfileData()
         {
-            var data = dynamicDb.FindPlayerProfileDataById(PlayerProfileData.UNIQUE_ID);
+            var data = dynamicDb.GetPlayerProfileData();
             return data;
         }
 
@@ -479,33 +476,131 @@ namespace EA4S.Database
 
         #endregion
 
-        public bool ExportDatabaseOfPlayer(string selectedPlayerId)
-        {
-            string playerUuid = selectedPlayerId;
+        #region Export
 
+        public bool ExportDatabaseOfPlayer(string playerUuid)
+        {
             // Create a new service for the copied database
             // This will copy the current database
-            var exportDbService = new DBService(playerUuid, true);
+            var exportDbService = DBService.ExportAndOpenFromPlayerUUID(playerUuid);
 
-            // Inject UUID
-            foreach (var type in dynamicDataTypes)
+            InjectUUID(playerUuid, exportDbService);
+            InjectStaticData(exportDbService);
+            InjectEnums(exportDbService);
+
+            exportDbService.CloseConnection();
+
+            return true;
+        }
+
+        public bool ExportJoinedDatabase(out string errorString)
+        {
+            // Load all the databases we can find and get the player UUIDs
+            List<string> allUUIDs = new List<string>();
+            var filePaths = GetImportFilePaths();
+            if (filePaths != null)
             {
-                PopulateUUID(type, playerUuid, exportDbService);
+                foreach (var filePath in filePaths)
+                {
+                    // Check whether that is a DB and load it
+                    if (filePath.Contains(".sqlite3"))
+                    {
+                        var importDbService = DBService.OpenFromFilePath(false, filePath);
+                        var playerProfileData = importDbService.GetPlayerProfileData();
+                        allUUIDs.Add(playerProfileData.Uuid);
+                        importDbService.CloseConnection();
+                    }
+                }
+            }
+            else
+            {
+                errorString = "Could not find the import folder.";
+                Debug.LogError(errorString);
+                return false;
+            }
+            
+            // Create the joined DB
+            var joinedDbService = DBService.OpenFromFileName(true, AppConstants.GetJoinedDatabaseFilename(), AppConstants.DbJoinedFolder);
+            InjectStaticData(joinedDbService);
+            InjectEnums(joinedDbService);
+
+            // Export and inject all the DBs
+            foreach (var uuid in allUUIDs)
+            {
+                // Export
+                var exportDbService = DBService.ExportAndOpenFromPlayerUUID(uuid,  dirName: AppConstants.DbImportFolder);
+                InjectUUID(uuid, exportDbService);
+
+                // Inject
+                InjectExportedDB(uuid, exportDbService, joinedDbService);
+                exportDbService.CloseConnection();
+                exportDbService.ForceFileDeletion();
             }
 
-            // Copy in the Static DB contents
-            exportDbService.GenerateStaticExportTables();
-            exportDbService.InsertAll(StaticDatabase.GetStageTable().GetValuesTyped());
-            exportDbService.InsertAll(StaticDatabase.GetPlaySessionTable().GetValuesTyped());
-            exportDbService.InsertAll(StaticDatabase.GetLearningBlockTable().GetValuesTyped());
-            exportDbService.InsertAll(StaticDatabase.GetMiniGameTable().GetValuesTyped());
-            exportDbService.InsertAll(StaticDatabase.GetLetterTable().GetValuesTyped());
-            exportDbService.InsertAll(StaticDatabase.GetWordTable().GetValuesTyped());
-            exportDbService.InsertAll(StaticDatabase.GetPhraseTable().GetValuesTyped());
-            exportDbService.InsertAll(StaticDatabase.GetLocalizationTable().GetValuesTyped());
-            exportDbService.InsertAll(StaticDatabase.GetRewardTable().GetValuesTyped());
+            joinedDbService.CloseConnection();
+            errorString = "";
+            return true;
+        }
 
-            // Copy enums in too
+        public string[] GetImportFilePaths()
+        {
+            var importDirectory = DBService.GetDatabaseDirectoryPath(AppConstants.DbImportFolder);
+            if (Directory.Exists(importDirectory))
+            {
+                string[] filePaths = Directory.GetFiles(importDirectory);
+                return filePaths;
+            }
+            return null;
+        }
+
+        public PlayerProfileData ImportDynamicDatabase(string importFilePath)
+        {
+            if (!File.Exists(importFilePath))
+            {
+                Debug.LogError("Cannot find database file for import: " + importFilePath);
+                return null;
+            }
+
+            // Copy the file
+            string fileName = Path.GetFileName(importFilePath);
+            string newFilePath = DBService.GetDatabaseFilePath(fileName, AppConstants.DbPlayersFolder);
+            if (File.Exists(newFilePath))
+            {
+                Debug.LogError("Database already exists. Cannot import: " + importFilePath);
+                return null;
+            }
+
+            File.Copy(importFilePath, newFilePath);
+
+            // Load the new DB and get its player profile data
+            var importDbService = DBService.OpenFromFilePath(false, newFilePath);
+            var playerProfileData = importDbService.GetPlayerProfileData();
+            importDbService.CloseConnection();
+            return playerProfileData;
+        }
+
+        private void InjectExportedDB(string uuid, DBService exportDbService, DBService joinedDbService)
+        {
+            foreach (Type dynamicDataType in dynamicDataTypes)
+            {
+                string query = "SELECT * FROM " + dynamicDataType.Name;
+                List<object> objectList = exportDbService.Query(dynamicDataType, query);
+                List<IData> iDataList = objectList.ConvertAll(x => (IData) x);
+
+                foreach (var element in iDataList)
+                {
+                    if (element is IDataEditable)
+                    {
+                        (element as IDataEditable).SetId(element.GetId() + "_" + uuid);
+                    }
+                }
+
+                joinedDbService.InsertAllObjects(iDataList);
+            }
+        }
+
+        private static void InjectEnums(DBService exportDbService)
+        {
             exportDbService.ExportEnum<AppScene>();
             exportDbService.ExportEnum<JourneyDataType>();
             exportDbService.ExportEnum<LearningBlockDataFocus>();
@@ -526,17 +621,43 @@ namespace EA4S.Database
             exportDbService.ExportEnum<WordDataCategory>();
             exportDbService.ExportEnum<WordDataForm>();
             exportDbService.ExportEnum<WordDataKind>();
-
-            exportDbService.CloseConnection();
-
-            return true;
         }
 
-        void PopulateUUID(Type t, string playerUuid, DBService exportDbService)
+        private void InjectStaticData(DBService dbService)
+        {
+            try
+            {
+                dbService.GenerateStaticExportTables();
+                dbService.InsertAll(StaticDatabase.GetStageTable().GetValuesTyped());
+                dbService.InsertAll(StaticDatabase.GetPlaySessionTable().GetValuesTyped());
+                dbService.InsertAll(StaticDatabase.GetLearningBlockTable().GetValuesTyped());
+                dbService.InsertAll(StaticDatabase.GetMiniGameTable().GetValuesTyped());
+                dbService.InsertAll(StaticDatabase.GetLetterTable().GetValuesTyped());
+                dbService.InsertAll(StaticDatabase.GetWordTable().GetValuesTyped());
+                dbService.InsertAll(StaticDatabase.GetPhraseTable().GetValuesTyped());
+                dbService.InsertAll(StaticDatabase.GetLocalizationTable().GetValuesTyped());
+                dbService.InsertAll(StaticDatabase.GetRewardTable().GetValuesTyped());
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
+        }
+
+        private void InjectUUID(string playerUuid, DBService exportDbService)
+        {
+            foreach (var type in dynamicDataTypes)
+            {
+                PopulateUUID(type, playerUuid, exportDbService);
+            }
+        }
+
+        private void PopulateUUID(Type t, string playerUuid, DBService exportDbService)
         {
             string query = "UPDATE " + t.Name + " SET Uuid = \"" + playerUuid + "\"";
             exportDbService.Query(t, query);
         }
 
+        #endregion
     }
 }
