@@ -3,7 +3,7 @@ using DG.Tweening;
 
 namespace EA4S.Animation
 {
-    // obsolete: remove the class
+    // TODO obsolete: remove the class
     public class FadeInFadeOut : MonoBehaviour
     {
         Tween showTween;

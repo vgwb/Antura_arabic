@@ -9,7 +9,7 @@ namespace EA4S.Antura
     /// <summary>
     /// Handles loading and assignment of visual reward props appearing on Antura.
     /// </summary>
-    // convention: rename variables
+    // TODO convention: rename variables
     // TODO refactor: the class needs a complete refactoring
     public class AnturaModelManager : MonoBehaviour
     {

@@ -2,7 +2,7 @@
 
 namespace EA4S.LivingLetters
 {
-    // obsolete: remove this?
+    // TODO obsolete: remove this?
     public class ShadowController : MonoBehaviour
     {
         /*

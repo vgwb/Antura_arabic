@@ -5,7 +5,7 @@ namespace EA4S.Antura
     /// <summary>
     /// Handles the animations of Antura.
     /// </summary>
-    // conventions: requires renaming of variables
+    // TODO conventions: requires renaming of variables
     public class AnturaAnimationController : MonoBehaviour
     {
         public const float WALKING_SPEED = 0.0f;
