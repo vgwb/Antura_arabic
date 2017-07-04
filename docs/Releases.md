@@ -3,9 +3,11 @@
 ## 1.0.7 - future
 - switching JSON format to match Export Sheet Data from Google Sheets
 - export db from reserved area
+- manage/merge multiple databases (Desktop version)
 - full OpenSource and public source codes
 - free TextMesh Pro asset
-- integrated docs
+- integrated dev documentation in the /docs
+- internal code refactoring
 
 ---
 

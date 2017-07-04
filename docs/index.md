@@ -7,15 +7,19 @@ by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 - **Developer Docs:**  [vgwb.github.io/Antura_arabic](https://vgwb.github.io/Antura_arabic)
 - **Source Code:** [github.com/vgwb/Antura_arabic](https://github.com/vgwb/Antura_arabic)
 - **Public Website:** [www.antura.org](http://www.antura.org)
+- **Credits:** [Team / Credits](Credits.md)
 
 ## App Releases / Changelog
 - [Releases](Releases.md) the history of app releases and major changelog
+
+## User and Tester notes
+- [Debug Shortcuts](HowTo/DebugShortcuts.md) cheats and keyboard shortcuts to fast the tests
+- [Export Database](HowTo/ExportPlayerDatabase.md) how to export the player database
 
 ## Developer Guidelines
 - [Install](HowTo/INSTALL.md) how to install and configure the Unity project
 - [Build](HowTo/Build.md) how to build the app for mobile devices
 - [Collaborator](Guidelines/Collaborator.md) how to collaborate
-- [Debug Shortcuts](HowTo/DebugShortcuts.md) cheats and keyboard shortcuts to fast the tests
 - [Developer Guidelines and Tips](Guidelines/DeveloperGuidelines.md) general guidelines for developers that want to contribute to the project
 - [Refactoring Guidelines](Guidelines/RefactoringGuidelines.md)
 - [Export Google Sheet Data](HowTo/ExportGoogleSheetData.md) as JSON files
@@ -50,16 +54,13 @@ by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 - [ThrowBalls](Minigames/ThrowBalls.md)
 - [Tobogan](Minigames/Tobogan.md)
 
-###  Database
+### Database
 - [Database](Modules/Database.md) the datasets used everywhere.
 - [Database Schemas](Modules/DatabaseSchemas.md) details on db tables and schemas
 - [Database Management](Modules/DatabaseManagement.md)
 
 ### API
 [DoxyGen class documentation](API/index.html)
-
-## Team / Credits
-- [Credits](Credits.md)
 
 ## Licensing
 EA4S_Antura is licensed under the BSD 2-clause "Simplified" License and the Creative Commons Attribution 4.0 International.

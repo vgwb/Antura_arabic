@@ -31,11 +31,19 @@ These notes are for current development.
 - Helper / utility methods and classes use must be standardized throught the codebase.
 - Helpers should probably belong to the DB, and not to the teacher.
 
+## Refactoring notes
+
+- Move the contents of **_app/Elements** to the correct Models/Images folders.
+- Move the contents of **Resources** to **_app/Resources**
+- Parts of **_manage** should be moved to **_testing** and be removed from the main public repository (as used only for test purposes)
+- **Standard Assets** could be renamed to (Third Party) and (Standard Assets/Effects) and (Standard Assets/Editor) should be placed under a (Unity Standard Assets) folder.
+
+
 ## Refactoring notes: New Language
 
 These refactoring notes should be followed to prepare for supporting a new language.
 
-- Game and Core scripts should be correctly separated. For example, the Intro scene is using code from the _games/_common folders (IGameState for example). The contents of (_games/_common) could be placed in (_app/GamesCommonCode), so that the (_games) folder could be removed completely with no consequence.
+- Game and Core scripts should be correctly separated. For example, the Intro scene is using code from the \_games/\_common folders (IGameState for example). The contents of (\_games/\_common) could be placed in (\_app/GamesCommonCode), so that the (\_games) folder could be removed completely with no consequence.
 - A lot of the code is tied to the Arabic language. See Localization, the QuestionBuilders, and many minigames.
 
 
@@ -47,7 +55,7 @@ These notes are for future reference.
 
 ### Codebase
 - The core code and the Teacher work only with QuestionProviders, so it would be better to just assume that all games will use them (and no other provider)
-- The word 'Data' is used interchangeably for 'LivingLetterData' and the database 'Data' (see LL_WordData versus Db.WordData). This creates confusion especially when handling learning data. This can be solved by making sure that LivingLetters data is converted into Views, and that the database's learning data is instead defined as LearningData (example: WordLearningData). Note also that the core should not use LL***Data, but ***Data. The view choice should be made by the minigame.
+- The word 'Data' is used interchangeably for 'LivingLetterData' and the database 'Data' (see LL_WordData versus Db.WordData). This creates confusion especially when handling learning data. This can be solved by making sure that LivingLetters data is converted into Views, and that the database's learning data is instead defined as LearningData (example: WordLearningData). Note also that the core should not use LL_Data, but Data. The view choice should be made by the minigame.
 
 ### Minigame Data
 - Minigame variations are not actually enforced by the codebase, but it would be a good idea to make all games use them, as currently the core app reasons in terms of 'MiniGameCode', but a minigame is actually identified by the 'game scene' and the 'variation'
