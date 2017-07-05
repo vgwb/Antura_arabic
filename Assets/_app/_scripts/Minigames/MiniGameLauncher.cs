@@ -320,7 +320,7 @@ namespace EA4S.MinigamesAPI
                     currentGameConfig = Minigames.Tobogan.ToboganConfiguration.Instance;
                     break;
                 default:
-                    Debug.LogWarningFormat("Minigame selected {0} not found.", code.ToString());
+                    Debug.LogWarningFormat("Configuration for MiniGame {0} not found.", code.ToString());
                     break;
             }
 

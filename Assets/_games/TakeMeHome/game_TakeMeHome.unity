@@ -17441,6 +17441,7 @@ GameObject:
   - component: {fileID: 567138330}
   - component: {fileID: 567138331}
   - component: {fileID: 567138332}
+  - component: {fileID: 567138333}
   m_Layer: 0
   m_Name: TakeMeHomeManager
   m_TagString: Untagged
@@ -17472,7 +17473,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59928e51f82f9e44b84e323f338fb215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseTestGameplayInfo: 0
   timerText: {fileID: 1688102982}
   roundText: {fileID: 1688102982}
   tubes: {fileID: 72704058}
@@ -17499,6 +17499,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plane: {fileID: 1471444758}
   LLPrefab: {fileID: 222400446}
+--- !u!114 &567138333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 567138329}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniGameCode: 31
+  Difficulty: 0.5
+  TutorialEnabled: 1
+  NumberOfRounds: 1
+  Stage: 1
+  LearningBlock: 1
+  PlaySession: 1
 --- !u!1001 &654160722
 Prefab:
   m_ObjectHideFlags: 0
@@ -42928,7 +42946,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -19.999878, y: -77.9}
+  m_AnchoredPosition: {x: -19.999878, y: -77.899994}
   m_SizeDelta: {x: 100, y: 80}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1331014604

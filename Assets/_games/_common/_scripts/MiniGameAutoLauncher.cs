@@ -18,7 +18,7 @@ namespace EA4S.MinigamesCommon
         public int Stage = 1;
         public int LearningBlock = 1;
         public int PlaySession = 1;
-        
+
         void Start()
         {
             Debug.LogError(AppManager.I.NavigationManager.IsInFirstLoadedScene);

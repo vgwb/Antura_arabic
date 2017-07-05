@@ -9957,6 +9957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 907367148}
   - component: {fileID: 907367147}
+  - component: {fileID: 907367149}
   m_Layer: 0
   m_Name: MixedLettersGame
   m_TagString: Untagged
@@ -9975,7 +9976,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b82a971222053547b8679731e2d9de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseTestGameplayInfo: 0
   dropZoneControllers:
   - {fileID: 605322469}
   - {fileID: 262885506}
@@ -9999,6 +9999,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &907367149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 907367146}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniGameCode: 21
+  Difficulty: 0.5
+  TutorialEnabled: 1
+  NumberOfRounds: 1
+  Stage: 1
+  LearningBlock: 1
+  PlaySession: 1
 --- !u!1 &940947583
 GameObject:
   m_ObjectHideFlags: 0

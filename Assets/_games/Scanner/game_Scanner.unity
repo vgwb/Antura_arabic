@@ -1811,6 +1811,7 @@ GameObject:
   - component: {fileID: 309455390}
   - component: {fileID: 309455391}
   - component: {fileID: 309455392}
+  - component: {fileID: 309455393}
   m_Layer: 0
   m_Name: Scanner Game
   m_TagString: Untagged
@@ -1842,7 +1843,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb144fcf00974b17809597ee20af097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseTestGameplayInfo: 0
   disableInput: 0
   gameActive: 1
   beltSpeed: 1
@@ -1896,6 +1896,24 @@ MonoBehaviour:
   repeatDelay: 2
   tutStep: 0
   playTut: 1
+--- !u!114 &309455393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 309455389}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniGameCode: 25
+  Difficulty: 0.5
+  TutorialEnabled: 1
+  NumberOfRounds: 1
+  Stage: 1
+  LearningBlock: 1
+  PlaySession: 1
 --- !u!4 &315913121 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013653253802, guid: 0f95fe55fb3038a45b8e01cbe421e68f,

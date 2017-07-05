@@ -15228,6 +15228,7 @@ GameObject:
   - component: {fileID: 1814291036}
   - component: {fileID: 1814291034}
   - component: {fileID: 1814291035}
+  - component: {fileID: 1814291037}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -15246,7 +15247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66644a508cce00748a23b9c874d15dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseTestGameplayInfo: 0
   textMaterial: {fileID: 21863560639530978, guid: 30344d57d55de4ec6acfb84117110925,
     type: 2}
   drawingMaterial: {fileID: 21561593201977922, guid: 19b6204822022490d88948a36701cc8c,
@@ -15291,6 +15291,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1814291037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1814291033}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniGameCode: 29
+  Difficulty: 0.5
+  TutorialEnabled: 1
+  NumberOfRounds: 1
+  Stage: 1
+  LearningBlock: 1
+  PlaySession: 1
 --- !u!1001 &1847528784
 Prefab:
   m_ObjectHideFlags: 0

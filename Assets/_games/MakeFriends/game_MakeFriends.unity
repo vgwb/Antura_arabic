@@ -1703,6 +1703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 436118478}
   - component: {fileID: 436118477}
+  - component: {fileID: 436118479}
   m_Layer: 0
   m_Name: MakeFriendsGameManager
   m_TagString: Untagged
@@ -1721,7 +1722,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff49bd318ba6549c18f2f2b4b4cdc0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseTestGameplayInfo: 0
   leftArea: {fileID: 553494782}
   rightArea: {fileID: 276045533}
   letterPicker: {fileID: 446189240}
@@ -1751,9 +1751,6 @@ MonoBehaviour:
   uiCamera: {fileID: 534339582}
   overrideDifficulty: 0
   difficultySetting: 0
-  GameplayInfo:
-    GameId: 
-    PlayTime: 0
 --- !u!4 &436118478
 Transform:
   m_ObjectHideFlags: 0
@@ -1767,6 +1764,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &436118479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 436118476}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniGameCode: 17
+  Difficulty: 0.5
+  TutorialEnabled: 1
+  NumberOfRounds: 1
+  Stage: 5
+  LearningBlock: 1
+  PlaySession: 1
 --- !u!1 &446189238
 GameObject:
   m_ObjectHideFlags: 0

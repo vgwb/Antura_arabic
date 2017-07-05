@@ -3181,6 +3181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 436118478}
   - component: {fileID: 436118477}
+  - component: {fileID: 436118479}
   m_Layer: 0
   m_Name: MazeGameManager
   m_TagString: Untagged
@@ -3199,7 +3200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acce48a917c114975bb15957bd8fac9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseTestGameplayInfo: 0
   characterPrefab: {fileID: 1000010318923098, guid: 91d78e7885f126e4b86d7bb40cf7740f,
     type: 2}
   arrowTargetPrefab: {fileID: 1000011506755418, guid: 5ffa89f44f3df1044b582de40816e007,
@@ -3271,6 +3271,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &436118479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 436118476}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniGameCode: 18
+  Difficulty: 0.5
+  TutorialEnabled: 1
+  NumberOfRounds: 1
+  Stage: 1
+  LearningBlock: 1
+  PlaySession: 1
 --- !u!1 &441041333
 GameObject:
   m_ObjectHideFlags: 0
@@ -3795,7 +3813,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -511.9999, y: 243.99997}
+  m_AnchoredPosition: {x: -511.99988, y: 243.99997}
   m_SizeDelta: {x: 720, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &714689846
@@ -5018,7 +5036,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -397.99997, y: -272}
+  m_AnchoredPosition: {x: -398, y: -272}
   m_SizeDelta: {x: 720, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1190970777

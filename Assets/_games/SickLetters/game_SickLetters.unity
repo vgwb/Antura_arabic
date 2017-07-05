@@ -627,7 +627,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -96, y: 93.3333}
+  m_AnchoredPosition: {x: -96, y: 93.33331}
   m_SizeDelta: {x: 120, y: 111}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &132301284
@@ -8593,6 +8593,7 @@ GameObject:
   - component: {fileID: 1474454552}
   - component: {fileID: 1474454553}
   - component: {fileID: 1474454554}
+  - component: {fileID: 1474454555}
   m_Layer: 0
   m_Name: Sick Letters Game Manager
   m_TagString: Untagged
@@ -8624,7 +8625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145d0563aec7ca4428a5bf5a1b4b8f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseTestGameplayInfo: 0
   LLPrefab: {fileID: 707190780}
   antura: {fileID: 277488320}
   scale: {fileID: 832313030}
@@ -8648,7 +8648,6 @@ MonoBehaviour:
   correctMoveSequence: 0
   currentStars: 0
   disableInput: 0
-  enableTutorial: 1
   gameDuration: 60
   targetScale: 45
   maxWieght: 0
@@ -8702,6 +8701,24 @@ MonoBehaviour:
   tutorialStartDelay: 9
   repeatMax: 3
   repeatConter: 0
+--- !u!114 &1474454555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1474454550}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniGameCode: 23
+  Difficulty: 0.5
+  TutorialEnabled: 1
+  NumberOfRounds: 1
+  Stage: 1
+  LearningBlock: 1
+  PlaySession: 1
 --- !u!1 &1479055851
 GameObject:
   m_ObjectHideFlags: 0

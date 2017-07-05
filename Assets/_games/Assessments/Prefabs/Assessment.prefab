@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 114000013822948356}
   - component: {fileID: 114000010710646388}
   - component: {fileID: 114562122774185356}
+  - component: {fileID: 114936065076134122}
   m_Layer: 0
   m_Name: Assessment
   m_TagString: Untagged
@@ -227,7 +228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9585934b8f9ba4296ac2f656a486d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseTestGameplayInfo: 0
   assessmentCode: 1
 --- !u!114 &114000013822948356
 MonoBehaviour:
@@ -262,3 +262,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnImageWithQuestion: 0
+--- !u!114 &114936065076134122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012520946144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniGameCode: 100
+  Difficulty: 0.5
+  TutorialEnabled: 1
+  NumberOfRounds: 1
+  Stage: 1
+  LearningBlock: 1
+  PlaySession: 1

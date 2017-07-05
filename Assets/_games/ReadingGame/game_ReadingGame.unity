@@ -13731,6 +13731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1814291036}
   - component: {fileID: 1814291034}
+  - component: {fileID: 1814291035}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -13749,7 +13750,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 312a24a1007dfb940a5d92fcb89e378b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseTestGameplayInfo: 0
   barSet: {fileID: 1268898514}
   blurredText: {fileID: 1799631439}
   circleBox: {fileID: 2066362537}
@@ -13761,6 +13761,24 @@ MonoBehaviour:
   diacriticSongAudio: {fileID: 8300000, guid: ac95a63ec562841ebbc80b7141f2d5d4, type: 3}
   alphabetSongSrt: {fileID: 4900000, guid: 614f3d91d7fe76f4b9d351e44abe15cf, type: 3}
   diacriticSongSrt: {fileID: 4900000, guid: acf950678765c4af59d1a00d405a7db9, type: 3}
+--- !u!114 &1814291035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1814291033}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniGameCode: 24
+  Difficulty: 0.5
+  TutorialEnabled: 1
+  NumberOfRounds: 1
+  Stage: 6
+  LearningBlock: 1
+  PlaySession: 1
 --- !u!4 &1814291036
 Transform:
   m_ObjectHideFlags: 0
