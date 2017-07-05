@@ -429,7 +429,7 @@ namespace Antura.Teacher.Test
 
         private void SimulateMiniGame(MiniGameCode code)
         {
-            var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
+            var config = AppManager.I.GameLauncher.ConfigureMiniGameScene(code, System.DateTime.Now.Ticks.ToString());
             if (config is IAssessmentConfiguration)
             {
                 (config as IAssessmentConfiguration).NumberOfRounds = nPacks;

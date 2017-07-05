@@ -1,4 +1,7 @@
-﻿using Antura.Core;
+﻿using System;
+using System.Reflection;
+using Antura.Core;
+using Antura.Database;
 using Antura.MinigamesCommon;
 using Antura.Teacher;
 using UnityEngine;
@@ -44,7 +47,7 @@ namespace Antura.MinigamesAPI
 
             // Assign the configuration for the given minigame
             var minigameSession = System.DateTime.Now.Ticks.ToString();
-            var currentGameConfig = ConfigureMiniGame(_gameCode, minigameSession);
+            var currentGameConfig = ConfigureMiniGameScene(_gameCode, minigameSession);
             currentGameConfig.Difficulty = _launchConfiguration.Difficulty;
             currentGameConfig.TutorialEnabled = _launchConfiguration.TutorialEnabled;
 
@@ -78,163 +81,42 @@ namespace Antura.MinigamesAPI
         /// <summary>
         /// Prepare the configuration for a given minigame.
         /// </summary>
-        // TODO refactor: this depends on the specific minigames, should be abstracted
-        public IGameConfiguration ConfigureMiniGame(MiniGameCode code, string sessionName)
+        public IGameConfiguration ConfigureMiniGameScene(MiniGameCode code, string sessionName)
         {
+            var miniGameData = AppManager.I.DB.GetMiniGameDataByCode(code);
+
             var defaultContext = new MinigamesGameContext(code, sessionName);
 
-            IGameConfiguration currentGameConfig = null;
-            switch (code)
+            // We use reflection to get the correct configuration class given a minigame code
+            // This is needed so the Core is not directly dependent on the minigame code
+            const string configurationKey = "Configuration";
+            const string assessmentNamespaceKey = "Assessment";
+            const string minigamesNamespaceKey = "Minigames";
+            const string baseNamespaceKey = "Antura";
+            const string instanceFieldName = "Instance";
+
+            string miniGameSceneKey = miniGameData.Scene.Split('_')[1];
+            string configurationClassName = miniGameSceneKey + "." + miniGameSceneKey + configurationKey;
+            if (miniGameSceneKey != assessmentNamespaceKey)
             {
-                case MiniGameCode.Assessment_LetterForm:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_WordsWithLetter:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_MatchLettersToWord:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_MatchLettersToWord_Form:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_CompleteWord:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_CompleteWord_Form:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_OrderLettersOfWord:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_VowelOrConsonant:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_SelectPronouncedWord:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_MatchWordToImage:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_WordArticle:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_SingularDualPlural:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_SunMoonWord:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_SunMoonLetter:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Assessment_QuestionAndReply:
-                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
-                    break;
-                case MiniGameCode.Balloons_counting:
-                    currentGameConfig = Minigames.Balloons.BalloonsConfiguration.Instance;
-                    break;
-                case MiniGameCode.Balloons_letter:
-                    currentGameConfig = Minigames.Balloons.BalloonsConfiguration.Instance;
-                    break;
-                case MiniGameCode.Balloons_spelling:
-                    currentGameConfig = Minigames.Balloons.BalloonsConfiguration.Instance;
-                    break;
-                case MiniGameCode.Balloons_words:
-                    currentGameConfig = Minigames.Balloons.BalloonsConfiguration.Instance;
-                    break;
-                case MiniGameCode.ColorTickle:
-                    currentGameConfig = Minigames.ColorTickle.ColorTickleConfiguration.Instance;
-                    break;
-                case MiniGameCode.DancingDots:
-                    currentGameConfig = Minigames.DancingDots.DancingDotsConfiguration.Instance;
-                    break;
-                case MiniGameCode.Egg_letters:
-                    currentGameConfig = Minigames.Egg.EggConfiguration.Instance;
-                    break;
-                case MiniGameCode.Egg_sequence:
-                    currentGameConfig = Minigames.Egg.EggConfiguration.Instance;
-                    break;
-                case MiniGameCode.FastCrowd_alphabet:
-                    currentGameConfig = Minigames.FastCrowd.FastCrowdConfiguration.Instance;
-                    break;
-                case MiniGameCode.FastCrowd_counting:
-                    currentGameConfig = Minigames.FastCrowd.FastCrowdConfiguration.Instance;
-                    break;
-                case MiniGameCode.FastCrowd_letter:
-                    currentGameConfig = Minigames.FastCrowd.FastCrowdConfiguration.Instance;
-                    break;
-                case MiniGameCode.FastCrowd_spelling:
-                    currentGameConfig = Minigames.FastCrowd.FastCrowdConfiguration.Instance;
-                    break;
-                case MiniGameCode.FastCrowd_words:
-                    currentGameConfig = Minigames.FastCrowd.FastCrowdConfiguration.Instance;
-                    break;
-                case MiniGameCode.TakeMeHome:
-                    currentGameConfig = Minigames.TakeMeHome.TakeMeHomeConfiguration.Instance;
-                    break;
-                case MiniGameCode.HideSeek:
-                    currentGameConfig = Minigames.HideAndSeek.HideAndSeekConfiguration.Instance;
-                    break;
-                case MiniGameCode.MakeFriends:
-                    currentGameConfig = Minigames.MakeFriends.MakeFriendsConfiguration.Instance;
-                    break;
-                case MiniGameCode.Maze:
-                    currentGameConfig = Minigames.Maze.MazeConfiguration.Instance;
-                    break;
-                case MiniGameCode.MissingLetter:
-                    currentGameConfig = Minigames.MissingLetter.MissingLetterConfiguration.Instance;
-                    break;
-                case MiniGameCode.MissingLetter_forms:
-                    currentGameConfig = Minigames.MissingLetter.MissingLetterConfiguration.Instance;
-                    break;
-                case MiniGameCode.MissingLetter_phrases:
-                    currentGameConfig = Minigames.MissingLetter.MissingLetterConfiguration.Instance;
-                    break;
-                case MiniGameCode.MixedLetters_alphabet:
-                    currentGameConfig = Minigames.MixedLetters.MixedLettersConfiguration.Instance;
-                    break;
-                case MiniGameCode.MixedLetters_spelling:
-                    currentGameConfig = Minigames.MixedLetters.MixedLettersConfiguration.Instance;
-                    break;
-                case MiniGameCode.SickLetters:
-                    currentGameConfig = Minigames.SickLetters.SickLettersConfiguration.Instance;
-                    break;
-                case MiniGameCode.ReadingGame:
-                    currentGameConfig = Minigames.ReadingGame.ReadingGameConfiguration.Instance;
-                    break;
-                case MiniGameCode.AlphabetSong_alphabet:
-                    currentGameConfig = Minigames.ReadingGame.ReadingGameConfiguration.Instance;
-                    break;
-                case MiniGameCode.AlphabetSong_letters:
-                    currentGameConfig = Minigames.ReadingGame.ReadingGameConfiguration.Instance;
-                    break;
-                case MiniGameCode.Scanner:
-                    currentGameConfig = Minigames.Scanner.ScannerConfiguration.Instance;
-                    break;
-                case MiniGameCode.Scanner_phrase:
-                    currentGameConfig = Minigames.Scanner.ScannerConfiguration.Instance;
-                    break;
-                case MiniGameCode.ThrowBalls_letters:
-                    currentGameConfig = Minigames.ThrowBalls.ThrowBallsConfiguration.Instance;
-                    break;
-                case MiniGameCode.ThrowBalls_words:
-                    currentGameConfig = Minigames.ThrowBalls.ThrowBallsConfiguration.Instance;
-                    break;
-                case MiniGameCode.ThrowBalls_letterinword:
-                    currentGameConfig = Minigames.ThrowBalls.ThrowBallsConfiguration.Instance;
-                    break;
-                case MiniGameCode.Tobogan_letters:
-                    currentGameConfig = Minigames.Tobogan.ToboganConfiguration.Instance;
-                    break;
-                case MiniGameCode.Tobogan_words:
-                    currentGameConfig = Minigames.Tobogan.ToboganConfiguration.Instance;
-                    break;
-                default:
-                    Debug.LogWarningFormat("Configuration for MiniGame {0} not found.", code);
-                    break;
+                configurationClassName = minigamesNamespaceKey + "." + configurationClassName;
+            }
+            configurationClassName = baseNamespaceKey +"." + configurationClassName;
+            
+            Type configurationClassType = Type.GetType(configurationClassName);
+            if (configurationClassType == null)
+            {
+                throw new Exception("Type " + configurationClassName + " not found. Are the minigame scene and Configuration class ready?");
             }
 
+            var property = configurationClassType.GetProperty(instanceFieldName, BindingFlags.Public | BindingFlags.Static);
+            if (property == null)
+            {
+                throw new Exception("Public static property named " + instanceFieldName + " not found. This should be present in the minigame's Configuration class.");
+            }
+
+            IGameConfiguration currentGameConfig = (IGameConfiguration)property.GetValue(null, null);
+          
             if (currentGameConfig != null)
             {
                 currentGameConfig.Context = defaultContext;
