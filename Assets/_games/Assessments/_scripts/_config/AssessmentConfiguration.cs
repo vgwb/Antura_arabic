@@ -16,7 +16,7 @@ namespace Antura.Assessment
         /// <summary>
         /// Configured externally: which assessment we need to start.
         /// </summary>
-        public AssessmentVariation assessmentType = AssessmentVariation.Unsetted;
+        public AssessmentVariation Variation = AssessmentVariation.Unsetted;
 
         /// <summary>
         /// Externally provided Question provider
@@ -41,7 +41,7 @@ namespace Antura.Assessment
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            throw new NotImplementedException();
+            Variation = (AssessmentVariation)code; 
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Antura.Assessment
         /// <returns>Custom question data for the assessment</returns>
         public IQuestionBuilder SetupBuilder()
         {
-            switch (assessmentType)
+            switch (Variation)
             {
                 case AssessmentVariation.LetterForm:
                     return Setup_LetterForm_Builder();
@@ -434,7 +434,7 @@ namespace Antura.Assessment
 
         public MiniGameLearnRules SetupLearnRules()
         {
-            switch (assessmentType)
+            switch (Variation)
             {
                 case AssessmentVariation.LetterForm:
                     return Setup_LetterForm_LearnRules();
