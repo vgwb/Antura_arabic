@@ -45,7 +45,7 @@ namespace EA4S.Core
                     var minJP = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(miniGameCode);
                     if (minJP == null)
                     {
-                        UnityEngine.Debug.LogWarning("MiniGameCode " + miniGameCode + " has no minimum play session. Forcing to the final one.");
+                        //UnityEngine.Debug.LogWarning("MiniGameCode " + miniGameCode + " has no minimum play session. Forcing to the final one.");
                         minJP = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
                     }
 
