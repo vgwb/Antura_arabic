@@ -47,16 +47,12 @@ namespace EA4S.UI
 
         public Database.LocalizationDataId LocalizationId;
 
-        private TMP_Text m_TextComponent;
-        private TMP_TextInfo textInfo;
-
         void Awake()
         {
             if (isEnglishSubtitle) {
                 gameObject.SetActive(AppManager.I.AppSettings.EnglishSubtitles);
             }
 
-            m_TextComponent = gameObject.GetComponent<TMP_Text>();
             checkConfiguration();
 
             if (LocalizationId != Database.LocalizationDataId.None) {
