@@ -21,7 +21,6 @@ namespace EA4S.MinigamesCommon
 
         void Start()
         {
-            Debug.LogError(AppManager.I.NavigationManager.IsInFirstLoadedScene);
             if (!AppManager.I.NavigationManager.IsInFirstLoadedScene) return;
             AppManager.I.Player.SetCurrentJourneyPosition(Stage, LearningBlock, PlaySession);
             MinigameLaunchConfiguration config = new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, TutorialEnabled);
