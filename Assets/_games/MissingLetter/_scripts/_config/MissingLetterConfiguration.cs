@@ -5,11 +5,11 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.MissingLetter
 {
-    public enum MissingLetterVariation : int
+    public enum MissingLetterVariation 
     {
-        MissingLetter = 1,
-        MissingWord = 2,
-        MissingForm = 3
+        MissingLetter = MiniGameCode.MissingLetter,
+        MissingWord = MiniGameCode.MissingLetter_phrases,
+        MissingForm = MiniGameCode.MissingLetter_forms
     }
 
     public class MissingLetterConfiguration : IGameConfiguration
@@ -20,10 +20,12 @@ namespace Antura.Minigames.MissingLetter
 
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
-
-        #region Game configurations
         public MissingLetterVariation Variation { get; set; }
-        #endregion
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (MissingLetterVariation) code;
+        }
 
         /////////////////
         // Singleton Pattern

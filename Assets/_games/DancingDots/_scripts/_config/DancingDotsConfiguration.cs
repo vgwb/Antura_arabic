@@ -2,7 +2,13 @@
 using Antura.MinigamesCommon;
 using Antura.Teacher;
 
-namespace Antura.Minigames.DancingDots {
+namespace Antura.Minigames.DancingDots
+{
+
+    public enum DancingDotsVariation 
+    {
+        Default = MiniGameCode.DancingDots
+    }
 
     public class DancingDotsConfiguration : IGameConfiguration
     {
@@ -14,6 +20,12 @@ namespace Antura.Minigames.DancingDots {
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
         public DancingDotsVariation Variation { get; set; }
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (DancingDotsVariation) code;
+        }
+
         #endregion
 
         /////////////////
@@ -36,7 +48,7 @@ namespace Antura.Minigames.DancingDots {
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
 			Context = new MinigamesGameContext(MiniGameCode.DancingDots, System.DateTime.Now.Ticks.ToString());
 
-            Variation = DancingDotsVariation.V_1;
+            Variation = DancingDotsVariation.Default;
 			Questions = new DancingDotsQuestionProvider();
             TutorialEnabled = true;
         }
@@ -79,4 +91,5 @@ namespace Antura.Minigames.DancingDots {
         }
 
     }
-}
+
+ }

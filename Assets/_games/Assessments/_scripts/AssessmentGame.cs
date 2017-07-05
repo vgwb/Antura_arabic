@@ -11,7 +11,7 @@ namespace Antura.Assessment
     public class AssessmentGame : MiniGame
     {
         [HideInInspector]
-        public AssessmentCode assessmentCode;
+        public AssessmentVariation AssessmentVariation;
 
         public AssessmentIntroState IntroState { get; private set; }
         public AssessmentGameState GameState { get; private set; }
@@ -25,46 +25,46 @@ namespace Antura.Assessment
 
             switch (AssessmentConfiguration.Instance.assessmentType)
             {
-                case AssessmentCode.MatchLettersToWord:
+                case AssessmentVariation.MatchLettersToWord:
                     return ArabicAssessmentsFactory.CreateMatchLettersWordAssessment( context);
 
-                case AssessmentCode.LetterForm:
+                case AssessmentVariation.LetterForm:
                     return ArabicAssessmentsFactory.CreateLetterFormAssessment( context);
 
-                case AssessmentCode.WordsWithLetter:
+                case AssessmentVariation.WordsWithLetter:
                     return ArabicAssessmentsFactory.CreateWordsWithLetterAssessment( context);
 
-                case AssessmentCode.SunMoonWord:
+                case AssessmentVariation.SunMoonWord:
                     return ArabicAssessmentsFactory.CreateSunMoonWordAssessment( context);
 
-                case AssessmentCode.SunMoonLetter:
+                case AssessmentVariation.SunMoonLetter:
                     return ArabicAssessmentsFactory.CreateSunMoonLetterAssessment( context);
 
-                case AssessmentCode.QuestionAndReply:
+                case AssessmentVariation.QuestionAndReply:
                     return ArabicAssessmentsFactory.CreateQuestionAndReplyAssessment( context);
 
-                case AssessmentCode.SelectPronouncedWord:
+                case AssessmentVariation.SelectPronouncedWord:
                     return ArabicAssessmentsFactory.CreatePronouncedWordAssessment( context);
 
-                case AssessmentCode.SingularDualPlural:
+                case AssessmentVariation.SingularDualPlural:
                     return ArabicAssessmentsFactory.CreateSingularDualPluralAssessment( context);
 
-                case AssessmentCode.WordArticle:
+                case AssessmentVariation.WordArticle:
                     return ArabicAssessmentsFactory.CreateWordArticleAssessment( context);
 
-                case AssessmentCode.MatchWordToImage:
+                case AssessmentVariation.MatchWordToImage:
                     return ArabicAssessmentsFactory.CreateMatchWordToImageAssessment( context);
 
-                case AssessmentCode.CompleteWord:
+                case AssessmentVariation.CompleteWord:
                     return ArabicAssessmentsFactory.CreateCompleteWordAssessment( context);
 
-                case AssessmentCode.OrderLettersOfWord:
+                case AssessmentVariation.OrderLettersOfWord:
                     return ArabicAssessmentsFactory.CreateOrderLettersInWordAssessment( context);
 
-                case AssessmentCode.CompleteWord_Form:
+                case AssessmentVariation.CompleteWord_Form:
                     return ArabicAssessmentsFactory.CreateCompleteWord_FormAssessment( context);
 
-                case AssessmentCode.MatchLettersToWord_Form:
+                case AssessmentVariation.MatchLettersToWord_Form:
                     return ArabicAssessmentsFactory.CreateMatchLettersToWord_FormAssessment( context);
             }
 

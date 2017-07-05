@@ -5,23 +5,35 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.TakeMeHome
 {
-	
-	public class TakeMeHomeConfiguration : IGameConfiguration
+    public enum TakeMeHomeVariation 
+    {
+        Default = MiniGameCode.TakeMeHome,
+    }
+
+    public class TakeMeHomeConfiguration : IGameConfiguration
 	{
 		// Game configuration
 		public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
 
         public ILivingLetterDataProvider Letters { get; set; }
-		#region Game configurations
-		public float Difficulty { get; set; }
+
+        #region Game configurations
+
+	    public float Difficulty { get; set; }
 	    public bool TutorialEnabled { get; set; }
+        public TakeMeHomeVariation Variation { get; set; }
 
-	    #endregion
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (TakeMeHomeVariation)code;
+        }
 
-		/////////////////
-		// Singleton Pattern
-		static TakeMeHomeConfiguration instance;
+        #endregion
+
+        /////////////////
+        // Singleton Pattern
+        static TakeMeHomeConfiguration instance;
 		public static TakeMeHomeConfiguration Instance
 		{
 			get

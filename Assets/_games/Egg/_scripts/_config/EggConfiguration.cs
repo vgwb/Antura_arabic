@@ -4,20 +4,26 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.Egg
 {
+    public enum EggVariation
+    {
+        Single = MiniGameCode.Egg_letters,
+        Sequence = MiniGameCode.Egg_sequence
+    }
+
     public class EggConfiguration : IGameConfiguration
     {
-        public enum EggVariation : int
-        {
-            Single = 1,
-            Sequence = 2,
-        }
-
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
+
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
         public EggVariation Variation { get; set; }
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (EggVariation) code;
+        }
 
         /////////////////
         // Singleton Pattern

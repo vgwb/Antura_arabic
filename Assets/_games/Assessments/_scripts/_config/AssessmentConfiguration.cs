@@ -16,7 +16,7 @@ namespace Antura.Assessment
         /// <summary>
         /// Configured externally: which assessment we need to start.
         /// </summary>
-        public AssessmentCode assessmentType = AssessmentCode.Unsetted;
+        public AssessmentVariation assessmentType = AssessmentVariation.Unsetted;
 
         /// <summary>
         /// Externally provided Question provider
@@ -37,6 +37,11 @@ namespace Antura.Assessment
         private IQuestionProvider GetQuestionProvider()
         {
             return questionProvider;
+        }
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -94,46 +99,46 @@ namespace Antura.Assessment
         {
             switch (assessmentType)
             {
-                case AssessmentCode.LetterForm:
+                case AssessmentVariation.LetterForm:
                     return Setup_LetterForm_Builder();
 
-                case AssessmentCode.MatchLettersToWord:
+                case AssessmentVariation.MatchLettersToWord:
                     return Setup_MatchLettersToWord_Builder();
 
-                case AssessmentCode.WordsWithLetter:
+                case AssessmentVariation.WordsWithLetter:
                     return Setup_WordsWithLetter_Builder();
 
-                case AssessmentCode.SunMoonWord:
+                case AssessmentVariation.SunMoonWord:
                     return Setup_SunMoonWords_Builder();
 
-                case AssessmentCode.SunMoonLetter:
+                case AssessmentVariation.SunMoonLetter:
                     return Setup_SunMoonLetter_Builder();
 
-                case AssessmentCode.QuestionAndReply:
+                case AssessmentVariation.QuestionAndReply:
                     return Setup_QuestionAnReply_Builder();
 
-                case AssessmentCode.SelectPronouncedWord:
+                case AssessmentVariation.SelectPronouncedWord:
                     return Setup_SelectPronuncedWord_Builder();
 
-                case AssessmentCode.SingularDualPlural:
+                case AssessmentVariation.SingularDualPlural:
                     return Setup_SingularDualPlural_Builder();
 
-                case AssessmentCode.WordArticle:
+                case AssessmentVariation.WordArticle:
                     return Setup_WordArticle_Builder();
 
-                case AssessmentCode.MatchWordToImage:
+                case AssessmentVariation.MatchWordToImage:
                     return Setup_MatchWordToImage_Builder();
 
-                case AssessmentCode.CompleteWord:
+                case AssessmentVariation.CompleteWord:
                     return Setup_CompleteWord_Builder();
 
-                case AssessmentCode.OrderLettersOfWord:
+                case AssessmentVariation.OrderLettersOfWord:
                     return Setup_OrderLettersOfWord_Builder();
 
-                case AssessmentCode.CompleteWord_Form:
+                case AssessmentVariation.CompleteWord_Form:
                     return Setup_CompleteWord_Form_Builder();
 
-                case AssessmentCode.MatchLettersToWord_Form:
+                case AssessmentVariation.MatchLettersToWord_Form:
                     return Setup_MatchLettersToWord_Form_Builder();
 
                 default:
@@ -431,40 +436,40 @@ namespace Antura.Assessment
         {
             switch (assessmentType)
             {
-                case AssessmentCode.LetterForm:
+                case AssessmentVariation.LetterForm:
                     return Setup_LetterForm_LearnRules();
 
-                case AssessmentCode.MatchLettersToWord:
+                case AssessmentVariation.MatchLettersToWord:
                     return Setup_MatchLettersToWord_LearnRules();
 
-                case AssessmentCode.WordsWithLetter:
+                case AssessmentVariation.WordsWithLetter:
                     return Setup_WordsWithLetter_LearnRules();
 
-                case AssessmentCode.SunMoonWord:
+                case AssessmentVariation.SunMoonWord:
                     return Setup_SunMoonWords_LearnRules();
 
-                case AssessmentCode.SunMoonLetter:
+                case AssessmentVariation.SunMoonLetter:
                     return Setup_SunMoonLetter_LearnRules();
 
-                case AssessmentCode.QuestionAndReply:
+                case AssessmentVariation.QuestionAndReply:
                     return Setup_QuestionAnReply_LearnRules();
 
-                case AssessmentCode.SelectPronouncedWord:
+                case AssessmentVariation.SelectPronouncedWord:
                     return Setup_SelectPronuncedWord_LearnRules();
 
-                case AssessmentCode.SingularDualPlural:
+                case AssessmentVariation.SingularDualPlural:
                     return Setup_SingularDualPlural_LearnRules();
 
-                case AssessmentCode.WordArticle:
+                case AssessmentVariation.WordArticle:
                     return Setup_WordArticle_LearnRules();
 
-                case AssessmentCode.MatchWordToImage:
+                case AssessmentVariation.MatchWordToImage:
                     return Setup_MatchWordToImage_LearnRules();
 
-                case AssessmentCode.CompleteWord:
+                case AssessmentVariation.CompleteWord:
                     return Setup_CompleteWord_LearnRules();
 
-                case AssessmentCode.OrderLettersOfWord:
+                case AssessmentVariation.OrderLettersOfWord:
                     return Setup_OrderLettersOfWord_LearnRules();
 
                 default:

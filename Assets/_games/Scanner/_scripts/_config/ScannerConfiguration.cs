@@ -5,20 +5,31 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.Scanner 
 {
+    public enum ScannerVariation
+    {
+        OneWord = MiniGameCode.Scanner,
+        MultipleWords = MiniGameCode.Scanner_phrase
+    }
 
     public class ScannerConfiguration : IGameConfiguration 
 	{
         // Game configuration
 		public IGameContext Context { get; set; }
 		public IQuestionProvider Questions { get; set; }
-		
 
         #region Game configurations
-        public float Difficulty { get; set; }
+
+	    public float Difficulty { get; set; }
 	    public bool TutorialEnabled { get; set; }
 	    public ScannerVariation Variation { get; set; }
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (ScannerVariation) code;
+        }
+
         #endregion
-//		public LetterBehaviour.BehaviourSettings BehaviourSettings { get; set; }
+        //		public LetterBehaviour.BehaviourSettings BehaviourSettings { get; set; }
 
         /////////////////
         // Singleton Pattern
@@ -57,7 +68,6 @@ namespace Antura.Minigames.Scanner
         #endregion
 
 		
-
 		public int nCorrect = 1;
 
         public IQuestionBuilder SetupBuilder() {

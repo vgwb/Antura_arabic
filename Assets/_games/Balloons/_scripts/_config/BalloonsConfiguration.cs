@@ -5,7 +5,7 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.Balloons
 {
-    public enum BalloonsVariation : int
+    public enum BalloonsVariation 
     {
         Spelling = MiniGameCode.Balloons_spelling,
         Words = MiniGameCode.Balloons_words,
@@ -24,8 +24,12 @@ namespace Antura.Minigames.Balloons
 
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
-
         public BalloonsVariation Variation { get; set; }
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (BalloonsVariation) code;
+        }
 
         #endregion
 

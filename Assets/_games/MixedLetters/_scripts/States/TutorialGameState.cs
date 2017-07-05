@@ -18,7 +18,7 @@ namespace Antura.Minigames.MixedLetters
             this.game = game;
             audioManager = game.Context.GetAudioManager();
 
-            isSpelling = MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling;
+            isSpelling = MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.Spelling;
         }
 
         public void EnterState()
@@ -58,7 +58,7 @@ namespace Antura.Minigames.MixedLetters
 
         private IEnumerator OnQuestionOverCoroutine()
         {
-            yield return new WaitForSeconds(MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Alphabet ? 1.5f : 3f);
+            yield return new WaitForSeconds(MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.Alphabet ? 1.5f : 3f);
 
             MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
             AnturaController.instance.PrepareToEnterScene();

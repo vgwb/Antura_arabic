@@ -21,7 +21,7 @@ namespace Antura.Minigames.Egg
             correctAnswers.AddRange(questionPack.GetCorrectAnswers());
             wrongAnswers.AddRange(questionPack.GetWrongAnswers());
 
-            sequence = EggConfiguration.Instance.Variation == EggConfiguration.EggVariation.Sequence;
+            sequence = EggConfiguration.Instance.Variation == EggVariation.Sequence;
 
             int numberOfLetters = 3;
 

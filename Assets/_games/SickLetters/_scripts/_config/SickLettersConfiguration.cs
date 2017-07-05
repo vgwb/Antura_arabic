@@ -4,16 +4,25 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.SickLetters
 {
+    public enum SickLettersVariation 
+    {
+        Default = MiniGameCode.SickLetters,
+    }
+
     public class SickLettersConfiguration : IGameConfiguration
     {
         // Game configuration
         public IGameContext Context { get; set; }
+
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
         public IQuestionProvider Questions { get; set; }
-        //public SickLettersQuestionProvider SickLettersQuestions { get; set; }
+        public SickLettersVariation Variation { get; set; }
 
-        //public SickLettersConfiguration Questions { get; set; }
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (SickLettersVariation) code;
+        }
 
         /////////////////
         // Singleton Pattern

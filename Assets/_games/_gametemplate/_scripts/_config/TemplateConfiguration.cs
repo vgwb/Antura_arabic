@@ -1,9 +1,15 @@
 ﻿using Antura.MinigamesAPI;
 using Antura.MinigamesCommon;
 using Antura.Teacher;
+using UnityEditor;
 
 namespace Antura.Template
 {
+    public enum TemplateVariation
+    {
+        Default = 0
+    }
+
     /// <summary>
     /// Template configuration for a minigame.
     /// Use this as a starting point.
@@ -13,8 +19,15 @@ namespace Antura.Template
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
+
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
+        public TemplateVariation Variation { get; set; }
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (TemplateVariation)code;
+        }
 
         /////////////////
         // Singleton Pattern

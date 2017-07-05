@@ -11,12 +11,12 @@ namespace Antura.MinigamesCommon
     public interface IGameConfiguration
     {
         /// <summary>
-        /// Gets the context.
+        /// Gets pr sets the context.
         /// </summary>
         /// <value>
         /// The context.
         /// </value>
-        IGameContext Context { get; }
+        IGameContext Context { get; set; }
 
         /// <summary>
         /// Gets or sets the questions.
@@ -37,6 +37,11 @@ namespace Antura.MinigamesCommon
         /// </summary>
         /// <returns></returns>
         MiniGameLearnRules SetupLearnRules();
+
+        /// <summary>
+        /// Setups the variation to use in the MiniGame's logic given a MiniGameCode
+        /// </summary>
+        void SetMiniGameCode(MiniGameCode code);
 
         /// <summary>
         /// Gets or sets the difficulty.

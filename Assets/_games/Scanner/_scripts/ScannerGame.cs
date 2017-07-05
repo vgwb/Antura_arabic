@@ -7,11 +7,6 @@ using Antura.MinigamesCommon;
 
 namespace Antura.Minigames.Scanner
 {
-    public enum ScannerVariation
-    {
-        OneWord = 1,
-        MultipleWords = 2
-    }
 
     public class ScannerGame : MiniGame
     {

@@ -5,10 +5,10 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.Tobogan
 {
-    public enum ToboganVariation : int
+    public enum ToboganVariation
     {
-        LetterInAWord = 1,
-        SunMoon = 2
+        LetterInAWord = MiniGameCode.Tobogan_letters,
+        SunMoon = MiniGameCode.Tobogan_words
     }
 
     public class ToboganConfiguration : IGameConfiguration
@@ -20,6 +20,11 @@ namespace Antura.Minigames.Tobogan
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
         public ToboganVariation Variation { get; set; }
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (ToboganVariation) code;
+        }
 
         public int GetDiscreteDifficulty(int maximum)
         {

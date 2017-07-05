@@ -8,15 +8,9 @@ using Antura.Audio;
 using Antura.LivingLetters;
 using Antura.MinigamesCommon;
 using Antura.Tutorial;
-using Antura.UI;
 
 namespace Antura.Minigames.DancingDots
 {
-    public enum DancingDotsVariation : int
-    {
-        V_1 = 1,
-    }
-
     // @todo: move these somewhere accessible by the games, but in the DATA
     public enum DiacriticEnum { None, Sokoun, Fatha, Dameh, Kasrah };
 

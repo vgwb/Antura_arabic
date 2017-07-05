@@ -39,7 +39,7 @@ namespace Antura.Minigames.MakeFriends
         public Camera uiCamera;
         [Header("Difficulty Override")]
         public bool overrideDifficulty;
-        public MakeFriendsVariation difficultySetting;
+        public MakeFriendsDifficulty difficultySetting;
         public static MakeFriendsGame Instance {  get { return I as MakeFriendsGame; } }
 
         [HideInInspector]

@@ -51,14 +51,14 @@ namespace Antura.Minigames.MakeFriends
         {
             exitRotation = exitRotation_readable;
 
-            if (MakeFriendsGame.Instance.Configuration.Variation != MakeFriendsVariation.EASY)
+            if (MakeFriendsGame.Instance.Configuration.DifficultyChoice != MakeFriendsDifficulty.EASY)
             {
                 exitRotation = exitRotation_unreadable;    
             }
 
             if (livingLetter != null)
             {
-                livingLetter.focusOnTouch = MakeFriendsGame.Instance.Configuration.Variation == MakeFriendsVariation.HARD ? false : true;
+                livingLetter.focusOnTouch = MakeFriendsGame.Instance.Configuration.DifficultyChoice == MakeFriendsDifficulty.HARD ? false : true;
             }
         }
 
@@ -71,7 +71,7 @@ namespace Antura.Minigames.MakeFriends
             livingLetter = instance.GetComponent<MakeFriendsLivingLetter>();
             livingLetter.Init(wordData);
             livingLetter.container = this.gameObject;
-            livingLetter.focusOnTouch = MakeFriendsGame.Instance.Configuration.Variation == MakeFriendsVariation.HARD ? false : true;
+            livingLetter.focusOnTouch = MakeFriendsGame.Instance.Configuration.DifficultyChoice == MakeFriendsDifficulty.HARD ? false : true;
 
             AdjustForDifficulty();
         }

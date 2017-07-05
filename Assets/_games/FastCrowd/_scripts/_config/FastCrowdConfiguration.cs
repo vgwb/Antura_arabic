@@ -5,13 +5,13 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.FastCrowd
 {
-    public enum FastCrowdVariation : int
+    public enum FastCrowdVariation
     {
-        Spelling = 1,
-        Words = 2,
-        Letter = 3,
-        Counting = 4,
-        Alphabet = 5
+        Spelling = MiniGameCode.FastCrowd_spelling,
+        Words = MiniGameCode.FastCrowd_words,
+        Letter = MiniGameCode.FastCrowd_letter,
+        Counting = MiniGameCode.FastCrowd_counting,
+        Alphabet = MiniGameCode.FastCrowd_alphabet
     }
 
     public class FastCrowdConfiguration : IGameConfiguration
@@ -19,10 +19,17 @@ namespace Antura.Minigames.FastCrowd
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
+
         #region Game configurations
+
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
         public FastCrowdVariation Variation { get; set; }
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (FastCrowdVariation) code;
+        }
 
         #endregion
 

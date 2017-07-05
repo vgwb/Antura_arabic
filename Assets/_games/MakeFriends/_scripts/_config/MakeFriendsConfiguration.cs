@@ -4,11 +4,16 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.MakeFriends
 {
-    public enum MakeFriendsVariation
+    public enum MakeFriendsDifficulty
     {
         EASY,
         MEDIUM,
         HARD
+    }
+
+    public enum MakeFriendsVariation
+    {
+        Default = MiniGameCode.MakeFriends
     }
 
     public class MakeFriendsConfiguration : IGameConfiguration
@@ -17,23 +22,36 @@ namespace Antura.Minigames.MakeFriends
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
 
+
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
+        public MakeFriendsVariation Variation { get; set; }
 
-        public MakeFriendsVariation Variation {
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (MakeFriendsVariation) code;
+        }
+
+
+        public const float EASY_THRESHOLD = 0f;
+        public const float MEDIUM_THRESHOLD = 0.3f;
+        public const float HARD_THRESHOLD = 0.7f;
+
+        public MakeFriendsDifficulty DifficultyChoice
+        {
             get {
                 // GameManager Override
                 if (MakeFriendsGame.Instance.overrideDifficulty) {
                     switch (MakeFriendsGame.Instance.difficultySetting) {
-                        case MakeFriendsVariation.EASY:
+                        case MakeFriendsDifficulty.EASY:
                             Difficulty = EASY_THRESHOLD;
                             break;
 
-                        case MakeFriendsVariation.MEDIUM:
+                        case MakeFriendsDifficulty.MEDIUM:
                             Difficulty = MEDIUM_THRESHOLD;
                             break;
 
-                        case MakeFriendsVariation.HARD:
+                        case MakeFriendsDifficulty.HARD:
                             Difficulty = HARD_THRESHOLD;
                             break;
                     }
@@ -60,24 +78,18 @@ namespace Antura.Minigames.MakeFriends
                 }
 #endif
                 // Get Variation based on Difficulty
-                var variation = default(MakeFriendsVariation);
-
+                MakeFriendsDifficulty variation;
                 if (Difficulty < MEDIUM_THRESHOLD) {
-                    variation = MakeFriendsVariation.EASY;
+                    variation = MakeFriendsDifficulty.EASY;
                 } else if (Difficulty < HARD_THRESHOLD) {
-                    variation = MakeFriendsVariation.MEDIUM;
+                    variation = MakeFriendsDifficulty.MEDIUM;
                 } else {
-                    variation = MakeFriendsVariation.HARD;
+                    variation = MakeFriendsDifficulty.HARD;
                 }
 
                 return variation;
             }
         }
-
-        public const float EASY_THRESHOLD = 0f;
-        public const float MEDIUM_THRESHOLD = 0.3f;
-        public const float HARD_THRESHOLD = 0.7f;
-
 
         /////////////////
         // Singleton Pattern

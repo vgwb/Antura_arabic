@@ -6,11 +6,23 @@ namespace Antura.Minigames.ColorTickle
 {
     public class ColorTickleConfiguration : IGameConfiguration
     {
+        public enum ColorTickleVariation
+        {
+            Default = MiniGameCode.ColorTickle,
+        }
+
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
+
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
+        public ColorTickleVariation Variation { get; set; }
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (ColorTickleVariation)code;
+        }
 
         /////////////////
         // Singleton Pattern
@@ -33,6 +45,7 @@ namespace Antura.Minigames.ColorTickle
             Context = new MinigamesGameContext(MiniGameCode.ColorTickle, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
             TutorialEnabled = true;
+            Variation = ColorTickleVariation.Default;
         }
 
         public IQuestionBuilder SetupBuilder() {

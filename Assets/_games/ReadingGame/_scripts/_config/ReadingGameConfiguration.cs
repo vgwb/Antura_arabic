@@ -4,11 +4,11 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.ReadingGame
 {
-    public enum ReadingGameVariation : int
+    public enum ReadingGameVariation 
     {
-        ReadAndAnswer = 1,
-        AlphabetSong = 2,
-        DiacriticSong = 3,
+        ReadAndAnswer = MiniGameCode.ReadingGame,
+        AlphabetSong = MiniGameCode.AlphabetSong_alphabet,
+        DiacriticSong = MiniGameCode.AlphabetSong_letters,
     }
 
     public class ReadingGameConfiguration : IGameConfiguration
@@ -20,6 +20,11 @@ namespace Antura.Minigames.ReadingGame
 
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (ReadingGameVariation) code;
+        }
 
         public int GetDiscreteDifficulty(int maximum)
         {

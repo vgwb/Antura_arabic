@@ -141,7 +141,7 @@ namespace Antura.Minigames.MixedLetters
 
             entireAlphabet = new List<ILivingLetterData>();
 
-            isSpelling = MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling;
+            isSpelling = MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.Spelling;
 
             if (!isSpelling)
             {
@@ -316,7 +316,7 @@ namespace Antura.Minigames.MixedLetters
 
         public void SayQuestion(Action onQuestionOver)
         {
-            if (MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling)
+            if (MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.Spelling)
             {
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(question);
 

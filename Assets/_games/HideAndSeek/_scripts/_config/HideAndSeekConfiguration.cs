@@ -5,19 +5,29 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.HideAndSeek
 {
+    public enum HideAndSeekVariation
+    {
+        Default = MiniGameCode.HideSeek
+    }
+
     public class HideAndSeekConfiguration : IGameConfiguration
     {
         // Game configuration
         public IGameContext Context { get; set; }
-
         public IQuestionProvider Questions { get; set; }
 
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
+        public HideAndSeekVariation Variation { get; set; }
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (HideAndSeekVariation) code;
+        }
 
         /////////////////
         // Singleton Pattern
-		static HideAndSeekConfiguration instance;
+        static HideAndSeekConfiguration instance;
 		public static HideAndSeekConfiguration Instance
         {
             get

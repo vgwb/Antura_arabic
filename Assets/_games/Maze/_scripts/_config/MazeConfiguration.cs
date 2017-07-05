@@ -5,20 +5,29 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.Maze
 {
-
-    public enum MazeVariation : int {
-        V_1 = 1,
+    public enum MazeVariation
+    { 
+        Default = MiniGameCode.Maze
     }
 
-    public class MazeConfiguration : IGameConfiguration {
+    public class MazeConfiguration : IGameConfiguration
+    {
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
         public ILivingLetterDataProvider Letters { get; set; }
+
         #region Game configurations
+
         public float Difficulty { get; set; }
         public bool TutorialEnabled { get; set; }
         public MazeVariation Variation { get; set; }
+
+        public void SetMiniGameCode(MiniGameCode code)
+        {
+            Variation = (MazeVariation) code;
+        }
+
         #endregion
 
         /////////////////
@@ -39,7 +48,7 @@ namespace Antura.Minigames.Maze
 
             Questions = new SampleQuestionProvider();
             Letters = new MazeLetterProvider();
-            Variation = MazeVariation.V_1;
+            Variation = MazeVariation.Default;
 
             Context = new MinigamesGameContext(MiniGameCode.Maze, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;

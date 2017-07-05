@@ -60,7 +60,7 @@ namespace Antura.Minigames.MixedLetters
                 game.GenerateNewWord();
             }
 
-            anturaEnterTimer = MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling ? 3.25f : 1.5f;
+            anturaEnterTimer = MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.Spelling ? 3.25f : 1.5f;
             anturaEntered = false;
             anturaBarked = false;
             //anturaExitTimer = Random.Range(0.75f, 1.5f);
