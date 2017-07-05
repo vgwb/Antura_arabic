@@ -33,6 +33,7 @@ Spaces should be used instead of tabs for better readability across a number of 
 In regards to naming conventions we also adhere to the standard .NET Framework naming convention system which can be [viewed online here](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/general-naming-conventions)
 
 the only difference is that we prefer to have the `if` and `for` statements with inline { like
+
     ```
     if (this == that) {
       do;
@@ -41,7 +42,7 @@ the only difference is that we prefer to have the `if` and `for` statements with
     }
 
     for () {
-        
+
     }
     ```
 
