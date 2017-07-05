@@ -256,7 +256,7 @@ namespace EA4S.Editor
 
             foreach (var music in Enum.GetValues(typeof(Music)))
             {
-                if ((Music)music == Music.Silence || (Music)music == Music.Custom)
+                if ((Music)music == Music.DontChange || (Music)music == Music.Silence || (Music)music == Music.Custom)
                     continue;
 
                 MusicConfiguration conf = myTarget.GetMusicConfiguration((Music)music);

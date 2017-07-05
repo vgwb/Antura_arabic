@@ -2,7 +2,9 @@
 {
     public enum Music
     {
-        Silence = 0,
+        DontChange = -2, // dont' change music
+        Custom = -1, // a custom AudioClip is passed to MusicPlayer
+        Silence = 0, // no music : do slience please
         MainTheme = 1,
         Relax = 2,
         Lullaby = 3,
@@ -10,9 +12,7 @@
         Theme7 = 7,
         Theme8 = 8,
         Theme9 = 9,
-        Theme10 = 10,
-        Custom = -1,
-        DontChange = -2,
+        Theme10 = 10
     }
 
     // last is 70
