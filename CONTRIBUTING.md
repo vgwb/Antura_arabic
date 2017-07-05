@@ -4,29 +4,29 @@ We are keen for developers to contribute to open source projects to
 keep them great!
 
 Here are a few guidelines that we need contributors to
-follow so that we can have a chance of keeping on top things.
+follow so that we can have a chance of keeping things on top.
 
 ## Getting Started
 * Make sure you have a GitHub account.
 * Create a new issue on the GitHub repository, providing one does not already exist.
-* Clearly describe the issue including steps to reproduce when it is a bug (fill out the issue template).
+* Clearly describe the issue including steps to reproduce it when it is a bug (fill out the issue template).
 * Make sure you fill in the earliest version that you know has the issue.
-* Fork the repository on GitHub.
+* (Eventually) Fork the repository on GitHub.
 
 ## Making Changes
 
 * Create a topic branch from where you want to base your work.
-* Name your branch with the type of issue you are fixing; `feat`, `chore`, `docs`.
+* Name your branch with the type of issue you are fixing; `feat`, `chore`, `docs`. 
 * Please avoid working directly on your master branch.
 * Make sure you set the `Asset Serialization` mode in `Unity->Edit->Project Settings->Editor` to `Force Text`.
 * Make commits of logical units.
-* Make sure your commit messages are in the proper format.
+* Make sure your commit messages are in the proper format. See below for further details.
 
-Following the above method will ensure that all bug fixes are pushed to the `dev` branch while all new features will be pushed to the relevant next release branch. This means that patch releases are much easier to do as the `dev` branch will only contain bug fixes so will be used to fork into new patch releases. Then master will be rebased into the relevant next release branch so the next release also contains the updated bug fixes in the previous patch release.
+Following the above method will ensure that all bug fixes are pushed to the `dev` branch while all new features will be pushed to the relevant next release branch. This means that patch releases are much easier to do as the `dev` branch will only contain bug fixes and will be used to fork into new patch releases. Master will then be rebased into the relevant next release branch so the next release  contains the updated bug fixes from the previous patch release.
 
 ## Coding Conventions
 
-To ensure all code is consistent and readable, we adhere to the default coding conventions utilised in Visual Studio. The easiest first step is to auto format the code within Visual Studio with the key combination of `Ctrl + k` then `Ctrl + d` which will ensure the code is correctly formatted and indented.
+To ensure all code is consistent and readable, we adhere to the default coding conventions used in Visual Studio. The easiest first step is to auto format the code within Visual Studio with the key combination of `Ctrl + k` then `Ctrl + d` which will ensure the code is correctly formatted and indented.
 
 Spaces should be used instead of tabs for better readability across a number of devices (e.g. spaces look better on Github source view.)
 
@@ -68,7 +68,7 @@ Blocks of code such as conditional statements and loops must always contain the 
   }
   ```
 
-Any method or variable references should have the most simplified name as possible, which means no additional references should be added where it's not necessary.
+Any method or variable reference should have the most simplified name as possible, which means no additional references should be added where it's not necessary.
 
   > `this.transform.rotation` *is simplified to* `transform.rotation`
 
