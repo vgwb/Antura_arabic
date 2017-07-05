@@ -27,7 +27,7 @@ namespace EA4S.Core
         /// Tracks common events using Unity Analytics.
         /// Set to TRUE for production.
         /// </summary>
-        public static bool UseUnityAnalytics = false;
+        public static bool UnityAnalyticsEnabled = false;
 
         /// <summary>
         /// Switches on all Debug.Log calls for performance.

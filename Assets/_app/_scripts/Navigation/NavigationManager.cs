@@ -239,7 +239,7 @@ namespace EA4S.Core
             if (AppConstants.DebugLogEnabled) Debug.LogFormat(" ==== Loading scene {0} ====", sceneName);
             SceneTransitionManager.LoadSceneWithTransition(sceneName);
 
-            if (AppConstants.UseUnityAnalytics && !Application.isEditor) {
+            if (AppConstants.UnityAnalyticsEnabled && !Application.isEditor) {
                 UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> {{"scene", sceneName}});
             }
             LogManager.I.LogInfo(InfoEvent.EnterScene, "{\"Scene\":\"" + sceneName + "\"}");

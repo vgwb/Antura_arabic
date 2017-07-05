@@ -20,8 +20,8 @@ namespace Antura.Tests.Release
 				Assert.Fail();
 			}
 			
-			if (AppConstants.UseUnityAnalytics == false) {
-				UnityEngine.Debug.Log("UseUnityAnalytics should be TRUE");
+			if (AppConstants.UnityAnalyticsEnabled == false) {
+				UnityEngine.Debug.Log("UnityAnalyticsEnabled should be TRUE");
 				Assert.Fail();
 			}
 			
