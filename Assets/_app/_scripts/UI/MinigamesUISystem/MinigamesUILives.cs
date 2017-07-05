@@ -36,7 +36,7 @@ namespace Antura.UI
             lives.Clear();
 
             for (int i = 0; i < MaxLives; ++i) {
-                MinigamesUISingleLife life = (MinigamesUISingleLife)Instantiate(LifePrefab, LifePrefab.transform.parent, false);
+                MinigamesUISingleLife life = (MinigamesUISingleLife) Instantiate(LifePrefab, LifePrefab.transform.parent, false);
                 life.gameObject.SetActive(true);
                 lives.Add(life);
             }
@@ -67,7 +67,7 @@ namespace Antura.UI
             _to -= lives.Count;
             while (_to > 0) {
                 _to--;
-                MinigamesUISingleLife life = (MinigamesUISingleLife)Instantiate(LifePrefab, LifePrefab.transform.parent, false);
+                MinigamesUISingleLife life = (MinigamesUISingleLife) Instantiate(LifePrefab, LifePrefab.transform.parent, false);
                 life.gameObject.SetActive(true);
                 lives.Add(life);
             }

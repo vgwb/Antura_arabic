@@ -10,7 +10,6 @@ namespace Antura.UI
     [RequireComponent(typeof(Button))]
     public class OnClickButtonFX : MonoBehaviour
     {
-
         public Sfx SfxOnClick = Sfx.UIPopup;
 
         void OnEnable()

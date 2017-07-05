@@ -11,19 +11,21 @@ namespace Antura.MinigamesAPI
     // TODO refactor: rename to better indicate that this is a view
     public class LL_PhraseData : ILivingLetterData
     {
-
         public Database.PhraseData Data;
 
-        public LivingLetterDataType DataType {
+        public LivingLetterDataType DataType
+        {
             get { return LivingLetterDataType.Phrase; }
         }
 
-        public string Id {
+        public string Id
+        {
             get { return Data.Id; }
             set { Data = AppManager.I.DB.GetPhraseDataById(value); } // TODO refactor: inject the value, no reference to the DB
         }
 
-        public LL_PhraseData(string _id) : this(_id, AppManager.I.DB.GetPhraseDataById(_id)) // TODO refactor: inject the value, no reference to the DB
+        public LL_PhraseData(string _id) :
+            this(_id, AppManager.I.DB.GetPhraseDataById(_id)) // TODO refactor: inject the value, no reference to the DB
         {
         }
 
@@ -40,23 +42,22 @@ namespace Antura.MinigamesAPI
         /// @note Not ready yet!
         /// Living Letter Phrase Text To Display.
         /// </summary>
-        public string TextForLivingLetter {
-            get {
-                return ArabicAlphabetHelper.ProcessArabicString(Data.Arabic);
-            }
+        public string TextForLivingLetter
+        {
+            get { return ArabicAlphabetHelper.ProcessArabicString(Data.Arabic); }
         }
 
-        public string DrawingCharForLivingLetter {
-            get {
-                return null;
-            }
+        public string DrawingCharForLivingLetter
+        {
+            get { return null; }
         }
 
         /// <summary>
         /// Return draw of word.
         /// </summary>
         [Obsolete("Use DrawingCharForLivingLetter instead of this.")]
-        public Sprite DrawForLivingLetter {
+        public Sprite DrawForLivingLetter
+        {
             get { return null; }
         }
 

@@ -11,25 +11,24 @@ namespace Antura.Intro
     // TODO refactor: remove the references to the Maze minigame
     public class IntroRocketCharacter : MonoBehaviour
     {
-
         public LivingLetterController LL;
         //public List<GameObject> particles;
 
         [HideInInspector]
         public float m_Velocity;
-        
+
         bool m_Move = false;
         Vector3 Destination;
         Vector3 Path;
 
         void Start()
         {
-            LL.Init(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom()); 
+            LL.Init(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom());
             LL.SetState(LLAnimationStates.LL_rocketing);
             LL.Horraying = true;
         }
 
-        public void SetDestination ()
+        public void SetDestination()
         {
             Destination = transform.position;
             Destination -= new Vector3(200, 0, 0);
@@ -44,19 +43,14 @@ namespace Antura.Intro
 
         void Update()
         {
-            if (m_Move)
-            {
-                if (transform.position.x > Destination.x)
-                {
+            if (m_Move) {
+                if (transform.position.x > Destination.x) {
                     transform.position -= Path * Time.deltaTime * m_Velocity;
-                }
-                else
-                {
+                } else {
                     m_Move = false;
                     gameObject.SetActive(false);
-                }                             
+                }
             }
-
         }
     }
 }

@@ -6,7 +6,9 @@
     /// </summary>
     public interface ISubtitlesWidget
     {
-        void DisplaySentence(Database.LocalizationDataId text, float enterDuration = 2, bool showSpeaker = false, System.Action onSentenceCompleted = null);
+        void DisplaySentence(Database.LocalizationDataId text, float enterDuration = 2, bool showSpeaker = false,
+            System.Action onSentenceCompleted = null);
+
         void Clear();
     }
 }

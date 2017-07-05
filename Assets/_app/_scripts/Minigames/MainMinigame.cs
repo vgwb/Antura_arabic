@@ -4,19 +4,19 @@ using Antura.Database;
 
 namespace Antura.Core
 {
-	public class MainMiniGame
-	{
-		public string id;
-		public List<MiniGameInfo> variations;
+    public class MainMiniGame
+    {
+        public string id;
+        public List<MiniGameInfo> variations;
 
-		public string GetIconResourcePath()
-		{
-			return variations[0].data.GetIconResourcePath();
-		}
+        public string GetIconResourcePath()
+        {
+            return variations[0].data.GetIconResourcePath();
+        }
 
-		public MiniGameCode GetFirstVariationMiniGameCode()
-		{
-			return variations[0].data.Code;
-		}
-	}
+        public MiniGameCode GetFirstVariationMiniGameCode()
+        {
+            return variations[0].data.Code;
+        }
+    }
 }

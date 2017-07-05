@@ -19,6 +19,7 @@ namespace Antura.UI
     {
         [Header("References")]
         public UIButton BtAdd;
+
         public UIButton BtPlay;
         public GameObject ProfilesPanel;
         public HomeScene HomeScene;
@@ -26,10 +27,15 @@ namespace Antura.UI
 
         [Header("Audio")]
         public Sfx SfxOpenCreateProfile;
+
         public Sfx SfxCreateNewProfile;
         public Sfx SfxSelectProfile;
 
-        public PlayerProfileManager ProfileManager { get { return AppManager.I.PlayerProfileManager; } }
+        public PlayerProfileManager ProfileManager
+        {
+            get { return AppManager.I.PlayerProfileManager; }
+        }
+
         int maxProfiles;
         List<PlayerIconData> playerIconDatas;
         PlayerIcon[] playerIcons;
@@ -48,13 +54,15 @@ namespace Antura.UI
         {
             // By default, the letter shows a truly random letter
             LLInStage.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
- 
+
             Setup();
 
             btAddTween = BtAdd.transform.DORotate(new Vector3(0, 0, -45), 0.3f).SetAutoKill(false).Pause()
                 .SetEase(Ease.OutBack)
-                .OnRewind(() => {
-                    if (AppManager.I.PlayerProfileManager.GetPlayersIconData() == null || AppManager.I.PlayerProfileManager.GetPlayersIconData().Count == 0) BtAdd.Pulse();
+                .OnRewind(() =>
+                {
+                    if (AppManager.I.PlayerProfileManager.GetPlayersIconData() == null ||
+                        AppManager.I.PlayerProfileManager.GetPlayersIconData().Count == 0) BtAdd.Pulse();
                 });
             btPlayTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(BtPlay.RectT.DOAnchorPosY(-210, 0.2f).From(true))
@@ -66,7 +74,8 @@ namespace Antura.UI
 
             // Listeners
             BtAdd.Bt.onClick.AddListener(() => OnClick(BtAdd));
-            BtPlay.Bt.onClick.AddListener(() => {
+            BtPlay.Bt.onClick.AddListener(() =>
+            {
                 AudioManager.I.PlaySound(Sfx.UIButtonClick);
                 HomeScene.Play();
             });

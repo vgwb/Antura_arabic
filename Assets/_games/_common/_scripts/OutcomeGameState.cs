@@ -6,10 +6,10 @@
     /// </summary>
     public class OutcomeGameState : IState
     {
-        MiniGame game;
+        private MiniGame game;
 
-        bool outcomeStarted = false;
-        float timer = 0;
+        private bool outcomeStarted;
+        private float timer;
 
         public OutcomeGameState(MiniGame game)
         {
@@ -29,42 +29,44 @@
 
         void Complete()
         {
-            if (outcomeStarted)
+            if (outcomeStarted) {
                 return;
+            }
 
             outcomeStarted = true;
 
             int starsScore = game.StarsScore;
-            if (starsScore > 3)
+            if (starsScore > 3) {
                 starsScore = 3;
+            }
 
             game.Context.GetStarsWidget().Show(starsScore);
 
             Database.LocalizationDataId text;
 
-            if (starsScore < 1)
-                text = (Database.LocalizationDataId.Keeper_Bad_2);
-            else if (starsScore < 2)
-                text = (Database.LocalizationDataId.Keeper_Good_5);
-            else if (starsScore < 3)
-                text = (Database.LocalizationDataId.Keeper_Good_2);
-            else
-                text = (Database.LocalizationDataId.Keeper_Good_1);
+            if (starsScore < 1) {
+                text = Database.LocalizationDataId.Keeper_Bad_2;
+            } else if (starsScore < 2) {
+                text = Database.LocalizationDataId.Keeper_Good_5;
+            } else if (starsScore < 3) {
+                text = Database.LocalizationDataId.Keeper_Good_2;
+            } else {
+                text = Database.LocalizationDataId.Keeper_Good_1;
+            }
 
-            //game.Context.GetSubtitleWidget().DisplaySentence(text);
             game.Context.GetAudioManager().PlayDialogue(text);
-            
+
             game.Context.GetOverlayWidget().Initialize(false, false, false);
         }
 
         public void Update(float delta)
         {
-            if (timer > 0)
-            {
+            if (timer > 0) {
                 timer -= delta;
 
-                if (timer <= 0)
+                if (timer <= 0) {
                     Complete();
+                }
             }
         }
 

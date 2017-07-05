@@ -4,7 +4,6 @@ using UnityEditor;
 
 namespace Antura.Editor
 {
-
     public class InfoView : EditorWindow
     {
         [MenuItem("Tools/Antura/Info", false, 300)]
@@ -32,7 +31,7 @@ namespace Antura.Editor
             if (GUILayout.Button("Developer docs")) {
                 Application.OpenURL(AppConstants.UrlDeveloperDocs);
             }
-            
+
             if (GUILayout.Button("Source Code (GitHub project)")) {
                 Application.OpenURL(AppConstants.UrlGithubRepository);
             }

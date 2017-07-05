@@ -34,10 +34,8 @@ namespace Antura.AnturaSpace
 
         public bool IsNearTargetPosition
         {
-            get
-            {
-                if (target == null)
-                {
+            get {
+                if (target == null) {
                     return true;
                 }
 
@@ -50,10 +48,8 @@ namespace Antura.AnturaSpace
 
         bool IsNearTargetRotation
         {
-            get
-            {
-                if (target == null || !rotateAsTarget)
-                {
+            get {
+                if (target == null || !rotateAsTarget) {
                     return true;
                 }
 
@@ -81,10 +77,8 @@ namespace Antura.AnturaSpace
 
         public float PlanarDistanceFromTarget
         {
-            get
-            {
-                if (target == null)
-                {
+            get {
+                if (target == null) {
                     return 0;
                 }
 
@@ -97,10 +91,8 @@ namespace Antura.AnturaSpace
 
         public float DistanceFromTarget
         {
-            get
-            {
-                if (target == null)
-                {
+            get {
+                if (target == null) {
                     return 0;
                 }
 
@@ -112,10 +104,8 @@ namespace Antura.AnturaSpace
 
         public float TargetHeight
         {
-            get
-            {
-                if (target == null)
-                {
+            get {
+                if (target == null) {
                     return 0;
                 }
 
@@ -129,8 +119,7 @@ namespace Antura.AnturaSpace
             this.rotateAsTarget = rotateAsTarget;
             this.rotatingBase = rotatingBase;
 
-            if (rotatingBase == null)
-            {
+            if (rotatingBase == null) {
                 transform.SetParent(null);
             }
         }
@@ -143,23 +132,18 @@ namespace Antura.AnturaSpace
 
         void Update()
         {
-            if (isSliping)
-            {
+            if (isSliping) {
                 transform.position += lastVelocity * Time.deltaTime;
 
                 var velMagnitude = lastVelocity.magnitude;
 
-                if (velMagnitude > 1)
-                {
+                if (velMagnitude > 1) {
                     lastVelocity -= 10 * lastVelocity.normalized * Time.deltaTime;
-                }
-                else
-                {
+                } else {
                     lastVelocity = Vector3.Lerp(lastVelocity, Vector3.zero, 4 * Time.deltaTime);
                 }
 
-                if (lastVelocity.magnitude < 0.2f)
-                {
+                if (lastVelocity.magnitude < 0.2f) {
                     isSliping = false;
                     runningTime = 0;
                     AnimationController.OnSlipEnded();
@@ -168,29 +152,23 @@ namespace Antura.AnturaSpace
                 return;
             }
 
-            if (!IsSleeping && !IsJumping && target != null)
-            {
+            if (!IsSleeping && !IsJumping && target != null) {
                 var distance = target.position - transform.position;
                 distance.y = 0;
 
                 var distMagnitude = distance.magnitude;
                 float speed = 0;
 
-                if (!IsNearTargetPosition)
-                {
+                if (!IsNearTargetPosition) {
                     wasNearPosition = false;
                     float speedFactor = Mathf.Lerp(0, 1, distMagnitude / 10);
                     speed = Mathf.Lerp(WALK_SPEED, RUN_SPEED, speedFactor) * Mathf.Lerp(0, 1, distMagnitude);
                     AnimationController.SetWalkingSpeed(speedFactor);
 
-                    if (speedFactor > 0.75f)
-                    {
+                    if (speedFactor > 0.75f) {
                         runningTime += Time.deltaTime;
-                    }
-                    else
-                    {
-                        if (runningTime > 1.3f && Excited)
-                        {
+                    } else {
+                        if (runningTime > 1.3f && Excited) {
                             // Slip!
                             runningTime = 0;
                             isSliping = true;
@@ -201,18 +179,14 @@ namespace Antura.AnturaSpace
 
                         runningTime = 0;
                     }
-                }
-                else
-                {
+                } else {
                     wasNearPosition = true;
                 }
 
-                if (speed > 0.05f)
-                {
+                if (speed > 0.05f) {
                     AnimationController.State = AnturaAnimationStates.walking;
 
-                    if (AnimationController.IsAnimationActuallyWalking)
-                    {
+                    if (AnimationController.IsAnimationActuallyWalking) {
                         distance.Normalize();
 
                         var steeringMovement = transform.forward * speed * Time.deltaTime;
@@ -223,36 +197,26 @@ namespace Antura.AnturaSpace
 
                         GameplayHelper.LerpLookAtPlanar(transform, target.position, Time.deltaTime * 2);
                     }
-                }
-                else
-                {
+                } else {
                     var dot = Mathf.Max(0, Vector3.Dot(target.forward.normalized, transform.forward.normalized));
 
-                    if (rotatingBase)
-                    {
+                    if (rotatingBase) {
                         Quaternion targetRotation;
 
                         transform.SetParent(rotatingBase);
 
-                        if (rotateAsTarget)
-                        {
+                        if (rotateAsTarget) {
                             targetRotation = target.rotation * rotatingBase.rotation;
-                        }
-                        else
-                        {
+                        } else {
                             targetRotation = rotatingBase.rotation;
                         }
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4);
-                    }
-                    else
-                    {
-                        if (rotateAsTarget)
-                        {
+                    } else {
+                        if (rotateAsTarget) {
                             transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation,
                                 Time.deltaTime * 4 * (0.2f + 0.8f * dot));
                         }
-                        if ((!rotateAsTarget || dot > 0.9f) && AnimationController.State == AnturaAnimationStates.walking)
-                        {
+                        if ((!rotateAsTarget || dot > 0.9f) && AnimationController.State == AnturaAnimationStates.walking) {
                             AnimationController.State = AnturaAnimationStates.idle;
                         }
                     }
@@ -264,8 +228,7 @@ namespace Antura.AnturaSpace
 
         void OnMouseDown()
         {
-            if (onTouched != null)
-            {
+            if (onTouched != null) {
                 onTouched();
             }
         }

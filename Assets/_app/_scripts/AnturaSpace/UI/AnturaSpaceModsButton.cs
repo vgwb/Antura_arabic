@@ -8,8 +8,7 @@ namespace Antura.UI
 
         public void SetAsNew(bool _isNew)
         {
-            if (icoNew == null)
-            {
+            if (icoNew == null) {
                 icoNew = GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
             }
             icoNew.SetActive(_isNew);

@@ -10,7 +10,6 @@ namespace Antura.MinigamesAPI.Sample
     {
         public SampleWordProvider()
         {
-
         }
 
         public ILivingLetterData GetNextData()

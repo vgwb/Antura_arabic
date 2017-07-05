@@ -30,8 +30,7 @@ namespace Antura.CameraControl
         public void EnableFX(bool status)
         {
             // Debug.Log("CameraGameplayController EnableFX " + status);
-            if (gameObject.GetComponent<VignetteAndChromaticAberration>() != null)
-            {
+            if (gameObject.GetComponent<VignetteAndChromaticAberration>() != null) {
                 FxEnabled = status;
                 gameObject.GetComponent<VignetteAndChromaticAberration>().enabled = status;
             }

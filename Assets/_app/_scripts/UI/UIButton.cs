@@ -18,23 +18,42 @@ namespace Antura.UI
         public Color BtToggleOffColor = Color.white;
         public Color BtLockedColor = Color.red;
         public bool ToggleIconAlpha = true;
+
         [Tooltip("If this is TRUE and a CanvasGroup is not found, it is automatically added")]
         public bool ToggleCanvasGroupAlpha = false;
+
         public bool AutoAnimateClick = true;
         public bool AutoPlayButtonFx = false;
-        
+
         #endregion
 
         /// <summary>Default color of the button image</summary>
-        [NonSerialized] public Color DefaultColor;
+        [NonSerialized]
+        public Color DefaultColor;
+
         public bool IsToggled { get; private set; }
         public bool IsLocked { get; private set; }
-        public Button Bt { get { if (fooBt == null) fooBt = this.GetComponent<Button>(); return fooBt; } }
-        public RectTransform RectT { get { if (fooRectT == null) fooRectT = this.GetComponent<RectTransform>(); return fooRectT; } }
-        public Image BtImg {
+
+        public Button Bt
+        {
             get {
-                if (fooBtImg == null)
-                {
+                if (fooBt == null) fooBt = this.GetComponent<Button>();
+                return fooBt;
+            }
+        }
+
+        public RectTransform RectT
+        {
+            get {
+                if (fooRectT == null) fooRectT = this.GetComponent<RectTransform>();
+                return fooRectT;
+            }
+        }
+
+        public Image BtImg
+        {
+            get {
+                if (fooBtImg == null) {
                     fooBtImg = this.GetComponent<Image>();
                     DefaultColor = fooBtImg.color;
                 }
@@ -42,10 +61,10 @@ namespace Antura.UI
             }
         }
 
-        public Image Ico {
+        public Image Ico
+        {
             get {
-                if (!fooIcoSearched)
-                {
+                if (!fooIcoSearched) {
                     fooIcoSearched = true;
                     Image[] icos = this.GetOnlyComponentsInChildren<Image>(true);
                     if (icos.Length > 0) fooIco = icos[0];
@@ -54,16 +73,17 @@ namespace Antura.UI
             }
         }
 
-        public CanvasGroup CGroup {
+        public CanvasGroup CGroup
+        {
             get {
-                if (fooCGroup == null)
-                {
+                if (fooCGroup == null) {
                     fooCGroup = this.GetComponent<CanvasGroup>();
                     if (fooCGroup == null) fooCGroup = this.gameObject.AddComponent<CanvasGroup>();
                 }
                 return fooCGroup;
             }
         }
+
         Button fooBt;
         Image fooBtImg;
         Image fooIco;
@@ -76,10 +96,14 @@ namespace Antura.UI
         #region Unity + INIT
 
         void OnEnable()
-        { if (Application.isPlaying) UIDirector.Add(this); }
+        {
+            if (Application.isPlaying) UIDirector.Add(this);
+        }
 
         void OnDisable()
-        { if (Application.isPlaying) UIDirector.Remove(this); }
+        {
+            if (Application.isPlaying) UIDirector.Remove(this);
+        }
 
         protected virtual void Awake()
         {
@@ -124,7 +148,7 @@ namespace Antura.UI
         {
             BtImg.color = new Color(_defaultColor.r, _defaultColor.g, _defaultColor.b, BtImg.color.a);
             DefaultColor = _defaultColor;
-            if (_toggleOffColor != null) BtToggleOffColor = (Color)_toggleOffColor;
+            if (_toggleOffColor != null) BtToggleOffColor = (Color) _toggleOffColor;
         }
 
         /// <summary>

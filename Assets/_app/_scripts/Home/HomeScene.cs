@@ -14,10 +14,12 @@ namespace Antura.Scenes
     {
         [Header("Setup")]
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
+
         public LLAnimationStates LLAnimation = LLAnimationStates.LL_dancing;
 
-        [Header("References")] 
+        [Header("References")]
         public AnturaAnimationController AnturaAnimController;
+
         public LivingLetterController LLAnimController;
         public GameObject DialogReservedArea;
         public GameObject ProfileSelectorUI;

@@ -11,8 +11,10 @@ namespace Antura.Rewards
     public class EndgameStar : MonoBehaviour
     {
         public Color ungainedColor = Color.red;
+
         [Header("References")]
         public GameObject Bg;
+
         public Image BgRays;
 
         public RectTransform RectT { get; private set; }

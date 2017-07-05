@@ -13,14 +13,11 @@ namespace Antura.MinigamesCommon
     public class CircleButtonBox : MonoBehaviour
     {
         bool active = true;
+
         public bool Active
         {
-            get
-            {
-                return active;
-            }
-            set
-            {
+            get { return active; }
+            set {
                 active = value;
                 for (int i = 0; i < buttons.Count; ++i)
                     buttons[i].Active = value;
@@ -40,14 +37,11 @@ namespace Antura.MinigamesCommon
         bool dirty = false;
 
         bool imageMode;
+
         public bool ImageMode
         {
-            get
-            {
-                return imageMode;
-            }
-            set
-            {
+            get { return imageMode; }
+            set {
                 imageMode = value;
                 for (int i = 0; i < buttons.Count; i++)
                     buttons[i].ImageMode = value;
@@ -56,8 +50,7 @@ namespace Antura.MinigamesCommon
 
         public void Clear(System.Action onClearAnimationCompleted = null, float startDelay = 0)
         {
-            for (int i = 0; i < buttons.Count; i++)
-            {
+            for (int i = 0; i < buttons.Count; i++) {
                 CircleButton button = buttons[i];
 
                 button.Destroy(startDelay + i * 0.1f, i == buttons.Count - 1 ? onClearAnimationCompleted : null);
@@ -90,8 +83,7 @@ namespace Antura.MinigamesCommon
 
         public bool IsReady()
         {
-            for (int i = 0; i < buttons.Count; i++)
-            {
+            for (int i = 0; i < buttons.Count; i++) {
                 if (!buttons[i].IsReady())
                     return false;
             }
@@ -100,16 +92,14 @@ namespace Antura.MinigamesCommon
 
         public void ShowButtons()
         {
-            for (int i = 0; i < buttons.Count; i++)
-            {
+            for (int i = 0; i < buttons.Count; i++) {
                 buttons[i].gameObject.SetActive(true);
             }
         }
 
         public void HideButtons()
         {
-            for (int i = 0; i < buttons.Count; i++)
-            {
+            for (int i = 0; i < buttons.Count; i++) {
                 buttons[i].gameObject.SetActive(false);
             }
         }
@@ -124,21 +114,20 @@ namespace Antura.MinigamesCommon
             int width = Mathf.Min(buttons.Count, buttonPerLine);
             int height = (buttons.Count + buttonPerLine - 1) / buttonPerLine;
 
-            for (int i = 0; i < buttons.Count; i++)
-            {
+            for (int i = 0; i < buttons.Count; i++) {
                 int idX = i % width;
                 int idY = i / width;
 
                 float rowWidth = width;
 
-                if (idY == height - 1)
-                {
+                if (idY == height - 1) {
                     rowWidth = buttons.Count % buttonPerLine;
                     if (rowWidth == 0)
                         rowWidth = width;
                 }
 
-                buttons[i].transform.localPosition = Vector3.right * (-0.5f * (rowWidth - 1) + idX) * buttonDistance + Vector3.down * (-0.5f * (height - 1) + idY) * buttonDistance;
+                buttons[i].transform.localPosition = Vector3.right * (-0.5f * (rowWidth - 1) + idX) * buttonDistance +
+                                                     Vector3.down * (-0.5f * (height - 1) + idY) * buttonDistance;
             }
         }
 

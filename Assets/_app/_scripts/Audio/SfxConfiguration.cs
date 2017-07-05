@@ -10,6 +10,5 @@ namespace Antura.Audio
         public List<AudioClip> clips = new List<AudioClip>();
         public float volume = 1;
         public float randomPitchOffset = 0;
-
     }
 }

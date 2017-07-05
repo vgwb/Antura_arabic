@@ -18,11 +18,11 @@ namespace Antura.Profile
         /// <summary>
         /// The player that is currently playing.
         /// </summary>
-        public PlayerProfile CurrentPlayer {
+        public PlayerProfile CurrentPlayer
+        {
             get { return _currentPlayer; }
             set {
-                if (_currentPlayer != value)
-                {
+                if (_currentPlayer != value) {
                     AppManager.I.Player = _currentPlayer = value;
                     AppManager.I.Teacher.SetPlayerProfile(value);
                     // TODO refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
@@ -69,13 +69,13 @@ namespace Antura.Profile
 
             // If null, the player does not exist.
             // The DB got desynced. Remove this player!
-            if (profileFromDB == null)
-            {
+            if (profileFromDB == null) {
                 Debug.LogError("ERROR: no profile data for player UUID " + playerUUID);
             }
 
             return new PlayerProfile().FromData(profileFromDB);
         }
+
         #endregion
 
         #region Settings        
@@ -88,8 +88,7 @@ namespace Antura.Profile
         {
             AppManager.I.AppSettingsManager.LoadSettings();
 
-            if (alsoLoadCurrentPlayerProfile)
-            {
+            if (alsoLoadCurrentPlayerProfile) {
                 // No last active? Get the first one.
                 if (AppManager.I.AppSettings.LastActivePlayerUUID == string.Empty) {
                     if (AppManager.I.AppSettings.SavedPlayers.Count > 0) {
@@ -137,10 +136,8 @@ namespace Antura.Profile
         /// </summary>
         public void UpdateCurrentPlayerIconDataInSettings()
         {
-            for (int i = 0; i < AppManager.I.AppSettings.SavedPlayers.Count; i++)
-            {
-                if (AppManager.I.AppSettings.SavedPlayers[i].Uuid == _currentPlayer.Uuid)
-                {
+            for (int i = 0; i < AppManager.I.AppSettings.SavedPlayers.Count; i++) {
+                if (AppManager.I.AppSettings.SavedPlayers[i].Uuid == _currentPlayer.Uuid) {
                     AppManager.I.AppSettings.SavedPlayers[i] = CurrentPlayer.GetPlayerIconData();
                 }
             }
@@ -169,7 +166,8 @@ namespace Antura.Profile
             returnProfile.AvatarId = avatarID;
             returnProfile.Tint = tint;
             returnProfile.IsDemoUser = isDemoUser;
-            returnProfile.ProfileCompletion = (isDemoUser ? ProfileCompletionState.GameCompletedAndFinalShowed : ProfileCompletionState.New);
+            returnProfile.ProfileCompletion =
+                (isDemoUser ? ProfileCompletionState.GameCompletedAndFinalShowed : ProfileCompletionState.New);
 
             // DB Creation
             AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
@@ -219,15 +217,12 @@ namespace Antura.Profile
             if (playerIconData.Uuid == string.Empty)
                 return null;
             // if setted as active player in gamesettings remove from it
-            if (playerIconData.Uuid == AppManager.I.AppSettings.LastActivePlayerUUID)
-            {
+            if (playerIconData.Uuid == AppManager.I.AppSettings.LastActivePlayerUUID) {
                 // if possible set the first available player...
                 PlayerIconData newActivePlayerIcon = GetPlayersIconData().Find(p => p.Uuid != playerUUID);
-                if (newActivePlayerIcon.Uuid != null)
-                {
+                if (newActivePlayerIcon.Uuid != null) {
                     AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(newActivePlayerIcon.Uuid);
-                }
-                else {
+                } else {
                     // ...else set to null
                     AppManager.I.PlayerProfileManager._currentPlayer = null;
                 }
@@ -244,10 +239,8 @@ namespace Antura.Profile
         public void ResetEverything()
         {
             // Reset all the Databases
-            if (AppManager.I.AppSettings.SavedPlayers != null)
-            {
-                foreach (PlayerIconData pp in AppManager.I.AppSettings.SavedPlayers)
-                {
+            if (AppManager.I.AppSettings.SavedPlayers != null) {
+                foreach (PlayerIconData pp in AppManager.I.AppSettings.SavedPlayers) {
                     AppManager.I.DB.LoadDatabaseForPlayer(pp.Uuid);
                     AppManager.I.DB.DropProfile();
                 }
@@ -266,11 +259,9 @@ namespace Antura.Profile
         public void ImportAllPlayerProfiles()
         {
             string[] importFilePaths = AppManager.I.DB.GetImportFilePaths();
-            foreach (var filePath in importFilePaths)
-            {
+            foreach (var filePath in importFilePaths) {
                 // Check whether that is a DB and load it
-                if (filePath.Contains(".sqlite3"))
-                {
+                if (filePath.Contains(".sqlite3")) {
                     ImportPlayerProfile(filePath);
                 }
             }
@@ -280,8 +271,7 @@ namespace Antura.Profile
         public void ImportPlayerProfile(string filePath)
         {
             PlayerProfileData importedPlayerProfileData = AppManager.I.DB.ImportDynamicDatabase(filePath);
-            if (importedPlayerProfileData != null)
-            {
+            if (importedPlayerProfileData != null) {
                 PlayerProfile importedPlayerProfile = new PlayerProfile().FromData(importedPlayerProfileData);
                 AppManager.I.AppSettings.SavedPlayers.Add(importedPlayerProfile.GetPlayerIconData());
             }
@@ -290,13 +280,16 @@ namespace Antura.Profile
         #endregion
 
         #region Events
+
         public delegate void ProfileEventHandler();
 
         /// <summary>
         /// Occurs when [on profile changed].
         /// </summary>
         public static event ProfileEventHandler OnProfileChanged;
+
         public static event ProfileEventHandler OnNewProfileCreated;
+
         #endregion
 
         #region Checks
@@ -305,10 +298,8 @@ namespace Antura.Profile
         {
             bool demoUserExists = false;
             var playerList = GetPlayersIconData();
-            foreach (var player in playerList)
-            {
-                if (player.IsDemoUser)
-                {
+            foreach (var player in playerList) {
+                if (player.IsDemoUser) {
                     demoUserExists = true;
                 }
             }

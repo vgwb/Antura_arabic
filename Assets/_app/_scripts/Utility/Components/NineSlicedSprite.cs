@@ -38,8 +38,7 @@ namespace Antura.Utilities
         public float Width
         {
             get { return width; }
-            set
-            {
+            set {
                 if (width == value)
                     return;
 
@@ -54,8 +53,7 @@ namespace Antura.Utilities
         public float Height
         {
             get { return height; }
-            set
-            {
+            set {
                 if (height == value)
                     return;
 
@@ -70,8 +68,7 @@ namespace Antura.Utilities
         public float BorderScale
         {
             get { return borderScale; }
-            set
-            {
+            set {
                 if (borderScale == value)
                     return;
 
@@ -86,8 +83,7 @@ namespace Antura.Utilities
         public Sprite Sprite
         {
             get { return sprite; }
-            set
-            {
+            set {
                 if (sprite == value)
                     return;
 
@@ -102,16 +98,14 @@ namespace Antura.Utilities
 
         public Material Material
         {
-            get
-            {
+            get {
                 if (material == null) {
                     meshRenderer.sharedMaterial = material = new Material(initialMaterial);
                 }
 
                 return material;
             }
-            set
-            {
+            set {
                 if (originalMaterial == value)
                     return;
 

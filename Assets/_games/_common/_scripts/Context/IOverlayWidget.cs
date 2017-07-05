@@ -10,7 +10,7 @@
 
         void SetStarsThresholds(int firstStarsScoreThreshold, int secondStarsScoreThreshold, int thirdStarsScoreThreshold);
         void SetStarsScore(int score);
-        
+
         void SetClockDuration(float timerDuration);
         void SetClockTime(float currentTime);
         void OnClockCompleted();

@@ -35,12 +35,10 @@ namespace Antura.UI
         public void SetAsNew(bool _isNew)
         {
             isNew = _isNew;
-            if (icoNew == null)
-            {
+            if (icoNew == null) {
                 icoNew = GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
             }
-            if (!isNewForceHidden)
-            {
+            if (!isNewForceHidden) {
                 icoNew.SetActive(_isNew);
             }
         }
@@ -54,8 +52,7 @@ namespace Antura.UI
         void ForceHideNewIcon(bool _forceHide)
         {
             isNewForceHidden = _forceHide;
-            if (icoNew == null)
-            {
+            if (icoNew == null) {
                 icoNew = GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
             }
             icoNew.SetActive(!_forceHide && isNew);

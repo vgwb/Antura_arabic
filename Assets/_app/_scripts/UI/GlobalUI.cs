@@ -25,8 +25,8 @@ namespace Antura.UI
 
         const string ResourceId = "Prefabs/UI/GlobalUI";
         const string SceneTransitionerResourceId = "Prefabs/UI/SceneTransitionerUI";
-        Action onGoBack;
-        bool disableBackButtonOnClick;
+        private Action onGoBack;
+        private bool disableBackButtonOnClick;
 
         public static void Init()
         {
@@ -54,7 +54,9 @@ namespace Antura.UI
             ActionFeedback = StoreAndAwake<ActionFeedbackComponent>();
             Prompt = StoreAndAwake<PromptPanel>();
 
-            if (onGoBack == null) BackButton.gameObject.SetActive(false);
+            if (onGoBack == null) {
+                BackButton.gameObject.SetActive(false);
+            }
 
             // Listeners
             BackButton.Bt.onClick.AddListener(OnBack);
@@ -72,14 +74,18 @@ namespace Antura.UI
         /// <param name="includeSceneTransitioner">If TRUE (default) also clears the sceneTransitioner, otherwise not</param>
         public static void Clear(bool includeSceneTransitioner = true)
         {
-            if (includeSceneTransitioner && SceneTransitioner != null)
+            if (includeSceneTransitioner && SceneTransitioner != null) {
                 SceneTransitioner.CloseImmediate();
-            if (ContinueScreen != null)
+            }
+            if (ContinueScreen != null) {
                 ContinueScreen.Close(true);
-            if (WidgetPopupWindow != null)
+            }
+            if (WidgetPopupWindow != null) {
                 WidgetPopupWindow.Close(true);
-            if (WidgetSubtitles != null)
+            }
+            if (WidgetSubtitles != null) {
                 WidgetSubtitles.Close(true);
+            }
         }
 
         /// <summary>
@@ -109,7 +115,6 @@ namespace Antura.UI
         /// <summary>
         /// Shows a popup with a YES/NO button and relative callbacks
         /// </summary>
-
         public static void ShowPrompt(Database.LocalizationDataId id, Action _onYesCallback = null, Action _onNoCallback = null)
         {
             Prompt.Show(id, _onYesCallback, _onNoCallback);
@@ -134,8 +139,12 @@ namespace Antura.UI
 
         void OnBack()
         {
-            if (disableBackButtonOnClick) I.BackButton.Bt.interactable = false;
-            if (onGoBack != null) onGoBack();
+            if (disableBackButtonOnClick) {
+                I.BackButton.Bt.interactable = false;
+            }
+            if (onGoBack != null) {
+                onGoBack();
+            }
         }
     }
 }

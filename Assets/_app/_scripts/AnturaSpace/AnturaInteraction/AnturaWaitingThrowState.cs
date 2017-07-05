@@ -38,8 +38,7 @@ namespace Antura.AnturaSpace
         {
             base.Update(delta);
 
-            if (controller.DraggingBone == null)
-            {
+            if (controller.DraggingBone == null) {
                 controller.CurrentState = controller.Idle;
                 return;
             }
@@ -47,29 +46,23 @@ namespace Antura.AnturaSpace
             waitForLaunchPoint.transform.position = controller.DraggingBone.position + Camera.main.transform.forward * 6;
             waitForLaunchPoint.transform.forward = (controller.DraggingBone.position - waitForLaunchPoint.transform.position).normalized;
 
-            if (shoutTimer > 0 & controller.Antura.HasReachedTarget)
-            {
+            if (shoutTimer > 0 & controller.Antura.HasReachedTarget) {
                 timeInThisState += delta;
                 shoutTimer -= delta;
 
-                if (shoutTimer <= 0)
-                {
+                if (shoutTimer <= 0) {
                     shoutTimer = Random.Range(1.5f, 4);
 
-                    if (Random.value < 0.3f)
-                    {
+                    if (Random.value < 0.3f) {
                         controller.Antura.AnimationController.DoSniff();
                         Audio.AudioManager.I.PlaySound(Sfx.DogSnorting);
-                    }
-                    else
-                    {
+                    } else {
                         controller.Antura.AnimationController.DoShout(() => { Audio.AudioManager.I.PlaySound(Sfx.DogBarking); });
                     }
                 }
             }
 
-            if (timeInThisState > 10)
-            {
+            if (timeInThisState > 10) {
                 controller.CurrentState = controller.Idle;
             }
         }

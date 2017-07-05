@@ -16,7 +16,7 @@ namespace Antura.Intro
         {
             startRotation = transform.rotation;
             cameraForward = Camera.main.transform.forward;
-            
+
             max = Random.Range(2f, 6f);
         }
 

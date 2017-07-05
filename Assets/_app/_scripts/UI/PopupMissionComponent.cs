@@ -21,6 +21,7 @@ namespace Antura.UI
             public string MainTextToDisplay;
             public Sprite DrawSprite;
             public PopupType Type;
+
             /// <summary>
             /// Auto close popup after seconds indicated. If -1 autoclose is disabled and appear close button for that.
             /// </summary>
@@ -86,9 +87,7 @@ namespace Antura.UI
             }
             // Autoclose
             if (_data.AutoCloseTime >= 0) {
-                sequence.InsertCallback(_data.AutoCloseTime, delegate {
-                    Close(sequence, tParms, _callback);
-                });
+                sequence.InsertCallback(_data.AutoCloseTime, delegate { Close(sequence, tParms, _callback); });
             } else {
                 pendingCallback = null; // reset
                 if (_callback != null)
@@ -119,6 +118,5 @@ namespace Antura.UI
         {
             sequence.Kill();
         }
-
     }
 }

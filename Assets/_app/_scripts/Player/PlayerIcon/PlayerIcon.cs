@@ -17,13 +17,22 @@ namespace Antura.Profile
             FinishedWAllStars
         }
 
-    [Tooltip("If TRUE automatically initializes to the current player")]
-    [DeToggleButton]
+        [Tooltip("If TRUE automatically initializes to the current player")]
+        [DeToggleButton]
         public bool AutoInit;
+
         public Sprite EndgameHat, EndgameHatWStars;
         public Image HatImage;
         public string Uuid { get; private set; }
-        public UIButton UIButton { get { if (fooUIButton == null) fooUIButton = this.GetComponent<UIButton>(); return fooUIButton; } }
+
+        public UIButton UIButton
+        {
+            get {
+                if (fooUIButton == null) fooUIButton = this.GetComponent<UIButton>();
+                return fooUIButton;
+            }
+        }
+
         UIButton fooUIButton;
 
         #region Unity
@@ -32,8 +41,7 @@ namespace Antura.Profile
         {
             if (!AutoInit) return;
 
-            if (AppManager.I.PlayerProfileManager.CurrentPlayer != null)
-            {
+            if (AppManager.I.PlayerProfileManager.CurrentPlayer != null) {
                 Init(AppManager.I.PlayerProfileManager.CurrentPlayer.GetPlayerIconData());
             }
         }
@@ -46,8 +54,11 @@ namespace Antura.Profile
         {
             Uuid = playerIconData.Uuid;
             //Debug.Log("playerIconData " + playerIconData.Uuid + " " + playerIconData.Gender + " " + playerIconData.AvatarId + " " + playerIconData.Tint + " " + playerIconData.IsDemoUser + " > " + playerIconData.HasFinishedTheGame + "/" + playerIconData.HasFinishedTheGameWithAllStars);
-            EndgameState endgameState = playerIconData.HasFinishedTheGameWithAllStars ? EndgameState.FinishedWAllStars
-                : playerIconData.HasFinishedTheGame ? EndgameState.Finished : EndgameState.Unfinished;
+            EndgameState endgameState = playerIconData.HasFinishedTheGameWithAllStars
+                ? EndgameState.FinishedWAllStars
+                : playerIconData.HasFinishedTheGame
+                    ? EndgameState.Finished
+                    : EndgameState.Unfinished;
             SetAppearance(playerIconData.Gender, playerIconData.AvatarId, playerIconData.Tint, playerIconData.IsDemoUser, endgameState);
         }
 
@@ -72,11 +83,11 @@ namespace Antura.Profile
             UIButton.ChangeDefaultColors(color, color.SetAlpha(0.5f));
             UIButton.Ico.sprite = isDemoUser
                 ? Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + "god")
-                : Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + (gender == PlayerGender.None ? "M" : gender.ToString()) + avatarId);
+                : Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + (gender == PlayerGender.None ? "M" : gender.ToString()) +
+                                         avatarId);
             HatImage.gameObject.SetActive(endgameState != EndgameState.Unfinished);
 
-            switch (endgameState)
-            {
+            switch (endgameState) {
                 case EndgameState.Finished:
                     HatImage.sprite = EndgameHat;
                     break;
@@ -95,7 +106,7 @@ namespace Antura.Profile
             SetAppearance(
                 rnd0 <= 0.5f ? PlayerGender.F : PlayerGender.M,
                 UnityEngine.Random.Range(1, 5),
-                (PlayerTint)UnityEngine.Random.Range(1, 8),
+                (PlayerTint) UnityEngine.Random.Range(1, 8),
                 rnd1 <= 0.2f,
                 rnd2 < 0.33f ? EndgameState.Unfinished : rnd2 < 0.66f ? EndgameState.Finished : EndgameState.FinishedWAllStars
             );

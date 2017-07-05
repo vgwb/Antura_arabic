@@ -30,7 +30,6 @@ namespace Antura.MinigamesCommon
             AppManager.I.GameLauncher.LaunchGame(MiniGameCode, config, true);
         }
     }
-
 }
 
 #endif

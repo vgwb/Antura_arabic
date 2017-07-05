@@ -12,13 +12,15 @@ namespace Antura.Core
         public static LogManager I;
 
         int _appSession;
+
         /// <summary>
         /// Gets or sets the session.
         /// </summary>
         /// <value>
         /// The session.
         /// </value>
-        public int AppSession {
+        public int AppSession
+        {
             get { return _appSession; }
             private set { _appSession = value; }
         }
@@ -69,11 +71,13 @@ namespace Antura.Core
         protected internal void LogMinigameScore(string playSession, MiniGameCode miniGameCode, int score)
         {
             EndMiniGame();
-            LogInfo(InfoEvent.GameEnd, JsonUtility.ToJson(new GameResultInfo() { Game = miniGameCode.ToString(), Result = score.ToString() }));
+            LogInfo(InfoEvent.GameEnd,
+                JsonUtility.ToJson(new GameResultInfo() {Game = miniGameCode.ToString(), Result = score.ToString()}));
 
-            float duration = (float)(endMiniGameDateTime - startMiniGameDateTime).TotalSeconds;
+            float duration = (float) (endMiniGameDateTime - startMiniGameDateTime).TotalSeconds;
             //Debug.LogError("DURATION MG: " + duration);
-            AppManager.I.Teacher.logAI.LogMiniGameScore(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, score, duration);
+            AppManager.I.Teacher.logAI.LogMiniGameScore(AppSession,
+                AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, score, duration);
         }
 
         struct GameResultInfo
@@ -85,17 +89,21 @@ namespace Antura.Core
         /// @note: deprecated (unless we re-add minigame direct logplay logging)
         protected internal void LogPlay(string playSession, MiniGameCode miniGameCode, List<Teacher.LogAI.PlayResultParameters> resultsList)
         {
-            AppManager.I.Teacher.logAI.LogPlay(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, resultsList);
+            AppManager.I.Teacher.logAI.LogPlay(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition,
+                miniGameCode, resultsList);
         }
 
-        protected internal void LogLearn(string playSession, MiniGameCode miniGameCode, List<Teacher.LogAI.LearnResultParameters> resultsList)
+        protected internal void LogLearn(string playSession, MiniGameCode miniGameCode,
+            List<Teacher.LogAI.LearnResultParameters> resultsList)
         {
-            AppManager.I.Teacher.logAI.LogLearn(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, resultsList);
+            AppManager.I.Teacher.logAI.LogLearn(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition,
+                miniGameCode, resultsList);
         }
 
         #endregion
 
         #region public API        
+
         /// <summary>
         /// Logs the play session score.
         /// </summary>
@@ -105,9 +113,10 @@ namespace Antura.Core
         {
             EndPlaySession();
 
-            float duration = (float)(endPlaySessionDateTime - startPlaySessionDateTime).TotalSeconds;
+            float duration = (float) (endPlaySessionDateTime - startPlaySessionDateTime).TotalSeconds;
             //Debug.LogError("DURATION PS: " + duration);
-            AppManager.I.Teacher.logAI.LogPlaySessionScore(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, score, duration);
+            AppManager.I.Teacher.logAI.LogPlaySessionScore(AppSession,
+                AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, score, duration);
         }
 
         /// <summary>
@@ -143,6 +152,7 @@ namespace Antura.Core
         {
             LogInfo(InfoEvent.AppSessionStart, "{\"AppSession\":\"" + AppSession + "\"}");
         }
+
         #endregion
     }
 }

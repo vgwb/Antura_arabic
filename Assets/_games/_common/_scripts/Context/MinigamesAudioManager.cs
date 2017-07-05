@@ -14,12 +14,13 @@ namespace Antura.MinigamesCommon
 
         public IAudioSource PlayLetterData(ILivingLetterData data, bool exclusive = true)
         {
-            if (data.DataType == LivingLetterDataType.Letter)
+            if (data.DataType == LivingLetterDataType.Letter) {
                 return AudioManager.I.PlayLetter(new LL_LetterData(data.Id).Data, exclusive);
-            else if (data.DataType == LivingLetterDataType.Word || data.DataType == LivingLetterDataType.Image)
+            } else if (data.DataType == LivingLetterDataType.Word || data.DataType == LivingLetterDataType.Image) {
                 return AudioManager.I.PlayWord(new LL_WordData(data.Id).Data, exclusive);
-            else if (data.DataType == LivingLetterDataType.Phrase)
+            } else if (data.DataType == LivingLetterDataType.Phrase) {
                 return AudioManager.I.PlayPhrase(new LL_PhraseData(data.Id).Data, exclusive);
+            }
             return null;
         }
 

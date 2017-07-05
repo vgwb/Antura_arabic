@@ -24,8 +24,7 @@ namespace Antura.Debugging
             difficulty = _difficulty;
 
             Title.text = _MiniGameInfo.data.Code.ToString().Replace(_MiniGameInfo.data.Main + "_", "");
-            if (_difficulty > 0)
-            {
+            if (_difficulty > 0) {
                 Title.text = "D: " + _difficulty;
             }
 
@@ -42,12 +41,9 @@ namespace Antura.Debugging
         {
             // Debug.Log(Title.text + " " + played);
             var colors = GetComponent<Button>().colors;
-            if (played)
-            {
+            if (played) {
                 colors.normalColor = Color.gray;
-            }
-            else
-            {
+            } else {
                 colors.normalColor = Color.white;
             }
             GetComponent<Button>().colors = colors;

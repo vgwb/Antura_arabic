@@ -21,8 +21,7 @@ namespace Antura.MinigamesAPI.Sample
             currentQuestion = -1;
 
             // 10 QuestionPacks
-            for (int i = 0; i < 32; i++)
-            {
+            for (int i = 0; i < 32; i++) {
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
@@ -30,25 +29,22 @@ namespace Antura.MinigamesAPI.Sample
                 //LL_WordData newWordData = AppManager.I.Teacher.GetRandomTestWordDataLL(new WordFilters(requireDiacritics: true));
 
                 //LL_WordData newWordData = new LL_WordData(AppManager.I.DB.GetWordDataById("wolf"));
-                
+
 
                 if (newWordData == null)
                     return;
 
-                foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, newWordData.Data))
-                {
+                foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, newWordData.Data)) {
                     correctAnswers.Add(new LL_LetterData(letterData.letter));
                 }
 
                 correctAnswers = correctAnswers.Distinct().ToList();
 
                 // At least 4 wrong letters
-                while (wrongAnswers.Count < 4)
-                {
+                while (wrongAnswers.Count < 4) {
                     var letter = AppManager.I.Teacher.GetRandomTestLetterLL();
 
-                    if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter))
-                    {
+                    if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter)) {
                         wrongAnswers.Add(letter);
                     }
                 }

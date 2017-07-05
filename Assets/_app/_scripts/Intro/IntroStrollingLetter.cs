@@ -16,6 +16,7 @@ namespace Antura.Intro
 
         // TODO refactor: the use of FSMs is not standardized across the codebase
         public IntroStrollingLetterWalkingState WalkingState { get; private set; }
+
         public IntroStrollingLetterIdleState IdleState { get; private set; }
         public IntroStrollingLetterFallingState FallingState { get; private set; }
         public IntroStrollingLetterHangingState HangingState { get; private set; }
@@ -26,8 +27,16 @@ namespace Antura.Intro
         Collider[] colliders;
 
         public IntroFactory factory;
-        public LettersWalkableArea walkableArea { get { return factory.walkableArea; } }
-        public AnturaRunnerController antura { get { return factory.antura; } }
+
+        public LettersWalkableArea walkableArea
+        {
+            get { return factory.walkableArea; }
+        }
+
+        public AnturaRunnerController antura
+        {
+            get { return factory.antura; }
+        }
 
         void Awake()
         {
@@ -48,8 +57,7 @@ namespace Antura.Intro
 
             // Just to be safe
             var currentState = GetCurrentState();
-            if (currentState != HangingState && currentState != FallingState)
-            {
+            if (currentState != HangingState && currentState != FallingState) {
                 var oldPos = transform.position;
 
                 if (oldPos.y != 0)
@@ -57,8 +65,7 @@ namespace Antura.Intro
                 transform.position = oldPos;
             }
 
-            if (Vector3.Distance(transform.position, antura.transform.position) < 15.0f)
-            {
+            if (Vector3.Distance(transform.position, antura.transform.position) < 15.0f) {
                 Scare(antura.transform.position, 5);
                 return;
             }
@@ -71,11 +78,9 @@ namespace Antura.Intro
 
         public bool Raycast(out float distance, out Vector3 position, Ray ray, float maxDistance)
         {
-            for (int i = 0, count = colliders.Length; i < count; ++i)
-            {
+            for (int i = 0, count = colliders.Length; i < count; ++i) {
                 RaycastHit info;
-                if (colliders[i].Raycast(ray, out info, maxDistance))
-                {
+                if (colliders[i].Raycast(ray, out info, maxDistance)) {
                     position = info.point;
                     distance = info.distance;
                     return true;
@@ -93,7 +98,7 @@ namespace Antura.Intro
 
         public IntroStrollingLetterState GetCurrentState()
         {
-            return (IntroStrollingLetterState)stateManager.CurrentState;
+            return (IntroStrollingLetterState) stateManager.CurrentState;
         }
 
         /// <summary>
@@ -119,8 +124,7 @@ namespace Antura.Intro
         {
             var currentData = area.GetActiveData();
 
-            if (currentData != null)
-            {
+            if (currentData != null) {
                 bool matching = GetComponent<LivingLetterController>().Data == currentData;
 
                 if (onDropped != null)

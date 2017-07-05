@@ -99,8 +99,7 @@ namespace Antura.Core
 
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
-            if (SceneTransitioner.IsShown)
-            {
+            if (SceneTransitioner.IsShown) {
                 AppManager.I.StartCoroutine(CloseSceneTransitionerCO(transitionCloseTime));
             }
 

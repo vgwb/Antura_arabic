@@ -8,7 +8,8 @@ using TMPro;
 class ReplaceTextForTextMeshPro : EditorWindow
 {
     [MenuItem("Tools/Antura/TMPro Utils/Select Text Components")]
-    public static void SelectText(MenuCommand command) {
+    public static void SelectText(MenuCommand command)
+    {
         Transform[] ts = FindObjectsOfType<Transform>();
         List<GameObject> selection = new List<GameObject>();
         foreach (Transform t in ts) {
@@ -21,7 +22,8 @@ class ReplaceTextForTextMeshPro : EditorWindow
     }
 
     [MenuItem("Tools/Antura/TMPro Utils/Convert selected Text -> TextMeshUGUI ")]
-    public static void TextMeshTransmorphSingle(MenuCommand command) {
+    public static void TextMeshTransmorphSingle(MenuCommand command)
+    {
         Text currentUIText = Selection.activeGameObject.GetComponent<Text>();
 
         TMP_FontAsset newFont = Resources.Load("Fonts/AmaticSC-Bold SDF", typeof(TMP_FontAsset)) as TMP_FontAsset;
@@ -45,7 +47,7 @@ class ReplaceTextForTextMeshPro : EditorWindow
             if (selectable.targetGraphic == currentUIText) {
                 targetGraphicRefs.Add(selectable);
             }
-        }          
+        }
         int fontSize = currentUIText.fontSize;
         FontStyle fontStyle = currentUIText.fontStyle;
         HorizontalWrapMode horizWrap = currentUIText.horizontalOverflow;
@@ -59,23 +61,23 @@ class ReplaceTextForTextMeshPro : EditorWindow
         TextMeshProUGUI textMesh = gameObject.AddComponent<TextMeshProUGUI>();
         if (fontMap.ContainsKey(font.fontNames[0])) {
             textMesh.font = fontMap[font.fontNames[0]];
-        }          
-        textMesh.fontSize = fontSize;      
+        }
+        textMesh.fontSize = fontSize;
         textMesh.fontStyle = FontStyle2TMProFontStyle(fontStyle);
         textMesh.enableWordWrapping = (horizWrap == HorizontalWrapMode.Wrap);
         textMesh.text = textValue;
         textMesh.alignment = TextAnchor2TMProTextAlignmentOptions(anchor);
         textMesh.color = color;
-        textMesh.lineSpacing = lineSpacing;          
+        textMesh.lineSpacing = lineSpacing;
 
         foreach (Selectable selectable in targetGraphicRefs) {
-            selectable.targetGraphic = textMesh;  
-        }      
-
+            selectable.targetGraphic = textMesh;
+        }
     }
 
     [MenuItem("Tools/Antura/TMPro Utils/Convert all Texts -> TextMeshUGUI ")]
-    public static void TextMeshTransmorphAll(MenuCommand command) {
+    public static void TextMeshTransmorphAll(MenuCommand command)
+    {
         Text[] texts = FindObjectsOfType<Text>();
 
         TMP_FontAsset newFont = Resources.Load("Fonts/Arial Latin SDF", typeof(TMP_FontAsset)) as TMP_FontAsset;
@@ -99,7 +101,7 @@ class ReplaceTextForTextMeshPro : EditorWindow
                 if (selectable.targetGraphic == text) {
                     targetGraphicRefs.Add(selectable);
                 }
-            }          
+            }
             int fontSize = text.fontSize;
             FontStyle fontStyle = text.fontStyle;
             HorizontalWrapMode horizWrap = text.horizontalOverflow;
@@ -113,22 +115,23 @@ class ReplaceTextForTextMeshPro : EditorWindow
             TextMeshProUGUI textMesh = gameObject.AddComponent<TextMeshProUGUI>();
             if (fontMap.ContainsKey(font.fontNames[0])) {
                 textMesh.font = fontMap[font.fontNames[0]];
-            }          
-            textMesh.fontSize = fontSize;      
+            }
+            textMesh.fontSize = fontSize;
             textMesh.fontStyle = FontStyle2TMProFontStyle(fontStyle);
             textMesh.enableWordWrapping = (horizWrap == HorizontalWrapMode.Wrap);
             textMesh.text = textValue;
             textMesh.alignment = TextAnchor2TMProTextAlignmentOptions(anchor);
             textMesh.color = color;
-            textMesh.lineSpacing = lineSpacing;          
+            textMesh.lineSpacing = lineSpacing;
 
             foreach (Selectable selectable in targetGraphicRefs) {
-                selectable.targetGraphic = textMesh;  
-            }      
+                selectable.targetGraphic = textMesh;
+            }
         }
     }
 
-    private static TMPro.FontStyles FontStyle2TMProFontStyle(FontStyle style) {
+    private static TMPro.FontStyles FontStyle2TMProFontStyle(FontStyle style)
+    {
         switch (style) {
             case FontStyle.Bold:
                 return TMPro.FontStyles.Bold;
@@ -137,13 +140,14 @@ class ReplaceTextForTextMeshPro : EditorWindow
             case FontStyle.Italic:
                 return TMPro.FontStyles.Italic;
             case FontStyle.BoldAndItalic:
-                return TMPro.FontStyles.Italic;    // No choice for Bold & Italic
+                return TMPro.FontStyles.Italic; // No choice for Bold & Italic
             default:
                 return TMPro.FontStyles.Normal;
         }
     }
 
-    private static TMPro.TextAlignmentOptions TextAnchor2TMProTextAlignmentOptions(TextAnchor anchor) {
+    private static TMPro.TextAlignmentOptions TextAnchor2TMProTextAlignmentOptions(TextAnchor anchor)
+    {
         switch (anchor) {
             case TextAnchor.LowerCenter:
                 return TMPro.TextAlignmentOptions.Bottom;
@@ -169,17 +173,18 @@ class ReplaceTextForTextMeshPro : EditorWindow
     }
 
     [MenuItem("Tools/Antura/TMPro Utils/Log Text Properties")]
-    public static void LogTextFontProperties(MenuCommand command) {
+    public static void LogTextFontProperties(MenuCommand command)
+    {
         TMP_FontAsset newFont = Resources.Load("Fonts/Arial Latin SDF", typeof(TMP_FontAsset)) as TMP_FontAsset;
         if (newFont == null)
             Debug.Log("Not so awesome...");
 
         var selected = Selection.activeObject;
         if (selected && selected is GameObject) {
-            Text text = ((GameObject)selected).GetComponent<Text>();
+            Text text = ((GameObject) selected).GetComponent<Text>();
             if (text != null) {
                 Debug.Log("Font is = " + text.font.fontNames[0] + "\n" +
-                    "Style is = " + text.fontStyle
+                          "Style is = " + text.fontStyle
                 );
                 Selectable[] selectables = FindObjectsOfType<Selectable>();
                 Debug.Log("Number of Selectables found: " + selectables.Length);
@@ -188,11 +193,12 @@ class ReplaceTextForTextMeshPro : EditorWindow
                     if (selectable.targetGraphic == text) {
                         Debug.Log("Selectable targetGraphic found: " + selectable.name + " (" + selectable.GetType() + ")");
                     }
-                }          
+                }
             }
         }
     }
 
-    void OnGUI() {
+    void OnGUI()
+    {
     }
 }

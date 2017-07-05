@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace Antura.MinigamesAPI
 {
-
     /// <summary>
     /// Data Pack for "find right question" mechanics.
     /// One data question data, many right answer data, many answer data.
@@ -22,8 +21,10 @@ namespace Antura.MinigamesAPI
         /// <param name="questionSentence">The question sentence.</param>
         /// <param name="wrongAnswersSentence">The wrong answers sentence.</param>
         /// <param name="correctAnswersSentence">The correct answers sentence.</param>
-        public FindRightDataQuestionPack(ILivingLetterData questionSentence, IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence) {
-            this.questionsSentences = new List<ILivingLetterData>() { questionSentence };
+        public FindRightDataQuestionPack(ILivingLetterData questionSentence, IEnumerable<ILivingLetterData> wrongAnswersSentence,
+            IEnumerable<ILivingLetterData> correctAnswersSentence)
+        {
+            this.questionsSentences = new List<ILivingLetterData>() {questionSentence};
             this.wrongAnswersSentence = wrongAnswersSentence;
             this.correctAnswersSentence = correctAnswersSentence;
         }
@@ -34,27 +35,32 @@ namespace Antura.MinigamesAPI
         /// <param name="questionsSentences">The questions sentences.</param>
         /// <param name="wrongAnswersSentence">The wrong answers sentence.</param>
         /// <param name="correctAnswersSentence">The correct answers sentence.</param>
-        public FindRightDataQuestionPack(IEnumerable<ILivingLetterData> questionsSentences, IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence) {
+        public FindRightDataQuestionPack(IEnumerable<ILivingLetterData> questionsSentences,
+            IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence)
+        {
             this.questionsSentences = questionsSentences;
             this.wrongAnswersSentence = wrongAnswersSentence;
             this.correctAnswersSentence = correctAnswersSentence;
         }
 
-        ILivingLetterData IQuestionPack.GetQuestion() {
+        ILivingLetterData IQuestionPack.GetQuestion()
+        {
             return questionsSentences.First();
         }
 
-        public IEnumerable<ILivingLetterData> GetQuestions() {
+        public IEnumerable<ILivingLetterData> GetQuestions()
+        {
             return questionsSentences;
         }
 
-        IEnumerable<ILivingLetterData> IQuestionPack.GetWrongAnswers() {
+        IEnumerable<ILivingLetterData> IQuestionPack.GetWrongAnswers()
+        {
             return wrongAnswersSentence;
         }
 
-        public IEnumerable<ILivingLetterData> GetCorrectAnswers() {
+        public IEnumerable<ILivingLetterData> GetCorrectAnswers()
+        {
             return correctAnswersSentence;
         }
-
     }
 }

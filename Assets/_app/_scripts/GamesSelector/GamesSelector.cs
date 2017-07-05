@@ -23,16 +23,23 @@ namespace Antura.GamesSelector
         #region Events
 
         public static event Action OnComplete;
-        static void DispatchOnComplete() { if (OnComplete != null) OnComplete(); }
+
+        static void DispatchOnComplete()
+        {
+            if (OnComplete != null) OnComplete();
+        }
 
         #endregion
 
         [Tooltip("Automatically grabs the minigames list from the teacher on startup, unless Show was called directly")]
         public bool AudoLoadMinigamesOnStartup = true;
+
         [Tooltip("Distance to keep from camera")]
         public float DistanceFromCamera = 14;
+
         [Tooltip("Delay between the moment the last bubble is opened and the OnComplete event is dispatched")]
         public float EndDelay = 2;
+
         [Header("Debug")]
         public bool SimulateForDebug; // If TRUE creates games list for debug
 
@@ -63,7 +70,6 @@ namespace Antura.GamesSelector
 
         void Start()
         {
-
             if (mainBubble == null) {
                 mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();
                 mainBubble.gameObject.SetActive(false);
@@ -96,12 +102,13 @@ namespace Antura.GamesSelector
             if (Input.GetKeyDown(KeyCode.R)) {
                 Destroy(this.gameObject);
                 instance = null;
-                Show(new List<MiniGameData>() {
-                    new MiniGameData() { Main = MiniGameCode.Maze.ToString(), Variation = "letters" },
-                    new MiniGameData() { Main = MiniGameCode.DancingDots.ToString(), Variation = "words" },
-                    new MiniGameData() { Main = MiniGameCode.MakeFriends.ToString(), Variation = "spelling" },
-                    new MiniGameData() { Main = MiniGameCode.Egg_letters.ToString(), Variation = "sunmoon" },
-                    new MiniGameData() { Main = MiniGameCode.DancingDots.ToString(), Variation = "counting" }
+                Show(new List<MiniGameData>()
+                {
+                    new MiniGameData() {Main = MiniGameCode.Maze.ToString(), Variation = "letters"},
+                    new MiniGameData() {Main = MiniGameCode.DancingDots.ToString(), Variation = "words"},
+                    new MiniGameData() {Main = MiniGameCode.MakeFriends.ToString(), Variation = "spelling"},
+                    new MiniGameData() {Main = MiniGameCode.Egg_letters.ToString(), Variation = "sunmoon"},
+                    new MiniGameData() {Main = MiniGameCode.DancingDots.ToString(), Variation = "counting"}
                 });
                 return;
             }
@@ -209,7 +216,7 @@ namespace Antura.GamesSelector
             float startX = -area * 0.5f + bubbleW * 0.5f;
             for (int i = 0; i < totBubbles; ++i) {
                 MiniGameData mgData = games[i];
-                GamesSelectorBubble bubble = i == 0 ? mainBubble : (GamesSelectorBubble)Instantiate(mainBubble, this.transform);
+                GamesSelectorBubble bubble = i == 0 ? mainBubble : (GamesSelectorBubble) Instantiate(mainBubble, this.transform);
                 bubble.Setup(mgData.GetIconResourcePath(), mgData.GetBadgeIconResourcePath(), startX + (bubbleW + bubblesDist) * i);
                 bubbles.Add(bubble);
             }

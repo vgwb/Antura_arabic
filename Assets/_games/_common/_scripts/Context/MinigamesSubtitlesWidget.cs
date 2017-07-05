@@ -7,7 +7,8 @@ namespace Antura.MinigamesCommon
     /// </summary>
     public class MinigamesSubtitlesWidget : ISubtitlesWidget
     {
-        public void DisplaySentence(Database.LocalizationDataId text, float enterDuration , bool showSpeaker, System.Action onSentenceCompleted)
+        public void DisplaySentence(Database.LocalizationDataId text, float enterDuration, bool showSpeaker,
+            System.Action onSentenceCompleted)
         {
             WidgetSubtitles.I.DisplaySentence(text, enterDuration, showSpeaker, onSentenceCompleted);
         }

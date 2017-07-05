@@ -19,8 +19,7 @@ namespace Antura.Environment
             foreach (Transform children in transform)
                 DestroyImmediate(children.gameObject);
 
-            if (prefab != null)
-            {
+            if (prefab != null) {
                 instance = Instantiate(prefab);
                 instance.hideFlags = HideFlags.DontSave;
                 instance.transform.SetParent(transform);
@@ -32,8 +31,7 @@ namespace Antura.Environment
 
         public void Start()
         {
-            if (prefabSet != null)
-            {
+            if (prefabSet != null) {
                 var prefab = WorldManager.I.GetPrefab(prefabSet);
 
                 UpdatePrefab(prefab);
@@ -44,10 +42,8 @@ namespace Antura.Environment
 #if UNITY_EDITOR
         void Update()
         {
-            if (!Application.isPlaying && prefabSet != null)
-            {
-                if (testWorld != lastTestWorld || prefabSet != lastPrefabSet)
-                {
+            if (!Application.isPlaying && prefabSet != null) {
+                if (testWorld != lastTestWorld || prefabSet != lastPrefabSet) {
                     lastTestWorld = testWorld;
                     lastPrefabSet = prefabSet;
 

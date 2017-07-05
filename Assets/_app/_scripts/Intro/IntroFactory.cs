@@ -28,7 +28,8 @@ namespace Antura.Intro
 
         Queue<IntroStrollingLetter> toDestroy = new Queue<IntroStrollingLetter>();
 
-        [HideInInspector] public bool StartSpawning = false;
+        [HideInInspector]
+        public bool StartSpawning = false;
 
         public void GetNearLetters(List<IntroStrollingLetter> output, Vector3 position, float radius)
         {

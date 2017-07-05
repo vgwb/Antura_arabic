@@ -16,6 +16,7 @@ namespace Antura.Rewards
     {
         [Header("Setup")]
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
+
         [Header("References")]
         public AnturaAnimationController AnturaAnimController;
 

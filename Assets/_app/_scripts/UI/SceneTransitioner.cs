@@ -15,8 +15,10 @@ namespace Antura.UI
     {
         [Header("Options")]
         public float AnimationDuration = 0.75f;
+
         [Header("References")]
         public Image MaskCover;
+
         public Image Icon, Logo, BadgeIcon;
         public RectTransform Badge;
 

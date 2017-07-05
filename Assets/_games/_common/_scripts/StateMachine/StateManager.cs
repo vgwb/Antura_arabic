@@ -7,20 +7,16 @@
     public class StateManager
     {
         // Use to prevent recursive calls to ExitState, when the transition happens in ExitState
-        bool isInExitTransition = false;
+        private bool isInExitTransition;
 
-        IState currentState;
+        private IState currentState;
+
         public IState CurrentState
         {
-            get
-            {
-                return currentState;
-            }
+            get { return currentState; }
 
-            set
-            {
-                if (!isInExitTransition && currentState != null)
-                {
+            set {
+                if (!isInExitTransition && currentState != null) {
                     isInExitTransition = true;
                     currentState.ExitState();
                     isInExitTransition = false;
@@ -28,21 +24,24 @@
 
                 currentState = value;
 
-                if (currentState != null)
+                if (currentState != null) {
                     currentState.EnterState();
+                }
             }
         }
 
         public void Update(float delta)
         {
-            if (currentState != null)
+            if (currentState != null) {
                 currentState.Update(delta);
+            }
         }
 
         public void UpdatePhysics(float delta)
         {
-            if (currentState != null)
+            if (currentState != null) {
                 currentState.UpdatePhysics(delta);
+            }
         }
     }
 }

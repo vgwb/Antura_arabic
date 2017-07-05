@@ -24,7 +24,8 @@ namespace Antura.GamesSelector
             // Fill with data
             JourneyPosition journeyPos = AppManager.I.Player.CurrentJourneyPosition;
             PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.ToStringId());
-            LearningBlockData learningBlock = AppManager.I.DB.GetLearningBlockDataById(playSessionData.Stage + "." + playSessionData.LearningBlock.ToString());
+            LearningBlockData learningBlock =
+                AppManager.I.DB.GetLearningBlockDataById(playSessionData.Stage + "." + playSessionData.LearningBlock.ToString());
             TitleCode.text = journeyPos.ToString();
             TitleArabic.text = learningBlock.Title_Ar;
             TitleEnglish.text = learningBlock.Title_En;
@@ -62,6 +63,5 @@ namespace Antura.GamesSelector
                 star.transform.parent.GetComponent<Image>().SetAlpha(i < _tot ? 1f : 0.3f);
             }
         }
-
     }
 }

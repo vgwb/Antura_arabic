@@ -12,12 +12,13 @@ namespace Antura.ReservedArea
     {
         [Header("References")]
         public TextRender PlayerInfoText;
+
         public GameObject PlayerIconContainer;
         public GameObject PlayerIconPrefab;
         public GameObject ProfileCommandsContainer;
         public GameObject pleaseWaitPanel;
 
-        string SelectedPlayerId;
+        private string SelectedPlayerId;
 
         void Start()
         {
@@ -103,17 +104,18 @@ namespace Antura.ReservedArea
             if (AppManager.I.DB.ExportDatabaseOfPlayer(SelectedPlayerId)) {
                 string dbPath;
                 if (Application.platform == RuntimePlatform.IPhonePlayer) {
-                    dbPath = string.Format(@"{0}/{1}", AppConstants.DbExportFolder, AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
+                    dbPath = string.Format(@"{0}/{1}", AppConstants.DbExportFolder,
+                        AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
                     GlobalUI.ShowPrompt("", "Get the DB from iTunes app:\n" + dbPath);
                 } else {
                     // Android or Desktop
-                    dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, AppConstants.DbExportFolder, AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
+                    dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, AppConstants.DbExportFolder,
+                        AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
                     GlobalUI.ShowPrompt("", "The DB is here:\n" + dbPath);
                 }
             } else {
                 GlobalUI.ShowPrompt("", "Could not export the database.\n");
             }
-
         }
 
         public void OnCreateDemoPlayer()
@@ -145,8 +147,8 @@ namespace Antura.ReservedArea
             var maxJourneyPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
             yield return StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
             AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
-            AppManager.I.Player.CheckGameFinished();                // force check
-            AppManager.I.Player.CheckGameFinishedWithAllStars();    // force check
+            AppManager.I.Player.CheckGameFinished(); // force check
+            AppManager.I.Player.CheckGameFinishedWithAllStars(); // force check
             Rewards.RewardSystemManager.UnlockAllRewards();
 
             ResetAll();
@@ -180,8 +182,11 @@ namespace Antura.ReservedArea
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
                 if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
-                    int score = useBestScores ? AppConstants.MaximumMinigameScore : Random.Range(AppConstants.MinimumMinigameScore, AppConstants.MaximumMinigameScore);
-                    logPlaySessionScoreParamsList.Add(new LogPlaySessionScoreParams(allPlaySessionInfos[i].data.GetJourneyPosition(), score, 12f));
+                    int score = useBestScores
+                        ? AppConstants.MaximumMinigameScore
+                        : Random.Range(AppConstants.MinimumMinigameScore, AppConstants.MaximumMinigameScore);
+                    logPlaySessionScoreParamsList.Add(new LogPlaySessionScoreParams(allPlaySessionInfos[i].data.GetJourneyPosition(), score,
+                        12f));
                     //Debug.Log("Add play session score for " + allPlaySessionInfos[i].data.Id);
                 }
             }
@@ -194,8 +199,11 @@ namespace Antura.ReservedArea
             var logMiniGameScoreParamses = new List<LogMiniGameScoreParams>();
             var allMiniGameInfo = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
             for (int i = 0; i < allMiniGameInfo.Count; i++) {
-                int score = useBestScores ? AppConstants.MaximumMinigameScore : Random.Range(AppConstants.MinimumMinigameScore, AppConstants.MaximumMinigameScore);
-                logMiniGameScoreParamses.Add(new LogMiniGameScoreParams(JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, score, 12f));
+                int score = useBestScores
+                    ? AppConstants.MaximumMinigameScore
+                    : Random.Range(AppConstants.MinimumMinigameScore, AppConstants.MaximumMinigameScore);
+                logMiniGameScoreParamses.Add(new LogMiniGameScoreParams(JourneyPosition.InitialJourneyPosition,
+                    allMiniGameInfo[i].data.Code, score, 12f));
                 //Debug.Log("Add minigame score " + i);
             }
             logAi.LogMiniGameScores(0, logMiniGameScoreParamses);
@@ -234,7 +242,6 @@ namespace Antura.ReservedArea
                     logAi.LogLearn(fakeAppSession, maxPlaySession, MiniGameCode.Assessment_LetterForm, resultsList);
                 }
             }*/
-
         }
 
         #endregion

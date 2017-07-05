@@ -9,7 +9,6 @@ namespace Antura.Teacher
     {
         List<QuestionPackData> CreateAllQuestionPacks();
 
-        QuestionBuilderParameters Parameters{ get; }
+        QuestionBuilderParameters Parameters { get; }
     }
-
 }

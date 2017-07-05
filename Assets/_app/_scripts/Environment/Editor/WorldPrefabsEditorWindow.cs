@@ -10,13 +10,13 @@ public class WorldPrefabsEditorWindow : EditorWindow
     static void Init()
     {
         // Get existing open window or if none, make a new one:
-        WorldPrefabsEditorWindow window = (WorldPrefabsEditorWindow)EditorWindow.GetWindow(typeof(WorldPrefabsEditorWindow));
+        WorldPrefabsEditorWindow window = (WorldPrefabsEditorWindow) EditorWindow.GetWindow(typeof(WorldPrefabsEditorWindow));
         window.Show();
     }
 
     void OnGUI()
     {
-        world = (WorldID)EditorGUILayout.EnumPopup(world);
+        world = (WorldID) EditorGUILayout.EnumPopup(world);
 
         if (world != lastWorld) {
             var prefabs = FindObjectsOfType<AutoWorldPrefab>();

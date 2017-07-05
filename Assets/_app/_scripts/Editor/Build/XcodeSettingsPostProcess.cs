@@ -10,7 +10,6 @@ public class XcodeSettingsPostProcess
     [PostProcessBuildAttribute(0)]
     public static void OnPostprocessBuild(BuildTarget buildTarget, string pathToBuiltProject)
     {
-
         // Stop processing if targe is NOT iOS
         if (buildTarget != BuildTarget.iOS)
             return;

@@ -23,8 +23,10 @@ namespace Antura.UI
 
         [Header("Options")]
         public bool timeIndependent = true;
+
         [Header("References")]
         public GameObject Window;
+
         public GameObject TitleGO;
         public GameObject DrawingImageGO;
         public GameObject WordTextGO;
@@ -44,8 +46,7 @@ namespace Antura.UI
         {
             I = this;
 
-            if (ActivateTheseOnAwake != null)
-            {
+            if (ActivateTheseOnAwake != null) {
                 foreach (GameObject go in ActivateTheseOnAwake) go.SetActive(true);
             }
 
@@ -79,16 +80,13 @@ namespace Antura.UI
             GlobalUI.Init();
 
             IsShown = _doShow;
-            if (_doShow)
-            {
+            if (_doShow) {
                 clicked = false;
                 if (_immediate)
                     I.showTween.Complete();
                 else
                     I.showTween.PlayForward();
-            }
-            else
-            {
+            } else {
                 if (_immediate)
                     I.showTween.Rewind();
                 else
@@ -139,8 +137,7 @@ namespace Antura.UI
             currentCallback = callback;
             ButtonGO.gameObject.SetActive(callback != null);
 
-            if (image2show != null)
-            {
+            if (image2show != null) {
                 TutorialImageGO.GetComponent<Image>().sprite = image2show;
                 TutorialImageGO.SetActive(true);
             }
@@ -163,8 +160,7 @@ namespace Antura.UI
             MarkOK.SetActive(result);
             MarkKO.SetActive(!result);
 
-            if (image2show != null)
-            {
+            if (image2show != null) {
                 TutorialImageGO.GetComponent<Image>().sprite = image2show;
                 TutorialImageGO.SetActive(true);
             }
@@ -184,15 +180,12 @@ namespace Antura.UI
 
         public void SetImage(Sprite image2show)
         {
-            if (image2show != null)
-            {
+            if (image2show != null) {
                 TutorialImageGO.GetComponent<Image>().sprite = image2show;
                 TutorialImageGO.SetActive(true);
-            }
-            else
+            } else
                 TutorialImageGO.SetActive(false);
         }
-
 
 
         public void ShowSentenceAndWord(Action callback, Database.LocalizationDataId SentenceId, LL_WordData wordData)
@@ -273,23 +266,17 @@ namespace Antura.UI
 
         public void SetWord(string imageId, LL_WordData wordData)
         {
-            if (wordData == null)
-            {
+            if (wordData == null) {
                 WordTextGO.SetActive(false);
-            }
-            else
-            {
+            } else {
                 WordTextGO.SetActive(true);
                 WordTextGO.GetComponent<TextRender>().SetLetterData(wordData);
             }
 
-            if (!imageId.IsNullOrEmpty())
-            {
+            if (!imageId.IsNullOrEmpty()) {
                 DrawingImageGO.SetActive(true);
                 DrawingImageGO.GetComponent<TextMeshProUGUI>().text = imageId;
-            }
-            else
-            {
+            } else {
                 DrawingImageGO.SetActive(false);
             }
         }

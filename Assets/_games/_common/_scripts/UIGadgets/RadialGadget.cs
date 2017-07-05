@@ -10,13 +10,14 @@ namespace Antura.MinigamesCommon
         public Image Radial;
 
         public bool IsPulsing { get; private set; }
-        Tween pulseTween;
+        private Tween pulseTween;
 
         #region Unity
 
         void Awake()
         {
-            pulseTween = Radial.transform.DOScale(Radial.transform.localScale * 1.05f, 0.3f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo)
+            pulseTween = Radial.transform.DOScale(Radial.transform.localScale * 1.05f, 0.3f).SetEase(Ease.InOutQuad)
+                .SetLoops(-1, LoopType.Yoyo)
                 .SetAutoKill(false).Pause();
         }
 

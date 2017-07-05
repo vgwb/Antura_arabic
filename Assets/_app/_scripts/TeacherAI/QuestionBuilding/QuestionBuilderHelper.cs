@@ -8,10 +8,9 @@ namespace Antura.Teacher
     /// </summary>
     public static class QuestionBuilderHelper
     {
-
         public static void SortPacksByDifficulty(List<QuestionPackData> packs)
         {
-            packs.Sort((x, y) => (int)(GetAverageIntrinsicDifficulty(x) - GetAverageIntrinsicDifficulty(y)));
+            packs.Sort((x, y) => (int) (GetAverageIntrinsicDifficulty(x) - GetAverageIntrinsicDifficulty(y)));
         }
 
         private static float GetAverageIntrinsicDifficulty(QuestionPackData pack)
@@ -24,12 +23,12 @@ namespace Antura.Teacher
 
             if (pack.questions != null && pack.questions.Count > 0)
             {
-                foreach (var q in pack.questions) qDiff += ((IVocabularyData)q).GetIntrinsicDifficulty();
+                foreach (var q in pack.questions) qDiff += ((IVocabularyData) q).GetIntrinsicDifficulty();
                 qDiff /= pack.questions.Count;
             }
             if (pack.question != null)
             {
-                qDiff += ((IVocabularyData)pack.question).GetIntrinsicDifficulty();
+                qDiff += ((IVocabularyData) pack.question).GetIntrinsicDifficulty();
             }
             else
             {
@@ -38,7 +37,10 @@ namespace Antura.Teacher
 
             if (pack.correctAnswers.Count > 0)
             {
-                foreach (var c in pack.correctAnswers) cDiff += ((IVocabularyData)c).GetIntrinsicDifficulty();
+                foreach (var c in pack.correctAnswers)
+                {
+                    cDiff += ((IVocabularyData) c).GetIntrinsicDifficulty();
+                }
                 cDiff /= pack.correctAnswers.Count;
             }
             else
@@ -50,7 +52,5 @@ namespace Antura.Teacher
             //UnityEngine.Debug.Log("Pack " + pack + " diff: " + diff);
             return diff;
         }
-
     }
-
 }

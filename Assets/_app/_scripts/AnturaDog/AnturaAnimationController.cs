@@ -18,10 +18,8 @@ namespace Antura.Dog
         public AnturaAnimationStates State
         {
             get { return state; }
-            set
-            {
-                if (state != value)
-                {
+            set {
+                if (state != value) {
                     var oldState = state;
                     state = value;
                     OnStateChanged(oldState, state);
@@ -48,8 +46,7 @@ namespace Antura.Dog
         public bool IsAngry
         {
             get { return isAngry; }
-            set
-            {
+            set {
                 isAngry = value;
                 animator.SetBool("angry", value);
             }
@@ -61,8 +58,7 @@ namespace Antura.Dog
         public bool IsExcited
         {
             get { return isExcited; }
-            set
-            {
+            set {
                 isExcited = value;
                 animator.SetBool("excited", value);
             }
@@ -73,8 +69,7 @@ namespace Antura.Dog
         public bool IsSad
         {
             get { return isSad; }
-            set
-            {
+            set {
                 isSad = value;
                 animator.SetBool("sad", value);
             }
@@ -109,10 +104,8 @@ namespace Antura.Dog
         {
             onSniffEndedCallback = onSniffEnded;
             onSniffStartedCallback = onSniffStarted;
-            if (State != AnturaAnimationStates.idle)
-            {
-                if (!hasToGoBackState)
-                {
+            if (State != AnturaAnimationStates.idle) {
+                if (!hasToGoBackState) {
                     backState = State;
                 }
                 State = AnturaAnimationStates.idle;
@@ -126,12 +119,9 @@ namespace Antura.Dog
         {
             onShoutStartedCallback = onShoutStarted;
             animator.SetFloat("random", Random.value);
-            if (State == AnturaAnimationStates.idle)
-            {
+            if (State == AnturaAnimationStates.idle) {
                 animator.SetTrigger("doShout");
-            }
-            else
-            {
+            } else {
                 animator.SetTrigger("doShoutAdditive");
             }
         }
@@ -149,22 +139,17 @@ namespace Antura.Dog
 
         public void DoSpit(bool openMouth)
         {
-            if (State != AnturaAnimationStates.idle)
-            {
-                if (!hasToGoBackState)
-                {
+            if (State != AnturaAnimationStates.idle) {
+                if (!hasToGoBackState) {
                     backState = State;
                 }
                 State = AnturaAnimationStates.idle;
                 hasToGoBackState = true;
             }
 
-            if (openMouth)
-            {
+            if (openMouth) {
                 animator.SetTrigger("doSpitOpen");
-            }
-            else
-            {
+            } else {
                 animator.SetTrigger("doSpitClosed");
             }
         }
@@ -178,10 +163,8 @@ namespace Antura.Dog
         public void OnJumpStart()
         {
             if (State != AnturaAnimationStates.idle &&
-                State != AnturaAnimationStates.walking)
-            {
-                if (!hasToGoBackState)
-                {
+                State != AnturaAnimationStates.walking) {
+                if (!hasToGoBackState) {
                     backState = State;
                 }
                 State = AnturaAnimationStates.idle;
@@ -245,8 +228,7 @@ namespace Antura.Dog
             State = AnturaAnimationStates.walking;
             SetWalkingSpeed(RUN_SPEED);
 
-            if (onChargeEnded != null)
-            {
+            if (onChargeEnded != null) {
                 onChargeEnded();
             }
             onChargeEnded = null;
@@ -256,10 +238,8 @@ namespace Antura.Dog
 
         Animator animator
         {
-            get
-            {
-                if (!animator_)
-                {
+            get {
+                if (!animator_) {
                     animator_ = GetComponentInChildren<Animator>();
                 }
                 return animator_;
@@ -281,24 +261,21 @@ namespace Antura.Dog
 
         void OnSniffStart()
         {
-            if (onSniffStartedCallback != null)
-            {
+            if (onSniffStartedCallback != null) {
                 onSniffStartedCallback();
             }
         }
 
         void OnSniffEnd()
         {
-            if (onSniffEndedCallback != null)
-            {
+            if (onSniffEndedCallback != null) {
                 onSniffEndedCallback();
             }
         }
 
         void OnStateChanged(AnturaAnimationStates oldState, AnturaAnimationStates newState)
         {
-            if (newState != AnturaAnimationStates.walking)
-            {
+            if (newState != AnturaAnimationStates.walking) {
                 animator.SetBool("slipping", false);
             }
 
@@ -314,8 +291,7 @@ namespace Antura.Dog
             animator.SetBool("dancing", false);
             animator.SetBool("bitingTail", false);
 
-            switch (newState)
-            {
+            switch (newState) {
                 case AnturaAnimationStates.idle:
                     animator.SetBool("idle", true);
                     break;
@@ -374,8 +350,7 @@ namespace Antura.Dog
 
         void OnAnimationJumpGrab()
         {
-            if (onGrabbed != null)
-            {
+            if (onGrabbed != null) {
                 onGrabbed();
             }
         }
@@ -390,8 +365,7 @@ namespace Antura.Dog
         /// </summary>
         void OnActionCompleted()
         {
-            if (hasToGoBackState)
-            {
+            if (hasToGoBackState) {
                 hasToGoBackState = false;
                 State = backState;
             }

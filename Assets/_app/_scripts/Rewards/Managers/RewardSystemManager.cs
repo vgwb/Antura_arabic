@@ -13,18 +13,21 @@ namespace Antura.Rewards
 {
     public static class RewardSystemManager
     {
-
         #region CONST
+
         public const string ANTURA_REWARDS_CONFIG_PATH = "Configs/" + "AnturaRewardsConfig";
         public const string COLOR_PAIRS_CONFIG_PATH = "Configs/" + "ColorPairs";
         public const string ANTURA_REWARDS_PREFABS_PATH = "Prefabs/Rewards/";
+
         /// <summary>
         /// The maximum rewards unlockable for playsession.
         /// </summary>
         public const int MaxRewardsUnlockableForPlaysession = 2;
+
         #endregion
 
         #region Configurations
+
         /// <summary>
         /// The configuration
         /// </summary>
@@ -45,7 +48,8 @@ namespace Antura.Rewards
         /// Gets the total rewars count. Any type with any color variation available in game.
         /// </summary>
         /// <returns></returns>
-        public static int GetTotalRewardsCount() {
+        public static int GetTotalRewardsCount()
+        {
             int returnInt = 0;
             returnInt += GetConfig().Rewards.Count * GetConfig().RewardsColorPairs.Count;
             returnInt += GetConfig().RewardsDecal.Count * GetConfig().RewardsDecalColor.Count;
@@ -57,7 +61,8 @@ namespace Antura.Rewards
         /// Gets the unlocked reward count for actual player. 0 if acutal player is null.
         /// </summary>
         /// <returns></returns>
-        public static int GetUnlockedRewardsCount() {
+        public static int GetUnlockedRewardsCount()
+        {
             if (AppManager.I.Player != null)
                 return AppManager.I.Player.RewardsUnlocked.Count;
             else
@@ -82,8 +87,8 @@ namespace Antura.Rewards
             TextAsset configData = Resources.Load(ANTURA_REWARDS_CONFIG_PATH) as TextAsset;
             string configString = configData.text;
             config = JsonUtility.FromJson<RewardConfig>(configString);
-
         }
+
         #endregion
 
         #region API
@@ -97,7 +102,8 @@ namespace Antura.Rewards
         /// <param name="_parentsTransForModels">The parents trans for models.</param>
         /// <param name="_categoryRewardId">The category reward identifier.</param>
         /// <returns></returns>
-        public static List<RewardItem> GetRewardItemsByRewardType(RewardTypes _rewardType, List<Transform> _parentsTransForModels, string _categoryRewardId = "")
+        public static List<RewardItem> GetRewardItemsByRewardType(RewardTypes _rewardType, List<Transform> _parentsTransForModels,
+            string _categoryRewardId = "")
         {
             List<RewardItem> returnList = new List<RewardItem>();
             /// TODO: logic
@@ -107,11 +113,14 @@ namespace Antura.Rewards
                     // Filter from unlocked elements (only items with this category and only one for itemID)
                     List<Reward> rewards = GetConfig().GetClone().Rewards;
                     foreach (var item in rewards.FindAll(r => r.Category == _categoryRewardId)) {
-                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetRewardCategory() == _categoryRewardId).Exists(ur => ur.ItemId == item.ID)) {
-                            returnList.Add(new RewardItem() {
+                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetRewardCategory() == _categoryRewardId)
+                            .Exists(ur => ur.ItemId == item.ID)) {
+                            returnList.Add(new RewardItem()
+                            {
                                 ID = item.ID,
                                 IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
-                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures.Exists(f => f.ItemId == item.ID) });
+                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures.Exists(f => f.ItemId == item.ID)
+                            });
                         } else {
                             returnList.Add(null);
                         }
@@ -126,8 +135,10 @@ namespace Antura.Rewards
                 case RewardTypes.texture:
                     // Filter from unlocked elements (only one for itemID)
                     foreach (var item in GetConfig().RewardsTile) {
-                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.texture).Exists(ur => ur.ItemId == item.ID)) {
-                            returnList.Add(new RewardItem() {
+                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.texture)
+                            .Exists(ur => ur.ItemId == item.ID)) {
+                            returnList.Add(new RewardItem()
+                            {
                                 ID = item.ID,
                                 IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
                                 IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemId == item.ID
@@ -148,11 +159,14 @@ namespace Antura.Rewards
                 case RewardTypes.decal:
                     // Filter from unlocked elements (only one for itemID)
                     foreach (var item in GetConfig().RewardsDecal) {
-                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.decal).Exists(ur => ur.ItemId == item.ID)) {
-                            returnList.Add(new RewardItem() {
+                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.decal)
+                            .Exists(ur => ur.ItemId == item.ID)) {
+                            returnList.Add(new RewardItem()
+                            {
                                 ID = item.ID,
                                 IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
-                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture.ItemId == item.ID });
+                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture.ItemId == item.ID
+                            });
                         } else {
                             returnList.Add(null);
                         }
@@ -197,20 +211,22 @@ namespace Antura.Rewards
                     foreach (RewardColor color in GetConfig().GetClone().RewardsColorPairs) {
                         if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
                             RewardColorItem rci = new RewardColorItem(color);
-                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
+                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur =>
+                                ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
                             returnList.Add(rci);
                         } else {
                             returnList.Add(null);
                         }
                     }
                     // set current reward in modification
-                    CurrentReward = new RewardPackUnlockData() { ItemId = _rewardItemId, Type = RewardTypes.reward };
+                    CurrentReward = new RewardPackUnlockData() {ItemId = _rewardItemId, Type = RewardTypes.reward};
                     break;
                 case RewardTypes.texture:
                     foreach (RewardColor color in GetConfig().RewardsTileColor) {
                         if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
                             RewardColorItem rci = new RewardColorItem(color);
-                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
+                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur =>
+                                ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
                             rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
                             returnList.Add(rci);
                         } else {
@@ -218,13 +234,14 @@ namespace Antura.Rewards
                         }
                     }
                     // set current reward in modification
-                    CurrentReward = new RewardPackUnlockData() { ItemId = _rewardItemId, Type = RewardTypes.texture };
+                    CurrentReward = new RewardPackUnlockData() {ItemId = _rewardItemId, Type = RewardTypes.texture};
                     break;
                 case RewardTypes.decal:
                     foreach (RewardColor color in GetConfig().RewardsDecalColor) {
                         if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
                             RewardColorItem rci = new RewardColorItem(color);
-                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
+                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur =>
+                                ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
                             rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
                             returnList.Add(rci);
                         } else {
@@ -237,7 +254,7 @@ namespace Antura.Rewards
                     //    returnList.Add(rci);
                     //}
                     // set current reward in modification
-                    CurrentReward = new RewardPackUnlockData() { ItemId = _rewardItemId, Type = RewardTypes.decal };
+                    CurrentReward = new RewardPackUnlockData() {ItemId = _rewardItemId, Type = RewardTypes.decal};
                     break;
                 default:
                     Debug.LogWarningFormat("Reward typology requested {0} not found", _rewardType);
@@ -263,7 +280,7 @@ namespace Antura.Rewards
                     Debug.LogErrorFormat("Reward type {0} not found!", _rewardType);
                     return returnList;
             }
-            
+
             if (alreadySelectedReward != null) {
                 // if previous selected this reward use previous color...
                 returnList.Find(color => color != null && color.ID == alreadySelectedReward.ColorId).IsSelected = true;
@@ -354,8 +371,9 @@ namespace Antura.Rewards
         {
             Reward reward = RewardSystemManager.GetRewardById(_rewardId);
             RewardColor color = GetConfig().GetClone().RewardsColorPairs.Find(c => c.ID == _colorId);
-            if (color == null || reward == null)
+            if (color == null || reward == null) {
                 return new MaterialPair();
+            }
             MaterialPair mp = new MaterialPair(color.Color1Name, reward.Material1, color.Color2Name, reward.Material2);
             return mp;
         }
@@ -370,16 +388,19 @@ namespace Antura.Rewards
             int rCount = AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetJourneyPosition().Equals(journeyPosition)).Count;
             return rCount > 2 ? 2 : rCount;
         }
+
         #endregion
 
         #region Helpers
 
-        public static IEnumerator UnlockExtraRewards() {
-            JourneyPosition extraRewardJourney = new JourneyPosition(100,100,100);
+        public static IEnumerator UnlockExtraRewards()
+        {
+            JourneyPosition extraRewardJourney = new JourneyPosition(100, 100, 100);
             List<RewardPackUnlockData> alreadyUnlocked = AppManager.I.Player.RewardsUnlocked;
             for (int i = 0; i < GetConfig().Rewards.Count; i++) {
                 for (int y = 0; y < GetConfig().RewardsColorPairs.Count; y++) {
-                    if (!alreadyUnlocked.Exists(ur => ur.ItemId == GetConfig().Rewards[i].ID && ur.ColorId == GetConfig().RewardsColorPairs[y].ID)) {
+                    if (!alreadyUnlocked.Exists(ur =>
+                        ur.ItemId == GetConfig().Rewards[i].ID && ur.ColorId == GetConfig().RewardsColorPairs[y].ID)) {
                         AppManager.I.Player.AddRewardUnlocked(
                             new RewardPackUnlockData(
                                 AppManager.I.LogManager.AppSession,
@@ -391,7 +412,8 @@ namespace Antura.Rewards
             }
             for (int i = 0; i < GetConfig().RewardsDecal.Count; i++) {
                 for (int y = 0; y < GetConfig().RewardsDecalColor.Count; y++) {
-                    if (!alreadyUnlocked.Exists(ur => ur.ItemId == GetConfig().RewardsDecal[i].ID && ur.ColorId == GetConfig().RewardsDecalColor[y].ID)) {
+                    if (!alreadyUnlocked.Exists(ur =>
+                        ur.ItemId == GetConfig().RewardsDecal[i].ID && ur.ColorId == GetConfig().RewardsDecalColor[y].ID)) {
                         AppManager.I.Player.AddRewardUnlocked(
                             new RewardPackUnlockData(
                                 AppManager.I.LogManager.AppSession,
@@ -403,7 +425,8 @@ namespace Antura.Rewards
             }
             for (int i = 0; i < GetConfig().RewardsTile.Count; i++) {
                 for (int y = 0; y < GetConfig().RewardsTileColor.Count; y++) {
-                    if (!alreadyUnlocked.Exists(ur => ur.ItemId == GetConfig().RewardsTile[i].ID && ur.ColorId == GetConfig().RewardsTileColor[y].ID)) {
+                    if (!alreadyUnlocked.Exists(ur =>
+                        ur.ItemId == GetConfig().RewardsTile[i].ID && ur.ColorId == GetConfig().RewardsTileColor[y].ID)) {
                         AppManager.I.Player.AddRewardUnlocked(
                             new RewardPackUnlockData(
                                 AppManager.I.LogManager.AppSession,
@@ -421,13 +444,14 @@ namespace Antura.Rewards
         /// </summary>
         public static void UnlockAllRewards()
         {
-
-            int RewardCount = 0; int TextureCount = 0; int DecalCount = 0; int OtherCount = 0;
+            int RewardCount = 0;
+            int TextureCount = 0;
+            int DecalCount = 0;
+            int OtherCount = 0;
 
             var actualCurrentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
 
-            
 
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
                 // Check if already unlocked reward for this playSession.
@@ -435,11 +459,12 @@ namespace Antura.Rewards
                 if (RewardAlreadyUnlocked(journeyPosition))
                     continue;
                 List<RewardPackUnlockData> newUnlocked = new List<RewardPackUnlockData>();
-                AppManager.I.Player.SetCurrentJourneyPosition(AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
+                AppManager.I.Player.SetCurrentJourneyPosition(
+                    AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
                 foreach (RewardPackUnlockData pack in GetNextRewardPack()) {
                     pack.IsLocked = false;
                     //AppManager.I.Player.AddRewardUnlockedAll(pack);
-                    
+
                     newUnlocked.Add(pack);
 
                     switch (pack.Type) {
@@ -461,9 +486,10 @@ namespace Antura.Rewards
                 AppManager.I.Player.AddRewardUnlockedRange(newUnlocked);
             }
 
-            
+
             AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
-            Debug.LogFormat("Bulk unlocking rewards result: rewards: {0} | texture: {1} | decal: {2} | other: {3}", RewardCount, TextureCount, DecalCount, OtherCount);
+            Debug.LogFormat("Bulk unlocking rewards result: rewards: {0} | texture: {1} | decal: {2} | other: {3}", RewardCount,
+                TextureCount, DecalCount, OtherCount);
 
             AppManager.I.StartCoroutine(RewardSystemManager.UnlockExtraRewards());
             Debug.LogFormat("Unlock also all extra rewards!");
@@ -479,8 +505,9 @@ namespace Antura.Rewards
         {
             List<RewardPackUnlockData> unlocked = AppManager.I.Player.RewardsUnlocked;
             RewardPackUnlockData rewardPackUnlockData = unlocked.Find(r => r.GetJourneyPosition().Equals(journeyPosition));
-            if (rewardPackUnlockData != null)
+            if (rewardPackUnlockData != null) {
                 return true;
+            }
             return false;
         }
 
@@ -493,10 +520,11 @@ namespace Antura.Rewards
         /// <returns></returns>
         public static bool RewardAlreadyUnlocked(string _itemId, string _colorId, RewardTypes _type)
         {
-            if (AppManager.I.Player.RewardsUnlocked.Find(r => r.ItemId == _itemId && r.ColorId == _colorId && r.Type == _type) != null)
+            if (AppManager.I.Player.RewardsUnlocked.Find(r => r.ItemId == _itemId && r.ColorId == _colorId && r.Type == _type) != null) {
                 return true;
-            else
+            } else {
                 return false;
+            }
         }
 
         /// <summary>
@@ -527,11 +555,13 @@ namespace Antura.Rewards
                     return 0;
             }
         }
+
         #endregion
 
         #endregion
 
         #region RewardAI 
+
         /// <summary>
         /// Return list of right rewards for actual playsession if not already.
         /// </summary>
@@ -557,8 +587,9 @@ namespace Antura.Rewards
             } else if (unlock.Reward != string.Empty) {
                 // Get new reward item with random color
                 RewardPackUnlockData newItemReward = GetRewardPack(journeyPosition, RewardTypes.reward, true);
-                if (OnNewRewardUnlocked != null)
+                if (OnNewRewardUnlocked != null) {
                     OnNewRewardUnlocked(newItemReward);
+                }
                 returnList.Add(newItemReward);
             } else if (unlock.Texture != string.Empty) {
                 // Get new texture
@@ -586,19 +617,22 @@ namespace Antura.Rewards
             string itemId = string.Empty;
             RewardColor color = null;
             bool alreadyUnlocked = false;
-            List<RewardPackUnlockData> alreadyUnlockedRewardOfType = AppManager.I.Player.RewardsUnlocked.FindAll(r => r.Type == _rewardType);
+            List<RewardPackUnlockData> alreadyUnlockedRewardOfType =
+                AppManager.I.Player.RewardsUnlocked.FindAll(r => r.Type == _rewardType);
             switch (_rewardType) {
                 case RewardTypes.reward:
                     int countAvoidInfiniteLoop = 300;
                     // If not random take id from list of already unlocked rewards of this type
 
-                    if (_random) { // Need to create new reward and first color pair
+                    if (_random) {
+                        // Need to create new reward and first color pair
                         bool duplicated = false;
                         do {
                             //int count = AppManager.I.Player.GetNotYetUnlockedRewardCountForType(_rewardType);
                             List<Reward> availableItems = GetConfig().Rewards;
                             // Try fix for #421
-                            List<Reward> itemsForRandomSelection = availableItems.Where(r => !alreadyUnlockedRewardOfType.Exists(ur => ur.ItemId == r.ID)).ToList();
+                            List<Reward> itemsForRandomSelection = availableItems
+                                .Where(r => !alreadyUnlockedRewardOfType.Exists(ur => ur.ItemId == r.ID)).ToList();
                             if (itemsForRandomSelection.Count == 0) {
                                 duplicated = true;
                                 continue;
@@ -611,30 +645,34 @@ namespace Antura.Rewards
                             if (duplicated)
                                 Debug.LogFormat("Reward {0} already unlocked! Retry!", itemId);
                             countAvoidInfiniteLoop--;
-                            if(countAvoidInfiniteLoop == 0)
+                            if (countAvoidInfiniteLoop == 0)
                                 Debug.LogFormat("-------------- Reward {0} infinite loop!!!!", itemId);
                         } while (duplicated && countAvoidInfiniteLoop > 0);
                         //} while (duplicated && AppManager.I.Player.RewardForTypeAvailableYet(_rewardType) || countAvoidInfiniteLoop < 1) ;
-                    } else { // need only to create new color pair for one of already unlocked reward
+                    } else {
+                        // need only to create new color pair for one of already unlocked reward
                         color = null;
-                        List<RewardPackUnlockData> alreadyUnlockeds = AppManager.I.Player.RewardsUnlocked.Where(r => r.Type == RewardTypes.reward).ToList();
+                        List<RewardPackUnlockData> alreadyUnlockeds =
+                            AppManager.I.Player.RewardsUnlocked.Where(r => r.Type == RewardTypes.reward).ToList();
                         List<string> availableRewardIds = new List<string>();
                         foreach (var reward in alreadyUnlockeds) {
                             if (!availableRewardIds.Contains(reward.ItemId)) {
                                 int alreadyUnlockedsCount = alreadyUnlockeds.Where(r => r.ItemId == reward.ItemId).ToList().Count;
-                                if (alreadyUnlockedsCount < RewardSystemManager.GetConfig().RewardsColorPairs.Count) {// TODO: quick fix
+                                if (alreadyUnlockedsCount < RewardSystemManager.GetConfig().RewardsColorPairs.Count) {
+// TODO: quick fix
                                     availableRewardIds.Add(reward.ItemId);
                                 }
                             }
-                        } 
-                        if(availableRewardIds.Count < 1) { 
+                        }
+                        if (availableRewardIds.Count < 1) {
                             Debug.LogWarning("No rewards with lockable color variation. Unable to unlock new color variation.");
                             return null;
                         }
                         itemId = availableRewardIds.GetRandomAlternative();
                         List<RewardColor> availableColors = GetConfig().RewardsColorPairs;
                         //availableColors.Where(r => !alreadyUnlockeds.Exists(ur => ur.ItemId == itemId && ur.ColorId == r.ID));
-                        color = availableColors.Where(r => !alreadyUnlockeds.Exists(ur => ur.ItemId == itemId && ur.ColorId == r.ID)).ToList().GetRandomAlternative();
+                        color = availableColors.Where(r => !alreadyUnlockeds.Exists(ur => ur.ItemId == itemId && ur.ColorId == r.ID))
+                            .ToList().GetRandomAlternative();
                     }
                     rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
                     break;
@@ -663,7 +701,8 @@ namespace Antura.Rewards
         /// <summary>
         /// Unlocks the first set of rewards for current player.
         /// </summary>
-        public static void UnlockFirstSetOfRewards(Profile.PlayerProfile _player = null) {
+        public static void UnlockFirstSetOfRewards(Profile.PlayerProfile _player = null)
+        {
             if (_player == null) {
                 if (AppManager.I.Player == null) {
                     Debug.LogError("No current player available!");
@@ -705,11 +744,13 @@ namespace Antura.Rewards
                     rp = GetRewardPack(new JourneyPosition(0, 0, 0), _rewardType, true);
                     break;
                 case RewardTypes.texture:
-                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, "Antura_wool_tilemat", "color1", _rewardType, new JourneyPosition(0, 0, 0));
+                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, "Antura_wool_tilemat", "color1", _rewardType,
+                        new JourneyPosition(0, 0, 0));
                     rp.IsNew = false; // Because is automatically selected
                     break;
                 case RewardTypes.decal:
-                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, "Antura_decalmap01", "color1", _rewardType, new JourneyPosition(0, 0, 0));
+                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, "Antura_decalmap01", "color1", _rewardType,
+                        new JourneyPosition(0, 0, 0));
                     rp.IsNew = false; // Because is automatically selected
                     break;
                 default:
@@ -717,6 +758,7 @@ namespace Antura.Rewards
             }
             return rp;
         }
+
         #endregion
 
         #region Events
@@ -729,6 +771,7 @@ namespace Antura.Rewards
         public static event RewardSystemEventHandler OnRewardChanged;
 
         public static event RewardSystemEventHandler OnNewRewardUnlocked;
+
         #endregion
     }
 
@@ -748,7 +791,8 @@ namespace Antura.Rewards
         public List<RewardColor> RewardsTileColor;
         public List<PlaySessionRewardUnlock> PlaySessionRewardsUnlock;
 
-        public RewardConfig GetClone() {
+        public RewardConfig GetClone()
+        {
             return MemberwiseClone() as RewardConfig;
         }
     }
@@ -800,8 +844,6 @@ namespace Antura.Rewards
     #endregion
 
     #region Dynamic DB
-
-
 
     /*
     /// <summary>
@@ -872,7 +914,11 @@ namespace Antura.Rewards
     {
         public bool IsSelected;
         public bool IsNew = true;
-        public RewardColorItem() { }
+
+        public RewardColorItem()
+        {
+        }
+
         public RewardColorItem(RewardColor _color)
         {
             ID = _color.ID;
@@ -881,7 +927,6 @@ namespace Antura.Rewards
             Color2Name = _color.Color2Name;
             Color2RGB = _color.Color2RGB;
         }
-
     }
 
     #endregion

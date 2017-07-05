@@ -17,5 +17,4 @@
         /// </summary>
         StateManager StateManager { get; }
     }
-
 }

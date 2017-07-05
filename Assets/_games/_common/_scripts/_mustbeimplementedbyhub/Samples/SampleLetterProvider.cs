@@ -10,9 +10,8 @@ namespace Antura.MinigamesAPI.Sample
     {
         public SampleLetterProvider()
         {
-
         }
-        
+
         public ILivingLetterData GetNextData()
         {
             return AppManager.I.Teacher.GetRandomTestLetterLL();

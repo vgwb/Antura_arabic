@@ -19,7 +19,6 @@ namespace Antura.Intro
         public override void EnterState()
         {
             letter.gameObject.GetComponent<LivingLetterController>().SetState(LLAnimationStates.LL_dragging);
-
         }
 
         public override void ExitState()

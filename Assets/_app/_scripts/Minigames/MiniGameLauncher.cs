@@ -28,7 +28,8 @@ namespace Antura.MinigamesAPI
         /// <param name="_gameCode">The minigame code.</param>
         /// <param name="_launchConfiguration">The launch configuration. If null, the Teacher will generate a new one.</param>
         /// <param name="forceNewPlaySession">Is this a new play session?</param>
-        public void LaunchGame(MiniGameCode _gameCode, MinigameLaunchConfiguration _launchConfiguration = null, bool forceNewPlaySession = false)
+        public void LaunchGame(MiniGameCode _gameCode, MinigameLaunchConfiguration _launchConfiguration = null,
+            bool forceNewPlaySession = false)
         {
             ConfigAI.StartTeacherReport();
             if (_launchConfiguration == null) {
@@ -97,28 +98,25 @@ namespace Antura.MinigamesAPI
 
             string miniGameSceneKey = miniGameData.Scene.Split('_')[1];
             string configurationClassName = miniGameSceneKey + "." + miniGameSceneKey + configurationKey;
-            if (miniGameSceneKey != assessmentNamespaceKey)
-            {
+            if (miniGameSceneKey != assessmentNamespaceKey) {
                 configurationClassName = minigamesNamespaceKey + "." + configurationClassName;
             }
-            configurationClassName = baseNamespaceKey +"." + configurationClassName;
-            
+            configurationClassName = baseNamespaceKey + "." + configurationClassName;
+
             Type configurationClassType = Type.GetType(configurationClassName);
-            if (configurationClassType == null)
-            {
+            if (configurationClassType == null) {
                 throw new Exception("Type " + configurationClassName + " not found. Are the minigame scene and Configuration class ready?");
             }
 
             var property = configurationClassType.GetProperty(instanceFieldName, BindingFlags.Public | BindingFlags.Static);
-            if (property == null)
-            {
-                throw new Exception("Public static property named " + instanceFieldName + " not found. This should be present in the minigame's Configuration class.");
+            if (property == null) {
+                throw new Exception("Public static property named " + instanceFieldName +
+                                    " not found. This should be present in the minigame's Configuration class.");
             }
 
-            IGameConfiguration currentGameConfig = (IGameConfiguration)property.GetValue(null, null);
-          
-            if (currentGameConfig != null)
-            {
+            IGameConfiguration currentGameConfig = (IGameConfiguration) property.GetValue(null, null);
+
+            if (currentGameConfig != null) {
                 currentGameConfig.Context = defaultContext;
                 currentGameConfig.SetMiniGameCode(code);
             }

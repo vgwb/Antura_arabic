@@ -16,9 +16,12 @@ namespace Antura.UI
 
         [Header("Buttons")]
         public MenuButton BtPause;
+
         public MenuButton BtExit, BtMusic, BtFx, BtCredits, BtResume, BtEnglish;
+
         [Header("Other")]
         public GameObject PauseMenuContainer;
+
         public Sprite AltPauseIconSprite;
         public Image MenuBg;
         public RectTransform SubButtonsContainer;
@@ -28,9 +31,12 @@ namespace Antura.UI
         public bool IsMenuOpen { get; private set; }
         public bool typeSet;
         Sprite defPauseIconSprite;
+
         MenuButton[] menuBts;
+
         //float timeScaleAtMenuOpen = 1;
         Sequence openMenuTween;
+
         Tween logoBobTween;
 
         void Awake()
@@ -56,7 +62,8 @@ namespace Antura.UI
                 cgButtons[i] = menuBts[i].GetComponent<CanvasGroup>();
             openMenuTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .OnPlay(() => PauseMenuContainer.SetActive(true))
-                .OnRewind(() => {
+                .OnRewind(() =>
+                {
                     PauseMenuContainer.SetActive(false);
                     logoBobTween.Rewind();
                 });
@@ -146,12 +153,14 @@ namespace Antura.UI
 
             if (_bt == BtPause) {
                 OpenMenu(!IsMenuOpen);
-            } else if (!openMenuTween.IsPlaying()) { // Ignores pause menu clicks when opening/closing menu
+            } else if (!openMenuTween.IsPlaying()) {
+                // Ignores pause menu clicks when opening/closing menu
                 switch (_bt.Type) {
                     case MenuButtonType.Back: // Exit
                         if (AppManager.I.NavigationManager.NavData.CurrentScene == AppScene.MiniGame) {
                             // Prompt
-                            GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
+                            GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () =>
+                            {
                                 OpenMenu(false);
                                 AppManager.I.NavigationManager.ExitDuringPause();
                             }, () => { });

@@ -57,7 +57,8 @@ namespace Antura.GamesSelector
             showTween.Restart();
             moveTween = DOTween.Sequence().SetAutoKill(false)
                 .Append(this.transform.DOLocalPath(path, 1.25f, PathType.Linear))
-                .OnComplete(() => {
+                .OnComplete(() =>
+                {
                     showTween.PlayBackwards();
                     trailTimeTween.PlayForward();
                 })

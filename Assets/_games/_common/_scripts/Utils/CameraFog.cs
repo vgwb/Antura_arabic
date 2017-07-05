@@ -14,8 +14,8 @@ namespace Antura.MinigamesCommon
         public float fogStartDistance;
         public float fogEndDistance;
 
-        bool oldState;
-    
+        private bool oldState;
+
         void OnPreRender()
         {
             oldState = RenderSettings.fog;

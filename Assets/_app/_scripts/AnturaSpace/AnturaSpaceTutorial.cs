@@ -67,8 +67,7 @@ namespace Antura.AnturaSpace
         void Start()
         {
             //if this isn't the first contact disable yourself and return
-            if (AppManager.I.Player.IsFirstContact() == false)
-            {
+            if (AppManager.I.Player.IsFirstContact() == false) {
                 gameObject.SetActive(false);
                 IsRunning = false;
                 return;
@@ -96,8 +95,7 @@ namespace Antura.AnturaSpace
 
         void Update()
         {
-            if (_mTutorialStates == AnturaSpaceTutorialStates.USE_ALL_COOKIES && AppManager.I.Player.GetTotalNumberOfBones() <= 0)
-            {
+            if (_mTutorialStates == AnturaSpaceTutorialStates.USE_ALL_COOKIES && AppManager.I.Player.GetTotalNumberOfBones() <= 0) {
                 AdvanceTutorial();
             }
         }
@@ -116,8 +114,7 @@ namespace Antura.AnturaSpace
                 return;
             }
 
-            switch (_mTutorialStates)
-            {
+            switch (_mTutorialStates) {
                 case AnturaSpaceTutorialStates.ANTURA_ANIM:
 
                     _mTutorialStates = AnturaSpaceTutorialStates.COOKIE_BUTTON;
@@ -208,8 +205,7 @@ namespace Antura.AnturaSpace
                         () =>
                         {
                             m_oCategoryButton = _mScene.UI.GetNewCategoryButton();
-                            if (m_oCategoryButton == null)
-                            {
+                            if (m_oCategoryButton == null) {
                                 AdvanceTutorial();
                                 return;
                             }
@@ -225,12 +221,9 @@ namespace Antura.AnturaSpace
                     TutorialUI.Clear(false);
 
                     //Unregister from category button
-                    if (m_oCategoryButton != null)
-                    {
+                    if (m_oCategoryButton != null) {
                         m_oCategoryButton.Bt.onClick.RemoveListener(AdvanceTutorial);
-                    }
-                    else
-                    {
+                    } else {
                         AdvanceTutorial();
                         break;
                     }
@@ -241,8 +234,7 @@ namespace Antura.AnturaSpace
                             // Register on item button
                             m_oItemButton = _mScene.UI.GetNewItemButton();
 
-                            if (m_oItemButton == null)
-                            {
+                            if (m_oItemButton == null) {
                                 AdvanceTutorial();
                                 return;
                             }
@@ -258,8 +250,7 @@ namespace Antura.AnturaSpace
                     _mScene.UI.SetTutorialMode(false);
 
                     //Unregister from Item button
-                    if (m_oItemButton != null)
-                    {
+                    if (m_oItemButton != null) {
                         m_oItemButton.Bt.onClick.RemoveListener(AdvanceTutorial);
                     }
 
@@ -306,8 +297,7 @@ namespace Antura.AnturaSpace
         {
             yield return new WaitForSeconds(0.6f);
 
-            if (callback != null)
-            {
+            if (callback != null) {
                 callback();
             }
         }
@@ -317,8 +307,7 @@ namespace Antura.AnturaSpace
             while (!_mScene.Antura.IsNearTargetPosition || _mScene.Antura.IsSliping)
                 yield return null;
 
-            if (callback != null)
-            {
+            if (callback != null) {
                 callback();
             }
         }
@@ -328,8 +317,7 @@ namespace Antura.AnturaSpace
             TutorialUI.Clear(false);
 
             //stop 
-            if (!m_bIsDragAnimPlaying)
-            {
+            if (!m_bIsDragAnimPlaying) {
                 return;
             }
 
@@ -345,8 +333,7 @@ namespace Antura.AnturaSpace
             _oDLAnim.MainTween.timeScale = 0.8f;
             _oDLAnim.OnComplete(delegate()
             {
-                if (_mTutorialStates != AnturaSpaceTutorialStates.OPEN_CUSTOMIZE)
-                {
+                if (_mTutorialStates != AnturaSpaceTutorialStates.OPEN_CUSTOMIZE) {
                     DrawRepeatLineOnCookieButton();
                 }
             });

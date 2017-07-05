@@ -7,15 +7,15 @@
     {
         public MiniGameCode Code { get; private set; }
 
-        IAudioManager audioManager = new MinigamesAudioManager();
-        IInputManager inputManager = new MinigamesInputManager();
+        private IAudioManager audioManager = new MinigamesAudioManager();
+        private IInputManager inputManager = new MinigamesInputManager();
 
-        ISubtitlesWidget subtitleWidget = new MinigamesSubtitlesWidget();
-        IStarsWidget starsWidget = new MinigamesStarsWidget();
-        IPopupWidget questionWidget = new MinigamesPopupWidget();
-        ICheckmarkWidget checkmarkWidget = new MinigamesCheckmarkWidget();
-        IOverlayWidget overlayWidget = new MinigamesOverlayWidget();
-        ILogManager logManager;
+        private ISubtitlesWidget subtitleWidget = new MinigamesSubtitlesWidget();
+        private IStarsWidget starsWidget = new MinigamesStarsWidget();
+        private IPopupWidget questionWidget = new MinigamesPopupWidget();
+        private ICheckmarkWidget checkmarkWidget = new MinigamesCheckmarkWidget();
+        private IOverlayWidget overlayWidget = new MinigamesOverlayWidget();
+        private ILogManager logManager;
 
         public MinigamesGameContext(MiniGameCode code, string sessionName)
         {

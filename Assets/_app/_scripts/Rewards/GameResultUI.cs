@@ -13,7 +13,7 @@ namespace Antura.Rewards
     public class GameResultUI : MonoBehaviour
     {
         public static GameResultUI I;
-        
+
         public EndgameResultPanel EndgameResultPanel;
         public EndsessionResultPanel EndsessionResultPanel;
         public BonesCounter BonesCounter;
@@ -66,7 +66,8 @@ namespace Antura.Rewards
         /// <param name="_alreadyUnlockedRewards">Total rewards unlocked in previous sessions (0 to 2)</param>
         /// <param name="_immediate">If TRUE shows the screen immediately with no animations. You can ignore this</param>
         /// <returns></returns>
-        public static GameObject[] ShowEndsessionResult(List<EndsessionResultData> _sessionData, int _alreadyUnlockedRewards, bool _immediate = false)
+        public static GameObject[] ShowEndsessionResult(List<EndsessionResultData> _sessionData, int _alreadyUnlockedRewards,
+            bool _immediate = false)
         {
             Init();
             GlobalUI.ShowPauseMenu(false);

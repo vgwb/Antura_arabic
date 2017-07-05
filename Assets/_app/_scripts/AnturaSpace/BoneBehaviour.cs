@@ -112,14 +112,12 @@ namespace Antura.AnturaSpace
                 m_fThrowMaxMagnitude < m_fThrowMinMagnitude ||
                 m_v3DirectionMinValues.x > m_v3DirectionMaxValues.x ||
                 m_v3DirectionMinValues.y > m_v3DirectionMaxValues.y ||
-                m_v3DirectionMinValues.z > m_v3DirectionMaxValues.z)
-            {
+                m_v3DirectionMinValues.z > m_v3DirectionMaxValues.z) {
                 Debug.Log("Warning, unvalid min/max values");
             }
 
             //build root for cookies particles
-            if (s_oParticleRootContainer == null)
-            {
+            if (s_oParticleRootContainer == null) {
                 var _oTempBase = new GameObject();
                 s_oParticleRootContainer = Instantiate(_oTempBase);
                 s_oParticleRootContainer.name = "[CookieParticles]";
@@ -137,12 +135,10 @@ namespace Antura.AnturaSpace
         void Update()
         {
             //if this bone is being dragged
-            if (m_bIsDragged)
-            {
+            if (m_bIsDragged) {
                 m_fTimeProgression += Time.deltaTime;
 
-                if (m_fTimeProgression >= m_fTimeSampling)
-                {
+                if (m_fTimeProgression >= m_fTimeSampling) {
                     //Store dragging data to prepare for the releasing throw
                     m_v3LastPosition = transform.position;
                     m_fTimeProgression = 0;
@@ -154,22 +150,17 @@ namespace Antura.AnturaSpace
                 var _fCameraDistance = 6 + 4 * (Input.mousePosition.y / Screen.height);
                 var newPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _fCameraDistance));
 
-                if (newPos.y < 1)
-                {
+                if (newPos.y < 1) {
                     newPos.y = 1;
                 }
 
                 transform.position = newPos;
-            }
-            else
-            {
+            } else {
                 // Limit inside view frustum
                 var newPos = m_oBoneRigidbody.position;
-                for (int i = 0, count = planes.Count; i < count; ++i)
-                {
+                for (int i = 0, count = planes.Count; i < count; ++i) {
                     var distance = planes[i].GetDistanceToPoint(newPos);
-                    if (distance < 0)
-                    {
+                    if (distance < 0) {
                         var planeNormal = planes[i].normal;
 
                         m_oBoneRigidbody.velocity -= 1.2f * Vector3.Dot(m_oBoneRigidbody.velocity, planeNormal) * planeNormal;
@@ -188,8 +179,7 @@ namespace Antura.AnturaSpace
 
         void OnDestroy()
         {
-            if (poofSound != null)
-            {
+            if (poofSound != null) {
                 poofSound.Stop();
                 poofSound = null;
             }
@@ -254,13 +244,11 @@ namespace Antura.AnturaSpace
         /// <param name="fDuration"></param>
         public void Poof()
         {
-            if (m_oParticleInstance == null)
-            {
+            if (m_oParticleInstance == null) {
                 m_oParticleInstance = Instantiate(m_oParticle);
 
                 //put cookie in the root
-                if (s_oParticleRootContainer != null)
-                {
+                if (s_oParticleRootContainer != null) {
                     m_oParticleInstance.transform.SetParent(s_oParticleRootContainer.transform);
                 }
             }
@@ -269,8 +257,7 @@ namespace Antura.AnturaSpace
             m_oParticleInstance.transform.position = transform.position;
 
             m_oParticleInstance.SetActive(true);
-            foreach (var particles in m_oParticleInstance.GetComponentsInChildren<ParticleSystem>(true))
-            {
+            foreach (var particles in m_oParticleInstance.GetComponentsInChildren<ParticleSystem>(true)) {
                 particles.Play();
             }
 
@@ -288,10 +275,8 @@ namespace Antura.AnturaSpace
         /// </summary>
         private void StopPoof()
         {
-            if (m_oParticleInstance)
-            {
-                foreach (var particles in m_oParticleInstance.GetComponentsInChildren<ParticleSystem>(true))
-                {
+            if (m_oParticleInstance) {
+                foreach (var particles in m_oParticleInstance.GetComponentsInChildren<ParticleSystem>(true)) {
                     particles.Stop();
                 }
 

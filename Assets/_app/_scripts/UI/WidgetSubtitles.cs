@@ -16,8 +16,10 @@ namespace Antura.UI
     public class WidgetSubtitles : MonoBehaviour
     {
         public Color BgNoKeeperColor = Color.white;
+
         [Header("References")]
         public GameObject Background;
+
         public TextMeshProUGUI TextUI;
         public WalkieTalkie WalkieTalkie;
 
@@ -69,7 +71,8 @@ namespace Antura.UI
         /// <summary>
         /// Activate view elements if SentenceId != "" and display sentence.
         /// </summary>
-        public void DisplaySentence(Database.LocalizationDataId _sentenceId, float _duration = 2, bool _isKeeper = false, System.Action _callback = null)
+        public void DisplaySentence(Database.LocalizationDataId _sentenceId, float _duration = 2, bool _isKeeper = false,
+            System.Action _callback = null)
         {
             var data = LocalizationManager.GetLocalizationData(_sentenceId);
             DisplaySentence(data, _duration, _isKeeper, _callback);
@@ -85,7 +88,8 @@ namespace Antura.UI
         /// <summary>
         /// Activate view elements if SentenceId != "" and display sentence.
         /// </summary>
-        public void DisplaySentence(Database.LocalizationData data, float _duration = 2, bool _isKeeper = false, System.Action _callback = null)
+        public void DisplaySentence(Database.LocalizationData data, float _duration = 2, bool _isKeeper = false,
+            System.Action _callback = null)
         {
             GlobalUI.Init();
             this.StopAllCoroutines();
@@ -119,8 +123,7 @@ namespace Antura.UI
             textTween.Kill();
             TextUI.text = "";
             var localizedText = LocalizationManager.GetTranslation(data.Id);
-            if (string.IsNullOrEmpty(localizedText))
-            {
+            if (string.IsNullOrEmpty(localizedText)) {
                 this.gameObject.SetActive(false);
                 return;
             }
@@ -128,7 +131,7 @@ namespace Antura.UI
             this.gameObject.SetActive(true);
             if (WalkieTalkie.IsShown) WalkieTalkie.Pulse();
 
-            TextUI.text =  string.IsNullOrEmpty(localizedText) ? data.Id : ReverseText(ArabicFixer.Fix(localizedText));
+            TextUI.text = string.IsNullOrEmpty(localizedText) ? data.Id : ReverseText(ArabicFixer.Fix(localizedText));
             this.StartCoroutine(DisplayTextCoroutine(_duration));
 
             Debug.Log("DisplayText() " + data + " - " + data.English);
@@ -162,8 +165,7 @@ namespace Antura.UI
         {
             char[] cArray = _text.ToCharArray();
             string reverse = String.Empty;
-            for (int i = cArray.Length - 1; i > -1; i--)
-            {
+            for (int i = cArray.Length - 1; i > -1; i--) {
                 reverse += cArray[i];
             }
             return reverse;

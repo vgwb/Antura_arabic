@@ -20,6 +20,7 @@ namespace Antura.Map
 
         [Header("Settings")]
         public Color[] colorMaps;
+
         public GameObject[] stages;
         public GameObject[] cameras;
         public GameObject[] miniMaps;
@@ -28,6 +29,7 @@ namespace Antura.Map
 
         [Header("References")]
         public MapStageIndicator mapStageIndicator;
+
         public Camera UICamera;
 
         [Header("LockUI")]
@@ -35,6 +37,7 @@ namespace Antura.Map
 
         [Header("UIButtons")]
         public GameObject leftStageButton;
+
         public GameObject rightStageButton;
         public GameObject uiButtonMovementPlaySession;
         public GameObject nextPlaySessionButton;
@@ -58,7 +61,11 @@ namespace Antura.Map
             currentStageNumber = AppManager.I.Player.CurrentJourneyPosition.Stage;
             maxStageUnlocked = AppManager.I.Player.MaxJourneyPosition.Stage;
             int nStage;
-            if (maxStageUnlocked == maxNumberOfStages) { nStage = maxNumberOfStages; } else { nStage = maxStageUnlocked - 1; }
+            if (maxStageUnlocked == maxNumberOfStages) {
+                nStage = maxNumberOfStages;
+            } else {
+                nStage = maxStageUnlocked - 1;
+            }
             for (i = 1; i <= nStage; i++) {
                 stages[i].SetActive(false);
                 miniMaps[i].GetComponent<Stage>().isAvailableTheWholeMap = true;
@@ -71,7 +78,8 @@ namespace Antura.Map
             stages[AppManager.I.Player.CurrentJourneyPosition.Stage].SetActive(true);
             Camera.main.backgroundColor = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
             Camera.main.GetComponent<CameraFog>().color = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
-            letter.GetComponent<LetterMovement>().stageScript = miniMaps[AppManager.I.Player.CurrentJourneyPosition.Stage].GetComponent<Stage>();
+            letter.GetComponent<LetterMovement>().stageScript =
+                miniMaps[AppManager.I.Player.CurrentJourneyPosition.Stage].GetComponent<Stage>();
 
             StartCoroutine("ResetPosLetter");
 
@@ -108,6 +116,7 @@ namespace Antura.Map
         }
 
         #region Dialogs
+
         void PlayDialogRandomly()
         {
             Database.LocalizationDataId[] data = new Database.LocalizationDataId[3];
@@ -117,9 +126,11 @@ namespace Antura.Map
             int n = Random.Range(0, data.Length);
             KeeperManager.I.PlayDialog(data[n], true, true);
         }
+
         #endregion
 
         #region First Contact Session        
+
         /// <summary>
         /// Firsts the contact behaviour.
         /// Put Here logic for first contact only situations.
@@ -131,7 +142,7 @@ namespace Antura.Map
             bool isSecondStep = SimulateFirstContact ? firstContactSimulationStep == 2 : AppManager.I.Player.IsFirstContact(2);
 
             if (isFirstStep) {
-               DesactivateUI();
+                DesactivateUI();
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_Intro, true, true, AnturaText);
                 AppManager.I.Player.FirstContactPassed();
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
@@ -144,6 +155,7 @@ namespace Antura.Map
                 StartCoroutine(CO_Tutorial_PlayButton());
             }
         }
+
         void AnturaText()
         {
             KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_Intro_AnturaSpace, true, true, ActivateAnturaButton);
@@ -175,32 +187,33 @@ namespace Antura.Map
                 yield return new WaitForSeconds(0.85f);
             }
         }
+
         IEnumerator CO_Tutorial_PlayButton()
         {
             TutorialUI.SetCamera(UICamera);
             Vector3 pos = playButton.transform.position;
             pos.y += 2;
-            while (true)
-            {
+            while (true) {
                 TutorialUI.Click(pos);
                 yield return new WaitForSeconds(0.85f);
             }
         }
+
         void HideTutorial()
         {
             tutorial = GameObject.Find("[TutorialUI]");
-            if (tutorial!=null)
-            {
+            if (tutorial != null) {
                 tutorial.transform.localScale = new Vector3(0, 0, 0);
-            }   
+            }
         }
+
         void ShowTutorial()
         {
-            if (tutorial!=null)
-            {
+            if (tutorial != null) {
                 tutorial.transform.localScale = new Vector3(1, 1, 1);
             }
         }
+
         #endregion
 
         /// <summary>
@@ -231,7 +244,6 @@ namespace Antura.Map
         public void StageRight()
         {
             if (currentStageNumber >= 1 && !inTransition) {
-
                 previousStageNumber = currentStageNumber;
                 currentStageNumber--;
                 CalculateSettingsStage();

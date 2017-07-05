@@ -45,6 +45,7 @@ namespace Antura.Rewards
                 GameObject.Destroy(child);
             }
         }
+
         #endregion
 
         #region internal functionalities 

@@ -10,12 +10,16 @@ namespace Antura.UI
     {
         /// <summary>Just background, just touch the screen to continue</summary>
         FullscreenBg,
+
         /// <summary>Button with no background, that needs to be clicked directly</summary>
         Button,
+
         /// <summary>Button with no background, the whole screen can be clicked (button will be placed on the side)</summary>
         ButtonFullscreen,
+
         /// <summary>Button with background, that needs to be clicked directly</summary>
         ButtonWithBg,
+
         /// <summary>Button with background, the whole screen can be clicked</summary>
         ButtonWithBgFullscreen
     }
@@ -44,6 +48,7 @@ namespace Antura.UI
             _ico.anchoredPosition = IcoAnchoredPos;
         }
     }
+
     /// <summary>
     /// Shows a Continue screen, used to navigate forward in the application flow. 
     /// </summary>
@@ -51,9 +56,12 @@ namespace Antura.UI
     {
         [Header("Settings")]
         public ButtonSnapshot CenterSnapshot;
+
         public ButtonSnapshot SideSnapshot;
+
         [Header("References")]
         public Button Bg;
+
         public Button BtContinue;
         public RectTransform IcoContinue;
 
@@ -145,12 +153,14 @@ namespace Antura.UI
             showTween = btRT.DOScale(0.1f, duration).From().SetEase(Ease.OutBack)
                 .SetUpdate(true).SetAutoKill(false).Pause()
                 .OnPlay(() => this.gameObject.SetActive(true))
-                .OnRewind(() => {
+                .OnRewind(() =>
+                {
                     this.gameObject.SetActive(false);
                     btIdleTween.Rewind();
                     if (btPulseTween.IsPlaying()) btPulseTween.Rewind();
                 })
-                .OnComplete(() => {
+                .OnComplete(() =>
+                {
                     if (currMode == ContinueScreenMode.ButtonFullscreen) btIdleTween.Restart();
                     if (pulseLoop) btPulseTween.Restart();
                 });
@@ -209,5 +219,4 @@ namespace Antura.UI
             }
         }
     }
-
 }

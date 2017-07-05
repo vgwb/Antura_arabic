@@ -42,7 +42,7 @@ namespace Antura.GamesSelector
                 spawnTarget = trail;
             }
             if (spawnTarget == null) {
-                spawnTarget = (TrailRenderer)Instantiate(TrailPrefab, _position, Quaternion.identity, this.transform);
+                spawnTarget = (TrailRenderer) Instantiate(TrailPrefab, _position, Quaternion.identity, this.transform);
                 pool.Add(spawnTarget);
             }
             spawnTarget.gameObject.SetActive(true);

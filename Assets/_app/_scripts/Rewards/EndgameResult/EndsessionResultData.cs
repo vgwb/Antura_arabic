@@ -1,6 +1,5 @@
 ﻿namespace Antura.Rewards
 {
-
     /// <summary>
     /// Data related to a minigame played during a play session.
     /// NOTE: could be a struct, but will probably need to be a class later, so keeping it as class from the beginning

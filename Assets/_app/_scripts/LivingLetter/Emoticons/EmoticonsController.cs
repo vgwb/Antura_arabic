@@ -41,24 +41,21 @@ namespace Antura.LivingLetters
 
         void CleanEmoticonIcons()
         {
-            foreach (Transform child in EmoticonParentBone)
-            {
+            foreach (Transform child in EmoticonParentBone) {
                 Destroy(child.gameObject);
             }
         }
 
         void scaleToOneAllChildren(Transform _parent)
         {
-            foreach (Transform t in _parent.GetComponentsInChildren<Transform>())
-            {
+            foreach (Transform t in _parent.GetComponentsInChildren<Transform>()) {
                 t.localScale = Vector3.one;
             }
         }
 
         void changeMaterials(Material _material, SkinnedMeshRenderer[] _meshRenderer)
         {
-            foreach (var item in _meshRenderer)
-            {
+            foreach (var item in _meshRenderer) {
                 SkinnedMeshRenderer m = item.gameObject.GetComponent<SkinnedMeshRenderer>();
                 m.materials = new Material[] {_material};
             }
@@ -68,8 +65,7 @@ namespace Antura.LivingLetters
         {
             GameObject Et;
             CleanEmoticonIcons();
-            switch (_emoticons)
-            {
+            switch (_emoticons) {
                 case Emoticons.vfx_emo_angry:
                 case Emoticons.vfx_emo_exclamative:
                 case Emoticons.vfx_emo_happy:
@@ -84,8 +80,7 @@ namespace Antura.LivingLetters
                     break;
             }
 
-            if (_open)
-            {
+            if (_open) {
                 Open(true);
             }
         }
@@ -93,13 +88,11 @@ namespace Antura.LivingLetters
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
+            if (Input.GetKeyDown(KeyCode.E)) {
                 Open(true);
             }
 
-            if (Input.GetKeyDown(KeyCode.R))
-            {
+            if (Input.GetKeyDown(KeyCode.R)) {
                 Open(false);
             }
         }
@@ -108,15 +101,13 @@ namespace Antura.LivingLetters
 
         public void Open(bool _isOpen)
         {
-            if (_isOpen)
-            {
+            if (_isOpen) {
                 transform.DOScale(1, 0.1f);
             }
 
             anim.SetBool("IsOpen", _isOpen);
 
-            if (!_isOpen)
-            {
+            if (!_isOpen) {
                 transform.DOScale(0, 0.1f);
             }
         }

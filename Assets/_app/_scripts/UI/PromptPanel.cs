@@ -20,11 +20,11 @@ namespace Antura.UI
         public TextRender TfMessageEnglishFull;
         public UIButton BtYes, BtNo;
 
-        Action onYes, onNo;
-        Action onCloseAction;
-        float defYesX;
-        RectTransform btYesRT;
-        Tween showTween;
+        private Action onYes, onNo;
+        private Action onCloseAction;
+        private float defYesX;
+        private RectTransform btYesRT;
+        private Tween showTween;
 
         #region Unity
 
@@ -35,7 +35,8 @@ namespace Antura.UI
             showTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .Append(this.GetComponent<Image>().DOFade(0, 0.35f).From())
                 .Join(Content.DOScale(0.0001f, 0.35f).From().SetEase(Ease.OutBack))
-                .OnRewind(() => {
+                .OnRewind(() =>
+                {
                     this.gameObject.SetActive(false);
                     OnClose();
                 });
@@ -99,16 +100,23 @@ namespace Antura.UI
 
         void OnClick(UIButton _bt)
         {
-            if (showTween.IsBackwards()) return;
+            if (showTween.IsBackwards()) {
+                return;
+            }
 
-            if (_bt == BtYes && onYes != null) onCloseAction = onYes;
-            else if (_bt == BtNo && onNo != null) onCloseAction = onNo;
+            if (_bt == BtYes && onYes != null) {
+                onCloseAction = onYes;
+            } else if (_bt == BtNo && onNo != null) {
+                onCloseAction = onNo;
+            }
             Close();
         }
 
         void OnClose()
         {
-            if (onCloseAction != null) onCloseAction();
+            if (onCloseAction != null) {
+                onCloseAction();
+            }
             onCloseAction = null;
         }
 

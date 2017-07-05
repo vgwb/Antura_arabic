@@ -24,6 +24,7 @@ namespace Antura.Scenes
         }
 
         #region Buttons
+
         public void OnOpenUrlWebsite()
         {
             Application.OpenURL(AppConstants.UrlWebsite);
@@ -46,11 +47,13 @@ namespace Antura.Scenes
 
         public void OnOpenInstallInstructions()
         {
-            GlobalUI.ShowPrompt("", "Opening a PDF with the Install instructions.\nIf the document doesn't open, please install a PDF viewer app and retry!");
+            GlobalUI.ShowPrompt("",
+                "Opening a PDF with the Install instructions.\nIf the document doesn't open, please install a PDF viewer app and retry!");
             OpenPDF(AppConstants.PdfAndroidInstall);
         }
 
         private int clickCounter = 0;
+
         public void OnClickEnableDebugPanel()
         {
             clickCounter++;
@@ -60,9 +63,11 @@ namespace Antura.Scenes
                 }
             }
         }
+
         #endregion
-        
+
         #region RATE
+
         public void OnOpenRateApp()
         {
             GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_Prompt_rate, DoOpenRateApp, DoNothing);
@@ -80,9 +85,11 @@ namespace Antura.Scenes
             }
             //GlobalUI.ShowPrompt("", "Rate app");
         }
+
         #endregion
 
         #region SUPPORT FORM
+
         public void OnOpenSupportForm()
         {
             GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_Prompt_bugreport, DoOpenSupportForm, DoNothing);
@@ -92,6 +99,7 @@ namespace Antura.Scenes
         {
             AppManager.I.OpenSupportForm();
         }
+
         #endregion
 
         public void OnOpenRecomment()
@@ -101,7 +109,6 @@ namespace Antura.Scenes
 
         void DoNothing()
         {
-
         }
 
         public void OpenPDF(string filename)
@@ -121,12 +128,10 @@ namespace Antura.Scenes
         public void OnExportJoinedDatabase()
         {
             string errorString = "";
-            if (AppManager.I.DB.ExportJoinedDatabase(out errorString))
-            {
+            if (AppManager.I.DB.ExportJoinedDatabase(out errorString)) {
                 string dbPath = DBService.GetDatabaseFilePath(AppConstants.GetJoinedDatabaseFilename(), AppConstants.DbJoinedFolder);
                 GlobalUI.ShowPrompt("", "The joined DB is here:\n" + dbPath);
-            }
-            else {
+            } else {
                 GlobalUI.ShowPrompt("", "Could not export the joined database.\n");
             }
         }

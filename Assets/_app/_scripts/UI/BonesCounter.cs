@@ -14,10 +14,15 @@ namespace Antura.UI
         public TextMeshProUGUI TfCount;
         public RectTransform BoneImg;
 
-        int totBones {
+        int totBones
+        {
             get { return fooTotBones; }
-            set { fooTotBones = value; TfCount.text = value.ToString(); }
+            set {
+                fooTotBones = value;
+                TfCount.text = value.ToString();
+            }
         }
+
         int fooTotBones;
         bool setupDone;
         Tween showTween, increaseTween;
@@ -37,7 +42,7 @@ namespace Antura.UI
 
             SetValue(0);
             showTween = this.transform.DOScale(0.001f, 0.35f).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
-                .OnRewind(()=> this.gameObject.SetActive(false));
+                .OnRewind(() => this.gameObject.SetActive(false));
             showTween.Complete();
             increaseTween = BoneImg.transform.DOPunchScale(Vector3.one * 0.15f, 0.35f).SetAutoKill(false).Pause();
         }
