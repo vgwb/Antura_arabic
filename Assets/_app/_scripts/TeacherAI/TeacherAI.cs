@@ -5,8 +5,6 @@ using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
 using Antura.MinigamesAPI;
-using Antura.Profile;
-using PlayerProfile = Antura.Profile.PlayerProfile;
 
 namespace Antura.Teacher
 {

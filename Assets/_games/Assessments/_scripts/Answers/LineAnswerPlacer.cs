@@ -1,3 +1,5 @@
+using Antura.Core;
+using Antura.MinigamesAPI;
 using DG.DeExtensions;
 using DG.Tweening;
 using Kore.Coroutines;

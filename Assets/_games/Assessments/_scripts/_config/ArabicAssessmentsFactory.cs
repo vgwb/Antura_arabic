@@ -1,5 +1,5 @@
-// Author: Dario Oliveri ( https://github.com/Darelbi )
-
+using Antura.Core;
+using Antura.MinigamesAPI;
 using UnityEngine;
 
 namespace Antura.Assessment
