@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace EA4S.Minigames.Tobogan
+namespace Antura.Minigames.Tobogan
 {
     public class WrongTube : MonoBehaviour
     {
@@ -60,7 +60,7 @@ namespace EA4S.Minigames.Tobogan
                 if (!sfxPlayed && spittingTimer < 0.3f)
                 {
                     sfxPlayed = true;
-                    EA4S.Minigames.Tobogan.ToboganConfiguration.Instance.Context.GetAudioManager().PlaySound(EA4S.Sfx.UIPauseIn);
+                    ToboganConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.UIPauseIn);
                 }
 
                 if (spittingTimer <= 0)

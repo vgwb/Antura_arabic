@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     public class AnturaSpaceModsButton : UIButton
     {

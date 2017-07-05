@@ -1,8 +1,8 @@
-﻿using EA4S.Rewards;
+﻿using Antura.Rewards;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Button used to select a color for an item in the Antura Space scene.

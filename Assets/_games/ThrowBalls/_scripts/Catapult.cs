@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EA4S.Minigames.ThrowBalls
+namespace Antura.Minigames.ThrowBalls
 {
     public class Catapult : MonoBehaviour
     {

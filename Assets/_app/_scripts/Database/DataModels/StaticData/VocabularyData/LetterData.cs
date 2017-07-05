@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using EA4S.MinigamesAPI;
+using Antura.MinigamesAPI;
 using SQLite;
 using UnityEngine;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     public enum LetterKindCategory
     {

@@ -1,9 +1,9 @@
 ﻿using System;
-using EA4S.Antura;
-using EA4S.Helpers;
+using Antura.Antura;
+using Antura.Helpers;
 using UnityEngine;
 
-namespace EA4S.AnturaSpace
+namespace Antura.AnturaSpace
 {
     public class AnturaLocomotion : MonoBehaviour
     {

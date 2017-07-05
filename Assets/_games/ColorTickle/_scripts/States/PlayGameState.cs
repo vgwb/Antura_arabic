@@ -1,9 +1,9 @@
-﻿using EA4S.LivingLetters;
-using EA4S.MinigamesCommon;
+﻿using Antura.LivingLetters;
+using Antura.MinigamesCommon;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Minigames.ColorTickle
+namespace Antura.Minigames.ColorTickle
 {
     public class PlayGameState : IState
     {

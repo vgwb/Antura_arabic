@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EA4S.Teacher
+namespace Antura.Teacher
 {
     /// <summary>
     /// Constants used to configure the Teacher System.

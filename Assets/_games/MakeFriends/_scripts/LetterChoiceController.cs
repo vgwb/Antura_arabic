@@ -1,10 +1,10 @@
-﻿using EA4S.MinigamesAPI;
+﻿using Antura.MinigamesAPI;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-namespace EA4S.Minigames.MakeFriends
+namespace Antura.Minigames.MakeFriends
 {
     public class LetterChoiceController : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
     {

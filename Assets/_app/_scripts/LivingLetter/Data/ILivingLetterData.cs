@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.MinigamesAPI
+namespace Antura.MinigamesAPI
 {
     /// <summary>
     /// Common interface for data that can appear on a LivingLetter object.
@@ -33,7 +33,7 @@ namespace EA4S.MinigamesAPI
     }
 }
 
-namespace EA4S
+namespace Antura
 {
     /// <summary>
     /// Type of data that can appear on a LivingLetter object.

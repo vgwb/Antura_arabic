@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
-using EA4S.Tutorial;
+using Antura.LivingLetters;
+using Antura.MinigamesAPI;
+using Antura.Tutorial;
 
-namespace EA4S.Minigames.Balloons
+namespace Antura.Minigames.Balloons
 {
     public class RoundResultAnimator : MonoBehaviour
     {

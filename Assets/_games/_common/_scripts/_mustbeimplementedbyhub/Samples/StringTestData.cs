@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.MinigamesAPI.Sample
+namespace Antura.MinigamesAPI.Sample
 {
     public class StringTestData : ILivingLetterData
     {

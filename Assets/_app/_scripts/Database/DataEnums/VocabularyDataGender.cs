@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace Antura
 {
     /// <summary>
     /// Vocabulary gender

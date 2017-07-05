@@ -1,8 +1,8 @@
-﻿using EA4S.Core;
-using System.Linq;
+﻿using System.Linq;
+using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.Rewards
+namespace Antura.Rewards
 {
     /// <summary>
     /// Manager for the Play Session Result scene.

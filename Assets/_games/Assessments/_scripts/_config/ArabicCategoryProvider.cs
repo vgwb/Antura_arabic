@@ -1,9 +1,9 @@
-using EA4S.MinigamesAPI;
 using System;
-using EA4S.Core;
+using Antura.MinigamesAPI;
+using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public enum CategoryType
     {

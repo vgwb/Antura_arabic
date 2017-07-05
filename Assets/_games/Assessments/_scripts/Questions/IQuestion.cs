@@ -1,8 +1,8 @@
-using EA4S.MinigamesAPI;
 using System.Collections.Generic;
+using Antura.MinigamesAPI;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public enum QuestionType
     {

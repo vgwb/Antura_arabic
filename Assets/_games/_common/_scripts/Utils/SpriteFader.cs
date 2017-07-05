@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Fades a sprite from-to a specific transparency value in time.

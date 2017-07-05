@@ -2,7 +2,7 @@
 using DG.DeInspektor.Attributes;
 using UnityEngine;
 
-namespace EA4S.Map
+namespace Antura.Map
 {
     public class MapStageIndicator : MonoBehaviour
     {

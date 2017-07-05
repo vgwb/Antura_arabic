@@ -1,6 +1,6 @@
-﻿using EA4S.MinigamesAPI;
+﻿using Antura.MinigamesAPI;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Defines a type of data that can be converted to a LivingLetterData

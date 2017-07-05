@@ -1,4 +1,4 @@
-﻿using EA4S.Minigames.Tobogan;
+﻿using Antura.Minigames.Tobogan;
 using UnityEngine;
 
 public class TremblingTube : MonoBehaviour
@@ -28,7 +28,7 @@ public class TremblingTube : MonoBehaviour
 
         if (playSound)
         {
-            var source = EA4S.Minigames.Tobogan.ToboganConfiguration.Instance.Context.GetAudioManager().PlaySound(EA4S.Sfx.PipeBlowIn);
+            var source = Antura.Minigames.Tobogan.ToboganConfiguration.Instance.Context.GetAudioManager().PlaySound(Antura.Sfx.PipeBlowIn);
             source.Loop = true;
             source.Volume = 0;
             audioLooper = new TubeAudio(source);

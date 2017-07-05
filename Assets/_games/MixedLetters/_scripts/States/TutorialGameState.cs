@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using EA4S.MinigamesCommon;
+using Antura.MinigamesCommon;
 using Random = UnityEngine.Random;
 
-namespace EA4S.Minigames.MixedLetters
+namespace Antura.Minigames.MixedLetters
 {
     public class TutorialGameState : IState
     {

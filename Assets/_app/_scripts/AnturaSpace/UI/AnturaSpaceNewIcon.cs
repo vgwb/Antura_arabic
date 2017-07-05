@@ -3,7 +3,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     public class AnturaSpaceNewIcon : MonoBehaviour
     {

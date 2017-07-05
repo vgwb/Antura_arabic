@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System;
 using System.Linq;
-using EA4S.MinigamesAPI;
-using EA4S.Helpers;
+using Antura.MinigamesAPI;
+using Antura.Helpers;
 
-namespace EA4S.Minigames.Tobogan
+namespace Antura.Minigames.Tobogan
 {
     public class QuestionsManager
     {

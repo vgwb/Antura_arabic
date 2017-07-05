@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Controls the fog in a scene.

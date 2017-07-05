@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using EA4S.MinigamesCommon;
+﻿using Antura.MinigamesCommon;
+using UnityEngine;
 
-namespace EA4S.Minigames.ReadingGame
+namespace Antura.Minigames.ReadingGame
 {
     public class ReadingBar : MonoBehaviour
     {

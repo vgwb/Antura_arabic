@@ -1,7 +1,7 @@
-﻿using EA4S.MinigamesCommon;
-using EA4S.UI;
+﻿using Antura.UI;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.MixedLetters
+namespace Antura.Minigames.MixedLetters
 {
     public class PlayGameState : IState
     {

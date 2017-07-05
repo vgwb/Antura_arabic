@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Antura.LivingLetters;
+using Antura.Minigames.Tobogan;
+using Antura.MinigamesCommon;
 using DG.Tweening;
-using EA4S.LivingLetters;
-using EA4S.Minigames.Tobogan;
-using EA4S.MinigamesCommon;
 
-namespace EA4S.Minigames.Maze
+namespace Antura.Minigames.Maze
 {
     public delegate void VoidDelegate();
     public class MazeCharacter : MonoBehaviour

@@ -2,15 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using EA4S.Tutorial;
 using System;
-using EA4S.Antura;
-using EA4S.Audio;
-using EA4S.LivingLetters;
-using EA4S.MinigamesCommon;
-using EA4S.UI;
+using Antura.Antura;
+using Antura.Audio;
+using Antura.LivingLetters;
+using Antura.MinigamesCommon;
+using Antura.Tutorial;
+using Antura.UI;
 
-namespace EA4S.Minigames.DancingDots
+namespace Antura.Minigames.DancingDots
 {
     public enum DancingDotsVariation : int
     {

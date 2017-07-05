@@ -1,8 +1,8 @@
 ﻿using System.Collections;
+using Antura.Core;
 using UnityEngine;
-using EA4S.Core;
 
-namespace EA4S.Map
+namespace Antura.Map
 {
     public class FingerStage : MonoBehaviour
     {

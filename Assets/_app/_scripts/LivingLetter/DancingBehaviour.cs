@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.LivingLetters
+namespace Antura.LivingLetters
 {
     // TODO refactor: group these behaviours in a folder
     public class DancingBehaviour : StateMachineBehaviour

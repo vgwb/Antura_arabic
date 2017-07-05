@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace EA4S.Tutorial
+namespace Antura.Tutorial
 {
     public class TutorialUIPools : MonoBehaviour
     {

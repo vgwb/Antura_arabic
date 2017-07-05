@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using EA4S.Database;
+using Antura.Database;
 
-namespace EA4S.Teacher
+namespace Antura.Teacher
 {
     /// <summary>
     /// Holds a single question pack as seen by the Teacher.

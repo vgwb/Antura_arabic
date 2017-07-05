@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
     /// <summary>
     /// Shows a graph detailing the journey of the player. 

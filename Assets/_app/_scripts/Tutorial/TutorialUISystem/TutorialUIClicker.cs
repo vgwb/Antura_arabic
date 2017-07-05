@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace EA4S.Tutorial
+namespace Antura.Tutorial
 {
     public class TutorialUIClicker : TutorialUIProp
     {

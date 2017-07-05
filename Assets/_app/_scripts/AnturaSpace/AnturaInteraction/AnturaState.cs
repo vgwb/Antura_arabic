@@ -1,5 +1,5 @@
 ﻿
-namespace EA4S.AnturaSpace
+namespace Antura.AnturaSpace
 {
     public class AnturaState : IState
     {

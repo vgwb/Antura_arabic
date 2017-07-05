@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using TMPro;
 
-namespace EA4S.Minigames.Scanner
+namespace Antura.Minigames.Scanner
 {
 
     public class ScannerSuitcase : MonoBehaviour {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace EA4S.MinigamesAPI
+namespace Antura.MinigamesAPI
 {
 
     /// <summary>

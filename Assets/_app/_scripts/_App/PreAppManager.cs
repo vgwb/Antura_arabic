@@ -1,9 +1,9 @@
-﻿using EA4S.Audio;
-using EA4S.UI;
+﻿using Antura.Audio;
+using Antura.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     /// <summary>
     /// Takes care of generating managers before the AppManger is awoken.

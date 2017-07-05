@@ -1,4 +1,4 @@
-﻿namespace EA4S.Minigames.FastCrowd
+﻿namespace Antura.Minigames.FastCrowd
 {
     public abstract class StrollingLetterState : IState
     {

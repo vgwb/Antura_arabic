@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEditor;
 
-namespace EA4S.Database.Management
+namespace Antura.Database.Management
 {
     /// <summary>
     /// Utility class that converts all fields of a class to properties for use with SQLite

@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using EA4S.Helpers;
-using EA4S.Database;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
+using Antura.Database;
+using Antura.Helpers;
+using Antura.LivingLetters;
+using Antura.MinigamesAPI;
 using TMPro;
 using UnityEngine;
 
-namespace EA4S.Minigames.Balloons
+namespace Antura.Minigames.Balloons
 {
     public class BalloonsLetterController : MonoBehaviour
     {

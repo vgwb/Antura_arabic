@@ -3,7 +3,7 @@ using Kore.Utils;
 using System.Collections;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public class Assessment
     {

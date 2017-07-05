@@ -1,7 +1,7 @@
 ﻿using DG.DeExtensions;
 using UnityEngine;
 
-namespace EA4S.Helpers
+namespace Antura.Helpers
 {
     public static class CameraHelper
     {

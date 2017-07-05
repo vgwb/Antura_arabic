@@ -1,12 +1,12 @@
 ﻿using System;
+using Antura.Audio;
+using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
-using EA4S.Core;
-using EA4S.Audio;
 using DG.DeExtensions;
 using DG.Tweening;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Shows an interactive YES/NO prompt panel.

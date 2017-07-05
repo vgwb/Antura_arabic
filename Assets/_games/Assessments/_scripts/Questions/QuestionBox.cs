@@ -1,9 +1,9 @@
 using DG.Tweening;
-using EA4S.Utilities;
 using System.Collections.Generic;
+using Antura.Utilities;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public class QuestionBox : MonoBehaviour
     {

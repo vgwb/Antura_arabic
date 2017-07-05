@@ -1,4 +1,4 @@
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public interface IQuestionDecoration
     {

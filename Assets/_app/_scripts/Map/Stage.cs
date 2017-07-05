@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using EA4S.Core;
+using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.Map
+namespace Antura.Map
 {
     public class Stage : MonoBehaviour
     {

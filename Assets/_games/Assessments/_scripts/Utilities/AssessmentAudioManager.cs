@@ -1,11 +1,11 @@
-using EA4S.Database;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using System.Collections;
 using System;
+using Antura.Database;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public class AssessmentAudioManager
     {

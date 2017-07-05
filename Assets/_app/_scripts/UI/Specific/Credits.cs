@@ -2,7 +2,7 @@
 using DG.Tweening;
 using UnityEngine.UI;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Controls the Credits panel.

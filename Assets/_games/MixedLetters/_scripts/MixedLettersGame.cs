@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Minigames.MixedLetters
+namespace Antura.Minigames.MixedLetters
 {
     public class MixedLettersGame : MiniGame
     {

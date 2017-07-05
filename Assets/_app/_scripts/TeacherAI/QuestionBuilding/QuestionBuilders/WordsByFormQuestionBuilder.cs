@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.Helpers;
+using Antura.Core;
+using Antura.Helpers;
 
-namespace EA4S.Teacher
+namespace Antura.Teacher
 {
     /// <summary>
     /// Categorize words based on their form

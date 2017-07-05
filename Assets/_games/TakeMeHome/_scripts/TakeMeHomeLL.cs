@@ -3,9 +3,9 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using EA4S.LivingLetters;
+using Antura.LivingLetters;
 
-namespace EA4S.Minigames.TakeMeHome
+namespace Antura.Minigames.TakeMeHome
 {
 public class TakeMeHomeLL : MonoBehaviour {
 

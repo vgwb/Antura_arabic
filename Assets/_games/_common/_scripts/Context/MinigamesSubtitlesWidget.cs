@@ -1,6 +1,6 @@
-﻿using EA4S.UI;
+﻿using Antura.UI;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Concrete implementation of ISubtitlesWidget. Accessible to minigames.

@@ -1,9 +1,9 @@
-﻿using EA4S.CameraEffects;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Antura.CameraEffects;
 using TMPro;
 using UnityEngine;
 
-namespace EA4S.Minigames.ReadingGame
+namespace Antura.Minigames.ReadingGame
 {
     public class HiddenText : MonoBehaviour
     {

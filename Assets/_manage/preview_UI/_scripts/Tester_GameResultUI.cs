@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using EA4S.Database;
-using EA4S.Rewards;
+using Antura.Database;
+using Antura.Rewards;
 using UnityEngine;
 
-namespace EA4S.Test
+namespace Antura.Test
 {
     /// <summary>
     /// Helper class to test the GameResultUI

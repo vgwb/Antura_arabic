@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using EA4S.Audio;
-using EA4S.LivingLetters;
-using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
-using EA4S.UI;
+using Antura.Audio;
+using Antura.LivingLetters;
+using Antura.MinigamesCommon;
+using Antura.Tutorial;
+using Antura.UI;
 using UnityEngine;
 
-namespace EA4S.Minigames.SickLetters
+namespace Antura.Minigames.SickLetters
 {
     public enum Diacritic { Sokoun, Fatha, Dameh, Kasrah, None };
 

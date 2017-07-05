@@ -1,8 +1,8 @@
 ﻿using System;
-using EA4S.Rewards;
+using Antura.Rewards;
 using UnityEngine;
 
-namespace EA4S.Rewards
+namespace Antura.Rewards
 {
     public class MaterialManager {
 
@@ -36,7 +36,7 @@ namespace EA4S.Rewards
     }
 }
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     /// <summary>
     /// Contains materials pair needed to set right color of Starndard Rewards.

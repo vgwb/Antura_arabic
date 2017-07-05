@@ -1,11 +1,11 @@
-﻿using EA4S.Helpers;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.Utilities;
+﻿using Antura.Helpers;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
+using Antura.Utilities;
 using UnityEngine;
 using TMPro;
 
-namespace EA4S.LivingLetters
+namespace Antura.LivingLetters
 {
     /// <summary>
     /// Controller of Living Letter characters. Functions as a view for learning data.

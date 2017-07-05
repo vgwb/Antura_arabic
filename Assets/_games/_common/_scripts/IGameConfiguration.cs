@@ -1,7 +1,7 @@
-﻿using EA4S.MinigamesAPI;
-using EA4S.Teacher;
+﻿using Antura.MinigamesAPI;
+using Antura.Teacher;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Interface for all configuration containers of minigames.

@@ -1,8 +1,8 @@
-﻿using EA4S.Helpers;
-using EA4S.Utilities;
+﻿using Antura.Helpers;
+using Antura.Utilities;
 using SQLite;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Daily mood level of a player at a given timestamp. Logged at runtime.

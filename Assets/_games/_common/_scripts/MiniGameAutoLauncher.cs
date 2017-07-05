@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using EA4S.MinigamesAPI;
+﻿using Antura.MinigamesAPI;
+using UnityEngine;
 
 #if UNITY_EDITOR
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Utility component to launch a minigame with a pre-set configuration. 

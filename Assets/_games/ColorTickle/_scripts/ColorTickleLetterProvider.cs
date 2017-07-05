@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesAPI.Sample;
-using EA4S.Teacher;
+using Antura.MinigamesAPI;
+using Antura.MinigamesAPI.Sample;
+using Antura.Teacher;
+using Antura.Core;
 
-namespace EA4S.Minigames.ColorTickle
+namespace Antura.Minigames.ColorTickle
 {
     /// <summary>
     /// Letter provider sample

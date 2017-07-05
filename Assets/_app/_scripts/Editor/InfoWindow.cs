@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using Antura.Core;
+using UnityEngine;
 using UnityEditor;
-using EA4S.Core;
 
-namespace EA4S.Editor
+namespace Antura.Editor
 {
 
     public class InfoView : EditorWindow
@@ -10,7 +10,7 @@ namespace EA4S.Editor
         [MenuItem("Tools/Antura/Info", false, 300)]
         static void ShowWindow()
         {
-            EditorWindow.GetWindow(typeof(EA4S.Editor.InfoView));
+            EditorWindow.GetWindow(typeof(InfoView));
         }
 
         void OnGUI()

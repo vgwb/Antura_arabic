@@ -3,7 +3,7 @@ using System.Collections;
 using TMPro;
 using DG.Tweening;
 
-namespace EA4S.Minigames.SickLetters
+namespace Antura.Minigames.SickLetters
 {
     public class SickLettersVase : MonoBehaviour
     {

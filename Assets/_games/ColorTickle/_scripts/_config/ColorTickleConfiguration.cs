@@ -1,8 +1,8 @@
-﻿using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.Teacher;
+﻿using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
+using Antura.Teacher;
 
-namespace EA4S.Minigames.ColorTickle
+namespace Antura.Minigames.ColorTickle
 {
     public class ColorTickleConfiguration : IGameConfiguration
     {

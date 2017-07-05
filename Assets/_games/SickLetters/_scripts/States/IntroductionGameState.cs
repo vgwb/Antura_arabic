@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using EA4S.Audio;
-using EA4S.MinigamesCommon;
+﻿using Antura.Audio;
+using UnityEngine;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.SickLetters
+namespace Antura.Minigames.SickLetters
 {
     public class IntroductionGameState : IState
     {

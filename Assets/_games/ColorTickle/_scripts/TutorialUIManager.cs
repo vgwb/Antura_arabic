@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using EA4S.Tutorial;
+﻿using Antura.Tutorial;
+using UnityEngine;
 
-namespace EA4S.Minigames.ColorTickle
+namespace Antura.Minigames.ColorTickle
 {
     public class TutorialUIManager : MonoBehaviour
     {

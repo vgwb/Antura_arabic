@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.MinigamesAPI;
-using EA4S.Teacher;
+using Antura.Core;
+using Antura.MinigamesAPI;
+using Antura.Teacher;
+using Antura.Database;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Concrete implementation of the log manager, accessible to minigames.

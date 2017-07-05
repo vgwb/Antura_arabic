@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace EA4S.Utilities
+namespace Antura.Utilities
 {
     public class OnActiveBehaviour : MonoBehaviour
     {

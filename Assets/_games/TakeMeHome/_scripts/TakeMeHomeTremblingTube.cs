@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Antura.Minigames.Tobogan;
 using UnityEngine;
-using EA4S.Minigames.Tobogan;
 
-namespace EA4S.Minigames.TakeMeHome
+namespace Antura.Minigames.TakeMeHome
 {
     public class TakeMeHomeTremblingTube : MonoBehaviour
     {

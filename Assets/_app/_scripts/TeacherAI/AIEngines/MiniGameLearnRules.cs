@@ -1,4 +1,4 @@
-﻿namespace EA4S.Teacher
+﻿namespace Antura.Teacher
 {
     /// <summary>
     /// Specific rules that parameterize how a minigame handles learning content for result purposes

@@ -1,9 +1,9 @@
 ﻿using System;
-using EA4S.Core;
-using EA4S.Helpers;
+using Antura.Helpers;
+using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.MinigamesAPI
+namespace Antura.MinigamesAPI
 {
     /// <summary>
     /// View of a WordData shown as a drawing or image on a LivingLetter.

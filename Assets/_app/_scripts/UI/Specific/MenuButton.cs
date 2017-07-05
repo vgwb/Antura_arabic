@@ -1,4 +1,4 @@
-﻿namespace EA4S.UI
+﻿namespace Antura.UI
 {
     public enum MenuButtonType
     {

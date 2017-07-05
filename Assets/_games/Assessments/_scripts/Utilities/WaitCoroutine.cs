@@ -2,7 +2,7 @@ using Kore.Coroutines;
 using System;
 using System.Collections;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     class WaitCoroutine : IYieldable, ICustomYield
     {

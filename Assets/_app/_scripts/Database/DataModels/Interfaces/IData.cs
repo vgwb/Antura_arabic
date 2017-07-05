@@ -1,4 +1,4 @@
-﻿namespace EA4S.Database
+﻿namespace Antura.Database
 {
     /// <summary>
     /// Interface for a generic data element that can be handled by the application.

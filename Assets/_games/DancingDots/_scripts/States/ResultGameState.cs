@@ -1,6 +1,6 @@
-﻿using EA4S.Audio;
+﻿using Antura.Audio;
 
-namespace EA4S.Minigames.DancingDots
+namespace Antura.Minigames.DancingDots
 {
     public class ResultGameState : IState
     {

@@ -1,4 +1,4 @@
-﻿namespace EA4S.MinigamesCommon
+﻿namespace Antura.MinigamesCommon
 {
     public delegate void GameResultAction(int stars, int score);
 

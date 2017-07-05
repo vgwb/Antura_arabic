@@ -1,4 +1,4 @@
-﻿namespace EA4S.MinigamesCommon
+﻿namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Provides access to the MinigamesStarsWidget UI element for minigames.

@@ -1,16 +1,16 @@
-﻿using UnityEngine;
-using EA4S.Audio;
-using EA4S.CameraControl;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.Profile;
-using EA4S.Rewards;
-using EA4S.Teacher;
-using EA4S.MinigamesAPI;
-using EA4S.UI;
-using EA4S.Utilities;
+﻿using Antura.Audio;
+using Antura.CameraControl;
+using Antura.Core;
+using Antura.Database;
+using Antura.MinigamesAPI;
+using Antura.Profile;
+using Antura.Rewards;
+using Antura.Teacher;
+using Antura.UI;
+using Antura.Utilities;
+using UnityEngine;
 
-namespace EA4S
+namespace Antura
 {
     /// <summary>
     /// Core of the application.

@@ -1,15 +1,15 @@
 ﻿using DG.DeExtensions;
 using DG.Tweening;
-using EA4S.Audio;
-using EA4S.LivingLetters;
-using EA4S.Profile;
-using EA4S.Scenes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Antura.Audio;
+using Antura.LivingLetters;
+using Antura.Profile;
+using Antura.Scenes;
 using UnityEngine;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// General controller for the interface of the Profile Selector.

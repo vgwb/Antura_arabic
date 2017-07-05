@@ -1,9 +1,9 @@
-﻿using EA4S.Antura;
-using EA4S.Audio;
-using EA4S.Helpers;
+﻿using Antura.Antura;
+using Antura.Audio;
+using Antura.Helpers;
 using UnityEngine;
 
-namespace EA4S.Minigames.FastCrowd
+namespace Antura.Minigames.FastCrowd
 {
     public class AnturaRunnerController : MonoBehaviour
     {

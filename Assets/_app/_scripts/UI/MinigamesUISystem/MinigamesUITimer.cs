@@ -1,11 +1,11 @@
-﻿using DG.Tweening;
-using EA4S.Audio;
-using EA4S.MinigamesCommon;
+﻿using Antura.Audio;
+using Antura.MinigamesCommon;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Shows a timer during a minigame.

@@ -1,7 +1,7 @@
-﻿using EA4S.Helpers;
+﻿using Antura.Helpers;
 using SQLite;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Summary score results relative to a vocabulary element. Updated at runtime.

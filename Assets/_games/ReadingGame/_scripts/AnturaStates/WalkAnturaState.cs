@@ -1,7 +1,7 @@
-﻿using EA4S.Antura;
+﻿using Antura.Antura;
 using UnityEngine;
 
-namespace EA4S.Minigames.ReadingGame
+namespace Antura.Minigames.ReadingGame
 {
     public class WalkAnturaState : AnturaState
     {

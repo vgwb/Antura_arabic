@@ -1,7 +1,7 @@
-﻿using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
+﻿using Antura.Tutorial;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.TakeMeHome
+namespace Antura.Minigames.TakeMeHome
 {
 	public class TakeMeHomeResetState : IState {
 

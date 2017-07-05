@@ -1,7 +1,7 @@
-﻿using EA4S.UI;
+﻿using Antura.UI;
 using UnityEngine;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
     public class TableRow : MonoBehaviour
     {

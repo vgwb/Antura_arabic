@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Audio;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.Helpers;
-using EA4S.UI;
-using EA4S.Utilities;
+using Antura.Audio;
+using Antura.Core;
+using Antura.Database;
+using Antura.Helpers;
+using Antura.UI;
+using Antura.Utilities;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
 
     public struct GenericCategoryData

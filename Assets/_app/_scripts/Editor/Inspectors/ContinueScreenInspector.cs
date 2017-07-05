@@ -2,14 +2,14 @@
 // Created: 2016/08/01 12:33
 // License Copyright (c) Daniele Giardini
 
+using Antura.UI;
 using DG.DemiEditor;
 using DG.DemiLib;
-using EA4S.UI;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Editor.Inspectors
+namespace Antura.Editor.Inspectors
 {
     [CustomEditor(typeof(ContinueScreen))]
     public class ContinueScreenInspector : UnityEditor.Editor

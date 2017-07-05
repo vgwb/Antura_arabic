@@ -1,6 +1,6 @@
-using EA4S.Profile;
+using Antura.Profile;
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     /// <summary>
     /// Static class that helps in localizing strings.

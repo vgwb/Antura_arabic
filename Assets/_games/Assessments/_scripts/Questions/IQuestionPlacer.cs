@@ -1,6 +1,6 @@
 using Kore.Coroutines;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public interface IQuestionPlacer
     {

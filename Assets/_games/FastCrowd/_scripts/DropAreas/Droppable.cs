@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using EA4S.LivingLetters;
+﻿using Antura.LivingLetters;
+using UnityEngine;
 
-namespace EA4S.Minigames.FastCrowd {
+namespace Antura.Minigames.FastCrowd {
 
     /// <summary>
     /// Add functionality to be droppable on DropSingleArea.

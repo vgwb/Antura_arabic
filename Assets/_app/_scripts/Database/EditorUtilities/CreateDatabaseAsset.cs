@@ -1,7 +1,7 @@
 ﻿#if UNITY_EDITOR
-using EA4S.EditorUtilities;
+using Antura.EditorUtilities;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Utility class that generates a complete empty static database in the given folder.

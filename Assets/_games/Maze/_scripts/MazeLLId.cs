@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Minigames.Maze
+namespace Antura.Minigames.Maze
 {
     public class MazeLLId : MonoBehaviour
     {

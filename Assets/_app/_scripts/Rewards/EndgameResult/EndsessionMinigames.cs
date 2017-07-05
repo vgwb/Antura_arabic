@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using Antura.Audio;
 using DG.Tweening;
-using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Rewards
+namespace Antura.Rewards
 {
     /// <summary>
     /// Visual container for minigame instances in the EndsessionResultPanel

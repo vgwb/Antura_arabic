@@ -1,7 +1,7 @@
-﻿using EA4S.Core;
+﻿using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.Rewards
+namespace Antura.Rewards
 {
     public static class ModelsManager
     {

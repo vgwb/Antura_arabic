@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Helpers;
+using Antura.Helpers;
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     /// <summary>
     /// App Log Manager. Use this to log any event from app.

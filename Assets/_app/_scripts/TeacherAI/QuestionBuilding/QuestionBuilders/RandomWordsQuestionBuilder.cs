@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using EA4S.Core;
+using Antura.Core;
 
-namespace EA4S.Teacher
+namespace Antura.Teacher
 {
     /// <summary>
     /// Selects words at random

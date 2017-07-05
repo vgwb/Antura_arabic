@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace EA4S.Minigames.ThrowBalls
+namespace Antura.Minigames.ThrowBalls
 {
     public class CrateController : MonoBehaviour
     {

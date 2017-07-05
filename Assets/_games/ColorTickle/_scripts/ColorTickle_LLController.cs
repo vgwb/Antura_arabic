@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System;
-using EA4S.LivingLetters;
+using Antura.LivingLetters;
 
-namespace EA4S.Minigames.ColorTickle
+namespace Antura.Minigames.ColorTickle
 {
     public class ColorTickle_LLController : MonoBehaviour
     {

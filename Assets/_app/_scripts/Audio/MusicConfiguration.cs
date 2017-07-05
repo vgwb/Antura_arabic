@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Audio
+namespace Antura.Audio
 {
     [System.Serializable]
     public class MusicConfiguration

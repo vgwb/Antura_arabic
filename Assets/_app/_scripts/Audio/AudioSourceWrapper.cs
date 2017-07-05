@@ -1,8 +1,8 @@
-﻿using DG.DeAudio;
-using EA4S.MinigamesCommon;
+﻿using Antura.MinigamesCommon;
+using DG.DeAudio;
 using UnityEngine;
 
-namespace EA4S.Audio
+namespace Antura.Audio
 {
     public class AudioSourceWrapper : IAudioSource
     {

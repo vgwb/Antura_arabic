@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// Create components for running a Assessment, components are specific

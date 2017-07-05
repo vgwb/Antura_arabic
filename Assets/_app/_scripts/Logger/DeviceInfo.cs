@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     /// <summary>
     /// the DeviceInfo class is used to collect all technical details to be included in any debug report.

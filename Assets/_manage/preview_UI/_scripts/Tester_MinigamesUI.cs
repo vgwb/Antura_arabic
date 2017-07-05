@@ -1,9 +1,9 @@
 ﻿using System.Collections;
-using EA4S.MinigamesCommon;
-using EA4S.UI;
+using Antura.MinigamesCommon;
+using Antura.UI;
 using UnityEngine;
 
-namespace EA4S.Test
+namespace Antura.Test
 {
     /// <summary>
     /// Helper class to test the MinigamesUI

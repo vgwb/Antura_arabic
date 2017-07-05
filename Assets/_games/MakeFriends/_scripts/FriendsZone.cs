@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Minigames.MakeFriends
+namespace Antura.Minigames.MakeFriends
 {
     public class FriendsZone : MonoBehaviour
     {

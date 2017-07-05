@@ -1,15 +1,15 @@
 using DG.Tweening;
-using EA4S.Helpers;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.UI;
-using EA4S.Utilities;
 using System;
-using EA4S.Core;
+using Antura.Helpers;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
+using Antura.UI;
+using Antura.Utilities;
+using Antura.Core;
 using TMPro;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// Alternative LL, no animation, more lightweight,

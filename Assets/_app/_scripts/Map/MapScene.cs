@@ -1,7 +1,7 @@
-﻿using EA4S.Core;
+﻿using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.Map
+namespace Antura.Map
 {
     /// <summary>
     /// Manages the Map scene, from which the next Play Session can be started.

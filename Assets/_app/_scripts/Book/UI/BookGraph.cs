@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
     /// <summary>
     /// Displays data using a bar graph.

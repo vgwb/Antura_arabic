@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System;
-using EA4S.Core;
-using EA4S.Helpers;
+using Antura.Helpers;
+using Antura.Core;
 
-namespace EA4S.MinigamesAPI
+namespace Antura.MinigamesAPI
 {
     /// <summary>
     /// View of a PhraseData shown as text on a LivingLetter.

@@ -2,17 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.DeInspektor.Attributes;
-using EA4S.UI;
+using Antura.UI;
 using UnityEngine;
 using UnityEngine.UI;
-using EA4S.Assessment;
-using EA4S.Audio;
-using EA4S.Database;
+using Antura.Assessment;
 using System.Linq;
-using EA4S.Core;
-using EA4S.Helpers;
+using Antura.Audio;
+using Antura.Database;
+using Antura.Core;
+using Antura.Helpers;
 
-namespace EA4S.Teacher.Test
+namespace Antura.Teacher.Test
 {
     /// <summary>
     /// Helper class to test DataBase contents, useful to pinpoint critical data.

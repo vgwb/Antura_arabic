@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 
-namespace EA4S.Test
+namespace Antura.Test
 { 
     /// <summary>
     /// Follow the gameobject on selected axes with selected delay.

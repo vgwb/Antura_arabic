@@ -1,8 +1,8 @@
-﻿using EA4S.Audio;
-using EA4S.UI;
+﻿using Antura.Audio;
+using Antura.UI;
 using UnityEngine;
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     /// <summary>
     /// Manages the Keeper throughout the application. The Keeper gives hints and explains minigames to the player.

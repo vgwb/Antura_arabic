@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using EA4S.LivingLetters;
-using EA4S.Audio;
-using EA4S.MinigamesCommon;
+using Antura.Audio;
+using Antura.LivingLetters;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.Scanner
+namespace Antura.Minigames.Scanner
 {
 
     public class ScannerLivingLetter : MonoBehaviour

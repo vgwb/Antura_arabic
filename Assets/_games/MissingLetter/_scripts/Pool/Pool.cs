@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace EA4S.Minigames.MissingLetter
+namespace Antura.Minigames.MissingLetter
 {
     public class Pool<T>
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Interface for a table related to a specific IData inside the static database.

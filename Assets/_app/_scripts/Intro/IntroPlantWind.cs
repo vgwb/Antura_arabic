@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Intro
+namespace Antura.Intro
 {
     /// <summary>
     /// Controls the animation of plants in the Intro scene.

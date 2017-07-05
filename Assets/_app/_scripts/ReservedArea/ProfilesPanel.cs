@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Antura.Core;
+using Antura.Profile;
+using Antura.Teacher;
+using Antura.UI;
 using UnityEngine;
-using EA4S.Core;
-using EA4S.UI;
-using EA4S.Profile;
-using EA4S.Teacher;
 
-namespace EA4S.ReservedArea
+namespace Antura.ReservedArea
 {
     public class ProfilesPanel : MonoBehaviour
     {

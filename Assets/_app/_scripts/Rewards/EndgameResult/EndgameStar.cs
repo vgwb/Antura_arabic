@@ -1,9 +1,9 @@
-﻿using DG.Tweening;
-using EA4S.Audio;
+﻿using Antura.Audio;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Rewards
+namespace Antura.Rewards
 {
     /// <summary>
     /// Star (bone) and its bg are in separate gameObjects (to use correct overlay)

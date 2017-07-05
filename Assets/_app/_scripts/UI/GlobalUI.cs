@@ -1,9 +1,9 @@
 ﻿using System;
+using Antura.Core;
 using UnityEngine;
 using DG.DeInspektor.Attributes;
-using EA4S.Core;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Global UI created dynamically at runtime,

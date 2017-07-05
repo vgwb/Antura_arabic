@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Antura
+namespace Antura.Antura
 {
     /// <summary>
     /// State for Antura's animation. Animates a walk cylce.

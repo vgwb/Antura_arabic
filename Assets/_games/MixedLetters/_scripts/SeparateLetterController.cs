@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
+using Antura.LivingLetters;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
+using Antura.Tutorial;
 
-namespace EA4S.Minigames.MixedLetters
+namespace Antura.Minigames.MixedLetters
 {
     public class SeparateLetterController : MonoBehaviour
     {

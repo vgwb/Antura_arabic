@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Helpers
+namespace Antura.Helpers
 {
     public static class UIHelper
     {

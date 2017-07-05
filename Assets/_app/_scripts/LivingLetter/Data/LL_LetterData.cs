@@ -1,8 +1,8 @@
 ﻿using System;
-using EA4S.Core;
+using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.MinigamesAPI
+namespace Antura.MinigamesAPI
 {
     /// <summary>
     /// View of a LetterData shown as a single letter on a LivingLetter.

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 
-namespace EA4S.Minigames.Maze
+namespace Antura.Minigames.Maze
 {
 	public class MazeShowPrefab : MonoBehaviour {
 

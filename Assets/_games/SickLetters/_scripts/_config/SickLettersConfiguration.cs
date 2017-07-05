@@ -1,8 +1,8 @@
-﻿using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.Teacher;
+﻿using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
+using Antura.Teacher;
 
-namespace EA4S.Minigames.SickLetters
+namespace Antura.Minigames.SickLetters
 {
     public class SickLettersConfiguration : IGameConfiguration
     {
@@ -38,7 +38,7 @@ namespace EA4S.Minigames.SickLetters
             TutorialEnabled = true;
             //SickLettersQuestions = new SickLettersQuestionProvider();
             Difficulty = 0.1f;
-            EA4S.Teacher.ConfigAI.verboseTeacher = true;
+            ConfigAI.verboseTeacher = true;
         }
 
         public IQuestionBuilder SetupBuilder() {

@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Antura;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.Rewards;
+using Antura.Antura;
+using Antura.Core;
+using Antura.Database;
+using Antura.Rewards;
 
-namespace EA4S.Profile
+namespace Antura.Profile
 {
     /// <summary>
     /// A Player Profile contains persistent data on details and on the progression status of a single player.
@@ -255,7 +255,7 @@ namespace EA4S.Profile
         /// </summary>
         /// <param name="_rewardType">Type of the reward.</param>
         /// <returns></returns>
-        public int GetNotYetUnlockedRewardCountForType(EA4S.Rewards.RewardTypes _rewardType)
+        public int GetNotYetUnlockedRewardCountForType(RewardTypes _rewardType)
         {
             int counter = 0;
             //foreach (PlaySessionRewardUnlock plsRew in RewardSystemManager.GetConfig().PlaySessionRewardsUnlock) {
@@ -302,7 +302,7 @@ namespace EA4S.Profile
         /// </summary>
         /// <param name="_rewardType">Type of the reward.</param>
         /// <returns></returns>
-        public bool RewardForTypeAvailableYet(EA4S.Rewards.RewardTypes _rewardType)
+        public bool RewardForTypeAvailableYet(RewardTypes _rewardType)
         {
             return GetNotYetUnlockedRewardCountForType(_rewardType) <= 0 ? false : true;
         }

@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
-using EA4S.UI;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
+using Antura.Tutorial;
+using Antura.UI;
 using TMPro;
 using DG.Tweening;
 
-namespace EA4S.Minigames.Maze
+namespace Antura.Minigames.Maze
 {
     public class MazeGame : MiniGame
     {

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesAPI.Sample;
+using Antura.MinigamesAPI;
+using Antura.MinigamesAPI.Sample;
+using Antura.Core;
 
-namespace EA4S.Minigames.SickLetters
+namespace Antura.Minigames.SickLetters
 {
     /*
     This is a Dummy Provider, used only when the game is started from the Editor, 

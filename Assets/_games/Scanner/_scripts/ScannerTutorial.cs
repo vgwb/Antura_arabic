@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using EA4S.Audio;
-using EA4S.Tutorial;
+using Antura.Audio;
+using Antura.Tutorial;
 
-namespace EA4S.Minigames.Scanner
+namespace Antura.Minigames.Scanner
 {
     public class ScannerTutorial : MonoBehaviour
     {

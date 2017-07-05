@@ -1,4 +1,4 @@
-﻿namespace EA4S.MinigamesAPI
+﻿namespace Antura.MinigamesAPI
 {
     /// <summary>
     /// The question provider takes the responsibility to provide a set of questions to its user;

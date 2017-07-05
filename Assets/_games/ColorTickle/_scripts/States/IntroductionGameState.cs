@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Linq;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
+using Antura.LivingLetters;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.ColorTickle
+namespace Antura.Minigames.ColorTickle
 {
     public class IntroductionGameState : IState
     {

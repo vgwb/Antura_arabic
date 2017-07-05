@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Minigames.Egg
+namespace Antura.Minigames.Egg
 {
     public class EggBox : MonoBehaviour
     {

@@ -1,7 +1,7 @@
-﻿using EA4S.Rewards;
+﻿using Antura.Rewards;
 using UnityEngine;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Button for a category in the Antura Space scene.

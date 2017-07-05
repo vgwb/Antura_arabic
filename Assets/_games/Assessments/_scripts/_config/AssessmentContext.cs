@@ -1,8 +1,8 @@
-using EA4S.Database;
-using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
+using Antura.Database;
+using Antura.MinigamesCommon;
+using Antura.Tutorial;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// Used to pass managers around. Try to avoid passing it around apart

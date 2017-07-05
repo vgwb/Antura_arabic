@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using EA4S.MinigamesCommon;
 using System;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.ThrowBalls
+namespace Antura.Minigames.ThrowBalls
 {
     public class BallController : MonoBehaviour
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using EA4S.MinigamesAPI;
+using Antura.MinigamesAPI;
 
-namespace EA4S.Minigames.MakeFriends
+namespace Antura.Minigames.MakeFriends
 {
     public class MakeFriendsQuestionPack : IQuestionPack
     {

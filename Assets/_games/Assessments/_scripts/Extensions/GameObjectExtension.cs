@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EA4S
+namespace Antura
 {
     public static class GameObjectExtension
     {

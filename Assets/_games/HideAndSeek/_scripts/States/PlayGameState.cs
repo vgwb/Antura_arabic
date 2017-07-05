@@ -1,7 +1,7 @@
-﻿using EA4S.Audio;
-using EA4S.MinigamesCommon;
+﻿using Antura.Audio;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.HideAndSeek
+namespace Antura.Minigames.HideAndSeek
 {
     public class PlayGameState : IState
     {

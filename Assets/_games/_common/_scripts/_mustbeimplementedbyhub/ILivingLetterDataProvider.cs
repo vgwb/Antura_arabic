@@ -1,4 +1,4 @@
-﻿namespace EA4S.MinigamesAPI
+﻿namespace Antura.MinigamesAPI
 {
     /// <summary>
     /// Interface for a provider of ILivingLetterData.

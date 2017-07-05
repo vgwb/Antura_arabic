@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S.Core;
-using EA4S.Helpers;
+using Antura.Core;
+using Antura.Helpers;
 using SQLite;
 using UnityEngine;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
 
     /// <summary>

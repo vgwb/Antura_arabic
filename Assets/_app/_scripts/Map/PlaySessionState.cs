@@ -1,4 +1,4 @@
-﻿namespace EA4S.Map
+﻿namespace Antura.Map
 {
     public class PlaySessionState
     {

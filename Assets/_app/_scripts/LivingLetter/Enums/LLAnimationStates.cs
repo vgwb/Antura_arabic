@@ -1,4 +1,4 @@
-﻿namespace EA4S.LivingLetters
+﻿namespace Antura.LivingLetters
 {
     public enum LLAnimationStates
     {

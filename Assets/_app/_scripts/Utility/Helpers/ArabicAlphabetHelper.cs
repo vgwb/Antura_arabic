@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Antura.Database;
 using ArabicSupport;
-using EA4S.Database;
 
-namespace EA4S.Helpers
+namespace Antura.Helpers
 {
     // TODO refactor: We should create an intermediate layer for accessing language-specific helpers, so that they can be removed easily.
     // TODO refactor: this class needs a large refactoring as it is used for several different purposes

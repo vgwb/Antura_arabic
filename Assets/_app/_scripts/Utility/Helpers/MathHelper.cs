@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace EA4S.Helpers
+namespace Antura.Helpers
 {
     /// <summary>
     /// Static helper class for math functions.

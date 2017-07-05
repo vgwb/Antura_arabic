@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     /// <summary>
     /// Container for application-wide static constants.

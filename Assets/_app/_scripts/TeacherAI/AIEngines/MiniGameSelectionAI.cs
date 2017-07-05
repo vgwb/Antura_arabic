@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using EA4S.Database;
-using EA4S.Helpers;
+using Antura.Database;
+using Antura.Helpers;
 
-namespace EA4S.Teacher
+namespace Antura.Teacher
 {
     /// <summary>
     /// Handles the selection of what minigames to play during a playsession

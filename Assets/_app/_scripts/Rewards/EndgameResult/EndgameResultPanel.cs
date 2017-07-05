@@ -1,12 +1,12 @@
 ﻿using System.Collections;
+using Antura.Audio;
+using Antura.UI;
 using DG.Tweening;
-using EA4S.Audio;
-using EA4S.Core;
-using EA4S.UI;
+using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Rewards
+namespace Antura.Rewards
 {
     /// <summary>
     /// Controls the panel that shows information on the results after a minigame ends.

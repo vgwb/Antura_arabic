@@ -1,4 +1,4 @@
-﻿namespace EA4S.Minigames.MissingLetter
+﻿namespace Antura.Minigames.MissingLetter
 {
     public class MissingLetterResultState : IState
     {

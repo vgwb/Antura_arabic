@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using EA4S.Core;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesAPI.Sample;
+using Antura.MinigamesAPI;
+using Antura.MinigamesAPI.Sample;
+using Antura.Core;
 
-namespace EA4S.Minigames.Tobogan
+namespace Antura.Minigames.Tobogan
 {
     public class SunMoonTutorialQuestionProvider : IQuestionProvider
     {

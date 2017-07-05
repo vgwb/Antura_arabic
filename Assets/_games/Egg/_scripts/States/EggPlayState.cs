@@ -1,9 +1,9 @@
-﻿using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
+﻿using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
+using Antura.Tutorial;
 using UnityEngine;
 
-namespace EA4S.Minigames.Egg
+namespace Antura.Minigames.Egg
 {
     public class EggPlayState : IState
     {

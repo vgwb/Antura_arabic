@@ -1,8 +1,8 @@
-﻿using EA4S.Minigames.FastCrowd;
-using EA4S.LivingLetters;
+﻿using Antura.LivingLetters;
+using Antura.Minigames.FastCrowd;
 using UnityEngine;
 
-namespace EA4S.Intro
+namespace Antura.Intro
 {
     /// <summary>
     /// Behaviour of the LivingLetters in the Introduction

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-namespace EA4S.EditorUtilities
+namespace Antura.EditorUtilities
 {
     public class ScriptableObjectHelper : ScriptableObject
     {

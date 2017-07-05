@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace EA4S.Minigames.DancingDots
+namespace Antura.Minigames.DancingDots
 {
     public class DancingDotsBeatDetection : MonoBehaviour
     {

@@ -1,9 +1,9 @@
-using EA4S.Profile;
 using System;
+using Antura.Profile;
 using SQLite;
 using UnityEngine;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Data defining a Localization key-value pair.

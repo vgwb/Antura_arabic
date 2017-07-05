@@ -1,6 +1,6 @@
-﻿using EA4S.MinigamesCommon;
+﻿using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.MissingLetter
+namespace Antura.Minigames.MissingLetter
 {
     public class MissingLetterQuestionState : IState
     {

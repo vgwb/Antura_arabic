@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// Keeps linked IQuestion and LL Gameobject

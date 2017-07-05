@@ -1,9 +1,9 @@
-﻿using EA4S.MinigamesAPI;
-using EA4S.MinigamesAPI.Sample;
-using EA4S.MinigamesCommon;
-using EA4S.Teacher;
+﻿using Antura.MinigamesAPI;
+using Antura.MinigamesAPI.Sample;
+using Antura.MinigamesCommon;
+using Antura.Teacher;
 
-namespace EA4S.Minigames.Balloons
+namespace Antura.Minigames.Balloons
 {
     public enum BalloonsVariation : int
     {

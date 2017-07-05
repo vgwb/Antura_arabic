@@ -1,4 +1,4 @@
-﻿namespace EA4S.Minigames.Tobogan
+﻿namespace Antura.Minigames.Tobogan
 {
     public class ToboganResultGameState : IState
     {

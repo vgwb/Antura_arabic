@@ -3,18 +3,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.Helpers;
-using EA4S.Profile;
-using EA4S.Rewards;
-using EA4S.Teacher;
-using EA4S.UI;
-using PlayerProfile = EA4S.Profile.PlayerProfile;
+using Antura.Core;
+using Antura.Helpers;
+using Antura.Profile;
+using Antura.Rewards;
+using Antura.Teacher;
+using Antura.UI;
+using PlayerProfile = Antura.Profile.PlayerProfile;
 
 // refactor: standardize random use across the codebase
 using RND = UnityEngine.Random;
 
-namespace EA4S.Database.Management
+namespace Antura.Database.Management
 {
     /// <summary>
     /// Helps in managing and testing database contents.
@@ -25,7 +25,7 @@ namespace EA4S.Database.Management
         [HideInInspector]
         public DatabaseManager dbManager;
         private TeacherAI teacherAI;
-        private PlayerProfile playerProfile;
+        private Profile.PlayerProfile playerProfile;
 
         public Text OutputText;
         public TextRender OutputTextArabic;
@@ -605,7 +605,7 @@ namespace EA4S.Database.Management
         public void LoadProfile(string playerUuid)
         {
             dbManager.LoadDatabaseForPlayer(playerUuid);
-            playerProfile = new PlayerProfile();
+            playerProfile = new Profile.PlayerProfile();
             playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 2, 2);    // test
             teacherAI.SetPlayerProfile(playerProfile);
             PrintOutput("Loading profile " + playerUuid);

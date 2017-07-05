@@ -1,8 +1,8 @@
-﻿using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
+﻿using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Minigames.HideAndSeek
+namespace Antura.Minigames.HideAndSeek
 {
     public class HideAndSeekGame : MiniGame
     {

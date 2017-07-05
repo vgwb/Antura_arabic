@@ -1,6 +1,6 @@
-﻿using EA4S.Audio;
+﻿using Antura.Audio;
 
-namespace EA4S.Minigames.SickLetters
+namespace Antura.Minigames.SickLetters
 {
     public class ResultGameState : IState
     {

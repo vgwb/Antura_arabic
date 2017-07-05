@@ -1,14 +1,14 @@
-﻿using EA4S.Antura;
-using EA4S.Animation;
-using EA4S.CameraEffects;
-using EA4S.Core;
-using EA4S.UI;
-using EA4S.LivingLetters;
-using EA4S.Helpers;
+﻿using Antura.Helpers;
 using System.Collections;
+using Antura.Animation;
+using Antura.Antura;
+using Antura.CameraEffects;
+using Antura.Core;
+using Antura.LivingLetters;
+using Antura.UI;
 using UnityEngine;
 
-namespace EA4S.Scenes
+namespace Antura.Scenes
 {
     /// <summary>
     /// Manages the Ending scene, which shows a non-interactive introduction to the game.

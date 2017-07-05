@@ -1,8 +1,8 @@
-﻿using DG.Tweening;
-using EA4S.EditorUtilities;
+﻿using Antura.EditorUtilities;
+using DG.Tweening;
 using UnityEngine;
 
-namespace EA4S.Tutorial
+namespace Antura.Tutorial
 {
     /// <summary>
     /// Can be a single trail, or a collection of multiple trails

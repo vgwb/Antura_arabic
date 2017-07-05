@@ -1,11 +1,11 @@
-﻿using DG.DeExtensions;
+﻿using Antura.Core;
+using Antura.UI;
+using DG.DeExtensions;
 using DG.DeInspektor.Attributes;
-using EA4S.Core;
-using EA4S.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Profile
+namespace Antura.Profile
 {
     [RequireComponent(typeof(UIButton))]
     public class PlayerIcon : MonoBehaviour

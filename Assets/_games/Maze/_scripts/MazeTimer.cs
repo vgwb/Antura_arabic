@@ -1,8 +1,8 @@
-﻿using EA4S.UI;
+﻿using Antura.UI;
 using UnityEngine;
 using TMPro;
 
-namespace EA4S.Minigames.Maze
+namespace Antura.Minigames.Maze
 {
     public class MazeTimer : MonoBehaviour
     {

@@ -1,9 +1,9 @@
-﻿using EA4S.Core;
-using EA4S.Helpers;
-using EA4S.LivingLetters;
+﻿using Antura.LivingLetters;
+using Antura.Core;
+using Antura.Helpers;
 using UnityEngine;
 
-namespace EA4S.Intro
+namespace Antura.Intro
 {
     /// <summary>
     /// A special LivingLetter character with special animations.

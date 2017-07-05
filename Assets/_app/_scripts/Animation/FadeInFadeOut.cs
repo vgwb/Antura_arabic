@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 
-namespace EA4S.Animation
+namespace Antura.Animation
 {
     // TODO obsolete: remove the class
     public class FadeInFadeOut : MonoBehaviour

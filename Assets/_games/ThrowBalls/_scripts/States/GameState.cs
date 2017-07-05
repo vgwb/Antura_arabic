@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using EA4S.Audio;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
-using EA4S.UI;
-using EA4S.Helpers;
+using Antura.Audio;
+using Antura.Helpers;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
+using Antura.Tutorial;
+using Antura.UI;
 using Random = UnityEngine.Random;
 
-namespace EA4S.Minigames.ThrowBalls
+namespace Antura.Minigames.ThrowBalls
 {
     public class GameState : IState
     {

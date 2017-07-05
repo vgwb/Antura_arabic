@@ -1,6 +1,6 @@
-﻿using EA4S.MinigamesCommon;
+﻿using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.Egg
+namespace Antura.Minigames.Egg
 {
     public class EggResultState : IState
     {

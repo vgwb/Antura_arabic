@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.Helpers;
-using EA4S.LivingLetters;
-using EA4S.Minigames.FastCrowd;
-using EA4S.MinigamesAPI;
+using Antura.LivingLetters;
+using Antura.Minigames.FastCrowd;
+using Antura.MinigamesAPI;
+using Antura.Core;
+using Antura.Helpers;
 
-namespace EA4S.Intro
+namespace Antura.Intro
 {
     /// <summary>
     /// Controls the instantiation of game objects in the Intro scene.

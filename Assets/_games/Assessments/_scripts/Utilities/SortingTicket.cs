@@ -1,7 +1,7 @@
-using EA4S.MinigamesAPI;
+using Antura.MinigamesAPI;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public class SortingTicket : MonoBehaviour
     {

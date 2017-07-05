@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace EA4S.MinigamesAPI
+namespace Antura.MinigamesAPI
 {
 
     /// <summary>

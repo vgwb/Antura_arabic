@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.EditorUtilities
+namespace Antura.EditorUtilities
 {
     /// <summary>
     /// Allows to set the sortingOrder of 3D objects in the world, simply setting the order (no layerName/Id)

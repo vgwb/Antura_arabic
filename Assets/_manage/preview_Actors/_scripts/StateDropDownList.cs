@@ -1,9 +1,9 @@
 ﻿using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
-using EA4S.LivingLetters;
+using Antura.LivingLetters;
 
-namespace EA4S.Test
+namespace Antura.Test
 {
     public class StateDropDownList : Dropdown {
 

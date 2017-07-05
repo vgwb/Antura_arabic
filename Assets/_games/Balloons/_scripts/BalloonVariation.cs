@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Minigames.Balloons
+namespace Antura.Minigames.Balloons
 {
     public class BalloonVariation : MonoBehaviour
     {

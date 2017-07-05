@@ -1,8 +1,8 @@
-﻿using EA4S.Audio;
-using EA4S.MinigamesAPI;
+﻿using Antura.Audio;
+using Antura.MinigamesAPI;
 using UnityEngine;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     public class MinigamesAudioManager : IAudioManager
     {

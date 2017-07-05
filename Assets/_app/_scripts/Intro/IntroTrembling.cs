@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Intro
+namespace Antura.Intro
 {
     // TODO refactor: could not find any reference to this script in the Intro scene
     public class IntroTrembling : MonoBehaviour

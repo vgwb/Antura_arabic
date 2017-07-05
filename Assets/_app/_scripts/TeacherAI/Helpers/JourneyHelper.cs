@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.Database;
+using Antura.Core;
+using Antura.Database;
 
-namespace EA4S.Teacher
+namespace Antura.Teacher
 {   
     // TODO refactor: merge JourneyPosition, JourneyHelper
     public class JourneyHelper

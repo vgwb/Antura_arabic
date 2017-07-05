@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Enumerator that defines a single table (i.e. data type) that can be accessed in the static database.

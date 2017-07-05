@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.Egg
+namespace Antura.Minigames.Egg
 {
     public class EggQuestionState : IState
     {

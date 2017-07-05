@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using System;
-using EA4S.Core;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
-using EA4S.Helpers;
-using EA4S.UI;
+using Antura.Helpers;
+using Antura.LivingLetters;
+using Antura.MinigamesAPI;
+using Antura.UI;
+using Antura.Core;
 
-namespace EA4S.Minigames.Tobogan
+namespace Antura.Minigames.Tobogan
 {
     public class QuestionLivingLetter : MonoBehaviour
     {

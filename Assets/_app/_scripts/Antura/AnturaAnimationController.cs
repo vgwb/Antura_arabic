@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Antura
+namespace Antura.Antura
 {
     /// <summary>
     /// Handles the animations of Antura.

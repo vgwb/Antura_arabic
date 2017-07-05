@@ -1,8 +1,8 @@
-﻿using EA4S.Core;
+﻿using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Button for selecting an avatar in the Profile Selector.

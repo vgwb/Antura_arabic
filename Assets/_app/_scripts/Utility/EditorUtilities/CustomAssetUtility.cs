@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-namespace EA4S.EditorUtilities
+namespace Antura.EditorUtilities
 {
     /// <summary>
     /// Utility class used to create custom assets in the project folder.

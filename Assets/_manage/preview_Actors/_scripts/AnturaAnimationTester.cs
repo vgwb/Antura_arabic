@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using EA4S.Antura;
+﻿using Antura.Antura;
+using UnityEngine;
 
-namespace EA4S.Test
+namespace Antura.Test
 {
     public class AnturaAnimationTester : MonoBehaviour
     {

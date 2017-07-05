@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     // refactor: should be handled as other widgets are
     public class RadialGadget : MonoBehaviour

@@ -1,9 +1,9 @@
-﻿using EA4S.Audio;
-using EA4S.Core;
-using EA4S.UI;
+﻿using Antura.Audio;
+using Antura.UI;
+using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
     public enum BookArea
     {

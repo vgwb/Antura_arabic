@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// This class collect some answers, those become "a answer set". The Answer

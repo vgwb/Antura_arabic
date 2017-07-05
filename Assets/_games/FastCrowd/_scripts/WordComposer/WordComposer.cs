@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using System.Collections;
-using EA4S.Audio;
-using EA4S.MinigamesAPI;
-using EA4S.UI;
+using Antura.Audio;
+using Antura.MinigamesAPI;
+using Antura.UI;
 
-namespace EA4S.Minigames.FastCrowd
+namespace Antura.Minigames.FastCrowd
 {
 
     public class WordComposer : MonoBehaviour
@@ -63,7 +63,7 @@ namespace EA4S.Minigames.FastCrowd
         {
             yield return new WaitForSeconds(_delay);
             CompletedLetters.Add(data as LL_LetterData);
-            AudioManager.I.PlaySound(EA4S.Sfx.Hit);
+            AudioManager.I.PlaySound(Sfx.Hit);
             innerTransform.DOShakeScale(1.5f, 0.5f);
             UpdateWord();
         }

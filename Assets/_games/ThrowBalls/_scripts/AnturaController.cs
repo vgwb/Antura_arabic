@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using EA4S.Antura;
+﻿using Antura.Antura;
+using UnityEngine;
 using DG.Tweening;
 
-namespace EA4S.Minigames.ThrowBalls
+namespace Antura.Minigames.ThrowBalls
 {
     public class AnturaController : MonoBehaviour
     {

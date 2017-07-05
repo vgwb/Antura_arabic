@@ -1,4 +1,4 @@
-namespace EA4S.Database
+namespace Antura.Database
 {
     // last is 31
     public enum WordDataCategory

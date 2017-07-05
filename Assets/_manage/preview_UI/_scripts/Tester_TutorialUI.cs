@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using EA4S.Tutorial;
+using Antura.Tutorial;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Test
+namespace Antura.Test
 {
     /// <summary>
     /// Helper class to test the TutorialUI

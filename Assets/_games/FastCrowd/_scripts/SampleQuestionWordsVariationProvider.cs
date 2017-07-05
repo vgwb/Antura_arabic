@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesAPI.Sample;
+using Antura.MinigamesAPI;
+using Antura.MinigamesAPI.Sample;
+using Antura.Core;
 
-namespace EA4S.Minigames.FastCrowd
+namespace Antura.Minigames.FastCrowd
 {
     /// <summary>
     /// This sample class generates 32 quizzes of type "I give you a word, you say that word"

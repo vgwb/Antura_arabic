@@ -15,7 +15,7 @@ namespace Antura.Tests
         public void MathHelperGetAverage()
         {
             var floatList = new List<float> {0.1f, 0.4f, 0.8f, 2.99f, -1.0f};
-            var average = EA4S.Helpers.MathHelper.GetAverage(floatList);
+            var average = global::Antura.Helpers.MathHelper.GetAverage(floatList);
             UnityEngine.Debug.Log(average);
             Assert.AreEqual(0.657999992f, average);
         }

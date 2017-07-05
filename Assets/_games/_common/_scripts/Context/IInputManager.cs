@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Provides generic input access to the core and to minigames.

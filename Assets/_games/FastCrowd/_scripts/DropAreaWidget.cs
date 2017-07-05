@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.MinigamesAPI;
+using Antura.MinigamesAPI;
 
-namespace EA4S.Minigames.FastCrowd
+namespace Antura.Minigames.FastCrowd
 {
     /// <summary>
     /// This Widget hides the old implementation of DropSingleArea/DropContainer

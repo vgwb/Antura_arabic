@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-namespace EA4S.Minigames.MissingLetter
+namespace Antura.Minigames.MissingLetter
 {
     class Utils {
         public static IEnumerator LaunchDelay<T>(float delayTime, Action<T> action, T param) {

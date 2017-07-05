@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using EA4S.Tutorial;
+using Antura.Tutorial;
 
-namespace EA4S.Minigames.MixedLetters
+namespace Antura.Minigames.MixedLetters
 {
     public class DropZoneController : MonoBehaviour
     {

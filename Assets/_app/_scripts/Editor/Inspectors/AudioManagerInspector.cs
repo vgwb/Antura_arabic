@@ -1,11 +1,11 @@
-﻿using EA4S.Editor;
+﻿using Antura.Editor;
 using System;
 using System.Collections.Generic;
-using EA4S.Audio;
+using Antura.Audio;
 using UnityEditor;
 using UnityEngine;
 
-namespace EA4S.Editor
+namespace Antura.Editor
 {
     [CustomEditor(typeof(AudioManager))]
     public class AudioManagerInspector : UnityEditor.Editor

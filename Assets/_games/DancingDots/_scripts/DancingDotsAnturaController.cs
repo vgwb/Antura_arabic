@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using EA4S.Antura;
+using Antura.Antura;
 
-namespace EA4S.Minigames.DancingDots
+namespace Antura.Minigames.DancingDots
 {
 
 	public enum AnturaContollerState

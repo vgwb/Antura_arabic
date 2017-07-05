@@ -1,4 +1,4 @@
-﻿namespace EA4S.Antura
+﻿namespace Antura.Antura
 {
     // TODO refactor: requires renaming
     public enum AnturaAnimationStates

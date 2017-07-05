@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace Antura
 {
     /// <summary>
     /// Represents a game state in the StateManager

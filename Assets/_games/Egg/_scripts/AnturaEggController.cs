@@ -1,10 +1,10 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections.Generic;
-using EA4S.Antura;
+using Antura.Antura;
 using UnityEngine;
 
-namespace EA4S.Minigames.Egg
+namespace Antura.Minigames.Egg
 {
     public class AnturaEggController : MonoBehaviour
     {

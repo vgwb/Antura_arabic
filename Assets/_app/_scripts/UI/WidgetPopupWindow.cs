@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Antura.Audio;
+using Antura.Core;
+using Antura.Database;
+using Antura.MinigamesAPI;
 using TMPro;
 using DG.DeExtensions;
 using DG.Tweening;
-using EA4S.Audio;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.MinigamesAPI;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Shows a general-purpose popup window.

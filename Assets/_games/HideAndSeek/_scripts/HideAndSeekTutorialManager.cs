@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S.Audio;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
+using Antura.Audio;
+using Antura.LivingLetters;
+using Antura.MinigamesAPI;
+using Antura.Tutorial;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.HideAndSeek
+namespace Antura.Minigames.HideAndSeek
 {
     public class HideAndSeekTutorialManager : MonoBehaviour
     {

@@ -1,7 +1,7 @@
-﻿using EA4S.MinigamesAPI;
+﻿using Antura.MinigamesAPI;
 using UnityEngine;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Provides generic audio access to the core and to minigames.

@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S.Audio;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
+using Antura.Audio;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.Scanner
+namespace Antura.Minigames.Scanner
 {
     public enum ScannerVariation
     {

@@ -1,9 +1,9 @@
-﻿using EA4S.Core;
-using EA4S.Helpers;
-using EA4S.Profile;
+﻿using Antura.Core;
+using Antura.Helpers;
+using Antura.Profile;
 using SQLite;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Serialized information about the player. Used by the Player Profile.

@@ -2,7 +2,7 @@
 using MiniJSON;
 using UnityEngine;
 
-namespace EA4S.Database.Management
+namespace Antura.Database.Management
 {
     /// <summary>
     /// Allows the parsing of a set of data contained in a JSON string and converts it 

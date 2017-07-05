@@ -1,4 +1,4 @@
-﻿namespace EA4S.MinigamesCommon
+﻿namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Concrete implementation of ITimer.

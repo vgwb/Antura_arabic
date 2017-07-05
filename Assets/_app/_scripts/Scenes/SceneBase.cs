@@ -1,8 +1,8 @@
-﻿using EA4S.Audio;
-using EA4S.Utilities;
+﻿using Antura.Audio;
+using Antura.Utilities;
 using UnityEngine;
 
-namespace EA4S
+namespace Antura
 {
     public class SceneBase : SingletonMonoBehaviour<SceneBase>
     {

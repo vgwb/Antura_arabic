@@ -1,7 +1,7 @@
-﻿using EA4S.Core;
+﻿using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
     /// <summary>
     /// Shows a graph with the history of moods of the player. 

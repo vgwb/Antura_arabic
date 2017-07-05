@@ -1,12 +1,12 @@
 ﻿using System.Collections;
-using EA4S.Animation;
-using EA4S.CameraEffects;
-using EA4S.Core;
-using EA4S.MinigamesCommon;
-using EA4S.UI;
+using Antura.Animation;
+using Antura.CameraEffects;
+using Antura.Core;
+using Antura.MinigamesCommon;
+using Antura.UI;
 using UnityEngine;
 
-namespace EA4S.Intro
+namespace Antura.Intro
 {
     /// <summary>
     /// Manages the Intro scene, which shows a non-interactive introduction to the game.

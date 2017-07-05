@@ -1,9 +1,9 @@
-﻿using EA4S.Helpers;
-using EA4S.Utilities;
+﻿using Antura.Helpers;
+using Antura.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Teacher.Test
+namespace Antura.Teacher.Test
 {
     /// <summary>
     /// Helper class that generates a button for each minigame in the Teacher Management scene.

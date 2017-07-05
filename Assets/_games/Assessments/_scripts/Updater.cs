@@ -1,7 +1,7 @@
 using Kore.Utils;
 using System.Collections.Generic;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// Implement IUpdater

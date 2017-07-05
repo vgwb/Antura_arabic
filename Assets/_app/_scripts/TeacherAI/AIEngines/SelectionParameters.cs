@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S.Teacher
+namespace Antura.Teacher
 {
     /// <summary>
     /// Defines how to handle repetition when selecting learning data.

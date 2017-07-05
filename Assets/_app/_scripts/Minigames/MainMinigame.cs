@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Antura.Database;
 
-using EA4S.Database;
-
-namespace EA4S.Core
+namespace Antura.Core
 {
 	public class MainMiniGame
 	{

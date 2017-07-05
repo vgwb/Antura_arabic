@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using System.Text;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Minigames.ReadingGame
+namespace Antura.Minigames.ReadingGame
 {
     public class ReadingGameGame : MiniGame // ReadingGameGameGameGameGame!
     {

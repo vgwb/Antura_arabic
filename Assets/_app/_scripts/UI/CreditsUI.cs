@@ -1,10 +1,10 @@
 ﻿using System.Collections;
+using Antura.Helpers;
 using DG.Tweening;
-using EA4S.Helpers;
-using EA4S.Utilities;
+using Antura.Utilities;
 using UnityEngine;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Controls the Credits panel.

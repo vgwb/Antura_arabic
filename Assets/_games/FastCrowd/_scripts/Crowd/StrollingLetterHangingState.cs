@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using EA4S.LivingLetters;
+using Antura.LivingLetters;
 using UnityEngine;
 
-namespace EA4S.Minigames.FastCrowd
+namespace Antura.Minigames.FastCrowd
 {
     public class StrollingLetterHangingState : StrollingLetterState
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Minigames.Tobogan
+namespace Antura.Minigames.Tobogan
 {
     public class Cloud : MonoBehaviour
     {

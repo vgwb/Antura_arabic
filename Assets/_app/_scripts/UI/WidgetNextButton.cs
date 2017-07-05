@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System;
-using EA4S.Audio;
+using Antura.Audio;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// A general-purpose *Next* button.

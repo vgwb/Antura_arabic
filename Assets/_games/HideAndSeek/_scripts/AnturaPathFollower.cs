@@ -1,10 +1,10 @@
-﻿using EA4S.Antura;
-using EA4S.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Antura.Antura;
+using Antura.Helpers;
 using UnityEngine;
 
-namespace EA4S.Minigames.HideAndSeek
+namespace Antura.Minigames.HideAndSeek
 {
     public class AnturaPathFollower : MonoBehaviour
     {

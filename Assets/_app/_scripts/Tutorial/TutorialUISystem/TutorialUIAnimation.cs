@@ -1,7 +1,7 @@
 ﻿using System;
 using DG.Tweening;
 
-namespace EA4S.Tutorial
+namespace Antura.Tutorial
 {
     /// <summary>
     /// Used internally by TutorialUI to store and control animations

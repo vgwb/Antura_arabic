@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace EA4S.Helpers
+namespace Antura.Helpers
 {
     /// <summary>
     /// Static helper class for gameplay purposes.

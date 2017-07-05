@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using Antura.MinigamesAPI;
+using UnityEngine;
 using TMPro;
-using EA4S.MinigamesAPI;
 
-namespace EA4S.Minigames.Balloons
+namespace Antura.Minigames.Balloons
 {
     public class LetterPromptController : MonoBehaviour
     {

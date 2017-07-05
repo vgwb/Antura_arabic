@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
+using Antura.LivingLetters;
+using Antura.MinigamesAPI;
+using Antura.Tutorial;
+using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Minigames.FastCrowd
+namespace Antura.Minigames.FastCrowd
 {
     public class FastCrowdTutorialState : IState
     {

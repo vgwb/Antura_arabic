@@ -1,7 +1,7 @@
-﻿using EA4S.Audio;
+﻿using Antura.Audio;
 using UnityEngine;
 
-namespace EA4S.Minigames.TakeMeHome
+namespace Antura.Minigames.TakeMeHome
 {
 
     public class TakeMeHomeResultState : IState {

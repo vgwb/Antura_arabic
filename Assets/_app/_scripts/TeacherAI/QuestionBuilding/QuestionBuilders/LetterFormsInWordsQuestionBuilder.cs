@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.Helpers;
+using Antura.Database;
+using Antura.Helpers;
+using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.Teacher
+namespace Antura.Teacher
 {
     /// <summary>
     /// Selects letter forms inside words

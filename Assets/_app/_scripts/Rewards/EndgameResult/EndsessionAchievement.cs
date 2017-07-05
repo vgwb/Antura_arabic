@@ -1,9 +1,9 @@
-﻿using DG.Tweening;
-using EA4S.Audio;
+﻿using Antura.Audio;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Rewards
+namespace Antura.Rewards
 {
     /// <summary>
     /// Represents an earned achievement (reward) in the EndsessionResultPanel

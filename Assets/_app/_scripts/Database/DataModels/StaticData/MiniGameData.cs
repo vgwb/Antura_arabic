@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using EA4S.Helpers;
+using Antura.Helpers;
 using SQLite;
 using UnityEngine;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Data defining a Minigame.

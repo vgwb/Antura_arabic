@@ -1,10 +1,10 @@
-﻿using EA4S.Audio;
-using EA4S.MinigamesCommon;
-using EA4S.UI;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Antura.Audio;
+using Antura.MinigamesCommon;
+using Antura.UI;
 using UnityEngine;
 
-namespace EA4S.AnturaSpace
+namespace Antura.AnturaSpace
 {
     /// <summary>
     /// Manages the AnturaSpace scene.

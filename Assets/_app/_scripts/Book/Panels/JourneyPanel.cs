@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Audio;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.UI;
+using Antura.Audio;
+using Antura.Database;
+using Antura.UI;
+using Antura.Core;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
 
     /// <summary>

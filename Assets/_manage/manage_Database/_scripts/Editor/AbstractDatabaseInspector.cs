@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace EA4S.Database.Management.Editor
+namespace Antura.Database.Management.Editor
 {
     public class AbstractDatabaseInspector : UnityEditor.Editor
     {

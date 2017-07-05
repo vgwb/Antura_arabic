@@ -1,8 +1,8 @@
-﻿using EA4S.LivingLetters;
+﻿using Antura.LivingLetters;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace EA4S.Minigames.MissingLetter
+namespace Antura.Minigames.MissingLetter
 {
     public class MissingLetterEmoticonsController
     {

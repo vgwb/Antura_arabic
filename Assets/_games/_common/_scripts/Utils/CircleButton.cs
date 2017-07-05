@@ -1,9 +1,9 @@
 ﻿using DG.Tweening;
 using System;
-using EA4S.MinigamesAPI;
+using Antura.MinigamesAPI;
 using UnityEngine;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// A circle-shaped button.

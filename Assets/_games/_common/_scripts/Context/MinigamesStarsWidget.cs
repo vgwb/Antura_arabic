@@ -1,6 +1,6 @@
-﻿using EA4S.Rewards;
+﻿using Antura.Rewards;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Concrete implementation of IStarsWidget. Accessible to minigames.

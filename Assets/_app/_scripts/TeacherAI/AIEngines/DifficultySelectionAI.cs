@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.Profile;
+using Antura.Core;
+using Antura.Database;
+using Antura.Profile;
 using UnityEngine;
-using PlayerProfile = EA4S.Profile.PlayerProfile;
+using PlayerProfile = Antura.Profile.PlayerProfile;
 
-namespace EA4S.Teacher
+namespace Antura.Teacher
 {
     /// <summary>
     /// Handles the selection of the difficulty to use for a given minigame
@@ -15,7 +15,7 @@ namespace EA4S.Teacher
 
         // References
         private DatabaseManager dbManager;
-        private PlayerProfile playerProfile;
+        private Profile.PlayerProfile playerProfile;
 
         // Weights
         private float ageWeightContribution = ConfigAI.difficulty_weight_age;                   // Higher age -> higher difficulty
@@ -26,7 +26,7 @@ namespace EA4S.Teacher
             dbManager = _dbManager;
         }
 
-        public void SetPlayerProfile(PlayerProfile _playerProfile)
+        public void SetPlayerProfile(Profile.PlayerProfile _playerProfile)
         {
             playerProfile = _playerProfile;
         }

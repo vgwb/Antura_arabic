@@ -2,7 +2,7 @@
 
 // TODO: refactor this to separate JourneyInfo from VocabularyInfo (different rules)
 // TODO: create separate LetterModel, WordModel and PhraseModel with custom methods.. integratic relative Data and Scores inside
-namespace EA4S.Database
+namespace Antura.Database
 {
     #region Info Wrappers
 

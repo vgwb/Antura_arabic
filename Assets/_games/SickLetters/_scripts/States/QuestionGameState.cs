@@ -1,6 +1,6 @@
-﻿using EA4S.MinigamesCommon;
+﻿using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.SickLetters
+namespace Antura.Minigames.SickLetters
 {
     public class QuestionGameState : IState
     {

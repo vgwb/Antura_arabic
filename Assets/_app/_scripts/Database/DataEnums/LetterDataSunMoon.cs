@@ -1,4 +1,4 @@
-namespace EA4S.Database
+namespace Antura.Database
 {
     public enum LetterDataSunMoon
     {

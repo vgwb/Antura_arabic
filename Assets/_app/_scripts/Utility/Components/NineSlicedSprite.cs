@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Utilities
+namespace Antura.Utilities
 {
     [ExecuteInEditMode]
     public class NineSlicedSprite : MonoBehaviour

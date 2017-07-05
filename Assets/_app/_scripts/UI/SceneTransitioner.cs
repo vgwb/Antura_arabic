@@ -1,12 +1,12 @@
 ﻿using System;
+using Antura.Audio;
+using Antura.Database;
 using DG.Tweening;
-using EA4S.Audio;
-using EA4S.Core;
-using EA4S.Database;
+using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Controls the transition animation between two scenes.

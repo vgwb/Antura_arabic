@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EA4S.MinigamesAPI.Sample
+namespace Antura.MinigamesAPI.Sample
 {
     /// <summary>
     /// Example implementation of IQuestionPack.

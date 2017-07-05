@@ -1,6 +1,6 @@
-﻿using EA4S.Core;
+﻿using Antura.Core;
 
-namespace EA4S.MinigamesAPI.Sample
+namespace Antura.MinigamesAPI.Sample
 {
     /// <summary>
     /// Example implementation of ILivingLetterDataProvider.

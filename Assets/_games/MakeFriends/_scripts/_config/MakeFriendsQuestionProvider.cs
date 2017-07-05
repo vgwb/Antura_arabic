@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using Antura.Helpers;
+using Antura.MinigamesAPI;
 using ArabicSupport;
-using EA4S.Core;
-using EA4S.Helpers;
-using EA4S.MinigamesAPI;
+using Antura.Core;
 
-namespace EA4S.Minigames.MakeFriends
+namespace Antura.Minigames.MakeFriends
 {
     /// <summary>
     /// This sample class generates 10 quizzes of type "I give you 2 words, you find the common letter(s)"

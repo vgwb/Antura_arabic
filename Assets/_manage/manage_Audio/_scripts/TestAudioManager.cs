@@ -1,11 +1,11 @@
-﻿using EA4S.Audio;
-using EA4S.Helpers;
-using EA4S.MinigamesCommon;
-using EA4S.UI;
+﻿using Antura.Audio;
+using Antura.Helpers;
+using Antura.MinigamesCommon;
+using Antura.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Test
+namespace Antura.Test
 {
     /// <summary>
     /// Test class for testing the audio manager.

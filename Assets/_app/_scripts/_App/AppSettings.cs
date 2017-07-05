@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using EA4S.Profile;
+using Antura.Profile;
 using UnityEngine.Serialization;
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     /// <summary>
     /// Defines settings that must be saved locally.

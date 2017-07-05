@@ -1,11 +1,11 @@
 ﻿using System;
+using Antura.Core;
+using Antura.UI;
 using DG.DeExtensions;
 using DG.Tweening;
-using EA4S.Core;
-using EA4S.UI;
 using UnityEngine;
 
-namespace EA4S.Profile
+namespace Antura.Profile
 {
     /// <summary>
     /// Player creation category

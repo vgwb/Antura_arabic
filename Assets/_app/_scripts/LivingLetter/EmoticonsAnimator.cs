@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.LivingLetters
+namespace Antura.LivingLetters
 {
     public class EmoticonsAnimator : MonoBehaviour
     {

@@ -1,7 +1,7 @@
-﻿using EA4S.Core;
+﻿using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// constrain visibility of GameObject to EnglishSubtitles setting

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace EA4S.Helpers
+namespace Antura.Helpers
 {
     /// <summary>
     /// Static helper class for generic utility functions.

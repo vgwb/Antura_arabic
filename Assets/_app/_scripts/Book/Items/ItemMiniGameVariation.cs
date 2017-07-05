@@ -1,10 +1,10 @@
-﻿using EA4S.Core;
+﻿using Antura.Database;
+using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using EA4S.Database;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
     /// <summary>
     /// Displays a MiniGame variation item in the MiniGames panel of the Player Book.

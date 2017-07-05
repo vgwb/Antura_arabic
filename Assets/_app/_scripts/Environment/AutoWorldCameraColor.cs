@@ -1,7 +1,7 @@
-﻿using EA4S.MinigamesCommon;
+﻿using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Environment
+namespace Antura.Environment
 {
     [ExecuteInEditMode]
     public class AutoWorldCameraColor : MonoBehaviour

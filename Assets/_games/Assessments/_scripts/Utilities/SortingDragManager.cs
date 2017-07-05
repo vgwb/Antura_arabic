@@ -1,11 +1,11 @@
-using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     internal class SortingDragManager : IDragManager, ITimedUpdate
     {

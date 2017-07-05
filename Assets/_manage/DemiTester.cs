@@ -1,7 +1,7 @@
-﻿using EA4S.UI;
+﻿using Antura.UI;
 using UnityEngine;
 
-namespace EA4S
+namespace Antura
 {
     /// <summary>
     /// Created by Daniele (demigiant) for internal testing. Please don't remove.

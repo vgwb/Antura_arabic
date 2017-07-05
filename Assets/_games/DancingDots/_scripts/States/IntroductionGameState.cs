@@ -1,8 +1,8 @@
-﻿using EA4S.Audio;
-using EA4S.MinigamesCommon;
+﻿using Antura.Audio;
+using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Minigames.DancingDots
+namespace Antura.Minigames.DancingDots
 {
     public class IntroductionGameState : IState
     {

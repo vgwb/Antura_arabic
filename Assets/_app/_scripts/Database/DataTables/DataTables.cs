@@ -1,5 +1,5 @@
 ﻿
-namespace EA4S.Database
+namespace Antura.Database
 {
     [System.Serializable]
     public class MiniGameTable : SerializableDataTable<MiniGameData> { }

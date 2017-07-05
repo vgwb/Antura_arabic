@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using EA4S.LivingLetters;
+﻿using Antura.LivingLetters;
+using UnityEngine;
 
-namespace EA4S.Minigames.SickLetters
+namespace Antura.Minigames.SickLetters
 {
     public class SickLettersLLCollider : MonoBehaviour
     {

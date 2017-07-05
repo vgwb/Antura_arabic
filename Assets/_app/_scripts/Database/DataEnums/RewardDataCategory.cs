@@ -1,4 +1,4 @@
-namespace EA4S.Rewards
+namespace Antura.Rewards
 {
     public enum RewardTypes
     {
@@ -9,7 +9,7 @@ namespace EA4S.Rewards
 }
 
 // this is not currently used!
-namespace EA4S.Database
+namespace Antura.Database
 {
     public enum RewardDataCategory
     {

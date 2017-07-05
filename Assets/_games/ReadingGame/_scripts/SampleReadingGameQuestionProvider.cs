@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EA4S.Core;
-using EA4S.Helpers;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesAPI.Sample;
+using Antura.Helpers;
+using Antura.MinigamesAPI;
+using Antura.MinigamesAPI.Sample;
+using Antura.Core;
 
-namespace EA4S.Minigames.ReadingGame
+namespace Antura.Minigames.ReadingGame
 {
     public class SampleReadingGameQuestionProvider : IQuestionProvider
     {

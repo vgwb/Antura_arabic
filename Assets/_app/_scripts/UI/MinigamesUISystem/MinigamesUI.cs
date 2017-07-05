@@ -3,7 +3,7 @@ using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     [Flags]
     public enum MinigamesUIElement

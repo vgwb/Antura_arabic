@@ -1,7 +1,7 @@
-﻿using EA4S.Helpers;
+﻿using Antura.Helpers;
 using UnityEngine;
 
-namespace EA4S.Minigames.FastCrowd
+namespace Antura.Minigames.FastCrowd
 {
     public class LetterCharacterController : MonoBehaviour
     {

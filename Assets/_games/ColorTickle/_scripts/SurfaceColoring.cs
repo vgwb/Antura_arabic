@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace EA4S.Minigames.ColorTickle
+namespace Antura.Minigames.ColorTickle
 {
     public class SurfaceColoring : MonoBehaviour
     {

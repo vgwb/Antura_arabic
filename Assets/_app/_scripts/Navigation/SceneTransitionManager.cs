@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
-using EA4S.UI;
+using Antura.UI;
 using UnityEngine.SceneManagement;
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     /// <summary>
     /// Manager that handles scene load and transitions between scenes.

@@ -1,6 +1,6 @@
-﻿using EA4S.MinigamesAPI;
+﻿using Antura.MinigamesAPI;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Provides generic log access to the core and to minigames.

@@ -1,4 +1,4 @@
-﻿namespace EA4S.Core
+﻿namespace Antura.Core
 {
     /// <summary>
     /// we refer to app scenes by these enums, and not by scene names, that could change anytime

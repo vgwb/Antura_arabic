@@ -1,4 +1,4 @@
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// Manager used to place answers: answers position depends on type of assessment

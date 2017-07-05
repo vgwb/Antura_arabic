@@ -1,10 +1,10 @@
-using EA4S.Tutorial;
 using Kore.Coroutines;
 using System.Collections;
 using System.Collections.Generic;
+using Antura.Tutorial;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public class AnswerChecker
     {

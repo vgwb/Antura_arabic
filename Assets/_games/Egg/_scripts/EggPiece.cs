@@ -1,9 +1,9 @@
 ﻿using System;
+using Antura.MinigamesCommon;
 using UnityEngine;
 using DG.Tweening;
-using EA4S.MinigamesCommon;
 
-namespace EA4S.Minigames.Egg
+namespace Antura.Minigames.Egg
 {
     public class EggPiece : MonoBehaviour
     {

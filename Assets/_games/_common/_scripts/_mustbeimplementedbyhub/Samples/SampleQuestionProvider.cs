@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EA4S.Core;
-using EA4S.Helpers;
+using Antura.Helpers;
+using Antura.Core;
 
-namespace EA4S.MinigamesAPI.Sample
+namespace Antura.MinigamesAPI.Sample
 {
     /// <summary>
     /// Example implementation of IQuestionProvider.

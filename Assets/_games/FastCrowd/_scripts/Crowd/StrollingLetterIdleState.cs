@@ -1,6 +1,6 @@
-﻿using EA4S.LivingLetters;
+﻿using Antura.LivingLetters;
 
-namespace EA4S.Minigames.FastCrowd
+namespace Antura.Minigames.FastCrowd
 {
     public class StrollingLetterIdleState : StrollingLetterState
     {

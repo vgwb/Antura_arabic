@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EA4S.Profile
+namespace Antura.Profile
 {
     /// <summary>
     /// Contains the data to generate a saved player profile (icon in the main menu)

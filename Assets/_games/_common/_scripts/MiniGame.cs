@@ -1,9 +1,9 @@
-﻿using EA4S.Debugging;
-using EA4S.UI;
-using EA4S.Utilities;
+﻿using Antura.Debugging;
+using Antura.UI;
+using Antura.Utilities;
 using UnityEngine;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Base abstract class for all minigame in-scene managers.

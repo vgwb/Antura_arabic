@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using EA4S.MinigamesAPI;
-using EA4S.UI;
+using Antura.MinigamesAPI;
+using Antura.UI;
 using DG.Tweening;
 
-namespace EA4S.Minigames.ThrowBalls
+namespace Antura.Minigames.ThrowBalls
 {
     public class UIController : MonoBehaviour
     {

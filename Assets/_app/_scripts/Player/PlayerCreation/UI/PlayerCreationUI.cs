@@ -1,12 +1,12 @@
 ﻿using System;
+using Antura.Audio;
+using Antura.Scenes;
+using Antura.UI;
 using DG.DeExtensions;
 using DG.Tweening;
-using EA4S.Audio;
-using EA4S.Scenes;
-using EA4S.UI;
 using UnityEngine;
 
-namespace EA4S.Profile
+namespace Antura.Profile
 {
     /// <summary>
     /// Player creation UI

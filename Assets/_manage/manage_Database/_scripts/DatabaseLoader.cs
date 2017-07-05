@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace EA4S.Database.Management
+namespace Antura.Database.Management
 {
     /// <summary>
     /// Management class that converts JSON data to static database custom assets.

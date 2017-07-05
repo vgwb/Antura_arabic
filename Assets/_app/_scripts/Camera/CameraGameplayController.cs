@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Antura.Audio;
+using UnityEngine;
 using DG.Tweening;
-using EA4S.Audio;
-using EA4S.Core;
+using Antura.Core;
 using UnityStandardAssets.ImageEffects;
 
-namespace EA4S.CameraControl
+namespace Antura.CameraControl
 {
 
     /// <summary>

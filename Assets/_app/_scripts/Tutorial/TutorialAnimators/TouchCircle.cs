@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace EA4S.TutorialAnimators
+namespace Antura.TutorialAnimators
 {
     public class TouchCircle : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace EA4S.Minigames.TakeMeHome
+namespace Antura.Minigames.TakeMeHome
 {
 	
 	public class TakeMeHomeModel {

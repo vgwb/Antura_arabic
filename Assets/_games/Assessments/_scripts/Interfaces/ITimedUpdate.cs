@@ -1,4 +1,4 @@
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// Update with delta time also classes that are not MonoBehaviours

@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace Antura
 {
     /// <summary>
     /// Enumerator specifying a minigame (or minigame variation) that is supported by the core application. 

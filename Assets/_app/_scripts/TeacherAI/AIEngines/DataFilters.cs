@@ -1,4 +1,4 @@
-﻿namespace EA4S.Teacher
+﻿namespace Antura.Teacher
 {
     // TODO refactor: remove references to Arabic
 

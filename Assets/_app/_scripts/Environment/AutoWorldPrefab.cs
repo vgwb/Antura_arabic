@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Environment
+namespace Antura.Environment
 {
     [ExecuteInEditMode]
     public class AutoWorldPrefab : MonoBehaviour

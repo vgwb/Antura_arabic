@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
+using Antura.LivingLetters;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
 using DG.Tweening;
 
-namespace EA4S.Minigames.ThrowBalls
+namespace Antura.Minigames.ThrowBalls
 {
     public class LetterController : MonoBehaviour
     {

@@ -1,8 +1,8 @@
-﻿using EA4S.Audio;
-using EA4S.Scenes;
+﻿using Antura.Audio;
+using Antura.Scenes;
 using UnityEngine;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Control buttons for the (_Start) scene.

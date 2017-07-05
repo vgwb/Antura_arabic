@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EA4S.AnturaSpace
+namespace Antura.AnturaSpace
 {
     public class AnturaCatchingState : AnturaState
     {

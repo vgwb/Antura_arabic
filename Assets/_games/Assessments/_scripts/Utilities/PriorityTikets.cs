@@ -1,6 +1,6 @@
 using Kore.Utils;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public class Ticket : IPoolable
     {

@@ -2,7 +2,7 @@
 using TMPro;
 
 
-namespace EA4S.Minigames.DancingDots
+namespace Antura.Minigames.DancingDots
 {
 	public class DancingDotsDiacriticPosition : MonoBehaviour {
 

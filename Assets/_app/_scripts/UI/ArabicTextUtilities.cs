@@ -1,8 +1,8 @@
-﻿using EA4S.Helpers;
-using System.Collections;
+﻿using System.Collections;
+using Antura.Helpers;
 using UnityEngine;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     public static class ArabicTextUtilities
     {

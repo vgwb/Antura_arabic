@@ -1,8 +1,8 @@
-﻿using EA4S.Core;
-using EA4S.Profile;
+﻿using Antura.Core;
+using Antura.Profile;
 using UnityEngine;
 
-namespace EA4S.Scenes
+namespace Antura.Scenes
 {
     public class PlayerCreationScene : SceneBase
     {

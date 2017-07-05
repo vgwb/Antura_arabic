@@ -2,14 +2,14 @@
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
-using EA4S.Antura;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.Helpers;
+using Antura.Helpers;
 using System.Linq;
 using System.Collections;
+using Antura.Antura;
+using Antura.Core;
+using Antura.Database;
 
-namespace EA4S.Rewards
+namespace Antura.Rewards
 {
     public static class RewardSystemManager
     {

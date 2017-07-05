@@ -1,4 +1,4 @@
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     // Note this is just a workaround to remove dependency on UniRX,
     // When Unity will updates to a newer .NET framework version

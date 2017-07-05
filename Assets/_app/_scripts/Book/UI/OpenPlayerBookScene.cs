@@ -1,9 +1,9 @@
-﻿using EA4S.Core;
+﻿using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
     /// <summary>
     /// Button that allows access to the PlayerBook.

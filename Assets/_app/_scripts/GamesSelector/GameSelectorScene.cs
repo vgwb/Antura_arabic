@@ -1,8 +1,8 @@
-﻿using EA4S.Core;
-using EA4S.UI;
+﻿using Antura.UI;
+using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.GamesSelector
+namespace Antura.GamesSelector
 {
 
     /// <summary>

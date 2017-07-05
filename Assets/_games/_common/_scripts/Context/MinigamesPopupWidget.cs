@@ -1,9 +1,9 @@
 ﻿using System;
-using EA4S.MinigamesAPI;
-using EA4S.UI;
+using Antura.MinigamesAPI;
+using Antura.UI;
 using UnityEngine;
 
-namespace EA4S.MinigamesCommon
+namespace Antura.MinigamesCommon
 {
     /// <summary>
     /// Concrete implementation of IPopupWidget. Accessible to minigames.

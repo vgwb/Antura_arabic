@@ -1,11 +1,11 @@
-﻿using EA4S.Helpers;
-using EA4S.MinigamesAPI;
-using EA4S.UI;
+﻿using Antura.Helpers;
+using Antura.MinigamesAPI;
+using Antura.UI;
 using UnityEngine;
-using EA4S.Utilities;
+using Antura.Utilities;
 using TMPro;
 
-namespace EA4S.Minigames.FastCrowd
+namespace Antura.Minigames.FastCrowd
 {
     public class DropSingleArea : MonoBehaviour
     {

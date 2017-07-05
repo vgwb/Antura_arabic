@@ -1,11 +1,11 @@
 using DG.Tweening;
-using EA4S.Antura;
-using EA4S.Minigames.ReadingGame;
 using Kore.Coroutines;
 using System.Collections;
+using Antura.Antura;
+using Antura.Minigames.ReadingGame;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public class AnturaView : MonoBehaviour
     {

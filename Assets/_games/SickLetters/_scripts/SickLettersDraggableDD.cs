@@ -2,7 +2,7 @@
 using System.Collections;
 using TMPro;
 
-namespace EA4S.Minigames.SickLetters
+namespace Antura.Minigames.SickLetters
 {
 	public class SickLettersDraggableDD : MonoBehaviour {
 

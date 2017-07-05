@@ -1,8 +1,8 @@
 using Kore.Coroutines;
 using System.Collections;
-using EA4S.Core;
+using Antura.Core;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// Result state. notify the LogManager of game ended and play final animation.

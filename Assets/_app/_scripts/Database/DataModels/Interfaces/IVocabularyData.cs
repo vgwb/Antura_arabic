@@ -1,4 +1,4 @@
-﻿namespace EA4S.Database
+﻿namespace Antura.Database
 {
     /// <summary>
     /// Interface for a vocabulary data element (i.e. letters, words, etc.)

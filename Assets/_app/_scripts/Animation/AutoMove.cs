@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Animation
+namespace Antura.Animation
 {
     // TODO refactor: this can be moved to the Animation utilities.
     public class AutoMove : MonoBehaviour

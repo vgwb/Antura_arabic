@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Minigames.FastCrowd
+namespace Antura.Minigames.FastCrowd
 {
     public class FastCrowdGame : MiniGame
     {

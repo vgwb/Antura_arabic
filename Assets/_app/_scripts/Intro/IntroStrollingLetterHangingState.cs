@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using EA4S.LivingLetters;
-using EA4S.Minigames.FastCrowd;
+using Antura.LivingLetters;
+using Antura.Minigames.FastCrowd;
 using UnityEngine;
 
-namespace EA4S.Intro
+namespace Antura.Intro
 {
     public class IntroStrollingLetterHangingState : IntroStrollingLetterState
     {

@@ -1,10 +1,10 @@
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.Teacher;
 using System;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
+using Antura.Teacher;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public class AssessmentConfiguration : IAssessmentConfiguration
     {

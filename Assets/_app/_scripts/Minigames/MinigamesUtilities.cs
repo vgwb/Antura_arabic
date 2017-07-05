@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S.Database;
+using Antura.Database;
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     public static class MiniGamesUtilities
     {

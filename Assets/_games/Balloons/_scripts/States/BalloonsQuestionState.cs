@@ -1,5 +1,5 @@
 ﻿
-namespace EA4S.Minigames.Balloons
+namespace Antura.Minigames.Balloons
 {
     public class BalloonsQuestionState : IState
     {

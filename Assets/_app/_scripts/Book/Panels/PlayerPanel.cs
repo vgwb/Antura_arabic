@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.Helpers;
-using EA4S.Rewards;
+using Antura.Database;
+using Antura.Helpers;
+using Antura.Rewards;
+using Antura.Core;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
     public class PlayerPanel : MonoBehaviour
     {

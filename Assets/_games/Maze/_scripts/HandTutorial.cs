@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Tutorial;
+using Antura.Tutorial;
 
-namespace EA4S.Minigames.Maze
+namespace Antura.Minigames.Maze
 {
 
     public class HandTutorial : MonoBehaviour

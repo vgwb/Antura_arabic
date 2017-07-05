@@ -1,7 +1,7 @@
-﻿using EA4S.Antura;
-using System;
+﻿using System;
+using Antura.Antura;
 
-namespace EA4S.AnturaSpace
+namespace Antura.AnturaSpace
 {
     public class AnturaAnimateState : AnturaState
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Database.Management
+namespace Antura.Database.Management
 {
     /// <summary>
     /// References JSON assets from which the database should be converted.

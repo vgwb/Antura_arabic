@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using EA4S.Database;
-using EA4S.Helpers;
+using Antura.Database;
+using Antura.Helpers;
 using NUnit.Framework;
 
-namespace EA4S.Tests
+namespace Antura.Tests
 {
     [TestFixture]
     public class DatabaseTests

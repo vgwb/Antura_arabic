@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 
-namespace EA4S
+namespace Antura
 {
     // refactor: this is almost the same as IntroPlant. Merge the two.
     // refactor: move to the _scripts folder

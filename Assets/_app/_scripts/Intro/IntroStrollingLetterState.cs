@@ -1,4 +1,4 @@
-﻿namespace EA4S.Intro
+﻿namespace Antura.Intro
 {
     public abstract class IntroStrollingLetterState : IState
     {

@@ -1,10 +1,10 @@
-﻿using EA4S.Audio;
-using EA4S.LivingLetters;
-using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
+﻿using Antura.Audio;
+using Antura.LivingLetters;
+using Antura.Tutorial;
+using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Minigames.MissingLetter
+namespace Antura.Minigames.MissingLetter
 {
 
     public class MissingLetterTutorialState : IState

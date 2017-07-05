@@ -1,8 +1,8 @@
-﻿using EA4S.Core;
-using EA4S.Helpers;
+﻿using Antura.Core;
+using Antura.Helpers;
 using SQLite;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Journey score obtained at a given timestamp. Logged at runtime.

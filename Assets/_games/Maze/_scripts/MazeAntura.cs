@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-using EA4S.Antura;
-using EA4S.Audio;
-using EA4S.Helpers;
+using Antura.Antura;
+using Antura.Audio;
+using Antura.Helpers;
 
-namespace EA4S.Minigames.Maze
+namespace Antura.Minigames.Maze
 {
     public class MazeAntura : MonoBehaviour
     {

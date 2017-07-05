@@ -2,7 +2,7 @@ using Kore.Coroutines;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     internal class DefaultLogicInjector : ILogicInjector
     {

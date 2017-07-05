@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Antura.Audio;
+using Antura.LivingLetters;
 using DG.Tweening;
-using EA4S.Audio;
-using EA4S.LivingLetters;
 
-namespace EA4S.Minigames.FastCrowd
+namespace Antura.Minigames.FastCrowd
 {
 
     public class DropContainer : MonoBehaviour

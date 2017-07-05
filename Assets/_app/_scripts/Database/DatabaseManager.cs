@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using EA4S.Core;
-using EA4S.Helpers;
-using EA4S.Teacher;
+using Antura.Core;
+using Antura.Helpers;
+using Antura.Teacher;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Entry point for the rest of the application to access database entries.

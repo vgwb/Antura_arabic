@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Concrete implementation of IDataTable.

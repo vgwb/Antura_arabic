@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
-using EA4S.Database;
-using EA4S.Environment;
-using EA4S.Profile;
-using EA4S.Rewards;
+using Antura.Database;
+using Antura.Environment;
+using Antura.Profile;
+using Antura.Rewards;
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     /// <summary>
     /// Controls the navigation among different scenes in the application.

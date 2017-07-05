@@ -1,8 +1,8 @@
-﻿using EA4S.UI;
+﻿using Antura.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Test
+namespace Antura.Test
 {
     /// <summary>
     /// Helper class to test the MinigamesUIPanel

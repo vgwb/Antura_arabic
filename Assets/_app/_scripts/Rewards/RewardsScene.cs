@@ -1,11 +1,11 @@
-﻿using EA4S.Antura;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.UI;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
+using Antura.Antura;
+using Antura.Core;
+using Antura.Database;
+using Antura.UI;
 
-namespace EA4S.Rewards
+namespace Antura.Rewards
 {
     /// <summary>
     /// Manages the Rewards scene.

@@ -1,11 +1,11 @@
-﻿using EA4S.Antura;
-using EA4S.Audio;
-using EA4S.Tutorial;
-using EA4S.UI;
-using System.Collections;
+﻿using System.Collections;
+using Antura.Antura;
+using Antura.Audio;
+using Antura.Tutorial;
+using Antura.UI;
 using UnityEngine;
 
-namespace EA4S.AnturaSpace
+namespace Antura.AnturaSpace
 {
 
     /// <summary>

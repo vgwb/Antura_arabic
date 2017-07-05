@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.Helpers;
-using EA4S.MinigamesAPI;
-using EA4S.Profile;
-using PlayerProfile = EA4S.Profile.PlayerProfile;
+using Antura.Core;
+using Antura.Database;
+using Antura.Helpers;
+using Antura.MinigamesAPI;
+using Antura.Profile;
+using PlayerProfile = Antura.Profile.PlayerProfile;
 
-namespace EA4S.Teacher
+namespace Antura.Teacher
 {
     /// <summary>
     /// Handles logic that represent the Teacher's expert system:
@@ -22,7 +22,7 @@ namespace EA4S.Teacher
 
         // References
         private DatabaseManager dbManager;
-        private PlayerProfile playerProfile;
+        private Profile.PlayerProfile playerProfile;
 
         // Inner engines
         public LogAI logAI;
@@ -55,7 +55,7 @@ namespace EA4S.Teacher
             BuildMinimumMiniGameJourneyPositions();
         }
 
-        public void SetPlayerProfile(PlayerProfile _playerProfile)
+        public void SetPlayerProfile(Profile.PlayerProfile _playerProfile)
         {
             playerProfile = _playerProfile;
             difficultySelectionAI.SetPlayerProfile(_playerProfile);

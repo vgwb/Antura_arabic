@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using EA4S.Antura;
-using EA4S.Audio;
+using Antura.Antura;
+using Antura.Audio;
 using DG.Tweening;
 
-namespace EA4S.Minigames.Scanner
+namespace Antura.Minigames.Scanner
 {
 	public class ScannerAntura : MonoBehaviour {
 

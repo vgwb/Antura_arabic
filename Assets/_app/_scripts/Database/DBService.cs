@@ -1,5 +1,4 @@
-﻿using EA4S.Core;
-using UnityEngine;
+﻿using UnityEngine;
 using SQLite;
 using System;
 using System.Collections;
@@ -7,8 +6,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq.Expressions;
+using Antura.Core;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Service that connects to SQLite.

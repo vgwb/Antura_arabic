@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System;
-using EA4S.Antura;
+using Antura.Antura;
 
-namespace EA4S.Minigames.ColorTickle
+namespace Antura.Minigames.ColorTickle
 {
     public enum AnturaContollerState
     {

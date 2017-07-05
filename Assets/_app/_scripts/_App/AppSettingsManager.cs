@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     public class AppSettingsManager
     {

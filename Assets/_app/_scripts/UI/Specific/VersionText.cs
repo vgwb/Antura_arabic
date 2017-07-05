@@ -1,8 +1,8 @@
-﻿using EA4S.Core;
+﻿using Antura.Core;
 using UnityEngine;
 using TMPro;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Shows the version of the application. Used in the Home scene.

@@ -4,7 +4,7 @@
 // put this in the resource directory,
 // and do not remove from it, please!
 // (and do not remove from it please!)"
-namespace EA4S.Environment
+namespace Antura.Environment
 {
     public enum WorldID : int
     {

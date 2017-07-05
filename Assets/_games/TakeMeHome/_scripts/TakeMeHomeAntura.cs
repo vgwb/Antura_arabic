@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using EA4S.Antura;
-using EA4S.Helpers;
+using Antura.Antura;
+using Antura.Helpers;
 
-namespace EA4S.Minigames.TakeMeHome
+namespace Antura.Minigames.TakeMeHome
 {
     public class TakeMeHomeAntura : MonoBehaviour
 	{

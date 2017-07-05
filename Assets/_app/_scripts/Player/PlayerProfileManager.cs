@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.Rewards;
+using Antura.Core;
+using Antura.Database;
+using Antura.Rewards;
 using UnityEngine;
 
-namespace EA4S.Profile
+namespace Antura.Profile
 {
     /// <summary>
     /// Handles the creation, selection, and deletion of player profiles.

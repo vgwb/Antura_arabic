@@ -1,10 +1,10 @@
 ﻿using System;
+using Antura.Audio;
 using DG.Tweening;
-using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     public enum ContinueScreenMode
     {

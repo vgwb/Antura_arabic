@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.AnturaSpace
+namespace Antura.AnturaSpace
 {
     /// <summary>
     /// Controls the shadows of bones thrown to Antura in AnturaSpace.

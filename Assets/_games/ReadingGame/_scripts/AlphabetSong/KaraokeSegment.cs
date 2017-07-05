@@ -1,4 +1,4 @@
-﻿namespace EA4S.Minigames.ReadingGame
+﻿namespace Antura.Minigames.ReadingGame
 {
     public class KaraokeSegment
     {

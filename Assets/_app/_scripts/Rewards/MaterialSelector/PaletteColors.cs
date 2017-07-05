@@ -1,4 +1,4 @@
-﻿namespace EA4S.Rewards
+﻿namespace Antura.Rewards
 {
     public enum PaletteColors {
         azure,

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Antura.Antura;
+using Antura.Helpers;
+using Antura.Rewards;
 using DG.DeInspektor.Attributes;
 using DG.Tweening;
-using EA4S.Antura;
-using EA4S.Core;
-using EA4S.Helpers;
-using EA4S.Rewards;
-using EA4S.Utilities;
+using Antura.Core;
+using Antura.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// General controller of the UI in the Antura Space scene.

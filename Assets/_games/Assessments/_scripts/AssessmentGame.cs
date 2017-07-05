@@ -1,7 +1,7 @@
-using EA4S.MinigamesCommon;
+using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// Extends MiniGame to interact with Antura's Hub, this class creates a different

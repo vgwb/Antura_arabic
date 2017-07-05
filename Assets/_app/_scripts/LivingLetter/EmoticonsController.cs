@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using Antura.Rewards;
+using UnityEngine;
 using DG.Tweening;
-using EA4S.Rewards;
 
-namespace EA4S.LivingLetters
+namespace Antura.LivingLetters
 {
     public class EmoticonsController : MonoBehaviour
     {
@@ -140,7 +140,7 @@ namespace EA4S.LivingLetters
     }
 }
 
-namespace EA4S
+namespace Antura
 {
     public enum Emoticons {
         vfx_emo_angry,

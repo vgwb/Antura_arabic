@@ -1,7 +1,7 @@
-﻿using EA4S.LivingLetters;
+﻿using Antura.LivingLetters;
 using UnityEngine;
 
-namespace EA4S.Intro
+namespace Antura.Intro
 {
 
     public class IntroStrollingLetterFallingState : IntroStrollingLetterState

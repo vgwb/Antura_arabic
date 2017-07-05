@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Collections;
-using EA4S.Audio;
-using EA4S.Helpers;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
+using Antura.Audio;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
+using Antura.Tutorial;
+using Antura.Helpers;
 
-namespace EA4S.Minigames.Scanner
+namespace Antura.Minigames.Scanner
 {
     public class ScannerRoundsManager {
 		

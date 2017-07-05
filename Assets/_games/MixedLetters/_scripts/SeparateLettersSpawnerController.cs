@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using EA4S.MinigamesAPI;
+using Antura.MinigamesAPI;
 using Random = UnityEngine.Random;
 using DG.Tweening;
 
-namespace EA4S.Minigames.MixedLetters
+namespace Antura.Minigames.MixedLetters
 {
     public class SeparateLettersSpawnerController : MonoBehaviour
     {

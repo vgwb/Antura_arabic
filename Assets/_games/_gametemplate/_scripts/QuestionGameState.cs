@@ -1,6 +1,6 @@
-﻿using EA4S.MinigamesCommon;
+﻿using Antura.MinigamesCommon;
 
-namespace EA4S.Template
+namespace Antura.Template
 {
     /// <summary>
     /// Sample game state used by the TemplateGame. 

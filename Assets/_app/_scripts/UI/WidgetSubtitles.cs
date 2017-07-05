@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using Antura.Core;
 using TMPro;
 using ArabicSupport;
 using DG.Tweening;
-using EA4S.Core;
 using UnityEngine.UI;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Shows a popup with text subtitles.

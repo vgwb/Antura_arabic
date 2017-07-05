@@ -2,9 +2,9 @@
 
 using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Helpers;
+using Antura.Helpers;
 
-namespace EA4S.Database.Management
+namespace Antura.Database.Management
 {
     /// <summary>
     /// Used for testing queries to retrieve player data.

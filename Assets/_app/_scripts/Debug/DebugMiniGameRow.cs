@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Antura.UI;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using EA4S.Database;
-using EA4S.UI;
+using Antura.Database;
 
-namespace EA4S.Debugging
+namespace Antura.Debugging
 {
     public class DebugMiniGameRow : MonoBehaviour
     {

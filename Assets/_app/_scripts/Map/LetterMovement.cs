@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-using EA4S;
+using Antura;
 using System.Collections.Generic;
+using Antura.Core;
 using DG.Tweening;
-using EA4S.Core;
-using EA4S.Map;
+using Antura.Map;
 
-namespace EA4S.Map
+namespace Antura.Map
 {
     public class LetterMovement : MonoBehaviour
     {

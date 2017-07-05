@@ -1,4 +1,4 @@
-﻿namespace EA4S.Profile
+﻿namespace Antura.Profile
 {
     public enum ProfileCompletionState
     {

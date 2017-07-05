@@ -1,11 +1,11 @@
-﻿using EA4S.Antura;
-using EA4S.Audio;
-using EA4S.Core;
-using EA4S.LivingLetters;
-using EA4S.UI;
+﻿using Antura.Antura;
+using Antura.Audio;
+using Antura.Core;
+using Antura.LivingLetters;
+using Antura.UI;
 using UnityEngine;
 
-namespace EA4S.Scenes
+namespace Antura.Scenes
 {
     /// <summary>
     /// Controls the _Start scene, providing an entry point for all users prior to having selected a player profile. 

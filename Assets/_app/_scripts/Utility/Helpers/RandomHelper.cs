@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace EA4S.Helpers
+namespace Antura.Helpers
 {
     /// <summary>
     /// Static helper class for randomization utilities.

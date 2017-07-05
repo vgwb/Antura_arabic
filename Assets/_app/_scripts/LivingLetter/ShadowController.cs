@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.LivingLetters
+namespace Antura.LivingLetters
 {
     // TODO obsolete: remove this?
     public class ShadowController : MonoBehaviour

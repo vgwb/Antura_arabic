@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using EA4S.LivingLetters;
+using Antura.LivingLetters;
 
-namespace EA4S.Minigames.MixedLetters
+namespace Antura.Minigames.MixedLetters
 {
     public class VictimLLController : MonoBehaviour
     {

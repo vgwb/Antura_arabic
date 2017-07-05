@@ -3,13 +3,13 @@ using UnityEngine.Assertions;
 using DG.Tweening;
 using System;
 using System.Collections.Generic;
+using Antura.LivingLetters;
+using Antura.MinigamesAPI;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using DG.Tweening.Plugins.Core.PathCore;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
 
-namespace EA4S.Minigames.MissingLetter
+namespace Antura.Minigames.MissingLetter
 {
 
     public class LetterBehaviour : MonoBehaviour

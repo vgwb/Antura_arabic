@@ -1,6 +1,6 @@
 using System;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     internal class SortingLogicInjector : DefaultLogicInjector
     {

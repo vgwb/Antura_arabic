@@ -1,9 +1,9 @@
-﻿using EA4S.Minigames.FastCrowd;
+﻿using Antura.UI;
+using Antura.Minigames.FastCrowd;
 using UnityEngine;
-using EA4S.MinigamesCommon;
-using EA4S.UI;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.MixedLetters
+namespace Antura.Minigames.MixedLetters
 {
     public class IntroductionGameState : IState
     {

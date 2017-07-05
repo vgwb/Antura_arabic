@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using Antura.LivingLetters;
+using UnityEngine;
 using DG.Tweening;
-using EA4S.LivingLetters;
 
-namespace EA4S.Minigames.HideAndSeek
+namespace Antura.Minigames.HideAndSeek
 {
     public enum MovementType
     {

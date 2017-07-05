@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using Antura.Antura;
+using UnityEngine;
 using DG.Tweening;
-using EA4S.Antura;
 using UnityEngine.Assertions;
 
-namespace EA4S.Minigames.MissingLetter
+namespace Antura.Minigames.MissingLetter
 {
     public class AnturaBehaviour : MonoBehaviour {
 

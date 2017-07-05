@@ -1,10 +1,10 @@
-﻿using EA4S.Audio;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using EA4S.Core;
+using Antura.Audio;
+using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.LivingLetters
+namespace Antura.LivingLetters
 {
     public class TouchToDance : MonoBehaviour
     {

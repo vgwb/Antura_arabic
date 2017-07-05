@@ -1,8 +1,8 @@
-﻿using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.Teacher;
+﻿using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
+using Antura.Teacher;
 
-namespace EA4S.Minigames.DancingDots {
+namespace Antura.Minigames.DancingDots {
 
     public class DancingDotsConfiguration : IGameConfiguration
     {

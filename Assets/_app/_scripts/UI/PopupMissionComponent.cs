@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Antura.Audio;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
-using EA4S.Audio;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     // TODO refactor: not clear where this is used
     public class PopupMissionComponent : MonoBehaviour

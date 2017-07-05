@@ -1,9 +1,9 @@
-﻿using DG.DeExtensions;
+﻿using Antura.Audio;
+using DG.DeExtensions;
 using DG.Tweening;
-using EA4S.Audio;
 using UnityEngine;
 
-namespace EA4S.GamesSelector
+namespace Antura.GamesSelector
 {
     /// <summary>
     /// A single bubble in the GamesSelector, representing a mini-game.

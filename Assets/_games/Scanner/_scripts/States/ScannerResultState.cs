@@ -1,6 +1,6 @@
-﻿using EA4S.Audio;
+﻿using Antura.Audio;
 
-namespace EA4S.Minigames.Scanner
+namespace Antura.Minigames.Scanner
 {
 	public class ScannerResultState : IState
 	{

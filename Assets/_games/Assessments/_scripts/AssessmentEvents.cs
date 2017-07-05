@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public class AssessmentEvents
     {

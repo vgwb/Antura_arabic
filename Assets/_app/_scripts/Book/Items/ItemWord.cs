@@ -1,13 +1,13 @@
-﻿using EA4S.Core;
+﻿using Antura.Database;
+using Antura.Helpers;
+using Antura.UI;
+using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using EA4S.Database;
-using EA4S.Helpers;
-using EA4S.UI;
-using EA4S.Utilities;
+using Antura.Utilities;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
 
     /// <summary>

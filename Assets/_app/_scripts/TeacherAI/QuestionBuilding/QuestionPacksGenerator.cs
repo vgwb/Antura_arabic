@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.MinigamesAPI;
+using Antura.MinigamesAPI;
+using Antura.Core;
 
-namespace EA4S.Teacher
+namespace Antura.Teacher
 {
 
     /// <summary>

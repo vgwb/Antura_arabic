@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+﻿using Antura.Audio;
+using Antura.Core;
+using Antura.Database;
+using Antura.UI;
+using UnityEngine;
 using UnityEngine.UI;
-using EA4S.Audio;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.UI;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
     /// <summary>
     /// Displays information on minigames that the player has unlocked.

@@ -1,10 +1,10 @@
-﻿using DG.Tweening;
-using EA4S.Audio;
-using EA4S.Core;
+﻿using Antura.Audio;
+using Antura.Core;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Shows and controls the Pause menu.

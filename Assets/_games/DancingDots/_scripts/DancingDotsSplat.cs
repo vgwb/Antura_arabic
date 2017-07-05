@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using EA4S.Audio;
+﻿using Antura.Audio;
+using UnityEngine;
 
-namespace EA4S.Minigames.DancingDots
+namespace Antura.Minigames.DancingDots
 {
 	public class DancingDotsSplat : MonoBehaviour {
 

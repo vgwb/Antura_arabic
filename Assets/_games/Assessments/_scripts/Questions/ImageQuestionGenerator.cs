@@ -1,15 +1,15 @@
 using DG.Tweening;
-using EA4S.Helpers;
-using EA4S.MinigamesAPI;
 using Kore.Coroutines;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S.Core;
+using Antura.Helpers;
+using Antura.MinigamesAPI;
+using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// Question Generator for asessments that show Image

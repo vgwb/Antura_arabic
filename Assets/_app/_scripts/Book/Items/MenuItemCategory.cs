@@ -1,8 +1,8 @@
-﻿using EA4S.UI;
+﻿using Antura.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
 
     /// <summary>

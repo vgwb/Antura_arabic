@@ -1,7 +1,7 @@
-﻿using EA4S.MinigamesCommon;
+﻿using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Minigames.ThrowBalls
+namespace Antura.Minigames.ThrowBalls
 {
     public class SlingshotController : MonoBehaviour
     {

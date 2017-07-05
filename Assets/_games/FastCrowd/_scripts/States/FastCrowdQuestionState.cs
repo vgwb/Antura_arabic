@@ -1,6 +1,6 @@
-﻿using EA4S.MinigamesAPI;
+﻿using Antura.MinigamesAPI;
 
-namespace EA4S.Minigames.FastCrowd
+namespace Antura.Minigames.FastCrowd
 {
     public class FastCrowdQuestionState : IState
     {

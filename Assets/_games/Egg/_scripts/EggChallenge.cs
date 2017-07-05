@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using EA4S.MinigamesAPI;
+using Antura.MinigamesAPI;
 
-namespace EA4S.Minigames.Egg
+namespace Antura.Minigames.Egg
 {
     public class EggChallenge
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using EA4S.Core;
-using EA4S.UI;
+using Antura.UI;
+using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.Rewards
+namespace Antura.Rewards
 {
     /// <summary>
     /// Controls the UI that shows the end results of a minigame or play session.

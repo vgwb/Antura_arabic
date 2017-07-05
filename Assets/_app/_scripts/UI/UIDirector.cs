@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
-using EA4S.Core;
+using Antura.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Manages the activation/deactivation of UIButtons on certain conditions

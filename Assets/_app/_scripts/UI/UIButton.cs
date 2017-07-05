@@ -1,11 +1,11 @@
 ﻿using System;
+using Antura.Audio;
 using DG.DeExtensions;
 using DG.Tweening;
-using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// A general-purpose button

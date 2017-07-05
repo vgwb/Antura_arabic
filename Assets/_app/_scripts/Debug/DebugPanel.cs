@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using Antura.Core;
+using Antura.UI;
 using UnityEngine;
-using EA4S.Core;
-using EA4S.UI;
 using UnityEngine.UI;
 
-namespace EA4S.Debugging
+namespace Antura.Debugging
 {
     public class DebugPanel : MonoBehaviour
     {

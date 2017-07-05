@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Antura.Assessment;
+using Antura.UI;
 using DG.DeInspektor.Attributes;
-using EA4S.UI;
 using UnityEngine;
 using UnityEngine.UI;
-using EA4S.Assessment;
-using EA4S.Core;
+using Antura.Core;
 
-namespace EA4S.Teacher.Test
+namespace Antura.Teacher.Test
 {
     public enum QuestionBuilderType
     {

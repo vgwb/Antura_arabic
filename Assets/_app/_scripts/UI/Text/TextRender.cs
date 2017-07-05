@@ -1,12 +1,12 @@
-﻿using EA4S.Core;
-using EA4S.Helpers;
-using EA4S.MinigamesAPI;
+﻿using Antura.Core;
+using Antura.Helpers;
+using Antura.MinigamesAPI;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 // TODO refactor: remove reference to Arabic
-namespace EA4S.UI
+namespace Antura.UI
 {
     public class TextRender : MonoBehaviour
     {

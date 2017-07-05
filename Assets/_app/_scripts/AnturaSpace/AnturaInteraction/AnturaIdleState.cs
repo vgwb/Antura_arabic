@@ -1,8 +1,8 @@
-﻿using EA4S.Antura;
-using System;
+﻿using System;
+using Antura.Antura;
 using UnityEngine;
 
-namespace EA4S.AnturaSpace
+namespace Antura.AnturaSpace
 {
     public class AnturaIdleState : AnturaState
     {

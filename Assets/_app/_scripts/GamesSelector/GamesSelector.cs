@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Antura.Audio;
+using Antura.Core;
+using Antura.Database;
 using DG.Tweening;
-using EA4S.Audio;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.Teacher;
+using Antura.Teacher;
 using UnityEngine;
 
-namespace EA4S.GamesSelector
+namespace Antura.GamesSelector
 {
     /// <summary>
     /// Handles the GamesSelector logic, showing bubbles for all mini-games that should be played next.

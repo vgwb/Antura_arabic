@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.MinigamesAPI;
+using Antura.MinigamesAPI;
 
-namespace EA4S.Minigames.Tobogan
+namespace Antura.Minigames.Tobogan
 {
     public class PipesAnswerController : MonoBehaviour
     {

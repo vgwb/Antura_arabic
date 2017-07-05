@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Collections.Generic;
 using System;
-using EA4S.Audio;
-using EA4S.Helpers;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
-using EA4S.UI;
+using Antura.Audio;
+using Antura.Helpers;
+using Antura.LivingLetters;
+using Antura.MinigamesAPI;
+using Antura.UI;
 
-namespace EA4S.Minigames.MissingLetter
+namespace Antura.Minigames.MissingLetter
 {
 
     public class RoundManager

@@ -1,8 +1,8 @@
-﻿using DG.Tweening;
-using EA4S.Audio;
+﻿using Antura.Audio;
+using DG.Tweening;
 using UnityEngine;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Shows the WalkieTalkie that the Keeper uses to communicate with the player.

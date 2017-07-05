@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Minigames.Scanner
+namespace Antura.Minigames.Scanner
 {
 
 	public class ScannerRotateGear : MonoBehaviour {

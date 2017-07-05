@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Antura.CameraControl;
+using Antura.Core;
+using Antura.MinigamesCommon;
+using Antura.Tutorial;
+using Antura.UI;
 using DG.Tweening;
-using EA4S.CameraControl;
-using EA4S.Core;
-using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
-using EA4S.UI;
 
-namespace EA4S.Map
+namespace Antura.Map
 {
     /// <summary>
     /// General manager for the Map scene. Handles the different maps for all Stages of the game.

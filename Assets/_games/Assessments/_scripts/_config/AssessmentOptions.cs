@@ -1,4 +1,4 @@
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// Text flow options. I assume most languages are LeftToRight

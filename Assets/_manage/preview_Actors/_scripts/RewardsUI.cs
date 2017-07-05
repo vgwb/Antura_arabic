@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Antura.Antura;
+using Antura.Rewards;
 using DG.Tweening;
-using EA4S.Antura;
-using EA4S.Rewards;
 
-namespace EA4S
+namespace Antura
 {
 
     // refactor: why is this in the Test scripts?s

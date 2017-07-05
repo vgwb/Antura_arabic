@@ -1,10 +1,10 @@
 ﻿using DG.Tweening;
 using System;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
+using Antura.LivingLetters;
+using Antura.MinigamesAPI;
 using UnityEngine;
 
-namespace EA4S.Minigames.Egg
+namespace Antura.Minigames.Egg
 {
     public class EggRunLetter
     {

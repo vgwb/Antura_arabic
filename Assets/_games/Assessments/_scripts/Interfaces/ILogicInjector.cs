@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// This class adds game-specific logic to LivingLetters Objects

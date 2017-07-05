@@ -1,4 +1,4 @@
-﻿namespace EA4S.Core
+﻿namespace Antura.Core
 {
     /// <summary>
     /// Settings for the transition between scenes.

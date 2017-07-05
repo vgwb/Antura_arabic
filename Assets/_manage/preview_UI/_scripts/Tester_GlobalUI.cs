@@ -1,8 +1,8 @@
-﻿using EA4S.Helpers;
-using EA4S.UI;
+﻿using Antura.Helpers;
+using Antura.UI;
 using UnityEngine;
 
-namespace EA4S.Test
+namespace Antura.Test
 {
     /// <summary>
     /// Helper class to test the GlobalUI

@@ -1,4 +1,4 @@
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// This class act as adapter between IQuestionProvider and Assessments

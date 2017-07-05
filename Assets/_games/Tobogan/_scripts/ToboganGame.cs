@@ -1,9 +1,9 @@
-﻿using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Minigames.Tobogan
+namespace Antura.Minigames.Tobogan
 {
     public class ToboganGame : MiniGame
     {

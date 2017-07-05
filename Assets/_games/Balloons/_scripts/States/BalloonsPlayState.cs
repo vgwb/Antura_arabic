@@ -1,6 +1,6 @@
-﻿using EA4S.UI;
+﻿using Antura.UI;
 
-namespace EA4S.Minigames.Balloons
+namespace Antura.Minigames.Balloons
 {
     public class BalloonsPlayState : IState
     {

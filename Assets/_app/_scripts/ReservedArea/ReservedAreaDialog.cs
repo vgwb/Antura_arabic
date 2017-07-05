@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Audio;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.UI;
-using EA4S.Helpers;
+using Antura.Audio;
+using Antura.Core;
+using Antura.UI;
+using Antura.Database;
+using Antura.Helpers;
 
-namespace EA4S.ReservedArea
+namespace Antura.ReservedArea
 {
     /// <summary>
     /// Pop-up that allows access to the reserved area with a parental lock.

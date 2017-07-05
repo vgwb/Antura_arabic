@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Globalization;
-using EA4S.Core;
-using EA4S.Helpers;
-using EA4S.Teacher;
+using Antura.Helpers;
+using Antura.Teacher;
+using Antura.Core;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     public struct DiacriticComboEntry
     {

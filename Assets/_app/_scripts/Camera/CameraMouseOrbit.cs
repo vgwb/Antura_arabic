@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.CameraControl
+namespace Antura.CameraControl
 {
     public class CameraMouseOrbit : MonoBehaviour
     {

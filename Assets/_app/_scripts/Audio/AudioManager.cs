@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Antura.Core;
+using Antura.Database;
+using Antura.MinigamesCommon;
+using Antura.Profile;
 using DG.DeAudio;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.Helpers;
-using EA4S.MinigamesCommon;
-using EA4S.Profile;
+using Antura.Helpers;
 
-namespace EA4S.Audio
+namespace Antura.Audio
 {
     /// <summary>
     /// Handles audio requests throughout the application

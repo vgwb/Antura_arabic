@@ -1,8 +1,8 @@
-﻿using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.UI;
+﻿using Antura.MinigamesAPI;
+using Antura.UI;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.MixedLetters
+namespace Antura.Minigames.MixedLetters
 {
     public class ResultGameState : IState
     {

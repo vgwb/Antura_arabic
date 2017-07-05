@@ -2,11 +2,11 @@
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
-using EA4S.UI;
+using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
+using Antura.UI;
 
-namespace EA4S.Minigames.Egg
+namespace Antura.Minigames.Egg
 {
     public class EggButton : MonoBehaviour
     {

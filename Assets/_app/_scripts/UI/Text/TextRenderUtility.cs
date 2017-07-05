@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using Antura.Helpers;
+using UnityEngine;
 using UnityEngine.UI;
-using EA4S.Helpers;
 using TMPro;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     public class TextRenderUtility : MonoBehaviour
     {

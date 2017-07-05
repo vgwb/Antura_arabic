@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using EA4S.UI;
+﻿using Antura.UI;
+using UnityEngine;
 
-namespace EA4S.Minigames.Balloons
+namespace Antura.Minigames.Balloons
 {
     public class TimerManager : MonoBehaviour
     {

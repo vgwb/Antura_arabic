@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EA4S.CameraEffects
+namespace Antura.CameraEffects
 {
     [ExecuteInEditMode]
     [RequireComponent (typeof(Camera))]

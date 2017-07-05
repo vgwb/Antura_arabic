@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     // TODO refactor: not clear where this is used
     public class LivesContainer : MonoBehaviour

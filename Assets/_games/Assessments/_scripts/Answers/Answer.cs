@@ -1,8 +1,8 @@
-using EA4S.MinigamesAPI;
 using System.Collections;
+using Antura.MinigamesAPI;
 using UnityEngine;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     /// <summary>
     /// This class is an answer to a question. It provide a simplified interface

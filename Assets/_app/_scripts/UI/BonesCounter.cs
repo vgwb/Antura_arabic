@@ -1,9 +1,9 @@
 ﻿using DG.Tweening;
-using EA4S.Core;
+using Antura.Core;
 using TMPro;
 using UnityEngine;
 
-namespace EA4S.UI
+namespace Antura.UI
 {
     /// <summary>
     /// Shows the number of bones obtained.

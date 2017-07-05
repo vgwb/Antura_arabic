@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.CameraEffects
+namespace Antura.CameraEffects
 {
     public class BlurredCamera : PostEffectsBase
     {

@@ -1,6 +1,6 @@
-﻿using EA4S.LivingLetters;
+﻿using Antura.LivingLetters;
 
-namespace EA4S.Intro
+namespace Antura.Intro
 {
     public class IntroStrollingLetterIdleState : IntroStrollingLetterState
     {

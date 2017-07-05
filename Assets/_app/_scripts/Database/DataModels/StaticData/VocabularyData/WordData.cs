@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using EA4S.Helpers;
-using EA4S.MinigamesAPI;
+using Antura.MinigamesAPI;
+using Antura.Helpers;
 using SQLite;
 using UnityEngine;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Data defining a Word.

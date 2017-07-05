@@ -1,8 +1,8 @@
-﻿using EA4S.MinigamesCommon;
-using EA4S.Tutorial;
+﻿using Antura.Tutorial;
+using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Minigames.TakeMeHome
+namespace Antura.Minigames.TakeMeHome
 {
     public class TakeMeHomeTutorialPlayState : IState
     {

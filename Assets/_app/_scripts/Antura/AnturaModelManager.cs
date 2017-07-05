@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Database;
-using EA4S.Profile;
-using EA4S.Rewards;
+using Antura.Database;
+using Antura.Profile;
+using Antura.Rewards;
 
-namespace EA4S.Antura
+namespace Antura.Antura
 {
     /// <summary>
     /// Handles loading and assignment of visual reward props appearing on Antura.

@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
+﻿using Antura.LivingLetters;
+using Antura.MinigamesAPI;
+using UnityEngine;
 using TMPro;
 
-namespace EA4S.Minigames.DancingDots
+namespace Antura.Minigames.DancingDots
 {
 
     public enum LivingLetterAnim {

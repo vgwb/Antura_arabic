@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using EA4S.MinigamesCommon;
+﻿using Antura.MinigamesCommon;
+using UnityEngine;
 
-namespace EA4S.Minigames.MixedLetters
+namespace Antura.Minigames.MixedLetters
 {
     public class RotateButtonController : MonoBehaviour
     {

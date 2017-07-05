@@ -2,7 +2,7 @@
 using SQLite;
 using UnityEngine;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Data defining a Stage. 

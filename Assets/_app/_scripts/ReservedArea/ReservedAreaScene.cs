@@ -1,12 +1,12 @@
-﻿using EA4S.Core;
-using EA4S.Database;
-using EA4S.UI;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.IO;
-using EA4S.Debugging;
+using Antura.Core;
+using Antura.Database;
+using Antura.Debugging;
+using Antura.UI;
 
-namespace EA4S.Scenes
+namespace Antura.Scenes
 {
     public class ReservedAreaScene : SceneBase
     {

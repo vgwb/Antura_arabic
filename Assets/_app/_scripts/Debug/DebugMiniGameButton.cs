@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+﻿using Antura.Database;
+using Antura.UI;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.UI;
+using Antura.Core;
 
-namespace EA4S.Debugging
+namespace Antura.Debugging
 {
     public class DebugMiniGameButton : MonoBehaviour, IPointerClickHandler
     {

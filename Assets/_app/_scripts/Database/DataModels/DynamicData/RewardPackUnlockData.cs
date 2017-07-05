@@ -1,9 +1,9 @@
-﻿using EA4S.Core;
-using EA4S.Helpers;
-using EA4S.Rewards;
+﻿using Antura.Core;
+using Antura.Helpers;
+using Antura.Rewards;
 using SQLite;
 
-namespace EA4S.Database
+namespace Antura.Database
 {
     /// <summary>
     /// Serialized data relative to a reward, used for unlocking. Updated at runtime.

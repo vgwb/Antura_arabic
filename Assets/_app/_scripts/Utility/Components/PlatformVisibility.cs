@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Utilities
+namespace Antura.Utilities
 {
     public class PlatformVisibility : MonoBehaviour
     {

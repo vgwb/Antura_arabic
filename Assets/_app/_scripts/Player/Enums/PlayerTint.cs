@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Profile
+namespace Antura.Profile
 {
     /// <summary>
     /// Color used in player's profile/avatar

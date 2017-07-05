@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Antura.LivingLetters;
+using Antura.MinigamesAPI;
 using TMPro;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
 
-namespace EA4S.Minigames.MakeFriends
+namespace Antura.Minigames.MakeFriends
 {
     public class MakeFriendsLivingLetter : MonoBehaviour
     {

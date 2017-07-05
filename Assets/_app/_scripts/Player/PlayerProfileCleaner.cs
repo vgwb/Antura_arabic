@@ -1,7 +1,7 @@
-﻿using EA4S.Core;
+﻿using Antura.Core;
 using UnityEngine;
 
-namespace EA4S.Profile
+namespace Antura.Profile
 {
     /// <summary>
     /// Handles cleanup of player profiles.

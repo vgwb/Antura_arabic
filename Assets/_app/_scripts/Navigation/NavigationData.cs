@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using EA4S.Database;
-using EA4S.Profile;
+using Antura.Database;
+using Antura.Profile;
 
-namespace EA4S.Core
+namespace Antura.Core
 {
     public static class AppSceneHelper
     {

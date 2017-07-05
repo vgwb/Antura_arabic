@@ -1,9 +1,9 @@
-﻿using EA4S.Core;
-using EA4S.MinigamesCommon;
-using EA4S.Teacher;
+﻿using Antura.Core;
+using Antura.MinigamesCommon;
+using Antura.Teacher;
 using UnityEngine;
 
-namespace EA4S.MinigamesAPI
+namespace Antura.MinigamesAPI
 {
     /// <summary>
     /// Handles the logic to launch minigames with the correct configuration.

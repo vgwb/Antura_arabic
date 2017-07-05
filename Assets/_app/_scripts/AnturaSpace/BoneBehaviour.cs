@@ -1,9 +1,9 @@
-﻿using EA4S.Audio;
-using EA4S.MinigamesCommon;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Antura.Audio;
+using Antura.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.AnturaSpace
+namespace Antura.AnturaSpace
 {
     /// <summary>
     /// Controls interactions and dynamics of a bone thrown to Antura in AnturaSpace.

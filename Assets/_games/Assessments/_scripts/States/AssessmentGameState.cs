@@ -1,6 +1,6 @@
-using EA4S.MinigamesCommon;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Assessment
+namespace Antura.Assessment
 {
     public class AssessmentGameState : IState
     {

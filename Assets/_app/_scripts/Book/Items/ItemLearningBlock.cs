@@ -1,11 +1,11 @@
-﻿using EA4S.Core;
+﻿using Antura.Database;
+using Antura.UI;
+using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using EA4S.Database;
-using EA4S.UI;
 
-namespace EA4S.Book
+namespace Antura.Book
 {
     /// <summary>
     /// Displays an item in the LearningBlock page of the Player Book.

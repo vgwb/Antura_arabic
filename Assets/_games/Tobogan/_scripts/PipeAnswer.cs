@@ -1,10 +1,10 @@
 ﻿using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
-using EA4S.MinigamesAPI;
-using EA4S.UI;
+using Antura.MinigamesAPI;
+using Antura.UI;
 
-namespace EA4S.Minigames.Tobogan
+namespace Antura.Minigames.Tobogan
 {
     public class PipeAnswer : MonoBehaviour
     {

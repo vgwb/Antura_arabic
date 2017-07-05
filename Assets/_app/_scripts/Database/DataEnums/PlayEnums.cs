@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace Antura
 {
     /// <summary>
     /// Defines a type of app-wide event that may happen.

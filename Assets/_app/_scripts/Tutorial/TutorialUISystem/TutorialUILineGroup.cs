@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using EA4S.EditorUtilities;
+using Antura.EditorUtilities;
 using UnityEngine;
 
-namespace EA4S.Tutorial
+namespace Antura.Tutorial
 {
     public class TutorialUILineGroup : MonoBehaviour
     {

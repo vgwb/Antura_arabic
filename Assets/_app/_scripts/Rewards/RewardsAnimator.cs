@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Antura.Audio;
+using Antura.MinigamesCommon;
 using DG.Tweening;
-using EA4S.Audio;
-using EA4S.MinigamesCommon;
 
-namespace EA4S.Rewards
+namespace Antura.Rewards
 {
     [RequireComponent(typeof(RewardsScene))]
     /// <summary>

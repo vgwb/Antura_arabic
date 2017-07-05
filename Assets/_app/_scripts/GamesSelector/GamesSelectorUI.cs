@@ -1,13 +1,13 @@
-﻿using UnityEngine;
+﻿using Antura.Audio;
+using Antura.Core;
+using Antura.Database;
+using Antura.Rewards;
+using Antura.UI;
+using UnityEngine;
 using UnityEngine.UI;
 using DG.DeExtensions;
-using EA4S.Core;
-using EA4S.Audio;
-using EA4S.UI;
-using EA4S.Database;
-using EA4S.Rewards;
 
-namespace EA4S.GamesSelector
+namespace Antura.GamesSelector
 {
     /// <summary>
     /// User interface of the GamesSelector.

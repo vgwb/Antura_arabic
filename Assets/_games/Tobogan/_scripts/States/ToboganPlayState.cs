@@ -1,7 +1,7 @@
-﻿using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
+﻿using Antura.MinigamesAPI;
+using Antura.MinigamesCommon;
 
-namespace EA4S.Minigames.Tobogan
+namespace Antura.Minigames.Tobogan
 {
     public class ToboganPlayState : IState
     {

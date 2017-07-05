@@ -1,11 +1,11 @@
-﻿using UnityEngine;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.MinigamesAPI;
-using EA4S.Profile;
-using EA4S.Rewards;
+﻿using Antura.Core;
+using Antura.Database;
+using Antura.MinigamesAPI;
+using Antura.Profile;
+using Antura.Rewards;
+using UnityEngine;
 
-namespace EA4S.Debugging
+namespace Antura.Debugging
 {
 
     /// <summary>

@@ -3,7 +3,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace EA4S.Editor
+namespace Antura.Editor
 {
     public static class AudioUtils
     {

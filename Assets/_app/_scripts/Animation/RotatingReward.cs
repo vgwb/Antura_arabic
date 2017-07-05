@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Animation
+namespace Antura.Animation
 {
     public class RotatingReward : MonoBehaviour
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
-using EA4S.Core;
+using Antura.Core;
 using NUnit.Framework;
 using UnityEngine;
 

@@ -1,6 +1,6 @@
-﻿using EA4S.MinigamesAPI;
+﻿using Antura.MinigamesAPI;
 
-namespace EA4S.Minigames.SickLetters
+namespace Antura.Minigames.SickLetters
 {
     public class QuestionsManager
     {
