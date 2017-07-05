@@ -14,9 +14,6 @@ namespace EA4S.Minigames.ReadingGame
         RenderTexture textRenderTexture;
         RenderTexture blurredTextRenderTexture;
 
-        public Material magnifyingGlassMaterial;
-        public Material blurredTextMaterial;
-
         Vector2 lastMin = new Vector2(Screen.width, Screen.height);
         Vector2 lastMax = Vector2.zero;
 
@@ -32,7 +29,17 @@ namespace EA4S.Minigames.ReadingGame
         List<MeshRenderer> renderers = new List<MeshRenderer>();
         List<TextMeshPro> texts = new List<TextMeshPro>();
 
-        public void UpdateTarget()
+        private Material magnifyingGlassMaterial
+        {
+            get { return ((ReadingGameGame) ReadingGameGame.I).magnifyingGlassMaterial; }
+        }
+
+        private Material blurredTextMaterial
+        {
+            get { return ((ReadingGameGame) ReadingGameGame.I).blurredTextMaterial; }
+        }
+
+        private void UpdateTarget()
         {
             hasElements = true;
 
@@ -163,6 +170,7 @@ namespace EA4S.Minigames.ReadingGame
             magnifyingGlassMaterial.SetVector("_BackScale", (Vector2)(uvMax - uvMin));
             needsRender = true;
 
+            GetComponentInChildren<MeshRenderer>().sharedMaterial = blurredTextMaterial;
         }
 
         void Update()

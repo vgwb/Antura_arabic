@@ -13719,9 +13719,6 @@ MonoBehaviour:
   mainCamera: {fileID: 766691745}
   textCamera: {fileID: 1341512713}
   target: {fileID: 1268898512}
-  magnifyingGlassMaterial: {fileID: 2100000, guid: 58e93fd4c05523642ac3643b7dc4fdd9,
-    type: 2}
-  blurredTextMaterial: {fileID: 2100000, guid: 195be412726afde4eb3bf680e815efc3, type: 2}
 --- !u!1 &1814291033
 GameObject:
   m_ObjectHideFlags: 0
@@ -13757,6 +13754,9 @@ MonoBehaviour:
   radialWidget: {fileID: 1765756456}
   uiCamera: {fileID: 1661970738}
   isTimesUp: 0
+  magnifyingGlassMaterial: {fileID: 2100000, guid: 58e93fd4c05523642ac3643b7dc4fdd9,
+    type: 2}
+  blurredTextMaterial: {fileID: 2100000, guid: 195be412726afde4eb3bf680e815efc3, type: 2}
   alphabetSongAudio: {fileID: 8300000, guid: eef764bc2e9ee684caba6f984981e22f, type: 3}
   diacriticSongAudio: {fileID: 8300000, guid: ac95a63ec562841ebbc80b7141f2d5d4, type: 3}
   alphabetSongSrt: {fileID: 4900000, guid: 614f3d91d7fe76f4b9d351e44abe15cf, type: 3}
@@ -13773,12 +13773,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MiniGameCode: 24
-  Difficulty: 0.5
-  TutorialEnabled: 1
-  NumberOfRounds: 1
   Stage: 6
   LearningBlock: 1
   PlaySession: 1
+  Difficulty: 0.5
+  TutorialEnabled: 1
+  NumberOfRounds: 1
 --- !u!4 &1814291036
 Transform:
   m_ObjectHideFlags: 0

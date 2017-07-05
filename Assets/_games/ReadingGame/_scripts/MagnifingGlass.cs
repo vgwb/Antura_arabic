@@ -58,6 +58,7 @@ namespace EA4S.Minigames.ReadingGame
 
         void Start()
         {
+            spriteRenderer.sharedMaterial = ((ReadingGameGame)ReadingGameGame.I).magnifyingGlassMaterial;
             Update();
         }
 

@@ -25,6 +25,9 @@ namespace EA4S.Minigames.ReadingGame
         int lives = 3;
         public int Lives { get { return lives; } }
 
+        public Material magnifyingGlassMaterial;
+        public Material blurredTextMaterial;
+
         [HideInInspector]
         public KaraokeSong songToPlay;
 
@@ -108,6 +111,12 @@ namespace EA4S.Minigames.ReadingGame
             }
 
             radialWidget.Hide();
+
+            // Instantiating a runtime material
+            magnifyingGlassMaterial = new Material(magnifyingGlassMaterial);
+            magnifyingGlassMaterial.name = magnifyingGlassMaterial.name + "(INSTANCE)";
+            blurredTextMaterial = new Material(blurredTextMaterial);
+            blurredTextMaterial.name = blurredTextMaterial.name + "(INSTANCE)";
         }
 
         public void AddScore(int score)
