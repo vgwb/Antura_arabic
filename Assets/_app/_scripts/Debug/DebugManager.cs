@@ -154,9 +154,6 @@ namespace EA4S.Debugging
 
         public void LaunchMiniGame(MiniGameCode miniGameCodeSelected, float difficulty)
         {
-            AppManager.I.Player.CurrentJourneyPosition.Stage = Stage;
-            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
-            AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;
             AppManager.I.Player.CurrentJourneyPosition.SetPosition(Stage, LearningBlock, PlaySession);
 
             Difficulty = difficulty;
