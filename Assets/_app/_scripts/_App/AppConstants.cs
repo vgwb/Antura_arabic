@@ -13,7 +13,7 @@ namespace EA4S.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.0.7b4";
+        public const string AppVersion = "1.0.7b5";
 
         #region Debug Options
 
@@ -33,13 +33,13 @@ namespace EA4S.Core
         /// Switches on all Debug.Log calls for performance.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool VerboseLogging = false;
+        public static bool DebugLogEnabled = true;
 
         /// <summary>
         /// Logs all MySQL database inserts.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool DebugLogInserts = false;
+        public static bool DebugLogDbInserts = false;
 
         #endregion
 

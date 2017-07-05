@@ -29,39 +29,39 @@ namespace EA4S.MinigamesAPI
         {
             ConfigAI.StartTeacherReport();
             if (_launchConfiguration == null) {
-                float difficulty = teacher.GetCurrentDifficulty(_gameCode);
-                int numberOfRounds = teacher.GetCurrentNumberOfRounds(_gameCode);
+                var difficulty = teacher.GetCurrentDifficulty(_gameCode);
+                var numberOfRounds = teacher.GetCurrentNumberOfRounds(_gameCode);
                 _launchConfiguration = new MinigameLaunchConfiguration(difficulty, numberOfRounds);
             }
 
-            Database.MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
+            var miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
 
             if (forceNewPlaySession) {
                 AppManager.I.NavigationManager.InitNewPlaySession(miniGameData);
             }
 
-            if (AppConstants.VerboseLogging) Debug.Log("StartGame " + _gameCode.ToString());
+            if (AppConstants.DebugLogEnabled) Debug.Log("StartGame " + _gameCode.ToString());
 
             // Assign the configuration for the given minigame
-            string minigameSession = System.DateTime.Now.Ticks.ToString();
-            IGameConfiguration currentGameConfig = ConfigureMiniGame(_gameCode, minigameSession);
+            var minigameSession = System.DateTime.Now.Ticks.ToString();
+            var currentGameConfig = ConfigureMiniGame(_gameCode, minigameSession);
             currentGameConfig.Difficulty = _launchConfiguration.Difficulty;
             currentGameConfig.TutorialEnabled = _launchConfiguration.TutorialEnabled;
 
             // Set also the number of rounds
             // @note: only for assessment, for now
             if (currentGameConfig is Assessment.IAssessmentConfiguration) {
-                Assessment.IAssessmentConfiguration assessmentConfig = currentGameConfig as Assessment.IAssessmentConfiguration;
+                var assessmentConfig = currentGameConfig as Assessment.IAssessmentConfiguration;
                 assessmentConfig.NumberOfRounds = _launchConfiguration.NumberOfRounds;
             }
 
             // Retrieve the packs for the current minigame configuration
-            IQuestionBuilder questionBuilder = currentGameConfig.SetupBuilder();
+            var questionBuilder = currentGameConfig.SetupBuilder();
             var questionPacks = questionPacksGenerator.GenerateQuestionPacks(questionBuilder);
             currentGameConfig.Questions = new SequentialQuestionPackProvider(questionPacks);
 
             // Communicate to LogManager the start of a new single minigame play session.
-            if (AppConstants.DebugLogInserts) Debug.Log("InitGameplayLogSession " + _gameCode.ToString());
+            if (AppConstants.DebugLogDbInserts) Debug.Log("InitGameplayLogSession " + _gameCode.ToString());
             LogManager.I.LogInfo(InfoEvent.GameStart, "{\"minigame\":\"" + _gameCode.ToString() + "\"}");
             LogManager.I.StartMiniGame();
 
@@ -326,8 +326,5 @@ namespace EA4S.MinigamesAPI
 
             return currentGameConfig;
         }
-
     }
-
 }
-

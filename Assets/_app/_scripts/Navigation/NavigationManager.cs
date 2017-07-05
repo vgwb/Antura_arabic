@@ -116,7 +116,7 @@ namespace EA4S.Core
         /// </summary>
         public void GoToNextScene()
         {
-            if (AppConstants.VerboseLogging)
+            if (AppConstants.DebugLogEnabled)
                 Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToNextScene");
             switch (NavData.CurrentScene) {
                 case AppScene.Home:
@@ -184,7 +184,7 @@ namespace EA4S.Core
 
             if (NavData.PrevSceneStack.Count > 0) {
                 var prevScene = NavData.PrevSceneStack.Pop();
-                if (AppConstants.VerboseLogging) {
+                if (AppConstants.DebugLogEnabled) {
                     Debug.LogFormat(" ---- NAV MANAGER ({0}) from scene {1} to {2} ---- ", "GoBack", NavData.CurrentScene, prevScene);
                 }
                 GoToScene(prevScene);
@@ -236,7 +236,7 @@ namespace EA4S.Core
         {
             IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
 
-            if (AppConstants.VerboseLogging) Debug.LogFormat(" ==== Loading scene {0} ====", sceneName);
+            if (AppConstants.DebugLogEnabled) Debug.LogFormat(" ==== Loading scene {0} ====", sceneName);
             SceneTransitionManager.LoadSceneWithTransition(sceneName);
 
             if (AppConstants.UseUnityAnalytics && !Application.isEditor) {
@@ -250,7 +250,7 @@ namespace EA4S.Core
             // The stack is updated only for some transitions
             if (backableTransitions.Contains(new KeyValuePair<AppScene, AppScene>(NavData.CurrentScene, newScene))) {
                 if (NavData.PrevSceneStack.Count == 0 || NavData.PrevSceneStack.Peek() != NavData.CurrentScene) {
-                    if (AppConstants.VerboseLogging) {
+                    if (AppConstants.DebugLogEnabled) {
                         Debug.Log("Added BACKABLE transition " + NavData.CurrentScene + " to " + newScene);
                     }
                     NavData.PrevSceneStack.Push(NavData.CurrentScene);

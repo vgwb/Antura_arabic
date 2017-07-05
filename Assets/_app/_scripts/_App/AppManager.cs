@@ -89,7 +89,7 @@ namespace EA4S
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
             // Debugger setup
-            Debug.logger.logEnabled = AppConstants.VerboseLogging;
+            Debug.logger.logEnabled = AppConstants.DebugLogEnabled;
             gameObject.AddComponent<Debugging.DebugManager>();
 
             // Update settings

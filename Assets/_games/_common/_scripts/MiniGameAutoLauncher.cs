@@ -6,24 +6,27 @@ using EA4S.MinigamesAPI;
 namespace EA4S.MinigamesCommon
 {
     /// <summary>
-    /// Utility component. When the scene starts from here, 
+    /// Utility component to launch a minigame with a pre-set configuration. 
+    /// Enabled only in editor mode and only when the player starts from the current scene (minigame scene) 
     /// </summary>
     public class MiniGameAutoLauncher : MonoBehaviour
     {
         public MiniGameCode MiniGameCode;
-        public float Difficulty = 0.5f;
-        public bool TutorialEnabled = true;
-        public int NumberOfRounds = 1;
-
         public int Stage = 1;
         public int LearningBlock = 1;
         public int PlaySession = 1;
 
+        public float Difficulty = 0.5f;
+        public bool TutorialEnabled = true;
+        public int NumberOfRounds = 1;
+
         void Start()
         {
-            if (!AppManager.I.NavigationManager.IsInFirstLoadedScene) return;
+            if (!AppManager.I.NavigationManager.IsInFirstLoadedScene) {
+                return;
+            }
             AppManager.I.Player.SetCurrentJourneyPosition(Stage, LearningBlock, PlaySession);
-            MinigameLaunchConfiguration config = new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, TutorialEnabled);
+            var config = new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, TutorialEnabled);
             AppManager.I.GameLauncher.LaunchGame(MiniGameCode, config, true);
         }
     }

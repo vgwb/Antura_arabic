@@ -192,21 +192,21 @@ namespace EA4S.Database
 
         public void Insert<T>(T data) where T : IData, new()
         {
-            if (AppConstants.DebugLogInserts)
+            if (AppConstants.DebugLogDbInserts)
                 Debug.Log("DB Insert: " + data);
             _connection.Insert(data);
         }
 
         public void InsertOrReplace<T>(T data) where T : IData, new()
         {
-            if (AppConstants.DebugLogInserts)
+            if (AppConstants.DebugLogDbInserts)
                 Debug.Log("DB Insert: " + data);
             _connection.InsertOrReplace(data);
         }
 
         public void InsertAll<T>(IEnumerable<T> objects) where T : IData, new()
         {
-            if (AppConstants.DebugLogInserts)
+            if (AppConstants.DebugLogDbInserts)
                 foreach (var obj in objects)
                     Debug.Log("DB Insert: " + obj);
             _connection.InsertAll(objects);
@@ -214,7 +214,7 @@ namespace EA4S.Database
 
         public void InsertAllObjects(IEnumerable objects) 
         {
-            if (AppConstants.DebugLogInserts)
+            if (AppConstants.DebugLogDbInserts)
                 foreach (var obj in objects)
                     Debug.Log("DB Insert: " + obj);
             _connection.InsertAll(objects);
@@ -222,7 +222,7 @@ namespace EA4S.Database
 
         public void InsertOrReplaceAll<T>(IEnumerable<T> objects) where T : IData, new()
         {
-            if (AppConstants.DebugLogInserts)
+            if (AppConstants.DebugLogDbInserts)
                 foreach (var obj in objects)
                     Debug.Log("DB Insert: " + obj);
             _connection.InsertAll(objects, "OR REPLACE");

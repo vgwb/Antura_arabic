@@ -286,7 +286,7 @@ namespace EA4S.Teacher
 
         public void LogMiniGameScore(int appSession, JourneyPosition pos, MiniGameCode miniGameCode, int score, float playTime)
         {
-            if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score);
+            if (AppConstants.DebugLogEnabled) Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score);
 
             // Log for history
             var data = new LogMiniGameScoreData(appSession, pos, miniGameCode, score, playTime);
@@ -344,7 +344,7 @@ namespace EA4S.Teacher
 
         public void LogPlaySessionScore(int appSession, JourneyPosition pos, int score, float playTime)
         {
-            if (AppConstants.VerboseLogging) Debug.Log("LogPlaySessionScore " + pos.ToStringId() + " / " + score);
+            if (AppConstants.DebugLogEnabled) Debug.Log("LogPlaySessionScore " + pos.ToStringId() + " / " + score);
 
             // Log for history
             var data = new LogPlaySessionScoreData(appSession, pos, score, playTime);

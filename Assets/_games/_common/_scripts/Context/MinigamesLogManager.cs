@@ -40,7 +40,7 @@ namespace EA4S.MinigamesCommon
         /// <param name="_isPositiveResult"></param>
         public void OnAnswered(ILivingLetterData _data, bool _isPositiveResult)
         {
-            if (AppConstants.DebugLogInserts) Debug.Log("pre-log OnAnswer " + _data.Id + " " + _isPositiveResult);
+            if (AppConstants.DebugLogDbInserts) Debug.Log("pre-log OnAnswer " + _data.Id + " " + _isPositiveResult);
             ILivingLetterAnswerData newILivingLetterAnswerData = new ILivingLetterAnswerData();
             newILivingLetterAnswerData._data = _data;
             newILivingLetterAnswerData._isPositiveResult = _isPositiveResult;
