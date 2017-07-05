@@ -172,7 +172,7 @@ namespace EA4S.Debugging
             VerboseTeacherToggle.isOn = VerboseTeacher;
             SafeLaunchToggle.isOn = SafeLaunch;
 
-            var mainMiniGamesList = MiniGamesUtilities.GetMainMiniGameList();
+            var mainMiniGamesList = MiniGamesUtilities.GetMainMiniGameList(skipAssessments:false);
             var difficultiesForTesting = MiniGamesUtilities.GetMiniGameDifficultiesForTesting();
 
             EmptyContainer(Container);
@@ -223,27 +223,26 @@ namespace EA4S.Debugging
         {
             playedMinigames[GetDictKey(minigameCode,difficulty)] = true;
 
-            var debugPs = new JourneyPosition(int.Parse(InputStage.text), int.Parse(InputLearningBlock.text), int.Parse(InputPlaySession.text));
+            var debugJP = new JourneyPosition(int.Parse(InputStage.text), int.Parse(InputLearningBlock.text), int.Parse(InputPlaySession.text));
 
-            if (!DebugManager.I.SafeLaunch || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(debugPs, minigameCode))
+            if (!DebugManager.I.SafeLaunch || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(debugJP, minigameCode))
             {
-                LaunchMiniGameAtJourneyPosition(minigameCode, difficulty, debugPs);
+                LaunchMiniGameAtJourneyPosition(minigameCode, difficulty, debugJP);
 
             } else {
                 if (DebugManager.I.SafeLaunch)
                 {
-                    JourneyPosition minJ = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
-                    if (minJ == null) {
+                    JourneyPosition minJP = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
+                    if (minJP == null) {
                         Debug.LogWarningFormat(
                             "Minigame {0} could not be selected for any PlaySession. Please check the PlaySession data table.",
                             minigameCode);
                     } else {
-                        Debug.LogErrorFormat("Minigame {0} cannot be selected this PlaySession. Min: {1}", minigameCode,
-                            minJ.ToString());
+                        Debug.LogErrorFormat("Minigame {0} cannot be selected PS {1}. Minimum PS is: {2}", minigameCode, debugJP, minJP);
 
                         if (AutoCorrectJourneyPos)
                         {
-                            LaunchMiniGameAtJourneyPosition(minigameCode, difficulty, minJ);
+                            LaunchMiniGameAtJourneyPosition(minigameCode, difficulty, minJP);
                         }
                     }
                 }

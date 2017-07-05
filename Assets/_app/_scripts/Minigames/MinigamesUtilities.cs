@@ -8,7 +8,7 @@ namespace EA4S.Core
     public static class MiniGamesUtilities
     {
 
-        public static List<MainMiniGame> GetMainMiniGameList()
+        public static List<MainMiniGame> GetMainMiniGameList(bool skipAssessments = true)
         {
             Dictionary<string, MainMiniGame> dictionary = new Dictionary<string, MainMiniGame>();
             List<MiniGameInfo> minigameInfoList = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
@@ -28,11 +28,8 @@ namespace EA4S.Core
             List<MainMiniGame> outputList = new List<MainMiniGame>();
             foreach (var k in dictionary.Keys)
             {
-                if (dictionary[k].id != "Assessment")
-                {
-                    outputList.Add(dictionary[k]);
-
-                }
+                if (dictionary[k].id == "Assessment" && skipAssessments) continue;
+                outputList.Add(dictionary[k]);
             }
 
             // Sort minigames and variations based on their minimum journey position
@@ -43,8 +40,16 @@ namespace EA4S.Core
                 foreach (var miniGameInfo in mainMiniGame.variations)
                 {
                     var miniGameCode = miniGameInfo.data.Code;
-                    minimumJourneyPositions[miniGameCode] =
-                        AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(miniGameCode);
+
+                    // Minimum journey position. Set to the max if not found.
+                    var minJP = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(miniGameCode);
+                    if (minJP == null)
+                    {
+                        UnityEngine.Debug.LogWarning("MiniGameCode " + miniGameCode + " has no minimum play session. Forcing to the final one.");
+                        minJP = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
+                    }
+
+                    minimumJourneyPositions[miniGameCode] = minJP;;
                 }
             }
 
