@@ -16,6 +16,8 @@ namespace EA4S.Minigames.DancingDots
     {
         V_1 = 1,
     }
+
+    // @todo: move these somewhere accessible by the games, but in the DATA
     public enum DiacriticEnum { None, Sokoun, Fatha, Dameh, Kasrah };
 
     public class DancingDotsGame : MiniGame
@@ -136,19 +138,10 @@ namespace EA4S.Minigames.DancingDots
         private bool isPlaying = false;
         //private bool wonLastRound = false;
 
-        protected override void Awake()
-        {
-            base.Awake();
-            //instance = this;
-        }
-
         protected override void Start()
         {
-
             base.Start();
             tutorial = GetComponent<DancingDotsTutorial>();
-
-            SceneTransitioner.Close();
 
             AudioManager.I.PlayMusic(Music.MainTheme);
             //AudioManager.I.transform.FindChild("Music").gameObject.AddComponent<AudioProcessor>();

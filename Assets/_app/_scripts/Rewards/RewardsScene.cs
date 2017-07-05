@@ -26,7 +26,6 @@ namespace EA4S.Rewards
             Debug.Log("RewardsManager playsession: " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
             AnturaAnimController.State = AnturaAnimation;
-            SceneTransitioner.Close();
             ShowReward();
         }
 

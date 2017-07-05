@@ -47,8 +47,6 @@ namespace EA4S.Book
             GlobalUI.ShowBackButton(true, GoBackCustom);
             AudioManager.I.PlayMusic(SceneMusic);
 
-            SceneTransitioner.Close();
-
             AudioManager.I.PlayDialogue("Book_Intro");
 
             HideAllPanels();

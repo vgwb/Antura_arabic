@@ -68,13 +68,6 @@ namespace EA4S.UI
             GlobalUI.SceneTransitioner.DoShow(_doShow, _onComplete);
         }
 
-        public static void Close()
-        {
-            if (IsShown) {
-                Show(false);
-            }
-        }
-
         void DoShow(bool _doShow, Action _onComplete = null)
         {
             IsShown = _doShow;
