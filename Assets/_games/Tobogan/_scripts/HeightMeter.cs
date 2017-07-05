@@ -21,6 +21,12 @@ namespace EA4S.Minigames.Tobogan
 
         List<GameObject> dots = new List<GameObject>();
 
+        void Awake()
+        {
+            // Instantiate a runtime material
+            dotsMaterial = new Material(dotsMaterial);
+        }
+
         void Update()
         {
             float animationSpeed = targetAnimationSpeed;
@@ -54,6 +60,7 @@ namespace EA4S.Minigames.Tobogan
                     {
                         var newDot = Instantiate(dotPrefab);
                         newDot.SetActive(true);
+                        newDot.GetComponent<MeshRenderer>().material = dotsMaterial;
                         newDot.transform.SetParent(transform);
                         dots.Add(newDot);
                     }
