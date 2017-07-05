@@ -88,7 +88,7 @@ namespace Antura.MinigamesAPI
             var defaultContext = new MinigamesGameContext(code, sessionName);
 
             // We use reflection to get the correct configuration class given a minigame code
-            // This is needed so the Core is not directly dependent on the minigame code
+            // This is needed so the Core is not directly dependent on the minigame classes
             const string configurationKey = "Configuration";
             const string assessmentNamespaceKey = "Assessment";
             const string minigamesNamespaceKey = "Minigames";
