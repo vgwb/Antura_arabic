@@ -1,12 +1,12 @@
 ﻿#if SRDebuggerEnabled
 using System.ComponentModel;
 using UnityEngine;
-using EA4S;
-using EA4S.Core;
-using EA4S.Database;
-using EA4S.Debugging;
-using EA4S.Rewards;
-using EA4S.UI;
+using Antura;
+using Antura.Core;
+using Antura.Database;
+using Antura.Debugging;
+using Antura.Rewards;
+using Antura.UI;
 
 // TODO refactoring: this is tied to SRDebugger, but we have a DebugManager. Move all debug logic there and make this behave only as a wrapping interface.
 public partial class SROptions
@@ -37,7 +37,7 @@ public partial class SROptions
     public bool MakeFriendsUseDifficulty { get; set; }
 
     [Category("MakeFriends")]
-    public EA4S.Minigames.MakeFriends.MakeFriendsVariation MakeFriendsDifficulty { get; set; }
+    public Antura.Minigames.MakeFriends.MakeFriendsVariation MakeFriendsDifficulty { get; set; }
 
     /// ThrowBalls
     private bool ThrowBallsShowProjection = true;

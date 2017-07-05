@@ -132,23 +132,9 @@ namespace Antura.Minigames.MakeFriends
             return MakeFriendsConfiguration.Instance;
         }
 
-        protected override void Awake()
-        {
-            base.Awake();
-            //Instance = this;
-        }
-
         protected override void Start()
         {
             base.Start();
-
-            //AppManager.I.InitDataAI();
-            //AppManager.I.CurrentGameManagerGO = gameObject;
-            //SceneTransitioner.Close();
-            //Random.seed = System.DateTime.Now.GetHashCode();
-            //LoggerEA4S.Log("minigame", "template", "start", "");
-            //LoggerEA4S.Save();
-
             PlayIdleMusic();
         }
 
