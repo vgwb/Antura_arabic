@@ -12,7 +12,7 @@ namespace EA4S.Tests
         public void QueryStaticDB()
         {
             var dbManager = new DatabaseManager();
-            var allLetterData = dbManager.GetAllLetterData();
+            dbManager.GetAllLetterData();
         }
 
         [Test]
@@ -20,7 +20,7 @@ namespace EA4S.Tests
         {
             var dbManager = new DatabaseManager();
             dbManager.LoadDatabaseForPlayer("TEST");
-            List<LogInfoData> list = dbManager.FindLogInfoData(x => x.Timestamp > 1000);
+            dbManager.FindLogInfoData(x => x.Timestamp > 1000);
         }
 
         [Test]
