@@ -24,15 +24,17 @@ namespace Antura.Book
             info = _info;
             manager = _manager;
 
-            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
+            if (info.unlocked || AppManager.I.Player.IsDemoUser)
+            {
                 LockIcon.enabled = false;
-            } else {
+            }
+            else
+            {
                 LockIcon.enabled = true;
             }
 
             Title.text = info.data.Arabic;
             SubTitle.text = info.data.English;
-
         }
 
         public void OnPointerClick(PointerEventData eventData)

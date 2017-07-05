@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 
 namespace Antura.Book
 {
-
     /// <summary>
     /// Displays a category button in the PlayerBook. Used to select a page of the book.
     /// </summary>

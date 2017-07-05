@@ -10,7 +10,7 @@ namespace Antura.Core
     public class KeeperManager : MonoBehaviour
     {
         public static KeeperManager I;
-        System.Action currentCallback;
+        private System.Action currentCallback;
 
         void Start()
         {
@@ -20,7 +20,8 @@ namespace Antura.Core
         // TODO refactor: remove or complete this
         public void PlaySceneIntroduction(AppScene scene)
         {
-            switch (scene) {
+            switch (scene)
+            {
                 default:
                     break;
             }
@@ -43,16 +44,21 @@ namespace Antura.Core
 
         public void PlayDialog(Database.LocalizationData data, bool isKeeper = true, bool autoClose = true, System.Action _callback = null)
         {
-            if (autoClose) {
+            if (autoClose)
+            {
                 WidgetSubtitles.I.DisplaySentence(data, 2, isKeeper, null);
                 currentCallback = _callback;
                 AudioManager.I.PlayDialogue(data, () =>
                 {
                     CloseDialog();
                     if (currentCallback != null)
+                    {
                         currentCallback();
+                    }
                 });
-            } else {
+            }
+            else
+            {
                 WidgetSubtitles.I.DisplaySentence(data, 2, true, null);
                 AudioManager.I.PlayDialogue(data, _callback);
             }

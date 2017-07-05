@@ -12,7 +12,7 @@ namespace Antura.Helpers
         private static readonly Random _random = new Random(DateTime.Now.Millisecond);
 
         #region Value Random
-        
+
         /// <summary>
         /// Return random float value around _value parameter + or - _variation.
         /// </summary>
@@ -48,8 +48,10 @@ namespace Antura.Helpers
         /// <param name="list">The list.</param>
         /// <returns></returns>
         /// <exception cref="System.Exception">Cannot get a random element from the list as count is zero.</exception>
-        public static T GetRandomAlternative<T>(this IList<T> list) {
-            if (list.Count == 0) {
+        public static T GetRandomAlternative<T>(this IList<T> list)
+        {
+            if (list.Count == 0)
+            {
                 throw new Exception("Cannot get a random element from the list as count is zero.");
             }
             return list[UnityEngine.Random.Range(0, list.Count)];
@@ -69,7 +71,7 @@ namespace Antura.Helpers
         public static T GetRandomEnum<T>()
         {
             var A = Enum.GetValues(typeof(T));
-            var V = (T)A.GetValue(UnityEngine.Random.Range(0, A.Length));
+            var V = (T) A.GetValue(UnityEngine.Random.Range(0, A.Length));
             return V;
         }
 
@@ -116,18 +118,21 @@ namespace Antura.Helpers
 
         public static List<T> RouletteSelectNonRepeating<T>(List<T> fromList, int numberToSelect)
         {
-            if (numberToSelect > fromList.Count) {
+            if (numberToSelect > fromList.Count)
+            {
                 throw new Exception("Cannot select more than available with a non-repeating selection");
             }
 
             var chosenList = new List<T>();
 
-            if (numberToSelect == fromList.Count) {
+            if (numberToSelect == fromList.Count)
+            {
                 chosenList.AddRange(fromList);
                 return chosenList;
             }
 
-            for (var choice_index = 0; choice_index < numberToSelect; choice_index++) {
+            for (var choice_index = 0; choice_index < numberToSelect; choice_index++)
+            {
                 var element_index = UnityEngine.Random.Range(0, fromList.Count);
                 var chosenItem = fromList[element_index];
                 fromList.RemoveAt(element_index);
@@ -139,25 +144,30 @@ namespace Antura.Helpers
 
         public static List<T> RouletteSelectNonRepeating<T>(List<T> fromList, List<float> weightsList, int numberToSelect)
         {
-            if (numberToSelect > fromList.Count) {
+            if (numberToSelect > fromList.Count)
+            {
                 throw new Exception("Cannot select more than available with a non-repeating selection");
             }
 
             var chosenList = new List<T>();
 
-            if (numberToSelect == fromList.Count) {
+            if (numberToSelect == fromList.Count)
+            {
                 chosenList.AddRange(fromList);
                 chosenList.Shuffle();
                 return chosenList;
             }
 
-            for (var choice_index = 0; choice_index < numberToSelect; choice_index++) {
+            for (var choice_index = 0; choice_index < numberToSelect; choice_index++)
+            {
                 var totalWeight = weightsList.Sum();
                 var choiceValue = UnityEngine.Random.value * totalWeight;
                 float cumulativeWeight = 0;
-                for (var element_index = 0; element_index < fromList.Count; element_index++) {
+                for (var element_index = 0; element_index < fromList.Count; element_index++)
+                {
                     cumulativeWeight += weightsList[element_index];
-                    if (choiceValue <= cumulativeWeight) {
+                    if (choiceValue <= cumulativeWeight)
+                    {
                         var chosenItem = fromList[element_index];
                         fromList.RemoveAt(element_index);
                         weightsList.RemoveAt(element_index);
@@ -177,9 +187,11 @@ namespace Antura.Helpers
         /// <summary>
         /// Shuffle a list in place.
         /// </summary>
-        public static void Shuffle<T>(this IList<T> list) {
+        public static void Shuffle<T>(this IList<T> list)
+        {
             int n = list.Count;
-            while (n > 1) {
+            while (n > 1)
+            {
                 n--;
                 int k = _random.Next(n + 1);
                 T value = list[k];

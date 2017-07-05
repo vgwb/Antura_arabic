@@ -9,6 +9,5 @@ namespace Antura.Debugging
     public class DebugMiniGameRow : MonoBehaviour
     {
         public TextRender Title;
-
     }
 }

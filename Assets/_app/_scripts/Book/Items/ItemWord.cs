@@ -9,7 +9,6 @@ using Antura.Utilities;
 
 namespace Antura.Book
 {
-
     /// <summary>
     /// Displays a Word item in the Dictionary page of the Player Book.
     /// </summary>
@@ -28,21 +27,28 @@ namespace Antura.Book
             info = _info;
             manager = _manager;
 
-            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
+            if (info.unlocked || AppManager.I.Player.IsDemoUser)
+            {
                 LockIcon.enabled = false;
-            } else {
+            }
+            else
+            {
                 LockIcon.enabled = true;
             }
 
             Title.text = info.data.Arabic;
             SubTitle.text = info.data.Id;
 
-            if (info.data.Drawing != "") {
+            if (info.data.Drawing != "")
+            {
                 Drawing.text = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
-                if (info.data.Category == Database.WordDataCategory.Color) {
+                if (info.data.Category == Database.WordDataCategory.Color)
+                {
                     Drawing.SetColor(GenericHelper.GetColorFromString(info.data.Value));
                 }
-            } else {
+            }
+            else
+            {
                 Drawing.text = "";
             }
         }

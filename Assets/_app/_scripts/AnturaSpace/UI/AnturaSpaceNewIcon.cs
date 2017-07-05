@@ -1,6 +1,4 @@
-﻿
-
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace Antura.UI
@@ -9,13 +7,15 @@ namespace Antura.UI
     {
         Tween _tween;
 
-        #region Unity + INIT
-
         void Init()
         {
-            if (_tween != null) return;
+            if (_tween != null)
+            {
+                return;
+            }
 
-            _tween = this.transform.DORotate(new Vector3(0, 0, 360), 2, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear)
+            _tween = transform.DORotate(new Vector3(0, 0, 360), 2, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart)
+                .SetEase(Ease.Linear)
                 .SetAutoKill(false).Pause();
         }
 
@@ -34,7 +34,5 @@ namespace Antura.UI
         {
             _tween.Kill();
         }
-
-        #endregion
     }
 }

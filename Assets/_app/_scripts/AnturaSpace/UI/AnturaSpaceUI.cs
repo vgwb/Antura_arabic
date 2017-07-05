@@ -20,12 +20,16 @@ namespace Antura.UI
     {
         public int MaxItems = 10;
         public LayerMask RewardsLayer;
-    [DeToggleButton]
+
+        [DeToggleButton]
         public bool FlipRewards = true;
-    [DeToggleButton]
+
+        [DeToggleButton]
         public bool HideLockedSwatchesColors;
+
         [Header("References")]
         public AnturaSpaceModsButton BtOpenModsPanel;
+
         public UIButton BTRemoveMods;
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
         public AnturaSpaceItemButton BtItemMain;
@@ -37,7 +41,9 @@ namespace Antura.UI
         public event System.Action onExitCustomization;
 
         public delegate void AnturaSpaceUIEvent(string _id);
+
         public static event AnturaSpaceUIEvent onRewardCategorySelectedInCustomization;
+
         public static event AnturaSpaceUIEvent onRewardSelectedInCustomization;
 //        public static event AnturaSpaceUIEvent onRewardColorSelectedInCustomization;
 
@@ -59,16 +65,16 @@ namespace Antura.UI
         #region Unity
 
         int bonesCount = -1;
+
         public int BonesCount
         {
-            get
-            {
-                return bonesCount;
-            }
+            get { return bonesCount; }
             set
             {
                 if (value == bonesCount)
+                {
                     return;
+                }
 
                 bonesCount = value;
                 bonesNumber.text = value.ToString();
@@ -94,7 +100,8 @@ namespace Antura.UI
             btsItems[0] = BtItemMain;
             rewardsContainers.Add(BtItemMain.RewardContainer);
             rewardsImagesContainers.Add(BtItemMain.RewardImage.transform);
-            for (int i = 1; i < MaxItems; ++i) {
+            for (int i = 1; i < MaxItems; ++i)
+            {
                 AnturaSpaceItemButton item = Instantiate(BtItemMain);
                 item.transform.SetParent(BtItemMain.transform.parent, false);
                 item.Setup();
@@ -108,36 +115,41 @@ namespace Antura.UI
             showCategoriesTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(CategoriesContainer.DOAnchorPosY(150, duration).From().SetEase(Ease.OutBack))
                 .Join(BtBones.RectT.DOAnchorPosY(-830, duration))
-                .OnRewind(()=> CategoriesContainer.gameObject.SetActive(false));
+                .OnRewind(() => CategoriesContainer.gameObject.SetActive(false));
             showItemsTween = ItemsContainer.DOAnchorPosX(-350, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
-                .OnRewind(() => {
+                .OnRewind(() =>
+                {
                     ItemsContainer.gameObject.SetActive(false);
                     // Clear items containers children
-                    foreach (Transform container in rewardsContainers) {
+                    foreach (Transform container in rewardsContainers)
+                    {
                         foreach (Transform child in container) Destroy(child.gameObject);
                     }
                 });
             showSwatchesTween = SwatchesContainer.DOAnchorPosY(-100, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
-                .OnRewind(()=> SwatchesContainer.gameObject.SetActive(false));
+                .OnRewind(() => SwatchesContainer.gameObject.SetActive(false));
 
             CategoriesContainer.gameObject.SetActive(false);
             ItemsContainer.gameObject.SetActive(false);
             SwatchesContainer.gameObject.SetActive(false);
 
             // Listeneres
-            BtOpenModsPanel.Bt.onClick.AddListener(()=> OnClick(BtOpenModsPanel));
-            BTRemoveMods.Bt.onClick.AddListener(()=> OnClick(BTRemoveMods));
-            foreach (var bt in btsCategories) {
+            BtOpenModsPanel.Bt.onClick.AddListener(() => OnClick(BtOpenModsPanel));
+            BTRemoveMods.Bt.onClick.AddListener(() => OnClick(BTRemoveMods));
+            foreach (var bt in btsCategories)
+            {
                 var b = bt;
-                b.Bt.onClick.AddListener(()=> OnClickCategory(b));
+                b.Bt.onClick.AddListener(() => OnClickCategory(b));
             }
-            foreach (var bt in btsItems) {
+            foreach (var bt in btsItems)
+            {
                 var b = bt;
-                b.Bt.onClick.AddListener(()=> OnClickItem(b));
+                b.Bt.onClick.AddListener(() => OnClickItem(b));
             }
-            foreach (var bt in btsSwatches) {
+            foreach (var bt in btsSwatches)
+            {
                 var b = bt;
-                b.Bt.onClick.AddListener(()=> OnClickSwatch(b));
+                b.Bt.onClick.AddListener(() => OnClickSwatch(b));
             }
         }
 
@@ -146,15 +158,24 @@ namespace Antura.UI
             if (I == this) I = null;
             // TODO: is better move this in "exit scene" method?
             AnturaModelManager.I.SaveAnturaCustomization();
-            this.StopAllCoroutines();
+            StopAllCoroutines();
             showCategoriesTween.Kill();
             showItemsTween.Kill();
             showSwatchesTween.Kill();
             BtOpenModsPanel.Bt.onClick.RemoveAllListeners();
             BTRemoveMods.Bt.onClick.RemoveAllListeners();
-            foreach (var bt in btsCategories) bt.Bt.onClick.RemoveAllListeners();
-            foreach (var bt in btsItems) bt.Bt.onClick.RemoveAllListeners();
-            foreach (var bt in btsSwatches) bt.Bt.onClick.RemoveAllListeners();
+            foreach (var bt in btsCategories)
+            {
+                bt.Bt.onClick.RemoveAllListeners();
+            }
+            foreach (var bt in btsItems)
+            {
+                bt.Bt.onClick.RemoveAllListeners();
+            }
+            foreach (var bt in btsSwatches)
+            {
+                bt.Bt.onClick.RemoveAllListeners();
+            }
         }
 
         #endregion
@@ -166,15 +187,20 @@ namespace Antura.UI
             if (IsModsPanelOpen && isTutorialMode) return;
 
             IsModsPanelOpen = !IsModsPanelOpen;
-            if (IsModsPanelOpen) {
+            if (IsModsPanelOpen)
+            {
                 BtOpenModsPanel.SetAsNew(false);
                 CategoriesContainer.gameObject.SetActive(true);
                 showCategoriesTween.PlayForward();
                 RefreshCategories();
 
                 if (onEnterCustomization != null)
+                {
                     onEnterCustomization();
-            } else {
+                }
+            }
+            else
+            {
                 BtOpenModsPanel.SetAsNew(AppManager.I.Player.ThereIsSomeNewReward());
                 SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
                 showCategoriesTween.PlayBackwards();
@@ -182,7 +208,9 @@ namespace Antura.UI
                 showSwatchesTween.PlayBackwards();
 
                 if (onExitCustomization != null)
+                {
                     onExitCustomization();
+                }
             }
         }
 
@@ -209,7 +237,10 @@ namespace Antura.UI
             }
             foreach (AnturaSpaceCategoryButton bt in btsCategories)
             {
-                if (bt.IsNew) return bt;
+                if (bt.IsNew)
+                {
+                    return bt;
+                }
             }
             return null;
         }
@@ -225,9 +256,12 @@ namespace Antura.UI
                 Debug.LogWarning("AnturaSpaceUI.GetNewItemButton > Mods Panel is not open or category is not selected");
                 return null;
             }
-            foreach (AnturaSpaceItemButton bt in btsItems)
+            foreach (var bt in btsItems)
             {
-                if (bt.IsNew) return bt;
+                if (bt.IsNew)
+                {
+                    return bt;
+                }
             }
             return null;
         }
@@ -243,20 +277,31 @@ namespace Antura.UI
 
         void SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
-            this.StopAllCoroutines();
+            StopAllCoroutines();
             // Save configuration
             //AnturaModelManager.Instance.SaveAnturaCustomization();
 
             // Toggle buttons
-            foreach (AnturaSpaceCategoryButton bt in btsCategories) {
-                if (bt.Category == _category) bt.Toggle(true, true);
-                else bt.Toggle(false);
+            foreach (AnturaSpaceCategoryButton bt in btsCategories)
+            {
+                if (bt.Category == _category)
+                {
+                    bt.Toggle(true, true);
+                }
+                else
+                {
+                    bt.Toggle(false);
+                }
             }
-            if (_category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset) return;
+            if (_category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset)
+            {
+                return;
+            }
 
             showItemsTween.Rewind();
-            this.StartCoroutine(CO_SelectCategory(_category));
+            StartCoroutine(CO_SelectCategory(_category));
         }
+
         IEnumerator CO_SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
             BTRemoveMods.gameObject.SetActive(false);
@@ -264,8 +309,12 @@ namespace Antura.UI
             // Get rewards list
             currCategory = _category;
             currRewardType = CategoryToRewardType(_category);
-            bool useImages = _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture || _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
-            foreach (AnturaSpaceItemButton item in btsItems) item.SetImage(!useImages);
+            bool useImages = _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture ||
+                             _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
+            foreach (var item in btsItems)
+            {
+                item.SetImage(!useImages);
+            }
             ReloadRewardsDatas();
             yield return null;
 
@@ -274,27 +323,43 @@ namespace Antura.UI
             showItemsTween.PlayForward();
 
             // Select eventual reward
-            if (selectedRewardData != null) SelectReward(selectedRewardData);
-            else showSwatchesTween.Rewind();
+            if (selectedRewardData != null)
+            {
+                SelectReward(selectedRewardData);
+            }
+            else
+            {
+                showSwatchesTween.Rewind();
+            }
         }
 
         void SelectReward(RewardItem _rewardData)
         {
             showSwatchesTween.Rewind();
             bool isTextureOrDecal = currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture
-                                  || currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
+                                    || currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
             BTRemoveMods.gameObject.SetActive(!isTextureOrDecal && _rewardData != null);
-            if (_rewardData == null) {
-                foreach (AnturaSpaceItemButton item in btsItems) item.Toggle(false);
-                if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
+            if (_rewardData == null)
+            {
+                foreach (AnturaSpaceItemButton item in btsItems)
+                {
+                    item.Toggle(false);
+                }
+                if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears)
+                {
                     AnturaModelManager.I.ClearLoadedRewardInCategory("EAR_L");
                     AnturaModelManager.I.ClearLoadedRewardInCategory("EAR_R");
-                } else AnturaModelManager.I.ClearLoadedRewardInCategory(currCategory.ToString());
+                }
+                else
+                {
+                    AnturaModelManager.I.ClearLoadedRewardInCategory(currCategory.ToString());
+                }
                 return;
             }
 
             currSwatchesDatas = RewardSystemManager.SelectRewardItem(_rewardData.ID, currRewardType);
-            if (currSwatchesDatas.Count == 0) {
+            if (currSwatchesDatas.Count == 0)
+            {
                 Debug.Log("No color swatches for the selected reward!");
                 return;
             }
@@ -303,17 +368,26 @@ namespace Antura.UI
             for (int i = currSwatchesDatas.Count - 1; i < btsSwatches.Length; ++i) btsSwatches[i].gameObject.SetActive(false);
             // Setup and show swatches
             RewardColorItem selectedSwatchData = null;
-            for (int i = 0; i < currSwatchesDatas.Count; ++i) {
+            for (int i = 0; i < currSwatchesDatas.Count; ++i)
+            {
                 RewardColorItem swatchData = currSwatchesDatas[i];
                 AnturaSpaceSwatchButton swatch = btsSwatches[i];
                 swatch.gameObject.SetActive(true);
                 swatch.Data = swatchData;
-                if (swatchData != null) {
+                if (swatchData != null)
+                {
                     swatch.SetAsNew(!swatchData.IsSelected && swatchData.IsNew);
                     swatch.Toggle(swatchData.IsSelected);
                     swatch.SetColors(GenericHelper.HexToColor(swatchData.Color1RGB), GenericHelper.HexToColor(swatchData.Color2RGB));
-                    if (swatchData.IsSelected) selectedSwatchData = swatchData;
-                } else swatch.Toggle(false);
+                    if (swatchData.IsSelected)
+                    {
+                        selectedSwatchData = swatchData;
+                    }
+                }
+                else
+                {
+                    swatch.Toggle(false);
+                }
                 swatch.Lock(swatchData == null);
             }
 
@@ -321,7 +395,10 @@ namespace Antura.UI
             showSwatchesTween.PlayForward();
 
             // Select eventual color
-            if (selectedSwatchData != null) SelectSwatch(selectedSwatchData);
+            if (selectedSwatchData != null)
+            {
+                SelectSwatch(selectedSwatchData);
+            }
 
             ReloadRewardsDatas();
             RefreshCategories();
@@ -330,24 +407,35 @@ namespace Antura.UI
 
         void SelectSwatch(RewardColorItem _colorData)
         {
-            foreach (AnturaSpaceSwatchButton item in btsSwatches)
+            foreach (var item in btsSwatches)
+            {
                 item.Toggle(item.Data == _colorData);
-            if (_colorData != null) { 
+            }
+            if (_colorData != null)
+            {
                 RewardSystemManager.SelectRewardColorItem(_colorData.ID, currRewardType);
-            } else
+            }
+            else
+            {
                 Debug.Log("SelectSwatch > _colorData is NULL!");
+            }
         }
 
         void ReloadRewardsDatas()
         {
-            bool useImages = currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture || currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
-            if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
+            bool useImages = currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture ||
+                             currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
+            if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears)
+            {
                 currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, rewardsContainers, "EAR_L");
                 List<Transform> altRewardContainers = new List<Transform>(rewardsContainers);
                 altRewardContainers.RemoveRange(0, currRewardDatas.Count);
                 currRewardDatas.AddRange(RewardSystemManager.GetRewardItemsByRewardType(currRewardType, altRewardContainers, "EAR_R"));
-            } else {
-                currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, useImages ? rewardsImagesContainers : rewardsContainers, currCategory.ToString());
+            }
+            else
+            {
+                currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType,
+                    useImages ? rewardsImagesContainers : rewardsContainers, currCategory.ToString());
             }
         }
 
@@ -355,19 +443,20 @@ namespace Antura.UI
         {
             foreach (AnturaSpaceCategoryButton btCat in btsCategories)
             {
-                bool isNew = false;
+                bool isNew;
                 switch (btCat.Category)
                 {
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears:
                         isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_L")
-                            || AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
+                                || AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
                         break;
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
                         isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category));
                         break;
                     default:
-                        isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), btCat.Category.ToString());
+                        isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category),
+                            btCat.Category.ToString());
                         break;
                 }
                 btCat.SetAsNew(isNew);
@@ -377,25 +466,39 @@ namespace Antura.UI
         // Returns eventual selected reward item
         RewardItem RefreshItems(bool toggleOnly = false)
         {
-            bool useImages = currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture || currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
+            bool useImages = currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture ||
+                             currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
             // Hide non-existent items
-            for (int i = currRewardDatas.Count - 1; i < btsItems.Length; ++i) btsItems[i].gameObject.SetActive(false);
+            for (int i = currRewardDatas.Count - 1; i < btsItems.Length; ++i)
+            {
+                btsItems[i].gameObject.SetActive(false);
+            }
             // Setup and show items
             RewardItem selectedRewardData = null;
-            for (int i = 0; i < currRewardDatas.Count; ++i) {
+            for (int i = 0; i < currRewardDatas.Count; ++i)
+            {
                 RewardItem rewardData = currRewardDatas[i];
                 AnturaSpaceItemButton item = btsItems[i];
                 item.gameObject.SetActive(true);
                 item.Data = rewardData;
-                if (rewardData != null) {
-                    if (!useImages && !toggleOnly) {
+                if (rewardData != null)
+                {
+                    if (!useImages && !toggleOnly)
+                    {
                         item.RewardContainer.gameObject.SetLayerRecursive(GenericHelper.LayerMaskToIndex(RewardsLayer));
                         CameraHelper.FitRewardToUICamera(item.RewardContainer.GetChild(0), item.RewardCamera, FlipRewards);
                     }
                     item.SetAsNew(rewardData.IsNew);
                     item.Toggle(rewardData.IsSelected);
-                    if (rewardData.IsSelected) selectedRewardData = rewardData;
-                } else item.Toggle(false);
+                    if (rewardData.IsSelected)
+                    {
+                        selectedRewardData = rewardData;
+                    }
+                }
+                else
+                {
+                    item.Toggle(false);
+                }
                 item.Lock(rewardData == null);
             }
             return selectedRewardData;
@@ -407,13 +510,14 @@ namespace Antura.UI
 
         RewardTypes CategoryToRewardType(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
-            switch (_category) {
-            case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
-                return RewardTypes.texture;
-            case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
-                return RewardTypes.decal;
-            default:
-                return RewardTypes.reward;
+            switch (_category)
+            {
+                case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
+                    return RewardTypes.texture;
+                case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
+                    return RewardTypes.decal;
+                default:
+                    return RewardTypes.reward;
             }
         }
 
@@ -423,8 +527,14 @@ namespace Antura.UI
 
         void OnClick(UIButton _bt)
         {
-            if (_bt == BtOpenModsPanel) ToggleModsPanel();
-            else if (_bt == BTRemoveMods) SelectReward(null);
+            if (_bt == BtOpenModsPanel)
+            {
+                ToggleModsPanel();
+            }
+            else if (_bt == BTRemoveMods)
+            {
+                SelectReward(null);
+            }
         }
 
         void OnClickCategory(AnturaSpaceCategoryButton _bt)
@@ -435,7 +545,9 @@ namespace Antura.UI
             _bt.PlayClickFx();
             SelectCategory(_bt.Category);
             if (onRewardCategorySelectedInCustomization != null)
+            {
                 onRewardCategorySelectedInCustomization(_bt.Category.ToString());
+            }
         }
 
         void OnClickItem(AnturaSpaceItemButton _bt)
@@ -445,12 +557,16 @@ namespace Antura.UI
             SelectReward(_bt.Data);
             Reward reward = RewardSystemManager.GetRewardById(_bt.Data.ID);
             if (reward != null && onRewardSelectedInCustomization != null)
+            {
                 onRewardSelectedInCustomization(reward.ID);
-                
+            }
+
             if (reward != null
-                    && (reward.Category == "EAR_R" || reward.Category == "EAR_L")
-                    && onRewardCategorySelectedInCustomization != null)
+                && (reward.Category == "EAR_R" || reward.Category == "EAR_L")
+                && onRewardCategorySelectedInCustomization != null)
+            {
                 onRewardCategorySelectedInCustomization(reward.Category.ToString());
+            }
         }
 
         void OnClickSwatch(AnturaSpaceSwatchButton _bt)

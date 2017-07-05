@@ -24,15 +24,25 @@ namespace Antura.UI
 
         public AnturaSpaceCategory Category;
 
-        public bool IsNew { get { return isNew && !isNewForceHidden; } }
-        GameObject icoNew;
-        bool isNew, isNewForceHidden;
+        public bool IsNew
+        {
+            get { return isNew && !isNewForceHidden; }
+        }
+
+        private GameObject icoNew;
+        private bool isNew, isNewForceHidden;
 
         public void SetAsNew(bool _isNew)
         {
             isNew = _isNew;
-            if (icoNew == null) icoNew = this.GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
-            if (!isNewForceHidden) icoNew.SetActive(_isNew);
+            if (icoNew == null)
+            {
+                icoNew = GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
+            }
+            if (!isNewForceHidden)
+            {
+                icoNew.SetActive(_isNew);
+            }
         }
 
         public override void Toggle(bool _activate, bool _animateClick = false)
@@ -44,7 +54,10 @@ namespace Antura.UI
         void ForceHideNewIcon(bool _forceHide)
         {
             isNewForceHidden = _forceHide;
-            if (icoNew == null) icoNew = this.GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
+            if (icoNew == null)
+            {
+                icoNew = GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
+            }
             icoNew.SetActive(!_forceHide && isNew);
         }
     }

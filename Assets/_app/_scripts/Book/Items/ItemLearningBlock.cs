@@ -33,9 +33,12 @@ namespace Antura.Book
             Title.text = learningBlockInfo.data.Title_Ar;
             SubTitle.text = learningBlockInfo.data.Title_En;
 
-            if (learningBlockInfo.unlocked || AppManager.I.Player.IsDemoUser) {
+            if (learningBlockInfo.unlocked || AppManager.I.Player.IsDemoUser)
+            {
                 LockIcon.enabled = false;
-            } else {
+            }
+            else
+            {
                 LockIcon.enabled = true;
             }
 

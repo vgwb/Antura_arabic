@@ -1,5 +1,4 @@
-﻿
-namespace Antura.Book
+﻿namespace Antura.Book
 {
     public interface IBookPanel
     {

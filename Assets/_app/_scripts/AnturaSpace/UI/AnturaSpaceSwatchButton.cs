@@ -13,9 +13,8 @@ namespace Antura.UI
         public GameObject IcoNew;
         public Image[] ColorImgs;
 
-        [System.NonSerialized] public RewardColorItem Data;
-
-        #region Public Methods
+        [System.NonSerialized]
+        public RewardColorItem Data;
 
         public override void Lock(bool _doLock)
         {
@@ -42,7 +41,5 @@ namespace Antura.UI
             ColorImgs[0].color = _color0;
             ColorImgs[1].color = _color1;
         }
-
-        #endregion
     }
 }

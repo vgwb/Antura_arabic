@@ -9,7 +9,6 @@ using Antura.Utilities;
 
 namespace Antura.Book
 {
-
     public struct GenericCategoryData
     {
         public VocabularyChapter area;
@@ -36,12 +35,14 @@ namespace Antura.Book
     {
         [Header("Prefabs")]
         public GameObject WordItemPrefab;
+
         public GameObject LetterItemPrefab;
         public GameObject PhraseItemPrefab;
         public GameObject CategoryItemPrefab;
 
         [Header("References")]
         public GameObject DetailPanel;
+
         public GameObject Submenu;
         public GameObject SubmenuContainer;
         public GameObject ListPanel;
@@ -84,7 +85,8 @@ namespace Antura.Book
 
         void OpenArea(VocabularyChapter newArea)
         {
-            if (newArea != currentChapter) {
+            if (newArea != currentChapter)
+            {
                 currentChapter = newArea;
                 activatePanel(currentChapter, true);
                 ResetMenuButtons();
@@ -94,7 +96,8 @@ namespace Antura.Book
         void activatePanel(VocabularyChapter panel, bool status)
         {
             DetailPanel.SetActive(false);
-            switch (panel) {
+            switch (panel)
+            {
                 case VocabularyChapter.Letters:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Letters);
                     LettersPanel("letters");
@@ -126,9 +129,11 @@ namespace Antura.Book
 
             currentCategory = _category;
             List<LetterData> list;
-            switch (currentCategory) {
+            switch (currentCategory)
+            {
                 case "combinations":
-                    list = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation));
+                    list = AppManager.I.DB.FindLetterData((x) =>
+                        (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation));
                     break;
                 case "symbols":
                     list = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
@@ -140,8 +145,10 @@ namespace Antura.Book
             emptyListContainers();
 
             List<LetterInfo> info_list = AppManager.I.ScoreHelper.GetAllLetterInfo();
-            foreach (var info_item in info_list) {
-                if (list.Contains(info_item.data)) {
+            foreach (var info_item in info_list)
+            {
+                if (list.Contains(info_item.data))
+                {
                     btnGO = Instantiate(LetterItemPrefab);
                     btnGO.transform.SetParent(ElementsContainer.transform, false);
                     btnGO.GetComponent<ItemLetter>().Init(this, info_item, false);
@@ -157,7 +164,8 @@ namespace Antura.Book
             CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Letters);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData {
+                new GenericCategoryData
+                {
                     area = VocabularyChapter.Letters,
                     Id = "letters",
                     Title = CategoryData.Arabic,
@@ -171,7 +179,8 @@ namespace Antura.Book
             CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Symbols);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData {
+                new GenericCategoryData
+                {
                     area = VocabularyChapter.Letters,
                     Id = "symbols",
                     Title = CategoryData.Arabic,
@@ -185,7 +194,8 @@ namespace Antura.Book
             CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Combinations);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData {
+                new GenericCategoryData
+                {
                     area = VocabularyChapter.Letters,
                     Id = "combinations",
                     Title = CategoryData.Arabic,
@@ -208,7 +218,8 @@ namespace Antura.Book
             MoreInfoWordPanel.SetActive(false);
 
             string positionsString = "";
-            foreach (var p in currentLetter.data.GetAvailableForms()) {
+            foreach (var p in currentLetter.data.GetAvailableForms())
+            {
                 positionsString = positionsString + " " + p;
             }
             Debug.Log("Detail Letter :" + currentLetter.data.Id + " [" + positionsString + " ]");
@@ -247,8 +258,8 @@ namespace Antura.Book
 
 
             List<WordData> list;
-            switch (currentWordCategory) {
-
+            switch (currentWordCategory)
+            {
                 case WordDataCategory.None:
                     //list = AppManager.I.DB.GetAllWordData();
                     list = new List<WordData>();
@@ -261,22 +272,26 @@ namespace Antura.Book
             emptyListContainers();
 
             List<WordInfo> info_list = AppManager.I.ScoreHelper.GetAllWordInfo();
-            foreach (var info_item in info_list) {
-                if (list.Contains(info_item.data)) {
+            foreach (var info_item in info_list)
+            {
+                if (list.Contains(info_item.data))
+                {
                     btnGO = Instantiate(WordItemPrefab);
                     btnGO.transform.SetParent(ElementsContainer.transform, false);
                     btnGO.GetComponent<ItemWord>().Init(this, info_item);
                 }
             }
 
-            foreach (WordDataCategory cat in GenericHelper.SortEnums<WordDataCategory>()) {
+            foreach (WordDataCategory cat in GenericHelper.SortEnums<WordDataCategory>())
+            {
                 if (cat == WordDataCategory.None) continue;
                 btnGO = Instantiate(CategoryItemPrefab);
                 btnGO.transform.SetParent(SubmenuContainer.transform, false);
                 CategoryData = LocalizationManager.GetWordCategoryData(cat);
                 btnGO.GetComponent<MenuItemCategory>().Init(
                     this,
-                    new GenericCategoryData {
+                    new GenericCategoryData
+                    {
                         area = VocabularyChapter.Words,
                         wordCategory = cat,
                         Id = cat.ToString(),
@@ -301,17 +316,22 @@ namespace Antura.Book
             output += currentWord.data.Arabic;
             output += "\n";
             var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, currentWord.data);
-            foreach (var letter in splittedLetters) {
+            foreach (var letter in splittedLetters)
+            {
                 output += letter.letter.GetChar() + " ";
             }
 
             ArabicText.text = output;
-            if (currentWord.data.Drawing != "") {
+            if (currentWord.data.Drawing != "")
+            {
                 WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(currentWord.data);
-                if (currentWord.data.Category == Database.WordDataCategory.Color) {
+                if (currentWord.data.Category == Database.WordDataCategory.Color)
+                {
                     WordDrawingText.SetColor(GenericHelper.GetColorFromString(currentWord.data.Value));
                 }
-            } else {
+            }
+            else
+            {
                 WordDrawingText.text = "";
             }
 
@@ -329,8 +349,8 @@ namespace Antura.Book
             currentPhraseCategory = _category;
 
             List<PhraseData> list;
-            switch (currentPhraseCategory) {
-
+            switch (currentPhraseCategory)
+            {
                 case PhraseDataCategory.None:
                     list = new List<PhraseData>();
                     break;
@@ -341,22 +361,26 @@ namespace Antura.Book
             emptyListContainers();
 
             List<PhraseInfo> info_list = AppManager.I.ScoreHelper.GetAllPhraseInfo();
-            foreach (var info_item in info_list) {
-                if (list.Contains(info_item.data)) {
+            foreach (var info_item in info_list)
+            {
+                if (list.Contains(info_item.data))
+                {
                     btnGO = Instantiate(PhraseItemPrefab);
                     btnGO.transform.SetParent(ElementsContainer.transform, false);
                     btnGO.GetComponent<ItemPhrase>().Init(this, info_item);
                 }
             }
 
-            foreach (PhraseDataCategory cat in GenericHelper.SortEnums<PhraseDataCategory>()) {
+            foreach (PhraseDataCategory cat in GenericHelper.SortEnums<PhraseDataCategory>())
+            {
                 if (cat == PhraseDataCategory.None) continue;
                 btnGO = Instantiate(CategoryItemPrefab);
                 btnGO.transform.SetParent(SubmenuContainer.transform, false);
                 CategoryData = LocalizationManager.GetPhraseCategoryData(cat);
                 btnGO.GetComponent<MenuItemCategory>().Init(
                     this,
-                    new GenericCategoryData {
+                    new GenericCategoryData
+                    {
                         area = VocabularyChapter.Phrases,
                         phraseCategory = cat,
                         Id = cat.ToString(),
@@ -365,7 +389,6 @@ namespace Antura.Book
                     },
                     currentPhraseCategory == cat
                 );
-
             }
         }
 
@@ -387,7 +410,8 @@ namespace Antura.Book
 
         public void SelectSubCategory(GenericCategoryData _category)
         {
-            switch (_category.area) {
+            switch (_category.area)
+            {
                 case VocabularyChapter.Letters:
                     LettersPanel(_category.Id);
                     break;
@@ -402,7 +426,8 @@ namespace Antura.Book
 
         void HighlightLetterItem(string id)
         {
-            foreach (Transform t in ElementsContainer.transform) {
+            foreach (Transform t in ElementsContainer.transform)
+            {
                 t.GetComponent<ItemLetter>().Select(id);
             }
         }
@@ -410,20 +435,23 @@ namespace Antura.Book
 
         void HighlightMenutCategory(string id)
         {
-            foreach (Transform t in SubmenuContainer.transform) {
+            foreach (Transform t in SubmenuContainer.transform)
+            {
                 t.GetComponent<MenuItemCategory>().Select(id);
             }
         }
 
         void emptyListContainers()
         {
-            foreach (Transform t in ElementsContainer.transform) {
+            foreach (Transform t in ElementsContainer.transform)
+            {
                 Destroy(t.gameObject);
             }
             // reset vertical position
             ListPanel.GetComponent<UnityEngine.UI.ScrollRect>().verticalNormalizedPosition = 1.0f;
 
-            foreach (Transform t in SubmenuContainer.transform) {
+            foreach (Transform t in SubmenuContainer.transform)
+            {
                 Destroy(t.gameObject);
             }
         }
@@ -445,7 +473,6 @@ namespace Antura.Book
 
         void ResetLL()
         {
-
         }
     }
 }

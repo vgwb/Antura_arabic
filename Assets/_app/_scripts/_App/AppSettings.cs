@@ -8,7 +8,7 @@ namespace Antura.Core
     /// Defines settings that must be saved locally.
     /// </summary>
     [System.Serializable]
-    public class AppSettings 
+    public class AppSettings
     {
         // not used anymore.. but could be useful in the future
         public bool HighQualityGfx = false;
@@ -24,6 +24,5 @@ namespace Antura.Core
 
         // the list of saved players
         public List<PlayerIconData> SavedPlayers = new List<PlayerIconData>();
-
     }
 }

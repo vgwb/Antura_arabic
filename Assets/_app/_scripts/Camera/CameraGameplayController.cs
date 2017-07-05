@@ -6,7 +6,6 @@ using UnityStandardAssets.ImageEffects;
 
 namespace Antura.CameraControl
 {
-
     /// <summary>
     /// Controller for the camera used during gameplay and to show the 3D world.
     /// </summary>
@@ -14,6 +13,7 @@ namespace Antura.CameraControl
     {
         // TODO refactor: remove the static access
         public static CameraGameplayController I;
+
         public GameObject CallbackManager;
         public bool FxEnabled { get; private set; }
 
@@ -30,7 +30,8 @@ namespace Antura.CameraControl
         public void EnableFX(bool status)
         {
             // Debug.Log("CameraGameplayController EnableFX " + status);
-            if (gameObject.GetComponent<VignetteAndChromaticAberration>() != null) {
+            if (gameObject.GetComponent<VignetteAndChromaticAberration>() != null)
+            {
                 FxEnabled = status;
                 gameObject.GetComponent<VignetteAndChromaticAberration>().enabled = status;
             }
@@ -59,6 +60,5 @@ namespace Antura.CameraControl
             // TODO refactor: can be implemented with an observer pattern instead
             CallbackManager.SendMessage("CameraReady", SendMessageOptions.DontRequireReceiver);
         }
-
     }
 }

@@ -22,6 +22,5 @@ namespace Antura.Book
             Current.text = Mathf.RoundToInt(current).ToString();
             Total.text = Mathf.RoundToInt(max).ToString();
         }
-
     }
 }

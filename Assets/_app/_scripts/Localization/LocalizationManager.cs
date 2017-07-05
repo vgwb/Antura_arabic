@@ -30,7 +30,10 @@ namespace Antura.Core
         {
             get
             {
-                if (AppManager.I.Player == null) return PlayerGender.M;
+                if (AppManager.I.Player == null)
+                {
+                    return PlayerGender.M;
+                }
                 return AppManager.I.Player.Gender;
             }
         }

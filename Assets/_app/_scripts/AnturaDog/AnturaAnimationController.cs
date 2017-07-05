@@ -32,8 +32,8 @@ namespace Antura.Dog
 
         public bool IsJumping { get; private set; }
 
-        System.Action onChargeEnded;
-        System.Action onGrabbed;
+        private System.Action onChargeEnded;
+        private System.Action onGrabbed;
 
         private float walkingSpeed;
 
@@ -57,6 +57,7 @@ namespace Antura.Dog
 
 
         private bool isExcited;
+
         public bool IsExcited
         {
             get { return isExcited; }
@@ -68,6 +69,7 @@ namespace Antura.Dog
         }
 
         private bool isSad;
+
         public bool IsSad
         {
             get { return isSad; }
@@ -79,8 +81,9 @@ namespace Antura.Dog
         }
 
         // Check if animation is actually moving legs
-        private int walkRefCount = 0;
-        private int jumpRefCount = 0;
+        private int walkRefCount;
+
+        private int jumpRefCount;
 
         public bool IsAnimationActuallyWalking
         {
@@ -92,10 +95,10 @@ namespace Antura.Dog
             get { return jumpRefCount > 0; }
         }
 
-        System.Action onSniffStartedCallback;
-        System.Action onSniffEndedCallback;
+        private System.Action onSniffStartedCallback;
+        private System.Action onSniffEndedCallback;
 
-        System.Action onShoutStartedCallback;
+        private System.Action onShoutStartedCallback;
 
         public void SetWalkingSpeed(float speed = WALKING_SPEED)
         {
@@ -109,7 +112,9 @@ namespace Antura.Dog
             if (State != AnturaAnimationStates.idle)
             {
                 if (!hasToGoBackState)
+                {
                     backState = State;
+                }
                 State = AnturaAnimationStates.idle;
                 hasToGoBackState = true;
             }
@@ -122,9 +127,13 @@ namespace Antura.Dog
             onShoutStartedCallback = onShoutStarted;
             animator.SetFloat("random", Random.value);
             if (State == AnturaAnimationStates.idle)
+            {
                 animator.SetTrigger("doShout");
+            }
             else
+            {
                 animator.SetTrigger("doShoutAdditive");
+            }
         }
 
         public void DoBurp()
@@ -143,15 +152,21 @@ namespace Antura.Dog
             if (State != AnturaAnimationStates.idle)
             {
                 if (!hasToGoBackState)
+                {
                     backState = State;
+                }
                 State = AnturaAnimationStates.idle;
                 hasToGoBackState = true;
             }
 
             if (openMouth)
+            {
                 animator.SetTrigger("doSpitOpen");
+            }
             else
+            {
                 animator.SetTrigger("doSpitClosed");
+            }
         }
 
         public void DoSmallJumpAndGrab(System.Action onGrabbed = null)
@@ -166,7 +181,9 @@ namespace Antura.Dog
                 State != AnturaAnimationStates.walking)
             {
                 if (!hasToGoBackState)
+                {
                     backState = State;
+                }
                 State = AnturaAnimationStates.idle;
                 hasToGoBackState = true;
             }
@@ -229,7 +246,9 @@ namespace Antura.Dog
             SetWalkingSpeed(RUN_SPEED);
 
             if (onChargeEnded != null)
+            {
                 onChargeEnded();
+            }
             onChargeEnded = null;
         }
 
@@ -240,7 +259,9 @@ namespace Antura.Dog
             get
             {
                 if (!animator_)
+                {
                     animator_ = GetComponentInChildren<Animator>();
+                }
                 return animator_;
             }
         }
@@ -261,19 +282,25 @@ namespace Antura.Dog
         void OnSniffStart()
         {
             if (onSniffStartedCallback != null)
+            {
                 onSniffStartedCallback();
+            }
         }
 
         void OnSniffEnd()
         {
             if (onSniffEndedCallback != null)
+            {
                 onSniffEndedCallback();
+            }
         }
 
         void OnStateChanged(AnturaAnimationStates oldState, AnturaAnimationStates newState)
         {
             if (newState != AnturaAnimationStates.walking)
+            {
                 animator.SetBool("slipping", false);
+            }
 
             animator.SetBool("idle", false);
             animator.SetBool("walking", false);
@@ -322,7 +349,6 @@ namespace Antura.Dog
                 default:
                     // No specific visual behaviour for this state
                     break;
-
             }
         }
 
@@ -349,7 +375,9 @@ namespace Antura.Dog
         void OnAnimationJumpGrab()
         {
             if (onGrabbed != null)
+            {
                 onGrabbed();
+            }
         }
 
         void OnEnable()

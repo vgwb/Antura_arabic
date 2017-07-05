@@ -18,6 +18,7 @@ namespace Antura.Dog
 
         [Header("Bones Attach")]
         public Transform Dog_head;
+
         public Transform Dog_spine01;
         public Transform Dog_jaw;
         public Transform Dog_Tail3;
@@ -26,6 +27,7 @@ namespace Antura.Dog
 
         [Header("Materials Owner")]
         public SkinnedMeshRenderer SkinnedMesh;
+
         public SkinnedMeshRenderer[] SkinnedMeshsTextureOnly;
 
         /// <summary>
@@ -36,21 +38,25 @@ namespace Antura.Dog
 
         #region Life cycle
 
-        void Awake() {
+        void Awake()
+        {
             I = this;
             chargeCategoryList();
         }
 
-        void Start() {
-            if (AppManager.I.Player != null) {
-                AnturaCustomization c = AppManager.I.Player.CurrentAnturaCustomizations;
-                AnturaModelManager.I.LoadAnturaCustomization(c);
+        void Start()
+        {
+            if (AppManager.I.Player != null)
+            {
+                var c = AppManager.I.Player.CurrentAnturaCustomizations;
+                LoadAnturaCustomization(c);
             }
         }
 
         #endregion
 
-        class LoadedModel {
+        class LoadedModel
+        {
             public RewardPackUnlockData Reward;
             public GameObject GO;
         }
@@ -65,9 +71,11 @@ namespace Antura.Dog
         /// Loads the antura customization elements on Antura model.
         /// </summary>
         /// <param name="_anturaCustomization">The antura customization.</param>
-        public void LoadAnturaCustomization(AnturaCustomization _anturaCustomization) {
+        public void LoadAnturaCustomization(AnturaCustomization _anturaCustomization)
+        {
             ClearLoadedRewards();
-            foreach (RewardPackUnlockData forniture in _anturaCustomization.Fornitures) {
+            foreach (var forniture in _anturaCustomization.Fornitures)
+            {
                 LoadRewardPackOnAntura(forniture);
                 ModelsManager.SwitchMaterial(LoadRewardPackOnAntura(forniture), forniture.GetMaterialPair());
             }
@@ -80,10 +88,17 @@ namespace Antura.Dog
         /// Saves the antura customization using the current model customization.
         /// </summary>
         /// <returns></returns>
-        public AnturaCustomization SaveAnturaCustomization() {
+        public AnturaCustomization SaveAnturaCustomization()
+        {
             AnturaCustomization returnCustomization = new AnturaCustomization();
-            foreach (LoadedModel loadedModel in LoadedModels) {
-                RewardPackUnlockData pack = new RewardPackUnlockData() { ItemId = loadedModel.Reward.ItemId, ColorId = loadedModel.Reward.ColorId, Type = RewardTypes.reward };
+            foreach (LoadedModel loadedModel in LoadedModels)
+            {
+                RewardPackUnlockData pack = new RewardPackUnlockData()
+                {
+                    ItemId = loadedModel.Reward.ItemId,
+                    ColorId = loadedModel.Reward.ColorId,
+                    Type = RewardTypes.reward
+                };
                 returnCustomization.Fornitures.Add(pack);
                 returnCustomization.FornituresIds.Add(pack.GetIdAccordingToDBRules());
             }
@@ -96,34 +111,39 @@ namespace Antura.Dog
         }
 
 
-        public GameObject LoadRewardPackOnAntura(RewardPackUnlockData rewardPackUnlockData) {
+        public GameObject LoadRewardPackOnAntura(RewardPackUnlockData rewardPackUnlockData)
+        {
             if (rewardPackUnlockData == null)
                 return null;
-            switch (rewardPackUnlockData.Type) {
+            switch (rewardPackUnlockData.Type)
+            {
                 case RewardTypes.reward:
                     return LoadRewardOnAntura(rewardPackUnlockData);
                 case RewardTypes.texture:
-                    Material newMaterial = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemId, rewardPackUnlockData.ColorId);
+                    var newMaterial = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemId, rewardPackUnlockData.ColorId);
                     // Main mesh
-                    Material[] mats = SkinnedMesh.sharedMaterials;
+                    var mats = SkinnedMesh.sharedMaterials;
                     mats[0] = newMaterial;
                     SkinnedMesh.sharedMaterials = mats;
                     LoadedTileTexture = rewardPackUnlockData;
                     // Sup mesh for texture
-                    foreach (SkinnedMeshRenderer renderer in SkinnedMeshsTextureOnly) {
-                        Material[] materials = renderer.sharedMaterials;
+                    foreach (var renderer in SkinnedMeshsTextureOnly)
+                    {
+                        var materials = renderer.sharedMaterials;
                         materials[0] = newMaterial;
                         renderer.sharedMaterials = materials;
                     }
                     break;
                 case RewardTypes.decal:
-                    Material newDecalMaterial = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemId, rewardPackUnlockData.ColorId);
+                    Material newDecalMaterial =
+                        MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemId, rewardPackUnlockData.ColorId);
                     // Main mesh
                     Material[] decalMats = SkinnedMesh.sharedMaterials;
                     decalMats[1] = newDecalMaterial;
                     SkinnedMesh.sharedMaterials = decalMats;
                     // Sup mesh for texture
-                    foreach (SkinnedMeshRenderer renderer in SkinnedMeshsTextureOnly) {
+                    foreach (SkinnedMeshRenderer renderer in SkinnedMeshsTextureOnly)
+                    {
                         Material[] materials = renderer.sharedMaterials;
                         materials[1] = newDecalMaterial;
                         renderer.sharedMaterials = materials;
@@ -137,8 +157,10 @@ namespace Antura.Dog
             return null;
         }
 
-        public void ClearLoadedRewards() {
-            foreach (var item in LoadedModels) {
+        public void ClearLoadedRewards()
+        {
+            foreach (var item in LoadedModels)
+            {
                 Destroy(item.GO);
             }
             LoadedModels.Clear();
@@ -148,9 +170,11 @@ namespace Antura.Dog
         /// Clears the loaded reward in category.
         /// </summary>
         /// <param name="_categoryId">The category identifier.</param>
-        public void ClearLoadedRewardInCategory(string _categoryId) {
+        public void ClearLoadedRewardInCategory(string _categoryId)
+        {
             LoadedModel lm = LoadedModels.Find(m => m.Reward.GetRewardCategory() == _categoryId);
-            if(lm != null) { 
+            if (lm != null)
+            {
                 Destroy(lm.GO);
                 LoadedModels.Remove(lm);
             }
@@ -162,7 +186,8 @@ namespace Antura.Dog
         /// <param name="_gameObject">The game object.</param>
         /// <param name="rewardPackUnlockData">The reward pack.</param>
         /// <returns></returns>
-        public GameObject SetRewardMaterialColors(GameObject _gameObject, RewardPackUnlockData rewardPackUnlockData) {
+        public GameObject SetRewardMaterialColors(GameObject _gameObject, RewardPackUnlockData rewardPackUnlockData)
+        {
             ModelsManager.SwitchMaterial(_gameObject, rewardPackUnlockData.GetMaterialPair());
             //actualRewardsForCategoryColor.Add()
             return _gameObject;
@@ -173,15 +198,18 @@ namespace Antura.Dog
         /// </summary>
         /// <param name="_id">The identifier.</param>
         /// <returns></returns>
-        public GameObject LoadRewardOnAntura(RewardPackUnlockData rewardPackUnlockData) {
+        public GameObject LoadRewardOnAntura(RewardPackUnlockData rewardPackUnlockData)
+        {
             Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == rewardPackUnlockData.ItemId);
-            if (reward == null) {
+            if (reward == null)
+            {
                 Debug.LogFormat("Reward {0} not found!", rewardPackUnlockData.ItemId);
                 return null;
             }
             // Check if already charged reward of this category
             LoadedModel loadedModel = LoadedModels.Find(lm => lm.Reward.GetRewardCategory() == reward.Category);
-            if(loadedModel != null) { 
+            if (loadedModel != null)
+            {
                 Destroy(loadedModel.GO);
                 LoadedModels.Remove(loadedModel);
             }
@@ -189,7 +217,8 @@ namespace Antura.Dog
             // Load Model
             string boneParent = reward.BoneAttach;
             GameObject rewardModel = null;
-            switch (boneParent) {
+            switch (boneParent)
+            {
                 case "dog_head":
                     rewardModel = ModelsManager.MountModel(reward.ID, Dog_head);
                     break;
@@ -216,9 +245,10 @@ namespace Antura.Dog
             ModelsManager.SwitchMaterial(rewardModel, rewardPackUnlockData.GetMaterialPair());
 
             // Save on LoadedModel List
-            LoadedModels.Add(new LoadedModel() { Reward = rewardPackUnlockData, GO = rewardModel });
+            LoadedModels.Add(new LoadedModel() {Reward = rewardPackUnlockData, GO = rewardModel});
             return rewardModel;
         }
+
         #endregion
 
         #region Rewards standard (Antura fornitures)
@@ -227,14 +257,18 @@ namespace Antura.Dog
         /// The category list
         /// </summary>
         List<string> categoryList = new List<string>();
-        
+
         /// <summary>
         /// Charges the category list.
         /// </summary>
-        void chargeCategoryList() {
-            foreach (var reward in RewardSystemManager.GetConfig().Rewards) {
+        void chargeCategoryList()
+        {
+            foreach (var reward in RewardSystemManager.GetConfig().Rewards)
+            {
                 if (!categoryList.Contains(reward.Category))
+                {
                     categoryList.Add(reward.Category);
+                }
             }
         }
 
@@ -242,27 +276,30 @@ namespace Antura.Dog
 
         #region events
 
-        void OnEnable() {
+        void OnEnable()
+        {
             RewardSystemManager.OnRewardChanged += RewardSystemManager_OnRewardItemChanged;
             PlayerProfileManager.OnProfileChanged += PlayerProfileManager_OnProfileChanged;
         }
 
-        private void PlayerProfileManager_OnProfileChanged() {
+        private void PlayerProfileManager_OnProfileChanged()
+        {
             LoadAnturaCustomization(AppManager.I.Player.CurrentAnturaCustomizations);
         }
 
-        private void RewardSystemManager_OnRewardItemChanged(RewardPackUnlockData rewardPackUnlockData) {
+        private void RewardSystemManager_OnRewardItemChanged(RewardPackUnlockData rewardPackUnlockData)
+        {
             LoadRewardPackOnAntura(rewardPackUnlockData);
             AppManager.I.Player.SetRewardPackUnlockedToNotNew(rewardPackUnlockData.GetIdAccordingToDBRules());
             SaveAnturaCustomization();
         }
 
-        void OnDisable() {
+        void OnDisable()
+        {
             RewardSystemManager.OnRewardChanged -= RewardSystemManager_OnRewardItemChanged;
             PlayerProfileManager.OnProfileChanged -= PlayerProfileManager_OnProfileChanged;
         }
-        
-        #endregion
 
+        #endregion
     }
 }

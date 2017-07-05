@@ -17,7 +17,8 @@ namespace Antura.Helpers
             public int toCharacterIndex;
             public Database.LetterForm letterForm;
 
-            public ArabicStringPart(Database.LetterData letter, int fromCharacterIndex, int toCharacterIndex, Database.LetterForm letterForm)
+            public ArabicStringPart(Database.LetterData letter, int fromCharacterIndex, int toCharacterIndex,
+                Database.LetterForm letterForm)
             {
                 this.letter = letter;
                 this.fromCharacterIndex = fromCharacterIndex;
@@ -52,7 +53,9 @@ namespace Antura.Helpers
 
         static List<Database.LetterData> allLetterData;
         static Dictionary<string, UnicodeLookUpEntry> unicodeLookUpCache = new Dictionary<string, UnicodeLookUpEntry>();
-        static Dictionary<DiacriticComboLookUpEntry, LetterData> diacriticComboLookUpCache = new Dictionary<DiacriticComboLookUpEntry, LetterData>();
+
+        static Dictionary<DiacriticComboLookUpEntry, LetterData> diacriticComboLookUpCache =
+            new Dictionary<DiacriticComboLookUpEntry, LetterData>();
 
         /// <summary>
         /// Collapses diacritics and letters, collapses multiple words variations (e.g. lam + alef), selects correct forms unicodes, and reverses the string.
@@ -70,13 +73,15 @@ namespace Antura.Helpers
         /// <returns>string char</returns>
         public static string GetLetterFromUnicode(string hexCode)
         {
-            if (hexCode == "") {
-                Debug.LogError("Letter requested with an empty hexacode (data is probably missing from the DataBase). Returning - for now.");
+            if (hexCode == "")
+            {
+                Debug.LogError(
+                    "Letter requested with an empty hexacode (data is probably missing from the DataBase). Returning - for now.");
                 hexCode = "002D";
             }
 
             int unicode = int.Parse(hexCode, System.Globalization.NumberStyles.HexNumber);
-            var character = (char)unicode;
+            var character = (char) unicode;
             return character.ToString();
         }
 
@@ -95,12 +100,14 @@ namespace Antura.Helpers
         /// Return a string of a word without a character. Warning: the word is already reversed and fixed for rendering.
         /// This is mandatory since PrepareArabicStringForDisplay should be called before adding removedLetterChar.
         /// </summary>
-        public static string GetWordWithMissingLetterText(Database.WordData arabicWord, ArabicStringPart partToRemove, string removedLetterChar = "_")
+        public static string GetWordWithMissingLetterText(Database.WordData arabicWord, ArabicStringPart partToRemove,
+            string removedLetterChar = "_")
         {
             string text = ProcessArabicString(arabicWord.Arabic);
 
             int toCharacterIndex = partToRemove.toCharacterIndex + 1;
-            text = text.Substring(0, partToRemove.fromCharacterIndex) + removedLetterChar + (toCharacterIndex >= text.Length ? "" : text.Substring(toCharacterIndex));
+            text = text.Substring(0, partToRemove.fromCharacterIndex) + removedLetterChar +
+                   (toCharacterIndex >= text.Length ? "" : text.Substring(toCharacterIndex));
 
             return text;
         }
@@ -109,14 +116,17 @@ namespace Antura.Helpers
         /// Find all the occurrences of "letterToFind" in "arabicWord"
         /// </summary>
         /// <returns>the list of occurrences</returns>
-        public static List<ArabicStringPart> FindLetter(DatabaseManager database, Database.WordData arabicWord, Database.LetterData letterToFind)
+        public static List<ArabicStringPart> FindLetter(DatabaseManager database, Database.WordData arabicWord,
+            Database.LetterData letterToFind)
         {
             List<ArabicStringPart> result = new List<ArabicStringPart>();
 
             var parts = AnalyzeData(database, arabicWord, false, letterToFind.Kind != LetterDataKind.LetterVariation);
 
-            for (int i = 0, count = parts.Count; i < count; ++i) {
-                if (parts[i].letter.Id == letterToFind.Id) {
+            for (int i = 0, count = parts.Count; i < count; ++i)
+            {
+                if (parts[i].letter.Id == letterToFind.Id)
+                {
                     result.Add(parts[i]);
                 }
             }
@@ -127,12 +137,16 @@ namespace Antura.Helpers
         /// <summary>
         /// Returns the list of letters found in a word string
         /// </summary>
-        public static List<ArabicStringPart> AnalyzeData(DatabaseManager database, WordData arabicWord, bool separateDiacritics = false, bool separateVariations = true)
+        public static List<ArabicStringPart> AnalyzeData(DatabaseManager database, WordData arabicWord, bool separateDiacritics = false,
+            bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
-            return AnalyzeArabicString(database.StaticDatabase, ProcessArabicString(arabicWord.Arabic), separateDiacritics, separateVariations);
+            return AnalyzeArabicString(database.StaticDatabase, ProcessArabicString(arabicWord.Arabic), separateDiacritics,
+                separateVariations);
         }
-        public static List<ArabicStringPart> AnalyzeData(DatabaseObject staticDatabase, WordData arabicWord, bool separateDiacritics = false, bool separateVariations = true)
+
+        public static List<ArabicStringPart> AnalyzeData(DatabaseObject staticDatabase, WordData arabicWord,
+            bool separateDiacritics = false, bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
             return AnalyzeArabicString(staticDatabase, ProcessArabicString(arabicWord.Arabic), separateDiacritics, separateVariations);
@@ -141,39 +155,51 @@ namespace Antura.Helpers
         /// <summary>
         /// Returns the list of letters found in a word string
         /// </summary>
-        public static List<ArabicStringPart> AnalyzeData(DatabaseManager database, PhraseData phrase, bool separateDiacritics = false, bool separateVariations = true)
+        public static List<ArabicStringPart> AnalyzeData(DatabaseManager database, PhraseData phrase, bool separateDiacritics = false,
+            bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
             return AnalyzeArabicString(database.StaticDatabase, ProcessArabicString(phrase.Arabic), separateDiacritics, separateVariations);
         }
-        public static List<ArabicStringPart> AnalyzeData(DatabaseObject staticDatabase, PhraseData phrase, bool separateDiacritics = false, bool separateVariations = true)
+
+        public static List<ArabicStringPart> AnalyzeData(DatabaseObject staticDatabase, PhraseData phrase, bool separateDiacritics = false,
+            bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
             return AnalyzeArabicString(staticDatabase, ProcessArabicString(phrase.Arabic), separateDiacritics, separateVariations);
         }
 
-        static List<ArabicStringPart> AnalyzeArabicString(DatabaseObject staticDatabase, string processedArabicString, bool separateDiacritics = false, bool separateVariations = true)
+        static List<ArabicStringPart> AnalyzeArabicString(DatabaseObject staticDatabase, string processedArabicString,
+            bool separateDiacritics = false, bool separateVariations = true)
         {
-            if (allLetterData == null) {
+            if (allLetterData == null)
+            {
                 allLetterData = new List<Database.LetterData>(staticDatabase.GetLetterTable().GetValuesTyped());
 
-                for (int l = 0; l < allLetterData.Count; ++l) {
+                for (int l = 0; l < allLetterData.Count; ++l)
+                {
                     var data = allLetterData[l];
 
-                    foreach (var form in data.GetAvailableForms()) {
-                        if (data.Kind == LetterDataKind.Letter) {
+                    foreach (var form in data.GetAvailableForms())
+                    {
+                        if (data.Kind == LetterDataKind.Letter)
+                        {
                             // Overwrite
                             unicodeLookUpCache[data.GetUnicode(form)] = new UnicodeLookUpEntry(data, form);
-                        } else {
+                        }
+                        else
+                        {
                             var unicode = data.GetUnicode(form);
 
-                            if (!unicodeLookUpCache.ContainsKey(unicode)) {
+                            if (!unicodeLookUpCache.ContainsKey(unicode))
+                            {
                                 unicodeLookUpCache.Add(unicode, new UnicodeLookUpEntry(data, form));
                             }
                         }
                     }
 
-                    if (data.Kind == LetterDataKind.DiacriticCombo) {
+                    if (data.Kind == LetterDataKind.DiacriticCombo)
+                    {
                         diacriticComboLookUpCache.Add(new DiacriticComboLookUpEntry(data.Symbol, data.BaseLetter), data);
                     }
                 }
@@ -185,27 +211,34 @@ namespace Antura.Helpers
             char[] chars = processedArabicString.ToCharArray();
 
             int stringIndex = 0;
-            for (int i = 0; i < chars.Length; i++) {
+            for (int i = 0; i < chars.Length; i++)
+            {
                 char character = chars[i];
 
                 // Skip spaces and arabic "?"
-                if (character == ' ' || character == '؟') {
+                if (character == ' ' || character == '؟')
+                {
                     ++stringIndex;
                     continue;
                 }
 
                 string unicodeString = GetHexUnicodeFromChar(character);
 
-                if (unicodeString == "0640") {
+                if (unicodeString == "0640")
+                {
                     // it's an arabic tatweel
                     // just extends previous character
-                    for (int t = result.Count - 1; t >= 0; --t) {
+                    for (int t = result.Count - 1; t >= 0; --t)
+                    {
                         var previous = result[t];
 
-                        if (previous.toCharacterIndex == stringIndex - 1) {
+                        if (previous.toCharacterIndex == stringIndex - 1)
+                        {
                             ++previous.toCharacterIndex;
                             result[t] = previous;
-                        } else {
+                        }
+                        else
+                        {
                             break;
                         }
                     }
@@ -219,18 +252,26 @@ namespace Antura.Helpers
                 Database.LetterData letterData = null;
 
                 UnicodeLookUpEntry entry;
-                if (unicodeLookUpCache.TryGetValue(unicodeString, out entry)) {
+                if (unicodeLookUpCache.TryGetValue(unicodeString, out entry))
+                {
                     letterForm = entry.form;
                     letterData = entry.data;
                 }
 
-                if (letterData != null) {
-                    if (letterData.Kind == Database.LetterDataKind.DiacriticCombo && separateDiacritics) {
+                if (letterData != null)
+                {
+                    if (letterData.Kind == Database.LetterDataKind.DiacriticCombo && separateDiacritics)
+                    {
                         // It's a diacritic combo
                         // Separate Letter and Diacritic
-                        result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.BaseLetter), stringIndex, stringIndex, letterForm));
-                        result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.Symbol), stringIndex, stringIndex, letterForm));
-                    } else if (letterData.Kind == Database.LetterDataKind.Symbol && letterData.Type == Database.LetterDataType.DiacriticSymbol && !separateDiacritics) {
+                        result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.BaseLetter),
+                            stringIndex, stringIndex, letterForm));
+                        result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.Symbol),
+                            stringIndex, stringIndex, letterForm));
+                    }
+                    else if (letterData.Kind == Database.LetterDataKind.Symbol &&
+                             letterData.Type == Database.LetterDataType.DiacriticSymbol && !separateDiacritics)
+                    {
                         // It's a diacritic
                         // Merge Letter and Diacritic
 
@@ -240,35 +281,53 @@ namespace Antura.Helpers
 
                         LetterData diacriticLetterData = null;
 
-                        diacriticComboLookUpCache.TryGetValue(new DiacriticComboLookUpEntry(symbolId, baseLetterId), out diacriticLetterData);
+                        diacriticComboLookUpCache.TryGetValue(new DiacriticComboLookUpEntry(symbolId, baseLetterId),
+                            out diacriticLetterData);
 
-                        if (diacriticLetterData == null) {
-                            Debug.LogError("Cannot find a single character for " + baseLetterId + " + " + symbolId + ". Diacritic removed in (" + processedArabicString + ").");
-                        } else {
+                        if (diacriticLetterData == null)
+                        {
+                            Debug.LogError("Cannot find a single character for " + baseLetterId + " + " + symbolId +
+                                           ". Diacritic removed in (" + processedArabicString + ").");
+                        }
+                        else
+                        {
                             var previous = result[result.Count - 1];
                             previous.letter = diacriticLetterData;
                             ++previous.toCharacterIndex;
                             result[result.Count - 1] = previous;
                         }
-                    } else if (letterData.Kind == Database.LetterDataKind.LetterVariation && separateVariations && letterData.BaseLetter == "lam") {
+                    }
+                    else if (letterData.Kind == Database.LetterDataKind.LetterVariation && separateVariations &&
+                             letterData.BaseLetter == "lam")
+                    {
                         // it's a lam-alef combo
                         // Separate Lam and Alef
-                        result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.BaseLetter), stringIndex, stringIndex, letterForm));
+                        result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.BaseLetter),
+                            stringIndex, stringIndex, letterForm));
 
                         var secondPart = staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.Symbol);
 
-                        if (secondPart.Kind == Database.LetterDataKind.DiacriticCombo && separateDiacritics) {
+                        if (secondPart.Kind == Database.LetterDataKind.DiacriticCombo && separateDiacritics)
+                        {
                             // It's a diacritic combo
                             // Separate Letter and Diacritic
-                            result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), secondPart.BaseLetter), stringIndex, stringIndex, letterForm));
-                            result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), secondPart.Symbol), stringIndex, stringIndex, letterForm));
-                        } else {
+                            result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), secondPart.BaseLetter),
+                                stringIndex, stringIndex, letterForm));
+                            result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), secondPart.Symbol),
+                                stringIndex, stringIndex, letterForm));
+                        }
+                        else
+                        {
                             result.Add(new ArabicStringPart(secondPart, stringIndex, stringIndex, letterForm));
                         }
-                    } else {
+                    }
+                    else
+                    {
                         result.Add(new ArabicStringPart(letterData, stringIndex, stringIndex, letterForm));
                     }
-                } else {
+                }
+                else
+                {
                     Debug.Log("Cannot parse letter " + character + " (" + unicodeString + ") in " + processedArabicString);
                 }
 

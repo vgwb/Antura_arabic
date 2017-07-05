@@ -29,11 +29,13 @@ namespace Antura.Book
 
             // Total elapsed time
             var totalTimespan = GetTotalApplicationTime();
-            InfoTable.AddRow(LocalizationDataId.UI_Journey_duration, totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
+            InfoTable.AddRow(LocalizationDataId.UI_Journey_duration,
+                totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
 
             // total play time
             var totalPlayTime = GetTotalMiniGamePlayTime();
-            InfoTable.AddRow(LocalizationDataId.UI_Playing_time, totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
+            InfoTable.AddRow(LocalizationDataId.UI_Playing_time,
+                totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
 
             // Played Games
             InfoTable.AddRow(LocalizationDataId.UI_Games_played, GetTotalMiniGamePlayInstances().ToString());
@@ -105,12 +107,16 @@ namespace Antura.Book
             System.TimeSpan totalTimespan = new System.TimeSpan(0);
             bool foundStart = false;
             int startTimestamp = 0;
-            foreach (var infoData in list) {
-                if (!foundStart && infoData.Event == InfoEvent.AppSessionStart) {
+            foreach (var infoData in list)
+            {
+                if (!foundStart && infoData.Event == InfoEvent.AppSessionStart)
+                {
                     startTimestamp = infoData.Timestamp;
                     //Debug.Log("START: " + infoData.Timestamp);
                     foundStart = true;
-                } else if (foundStart && infoData.Event == InfoEvent.AppSessionEnd) {
+                }
+                else if (foundStart && infoData.Event == InfoEvent.AppSessionEnd)
+                {
                     var endTimestamp = infoData.Timestamp;
                     foundStart = false;
                     //Debug.Log("END: " + infoData.Timestamp);
@@ -122,7 +128,8 @@ namespace Antura.Book
             }
 
             // Time up to now
-            if (foundStart) {
+            if (foundStart)
+            {
                 var deltaTimespan = GenericHelper.GetTimeSpanBetween(startTimestamp, GenericHelper.GetTimestampForNow());
                 totalTimespan += deltaTimespan;
                 //Debug.Log("TIME UP TO NOW:" + deltaTimespan.Days + " days " + deltaTimespan.Hours + " hours " + deltaTimespan.Minutes + " minutes " + deltaTimespan.Seconds + " seconds");
@@ -136,7 +143,8 @@ namespace Antura.Book
             string query = "select * from " + typeof(MiniGameScoreData).Name;
             var list = AppManager.I.DB.Query<MiniGameScoreData>(query);
 
-            foreach (var data in list) {
+            foreach (var data in list)
+            {
                 totalSeconds += data.TotalPlayTime;
             }
             TimeSpan t = TimeSpan.FromSeconds(totalSeconds);
@@ -149,7 +157,8 @@ namespace Antura.Book
             string query = "select * from " + typeof(MiniGameScoreData).Name;
             var list = AppManager.I.DB.Query<MiniGameScoreData>(query);
 
-            foreach (var data in list) {
+            foreach (var data in list)
+            {
                 dict[data.MiniGameCode] = data.TotalPlayTime;
             }
             return dict;
@@ -161,7 +170,8 @@ namespace Antura.Book
             string query = "select * from " + typeof(LogMiniGameScoreData).Name;
             var list = AppManager.I.DB.Query<LogMiniGameScoreData>(query);
 
-            foreach (var data in list) {
+            foreach (var data in list)
+            {
                 total++;
             }
             return total;
@@ -178,7 +188,8 @@ namespace Antura.Book
         int GetTotalVocabularyData(VocabularyDataType dataType)
         {
             int count = 0;
-            switch (dataType) {
+            switch (dataType)
+            {
                 case VocabularyDataType.Letter:
                     count = AppManager.I.DB.GetAllLetterData().Count;
                     break;
@@ -195,7 +206,7 @@ namespace Antura.Book
         int GetTotalVocabularyDataUnlocked(VocabularyDataType dataType)
         {
             if (AppManager.I.Player.IsDemoUser) return GetTotalVocabularyData(dataType);
-            string query = "select * from " + typeof(VocabularyScoreData).Name + " where VocabularyDataType='" + (int)dataType + "'";
+            string query = "select * from " + typeof(VocabularyScoreData).Name + " where VocabularyDataType='" + (int) dataType + "'";
             var list = AppManager.I.DB.Query<VocabularyScoreData>(query);
             return list.Count(data => data.Unlocked);
         }
@@ -206,8 +217,10 @@ namespace Antura.Book
             string query = "select * from " + typeof(LogMiniGameScoreData).Name;
             var list = AppManager.I.DB.Query<LogMiniGameScoreData>(query);
 
-            foreach (var data in list) {
-                if (!dict.ContainsKey(data.MiniGameCode)) {
+            foreach (var data in list)
+            {
+                if (!dict.ContainsKey(data.MiniGameCode))
+                {
                     dict[data.MiniGameCode] = 0;
                 }
                 dict[data.MiniGameCode]++;
@@ -216,6 +229,5 @@ namespace Antura.Book
         }
 
         #endregion
-
     }
 }

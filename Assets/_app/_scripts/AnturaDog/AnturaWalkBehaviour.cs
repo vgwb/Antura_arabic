@@ -7,7 +7,6 @@ namespace Antura.Dog
     /// </summary>
     public class AnturaWalkBehaviour : StateMachineBehaviour
     {
-
         // TODO refactor: cache AnturaAnimationController
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
@@ -21,5 +20,4 @@ namespace Antura.Dog
                 .SendMessage("OnAnimationWalkEnd", SendMessageOptions.DontRequireReceiver);
         }
     }
-
 }

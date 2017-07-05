@@ -8,7 +8,6 @@ namespace Antura.Helpers
     /// </summary>
     static public class GameplayHelper
     {
-
         /// <summary>
         /// Get random point on walkable area of navmesh (id area 1).
         /// </summary>
@@ -20,7 +19,8 @@ namespace Antura.Helpers
         {
             Vector3 randomPoint = _center + Random.insideUnitSphere * (_range + Random.Range(-_range / 2f, _range / 2f));
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 10.0f, _areaMask)) {
+            if (NavMesh.SamplePosition(randomPoint, out hit, 10.0f, _areaMask))
+            {
                 _result = hit.position;
                 return true;
             }
@@ -35,7 +35,8 @@ namespace Antura.Helpers
         public static void LerpLookAtPlanar(Transform transform, Vector3 position, float t)
         {
             Vector3 targetDir3D = (transform.position - position);
-            if (targetDir3D.sqrMagnitude < 0.001f) {
+            if (targetDir3D.sqrMagnitude < 0.001f)
+            {
                 return;
             }
 

@@ -28,7 +28,7 @@ namespace Antura.Core
         /// <summary>
         /// Loads the settings. Creates new settings if none are found.
         /// </summary>
-        public AppSettings LoadSettings() 
+        public AppSettings LoadSettings()
         {
             if (PlayerPrefs.HasKey(SETTINGS_PREFS_KEY))
             {
@@ -59,6 +59,5 @@ namespace Antura.Core
         {
             PlayerPrefs.DeleteAll();
         }
-
     }
 }

@@ -5,7 +5,7 @@ namespace Antura.Dog
 {
     public class TouchToBark : MonoBehaviour
     {
-        float animationTimer = 0;
+        private float animationTimer;
 
         public void OnMouseDown()
         {

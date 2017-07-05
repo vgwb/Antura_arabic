@@ -16,11 +16,13 @@ namespace Antura.Core
 
         void Awake()
         {
-            if (FindObjectOfType(typeof(AudioManager)) == null) {
+            if (FindObjectOfType(typeof(AudioManager)) == null)
+            {
                 Instantiate(AudioManager);
             }
 
-            if (FindObjectOfType(typeof(EventSystem)) == null) {
+            if (FindObjectOfType(typeof(EventSystem)) == null)
+            {
                 Instantiate(EventsManager);
             }
 

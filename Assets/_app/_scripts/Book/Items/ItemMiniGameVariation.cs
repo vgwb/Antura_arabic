@@ -15,6 +15,7 @@ namespace Antura.Book
 
         //public Image Icon;
         Image BackgroundImage;
+
         public Image BadgeIcon;
         public Image LockIcon;
 
@@ -28,9 +29,12 @@ namespace Antura.Book
             myManager = _manager;
             BackgroundImage = GetComponent<Image>();
 
-            if (miniGameInfo.unlocked || AppManager.I.Player.IsDemoUser) {
+            if (miniGameInfo.unlocked || AppManager.I.Player.IsDemoUser)
+            {
                 isLocked = false;
-            } else {
+            }
+            else
+            {
                 isLocked = true;
             }
             LockIcon.enabled = isLocked;
@@ -45,42 +49,49 @@ namespace Antura.Book
             var score = miniGameInfo.score;
             //var score = GenericHelper.GetAverage(TeacherAI.I.ScoreHelper.GetLatestScoresForMiniGame(miniGameInfo.data.Code, -1));
 
-            if (score < 0.1f) {
+            if (score < 0.1f)
+            {
                 // disabled
                 // GetComponent<Button>().interactable = false;
                 //GetComponent<Image>().color = Color.grey;
             }
 
             //Icon.sprite = Resources.Load<Sprite>(icoPath);
-            if (badgePath != "") {
+            if (badgePath != "")
+            {
                 BadgeIcon.sprite = Resources.Load<Sprite>(badgePath);
             }
-
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (!isLocked) {
+            if (!isLocked)
+            {
                 myManager.DetailMiniGame(miniGameInfo);
             }
         }
 
         public void Select(MiniGameInfo gameInfo = null)
         {
-            if (gameInfo != null) {
+            if (gameInfo != null)
+            {
                 isSelected = (gameInfo.data.GetId() == miniGameInfo.data.GetId());
-            } else {
+            }
+            else
+            {
                 isSelected = false;
             }
             hightlight(isSelected);
-
         }
 
         void hightlight(bool _status)
         {
-            if (_status) {
+            if (_status)
+            {
                 BackgroundImage.color = new Color(0.9490197f, 0.7215686f, 0.1882353f, 1f);
-            } else {
+            }
+            else
+            {
                 BackgroundImage.color = new Color(0.8862746f, 0.8862746f, 0.8862746f, 1f);
             }
         }

@@ -15,6 +15,5 @@ namespace Antura.Book
         {
             AppManager.I.NavigationManager.GoToPlayerBook();
         }
-
     }
 }

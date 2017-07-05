@@ -9,7 +9,6 @@ namespace Antura.Core
     // TODO refactor: reorganize all constants (some are statics, others are consts)
     public static class AppConstants
     {
-
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
@@ -59,18 +58,23 @@ namespace Antura.Core
 
         // public URLs
         public const string UrlWebsite = "http://www.antura.org";
+
         public const string UrlPrivacy = "http://www.antura.org/en/privacy-policy/";
         public const string UrlUploadData = "https://upload.antura.org";
         public const string UrlStoreiOSApple = "https://itunes.apple.com/us/app/antura-and-the-letters/id1210334699?ls=1&mt=8";
         public const string UrlStoreAndroidGoogle = "https://play.google.com/store/apps/details?id=org.eduapp4syria.antura";
         public const string UrlCommunityTelegram = "https://t.me/antura";
         public const string UrlCommunityFacebook = "https://www.facebook.com/antura.initiative";
-        public const string UrlSupportForm = "https://docs.google.com/forms/d/e/1FAIpQLScWxs5I0w-k8GlIgPFKoWBitMVJ9gxxJlKvGKOXzZsnAA0qNw/viewform";
+
+        public const string UrlSupportForm =
+            "https://docs.google.com/forms/d/e/1FAIpQLScWxs5I0w-k8GlIgPFKoWBitMVJ9gxxJlKvGKOXzZsnAA0qNw/viewform";
+
         public const string UrlGithubRepository = "https://github.com/vgwb/Antura_arabic";
         public const string UrlDeveloperDocs = "https://vgwb.github.io/Antura_arabic/";
 
         // files
         public const string PdfAndroidInstall = "AndroidInstallHelp.pdf";
+
         public const string DbPlayersFolder = "players";
         public const string DbExportFolder = "export";
         public const string DbImportFolder = "import";
@@ -78,6 +82,7 @@ namespace Antura.Core
 
         // Application details (used by Teacher and maybe other)
         public const float MinimumAge = 4;
+
         public const float MaximumAge = 10;
         public const int MinimumStage = 1;
         public const int MaximumStage = 6;
@@ -106,7 +111,7 @@ namespace Antura.Core
         {
             return "export_Antura_Player_" + playerUuid + "_" + System.DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
         }
-        
+
         public static string GetJoinedDatabaseFilename()
         {
             return "Antura_Joined_" + System.DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
