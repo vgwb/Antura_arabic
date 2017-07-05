@@ -27,19 +27,19 @@ namespace Antura.AnturaSpace
 
         public bool HasReachedTarget
         {
-            get
-            {
-                return !isSliping && IsNearTargetPosition && IsNearTargetRotation;
-            }
+            get { return !isSliping && IsNearTargetPosition && IsNearTargetRotation; }
         }
 
         bool wasNearPosition;
+
         public bool IsNearTargetPosition
         {
             get
             {
                 if (target == null)
+                {
                     return true;
+                }
 
                 var distance = target.position - transform.position;
                 distance.y = 0;
@@ -53,7 +53,9 @@ namespace Antura.AnturaSpace
             get
             {
                 if (target == null || !rotateAsTarget)
+                {
                     return true;
+                }
 
                 var dot = Mathf.Max(0, Vector3.Dot(target.forward.normalized, transform.forward.normalized));
                 return dot > 0.9f;
@@ -62,36 +64,29 @@ namespace Antura.AnturaSpace
 
         public bool IsSliping
         {
-            get
-            {
-                return isSliping;
-            }
+            get { return isSliping; }
         }
 
         public bool IsSleeping
         {
-            get
-            {
-                return AnimationController.State == AnturaAnimationStates.sleeping;
-            }
+            get { return AnimationController.State == AnturaAnimationStates.sleeping; }
         }
 
         public bool IsJumping
         {
-            get
-            {
-                return AnimationController.IsJumping || AnimationController.IsAnimationActuallyJumping;
-            }
+            get { return AnimationController.IsJumping || AnimationController.IsAnimationActuallyJumping; }
         }
 
-        public bool Excited = false;
+        public bool Excited;
 
         public float PlanarDistanceFromTarget
         {
             get
             {
                 if (target == null)
+                {
                     return 0;
+                }
 
                 var distance = target.position - transform.position;
                 distance.y = 0;
@@ -105,7 +100,9 @@ namespace Antura.AnturaSpace
             get
             {
                 if (target == null)
+                {
                     return 0;
+                }
 
                 var distance = target.position - transform.position;
 
@@ -118,7 +115,9 @@ namespace Antura.AnturaSpace
             get
             {
                 if (target == null)
+                {
                     return 0;
+                }
 
                 return target.position.y;
             }
@@ -131,7 +130,9 @@ namespace Antura.AnturaSpace
             this.rotatingBase = rotatingBase;
 
             if (rotatingBase == null)
+            {
                 transform.SetParent(null);
+            }
         }
 
 
@@ -149,9 +150,13 @@ namespace Antura.AnturaSpace
                 var velMagnitude = lastVelocity.magnitude;
 
                 if (velMagnitude > 1)
+                {
                     lastVelocity -= 10 * lastVelocity.normalized * Time.deltaTime;
+                }
                 else
+                {
                     lastVelocity = Vector3.Lerp(lastVelocity, Vector3.zero, 4 * Time.deltaTime);
+                }
 
                 if (lastVelocity.magnitude < 0.2f)
                 {
@@ -198,7 +203,9 @@ namespace Antura.AnturaSpace
                     }
                 }
                 else
+                {
                     wasNearPosition = true;
+                }
 
                 if (speed > 0.05f)
                 {
@@ -211,7 +218,8 @@ namespace Antura.AnturaSpace
                         var steeringMovement = transform.forward * speed * Time.deltaTime;
                         var normalMovement = distance * Mathf.Abs(Vector3.Dot(distance, transform.forward)) * speed * Time.deltaTime;
 
-                        transform.position += Vector3.Lerp(steeringMovement, normalMovement, 10.0f * Vector3.Dot(transform.forward.normalized, distance.normalized));
+                        transform.position += Vector3.Lerp(steeringMovement, normalMovement,
+                            10.0f * Vector3.Dot(transform.forward.normalized, distance.normalized));
 
                         GameplayHelper.LerpLookAtPlanar(transform, target.position, Time.deltaTime * 2);
                     }
@@ -227,20 +235,26 @@ namespace Antura.AnturaSpace
                         transform.SetParent(rotatingBase);
 
                         if (rotateAsTarget)
+                        {
                             targetRotation = target.rotation * rotatingBase.rotation;
+                        }
                         else
+                        {
                             targetRotation = rotatingBase.rotation;
-
+                        }
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4);
                     }
                     else
                     {
-
                         if (rotateAsTarget)
-                            transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, Time.deltaTime * 4 * (0.2f + 0.8f * dot));
-
+                        {
+                            transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation,
+                                Time.deltaTime * 4 * (0.2f + 0.8f * dot));
+                        }
                         if ((!rotateAsTarget || dot > 0.9f) && AnimationController.State == AnturaAnimationStates.walking)
+                        {
                             AnimationController.State = AnturaAnimationStates.idle;
+                        }
                     }
                 }
             }
@@ -251,7 +265,9 @@ namespace Antura.AnturaSpace
         void OnMouseDown()
         {
             if (onTouched != null)
+            {
                 onTouched();
+            }
         }
     }
 }

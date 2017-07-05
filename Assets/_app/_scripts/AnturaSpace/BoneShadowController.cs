@@ -10,6 +10,7 @@ namespace Antura.AnturaSpace
     {
         [SerializeField]
         private float m_fWorldY;
+
         [SerializeField]
         private Transform m_oTarget;
 
@@ -24,10 +25,9 @@ namespace Antura.AnturaSpace
         {
             //restore rotation to default
             gameObject.transform.rotation = m_oOriginalRotation;
-            
+
             // position under the target at the given height
             gameObject.transform.position = new Vector3(m_oTarget.position.x, m_fWorldY, m_oTarget.position.z);
-            }
-
+        }
     }
 }

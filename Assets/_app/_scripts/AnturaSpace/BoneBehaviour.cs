@@ -10,53 +10,64 @@ namespace Antura.AnturaSpace
     /// </summary>
     public class BoneBehaviour : MonoBehaviour
     {
-
         #region EXPOSED MEMBERS
+
         [SerializeField]
         private Rigidbody m_oBoneRigidbody;
+
         [SerializeField]
         private GameObject m_oParticle;
+
         [SerializeField]
         private float m_oParticleTime;
+
         [SerializeField]
         private Sfx m_oSfxOnPoof;
 
         [Header("Simple Throw")]
-
         [SerializeField]
         private Vector3 m_v3DirectionMinValues;
+
         [SerializeField]
         private Vector3 m_v3DirectionMaxValues;
+
         [SerializeField]
         private float m_fThrowMinMagnitude = 0f;
+
         [SerializeField]
         private float m_fThrowMaxMagnitude = 10f;
+
         [SerializeField]
         private ForceMode m_eThrowForceMode;
 
         [Header("Rotation")]
-
         [SerializeField]
         private float m_fRotationMinMagnitude = 0f;
+
         [SerializeField]
         private float m_fRotationMaxMagnitude = 10f;
+
         [SerializeField]
         private ForceMode m_eRotationForceMode;
 
         [Header("Drag")]
-
         public float m_fDragThrowMagnitudeScaling = 0.1f;
+
         public float m_fTimeSampling = 0.0333f;
+
         [SerializeField]
         private ForceMode m_eReleaseForceMode;
+
         #endregion
 
         #region PRIVATE MEMBERS
+
         private GameObject m_oParticleInstance;
         bool m_bIsDragged = false;
         private Vector3 m_v3LastPosition;
         float m_lastPositionTime = 0;
         private float m_fTimeProgression = 0;
+
         #endregion
 
         private static GameObject s_oParticleRootContainer;
@@ -77,8 +88,7 @@ namespace Antura.AnturaSpace
             set { m_fRotationMinMagnitude = value; }
         }
 
-        public Rigidbody boneRigidbody
-        { get; set; }
+        public Rigidbody boneRigidbody { get; set; }
 
         public bool isDragging()
         {
@@ -88,6 +98,7 @@ namespace Antura.AnturaSpace
         #endregion
 
         #region INTERNALS
+
         IAudioSource poofSound;
 
         void Start()
@@ -109,7 +120,7 @@ namespace Antura.AnturaSpace
             //build root for cookies particles
             if (s_oParticleRootContainer == null)
             {
-                GameObject _oTempBase = new GameObject();
+                var _oTempBase = new GameObject();
                 s_oParticleRootContainer = Instantiate(_oTempBase);
                 s_oParticleRootContainer.name = "[CookieParticles]";
                 Destroy(_oTempBase);
@@ -126,7 +137,7 @@ namespace Antura.AnturaSpace
         void Update()
         {
             //if this bone is being dragged
-            if (m_bIsDragged) 
+            if (m_bIsDragged)
             {
                 m_fTimeProgression += Time.deltaTime;
 
@@ -140,11 +151,13 @@ namespace Antura.AnturaSpace
 
 
                 //set the bone position on the pointer(x,y) at it's current distance from the camera
-                float _fCameraDistance = 6 + 4 * (Input.mousePosition.y / Screen.height);
+                var _fCameraDistance = 6 + 4 * (Input.mousePosition.y / Screen.height);
                 var newPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _fCameraDistance));
 
                 if (newPos.y < 1)
+                {
                     newPos.y = 1;
+                }
 
                 transform.position = newPos;
             }
@@ -182,6 +195,7 @@ namespace Antura.AnturaSpace
             }
             CancelInvoke();
         }
+
         #endregion
 
         #region PUBLIC FUNCTIONS
@@ -191,7 +205,6 @@ namespace Antura.AnturaSpace
         /// </summary>
         public void SimpleThrow()
         {
-
             //resets actives forces
             m_oBoneRigidbody.isKinematic = true;
             m_oBoneRigidbody.isKinematic = false;
@@ -199,13 +212,9 @@ namespace Antura.AnturaSpace
             //disable collision and enabled after 0.5 sec for avoid that Antura collision shot bone away
             m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = false;
             StartCoroutine(Minigames.MissingLetter.Utils.LaunchDelay(0.5f,
-                delegate
-                {
-                    m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = true;
-                }));
+                delegate { m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = true; }));
 
             ApplyDefaultForces();
-
         }
 
         public void Drag()
@@ -227,7 +236,6 @@ namespace Antura.AnturaSpace
 
         public void LetGo()
         {
-
             m_oBoneRigidbody.isKinematic = false;
 
             gameObject.GetComponentInChildren<Collider>().isTrigger = false;
@@ -255,8 +263,6 @@ namespace Antura.AnturaSpace
                 {
                     m_oParticleInstance.transform.SetParent(s_oParticleRootContainer.transform);
                 }
-
-
             }
 
             //put particle on cookie
@@ -274,6 +280,7 @@ namespace Antura.AnturaSpace
             CancelInvoke("StopPoof");
             Invoke("StopPoof", m_oParticleTime);
         }
+
         #endregion
 
         /// <summary>
@@ -290,7 +297,6 @@ namespace Antura.AnturaSpace
 
                 m_oParticleInstance.SetActive(false);
             }
-
         }
 
         #region PRIVATE FUNCTIONS
@@ -304,12 +310,14 @@ namespace Antura.AnturaSpace
                 Random.Range(m_v3DirectionMinValues.x, m_v3DirectionMaxValues.x),
                 Random.Range(m_v3DirectionMinValues.y, m_v3DirectionMaxValues.y),
                 Random.Range(m_v3DirectionMinValues.z, m_v3DirectionMaxValues.z)
-                );
+            );
 
             //Add rotation with random magnitude
-            m_oBoneRigidbody.AddTorque(Random.insideUnitSphere.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude), m_eRotationForceMode);
+            m_oBoneRigidbody.AddTorque(Random.insideUnitSphere.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude),
+                m_eRotationForceMode);
             //Add translation
-            m_oBoneRigidbody.AddForce(_v3ThrowDirection.normalized * Random.Range(m_fThrowMinMagnitude, m_fThrowMaxMagnitude), m_eThrowForceMode);
+            m_oBoneRigidbody.AddForce(_v3ThrowDirection.normalized * Random.Range(m_fThrowMinMagnitude, m_fThrowMaxMagnitude),
+                m_eThrowForceMode);
         }
 
         /// <summary>
@@ -318,9 +326,12 @@ namespace Antura.AnturaSpace
         private void ApplyDragForces()
         {
             //Add rotation with random magnitude
-            m_oBoneRigidbody.AddTorque(Random.insideUnitSphere.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude), m_eRotationForceMode);
+            m_oBoneRigidbody.AddTorque(Random.insideUnitSphere.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude),
+                m_eRotationForceMode);
             //Add translation
-            m_oBoneRigidbody.AddForce((transform.position - m_v3LastPosition) / (Time.realtimeSinceStartup - m_lastPositionTime) * m_fDragThrowMagnitudeScaling, m_eReleaseForceMode);
+            m_oBoneRigidbody.AddForce(
+                (transform.position - m_v3LastPosition) / (Time.realtimeSinceStartup - m_lastPositionTime) * m_fDragThrowMagnitudeScaling,
+                m_eReleaseForceMode);
         }
 
         #endregion
