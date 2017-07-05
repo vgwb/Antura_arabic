@@ -32,6 +32,8 @@ namespace EA4S.Database.Management
 
         private ScoreHelper scoreHelper;
 
+        public static string DEBUG_PLAYER_UUID = "TEST";
+
         void Awake()
         {
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
@@ -43,7 +45,7 @@ namespace EA4S.Database.Management
             teacherAI = new TeacherAI(dbManager, vocabularyHelper, journeyHelper, scoreHelper);
 
             // Load the first profile
-            LoadProfile("1");
+            LoadProfile(DEBUG_PLAYER_UUID);
         }
 
         #region Main Actions
@@ -623,7 +625,7 @@ namespace EA4S.Database.Management
 
         public void TestDynamicProfileData()
         {
-            dbManager.UpdatePlayerProfileData(new PlayerProfileData(new PlayerIconData("1", 1, PlayerGender.M, PlayerTint.Blue, false, false, false), 5, 8, 0));
+            dbManager.UpdatePlayerProfileData(new PlayerProfileData(new PlayerIconData(DEBUG_PLAYER_UUID, 1, PlayerGender.M, PlayerTint.Blue, false, false, false), 5, 8, 0));
             var playerProfileData = dbManager.GetPlayerProfileData();
             PrintOutput(playerProfileData.ToString());
         }
