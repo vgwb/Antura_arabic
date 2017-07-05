@@ -28,9 +28,13 @@ namespace EA4S.Debugging
         public bool VerboseTeacher { get { return DebugManager.I.VerboseTeacher; } set { DebugManager.I.VerboseTeacher = value; } }
         public bool SafeLaunch { get { return DebugManager.I.SafeLaunch; } set { DebugManager.I.SafeLaunch = value; } }
         public bool AutoCorrectJourneyPos { get { return DebugManager.I.AutoCorrectJourneyPos; } set { DebugManager.I.AutoCorrectJourneyPos = value; } }
+        private bool advancedSettingsEnabled;
 
         private int clickCounter;
-        private Dictionary<MiniGameCode, bool> playedMinigames = new Dictionary<MiniGameCode, bool>();
+        private Dictionary<string, bool> playedMinigames = new Dictionary<string, bool>();
+
+        public GameObject ProfilePanel;
+        public GameObject NavigationPanel;
 
         void Awake()
         {
@@ -190,21 +194,34 @@ namespace EA4S.Debugging
                         var btnGO = Instantiate(PrefabMiniGameButton);
                         btnGO.transform.SetParent(newRow.transform, false);
                         bool gamePlayed;
-                        playedMinigames.TryGetValue(gameVariation.data.Code, out gamePlayed);
+                        playedMinigames.TryGetValue(GetDictKey(gameVariation.data.Code, difficulty), out gamePlayed);
                         btnGO.GetComponent<DebugMiniGameButton>().Init(this, gameVariation, gamePlayed, difficulty);
                     }
                 }
 
             }
+
+            // Advanced settings
+            SafeLaunchToggle.gameObject.SetActive(advancedSettingsEnabled);
+            AutoCorrectJourneyPosToggle.gameObject.SetActive(advancedSettingsEnabled);
+            VerboseTeacherToggle.gameObject.SetActive(advancedSettingsEnabled);
+
+            ProfilePanel.SetActive(advancedSettingsEnabled);
+            NavigationPanel.SetActive(advancedSettingsEnabled);
         }
 
         #endregion
 
         #region Actions
 
+        private string GetDictKey(MiniGameCode minigameCode, float difficulty)
+        {
+            return minigameCode.ToString() + difficulty.ToString("F1");
+        }
+
         public void LaunchMiniGame(MiniGameCode minigameCode, float difficulty)
         {
-            playedMinigames[minigameCode] = true;
+            playedMinigames[GetDictKey(minigameCode,difficulty)] = true;
 
             var debugPs = new JourneyPosition(int.Parse(InputStage.text), int.Parse(InputLearningBlock.text), int.Parse(InputPlaySession.text));
 
@@ -239,6 +256,12 @@ namespace EA4S.Debugging
             DebugManager.I.SetDebugJourneyPos(journeyPosition);
             DebugManager.I.LaunchMiniGame(minigameCode, difficulty);
             Close();
+        }
+
+        public void ToggleAdvancedSettings(bool choice)
+        {
+            advancedSettingsEnabled = choice;
+            BuildUI();
         }
 
         #endregion
