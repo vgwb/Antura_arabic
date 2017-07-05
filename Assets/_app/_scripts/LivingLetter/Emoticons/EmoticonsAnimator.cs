@@ -4,7 +4,7 @@ namespace Antura.LivingLetters
 {
     public class EmoticonsAnimator : MonoBehaviour
     {
-        EmoticonsController emoticonsController;
+        private EmoticonsController emoticonsController;
 
         public GameObject emoticonsPrefab;
         public Material black;
@@ -18,26 +18,28 @@ namespace Antura.LivingLetters
         public Material yellow;
         public Material yellowDark;
 
-        bool autoClose;
-        bool initialized = false;
+        private bool autoClose;
+        private bool initialized;
 
-        float emoticonsCloseTime = 2f;
-        float emoticonsCloseTimer = 0f;
-        bool emoticonsClosed;
-        Emoticons? currentEmoticon;
+        private float emoticonsCloseTime = 2f;
+        private float emoticonsCloseTimer = 0f;
+        private bool emoticonsClosed;
+        private Emoticons? currentEmoticon;
 
-        Material iconMaterial;
-        Material internalMaterial;
-        Material externalMaterial;
-        Material cineticMaterial;
+        private Material iconMaterial;
+        private Material internalMaterial;
+        private Material externalMaterial;
+        private Material cineticMaterial;
 
         void Initialize()
         {
             if (initialized)
+            {
                 return;
+            }
 
             initialized = true;
-            
+
             var parent = new GameObject("EmoticonsParent");
             parent.transform.SetParent(transform);
             parent.transform.localPosition = Vector3.zero;
@@ -159,7 +161,7 @@ namespace Antura.LivingLetters
         {
             MeshRenderer[] meshRenderer = new MeshRenderer[emoticonsController.EmoticonParentBone.childCount];
 
-            for(int i=0; i<meshRenderer.Length; i++)
+            for (var i = 0; i < meshRenderer.Length; i++)
             {
                 meshRenderer[i] = emoticonsController.EmoticonParentBone.GetChild(i).GetComponent<MeshRenderer>();
             }
@@ -171,8 +173,8 @@ namespace Antura.LivingLetters
         {
             foreach (var item in _meshRenderer)
             {
-                MeshRenderer m = item.gameObject.GetComponent<MeshRenderer>();
-                m.materials = new Material[] { _material };
+                var m = item.gameObject.GetComponent<MeshRenderer>();
+                m.materials = new Material[] {_material};
             }
         }
 
@@ -180,8 +182,8 @@ namespace Antura.LivingLetters
         {
             foreach (var item in _meshRenderer)
             {
-                SkinnedMeshRenderer m = item.gameObject.GetComponent<SkinnedMeshRenderer>();
-                m.materials = new Material[] { _material };
+                var m = item.gameObject.GetComponent<SkinnedMeshRenderer>();
+                m.materials = new Material[] {_material};
             }
         }
     }
