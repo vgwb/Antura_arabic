@@ -31,6 +31,10 @@ namespace EA4S.Core
             get { return SceneTransitionManager.IsTransitioning; }
         }
 
+        public int NumberOfLoadedScenes {  get { return SceneTransitionManager.NumberOfLoadedScenes; } }
+
+        public bool IsInFirstLoadedScene {  get { return NumberOfLoadedScenes == 1; } }
+
         public Action OnSceneStartTransition
         {
             get { return SceneTransitionManager.OnSceneStartTransition; }

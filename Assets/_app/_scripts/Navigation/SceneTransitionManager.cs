@@ -26,6 +26,8 @@ namespace EA4S.Core
             get { return _isTransitioning; }
         }
 
+        public int NumberOfLoadedScenes = 0;
+
         #endregion
 
         #region Enabling / Disabling
@@ -97,9 +99,12 @@ namespace EA4S.Core
 
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
-            if (SceneTransitioner.IsShown) {
+            if (SceneTransitioner.IsShown)
+            {
                 AppManager.I.StartCoroutine(CloseSceneTransitionerCO(transitionCloseTime));
             }
+
+            NumberOfLoadedScenes++;
         }
 
         IEnumerator CloseSceneTransitionerCO(float _waitTime)
