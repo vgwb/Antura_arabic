@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Antura.Antura
+namespace Antura.Dog
 {
     /// <summary>
     /// Handles the animations of Antura.

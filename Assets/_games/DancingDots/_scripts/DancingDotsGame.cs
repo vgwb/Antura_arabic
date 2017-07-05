@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using System;
-using Antura.Antura;
+using Antura.Dog;
 using Antura.Audio;
 using Antura.LivingLetters;
 using Antura.MinigamesCommon;

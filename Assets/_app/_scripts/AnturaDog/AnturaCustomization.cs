@@ -4,7 +4,7 @@ using Antura.Database;
 using Antura.Rewards;
 using UnityEngine;
 
-namespace Antura.Antura
+namespace Antura.Dog
 {
     /// <summary>
     /// 

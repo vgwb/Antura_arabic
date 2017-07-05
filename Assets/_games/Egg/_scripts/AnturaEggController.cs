@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections.Generic;
-using Antura.Antura;
+using Antura.Dog;
 using UnityEngine;
 
 namespace Antura.Minigames.Egg

@@ -1,7 +1,7 @@
 using DG.Tweening;
 using Kore.Coroutines;
 using System.Collections;
-using Antura.Antura;
+using Antura.Dog;
 using Antura.Minigames.ReadingGame;
 using UnityEngine;
 

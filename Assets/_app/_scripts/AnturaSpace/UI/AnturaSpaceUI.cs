@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Antura.Antura;
+using Antura.Dog;
 using Antura.Helpers;
 using Antura.Rewards;
 using DG.DeInspektor.Attributes;

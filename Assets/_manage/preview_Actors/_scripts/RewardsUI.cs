@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Antura.Antura;
+using Antura.Dog;
 using Antura.Rewards;
 using DG.Tweening;
 

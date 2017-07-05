@@ -6,7 +6,7 @@ using Antura.Audio;
 using Antura.LivingLetters;
 using Antura.MinigamesAPI;
 using DG.Tweening;
-using Antura.Antura;
+using Antura.Dog;
 using Antura.Helpers;
 
 namespace Antura.Minigames.HideAndSeek

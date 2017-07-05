@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Antura.Antura;
+using Antura.Dog;
 using Antura.Audio;
 using DG.Tweening;
 

@@ -1,7 +1,7 @@
 ﻿using Antura.Audio;
 using UnityEngine;
 
-namespace Antura.Antura
+namespace Antura.Dog
 {
     public class TouchToBark : MonoBehaviour
     {

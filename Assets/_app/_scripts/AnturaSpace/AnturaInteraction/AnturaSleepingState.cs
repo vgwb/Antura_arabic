@@ -1,5 +1,5 @@
 ﻿using System;
-using Antura.Antura;
+using Antura.Dog;
 using UnityEngine;
 
 namespace Antura.AnturaSpace

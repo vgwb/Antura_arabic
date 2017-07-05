@@ -1,4 +1,4 @@
-﻿using Antura.Antura;
+﻿using Antura.Dog;
 using UnityEngine;
 
 namespace Antura.Minigames.MixedLetters

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System;
-using Antura.Antura;
+using Antura.Dog;
 
 namespace Antura.Minigames.ColorTickle
 {

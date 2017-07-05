@@ -4,7 +4,7 @@ using Antura.Database;
 using Antura.Profile;
 using Antura.Rewards;
 
-namespace Antura.Antura
+namespace Antura.Dog
 {
     /// <summary>
     /// Handles loading and assignment of visual reward props appearing on Antura.

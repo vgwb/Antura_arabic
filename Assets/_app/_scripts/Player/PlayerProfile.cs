@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
-using Antura.Antura;
+using Antura.Dog;
 using Antura.Core;
 using Antura.Database;
 using Antura.Rewards;

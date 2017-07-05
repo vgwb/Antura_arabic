@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Antura.Antura
+namespace Antura.Dog
 {
     /// <summary>
     /// State for Antura's animation. Animates a walk cylce.

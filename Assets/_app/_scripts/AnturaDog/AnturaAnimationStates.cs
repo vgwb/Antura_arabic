@@ -1,4 +1,4 @@
-﻿namespace Antura.Antura
+﻿namespace Antura.Dog
 {
     // TODO refactor: requires renaming
     public enum AnturaAnimationStates

@@ -1,7 +1,7 @@
 ﻿using Antura.Helpers;
 using System.Collections;
 using Antura.Animation;
-using Antura.Antura;
+using Antura.Dog;
 using Antura.CameraEffects;
 using Antura.Core;
 using Antura.LivingLetters;
