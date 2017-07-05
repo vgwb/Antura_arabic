@@ -1,7 +1,6 @@
 ﻿using EA4S.Core;
 using EA4S.Helpers;
 using EA4S.MinigamesAPI;
-using EA4S.Profile;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -45,12 +44,11 @@ namespace EA4S.UI
         public bool isUI;
         public bool isArabic;
         public bool isEnglishSubtitle;
-        bool AdjustDiacriticPos;
 
         public Database.LocalizationDataId LocalizationId;
 
-        TMP_Text m_TextComponent;
-        TMP_TextInfo textInfo;
+        private TMP_Text m_TextComponent;
+        private TMP_TextInfo textInfo;
 
         void Awake()
         {
@@ -59,7 +57,6 @@ namespace EA4S.UI
             }
 
             m_TextComponent = gameObject.GetComponent<TMP_Text>();
-            AdjustDiacriticPos = false;
             checkConfiguration();
 
             if (LocalizationId != Database.LocalizationDataId.None) {
@@ -92,9 +89,6 @@ namespace EA4S.UI
                 } else {
                     gameObject.GetComponent<TextMeshPro>().text = text;
                 }
-                if (AdjustDiacriticPos) {
-                    AdjustDiacriticPositions();
-                }
             } else {
                 if (isUI) {
                     gameObject.GetComponent<Text>().text = text;
@@ -104,7 +98,7 @@ namespace EA4S.UI
             }
         }
 
-        void updateText()
+        private void updateText()
         {
             if (isTMPro) {
                 if (isArabic) {
@@ -112,9 +106,6 @@ namespace EA4S.UI
                         gameObject.GetComponent<TextMeshProUGUI>().text = ArabicAlphabetHelper.ProcessArabicString(m_text);
                     } else {
                         gameObject.GetComponent<TextMeshPro>().text = ArabicAlphabetHelper.ProcessArabicString(m_text);
-                    }
-                    if (AdjustDiacriticPos) {
-                        AdjustDiacriticPositions();
                     }
                 } else {
                     if (isUI) {
@@ -172,79 +163,6 @@ namespace EA4S.UI
             // Debug.Log("SetSentence " + sentenceId);
             isArabic = true;
             text = LocalizationManager.GetTranslation(sentenceId);
-        }
-
-        /// <summary>
-        /// Adjusts the diacritic positions of some symbols.
-        /// </summary>
-        public void AdjustDiacriticPositions()
-        {
-            m_TextComponent.ForceMeshUpdate();
-            textInfo = m_TextComponent.textInfo;
-
-            int characterCount = textInfo.characterCount;
-
-            if (characterCount > 1) {
-
-                //for (int i = 0; i < characterCount; i++) {
-                //    //Debug.Log("CAHR " + characterCount + ": " + TMPro.TMP_TextUtilities.StringToInt(textInfo.characterInfo[characterCount].character.ToString()));
-                //    Debug.Log("DIACRITIC: " + i
-                //              //+ "index: " + textInfo.characterInfo[i].index
-                //              + " char: " + textInfo.characterInfo[i].character.ToString()
-                //              + " UNICODE: " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[i].character)
-                //             );
-                //}
-
-                Vector2 modificationDelta = new Vector2(0, 0);
-                bool changed = false;
-
-                for (int charPosition = 0; charPosition < characterCount - 1; charPosition++) {
-                    modificationDelta = AppManager.I.VocabularyHelper.FindDiacriticCombo2Fix(
-                        ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character),
-                        ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
-                    );
-
-                    if (modificationDelta.sqrMagnitude > 0f) {
-                        changed = true;
-                        //TMP_CharacterInfo charInfo = textInfo.characterInfo[charPosition];
-
-                        // Cache the vertex data of the text object as the shift is applied to the original position of the characters.
-                        //TMP_MeshInfo[] cachedMeshInfo = textInfo.CopyMeshInfoVertexData();
-                        // Get the index of the material used by the current character.
-                        int materialIndex = textInfo.characterInfo[charPosition + 1].materialReferenceIndex;
-                        // Get the index of the first vertex used by this text element.
-                        int vertexIndex = textInfo.characterInfo[charPosition + 1].vertexIndex;
-
-                        // Get the cached vertices of the mesh used by this text element (character or sprite).
-                        //Vector3[] sourceVertices = cachedMeshInfo[materialIndex].vertices;
-                        Vector3[] sourceVertices = textInfo.meshInfo[materialIndex].vertices;
-
-                        float charsize = (sourceVertices[vertexIndex + 2].y - sourceVertices[vertexIndex + 0].y);
-                        float dx = charsize * modificationDelta.x / 100f;
-                        float dy = charsize * modificationDelta.y / 100f;
-                        Vector3 offset = new Vector3(dx, dy, 0f);
-
-                        Vector3[] destinationVertices = textInfo.meshInfo[materialIndex].vertices;
-                        destinationVertices[vertexIndex + 0] = sourceVertices[vertexIndex + 0] + offset;
-                        destinationVertices[vertexIndex + 1] = sourceVertices[vertexIndex + 1] + offset;
-                        destinationVertices[vertexIndex + 2] = sourceVertices[vertexIndex + 2] + offset;
-                        destinationVertices[vertexIndex + 3] = sourceVertices[vertexIndex + 3] + offset;
-
-                        Debug.Log("DIACRITIC: pos fixed for " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character) + " by " + modificationDelta);
-                    }
-
-                }
-                if (changed) {
-                    // Push changes into meshes
-                    //for (int i = 0; i < textInfo.meshInfo.Length; i++) {
-                    //    textInfo.meshInfo[i].mesh.vertices = copyOfVertices[i];
-                    //    m_TextComponent.UpdateGeometry(textInfo.meshInfo[i].mesh, i);
-                    //}
-                    m_TextComponent.UpdateVertexData();
-                }
-
-            }
-
         }
 
     }
