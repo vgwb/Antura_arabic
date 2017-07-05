@@ -16,7 +16,7 @@ follow so that we can have a chance of keeping things on top.
 ## Making Changes
 
 * Create a topic branch from where you want to base your work.
-* Name your branch with the type of issue you are fixing; `feat`, `chore`, `docs`. 
+* Name your branch with the type of issue you are fixing; `feat`, `chore`, `docs`.
 * Please avoid working directly on your master branch.
 * Make sure you set the `Asset Serialization` mode in `Unity->Edit->Project Settings->Editor` to `Force Text`.
 * Make commits of logical units.
@@ -32,6 +32,19 @@ Spaces should be used instead of tabs for better readability across a number of 
 
 In regards to naming conventions we also adhere to the standard .NET Framework naming convention system which can be [viewed online here](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/general-naming-conventions)
 
+the only difference is that we prefer to have the `if` and `for` statements with inline { like
+    ```
+    if (this == that) {
+      do;
+    } else {
+      other;
+    }
+
+    for () {
+        
+    }
+    ```
+
 Class methods and parameters should always denote their accessibility
 level using the `public` `protected` `private` keywords.
 
@@ -45,7 +58,7 @@ level using the `public` `protected` `private` keywords.
   private void MyMethod()
   ```
 
-All core classes should be within the `EA4S` namespace.
+All core classes should be within the `Antura` namespace.
 
 Parameters should be defined at the top of the class before any methods are defined.
 
@@ -62,8 +75,7 @@ Blocks of code such as conditional statements and loops must always contain the 
 
   > **Correct:**
   ```
-  if (this == that)
-  {
+  if (this == that) {
     do;
   }
   ```

@@ -8,7 +8,7 @@
 
 ## Core and Minigame code
 
-The code of EA4S is separated in two main sections.
+The code of Antura is separated in two main sections.
 
 - **core** code is related to the main application.
   This code should not be touched by mini-games developers.
@@ -57,12 +57,12 @@ If the first encounter is instead passed, the Map is accessed directly.
 
 The **Map scene** functions as a central hub for the player.
 Stages (map levels), learning blocks (ropes) and play sessions (dots, with larger dots representing  assessments) are setup according to the data obtained from the database on stages, learning blocks, and play sessions.
-This is achieved through *EA4S.Map.MiniMap.GetAllPlaySessionStateForStage()*, which, for a given stage, obtains the data of available play sessions.
+This is achieved through *Antura.Map.MiniMap.GetAllPlaySessionStateForStage()*, which, for a given stage, obtains the data of available play sessions.
 `** Note: this is not yet implemented in the mini map scripts **`
 
 The user may navigate the map through the UI.
-This is performed through **EA4S.Map.LetterMovement** (to navigate play sessions and learning blocks inside a stage) and **EA4S.Map.StageManager** (to navigate between different stages).
-At each movement, a call to **EA4S.Map.LetterMovement.UpdateCurrenJourneyPosition()** sets the current journey position of the player on the map (see **PlayerProfile.md** for further details on journey positions.)
+This is performed through **Antura.Map.LetterMovement** (to navigate play sessions and learning blocks inside a stage) and **Antura.Map.StageManager** (to navigate between different stages).
+At each movement, a call to **Antura.Map.LetterMovement.UpdateCurrenJourneyPosition()** sets the current journey position of the player on the map (see **PlayerProfile.md** for further details on journey positions.)
  @todo: maybe move here the stage-play sessions stuff?
 
 The **Map scene** allows several actions to be performed through its UI:
@@ -73,7 +73,7 @@ The **Map scene** allows several actions to be performed through its UI:
 
 ### Play Session start
 
-When the user selects *play*, the **EA4S.Map.MiniMap** method is called, which initialises the new play session by notifying the teacher system through **Teacher.TeacherAI.InitialiseCurrentPlaySession()**, which resets the current play session status and selects the minigames to play for that play session (the amount of which is defined by the constant **ConfigAI.numberOfMinigamesPerPlaySession**).
+When the user selects *play*, the **Antura.Map.MiniMap** method is called, which initialises the new play session by notifying the teacher system through **Teacher.TeacherAI.InitialiseCurrentPlaySession()**, which resets the current play session status and selects the minigames to play for that play session (the amount of which is defined by the constant **ConfigAI.numberOfMinigamesPerPlaySession**).
 Refer to **Teacher.md** for details on minigame selection for a given play session.
 
 `** WARNING: the CurrentMiniGameInPlaySession data is now handled by the Teacher and PlayerProfile, but this is bad. Refactor it, then detail it here. **`
