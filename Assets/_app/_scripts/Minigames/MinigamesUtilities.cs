@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,13 @@ namespace EA4S.Core
 {
     public static class MiniGamesUtilities
     {
+        public enum MiniGameSortLogic
+        {
+            Appearance,
+            Alphanumeric   
+        }
 
-        public static List<MainMiniGame> GetMainMiniGameList(bool skipAssessments = true)
+        public static List<MainMiniGame> GetMainMiniGameList(bool skipAssessments = true, MiniGameSortLogic sortLogic = MiniGameSortLogic.Appearance)
         {
             Dictionary<string, MainMiniGame> dictionary = new Dictionary<string, MainMiniGame>();
             List<MiniGameInfo> minigameInfoList = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
@@ -25,17 +31,17 @@ namespace EA4S.Core
                 dictionary[minigameInfo.data.Main].variations.Add(minigameInfo);
             }
 
-            List<MainMiniGame> outputList = new List<MainMiniGame>();
+            List<MainMiniGame> outputMainMiniGamesList = new List<MainMiniGame>();
             foreach (var k in dictionary.Keys)
             {
                 if (dictionary[k].id == "Assessment" && skipAssessments) continue;
-                outputList.Add(dictionary[k]);
+                outputMainMiniGamesList.Add(dictionary[k]);
             }
 
             // Sort minigames and variations based on their minimum journey position
             Dictionary<MiniGameCode, JourneyPosition> minimumJourneyPositions =
                 new Dictionary<MiniGameCode, JourneyPosition>();
-            foreach (var mainMiniGame in outputList)
+            foreach (var mainMiniGame in outputMainMiniGamesList)
             {
                 foreach (var miniGameInfo in mainMiniGame.variations)
                 {
@@ -54,7 +60,7 @@ namespace EA4S.Core
             }
 
             // First sort variations (so the first variation is in front)
-            foreach (var mainMiniGame in outputList)
+            foreach (var mainMiniGame in outputMainMiniGamesList)
             {
                 mainMiniGame.variations.Sort((g1, g2) => minimumJourneyPositions[g1.data.Code].IsMinor(
                     minimumJourneyPositions[g2.data.Code])
@@ -62,13 +68,23 @@ namespace EA4S.Core
                     : 1);
             }
 
-            // Then sort minigames by their first variation
-            outputList.Sort((g1, g2) => SortMiniGames(minimumJourneyPositions, g1, g2));
 
-            return outputList;
+            switch (sortLogic)
+            {
+                case MiniGameSortLogic.Alphanumeric:
+                    outputMainMiniGamesList.Sort((g1, g2) => string.Compare(g1.id, g2.id, StringComparison.Ordinal));
+                    break;
+
+                case MiniGameSortLogic.Appearance:
+                    // Then sort minigames by the first variation that appears in Play Sessions
+                    outputMainMiniGamesList.Sort((g1, g2) => SortMiniGamesByAppearance(minimumJourneyPositions, g1, g2));
+                    break;
+            }
+
+            return outputMainMiniGamesList;
         }
 
-        public static int SortMiniGames(Dictionary<MiniGameCode, JourneyPosition> minimumJourneyPositions,
+        public static int SortMiniGamesByAppearance(Dictionary<MiniGameCode, JourneyPosition> minimumJourneyPositions,
             MainMiniGame g1, MainMiniGame g2)
         {
             // MiniGames are sorted based on minimum play session

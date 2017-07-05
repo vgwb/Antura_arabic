@@ -172,7 +172,7 @@ namespace EA4S.Debugging
             VerboseTeacherToggle.isOn = VerboseTeacher;
             SafeLaunchToggle.isOn = SafeLaunch;
 
-            var mainMiniGamesList = MiniGamesUtilities.GetMainMiniGameList(skipAssessments:false);
+            var mainMiniGamesList = MiniGamesUtilities.GetMainMiniGameList(false, MiniGamesUtilities.MiniGameSortLogic.Alphanumeric);
             var difficultiesForTesting = MiniGamesUtilities.GetMiniGameDifficultiesForTesting();
 
             EmptyContainer(Container);
