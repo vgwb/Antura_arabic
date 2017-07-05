@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 7
   m_Fog: 0
-  m_FogColor: {r: 0.7254902, g: 0.8862745, b: 0.9411765, a: 1}
+  m_FogColor: {r: 0.88235295, g: 0.7764706, b: 0.65882355, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 20
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: 89270d4b7a2cedb4891cc9eb7d69feb3, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1001 &46104338
 Prefab:
   m_ObjectHideFlags: 0
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 620a30765e10ffc4e8104cbdea590ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.7254902, g: 0.8862745, b: 0.9411765, a: 1}
+  color: {r: 0.88235295, g: 0.7764706, b: 0.65882355, a: 1}
   fogMode: 3
   fogDensity: 0.01
   fogStartDistance: 20
@@ -959,7 +959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundColorSet: {fileID: 11400000, guid: 5cf93738384933c43ac0ed46b088f1d5, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1 &173135033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: 0833fd282a7a0ab4bbc9d66e6b70e8ce, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1001 &180708258
 Prefab:
   m_ObjectHideFlags: 0
@@ -4715,15 +4715,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2011846, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
       propertyPath: m_BackGroundColor.r
-      value: 0.7254902
+      value: 0.88235295
       objectReference: {fileID: 0}
     - target: {fileID: 2011846, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
       propertyPath: m_BackGroundColor.g
-      value: 0.8862745
+      value: 0.7764706
       objectReference: {fileID: 0}
     - target: {fileID: 2011846, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
       propertyPath: m_BackGroundColor.b
-      value: 0.9411765
+      value: 0.65882355
       objectReference: {fileID: 0}
     - target: {fileID: 2011846, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
       propertyPath: m_BackGroundColor.a
@@ -4863,7 +4863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: 0833fd282a7a0ab4bbc9d66e6b70e8ce, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1001 &328097672
 Prefab:
   m_ObjectHideFlags: 0
@@ -5599,7 +5599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: 89270d4b7a2cedb4891cc9eb7d69feb3, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1 &363259470
 GameObject:
   m_ObjectHideFlags: 0
@@ -5678,7 +5678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: 89270d4b7a2cedb4891cc9eb7d69feb3, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1 &386067325
 GameObject:
   m_ObjectHideFlags: 0
@@ -5722,7 +5722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: 0833fd282a7a0ab4bbc9d66e6b70e8ce, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1001 &392104381
 Prefab:
   m_ObjectHideFlags: 0
@@ -6911,6 +6911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 508411711}
   - component: {fileID: 508411712}
+  - component: {fileID: 508411713}
   - component: {fileID: 508411710}
   m_Layer: 0
   m_Name: BalloonsGameManager
@@ -6930,7 +6931,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef01b9a3fa4049218cdc408632badfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseTestGameplayInfo: 0
   wordPrompt: {fileID: 771629424}
   wordFlexibleContainer: {fileID: 265389555}
   wordFlexibleContainerAnimator: {fileID: 265389553}
@@ -6997,6 +6997,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 30.9
+--- !u!114 &508411713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 508411709}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniGameCode: 8
+  Difficulty: 1
+  TutorialEnabled: 0
+  NumberOfRounds: 1
+  Stage: 1
+  LearningBlock: 1
+  PlaySession: 1
 --- !u!1 &520641055
 GameObject:
   m_ObjectHideFlags: 0
@@ -8567,7 +8585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: 2eaf4fcde80a4b34fb9a986e4099bfbb, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1 &677893931
 GameObject:
   m_ObjectHideFlags: 0
@@ -8611,7 +8629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: 0833fd282a7a0ab4bbc9d66e6b70e8ce, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1 &683443890
 GameObject:
   m_ObjectHideFlags: 0
@@ -9378,7 +9396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: a7e37fd677b37744680a5d74d165507f, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1 &771629422
 GameObject:
   m_ObjectHideFlags: 0
@@ -9838,7 +9856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: 89270d4b7a2cedb4891cc9eb7d69feb3, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1001 &857548547
 Prefab:
   m_ObjectHideFlags: 0
@@ -10276,7 +10294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: 0833fd282a7a0ab4bbc9d66e6b70e8ce, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1 &894308308
 GameObject:
   m_ObjectHideFlags: 0
@@ -12375,7 +12393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: f92ca4f711c17ba4abe126ec8ece6018, type: 2}
-  testWorld: 0
+  testWorld: -1
 --- !u!1001 &1114789109
 Prefab:
   m_ObjectHideFlags: 0

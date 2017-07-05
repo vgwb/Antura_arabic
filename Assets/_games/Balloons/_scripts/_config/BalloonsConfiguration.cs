@@ -7,11 +7,10 @@ namespace EA4S.Minigames.Balloons
 {
     public enum BalloonsVariation : int
     {
-        Spelling = 1,
-        Words = 2,
-        Letter = 3,
-        Counting = 4,
-
+        Spelling = MiniGameCode.Balloons_spelling,
+        Words = MiniGameCode.Balloons_words,
+        Letter = MiniGameCode.Balloons_letter,
+        Counting = MiniGameCode.Balloons_counting
     }
 
     public class BalloonsConfiguration : IGameConfiguration
@@ -61,15 +60,6 @@ namespace EA4S.Minigames.Balloons
         }
 
         #region external configuration call
-
-        public static void SetConfiguration(float _difficulty, int _variation)
-        {
-            instance = new BalloonsConfiguration()
-            {
-                Difficulty = _difficulty,
-                Variation = (BalloonsVariation)_variation,
-            };
-        }
 
         public IQuestionBuilder SetupBuilder()
         {
