@@ -1,7 +1,6 @@
 ﻿using Antura.MinigamesAPI;
 using Antura.MinigamesCommon;
 using Antura.Teacher;
-using UnityEditor;
 
 namespace Antura.Template
 {
@@ -18,6 +17,7 @@ namespace Antura.Template
     {
         // Game configuration
         public IGameContext Context { get; set; }
+
         public IQuestionProvider Questions { get; set; }
 
         public float Difficulty { get; set; }
@@ -26,18 +26,19 @@ namespace Antura.Template
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (TemplateVariation)code;
+            Variation = (TemplateVariation) code;
         }
 
         /////////////////
         // Singleton Pattern
         static TemplateConfiguration instance;
+
         public static TemplateConfiguration Instance
         {
-            get
-            {
-                if (instance == null)
+            get {
+                if (instance == null) {
                     instance = new TemplateConfiguration();
+                }
                 return instance;
             }
         }
@@ -51,7 +52,8 @@ namespace Antura.Template
             Difficulty = 0.5f;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
             // CONFIGURE HERE WHAT BUILDER THE MINIGAME IS EXPECTING
             return builder;
@@ -63,6 +65,5 @@ namespace Antura.Template
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
         }
-
     }
 }
