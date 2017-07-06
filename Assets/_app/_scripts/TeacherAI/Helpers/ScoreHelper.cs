@@ -5,7 +5,6 @@ using Antura.Helpers;
 
 namespace Antura.Teacher
 {
-
     /// <summary>
     /// Utilities that help in retrieving and updating score values for learning and progression data.
     /// </summary>
@@ -59,7 +58,7 @@ namespace Antura.Teacher
         }*/
 
         public List<I> GetAllMiniGameDataInfo<D, I>(DbTables table) where I : DataInfo<D>, new()
-         where D : MiniGameData
+            where D : MiniGameData
         {
             List<D> data_list = dbManager.GetAllData<D>(table);
             var info_list = new List<I>();
@@ -103,7 +102,8 @@ namespace Antura.Teacher
             }
 
             // Find available scores
-            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '" + (int)dataType + "' ORDER BY ElementId ");
+            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '" + (int) dataType +
+                                         "' ORDER BY ElementId ");
             List<JourneyScoreData> scoredata_list = dbManager.Query<JourneyScoreData>(query);
             for (int i = 0; i < info_list.Count; i++) {
                 var info = info_list[i];
@@ -134,7 +134,8 @@ namespace Antura.Teacher
             }
 
             // Find available scores
-            string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "' ORDER BY ElementId ");
+            string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" +
+                                         (int) dataType + "' ORDER BY ElementId ");
             List<VocabularyScoreData> scoredata_list = dbManager.Query<VocabularyScoreData>(query);
             for (int i = 0; i < info_list.Count; i++) {
                 var info = info_list[i];
@@ -170,9 +171,11 @@ namespace Antura.Teacher
             return GetLastLearnedDataInfo<PhraseData, PhraseInfo>(VocabularyDataType.Phrase, AppManager.I.ScoreHelper.GetAllPhraseInfo());
         }
 
-        private IT GetLastLearnedDataInfo<T, IT>(VocabularyDataType dataType, List<IT> allInfos) where T : IVocabularyData where IT : DataInfo<T>
+        private IT GetLastLearnedDataInfo<T, IT>(VocabularyDataType dataType, List<IT> allInfos)
+            where T : IVocabularyData where IT : DataInfo<T>
         {
-            string query = "select * from \"" + typeof(LogVocabularyScoreData).Name + "\"" + " where VocabularyDataType = '" + (int)dataType + "' " + " order by Timestamp limit 1";
+            string query = "select * from \"" + typeof(LogVocabularyScoreData).Name + "\"" + " where VocabularyDataType = '" +
+                           (int) dataType + "' " + " order by Timestamp limit 1";
             List<LogVocabularyScoreData> list = AppManager.I.DB.Query<LogVocabularyScoreData>(query);
             if (list.Count > 0 && list[0] != null) {
                 return allInfos.Find(x => x.data.GetId() == list[0].ElementId);
@@ -188,8 +191,9 @@ namespace Antura.Teacher
         public List<float> GetLatestScoresForMiniGame(MiniGameCode minigameCode, int nLastDays)
         {
             int fromTimestamp = GenericHelper.GetRelativeTimestampFromNow(-nLastDays);
-            string query = string.Format("SELECT * FROM  " + typeof(LogMiniGameScoreData).Name + " WHERE MiniGameCode = '{0}' AND Timestamp < {1}",
-                (int)minigameCode, fromTimestamp);
+            string query = string.Format(
+                "SELECT * FROM  " + typeof(LogMiniGameScoreData).Name + " WHERE MiniGameCode = '{0}' AND Timestamp < {1}",
+                (int) minigameCode, fromTimestamp);
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             List<float> scores = list.ConvertAll(x => x.Score);
             return scores;
@@ -197,7 +201,9 @@ namespace Antura.Teacher
 
         public List<JourneyScoreData> GetCurrentScoreForAllPlaySessions()
         {
-            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '{0}'  ORDER BY ElementId", JourneyDataType.PlaySession);
+            string query =
+                string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '{0}'  ORDER BY ElementId",
+                    JourneyDataType.PlaySession);
             List<JourneyScoreData> list = dbManager.Query<JourneyScoreData>(query);
             return list;
         }
@@ -209,7 +215,8 @@ namespace Antura.Teacher
             List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores
-            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType = '{0}'", JourneyDataType.PlaySession);
+            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType = '{0}'",
+                JourneyDataType.PlaySession);
             List<JourneyScoreData> all_score_list = dbManager.Query<JourneyScoreData>(query);
 
             // At last, filter by the given stage
@@ -220,11 +227,14 @@ namespace Antura.Teacher
         public List<JourneyScoreData> GetCurrentScoreForPlaySessionsOfLearningBlock(int stage, int learningBlock)
         {
             // First, get all data given a stage
-            List<PlaySessionData> eligiblePlaySessionData_list = this.dbManager.FindPlaySessionData(x => x.Stage == stage && x.LearningBlock == learningBlock); // TODO: make this readily available!
+            List<PlaySessionData> eligiblePlaySessionData_list =
+                this.dbManager.FindPlaySessionData(x =>
+                    x.Stage == stage && x.LearningBlock == learningBlock); // TODO: make this readily available!
             List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores
-            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType = '{0}'", JourneyDataType.PlaySession);
+            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType = '{0}'",
+                JourneyDataType.PlaySession);
             List<JourneyScoreData> all_score_list = dbManager.Query<JourneyScoreData>(query);
 
             // At last, filter
@@ -239,11 +249,13 @@ namespace Antura.Teacher
             List<string> eligibleLearningBlockData_id_list = eligibleLearningBlockData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores
-            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType= '{0}'", JourneyDataType.LearningBlock);
+            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType= '{0}'",
+                JourneyDataType.LearningBlock);
             List<JourneyScoreData> all_score_list = dbManager.Query<JourneyScoreData>(query);
 
             // At last, filter by the given stage
-            List<JourneyScoreData> filtered_score_list = all_score_list.FindAll(x => eligibleLearningBlockData_id_list.Contains(x.ElementId));
+            List<JourneyScoreData> filtered_score_list =
+                all_score_list.FindAll(x => eligibleLearningBlockData_id_list.Contains(x.ElementId));
             return filtered_score_list;
         }
 
@@ -277,10 +289,8 @@ namespace Antura.Teacher
             if (!hasFinishedTheGame) return false;
 
             var allMiniGameInfo = GetAllMiniGameInfo();
-            foreach (var miniGameInfo in allMiniGameInfo)
-            {
-                if (miniGameInfo.score != AppConstants.MaximumMinigameScore)
-                {
+            foreach (var miniGameInfo in allMiniGameInfo) {
+                if (miniGameInfo.score != AppConstants.MaximumMinigameScore) {
                     return false;
                 }
             }

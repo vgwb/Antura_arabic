@@ -19,6 +19,7 @@ namespace Antura.Database
 
         // DB references
         private DatabaseObject staticDb;
+
         private DBService dynamicDb;
 
         public List<Type> staticDataTypes = new List<Type>()
@@ -50,10 +51,9 @@ namespace Antura.Database
             typeof(RewardPackUnlockData)
         };
 
-        public DatabaseObject StaticDatabase {
-            get {
-                return staticDb;
-            }
+        public DatabaseObject StaticDatabase
+        {
+            get { return staticDb; }
         }
 
         public bool HasLoadedPlayerProfile()
@@ -62,6 +62,7 @@ namespace Antura.Database
         }
 
         #region Player assignment
+
         public void CreateDatabaseForPlayer(PlayerProfileData playerProfileData)
         {
             SetPlayerProfile(playerProfileData.Uuid);
@@ -86,7 +87,8 @@ namespace Antura.Database
         {
             // SAFE MODE: we need to make sure that the static db has some entires, otherwise there is something wrong
             if (staticDb.GetPlaySessionTable().GetDataCount() == 0) {
-                throw new System.Exception("Database is empty, it was probably not setup correctly. Make sure it has been statically loaded by the management scene.");
+                throw new System.Exception(
+                    "Database is empty, it was probably not setup correctly. Make sure it has been statically loaded by the management scene.");
             }
 
             // We load the selected player profile
@@ -186,6 +188,7 @@ namespace Antura.Database
         #endregion
 
         #region Letter
+
         public LetterData GetLetterDataById(string id)
         {
             return staticDb.GetById(staticDb.GetLetterTable(), id);
@@ -204,6 +207,7 @@ namespace Antura.Database
         #endregion
 
         #region Word
+
         public WordData GetWordDataById(string id)
         {
             return staticDb.GetById(staticDb.GetWordTable(), id);
@@ -230,9 +234,11 @@ namespace Antura.Database
         {
             return staticDb.FindAll(staticDb.GetWordTable(), (x) => (x.Category == wordCategory));
         }
+
         #endregion
 
         #region MiniGame
+
         public MiniGameData GetMiniGameDataByCode(MiniGameCode code)
         {
             return GetMiniGameDataById(code.ToString());
@@ -257,9 +263,11 @@ namespace Antura.Database
         {
             return staticDb.FindAll(staticDb.GetMiniGameTable(), predicate);
         }
+
         #endregion
 
         #region LearningBlock
+
         public LearningBlockData GetLearningBlockDataById(string id)
         {
             return staticDb.GetById(staticDb.GetLearningBlockTable(), id);
@@ -278,12 +286,13 @@ namespace Antura.Database
         // @note: new generic-only data getter, should be used instead of all the above ones
         public List<T> GetAllData<T>(DbTables table) where T : IData
         {
-            return staticDb.GetAll<T>((SerializableDataTable<T>)staticDb.GetTable(table));
+            return staticDb.GetAll<T>((SerializableDataTable<T>) staticDb.GetTable(table));
         }
 
         #endregion
 
         #region PlaySession
+
         public bool HasPlaySessionDataById(string id)
         {
             return staticDb.HasById(staticDb.GetPlaySessionTable(), id);
@@ -308,9 +317,11 @@ namespace Antura.Database
         {
             return new List<PlaySessionData>(staticDb.GetPlaySessionTable().GetValuesTyped());
         }
+
         #endregion
 
         #region Phrase
+
         public PhraseData GetPhraseDataById(string id)
         {
             return staticDb.GetById(staticDb.GetPhraseTable(), id);
@@ -325,16 +336,18 @@ namespace Antura.Database
         {
             return new List<PhraseData>(staticDb.GetPhraseTable().GetValuesTyped());
         }
+
         #endregion
 
         #region Localization
+
         public LocalizationData GetLocalizationDataById(string id)
         {
             var locData = staticDb.GetById(staticDb.GetLocalizationTable(), id);
             if (locData != null) {
                 return locData;
             }
-            return new LocalizationData { Id = id, Arabic = ("MISSING " + id), English = ("MISSING " + id), AudioFile = "" };
+            return new LocalizationData {Id = id, Arabic = ("MISSING " + id), English = ("MISSING " + id), AudioFile = ""};
         }
 
         public List<LocalizationData> GetAllLocalizationData()
@@ -346,9 +359,11 @@ namespace Antura.Database
         {
             return staticDb.FindAll(staticDb.GetLocalizationTable(), predicate);
         }
+
         #endregion
 
         #region Stage
+
         public StageData GetStageDataById(string id)
         {
             return staticDb.GetById(staticDb.GetStageTable(), id);
@@ -363,9 +378,11 @@ namespace Antura.Database
         {
             return staticDb.FindAll(staticDb.GetStageTable(), predicate);
         }
+
         #endregion
 
         #region Reward
+
         public RewardData GetRewardDataById(string id)
         {
             return staticDb.GetById(staticDb.GetRewardTable(), id);
@@ -380,9 +397,11 @@ namespace Antura.Database
         {
             return staticDb.FindAll(staticDb.GetRewardTable(), predicate);
         }
+
         #endregion
 
         #region Log
+
         public List<LogInfoData> GetAllLogInfoData()
         {
             return dynamicDb.FindAll<LogInfoData>();
@@ -445,6 +464,7 @@ namespace Antura.Database
         {
             return dynamicDb.Query<T>(query);
         }
+
         public List<object> Query(Type t, string query)
         {
             return dynamicDb.Query(t, query);
@@ -454,6 +474,7 @@ namespace Antura.Database
         {
             return dynamicDb.FindByQueryCustom(mapping, query);
         }
+
         #endregion
 
 
@@ -498,37 +519,31 @@ namespace Antura.Database
             // Load all the databases we can find and get the player UUIDs
             List<string> allUUIDs = new List<string>();
             var filePaths = GetImportFilePaths();
-            if (filePaths != null)
-            {
-                foreach (var filePath in filePaths)
-                {
+            if (filePaths != null) {
+                foreach (var filePath in filePaths) {
                     // Check whether that is a DB and load it
-                    if (filePath.Contains(".sqlite3"))
-                    {
+                    if (filePath.Contains(".sqlite3")) {
                         var importDbService = DBService.OpenFromFilePath(false, filePath);
                         var playerProfileData = importDbService.GetPlayerProfileData();
                         allUUIDs.Add(playerProfileData.Uuid);
                         importDbService.CloseConnection();
                     }
                 }
-            }
-            else
-            {
+            } else {
                 errorString = "Could not find the import folder.";
                 Debug.LogError(errorString);
                 return false;
             }
-            
+
             // Create the joined DB
             var joinedDbService = DBService.OpenFromFileName(true, AppConstants.GetJoinedDatabaseFilename(), AppConstants.DbJoinedFolder);
             InjectStaticData(joinedDbService);
             InjectEnums(joinedDbService);
 
             // Export and inject all the DBs
-            foreach (var uuid in allUUIDs)
-            {
+            foreach (var uuid in allUUIDs) {
                 // Export
-                var exportDbService = DBService.ExportAndOpenFromPlayerUUID(uuid,  dirName: AppConstants.DbImportFolder);
+                var exportDbService = DBService.ExportAndOpenFromPlayerUUID(uuid, dirName: AppConstants.DbImportFolder);
                 InjectUUID(uuid, exportDbService);
 
                 // Inject
@@ -545,8 +560,7 @@ namespace Antura.Database
         public string[] GetImportFilePaths()
         {
             var importDirectory = DBService.GetDatabaseDirectoryPath(AppConstants.DbImportFolder);
-            if (Directory.Exists(importDirectory))
-            {
+            if (Directory.Exists(importDirectory)) {
                 string[] filePaths = Directory.GetFiles(importDirectory);
                 return filePaths;
             }
@@ -555,8 +569,7 @@ namespace Antura.Database
 
         public PlayerProfileData ImportDynamicDatabase(string importFilePath)
         {
-            if (!File.Exists(importFilePath))
-            {
+            if (!File.Exists(importFilePath)) {
                 Debug.LogError("Cannot find database file for import: " + importFilePath);
                 return null;
             }
@@ -564,8 +577,7 @@ namespace Antura.Database
             // Copy the file
             string fileName = Path.GetFileName(importFilePath);
             string newFilePath = DBService.GetDatabaseFilePath(fileName, AppConstants.DbPlayersFolder);
-            if (File.Exists(newFilePath))
-            {
+            if (File.Exists(newFilePath)) {
                 Debug.LogError("Database already exists. Cannot import: " + importFilePath);
                 return null;
             }
@@ -581,16 +593,13 @@ namespace Antura.Database
 
         private void InjectExportedDB(string uuid, DBService exportDbService, DBService joinedDbService)
         {
-            foreach (Type dynamicDataType in dynamicDataTypes)
-            {
+            foreach (Type dynamicDataType in dynamicDataTypes) {
                 string query = "SELECT * FROM " + dynamicDataType.Name;
                 List<object> objectList = exportDbService.Query(dynamicDataType, query);
                 List<IData> iDataList = objectList.ConvertAll(x => (IData) x);
 
-                foreach (var element in iDataList)
-                {
-                    if (element is IDataEditable)
-                    {
+                foreach (var element in iDataList) {
+                    if (element is IDataEditable) {
                         (element as IDataEditable).SetId(element.GetId() + "_" + uuid);
                     }
                 }
@@ -625,8 +634,7 @@ namespace Antura.Database
 
         private void InjectStaticData(DBService dbService)
         {
-            try
-            {
+            try {
                 dbService.GenerateStaticExportTables();
                 dbService.InsertAll(StaticDatabase.GetStageTable().GetValuesTyped());
                 dbService.InsertAll(StaticDatabase.GetPlaySessionTable().GetValuesTyped());
@@ -638,16 +646,14 @@ namespace Antura.Database
                 dbService.InsertAll(StaticDatabase.GetLocalizationTable().GetValuesTyped());
                 dbService.InsertAll(StaticDatabase.GetRewardTable().GetValuesTyped());
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Debug.LogError(e);
             }
         }
 
         private void InjectUUID(string playerUuid, DBService exportDbService)
         {
-            foreach (var type in dynamicDataTypes)
-            {
+            foreach (var type in dynamicDataTypes) {
                 PopulateUUID(type, playerUuid, exportDbService);
             }
         }

@@ -70,8 +70,7 @@ namespace Antura.Teacher
 
         public static void AppendToTeacherReport(string s)
         {
-            if (verboseTeacher)
-            {
+            if (verboseTeacher) {
                 teacherReportString += "\n\n" + s;
             }
         }
@@ -79,13 +78,11 @@ namespace Antura.Teacher
         public static void PrintTeacherReport(bool logOnly = false)
         {
             teacherReportString = "----- TEACHER REPORT " + DateTime.Now + "----" + teacherReportString;
-            if (verboseTeacher)
-            {
+            if (verboseTeacher) {
                 Debug.Log(teacherReportString);
             }
 #if UNITY_EDITOR
-            if (verboseTeacher && !logOnly)
-            {
+            if (verboseTeacher && !logOnly) {
                 System.IO.File.WriteAllText(Application.persistentDataPath + "/teacher_report.txt", teacherReportString);
             }
 #endif
@@ -93,11 +90,9 @@ namespace Antura.Teacher
 
         public static void ReportPacks(List<QuestionPackData> packs)
         {
-            if (verboseQuestionPacks)
-            {
+            if (verboseQuestionPacks) {
                 string packsString = FormatTeacherHeader("Generated Packs");
-                for (int i = 0; i < packs.Count; i++)
-                {
+                for (int i = 0; i < packs.Count; i++) {
                     packsString += "\n" + (i + 1) + ": " + packs[i];
                 }
                 AppendToTeacherReport(packsString);

@@ -25,8 +25,8 @@ namespace Antura.Teacher
         // Inner engines
         public LogAI logAI;
         public VocabularySelectionAI VocabularyAi;
-        MiniGameSelectionAI minigameSelectionAI;
-        DifficultySelectionAI difficultySelectionAI;
+        private MiniGameSelectionAI minigameSelectionAI;
+        private DifficultySelectionAI difficultySelectionAI;
 
         // Helpers
         // TODO refactor: these helpers should be separated from the TeacherAI.

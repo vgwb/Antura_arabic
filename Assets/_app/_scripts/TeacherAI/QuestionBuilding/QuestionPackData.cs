@@ -63,16 +63,13 @@ namespace Antura.Teacher
             var debugString = "";
             debugString += "Q [" + (question) + "] ";
             debugString += " OK(" + (correctAnswers.Count) + ") [";
-            foreach (var ans in correctAnswers)
-            {
+            foreach (var ans in correctAnswers) {
                 debugString += ans + "; ";
             }
             debugString += "] ";
-            if (wrongAnswers != null)
-            {
+            if (wrongAnswers != null) {
                 debugString += " NO(" + wrongAnswers.Count + ") [";
-                foreach (var ans in wrongAnswers)
-                {
+                foreach (var ans in wrongAnswers) {
                     debugString += ans + "; ";
                 }
             }

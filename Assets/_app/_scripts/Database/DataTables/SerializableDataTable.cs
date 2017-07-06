@@ -34,16 +34,14 @@ namespace Antura.Database
 
         public IEnumerable<IData> GetValues()
         {
-            foreach (var value in innerList)
-            {
+            foreach (var value in innerList) {
                 yield return value;
             }
         }
 
         public IEnumerable<K> GetValuesTyped()
         {
-            foreach (var value in innerList)
-            {
+            foreach (var value in innerList) {
                 yield return value;
             }
         }
@@ -59,4 +57,3 @@ namespace Antura.Database
         }
     }
 }
-

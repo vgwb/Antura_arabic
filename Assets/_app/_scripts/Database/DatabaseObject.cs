@@ -5,24 +5,6 @@ using System.Collections.Generic;
 namespace Antura.Database
 {
     /// <summary>
-    /// Enumerator that defines a single table (i.e. data type) that can be accessed in the static database.
-    /// </summary>
-    public enum DbTables
-    {
-        Letters = 1,
-        Words = 2,
-        Phrases = 3,
-
-        MiniGames = 10,
-        Stages = 11,
-        LearningBlocks = 12,
-        PlaySessions = 13,
-
-        Localizations = 30,
-        Rewards = 40
-    }
-
-    /// <summary>
     /// Main entry point for learning data access.
     /// Holds all static input data on learning.
     /// </summary>
@@ -49,15 +31,33 @@ namespace Antura.Database
 
         public bool HasTables()
         {
-            if (stageDb == null) return false;
-            if (playsessionDb == null) return false;
-            if (learningblockDb == null) return false;
-            if (minigameDb == null) return false;
-            if (letterDb == null) return false;
-            if (wordDb == null) return false;
-            if (phraseDb == null) return false;
-            if (localizationDb == null) return false;
-            if (rewardDb == null) return false;
+            if (stageDb == null) {
+                return false;
+            }
+            if (playsessionDb == null) {
+                return false;
+            }
+            if (learningblockDb == null) {
+                return false;
+            }
+            if (minigameDb == null) {
+                return false;
+            }
+            if (letterDb == null) {
+                return false;
+            }
+            if (wordDb == null) {
+                return false;
+            }
+            if (phraseDb == null) {
+                return false;
+            }
+            if (localizationDb == null) {
+                return false;
+            }
+            if (rewardDb == null) {
+                return false;
+            }
             return true;
         }
 
@@ -66,32 +66,49 @@ namespace Antura.Database
             var path = dbName + "/" + dbName + "_";
 
             stageDb = Resources.Load<StageDatabase>(path + "Stage");
-            if (!stageDb) Debug.LogError("Could not load StageDatabase db");
+            if (!stageDb) {
+                Debug.LogError("Could not load StageDatabase db");
+            }
 
             playsessionDb = Resources.Load<PlaySessionDatabase>(path + "PlaySession");
-            if (!playsessionDb) Debug.LogError("Could not load PlaySessionDatabase db");
+            if (!playsessionDb) {
+                Debug.LogError("Could not load PlaySessionDatabase db");
+            }
 
             learningblockDb = Resources.Load<LearningBlockDatabase>(path + "LearningBlock");
-            if (!learningblockDb) Debug.LogError("Could not load LearningBlockDatabase db");
+            if (!learningblockDb) {
+                Debug.LogError("Could not load LearningBlockDatabase db");
+            }
 
             minigameDb = Resources.Load<MiniGameDatabase>(path + "MiniGame");
-            if (!minigameDb) Debug.LogError("Could not load MiniGameDatabase db");
+            if (!minigameDb) {
+                Debug.LogError("Could not load MiniGameDatabase db");
+            }
 
             letterDb = Resources.Load<LetterDatabase>(path + "Letter");
-            if (!letterDb) Debug.LogError("Could not load LetterDatabase db");
+            if (!letterDb) {
+                Debug.LogError("Could not load LetterDatabase db");
+            }
 
             wordDb = Resources.Load<WordDatabase>(path + "Word");
-            if (!wordDb) Debug.LogError("Could not load WordDatabase db");
+            if (!wordDb) {
+                Debug.LogError("Could not load WordDatabase db");
+            }
 
             phraseDb = Resources.Load<PhraseDatabase>(path + "Phrase");
-            if (!phraseDb) Debug.LogError("Could not load PhraseDatabase db");
+            if (!phraseDb) {
+                Debug.LogError("Could not load PhraseDatabase db");
+            }
 
             localizationDb = Resources.Load<LocalizationDatabase>(path + "Localization");
-            if (!localizationDb) Debug.LogError("Could not load LocalizationDatabase db");
+            if (!localizationDb) {
+                Debug.LogError("Could not load LocalizationDatabase db");
+            }
 
             rewardDb = Resources.Load<RewardDatabase>(path + "Reward");
-            if (!rewardDb) Debug.LogError("Could not load RewardDatabase db");
-
+            if (!rewardDb) {
+                Debug.LogError("Could not load RewardDatabase db");
+            }
         }
 
         #endregion
@@ -114,7 +131,7 @@ namespace Antura.Database
 
         public T GetById<T>(SerializableDataTable<T> table, string id) where T : IData
         {
-            T value = (T)table.GetValue(id);
+            T value = (T) table.GetValue(id);
             if (value == null) {
                 Debug.LogWarning("Cannot find id '" + id + "' in table " + table.GetType().Name);
                 return default(T);
@@ -124,26 +141,64 @@ namespace Antura.Database
 
         public bool HasById<T>(SerializableDataTable<T> table, string id) where T : IData
         {
-            T value = (T)table.GetValue(id);
-            if (value == null) return false;
+            T value = (T) table.GetValue(id);
+            if (value == null) {
+                return false;
+            }
             return true;
         }
 
         public IEnumerable<List<IData>> GetAllData()
         {
-            foreach (var table in GetAllTables())
+            foreach (var table in GetAllTables()) {
                 yield return table.GetList();
+            }
         }
 
-        public LetterTable GetLetterTable() { return this.letterDb.table; }
-        public WordTable GetWordTable() { return this.wordDb.table; }
-        public PhraseTable GetPhraseTable() { return this.phraseDb.table; }
-        public MiniGameTable GetMiniGameTable() { return this.minigameDb.table; }
-        public StageTable GetStageTable() { return this.stageDb.table; }
-        public PlaySessionTable GetPlaySessionTable() { return this.playsessionDb.table; }
-        public LearningBlockTable GetLearningBlockTable() { return this.learningblockDb.table; }
-        public RewardTable GetRewardTable() { return this.rewardDb.table; }
-        public LocalizationTable GetLocalizationTable() { return this.localizationDb.table; }
+        public LetterTable GetLetterTable()
+        {
+            return this.letterDb.table;
+        }
+
+        public WordTable GetWordTable()
+        {
+            return this.wordDb.table;
+        }
+
+        public PhraseTable GetPhraseTable()
+        {
+            return this.phraseDb.table;
+        }
+
+        public MiniGameTable GetMiniGameTable()
+        {
+            return this.minigameDb.table;
+        }
+
+        public StageTable GetStageTable()
+        {
+            return this.stageDb.table;
+        }
+
+        public PlaySessionTable GetPlaySessionTable()
+        {
+            return this.playsessionDb.table;
+        }
+
+        public LearningBlockTable GetLearningBlockTable()
+        {
+            return this.learningblockDb.table;
+        }
+
+        public RewardTable GetRewardTable()
+        {
+            return this.rewardDb.table;
+        }
+
+        public LocalizationTable GetLocalizationTable()
+        {
+            return this.localizationDb.table;
+        }
 
         // @note: interface for common use using categories
         public IData GetData(DbTables tables, string id)
@@ -168,15 +223,33 @@ namespace Antura.Database
         {
             IDataTable table = null;
             switch (tables) {
-                case DbTables.Letters: table = GetLetterTable(); break;
-                case DbTables.Words: table = GetWordTable(); break;
-                case DbTables.Phrases: table = GetPhraseTable(); break;
-                case DbTables.MiniGames: table = GetMiniGameTable(); break;
-                case DbTables.Stages: table = GetStageTable(); break;
-                case DbTables.PlaySessions: table = GetPlaySessionTable(); break;
-                case DbTables.LearningBlocks: table = GetLearningBlockTable(); break;
-                case DbTables.Rewards: table = GetRewardTable(); break;
-                case DbTables.Localizations: table = GetLocalizationTable(); break;
+                case DbTables.Letters:
+                    table = GetLetterTable();
+                    break;
+                case DbTables.Words:
+                    table = GetWordTable();
+                    break;
+                case DbTables.Phrases:
+                    table = GetPhraseTable();
+                    break;
+                case DbTables.MiniGames:
+                    table = GetMiniGameTable();
+                    break;
+                case DbTables.Stages:
+                    table = GetStageTable();
+                    break;
+                case DbTables.PlaySessions:
+                    table = GetPlaySessionTable();
+                    break;
+                case DbTables.LearningBlocks:
+                    table = GetLearningBlockTable();
+                    break;
+                case DbTables.Rewards:
+                    table = GetRewardTable();
+                    break;
+                case DbTables.Localizations:
+                    table = GetLocalizationTable();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException("tables", tables, null);
             }
@@ -184,7 +257,5 @@ namespace Antura.Database
         }
 
         #endregion
-
     }
-
 }
