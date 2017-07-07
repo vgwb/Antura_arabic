@@ -28,7 +28,9 @@ namespace Antura.Profile
         public UIButton UIButton
         {
             get {
-                if (fooUIButton == null) fooUIButton = this.GetComponent<UIButton>();
+                if (fooUIButton == null) {
+                    fooUIButton = this.GetComponent<UIButton>();
+                }
                 return fooUIButton;
             }
         }
@@ -78,7 +80,9 @@ namespace Antura.Profile
 
         void SetAppearance(PlayerGender gender, int avatarId, PlayerTint tint, bool isDemoUser, EndgameState endgameState)
         {
-            if (gender == PlayerGender.None) Debug.LogWarning("Player gender set to NONE");
+            if (gender == PlayerGender.None) {
+                Debug.LogWarning("Player gender set to NONE");
+            }
             Color color = isDemoUser ? new Color(0.4117647f, 0.9254903f, 1f, 1f) : PlayerTintConverter.ToColor(tint);
             UIButton.ChangeDefaultColors(color, color.SetAlpha(0.5f));
             UIButton.Ico.sprite = isDemoUser

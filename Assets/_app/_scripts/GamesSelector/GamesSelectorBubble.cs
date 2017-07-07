@@ -17,8 +17,8 @@ namespace Antura.GamesSelector
         public ParticleSystem PouffParticleSys;
 
         public bool IsOpen { get; private set; }
-        bool hasBadge;
-        Tween shakeTween, openTween, showBadgeTween;
+        private bool hasBadge;
+        private Tween shakeTween, openTween, showBadgeTween;
 
         #region Unity
 
@@ -40,9 +40,11 @@ namespace Antura.GamesSelector
             Ico.sprite = Resources.Load<Sprite>(_icoResourcePath);
             if (hasBadge) {
                 BadgeIco.sprite = Resources.Load<Sprite>(_badgeIcoResourcePath);
-                if (BadgeIco.sprite == null) hasBadge = false;
+                if (BadgeIco.sprite == null) {
+                    hasBadge = false;
+                }
             }
-            this.transform.localPosition = new Vector3(_x, 0, 0);
+            transform.localPosition = new Vector3(_x, 0, 0);
             shakeTween = DOTween.Sequence().SetLoops(-1, LoopType.Yoyo)
                 .Append(Cover.transform.DOShakeScale(4, 0.035f, 6, 90f, false))
                 .Join(Cover.transform.DOShakeRotation(7, 7, 3, 90f, false));
@@ -61,7 +63,9 @@ namespace Antura.GamesSelector
                 PouffParticleSys.Play();
                 shakeTween.Kill(true);
                 openTween = Main.transform.DOPunchRotation(new Vector3(0, 0, 45), 0.75f);
-                if (hasBadge) showBadgeTween = Badge.transform.DOLocalMoveY(0, 0.45f).From().SetDelay(0.35f).SetEase(Ease.OutBack);
+                if (hasBadge) {
+                    showBadgeTween = Badge.transform.DOLocalMoveY(0, 0.45f).From().SetDelay(0.35f).SetEase(Ease.OutBack);
+                }
                 AudioManager.I.PlaySound(Sfx.Poof);
             } else {
                 PouffParticleSys.Stop();

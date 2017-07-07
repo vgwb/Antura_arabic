@@ -9,8 +9,8 @@ namespace Antura.Environment
         public WorldColorSet backgroundColorSet;
 
 #if UNITY_EDITOR
-        WorldColorSet lastColorSet;
-        WorldID lastTestWorld = WorldID.Default;
+        private WorldColorSet lastColorSet;
+        private WorldID lastTestWorld = WorldID.Default;
         public WorldID testWorld;
 #endif
 
@@ -21,8 +21,9 @@ namespace Antura.Environment
 
             camera.backgroundColor = color;
 
-            if (cameraFog != null)
+            if (cameraFog != null) {
                 cameraFog.color = color;
+            }
         }
 
         public void Start()

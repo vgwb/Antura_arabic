@@ -14,8 +14,8 @@ namespace Antura.GamesSelector
         public TrailRenderer[] trails;
 
         public bool isPlaying { get; private set; }
-        Tween showTween, moveTween;
-        Sequence trailTimeTween;
+        private Tween showTween, moveTween;
+        private Sequence trailTimeTween;
 
         #region Unity
 
@@ -50,9 +50,11 @@ namespace Antura.GamesSelector
             Finger.gameObject.SetActive(true);
 
             Vector3[] path = new Vector3[_bubbles.Count + 1];
-            this.transform.localPosition = _bubbles[0].transform.localPosition - new Vector3(2, 0, 0);
+            transform.localPosition = _bubbles[0].transform.localPosition - new Vector3(2, 0, 0);
             path[path.Length - 1] = _bubbles[_bubbles.Count - 1].transform.localPosition + new Vector3(2, 0, 0);
-            for (int i = 0; i < _bubbles.Count; ++i) path[i] = _bubbles[i].transform.localPosition;
+            for (int i = 0; i < _bubbles.Count; ++i) {
+                path[i] = _bubbles[i].transform.localPosition;
+            }
 
             showTween.Restart();
             moveTween = DOTween.Sequence().SetAutoKill(false)
@@ -73,7 +75,9 @@ namespace Antura.GamesSelector
             this.StopAllCoroutines();
             moveTween.Kill();
             showTween.PlayBackwards();
-            foreach (TrailRenderer tr in trails) tr.Clear();
+            foreach (TrailRenderer tr in trails) {
+                tr.Clear();
+            }
         }
 
         #endregion
@@ -87,7 +91,9 @@ namespace Antura.GamesSelector
                 yield return new WaitForSeconds(2);
                 moveTween.Restart();
                 trailTimeTween.Rewind();
-                foreach (TrailRenderer tr in trails) tr.Clear();
+                foreach (TrailRenderer tr in trails) {
+                    tr.Clear();
+                }
             }
         }
 

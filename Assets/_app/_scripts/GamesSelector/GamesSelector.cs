@@ -26,7 +26,9 @@ namespace Antura.GamesSelector
 
         static void DispatchOnComplete()
         {
-            if (OnComplete != null) OnComplete();
+            if (OnComplete != null) {
+                OnComplete();
+            }
         }
 
         #endregion
@@ -48,7 +50,7 @@ namespace Antura.GamesSelector
         static GamesSelector instance;
         GamesSelectorTrailsManager trailsManager;
         GamesSelectorTutorial tutorial;
-        List<MiniGameData> games; // Set by Show
+        List<MiniGameData> games;
         GamesSelectorBubble mainBubble;
         readonly List<GamesSelectorBubble> bubbles = new List<GamesSelectorBubble>();
         TrailRenderer currTrail;
@@ -64,14 +66,14 @@ namespace Antura.GamesSelector
         void Awake()
         {
             instance = this;
-            trailsManager = this.GetComponent<GamesSelectorTrailsManager>();
-            tutorial = this.GetComponentInChildren<GamesSelectorTutorial>(true);
+            trailsManager = GetComponent<GamesSelectorTrailsManager>();
+            tutorial = GetComponentInChildren<GamesSelectorTutorial>(true);
         }
 
         void Start()
         {
             if (mainBubble == null) {
-                mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();
+                mainBubble = GetComponentInChildren<GamesSelectorBubble>();
                 mainBubble.gameObject.SetActive(false);
             }
             if (cam == null) {
@@ -79,13 +81,15 @@ namespace Antura.GamesSelector
                 camT = Camera.main.transform;
             }
 
-            if (AudoLoadMinigamesOnStartup && games == null) AutoLoadMinigames();
+            if (AudoLoadMinigamesOnStartup && games == null) {
+                AutoLoadMinigames();
+            }
         }
 
         void OnDestroy()
         {
             if (instance == this) instance = null;
-            this.StopAllCoroutines();
+            StopAllCoroutines();
             showTween.Kill(true);
             OnComplete -= GoToMinigame;
         }
@@ -94,13 +98,15 @@ namespace Antura.GamesSelector
         {
             if (Time.timeScale <= 0) {
                 // Prevent actions when pause menu is open
-                if (isDragging) StopDrag();
+                if (isDragging) {
+                    StopDrag();
+                }
                 return;
             }
 
 #if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.R)) {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
                 instance = null;
                 Show(new List<MiniGameData>()
                 {
@@ -114,7 +120,9 @@ namespace Antura.GamesSelector
             }
 #endif
 
-            if (!Input.GetMouseButton(0) && !Input.GetMouseButtonUp(0)) return;
+            if (!Input.GetMouseButton(0) && !Input.GetMouseButtonUp(0)) {
+                return;
+            }
 
             Vector3 mouseP = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane + 10));
             if (Input.GetMouseButtonDown(0)) {
@@ -122,7 +130,9 @@ namespace Antura.GamesSelector
                 isDragging = true;
                 currTrail = trailsManager.Spawn(mouseP);
             }
-            if (isDragging) Update_Dragging(mouseP);
+            if (isDragging) {
+                Update_Dragging(mouseP);
+            }
             if (Input.GetMouseButtonUp(0)) {
                 // Stop drag/click
                 StopDrag();
@@ -132,38 +142,48 @@ namespace Antura.GamesSelector
         void Update_Dragging(Vector3 _mouseP)
         {
             trailsManager.SetPosition(currTrail, _mouseP);
-            if (cutAllowed) Update_CheckHitBubble(_mouseP);
+            if (cutAllowed) {
+                Update_CheckHitBubble(_mouseP);
+            }
         }
 
         void Update_CheckHitBubble(Vector3 _mouseP)
         {
             _mouseP += -camT.forward * 3;
             RaycastHit hit;
-            if (!Physics.Raycast(new Ray(_mouseP, camT.forward), out hit)) return;
+            if (!Physics.Raycast(new Ray(_mouseP, camT.forward), out hit)) {
+                return;
+            }
 
             GamesSelectorBubble hitBubble = null;
             foreach (GamesSelectorBubble bubble in bubbles) {
-                if (hit.transform != bubble.Cover.transform) continue;
+                if (hit.transform != bubble.Cover.transform) {
+                    continue;
+                }
                 hitBubble = bubble;
                 break;
             }
-            if (hitBubble == null) return;
+            if (hitBubble == null) {
+                return;
+            }
 
-            if (tutorial.isPlaying) tutorial.Stop();
+            if (tutorial.isPlaying) {
+                tutorial.Stop();
+            }
             hitBubble.Open();
             totOpenedBubbles++;
             if (totOpenedBubbles == bubbles.Count) {
                 // All bubbles opened: final routine
                 cutAllowed = false;
-                this.StartCoroutine(CO_EndCoroutine());
+                StartCoroutine(CO_EndCoroutine());
             }
         }
 
         void LateUpdate()
         {
             // Adapt to camera
-            this.transform.rotation = camT.rotation;
-            this.transform.position = camT.position + camT.forward * DistanceFromCamera;
+            transform.rotation = camT.rotation;
+            transform.position = camT.position + camT.forward * DistanceFromCamera;
         }
 
         #endregion
@@ -202,9 +222,13 @@ namespace Antura.GamesSelector
         void ResetAndLayout()
         {
             // Reset
-            if (mainBubble == null) mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();
+            if (mainBubble == null) {
+                mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();
+            }
             foreach (GamesSelectorBubble bubble in bubbles) {
-                if (bubble != mainBubble) Destroy(bubble.gameObject);
+                if (bubble != mainBubble) {
+                    Destroy(bubble.gameObject);
+                }
             }
             bubbles.Clear();
 
@@ -239,8 +263,9 @@ namespace Antura.GamesSelector
 
             // TODO refactor: the current list of minigames should be injected by the navigation manager instead
             var minigames = AppManager.I.NavigationManager.CurrentPlaySessionMiniGames;
-            if (minigames.Count > 0)
+            if (minigames.Count > 0) {
                 Show(minigames);
+            }
         }
 
         // TODO refactor: this should be injected
@@ -253,7 +278,9 @@ namespace Antura.GamesSelector
 
         IEnumerator CO_AnimateEntrance()
         {
-            foreach (GamesSelectorBubble bubble in bubbles) bubble.gameObject.SetActive(false);
+            foreach (GamesSelectorBubble bubble in bubbles) {
+                bubble.gameObject.SetActive(false);
+            }
             yield return null;
             yield return null;
 
@@ -266,13 +293,17 @@ namespace Antura.GamesSelector
             }
             yield return showTween.WaitForCompletion();
 
-            if (totOpenedBubbles == 0) tutorial.Play(bubbles);
+            if (totOpenedBubbles == 0) {
+                tutorial.Play(bubbles);
+            }
         }
 
         IEnumerator CO_EndCoroutine()
         {
             yield return new WaitForSeconds(EndDelay);
-            if (AppConstants.DebugLogEnabled) Debug.Log("<b>GamesSelector</b> > Complete");
+            if (AppConstants.DebugLogEnabled) {
+                Debug.Log("<b>GamesSelector</b> > Complete");
+            }
             DispatchOnComplete();
         }
 

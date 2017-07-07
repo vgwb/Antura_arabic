@@ -6,7 +6,7 @@
 // (and do not remove from it please!)"
 namespace Antura.Environment
 {
-    public enum WorldID : int
+    public enum WorldID
     {
         Default = -1,
         World0 = 0,
@@ -19,7 +19,10 @@ namespace Antura.Environment
 
     public class WorldManager : MonoBehaviour
     {
-        WorldID currentWorld = WorldID.Default;
+        const string ResourceId = "Prefabs/Managers/WorldManager";
+        private static WorldManager instance;
+
+        private WorldID currentWorld = WorldID.Default;
 
         public WorldID CurrentWorld
         {
@@ -29,6 +32,21 @@ namespace Antura.Environment
                 if (currentWorld > WorldID.World5) {
                     currentWorld = WorldID.World5;
                 }
+            }
+        }
+
+        /////////////////////
+        // Singleton Pattern
+        public static WorldManager I
+        {
+            get {
+                if (instance == null) {
+                    GameObject go = Instantiate(Resources.Load<GameObject>(ResourceId));
+                    go.name = "[WorldManager]";
+                    go.hideFlags = HideFlags.HideAndDontSave;
+                    instance = go.GetComponent<WorldManager>();
+                }
+                return instance;
             }
         }
 
@@ -43,12 +61,14 @@ namespace Antura.Environment
         public GameObject GetPrefab(WorldPrefabSet prefabSet, WorldID world)
         {
             if (world == WorldID.Default) {
-                if (prefabSet.defaultPrefab != null)
+                if (prefabSet.defaultPrefab != null) {
                     return prefabSet.defaultPrefab;
+                }
 
                 return prefabSet.worldPrefabs[0];
-            } else
+            } else {
                 return prefabSet.worldPrefabs[(int) world];
+            }
         }
 
         /// <summary>
@@ -63,26 +83,8 @@ namespace Antura.Environment
         {
             if (world == WorldID.Default) {
                 return set.defaultColor;
-            } else
+            } else {
                 return set.colors[(int) world];
-        }
-
-        /////////////////////
-        // Singleton Pattern
-        const string ResourceId = "Prefabs/Managers/WorldManager";
-
-        static WorldManager instance;
-
-        public static WorldManager I
-        {
-            get {
-                if (instance == null) {
-                    GameObject go = Instantiate(Resources.Load<GameObject>(ResourceId));
-                    go.name = "[WorldManager]";
-                    go.hideFlags = HideFlags.HideAndDontSave;
-                    instance = go.GetComponent<WorldManager>();
-                }
-                return instance;
             }
         }
     }

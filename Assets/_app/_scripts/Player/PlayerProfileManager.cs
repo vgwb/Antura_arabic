@@ -35,8 +35,9 @@ namespace Antura.Profile
                     AppManager.I.NavigationManager.InitPlayerNavigationData(_currentPlayer);
 
                     _currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
-                    if (OnProfileChanged != null)
+                    if (OnProfileChanged != null) {
                         OnProfileChanged();
+                    }
                 }
                 _currentPlayer = value;
             }
@@ -167,7 +168,7 @@ namespace Antura.Profile
             returnProfile.Tint = tint;
             returnProfile.IsDemoUser = isDemoUser;
             returnProfile.ProfileCompletion =
-                (isDemoUser ? ProfileCompletionState.GameCompletedAndFinalShowed : ProfileCompletionState.New);
+                isDemoUser ? ProfileCompletionState.GameCompletedAndFinalShowed : ProfileCompletionState.New;
 
             // DB Creation
             AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
@@ -179,8 +180,9 @@ namespace Antura.Profile
             RewardSystemManager.UnlockFirstSetOfRewards();
 
             // Call Event Profile creation
-            if (OnNewProfileCreated != null)
+            if (OnNewProfileCreated != null) {
                 OnNewProfileCreated();
+            }
 
             return returnProfile.Uuid;
         }
@@ -214,8 +216,9 @@ namespace Antura.Profile
             AppManager.I.StopAllCoroutines();
             // TODO: check if is necessary to hard delete DB
             PlayerIconData playerIconData = GetPlayersIconData().Find(p => p.Uuid == playerUUID);
-            if (playerIconData.Uuid == string.Empty)
+            if (playerIconData.Uuid == string.Empty) {
                 return null;
+            }
             // if setted as active player in gamesettings remove from it
             if (playerIconData.Uuid == AppManager.I.AppSettings.LastActivePlayerUUID) {
                 // if possible set the first available player...

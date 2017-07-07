@@ -11,7 +11,7 @@ namespace Antura.UI
     {
         public Image AvatarImg;
 
-        CanvasGroup cGroup;
+        private CanvasGroup cGroup;
 
         #region Unity
 
@@ -19,7 +19,9 @@ namespace Antura.UI
         {
             base.Awake();
 
-            if (cGroup == null) cGroup = this.gameObject.AddComponent<CanvasGroup>();
+            if (cGroup == null) {
+                cGroup = this.gameObject.AddComponent<CanvasGroup>();
+            }
         }
 
         #endregion
@@ -33,7 +35,9 @@ namespace Antura.UI
 
         public void SetInteractivity(bool _interactive)
         {
-            if (cGroup == null) cGroup = this.gameObject.AddComponent<CanvasGroup>();
+            if (cGroup == null) {
+                cGroup = this.gameObject.AddComponent<CanvasGroup>();
+            }
             cGroup.alpha = _interactive ? 1 : 0.3f;
             Bt.interactable = _interactive;
         }

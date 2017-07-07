@@ -9,15 +9,16 @@ namespace Antura.Environment
         GameObject instance;
 
 #if UNITY_EDITOR
-        WorldPrefabSet lastPrefabSet;
-        WorldID lastTestWorld = WorldID.Default;
+        private WorldPrefabSet lastPrefabSet;
+        private WorldID lastTestWorld = WorldID.Default;
         public WorldID testWorld;
 #endif
 
         void UpdatePrefab(GameObject prefab)
         {
-            foreach (Transform children in transform)
+            foreach (Transform children in transform) {
                 DestroyImmediate(children.gameObject);
+            }
 
             if (prefab != null) {
                 instance = Instantiate(prefab);

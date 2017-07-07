@@ -36,10 +36,11 @@ namespace Antura.Profile
         {
             get {
                 int secondAmount = AppManager.I.Teacher.logAI.SecondsFromLastMoodLog();
-                if (secondAmount > 86400)
+                if (secondAmount > 86400) {
                     return false;
-                else
+                } else {
                     return true;
+                }
             }
         }
 
@@ -205,7 +206,6 @@ namespace Antura.Profile
             }
             private set {
                 _currentAnturaCustomizations = value;
-                //jsonAnturaCustimizationData = _currentAnturaCustomizations.GetJsonListOfIds();
                 SaveCustomization();
             }
         }
@@ -375,8 +375,9 @@ namespace Antura.Profile
         public void SetRewardPackUnlockedToNotNew(string _rewardPackId)
         {
             RewardPackUnlockData rewardPackToUpdate = RewardsUnlocked.Find(r => r.Id == _rewardPackId && r.IsNew == true);
-            if (rewardPackToUpdate != null)
+            if (rewardPackToUpdate != null) {
                 rewardPackToUpdate.IsNew = false;
+            }
             AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackToUpdate);
         }
 
@@ -542,9 +543,7 @@ namespace Antura.Profile
 
         public bool HasFinalBeenShown()
         {
-            if (ProfileCompletion < ProfileCompletionState.GameCompletedAndFinalShowed)
-                return false;
-            return true;
+            return ProfileCompletion >= ProfileCompletionState.GameCompletedAndFinalShowed;
         }
 
         public void SetFinalShown()

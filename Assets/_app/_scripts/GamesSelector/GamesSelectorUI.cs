@@ -45,7 +45,6 @@ namespace Antura.GamesSelector
                 int unlockedRewards = RewardSystemManager.GetUnlockedRewardForPlaysession(AppManager.I.Player.CurrentJourneyPosition);
                 SetStars(unlockedRewards + 1);
             }
-            //            PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.PlaySession);
         }
 
         void PlayTutorialAudio()
@@ -56,7 +55,9 @@ namespace Antura.GamesSelector
 
         void SetStars(int _tot)
         {
-            if (_tot > 3) _tot = 3;
+            if (_tot > 3) {
+                _tot = 3;
+            }
             for (int i = 0; i < Stars.Length; ++i) {
                 GameObject star = Stars[i];
                 star.SetActive(i < _tot);
