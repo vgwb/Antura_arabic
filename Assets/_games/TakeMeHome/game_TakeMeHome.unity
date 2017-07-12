@@ -17511,12 +17511,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MiniGameCode: 31
-  Difficulty: 0.5
-  TutorialEnabled: 1
-  NumberOfRounds: 1
   Stage: 1
   LearningBlock: 1
   PlaySession: 1
+  Difficulty: 0.5
+  TutorialEnabled: 1
+  NumberOfRounds: 1
 --- !u!1001 &654160722
 Prefab:
   m_ObjectHideFlags: 0
@@ -42930,7 +42930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1331014603
 RectTransform:
   m_ObjectHideFlags: 0
