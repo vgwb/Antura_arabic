@@ -60,7 +60,8 @@ by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 - [Database Management](Modules/DatabaseManagement.md)
 
 ### API
-[DoxyGen class documentation](API/index.html)
+- [DoxyGen class documentation](API/index.html)
+- [How To regenerate DoxyGen docs](HowTo/APIDocsGeneration.html)
 
 ## Licensing
 Antura is licensed under the BSD 2-clause "Simplified" License and the Creative Commons Attribution 4.0 International.
