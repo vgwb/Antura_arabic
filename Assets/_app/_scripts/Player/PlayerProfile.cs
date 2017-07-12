@@ -186,6 +186,21 @@ namespace Antura.Profile
                    (CurrentJourneyPosition.PlaySession == MaxJourneyPosition.PlaySession);
         }
 
+        public void AdvanceCurrentStage()
+        {
+            CurrentJourneyPosition.Stage++;
+        }
+
+        public void RetractCurrentStage()
+        {
+            CurrentJourneyPosition.Stage--;
+        }
+
+        public bool IsAssessmentTime()
+        {
+            return AppManager.I.JourneyHelper.IsAssessmentTime(CurrentJourneyPosition);
+        }
+
         #endregion
 
         #region Antura Customization and Rewards
@@ -618,5 +633,6 @@ namespace Antura.Profile
         }
 
         #endregion
+
     }
 }

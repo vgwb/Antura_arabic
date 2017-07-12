@@ -12,7 +12,7 @@ namespace Antura.Map
     public class LetterMovement : MonoBehaviour
     {
         [Header("Stage")]
-        public Stage stageScript;
+        public StageMap stageScript;
 
         public FingerStage swipeScript;
 
@@ -185,7 +185,7 @@ namespace Antura.Map
 
         public void ResetPosLetter()
         {
-            if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100) //Letter is on a pin
+            if (AppManager.I.Player.IsAssessmentTime()) // Letter is on a pin
             {
                 MoveTo(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position);
                 stageScript.positionPin = stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>()

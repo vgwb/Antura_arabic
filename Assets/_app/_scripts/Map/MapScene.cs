@@ -21,7 +21,6 @@ namespace Antura.Map
 
         public void Play()
         {
-            // TODO refactor: move this initalisation to a better place, maybe inside the MiniGameLauncher.
             AppManager.I.NavigationManager.GoToNextScene();
         }
     }
