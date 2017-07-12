@@ -15,18 +15,20 @@ namespace Antura.Teacher
 
         private Database.WordDataCategory category;
         private QuestionBuilderParameters parameters;
+        private bool skipWordZero;
 
         public QuestionBuilderParameters Parameters
         {
             get { return this.parameters; }
         }
 
-        public OrderedWordsQuestionBuilder(Database.WordDataCategory category, QuestionBuilderParameters parameters = null)
+        public OrderedWordsQuestionBuilder(Database.WordDataCategory category, QuestionBuilderParameters parameters = null, bool skipWordZero = false)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
 
             this.category = category;
             this.parameters = parameters;
+            this.skipWordZero = skipWordZero;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -53,6 +55,8 @@ namespace Antura.Teacher
                     return x.Id.CompareTo(y.Id);
                 }
             );
+            if (skipWordZero) words.RemoveAt(0);
+
 
             if (ConfigAI.verboseQuestionPacks)
             {
