@@ -12,7 +12,7 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.0.7b6";
+        public const string AppVersion = "1.0.7";
 
         #region Debug Options
 
@@ -20,19 +20,19 @@ namespace Antura.Core
         /// Enabled the Advanced Debug Panel.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool DebugPanelEnabledAtStartup = true;
+        public static bool DebugPanelEnabledAtStartup = false;
 
         /// <summary>
         /// Tracks common events using Unity Analytics.
         /// Set to TRUE for production.
         /// </summary>
-        public static bool UnityAnalyticsEnabled = false;
+        public static bool UnityAnalyticsEnabled = true;
 
         /// <summary>
         /// Switches on all Debug.Log calls for performance.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool DebugLogEnabled = true;
+        public static bool DebugLogEnabled = false;
 
         /// <summary>
         /// Logs all MySQL database inserts.
