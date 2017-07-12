@@ -1,5 +1,22 @@
 var searchData=
 [
-  ['maxnumberofplayerprofiles',['MaxNumberOfPlayerProfiles',['../class_e_a4_s_1_1_profile_1_1_player_profile_manager.html#a87e2db7b188ccd6c37e2658012c1c3ee',1,'EA4S::Profile::PlayerProfileManager']]],
-  ['maxrewardsunlockableforplaysession',['MaxRewardsUnlockableForPlaysession',['../class_e_a4_s_1_1_rewards_1_1_reward_system_manager.html#af889d7872763d699257cad6ee3ef4548',1,'EA4S::Rewards::RewardSystemManager']]]
+  ['gamelauncher',['GameLauncher',['../class_antura_1_1_app_manager.html#a9483f430604951b3146a457b9b2d92a1',1,'Antura::AppManager']]],
+  ['gamespanel',['GamesPanel',['../class_antura_1_1_book_1_1_book_scene.html#acd85de6b09ede81f468fd6e5fbc0dc0f',1,'Antura::Book::BookScene']]],
+  ['gametimeupsprite',['gameTimeUpSprite',['../class_antura_1_1_u_i_1_1_widget_popup_window.html#ab221dd35eb22eb1ed5bed600bbe0ffb9',1,'Antura::UI::WidgetPopupWindow']]],
+  ['gender',['Gender',['../struct_antura_1_1_profile_1_1_player_icon_data.html#a458652ec5f666ffa43509fed744c63cf',1,'Antura.Profile.PlayerIconData.Gender()'],['../class_antura_1_1_profile_1_1_player_profile.html#a0fff251406a16807cec7f804fceaf468',1,'Antura.Profile.PlayerProfile.Gender()']]],
+  ['getmaxdata',['getMaxData',['../struct_antura_1_1_teacher_1_1_selection_parameters.html#a28ef431ab0454d58852eccf432216d41',1,'Antura::Teacher::SelectionParameters']]],
+  ['godray0',['Godray0',['../class_antura_1_1_rewards_1_1_endsession_result_panel.html#a6264dd6bfa7134765636c88304da7a9c',1,'Antura.Rewards.EndsessionResultPanel.Godray0()'],['../class_antura_1_1_rewards_1_1_rewards_animator.html#a17fb8d169829184ead4293d14b163e27',1,'Antura.Rewards.RewardsAnimator.Godray0()']]],
+  ['godrays360duration',['Godrays360Duration',['../class_antura_1_1_rewards_1_1_endsession_result_panel.html#af45e74d5ff50ed30577fd99a940b63fa',1,'Antura.Rewards.EndsessionResultPanel.Godrays360Duration()'],['../class_antura_1_1_rewards_1_1_rewards_animator.html#ac644c6fea493b83c559d17fb7f6ba2fa',1,'Antura.Rewards.RewardsAnimator.Godrays360Duration()']]],
+  ['godrayscanvas',['GodraysCanvas',['../class_antura_1_1_rewards_1_1_endsession_result_panel.html#a49b95954ab723fd8f59e3372d1c9abd3',1,'Antura::Rewards::EndsessionResultPanel']]],
+  ['graph',['Graph',['../class_antura_1_1_book_1_1_graph_journey.html#a381ad05450f7944b8d97225f87959ef2',1,'Antura.Book.GraphJourney.Graph()'],['../class_antura_1_1_book_1_1_graph_mood.html#a135c3c679eb60b0a5d4e6385246565e5',1,'Antura.Book.GraphMood.Graph()']]],
+  ['graphicsdeviceid',['graphicsDeviceID',['../class_antura_1_1_core_1_1_device_info.html#aee17e539377037c6cc9ebae26006b12b',1,'Antura::Core::DeviceInfo']]],
+  ['graphicsdevicename',['graphicsDeviceName',['../class_antura_1_1_core_1_1_device_info.html#acf8426ca28cc32376e446ec0f5566da7',1,'Antura::Core::DeviceInfo']]],
+  ['graphicsdevicetype',['graphicsDeviceType',['../class_antura_1_1_core_1_1_device_info.html#aaa7fcdd2b67f4b5f3e844c08fad0d89c',1,'Antura::Core::DeviceInfo']]],
+  ['graphicsdevicevendor',['graphicsDeviceVendor',['../class_antura_1_1_core_1_1_device_info.html#a53b7dd4c6cb44c7a9bc8e86bd7fb688f',1,'Antura::Core::DeviceInfo']]],
+  ['graphicsdevicevendorid',['graphicsDeviceVendorID',['../class_antura_1_1_core_1_1_device_info.html#a5ee5d0d9ed814e3903c817d86ca4f34a',1,'Antura::Core::DeviceInfo']]],
+  ['graphicsdeviceversion',['graphicsDeviceVersion',['../class_antura_1_1_core_1_1_device_info.html#a1dca58caeff92155756464c9779fc1ab',1,'Antura::Core::DeviceInfo']]],
+  ['graphicsmemorysize',['graphicsMemorySize',['../class_antura_1_1_core_1_1_device_info.html#a1186f5a1836e5a68b6ec031669ccf0c5',1,'Antura::Core::DeviceInfo']]],
+  ['graphicsmultithreaded',['graphicsMultiThreaded',['../class_antura_1_1_core_1_1_device_info.html#abc97154bb913d3edcbf2abbd6ededd84',1,'Antura::Core::DeviceInfo']]],
+  ['graphicsshaderlevel',['graphicsShaderLevel',['../class_antura_1_1_core_1_1_device_info.html#a19da86dc89a39f4e391660b50a4467fd',1,'Antura::Core::DeviceInfo']]],
+  ['green',['green',['../class_antura_1_1_living_letters_1_1_emoticons_animator.html#a2f2b9b72b12033cc671ce61ffebe83c5',1,'Antura::LivingLetters::EmoticonsAnimator']]]
 ];

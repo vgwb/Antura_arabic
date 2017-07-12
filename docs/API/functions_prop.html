@@ -9,13 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -50,20 +43,6 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('functions_prop.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -79,49 +58,96 @@ $(document).ready(function(){initNavTree('functions_prop.html','');});
 </div>
 
 <div class="contents">
-&#160;<ul>
-<li>AvailablePlayerProfiles
-: <a class="el" href="class_e_a4_s_1_1_profile_1_1_player_profile_manager.html#aeda4f5460c741ecc25bceaaa7cd3163d">EA4S.Profile.PlayerProfileManager</a>
+&#160;
+
+<h3><a id="index_a"></a>- a -</h3><ul>
+<li>ActionFeedback
+: <a class="el" href="class_antura_1_1_u_i_1_1_global_u_i.html#afd9570c8582329e8d3134083178a2738">Antura.UI.GlobalUI</a>
 </li>
-<li>CurrentPlayer
-: <a class="el" href="class_e_a4_s_1_1_profile_1_1_player_profile_manager.html#ab028d7d19853ba6de20401cbc652929e">EA4S.Profile.PlayerProfileManager</a>
+<li>Active
+: <a class="el" href="class_antura_1_1_database_1_1_letter_data.html#a5a5b409065fec7c6d4a78daafbc76d11">Antura.Database.LetterData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_phrase_data.html#a6fed4e48ec8d414260c2646e48e718f6">Antura.Database.PhraseData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_word_data.html#a93432356e3a18c05ba4d66842b588c45">Antura.Database.WordData</a>
 </li>
-<li>DrawForLivingLetter
-: <a class="el" href="class_e_a4_s_1_1_minigames_a_p_i_1_1_l_l___image_data.html#a6fe38df94f16756b6e88f95662e3bcf1">EA4S.MinigamesAPI.LL_ImageData</a>
-, <a class="el" href="class_e_a4_s_1_1_minigames_a_p_i_1_1_l_l___phrase_data.html#a0b5ae569f919a4dc9e6afa7a25bce41a">EA4S.MinigamesAPI.LL_PhraseData</a>
-, <a class="el" href="class_e_a4_s_1_1_minigames_a_p_i_1_1_l_l___word_data.html#ab1511da0cf87dbb831f202188d55d35b">EA4S.MinigamesAPI.LL_WordData</a>
+<li>AdditionalData
+: <a class="el" href="class_antura_1_1_database_1_1_log_info_data.html#a600fe03f32c95e149fa62cb869c4d103">Antura.Database.LogInfoData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_log_play_data.html#a52e72be31db024a8e45f4d3d16863e18">Antura.Database.LogPlayData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_player_profile_data.html#a68a3ada9c56b1d7a6caced5a786a889a">Antura.Database.PlayerProfileData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_reward_pack_unlock_data.html#a35d0645e34bd88fd306bb855189a8196">Antura.Database.RewardPackUnlockData</a>
 </li>
-<li>DrawingCharForLivingLetter
-: <a class="el" href="interface_e_a4_s_1_1_minigames_a_p_i_1_1_i_living_letter_data.html#a55aa61f162bec0ef6b381acef9a62c71">EA4S.MinigamesAPI.ILivingLetterData</a>
+<li>AffectedPlaySkills
+: <a class="el" href="class_antura_1_1_database_1_1_mini_game_data.html#a5b40f602c28836d02953c86ed613447e">Antura.Database.MiniGameData</a>
 </li>
-<li>FirstContactPassed
-: <a class="el" href="class_e_a4_s_1_1_debugging_1_1_debug_manager.html#ab3ee99c073253a2139197345f01d7e9f">EA4S.Debugging.DebugManager</a>
+<li>AffectedPlaySkills_list
+: <a class="el" href="class_antura_1_1_database_1_1_mini_game_data.html#a057d76d4198bb4b04d6b5a2b33559ed8">Antura.Database.MiniGameData</a>
 </li>
-<li>Id
-: <a class="el" href="interface_e_a4_s_1_1_minigames_a_p_i_1_1_i_living_letter_data.html#a2299683abf54a614e27b41c865081b9f">EA4S.MinigamesAPI.ILivingLetterData</a>
+<li>Age
+: <a class="el" href="class_antura_1_1_database_1_1_player_profile_data.html#aa07b894310b21e1b95da34f3a3eabe44">Antura.Database.PlayerProfileData</a>
 </li>
-<li>MakeFriendsUseDifficulty
-: <a class="el" href="class_s_r_options.html#a1081639bb988084f461d6ae6a1687df5">SROptions</a>
+<li>AllContents
+: <a class="el" href="class_antura_1_1_teacher_1_1_progression_vocabulary_contents.html#a3d368d679fe8f026e2786e109111dda8">Antura.Teacher.ProgressionVocabularyContents</a>
 </li>
-<li>Session
-: <a class="el" href="class_e_a4_s_1_1_core_1_1_log_manager.html#a5e740282a14cebcd4e4b9a35c6961b3e">EA4S.Core.LogManager</a>
+<li>Alpha
+: <a class="el" href="class_antura_1_1_u_i_1_1_text_render.html#a7c98f18f8b231f8a3e82645181817a76">Antura.UI.TextRender</a>
 </li>
-<li>TextForLivingLetter
-: <a class="el" href="interface_e_a4_s_1_1_minigames_a_p_i_1_1_i_living_letter_data.html#a4b2987257c9273c110cb756c407bed63">EA4S.MinigamesAPI.ILivingLetterData</a>
-, <a class="el" href="class_e_a4_s_1_1_minigames_a_p_i_1_1_l_l___image_data.html#a72a1d79f0d57a04061f0665a9f18239d">EA4S.MinigamesAPI.LL_ImageData</a>
-, <a class="el" href="class_e_a4_s_1_1_minigames_a_p_i_1_1_l_l___phrase_data.html#a30ee8d897c781c9373bd62020417f82c">EA4S.MinigamesAPI.LL_PhraseData</a>
-, <a class="el" href="class_e_a4_s_1_1_minigames_a_p_i_1_1_l_l___word_data.html#a9a2e2a5ca52417e67be49d53a0335906">EA4S.MinigamesAPI.LL_WordData</a>
+<li>Answers
+: <a class="el" href="class_antura_1_1_database_1_1_phrase_data.html#aea6be0f1aa4518936c9f07347debf487">Antura.Database.PhraseData</a>
+</li>
+<li>Answers_list
+: <a class="el" href="class_antura_1_1_database_1_1_phrase_data.html#ada910f2c99105cfd28a84a763e293e11">Antura.Database.PhraseData</a>
+</li>
+<li>antura
+: <a class="el" href="class_antura_1_1_intro_1_1_intro_strolling_letter.html#a14ae4c238f6c7927db2eb967efa55c49">Antura.Intro.IntroStrollingLetter</a>
+</li>
+<li>AnturaHappiness
+: <a class="el" href="class_antura_1_1_antura_space_1_1_antura_space_scene.html#a4ba03edcfdead9b3986c8a6cb6990479">Antura.AnturaSpace.AnturaSpaceScene</a>
+</li>
+<li>AppSession
+: <a class="el" href="class_antura_1_1_core_1_1_log_manager.html#ab64191a7fc6af681b1597db8fd28493c">Antura.Core.LogManager</a>
+, <a class="el" href="class_antura_1_1_database_1_1_log_info_data.html#a36e0588e93111744e6b6f0207be06207">Antura.Database.LogInfoData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_log_mini_game_score_data.html#a2c36a4fd79ad87965ec09ef9ac24e291">Antura.Database.LogMiniGameScoreData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_log_mood_data.html#a827d664f971cb987e65b1aa87a27e96f">Antura.Database.LogMoodData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_log_play_data.html#a0e91aecb3d9bf1cdc61f182eaba88186">Antura.Database.LogPlayData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_log_play_session_score_data.html#a78aec3e8d9000f278533dfe4344aaf37">Antura.Database.LogPlaySessionScoreData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_log_vocabulary_score_data.html#aa2c9f27ff07403b4216c1b7718ad79c5">Antura.Database.LogVocabularyScoreData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_reward_pack_unlock_data.html#a7d3d490ea9caccfe425b71b5d64fee78">Antura.Database.RewardPackUnlockData</a>
+</li>
+<li>AppSettings
+: <a class="el" href="class_antura_1_1_app_manager.html#ab7c944a32abbc39d4620bee323b3ef06">Antura.AppManager</a>
+</li>
+<li>Arabic
+: <a class="el" href="class_antura_1_1_database_1_1_localization_data.html#a7b1f8016330020d3b93d03ee4357e269">Antura.Database.LocalizationData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_phrase_data.html#a2afb6c0348603d384660004123e8946f">Antura.Database.PhraseData</a>
+, <a class="el" href="class_antura_1_1_database_1_1_word_data.html#ac6e02bc89eddaeaf7bd91129c8f77b5d">Antura.Database.WordData</a>
+</li>
+<li>ArabicFemale
+: <a class="el" href="class_antura_1_1_database_1_1_localization_data.html#ab3face8101ab302db2dcf0f1411390cc">Antura.Database.LocalizationData</a>
+</li>
+<li>Area
+: <a class="el" href="class_antura_1_1_database_1_1_localization_data.html#aa5b6cc8ba41c0f884f276f5be0d977c0">Antura.Database.LocalizationData</a>
+</li>
+<li>Article
+: <a class="el" href="class_antura_1_1_database_1_1_word_data.html#ab5ea423a44c45801a81939121a34a951">Antura.Database.WordData</a>
+</li>
+<li>AudioFile
+: <a class="el" href="class_antura_1_1_database_1_1_localization_data.html#a30137e6f552fd12bfa6a5deb53c06ed6">Antura.Database.LocalizationData</a>
+</li>
+<li>AutoCorrectJourneyPos
+: <a class="el" href="class_antura_1_1_debugging_1_1_debug_panel.html#a5bbd6d0c19589a7a8f7ff32793899ac4">Antura.Debugging.DebugPanel</a>
+</li>
+<li>Available
+: <a class="el" href="class_antura_1_1_database_1_1_mini_game_data.html#a8d5007dc01cd808ac3d52ed2b99b2a94">Antura.Database.MiniGameData</a>
+</li>
+<li>AvatarId
+: <a class="el" href="class_antura_1_1_database_1_1_player_profile_data.html#a02486a8231113d7c3e99ccbbd2ec32b8">Antura.Database.PlayerProfileData</a>
 </li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>
