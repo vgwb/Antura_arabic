@@ -48,14 +48,16 @@ namespace Antura.Map
         //public int maxNumberOfStages;
         //private int maxUnlockedStage;
         //private int i;
-        private int previousStage;
+        //private int previousStage;
         private bool inTransition;
         private static int firstContactSimulationStep;
         private GameObject tutorial;
 
         #region Properties
 
-        private int CurrentStage
+        private int shownStage;  // Current stage shown for the map. 
+
+        private int CurrentPlayerStage    // @note: this may be different than shownStage as you can preview the next stages
         {
             get { return AppManager.I.Player.CurrentJourneyPosition.Stage; }
         }
@@ -89,22 +91,27 @@ namespace Antura.Map
 
         public bool IsAtFirstStage
         {
-            get { return CurrentStage == 1; }
+            get { return shownStage == 1; }
         }
 
         private bool IsAtMaxUnlockedStage
         {
-            get { return CurrentStage == MaxUnlockedStage; }
+            get { return shownStage == MaxUnlockedStage; }
         }
 
         public bool IsAtFinalStage
         {
-            get { return CurrentStage == FinalStage; }
+            get { return shownStage == FinalStage; }
         }
 
-        private bool IsCurrentStageAvailableForPlay
+        private bool IsShownStagePlayable
         {
-            get { return CurrentStage >= MaxUnlockedStage; }
+            get { return shownStage <= MaxUnlockedStage; }
+        }
+
+        private bool IsStagePlayable(int stage)
+        {
+           return stage <= MaxUnlockedStage;
         }
 
         #endregion
@@ -114,8 +121,10 @@ namespace Antura.Map
             if (!Application.isEditor)
                 SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
 
+            shownStage = CurrentPlayerStage;
+
             //maxNumberOfStages = AppConstants.MaximumStage;
-           // currentStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
+            // currentStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
             //maxUnlockedStage = AppManager.I.Player.MaxJourneyPosition.Stage;
 
             //int nUnlockedStages;
@@ -124,9 +133,11 @@ namespace Antura.Map
                 nUnlockedStages = MaxUnlockedStage;
             }*/
             //else nUnlockedStages = MaxUnlockedStage - 1;
+
+            // Setup stage availability
             for (int i = 0; i < MaxUnlockedStage; i++)
             {
-                stageMaps[i].gameObject.SetActive(false);
+                stageMaps[i].Hide();
                 stageMaps[i].isAvailableTheWholeMap = true;
                 stageMaps[i].CalculateStepsStage();
             }
@@ -135,15 +146,22 @@ namespace Antura.Map
                 stageMaps[MaxUnlockedStage].CalculateStepsStage();
             }
 
-            StageMap(CurrentStage).gameObject.SetActive(true);
-            Camera.main.backgroundColor = StageColor(CurrentStage);
-            Camera.main.GetComponent<CameraFog>().color = StageColor(CurrentStage);
-            letter.GetComponent<LetterMovement>().stageScript = StageMap(CurrentStage);
+            // Show the current stage
+            TeleportToShownStage(shownStage);
+            UpdateButtonsForStage(shownStage);
 
             StartCoroutine("ResetPosLetterCO");
 
-            UpdateStageIndicator();
+            UpdateStageIndicatorUI();
         }
+
+        private IEnumerator ResetPosLetterCO()
+        {
+            yield return new WaitForSeconds(0.2f);
+            // TODO: letter.GetComponent<LetterMovement>().ResetPosLetter();
+            letter.SetActive(true);
+        }
+
 
         private void Start()
         {
@@ -155,7 +173,7 @@ namespace Antura.Map
             }
             /* --------------------- */
 
-            UpdateStageButtons();
+            UpdateStageButtonsUI();
 
             var isGameCompleted = AppManager.I.Player.HasFinalBeenShown();
             if (!isGameCompleted && WillPlayAssessmentNext())
@@ -176,12 +194,6 @@ namespace Antura.Map
         private void OnDestroy()
         {
             StopAllCoroutines();
-        }
-
-        private void UpdateStageIndicator()
-        {
-            // Debug.Log("UpdateStageIndicator " + currentStageNumber + "/" + maxNumberOfStages);
-            mapStageIndicator.Init(CurrentStage - 1, FinalStage);
         }
 
         #region Dialogs
@@ -302,26 +314,30 @@ namespace Antura.Map
             if (inTransition) return;
             if (IsAtFinalStage) return;
 
-            previousStage = CurrentStage;
-            AppManager.I.Player.AdvanceCurrentStage();
+            int fromStage = shownStage;
+            int toStage = shownStage + 1;
+
+            shownStage = toStage;
 
             InitialiseStageSwitch();
 
-            if (CurrentStage <= MaxUnlockedStage &&
-                previousStage != CurrentStage)
-            {
-                // TODO: did we advance the stage?
-                //AppManager.I.Player.CurrentJourneyPosition.Stage++;
-                ChangeStage();
-            }
-            else
-            {
-                // TODO: stage was not available!
-                StageNotAvailable();
-            }
-            UpdateStageIndicator();
+            //if (toStage <= MaxUnlockedStage)// && previousStage != CurrentPlayerStage)
+            // {
+            // We also actually move the Player's logic
+            //AppManager.I.Player.AdvanceCurrentStage();
+            //ChangeStage();
+            // }
+            //   else
+            //  {
+            // Preview (stage not available)
+            // This is just a visual preview
+            // TODO: stage was not available!
+            //StageNotAvailable();
+            // }
 
-            StartCoroutine("DeactivatePreviousMapCO");
+            UpdateStageIndicatorUI();
+            SwitchFromToStage(fromStage, toStage);
+
             HideTutorial();
         }
 
@@ -333,28 +349,36 @@ namespace Antura.Map
             if (inTransition) return;
             if (IsAtFirstStage) return;
 
-            previousStage = CurrentStage;
-            // TODO: CurrentStage--;
+            //previousStage = CurrentPlayerStage;
+
+            int fromStage = shownStage;
+            int toStage = shownStage - 1;
+
             InitialiseStageSwitch();
 
-            if (CurrentStage <= MaxUnlockedStage &&
-                AppManager.I.Player.CurrentJourneyPosition.Stage != CurrentStage)
-            {
-                AppManager.I.Player.RetractCurrentStage();
-                ChangeStage();
-            }
-            else if (AppManager.I.Player.CurrentJourneyPosition.Stage == CurrentStage)
-            {
-                //lockUI.SetActive(false);
-                letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
-                //isStageAvailable = false;
-            }
-            else
+           // AppManager.I.Player.RetractCurrentStage();
+            shownStage = toStage;
+
+            //if (toStage <= MaxUnlockedStage)    // CANNOT NOT BE THIS!
+            // {
+            // OK
+            //ChangeStage();
+            // }
+            //else if (AppManager.I.Player.CurrentJourneyPosition.Stage == CurrentPlayerStage)
+            //{
+            // NO!
+
+            //lockUI.SetActive(false);
+            // TODO: letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
+            //isStageAvailable = false;
+            //}
+            /*else
             {
                 StageNotAvailable();
-            }
-            UpdateStageIndicator();
-            StartCoroutine("DeactivatePreviousMapCO");
+            }*/
+
+            UpdateStageIndicatorUI();
+            SwitchFromToStage(fromStage, toStage);
 
             /*
             TODO: how to do this?
@@ -366,81 +390,108 @@ namespace Antura.Map
 
         private void InitialiseStageSwitch()
         {
-            //DeactiveUIButtonsDuringTransition();
+            //previousStage = CurrentPlayerStage;
+            //ToggleUIButtonsShow();
 
-            inTransition = true;
+            //SwitchToStage(CurrentPlayerStage);
 
-            StageMap(CurrentStage).gameObject.SetActive(true);
-
-            SwitchToCamera(CurrentStage);
-
-            UpdateStageButtons();
-
-            //lockUI.SetActive(true);
+            UpdateStageButtonsUI();
         }
 
         private void ChangeStage()
         {
+            // TODO: 
+            /*
             // We just switched the pos pin
             //isStageAvailable = false;
-            letter.GetComponent<LetterMovement>().stageScript = StageMap(CurrentStage);
+            letter.GetComponent<LetterMovement>().stageScript = StageMap(CurrentPlayerStage);
             letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
             //lockUI.SetActive(false);
             letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
+            */
         }
 
-        private void StageNotAvailable()
+        private void UpdateButtonsForStage(int stage)
         {
-            //isStageAvailable = true;
-
-            playButton.SetActive(false);
-            nextPlaySessionButton.SetActive(false);
-            beforePlaySessionButton.SetActive(false);
+            bool playable = IsStagePlayable(stage);
+            playButton.SetActive(playable);
+            nextPlaySessionButton.SetActive(playable);
+            beforePlaySessionButton.SetActive(playable);
+            lockUI.SetActive(!playable);
         }
 
-        private IEnumerator ResetPosLetterCO()
+        private void SwitchFromToStage(int fromStage, int toStage)
         {
-            yield return new WaitForSeconds(0.2f);
-            // TODO: letter.GetComponent<LetterMovement>().ResetPosLetter();
-            letter.SetActive(true);
-            CameraGameplayController.I.transform.position = StageCameraPivot(CurrentStage).position;
+            inTransition = true;  
+            StartCoroutine(SwitchFromToStageCO(fromStage, toStage));
         }
 
-
-        private IEnumerator DeactivatePreviousMapCO()
+        private IEnumerator SwitchFromToStageCO(int fromStage, int toStage)
         {
-            yield return new WaitForSeconds(0.005f);
-            DeactiveUIButtonsDuringTransition();
+            Debug.Log("Switch from " + fromStage + " to " + toStage);
 
+            HidePlaySessionMovementButtons();
+
+            // Animate the switch
+            AnimateToShownStage(toStage);
             yield return new WaitForSeconds(0.8f);
 
-            playButton.SetActive(IsCurrentStageAvailableForPlay);
+            // Update Player Stage too if needed
+            if (IsStagePlayable(shownStage))
+            {
+                AppManager.I.Player.CurrentJourneyPosition.Stage = shownStage;
+            }
 
-            DeactiveUIButtonsDuringTransition();
-            //yield return new WaitForSeconds(0.3f);
+            // Show the new stage
+            UpdateButtonsForStage(shownStage);
+            ShowPlaySessionMovementButtons();
 
-            StageMap(previousStage).gameObject.SetActive(false);
+            // Hide the last stage
+            StageMap(fromStage).Hide();
 
+            // End transition
             inTransition = false;
+
+            Debug.Log("We are at stage " + shownStage + ". Player current is " + CurrentPlayerStage);
         }
 
         #endregion
 
         #region Camera
 
-        private void SwitchToCamera(int stage)
+        private void TeleportToShownStage(int stage)
         {
+            // SwitchToStage(CurrentPlayerStage);
+            StageMap(stage).Show();
+            var pivot = StageCameraPivot(stage);
+            CameraGameplayController.I.transform.position = pivot.position;
+            CameraGameplayController.I.transform.rotation = pivot.rotation;
+            Camera.main.backgroundColor = StageColor(stage);
+            Camera.main.GetComponent<CameraFog>().color = StageColor(stage);
+            letter.GetComponent<LetterMovement>().stageScript = StageMap(stage);
+        }
+
+        private void AnimateToShownStage(int stage)
+        {
+            Debug.Log("Animating to stage " + stage);
+            StageMap(stage).Show();
             var pivot = StageCameraPivot(stage);
             CameraGameplayController.I.MoveToPosition(pivot.position, pivot.rotation, 0.6f);
-            Camera.main.DOColor(StageColor(CurrentStage), 1);
-            Camera.main.GetComponent<CameraFog>().color = StageColor(CurrentStage);
+            Camera.main.DOColor(StageColor(stage), 1);
+            Camera.main.GetComponent<CameraFog>().color = StageColor(stage);
         }
 
         #endregion
 
         #region UI Activation
 
-        private void UpdateStageButtons()
+        private void UpdateStageIndicatorUI()
+        {
+            // Debug.Log("UpdateStageIndicatorUI " + currentStageNumber + "/" + maxNumberOfStages);
+            mapStageIndicator.Init(shownStage - 1, FinalStage);
+        }
+
+        private void UpdateStageButtonsUI()
         {
             if (IsAtFirstStage)
             {
@@ -455,11 +506,17 @@ namespace Antura.Map
                 rightStageButton.SetActive(true);
                 leftStageButton.SetActive(true);
             }
+
         }
 
-        private void DeactiveUIButtonsDuringTransition()
+        private void ShowPlaySessionMovementButtons()
         {
-            uiButtonMovementPlaySession.SetActive(!uiButtonMovementPlaySession.activeSelf);
+            uiButtonMovementPlaySession.SetActive(true);
+        }
+
+        private void HidePlaySessionMovementButtons()
+        {
+            uiButtonMovementPlaySession.SetActive(!false);
         }
 
         private IEnumerator DeactivateButtonWithDelay(GameObject button)

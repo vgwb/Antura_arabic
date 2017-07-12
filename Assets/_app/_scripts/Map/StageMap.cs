@@ -25,10 +25,12 @@ namespace Antura.Map
         public GameObject[] ropes;
 
         [Header("Stage")]
-        public bool isAvailableTheWholeMap;
 
         public int numberStage;
         public bool isTheBeginningNewStage;
+
+        [HideInInspector]
+        public bool isAvailableTheWholeMap;
 
         [Header("PlayerPin")]
         public List<GameObject> positionsPlayerPin = new List<GameObject>(); //All positions Pin can take over the map: dots and pins
@@ -240,5 +242,19 @@ namespace Antura.Map
         {
             return AppManager.I.DB.FindPlaySessionData(x => x.Stage == _stage);
         }
+
+        #region Show / Hide
+
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+        }
+
+        #endregion
     }
 }

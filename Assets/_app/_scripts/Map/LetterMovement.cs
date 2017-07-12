@@ -34,7 +34,7 @@ namespace Antura.Map
             Floating();
 
             if (!AppManager.I.Player.IsFirstContact()) {
-                AmIFirstorLastPos();
+            // TODO:    AmIFirstorLastPos();
             }
         }
 
