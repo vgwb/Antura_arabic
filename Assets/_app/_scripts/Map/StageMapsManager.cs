@@ -20,9 +20,9 @@ namespace Antura.Map
         [Header("Debug")] public bool SimulateFirstContact;
 
         [Header("Settings")]
-        public Color[] colorMaps;
+        // public Color[] colorMaps;
         public StageMap[] stageMaps;
-        public Transform[] cameraPivots;
+       // public Transform[] cameraPivots;
 
         public GameObject letter;
 
@@ -78,13 +78,13 @@ namespace Antura.Map
         // TODO: move to the StageMape class
         private Color StageColor(int Stage)
         {
-            return colorMaps[Stage - 1];
+            return StageMap(Stage).color;
         }
 
         // TODO: move to the StageMape class
         private Transform StageCameraPivot(int Stage)
         {
-            return cameraPivots[Stage - 1];
+            return StageMap(Stage).cameraPivot;
         }
 
         public bool IsAtFirstStage
@@ -401,7 +401,7 @@ namespace Antura.Map
         private IEnumerator ResetPosLetterCO()
         {
             yield return new WaitForSeconds(0.2f);
-            letter.GetComponent<LetterMovement>().ResetPosLetter();
+            // TODO: letter.GetComponent<LetterMovement>().ResetPosLetter();
             letter.SetActive(true);
             CameraGameplayController.I.transform.position = StageCameraPivot(CurrentStage).position;
         }
@@ -433,7 +433,7 @@ namespace Antura.Map
             var pivot = StageCameraPivot(stage);
             CameraGameplayController.I.MoveToPosition(pivot.position, pivot.rotation, 0.6f);
             Camera.main.DOColor(StageColor(CurrentStage), 1);
-            Camera.main.GetComponent<CameraFog>().color = colorMaps[stage];
+            Camera.main.GetComponent<CameraFog>().color = StageColor(CurrentStage);
         }
 
         #endregion

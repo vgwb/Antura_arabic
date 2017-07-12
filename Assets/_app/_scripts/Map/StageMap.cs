@@ -6,6 +6,10 @@ namespace Antura.Map
 {
     public class StageMap : MonoBehaviour
     {
+
+        public Color color;
+        public Transform cameraPivot;
+
         [Header("Pines")]
         public GameObject[] pines;
 

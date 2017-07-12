@@ -1,11 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-using Antura;
-using System.Collections.Generic;
 using Antura.Core;
 using DG.Tweening;
-using Antura.Map;
 
 namespace Antura.Map
 {
