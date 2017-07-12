@@ -21,6 +21,7 @@
         AnturaCustomization = 51,
         AnturaSpace = 60,
     }
+
     /// <summary>
     /// Defines a type of play-related skill that may be measured.
     /// Used for logging.

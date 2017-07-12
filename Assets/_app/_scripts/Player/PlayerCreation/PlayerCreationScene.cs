@@ -6,7 +6,6 @@ namespace Antura.Scenes
 {
     public class PlayerCreationScene : SceneBase
     {
-
         protected override void Start()
         {
         }
@@ -18,6 +17,5 @@ namespace Antura.Scenes
             LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new DeviceInfo()));
             AppManager.I.NavigationManager.GoToNextScene();
         }
-
     }
 }

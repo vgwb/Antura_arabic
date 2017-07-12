@@ -11,8 +11,10 @@ namespace Antura.Rewards
     public class EndsessionAchievement : MonoBehaviour
     {
         public Color LockedColor = Color.red;
+
         [Header("References")]
         public Transform Star;
+
         public Image RewardBg;
         public RawImage Reward;
         public Image Lock;
@@ -41,7 +43,8 @@ namespace Antura.Rewards
                 achieveRewardTween = DOTween.Sequence().SetAutoKill(false).Pause()
                     .InsertCallback(0.2f, () => Lock.sprite = UnlockedSprite)
                     .Join(Lock.transform.DOPunchScale(Vector3.one * 1.3f, 0.2f))
-                    .Insert(0.4f, Lock.transform.DOScale(0.0001f, 0.25f).SetEase(Ease.InQuad).OnComplete(() => Lock.gameObject.SetActive(false)))
+                    .Insert(0.4f,
+                        Lock.transform.DOScale(0.0001f, 0.25f).SetEase(Ease.InQuad).OnComplete(() => Lock.gameObject.SetActive(false)))
                     .Join(Lock.transform.DORotate(new Vector3(0, 0, 220), 0.25f, RotateMode.FastBeyond360))
                     .Join(RewardBg.DOColor(defColor, 0.25f).SetEase(Ease.Linear));
             }

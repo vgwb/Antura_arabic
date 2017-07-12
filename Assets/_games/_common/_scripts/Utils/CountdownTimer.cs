@@ -8,17 +8,18 @@
     {
         public event System.Action onTimesUp;
 
-        float time = 0;
+        private float time;
         public bool IsRunning { get; private set; }
         public float Duration { get; private set; }
-        public float CurrentPercentage { get { return Time / Duration; } }
+
+        public float CurrentPercentage
+        {
+            get { return Time / Duration; }
+        }
 
         public float Time
         {
-            get
-            {
-                return time;
-            }
+            get { return time; }
         }
 
         public void Start()
@@ -53,17 +54,16 @@
 
         public void Update(float delta)
         {
-            if (IsRunning)
-            {
+            if (IsRunning) {
                 time -= delta;
 
-                if (time <= 0)
-                {
+                if (time <= 0) {
                     time = 0;
                     Stop();
 
-                    if (onTimesUp != null)
+                    if (onTimesUp != null) {
                         onTimesUp();
+                    }
                 }
             }
         }

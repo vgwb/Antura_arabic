@@ -7,8 +7,10 @@ namespace Antura.Tutorial
     public class TutorialUILineGroup : MonoBehaviour
     {
         public float MinPointsDistance = 0.1f;
+
         // Serialized because fucking Unity doesn't have a GetWidths method for LineRenderers
         public LineRenderer[] Lines;
+
         public float[] DefStartWidths, DefEndWidths;
 
         readonly List<Vector3> wps = new List<Vector3>();

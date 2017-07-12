@@ -14,11 +14,13 @@ namespace Antura.MinigamesCommon
     public class MinigamesLogManager : ILogManager
     {
         #region Runtime variables
-        string sessionName;
-        MiniGameCode miniGameCode;
 
-        List<ILivingLetterAnswerData> logLearnBuffer = new List<ILivingLetterAnswerData>();
-        List<LogAI.PlayResultParameters> logPlayBuffer = new List<LogAI.PlayResultParameters>();
+        private string sessionName;
+        private MiniGameCode miniGameCode;
+
+        private List<ILivingLetterAnswerData> logLearnBuffer = new List<ILivingLetterAnswerData>();
+        private List<LogAI.PlayResultParameters> logPlayBuffer = new List<LogAI.PlayResultParameters>();
+
         #endregion
 
         #region Initialization
@@ -40,7 +42,9 @@ namespace Antura.MinigamesCommon
         /// <param name="_isPositiveResult"></param>
         public void OnAnswered(ILivingLetterData _data, bool _isPositiveResult)
         {
-            if (AppConstants.DebugLogDbInserts) Debug.Log("pre-log OnAnswer " + _data.Id + " " + _isPositiveResult);
+            if (AppConstants.DebugLogDbInserts) {
+                Debug.Log("pre-log OnAnswer " + _data.Id + " " + _isPositiveResult);
+            }
             ILivingLetterAnswerData newILivingLetterAnswerData = new ILivingLetterAnswerData();
             newILivingLetterAnswerData._data = _data;
             newILivingLetterAnswerData._isPositiveResult = _isPositiveResult;
@@ -56,7 +60,7 @@ namespace Antura.MinigamesCommon
             FlushLogLearn();
             //FlushLogPlay();   // Unless minigames can directly log play skills, this is not needed
             LogManager.I.LogMinigameScore(sessionName, miniGameCode, _valuation);
-       }
+        }
 
         /*
         /// <summary>
@@ -78,6 +82,7 @@ namespace Antura.MinigamesCommon
         #endregion
 
         #region Gameplay        
+
         /// <summary>
         /// Bufferizes the log play data.
         /// @note: deprecated (unless we re-add minigame direct logplay logging)
@@ -87,6 +92,7 @@ namespace Antura.MinigamesCommon
         {
             logPlayBuffer.Add(_playResultParameters);
         }
+
         /// <summary>
         /// Flushes the log play to app teacher log intellingence.
         /// @note: deprecated (unless we re-add minigame direct logplay logging)
@@ -95,9 +101,11 @@ namespace Antura.MinigamesCommon
         {
             LogManager.I.LogPlay(sessionName, miniGameCode, logPlayBuffer);
         }
+
         #endregion
 
         #region Learn        
+
         /// <summary>
         /// Bufferizes the log learn data.
         /// </summary>
@@ -123,19 +131,16 @@ namespace Antura.MinigamesCommon
                 logLearnBuffer.Add(lp);
             }*/
 
-            foreach (var l in logLearnBuffer)
-            {
+            foreach (var l in logLearnBuffer) {
                 if (l._data == null) continue;
 
                 LogAI.LearnResultParameters resultsData = null;
-                if (!resultsDict.ContainsKey(l._data.Id))
-                {
+                if (!resultsDict.ContainsKey(l._data.Id)) {
                     resultsData = new LogAI.LearnResultParameters();
                     resultsData.elementId = l._data.Id;
                     resultsDict[l._data.Id] = resultsData;
 
-                    switch (l._data.DataType)
-                    {
+                    switch (l._data.DataType) {
                         case LivingLetterDataType.Letter:
                             resultsData.dataType = Database.VocabularyDataType.Letter;
                             break;
@@ -161,19 +166,21 @@ namespace Antura.MinigamesCommon
             var resultsList = resultsDict.Values.ToList();
             LogManager.I.LogLearn(sessionName, miniGameCode, resultsList);
         }
+
         #endregion
 
         #region Journey Scores
 
-
-
         #endregion
 
         #region Mood
+
         // direct into API
+
         #endregion
 
         #region internal data structures and interfaces
+
         interface IBufferizableLog
         {
             string CachedType { get; }
@@ -181,10 +188,15 @@ namespace Antura.MinigamesCommon
 
         struct ILivingLetterAnswerData : IBufferizableLog
         {
-            public string CachedType { get { return "ILivingLetterAnswerData"; } }
+            public string CachedType
+            {
+                get { return "ILivingLetterAnswerData"; }
+            }
+
             public ILivingLetterData _data;
             public bool _isPositiveResult;
         }
+
         #endregion
     }
 }

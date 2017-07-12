@@ -47,8 +47,7 @@ namespace Antura.Book
 
         void activatePanel(BookArea panel, bool status)
         {
-            switch (panel)
-            {
+            switch (panel) {
                 case BookArea.MiniGames:
                     //AudioManager.I.PlayDialog("Book_Games");
                     MinigamesPanel();
@@ -61,8 +60,7 @@ namespace Antura.Book
             emptyContainer(ElementsContainer);
 
             var mainMiniGamesList = MiniGamesUtilities.GetMainMiniGameList();
-            foreach (var game in mainMiniGamesList)
-            {
+            foreach (var game in mainMiniGamesList) {
                 btnGO = Instantiate(MinigameItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
                 btnGO.GetComponent<ItemMainMiniGame>().Init(this, game);
@@ -76,8 +74,7 @@ namespace Antura.Book
             //    t.GetComponent<ItemMainMiniGame>().Select(selectedGameInfo);
             //}
 
-            if (selectedGameInfo == null)
-            {
+            if (selectedGameInfo == null) {
                 currentMiniGame = null;
                 ArabicText.text = "";
                 EnglishText.text = "";
@@ -102,13 +99,11 @@ namespace Antura.Book
             //ScoreText.text = Output;
 
             // Launch button
-            if (!AppManager.I.NavigationManager.PrevSceneIsReservedArea() && (selectedGameInfo.unlocked || AppManager.I.Player.IsDemoUser))
-            {
+            if (!AppManager.I.NavigationManager.PrevSceneIsReservedArea() &&
+                (selectedGameInfo.unlocked || AppManager.I.Player.IsDemoUser)) {
                 LaunchGameButton.gameObject.SetActive(true);
                 LaunchGameButton.interactable = true;
-            }
-            else
-            {
+            } else {
                 LaunchGameButton.gameObject.SetActive(false);
                 LaunchGameButton.interactable = false;
             }
@@ -118,13 +113,10 @@ namespace Antura.Book
             var badgePath = currentMiniGame.GetBadgeIconResourcePath();
             MiniGameLogoImage.sprite = Resources.Load<Sprite>(icoPath);
             MiniGameLogoImage.enabled = true;
-            if (badgePath != "")
-            {
+            if (badgePath != "") {
                 MiniGameBadgeImage.enabled = true;
                 MiniGameBadgeImage.sprite = Resources.Load<Sprite>(badgePath);
-            }
-            else
-            {
+            } else {
                 MiniGameBadgeImage.enabled = false;
             }
         }
@@ -143,8 +135,7 @@ namespace Antura.Book
 
         void emptyContainer(GameObject container)
         {
-            foreach (Transform t in container.transform)
-            {
+            foreach (Transform t in container.transform) {
                 Destroy(t.gameObject);
             }
         }

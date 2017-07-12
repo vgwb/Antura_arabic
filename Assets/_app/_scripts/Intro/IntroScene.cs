@@ -31,7 +31,9 @@ namespace Antura.Intro
 
         public IntroRocketCharacter[] m_MazeCharacters;
         public float m_MazeCharactesVelocity = 0.1f;
+
         public AnimationCurve cameraAnimationCurve;
+
         //public UnityStandardAssets.ImageEffects.ForegroundCameraEffect foregroundEffect;
         public VignettingSimple vignetting;
 
@@ -44,7 +46,7 @@ namespace Antura.Intro
         {
             base.Start();
             GlobalUI.ShowPauseMenu(false);
- 
+
             countDown = new CountdownTimer(m_EndDelay);
             m_CameraEndPosition = Camera.main.transform.position;
             m_CameraStartPosition = m_CameraEndPosition + cameraOffset;
@@ -120,7 +122,8 @@ namespace Antura.Intro
         IEnumerator DoIntroduction()
         {
             bool completed = false;
-            System.Func<bool> CheckIfCompleted = () => {
+            System.Func<bool> CheckIfCompleted = () =>
+            {
                 if (completed) {
                     // Reset it
                     completed = false;
@@ -166,7 +169,6 @@ namespace Antura.Intro
             yield return new WaitUntil(CheckIfCompleted);
 
             m_End = true;
-
         }
     }
 }

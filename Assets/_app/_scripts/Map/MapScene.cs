@@ -8,7 +8,6 @@ namespace Antura.Map
     /// </summary>
     public class MapScene : SceneBase
     {
-
         protected override void Start()
         {
             base.Start();
@@ -25,6 +24,5 @@ namespace Antura.Map
             // TODO refactor: move this initalisation to a better place, maybe inside the MiniGameLauncher.
             AppManager.I.NavigationManager.GoToNextScene();
         }
-
     }
 }

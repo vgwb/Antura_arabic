@@ -104,10 +104,8 @@ namespace Antura
         void Update()
         {
             // Exit with Android back button
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (Application.platform == RuntimePlatform.Android)
-                {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                if (Application.platform == RuntimePlatform.Android) {
                     GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () =>
                     {
                         Debug.Log("Application Quit");
@@ -142,14 +140,12 @@ namespace Antura
             IsPaused = pauseStatus;
 
             // app is pausing
-            if (IsPaused)
-            {
+            if (IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
             }
 
             //app is resuming
-            if (!IsPaused)
-            {
+            if (!IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppResume);
                 LogManager.I.InitNewSession();
             }
@@ -186,8 +182,7 @@ namespace Antura
         void On_TMPro_Text_Changed(Object obj)
         {
             var tmpText = obj as TMPro.TMP_Text;
-            if (tmpText != null && VocabularyHelper.FixDiacriticPositions(tmpText.textInfo))
-            {
+            if (tmpText != null && VocabularyHelper.FixDiacriticPositions(tmpText.textInfo)) {
                 tmpText.UpdateVertexData();
             }
         }

@@ -21,7 +21,6 @@ namespace Antura.Map
 
         void Update()
         {
-
             if (Input.GetMouseButtonDown(0) && (!player.playerOverDotPin)) {
                 swipe = true;
                 xDown = Input.mousePosition.x;
@@ -42,8 +41,12 @@ namespace Antura.Map
 
 
                 if ((Mathf.Abs(x) > width * 0.3f) && (Mathf.Abs(y) < height * 0.1f)) {
-                    if ((x < 0) && (stageManager.currentStageNumber < AppConstants.MaximumStage)) { stageManager.StageLeft(); }
-                    if ((x > 0) && (stageManager.currentStageNumber > 1)) { stageManager.StageRight(); }
+                    if ((x < 0) && (stageManager.currentStageNumber < AppConstants.MaximumStage)) {
+                        stageManager.StageLeft();
+                    }
+                    if ((x > 0) && (stageManager.currentStageNumber > 1)) {
+                        stageManager.StageRight();
+                    }
                 }
                 StartCoroutine("SwipeToFalse");
             }

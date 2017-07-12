@@ -14,12 +14,11 @@ namespace Antura.LivingLetters.Sample
 
         int currentQuestion;
 
-        public SampleQuestionWithWordsProvider ()
+        public SampleQuestionWithWordsProvider()
         {
             currentQuestion = -1;
 
-            for (int i = 0; i < 32; i++)
-            {
+            for (int i = 0; i < 32; i++) {
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
@@ -31,12 +30,10 @@ namespace Antura.LivingLetters.Sample
                 correctAnswers.Add(newWordData);
 
                 // At least 4 wrong words
-                while (wrongAnswers.Count < 4)
-                {
+                while (wrongAnswers.Count < 4) {
                     var word = AppManager.I.Teacher.GetRandomTestWordDataLL();
 
-                    if (!correctAnswers.Contains(word) && !wrongAnswers.Contains(word))
-                    {
+                    if (!correctAnswers.Contains(word) && !wrongAnswers.Contains(word)) {
                         wrongAnswers.Add(word);
                     }
                 }

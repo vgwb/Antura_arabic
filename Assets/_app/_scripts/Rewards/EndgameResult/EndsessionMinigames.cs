@@ -67,12 +67,13 @@ namespace Antura.Rewards
             for (int i = 0; i < totGames; ++i) {
                 EndsessionMinigame mg = minigames[i];
                 float startPos = i * 0.1f;
-                minigamesTween.InsertCallback(startPos, ()=> AudioManager.I.PlaySound(EndsessionResultPanel.I.SfxMinigamePopup))
+                minigamesTween.InsertCallback(startPos, () => AudioManager.I.PlaySound(EndsessionResultPanel.I.SfxMinigamePopup))
                     .Join(mg.Bubble.DOScale(0.0001f, 0.35f).From().SetEase(Ease.OutBack));
                 int starsLen = mg.Stars.Length;
                 for (int c = 0; c < starsLen; ++c) {
                     Image star = mg.Stars[c];
-                    minigamesTween.Insert(startPos + 0.2f + (starsLen - c - 1) * 0.1f, star.GetComponent<RectTransform>().DOAnchorPosX(0, 0.45f).From().SetEase(Ease.OutBack));
+                    minigamesTween.Insert(startPos + 0.2f + (starsLen - c - 1) * 0.1f,
+                        star.GetComponent<RectTransform>().DOAnchorPosX(0, 0.45f).From().SetEase(Ease.OutBack));
                     minigamesTween.Join(star.DOFade(0, 0.35f).From().SetEase(Ease.Linear));
                 }
             }

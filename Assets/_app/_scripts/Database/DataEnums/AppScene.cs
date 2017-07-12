@@ -3,7 +3,6 @@
     /// <summary>
     /// we refer to app scenes by these enums, and not by scene names, that could change anytime
     /// </summary>
-
     public enum AppScene
     {
         Home = 1,

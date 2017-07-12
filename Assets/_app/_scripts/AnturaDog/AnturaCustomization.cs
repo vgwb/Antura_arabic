@@ -33,46 +33,39 @@ namespace Antura.Dog
         /// <param name="_listOfIdsAsJsonString">The list of ids as json string.</param>
         public void LoadFromListOfIds(string _listOfIdsAsJsonString)
         {
-            if (AppManager.I.Player == null)
-            {
+            if (AppManager.I.Player == null) {
                 Debug.Log("No default reward already created. Unable to load customization now");
                 return;
             }
             List<RewardPackUnlockData> unlocked = AppManager.I.Player.RewardsUnlocked;
             AnturaCustomization tmp = JsonUtility.FromJson<AnturaCustomization>(_listOfIdsAsJsonString);
-            if (tmp != null)
-            {
+            if (tmp != null) {
                 FornituresIds = tmp.FornituresIds;
                 TileTextureId = tmp.TileTextureId;
                 DecalTextureId = tmp.DecalTextureId;
             }
-            if (string.IsNullOrEmpty(TileTextureId))
-            {
+            if (string.IsNullOrEmpty(TileTextureId)) {
                 RewardPackUnlockData defaultTileTexturePack = unlocked.Find(r => r.Type == RewardTypes.texture);
                 TileTextureId = defaultTileTexturePack.GetIdAccordingToDBRules();
             }
-            if (string.IsNullOrEmpty(DecalTextureId))
-            {
+            if (string.IsNullOrEmpty(DecalTextureId)) {
                 RewardPackUnlockData defaultDecalTexturePack = unlocked.Find(r => r.Type == RewardTypes.decal);
                 DecalTextureId = defaultDecalTexturePack.GetIdAccordingToDBRules();
             }
             Fornitures = new List<RewardPackUnlockData>();
-            foreach (string itemId in FornituresIds)
-            {
+            foreach (string itemId in FornituresIds) {
                 // Load Fornitures for any id from db
                 RewardPackUnlockData pack = unlocked.Find(r => r.Id == itemId);
                 Fornitures.Add(pack);
             }
 
             // Load TileTexture from TileTextureId
-            if (TileTextureId != null)
-            {
+            if (TileTextureId != null) {
                 TileTexture = unlocked.Find(r => r.Id == TileTextureId);
             }
 
             // Load DecalTexture from DecalTextureId
-            if (DecalTextureId != null)
-            {
+            if (DecalTextureId != null) {
                 DecalTexture = unlocked.Find(r => r.Id == DecalTextureId);
             }
         }

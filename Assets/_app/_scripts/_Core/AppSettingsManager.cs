@@ -10,16 +10,12 @@ namespace Antura.Core
         public AppSettings Settings
         {
             get { return _settings; }
-            set
-            {
-                if (value != _settings)
-                {
+            set {
+                if (value != _settings) {
                     _settings = value;
                     // Auto save at any change
                     SaveSettings();
-                }
-                else
-                {
+                } else {
                     _settings = value;
                 }
             }
@@ -30,13 +26,10 @@ namespace Antura.Core
         /// </summary>
         public AppSettings LoadSettings()
         {
-            if (PlayerPrefs.HasKey(SETTINGS_PREFS_KEY))
-            {
+            if (PlayerPrefs.HasKey(SETTINGS_PREFS_KEY)) {
                 var serializedObjs = PlayerPrefs.GetString(SETTINGS_PREFS_KEY);
                 Settings = JsonUtility.FromJson<AppSettings>(serializedObjs);
-            }
-            else
-            {
+            } else {
                 Settings = new AppSettings();
             }
             return _settings;

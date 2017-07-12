@@ -8,14 +8,14 @@ namespace Antura.MinigamesCommon
     /// </summary>
     public class MinigamesOverlayWidget : IOverlayWidget
     {
-        int firstStarsScoreThreshold = 1;
-        int secondStarsScoreThreshold = 2;
-        int thirdStarsScoreThreshold = 3;
-        float timerDuration = 10;
+        private int firstStarsScoreThreshold = 1;
+        private int secondStarsScoreThreshold = 2;
+        private int thirdStarsScoreThreshold = 3;
+        private float timerDuration = 10;
 
-        bool showStarsBar;
-        bool showClock;
-        bool showLives;
+        private bool showStarsBar;
+        private bool showClock;
+        private bool showLives;
 
         public void Initialize(bool showStarsBar, bool showClock, bool showLives)
         {
@@ -24,15 +24,15 @@ namespace Antura.MinigamesCommon
             this.showLives = showLives;
 
             MinigamesUI.Init((showLives ? MinigamesUIElement.Lives : 0) |
-               (showStarsBar ? MinigamesUIElement.Starbar : 0) |
-               (showClock ? MinigamesUIElement.Timer : 0));
+                             (showStarsBar ? MinigamesUIElement.Starbar : 0) |
+                             (showClock ? MinigamesUIElement.Timer : 0));
         }
 
         public void Reset()
         {
-            this.showStarsBar = false;
-            this.showClock = false;
-            this.showLives = false;
+            showStarsBar = false;
+            showClock = false;
+            showLives = false;
         }
 
         public void SetStarsThresholds(int firstStarsScoreThreshold, int secondStarsScoreThreshold, int thirdStarsScoreThreshold)
@@ -54,15 +54,19 @@ namespace Antura.MinigamesCommon
             // thresholds could have different "distances" between them
 
             if (score < firstStarsScoreThreshold)
-                MinigamesUI.Starbar.Goto((score / (float)firstStarsScoreThreshold) * 0.333f);
+                MinigamesUI.Starbar.Goto((score / (float) firstStarsScoreThreshold) * 0.333f);
             else if (score == firstStarsScoreThreshold)
                 MinigamesUI.Starbar.GotoStar(0);
             else if (score < secondStarsScoreThreshold)
-                MinigamesUI.Starbar.Goto(((score - firstStarsScoreThreshold) / (float)(secondStarsScoreThreshold - firstStarsScoreThreshold)) * 0.333f + 0.333f);
+                MinigamesUI.Starbar.Goto(
+                    ((score - firstStarsScoreThreshold) / (float) (secondStarsScoreThreshold - firstStarsScoreThreshold)) * 0.333f +
+                    0.333f);
             else if (score == secondStarsScoreThreshold)
                 MinigamesUI.Starbar.GotoStar(1);
             else if (score < thirdStarsScoreThreshold)
-                MinigamesUI.Starbar.Goto(((score - secondStarsScoreThreshold) / (float)(thirdStarsScoreThreshold - secondStarsScoreThreshold)) * 0.333f + 0.666f);
+                MinigamesUI.Starbar.Goto(
+                    ((score - secondStarsScoreThreshold) / (float) (thirdStarsScoreThreshold - secondStarsScoreThreshold)) * 0.333f +
+                    0.666f);
             else
                 MinigamesUI.Starbar.GotoStar(2);
         }
@@ -99,6 +103,7 @@ namespace Antura.MinigamesCommon
 
             MinigamesUI.Lives.Setup(maxLives);
         }
+
         public void SetLives(int lives)
         {
             if (!showLives)

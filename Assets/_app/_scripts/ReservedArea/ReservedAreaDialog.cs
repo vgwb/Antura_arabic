@@ -44,10 +44,11 @@ namespace Antura.ReservedArea
             firstButtonClicksTarget = Random.Range(min_number, max_number);
 
             // Update text
-            string[] numberWords = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-            string[] colorsWords = { "green", "red", "blue", "yellow" };
-            string[] colorsWordsArabic = { "الأخضر", "الأحمر", "الأزرق", "الأصفر" };
-            string[] timesWordsArabic = {
+            string[] numberWords = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+            string[] colorsWords = {"green", "red", "blue", "yellow"};
+            string[] colorsWordsArabic = {"الأخضر", "الأحمر", "الأزرق", "الأصفر"};
+            string[] timesWordsArabic =
+            {
                 "مرة واحدة",
                 "مرتين",
                 "ثلاث مرات",
@@ -56,7 +57,8 @@ namespace Antura.ReservedArea
                 "ست مرات",
                 "سبع مرات",
                 "ثماني مرات",
-                "تسع مرات" };
+                "تسع مرات"
+            };
 
             string numberWord = numberWords[firstButtonClicksTarget - 1];
             string firstColorWord = colorsWords[firstButtonIndex];
@@ -68,8 +70,9 @@ namespace Antura.ReservedArea
 
             englishTextUI.text =
                 "<b>" + titleLoc.English + "</b>" +
-                "\n" + sectionIntroLoc.English +  //"This section is reserved for parents and guardians." +
-                "\n\nPress <b>" + numberWord + "</b> times the <b>" + firstColorWord + "</b> button, then press the <b>" + secondColorWord + "</b> one once." +
+                "\n" + sectionIntroLoc.English + //"This section is reserved for parents and guardians." +
+                "\n\nPress <b>" + numberWord + "</b> times the <b>" + firstColorWord + "</b> button, then press the <b>" + secondColorWord +
+                "</b> one once." +
                 "\n\n" + sectionErrorLoc.English; //"If you make an error, retry by re - accessing this panel");
 
             string numberWordArabic = timesWordsArabic[firstButtonClicksTarget - 1];
@@ -80,8 +83,10 @@ namespace Antura.ReservedArea
             string arabicIntroduction = "";
             arabicIntroduction += "<b>" + LocalizationManager.GetTranslation(titleLoc.Id) + "<b/> \n";
             arabicIntroduction += LocalizationManager.GetTranslation(sectionIntroLoc.Id) + "\n\n";
-            arabicIntroduction += string.Format("لفتح القفل، اضغط الزر {0} {2} مرات، ثم الزر {1} مرة واحدة", firstColorWordArabic, secondColorWordArabic, numberWordArabic);
-            arabicIntroduction += "\n\n" + LocalizationManager.GetTranslation(sectionErrorLoc.Id); // "\n\n في حال أخطأت، أعد المحاولة باستعمال هذه اللوحة";
+            arabicIntroduction += string.Format("لفتح القفل، اضغط الزر {0} {2} مرات، ثم الزر {1} مرة واحدة", firstColorWordArabic,
+                secondColorWordArabic, numberWordArabic);
+            arabicIntroduction +=
+                "\n\n" + LocalizationManager.GetTranslation(sectionErrorLoc.Id); // "\n\n في حال أخطأت، أعد المحاولة باستعمال هذه اللوحة";
 
             //Debug.Log(arabicIntroduction);
             arabicTextUI.text = arabicIntroduction;

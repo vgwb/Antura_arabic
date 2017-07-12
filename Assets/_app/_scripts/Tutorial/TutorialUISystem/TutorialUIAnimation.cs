@@ -20,7 +20,7 @@ namespace Antura.Tutorial
         public TutorialUIAnimation OnComplete(Action _callback)
         {
             if (_callback == null) MainTween.OnComplete(null);
-            else MainTween.OnComplete(()=> _callback());
+            else MainTween.OnComplete(() => _callback());
             return this;
         }
 

@@ -16,7 +16,8 @@ namespace Antura.UI
         /// <summary>
         /// Return a string of a word with the "color" tag enveloping a character. The word is already reversed and fixed for rendering.
         /// </summary>
-        public static string GetWordWithMarkedLetterText(Database.WordData arabicWord, ArabicAlphabetHelper.ArabicStringPart letterToMark, Color color, MarkType type)
+        public static string GetWordWithMarkedLetterText(Database.WordData arabicWord, ArabicAlphabetHelper.ArabicStringPart letterToMark,
+            Color color, MarkType type)
         {
             string tagStart = "<color=#" + GenericHelper.ColorToHex(color) + ">";
             string tagEnd = "</color>";
@@ -24,7 +25,8 @@ namespace Antura.UI
             string text = ArabicAlphabetHelper.ProcessArabicString(arabicWord.Arabic);
 
             string startText = text.Substring(0, letterToMark.fromCharacterIndex);
-            string letterText = text.Substring(letterToMark.fromCharacterIndex, letterToMark.toCharacterIndex - letterToMark.fromCharacterIndex + 1);
+            string letterText = text.Substring(letterToMark.fromCharacterIndex,
+                letterToMark.toCharacterIndex - letterToMark.fromCharacterIndex + 1);
             string endText = (letterToMark.toCharacterIndex >= text.Length - 1 ? "" : text.Substring(letterToMark.toCharacterIndex + 1));
 
             if (type == MarkType.SingleLetter)
@@ -38,7 +40,8 @@ namespace Antura.UI
         /// <summary>
         /// Returns a coroutine which creates a string with a letter that flashes over frames, with an option to mark the text before it.
         /// </summary>
-        public static IEnumerator GetWordWithFlashingText(Database.WordData arabicWord, int indexToFlash, Color flashColor, float cycleDuration, int numCycles, System.Action<string> callback, bool markPrecedingLetters = false)
+        public static IEnumerator GetWordWithFlashingText(Database.WordData arabicWord, int indexToFlash, Color flashColor,
+            float cycleDuration, int numCycles, System.Action<string> callback, bool markPrecedingLetters = false)
         {
             string text = ArabicAlphabetHelper.ProcessArabicString(arabicWord.Arabic);
 
@@ -50,36 +53,33 @@ namespace Antura.UI
 
             float halfDuration = cycleDuration * 0.5f;
 
-            while (numCompletedCycles < numCycles)
-            {
-                float interpolant = timeElapsed < halfDuration ? timeElapsed / halfDuration : 1 - ((timeElapsed - halfDuration) / halfDuration);
+            while (numCompletedCycles < numCycles) {
+                float interpolant = timeElapsed < halfDuration
+                    ? timeElapsed / halfDuration
+                    : 1 - ((timeElapsed - halfDuration) / halfDuration);
                 string flashTagStart = "<color=#" + GenericHelper.ColorToHex(Color.Lerp(Color.black, flashColor, interpolant)) + ">";
                 string flashTagEnd = "</color>";
 
                 string resultOfThisFrame = "";
 
-                if (markPrecedingLetters)
-                {
+                if (markPrecedingLetters) {
                     resultOfThisFrame += markTagStart;
                 }
                 resultOfThisFrame += text.Substring(0, indexToFlash);
-                if (markPrecedingLetters)
-                {
+                if (markPrecedingLetters) {
                     resultOfThisFrame += markTagEnd;
                 }
                 resultOfThisFrame += flashTagStart;
                 resultOfThisFrame += text.Substring(indexToFlash, 1);
                 resultOfThisFrame += flashTagEnd;
-                if (indexToFlash + 1 < text.Length)
-                {
+                if (indexToFlash + 1 < text.Length) {
                     resultOfThisFrame += text.Substring(indexToFlash + 1);
                 }
 
                 callback(resultOfThisFrame);
 
                 timeElapsed += Time.fixedDeltaTime;
-                if (timeElapsed >= cycleDuration)
-                {
+                if (timeElapsed >= cycleDuration) {
                     numCompletedCycles++;
                     timeElapsed = 0f;
                 }

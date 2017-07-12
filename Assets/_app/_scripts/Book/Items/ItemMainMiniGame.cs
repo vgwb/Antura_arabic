@@ -49,13 +49,11 @@ namespace Antura.Book
 
             emptyContainers();
             isLocked = true;
-            foreach (var gameVariation in mainGameInfo.variations)
-            {
+            foreach (var gameVariation in mainGameInfo.variations) {
                 btnGO = Instantiate(ItemMiniGameVariationPrefab);
                 btnGO.transform.SetParent(VariationsContainer.transform, false);
                 btnGO.GetComponent<ItemMiniGameVariation>().Init(this, gameVariation);
-                if (gameVariation.unlocked)
-                {
+                if (gameVariation.unlocked) {
                     isLocked = false;
                 }
             }
@@ -64,8 +62,7 @@ namespace Antura.Book
 
         public void OnClicked()
         {
-            if (!isLocked)
-            {
+            if (!isLocked) {
                 DetailMiniGame(mainGameInfo.variations[0]);
             }
         }
@@ -77,12 +74,9 @@ namespace Antura.Book
 
         public void Select(MiniGameInfo gameInfo = null)
         {
-            if (gameInfo != null)
-            {
+            if (gameInfo != null) {
                 isSelected = (gameInfo.data.Main == mainGameInfo.id);
-            }
-            else
-            {
+            } else {
                 isSelected = false;
             }
             hightlight(isSelected);
@@ -90,20 +84,16 @@ namespace Antura.Book
 
         void hightlight(bool _status)
         {
-            if (_status)
-            {
+            if (_status) {
                 BackgroundImage.color = new Color(0.9490197f, 0.7215686f, 0.1882353f, 1f);
-            }
-            else
-            {
+            } else {
                 BackgroundImage.color = new Color(0.8862746f, 0.8862746f, 0.8862746f, 1f);
             }
         }
 
         void emptyContainers()
         {
-            foreach (Transform t in VariationsContainer.transform)
-            {
+            foreach (Transform t in VariationsContainer.transform) {
                 Destroy(t.gameObject);
             }
         }

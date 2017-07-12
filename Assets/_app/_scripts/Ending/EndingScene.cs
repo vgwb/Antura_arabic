@@ -16,8 +16,8 @@ namespace Antura.Scenes
     public class EndingScene : SceneBase
     {
         [Header("References")]
-
         public LivingLetterController[] Letters;
+
         public AnturaAnimationController Antura;
 
         public float m_StateDelay = 1.0f;
@@ -53,20 +53,19 @@ namespace Antura.Scenes
         {
             base.Start();
             GlobalUI.ShowPauseMenu(false);
-            
+
             m_CameraEndPosition = Camera.main.transform.position;
             m_CameraStartPosition = m_CameraEndPosition + cameraOffset;
             autoMoveObjects = environment.GetComponentsInChildren<AutoMove>();
 
             var lettersData = AppManager.I.Teacher.GetAllTestLetterDataLL();
-            foreach (var l in Letters)
-            {
+            foreach (var l in Letters) {
                 l.Init(lettersData.GetRandom());
                 l.State = LLAnimationStates.LL_dancing;
             }
 
             Antura.State = AnturaAnimationStates.dancing;
-            
+
             text.SetSentence(Database.LocalizationDataId.End_Scene_2);
             text.Alpha = 0;
             panel.SetAlpha(0);
@@ -94,30 +93,23 @@ namespace Antura.Scenes
             time += Time.deltaTime * m_CameraVelocity;
             float t = cameraAnimationCurve.Evaluate(time);
 
-            if (fadeIn)
-            {
+            if (fadeIn) {
                 vignetting.fadeOut = Mathf.Pow((1 - t), 2);
-            }
-            else
-            {
+            } else {
                 fadeOutTime += Time.deltaTime;
-                vignetting.fadeOut = Mathf.Lerp(0, 1, fadeOutTime/FadeTime);
+                vignetting.fadeOut = Mathf.Lerp(0, 1, fadeOutTime / FadeTime);
             }
 
             for (int i = 0; i < autoMoveObjects.Length; ++i)
                 autoMoveObjects[i].SetTime(t);
 
-            if (m_Start)
-            {
+            if (m_Start) {
                 m_Start = false;
                 Debug.Log("Start Ending");
-               
+
                 StartCoroutine(DoEnding());
-            }
-            else
-            {
-                if (m_End)
-                {
+            } else {
+                if (m_End) {
                     AppManager.I.NavigationManager.GoToNextScene();
                     m_End = false;
                     return;
@@ -128,8 +120,7 @@ namespace Antura.Scenes
 
             var newAlpha = Mathf.Lerp(lastAlpha, showText ? 1 : 0, Time.deltaTime);
 
-            if (lastAlpha != newAlpha)
-            {
+            if (lastAlpha != newAlpha) {
                 text.Alpha = newAlpha;
                 panel.SetAlpha(newAlpha);
                 lastAlpha = newAlpha;
@@ -140,9 +131,9 @@ namespace Antura.Scenes
         IEnumerator DoEnding()
         {
             bool completed = false;
-            System.Func<bool> CheckIfCompleted = () => {
-                if (completed)
-                {
+            System.Func<bool> CheckIfCompleted = () =>
+            {
+                if (completed) {
                     // Reset it
                     completed = false;
                     return true;
@@ -158,7 +149,7 @@ namespace Antura.Scenes
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
-            
+
             KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_1_1, false, true, OnCompleted);
             yield return new WaitUntil(CheckIfCompleted);
             KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_1_2, false, true, OnCompleted);

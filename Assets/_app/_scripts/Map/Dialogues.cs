@@ -7,7 +7,7 @@ namespace Antura.Map
     {
         public int numberStage;
         public bool dialoguePlayed;
-        
+
         void OnTriggerEnter(Collider other)
         {
             bool isMaxPosition = AppManager.I.Player.IsAtMaxJourneyPosition();
@@ -22,6 +22,5 @@ namespace Antura.Map
                 dialoguePlayed = true;
             }
         }
-       
     }
 }

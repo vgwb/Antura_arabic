@@ -31,7 +31,11 @@ namespace Antura.MinigamesCommon
         /// <summary>
         /// Access the GameStateManager that controls the minigame's FSM.
         /// </summary>
-        public StateManager StateManager { get { return stateManager; } }
+        public StateManager StateManager
+        {
+            get { return stateManager; }
+        }
+
         StateManager stateManager = new StateManager();
 
         public IState GetCurrentState()
@@ -118,7 +122,7 @@ namespace Antura.MinigamesCommon
             OutcomeState = new OutcomeGameState(this);
 
             OnInitialize(context);
-            this.SetCurrentState(GetInitialState());
+            SetCurrentState(GetInitialState());
 
             oldGravity = Physics.gravity;
             Physics.gravity = GetGravity();
@@ -144,13 +148,14 @@ namespace Antura.MinigamesCommon
 
             AppManager.I.NavigationManager.EndMinigame(stars);
 
-            if (OnGameEnded != null)
+            if (OnGameEnded != null) {
                 OnGameEnded(stars, score);
+            }
 
             // Log trace game result
             Context.GetLogManager().OnGameEnded(stars);
 
-            this.SetCurrentState(OutcomeState);
+            SetCurrentState(OutcomeState);
         }
 
         void ForceCurrentMinigameEnd(int value)
@@ -175,8 +180,9 @@ namespace Antura.MinigamesCommon
             // TODO: move this outside this method (actually it is useless with the current implementation of PauseMenu)
             inputManager.Enabled = !(GlobalUI.PauseMenu.IsMenuOpen);
 
-            if ((AppManager.I.IsPaused || hasToPause) && !SceneTransitioner.IsShown && this.GetCurrentState() != OutcomeState)
+            if ((AppManager.I.IsPaused || hasToPause) && !SceneTransitioner.IsShown && GetCurrentState() != OutcomeState) {
                 GlobalUI.PauseMenu.OpenMenu(true);
+            }
             hasToPause = false;
 
             inputManager.Update(Time.deltaTime);
@@ -188,18 +194,17 @@ namespace Antura.MinigamesCommon
             stateManager.UpdatePhysics(Time.fixedDeltaTime);
         }
 
-        #endregion 
+        #endregion
 
         #region System Events
 
         void OnApplicationPause(bool pause)
         {
-            if (pause)
-            {
+            if (pause) {
                 hasToPause = true;
             }
         }
-        
+
         void OnEnable()
         {
             DebugManager.OnForceCurrentMinigameEnd += ForceCurrentMinigameEnd;
@@ -212,14 +217,15 @@ namespace Antura.MinigamesCommon
 
         void OnDestroy()
         {
-            if (initialized)
+            if (initialized) {
                 Physics.gravity = oldGravity;
+            }
 
-            if (Context != null)
+            if (Context != null) {
                 Context.Reset();
+            }
         }
 
         #endregion
-
     }
 }

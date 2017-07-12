@@ -14,16 +14,16 @@ namespace Antura.Editor
             System.Reflection.MethodInfo method = audioUtilClass.GetMethod(
                 "PlayClip",
                 System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public,
-                null, new System.Type[] { typeof(AudioClip) }, null
+                null, new System.Type[] {typeof(AudioClip)}, null
             );
-            method.Invoke(null, new object[] { clip });
+            method.Invoke(null, new object[] {clip});
         }
 
         public static void StopAllClips()
         {
             Assembly unityEditorAssembly = typeof(AudioImporter).Assembly;
             Type audioUtilClass =
-                  unityEditorAssembly.GetType("UnityEditor.AudioUtil");
+                unityEditorAssembly.GetType("UnityEditor.AudioUtil");
             MethodInfo method = audioUtilClass.GetMethod(
                 "StopAllClips",
                 BindingFlags.Static | BindingFlags.Public,

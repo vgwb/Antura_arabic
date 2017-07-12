@@ -11,8 +11,7 @@ namespace Antura
 
         protected virtual void Start()
         {
-            if (SceneMusic != Music.DontChange)
-            {
+            if (SceneMusic != Music.DontChange) {
                 AudioManager.I.PlayMusic(SceneMusic);
             }
         }

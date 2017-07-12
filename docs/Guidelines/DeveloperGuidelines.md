@@ -8,7 +8,7 @@ Developers should follow these guidelines for contributing to the project.
 
   * Indent using four spaces (no tabs)
   * Use Unix newline
-  * Use [Allman style](http://en.wikipedia.org/wiki/Indent_style#Allman_style) braces
+  * Use [Allman style](http://en.wikipedia.org/wiki/Indent_style#Allman_style) braces, but for `if` and `for`
   * Use **camelCase** for internal and private fields
   * Use **CamelCase** for public fields
   * Use **CamelCase** for all methods, public and private, for classes, enum types and enum values.
@@ -23,29 +23,28 @@ Developers should follow these guidelines for contributing to the project.
 - All data related to the learning content should be referred to as *Vocabulary data* (instead of the triad Letter/Word/Phrase)
 - All data related to the journey progression should be referred to as *Journey data*
 
-
 ## Namespaces
 
-The whole codebase is under the **EA4S** namespace.
-The main systems can be accessed through the EA4S namespace and thus fall under it.
+The whole codebase is under the **Antura** namespace.
+The main systems can be accessed through the Antura namespace and thus fall under it.
 
-All minigames are under the **EA4S.MiniGames** namespace.
-Each minigame needs its own namespace in the form of **EA4S.MiniGames.GAME_ID** with GAME_ID being the name of the minigame.
+All minigames are under the **Antura.MiniGames** namespace.
+Each minigame needs its own namespace in the form of **Antura.MiniGames.GAME_ID** with GAME_ID being the name of the minigame.
 
 Most core code will be in a subsystem.
-Specific subsystem code is inside a **EA4S.SUBSYSTEM** namespace, where SUBSYSTEM is the subsystem's name.  
+Specific subsystem code is inside a **Antura.SUBSYSTEM** namespace, where SUBSYSTEM is the subsystem's name.  
 What follows is a list of subsystems with their namespaces:
 
- * **EA4S.Core** for the core managers and data of the appllication.
- * **EA4S.AnturaSpace** for code related to the Antura Space scene.
- * **EA4S.PlayerBook** for code related to the Player Book scene.
- * **EA4S.GamesSelector** handles the Games Selector scene.
- * **EA4S.Animations** for general animation utilities.
- * **EA4S.Db** for database access and organization.
- * **EA4S.LivingLetters** for scripts related to the Living Letter characters.
+ * **Antura.Core** for the core managers and data of the appllication.
+ * **Antura.AnturaSpace** for code related to the Antura Space scene.
+ * **Antura.PlayerBook** for code related to the Player Book scene.
+ * **Antura.GamesSelector** handles the Games Selector scene.
+ * **Antura.Animations** for general animation utilities.
+ * **Antura.Database** for database access and organization.
+ * **Antura.LivingLetters** for scripts related to the Living Letter characters.
  * et cetera...
 
-**Never commit anything without a namespace, nor anything under the root EA4S namespace**
+**Never commit anything without a namespace, nor anything under the root Antura namespace**
 
 ## Project Structure
 ### GitIgnore
@@ -53,10 +52,8 @@ What follows is a list of subsystems with their namespaces:
 there are several fiels and directories put under GitIgnore.. the useful from Dev POV are:
 
 ```
-LocalTemp/
-LocalTemp.meta
 Local/
 Local.meta
 ```
 
-if you create a Assets/Local or Assets/LocalTemp directories, you can put inside whatever personal you want, and won't be versioned.
+if you create a Assets/Local directory, you can put inside whatever personal you want, and won't be versioned.

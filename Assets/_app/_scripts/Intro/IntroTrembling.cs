@@ -31,12 +31,9 @@ namespace Antura.Intro
         {
             float distance = Vector3.Distance(transform.position, tremblingCenter.position);
 
-            if (distance > minDistance && distance < maxDistance)
-            {
+            if (distance > minDistance && distance < maxDistance) {
                 tremblingAmount = 1f - ((distance - minDistance) / (maxDistance - minDistance));
-            }
-            else
-            {
+            } else {
                 tremblingAmount = 0f;
             }
 

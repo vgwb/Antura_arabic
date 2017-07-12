@@ -63,5 +63,5 @@ by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 [DoxyGen class documentation](API/index.html)
 
 ## Licensing
-EA4S_Antura is licensed under the BSD 2-clause "Simplified" License and the Creative Commons Attribution 4.0 International.
+Antura is licensed under the BSD 2-clause "Simplified" License and the Creative Commons Attribution 4.0 International.
 Copyright [TH Köln / Cologne Game Lab](http://www.colognegamelab.de/), [Video Games Without Borders](http://vgwb.org) & [Wixel Studios](www.wixelstudios.com)

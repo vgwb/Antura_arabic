@@ -6,10 +6,10 @@ namespace Antura.Intro
     {
         public IntroStrollingLetterIdleState(IntroStrollingLetter letter) : base(letter)
         {
-
         }
 
         float timer = 0.0f;
+
         public override void EnterState()
         {
             // Set letter animation
@@ -27,8 +27,7 @@ namespace Antura.Intro
         {
             timer -= delta;
 
-            if (timer < 0)
-            {
+            if (timer < 0) {
                 letter.SetCurrentState(letter.WalkingState);
             }
         }

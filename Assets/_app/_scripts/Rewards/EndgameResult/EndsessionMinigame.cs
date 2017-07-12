@@ -10,8 +10,10 @@ namespace Antura.Rewards
     {
         [Tooltip("Alpha will be ignored")]
         public Color StarOffColor = Color.red;
+
         [Header("References")]
         public Transform Bubble;
+
         public Image Ico;
         public Image[] Stars;
 

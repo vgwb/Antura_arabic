@@ -6,13 +6,14 @@ namespace Antura.Map
 {
     public class Stage : MonoBehaviour
     {
-
         [Header("Pines")]
         public GameObject[] pines;
+
         public int numberLearningBlocks;
 
         [Header("PlaySessions")]
         public GameObject dot;
+
         public Transform stepsParent;
         public int[] numberStepsPerLB;
 
@@ -21,13 +22,15 @@ namespace Antura.Map
 
         [Header("Stage")]
         public bool isAvailableTheWholeMap;
+
         public int numberStage;
         public bool isTheBeginningNewStage;
 
         [Header("PlayerPin")]
         public List<GameObject> positionsPlayerPin = new List<GameObject>(); //All positions Pin can take over the map: dots and pins
+
         public int positionPin; //position of the PlayerPin in the map
-        public int positionPinMax;//Max position PlayerPin can take
+        public int positionPinMax; //Max position PlayerPin can take
         int nPos = 0;
 
         Quaternion rot = Quaternion.identity;
@@ -94,6 +97,7 @@ namespace Antura.Map
                 }
             }
         }
+
         void CalculatePlaySessionAvailables()
         {
             var l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
@@ -115,6 +119,7 @@ namespace Antura.Map
             }
             CalculatePin_RopeAvailable();
         }
+
         void CalculatePin_RopeAvailable()
         {
             if (isAvailableTheWholeMap) {
@@ -195,7 +200,6 @@ namespace Antura.Map
                             break;
                         default:
                             break;
-
                     }
                 }
             }
@@ -232,6 +236,5 @@ namespace Antura.Map
         {
             return AppManager.I.DB.FindPlaySessionData(x => x.Stage == _stage);
         }
-
     }
 }

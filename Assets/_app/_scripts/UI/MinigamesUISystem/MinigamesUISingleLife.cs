@@ -19,7 +19,7 @@ namespace Antura.UI
         {
             // Tweens
             loseTween = Heart.DOScale(0.001f, 0.25f).SetAutoKill(false).Pause()
-                .OnComplete(()=> Heart.gameObject.SetActive(false));
+                .OnComplete(() => Heart.gameObject.SetActive(false));
             gainTween = Heart.DOScale(0.001f, 0.5f).From().SetEase(Ease.OutElastic, 1.70f, 0.5f).SetAutoKill(false);
         }
 

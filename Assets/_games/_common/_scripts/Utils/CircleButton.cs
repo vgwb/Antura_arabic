@@ -12,16 +12,11 @@ namespace Antura.MinigamesCommon
     public class CircleButton : MonoBehaviour
     {
         bool active = true;
+
         public bool Active
         {
-            get
-            {
-                return active;
-            }
-            set
-            {
-                active = value;
-            }
+            get { return active; }
+            set { active = value; }
         }
 
         public UnityEngine.UI.Image button;
@@ -37,14 +32,11 @@ namespace Antura.MinigamesCommon
         public IAudioManager audioManager;
 
         ILivingLetterData answer;
+
         public ILivingLetterData Answer
         {
-            get
-            {
-                return answer;
-            }
-            set
-            {
+            get { return answer; }
+            set {
                 if (isDestroying)
                     return;
 
@@ -54,18 +46,14 @@ namespace Antura.MinigamesCommon
                 text.gameObject.SetActive(!ImageMode || string.IsNullOrEmpty(textImage.text));
                 textImage.gameObject.SetActive(ImageMode && !string.IsNullOrEmpty(textImage.text));
             }
-
         }
 
         bool imageMode;
+
         public bool ImageMode
         {
-            get
-            {
-                return imageMode;
-            }
-            set
-            {
+            get { return imageMode; }
+            set {
                 if (isDestroying)
                     return;
 
@@ -73,7 +61,6 @@ namespace Antura.MinigamesCommon
                 text.gameObject.SetActive(!value || string.IsNullOrEmpty(textImage.text));
                 textImage.gameObject.SetActive(value && !string.IsNullOrEmpty(textImage.text));
             }
-
         }
 
         public void SetColor(Color color)
@@ -105,8 +92,7 @@ namespace Antura.MinigamesCommon
 
         public void DoEnterAnimation(float delay)
         {
-            if (enterScaleTweener != null)
-            {
+            if (enterScaleTweener != null) {
                 enterScaleTweener.Kill();
             }
 
@@ -114,9 +100,9 @@ namespace Antura.MinigamesCommon
             transform.localScale = Vector3.one * 0.001f;
             enterScaleTweener = DOTween.Sequence().Append(
                 transform.DOScale(oldScale, 0.2f).SetDelay(delay)
-                ).Append(
-                    transform.DOPunchRotation(Vector3.forward * 20, 0.3f, 10, 1)
-                );
+            ).Append(
+                transform.DOPunchRotation(Vector3.forward * 20, 0.3f, 10, 1)
+            );
         }
 
         public bool IsReady()
@@ -128,12 +114,12 @@ namespace Antura.MinigamesCommon
         {
             var endScaleCallback = endCallback;
 
-            if (exitScaleTweener != null)
-            {
+            if (exitScaleTweener != null) {
                 exitScaleTweener.Kill();
             }
 
-            exitScaleTweener = transform.DOScale(scale, duration).OnComplete(delegate () {
+            exitScaleTweener = transform.DOScale(scale, duration).OnComplete(delegate()
+            {
                 if (endScaleCallback != null)
                     endScaleCallback();
             });
@@ -153,14 +139,11 @@ namespace Antura.MinigamesCommon
 
         void Update()
         {
-            if (isDestroying)
-            {
-                if (destroyTimer >= 0)
-                { 
+            if (isDestroying) {
+                if (destroyTimer >= 0) {
                     destroyTimer -= Time.deltaTime;
 
-                    if (destroyTimer < 0)
-                    {
+                    if (destroyTimer < 0) {
                         Disappear();
                     }
                 }

@@ -13,9 +13,11 @@ namespace Antura.Rewards
         public RectTransform Bar;
         public EndsessionAchievement[] Achievements;
 
-        [System.NonSerialized] public Tween ShowTween;
+        [System.NonSerialized]
+        public Tween ShowTween;
+
         Vector2 barSizeDelta;
-        float[] achievementsPercent = new[]{ 0.333f, 0.666f, 1 };
+        float[] achievementsPercent = new[] {0.333f, 0.666f, 1};
         float singleMinigameStarPercent;
         int totMinigameStarsGained;
         Tween barTween, shakeTween;

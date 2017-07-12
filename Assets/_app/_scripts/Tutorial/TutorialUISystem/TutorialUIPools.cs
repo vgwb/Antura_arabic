@@ -76,21 +76,25 @@ namespace Antura.Tutorial
         }
 
         public TutorialUIProp SpawnArrow(Transform _parent, Vector3 _position, bool _overlayed)
-        { return SpawnProp(arrowsPool, ArrowPrefab, _parent, _position, _overlayed); }
+        {
+            return SpawnProp(arrowsPool, ArrowPrefab, _parent, _position, _overlayed);
+        }
 
         public TutorialUIProp SpawnClicker(Transform _parent, Vector3 _position, bool _overlayed)
-        { return SpawnProp(clickersPool, ClickerPrefab, _parent, _position, _overlayed); }
+        {
+            return SpawnProp(clickersPool, ClickerPrefab, _parent, _position, _overlayed);
+        }
 
         public TutorialUIMark SpawnMarkYes(Transform _parent, Vector3 _position, TutorialUI.MarkSize _size)
         {
-            TutorialUIMark mark = (TutorialUIMark)SpawnProp(marksYesPool, MarkYesPrefab, _parent, _position, true);
+            TutorialUIMark mark = (TutorialUIMark) SpawnProp(marksYesPool, MarkYesPrefab, _parent, _position, true);
             mark.SetSize(_size);
             return mark;
         }
 
         public TutorialUIMark SpawnMarkNo(Transform _parent, Vector3 _position, TutorialUI.MarkSize _size)
         {
-            TutorialUIMark mark = (TutorialUIMark)SpawnProp(marksNoPool, MarkNoPrefab, _parent, _position, true);
+            TutorialUIMark mark = (TutorialUIMark) SpawnProp(marksNoPool, MarkNoPrefab, _parent, _position, true);
             mark.SetSize(_size);
             return mark;
         }
@@ -99,7 +103,8 @@ namespace Antura.Tutorial
 
         #region Methods
 
-        public TutorialUIProp SpawnProp(List<TutorialUIProp> _propList, TutorialUIProp _propPrefab, Transform _parent, Vector3 _position, bool _overlayed)
+        public TutorialUIProp SpawnProp(List<TutorialUIProp> _propList, TutorialUIProp _propPrefab, Transform _parent, Vector3 _position,
+            bool _overlayed)
         {
             TutorialUIProp prop = null;
             foreach (TutorialUIProp p in _propList) {

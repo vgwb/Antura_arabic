@@ -16,16 +16,21 @@ namespace Antura.Rewards
         public RectTransform ContentRT;
         public Image Rays;
         public EndgameStar[] Stars;
+
         [Header("Audio")]
         public Sfx SfxGainStar = Sfx.UIPopup;
+
         public Sfx SfxCompleteWithStars = Sfx.Win;
         public Sfx SfxCompleteNoStars = Sfx.Lose;
 
         public static EndgameResultPanel I { get; private set; }
         bool setupDone;
+
         int numStars;
+
         //RectTransform raysRT;
         Sequence showTween;
+
         Tween bgTween;
 
         #region Unity + Setup
@@ -41,11 +46,12 @@ namespace Antura.Rewards
             showTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(this.GetComponent<Image>().DOFade(0, 0.35f).From().SetEase(Ease.Linear))
                 .Join(ContentRT.DOAnchorPosY(-960, 0.35f).From().SetEase(Ease.OutBack))
-                .OnRewind(() => {
+                .OnRewind(() =>
+                {
                     this.gameObject.SetActive(false);
                     bgTween.Rewind();
                 })
-                .OnComplete(()=> this.StartCoroutine(CO_ShowComplete()));
+                .OnComplete(() => this.StartCoroutine(CO_ShowComplete()));
             for (int i = 0; i < Stars.Length; ++i) {
                 EndgameStar star = Stars[i];
                 star.Setup();

@@ -58,8 +58,7 @@ namespace Antura.Book
 
         void OpenArea(BookArea newPanel)
         {
-            if (newPanel != currentPanel)
-            {
+            if (newPanel != currentPanel) {
                 activatePanel(currentPanel, false);
                 currentPanel = newPanel;
                 activatePanel(currentPanel, true);
@@ -69,8 +68,7 @@ namespace Antura.Book
 
         void activatePanel(BookArea panel, bool status)
         {
-            switch (panel)
-            {
+            switch (panel) {
                 case BookArea.Vocabulary:
                     BookPanel.SetActive(status);
                     break;

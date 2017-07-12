@@ -24,7 +24,8 @@ namespace Antura.GamesSelector
             // Fill with data
             JourneyPosition journeyPos = AppManager.I.Player.CurrentJourneyPosition;
             PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.ToStringId());
-            LearningBlockData learningBlock = AppManager.I.DB.GetLearningBlockDataById(playSessionData.Stage + "." + playSessionData.LearningBlock.ToString());
+            LearningBlockData learningBlock =
+                AppManager.I.DB.GetLearningBlockDataById(playSessionData.Stage + "." + playSessionData.LearningBlock.ToString());
             TitleCode.text = journeyPos.ToString();
             TitleArabic.text = learningBlock.Title_Ar;
             TitleEnglish.text = learningBlock.Title_En;
@@ -44,7 +45,6 @@ namespace Antura.GamesSelector
                 int unlockedRewards = RewardSystemManager.GetUnlockedRewardForPlaysession(AppManager.I.Player.CurrentJourneyPosition);
                 SetStars(unlockedRewards + 1);
             }
-            //            PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.PlaySession);
         }
 
         void PlayTutorialAudio()
@@ -55,13 +55,14 @@ namespace Antura.GamesSelector
 
         void SetStars(int _tot)
         {
-            if (_tot > 3) _tot = 3;
+            if (_tot > 3) {
+                _tot = 3;
+            }
             for (int i = 0; i < Stars.Length; ++i) {
                 GameObject star = Stars[i];
                 star.SetActive(i < _tot);
                 star.transform.parent.GetComponent<Image>().SetAlpha(i < _tot ? 1f : 0.3f);
             }
         }
-
     }
 }

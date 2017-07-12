@@ -9,8 +9,9 @@ namespace Antura.CameraEffects
         //public RenderTextureOutput foreground;
         public Shader mergeShader = null;
 
-        [Range(0,1)]
+        [Range(0, 1)]
         public float t = 0;
+
         private Material mergeMaterial = null;
 
 
@@ -33,14 +34,13 @@ namespace Antura.CameraEffects
 
         public void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
-            if (CheckResources() == false)
-            {
+            if (CheckResources() == false) {
                 Graphics.Blit(source, destination);
                 return;
             }
 
             //mergeMaterial.SetTexture("_Foreground", foreground.output);
-            mergeMaterial.SetFloat("_T", 1- Mathf.Pow(1-t, 8));
+            mergeMaterial.SetFloat("_T", 1 - Mathf.Pow(1 - t, 8));
 
             Graphics.Blit(source, destination, mergeMaterial, 0);
         }

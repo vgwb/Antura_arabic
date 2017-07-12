@@ -12,6 +12,7 @@ namespace Antura.MinigamesCommon
     {
         // Manual popup management
         void Show(bool reset = true);
+
         void SetButtonCallback(System.Action callback);
         void SetTitle(Database.LocalizationDataId text);
         void SetTitle(string text);
@@ -19,7 +20,8 @@ namespace Antura.MinigamesCommon
         void SetMessage(string text);
         void SetImage(Sprite image);
         void SetLetterData(ILivingLetterData data); // Modifies Text + Image      
-        void SetMark(bool visible, bool correct);  
+        void SetMark(bool visible, bool correct);
+
         void Hide();
 
         void ShowTimeUp(System.Action callback);

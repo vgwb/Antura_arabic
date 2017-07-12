@@ -10,12 +10,18 @@ namespace Antura.UI
 {
     public class TextRender : MonoBehaviour
     {
-        public string text {
+        public string text
+        {
             get { return m_text; }
-            set { if (m_text == value) return; m_text = value; updateText(); }
+            set {
+                if (m_text == value) return;
+                m_text = value;
+                updateText();
+            }
         }
 
-        public float Alpha {
+        public float Alpha
+        {
             get {
                 if (isTMPro) {
                     if (isUI) {
@@ -59,7 +65,6 @@ namespace Antura.UI
                 SetSentence(LocalizationId);
             }
             updateText();
-
         }
 
         public void SetText(string _text, bool arabic = false)
@@ -160,6 +165,5 @@ namespace Antura.UI
             isArabic = true;
             text = LocalizationManager.GetTranslation(sentenceId);
         }
-
     }
 }

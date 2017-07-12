@@ -8,7 +8,6 @@
     [System.Serializable]
     public class JourneyPosition
     {
-
         public int Stage = 1;
         public int LearningBlock = 1;
         public int PlaySession = 1;
@@ -39,7 +38,7 @@
 
         public override bool Equals(object obj)
         {
-            var otherPos = (JourneyPosition)obj;
+            var otherPos = (JourneyPosition) obj;
             return Stage == otherPos.Stage && LearningBlock == otherPos.LearningBlock && PlaySession == otherPos.PlaySession;
         }
 
@@ -77,6 +76,5 @@
             }
             return false;
         }
-
     }
 }

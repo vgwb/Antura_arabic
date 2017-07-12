@@ -16,8 +16,7 @@ namespace Antura.AnturaSpace
         {
             base.EnterState();
 
-            if (controller.NextBoneToCatch == null)
-            {
+            if (controller.NextBoneToCatch == null) {
                 controller.CurrentState = controller.Idle;
                 return;
             }
@@ -44,10 +43,8 @@ namespace Antura.AnturaSpace
             base.Update(delta);
 
             if (!boneEaten && !controller.Antura.IsJumping &&
-                (controller.Antura.HasReachedTarget || controller.Antura.PlanarDistanceFromTarget < 5))
-            {
-                if ((controller.Antura.TargetHeight >= 2 && boneRigidBody != null && boneRigidBody.velocity.y > 10))
-                {
+                (controller.Antura.HasReachedTarget || controller.Antura.PlanarDistanceFromTarget < 5)) {
+                if ((controller.Antura.TargetHeight >= 2 && boneRigidBody != null && boneRigidBody.velocity.y > 10)) {
                     boneEaten = true;
                     // Jump!
                     controller.Antura.AnimationController.DoSmallJumpAndGrab(() =>
@@ -57,9 +54,7 @@ namespace Antura.AnturaSpace
                         bone = null;
                         boneEaten = false;
                     });
-                }
-                else if (controller.Antura.TargetHeight <= 4.5f)
-                {
+                } else if (controller.Antura.TargetHeight <= 4.5f) {
                     boneEaten = true;
                     controller.Antura.AnimationController.DoBite(() =>
                     {

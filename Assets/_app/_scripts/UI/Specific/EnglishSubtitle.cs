@@ -12,6 +12,5 @@ namespace Antura.UI
         {
             gameObject.SetActive(AppManager.I.AppSettings.EnglishSubtitles);
         }
-
     }
 }

@@ -13,10 +13,12 @@ namespace Antura.Map
     {
         [Header("Stage")]
         public Stage stageScript;
+
         public FingerStage swipeScript;
 
         [Header("UIButtons")]
         public GameObject moveRightButton;
+
         public GameObject moveLeftButton;
 
         [Header("PinState")]
@@ -37,8 +39,8 @@ namespace Antura.Map
             if (!AppManager.I.Player.IsFirstContact()) {
                 AmIFirstorLastPos();
             }
-
         }
+
         void Floating()
         {
             transform.DOBlendableMoveBy(new Vector3(0, 1, 0), 1).SetLoops(-1, LoopType.Yoyo);
@@ -140,15 +142,16 @@ namespace Antura.Map
             MoveTo(colliderRaycast.transform.position);
             stageScript.positionPin = colliderRaycast.transform.gameObject.GetComponent<MapPin>().pos;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;
-            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = colliderRaycast.transform.gameObject.GetComponent<MapPin>().learningBlockPin;
+            AppManager.I.Player.CurrentJourneyPosition.LearningBlock =
+                colliderRaycast.transform.gameObject.GetComponent<MapPin>().learningBlockPin;
             if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < stageScript.numberLearningBlocks) {
                 transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1].transform);
             } else {
                 transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform);
                 transform.rotation = Quaternion.Euler(
                     new Vector3(transform.rotation.eulerAngles.x,
-                    transform.rotation.eulerAngles.y + 180,
-                    transform.rotation.eulerAngles.z)
+                        transform.rotation.eulerAngles.y + 180,
+                        transform.rotation.eulerAngles.z)
                 );
             }
             AmIFirstorLastPos();
@@ -156,7 +159,8 @@ namespace Antura.Map
 
         public void MoveToTheRightDot()
         {
-            if ((stageScript.positionPin < (stageScript.positionsPlayerPin.Count - 1)) && (stageScript.positionPin != stageScript.positionPinMax)) {
+            if ((stageScript.positionPin < (stageScript.positionsPlayerPin.Count - 1)) &&
+                (stageScript.positionPin != stageScript.positionPinMax)) {
                 stageScript.positionPin++;
                 MoveTo(stageScript.positionsPlayerPin[stageScript.positionPin].transform.position, true);
 
@@ -181,25 +185,27 @@ namespace Antura.Map
 
         public void ResetPosLetter()
         {
-            if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100)//Letter is on a pin
+            if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100) //Letter is on a pin
             {
                 MoveTo(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position);
-                stageScript.positionPin = stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().pos;
+                stageScript.positionPin = stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>()
+                    .pos;
                 if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < stageScript.ropes.Length) {
                     transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1].transform);
                 } else {
                     transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform);
                     transform.rotation = Quaternion.Euler(
                         new Vector3(transform.rotation.eulerAngles.x,
-                                    transform.rotation.eulerAngles.y + 180,
-                                    transform.rotation.eulerAngles.z)
+                            transform.rotation.eulerAngles.y + 180,
+                            transform.rotation.eulerAngles.z)
                     );
                 }
             } else {
                 //Letter is on a dot
                 MoveTo(stageScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
                     [AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1].transform.position);
-                stageScript.positionPin = stageScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
+                stageScript.positionPin = stageScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1]
+                    .GetComponent<Rope>().dots
                     [AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1].GetComponent<Dot>().pos;
                 transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform);
             }
@@ -223,13 +229,11 @@ namespace Antura.Map
                     stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<Dot>().playSessionActual;
                 AppManager.I.Player.CurrentJourneyPosition.LearningBlock =
                     stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<Dot>().learningBlockActual;
-
             } else {
                 AppManager.I.Player.CurrentJourneyPosition.PlaySession =
-               stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<MapPin>().playSessionPin;
+                    stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<MapPin>().playSessionPin;
                 AppManager.I.Player.CurrentJourneyPosition.LearningBlock =
                     stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<MapPin>().learningBlockPin;
-
             }
             UpdateCurrentJourneyPosition();
         }
@@ -238,8 +242,8 @@ namespace Antura.Map
         {
             AppManager.I.Player.SetCurrentJourneyPosition(
                 new JourneyPosition(AppManager.I.Player.CurrentJourneyPosition.Stage,
-                                    AppManager.I.Player.CurrentJourneyPosition.LearningBlock,
-                                    AppManager.I.Player.CurrentJourneyPosition.PlaySession),
+                    AppManager.I.Player.CurrentJourneyPosition.LearningBlock,
+                    AppManager.I.Player.CurrentJourneyPosition.PlaySession),
                 true
             );
         }
@@ -270,8 +274,14 @@ namespace Antura.Map
         // If animate is TRUE, animates the movement, otherwise applies the movement immediately
         void MoveTo(Vector3 position, bool animate = false)
         {
-            if (moveTween != null) { moveTween.Complete(); }
-            if (animate) { moveTween = transform.DOMove(position, 0.25f); } else { transform.position = position; }
+            if (moveTween != null) {
+                moveTween.Complete();
+            }
+            if (animate) {
+                moveTween = transform.DOMove(position, 0.25f);
+            } else {
+                transform.position = position;
+            }
         }
 
         public void AmIFirstorLastPos()
@@ -284,7 +294,6 @@ namespace Antura.Map
                     StartCoroutine("DesactivateButtonWithDelay", moveRightButton);
                     moveLeftButton.SetActive(true);
                 }
-
             } else if (stageScript.positionPin == stageScript.positionPinMax) {
                 moveRightButton.SetActive(true);
                 StartCoroutine("DesactivateButtonWithDelay", moveLeftButton);
@@ -301,4 +310,3 @@ namespace Antura.Map
         }
     }
 }
-

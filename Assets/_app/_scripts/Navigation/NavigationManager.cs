@@ -31,9 +31,15 @@ namespace Antura.Core
             get { return SceneTransitionManager.IsTransitioning; }
         }
 
-        public int NumberOfLoadedScenes {  get { return SceneTransitionManager.NumberOfLoadedScenes; } }
+        public int NumberOfLoadedScenes
+        {
+            get { return SceneTransitionManager.NumberOfLoadedScenes; }
+        }
 
-        public bool IsInFirstLoadedScene {  get { return NumberOfLoadedScenes <= 1; } }
+        public bool IsInFirstLoadedScene
+        {
+            get { return NumberOfLoadedScenes <= 1; }
+        }
 
         public Action OnSceneStartTransition
         {

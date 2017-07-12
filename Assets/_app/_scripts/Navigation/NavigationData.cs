@@ -87,8 +87,7 @@ namespace Antura.Core
 
         public MiniGameData CurrentMiniGameData
         {
-            get
-            {
+            get {
                 if (CurrentPlaySessionMiniGames == null) return null;
                 if (CurrentPlaySessionMiniGames.Count == 0) return null;
                 return CurrentPlaySessionMiniGames[CurrentMiniGameIndexInPlaySession];

@@ -24,7 +24,7 @@ Instead of starting your own minigame from scratch, you can use the provided gam
 
 4. Edit these source files, and change the class names in order to comply with this name change, for example:
 
-    1. **EA4S.Template** namespace should become *EA4S.MyNewMasterpiece*
+    1. **Antura.Template** namespace should become *Antura.MyNewMasterpiece*
 
     2. **TemplateGame** class should become *MyNewMasterpieceGame*
 
@@ -51,7 +51,7 @@ For this purpose, the following should be performed:
 Here we describe the software architecture that should be followed by your mini-games.
 If you copied the Minigame template, the main classes are already partially implemented to be compliant with such architecture.
 
-The minigame main class should extend **MiniGame** class, inside the EA4S namespace.
+The minigame main class should extend **MiniGame** class, inside the Antura namespace.
 Such class is realized using the [*State Pattern*](https://en.wikipedia.org/wiki/State_pattern)
 
 

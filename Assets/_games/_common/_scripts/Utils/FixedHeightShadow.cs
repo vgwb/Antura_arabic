@@ -10,12 +10,13 @@ namespace Antura.MinigamesCommon
     public class FixedHeightShadow : MonoBehaviour
     {
         public Transform toFollow;
-        public float y = 0;
+        public float y;
 
         void Update()
         {
-            if (toFollow == null)
+            if (toFollow == null) {
                 return;
+            }
 
             var pos = transform.position;
             pos = toFollow.position;

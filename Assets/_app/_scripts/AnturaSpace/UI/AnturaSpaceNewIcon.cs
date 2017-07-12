@@ -9,8 +9,7 @@ namespace Antura.UI
 
         void Init()
         {
-            if (_tween != null)
-            {
+            if (_tween != null) {
                 return;
             }
 

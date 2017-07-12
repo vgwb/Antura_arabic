@@ -10,7 +10,6 @@ namespace Antura.LivingLetters.Sample
     {
         public SampleWordProvider()
         {
-
         }
 
         public ILivingLetterData GetNextData()

@@ -15,13 +15,13 @@ In this document, the **Teacher** is a shorthand for the *Teacher System*.
 The person or group of persons that configure the Teacher is instead referred to
  singularly as the **Expert**.
 
-All code related to the Teacher can be found under the **EA4S.Teacher** namespace.
+All code related to the Teacher can be found under the **Antura.Teacher** namespace.
 
 ## Classes
 
 The Teacher is composed of several interrelated classes, joined by a composition relationship.
 
-**EA4S.TeacherAI** works as the entry point to the teacher functions.
+**Antura.TeacherAI** works as the entry point to the teacher functions.
 All of the Teacher functionalities should be accessed through a singleton instance of TeacherAI: **AppManager.I.Teacher**.
 Engines and Helpers are sub-elements of the Teacher and reside in their own classes.
 
@@ -34,19 +34,19 @@ Engines and Helpers are sub-elements of the Teacher and reside in their own clas
 - **Helper** classes expose interfaces for easier interaction with the Teacher and the app's Database:
     - **Score Helper** provides methods for storing, retrieving, and updating score values related to the learning progression.
     - **Journey Helper** provides methods for retrieving and comparing progression data from the database.
-    - **Vocabulary Helper** provides method for retrieving and comparing vocabulary data. 
+    - **Vocabulary Helper** provides method for retrieving and comparing vocabulary data.
 
 ## General Configuration
 
 In general, the Teacher can be configured by the Expert through two main mechanisms:
 
-- By editing the database contents through an Excel file, the Teacher can define the contents of *Play Sessions*, *Learning Blocks*, and the whole vocabulary. 
+- By editing the database contents through an Excel file, the Teacher can define the contents of *Play Sessions*, *Learning Blocks*, and the whole vocabulary.
 Please refer to the following sections for specific details.
-- By editing a set of weights, the Expert can further configure the logic inside the Teacher. 
+- By editing a set of weights, the Expert can further configure the logic inside the Teacher.
 This is implemented as constants in the **ConfigAI** static class.
 
 
-	
+
 ## Difficulty Selection Engine
 
 Minigames can be configured to be more or less difficult (i.e. challanging) for the player.
@@ -56,7 +56,7 @@ Difficulty is defined as a float value in the range [0,1], with 0 being the easi
 Note that the difficulty value is related only to the specific minigame (and thus not related to other minigames)
   and is implemented in the minigame's logic, following the above general rule.
  See the [Minigames](Minigames.md) documentation for further details.
-  
+
 The difficulty value logic depends on several variables:
 - The current performance of the player for the given minigame. The game is more difficult the better the player gets. The current performance starts from zero and may rise up to 1.
  Failing a minigame (score 0) diminishes the performance. Completing  a minigame with a score of 2 or more increases it. Completing it with a score of 1 is ininfluent (steady performance).
@@ -79,41 +79,41 @@ The difficulty value in the Game Configuration is then read by the minigame and 
 This *Engine* is in charge of selecting what minigames to use for a given play session.
  The Teacher may call this Engine with the number of requested minigames as a parameter.
 
-The logic for selection depends on two main mechanism: 
+The logic for selection depends on two main mechanism:
 filtering based on Play Sessions,
   and weighing based on past performance.
-  
+
 ### Filtering step
-As a first step, the **Play Session Data** table in the database defines what minigames can be selected for a given *Play Session*. 
+As a first step, the **Play Session Data** table in the database defines what minigames can be selected for a given *Play Session*.
  The Teacher makes sure to use this information when filtering minigames.
  Minigames which have a zero value (or no value) in the Play Session table are filtered out.
- 
-*In case of fixed sequence (*PlaySessionDataOrder.Sequence* set in the **Play Session Data** table), 
- the numbers placed 
- in the Play Session for each minigame are used to define the sequence. 
+
+*In case of fixed sequence (*PlaySessionDataOrder.Sequence* set in the **Play Session Data** table),
+ the numbers placed
+ in the Play Session for each minigame are used to define the sequence.
  This is used for the initial Play Sessions to force an order on minigames.*
 
 ### Weighted selection step
 The second step performs a weighing over the available minigames, based on several variables:
 
-- **Manual weights**: in case of random sequence (*PlaySessionDataOrder.Random* set in the **Play Session Data** table), the numbers placed 
+- **Manual weights**: in case of random sequence (*PlaySessionDataOrder.Random* set in the **Play Session Data** table), the numbers placed
  in the Play Session for each minigame are used as weights. This produces a [0,1] value for each available minigame.
-- **Recent play weight**: the number of days since the last time the minigame was played is taken into account to produce a value in the [0,1] range for each available minigame, favouring 
+- **Recent play weight**: the number of days since the last time the minigame was played is taken into account to produce a value in the [0,1] range for each available minigame, favouring
  minigames that have not been played for a while.
- 
-The resulting weights are added (each with a configurable contribution weight) and used in a round of roulette selection. 
+
+The resulting weights are added (each with a configurable contribution weight) and used in a round of roulette selection.
  The contribution weights, as well as the number of days for the *recent play* logic, can be configured in **ConfigAI**.
 
- 
-### Code 
+
+### Code
 The MiniGame Selection Engine is accessed through the method **PerformSelection(string playSessionId, int numberToSelect)**
  that returns a  **List<MiniGameData>** containing the selected minigames.
 
 Whenever a new play session start, this is called by the Teacher through **TeacherAI.InitialiseCurrentPlaySession()**.
   triggered by the **MiniMap** script in the *Map scene* when a new  play session is about to start.
- 
-  
-  
+
+
+
 
 ## Vocabulary Selection Engine
 
@@ -122,29 +122,29 @@ This *Engine* is in charge of selecting what vocabulary data a minigame should u
 The selected vocabulary data will be used as the *focus* for each minigame session (i.e. as questions to be posed, or as correct answers to find).
 
 The logic for selection depends on three main mechanism: two fltering steps and a weighted selection step.
-  
+
 ### Filtering step
 The first step is needed to make sure that all data to be selected matches the player's knowledge.
 The step filters all vocabulary data in the database based on:
 
-- **Minigame requirements**: 
- The selected minigame  usually works with a subset of the whole data. 
- For example, many minigames work with letters, but not with words. rules and requirements may. 
+- **Minigame requirements**:
+ The selected minigame  usually works with a subset of the whole data.
+ For example, many minigames work with letters, but not with words. rules and requirements may.
  This is performed through a configured **QuestionBuilder** (refer to the section below).
 - **Data Variability**: Previously selected data for the same minigame instance may be filtered out to increase variability.
 The focus of this filter is to make sure that data is not repeated too much, avoiding repeating the same data in succession in the same play sessions.
- This is performed through two phases. An *intra-pack* phase avoids repeating the same data in the same question pack, if possible. 
+ This is performed through two phases. An *intra-pack* phase avoids repeating the same data in the same question pack, if possible.
   This can be configured per minigame with the **SelectionSeverity** parameters.  
   An *inter-pack* phase avoids repeating the same data in the same list of question packs, if possible.
   This can be configured per minigame with the **PackListHistory** parameters.  
-- **Journey progression**: 
+- **Journey progression**:
 The current journey progression (i.e. the position in the Stage/LearningBlock/PlaySession map) is taken into account,
   filtering out data that is too difficult for the current learning progression (i.e. it is not available up to the current Learning Block).
 
 ### Journey priority step
 After the first step, we can be sure that *all* selected data can be played by the selected minigame and is suitable to the player's knowledge.
 The Teacher performs a second step by weighing vocabulary entries based on the learning block focus.
-This is used, if possible, as a strict filter. 
+This is used, if possible, as a strict filter.
 Data that belongs to the *current* learning block is given large priority, making sure that all data of the learning block is used if available.
 If not enough data is available for the current learning block, data from the previous play sessions (going back in the progression)
  is selected and given a weight based on linear distance from the current learning block.
@@ -162,7 +162,7 @@ If a vocabulary entry has a too lower weight, a minimum weight can however be as
 
 ### Inter-pack ordering
 
-At last, after data has been selected, an optional ordering may be enforced. This can be useful to make sure 
+At last, after data has been selected, an optional ordering may be enforced. This can be useful to make sure
  that the vocabulary data entires of a given minigame play session appear during play in order of difficulty
 The ordering is performed on the **intrinsic difficulty** of each vocabulary data entry.
 
@@ -173,7 +173,7 @@ The ordering is performed on the **intrinsic difficulty** of each vocabulary dat
 Many minigames require vocabulary entries that function as wrong answers, which need not be selected.
 These entries need not be as strict as the *in-focus* (i.e. correct) answers, as they are not the primary focus of the minigame.
 However, the logic for selection is similar to the selection of correct data, with the following differences:
-- **Loose Journey Progression**: Wrong data may be selected also among all data of the current stage, regardless of the reached learning block. 
+- **Loose Journey Progression**: Wrong data may be selected also among all data of the current stage, regardless of the reached learning block.
 This changes the filtering steps so to avoid filtering out all data of the current stage and so to avoid prioritizing the current learning block data.
 
 Note that minigames may have specific requirements also for wrong answers (see the next section).
@@ -275,8 +275,8 @@ The learning progression can be configured through two main sources:
  The learning content should be distributed so that harder content appears at higher stages.
  The system will make sure to use this information when **filtering** dictionary content.
 *Example: content at higher learning blocks cannot appear at lower play sessions*
- 
-- Editing the ConfigAI weight constants. These values define how much weight to give to each rule when selecting dictionary content. 
+
+- Editing the ConfigAI weight constants. These values define how much weight to give to each rule when selecting dictionary content.
 The system will make sure to use this information when **weighing** dictionary content.
 *Example: content that has been seen recently may appear less often*
 

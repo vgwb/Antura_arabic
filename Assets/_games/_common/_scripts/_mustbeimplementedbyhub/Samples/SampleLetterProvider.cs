@@ -10,9 +10,8 @@ namespace Antura.LivingLetters.Sample
     {
         public SampleLetterProvider()
         {
-
         }
-        
+
         public ILivingLetterData GetNextData()
         {
             return AppManager.I.Teacher.GetRandomTestLetterLL();

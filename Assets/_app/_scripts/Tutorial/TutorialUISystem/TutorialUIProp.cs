@@ -8,7 +8,9 @@ namespace Antura.Tutorial
     {
         public bool IsPooled;
 
-        [System.NonSerialized] public SpriteRenderer Img;
+        [System.NonSerialized]
+        public SpriteRenderer Img;
+
         protected Transform DefParent;
         int defSortingOrder;
         protected Tween ShowTween;
@@ -24,7 +26,8 @@ namespace Antura.Tutorial
             Img.SetAlpha(0);
             ShowTween = Img.DOFade(1, 0.2f).SetAutoKill(false).Pause()
                 .SetEase(Ease.Linear)
-                .OnRewind(() => {
+                .OnRewind(() =>
+                {
                     this.gameObject.SetActive(false);
                     this.transform.parent = DefParent;
                 });

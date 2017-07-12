@@ -20,14 +20,15 @@ namespace Antura.UI
                 .Append(this.transform.DOPunchRotation(new Vector3(0, 0, 20), pulseShakeDuration))
                 .Append(this.transform.DOScale(this.transform.localScale * 1.1f, 0.3f).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo)
                     .SetAutoKill(false).Pause()
-                    .OnComplete(() => {
+                    .OnComplete(() =>
+                    {
                         if (shouldPulse) pulseTween.Goto(pulseShakeDuration, true);
                     })
                 );
             pulseTween.ForceInit();
             showTween = this.transform.DOScale(0.0001f, 0.45f).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
-                .OnRewind(()=> this.gameObject.SetActive(false))
-                .OnComplete(()=> pulseTween.Goto(pulseShakeDuration, true));
+                .OnRewind(() => this.gameObject.SetActive(false))
+                .OnComplete(() => pulseTween.Goto(pulseShakeDuration, true));
 
             this.gameObject.SetActive(false);
         }

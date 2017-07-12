@@ -1,6 +1,7 @@
 ﻿namespace Antura.Rewards
 {
-    public enum PaletteColors {
+    public enum PaletteColors
+    {
         azure,
         beige,
         black,
@@ -14,14 +15,16 @@
         yellow,
     }
 
-    public enum PaletteTone {
+    public enum PaletteTone
+    {
         light,
         mid,
         dark,
         pure,
     }
 
-    public enum PaletteType {
+    public enum PaletteType
+    {
         diffuse_desaturated,
         diffuse_saturated,
         specular_saturated_2side,

@@ -10,7 +10,6 @@ namespace Antura.Scenes
     /// </summary>
     public class MoodScene : SceneBase
     {
-
         protected override void Start()
         {
             base.Start();

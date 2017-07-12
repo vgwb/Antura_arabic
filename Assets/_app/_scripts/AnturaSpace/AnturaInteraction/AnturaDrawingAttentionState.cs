@@ -39,35 +39,28 @@ namespace Antura.AnturaSpace
         {
             base.Update(delta);
 
-            if (controller.DraggingBone != null || controller.NextBoneToCatch != null)
-            {
+            if (controller.DraggingBone != null || controller.NextBoneToCatch != null) {
                 controller.CurrentState = controller.Idle;
                 return;
             }
 
-            if (shoutTimer > 0 & controller.Antura.HasReachedTarget)
-            {
+            if (shoutTimer > 0 & controller.Antura.HasReachedTarget) {
                 timeInThisState += delta;
                 shoutTimer -= delta;
 
-                if (shoutTimer <= 0)
-                {
+                if (shoutTimer <= 0) {
                     shoutTimer = UnityEngine.Random.Range(1.5f, 4);
 
-                    if (UnityEngine.Random.value < 0.3f)
-                    {
+                    if (UnityEngine.Random.value < 0.3f) {
                         controller.Antura.AnimationController.DoSniff();
                         Audio.AudioManager.I.PlaySound(Sfx.DogSnorting);
-                    }
-                    else
-                    {
+                    } else {
                         controller.Antura.AnimationController.DoShout(() => { Audio.AudioManager.I.PlaySound(Sfx.DogBarking); });
                     }
                 }
             }
 
-            if (timeInThisState > 10)
-            {
+            if (timeInThisState > 10) {
                 controller.CurrentState = controller.Idle;
             }
         }

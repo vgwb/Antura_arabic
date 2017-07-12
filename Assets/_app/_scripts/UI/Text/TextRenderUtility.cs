@@ -85,7 +85,8 @@ namespace Antura.UI
 
                     //m_TextComponent.UpdateVertexData();
 
-                    Debug.Log("DIACRITIC: diacritic pos fixed for " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[1].character) + " by " + newYOffset);
+                    Debug.Log("DIACRITIC: diacritic pos fixed for " +
+                              ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[1].character) + " by " + newYOffset);
                 }
 
 
@@ -95,12 +96,10 @@ namespace Antura.UI
                               //+ "index: " + textInfo.characterInfo[i].index
                               + " char: " + textInfo.characterInfo[i].character.ToString()
                               + " UNICODE: " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[i].character)
-                             );
+                    );
                 }
                 //textInfo.characterInfo[1].textElement.yOffset += yOffset;
             }
-
-
         }
 
         public void ShowInfo()
@@ -117,7 +116,7 @@ namespace Antura.UI
                               + "index: " + textInfo.characterInfo[i].index
                               + "char: " + textInfo.characterInfo[i].character.ToString()
                               + "UNICODE: " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[i].character)
-                             );
+                    );
                 }
                 //textInfo.characterInfo[1].textElement.yOffset += yOffset;
             }

@@ -19,6 +19,7 @@ namespace Antura.UI
     {
         [Header("References")]
         public UIButton BtAdd;
+
         public UIButton BtPlay;
         public GameObject ProfilesPanel;
         public HomeScene HomeScene;
@@ -26,10 +27,15 @@ namespace Antura.UI
 
         [Header("Audio")]
         public Sfx SfxOpenCreateProfile;
+
         public Sfx SfxCreateNewProfile;
         public Sfx SfxSelectProfile;
 
-        public PlayerProfileManager ProfileManager { get { return AppManager.I.PlayerProfileManager; } }
+        public PlayerProfileManager ProfileManager
+        {
+            get { return AppManager.I.PlayerProfileManager; }
+        }
+
         int maxProfiles;
         List<PlayerIconData> playerIconDatas;
         PlayerIcon[] playerIcons;
@@ -48,13 +54,18 @@ namespace Antura.UI
         {
             // By default, the letter shows a truly random letter
             LLInStage.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
- 
+
             Setup();
 
             btAddTween = BtAdd.transform.DORotate(new Vector3(0, 0, -45), 0.3f).SetAutoKill(false).Pause()
                 .SetEase(Ease.OutBack)
-                .OnRewind(() => {
-                    if (AppManager.I.PlayerProfileManager.GetPlayersIconData() == null || AppManager.I.PlayerProfileManager.GetPlayersIconData().Count == 0) BtAdd.Pulse();
+                .OnRewind(() =>
+                {
+                    if (AppManager.I.PlayerProfileManager.GetPlayersIconData() == null ||
+                        AppManager.I.PlayerProfileManager.GetPlayersIconData().Count == 0) 
+                    {
+                        BtAdd.Pulse();
+                    }
                 });
             btPlayTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(BtPlay.RectT.DOAnchorPosY(-210, 0.2f).From(true))
@@ -66,7 +77,8 @@ namespace Antura.UI
 
             // Listeners
             BtAdd.Bt.onClick.AddListener(() => OnClick(BtAdd));
-            BtPlay.Bt.onClick.AddListener(() => {
+            BtPlay.Bt.onClick.AddListener(() =>
+            {
                 AudioManager.I.PlaySound(Sfx.UIButtonClick);
                 HomeScene.Play();
             });
@@ -81,7 +93,9 @@ namespace Antura.UI
             btAddTween.Kill();
             btPlayTween.Kill();
             BtAdd.Bt.onClick.RemoveAllListeners();
-            foreach (PlayerIcon pIcon in playerIcons) pIcon.UIButton.Bt.onClick.RemoveAllListeners();
+            foreach (PlayerIcon pIcon in playerIcons) {
+                pIcon.UIButton.Bt.onClick.RemoveAllListeners();
+            }
         }
 
         #endregion
@@ -107,13 +121,16 @@ namespace Antura.UI
         void Setup()
         {
             ActivatePlayerIcons(true);
-            if (playerIconDatas == null) playerIconDatas = ProfileManager.GetPlayersIconData();
+            if (playerIconDatas == null) {
+                playerIconDatas = ProfileManager.GetPlayersIconData();
+            }
             int totProfiles = playerIconDatas == null ? 0 : playerIconDatas.Count;
             int len = playerIcons.Length;
             for (int i = 0; i < len; ++i) {
                 PlayerIcon playerIcon = playerIcons[i];
-                if (i >= totProfiles) playerIcon.gameObject.SetActive(false);
-                else {
+                if (i >= totProfiles) {
+                    playerIcon.gameObject.SetActive(false);
+                } else {
                     PlayerIconData iconData = playerIconDatas[i];
                     playerIcon.gameObject.SetActive(true);
                     playerIcon.Init(iconData);
@@ -143,19 +160,25 @@ namespace Antura.UI
             BtPlay.gameObject.SetActive(true);
             // PLAYER REFACTORING WITH UUID
             PlayerIcon activePlayerIcon = GetPlayerIconByUUID(AppManager.I.Player.Uuid);
-            if (activePlayerIcon != null) BtPlay.RectT.SetAnchoredPosX(activePlayerIcon.UIButton.RectT.anchoredPosition.x);
+            if (activePlayerIcon != null) {
+                BtPlay.RectT.SetAnchoredPosX(activePlayerIcon.UIButton.RectT.anchoredPosition.x);
+            }
             btPlayTween.PlayForward();
         }
 
         void ActivatePlayerIcons(bool _activate)
         {
-            foreach (PlayerIcon pIcon in playerIcons) pIcon.UIButton.Bt.interactable = _activate;
+            foreach (PlayerIcon pIcon in playerIcons) {
+                pIcon.UIButton.Bt.interactable = _activate;
+            }
         }
 
         PlayerIcon GetPlayerIconByUUID(string uuid)
         {
             foreach (PlayerIcon pIcon in playerIcons) {
-                if (pIcon.Uuid == uuid) return pIcon;
+                if (pIcon.Uuid == uuid) {
+                    return pIcon;
+                }
             }
             return null;
         }

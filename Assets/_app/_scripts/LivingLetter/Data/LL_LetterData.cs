@@ -13,16 +13,19 @@ namespace Antura.LivingLetters
         public Database.LetterData Data;
         public Database.LetterForm Form = Database.LetterForm.Isolated; // TODO refactor: this is tied to the Arabic language
 
-        public LivingLetterDataType DataType {
+        public LivingLetterDataType DataType
+        {
             get { return LivingLetterDataType.Letter; }
         }
 
-        public string Id {
+        public string Id
+        {
             get { return Data.Id; }
             set { Data = AppManager.I.DB.GetLetterDataById(value); }
         }
 
-        public LL_LetterData(string _id) : this(AppManager.I.DB.GetLetterDataById(_id)) /// TODO refactor: inject the value, no reference to the DB
+        public LL_LetterData(string _id) :
+            this(AppManager.I.DB.GetLetterDataById(_id)) /// TODO refactor: inject the value, no reference to the DB
         {
         }
 
@@ -42,19 +45,20 @@ namespace Antura.LivingLetters
         }
 
         #region API
-        public string TextForLivingLetter {
-            get
-            {
-                return Data.GetCharFixedForDisplay(Form);
-            }
+
+        public string TextForLivingLetter
+        {
+            get { return Data.GetCharFixedForDisplay(Form); }
         }
-        
-        public string DrawingCharForLivingLetter {
+
+        public string DrawingCharForLivingLetter
+        {
             get { return null; }
         }
 
         [Obsolete("Use DrawingCharForLivingLetter instead of this.")]
-        public Sprite DrawForLivingLetter {
+        public Sprite DrawForLivingLetter
+        {
             get { return null; }
         }
 
@@ -66,6 +70,7 @@ namespace Antura.LivingLetters
 
             return other.Data.Id == Data.Id && other.Form == Form;
         }
+
         #endregion
     }
 }

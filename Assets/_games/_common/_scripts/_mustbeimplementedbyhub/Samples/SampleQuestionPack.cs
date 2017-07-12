@@ -13,7 +13,8 @@ namespace Antura.LivingLetters.Sample
         IEnumerable<ILivingLetterData> wrongAnswersSentence;
         IEnumerable<ILivingLetterData> correctAnswersSentence;
 
-        public SampleQuestionPack(ILivingLetterData questionSentence, IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence)
+        public SampleQuestionPack(ILivingLetterData questionSentence, IEnumerable<ILivingLetterData> wrongAnswersSentence,
+            IEnumerable<ILivingLetterData> correctAnswersSentence)
         {
             this.questionSentence = questionSentence;
             this.wrongAnswersSentence = wrongAnswersSentence;
@@ -35,7 +36,8 @@ namespace Antura.LivingLetters.Sample
             return correctAnswersSentence;
         }
 
-        public IEnumerable<ILivingLetterData> GetQuestions() {
+        public IEnumerable<ILivingLetterData> GetQuestions()
+        {
             throw new Exception("This provider can not use this method");
         }
     }

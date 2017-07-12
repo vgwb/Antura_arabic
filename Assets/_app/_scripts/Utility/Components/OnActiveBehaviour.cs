@@ -5,7 +5,6 @@ namespace Antura.Utilities
 {
     public class OnActiveBehaviour : MonoBehaviour
     {
-
         void OnEnable()
         {
             if (OnEnableAction != null) {
@@ -22,6 +21,7 @@ namespace Antura.Utilities
 
         [HideInInspector]
         public Action OnEnableAction;
+
         public Action OnDisableAction;
     }
 }

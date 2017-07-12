@@ -14,6 +14,7 @@ public class SpringController : MonoBehaviour
 
     [Range(-1, 1)]
     public float t;
+
     public bool Released = false;
 
     public float Elasticity = 400.0f;
@@ -26,13 +27,11 @@ public class SpringController : MonoBehaviour
         springAnimation["Base"].normalizedTime = 0.5f;
         springAnimation["Base"].speed = 0.0f;
         springAnimation.Play("Base");
-
     }
 
     void Update()
     {
-        if (Released)
-        {
+        if (Released) {
             //// Simulate elastic movement
             // F = -K * dx
             float elasticForce = -Elasticity * t;
@@ -47,13 +46,10 @@ public class SpringController : MonoBehaviour
             // Integrates changes between last timestep
             // h += V * t + 0.5 * a * t^2
             t += velocity * Time.deltaTime + 0.5f * acceleration * Time.deltaTime * Time.deltaTime;
-        }
-        else
-        {
+        } else {
             velocity = 0;
 
             innerSpring.transform.localRotation = Quaternion.AngleAxis(180 + Mathf.Clamp(angle, -90, 90), Vector3.up);
-
         }
 
         t = Mathf.Clamp(t, -1, 1);

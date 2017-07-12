@@ -10,5 +10,4 @@ namespace Antura.Database
         [SerializeField]
         public LocalizationTable table;
     }
-
 }

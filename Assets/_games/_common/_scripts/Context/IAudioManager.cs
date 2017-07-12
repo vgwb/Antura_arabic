@@ -28,6 +28,7 @@ namespace Antura.MinigamesCommon
 
         // TODO: To be removed in next version
         void PlayMusic(Music music);
+
         void StopMusic();
 
         void PlayDialogue(Database.LocalizationDataId text, System.Action onCompleted = null);

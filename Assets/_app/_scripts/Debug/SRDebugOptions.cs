@@ -1,4 +1,5 @@
-﻿#if SRDebuggerEnabled
+﻿
+#if SRDebuggerEnabled
 using System.ComponentModel;
 using UnityEngine;
 using Antura;

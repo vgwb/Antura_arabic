@@ -38,6 +38,7 @@ namespace Antura.Profile
 
         [Tooltip("Startup offset of categories")]
         public int StartupOffsetY = -160;
+
         public UIButton BtContinue;
         public RectTransform CategoriesContainer;
         public PlayerCreationUICategory[] Categories; // 0: gender // 1: avatar // 2: color
@@ -45,7 +46,8 @@ namespace Antura.Profile
 
         #endregion
 
-        bool allAvatarCategoriesSelected {
+        bool allAvatarCategoriesSelected
+        {
             get {
                 foreach (var cat in Categories) {
                     if (cat.SelectedIndex < 0) {
@@ -55,6 +57,7 @@ namespace Antura.Profile
                 return true;
             }
         }
+
         public static UIState State { get; private set; }
         int selectionStep = 0; // 0: age // 1: gender // 2: avatar // 3: color
         float selectionStepOffsetY;
@@ -87,7 +90,6 @@ namespace Antura.Profile
             AgeCategory.OnDeselectAll += OnDeselectAllInCategory;
 
             playAudioDescription(0);
-
         }
 
         void OnDestroy()
@@ -197,7 +199,7 @@ namespace Antura.Profile
                 AgeCategory.SelectedIndex + 4,
                 Categories[CategoryIndex.Gender].SelectedIndex == 0 ? PlayerGender.M : PlayerGender.F,
                 Categories[CategoryIndex.Avatar].SelectedIndex + 1,
-                (PlayerTint)(Categories[CategoryIndex.Color].SelectedIndex + 1)
+                (PlayerTint) (Categories[CategoryIndex.Color].SelectedIndex + 1)
             );
         }
 
