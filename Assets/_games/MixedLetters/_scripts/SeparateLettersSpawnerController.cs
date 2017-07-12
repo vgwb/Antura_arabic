@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Random = UnityEngine.Random;
 using DG.Tweening;
 

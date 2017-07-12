@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Helpers;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Antura.Core;
 using UnityEngine;
 

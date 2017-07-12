@@ -4,7 +4,7 @@ using System.Linq;
 using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 
 namespace Antura.Teacher
 {

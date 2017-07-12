@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Antura.MinigamesAPI
+namespace Antura.LivingLetters
 {
     /// <summary>
     /// Interface for learning content data in the form:

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Antura.MinigamesAPI
+namespace Antura.LivingLetters
 {
     /// <summary>
     /// Common interface for data that can appear on a LivingLetter object.

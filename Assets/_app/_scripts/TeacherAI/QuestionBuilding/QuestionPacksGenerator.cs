@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Antura.Core;
 
 namespace Antura.Teacher

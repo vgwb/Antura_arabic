@@ -3,7 +3,7 @@ using System.Linq;
 using Antura.Helpers;
 using Antura.Core;
 
-namespace Antura.MinigamesAPI.Sample
+namespace Antura.LivingLetters.Sample
 {
     /// <summary>
     /// Example implementation of IQuestionProvider.

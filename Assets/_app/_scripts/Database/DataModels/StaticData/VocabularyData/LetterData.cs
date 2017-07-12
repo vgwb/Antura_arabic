@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using SQLite;
 using UnityEngine;
 

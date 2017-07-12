@@ -1,5 +1,5 @@
-﻿using Antura.MinigamesAPI;
-using Antura.MinigamesAPI.Sample;
+﻿using Antura.LivingLetters;
+using Antura.LivingLetters.Sample;
 using Antura.MinigamesCommon;
 using Antura.Teacher;
 

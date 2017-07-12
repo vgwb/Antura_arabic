@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Antura.UI;
 
 namespace Antura.Minigames.Tobogan

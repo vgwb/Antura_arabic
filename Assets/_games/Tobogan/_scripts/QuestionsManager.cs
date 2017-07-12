@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 using System.Linq;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Antura.Helpers;
 
 namespace Antura.Minigames.Tobogan

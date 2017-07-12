@@ -1,4 +1,4 @@
-﻿namespace Antura.MinigamesAPI
+﻿namespace Antura.LivingLetters
 {
 
     /// <summary>

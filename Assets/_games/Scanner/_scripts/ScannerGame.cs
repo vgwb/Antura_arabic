@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Audio;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Antura.MinigamesCommon;
 
 namespace Antura.Minigames.Scanner

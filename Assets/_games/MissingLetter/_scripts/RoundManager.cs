@@ -5,7 +5,6 @@ using System;
 using Antura.Audio;
 using Antura.Helpers;
 using Antura.LivingLetters;
-using Antura.MinigamesAPI;
 using Antura.UI;
 
 namespace Antura.Minigames.MissingLetter

@@ -1,4 +1,4 @@
-﻿using Antura.MinigamesAPI;
+﻿using Antura.LivingLetters;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;

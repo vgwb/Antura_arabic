@@ -6,7 +6,7 @@ using Antura.MinigamesCommon;
 using Antura.Teacher;
 using UnityEngine;
 
-namespace Antura.MinigamesAPI
+namespace Antura.LivingLetters
 {
     /// <summary>
     /// Handles the logic to launch minigames with the correct configuration.

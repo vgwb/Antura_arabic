@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Text;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Antura.MinigamesCommon;
 using UnityEngine;
 

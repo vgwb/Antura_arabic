@@ -2,7 +2,7 @@ using Kore.Coroutines;
 using System.Collections;
 using System;
 using Antura.Database;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Antura.MinigamesCommon;
 
 namespace Antura.Assessment

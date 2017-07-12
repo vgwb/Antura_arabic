@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Antura.MinigamesAPI.Sample
+namespace Antura.LivingLetters.Sample
 {
     /// <summary>
     /// Example implementation of IQuestionPack.

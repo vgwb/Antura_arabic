@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Antura.Helpers;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using ArabicSupport;
 using Antura.Core;
 

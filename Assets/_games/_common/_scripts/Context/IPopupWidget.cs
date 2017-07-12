@@ -1,5 +1,5 @@
 ﻿using System;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using UnityEngine;
 
 namespace Antura.MinigamesCommon

@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections.Generic;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Antura.MinigamesCommon;
 using UnityEngine;
 

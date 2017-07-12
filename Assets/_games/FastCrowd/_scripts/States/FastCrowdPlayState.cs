@@ -1,4 +1,4 @@
-﻿using Antura.MinigamesAPI;
+﻿using Antura.LivingLetters;
 using Antura.MinigamesCommon;
 
 namespace Antura.Minigames.FastCrowd

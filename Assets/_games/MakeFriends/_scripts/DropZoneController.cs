@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using TMPro;
 
 namespace Antura.Minigames.MakeFriends

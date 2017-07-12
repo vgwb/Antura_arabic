@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Antura.Helpers;
-using Antura.MinigamesAPI;
-using Antura.MinigamesAPI.Sample;
+using Antura.LivingLetters;
+using Antura.LivingLetters.Sample;
 using Antura.Core;
 
 namespace Antura.Minigames.ReadingGame

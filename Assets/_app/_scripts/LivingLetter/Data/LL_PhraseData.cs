@@ -3,7 +3,7 @@ using System;
 using Antura.Helpers;
 using Antura.Core;
 
-namespace Antura.MinigamesAPI
+namespace Antura.LivingLetters
 {
     /// <summary>
     /// View of a PhraseData shown as text on a LivingLetter.

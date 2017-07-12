@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Antura.Helpers;
 using SQLite;
 using UnityEngine;

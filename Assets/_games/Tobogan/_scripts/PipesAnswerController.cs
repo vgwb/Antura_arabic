@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 
 namespace Antura.Minigames.Tobogan
 {

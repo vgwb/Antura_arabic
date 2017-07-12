@@ -1,7 +1,6 @@
 ﻿using DG.Tweening;
 using System;
 using Antura.LivingLetters;
-using Antura.MinigamesAPI;
 using UnityEngine;
 
 namespace Antura.Minigames.Egg

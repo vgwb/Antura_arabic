@@ -2,7 +2,7 @@
 using Antura.CameraControl;
 using Antura.Core;
 using Antura.Database;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Antura.Profile;
 using Antura.Rewards;
 using Antura.Teacher;

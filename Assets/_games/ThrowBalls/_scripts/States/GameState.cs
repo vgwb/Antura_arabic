@@ -5,7 +5,7 @@ using System.Linq;
 using System;
 using Antura.Audio;
 using Antura.Helpers;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Antura.MinigamesCommon;
 using Antura.Tutorial;
 using Antura.UI;

@@ -1,4 +1,4 @@
-﻿namespace Antura.MinigamesAPI
+﻿namespace Antura.LivingLetters
 {
     /// <summary>
     /// The question provider takes the responsibility to provide a set of questions to its user;

@@ -3,7 +3,7 @@ using Antura.Helpers;
 using Antura.Core;
 using UnityEngine;
 
-namespace Antura.MinigamesAPI
+namespace Antura.LivingLetters
 {
     /// <summary>
     /// View of a WordData shown as a drawing or image on a LivingLetter.

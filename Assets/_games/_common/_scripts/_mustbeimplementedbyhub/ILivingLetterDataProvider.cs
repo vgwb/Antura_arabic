@@ -1,4 +1,4 @@
-﻿namespace Antura.MinigamesAPI
+﻿namespace Antura.LivingLetters
 {
     /// <summary>
     /// Interface for a provider of ILivingLetterData.

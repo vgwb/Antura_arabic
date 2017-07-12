@@ -1,4 +1,4 @@
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 
 namespace Antura.Assessment
 {

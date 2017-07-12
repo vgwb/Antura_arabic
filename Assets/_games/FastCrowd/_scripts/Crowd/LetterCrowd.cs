@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Antura.LivingLetters;
-using Antura.MinigamesAPI;
 using Antura.MinigamesCommon;
 
 namespace Antura.Minigames.FastCrowd

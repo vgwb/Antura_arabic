@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Linq;
 using Antura.LivingLetters;
-using Antura.MinigamesAPI;
 using Antura.MinigamesCommon;
 
 namespace Antura.Minigames.ColorTickle

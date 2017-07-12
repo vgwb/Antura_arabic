@@ -1,6 +1,6 @@
 ﻿using Antura.Core;
 
-namespace Antura.MinigamesAPI.Sample
+namespace Antura.LivingLetters.Sample
 {
     /// <summary>
     /// Example implementation of ILivingLetterDataProvider.

@@ -1,4 +1,4 @@
-﻿using Antura.MinigamesAPI;
+﻿using Antura.LivingLetters;
 using Antura.UI;
 using Antura.MinigamesCommon;
 

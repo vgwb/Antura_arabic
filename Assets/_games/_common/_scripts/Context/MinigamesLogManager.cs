@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Core;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using Antura.Teacher;
 using Antura.Database;
 

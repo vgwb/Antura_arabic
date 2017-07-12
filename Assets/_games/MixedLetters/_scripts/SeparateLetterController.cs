@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Antura.LivingLetters;
-using Antura.MinigamesAPI;
 using Antura.MinigamesCommon;
 using Antura.Tutorial;
 

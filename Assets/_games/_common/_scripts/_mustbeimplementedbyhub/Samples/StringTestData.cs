@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Antura.MinigamesAPI.Sample
+namespace Antura.LivingLetters.Sample
 {
     public class StringTestData : ILivingLetterData
     {

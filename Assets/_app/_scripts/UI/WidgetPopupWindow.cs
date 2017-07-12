@@ -4,7 +4,7 @@ using System;
 using Antura.Audio;
 using Antura.Core;
 using Antura.Database;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 using TMPro;
 using DG.DeExtensions;
 using DG.Tweening;

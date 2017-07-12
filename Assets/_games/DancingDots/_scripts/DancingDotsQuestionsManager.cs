@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Antura.MinigamesAPI;
+using Antura.LivingLetters;
 
 
 namespace Antura.Minigames.DancingDots

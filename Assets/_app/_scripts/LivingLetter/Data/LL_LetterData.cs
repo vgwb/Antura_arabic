@@ -2,7 +2,7 @@
 using Antura.Core;
 using UnityEngine;
 
-namespace Antura.MinigamesAPI
+namespace Antura.LivingLetters
 {
     /// <summary>
     /// View of a LetterData shown as a single letter on a LivingLetter.
