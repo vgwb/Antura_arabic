@@ -3,38 +3,49 @@ using UnityEngine;
 
 namespace Antura.Map
 {
+    /// <summary>
+    ///     A pin on the map. Defines an assessment play session.
+    /// </summary>
     public class MapPin : MonoBehaviour
     {
         public int learningBlockPin;
         public int playSessionPin;
+        public int pos;
+
         public bool unlocked;
-        public Transform RopeNode;
+
         public GameObject Dot;
         public Material blackPin;
         public Material redPin;
-        public int pos;
 
-        void Start()
+        public GameObject pinV1;
+        public GameObject pinV2;
+
+        private void Start()
         {
-            if (unlocked) {
+            if (unlocked)
+            {
                 Dot.SetActive(true);
             }
         }
 
-        void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Player") {
+            if (other.gameObject.tag == "Player")
+            {
                 transform.GetChild(0).gameObject.SetActive(false);
                 ChangeMaterialPinToRed();
-                if (other.gameObject.GetComponent<LetterMovement>().playerOverDotPin == true) {
+                if (other.gameObject.GetComponent<PlayerPin>().playerOverDotPin)
+                {
                     AudioManager.I.PlaySound(Sfx.UIButtonClick);
                 }
             }
         }
 
-        void OnTriggerExit(Collider other)
+        private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.tag == "Player") {
+            if (other.gameObject.tag == "Player")
+            {
                 transform.GetChild(0).gameObject.SetActive(true);
                 ChangeMaterialPinToBlack();
             }

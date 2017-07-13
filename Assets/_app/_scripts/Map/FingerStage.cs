@@ -8,7 +8,7 @@ namespace Antura.Map
     /// </summary>
     public class FingerStage : MonoBehaviour
     {
-        public LetterMovement player;
+        public PlayerPin player;
         public bool swipe;
         private StageMapsManager _stageMapsManager;
         private float xDown, xUp, x;

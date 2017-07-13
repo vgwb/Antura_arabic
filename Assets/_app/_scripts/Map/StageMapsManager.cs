@@ -17,24 +17,17 @@ namespace Antura.Map
     /// </summary>
     public class StageMapsManager : MonoBehaviour
     {
-        [Header("Debug")] public bool SimulateFirstContact;
-
-        [Header("Settings")]
-        // public Color[] colorMaps;
-        public StageMap[] stageMaps;
-       // public Transform[] cameraPivots;
-
-        public GameObject letter;
+        [Header("Debug")]
+        public bool SimulateFirstContact;
 
         [Header("References")]
+        public StageMap[] stageMaps;
+        public PlayerPin playerPin;
         public MapStageIndicator mapStageIndicator;
-
         public Camera UICamera;
 
-        [Header("LockUI")]
+        [Header("UI")]
         public GameObject lockUI;
-
-        [Header("UIButtons")]
         public GameObject leftStageButton;
         public GameObject rightStageButton;
         public GameObject uiButtonMovementPlaySession;
@@ -44,18 +37,12 @@ namespace Antura.Map
         public GameObject bookButton;
         public GameObject anturaButton;
 
-        //public int currentStage;
-        //public int maxNumberOfStages;
-        //private int maxUnlockedStage;
-        //private int i;
-        //private int previousStage;
+        private int shownStage;  // Current stage shown for the map. 
         private bool inTransition;
         private static int firstContactSimulationStep;
         private GameObject tutorial;
 
         #region Properties
-
-        private int shownStage;  // Current stage shown for the map. 
 
         private int CurrentPlayerStage    // @note: this may be different than shownStage as you can preview the next stages
         {
@@ -119,27 +106,18 @@ namespace Antura.Map
         private void Awake()
         {
             if (!Application.isEditor)
+            {
                 SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
+            }
 
             shownStage = CurrentPlayerStage;
-
-            //maxNumberOfStages = AppConstants.MaximumStage;
-            // currentStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
-            //maxUnlockedStage = AppManager.I.Player.MaxJourneyPosition.Stage;
-
-            //int nUnlockedStages;
-            /*if (MaxUnlockedStage == FinalStage)
-            {
-                nUnlockedStages = MaxUnlockedStage;
-            }*/
-            //else nUnlockedStages = MaxUnlockedStage - 1;
 
             // Setup stage availability
             for (int i = 0; i < MaxUnlockedStage; i++)
             {
                 stageMaps[i].Hide();
-                stageMaps[i].isAvailableTheWholeMap = true;
-                stageMaps[i].CalculateStepsStage();
+                stageMaps[i].isAvailableTheWholeMap = true;  // TODO: check
+                stageMaps[i].CalculateStepsStage(); // TODO: check
             }
             if (MaxUnlockedStage < FinalStage)
             {
@@ -150,17 +128,18 @@ namespace Antura.Map
             TeleportToShownStage(shownStage);
             UpdateButtonsForStage(shownStage);
 
-            StartCoroutine("ResetPosLetterCO");
+            //StartCoroutine(ResetPosLetterCO());
+            playerPin.ResetPosLetter();
+            playerPin.gameObject.SetActive(true);
 
             UpdateStageIndicatorUI();
         }
 
-        private IEnumerator ResetPosLetterCO()
-        {
-            yield return new WaitForSeconds(0.2f);
-            // TODO: letter.GetComponent<LetterMovement>().ResetPosLetter();
-            letter.SetActive(true);
-        }
+        //private IEnumerator ResetPosLetterCO()
+        //{
+        //yield return new WaitForSeconds(0.2f);
+       
+        //}
 
 
         private void Start()
@@ -369,7 +348,7 @@ namespace Antura.Map
             // NO!
 
             //lockUI.SetActive(false);
-            // TODO: letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
+            // TODO: playerPin.AmIFirstorLastPos();
             //isStageAvailable = false;
             //}
             /*else
@@ -404,10 +383,9 @@ namespace Antura.Map
             /*
             // We just switched the pos pin
             //isStageAvailable = false;
-            letter.GetComponent<LetterMovement>().stageScript = StageMap(CurrentPlayerStage);
-            letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
+            playerPin.ResetPosLetterAfterChangeStage();
             //lockUI.SetActive(false);
-            letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
+            playerPin.AmIFirstorLastPos();
             */
         }
 
@@ -468,7 +446,7 @@ namespace Antura.Map
             CameraGameplayController.I.transform.rotation = pivot.rotation;
             Camera.main.backgroundColor = StageColor(stage);
             Camera.main.GetComponent<CameraFog>().color = StageColor(stage);
-            letter.GetComponent<LetterMovement>().stageScript = StageMap(stage);
+            playerPin.stageScript = StageMap(stage);
         }
 
         private void AnimateToShownStage(int stage)
@@ -479,6 +457,7 @@ namespace Antura.Map
             CameraGameplayController.I.MoveToPosition(pivot.position, pivot.rotation, 0.6f);
             Camera.main.DOColor(StageColor(stage), 1);
             Camera.main.GetComponent<CameraFog>().color = StageColor(stage);
+            playerPin.stageScript = StageMap(CurrentPlayerStage);
         }
 
         #endregion
