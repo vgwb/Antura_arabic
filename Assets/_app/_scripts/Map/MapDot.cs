@@ -8,7 +8,7 @@ namespace Antura.Map
         // TODO: these should NOT be set by hand
         public int learningBlockActual;
         public int playSessionActual;
-        public int pos;
+        public int posIndex;
 
         public Material blackDot;
         public Material redDot;

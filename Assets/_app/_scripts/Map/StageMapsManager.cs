@@ -116,7 +116,7 @@ namespace Antura.Map
             for (int i = 0; i < MaxUnlockedStage; i++)
             {
                 stageMaps[i].Hide();
-                stageMaps[i].isAvailableTheWholeMap = true;  // TODO: check
+                stageMaps[i].wholeStageUnlocked = true;  // TODO: check
                 stageMaps[i].CalculateStepsStage(); // TODO: check
             }
             if (MaxUnlockedStage < FinalStage)

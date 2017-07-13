@@ -8,18 +8,27 @@ namespace Antura.Map
     /// </summary>
     public class MapPin : MonoBehaviour
     {
-        public int learningBlockPin;
-        public int playSessionPin;
+        public int learningBlock;
+        //public int playSession;
         public int pos;
 
         public bool unlocked;
 
+        [Header("References")]
         public GameObject Dot;
         public Material blackPin;
         public Material redPin;
 
         public GameObject pinV1;
         public GameObject pinV2;
+
+        public void SetJourneyPosition(int lb, int ps)
+        {
+            learningBlock = lb;
+            //this.playSession = ps;
+            pinV1.gameObject.SetActive(ps % 2 == 0);
+            pinV2.gameObject.SetActive(ps % 2 == 1);
+        }
 
         private void Start()
         {
