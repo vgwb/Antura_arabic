@@ -1,12 +1,14 @@
 ﻿using Antura.Audio;
+using Antura.Core;
 using UnityEngine;
 
 namespace Antura.Map
 {
     public interface IMapLocation
     {
-        int SequenceIndex { get; }
+        //int SequenceIndex { get; }
         Vector3 Position { get; }
+        JourneyPosition JourneyPos { get; }
     }
 
     /// <summary>
@@ -33,7 +35,7 @@ namespace Antura.Map
         [HideInInspector]
         public GameObject currentPinMesh;
 
-        public void Initialise(int _learningBlock)
+        public void Initialise(int _stage, int _learningBlock)
         {
             learningBlock = _learningBlock;
             if (_learningBlock % 2 == 0)
@@ -48,7 +50,7 @@ namespace Antura.Map
             }
 
             // The dot is set at the assessment
-            dot.Initialise(_learningBlock, AppManager.I.JourneyHelper.AssessmentPlaySessionIndex);
+            dot.Initialise(_stage, _learningBlock, AppManager.I.JourneyHelper.AssessmentPlaySessionIndex);
         }
 
         public void SetUnlocked()

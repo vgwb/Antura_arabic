@@ -155,13 +155,13 @@ namespace Antura.Map
         void TeleportToDot()
         {
             ForceToPlayerPosition(ropeSelected.dots[dotCloser].playerPosIndex);
-
-            // Update JourneyPos
-            AppManager.I.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].playSession;
-            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].learningBlock;
-
-            CheckButtonsEnabling();
             LookAtNextPin();
+            // Update JourneyPos
+            //AppManager.I.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].playSession;
+            //AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].learningBlock;
+            //
+            //CheckButtonsEnabling();
+           
             //transform.LookAt(ropeSelected.pin.transform);
         }
 
@@ -169,18 +169,19 @@ namespace Antura.Map
         {
             var pin = colliderRaycast.transform.gameObject.GetComponent<Pin>();
             ForceToPlayerPosition(pin.dot.playerPosIndex);
+            LookAtNextPin();
 
             //MoveTo(colliderRaycast.transform.position);
 
             // Update position index
             //stageScript.currentPlayerPosIndex = pin.dot.playerPosIndex;
 
-            var current_lb = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
+            //var current_lb = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
             //var current_ps = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
 
             // TODO: standardize LOOKATS
-            LookAtNextPin();
-            CheckButtonsEnabling();
+
+            //CheckButtonsEnabling();
         }
 
         private int CurrentPlayerPosIndex
@@ -197,7 +198,6 @@ namespace Antura.Map
                 AnimateToPlayerPosition(CurrentPlayerPosIndex + 1);
                 LookAtNextPin();
             }
-            CheckButtonsEnabling();
         }
 
         public void MoveToPreviousDot()
@@ -221,11 +221,12 @@ namespace Antura.Map
                 var pin = stageScript.PinForLB(current_lb);
 
                 ForceToPlayerPosition(pin.dot.playerPosIndex);
+                LookAtNextPin();
+
                 //MoveTo(pin.transform.position);
                 //stageScript.currentPlayerPosIndex = pin.dot.playerPosIndex;
 
                 // TODO: standardize LOOKAT
-                LookAtNextPin();
                 /*
                 if (current_lb < stageScript.nLearningBlocks)
                 {
@@ -264,11 +265,11 @@ namespace Antura.Map
         {
             ForceToPlayerPosition(0);
 
-            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = 1;
-            AppManager.I.Player.CurrentJourneyPosition.PlaySession = 1;
-            LookAtNextPin();
-            UpdateCurrentJourneyPosition();
-            CheckButtonsEnabling();
+            //AppManager.I.Player.CurrentJourneyPosition.LearningBlock = 1;
+            // AppManager.I.Player.CurrentJourneyPosition.PlaySession = 1;
+            //LookAtNextPin();
+            // UpdateCurrentJourneyPosition();
+            // CheckButtonsEnabling();
         }
 
         void AnimateToPlayerPosition(int newIndex)
@@ -277,8 +278,9 @@ namespace Antura.Map
             stageScript.currentPlayerPosIndex = newIndex;
             MoveTo(stageScript.GetCurrentPlayerPosition(), true);
 
-            SetJourneyPosition();
             CheckButtonsEnabling();
+            AppManager.I.Player.SetCurrentJourneyPosition(stageScript.GetCurrentPlayerJourneyPosition());
+            //UpdateCurrentJourneyPosition();
         }
 
         void ForceToPlayerPosition(int newIndex)
@@ -287,12 +289,11 @@ namespace Antura.Map
             stageScript.currentPlayerPosIndex = newIndex;
             MoveTo(stageScript.GetCurrentPlayerPosition(), false);
 
-            // Update JourneyPos
-            //TODO: AppManager.I.Player.CurrentJourneyPosition.PlaySession = AppManager.I.JourneyHelper.AssessmentPlaySessionIndex;
-            //TODO: AppManager.I.Player.CurrentJourneyPosition.LearningBlock = pin.learningBlock;
+            CheckButtonsEnabling();
+            AppManager.I.Player.SetCurrentJourneyPosition(stageScript.GetCurrentPlayerJourneyPosition());
         }
 
-        void SetJourneyPosition()
+        /*void SetJourneyPosition()
         {
             /* TODO:
             if (stageScript.playerPinTargetPositions[stageScript.currentPlayerPosIndex].GetComponent<Dot>() != null)
@@ -309,10 +310,10 @@ namespace Antura.Map
                 AppManager.I.Player.CurrentJourneyPosition.LearningBlock =
                     stageScript.playerPinTargetPositions[stageScript.currentPlayerPosIndex].GetComponent<Pin>().learningBlockPin;
             }*/
-            UpdateCurrentJourneyPosition();
-        }
+        //    UpdateCurrentJourneyPosition();
+        //}
 
-        void UpdateCurrentJourneyPosition()
+        /*void UpdateCurrentJourneyPosition()
         {
             // TODO: this looks USELESS
             AppManager.I.Player.SetCurrentJourneyPosition(
@@ -321,7 +322,7 @@ namespace Antura.Map
                     AppManager.I.Player.CurrentJourneyPosition.PlaySession),
                 true
             );
-        }
+        }*/
 
         #region LookAt
 
@@ -335,11 +336,12 @@ namespace Antura.Map
             LookAt(true);
         }
 
-        void LookAt(bool previousPin)
+        void LookAt(bool lookAtPrevious)
         {
             var current_lb = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
+            Debug.Log("Looking " + current_lb + " prev? " + lookAtPrevious);
 
-            if (!previousPin && current_lb == stageScript.nLearningBlocks)
+            if (!lookAtPrevious && current_lb == stageScript.nLearningBlocks)
             {
                 transform.LookAt(stageScript.PinForLB(current_lb).transform);
                 transform.rotation = Quaternion.Euler(
@@ -352,7 +354,7 @@ namespace Antura.Map
 
             rotateTween.Kill();
             Quaternion currRotation = transform.rotation;
-            transform.LookAt(previousPin
+            transform.LookAt(lookAtPrevious
                 ? stageScript.PinForLB(current_lb - 1).transform.position
                 : stageScript.PinForLB(current_lb).transform.position
             );
@@ -360,7 +362,7 @@ namespace Antura.Map
             transform.rotation = currRotation;
             rotateTween = transform.DORotate(toRotation.eulerAngles, 0.3f).SetEase(Ease.InOutQuad);
 
-            /*if (!previousPin)
+            /*if (!lookAtPrevious)
             {
                 if (current_lb < stageScript.nLearningBlocks)
                 {

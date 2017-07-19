@@ -1,4 +1,5 @@
 ﻿using Antura.Audio;
+using Antura.Core;
 using UnityEngine;
 
 namespace Antura.Map
@@ -9,12 +10,15 @@ namespace Antura.Map
     /// </summary>
     public class Dot : MonoBehaviour, IMapLocation
     {
-        public int SequenceIndex { get { return playerPosIndex; } }
+        //public int SequenceIndex { get { return playerPosIndex; } }
         public Vector3 Position { get { return transform.position; } }
+        public JourneyPosition JourneyPos { get { return new JourneyPosition(stage, learningBlock, playSession);} }
 
         //[HideInInspector]
         public int playerPosIndex;
 
+        [HideInInspector]
+        public int stage;
         [HideInInspector]
         public int learningBlock;
         [HideInInspector]
@@ -24,8 +28,9 @@ namespace Antura.Map
         public Material blackDot;
         public Material redDot;
 
-        public void Initialise(int _learningBlock, int _playSession)
+        public void Initialise(int _stage, int _learningBlock, int _playSession)
         {
+            stage = _stage;
             learningBlock = _learningBlock;
             playSession = _playSession;
         }
@@ -69,5 +74,6 @@ namespace Antura.Map
         {
             gameObject.SetActive(false);
         }
+
     }
 }

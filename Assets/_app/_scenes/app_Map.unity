@@ -1085,11 +1085,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d622f8a381ee7a84e9d10512da15927c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberStage: 6
+  stageNumber: 6
   color: {r: 0.16862746, g: 0.08627451, b: 0.30588236, a: 1}
   cameraPivot: {fileID: 268970128}
-  currentPlayerPositionIndex: 0
-  maxPlayerPositionIndex: 0
+  currentPlayerPosIndex: 0
+  maxPlayerPosIndex: 0
   nLearningBlocks: 0
   dotsPivot: {fileID: 1501517704}
   dotPrefab: {fileID: 1000013482476302, guid: 06ced6de1dd52214ca884a82a895f5c5, type: 2}
@@ -2869,11 +2869,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d622f8a381ee7a84e9d10512da15927c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberStage: 5
+  stageNumber: 5
   color: {r: 0.5803922, g: 0.6666667, b: 0.41960785, a: 1}
   cameraPivot: {fileID: 1309745497}
-  currentPlayerPositionIndex: 0
-  maxPlayerPositionIndex: 0
+  currentPlayerPosIndex: 0
+  maxPlayerPosIndex: 0
   nLearningBlocks: 0
   dotsPivot: {fileID: 324354472}
   dotPrefab: {fileID: 1000013482476302, guid: 06ced6de1dd52214ca884a82a895f5c5, type: 2}
@@ -11391,11 +11391,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d622f8a381ee7a84e9d10512da15927c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberStage: 1
+  stageNumber: 1
   color: {r: 0.5372549, g: 0.88235295, b: 0.85490197, a: 1}
   cameraPivot: {fileID: 1782084627}
-  currentPlayerPositionIndex: 0
-  maxPlayerPositionIndex: 0
+  currentPlayerPosIndex: 0
+  maxPlayerPosIndex: 0
   nLearningBlocks: 0
   dotsPivot: {fileID: 1372567941}
   dotPrefab: {fileID: 1000013482476302, guid: 06ced6de1dd52214ca884a82a895f5c5, type: 2}
@@ -24569,11 +24569,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d622f8a381ee7a84e9d10512da15927c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberStage: 2
+  stageNumber: 2
   color: {r: 0.7647059, g: 0.5882353, b: 0.52156866, a: 1}
   cameraPivot: {fileID: 1140598125}
-  currentPlayerPositionIndex: 0
-  maxPlayerPositionIndex: 0
+  currentPlayerPosIndex: 0
+  maxPlayerPosIndex: 0
   nLearningBlocks: 0
   dotsPivot: {fileID: 1201617454}
   dotPrefab: {fileID: 1000013482476302, guid: 06ced6de1dd52214ca884a82a895f5c5, type: 2}
@@ -26312,7 +26312,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 638988770}
-  m_LocalRotation: {x: 0.6101385, y: -0.35739478, z: 0.35739478, w: 0.6101385}
+  m_LocalRotation: {x: 0.61013854, y: -0.3573948, z: 0.3573948, w: 0.61013854}
   m_LocalPosition: {x: 20.705906, y: -51.628124, z: 18.345917}
   m_LocalScale: {x: 10.50074, y: 10.500757, z: 10.500754}
   m_Children:
@@ -62446,11 +62446,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d622f8a381ee7a84e9d10512da15927c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberStage: 4
+  stageNumber: 4
   color: {r: 1, g: 0.81960785, b: 0.45490196, a: 1}
   cameraPivot: {fileID: 1234689689}
-  currentPlayerPositionIndex: 0
-  maxPlayerPositionIndex: 0
+  currentPlayerPosIndex: 0
+  maxPlayerPosIndex: 0
   nLearningBlocks: 0
   dotsPivot: {fileID: 351596976}
   dotPrefab: {fileID: 1000013482476302, guid: 06ced6de1dd52214ca884a82a895f5c5, type: 2}
@@ -80431,11 +80431,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d622f8a381ee7a84e9d10512da15927c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberStage: 3
+  stageNumber: 3
   color: {r: 0.44705883, g: 0.44705883, b: 0.9254902, a: 1}
   cameraPivot: {fileID: 1382178457}
-  currentPlayerPositionIndex: 0
-  maxPlayerPositionIndex: 0
+  currentPlayerPosIndex: 0
+  maxPlayerPosIndex: 0
   nLearningBlocks: 0
   dotsPivot: {fileID: 519091721}
   dotPrefab: {fileID: 1000013482476302, guid: 06ced6de1dd52214ca884a82a895f5c5, type: 2}
