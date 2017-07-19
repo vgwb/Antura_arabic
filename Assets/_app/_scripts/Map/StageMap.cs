@@ -2,7 +2,6 @@
 using System.Linq;
 using Antura.Core;
 using Antura.Database;
-using Antura.Helpers;
 using DG.DeExtensions;
 using UnityEngine;
 
@@ -50,10 +49,6 @@ namespace Antura.Map
             return pins[lb];    // @note: we have pin 0 as fake
         }
 
-        public Pin LastLBPin()
-        {
-            return pins.Last();
-        }
         #endregion
 
         [Header("References")]
@@ -77,13 +72,10 @@ namespace Antura.Map
             // Find all pins and ropes and connect them
             pins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
             pins.Sort((x, y) => x.transform.GetSiblingIndex() - y.transform.GetSiblingIndex());
-            //Debug.Log(pins.ToDebugString());
 
             var ropes = new List<Rope>(gameObject.GetComponentsInChildren<Rope>());
             ropes.Sort((x, y) => x.transform.GetSiblingIndex() - y.transform.GetSiblingIndex());
-            // Debug.Log(ropes.ToDebugString());
 
-            //Debug.Log(pins.Count + " " + ropes.Count);
             for (int i = 1; i < pins.Count; i++)
             {
                 pins[i].rope = ropes[i - 1];
@@ -95,11 +87,16 @@ namespace Antura.Map
             pins[0].Initialise(stageNumber, 0);
 
             // Set the correct data (also creating the dots)
-            int _playerPosIndexCount = 0; 
+            var allPlaySessionStates = GetAllPlaySessionStatesForStage(stageNumber);
+            int playerPosIndexCount = 0; 
             for (var lb_i = 1; lb_i < pins.Count; lb_i++)
             {
                 var pin = pins[lb_i];
                 pin.Initialise(stageNumber, lb_i);
+                pin.SetPlaySessionState(allPlaySessionStates.Find(x => 
+                        x.data.LearningBlock == lb_i
+                        && x.data.PlaySession == AppManager.I.JourneyHelper.AssessmentPlaySessionIndex
+                ));
 
                 CreateDotsBetweenPins(lb_i, pins[lb_i], pins[lb_i-1]);
 
@@ -107,25 +104,15 @@ namespace Antura.Map
                 {
                     var dot = pin.rope.DotForPS(ps_i);
                     mapLocations.Add(dot);
-                    dot.playerPosIndex = _playerPosIndexCount++;
+                    dot.playerPosIndex = playerPosIndexCount++;
                     dot.Initialise(stageNumber, lb_i, ps_i);
                 }
 
                 mapLocations.Add(pin.dot);
-                pin.dot.playerPosIndex = _playerPosIndexCount++;
+                pin.dot.playerPosIndex = playerPosIndexCount++;
             }
 
-            /*dots = new List<Dot>(gameObject.GetComponentsInChildren<Dot>());
-            dots.Sort((x, y) => x.transform.GetSiblingIndex() - y.transform.GetSiblingIndex());
-            Debug.Log(dots.ToDebugString());*/
-
-            // TODO: LAST?
-            //playerPinTargetPositions.Add(pins[lb_i].transform.position);
-            //pins[lb_i].pos = nPos;
-
-
             CalculateUnlockedPlaySessions();
-            //CalculateUnlockedRopes();
         }
 
         private void CreateDotsBetweenPins(int lb_i, Pin pinFront, Pin pinBack)
@@ -134,8 +121,6 @@ namespace Antura.Map
 
             Vector3 pFront = pinFront.transform.position;
             Vector3 pBack = pinBack.transform.position;
-            int ps_i;
-            Vector3 v;
 
             int z = 1;
             var d = Vector3.Distance(pFront, pBack);
@@ -150,9 +135,9 @@ namespace Antura.Map
             rope.transform.Rotate(0, 4, 0);
             rope.transform.SetLocalScaleZ((d / 20f) * 1.1f);
 
-            for (ps_i = 1; ps_i <= nPlaySessions; ps_i++)
+            for (int ps_i = 1; ps_i <= nPlaySessions; ps_i++)
             {
-                v = (ps_i * x + 0.5f * z + 2.5f) * Vector3.Normalize(pFront - pBack) + pBack;
+                var v = (ps_i * x + 0.5f * z + 2.5f) * Vector3.Normalize(pFront - pBack) + pBack;
                 z += 2;
 
                 Quaternion rot = Quaternion.identity;
@@ -163,21 +148,10 @@ namespace Antura.Map
                 dotGo.transform.parent = dotsPivot;
                 var mapDot = dotGo.GetComponent<Dot>();
                 mapDot.SetLocked();
-                //mapDot.learningBlock = lb_i + 1;
-                //mapDot.playSession = ps_i;
-                //mapDot.playerPosIndex = nPos;
+                pinFront.rope.dots.Add(mapDot);
 
-                // Add it to the dot's rope
-                //if (lb_i < pins.Count - 1)
-                {
-                    pinFront.rope.dots.Add(mapDot);
-                    //ropes[lb_i].assignedLearningBlock = lb_i + 1;
-                }
-
-                //playerPinTargetPositions.Add(dotGo.transform.position);
-
-                //if first playsession of the map
-                if (lb_i == 0 && ps_i == 1)
+                // Dialogues added to first playsession of the map
+                if (lb_i == 1 && ps_i == 1)
                 {
                     var introDialogues = dotGo.AddComponent<IntroDialogues>();
                     introDialogues.numberStage = stageNumber;
@@ -200,7 +174,6 @@ namespace Antura.Map
                 }
 
                 maxPlayerPosIndex = pins.Last().dot.playerPosIndex;
-                Debug.LogError("Set WHOLE max at " + maxPlayerPosIndex);
             }
             else
             {
@@ -239,8 +212,6 @@ namespace Antura.Map
                             var dot = pin.rope.DotForPS(ps);
                             dot.SetUnlocked();
                         }
-
-                        Debug.LogError("Set max at " + maxPlayerPosIndex + " (ps is " + max_ps + ")");
                     }
                 }
             }
@@ -251,7 +222,6 @@ namespace Antura.Map
         {
             var psDataList = GetAllPlaySessionDataForStage(stageNumber);
             var lbDataList = GetAllLearningBlockDataForStage(stageNumber);
-            //nLearningBlocks = lbDataList.Count;
             nPlaySessionsPerLb = new int[lbDataList.Count];
             foreach (PlaySessionData psData in psDataList)
             {

@@ -261,7 +261,6 @@ namespace Antura.Map
 
         private void CheckButtonsEnabling()
         {
-            Debug.Log("CURRENT: " + CurrentPlayerPosIndex + "MAX: " + stageScript.maxPlayerPosIndex);
             if (CurrentPlayerPosIndex == 0)
             {
                 if (stageScript.maxPlayerPosIndex == 0)

@@ -374,7 +374,6 @@ namespace Antura.Map
 
         private void TeleportToShownStage(int stage)
         {
-            // SwitchToStage(CurrentPlayerStage);
             StageMap(stage).Show();
             var pivot = StageCameraPivot(stage);
             CameraGameplayController.I.transform.position = pivot.position;
@@ -386,7 +385,7 @@ namespace Antura.Map
 
         private void AnimateToShownStage(int stage)
         {
-            Debug.Log("Animating to stage " + stage);
+            //Debug.Log("Animating to stage " + stage);
             StageMap(stage).Show();
             var pivot = StageCameraPivot(stage);
             CameraGameplayController.I.MoveToPosition(pivot.position, pivot.rotation, 0.6f);

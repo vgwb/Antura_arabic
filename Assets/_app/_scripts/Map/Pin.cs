@@ -15,7 +15,7 @@ namespace Antura.Map
         public Dot dot;
 
         [HideInInspector]
-        public Rope rope;   // rope assigned to the LB
+        public Rope rope;
 
         public GameObject pinV1;
         public GameObject pinV2;
@@ -68,16 +68,31 @@ namespace Antura.Map
             }
         }
 
-/*
-        private void ChangeMaterialPinToBlack()
+        public void SetPlaySessionState(PlaySessionState playSessionState)
         {
-            Dot.GetComponent<Renderer>().material = blackPin;
-        }
+            // TODO: do something with the score
 
-        private void ChangeMaterialPinToRed()
-        {
-            Dot.GetComponent<Renderer>().material = redPin;
+            //int score = 0;
+            // if (playSessionState != null) score = playSessionState.score;
+
+            /*
+            var mat = currentPinMesh.GetComponentInChildren<MeshRenderer>().material;
+            switch (score)
+            {
+                case 0:
+                    mat.color = Color.black;
+                    break;
+                case 1:
+                    mat.color = Color.red;
+                    break;
+                case 2:
+                    mat.color = Color.blue;
+                    break;
+                case 3:
+                    mat.color = Color.yellow;
+                    break;
+            }
+            */
         }
-        */
     }
 }
