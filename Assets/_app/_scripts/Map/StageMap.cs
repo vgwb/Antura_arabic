@@ -40,14 +40,7 @@ namespace Antura.Map
             return mapLocations[currentPlayerPosIndex].JourneyPos;
         }
 
-        // Dots: number of play sessions (N per learning block + assessment under the Pin)
-        //private List<Dot> dots;
-
-        // Ropes: number of pins - 1
-        //private List<Rope> ropes;
-
         // Data
-        //private int nLearningBlocks;
         private int[] nPlaySessionsPerLb;
 
         #region Properties
@@ -68,16 +61,17 @@ namespace Antura.Map
         public GameObject dotPrefab;
 
         [HideInInspector]
-        public bool wholeStageUnlocked;
+        private bool wholeStageUnlocked;
 
         [Header("PlayerPin")]
         public List<IMapLocation> mapLocations = new List<IMapLocation>();
-        //public List<Vector3> playerPinTargetPositions = new List<Vector3>();
            
         #region Setup
 
-        public void Initialise()
+        public void Initialise(bool _wholeStageUnlocked)
         {
+            wholeStageUnlocked = _wholeStageUnlocked;
+
             CountPlaySessionsPerLearningBlock();
 
             // Find all pins and ropes and connect them
@@ -182,14 +176,6 @@ namespace Antura.Map
 
                 //playerPinTargetPositions.Add(dotGo.transform.position);
 
-
-                // TODO: move later
-                if (!wholeStageUnlocked)
-                {
-                    dotGo.SetActive(false);
-                }
-                //nPos++;
-
                 //if first playsession of the map
                 if (lb_i == 0 && ps_i == 1)
                 {
@@ -214,6 +200,7 @@ namespace Antura.Map
                 }
 
                 maxPlayerPosIndex = pins.Last().dot.playerPosIndex;
+                Debug.LogError("Set WHOLE max at " + maxPlayerPosIndex);
             }
             else
             {
@@ -238,8 +225,13 @@ namespace Antura.Map
                         // Maximum reached LB: we check the max PS we reached
                         if (max_ps == AppManager.I.JourneyHelper.AssessmentPlaySessionIndex)
                         {
-                            max_ps = pin.rope.dots.Count;   // fake 100 -> N
+                            max_ps = pin.rope.dots.Count; // fake 100 -> N
                             pin.SetUnlocked();
+                            maxPlayerPosIndex = pin.dot.playerPosIndex;
+                        }
+                        else
+                        {
+                            maxPlayerPosIndex = pin.rope.DotForPS(max_ps).playerPosIndex;
                         }
 
                         for (var ps = 1; ps <= max_ps; ps++)
@@ -248,52 +240,11 @@ namespace Antura.Map
                             dot.SetUnlocked();
                         }
 
-                        maxPlayerPosIndex = pin.rope.DotForPS(max_ps).playerPosIndex;
+                        Debug.LogError("Set max at " + maxPlayerPosIndex + " (ps is " + max_ps + ")");
                     }
                 }
             }
         }
-
-        /*private void CalculateUnlockedRopes()
-        {
-            if (wholeStageUnlocked)
-            {
-                //maxPlayerPosIndex = playerPinTargetPositions.Count - 1;
-                for (var lb = 1; lb < pins.Count - 1; lb++)
-                {
-                    // TODO: assign TAGS before?
-                    //var pin = PinForLB(lb);
-                    //pin.gameObject.tag = "Pin";
-                    //pin.unlocked = true;
-
-                    //RopeForLB(lb).transform.GetChild(0).tag = "Rope";
-                }
-                //pins.Last().gameObject.tag = "Pin";
-                //pins.Last().unlocked = true;
-            }
-            else
-            {
-                var max_lb = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
-                var max_ps = AppManager.I.Player.MaxJourneyPosition.PlaySession;
-                for (var lb = 1; lb <= max_lb; lb++)
-                {
-                    var pin = PinForLB(lb);
-                    //pin.gameObject.tag = "Pin";
-                    pin.SetUnlocked();
-                    //pin.unlocked = true;
-
-                    RopeForLB(lb).transform.GetChild(0).tag = "Rope";
-                }
-
-                if (max_ps == 100)
-                {
-                    //var pin = PinForLB(max_lb);
-                    maxPlayerPosIndex = pins[max_lb].playerPosIndex;
-                    pins[max_lb].gameObject.tag = "Pin";
-                    pins[max_lb].unlocked = true;
-                }
-            }
-        }*/
 
         // Count the number of steps (PlaySessions) per each learning block
         private void CountPlaySessionsPerLearningBlock()

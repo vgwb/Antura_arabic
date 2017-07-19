@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using System.Linq;
@@ -171,8 +170,8 @@ namespace Antura.Map
             stageScript.currentPlayerPosIndex = newIndex;
             MoveTo(stageScript.GetCurrentPlayerPosition(), true);
 
-            CheckButtonsEnabling();
             AppManager.I.Player.SetCurrentJourneyPosition(stageScript.GetCurrentPlayerJourneyPosition());
+            CheckButtonsEnabling();
         }
 
         void ForceToPlayerPosition(int newIndex)
@@ -183,8 +182,8 @@ namespace Antura.Map
             stageScript.currentPlayerPosIndex = newIndex;
             MoveTo(stageScript.GetCurrentPlayerPosition(), false);
 
-            CheckButtonsEnabling();
             AppManager.I.Player.SetCurrentJourneyPosition(stageScript.GetCurrentPlayerJourneyPosition());
+            CheckButtonsEnabling();
         }
 
         #endregion
@@ -262,6 +261,7 @@ namespace Antura.Map
 
         private void CheckButtonsEnabling()
         {
+            Debug.Log("CURRENT: " + CurrentPlayerPosIndex + "MAX: " + stageScript.maxPlayerPosIndex);
             if (CurrentPlayerPosIndex == 0)
             {
                 if (stageScript.maxPlayerPosIndex == 0)

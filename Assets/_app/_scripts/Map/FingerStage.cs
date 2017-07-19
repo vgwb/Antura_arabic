@@ -8,7 +8,6 @@ namespace Antura.Map
     /// </summary>
     public class FingerStage : MonoBehaviour
     {
-        public PlayerPin player;
         public bool isSwiping;
         private StageMapsManager _stageMapsManager;
         private float xDown, xUp, x;
@@ -22,7 +21,7 @@ namespace Antura.Map
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))// && !player.playerOverDotPin)
+            if (Input.GetMouseButtonDown(0))
             {
                 xDown = Input.mousePosition.x;
                 yDown = Input.mousePosition.y;
@@ -61,7 +60,6 @@ namespace Antura.Map
                     }
                 }
             }
-            // Debug.Log(x);
         }
 
         private IEnumerator SwipeCooldownCO()

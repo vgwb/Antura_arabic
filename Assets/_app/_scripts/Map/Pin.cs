@@ -1,25 +1,13 @@
-﻿using Antura.Audio;
-using Antura.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Antura.Map
 {
-    public interface IMapLocation
-    {
-        //int SequenceIndex { get; }
-        Vector3 Position { get; }
-        JourneyPosition JourneyPos { get; }
-    }
-
     /// <summary>
     /// A pin on the map. 
     /// Defines an assessment play session.
     /// </summary>
-    public class Pin : MonoBehaviour //, IMapLocation
+    public class Pin : MonoBehaviour
     {
-        //public int SequenceIndex { get { return playerPosIndex; } }
-        //public Vector3 Position { get { return transform.position; } }
-
         [HideInInspector]
         public int learningBlock;
 

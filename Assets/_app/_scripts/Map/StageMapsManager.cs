@@ -23,10 +23,10 @@ namespace Antura.Map
         [Header("References")]
         public StageMap[] stageMaps;
         public PlayerPin playerPin;
-        public MapStageIndicator mapStageIndicator;
-        public Camera UICamera;
 
         [Header("UI")]
+        public MapStageIndicator mapStageIndicator;
+        public Camera UICamera;
         public GameObject lockUI;
         public GameObject leftStageButton;
         public GameObject rightStageButton;
@@ -37,10 +37,15 @@ namespace Antura.Map
         public GameObject bookButton;
         public GameObject anturaButton;
 
-        private int shownStage;  // Current stage shown for the map. 
+        #region State
+
+        // Current stage shown for the map. 
+        private int shownStage;
         private bool inTransition;
         private static int firstContactSimulationStep;
-        private GameObject tutorial;
+        private GameObject tutorialUiGo;
+
+        #endregion
 
         #region Properties
 
@@ -113,34 +118,25 @@ namespace Antura.Map
             shownStage = CurrentPlayerStage;
 
             // Setup stage availability
-            for (int i = 0; i < MaxUnlockedStage; i++)
+            for (int stage_i = 1; stage_i < MaxUnlockedStage; stage_i++)
             {
-                stageMaps[i].Hide();
-                stageMaps[i].wholeStageUnlocked = true;  // TODO: check
-                stageMaps[i].Initialise(); // TODO: check
+                StageMap(stage_i).Hide();
+                StageMap(stage_i).Initialise(true);
             }
-            /*if (MaxUnlockedStage < FinalStage)
+            if (MaxUnlockedStage <= FinalStage)
             {
-                stageMaps[MaxUnlockedStage].Initialise();
-            }*/
+                StageMap(MaxUnlockedStage).Initialise(false);
+            }
 
             // Show the current stage
             TeleportToShownStage(shownStage);
+            UpdateStageIndicatorUI(shownStage);
             UpdateButtonsForStage(shownStage);
 
-            //StartCoroutine(ResetPosLetterCO());
             playerPin.ResetPlayerPosition();
             playerPin.gameObject.SetActive(true);
 
-            UpdateStageIndicatorUI();
         }
-
-        //private IEnumerator ResetPosLetterCO()
-        //{
-        //yield return new WaitForSeconds(0.2f);
-       
-        //}
-
 
         private void Start()
         {
@@ -272,13 +268,13 @@ namespace Antura.Map
 
         private void HideTutorial()
         {
-            tutorial = GameObject.Find("[TutorialUI]");
-            if (tutorial != null) tutorial.transform.localScale = new Vector3(0, 0, 0);
+            tutorialUiGo = GameObject.Find("[TutorialUI]");
+            if (tutorialUiGo != null) tutorialUiGo.transform.localScale = new Vector3(0, 0, 0);
         }
 
         private void ShowTutorial()
         {
-            if (tutorial != null) tutorial.transform.localScale = new Vector3(1, 1, 1);
+            if (tutorialUiGo != null) tutorialUiGo.transform.localScale = new Vector3(1, 1, 1);
         }
 
         #endregion
@@ -298,23 +294,6 @@ namespace Antura.Map
 
             shownStage = toStage;
 
-            InitialiseStageSwitch();
-
-            //if (toStage <= MaxUnlockedStage)// && previousStage != CurrentPlayerStage)
-            // {
-            // We also actually move the Player's logic
-            //AppManager.I.Player.AdvanceCurrentStage();
-            //ChangeStage();
-            // }
-            //   else
-            //  {
-            // Preview (stage not available)
-            // This is just a visual preview
-            // TODO: stage was not available!
-            //StageNotAvailable();
-            // }
-
-            UpdateStageIndicatorUI();
             SwitchFromToStage(fromStage, toStage);
 
             HideTutorial();
@@ -328,66 +307,19 @@ namespace Antura.Map
             if (inTransition) return;
             if (IsAtFirstStage) return;
 
-            //previousStage = CurrentPlayerStage;
-
             int fromStage = shownStage;
             int toStage = shownStage - 1;
 
-            InitialiseStageSwitch();
-
-           // AppManager.I.Player.RetractCurrentStage();
             shownStage = toStage;
 
-            //if (toStage <= MaxUnlockedStage)    // CANNOT NOT BE THIS!
-            // {
-            // OK
-            //ChangeStage();
-            // }
-            //else if (AppManager.I.Player.CurrentJourneyPosition.Stage == CurrentPlayerStage)
-            //{
-            // NO!
-
-            //lockUI.SetActive(false);
-            // TODO: playerPin.AmIFirstorLastPos();
-            //isStageAvailable = false;
-            //}
-            /*else
-            {
-                StageNotAvailable();
-            }*/
-
-            UpdateStageIndicatorUI();
             SwitchFromToStage(fromStage, toStage);
 
-            /*
-            TODO: how to do this?
             if (IsAtFirstStage)
             {
                 ShowTutorial();
-            }*/
+            }
         }
-
-        private void InitialiseStageSwitch()
-        {
-            //previousStage = CurrentPlayerStage;
-            //ToggleUIButtonsShow();
-
-            //SwitchToStage(CurrentPlayerStage);
-
-        }
-
-        private void ChangeStage()
-        {
-            // TODO: 
-            /*
-            // We just switched the pos pin
-            //isStageAvailable = false;
-            playerPin.ResetPlayerPositionAfterStageChange();
-            //lockUI.SetActive(false);
-            playerPin.AmIFirstorLastPos();
-            */
-        }
-
+        
         private void UpdateButtonsForStage(int stage)
         {
             UpdateStageButtonsUI();
@@ -419,9 +351,11 @@ namespace Antura.Map
             /*if (IsStagePlayable(shownStage))
             {
                 AppManager.I.Player.CurrentJourneyPosition.Stage = shownStage;
+                playerPin.ResetPlayerPositionAfterStageChange();
             }*/
 
             // Show the new stage
+            UpdateStageIndicatorUI(shownStage);
             UpdateButtonsForStage(shownStage);
             ShowPlaySessionMovementButtons();
 
@@ -465,10 +399,10 @@ namespace Antura.Map
 
         #region UI Activation
 
-        private void UpdateStageIndicatorUI()
+        private void UpdateStageIndicatorUI(int stage)
         {
             // Debug.Log("UpdateStageIndicatorUI " + currentStageNumber + "/" + maxNumberOfStages);
-            mapStageIndicator.Init(shownStage - 1, FinalStage);
+            mapStageIndicator.Init(stage - 1, FinalStage);
         }
 
         private void UpdateStageButtonsUI()
