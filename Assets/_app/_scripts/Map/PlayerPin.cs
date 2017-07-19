@@ -12,7 +12,7 @@ namespace Antura.Map
     public class PlayerPin : MonoBehaviour
     {
         [Header("References")]
-        public StageMap stageScript;
+        public StageMap stageMap;
         public FingerStage swipeScript;
 
         [Header("UIButtons")]
@@ -30,7 +30,7 @@ namespace Antura.Map
 
             if (!AppManager.I.Player.IsFirstContact())
             {
-                CheckButtonsEnabling();
+                CheckMovementButtonsEnabling();
             }
         }
 
@@ -64,16 +64,20 @@ namespace Antura.Map
                 {
                     if (hit.collider.CompareTag("Rope"))
                     {
-                        AudioManager.I.PlaySound(Sfx.UIButtonClick);
                         Rope selectedRope = hit.transform.parent.gameObject.GetComponent<Rope>();
-                        int nRopeActiveDots = selectedRope.dots.Count(x => x.gameObject.activeInHierarchy);
+                        int nUnlockedDots = selectedRope.dots.Count(x => !x.isLocked);
+                        if (nUnlockedDots == 0)
+                        {
+                            return;
+                        }
+
                         int closerDotIndex = 0;
-                        if (nRopeActiveDots > 1)
+                        if (nUnlockedDots > 1)
                         {
                             float distaceHitToDot = 1000;
                             closerDotIndex = 0;
 
-                            for (int i = 0; i < nRopeActiveDots; i++)
+                            for (int i = 0; i < nUnlockedDots; i++)
                             {
                                 var distanceHitBefore = Vector3.Distance(hit.point,
                                     selectedRope.dots[i].transform.position);
@@ -85,13 +89,16 @@ namespace Antura.Map
                             }
                         }
 
+                        AudioManager.I.PlaySound(Sfx.UIButtonClick);
                         var dot = selectedRope.dots[closerDotIndex];
                         TeleportToDot(dot);
                     }
                     else if (hit.collider.CompareTag("Pin"))
                     {
-                        AudioManager.I.PlaySound(Sfx.UIButtonClick);
                         var pin = hit.collider.transform.gameObject.GetComponent<Pin>();
+                        if (pin.isLocked) return;
+
+                        AudioManager.I.PlaySound(Sfx.UIButtonClick);
                         TeleportToPin(pin);
                     }
                 }
@@ -100,7 +107,7 @@ namespace Antura.Map
 
         private int CurrentPlayerPosIndex
         {
-            get { return stageScript.currentPlayerPosIndex; }
+            get { return stageMap.currentPlayerPosIndex; }
         }
 
         #region Movement
@@ -119,8 +126,8 @@ namespace Antura.Map
 
         public void MoveToNextDot()
         {
-            if ((CurrentPlayerPosIndex < (stageScript.mapLocations.Count - 1)) &&
-                (CurrentPlayerPosIndex != stageScript.maxPlayerPosIndex))
+            if ((CurrentPlayerPosIndex < (stageMap.mapLocations.Count - 1)) &&
+                (CurrentPlayerPosIndex != stageMap.maxPlayerPosIndex))
             {
                 // We can advance
                 AnimateToPlayerPosition(CurrentPlayerPosIndex + 1);
@@ -141,49 +148,54 @@ namespace Antura.Map
         public void ResetPlayerPosition()
         {
             var current_lb = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
-            var current_ps = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
+            var current_ps = AppManager.I.Player.CurrentJourneyPosition.PlaySession;
 
             if (AppManager.I.Player.IsAssessmentTime()) 
             {
                 // Player is on a pin
-                var pin = stageScript.PinForLB(current_lb);
+                var pin = stageMap.PinForLB(current_lb);
                 TeleportToPin(pin);
             }
             else
             {
                 // Player is on a dot
-                var dot = stageScript.PinForLB(current_lb).rope.DotForPS(current_ps);
+                var dot = stageMap.PinForLB(current_lb).rope.DotForPS(current_ps);
                 TeleportToDot(dot);
             }
         }
 
-        public void ResetPlayerPositionAfterStageChange()
+        public void ResetPlayerPositionAfterStageChange(bool comingFromHigherStage)
         {
-            ForceToPlayerPosition(0);
+            if (comingFromHigherStage)
+            {
+                ForceToPlayerPosition(stageMap.maxPlayerPosIndex);
+                LookAtPreviousPin(false);
+            }
+            else
+            {
+                ForceToPlayerPosition(0);
+                LookAtNextPin(false);
+            }
         }
 
         void AnimateToPlayerPosition(int newIndex)
         {
-            if (stageScript.currentPlayerPosIndex == newIndex) return;
+            Debug.Log("Animating to " + newIndex);
+            stageMap.currentPlayerPosIndex = newIndex;
+            MoveTo(stageMap.GetCurrentPlayerPosition(), true);
 
-            Debug.LogError("Animating to " + newIndex);
-            stageScript.currentPlayerPosIndex = newIndex;
-            MoveTo(stageScript.GetCurrentPlayerPosition(), true);
-
-            AppManager.I.Player.SetCurrentJourneyPosition(stageScript.GetCurrentPlayerJourneyPosition());
-            CheckButtonsEnabling();
+            AppManager.I.Player.SetCurrentJourneyPosition(stageMap.GetCurrentPlayerJourneyPosition());
+            CheckMovementButtonsEnabling();
         }
 
         void ForceToPlayerPosition(int newIndex)
         {
-            if (stageScript.currentPlayerPosIndex == newIndex) return;
+            Debug.Log("Forcing to " + newIndex);
+            stageMap.currentPlayerPosIndex = newIndex;
+            MoveTo(stageMap.GetCurrentPlayerPosition(), false);
 
-            //Debug.LogError("Forcing to " + newIndex);
-            stageScript.currentPlayerPosIndex = newIndex;
-            MoveTo(stageScript.GetCurrentPlayerPosition(), false);
-
-            AppManager.I.Player.SetCurrentJourneyPosition(stageScript.GetCurrentPlayerJourneyPosition());
-            CheckButtonsEnabling();
+            AppManager.I.Player.SetCurrentJourneyPosition(stageMap.GetCurrentPlayerJourneyPosition());
+            CheckMovementButtonsEnabling();
         }
 
         #endregion
@@ -217,8 +229,8 @@ namespace Antura.Map
                 fromLb = current_lb;
                 toLb = current_lb - 1;
             }
-            var lookingFromTr = stageScript.PinForLB(fromLb).transform;
-            var lookingToTr = stageScript.PinForLB(toLb).transform;
+            var lookingFromTr = stageMap.PinForLB(fromLb).transform;
+            var lookingToTr = stageMap.PinForLB(toLb).transform;
             Quaternion toRotation = Quaternion.LookRotation(lookingToTr.transform.position - lookingFromTr.transform.position, Vector3.up);
            // Debug.Log("Current " + currRotation + " To " + toRotation);
 
@@ -259,28 +271,26 @@ namespace Antura.Map
 
         #region UI
 
-        private void CheckButtonsEnabling()
+        public void CheckMovementButtonsEnabling()
         {
+            //Debug.Log("Enabling buttons for " + CurrentPlayerPosIndex);
             if (CurrentPlayerPosIndex == 0)
             {
-                if (stageScript.maxPlayerPosIndex == 0)
+                if (stageMap.maxPlayerPosIndex == 0)
                 {
                     moveRightButton.SetActive(false);
                     moveLeftButton.SetActive(false);
                 }
                 else
                 {
-                    // TODO: maybe no routine?
-                    // StartCoroutine("DeactivateButtonWithDelay", moveRightButton);
                     moveRightButton.SetActive(false);
                     moveLeftButton.SetActive(true);
                 }
             }
-            else if (CurrentPlayerPosIndex == stageScript.maxPlayerPosIndex)
+            else if (CurrentPlayerPosIndex == stageMap.maxPlayerPosIndex)
             {
                 moveRightButton.SetActive(true);
                 moveLeftButton.SetActive(false);
-                //StartCoroutine("DeactivateButtonWithDelay", moveLeftButton);
             }
             else
             {
@@ -288,12 +298,6 @@ namespace Antura.Map
                 moveLeftButton.SetActive(true);
             }
         }
-
-        /*private IEnumerator DeactivateButtonWithDelay(GameObject button)
-        {
-            yield return new WaitForSeconds(0.1f);
-            button.SetActive(false);
-        }*/
 
         #endregion
     }

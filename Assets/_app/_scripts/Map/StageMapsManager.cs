@@ -17,6 +17,9 @@ namespace Antura.Map
     /// </summary>
     public class StageMapsManager : MonoBehaviour
     {
+        [Header("Options")]
+        public bool MovePlayerWithStageChange = true;
+
         [Header("Debug")]
         public bool SimulateFirstContact;
 
@@ -69,18 +72,6 @@ namespace Antura.Map
             return stageMaps[Stage - 1];
         }
 
-        // TODO: move to the StageMape class
-        private Color StageColor(int Stage)
-        {
-            return StageMap(Stage).color;
-        }
-
-        // TODO: move to the StageMape class
-        private Transform StageCameraPivot(int Stage)
-        {
-            return StageMap(Stage).cameraPivot;
-        }
-
         public bool IsAtFirstStage
         {
             get { return shownStage == 1; }
@@ -94,11 +85,6 @@ namespace Antura.Map
         public bool IsAtFinalStage
         {
             get { return shownStage == FinalStage; }
-        }
-
-        private bool IsShownStagePlayable
-        {
-            get { return shownStage <= MaxUnlockedStage; }
         }
 
         private bool IsStagePlayable(int stage)
@@ -118,24 +104,25 @@ namespace Antura.Map
             shownStage = CurrentPlayerStage;
 
             // Setup stage availability
-            for (int stage_i = 1; stage_i < MaxUnlockedStage; stage_i++)
+            for (int stage_i = 1; stage_i <= stageMaps.Length; stage_i++)
             {
+                bool isStageUnlocked = stage_i <= MaxUnlockedStage;
+                bool isWholeStageUnlocked = stage_i < MaxUnlockedStage;
+                StageMap(stage_i).Initialise(isStageUnlocked, isWholeStageUnlocked);
                 StageMap(stage_i).Hide();
-                StageMap(stage_i).Initialise(true);
             }
-            if (MaxUnlockedStage <= FinalStage)
+            /*if (MaxUnlockedStage <= FinalStage)
             {
-                StageMap(MaxUnlockedStage).Initialise(false);
-            }
+                StageMap(MaxUnlockedStage).Initialise(true, false);
+            }*/
 
             // Show the current stage
             TeleportToShownStage(shownStage);
             UpdateStageIndicatorUI(shownStage);
             UpdateButtonsForStage(shownStage);
 
-            playerPin.ResetPlayerPosition();
             playerPin.gameObject.SetActive(true);
-
+            playerPin.ResetPlayerPosition();
         }
 
         private void Start()
@@ -338,26 +325,42 @@ namespace Antura.Map
 
         private IEnumerator SwitchFromToStageCO(int fromStage, int toStage)
         {
-            Debug.Log("Switch from " + fromStage + " to " + toStage);
+            //Debug.Log("Switch from " + fromStage + " to " + toStage);
 
             HidePlaySessionMovementButtons();
+
+            // Change stage reference
+            playerPin.stageMap = StageMap(toStage);
+
+            // Update Player Stage too, if needed
+            if (MovePlayerWithStageChange)
+            {
+                if (IsStagePlayable(toStage) && toStage != CurrentPlayerStage)
+                {
+                    bool comingFromHigherStage = fromStage > toStage;
+                    playerPin.ResetPlayerPositionAfterStageChange(comingFromHigherStage);
+                }
+            }
 
             // Animate the switch
             AnimateToShownStage(toStage);
             yield return new WaitForSeconds(0.8f);
 
-            // DEPRECATED: player stage updates only after clicking on a new stage dot
-            // Update Player Stage too if needed
-            /*if (IsStagePlayable(shownStage))
-            {
-                AppManager.I.Player.CurrentJourneyPosition.Stage = shownStage;
-                playerPin.ResetPlayerPositionAfterStageChange();
-            }*/
-
             // Show the new stage
-            UpdateStageIndicatorUI(shownStage);
-            UpdateButtonsForStage(shownStage);
-            ShowPlaySessionMovementButtons();
+            UpdateStageIndicatorUI(toStage);
+            UpdateButtonsForStage(toStage);
+
+            if (MovePlayerWithStageChange)
+            {
+                ShowPlaySessionMovementButtons();
+            }
+            else
+            {
+                if (toStage == CurrentPlayerStage )
+                {
+                    ShowPlaySessionMovementButtons();
+                }
+            }
 
             // Hide the last stage
             StageMap(fromStage).Hide();
@@ -374,24 +377,25 @@ namespace Antura.Map
 
         private void TeleportToShownStage(int stage)
         {
-            StageMap(stage).Show();
-            var pivot = StageCameraPivot(stage);
+            var stageMap = StageMap(stage);
+            stageMap.Show();
+            var pivot = stageMap.cameraPivot;
             CameraGameplayController.I.transform.position = pivot.position;
             CameraGameplayController.I.transform.rotation = pivot.rotation;
-            Camera.main.backgroundColor = StageColor(stage);
-            Camera.main.GetComponent<CameraFog>().color = StageColor(stage);
-            playerPin.stageScript = StageMap(stage);
+            Camera.main.backgroundColor = stageMap.color;
+            Camera.main.GetComponent<CameraFog>().color = stageMap.color;
+            playerPin.stageMap = stageMap;
         }
 
         private void AnimateToShownStage(int stage)
         {
             //Debug.Log("Animating to stage " + stage);
-            StageMap(stage).Show();
-            var pivot = StageCameraPivot(stage);
+            var stageMap = StageMap(stage);
+            stageMap.Show();
+            var pivot = stageMap.cameraPivot;
             CameraGameplayController.I.MoveToPosition(pivot.position, pivot.rotation, 0.6f);
-            Camera.main.DOColor(StageColor(stage), 1);
-            Camera.main.GetComponent<CameraFog>().color = StageColor(stage);
-            playerPin.stageScript = StageMap(stage);
+            Camera.main.DOColor(stageMap.color, 1);
+            Camera.main.GetComponent<CameraFog>().color = stageMap.color;
         }
 
         #endregion
@@ -400,7 +404,6 @@ namespace Antura.Map
 
         private void UpdateStageIndicatorUI(int stage)
         {
-            // Debug.Log("UpdateStageIndicatorUI " + currentStageNumber + "/" + maxNumberOfStages);
             mapStageIndicator.Init(stage - 1, FinalStage);
         }
 
@@ -409,12 +412,10 @@ namespace Antura.Map
             if (IsAtFirstStage)
             {
                 rightStageButton.SetActive(false);
-                //StartCoroutine("DeactivateButtonWithDelay", rightStageButton);
             }
             else if (IsAtFinalStage)
             {
                 leftStageButton.SetActive(false);
-                //StartCoroutine("DeactivateButtonWithDelay", leftStageButton);
             }
             else
             {
@@ -426,11 +427,12 @@ namespace Antura.Map
         private void ShowPlaySessionMovementButtons()
         {
             uiButtonMovementPlaySession.SetActive(true);
+            playerPin.CheckMovementButtonsEnabling();
         }
 
         private void HidePlaySessionMovementButtons()
         {
-            uiButtonMovementPlaySession.SetActive(!false);
+            uiButtonMovementPlaySession.SetActive(false);
         }
 
         private void DeactivateUI()

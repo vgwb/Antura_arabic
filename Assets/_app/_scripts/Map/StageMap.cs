@@ -26,7 +26,7 @@ namespace Antura.Map
         // Max position index PlayerPin can take
         public int maxPlayerPosIndex;
 
-        // Pins: number of learning blocks
+        // Pins: one per learning blocks, plus a fake one at the start
         private List<Pin> pins;
 
         public Vector3 GetCurrentPlayerPosition()
@@ -56,15 +56,18 @@ namespace Antura.Map
         public GameObject dotPrefab;
 
         [HideInInspector]
-        private bool wholeStageUnlocked;
+        private bool stageUnlocked;   // at least one PS for this stage is unlocked
+        [HideInInspector]
+        private bool wholeStageUnlocked;    // all PS and LB of this stage are unlocked
 
         [Header("PlayerPin")]
         public List<IMapLocation> mapLocations = new List<IMapLocation>();
            
         #region Setup
 
-        public void Initialise(bool _wholeStageUnlocked)
+        public void Initialise(bool _stageUnlocked, bool _wholeStageUnlocked)
         {
+            stageUnlocked = _stageUnlocked;
             wholeStageUnlocked = _wholeStageUnlocked;
 
             CountPlaySessionsPerLearningBlock();
@@ -79,7 +82,6 @@ namespace Antura.Map
             for (int i = 1; i < pins.Count; i++)
             {
                 pins[i].rope = ropes[i - 1];
-                ropes[i - 1].pin = pins[i];
             }
 
             // Setup the first pin (it is not a LB, just for visual purposes)
@@ -93,6 +95,7 @@ namespace Antura.Map
             {
                 var pin = pins[lb_i];
                 pin.Initialise(stageNumber, lb_i);
+                pin.SetLocked();
                 pin.SetPlaySessionState(allPlaySessionStates.Find(x => 
                         x.data.LearningBlock == lb_i
                         && x.data.PlaySession == AppManager.I.JourneyHelper.AssessmentPlaySessionIndex
@@ -106,13 +109,16 @@ namespace Antura.Map
                     mapLocations.Add(dot);
                     dot.playerPosIndex = playerPosIndexCount++;
                     dot.Initialise(stageNumber, lb_i, ps_i);
+                    dot.SetPlaySessionState(allPlaySessionStates.Find(x =>
+                            x.data.LearningBlock == lb_i && x.data.PlaySession == ps_i
+                    ));
                 }
 
                 mapLocations.Add(pin.dot);
                 pin.dot.playerPosIndex = playerPosIndexCount++;
             }
 
-            CalculateUnlockedPlaySessions();
+            UnlockPlaySessions();
         }
 
         private void CreateDotsBetweenPins(int lb_i, Pin pinFront, Pin pinBack)
@@ -159,10 +165,16 @@ namespace Antura.Map
             }
         }
 
-        private void CalculateUnlockedPlaySessions()
+        private void UnlockPlaySessions()
         {
-            if (wholeStageUnlocked)
+            if (!stageUnlocked)
             {
+                // All is locked
+                maxPlayerPosIndex = 0;
+            }
+            else if (wholeStageUnlocked)
+            {
+                // All is unlocked
                 for (var i = 1; i < pins.Count; i++)
                 {
                     var pin = pins[i];
@@ -177,6 +189,7 @@ namespace Antura.Map
             }
             else
             {
+                // Part is locked
                 var max_lb = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
                 var max_ps = AppManager.I.Player.MaxJourneyPosition.PlaySession;
                 for (var lb = 1; lb <= max_lb; lb++)
@@ -237,8 +250,6 @@ namespace Antura.Map
 
         #region Play Session State
 
-        // TODO refactor: this is not called at all, but needed by the Map to show the state of a play session. The map should be improved to use these.
-
         /// <summary>
         ///     Returns a list of all play session data with its score (if a score exists) for the given stage
         /// </summary>
@@ -255,6 +266,7 @@ namespace Antura.Map
             {
                 var data = AppManager.I.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
                 playSessionState_list.Add(new PlaySessionState(data, scoreData_list[i].Stars));
+                Debug.Log(scoreData_list[i].ElementId + " SCORE " + scoreData_list[i].Stars);
             }
 
             return playSessionState_list;

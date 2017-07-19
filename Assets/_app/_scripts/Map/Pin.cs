@@ -23,6 +23,9 @@ namespace Antura.Map
         [HideInInspector]
         public GameObject currentPinMesh;
 
+        [HideInInspector]
+        public bool isLocked;
+
         public void Initialise(int _stage, int _learningBlock)
         {
             learningBlock = _learningBlock;
@@ -43,10 +46,12 @@ namespace Antura.Map
 
         public void SetUnlocked()
         {
+            isLocked = false;
             dot.gameObject.SetActive(true);
         }
         public void SetLocked()
         {
+            isLocked = true;
             dot.gameObject.SetActive(false);
         }
 
