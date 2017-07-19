@@ -40,7 +40,6 @@ namespace Antura.Map
             return mapLocations[currentPlayerPosIndex].JourneyPos;
         }
 
-
         // Dots: number of play sessions (N per learning block + assessment under the Pin)
         //private List<Dot> dots;
 
@@ -48,7 +47,7 @@ namespace Antura.Map
         //private List<Rope> ropes;
 
         // Data
-        private int nLearningBlocks;
+        //private int nLearningBlocks;
         private int[] nPlaySessionsPerLb;
 
         #region Properties
@@ -301,7 +300,7 @@ namespace Antura.Map
         {
             var psDataList = GetAllPlaySessionDataForStage(stageNumber);
             var lbDataList = GetAllLearningBlockDataForStage(stageNumber);
-            nLearningBlocks = lbDataList.Count;
+            //nLearningBlocks = lbDataList.Count;
             nPlaySessionsPerLb = new int[lbDataList.Count];
             foreach (PlaySessionData psData in psDataList)
             {
@@ -324,7 +323,7 @@ namespace Antura.Map
         /// </summary>
         /// <param name="_stage"></param>
         /// <returns></returns>
-        private List<PlaySessionState> GetAllPlaySessionStateForStage(int _stage)
+        private List<PlaySessionState> GetAllPlaySessionStatesForStage(int _stage)
         {
             // Get all available scores for this stage
             var scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);

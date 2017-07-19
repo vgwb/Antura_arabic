@@ -374,7 +374,6 @@ namespace Antura.Map
 
             //SwitchToStage(CurrentPlayerStage);
 
-            UpdateStageButtonsUI();
         }
 
         private void ChangeStage()
@@ -383,7 +382,7 @@ namespace Antura.Map
             /*
             // We just switched the pos pin
             //isStageAvailable = false;
-            playerPin.ResetPositionAfterStageChange();
+            playerPin.ResetPlayerPositionAfterStageChange();
             //lockUI.SetActive(false);
             playerPin.AmIFirstorLastPos();
             */
@@ -391,6 +390,7 @@ namespace Antura.Map
 
         private void UpdateButtonsForStage(int stage)
         {
+            UpdateStageButtonsUI();
             bool playable = IsStagePlayable(stage);
             playButton.SetActive(playable);
             nextPlaySessionButton.SetActive(playable);
@@ -475,18 +475,19 @@ namespace Antura.Map
         {
             if (IsAtFirstStage)
             {
-                StartCoroutine("DeactivateButtonWithDelay", rightStageButton);
+                rightStageButton.SetActive(false);
+                //StartCoroutine("DeactivateButtonWithDelay", rightStageButton);
             }
             else if (IsAtFinalStage)
             {
-                StartCoroutine("DeactivateButtonWithDelay", leftStageButton);
+                leftStageButton.SetActive(false);
+                //StartCoroutine("DeactivateButtonWithDelay", leftStageButton);
             }
             else
             {
                 rightStageButton.SetActive(true);
                 leftStageButton.SetActive(true);
             }
-
         }
 
         private void ShowPlaySessionMovementButtons()
@@ -497,12 +498,6 @@ namespace Antura.Map
         private void HidePlaySessionMovementButtons()
         {
             uiButtonMovementPlaySession.SetActive(!false);
-        }
-
-        private IEnumerator DeactivateButtonWithDelay(GameObject button)
-        {
-            yield return new WaitForSeconds(0.1f);
-            button.SetActive(false);
         }
 
         private void DeactivateUI()

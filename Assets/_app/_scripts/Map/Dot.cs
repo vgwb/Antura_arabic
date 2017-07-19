@@ -40,7 +40,7 @@ namespace Antura.Map
             if (other.gameObject.CompareTag("Player"))
             {
                 ChangeMaterialDotToRed();
-                if (other.gameObject.GetComponent<PlayerPin>().playerOverDotPin)
+                //if (other.gameObject.GetComponent<PlayerPin>().playerOverDotPin)
                 {
                     AudioManager.I.PlaySound(Sfx.UIButtonClick);
                 }
@@ -55,12 +55,12 @@ namespace Antura.Map
             }
         }
 
-        private void ChangeMaterialDotToBlack()
+        public void ChangeMaterialDotToBlack()
         {
             GetComponent<Renderer>().material = blackDot;
         }
 
-        private void ChangeMaterialDotToRed()
+        public void ChangeMaterialDotToRed()
         {
             GetComponent<Renderer>().material = redDot;
         }

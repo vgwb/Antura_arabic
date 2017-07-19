@@ -67,11 +67,7 @@ namespace Antura.Map
             if (other.gameObject.CompareTag("Player"))
             {
                 currentPinMesh.SetActive(false);
-                // ChangeMaterialPinToRed();
-                if (other.gameObject.GetComponent<PlayerPin>().playerOverDotPin)
-                {
-                    AudioManager.I.PlaySound(Sfx.UIButtonClick);
-                }
+                dot.ChangeMaterialDotToRed();
             }
         }
 
@@ -80,7 +76,7 @@ namespace Antura.Map
             if (other.gameObject.CompareTag("Player"))
             {
                 currentPinMesh.SetActive(true);
-                //ChangeMaterialPinToBlack();
+                dot.ChangeMaterialDotToBlack();
             }
         }
 
