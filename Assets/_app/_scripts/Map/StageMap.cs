@@ -34,10 +34,12 @@ namespace Antura.Map
         {
             return mapLocations[currentPlayerPosIndex].Position;
         }
+
         public JourneyPosition GetCurrentPlayerJourneyPosition()
         {
             return mapLocations[currentPlayerPosIndex].JourneyPos;
         }
+
 
         // Dots: number of play sessions (N per learning block + assessment under the Pin)
         //private List<Dot> dots;
@@ -46,10 +48,8 @@ namespace Antura.Map
         //private List<Rope> ropes;
 
         // Data
-        [HideInInspector]
-        public int nLearningBlocks;
+        private int nLearningBlocks;
         private int[] nPlaySessionsPerLb;
-
 
         #region Properties
 
@@ -58,6 +58,10 @@ namespace Antura.Map
             return pins[lb];    // @note: we have pin 0 as fake
         }
 
+        public Pin LastLBPin()
+        {
+            return pins.Last();
+        }
         #endregion
 
         [Header("References")]
@@ -133,7 +137,6 @@ namespace Antura.Map
 
         private void CreateDotsBetweenPins(int lb_i, Pin pinFront, Pin pinBack)
         {
-            Debug.Log(lb_i);
             int nPlaySessions = nPlaySessionsPerLb[lb_i-1];
 
             Vector3 pFront = pinFront.transform.position;
@@ -296,7 +299,6 @@ namespace Antura.Map
         // Count the number of steps (PlaySessions) per each learning block
         private void CountPlaySessionsPerLearningBlock()
         {
-            nLearningBlocks = 0;
             var psDataList = GetAllPlaySessionDataForStage(stageNumber);
             var lbDataList = GetAllLearningBlockDataForStage(stageNumber);
             nLearningBlocks = lbDataList.Count;

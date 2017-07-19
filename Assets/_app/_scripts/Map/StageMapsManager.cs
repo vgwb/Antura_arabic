@@ -414,11 +414,12 @@ namespace Antura.Map
             AnimateToShownStage(toStage);
             yield return new WaitForSeconds(0.8f);
 
+            // DEPRECATED: player stage updates only after clicking on a new stage dot
             // Update Player Stage too if needed
-            if (IsStagePlayable(shownStage))
+            /*if (IsStagePlayable(shownStage))
             {
                 AppManager.I.Player.CurrentJourneyPosition.Stage = shownStage;
-            }
+            }*/
 
             // Show the new stage
             UpdateButtonsForStage(shownStage);
@@ -457,7 +458,7 @@ namespace Antura.Map
             CameraGameplayController.I.MoveToPosition(pivot.position, pivot.rotation, 0.6f);
             Camera.main.DOColor(StageColor(stage), 1);
             Camera.main.GetComponent<CameraFog>().color = StageColor(stage);
-            playerPin.stageScript = StageMap(CurrentPlayerStage);
+            playerPin.stageScript = StageMap(stage);
         }
 
         #endregion

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-using Antura.Core;
 using DG.Tweening;
+using System.Linq;
 
 namespace Antura.Map
 {
@@ -24,26 +24,25 @@ namespace Antura.Map
         [Header("PinState")]
         public bool playerOverDotPin;
 
+        // Interaction state
         float distanceNextDotToHitPoint;
         float distanceBeforelDotToHitPoint;
         float distanceActualDotToHitPoint;
-        int dotCloser;
-        Rope ropeSelected;
-        Collider colliderRaycast;
+        int closerDotIndex;
+        Rope selectedRope;
+
+        // Animation
         Tween moveTween, rotateTween;
+
+        #region Initialisation
 
         void Start()
         {
-            Floating();
+            StartFloatingAnimation();
 
             if (!AppManager.I.Player.IsFirstContact()) {
-            // TODO:    CheckButtonsEnabling();
+                CheckButtonsEnabling();
             }
-        }
-
-        void Floating()
-        {
-            transform.DOBlendableMoveBy(new Vector3(0, 1, 0), 1).SetLoops(-1, LoopType.Yoyo);
         }
 
         void OnDestroy()
@@ -52,19 +51,24 @@ namespace Antura.Map
             rotateTween.Kill();
         }
 
-        void FixedUpdate()
+        #endregion
+
+        #region Animation
+
+        void StartFloatingAnimation()
         {
-            /* Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
-             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.LearningBlock);
-             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);
+            transform.DOBlendableMoveBy(new Vector3(0, 1, 0), 1).SetLoops(-1, LoopType.Yoyo);
+        }
 
-             Debug.Log("Max"+AppManager.I.Player.MaxJourneyPosition.Stage);
-             Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
-             Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);  */
+        #endregion
 
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && (!swipeScript.swipe)) {
+        void LateUpdate()
+        {
+            // @note: using late update so this interaction happens after FingerStage (so that touch swipe takes precedence)
+
+            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject() && !swipeScript.isSwiping)
+            {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Debug.Log("CLICKING");
 
                 RaycastHit hit;
                 int layerMask = 1 << 15;
@@ -73,53 +77,36 @@ namespace Antura.Map
                     if (hit.collider.CompareTag("Rope"))
                     {
                         //playerOverDotPin = true;
-                        ropeSelected = hit.transform.parent.gameObject.GetComponent<Rope>();
-                        int nRopeActiveDots = 0;
-                        foreach (Dot dot in ropeSelected.dots)
-                        {
-                            if (dot.gameObject.activeInHierarchy)
-                            {
-                                nRopeActiveDots++;
-                            }
-                        }
 
+                        Rope selectedRope = hit.transform.parent.gameObject.GetComponent<Rope>();
+                        int nRopeActiveDots = selectedRope.dots.Count(x => x.gameObject.activeInHierarchy);
+                        closerDotIndex = 0;
                         if (nRopeActiveDots > 1)
                         {
                             float distaceHitToDot = 1000;
-                            dotCloser = 0;
+                            closerDotIndex = 0;
 
                             for (int i = 0; i < nRopeActiveDots; i++)
                             {
                                 var distanceHitBefore = Vector3.Distance(hit.point,
-                                    ropeSelected.dots[i].transform.position);
+                                    selectedRope.dots[i].transform.position);
                                 if (distanceHitBefore < distaceHitToDot)
                                 {
                                     distaceHitToDot = distanceHitBefore;
-                                    dotCloser = i;
+                                    closerDotIndex = i;
                                 }
                             }
-                        } else
-                        {
-                            dotCloser = 0;
                         }
 
-                        colliderRaycast = hit.collider;
-                        TeleportToDot();
+                        var dot = selectedRope.dots[closerDotIndex];
+                        TeleportToDot(dot);
                     }
                     else if (hit.collider.CompareTag("Pin"))
                     {
-                        //playerOverDotPin = true;
-                        colliderRaycast = hit.collider;
-                        TeleportToPin();
+                        //Debug.Log("Hitting PIN");
+                        var pin = hit.collider.transform.gameObject.GetComponent<Pin>();
+                        TeleportToPin(pin);
                     }
-                    else
-                    {
-                        colliderRaycast = null;
-                    }
-                }
-                else
-                {
-                    colliderRaycast = null;
                 }
             }
             else
@@ -135,58 +122,24 @@ namespace Antura.Map
             playerOverDotPin = false;
         }*/
 
-        /*void LateUpdate()
-        {
-            if (Input.GetMouseButtonUp(0) && (!EventSystem.current.IsPointerOverGameObject()) && (colliderRaycast != null))
-            {
-                if (colliderRaycast.CompareTag("Rope"))
-                {
-                    TeleportToDot();
-                    UpdateCurrentJourneyPosition();
-                }
-                else if (colliderRaycast.CompareTag("Pin"))
-                {
-                    TeleportToPin();
-                    UpdateCurrentJourneyPosition();
-                }
-            }
-        }*/
-
-        void TeleportToDot()
-        {
-            ForceToPlayerPosition(ropeSelected.dots[dotCloser].playerPosIndex);
-            LookAtNextPin();
-            // Update JourneyPos
-            //AppManager.I.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].playSession;
-            //AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].learningBlock;
-            //
-            //CheckButtonsEnabling();
-           
-            //transform.LookAt(ropeSelected.pin.transform);
-        }
-
-        void TeleportToPin()
-        {
-            var pin = colliderRaycast.transform.gameObject.GetComponent<Pin>();
-            ForceToPlayerPosition(pin.dot.playerPosIndex);
-            LookAtNextPin();
-
-            //MoveTo(colliderRaycast.transform.position);
-
-            // Update position index
-            //stageScript.currentPlayerPosIndex = pin.dot.playerPosIndex;
-
-            //var current_lb = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
-            //var current_ps = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
-
-            // TODO: standardize LOOKATS
-
-            //CheckButtonsEnabling();
-        }
 
         private int CurrentPlayerPosIndex
         {
             get { return stageScript.currentPlayerPosIndex; }
+        }
+
+        #region Movement
+
+        private void TeleportToDot(Dot dot)
+        {
+            ForceToPlayerPosition(dot.playerPosIndex);
+            LookAtNextPin();
+        }
+
+        private void TeleportToPin(Pin pin)
+        {
+            ForceToPlayerPosition(pin.dot.playerPosIndex);
+            LookAtNextPin();
         }
 
         public void MoveToNextDot()
@@ -222,54 +175,19 @@ namespace Antura.Map
 
                 ForceToPlayerPosition(pin.dot.playerPosIndex);
                 LookAtNextPin();
-
-                //MoveTo(pin.transform.position);
-                //stageScript.currentPlayerPosIndex = pin.dot.playerPosIndex;
-
-                // TODO: standardize LOOKAT
-                /*
-                if (current_lb < stageScript.nLearningBlocks)
-                {
-                    // Look at the next pin
-                    transform.LookAt(stageScript.PinForLB(current_lb + 1).transform);
-                }
-                else
-                {
-                    // Last pin: look forward
-                    transform.LookAt(stageScript.PinForLB(current_lb).transform);
-                    transform.rotation = Quaternion.Euler(
-                        new Vector3(transform.rotation.eulerAngles.x,
-                            transform.rotation.eulerAngles.y + 180,
-                            transform.rotation.eulerAngles.z)
-                    );
-                }*/
             }
             else
             {
                 // Player is on a dot
                 var dot = stageScript.PinForLB(current_lb).rope.DotForPS(current_ps);
-
                 ForceToPlayerPosition(dot.playerPosIndex);
-
-                //MoveTo(dot.transform.position);
-                //stageScript.currentPlayerPosIndex = dot.playerPosIndex;
-
-                // TODO: standardize LOOKAT
                 LookAtNextPin();
-                //transform.LookAt(stageScript.PinForLB(current_lb).transform);
             }
-            //CheckButtonsEnabling();
         }
 
         public void ResetPositionAfterStageChange()
         {
             ForceToPlayerPosition(0);
-
-            //AppManager.I.Player.CurrentJourneyPosition.LearningBlock = 1;
-            // AppManager.I.Player.CurrentJourneyPosition.PlaySession = 1;
-            //LookAtNextPin();
-            // UpdateCurrentJourneyPosition();
-            // CheckButtonsEnabling();
         }
 
         void AnimateToPlayerPosition(int newIndex)
@@ -280,7 +198,6 @@ namespace Antura.Map
 
             CheckButtonsEnabling();
             AppManager.I.Player.SetCurrentJourneyPosition(stageScript.GetCurrentPlayerJourneyPosition());
-            //UpdateCurrentJourneyPosition();
         }
 
         void ForceToPlayerPosition(int newIndex)
@@ -293,36 +210,7 @@ namespace Antura.Map
             AppManager.I.Player.SetCurrentJourneyPosition(stageScript.GetCurrentPlayerJourneyPosition());
         }
 
-        /*void SetJourneyPosition()
-        {
-            /* TODO:
-            if (stageScript.playerPinTargetPositions[stageScript.currentPlayerPosIndex].GetComponent<Dot>() != null)
-            {
-                AppManager.I.Player.CurrentJourneyPosition.PlaySession =
-                    stageScript.playerPinTargetPositions[stageScript.currentPlayerPosIndex].GetComponent<Dot>().playSession;
-                AppManager.I.Player.CurrentJourneyPosition.LearningBlock =
-                    stageScript.playerPinTargetPositions[stageScript.currentPlayerPosIndex].GetComponent<Dot>().LearningBlock;
-            }
-            else
-            {
-                AppManager.I.Player.CurrentJourneyPosition.PlaySession =
-                    stageScript.playerPinTargetPositions[stageScript.currentPlayerPosIndex].GetComponent<Pin>().playSessionPin;
-                AppManager.I.Player.CurrentJourneyPosition.LearningBlock =
-                    stageScript.playerPinTargetPositions[stageScript.currentPlayerPosIndex].GetComponent<Pin>().learningBlockPin;
-            }*/
-        //    UpdateCurrentJourneyPosition();
-        //}
-
-        /*void UpdateCurrentJourneyPosition()
-        {
-            // TODO: this looks USELESS
-            AppManager.I.Player.SetCurrentJourneyPosition(
-                new JourneyPosition(AppManager.I.Player.CurrentJourneyPosition.Stage,
-                    AppManager.I.Player.CurrentJourneyPosition.LearningBlock,
-                    AppManager.I.Player.CurrentJourneyPosition.PlaySession),
-                true
-            );
-        }*/
+        #endregion
 
         #region LookAt
 
@@ -341,7 +229,7 @@ namespace Antura.Map
             var current_lb = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
             Debug.Log("Looking " + current_lb + " prev? " + lookAtPrevious);
 
-            if (!lookAtPrevious && current_lb == stageScript.nLearningBlocks)
+            if (!lookAtPrevious && current_lb == stageScript.LastLBPin().learningBlock)
             {
                 transform.LookAt(stageScript.PinForLB(current_lb).transform);
                 transform.rotation = Quaternion.Euler(

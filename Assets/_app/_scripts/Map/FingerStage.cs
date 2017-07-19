@@ -9,7 +9,7 @@ namespace Antura.Map
     public class FingerStage : MonoBehaviour
     {
         public PlayerPin player;
-        public bool swipe;
+        public bool isSwiping;
         private StageMapsManager _stageMapsManager;
         private float xDown, xUp, x;
         private float yDown, yUp, y;
@@ -17,16 +17,17 @@ namespace Antura.Map
         private void Start()
         {
             _stageMapsManager = GetComponent<StageMapsManager>();
+            isSwiping = false;
         }
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && !player.playerOverDotPin)
+            if (Input.GetMouseButtonDown(0))// && !player.playerOverDotPin)
             {
-                swipe = true;
                 xDown = Input.mousePosition.x;
                 yDown = Input.mousePosition.y;
             }
+
             if (Input.GetMouseButtonUp(0))
             {
                 xUp = Input.mousePosition.x;
@@ -43,25 +44,30 @@ namespace Antura.Map
 
                 if (Mathf.Abs(x) > width * 0.3f && Mathf.Abs(y) < height * 0.1f)
                 {
+
                     if (x < 0 && !_stageMapsManager.IsAtFinalStage)
                     {
                         _stageMapsManager.MoveToNextStageMap();
+
+                        isSwiping = true;
+                        StartCoroutine(SwipeCooldownCO());
                     }
                     if (x > 0 && !_stageMapsManager.IsAtFirstStage)
                     {
                         _stageMapsManager.MoveToPreviousStageMap();
+
+                        isSwiping = true;
+                        StartCoroutine(SwipeCooldownCO());
                     }
                 }
-                StartCoroutine("SwipeToFalse");
             }
-
             // Debug.Log(x);
         }
 
-        private IEnumerator SwipeToFalse()
+        private IEnumerator SwipeCooldownCO()
         {
             yield return new WaitForSeconds(0.3f);
-            swipe = false;
+            isSwiping = false;
         }
     }
 }
