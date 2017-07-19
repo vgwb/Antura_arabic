@@ -18,7 +18,12 @@ namespace Antura.Teacher
 
         public bool IsAssessmentTime(JourneyPosition journeyPosition)
         {
-            return journeyPosition.PlaySession == 100;
+            return journeyPosition.PlaySession == AssessmentPlaySessionIndex;
+        }
+
+        public int AssessmentPlaySessionIndex
+        {
+            get { return 100; }
         }
 
         public PlaySessionData GetCurrentPlaySessionData()
@@ -97,7 +102,7 @@ namespace Antura.Teacher
                             }
                         }
                     }
-                    int assessmentCode = 100;
+                    int assessmentCode = AssessmentPlaySessionIndex;
                     var jp_assessment = new JourneyPosition(s, lb, assessmentCode);
 
                     if (AppManager.I.DB.HasPlaySessionDataById(jp_assessment.ToStringId())) {

@@ -51,6 +51,7 @@ namespace Replacement
                 newGo.transform.SetParent(originalGo.transform.parent);
                 newGo.transform.position = originalGo.transform.position;
                 newGo.transform.localEulerAngles = originalGo.transform.localEulerAngles;
+                newGo.transform.localScale = originalGo.transform.localScale;
                 newGo.transform.SetSiblingIndex(originalGo.transform.GetSiblingIndex());
                 PrefabUtility.ReconnectToLastPrefab(newGo);
                 DestroyImmediate(originalGo);

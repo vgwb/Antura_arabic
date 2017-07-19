@@ -117,19 +117,19 @@ namespace Antura.Map
             {
                 stageMaps[i].Hide();
                 stageMaps[i].wholeStageUnlocked = true;  // TODO: check
-                stageMaps[i].CalculateStepsStage(); // TODO: check
+                stageMaps[i].Initialise(); // TODO: check
             }
-            if (MaxUnlockedStage < FinalStage)
+            /*if (MaxUnlockedStage < FinalStage)
             {
-                stageMaps[MaxUnlockedStage].CalculateStepsStage();
-            }
+                stageMaps[MaxUnlockedStage].Initialise();
+            }*/
 
             // Show the current stage
             TeleportToShownStage(shownStage);
             UpdateButtonsForStage(shownStage);
 
             //StartCoroutine(ResetPosLetterCO());
-            playerPin.ResetPosLetter();
+            playerPin.ResetPlayerPosition();
             playerPin.gameObject.SetActive(true);
 
             UpdateStageIndicatorUI();
@@ -383,7 +383,7 @@ namespace Antura.Map
             /*
             // We just switched the pos pin
             //isStageAvailable = false;
-            playerPin.ResetPosLetterAfterChangeStage();
+            playerPin.ResetPositionAfterStageChange();
             //lockUI.SetActive(false);
             playerPin.AmIFirstorLastPos();
             */
