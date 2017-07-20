@@ -203,7 +203,7 @@ namespace Antura.Teacher
         {
             string query =
                 string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '{0}'  ORDER BY ElementId",
-                    JourneyDataType.PlaySession);
+                   (int)  JourneyDataType.PlaySession);
             List<JourneyScoreData> list = dbManager.Query<JourneyScoreData>(query);
             return list;
         }
@@ -215,8 +215,7 @@ namespace Antura.Teacher
             List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores
-            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType = '{0}'",
-                JourneyDataType.PlaySession);
+            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType = '{0}'", (int)JourneyDataType.PlaySession);
             List<JourneyScoreData> all_score_list = dbManager.Query<JourneyScoreData>(query);
 
             // At last, filter by the given stage

@@ -76,5 +76,10 @@
             }
             return false;
         }
+
+        public bool IsAssessment()
+        {
+            return PlaySession == 100;
+        }
     }
 }

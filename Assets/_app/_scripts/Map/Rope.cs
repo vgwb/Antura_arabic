@@ -3,9 +3,17 @@ using System.Collections.Generic;
 
 namespace Antura.Map
 {
+    /// <summary>
+    /// A rope connects two pins. 
+    /// It represents the flow of a learning block.
+    /// </summary>
     public class Rope : MonoBehaviour
     {
-        public int learningBlockRope;
-        public List<GameObject> dots = new List<GameObject>();
+        public List<Dot> dots = new List<Dot>();
+
+        public Dot DotForPS(int ps)
+        {
+            return dots[ps - 1];
+        }
     }
 }

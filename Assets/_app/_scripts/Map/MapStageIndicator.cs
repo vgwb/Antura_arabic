@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Antura.Map
 {
+    /// <summary>
+    /// UI that shows which stage is currently selected among available stages.
+    /// </summary>
     public class MapStageIndicator : MonoBehaviour
     {
         public MapStageIndicatorIcon Icon;

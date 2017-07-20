@@ -3,9 +3,9 @@
     public class PlaySessionState
     {
         public Database.PlaySessionData data;
-        public float score;
+        public int score;
 
-        public PlaySessionState(Database.PlaySessionData _data, float _score)
+        public PlaySessionState(Database.PlaySessionData _data, int _score)
         {
             this.data = _data;
             this.score = _score;
