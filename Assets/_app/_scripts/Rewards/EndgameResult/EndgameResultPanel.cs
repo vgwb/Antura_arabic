@@ -124,12 +124,17 @@ namespace Antura.Rewards
 
             AudioManager.I.PlaySound(numStars > 0 ? SfxCompleteWithStars : SfxCompleteNoStars);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
+            ContinueScreen.SetRetryAction(Retry);
         }
 
         void Continue()
         {
-            //          GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.MiniGameDone());
             AppManager.I.NavigationManager.GoToNextScene();
+        }
+
+        void Retry()
+        {
+            AppManager.I.NavigationManager.RepeatCurrentGameOfPlaySession();
         }
 
         #endregion

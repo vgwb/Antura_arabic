@@ -113,6 +113,9 @@ namespace Antura.UI
             if (_mode != ContinueScreenMode.Button && _mode != ContinueScreenMode.ButtonFullscreen)
                 showBgTween.PlayForward();
             this.gameObject.SetActive(true);
+
+            // Retry button
+            BtRetry.gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -218,5 +221,17 @@ namespace Antura.UI
                 AudioManager.I.PlaySound(Sfx.UIButtonClick);
             }
         }
+
+        #region Retry Button
+
+        public Button BtRetry;
+        public static void SetRetryAction(Action a)
+        {
+            GlobalUI.ContinueScreen.BtRetry.gameObject.SetActive(true);
+            GlobalUI.ContinueScreen.BtRetry.onClick.RemoveAllListeners();
+            GlobalUI.ContinueScreen.BtRetry.onClick.AddListener(() => a());
+        }
+
+        #endregion
     }
 }

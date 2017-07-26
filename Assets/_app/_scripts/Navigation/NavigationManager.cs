@@ -543,39 +543,60 @@ namespace Antura.Core
         private void GoToNextGameOfPlaySession()
         {
             // From one game to the next
-            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
+            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
+            {
                 // We finished the whole game: no reward, go directly to the end scene instead
-                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition()) {
-                    if (!AppManager.I.Player.HasFinalBeenShown()) {
+                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition())
+                {
+                    if (!AppManager.I.Player.HasFinalBeenShown())
+                    {
                         AppManager.I.Player.SetGameCompleted();
                         AppManager.I.Player.SetFinalShown();
                         GoToScene(AppScene.Ending);
-                    } else {
+                    }
+                    else
+                    {
                         GoToScene(AppScene.Map);
                     }
-                } else {
-                    // Assessment ended, go to the rewards scene
-                    // @todo: what if we REPLAY?
+                }
+                else
+                {
                     GoToScene(AppScene.Rewards);
                 }
-            } else {
+            }
+            else
+            {
                 // Not an assessment. Do we have any more?
-                if (NavData.SetNextMinigame()) {
+                if (NavData.SetNextMinigame())
+                {
                     // Go to the next minigame.
                     InternalLaunchGameScene(NavData.CurrentMiniGameData);
-                } else {
+                }
+                else
+                {
                     // Finished all minigames for the current play session
-                    if (NavData.RealPlaySession) {
+                    if (NavData.RealPlaySession)
+                    {
                         AppManager.I.Player.CheckGameFinishedWithAllStars();
 
                         // Go to the reward scene.
                         GoToScene(AppScene.PlaySessionResult);
-                    } else {
+                    }
+                    else
+                    {
                         // Go where you were previously
                         GoBack();
                     }
                 }
             }
+        }
+
+        public void RepeatCurrentGameOfPlaySession()
+        {
+            if (GetCurrentScene() != AppScene.MiniGame) return;
+
+            // Just repeat the minigame as if nothing happened.
+            InternalLaunchGameScene(NavData.CurrentMiniGameData);
         }
 
         #endregion

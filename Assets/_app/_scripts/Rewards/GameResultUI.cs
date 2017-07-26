@@ -52,7 +52,10 @@ namespace Antura.Rewards
         {
             Init();
             GlobalUI.ShowPauseMenu(false);
+
+            // TODO: this should be done only if the game is NOT retried!
             AppManager.I.Player.AddBones(_numStars);
+
             I.BonesCounter.GetComponent<RectTransform>().anchoredPosition = I.BonesCounterEndgamePos;
             I.BonesCounter.Hide();
             I.EndgameResultPanel.Show(_numStars);
