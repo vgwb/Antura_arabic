@@ -88,6 +88,7 @@ namespace Antura.Core
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.AnturaSpace));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.Rewards));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.ReservedArea, AppScene.Book));
+            customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Rewards, AppScene.AnturaSpace));
 
             // Transitions that can register for a 'back' function
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Home, AppScene.ReservedArea));
@@ -327,6 +328,10 @@ namespace Antura.Core
                         CustomGoTo(AppScene.Rewards);
                     } else
                         CustomGoTo(AppScene.AnturaSpace);
+                    break;
+
+                 default:
+                    CustomGoTo(AppScene.AnturaSpace);
                     break;
             }
         }

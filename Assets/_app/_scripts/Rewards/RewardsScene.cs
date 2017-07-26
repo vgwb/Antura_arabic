@@ -4,6 +4,7 @@ using Antura.Dog;
 using Antura.Core;
 using Antura.Database;
 using Antura.UI;
+using UnityEngine.UI;
 
 namespace Antura.Rewards
 {
@@ -19,6 +20,7 @@ namespace Antura.Rewards
 
         [Header("References")]
         public AnturaAnimationController AnturaAnimController;
+        public Button AnturaSpaceBtton;
 
         protected override void Start()
         {
@@ -28,6 +30,8 @@ namespace Antura.Rewards
 
             AnturaAnimController.State = AnturaAnimation;
             ShowReward();
+
+            AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
         }
 
         public void ShowReward()
