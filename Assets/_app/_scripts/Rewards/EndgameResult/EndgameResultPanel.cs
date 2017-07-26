@@ -93,7 +93,8 @@ namespace Antura.Rewards
             showTween.Restart();
             this.gameObject.SetActive(true);
             GameResultUI.I.BonesCounter.Show();
-            GameResultUI.I.BonesCounter.DecreaseBy(_numStars);
+            // NOT NEEDED ANYMORE: bones are added only AFTER we Continue after the game
+            // GameResultUI.I.BonesCounter.DecreaseBy(_numStars);
         }
 
         public void Hide(bool _immediate)
@@ -129,11 +130,17 @@ namespace Antura.Rewards
 
         void Continue()
         {
+            // We acknowledge the end of the minigame. Add bones and stars.
+            AppManager.I.Player.AddBones(numStars);
+            AppManager.I.NavigationManager.EndMinigame(numStars);
+
+            // Go to the next scene
             AppManager.I.NavigationManager.GoToNextScene();
         }
 
         void Retry()
         {
+            // We retry the current game. No bones are added.
             AppManager.I.NavigationManager.RepeatCurrentGameOfPlaySession();
         }
 
