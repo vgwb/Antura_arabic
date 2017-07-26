@@ -31,7 +31,14 @@ namespace Antura.Rewards
             AnturaAnimController.State = AnturaAnimation;
             ShowReward();
 
-            AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
+            if (!AppManager.I.Player.IsFirstContact())
+            {
+                AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
+            }
+            else
+            {
+                AnturaSpaceBtton.gameObject.SetActive(false);
+            }
         }
 
         public void ShowReward()
