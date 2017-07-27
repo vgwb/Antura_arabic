@@ -127,14 +127,14 @@ namespace Antura.Core
                 Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToNextScene");
             switch (NavData.CurrentScene) {
                 case AppScene.Home:
-
                     if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.Intro);
-                    } else {
-                        if (NavData.CurrentPlayer.MoodAlreadyAnswered) {
+                    }
+                    else
+                    {
+                        if (!CheckDailySceneTrigger())
+                        {
                             GoToScene(AppScene.Map);
-                        } else {
-                            GoToScene(AppScene.Mood);
                         }
                     }
                     break;
@@ -142,6 +142,9 @@ namespace Antura.Core
                     GoToScene(AppScene.Intro);
                     break;
                 case AppScene.Mood:
+                    GoToScene(AppScene.DailyReward);
+                    break;
+                case AppScene.DailyReward:
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.Map:
@@ -177,6 +180,17 @@ namespace Antura.Core
                 default:
                     break;
             }
+        }
+
+        private bool CheckDailySceneTrigger()
+        {
+            bool mustGoToMood = !NavData.CurrentPlayer.MoodAlreadyAnswered;
+            if (mustGoToMood)
+            {
+                GoToScene(AppScene.Mood);
+                return true;
+            }
+            return false;
         }
 
         /// <summary>

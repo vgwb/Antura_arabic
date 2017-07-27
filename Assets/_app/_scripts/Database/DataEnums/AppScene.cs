@@ -17,6 +17,7 @@
         PlaySessionResult = 10,
         PlayerCreation = 11,
         Rewards = 12,
-        Ending = 13
+        Ending = 13,
+        DailyReward
     }
 }

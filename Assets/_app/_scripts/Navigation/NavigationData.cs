@@ -36,6 +36,8 @@ namespace Antura.Core
                     return "app_ReservedArea";
                 case AppScene.Ending:
                     return "app_Ending";
+                case AppScene.DailyReward:
+                    return "app_DailyReward";
                 default:
                     return "";
             }

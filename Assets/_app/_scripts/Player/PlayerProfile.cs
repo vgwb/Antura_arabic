@@ -44,6 +44,25 @@ namespace Antura.Profile
             }
         }
 
+        /// <summary>
+        /// True if this is a new day (triggers daily rewards and mood question)
+        /// </summary>
+        public bool IsNewDay
+        {
+            // TODO
+            get { return true; }
+        }
+
+        /// <summary>
+        /// Number of consecutive days of playing
+        /// </summary>
+        public int ComboPlayDays
+        {
+            // TODO
+            get { return 2; }
+        }
+
+
         #region Bones/coins
 
         public int GetTotalNumberOfBones()
