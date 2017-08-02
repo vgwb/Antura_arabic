@@ -35,7 +35,8 @@ namespace Antura.LivingLetters
             if (_launchConfiguration == null) {
                 var difficulty = teacher.GetCurrentDifficulty(_gameCode);
                 var numberOfRounds = teacher.GetCurrentNumberOfRounds(_gameCode);
-                _launchConfiguration = new MinigameLaunchConfiguration(difficulty, numberOfRounds);
+                var tutorialEnabled = teacher.GetTutorialEnabled(_gameCode);
+                _launchConfiguration = new MinigameLaunchConfiguration(difficulty, numberOfRounds, tutorialEnabled);
             }
 
             var miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);

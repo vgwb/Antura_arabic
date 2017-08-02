@@ -195,6 +195,13 @@ namespace Antura.Teacher
             return psData.NumberOfRoundsPerMinigame;
         }
 
+        public bool GetTutorialEnabled(MiniGameCode miniGameCode)
+        {
+            // STUB: we always show the tutorial for now
+            // TODO: define the logic for when the tutorial should not be shown anymore!
+            return true; 
+        }
+
         #endregion
 
         #region Learning Blocks
