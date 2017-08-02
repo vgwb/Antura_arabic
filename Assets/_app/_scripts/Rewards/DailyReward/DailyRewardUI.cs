@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using Antura.UI;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -8,11 +10,15 @@ namespace Antura.Rewards
     public class DailyRewardUI : MonoBehaviour
     {
         public Sprite bonesSprite;
+        public Sprite test1Sprite;
+        public Sprite test2Sprite;
 
         public Image imageUI;
-        public TextMeshProUGUI textUI;
+        public TextMeshProUGUI amountTextUI;
 
         public Image lockUI;
+
+        public TextRender dayTextUI;
 
         public void SetReward(DailyRewardManager.DailyReward reward)
         {
@@ -27,6 +33,12 @@ namespace Antura.Rewards
                 case DailyRewardType.Bones:
                     imageUI.sprite = bonesSprite;
                     break;
+                case DailyRewardType.Test1:
+                    imageUI.sprite = test1Sprite;
+                    break;
+                case DailyRewardType.Test2:
+                    imageUI.sprite = test2Sprite;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException("rewardType", rewardType, null);
             }
@@ -34,7 +46,7 @@ namespace Antura.Rewards
 
         private void SetRewardAmount(int amount)
         {
-            textUI.text = amount.ToString();
+            amountTextUI.text = amount.ToString();
         }
 
         public void SetLocked()
@@ -45,6 +57,11 @@ namespace Antura.Rewards
         public void SetUnlocked()
         {
             lockUI.gameObject.SetActive(false);
+        }
+
+        public void SetDay(int day)
+        {
+            dayTextUI.text = "Day " + day;
         }
     }
 

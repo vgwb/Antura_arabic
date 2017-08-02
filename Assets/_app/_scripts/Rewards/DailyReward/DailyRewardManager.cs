@@ -34,11 +34,15 @@ namespace Antura.Rewards
 
         public DailyRewardManager()
         {
-            rewards = new List<DailyReward>();
-            MaxComboDays = 3;
-            rewards.Add(new DailyReward(DailyRewardType.Bones, 5));
-            rewards.Add(new DailyReward(DailyRewardType.Bones, 10));
-            rewards.Add(new DailyReward(DailyRewardType.Bones, 20));
+            rewards = new List<DailyReward>
+            {
+                new DailyReward(DailyRewardType.Bones, 5),      // for 1 combo day
+                new DailyReward(DailyRewardType.Bones, 10),
+                new DailyReward(DailyRewardType.Bones, 20),
+                new DailyReward(DailyRewardType.Test1, 1),
+                new DailyReward(DailyRewardType.Test2, 2)       // for 5+ combo day
+            };
+            MaxComboDays = rewards.Count;
         }
 
     }

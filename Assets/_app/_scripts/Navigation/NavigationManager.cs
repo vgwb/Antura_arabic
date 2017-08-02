@@ -134,10 +134,7 @@ namespace Antura.Core
                     }
                     else
                     {
-                        if (!CheckDailySceneTrigger())
-                        {
-                            GoToScene(AppScene.Map);
-                        }
+                        GoToScene(AppScene.Map);
                     }
                     break;
                 case AppScene.PlayerCreation:
@@ -186,13 +183,28 @@ namespace Antura.Core
 
         private bool CheckDailySceneTrigger()
         {
-            bool mustGoToMood = !NavData.CurrentPlayer.MoodAlreadyAnswered;
-            if (mustGoToMood)
+            bool mustShowDailyScenes = false;
+            int numberOfDaysSinceLastReward = AppManager.I.Teacher.logAI.DaysSinceLastReward();
+            if (numberOfDaysSinceLastReward <= 0)
             {
-                GoToScene(AppScene.Mood);
-                return true;
+                mustShowDailyScenes = false;
             }
-            return false;
+            else if (numberOfDaysSinceLastReward > 1)
+            {
+                // Number of days since last reward is more than 1. Show daily, but zero combo.
+                mustShowDailyScenes = true;
+                NavData.CurrentPlayer.ComboPlayDays = 0;
+            }
+            else
+            {
+                // Number of days since last reward is exactly 1. Good for combo!
+                mustShowDailyScenes = true;
+                NavData.CurrentPlayer.ComboPlayDays += 1;
+            }
+            Debug.Log("numberOfDaysSinceLastReward: " + numberOfDaysSinceLastReward);
+            Debug.Log("ComboPlayDays: " + numberOfDaysSinceLastReward);
+
+            return mustShowDailyScenes;
         }
 
         /// <summary>
@@ -241,7 +253,12 @@ namespace Antura.Core
                         return;
                     }
                     break;
-                default:
+                case AppScene.Map:
+                    // When coming back to the map, we need to check whether a new daily reward is needed
+                    if (CheckDailySceneTrigger())
+                    {
+                        GoToScene(AppScene.Mood);
+                    }
                     break;
             }
 

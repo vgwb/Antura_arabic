@@ -23,44 +23,12 @@ namespace Antura.Profile
         public bool HasFinishedTheGame;
         public bool HasFinishedTheGameWithAllStars;
         public int TotalNumberOfBones = 8;
+        public int ComboPlayDays;
 
         public ProfileCompletionState ProfileCompletion = ProfileCompletionState.New;
 
         public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
         public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
-
-        /// <value>
-        ///  True if player already answered to mood question for today.
-        /// </value>
-        public bool MoodAlreadyAnswered
-        {
-            get {
-                int secondAmount = AppManager.I.Teacher.logAI.SecondsFromLastMoodLog();
-                if (secondAmount > 86400) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        }
-
-        /// <summary>
-        /// True if this is a new day (triggers daily rewards and mood question)
-        /// </summary>
-        public bool IsNewDay
-        {
-            // TODO
-            get { return true; }
-        }
-
-        /// <summary>
-        /// Number of consecutive days of playing
-        /// </summary>
-        public int ComboPlayDays
-        {
-            // TODO
-            get { return 2; }
-        }
 
 
         #region Bones/coins
@@ -605,6 +573,7 @@ namespace Antura.Profile
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
             string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
             newProfileData.CurrentAnturaCustomization = jsonStringForAnturaCustomization;
+            newProfileData.ComboPlayDays = ComboPlayDays;
             return newProfileData;
         }
 
@@ -624,6 +593,8 @@ namespace Antura.Profile
             HasFinishedTheGameWithAllStars = _data.HasFinishedTheGameWithAllStars();
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalBones;
+            ComboPlayDays = _data.ComboPlayDays;
+
             this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
             // Antura customization save only customization data

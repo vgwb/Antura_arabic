@@ -138,6 +138,12 @@ namespace Antura.Database
         /// </summary>
         public string CurrentAnturaCustomization { get; set; }
 
+        /// <summary>
+        /// Number of consecutive days of playing
+        /// </summary>
+        // TODO: we need to handle this too, but this requires a regeneration (or a migration) of existing databases
+        public int ComboPlayDays;// { get; set; }
+
         #endregion
 
         #region Additional Data
@@ -165,6 +171,7 @@ namespace Antura.Database
             SetCurrentJourneyPosition(JourneyPosition.InitialJourneyPosition);
             Timestamp = GenericHelper.GetTimestampForNow();
             CurrentAnturaCustomization = currentAnturaCustomization;
+            ComboPlayDays = 0;   
         }
 
         public bool HasFinishedTheGameWithAllStars()

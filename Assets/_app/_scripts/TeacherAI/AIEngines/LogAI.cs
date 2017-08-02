@@ -62,12 +62,12 @@ namespace Antura.Teacher
             db.Insert(data);
         }
 
-        public int SecondsFromLastMoodLog()
+        public int DaysSinceLastMoodLog()
         {
             string query = string.Format("SELECT * FROM " + typeof(LogMoodData).Name);
             var logMoodData = db.Query<LogMoodData>(query).LastOrDefault();
             //if (logMoodData != null) Debug.Log(GenericHelper.GetTimeSpanBetween(logMoodData.Timestamp, GenericHelper.GetTimestampForNow()));
-            if (logMoodData != null) return (int)GenericHelper.GetTimeSpanBetween(logMoodData.Timestamp, GenericHelper.GetTimestampForNow()).TotalSeconds;
+            if (logMoodData != null) return (int)GenericHelper.GetTimeSpanBetween(logMoodData.Timestamp, GenericHelper.GetTimestampForNow()).TotalDays;
             return int.MaxValue;
         }
 
@@ -81,8 +81,23 @@ namespace Antura.Teacher
                 Debug.Log("No player profile DB to log to. Player profile is probably not set");
                 return;
             }
+            Debug.Log("LOGGING INFO EVENT " + infoEvent);
+
             var data = new LogInfoData(appSession, infoEvent, AppManager.I.NavigationManager.GetCurrentScene(), parametersString);
             db.Insert(data);
+        }
+
+        public int DaysSinceLastReward()
+        {
+            string query = string.Format("SELECT * FROM " + typeof(LogInfoData).Name + " WHERE Event="+ ((int)InfoEvent.DailyRewardReceived) );
+            var lastDailyRewardInfoEvent = db.Query<LogInfoData>(query).LastOrDefault();
+            if (lastDailyRewardInfoEvent != null)
+            {
+                var timespan = GenericHelper.GetTimeSpanBetween(lastDailyRewardInfoEvent.Timestamp, GenericHelper.GetTimestampForNow());
+                Debug.Log(timespan);
+                return 1;// (int)timespan.TotalDays;
+            }
+            return int.MaxValue;
         }
 
         #endregion
