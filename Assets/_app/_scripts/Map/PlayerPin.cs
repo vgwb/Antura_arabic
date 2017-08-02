@@ -180,7 +180,7 @@ namespace Antura.Map
 
         void AnimateToPlayerPosition(int newIndex)
         {
-            Debug.Log("Animating to " + newIndex);
+            //Debug.Log("Animating to " + newIndex);
             stageMap.currentPlayerPosIndex = newIndex;
             MoveTo(stageMap.GetCurrentPlayerPosition(), true);
 
@@ -190,7 +190,7 @@ namespace Antura.Map
 
         void ForceToPlayerPosition(int newIndex)
         {
-            Debug.Log("Forcing to " + newIndex);
+            //Debug.Log("Forcing to " + newIndex);
             stageMap.currentPlayerPosIndex = newIndex;
             MoveTo(stageMap.GetCurrentPlayerPosition(), false);
 

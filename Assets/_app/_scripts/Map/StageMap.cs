@@ -266,7 +266,7 @@ namespace Antura.Map
             {
                 var data = AppManager.I.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
                 playSessionState_list.Add(new PlaySessionState(data, scoreData_list[i].Stars));
-                Debug.Log(scoreData_list[i].ElementId + " SCORE " + scoreData_list[i].Stars);
+                //Debug.Log(scoreData_list[i].ElementId + " SCORE " + scoreData_list[i].Stars);
             }
 
             return playSessionState_list;
