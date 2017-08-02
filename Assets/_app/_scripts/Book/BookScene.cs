@@ -23,6 +23,8 @@ namespace Antura.Book
     /// </summary>
     public class BookScene : MonoBehaviour
     {
+        public static BookArea OverridenOpeningArea;
+
         [Header("Scene Setup")]
         public Music SceneMusic;
 
@@ -51,7 +53,15 @@ namespace Antura.Book
             AudioManager.I.PlayDialogue("Book_Intro");
 
             HideAllPanels();
-            OpenArea(OpeningArea);
+            if (OverridenOpeningArea != BookArea.None)
+            {
+                OpenArea(OverridenOpeningArea);
+                OverridenOpeningArea = BookArea.None;
+            }
+            else
+            {
+                OpenArea(OpeningArea);
+            }
 
             // Debug.Log("PREV SCENE IS RESERVED AREA: " + AppManager.I.NavigationManager.PrevSceneIsReservedArea());
         }

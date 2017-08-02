@@ -37,8 +37,13 @@ namespace Antura.Map
         public GameObject nextPlaySessionButton;
         public GameObject beforePlaySessionButton;
         public GameObject playButton;
-        public GameObject bookButton;
-        public GameObject anturaButton;
+
+        // Additional UI for navigation
+        public GameObject navigationIconsPanel;
+        public GameObject learningBookButton;
+        public GameObject minigamesBookButton;
+        public GameObject profileBookButton;
+        public GameObject anturaSpaceButton;
 
         #region State
 
@@ -225,18 +230,18 @@ namespace Antura.Map
 
         private void ActivateAnturaButton()
         {
-            anturaButton.SetActive(true);
+            anturaSpaceButton.SetActive(true);
             StartCoroutine(CO_Tutorial());
         }
 
         private IEnumerator CO_Tutorial()
         {
             TutorialUI.SetCamera(UICamera);
-            var anturaBtPos = anturaButton.transform.position;
+            var anturaBtPos = anturaSpaceButton.transform.position;
             anturaBtPos.z -= 1;
             while (true)
             {
-                TutorialUI.Click(anturaButton.transform.position);
+                TutorialUI.Click(anturaSpaceButton.transform.position);
                 yield return new WaitForSeconds(0.85f);
             }
         }
@@ -438,16 +443,21 @@ namespace Antura.Map
         private void DeactivateUI()
         {
             uiButtonMovementPlaySession.SetActive(false);
-            bookButton.SetActive(false);
-            anturaButton.SetActive(false);
+            learningBookButton.SetActive(false);
+            minigamesBookButton.SetActive(false);
+            profileBookButton.SetActive(false);
+            anturaSpaceButton.SetActive(false);
             GlobalUI.ShowPauseMenu(false);
         }
 
         private void ActivateUI()
         {
             uiButtonMovementPlaySession.SetActive(true);
-            bookButton.SetActive(true);
-            anturaButton.SetActive(true);
+            navigationIconsPanel.SetActive(true);
+            learningBookButton.SetActive(true);
+            minigamesBookButton.SetActive(true);
+            profileBookButton.SetActive(true);
+            anturaSpaceButton.SetActive(true);
             GlobalUI.ShowPauseMenu(true);
         }
 

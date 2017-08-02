@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Antura.Book;
 using Antura.Core;
 using Antura.Profile;
 using Antura.Teacher;
@@ -80,7 +81,7 @@ namespace Antura.ReservedArea
         {
             //Debug.Log("OPEN " + SelectedPlayerId);
             AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
-            AppManager.I.NavigationManager.GoToPlayerBook();
+            AppManager.I.NavigationManager.GoToPlayerBook(BookArea.Player);
         }
 
         public void OnDeleteSelectPlayerProfile()

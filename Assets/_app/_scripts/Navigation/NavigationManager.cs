@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Antura.Book;
 using Antura.Database;
 using Antura.Environment;
 using Antura.Profile;
@@ -307,8 +308,9 @@ namespace Antura.Core
             CustomGoTo(AppScene.Ending, debugMode);
         }
 
-        public void GoToPlayerBook()
+        public void GoToPlayerBook(BookArea bookArea)
         {
+            BookScene.OverridenOpeningArea = bookArea;
             CustomGoTo(AppScene.Book);
         }
 
