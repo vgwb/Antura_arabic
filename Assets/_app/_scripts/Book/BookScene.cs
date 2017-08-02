@@ -56,7 +56,6 @@ namespace Antura.Book
             if (OverridenOpeningArea != BookArea.None)
             {
                 OpenArea(OverridenOpeningArea);
-                OverridenOpeningArea = BookArea.None;
             }
             else
             {

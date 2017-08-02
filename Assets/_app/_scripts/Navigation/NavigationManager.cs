@@ -97,6 +97,7 @@ namespace Antura.Core
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.AnturaSpace));
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.ReservedArea, AppScene.Book));
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.GameSelector));
+            backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Book, AppScene.MiniGame));
         }
 
         /// <summary>
@@ -314,15 +315,6 @@ namespace Antura.Core
             CustomGoTo(AppScene.Book);
         }
 
-        public bool PrevSceneIsReservedArea()
-        {
-            if (NavData.PrevSceneStack != null && NavData.PrevSceneStack.Count > 0) {
-                return NavData.PrevSceneStack.Peek() == AppScene.ReservedArea;
-            } else {
-                return true;
-            }
-        }
-
         public void GoToPlayerCreation()
         {
             CustomGoTo(AppScene.PlayerCreation);
@@ -414,6 +406,17 @@ namespace Antura.Core
                 GoToScene(AppScene.MiniGame, NavData.CurrentMiniGameData);
             } else {
                 throw new Exception("Cannot go to a minigame from the current scene!");
+            }
+        }
+
+        public bool PrevSceneIsReservedArea()
+        {
+            if (NavData.PrevSceneStack != null && NavData.PrevSceneStack.Count > 0)
+            {
+                return NavData.PrevSceneStack.Peek() == AppScene.ReservedArea;
+            }
+            else {
+                return true;
             }
         }
 
@@ -558,6 +561,13 @@ namespace Antura.Core
 
         private void GoToNextGameOfPlaySession()
         {
+            if (!NavData.RealPlaySession)
+            {
+                // Go where you were previously
+                GoBack();
+                return;
+            }
+
             // From one game to the next
             if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
             {
@@ -591,18 +601,10 @@ namespace Antura.Core
                 else
                 {
                     // Finished all minigames for the current play session
-                    if (NavData.RealPlaySession)
-                    {
-                        AppManager.I.Player.CheckGameFinishedWithAllStars();
+                    AppManager.I.Player.CheckGameFinishedWithAllStars();
 
-                        // Go to the reward scene.
-                        GoToScene(AppScene.PlaySessionResult);
-                    }
-                    else
-                    {
-                        // Go where you were previously
-                        GoBack();
-                    }
+                    // Go to the reward scene.
+                    GoToScene(AppScene.PlaySessionResult);
                 }
             }
         }
