@@ -13,6 +13,7 @@ namespace Antura.Rewards
     /// </summary>
     public class EndgameResultPanel : MonoBehaviour
     {
+
         public RectTransform ContentRT;
         public Image Rays;
         public EndgameStar[] Stars;
@@ -93,6 +94,8 @@ namespace Antura.Rewards
             showTween.Restart();
             this.gameObject.SetActive(true);
             GameResultUI.I.BonesCounter.Show();
+
+
             // NOT NEEDED ANYMORE: bones are added only AFTER we Continue after the game
             // GameResultUI.I.BonesCounter.DecreaseBy(_numStars);
         }
@@ -126,12 +129,14 @@ namespace Antura.Rewards
             AudioManager.I.PlaySound(numStars > 0 ? SfxCompleteWithStars : SfxCompleteNoStars);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
             ContinueScreen.SetRetryAction(Retry);
+
+            // We add the bones regardless of where we played this game from
+            AppManager.I.Player.AddBones(numStars);
         }
 
         void Continue()
         {
-            // We acknowledge the end of the minigame. Add bones and stars.
-            AppManager.I.Player.AddBones(numStars);
+            // We acknowledge the end of the minigame. Add stars.
             AppManager.I.NavigationManager.EndMinigame(numStars);
 
             // Go to the next scene
