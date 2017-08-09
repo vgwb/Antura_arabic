@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Antura.Rewards
 {
@@ -17,13 +18,21 @@ namespace Antura.Rewards
         }
 
         private List<DailyReward> rewards;
-        public int MaxComboDays { get; set; }
+        //public int MaxComboDays { get; set; }
 
-        public IEnumerable<DailyReward> GetRewards()
+        public IEnumerable<DailyReward> GetRewards(int startIndex, int stopIndex)
         {
-            foreach (var reward in rewards)
+            for (var index = startIndex; index < stopIndex; index++)
             {
-                yield return reward;
+                if (index >= rewards.Count)
+                {
+                    // Fallback to the last one
+                    yield return rewards.Last();
+                }
+                else
+                {
+                    yield return rewards[index];
+                }
             }
         }
 
@@ -40,9 +49,11 @@ namespace Antura.Rewards
                 new DailyReward(DailyRewardType.Bones, 10),
                 new DailyReward(DailyRewardType.Bones, 20),
                 new DailyReward(DailyRewardType.Test1, 1),
-                new DailyReward(DailyRewardType.Test2, 2)       // for 5+ combo day
+                new DailyReward(DailyRewardType.Test2, 2),      
+                new DailyReward(DailyRewardType.Bones, 30),
+                new DailyReward(DailyRewardType.Bones, 50),     // last one is forever
             };
-            MaxComboDays = rewards.Count;
+            //MaxComboDays = rewards.Count;
         }
 
     }

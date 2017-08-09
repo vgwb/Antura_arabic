@@ -5,23 +5,31 @@ using Antura.Core;
 using Antura.UI;
 using UnityEngine.UI;
 
+
 namespace Antura.Rewards
 {
+
+
     /// <summary>
     /// Manages the Rewards scene.
     /// Accessed after a learning block is completed.
     /// </summary>
     public class DailyRewardScene : SceneBase
     {
+        private static int N_REWARDS_TO_SHOW = 5;
+
         public GameObject dailyRewardUIPrefab;
         public Transform dailyRewardUIPivot;
         public BonesCounter bonesCounter;
         public GameObject todayPivot;
+        public GameObject yesterdayTextGo;
         public Button claimButton;
 
         private DailyRewardManager dailyRewardManager;
         private List<DailyRewardUI> dailyRewardUIs;
+        private int newRewardUIIndex;
         private int newRewardIndex;
+
 
         protected override void Start()
         {
@@ -37,21 +45,24 @@ namespace Antura.Rewards
             // Setup daily reward manager
             dailyRewardManager = new DailyRewardManager();
             int nCurrentConsecutiveDaysOfPlaying = AppManager.I.Player.ComboPlayDays;
-            if (nCurrentConsecutiveDaysOfPlaying > dailyRewardManager.MaxComboDays)
-            {
-                // Reached max
-                nCurrentConsecutiveDaysOfPlaying = dailyRewardManager.MaxComboDays;
-            }
+            Debug.Assert(nCurrentConsecutiveDaysOfPlaying >= 1, "Should not access this scene with 0 consecutive days");
+            nCurrentConsecutiveDaysOfPlaying = Mathf.Max(nCurrentConsecutiveDaysOfPlaying, 1);
+
+            newRewardIndex = nCurrentConsecutiveDaysOfPlaying - 1;
 
             // 0 days -> nothing!
             // 1 days -> first reward
-            // N days -> last reward
-            newRewardIndex = nCurrentConsecutiveDaysOfPlaying-1;
+            // 2+ days -> second reward
+            newRewardUIIndex = Mathf.Min(newRewardIndex, 1);
+
+            int newRewardOffset = Mathf.Max(0, nCurrentConsecutiveDaysOfPlaying - 2);
 
             // Initialise rewards
             dailyRewardUIs = new List<DailyRewardUI>();
             int dayCounter = 0;
-            foreach (var reward in dailyRewardManager.GetRewards())
+            dayCounter += newRewardOffset;
+
+            foreach (var reward in dailyRewardManager.GetRewards(newRewardOffset, newRewardOffset + N_REWARDS_TO_SHOW))
             {
                 dayCounter++;
                 var dailyRewardUIGo = Instantiate(dailyRewardUIPrefab);
@@ -66,7 +77,7 @@ namespace Antura.Rewards
             }
 
             // Unlock the previous rewards
-            for (int combo_i = 0; combo_i < newRewardIndex; combo_i++)
+            for (int combo_i = 0; combo_i < newRewardUIIndex; combo_i++)
             {
                 dailyRewardUIs[combo_i].SetUnlocked();
             }
@@ -74,6 +85,7 @@ namespace Antura.Rewards
             // Initialise UI as hidden
             bonesCounter.Hide();
             todayPivot.transform.position = Vector3.right * 1000;
+            yesterdayTextGo.SetActive(newRewardUIIndex > 0);
             claimButton.gameObject.SetActive(false);
 
             claimButton.onClick.AddListener(UnlockNewReward);
@@ -86,7 +98,7 @@ namespace Antura.Rewards
             yield return new WaitForSeconds(1.0f);
 
             // Show the TODAY on the new one
-            todayPivot.transform.position = dailyRewardUIs[newRewardIndex].transform.position;
+            todayPivot.transform.position = dailyRewardUIs[newRewardUIIndex].transform.position;
 
             yield return new WaitForSeconds(1.0f);
 
@@ -105,9 +117,8 @@ namespace Antura.Rewards
 
         IEnumerator UnlockNewRewardCO()
         {
-
             // Unlock the new one
-            dailyRewardUIs[newRewardIndex].SetUnlocked();
+            dailyRewardUIs[newRewardUIIndex].SetUnlocked();
 
             // Add the new reward (for now, just bones)
             int nNewBones = dailyRewardManager.GetReward(newRewardIndex).amount;
