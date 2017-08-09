@@ -193,7 +193,7 @@ namespace Antura.Core
             {
                 // Number of days since last reward is more than 1. Show daily, but zero combo.
                 mustShowDailyScenes = true;
-                NavData.CurrentPlayer.ComboPlayDays = 0;
+                NavData.CurrentPlayer.ComboPlayDays = 1;
             }
             else
             {
@@ -258,6 +258,7 @@ namespace Antura.Core
                     if (CheckDailySceneTrigger())
                     {
                         GoToScene(AppScene.Mood);
+                        return;
                     }
                     break;
             }

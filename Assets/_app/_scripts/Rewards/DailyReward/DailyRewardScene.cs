@@ -42,6 +42,7 @@ namespace Antura.Rewards
                 // Reached max
                 nCurrentConsecutiveDaysOfPlaying = dailyRewardManager.MaxComboDays;
             }
+
             // 0 days -> nothing!
             // 1 days -> first reward
             // N days -> last reward

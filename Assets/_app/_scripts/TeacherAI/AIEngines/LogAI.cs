@@ -94,8 +94,8 @@ namespace Antura.Teacher
             if (lastDailyRewardInfoEvent != null)
             {
                 var timespan = GenericHelper.GetTimeSpanBetween(lastDailyRewardInfoEvent.Timestamp, GenericHelper.GetTimestampForNow());
-                Debug.Log(timespan);
-                return 1;// (int)timespan.TotalDays;
+                //Debug.Log(timespan);
+                return (int)timespan.TotalDays;
             }
             return int.MaxValue;
         }
