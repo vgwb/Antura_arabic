@@ -45,6 +45,13 @@ namespace Antura.Profile
             return TotalNumberOfBones;
         }
 
+        public int RemoveBones(int _bonesToRemove)
+        {
+            TotalNumberOfBones -= _bonesToRemove;
+            Save();
+            return TotalNumberOfBones;
+        }
+
         #endregion
 
         #region Management
@@ -187,6 +194,12 @@ namespace Antura.Profile
         {
             return AppManager.I.JourneyHelper.IsAssessmentTime(CurrentJourneyPosition);
         }
+
+        #endregion
+
+        #region Shop State
+
+        public ShopState CurrentShopState = new ShopState();
 
         #endregion
 
@@ -574,6 +587,7 @@ namespace Antura.Profile
             string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
             newProfileData.CurrentAnturaCustomization = jsonStringForAnturaCustomization;
             newProfileData.ComboPlayDays = ComboPlayDays;
+            newProfileData.CurrentShopStateJSON = CurrentShopState.ToJson();
             return newProfileData;
         }
 
@@ -594,6 +608,7 @@ namespace Antura.Profile
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalBones;
             ComboPlayDays = _data.ComboPlayDays;
+            CurrentShopState = ShopState.CreateFromJson(_data.CurrentShopStateJSON);
 
             this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);

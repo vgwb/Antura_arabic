@@ -34,6 +34,7 @@ namespace Antura.UI
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
         public AnturaSpaceItemButton BtItemMain;
         public UIButton BtBones;
+        public RectTransform ShopButtonsContainer;
         public TMPro.TextMeshProUGUI bonesNumber;
 
 
@@ -112,6 +113,7 @@ namespace Antura.UI
             showCategoriesTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(CategoriesContainer.DOAnchorPosY(150, duration).From().SetEase(Ease.OutBack))
                 .Join(BtBones.RectT.DOAnchorPosY(-830, duration))
+                .Join(ShopButtonsContainer.DOAnchorPosY(-830, duration))
                 .OnRewind(() => CategoriesContainer.gameObject.SetActive(false));
             showItemsTween = ItemsContainer.DOAnchorPosX(-350, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
                 .OnRewind(() =>
