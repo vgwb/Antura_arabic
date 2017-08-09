@@ -92,6 +92,9 @@ namespace Antura.Core
         public const int MinimumMinigameScore = 0;
         public const int MaximumMinigameScore = 3;
 
+        // Language specifics
+        public static readonly ReadingDirection ReadingDirection = ReadingDirection.RightToLeft;
+
         // Resource Paths
         public const string AvatarsResourcesDir = "Images/Avatars/";
 
