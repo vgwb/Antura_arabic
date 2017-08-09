@@ -261,6 +261,7 @@ namespace Antura.Profile
 
         public void ImportAllPlayerProfiles()
         {
+            ResetEverything();
             string[] importFilePaths = AppManager.I.DB.GetImportFilePaths();
             foreach (var filePath in importFilePaths) {
                 // Check whether that is a DB and load it
@@ -268,7 +269,11 @@ namespace Antura.Profile
                     ImportPlayerProfile(filePath);
                 }
             }
+
+            var firstPlayerUUID = AppManager.I.AppSettings.SavedPlayers[0].Uuid;
+            AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(firstPlayerUUID); 
             AppManager.I.AppSettingsManager.SaveSettings();
+
         }
 
         public void ImportPlayerProfile(string filePath)

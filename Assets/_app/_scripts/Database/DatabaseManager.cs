@@ -525,6 +525,7 @@ namespace Antura.Database
                     if (filePath.Contains(".sqlite3")) {
                         var importDbService = DBService.OpenFromFilePath(false, filePath);
                         var playerProfileData = importDbService.GetPlayerProfileData();
+                        if (playerProfileData == null) continue;    // skip no-player DBs, they are wrong
                         allUUIDs.Add(playerProfileData.Uuid);
                         importDbService.CloseConnection();
                     }
@@ -577,12 +578,13 @@ namespace Antura.Database
             // Copy the file
             string fileName = Path.GetFileName(importFilePath);
             string newFilePath = DBService.GetDatabaseFilePath(fileName, AppConstants.DbPlayersFolder);
-            if (File.Exists(newFilePath)) {
+            /* @note: we overwrite it
+                if (File.Exists(newFilePath)) {
                 Debug.LogError("Database already exists. Cannot import: " + importFilePath);
                 return null;
-            }
+            }*/
 
-            File.Copy(importFilePath, newFilePath);
+            File.Copy(importFilePath, newFilePath, true);
 
             // Load the new DB and get its player profile data
             var importDbService = DBService.OpenFromFilePath(false, newFilePath);
