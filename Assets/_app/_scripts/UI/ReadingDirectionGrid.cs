@@ -1,12 +1,11 @@
 ﻿using Antura.Core;
-using Antura.LivingLetters;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Antura.UI
 {
     /// <summary>
-    /// A container for multiple contents that should be shown based on the reading direction.
+    /// Updates the attached GridLayoutGroup to match the App's reading direction
     /// </summary>
     public class ReadingDirectionGrid : MonoBehaviour
     {
