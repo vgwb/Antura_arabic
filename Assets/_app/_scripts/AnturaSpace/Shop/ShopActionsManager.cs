@@ -1,27 +1,11 @@
-﻿using System.Collections.Generic;
-using Antura;
+﻿using Antura;
 using UnityEngine;
-
-public class ShopState
-{
-    public List<string> unlockedDecorationsIDs = new List<string>();
-
-    public string ToJson()
-    {
-        return JsonUtility.ToJson(this);
-    }
-
-    public static ShopState CreateFromJson(string jsonData)
-    {
-        var shopState = JsonUtility.FromJson<ShopState>(jsonData);
-        if (shopState == null) shopState = new ShopState();
-        return shopState;
-    }
-
-}
 
 public class ShopActionsManager : MonoBehaviour
 {
+    [Header("Debug")]
+    public bool addDebugBones = false;
+
     public ShopActionsPanelUI ShopActionsPanelUi;
     public ShopDecorationsManager ShopDecorationsManager;
 
@@ -29,7 +13,10 @@ public class ShopActionsManager : MonoBehaviour
 
 	void Start ()
 	{
-	    AppManager.I.Player.AddBones(20);
+	    if (addDebugBones)
+	    {
+            AppManager.I.Player.AddBones(20);
+        }
 
         // Setup the decorations manager
         var shopState = AppManager.I.Player.CurrentShopState;
