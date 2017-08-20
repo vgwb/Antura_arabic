@@ -298,12 +298,19 @@ namespace Antura.Teacher
 
         public bool HasEarnedMaxStarsInCurrentPlaySessions()
         {
-            var maxJP = AppManager.I.Player.MaxJourneyPosition;
+            // If we finished the game, just check all stars
+            if (AppManager.I.Player.HasFinishedTheGame)
+            {
+                return AppManager.I.Player.HasFinishedTheGameWithAllStars;
+            }
 
+            // If we did not finish the game, we check all play sessions up to the max reached
+            // We however ignore the max reached (still to be played!)
+            var maxJP = AppManager.I.Player.MaxJourneyPosition;
             var allPlaySessionInfo = GetAllPlaySessionInfo();
             foreach (var playSessionInfo in allPlaySessionInfo)
             {
-                if (playSessionInfo.data.GetJourneyPosition().IsMinorOrEqual(maxJP))
+                if (playSessionInfo.data.GetJourneyPosition().IsMinor(maxJP))
                 {
                     if (playSessionInfo.score < AppConstants.MaximumMinigameScore)
                     {
