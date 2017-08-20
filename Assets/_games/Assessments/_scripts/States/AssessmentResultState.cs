@@ -22,6 +22,7 @@ namespace Antura.Assessment
         public void EnterState()
         {
             AssessmentConfiguration.Instance.Context.GetLogManager().OnGameEnded(3);
+            LogManager.I.LogPlaySessionScore(AppManager.I.JourneyHelper.GetCurrentPlaySessionData().Id, 3);
 
             var audioManager = assessmentGame.Context.GetAudioManager();
 

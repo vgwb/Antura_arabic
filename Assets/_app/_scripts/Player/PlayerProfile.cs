@@ -105,6 +105,8 @@ namespace Antura.Profile
         {
             JourneyPosition p = AppManager.I.JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition);
             SetMaxJourneyPosition(p);
+
+            AppManager.I.Player.CheckStarsState();
         }
 
         /// <summary>

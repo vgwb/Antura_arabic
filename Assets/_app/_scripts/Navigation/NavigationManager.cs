@@ -625,9 +625,6 @@ namespace Antura.Core
                 }
                 else
                 {
-                    // Finished all minigames for the current play session
-                    AppManager.I.Player.CheckStarsState();
-
                     // Go to the reward scene.
                     GoToScene(AppScene.PlaySessionResult);
                 }

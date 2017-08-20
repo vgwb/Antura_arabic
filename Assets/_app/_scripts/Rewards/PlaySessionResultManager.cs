@@ -36,7 +36,8 @@ namespace Antura.Rewards
                 oldRewards.Add(RewardSystemManager.GetNextRewardPack(true)[0]);
             }
 
-            LogManager.I.LogPlaySessionScore(AppManager.I.JourneyHelper.GetCurrentPlaySessionData().Id, objs.Length);
+            LogManager.I.LogPlaySessionScore(AppManager.I.JourneyHelper.GetCurrentPlaySessionData().Id, earnedStars);
+
             AppManager.I.Teacher.logAI.UnlockVocabularyDataForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
             // save max progression (internal check if necessary)
             if (earnedStars > 0) {
