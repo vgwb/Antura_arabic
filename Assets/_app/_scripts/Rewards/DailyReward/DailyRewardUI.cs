@@ -17,6 +17,7 @@ namespace Antura.Rewards
         public TextMeshProUGUI amountTextUI;
 
         public Image lockUI;
+        public Image unlockUI;
 
         public TextRender dayTextUI;
 
@@ -52,11 +53,13 @@ namespace Antura.Rewards
         public void SetLocked()
         {
             lockUI.gameObject.SetActive(true);
+            unlockUI.gameObject.SetActive(false);
         }
 
         public void SetUnlocked()
         {
             lockUI.gameObject.SetActive(false);
+            unlockUI.gameObject.SetActive(true);
         }
 
         public void SetDay(int day)
