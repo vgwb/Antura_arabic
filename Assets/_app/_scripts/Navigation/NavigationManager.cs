@@ -183,8 +183,15 @@ namespace Antura.Core
 
         private bool CheckDailySceneTrigger()
         {
+            if (AppManager.I.Player.IsFirstContact())
+            {
+                LogManager.I.LogInfo(InfoEvent.DailyRewardReceived, "first contact");
+                return false;
+            }
+
             bool mustShowDailyScenes = false;
             int numberOfDaysSinceLastReward = AppManager.I.Teacher.logAI.DaysSinceLastReward();
+
             if (numberOfDaysSinceLastReward <= 0)
             {
                 mustShowDailyScenes = false;
