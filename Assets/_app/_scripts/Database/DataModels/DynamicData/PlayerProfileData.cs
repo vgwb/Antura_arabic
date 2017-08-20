@@ -80,7 +80,7 @@ namespace Antura.Database
         /// Part of PlayerIconData.
         /// </summary>
         // TODO: we need to handle this too, but this requires a regeneration (or a migration) of existing databases
-        public bool HasMaxStarsInCurrentPlaySessions;// { get; set; }
+        public bool HasMaxStarsInCurrentPlaySessions { get; set; }
 
         #endregion
 
@@ -150,13 +150,13 @@ namespace Antura.Database
         /// Number of consecutive days of playing
         /// </summary>
         // TODO: we need to handle this too, but this requires a regeneration (or a migration) of existing databases
-        public int ComboPlayDays;// { get; set; }
+        public int ComboPlayDays { get; set; }
 
         /// <summary>
         /// JSON data for the current shop unlocked state.
         /// </summary>
         // TODO: we need to handle this too, but this requires a regeneration (or a migration) of existing databases
-        public string CurrentShopStateJSON; // {get; set;}
+        public string CurrentShopStateJSON { get; set; }
 
 
 

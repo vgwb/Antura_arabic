@@ -118,15 +118,15 @@ namespace Antura.Database
                 }
             }
 
-            if (_connection != null) {
+            if (_connection != null)
+            {
                 // Check that the DB version is correct, otherwise recreate the tables
                 GenerateTable<DatabaseInfoData>(true, false); // Makes sure that the database info data table exists
                 var info = _connection.Find<DatabaseInfoData>(1);
                 if (info == null || info.DynamicDbVersion != AppConstants.DynamicDbSchemeVersion) {
                     var lastVersion = info != null ? info.DynamicDbVersion : "NONE";
-                    Debug.LogWarning("SQL database at path " + dbPath + " is outdated. Recreating it (from " +
-                                     lastVersion + " to " + AppConstants.DynamicDbSchemeVersion + ")");
-                    RegenerateDatabase();
+                    Debug.LogWarning("SQL DB outdated. Updating it (from " + lastVersion + " to " + AppConstants.DynamicDbSchemeVersion + ") Path: " + dbPath);
+                    MigrateDatabase();
                 }
                 //Debug.Log("Database ready at path " + dbPath + "   Version: " + (info != null ? info.DynamicDbVersion : "NONE"));
             }
@@ -139,6 +139,13 @@ namespace Antura.Database
             RecreateAllTables();
 
             _connection.Insert(new DatabaseInfoData(AppConstants.DynamicDbSchemeVersion, AppConstants.StaticDbSchemeVersion));
+        }
+
+        private void MigrateDatabase()
+        {
+            MigrateAllTables();
+
+            _connection.InsertOrReplace(new DatabaseInfoData(AppConstants.DynamicDbSchemeVersion, AppConstants.StaticDbSchemeVersion));
         }
 
         public void GenerateTables(bool create, bool drop)
@@ -184,6 +191,11 @@ namespace Antura.Database
         public void RecreateAllTables()
         {
             GenerateTables(true, true);
+        }
+
+        public void MigrateAllTables()
+        {
+            GenerateTables(true, false);
         }
 
         #endregion
