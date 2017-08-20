@@ -62,6 +62,7 @@ namespace Antura.Profile
         /// </summary>
         public void Save()
         {
+            AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
             AppManager.I.PlayerProfileManager.SavePlayerProfile(this);
         }
 
@@ -136,7 +137,6 @@ namespace Antura.Profile
             if (!HasFinishedTheGame) {
                 HasFinishedTheGame = AppManager.I.JourneyHelper.HasFinishedTheGame();
                 if (HasFinishedTheGame) {
-                    AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
                     Save();
                 }
             }
@@ -153,13 +153,12 @@ namespace Antura.Profile
             {
                 HasFinishedTheGameWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
                 if (HasFinishedTheGameWithAllStars) {
-                    AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
                     Save();
                 }
             }
 
             HasMaxStarsInCurrentPlaySessions = AppManager.I.ScoreHelper.HasEarnedMaxStarsInCurrentPlaySessions();
-            Save();
+            Save(); 
         }
 
         /// <summary>
@@ -557,8 +556,8 @@ namespace Antura.Profile
         {
             ProfileCompletion = ProfileCompletionState.GameCompleted;
             AppManager.I.StartCoroutine(RewardSystemManager.UnlockExtraRewards());
-            AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
             CheckGameFinished();
+            Save();
         }
 
         public bool HasFinalBeenShown()
