@@ -22,6 +22,7 @@ namespace Antura.Profile
         public bool IsDemoUser;
         public bool HasFinishedTheGame;
         public bool HasFinishedTheGameWithAllStars;
+        public bool HasMaxStarsInCurrentPlaySessions;
         public int TotalNumberOfBones = 8;
         public int ComboPlayDays;
 
@@ -146,15 +147,19 @@ namespace Antura.Profile
         /// Check whether the game has finished with all starts and update the player icon.
         /// Called at each end of play session.
         /// </summary>
-        public void CheckGameFinishedWithAllStars()
+        public void CheckStarsState()
         {
-            if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars) {
+            if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars)
+            {
                 HasFinishedTheGameWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
                 if (HasFinishedTheGameWithAllStars) {
                     AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
                     Save();
                 }
             }
+
+            HasMaxStarsInCurrentPlaySessions = AppManager.I.ScoreHelper.HasEarnedMaxStarsInCurrentPlaySessions();
+            Save();
         }
 
         /// <summary>
@@ -580,7 +585,7 @@ namespace Antura.Profile
         {
             PlayerProfileData newProfileData =
                 new PlayerProfileData(
-                    new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars), Age,
+                    new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars, HasMaxStarsInCurrentPlaySessions), Age,
                     TotalNumberOfBones, ProfileCompletion);
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
@@ -605,6 +610,7 @@ namespace Antura.Profile
             IsDemoUser = _data.IsDemoUser;
             HasFinishedTheGame = _data.JourneyCompleted;
             HasFinishedTheGameWithAllStars = _data.HasFinishedTheGameWithAllStars();
+            HasMaxStarsInCurrentPlaySessions = _data.HasMaxStarsInCurrentPlaySessions;
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalBones;
             ComboPlayDays = _data.ComboPlayDays;
@@ -632,7 +638,8 @@ namespace Antura.Profile
                 Tint = this.Tint,
                 IsDemoUser = this.IsDemoUser,
                 HasFinishedTheGame = this.HasFinishedTheGame,
-                HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars
+                HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars,
+                HasMaxStarsInCurrentPlaySessions = this.HasMaxStarsInCurrentPlaySessions
             };
             return returnIconData;
         }

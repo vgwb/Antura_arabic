@@ -74,6 +74,14 @@ namespace Antura.Database
         /// </summary>
         public float TotalScore { get; set; }
 
+        /// <summary>
+        /// general total final overall score
+        /// Used only for the player icons in the Home scene.
+        /// Part of PlayerIconData.
+        /// </summary>
+        // TODO: we need to handle this too, but this requires a regeneration (or a migration) of existing databases
+        public bool HasMaxStarsInCurrentPlaySessions;// { get; set; }
+
         #endregion
 
         #region Details
@@ -150,6 +158,8 @@ namespace Antura.Database
         // TODO: we need to handle this too, but this requires a regeneration (or a migration) of existing databases
         public string CurrentShopStateJSON; // {get; set;}
 
+
+
         #endregion
 
         #region Additional Data
@@ -195,12 +205,13 @@ namespace Antura.Database
             IsDemoUser = iconData.IsDemoUser;
             JourneyCompleted = iconData.HasFinishedTheGame;
             TotalScore = (iconData.HasFinishedTheGameWithAllStars ? 1f : 0f);
+            HasMaxStarsInCurrentPlaySessions = iconData.HasMaxStarsInCurrentPlaySessions;
         }
 
-        public PlayerIconData GetPlayerIconData()
+        /*public PlayerIconData GetPlayerIconData()
         {
             return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, JourneyCompleted, HasFinishedTheGameWithAllStars());
-        }
+        }*/
 
         #region Journey Position
 
@@ -244,7 +255,7 @@ namespace Antura.Database
 
         public override string ToString()
         {
-            return string.Format("ID{0},U{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8}), ProfCompl{9}, JourneyCompleted{10}, Score{11}",
+            return string.Format("ID{0},U{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8}), ProfCompl{9}, JourneyCompleted{10}, Score{11} MaxStars{12}",
                 Id,
                 Uuid,
                 Timestamp,
@@ -259,7 +270,8 @@ namespace Antura.Database
 
                 ProfileCompletion,
                 JourneyCompleted,
-                TotalScore
+                TotalScore,
+                HasMaxStarsInCurrentPlaySessions
             );
         }
 

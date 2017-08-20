@@ -71,6 +71,11 @@ namespace Antura.UI
                 }
                 return fooIco;
             }
+            set
+            {
+                fooIcoSearched = true;
+                fooIco = value;
+            }
         }
 
         public CanvasGroup CGroup

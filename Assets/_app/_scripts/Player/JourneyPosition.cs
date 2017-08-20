@@ -77,6 +77,11 @@
             return false;
         }
 
+        public bool IsMinorOrEqual(JourneyPosition other)
+        {
+            return IsMinor(other) || Equals(other);
+        }
+
         public bool IsAssessment()
         {
             return PlaySession == 100;

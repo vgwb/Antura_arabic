@@ -295,5 +295,23 @@ namespace Antura.Teacher
             }
             return true;
         }
+
+        public bool HasEarnedMaxStarsInCurrentPlaySessions()
+        {
+            var maxJP = AppManager.I.Player.MaxJourneyPosition;
+
+            var allPlaySessionInfo = GetAllPlaySessionInfo();
+            foreach (var playSessionInfo in allPlaySessionInfo)
+            {
+                if (playSessionInfo.data.GetJourneyPosition().IsMinorOrEqual(maxJP))
+                {
+                    if (playSessionInfo.score < AppConstants.MaximumMinigameScore)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
     }
 }

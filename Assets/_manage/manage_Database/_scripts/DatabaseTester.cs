@@ -625,7 +625,7 @@ namespace Antura.Database.Management
 
         public void TestDynamicProfileData()
         {
-            dbManager.UpdatePlayerProfileData(new PlayerProfileData(new PlayerIconData(DEBUG_PLAYER_UUID, 1, PlayerGender.M, PlayerTint.Blue, false, false, false), 5, 8, 0));
+            dbManager.UpdatePlayerProfileData(new PlayerProfileData(new PlayerIconData(DEBUG_PLAYER_UUID, 1, PlayerGender.M, PlayerTint.Blue, false, false, false, false), 5, 8, 0));
             var playerProfileData = dbManager.GetPlayerProfileData();
             PrintOutput(playerProfileData.ToString());
         }

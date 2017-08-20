@@ -22,7 +22,9 @@ namespace Antura.Profile
         public bool AutoInit;
 
         public Sprite EndgameHat, EndgameHatWStars;
+        public Image HighlightImage;
         public Image HatImage;
+        public Image IconImage;
         public string Uuid { get; private set; }
 
         public UIButton UIButton
@@ -61,7 +63,7 @@ namespace Antura.Profile
                 : playerIconData.HasFinishedTheGame
                     ? EndgameState.Finished
                     : EndgameState.Unfinished;
-            SetAppearance(playerIconData.Gender, playerIconData.AvatarId, playerIconData.Tint, playerIconData.IsDemoUser, endgameState);
+            SetAppearance(playerIconData.Gender, playerIconData.AvatarId, playerIconData.Tint, playerIconData.IsDemoUser, endgameState, playerIconData.HasMaxStarsInCurrentPlaySessions);
         }
 
         [DeMethodButton("DEBUG: Select", mode = DeButtonMode.PlayModeOnly)]
@@ -78,12 +80,13 @@ namespace Antura.Profile
 
         #endregion
 
-        void SetAppearance(PlayerGender gender, int avatarId, PlayerTint tint, bool isDemoUser, EndgameState endgameState)
+        void SetAppearance(PlayerGender gender, int avatarId, PlayerTint tint, bool isDemoUser, EndgameState endgameState, bool hasMaxStarsInCurrentPlaySessions)
         {
             if (gender == PlayerGender.None) {
                 Debug.LogWarning("Player gender set to NONE");
             }
             Color color = isDemoUser ? new Color(0.4117647f, 0.9254903f, 1f, 1f) : PlayerTintConverter.ToColor(tint);
+            UIButton.Ico = IconImage;   // forced icon
             UIButton.ChangeDefaultColors(color, color.SetAlpha(0.5f));
             UIButton.Ico.sprite = isDemoUser
                 ? Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + "god")
@@ -99,6 +102,9 @@ namespace Antura.Profile
                     HatImage.sprite = EndgameHatWStars;
                     break;
             }
+
+            Debug.Log("hasMaxStarsInCurrentPlaySessions: " + hasMaxStarsInCurrentPlaySessions);
+            HighlightImage.gameObject.SetActive(hasMaxStarsInCurrentPlaySessions);
         }
 
         [DeMethodButton("DEBUG: Randomize Appearance", mode = DeButtonMode.PlayModeOnly)]
@@ -107,12 +113,14 @@ namespace Antura.Profile
             float rnd0 = UnityEngine.Random.value;
             float rnd1 = UnityEngine.Random.value;
             float rnd2 = UnityEngine.Random.value;
+            float rnd3 = UnityEngine.Random.value;
             SetAppearance(
                 rnd0 <= 0.5f ? PlayerGender.F : PlayerGender.M,
                 UnityEngine.Random.Range(1, 5),
                 (PlayerTint) UnityEngine.Random.Range(1, 8),
                 rnd1 <= 0.2f,
-                rnd2 < 0.33f ? EndgameState.Unfinished : rnd2 < 0.66f ? EndgameState.Finished : EndgameState.FinishedWAllStars
+                rnd2 < 0.33f ? EndgameState.Unfinished : rnd2 < 0.66f ? EndgameState.Finished : EndgameState.FinishedWAllStars,
+                rnd3 <= 0.5f
             );
         }
     }
