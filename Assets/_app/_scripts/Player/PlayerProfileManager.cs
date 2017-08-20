@@ -22,22 +22,28 @@ namespace Antura.Profile
         {
             get { return _currentPlayer; }
             set {
-                if (_currentPlayer != value) {
+                if (_currentPlayer != value)
+                {
                     AppManager.I.Player = _currentPlayer = value;
-                    AppManager.I.Teacher.SetPlayerProfile(value);
-                    // TODO refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
-                    if (AppManager.I.DB.HasLoadedPlayerProfile()) {
-                        LogManager.I.LogInfo(InfoEvent.AppSessionEnd, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
-                    }
-                    AppManager.I.AppSettings.LastActivePlayerUUID = value.Uuid;
-                    AppManager.I.AppSettingsManager.SaveSettings();
-                    LogManager.I.LogInfo(InfoEvent.AppSessionStart, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
-                    AppManager.I.NavigationManager.InitPlayerNavigationData(_currentPlayer);
 
-                    _currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
-                    if (OnProfileChanged != null) {
-                        OnProfileChanged();
+                    if (_currentPlayer != null)
+                    {
+                        AppManager.I.Teacher.SetPlayerProfile(value);
+                        // TODO refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
+                        if (AppManager.I.DB.HasLoadedPlayerProfile()) {
+                            LogManager.I.LogInfo(InfoEvent.AppSessionEnd, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
+                        }
+                        AppManager.I.AppSettings.LastActivePlayerUUID = value.Uuid;
+                        AppManager.I.AppSettingsManager.SaveSettings();
+                        LogManager.I.LogInfo(InfoEvent.AppSessionStart, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
+                        AppManager.I.NavigationManager.InitPlayerNavigationData(_currentPlayer);
+
+                        _currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
+                        if (OnProfileChanged != null) {
+                            OnProfileChanged();
+                        }
                     }
+
                 }
                 _currentPlayer = value;
             }
@@ -253,6 +259,7 @@ namespace Antura.Profile
             // Reset all settings too
             AppManager.I.AppSettingsManager.DeleteAllSettings();
             LoadSettings(alsoLoadCurrentPlayerProfile: false);
+            AppManager.I.Player = null;
         }
 
         #endregion
