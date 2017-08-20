@@ -146,9 +146,6 @@ namespace Antura.MinigamesCommon
         {
             StarsScore = stars;
 
-            // TODO: This should be called only after we ACKNOWLEDGE the end of the game
-            //AppManager.I.NavigationManager.EndMinigame(stars);
-
             if (OnGameEnded != null) {
                 OnGameEnded(stars, score);
             }
