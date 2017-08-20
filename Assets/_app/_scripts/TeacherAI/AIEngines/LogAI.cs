@@ -81,7 +81,6 @@ namespace Antura.Teacher
                 Debug.Log("No player profile DB to log to. Player profile is probably not set");
                 return;
             }
-            Debug.Log("LOGGING INFO EVENT " + infoEvent);
 
             var data = new LogInfoData(appSession, infoEvent, AppManager.I.NavigationManager.GetCurrentScene(), parametersString);
             db.Insert(data);
