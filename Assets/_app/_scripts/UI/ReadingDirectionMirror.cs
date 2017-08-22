@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using DG.DeExtensions;
 using UnityEngine;
 
@@ -15,10 +15,10 @@ namespace Antura.UI
             {
                 switch (AppConstants.ReadingDirection)
                 {
-                    case ReadingDirection.LeftToRight:
+                    case TextFlow.LeftToRight:
                         // Default
                         break;
-                    case ReadingDirection.RightToLeft:
+                    case TextFlow.RightToLeft:
                         var rectTransform = childTr.GetComponent<RectTransform>();
                         if (rectTransform != null)
                         {

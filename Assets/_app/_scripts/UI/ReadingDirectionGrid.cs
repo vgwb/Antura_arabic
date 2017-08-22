@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,18 +16,18 @@ namespace Antura.UI
             gridLayoutGroup = GetComponent<GridLayoutGroup>();
             switch (AppConstants.ReadingDirection)
             {
-                case ReadingDirection.LeftToRight:
+                case TextFlow.LeftToRight:
                     switch (gridLayoutGroup.startCorner)
                     {
                         case GridLayoutGroup.Corner.LowerRight:
                             gridLayoutGroup.startCorner = GridLayoutGroup.Corner.LowerLeft;
                             break;
-                         case GridLayoutGroup.Corner.UpperRight:
+                        case GridLayoutGroup.Corner.UpperRight:
                             gridLayoutGroup.startCorner = GridLayoutGroup.Corner.UpperLeft;
                             break;
                     }
                     break;
-                case ReadingDirection.RightToLeft:
+                case TextFlow.RightToLeft:
                     switch (gridLayoutGroup.startCorner)
                     {
                         case GridLayoutGroup.Corner.LowerLeft:

@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using DG.DeExtensions;
 using UnityEngine;
 
@@ -15,13 +15,13 @@ namespace Antura.UI
 
             switch (AppConstants.ReadingDirection)
             {
-                case ReadingDirection.LeftToRight:
+                case TextFlow.LeftToRight:
                     // Default
                     break;
-                case ReadingDirection.RightToLeft:
+                case TextFlow.RightToLeft:
                     rectTransform.anchorMin = new Vector2(Mathf.Abs(1 - rectTransform.anchorMin.x), rectTransform.anchorMin.y);
                     rectTransform.anchorMax = new Vector2(Mathf.Abs(1 - rectTransform.anchorMax.x), rectTransform.anchorMax.y);
-                    rectTransform.SetAnchoredPosX(- rectTransform.anchoredPosition.x);
+                    rectTransform.SetAnchoredPosX(-rectTransform.anchoredPosition.x);
                     break;
             }
         }

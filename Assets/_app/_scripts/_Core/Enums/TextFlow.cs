@@ -7,7 +7,7 @@ namespace Antura.Core
     /// </summary>
     public enum TextFlow
     {
-        LeftToRight,
-        RightToLeft
+        LeftToRight = 0,
+        RightToLeft = 1
     }
 }
