@@ -151,8 +151,7 @@ namespace Antura.Profile
         /// </summary>
         public void CheckStarsState()
         {
-            if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars)
-            {
+            if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars) {
                 HasFinishedTheGameWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
                 if (HasFinishedTheGameWithAllStars) {
                     Save();
@@ -160,7 +159,7 @@ namespace Antura.Profile
             }
 
             HasMaxStarsInCurrentPlaySessions = AppManager.I.ScoreHelper.HasEarnedMaxStarsInCurrentPlaySessions();
-            Save(); 
+            Save();
         }
 
         /// <summary>
@@ -216,8 +215,7 @@ namespace Antura.Profile
         /// <summary>
         /// The current antura customizations
         /// </summary>
-        public AnturaCustomization CurrentAnturaCustomizations
-        {
+        public AnturaCustomization CurrentAnturaCustomizations {
             get {
                 if (_currentAnturaCustomizations == null) {
                     _currentAnturaCustomizations = new AnturaCustomization();
@@ -241,8 +239,7 @@ namespace Antura.Profile
         /// <value>
         /// The rewards unlocked.
         /// </value>
-        public List<RewardPackUnlockData> RewardsUnlocked
-        {
+        public List<RewardPackUnlockData> RewardsUnlocked {
             get {
                 if (_rewardsUnlocked == null) {
                     _rewardsUnlocked = LoadRewardsUnlockedFromDB();
@@ -483,10 +480,10 @@ namespace Antura.Profile
         /// </returns>
         public bool IsFirstContact(int _step)
         {
-            if (_step < (int) ProfileCompletionState.FirstContact1) return true;
-            if (_step >= (int) ProfileCompletionState.FirstContact2) return false;
+            if (_step < (int)ProfileCompletionState.FirstContact1) return true;
+            if (_step >= (int)ProfileCompletionState.FirstContact2) return false;
 
-            if ((int) ProfileCompletion == _step - 1) {
+            if ((int)ProfileCompletion == _step - 1) {
                 return true;
             } else {
                 return false;
@@ -592,8 +589,8 @@ namespace Antura.Profile
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
             string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
             newProfileData.CurrentAnturaCustomization = jsonStringForAnturaCustomization;
-            newProfileData.ComboPlayDays = ComboPlayDays;
-            newProfileData.CurrentShopStateJSON = CurrentShopState.ToJson();
+            //newProfileData.ComboPlayDays = ComboPlayDays;
+            //newProfileData.CurrentShopStateJSON = CurrentShopState.ToJson();
             return newProfileData;
         }
 
@@ -611,11 +608,11 @@ namespace Antura.Profile
             IsDemoUser = _data.IsDemoUser;
             HasFinishedTheGame = _data.JourneyCompleted;
             HasFinishedTheGameWithAllStars = _data.HasFinishedTheGameWithAllStars();
-            HasMaxStarsInCurrentPlaySessions = _data.HasMaxStarsInCurrentPlaySessions;
+            //HasMaxStarsInCurrentPlaySessions = _data.HasMaxStarsInCurrentPlaySessions;
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalBones;
-            ComboPlayDays = _data.ComboPlayDays;
-            CurrentShopState = ShopState.CreateFromJson(_data.CurrentShopStateJSON);
+            //ComboPlayDays = _data.ComboPlayDays;
+            //CurrentShopState = ShopState.CreateFromJson(_data.CurrentShopStateJSON);
 
             this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
@@ -631,8 +628,7 @@ namespace Antura.Profile
 
         public PlayerIconData GetPlayerIconData()
         {
-            PlayerIconData returnIconData = new PlayerIconData()
-            {
+            PlayerIconData returnIconData = new PlayerIconData() {
                 Uuid = this.Uuid,
                 AvatarId = this.AvatarId,
                 Gender = this.Gender,

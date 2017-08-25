@@ -53,9 +53,8 @@ namespace Antura.Core
         /// <summary>
         /// Version of the MySQL Database Scheme.
         /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
-        /// v1.0.1 - added ComboPlayDays, CurrentShopStateJSON, HasMaxStarsInCurrentPlaySessions to PlayerProfileData
         /// </summary>
-        public const string DynamicDbSchemeVersion = "1.0.1";
+        public const string DynamicDbSchemeVersion = "1.0.0";
 
         // public URLs
         public const string UrlWebsite = "http://www.antura.org";

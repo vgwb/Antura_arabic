@@ -80,7 +80,7 @@ namespace Antura.Database
         /// Part of PlayerIconData.
         /// </summary>
         // TODO: we need to handle this too, but this requires a regeneration (or a migration) of existing databases
-        public bool HasMaxStarsInCurrentPlaySessions { get; set; }
+        ////public bool HasMaxStarsInCurrentPlaySessions { get; set; }
 
         #endregion
 
@@ -150,13 +150,13 @@ namespace Antura.Database
         /// Number of consecutive days of playing
         /// </summary>
         // TODO: we need to handle this too, but this requires a regeneration (or a migration) of existing databases
-        public int ComboPlayDays { get; set; }
+        ////public int ComboPlayDays { get; set; }
 
         /// <summary>
         /// JSON data for the current shop unlocked state.
         /// </summary>
         // TODO: we need to handle this too, but this requires a regeneration (or a migration) of existing databases
-        public string CurrentShopStateJSON { get; set; }
+        ////public string CurrentShopStateJSON { get; set; }
 
 
 
@@ -187,8 +187,8 @@ namespace Antura.Database
             SetCurrentJourneyPosition(JourneyPosition.InitialJourneyPosition);
             Timestamp = GenericHelper.GetTimestampForNow();
             CurrentAnturaCustomization = currentAnturaCustomization;
-            ComboPlayDays = 0;
-            CurrentShopStateJSON = null;
+            //ComboPlayDays = 0;
+            //CurrentShopStateJSON = null;
         }
 
         public bool HasFinishedTheGameWithAllStars()
@@ -205,7 +205,7 @@ namespace Antura.Database
             IsDemoUser = iconData.IsDemoUser;
             JourneyCompleted = iconData.HasFinishedTheGame;
             TotalScore = (iconData.HasFinishedTheGameWithAllStars ? 1f : 0f);
-            HasMaxStarsInCurrentPlaySessions = iconData.HasMaxStarsInCurrentPlaySessions;
+            //HasMaxStarsInCurrentPlaySessions = iconData.HasMaxStarsInCurrentPlaySessions;
         }
 
         /*public PlayerIconData GetPlayerIconData()
@@ -255,7 +255,7 @@ namespace Antura.Database
 
         public override string ToString()
         {
-            return string.Format("ID{0},U{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8}), ProfCompl{9}, JourneyCompleted{10}, Score{11} MaxStars{12}",
+            return string.Format("ID{0},U{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8}), ProfCompl{9}, JourneyCompleted{10}, Score{11}",
                 Id,
                 Uuid,
                 Timestamp,
@@ -270,8 +270,7 @@ namespace Antura.Database
 
                 ProfileCompletion,
                 JourneyCompleted,
-                TotalScore,
-                HasMaxStarsInCurrentPlaySessions
+                TotalScore
             );
         }
 
