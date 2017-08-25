@@ -2,9 +2,38 @@
 using Antura.Helpers;
 using Antura.Profile;
 using SQLite;
+using UnityEngine;
 
 namespace Antura.Database
 {
+
+    public class PlayerProfileAdditionalData
+    {
+        /// <summary>
+        /// general total final overall score
+        /// Used only for the player icons in the Home scene.
+        /// Part of PlayerIconData
+        /// </summary>
+        public bool HasMaxStarsInCurrentPlaySessions;
+
+        /// <summary>
+        /// Number of consecutive days of playin
+        /// </summary>
+        public int ComboPlayDays;
+
+        /// <summary>
+        /// JSON data for the current shop unlocked state.
+        /// </summary>
+        public string CurrentShopStateJSON;
+
+        public PlayerProfileAdditionalData(bool hasMaxStarsInCurrentPlaySessions, int comboPlayDays, string currentShopStateJSON)
+        {
+            HasMaxStarsInCurrentPlaySessions = hasMaxStarsInCurrentPlaySessions;
+            ComboPlayDays = comboPlayDays;
+            CurrentShopStateJSON = currentShopStateJSON;
+        }
+    }
+
     /// <summary>
     /// Serialized information about the player. Used by the Player Profile.
     /// </summary>
@@ -73,15 +102,6 @@ namespace Antura.Database
         /// Part of PlayerIconData.
         /// </summary>
         public float TotalScore { get; set; }
-
-        /// <summary>
-        /// general total final overall score
-        /// Used only for the player icons in the Home scene.
-        /// Part of PlayerIconData.
-        /// </summary>
-        // TODO: we need to handle this too, but this requires a regeneration (or a migration) of existing databases
-        ////public bool HasMaxStarsInCurrentPlaySessions { get; set; }
-
         #endregion
 
         #region Details
@@ -145,21 +165,6 @@ namespace Antura.Database
         /// JSON data for the current customization set on Antura.
         /// </summary>
         public string CurrentAnturaCustomization { get; set; }
-
-        /// <summary>
-        /// Number of consecutive days of playing
-        /// </summary>
-        // TODO: we need to handle this too, but this requires a regeneration (or a migration) of existing databases
-        ////public int ComboPlayDays { get; set; }
-
-        /// <summary>
-        /// JSON data for the current shop unlocked state.
-        /// </summary>
-        // TODO: we need to handle this too, but this requires a regeneration (or a migration) of existing databases
-        ////public string CurrentShopStateJSON { get; set; }
-
-
-
         #endregion
 
         #region Additional Data
@@ -176,7 +181,14 @@ namespace Antura.Database
         {
         }
 
-        public PlayerProfileData(PlayerIconData iconData, int age, int totalBones, ProfileCompletionState profileCompletion, string currentAnturaCustomization = null)
+        public PlayerProfileData(PlayerIconData iconData,
+                                 int age,
+                                 int totalBones,
+                                 ProfileCompletionState profileCompletion,
+                                 string currentAnturaCustomization,
+                                 int comboPlayDays,
+                                 string currentShopState
+                                )
         {
             Id = UNIQUE_ID;  // Only one record
             Age = age;
@@ -187,8 +199,7 @@ namespace Antura.Database
             SetCurrentJourneyPosition(JourneyPosition.InitialJourneyPosition);
             Timestamp = GenericHelper.GetTimestampForNow();
             CurrentAnturaCustomization = currentAnturaCustomization;
-            //ComboPlayDays = 0;
-            //CurrentShopStateJSON = null;
+            AdditionalData = JsonUtility.ToJson(new PlayerProfileAdditionalData(iconData.HasMaxStarsInCurrentPlaySessions, comboPlayDays, currentShopState));
         }
 
         public bool HasFinishedTheGameWithAllStars()

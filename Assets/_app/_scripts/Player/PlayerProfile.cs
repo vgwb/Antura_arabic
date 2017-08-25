@@ -81,8 +81,9 @@ namespace Antura.Profile
         public void SetCurrentJourneyPosition(int _stage, int _lb, int _ps, bool _save = true)
         {
             SetCurrentJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
-            if (_save)
+            if (_save) {
                 Save();
+            }
         }
 
         /// <summary>
@@ -583,14 +584,11 @@ namespace Antura.Profile
         {
             PlayerProfileData newProfileData =
                 new PlayerProfileData(
-                    new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars, HasMaxStarsInCurrentPlaySessions), Age,
-                    TotalNumberOfBones, ProfileCompletion);
+                    new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars, HasMaxStarsInCurrentPlaySessions),
+                    Age, TotalNumberOfBones, ProfileCompletion, this.CurrentAnturaCustomizations.GetJsonListOfIds(), ComboPlayDays, CurrentShopState.ToJson()
+                );
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
-            string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
-            newProfileData.CurrentAnturaCustomization = jsonStringForAnturaCustomization;
-            //newProfileData.ComboPlayDays = ComboPlayDays;
-            //newProfileData.CurrentShopStateJSON = CurrentShopState.ToJson();
             return newProfileData;
         }
 
@@ -608,11 +606,13 @@ namespace Antura.Profile
             IsDemoUser = _data.IsDemoUser;
             HasFinishedTheGame = _data.JourneyCompleted;
             HasFinishedTheGameWithAllStars = _data.HasFinishedTheGameWithAllStars();
-            //HasMaxStarsInCurrentPlaySessions = _data.HasMaxStarsInCurrentPlaySessions;
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalBones;
-            //ComboPlayDays = _data.ComboPlayDays;
-            //CurrentShopState = ShopState.CreateFromJson(_data.CurrentShopStateJSON);
+
+            var additionalData = JsonUtility.FromJson<PlayerProfileAdditionalData>(_data.AdditionalData);
+            HasMaxStarsInCurrentPlaySessions = additionalData.HasMaxStarsInCurrentPlaySessions;
+            ComboPlayDays = additionalData.ComboPlayDays;
+            CurrentShopState = ShopState.CreateFromJson(additionalData.CurrentShopStateJSON);
 
             this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
