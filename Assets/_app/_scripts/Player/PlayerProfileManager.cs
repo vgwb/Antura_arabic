@@ -18,16 +18,13 @@ namespace Antura.Profile
         /// <summary>
         /// The player that is currently playing.
         /// </summary>
-        public PlayerProfile CurrentPlayer
-        {
+        public PlayerProfile CurrentPlayer {
             get { return _currentPlayer; }
             set {
-                if (_currentPlayer != value)
-                {
+                if (_currentPlayer != value) {
                     AppManager.I.Player = _currentPlayer = value;
 
-                    if (_currentPlayer != null)
-                    {
+                    if (_currentPlayer != null) {
                         AppManager.I.Teacher.SetPlayerProfile(value);
                         // TODO refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
                         if (AppManager.I.DB.HasLoadedPlayerProfile()) {
@@ -72,15 +69,15 @@ namespace Antura.Profile
         /// <returns></returns>
         public PlayerProfile GetPlayerProfileByUUID(string playerUUID)
         {
-            PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(playerUUID);
+            PlayerProfileData playerProfileDataFromDB = AppManager.I.DB.LoadDatabaseForPlayer(playerUUID);
 
             // If null, the player does not exist.
             // The DB got desynced. Remove this player!
-            if (profileFromDB == null) {
+            if (playerProfileDataFromDB == null) {
                 Debug.LogError("ERROR: no profile data for player UUID " + playerUUID);
             }
 
-            return new PlayerProfile().FromData(profileFromDB);
+            return new PlayerProfile().FromData(playerProfileDataFromDB);
         }
 
         #endregion
@@ -278,7 +275,7 @@ namespace Antura.Profile
             }
 
             var firstPlayerUUID = AppManager.I.AppSettings.SavedPlayers[0].Uuid;
-            AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(firstPlayerUUID); 
+            AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(firstPlayerUUID);
             AppManager.I.AppSettingsManager.SaveSettings();
 
         }

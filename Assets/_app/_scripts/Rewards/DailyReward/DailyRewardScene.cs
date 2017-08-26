@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Antura.Core;
@@ -44,7 +44,7 @@ namespace Antura.Rewards
 
             // Setup daily reward manager
             dailyRewardManager = new DailyRewardManager();
-            int nCurrentConsecutiveDaysOfPlaying = AppManager.I.Player.ComboPlayDays;
+            int nCurrentConsecutiveDaysOfPlaying = AppManager.I.Player.ConsecutivePlayDays;
             Debug.Assert(nCurrentConsecutiveDaysOfPlaying >= 1, "Should not access this scene with 0 consecutive days");
             nCurrentConsecutiveDaysOfPlaying = Mathf.Max(nCurrentConsecutiveDaysOfPlaying, 1);
 

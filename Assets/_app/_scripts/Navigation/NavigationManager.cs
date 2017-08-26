@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using Antura.Book;
@@ -200,13 +200,13 @@ namespace Antura.Core
             {
                 // Number of days since last reward is more than 1. Show daily, but zero combo.
                 mustShowDailyScenes = true;
-                NavData.CurrentPlayer.ComboPlayDays = 1;
+                NavData.CurrentPlayer.ConsecutivePlayDays = 1;
             }
             else
             {
                 // Number of days since last reward is exactly 1. Good for combo!
                 mustShowDailyScenes = true;
-                NavData.CurrentPlayer.ComboPlayDays += 1;
+                NavData.CurrentPlayer.ConsecutivePlayDays += 1;
             }
             Debug.Log("numberOfDaysSinceLastReward: " + numberOfDaysSinceLastReward);
             Debug.Log("ComboPlayDays: " + numberOfDaysSinceLastReward);

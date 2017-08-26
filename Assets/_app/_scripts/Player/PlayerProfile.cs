@@ -24,7 +24,7 @@ namespace Antura.Profile
         public bool HasFinishedTheGameWithAllStars;
         public bool HasMaxStarsInCurrentPlaySessions;
         public int TotalNumberOfBones = 8;
-        public int ComboPlayDays;
+        public int ConsecutivePlayDays;
 
         public ProfileCompletionState ProfileCompletion = ProfileCompletionState.New;
 
@@ -220,7 +220,7 @@ namespace Antura.Profile
             get {
                 if (_currentAnturaCustomizations == null) {
                     _currentAnturaCustomizations = new AnturaCustomization();
-                    _currentAnturaCustomizations.LoadFromListOfIds(jsonAnturaCustimizationData);
+                    _currentAnturaCustomizations.LoadFromListOfIds(jsonAnturaCustomizationData);
                 }
                 return _currentAnturaCustomizations;
             }
@@ -330,7 +330,7 @@ namespace Antura.Profile
         /// <summary>
         /// Used to store antura custumization data in json and load it at runtime.
         /// </summary>
-        string jsonAnturaCustimizationData = string.Empty;
+        string jsonAnturaCustomizationData = string.Empty;
 
         #endregion
 
@@ -447,7 +447,7 @@ namespace Antura.Profile
             if (_anturaCustomization != null) {
                 CurrentAnturaCustomizations = _anturaCustomization;
             }
-            jsonAnturaCustimizationData = CurrentAnturaCustomizations.GetJsonListOfIds();
+            jsonAnturaCustomizationData = CurrentAnturaCustomizations.GetJsonListOfIds();
             Save();
 
             AppManager.I.LogManager.LogInfo(InfoEvent.AnturaCustomization, CurrentAnturaCustomizations.GetJsonListOfIds());
@@ -584,8 +584,8 @@ namespace Antura.Profile
         {
             PlayerProfileData newProfileData =
                 new PlayerProfileData(
-                    new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars, HasMaxStarsInCurrentPlaySessions),
-                    Age, TotalNumberOfBones, ProfileCompletion, this.CurrentAnturaCustomizations.GetJsonListOfIds(), ComboPlayDays, CurrentShopState.ToJson()
+                    Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars, HasMaxStarsInCurrentPlaySessions,
+                    Age, TotalNumberOfBones, ProfileCompletion, this.CurrentAnturaCustomizations.GetJsonListOfIds(), ConsecutivePlayDays, CurrentShopState
                 );
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
@@ -609,15 +609,14 @@ namespace Antura.Profile
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalBones;
 
-            var additionalData = JsonUtility.FromJson<PlayerProfileAdditionalData>(_data.AdditionalData);
-            HasMaxStarsInCurrentPlaySessions = additionalData.HasMaxStarsInCurrentPlaySessions;
-            ComboPlayDays = additionalData.ComboPlayDays;
-            CurrentShopState = ShopState.CreateFromJson(additionalData.CurrentShopStateJSON);
+            HasMaxStarsInCurrentPlaySessions = _data.GetAdditionalData().HasMaxStarsInCurrentPlaySessions;
+            ConsecutivePlayDays = _data.GetAdditionalData().ConsecutivePlayDays;
+            CurrentShopState = ShopState.CreateFromJson(_data.GetAdditionalData().CurrentShopStateJSON);
 
-            this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
-            this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
+            SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
+            SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
             // Antura customization save only customization data
-            jsonAnturaCustimizationData = _data.CurrentAnturaCustomization;
+            jsonAnturaCustomizationData = _data.CurrentAnturaCustomization;
 
             return this;
         }
