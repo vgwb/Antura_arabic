@@ -27,8 +27,7 @@ namespace Antura.Profile
         public Image IconImage;
         public string Uuid { get; private set; }
 
-        public UIButton UIButton
-        {
+        public UIButton UIButton {
             get {
                 if (fooUIButton == null) {
                     fooUIButton = this.GetComponent<UIButton>();
@@ -103,7 +102,7 @@ namespace Antura.Profile
                     break;
             }
 
-            Debug.Log("hasMaxStarsInCurrentPlaySessions: " + hasMaxStarsInCurrentPlaySessions);
+            // Debug.Log("hasMaxStarsInCurrentPlaySessions: " + hasMaxStarsInCurrentPlaySessions);
             HighlightImage.gameObject.SetActive(hasMaxStarsInCurrentPlaySessions);
         }
 
@@ -117,7 +116,7 @@ namespace Antura.Profile
             SetAppearance(
                 rnd0 <= 0.5f ? PlayerGender.F : PlayerGender.M,
                 UnityEngine.Random.Range(1, 5),
-                (PlayerTint) UnityEngine.Random.Range(1, 8),
+                (PlayerTint)UnityEngine.Random.Range(1, 8),
                 rnd1 <= 0.2f,
                 rnd2 < 0.33f ? EndgameState.Unfinished : rnd2 < 0.66f ? EndgameState.Finished : EndgameState.FinishedWAllStars,
                 rnd3 <= 0.5f
