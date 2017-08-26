@@ -13,12 +13,12 @@ namespace Antura.UI
         {
             foreach (Transform childTr in transform)
             {
-                switch (AppConstants.ReadingDirection)
+                switch (AppConstants.TextDirection)
                 {
-                    case TextFlow.LeftToRight:
+                    case TextDirection.LeftToRight:
                         // Default
                         break;
-                    case TextFlow.RightToLeft:
+                    case TextDirection.RightToLeft:
                         var rectTransform = childTr.GetComponent<RectTransform>();
                         if (rectTransform != null)
                         {

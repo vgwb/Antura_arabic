@@ -14,9 +14,9 @@ namespace Antura.UI
         void Awake()
         {
             gridLayoutGroup = GetComponent<GridLayoutGroup>();
-            switch (AppConstants.ReadingDirection)
+            switch (AppConstants.TextDirection)
             {
-                case TextFlow.LeftToRight:
+                case TextDirection.LeftToRight:
                     switch (gridLayoutGroup.startCorner)
                     {
                         case GridLayoutGroup.Corner.LowerRight:
@@ -27,7 +27,7 @@ namespace Antura.UI
                             break;
                     }
                     break;
-                case TextFlow.RightToLeft:
+                case TextDirection.RightToLeft:
                     switch (gridLayoutGroup.startCorner)
                     {
                         case GridLayoutGroup.Corner.LowerLeft:

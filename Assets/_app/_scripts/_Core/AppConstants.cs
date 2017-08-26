@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 
 namespace Antura.Core
 {
@@ -93,7 +93,7 @@ namespace Antura.Core
         public const int MaximumMinigameScore = 3;
 
         // Language specifics
-        public static readonly TextFlow ReadingDirection = TextFlow.RightToLeft;
+        public static readonly TextDirection TextDirection = TextDirection.RightToLeft;
 
         // Resource Paths
         public const string AvatarsResourcesDir = "Images/Avatars/";

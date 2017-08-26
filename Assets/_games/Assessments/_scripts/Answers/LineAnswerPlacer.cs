@@ -81,13 +81,13 @@ namespace Antura.Assessment
             float spaceIncrement = 0.5f + letterSize;
             float occupiedSpace = allAnswers.Length * spaceIncrement -3.5f;
 
-            var flow = AssessmentOptions.Instance.LocaleTextFlow;
+            var flow = AssessmentOptions.Instance.LocaleTextDirection;
             float sign;
             Vector3 currentPos = Vector3.zero;
             currentPos.y = -1;
             currentPos.z = 5;
 
-            if (flow == TextFlow.RightToLeft)
+            if (flow == TextDirection.RightToLeft)
             {
                 currentPos.x = occupiedSpace / 2f;
                 sign = -1;

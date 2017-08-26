@@ -61,7 +61,7 @@ namespace Antura.Assessment
                 answerCount++;
 
             float answerGap = placerOptions.AnswerSize + 0.5f;
-            var flow = AssessmentOptions.Instance.LocaleTextFlow;
+            var flow = AssessmentOptions.Instance.LocaleTextDirection;
             while (answerCount > 0)
             {
                 int answersInThisLine = Mathf.FloorToInt( deltaX / answerGap);
@@ -74,7 +74,7 @@ namespace Antura.Assessment
                 float startX = (lineSpace / 2.0f) + (placerOptions.AnswerSize/2.0f);
                 float direction = -1;
 
-                if (flow == TextFlow.LeftToRight) // Not Arabic
+                if (flow == TextDirection.LeftToRight) // Not Arabic
                 {
                     startX = -startX;
                     direction = 1;

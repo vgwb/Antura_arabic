@@ -13,12 +13,12 @@ namespace Antura.UI
         {
             var rectTransform = GetComponent<RectTransform>();
 
-            switch (AppConstants.ReadingDirection)
+            switch (AppConstants.TextDirection)
             {
-                case TextFlow.LeftToRight:
+                case TextDirection.LeftToRight:
                     // Default
                     break;
-                case TextFlow.RightToLeft:
+                case TextDirection.RightToLeft:
                     rectTransform.anchorMin = new Vector2(Mathf.Abs(1 - rectTransform.anchorMin.x), rectTransform.anchorMin.y);
                     rectTransform.anchorMax = new Vector2(Mathf.Abs(1 - rectTransform.anchorMax.x), rectTransform.anchorMax.y);
                     rectTransform.SetAnchoredPosX(-rectTransform.anchoredPosition.x);
