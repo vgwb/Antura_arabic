@@ -2,6 +2,7 @@
 using Antura.CameraControl;
 using Antura.Core;
 using Antura.Database;
+using Antura.Keeper;
 using Antura.MinigamesCommon;
 using Antura.Tutorial;
 using Antura.UI;
@@ -62,14 +63,12 @@ namespace Antura.Map
             get { return AppManager.I.Player.CurrentJourneyPosition.Stage; }
         }
 
-        private int MaxUnlockedStage
-        {
+        private int MaxUnlockedStage {
             get { return AppManager.I.Player.MaxJourneyPosition.Stage; }
         }
 
-        private int FinalStage
-        {
-            get {  return AppManager.I.JourneyHelper.GetFinalJourneyPosition().Stage; }
+        private int FinalStage {
+            get { return AppManager.I.JourneyHelper.GetFinalJourneyPosition().Stage; }
         }
 
         private StageMap StageMap(int Stage)
@@ -77,40 +76,35 @@ namespace Antura.Map
             return stageMaps[Stage - 1];
         }
 
-        public bool IsAtFirstStage
-        {
+        public bool IsAtFirstStage {
             get { return shownStage == 1; }
         }
 
-        private bool IsAtMaxUnlockedStage
-        {
+        private bool IsAtMaxUnlockedStage {
             get { return shownStage == MaxUnlockedStage; }
         }
 
-        public bool IsAtFinalStage
-        {
+        public bool IsAtFinalStage {
             get { return shownStage == FinalStage; }
         }
 
         private bool IsStagePlayable(int stage)
         {
-           return stage <= MaxUnlockedStage;
+            return stage <= MaxUnlockedStage;
         }
 
         #endregion
 
         private void Awake()
         {
-            if (!Application.isEditor)
-            {
+            if (!Application.isEditor) {
                 SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
             }
 
             shownStage = CurrentPlayerStage;
 
             // Setup stage availability
-            for (int stage_i = 1; stage_i <= stageMaps.Length; stage_i++)
-            {
+            for (int stage_i = 1; stage_i <= stageMaps.Length; stage_i++) {
                 bool isStageUnlocked = stage_i <= MaxUnlockedStage;
                 bool isWholeStageUnlocked = stage_i < MaxUnlockedStage;
                 StageMap(stage_i).Initialise(isStageUnlocked, isWholeStageUnlocked);
@@ -133,8 +127,7 @@ namespace Antura.Map
         private void Start()
         {
             /* FIRST CONTACT FEATURE */
-            if (AppManager.I.Player.IsFirstContact() || SimulateFirstContact)
-            {
+            if (AppManager.I.Player.IsFirstContact() || SimulateFirstContact) {
                 FirstContactBehaviour();
                 mapStageIndicator.gameObject.SetActive(false);
             }
@@ -143,8 +136,7 @@ namespace Antura.Map
             UpdateStageButtonsUI();
 
             var isGameCompleted = AppManager.I.Player.HasFinalBeenShown();
-            if (!isGameCompleted && WillPlayAssessmentNext())
-            {
+            if (!isGameCompleted && WillPlayAssessmentNext()) {
                 PlayRandomAssessmentDialog();
             }
         }
@@ -193,25 +185,20 @@ namespace Antura.Map
                 ? firstContactSimulationStep == 2
                 : AppManager.I.Player.IsFirstContact(2);
 
-            if (isFirstStep)
-            {
+            if (isFirstStep) {
                 DeactivateUI();
 
-                KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro, true, true, () =>
-                {
+                KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro, true, true, () => {
                     KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_AnturaSpace, true, true, ActivateAnturaButton);
                 });
 
                 AppManager.I.Player.FirstContactPassed();
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
-            }
-            else if (isSecondStep)
-            {
+            } else if (isSecondStep) {
                 ActivateUI();
                 AppManager.I.Player.FirstContactPassed(2);
 
-                KeeperManager.I.PlayDialog(LocalizationDataId.Map_First, true, true, () =>
-                {
+                KeeperManager.I.PlayDialog(LocalizationDataId.Map_First, true, true, () => {
                     KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_Map1);
                 });
 
@@ -239,8 +226,7 @@ namespace Antura.Map
             TutorialUI.SetCamera(UICamera);
             var anturaBtPos = anturaSpaceButton.transform.position;
             anturaBtPos.z -= 1;
-            while (true)
-            {
+            while (true) {
                 TutorialUI.Click(anturaSpaceButton.transform.position);
                 yield return new WaitForSeconds(0.85f);
             }
@@ -251,8 +237,7 @@ namespace Antura.Map
             TutorialUI.SetCamera(UICamera);
             var pos = playButton.transform.position;
             pos.y += 2;
-            while (true)
-            {
+            while (true) {
                 TutorialUI.Click(pos);
                 yield return new WaitForSeconds(0.85f);
             }
@@ -306,12 +291,11 @@ namespace Antura.Map
 
             SwitchFromToStage(fromStage, toStage);
 
-            if (IsAtFirstStage)
-            {
+            if (IsAtFirstStage) {
                 ShowTutorial();
             }
         }
-        
+
         private void UpdateButtonsForStage(int stage)
         {
             UpdateStageButtonsUI();
@@ -324,7 +308,7 @@ namespace Antura.Map
 
         private void SwitchFromToStage(int fromStage, int toStage)
         {
-            inTransition = true;  
+            inTransition = true;
             StartCoroutine(SwitchFromToStageCO(fromStage, toStage));
         }
 
@@ -338,10 +322,8 @@ namespace Antura.Map
             playerPin.stageMap = StageMap(toStage);
 
             // Update Player Stage too, if needed
-            if (MovePlayerWithStageChange)
-            {
-                if (IsStagePlayable(toStage) && toStage != CurrentPlayerStage)
-                {
+            if (MovePlayerWithStageChange) {
+                if (IsStagePlayable(toStage) && toStage != CurrentPlayerStage) {
                     bool comingFromHigherStage = fromStage > toStage;
                     playerPin.ResetPlayerPositionAfterStageChange(comingFromHigherStage);
                 }
@@ -355,14 +337,10 @@ namespace Antura.Map
             UpdateStageIndicatorUI(toStage);
             UpdateButtonsForStage(toStage);
 
-            if (MovePlayerWithStageChange)
-            {
+            if (MovePlayerWithStageChange) {
                 ShowPlaySessionMovementButtons();
-            }
-            else
-            {
-                if (toStage == CurrentPlayerStage )
-                {
+            } else {
+                if (toStage == CurrentPlayerStage) {
                     ShowPlaySessionMovementButtons();
                 }
             }
@@ -414,16 +392,11 @@ namespace Antura.Map
 
         private void UpdateStageButtonsUI()
         {
-            if (IsAtFirstStage)
-            {
+            if (IsAtFirstStage) {
                 rightStageButton.SetActive(false);
-            }
-            else if (IsAtFinalStage)
-            {
+            } else if (IsAtFinalStage) {
                 leftStageButton.SetActive(false);
-            }
-            else
-            {
+            } else {
                 rightStageButton.SetActive(true);
                 leftStageButton.SetActive(true);
             }

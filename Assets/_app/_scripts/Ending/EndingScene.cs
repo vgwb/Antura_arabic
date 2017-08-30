@@ -3,7 +3,7 @@ using System.Collections;
 using Antura.Animation;
 using Antura.Dog;
 using Antura.CameraEffects;
-using Antura.Core;
+using Antura.Keeper;
 using Antura.LivingLetters;
 using Antura.UI;
 using UnityEngine;
@@ -131,8 +131,7 @@ namespace Antura.Scenes
         IEnumerator DoEnding()
         {
             bool completed = false;
-            System.Func<bool> CheckIfCompleted = () =>
-            {
+            System.Func<bool> CheckIfCompleted = () => {
                 if (completed) {
                     // Reset it
                     completed = false;

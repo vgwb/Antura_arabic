@@ -2,6 +2,7 @@
 using Antura.CameraControl;
 using Antura.Core;
 using Antura.Database;
+using Antura.Keeper;
 using Antura.LivingLetters;
 using Antura.Profile;
 using Antura.Rewards;
@@ -38,13 +39,11 @@ namespace Antura
 
         public PlayerProfileManager PlayerProfileManager;
 
-        public AppSettings AppSettings
-        {
+        public AppSettings AppSettings {
             get { return AppSettingsManager.Settings; }
         }
 
-        public PlayerProfile Player
-        {
+        public PlayerProfile Player {
             get { return PlayerProfileManager.CurrentPlayer; }
             set { PlayerProfileManager.CurrentPlayer = value; }
         }
@@ -106,8 +105,7 @@ namespace Antura
             // Exit with Android back button
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 if (Application.platform == RuntimePlatform.Android) {
-                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () =>
-                    {
+                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
                         Debug.Log("Application Quit");
                         Application.Quit();
                     }, () => { });

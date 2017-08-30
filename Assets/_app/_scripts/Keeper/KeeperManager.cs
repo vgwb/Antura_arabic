@@ -1,8 +1,9 @@
 ﻿using Antura.Audio;
+using Antura.Core;
 using Antura.UI;
 using UnityEngine;
 
-namespace Antura.Core
+namespace Antura.Keeper
 {
     /// <summary>
     /// Manages the Keeper throughout the application. The Keeper gives hints and explains minigames to the player.
@@ -46,8 +47,7 @@ namespace Antura.Core
             if (autoClose) {
                 WidgetSubtitles.I.DisplaySentence(data, 2, isKeeper, null);
                 currentCallback = _callback;
-                AudioManager.I.PlayDialogue(data, () =>
-                {
+                AudioManager.I.PlayDialogue(data, () => {
                     CloseDialog();
                     if (currentCallback != null) {
                         currentCallback();

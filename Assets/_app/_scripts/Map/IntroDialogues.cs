@@ -1,5 +1,6 @@
 ﻿using Antura.Core;
 using Antura.Database;
+using Antura.Keeper;
 using UnityEngine;
 
 namespace Antura.Map
@@ -12,8 +13,7 @@ namespace Antura.Map
         private void OnTriggerEnter(Collider other)
         {
             var isMaxPosition = AppManager.I.Player.IsAtMaxJourneyPosition();
-            if (other.gameObject.CompareTag("Player") && isMaxPosition && numberStage > 1 && !dialoguePlayed)
-            {
+            if (other.gameObject.CompareTag("Player") && isMaxPosition && numberStage > 1 && !dialoguePlayed) {
                 var data = new LocalizationDataId[7];
                 data[2] = LocalizationDataId.Map_Intro_Map2;
                 data[3] = LocalizationDataId.Map_Intro_Map3;

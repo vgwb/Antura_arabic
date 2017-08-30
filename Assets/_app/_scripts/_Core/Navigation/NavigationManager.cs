@@ -1,11 +1,12 @@
-using UnityEngine;
-using System;
-using System.Collections.Generic;
 using Antura.Book;
 using Antura.Database;
 using Antura.Environment;
+using Antura.Keeper;
 using Antura.Profile;
 using Antura.Rewards;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Antura.Core
 {
@@ -27,29 +28,24 @@ namespace Antura.Core
 
         public bool IsLoadingMinigame { get; private set; }
 
-        public bool IsTransitioningScenes
-        {
+        public bool IsTransitioningScenes {
             get { return SceneTransitionManager.IsTransitioning; }
         }
 
-        public int NumberOfLoadedScenes
-        {
+        public int NumberOfLoadedScenes {
             get { return SceneTransitionManager.NumberOfLoadedScenes; }
         }
 
-        public bool IsInFirstLoadedScene
-        {
+        public bool IsInFirstLoadedScene {
             get { return NumberOfLoadedScenes <= 1; }
         }
 
-        public Action OnSceneStartTransition
-        {
+        public Action OnSceneStartTransition {
             get { return SceneTransitionManager.OnSceneStartTransition; }
             set { SceneTransitionManager.OnSceneStartTransition = value; }
         }
 
-        public Action OnSceneEndTransition
-        {
+        public Action OnSceneEndTransition {
             get { return SceneTransitionManager.OnSceneEndTransition; }
             set { SceneTransitionManager.OnSceneEndTransition = value; }
         }
@@ -131,9 +127,7 @@ namespace Antura.Core
                 case AppScene.Home:
                     if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.Intro);
-                    }
-                    else
-                    {
+                    } else {
                         GoToScene(AppScene.Map);
                     }
                     break;
@@ -183,8 +177,7 @@ namespace Antura.Core
 
         private bool CheckDailySceneTrigger()
         {
-            if (AppManager.I.Player.IsFirstContact())
-            {
+            if (AppManager.I.Player.IsFirstContact()) {
                 LogManager.I.LogInfo(InfoEvent.DailyRewardReceived, "first contact");
                 return false;
             }
@@ -192,18 +185,13 @@ namespace Antura.Core
             bool mustShowDailyScenes = false;
             int numberOfDaysSinceLastReward = AppManager.I.Teacher.logAI.DaysSinceLastReward();
 
-            if (numberOfDaysSinceLastReward <= 0)
-            {
+            if (numberOfDaysSinceLastReward <= 0) {
                 mustShowDailyScenes = false;
-            }
-            else if (numberOfDaysSinceLastReward > 1)
-            {
+            } else if (numberOfDaysSinceLastReward > 1) {
                 // Number of days since last reward is more than 1. Show daily, but zero combo.
                 mustShowDailyScenes = true;
                 NavData.CurrentPlayer.ConsecutivePlayDays = 1;
-            }
-            else
-            {
+            } else {
                 // Number of days since last reward is exactly 1. Good for combo!
                 mustShowDailyScenes = true;
                 NavData.CurrentPlayer.ConsecutivePlayDays += 1;
@@ -262,8 +250,7 @@ namespace Antura.Core
                     break;
                 case AppScene.Map:
                     // When coming back to the map, we need to check whether a new daily reward is needed
-                    if (CheckDailySceneTrigger())
-                    {
+                    if (CheckDailySceneTrigger()) {
                         GoToScene(AppScene.Mood);
                         return;
                     }
@@ -288,7 +275,7 @@ namespace Antura.Core
             SceneTransitionManager.LoadSceneWithTransition(sceneName);
 
             if (AppConstants.UnityAnalyticsEnabled && !Application.isEditor) {
-                UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> {{"scene", sceneName}});
+                UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
             }
             LogManager.I.LogInfo(InfoEvent.EnterScene, "{\"Scene\":\"" + sceneName + "\"}");
         }
@@ -363,7 +350,7 @@ namespace Antura.Core
                         CustomGoTo(AppScene.AnturaSpace);
                     break;
 
-                 default:
+                default:
                     CustomGoTo(AppScene.AnturaSpace);
                     break;
             }
@@ -436,11 +423,9 @@ namespace Antura.Core
 
         public bool PrevSceneIsReservedArea()
         {
-            if (NavData.PrevSceneStack != null && NavData.PrevSceneStack.Count > 0)
-            {
+            if (NavData.PrevSceneStack != null && NavData.PrevSceneStack.Count > 0) {
                 return NavData.PrevSceneStack.Peek() == AppScene.ReservedArea;
-            }
-            else {
+            } else {
                 return true;
             }
         }
@@ -533,13 +518,11 @@ namespace Antura.Core
 
         #region Minigame Launching
 
-        public MiniGameData CurrentMiniGameData
-        {
+        public MiniGameData CurrentMiniGameData {
             get { return NavData.CurrentMiniGameData; }
         }
 
-        public List<MiniGameData> CurrentPlaySessionMiniGames
-        {
+        public List<MiniGameData> CurrentPlaySessionMiniGames {
             get { return NavData.CurrentPlaySessionMiniGames; }
         }
 
@@ -580,51 +563,38 @@ namespace Antura.Core
             // Game selector -> go to the first game
             NavData.SetFirstMinigame();
             // TODO: ???
-            WorldManager.I.CurrentWorld = (WorldID) (NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
+            WorldManager.I.CurrentWorld = (WorldID)(NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
             InternalLaunchGameScene(NavData.CurrentMiniGameData);
         }
 
         private void GoToNextGameOfPlaySession()
         {
-            if (!NavData.RealPlaySession)
-            {
+            if (!NavData.RealPlaySession) {
                 // Go where you were previously
                 GoBack();
                 return;
             }
 
             // From one game to the next
-            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
-            {
+            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                 // We finished the whole game: no reward, go directly to the end scene instead
-                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition())
-                {
-                    if (!AppManager.I.Player.HasFinalBeenShown())
-                    {
+                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition()) {
+                    if (!AppManager.I.Player.HasFinalBeenShown()) {
                         AppManager.I.Player.SetGameCompleted();
                         AppManager.I.Player.SetFinalShown();
                         GoToScene(AppScene.Ending);
-                    }
-                    else
-                    {
+                    } else {
                         GoToScene(AppScene.Map);
                     }
-                }
-                else
-                {
+                } else {
                     GoToScene(AppScene.Rewards);
                 }
-            }
-            else
-            {
+            } else {
                 // Not an assessment. Do we have any more?
-                if (NavData.SetNextMinigame())
-                {
+                if (NavData.SetNextMinigame()) {
                     // Go to the next minigame.
                     InternalLaunchGameScene(NavData.CurrentMiniGameData);
-                }
-                else
-                {
+                } else {
                     // Go to the reward scene.
                     GoToScene(AppScene.PlaySessionResult);
                 }

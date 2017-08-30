@@ -3,6 +3,7 @@ using System.Collections;
 using Antura.Dog;
 using Antura.Core;
 using Antura.Database;
+using Antura.Keeper;
 using Antura.UI;
 using UnityEngine.UI;
 
@@ -31,12 +32,9 @@ namespace Antura.Rewards
             AnturaAnimController.State = AnturaAnimation;
             ShowReward();
 
-            if (!AppManager.I.Player.IsFirstContact())
-            {
+            if (!AppManager.I.Player.IsFirstContact()) {
                 AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
-            }
-            else
-            {
+            } else {
                 AnturaSpaceBtton.gameObject.SetActive(false);
             }
         }
