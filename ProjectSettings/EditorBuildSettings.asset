@@ -12,6 +12,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_app/_scenes/app_Book.unity
   - enabled: 1
+    path: Assets/_app/_scenes/app_DailyReward.unity
+  - enabled: 1
     path: Assets/_app/_scenes/app_Ending.unity
   - enabled: 1
     path: Assets/_app/_scenes/app_GamesSelector.unity
@@ -22,15 +24,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_app/_scenes/app_Mood.unity
   - enabled: 1
-    path: Assets/_app/_scenes/app_Rewards.unity
-  - enabled: 1
     path: Assets/_app/_scenes/app_PlayerCreation.unity
   - enabled: 1
     path: Assets/_app/_scenes/app_PlaySessionResult.unity
   - enabled: 1
     path: Assets/_app/_scenes/app_ReservedArea.unity
   - enabled: 1
-    path: Assets/_app/_scenes/app_DailyReward.unity
+    path: Assets/_app/_scenes/app_Rewards.unity
   - enabled: 1
     path: Assets/_games/Assessments/game_Assessment.unity
   - enabled: 1
