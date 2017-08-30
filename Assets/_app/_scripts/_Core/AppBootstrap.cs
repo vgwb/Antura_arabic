@@ -9,7 +9,7 @@ namespace Antura.Core
     /// Takes care of generating managers before the AppManger is awoken.
     /// Tied to the AppManager.
     /// </summary>
-    public class PreAppManager : MonoBehaviour
+    public class AppBootstrap : MonoBehaviour
     {
         public GameObject AudioManager;
         public GameObject EventsManager;
