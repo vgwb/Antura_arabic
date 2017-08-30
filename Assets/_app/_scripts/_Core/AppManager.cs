@@ -1,9 +1,9 @@
 ﻿using Antura.Audio;
 using Antura.CameraControl;
 using Antura.Core;
+using Antura.Core.Services;
 using Antura.Database;
 using Antura.Keeper;
-using Antura.LivingLetters;
 using Antura.Profile;
 using Antura.Rewards;
 using Antura.Teacher;
@@ -33,6 +33,7 @@ namespace Antura
         public DatabaseManager DB;
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
+        public Services Services;
 
         [HideInInspector]
         public NavigationManager NavigationManager;
@@ -84,6 +85,8 @@ namespace Antura
             PlayerProfileManager = new PlayerProfileManager();
             PlayerProfileManager.LoadSettings();
 
+            Services = new Services();
+
             gameObject.AddComponent<KeeperManager>();
 
             RewardSystemManager.Init();
@@ -113,7 +116,8 @@ namespace Antura
             }
         }
 
-        #region Setting
+        #region Settings
+        // TODO move into AppSettings Manager
 
         public void ToggleQualitygfx()
         {
@@ -140,13 +144,13 @@ namespace Antura
             // app is pausing
             if (IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
-                NotificationsManager.I.AppSuspended();
+                Services.Notifications.AppSuspended();
             }
 
             //app is resuming
             if (!IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppResume);
-                NotificationsManager.I.AppResumed();
+                Services.Notifications.AppResumed();
                 LogManager.I.InitNewSession();
             }
             AudioManager.I.OnAppPause(IsPaused);
