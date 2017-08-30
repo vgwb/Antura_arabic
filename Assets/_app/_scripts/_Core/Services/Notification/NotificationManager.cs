@@ -18,9 +18,9 @@ namespace Antura.Core.Services.Notification
         /// Schedule simple notification without app icon.
         /// </summary>
         /// <param name="smallIcon">List of build-in small icons: notification_icon_bell (default), notification_icon_clock, notification_icon_heart, notification_icon_message, notification_icon_nut, notification_icon_star, notification_icon_warning.</param>
-        public static int Send(TimeSpan delay, string title, string message, Color smallIconColor, NotificationIcon smallIcon = 0)
+        public static int ScheduleSimple(TimeSpan delay, string title, string message, Color smallIconColor, NotificationIcon smallIcon = 0)
         {
-            return SendNotification(new NotificationParams {
+            return ScheduleNotification(new NotificationParams {
                 Id = new System.Random().Next(),
                 Delay = delay,
                 Title = title,
@@ -39,9 +39,9 @@ namespace Antura.Core.Services.Notification
         /// Schedule notification with app icon.
         /// </summary>
         /// <param name="smallIcon">List of build-in small icons: notification_icon_bell (default), notification_icon_clock, notification_icon_heart, notification_icon_message, notification_icon_nut, notification_icon_star, notification_icon_warning.</param>
-        public static int SendWithAppIcon(TimeSpan delay, string title, string message, Color smallIconColor, NotificationIcon smallIcon = 0)
+        public static int ScheduleSimpleWithAppIcon(TimeSpan delay, string title, string message, Color smallIconColor, NotificationIcon smallIcon = 0)
         {
-            return SendNotification(new NotificationParams {
+            return ScheduleNotification(new NotificationParams {
                 Id = new System.Random().Next(),
                 Delay = delay,
                 Title = title,
@@ -59,28 +59,43 @@ namespace Antura.Core.Services.Notification
         /// <summary>
         /// Schedule customizable notification.
         /// </summary>
-        public static int SendNotification(NotificationParams notificationParams)
+        public static int ScheduleNotification(NotificationParams notificationParams)
         {
             var p = notificationParams;
+            var delaySeconds = (int)p.Delay.TotalSeconds;
             var delayMs = (long)p.Delay.TotalMilliseconds;
 #if UNITY_ANDROID && !UNITY_EDITOR
-            new AndroidJavaClass(FullClassName).CallStatic("SetNotification", p.Id, delayMs, p.Title, p.Message, p.Ticker,
-                p.Sound ? 1 : 0, p.Vibrate ? 1 : 0, p.Light ? 1 : 0, p.LargeIcon, GetSmallIconName(p.SmallIcon), ColotToInt(p.SmallIconColor), MainActivityClassName);
-            return notificationParams.Id;
+            AndroidJavaClass pluginClass = new AndroidJavaClass(FullClassName);
+            if (pluginClass != null) {
+                pluginClass.CallStatic("SetNotification", 
+                    p.Id, 
+                    delayMs, 
+                    p.Title, 
+                    p.Message, 
+                    p.Ticker,
+                    p.Sound ? 1 : 0, 
+                    p.Vibrate ? 1 : 0, 
+                    p.Light ? 1 : 0, 
+                    p.LargeIcon, 
+                    GetSmallIconName(p.SmallIcon), 
+                    ColorToInt(p.SmallIconColor),
+                    MainActivityClassName
+                );
+            }
+            return p.Id;
 #elif UNITY_IOS && !UNITY_EDITOR
             UnityEngine.iOS.LocalNotification notification = new UnityEngine.iOS.LocalNotification();
             DateTime now = DateTime.Now;
-            DateTime fireDate = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).AddSeconds(delayMs);
+            DateTime fireDate = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).AddSeconds(delaySeconds);
             notification.fireDate = fireDate;
             notification.alertBody = p.Message;
             notification.alertAction = p.Title;
             notification.hasAction = false;
-
             UnityEngine.iOS.NotificationServices.ScheduleLocalNotification(notification);
 
             return (int)fireDate.Ticks;
 #else
-            Debug.LogWarning("Simple Android Notifications are not supported for current platform. Build and play this scene on android device!");
+            Debug.LogWarning("Local Notifications are not supported for current platform. Only iOS and Android are supported!");
             return 0;
 #endif
         }
@@ -88,10 +103,13 @@ namespace Antura.Core.Services.Notification
         /// <summary>
         /// Cancel notification by id.
         /// </summary>
-        public static void Cancel(int id)
+        public static void CancelNotification(int id)
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
-            new AndroidJavaClass(FullClassName).CallStatic("CancelNotification", id);
+            AndroidJavaClass pluginClass = new AndroidJavaClass(FullClassName);
+            if (pluginClass != null) {
+                pluginClass.CallStatic("CancelNotification", id);
+            }
 #endif
 
 #if UNITY_IOS && !UNITY_EDITOR
@@ -108,10 +126,13 @@ namespace Antura.Core.Services.Notification
         /// <summary>
         /// Cancel all notifications.
         /// </summary>
-        public static void CancelAll()
+        public static void CancelAllNotifications()
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
-            new AndroidJavaClass(FullClassName).CallStatic("CancelAllNotifications");
+            AndroidJavaClass pluginClass = new AndroidJavaClass(FullClassName);
+            if (pluginClass != null) {
+                pluginClass.CallStatic("CancelAllNotifications");
+            }
 #endif
 
 #if UNITY_IOS && !UNITY_EDITOR
@@ -119,7 +140,8 @@ namespace Antura.Core.Services.Notification
 #endif
         }
 
-        private static int ColotToInt(Color color)
+        #region Utilities
+        private static int ColorToInt(Color color)
         {
             var smallIconColor = (Color32)color;
 
@@ -130,5 +152,6 @@ namespace Antura.Core.Services.Notification
         {
             return "anp_" + icon.ToString().ToLower();
         }
+        #endregion
     }
 }

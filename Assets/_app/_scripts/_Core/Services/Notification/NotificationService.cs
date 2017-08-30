@@ -1,10 +1,26 @@
 ﻿using System;
 using UnityEngine;
 
+#if UNITY_IOS
+using NotificationServices = UnityEngine.iOS.NotificationServices;
+using NotificationType = UnityEngine.iOS.NotificationType;
+#endif
+
 namespace Antura.Core.Services.Notification
 {
     public class NotificationService
     {
+        public NotificationService()
+        {
+#if UNITY_IOS
+            NotificationServices.RegisterForNotifications(
+                NotificationType.Alert |
+                NotificationType.Badge |
+                NotificationType.Sound
+            );
+            Debug.Log("Registered for Notifications");
+#endif
+        }
 
         public void AppSuspended()
         {
@@ -19,21 +35,26 @@ namespace Antura.Core.Services.Notification
         private void PrepareNextLocalNotification()
         {
             Debug.Log("Next Local Notification prepared");
-            NotificationManager.SendWithAppIcon(TimeSpan.FromSeconds(10), "Antura and the Letters", "Come back to play your daily session and earn new rewards!", Color.blue);
+            NotificationManager.ScheduleSimpleWithAppIcon(
+                TimeSpan.FromSeconds(10),
+                "Antura and the Letters",
+                "Come back to play your daily session and earn new rewards!",
+                Color.blue
+            );
         }
 
         private void DeleteNextLocalNotfiications()
         {
             Debug.Log("Next Local Notifications deleted");
-            NotificationManager.CancelAll();
+            NotificationManager.CancelAllNotifications();
         }
 
 
-        public void ScheduleCustom()
+        public void ScheduleCustomNotification()
         {
             var notificationParams = new NotificationParams {
                 Id = UnityEngine.Random.Range(0, int.MaxValue),
-                Delay = TimeSpan.FromSeconds(5),
+                Delay = TimeSpan.FromSeconds(10),
                 Title = "Custom notification",
                 Message = "Message",
                 Ticker = "Ticker",
@@ -45,7 +66,7 @@ namespace Antura.Core.Services.Notification
                 LargeIcon = "app_icon"
             };
 
-            NotificationManager.SendNotification(notificationParams);
+            NotificationManager.ScheduleNotification(notificationParams);
         }
 
     }
