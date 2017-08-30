@@ -1,12 +1,10 @@
-﻿using System;
-using System.Reflection;
-using Antura.Core;
-using Antura.Database;
-using Antura.MinigamesCommon;
+﻿using Antura.MinigamesCommon;
 using Antura.Teacher;
+using System;
+using System.Reflection;
 using UnityEngine;
 
-namespace Antura.LivingLetters
+namespace Antura.Core
 {
     /// <summary>
     /// Handles the logic to launch minigames with the correct configuration.
@@ -63,7 +61,7 @@ namespace Antura.LivingLetters
             // Retrieve the packs for the current minigame configuration
             var questionBuilder = currentGameConfig.SetupBuilder();
             var questionPacks = questionPacksGenerator.GenerateQuestionPacks(questionBuilder);
-            currentGameConfig.Questions = new SequentialQuestionPackProvider(questionPacks);
+            currentGameConfig.Questions = new LivingLetters.SequentialQuestionPackProvider(questionPacks);
 
             // Communicate to LogManager the start of a new single minigame play session.
             if (AppConstants.DebugLogDbInserts) Debug.Log("InitGameplayLogSession " + _gameCode.ToString());
@@ -115,7 +113,7 @@ namespace Antura.LivingLetters
                                     " not found. This should be present in the minigame's Configuration class.");
             }
 
-            IGameConfiguration currentGameConfig = (IGameConfiguration) property.GetValue(null, null);
+            IGameConfiguration currentGameConfig = (IGameConfiguration)property.GetValue(null, null);
 
             if (currentGameConfig != null) {
                 currentGameConfig.Context = defaultContext;

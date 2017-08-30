@@ -1,4 +1,4 @@
-﻿namespace Antura.LivingLetters
+﻿namespace Antura.Core
 {
     /// <summary>
     /// Data passed to a minigame to configure it. 

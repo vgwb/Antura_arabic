@@ -1,4 +1,4 @@
-﻿using Antura.LivingLetters;
+﻿using Antura.Core;
 using UnityEngine;
 
 #if UNITY_EDITOR
