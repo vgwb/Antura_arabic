@@ -140,11 +140,13 @@ namespace Antura
             // app is pausing
             if (IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
+                NotificationsManager.I.AppSuspended();
             }
 
             //app is resuming
             if (!IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppResume);
+                NotificationsManager.I.AppResumed();
                 LogManager.I.InitNewSession();
             }
             AudioManager.I.OnAppPause(IsPaused);
