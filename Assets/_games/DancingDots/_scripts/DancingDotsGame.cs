@@ -14,7 +14,7 @@ namespace Antura.Minigames.DancingDots
     // @todo: move these somewhere accessible by the games, but in the DATA
     public enum DiacriticEnum { None, Sokoun, Fatha, Dameh, Kasrah };
 
-    public class DancingDotsGame : MiniGame
+    public class DancingDotsGame : MiniGameController
     {
 
         public IntroductionGameState IntroductionState { get; private set; }

@@ -10,7 +10,7 @@ namespace Antura.Minigames.SickLetters
 {
     public enum Diacritic { Sokoun, Fatha, Dameh, Kasrah, None };
 
-    public class SickLettersGame : MiniGame
+    public class SickLettersGame : MiniGameController
     {
         public SickLettersLLPrefab LLPrefab;
         public SickLettersAntura antura;

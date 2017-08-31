@@ -6,12 +6,12 @@ namespace Antura.Minigames
     /// </summary>
     public class OutcomeGameState : IState
     {
-        private MiniGame game;
+        private MiniGameController game;
 
         private bool outcomeStarted;
         private float timer;
 
-        public OutcomeGameState(MiniGame game)
+        public OutcomeGameState(MiniGameController game)
         {
             this.game = game;
         }

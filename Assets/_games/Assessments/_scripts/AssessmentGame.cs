@@ -8,7 +8,7 @@ namespace Antura.Assessment
     /// Assessment instance according to which assessment code was provided and
     /// Setup the MiniGameStates.
     /// </summary>
-    public class AssessmentGame : MiniGame
+    public class AssessmentGame : MiniGameController
     {
         [HideInInspector]
         public AssessmentVariation AssessmentVariation;

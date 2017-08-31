@@ -14,7 +14,7 @@ using Antura.Helpers;
 
 namespace Antura.Minigames.MakeFriends
 {
-    public class MakeFriendsGame : MiniGame
+    public class MakeFriendsGame : MiniGameController
     {
         public LivingLetterArea leftArea;
         public LivingLetterArea rightArea;

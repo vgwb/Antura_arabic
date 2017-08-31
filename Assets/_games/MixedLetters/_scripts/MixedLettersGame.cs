@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Antura.Minigames.MixedLetters
 {
-    public class MixedLettersGame : MiniGame
+    public class MixedLettersGame : MiniGameController
     {
         public static MixedLettersGame instance;
 

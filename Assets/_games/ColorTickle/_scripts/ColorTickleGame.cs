@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.ColorTickle
 {
-    public class ColorTickleGame : MiniGame
+    public class ColorTickleGame : MiniGameController
     {
         #region PUBLIC MEMBERS
 

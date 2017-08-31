@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.TakeMeHome
 {
-    public class TakeMeHomeGame : MiniGame
+    public class TakeMeHomeGame : MiniGameController
 	{
 		
 		public TextMeshProUGUI timerText;

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.FastCrowd
 {
-    public class FastCrowdGame : MiniGame
+    public class FastCrowdGame : MiniGameController
     {
         public QuestionManager QuestionManager;
 

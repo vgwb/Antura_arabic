@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.HideAndSeek
 {
-    public class HideAndSeekGame : MiniGame
+    public class HideAndSeekGame : MiniGameController
     {
         public IntroductionGameState IntroductionState { get; private set; }
         public QuestionGameState QuestionState { get; private set; }

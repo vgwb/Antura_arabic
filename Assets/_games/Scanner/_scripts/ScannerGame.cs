@@ -8,7 +8,7 @@ using Antura.Minigames;
 namespace Antura.Minigames.Scanner
 {
 
-    public class ScannerGame : MiniGame
+    public class ScannerGame : MiniGameController
     {
         public bool disableInput;
         public bool gameActive = true;

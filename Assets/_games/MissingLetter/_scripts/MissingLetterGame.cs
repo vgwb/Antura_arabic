@@ -12,7 +12,7 @@ namespace Antura.Minigames.MissingLetter
         public float fHeightOffset;
     }
 
-    public class MissingLetterGame : MiniGame
+    public class MissingLetterGame : MiniGameController
     {
         #region API
         public void ResetScore()

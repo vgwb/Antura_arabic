@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.Egg
 {
-    public class EggGame : MiniGame
+    public class EggGame : MiniGameController
     {
         public EggBox eggBox;
         public EggController eggController;

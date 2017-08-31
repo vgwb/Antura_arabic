@@ -10,7 +10,7 @@ using DG.Tweening;
 
 namespace Antura.Minigames.Maze
 {
-    public class MazeGame : MiniGame
+    public class MazeGame : MiniGameController
     {
         public static MazeGame instance;
 

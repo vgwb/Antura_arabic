@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.ThrowBalls
 {
-    public class ThrowBallsGame : MiniGame
+    public class ThrowBallsGame : MiniGameController
     {
         public GameState GameState { get; private set; }
 

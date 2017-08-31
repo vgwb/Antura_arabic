@@ -11,7 +11,7 @@ namespace Antura.Minigames
     /// Main entry point for the logic of a minigame.
     /// </summary>
     // refactor: this could be better organized to signal what the minigame needs to access, and what the core needs
-    public abstract class MiniGame : SingletonMonoBehaviour<MiniGame>, IGame
+    public abstract class MiniGameController : SingletonMonoBehaviour<MiniGameController>, IGame
     {
         #region Configuration
 

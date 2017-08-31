@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.ReadingGame
 {
-    public class ReadingGameGame : MiniGame // ReadingGameGameGameGameGame!
+    public class ReadingGameGame : MiniGameController // ReadingGameGameGameGameGame!
     {
         public ReadingBarSet barSet;
         public GameObject blurredText;
