@@ -1,4 +1,4 @@
-﻿using Antura;
+﻿using Antura.Core;
 using UnityEngine;
 
 public class ShopActionsManager : MonoBehaviour
@@ -11,10 +11,9 @@ public class ShopActionsManager : MonoBehaviour
 
     private ShopAction[] shopActions;
 
-	void Start ()
-	{
-	    if (addDebugBones)
-	    {
+    void Start()
+    {
+        if (addDebugBones) {
             AppManager.I.Player.AddBones(20);
         }
 
@@ -24,12 +23,11 @@ public class ShopActionsManager : MonoBehaviour
 
         // Setup actions
         shopActions = GetComponentsInChildren<ShopAction>();
-        foreach (var shopAction in shopActions)
-	    {
-	        shopAction.InitialiseLockedState();
-	    }
-	    ShopActionsPanelUi.SetActions(shopActions);
+        foreach (var shopAction in shopActions) {
+            shopAction.InitialiseLockedState();
+        }
+        ShopActionsPanelUi.SetActions(shopActions);
 
-	}
-	
+    }
+
 }

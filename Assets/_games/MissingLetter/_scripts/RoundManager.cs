@@ -1,11 +1,12 @@
-﻿using UnityEngine;
-using System.Linq;
-using System.Collections.Generic;
-using System;
-using Antura.Audio;
+﻿using Antura.Audio;
+using Antura.Core;
 using Antura.Helpers;
 using Antura.LivingLetters;
 using Antura.UI;
+using System.Linq;
+using System.Collections.Generic;
+using System;
+using UnityEngine;
 
 namespace Antura.Minigames.MissingLetter
 {
@@ -16,8 +17,7 @@ namespace Antura.Minigames.MissingLetter
         public int m_iCurrentRound { get; private set; }
 
         #region API
-        public IQuestionPack CurrentQuestion
-        {
+        public IQuestionPack CurrentQuestion {
             get { return m_oCurrQuestionPack; }
         }
 
@@ -59,8 +59,7 @@ namespace Antura.Minigames.MissingLetter
         {
             m_iCurrentRound++;
 
-            if (m_iCurrentRound >= m_oGame.m_iRoundsLimit)
-            {
+            if (m_iCurrentRound >= m_oGame.m_iRoundsLimit) {
                 m_oGame.SetCurrentState(m_oGame.ResultState);
                 return;
             }
@@ -68,17 +67,13 @@ namespace Antura.Minigames.MissingLetter
             m_oGame.SetInIdle(false);
             ExitCurrentScene();
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingWord)
-            {
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingWord) {
                 NextSentenceQuestion();
-            }
-            else
-            {
+            } else {
                 NextWordQuestion();
             }
 
-            if (m_oGame.GetCurrentState() == m_oGame.PlayState || m_bTutorialEnabled)
-            {
+            if (m_oGame.GetCurrentState() == m_oGame.PlayState || m_bTutorialEnabled) {
                 EnterCurrentScene();
                 m_oGame.StartCoroutine(Utils.LaunchDelay(2.0f, m_oGame.SetInIdle, true));
             }
@@ -105,23 +100,19 @@ namespace Antura.Minigames.MissingLetter
             //refresh the data (for graphics)
             RestoreQuestion(isCorrectAnswer(clicked.LetterData));
 
-            foreach (GameObject _obj in m_aoCurrentAnswerScene)
-            {
+            foreach (GameObject _obj in m_aoCurrentAnswerScene) {
                 _obj.GetComponent<LetterBehaviour>().SetEnabledCollider(false);
             }
 
             //letter animation wait for ending dancing animation, wait animator fix
-            if (isCorrectAnswer(clicked.LetterData))
-            {
+            if (isCorrectAnswer(clicked.LetterData)) {
                 clicked.PlayAnimation(LLAnimationStates.LL_still);
                 clicked.mLetter.DoHorray();
 
                 PlayParticleSystem(m_aoCurrentQuestionScene[0].transform.position + Vector3.up * 2);
 
                 OnResponse(true);
-            }
-            else
-            {
+            } else {
                 clicked.PlayAnimation(LLAnimationStates.LL_still);
                 OnResponse(false);
             }
@@ -130,12 +121,10 @@ namespace Antura.Minigames.MissingLetter
         //shuffle current answer order and tell to letter change pos
         public void ShuffleLetters(float duration)
         {
-            if (m_oGame.IsInIdle())
-            {
+            if (m_oGame.IsInIdle()) {
                 m_oGame.SetInIdle(false);
                 m_aoCurrentAnswerScene.Shuffle();
-                for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
-                {
+                for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i) {
                     float offsetDuration = UnityEngine.Random.Range(-2.0f, 0.0f);
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().ChangePos(i, m_aoCurrentAnswerScene.Count, duration + offsetDuration);
                 }
@@ -177,21 +166,19 @@ namespace Antura.Minigames.MissingLetter
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
             corrAnsBheaviour.Reset();
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm)
-            {
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm) {
                 var form = m_oRemovedLetter.letterForm;
                 LL_LetterData formAnswer = new LL_LetterData(_correctAnswer.Id);
                 formAnswer.Form = form;
                 _correctAnswer = formAnswer;
                 corrAnsBheaviour.LetterData = formAnswer;
-               
+
                 _wrongAnswers.Clear();
 
                 foreach (var f in formAnswer.Data.GetAvailableForms())
-                if (form != f )
-                    _wrongAnswers.Insert(0, new LL_LetterData(_correctAnswer.Id, f));
-            }
-            else
+                    if (form != f)
+                        _wrongAnswers.Insert(0, new LL_LetterData(_correctAnswer.Id, f));
+            } else
                 corrAnsBheaviour.LetterData = _correctAnswer;
 
             corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
@@ -202,8 +189,7 @@ namespace Antura.Minigames.MissingLetter
             m_aoCurrentAnswerScene.Add(_correctAnswerObject);
             m_oCorrectAnswer = _correctAnswerObject;
 
-            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count() + 1; ++i)
-            {
+            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count() + 1; ++i) {
                 GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
                 wrongAnsBheaviour.Reset();
@@ -218,8 +204,7 @@ namespace Antura.Minigames.MissingLetter
                 wrongAnsBheaviour.LetterData = answer;
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
-                if (!m_bTutorialEnabled)
-                {
+                if (!m_bTutorialEnabled) {
                     wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
                 }
                 wrongAnsBheaviour.m_oDefaultIdleAnimation = m_bTutorialEnabled ? LLAnimationStates.LL_still : LLAnimationStates.LL_idle;
@@ -228,8 +213,7 @@ namespace Antura.Minigames.MissingLetter
             }
 
             if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm)
-                m_aoCurrentAnswerScene.Sort((a, b) =>
-                {
+                m_aoCurrentAnswerScene.Sort((a, b) => {
                     var first = (LL_LetterData)a.GetComponent<LetterBehaviour>().LetterData;
                     var second = (LL_LetterData)b.GetComponent<LetterBehaviour>().LetterData;
 
@@ -247,8 +231,7 @@ namespace Antura.Minigames.MissingLetter
         {
             List<LL_WordData> phrase = new List<LL_WordData>();
             var dbWords = AppManager.I.VocabularyHelper.GetWordsInPhrase(_phrase.Id);
-            foreach (var dbWord in dbWords)
-            {
+            foreach (var dbWord in dbWords) {
                 phrase.Add((LL_WordData)dbWord.ConvertToLivingLetterData());
             }
             return phrase;
@@ -264,8 +247,7 @@ namespace Antura.Minigames.MissingLetter
             var _correctAnswer = (LL_WordData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
             var _wrongAnswers = m_oCurrQuestionPack.GetWrongAnswers().ToList();
 
-            foreach (LL_WordData _word in questionData)
-            {
+            foreach (LL_WordData _word in questionData) {
                 GameObject oQuestion = m_oQuestionPool.GetElement();
                 LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
 
@@ -295,8 +277,7 @@ namespace Antura.Minigames.MissingLetter
             m_aoCurrentAnswerScene.Add(_correctAnswerObject);
             m_oCorrectAnswer = _correctAnswerObject;
 
-            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count() + 1; ++i)
-            {
+            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count() + 1; ++i) {
                 GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
                 wrongAnsBheaviour.Reset();
@@ -306,8 +287,7 @@ namespace Antura.Minigames.MissingLetter
                 wrongAnsBheaviour.LetterData = answer;
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
-                if (!m_bTutorialEnabled)
-                {
+                if (!m_bTutorialEnabled) {
                     wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
                 }
                 wrongAnsBheaviour.m_oDefaultIdleAnimation = m_bTutorialEnabled ? LLAnimationStates.LL_still : LLAnimationStates.LL_idle;
@@ -329,7 +309,7 @@ namespace Antura.Minigames.MissingLetter
             LivingLetterController letterView = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
 
             var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, letter.Data);
-            
+
             var partToRemove = parts[0];
             letterView.Label.text = ArabicAlphabetHelper.GetWordWithMissingLetterText(word.Data, partToRemove, mk_sRemovedLetterChar);
             return partToRemove;
@@ -339,10 +319,8 @@ namespace Antura.Minigames.MissingLetter
         int RemoveWordfromQuestion(List<LL_WordData> Words, LL_WordData word)
         {
             int index = 0;
-            for (; index < Words.Count; ++index)
-            {
-                if (Words[index].Id == word.Id)
-                {
+            for (; index < Words.Count; ++index) {
+                if (Words[index].Id == word.Id) {
                     break;
                 }
             }
@@ -357,8 +335,7 @@ namespace Antura.Minigames.MissingLetter
         {
             LivingLetterController letterView = m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().mLetter;
 
-            foreach (GameObject _obj in m_aoCurrentQuestionScene)
-            {
+            foreach (GameObject _obj in m_aoCurrentQuestionScene) {
                 _obj.GetComponent<LetterBehaviour>().Refresh();
             }
 
@@ -371,12 +348,9 @@ namespace Antura.Minigames.MissingLetter
             Color32 markColor = result ? new Color32(0x4C, 0xAF, 0x50, 0xFF) : new Color32(0xDD, 0x2C, 0x00, 0xFF);
             string color = result ? "#4CAF50" : "#DD2C00";
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingWord)
-            {
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingWord) {
                 letterView.Label.text = "<color=" + color + ">" + letterView.Label.text + "</color>";
-            }
-            else
-            {
+            } else {
                 LL_WordData word = (LL_WordData)m_oCurrQuestionPack.GetQuestion();
                 letterView.Label.text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, m_oRemovedLetter, markColor, ArabicTextUtilities.MarkType.SingleLetter);
             }
@@ -386,16 +360,14 @@ namespace Antura.Minigames.MissingLetter
         void EnterCurrentScene()
         {
             int _pos = 0;
-            foreach (GameObject _obj in m_aoCurrentQuestionScene)
-            {
+            foreach (GameObject _obj in m_aoCurrentQuestionScene) {
                 _obj.GetComponent<LetterBehaviour>().EnterScene(_pos, m_aoCurrentQuestionScene.Count());
                 ++_pos;
             }
 
             _pos = 0;
 
-            for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
-            {
+            for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i) {
                 GameObject _obj = m_aoCurrentAnswerScene[i];
 
                 _obj.GetComponent<LetterBehaviour>().EnterScene(i, m_aoCurrentAnswerScene.Count());
@@ -404,17 +376,14 @@ namespace Antura.Minigames.MissingLetter
 
         void ExitCurrentScene()
         {
-            if (m_oCurrQuestionPack != null)
-            {
+            if (m_oCurrQuestionPack != null) {
 
-                foreach (GameObject _obj in m_aoCurrentQuestionScene)
-                {
+                foreach (GameObject _obj in m_aoCurrentQuestionScene) {
                     _obj.GetComponent<LetterBehaviour>().ExitScene();
                 }
                 m_aoCurrentQuestionScene.Clear();
 
-                foreach (GameObject _obj in m_aoCurrentAnswerScene)
-                {
+                foreach (GameObject _obj in m_aoCurrentAnswerScene) {
                     _obj.GetComponent<LetterBehaviour>().ExitScene();
                 }
                 m_aoCurrentAnswerScene.Clear();
@@ -442,19 +411,15 @@ namespace Antura.Minigames.MissingLetter
         //call after clicked answer animation
         private void OnResponse(bool correct)
         {
-            if (correct)
-            {
+            if (correct) {
                 AudioManager.I.PlaySound(Sfx.LetterHappy);
                 DoWinAnimations();
-            }
-            else
-            {
+            } else {
                 AudioManager.I.PlaySound(Sfx.LetterSad);
                 DoLoseAnimations();
             }
 
-            if (onAnswered != null)
-            {
+            if (onAnswered != null) {
                 m_oGame.OnResult(correct);
                 m_oGame.StartCoroutine(Utils.LaunchDelay(2.0f, onAnswered, correct));
             }
@@ -471,16 +436,12 @@ namespace Antura.Minigames.MissingLetter
         //win animation: quesion high five, correct answer dancing other horray
         private void DoWinAnimations()
         {
-            for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
-            {
-                if (isCorrectAnswer(m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData))
-                {
+            for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i) {
+                if (isCorrectAnswer(m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData)) {
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingWin();
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LightOn();
-                }
-                else
-                {
+                } else {
                     //random delay poof of wrong answer
                     m_oGame.StartCoroutine(Utils.LaunchDelay(UnityEngine.Random.Range(0, 0.5f), PoofLetter, m_aoCurrentAnswerScene[i]));
                 }
@@ -488,8 +449,7 @@ namespace Antura.Minigames.MissingLetter
 
             m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().LightOn();
 
-            for (int i = 0; i < m_aoCurrentQuestionScene.Count; ++i)
-            {
+            for (int i = 0; i < m_aoCurrentQuestionScene.Count; ++i) {
                 m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoHighFive();
             }
         }
@@ -497,8 +457,7 @@ namespace Antura.Minigames.MissingLetter
         //poof the gameobject letter
         private void PoofLetter(GameObject letter)
         {
-            if (!letter.GetComponent<LetterBehaviour>())
-            {
+            if (!letter.GetComponent<LetterBehaviour>()) {
                 Debug.LogWarning("Cannot poof letter " + letter.name);
                 return;
             }
@@ -511,19 +470,14 @@ namespace Antura.Minigames.MissingLetter
         //lose animation: quesion and correct answer angry other crouch
         private void DoLoseAnimations()
         {
-            for (int i = 0; i < m_aoCurrentQuestionScene.Count; ++i)
-            {
+            for (int i = 0; i < m_aoCurrentQuestionScene.Count; ++i) {
                 m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
             }
 
-            for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
-            {
-                if (m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Id == m_oCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Id)
-                {
+            for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i) {
+                if (m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Id == m_oCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Id) {
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
-                }
-                else
-                {
+                } else {
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.Crouching = true;
                 }
             }

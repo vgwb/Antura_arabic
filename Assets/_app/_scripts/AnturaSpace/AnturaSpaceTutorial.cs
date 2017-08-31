@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using Antura.Core;
 using Antura.Dog;
 using Antura.Audio;
 using Antura.Tutorial;
 using Antura.UI;
 using UnityEngine;
+using System.Collections;
 
 namespace Antura.AnturaSpace
 {
@@ -127,11 +128,9 @@ namespace Antura.AnturaSpace
                     AudioManager.I.StopDialogue(false);
 
                     //dialog Antura
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Touch, delegate()
-                    {
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Touch, delegate () {
                         //dialog cookies
-                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate()
-                        {
+                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () {
                             //after the dialog make appear the cookie button
                             UI.ShowBonesButton(true);
                             //the button can call AdvanceTutorial on click
@@ -178,11 +177,9 @@ namespace Antura.AnturaSpace
                     AudioManager.I.StopDialogue(false);
 
                     //dialog get more cookies
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_3, delegate()
-                    {
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_3, delegate () {
                         //dialog customize
-                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Custom_1, delegate()
-                        {
+                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Custom_1, delegate () {
                             //after the dialog make appear the customization button
                             m_oCustomizationButton.gameObject.SetActive(true);
                             m_oCustomizationButton.onClick.AddListener(AdvanceTutorial);
@@ -203,8 +200,7 @@ namespace Antura.AnturaSpace
                     _mScene.UI.SetTutorialMode(true);
 
                     StartCoroutine(WaitAndSpawn(
-                        () =>
-                        {
+                        () => {
                             m_oCategoryButton = _mScene.UI.GetNewCategoryButton();
                             if (m_oCategoryButton == null) {
                                 AdvanceTutorial();
@@ -230,8 +226,7 @@ namespace Antura.AnturaSpace
                     }
 
                     StartCoroutine(WaitAndSpawn(
-                        () =>
-                        {
+                        () => {
                             // Register on item button
                             m_oItemButton = _mScene.UI.GetNewItemButton();
 
@@ -256,8 +251,7 @@ namespace Antura.AnturaSpace
                     }
 
                     StartCoroutine(WaitAnturaInCenter(
-                        () =>
-                        {
+                        () => {
                             // Register on Antura touch
                             m_oAnturaBehaviour.onTouched += AdvanceTutorial;
 
@@ -333,8 +327,7 @@ namespace Antura.AnturaSpace
 
             TutorialUIAnimation _oDLAnim = TutorialUI.DrawLine(_av3Path, TutorialUI.DrawLineMode.Finger, false, true);
             _oDLAnim.MainTween.timeScale = 0.8f;
-            _oDLAnim.OnComplete(delegate()
-            {
+            _oDLAnim.OnComplete(delegate () {
                 if (_mTutorialStates != AnturaSpaceTutorialStates.OPEN_CUSTOMIZE) {
                     DrawRepeatLineOnCookieButton();
                 }

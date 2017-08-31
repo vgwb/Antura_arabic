@@ -1,7 +1,8 @@
-using System;
+using Antura.Core;
 using Antura.LivingLetters;
 using Antura.MinigamesCommon;
 using Antura.Teacher;
+using System;
 using UnityEngine;
 
 namespace Antura.Assessment
@@ -22,14 +23,11 @@ namespace Antura.Assessment
         /// Externally provided Question provider
         /// </summary>
         private IQuestionProvider questionProvider;
-        public IQuestionProvider Questions
-        {
-            get
-            {
+        public IQuestionProvider Questions {
+            get {
                 return GetQuestionProvider();
             }
-            set
-            {
+            set {
                 questionProvider = value;
             }
         }
@@ -41,7 +39,7 @@ namespace Antura.Assessment
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (AssessmentVariation)code; 
+            Variation = (AssessmentVariation)code;
         }
 
         /// <summary>
@@ -73,16 +71,14 @@ namespace Antura.Assessment
         /// <summary>
         /// Number of rounds, mostly fixed for each game, this value is provided externally
         /// </summary>
-        public int NumberOfRounds { get { return _rounds; }  set { _rounds = value; } }
+        public int NumberOfRounds { get { return _rounds; } set { _rounds = value; } }
         private int _rounds = 0;
 
         /////////////////
         // Singleton Pattern
         static AssessmentConfiguration instance;
-        public static AssessmentConfiguration Instance
-        {
-            get
-            {
+        public static AssessmentConfiguration Instance {
+            get {
                 if (instance == null)
                     instance = new AssessmentConfiguration();
                 return instance;
@@ -97,8 +93,7 @@ namespace Antura.Assessment
         /// <returns>Custom question data for the assessment</returns>
         public IQuestionBuilder SetupBuilder()
         {
-            switch (Variation)
-            {
+            switch (Variation) {
                 case AssessmentVariation.LetterForm:
                     return Setup_LetterForm_Builder();
 
@@ -142,7 +137,7 @@ namespace Antura.Assessment
                     return Setup_MatchLettersToWord_Form_Builder();
 
                 default:
-                    throw new NotImplementedException( "NotImplemented Yet!");
+                    throw new NotImplementedException("NotImplemented Yet!");
             }
         }
 
@@ -194,7 +189,7 @@ namespace Antura.Assessment
 
             return new LettersInWordQuestionBuilder(
                 NumberOfRounds,
-                nCorrect:2,
+                nCorrect: 2,
                 useAllCorrectLetters: true,
                 parameters: builderParams,
                 maximumWordLength: maxLetters
@@ -216,8 +211,8 @@ namespace Antura.Assessment
             return new LettersInWordQuestionBuilder(
 
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers
-                nCorrect:1,            // Always one!
-                nWrong:4,            // WrongAnswers
+                nCorrect: 1,            // Always one!
+                nWrong: 4,            // WrongAnswers
                 useAllCorrectLetters: false,
                 forceUnseparatedLetters: true,
                 parameters: builderParams);
@@ -271,7 +266,7 @@ namespace Antura.Assessment
             builderParams.sortPacksByDifficulty = false;
 
             return new WordsByFormQuestionBuilder(
-                SimultaneosQuestions* NumberOfRounds * 4,
+                SimultaneosQuestions * NumberOfRounds * 4,
                 builderParams);
         }
 
@@ -288,7 +283,7 @@ namespace Antura.Assessment
             int nCorrect = 1;
             int nWrong = 3;
             return new RandomWordsQuestionBuilder(
-                SimultaneosQuestions* NumberOfRounds,
+                SimultaneosQuestions * NumberOfRounds,
                 nCorrect,
                 nWrong,
                 firstCorrectIsQuestion: true,
@@ -303,10 +298,10 @@ namespace Antura.Assessment
             SimultaneosQuestions = 1;
             int nWrongs = 4;
 
-            return new  PhraseQuestionsQuestionBuilder(
+            return new PhraseQuestionsQuestionBuilder(
                         SimultaneosQuestions * NumberOfRounds, // totale questions
                         nWrongs,     // wrong additional answers
-                parameters:builderParams);
+                parameters: builderParams);
         }
 
         private IQuestionBuilder Setup_SunMoonLetter_Builder()
@@ -318,7 +313,7 @@ namespace Antura.Assessment
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.sortPacksByDifficulty = false;
 
-            return new LettersBySunMoonQuestionBuilder( 
+            return new LettersBySunMoonQuestionBuilder(
                         SimultaneosQuestions * NumberOfRounds * 2,
                         builderParams
             );
@@ -328,8 +323,7 @@ namespace Antura.Assessment
         {
             // This assessment changes behaviour based on the current stage
             var jp = AppManager.I.Player.CurrentJourneyPosition;
-            switch (jp.Stage)
-            {
+            switch (jp.Stage) {
                 case 1:
                     SimultaneosQuestions = 1;
                     break;
@@ -359,7 +353,7 @@ namespace Antura.Assessment
                 1,                  // Correct Answers
                 nWrong,             // Wrong Answers
                 parameters: builderParams
-                );     
+                );
 
         }
 
@@ -371,15 +365,14 @@ namespace Antura.Assessment
             SimultaneosQuestions = 2;
             Answers = 2;
 
-            return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * NumberOfRounds * 2, parameters: builderParams);
+            return new WordsBySunMoonQuestionBuilder(SimultaneosQuestions * NumberOfRounds * 2, parameters: builderParams);
         }
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
             // This assessment changes behaviour based on the current stage
             var jp = AppManager.I.Player.CurrentJourneyPosition;
-            switch (jp.Stage)
-            {
+            switch (jp.Stage) {
                 case 1:
                     SimultaneosQuestions = 1;
                     break;
@@ -406,8 +399,8 @@ namespace Antura.Assessment
             return new LettersInWordQuestionBuilder(
                 NumberOfRounds,
                 SimultaneosQuestions,
-                nCorrect:1,   
-                nWrong:nWrong,
+                nCorrect: 1,
+                nWrong: nWrong,
                 useAllCorrectLetters: false,
                 forceUnseparatedLetters: true,
                 parameters: builderParams);
@@ -428,14 +421,13 @@ namespace Antura.Assessment
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers
                 1,                              // CorrectAnswers
                 4,                              // WrongAnswers
-                firstCorrectIsQuestion:true,
-                parameters:builderParams);
+                firstCorrectIsQuestion: true,
+                parameters: builderParams);
         }
 
         public MiniGameLearnRules SetupLearnRules()
         {
-            switch (Variation)
-            {
+            switch (Variation) {
                 case AssessmentVariation.LetterForm:
                     return Setup_LetterForm_LearnRules();
 
@@ -473,7 +465,7 @@ namespace Antura.Assessment
                     return Setup_OrderLettersOfWord_LearnRules();
 
                 default:
-                    throw new NotImplementedException( "NotImplemented Yet!");
+                    throw new NotImplementedException("NotImplemented Yet!");
             }
         }
 

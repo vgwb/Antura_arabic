@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Antura.Core;
 using Antura.Helpers;
 using Antura.UI;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Antura.Rewards.Collectible
@@ -26,8 +27,7 @@ namespace Antura.Rewards.Collectible
 
         void SpawnNewBone()
         {
-            if (spawnPivots.Count == 0)
-            {
+            if (spawnPivots.Count == 0) {
                 // No more spawn pivots left
                 CancelInvoke("SpawnNewBone");
                 return;
@@ -48,8 +48,7 @@ namespace Antura.Rewards.Collectible
         private bool _isHandlingBone = false;
         void HandlePickupBone()
         {
-            if (_isHandlingBone)
-            {
+            if (_isHandlingBone) {
                 StopAllCoroutines();
                 bonesCounter.IncreaseByOne();
                 AppManager.I.Player.AddBones(1);

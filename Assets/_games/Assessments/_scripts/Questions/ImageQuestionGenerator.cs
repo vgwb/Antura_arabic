@@ -1,11 +1,12 @@
+using Antura.Core;
+using Antura.Helpers;
+using Antura.LivingLetters;
 using DG.Tweening;
 using Kore.Coroutines;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Antura.Helpers;
-using Antura.LivingLetters;
 using UnityEngine;
 
 namespace Antura.Assessment
@@ -15,14 +16,14 @@ namespace Antura.Assessment
     /// </summary>
     public class ImageQuestionGenerator : IQuestionGenerator
     {
-        
+
         private IQuestionProvider provider;
         private QuestionGeneratorState state;
         private IQuestionPack currentPack;
 
         private bool missingLetter;
 
-        public ImageQuestionGenerator(  IQuestionProvider provider , bool missingLetter, 
+        public ImageQuestionGenerator(IQuestionProvider provider, bool missingLetter,
                                         AssessmentAudioManager audioManager,
                                         AssessmentEvents events)
         {
@@ -30,11 +31,13 @@ namespace Antura.Assessment
             this.missingLetter = missingLetter;
             this.audioManager = audioManager;
 
-            if(AssessmentOptions.Instance.CompleteWordOnAnswered)
+            if (AssessmentOptions.Instance.CompleteWordOnAnswered) {
                 events.OnAllQuestionsAnswered = CompleteWordCoroutine;
+            }
 
-            if (AssessmentOptions.Instance.ShowFullWordOnAnswered)
+            if (AssessmentOptions.Instance.ShowFullWordOnAnswered) {
                 events.OnAllQuestionsAnswered = ShowFullWordCoroutine;
+            }
 
             state = QuestionGeneratorState.Uninitialized;
             ClearCache();
@@ -42,9 +45,9 @@ namespace Antura.Assessment
 
         private IEnumerator ShowFullWordCoroutine()
         {
-            var position = new Vector3( 0, 1.5f, 5f);
-            var LL = ItemFactory.Instance.SpawnQuestion( cacheFullWordData);
-            var box = ItemFactory.Instance.SpawnQuestionBox( new StillLetterBox[]{ LL});
+            var position = new Vector3(0, 1.5f, 5f);
+            var LL = ItemFactory.Instance.SpawnQuestion(cacheFullWordData);
+            var box = ItemFactory.Instance.SpawnQuestionBox(new StillLetterBox[] { LL });
             box.Show();
             LL.transform.localPosition = position;
             position.z += 1;
@@ -54,11 +57,11 @@ namespace Antura.Assessment
             audioManager.PlayPoofSound();
             LL.Magnify();
             LL.SetQuestionGreen();
-            yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord+0.5f);
-            LL.gameObject.GetComponent< StillLetterBox>().Poof();
-            box.gameObject.transform.DOScale( 0, 0.4f).OnComplete(() => GameObject.Destroy( box.gameObject));
-            LL.gameObject.transform.DOScale(0, 0.4f).OnComplete(() => GameObject.Destroy( LL.gameObject));
-            yield return Wait.For( 0.41f);
+            yield return Wait.For(AssessmentOptions.Instance.TimeToShowCompleteWord + 0.5f);
+            LL.gameObject.GetComponent<StillLetterBox>().Poof();
+            box.gameObject.transform.DOScale(0, 0.4f).OnComplete(() => GameObject.Destroy(box.gameObject));
+            LL.gameObject.transform.DOScale(0, 0.4f).OnComplete(() => GameObject.Destroy(LL.gameObject));
+            yield return Wait.For(0.41f);
         }
 
         string cacheCompleteWord = null;
@@ -69,13 +72,14 @@ namespace Antura.Assessment
             audioManager.PlayPoofSound();
             cacheCompleteWordLL.Poof();
             cacheCompleteWordLL.Label.text = cacheCompleteWord;
-            yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord);
+            yield return Wait.For(AssessmentOptions.Instance.TimeToShowCompleteWord);
         }
 
         public void InitRound()
         {
-            if (state != QuestionGeneratorState.Uninitialized && state != QuestionGeneratorState.Completed)
-                throw new InvalidOperationException( "Cannot initialized");
+            if (state != QuestionGeneratorState.Uninitialized && state != QuestionGeneratorState.Completed) {
+                throw new InvalidOperationException("Cannot initialized");
+            }
 
             state = QuestionGeneratorState.Initialized;
             ClearCache();
@@ -83,15 +87,15 @@ namespace Antura.Assessment
 
         private void ClearCache()
         {
-            totalAnswers = new List< Answer>();
-            totalQuestions = new List< IQuestion>();
+            totalAnswers = new List<Answer>();
+            totalQuestions = new List<IQuestion>();
             partialAnswers = null;
         }
 
         public void CompleteRound()
         {
             if (state != QuestionGeneratorState.Initialized)
-                throw new InvalidOperationException( "Not Initialized");
+                throw new InvalidOperationException("Not Initialized");
 
             state = QuestionGeneratorState.Completed;
         }
@@ -99,7 +103,7 @@ namespace Antura.Assessment
         public Answer[] GetAllAnswers()
         {
             if (state != QuestionGeneratorState.Completed)
-                throw new InvalidOperationException( "Not Completed");
+                throw new InvalidOperationException("Not Completed");
 
             return totalAnswers.ToArray();
         }
@@ -107,7 +111,7 @@ namespace Antura.Assessment
         public IQuestion[] GetAllQuestions()
         {
             if (state != QuestionGeneratorState.Completed)
-                throw new InvalidOperationException( "Not Completed");
+                throw new InvalidOperationException("Not Completed");
 
             return totalQuestions.ToArray();
         }
@@ -115,26 +119,26 @@ namespace Antura.Assessment
         public Answer[] GetNextAnswers()
         {
             if (state != QuestionGeneratorState.QuestionFeeded)
-                throw new InvalidOperationException( "Not Initialized");
+                throw new InvalidOperationException("Not Initialized");
 
             state = QuestionGeneratorState.Initialized;
             return partialAnswers;
         }
 
-        List< Answer> totalAnswers;
-        List< IQuestion> totalQuestions;
+        List<Answer> totalAnswers;
+        List<IQuestion> totalQuestions;
         Answer[] partialAnswers;
 
         public IQuestion GetNextQuestion()
         {
             if (state != QuestionGeneratorState.Initialized)
-                throw new InvalidOperationException( "Not Initialized");
+                throw new InvalidOperationException("Not Initialized");
 
             state = QuestionGeneratorState.QuestionFeeded;
 
             currentPack = provider.GetNextQuestion();
 
-            List< Answer> answers = new List< Answer>();
+            List<Answer> answers = new List<Answer>();
             ILivingLetterData questionData = currentPack.GetQuestion();
             LivingLetterDataType cacheLivingLetterType = LivingLetterDataType.Letter;
 
@@ -142,49 +146,44 @@ namespace Antura.Assessment
             //Prepare answers for next method call
             //____________________________________
 
-            if ( missingLetter)
-            {
+            if (missingLetter) {
                 // ### MISSING LETTER ###
-                foreach (var wrong in currentPack.GetWrongAnswers())
-                {
+                foreach (var wrong in currentPack.GetWrongAnswers()) {
                     cacheLivingLetterType = wrong.DataType;
-                    var wrongAnsw = GenerateWrongAnswer( wrong);
+                    var wrongAnsw = GenerateWrongAnswer(wrong);
 
-                    answers.Add( wrongAnsw);
-                    totalAnswers.Add( wrongAnsw);
+                    answers.Add(wrongAnsw);
+                    totalAnswers.Add(wrongAnsw);
                 }
 
-                var correct = currentPack.GetCorrectAnswers().ToList()[ 0];
+                var correct = currentPack.GetCorrectAnswers().ToList()[0];
                 cacheLivingLetterType = correct.DataType;
 
-                var correctAnsw = GenerateCorrectAnswer( correct);
+                var correctAnsw = GenerateCorrectAnswer(correct);
 
-                answers.Add( correctAnsw);
-                totalAnswers.Add( correctAnsw);
+                answers.Add(correctAnsw);
+                totalAnswers.Add(correctAnsw);
 
                 partialAnswers = answers.ToArray();
 
                 // Generate the question
-                var question = GenerateMissingLetterQuestion( questionData, correct);
-                totalQuestions.Add( question);
-                GeneratePlaceHolder( question, cacheLivingLetterType);
+                var question = GenerateMissingLetterQuestion(questionData, correct);
+                totalQuestions.Add(question);
+                GeneratePlaceHolder(question, cacheLivingLetterType);
                 return question;
-            }
-            else
-            {
+            } else {
                 // ### ORDER LETTERS ###
-                foreach (var correct in currentPack.GetCorrectAnswers())
-                {
-                    var correctAnsw = GenerateCorrectAnswer( correct);
-                    answers.Add( correctAnsw);
-                    totalAnswers.Add( correctAnsw);
+                foreach (var correct in currentPack.GetCorrectAnswers()) {
+                    var correctAnsw = GenerateCorrectAnswer(correct);
+                    answers.Add(correctAnsw);
+                    totalAnswers.Add(correctAnsw);
                 }
 
                 partialAnswers = answers.ToArray();
 
                 // Generate the question
-                var question = GenerateQuestion( questionData);
-                totalQuestions.Add( question);
+                var question = GenerateQuestion(questionData);
+                totalQuestions.Add(question);
 
                 return question;
             }
@@ -193,15 +192,15 @@ namespace Antura.Assessment
         private LL_WordData cacheFullWordData;
         private StillLetterBox cacheFullWordDataLL;
 
-        private IQuestion GenerateQuestion( ILivingLetterData data)
+        private IQuestion GenerateQuestion(ILivingLetterData data)
         {
-            cacheFullWordData = new LL_WordData( data.Id);
+            cacheFullWordData = new LL_WordData(data.Id);
 
             if (AssessmentOptions.Instance.ShowQuestionAsImage)
-                data = new LL_ImageData( data.Id);
+                data = new LL_ImageData(data.Id);
 
-            cacheFullWordDataLL = ItemFactory.Instance.SpawnQuestion( data);
-            return new DefaultQuestion( cacheFullWordDataLL, 0, audioManager);
+            cacheFullWordDataLL = ItemFactory.Instance.SpawnQuestion(data);
+            return new DefaultQuestion(cacheFullWordDataLL, 0, audioManager);
         }
 
         private const string RemovedLetterChar = "_";
@@ -233,23 +232,23 @@ namespace Antura.Assessment
             return new ImageQuestion(wordGO, imageData, audioManager);
         }
 
-        private Answer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
+        private Answer GenerateWrongAnswer(ILivingLetterData wrongAnswer)
         {
             return
-            ItemFactory.Instance.SpawnAnswer( wrongAnswer, false, audioManager);
+            ItemFactory.Instance.SpawnAnswer(wrongAnswer, false, audioManager);
         }
 
-        private void GeneratePlaceHolder( IQuestion question, LivingLetterDataType dataType)
+        private void GeneratePlaceHolder(IQuestion question, LivingLetterDataType dataType)
         {
-            var placeholder = ItemFactory.Instance.SpawnPlaceholder( dataType);
+            var placeholder = ItemFactory.Instance.SpawnPlaceholder(dataType);
             placeholder.InstaShrink();
             question.TrackPlaceholder(placeholder.gameObject);
         }
 
-        private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
+        private Answer GenerateCorrectAnswer(ILivingLetterData correctAnswer)
         {
             return
-            ItemFactory.Instance.SpawnAnswer( correctAnswer, true, audioManager);
+            ItemFactory.Instance.SpawnAnswer(correctAnswer, true, audioManager);
         }
     }
 }

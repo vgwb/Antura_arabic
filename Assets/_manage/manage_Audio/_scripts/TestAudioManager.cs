@@ -1,4 +1,5 @@
 ﻿using Antura.Audio;
+using Antura.Core;
 using Antura.Helpers;
 using Antura.MinigamesCommon;
 using Antura.UI;
@@ -27,8 +28,7 @@ namespace Antura.Test
 
             InitUI();
 
-            foreach (var l in AppManager.I.DB.StaticDatabase.GetLetterTable().GetValuesTyped())
-            {
+            foreach (var l in AppManager.I.DB.StaticDatabase.GetLetterTable().GetValuesTyped()) {
                 if (AudioManager.I.GetAudioClip(l) == null)
                     Debug.LogError("Cannot find audio file: " + l);
             }

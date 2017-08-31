@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using Antura.Animation;
+﻿using Antura.Animation;
+using Antura.Core;
 using Antura.CameraEffects;
 using Antura.Keeper;
 using Antura.MinigamesCommon;
 using Antura.UI;
+using System.Collections;
 using UnityEngine;
 
 namespace Antura.Intro

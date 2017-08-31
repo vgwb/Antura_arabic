@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using Antura.Audio;
+﻿using Antura.Audio;
+using Antura.Core;
 using Antura.MinigamesCommon;
 using Antura.UI;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -29,8 +30,7 @@ namespace Antura.AnturaSpace
         public bool MustShowBonesButton { get; set; }
         public Transform DraggingBone { get; private set; }
 
-        public Transform NextBoneToCatch
-        {
+        public Transform NextBoneToCatch {
             get {
                 if (bones.Count == 0) {
                     return null;
@@ -51,14 +51,12 @@ namespace Antura.AnturaSpace
 
         private StateManager stateManager = new StateManager();
 
-        public AnturaState CurrentState
-        {
-            get { return (AnturaState) stateManager.CurrentState; }
+        public AnturaState CurrentState {
+            get { return (AnturaState)stateManager.CurrentState; }
             set { stateManager.CurrentState = value; }
         }
 
-        public bool HasPlayerBones
-        {
+        public bool HasPlayerBones {
             get {
                 var totalBones = AppManager.I.Player.GetTotalNumberOfBones();
 
@@ -77,8 +75,7 @@ namespace Antura.AnturaSpace
             UI.onEnterCustomization += OnEnterCustomization;
             UI.onExitCustomization += OnExitCustomization;
 
-            Antura.onTouched += () =>
-            {
+            Antura.onTouched += () => {
                 if (CurrentState != null) {
                     CurrentState.OnTouched();
                 }

@@ -2,11 +2,11 @@ using Antura.Core.Services.Notification;
 
 namespace Antura.Core.Services
 {
-    public class Services
+    public class ServicesManager
     {
         public NotificationService Notifications;
 
-        public Services()
+        public ServicesManager()
         {
             Notifications = new NotificationService();
         }

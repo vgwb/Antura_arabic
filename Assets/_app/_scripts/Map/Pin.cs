@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Antura.Core;
+using UnityEngine;
 
 namespace Antura.Map
 {
@@ -29,13 +30,10 @@ namespace Antura.Map
         public void Initialise(int _stage, int _learningBlock)
         {
             learningBlock = _learningBlock;
-            if (_learningBlock % 2 == 0)
-            {
+            if (_learningBlock % 2 == 0) {
                 pinV2.gameObject.SetActive(false);
                 currentPinMesh = pinV1;
-            }
-            else
-            {
+            } else {
                 pinV1.gameObject.SetActive(false);
                 currentPinMesh = pinV2;
             }
@@ -57,8 +55,7 @@ namespace Antura.Map
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
-            {
+            if (other.gameObject.CompareTag("Player")) {
                 currentPinMesh.SetActive(false);
                 dot.ChangeMaterialDotToRed();
             }
@@ -66,8 +63,7 @@ namespace Antura.Map
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
-            {
+            if (other.gameObject.CompareTag("Player")) {
                 currentPinMesh.SetActive(true);
                 dot.ChangeMaterialDotToBlack();
             }

@@ -1,4 +1,5 @@
-﻿using Antura.Debugging;
+﻿using Antura.Core;
+using Antura.Debugging;
 using Antura.UI;
 using Antura.Utilities;
 using UnityEngine;
@@ -31,8 +32,7 @@ namespace Antura.MinigamesCommon
         /// <summary>
         /// Access the GameStateManager that controls the minigame's FSM.
         /// </summary>
-        public StateManager StateManager
-        {
+        public StateManager StateManager {
             get { return stateManager; }
         }
 

@@ -1,4 +1,4 @@
-﻿using Antura;
+﻿using Antura.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,8 +21,7 @@ public class ShopActionUI : MonoBehaviour
 
     public void OnClick()
     {
-        if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
-        {
+        if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost) {
             AppManager.I.Player.RemoveBones(shopAction.bonesCost);
             shopAction.PerformAction();
         }

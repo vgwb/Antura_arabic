@@ -1,6 +1,5 @@
 ﻿using Antura.Audio;
 using Antura.CameraControl;
-using Antura.Core;
 using Antura.Core.Services;
 using Antura.Database;
 using Antura.Keeper;
@@ -11,7 +10,7 @@ using Antura.UI;
 using Antura.Utilities;
 using UnityEngine;
 
-namespace Antura
+namespace Antura.Core
 {
     /// <summary>
     /// Core of the application.
@@ -33,7 +32,7 @@ namespace Antura
         public DatabaseManager DB;
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
-        public Services Services;
+        public ServicesManager Services;
 
         [HideInInspector]
         public NavigationManager NavigationManager;
@@ -85,7 +84,7 @@ namespace Antura
             PlayerProfileManager = new PlayerProfileManager();
             PlayerProfileManager.LoadSettings();
 
-            Services = new Services();
+            Services = new ServicesManager();
 
             gameObject.AddComponent<KeeperManager>();
 
