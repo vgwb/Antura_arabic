@@ -1,6 +1,4 @@
-using Antura.Minigames;
-
-namespace Antura.Template
+namespace Antura.Minigames.Template
 {
     /// <summary>
     /// Sample game state used by the TemplateGame. 
@@ -28,8 +26,7 @@ namespace Antura.Template
         {
             timer -= delta;
 
-            if (timer < 0)
-            {
+            if (timer < 0) {
                 game.SetCurrentState(game.ResultState);
             }
         }

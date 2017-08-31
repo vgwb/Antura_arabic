@@ -1,8 +1,7 @@
 using Antura.LivingLetters;
-using Antura.Minigames;
 using Antura.Teacher;
 
-namespace Antura.Template
+namespace Antura.Minigames.Template
 {
     public enum TemplateVariation
     {
@@ -26,15 +25,14 @@ namespace Antura.Template
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (TemplateVariation) code;
+            Variation = (TemplateVariation)code;
         }
 
         /////////////////
         // Singleton Pattern
         static TemplateConfiguration instance;
 
-        public static TemplateConfiguration Instance
-        {
+        public static TemplateConfiguration Instance {
             get {
                 if (instance == null) {
                     instance = new TemplateConfiguration();

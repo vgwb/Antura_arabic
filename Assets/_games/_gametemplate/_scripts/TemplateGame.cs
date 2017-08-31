@@ -1,6 +1,4 @@
-using Antura.Minigames;
-
-namespace Antura.Template
+namespace Antura.Minigames.Template
 {
     /// <summary>
     /// Sample game, to be used as a starting point for implementing new minigames.

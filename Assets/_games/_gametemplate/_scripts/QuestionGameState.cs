@@ -1,6 +1,4 @@
-using Antura.Minigames;
-
-namespace Antura.Template
+namespace Antura.Minigames.Template
 {
     /// <summary>
     /// Sample game state used by the TemplateGame. 
@@ -9,7 +7,7 @@ namespace Antura.Template
     public class QuestionGameState : IState
     {
         TemplateGame game;
-        
+
         public QuestionGameState(TemplateGame game)
         {
             this.game = game;
@@ -21,7 +19,7 @@ namespace Antura.Template
 
         public void ExitState()
         {
-            
+
         }
 
         public void Update(float delta)
