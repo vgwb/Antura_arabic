@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.TakeMeHome
 {
-    public class TakeMeHomeTutorialPlayState : IState
+    public class TakeMeHomeTutorialPlayState : FSM.IState
     {
 
         TakeMeHomeGame game;

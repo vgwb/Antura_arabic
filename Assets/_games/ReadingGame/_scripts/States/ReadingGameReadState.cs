@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.ReadingGame
 {
-    public class ReadingGameReadState : IState
+    public class ReadingGameReadState : FSM.IState
     {
         public bool TutorialMode = false;
 

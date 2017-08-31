@@ -122,7 +122,7 @@ namespace Antura.Minigames.MakeFriends
             ResultState = new MakeFriendsResultState(this);
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }

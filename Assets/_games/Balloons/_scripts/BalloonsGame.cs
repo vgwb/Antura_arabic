@@ -163,7 +163,7 @@ namespace Antura.Minigames.Balloons
             ResultState = new BalloonsResultState(this);
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }

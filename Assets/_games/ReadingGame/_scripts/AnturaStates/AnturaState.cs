@@ -1,6 +1,6 @@
 ﻿namespace Antura.Minigames.ReadingGame
 {
-    public abstract class AnturaState : IState
+    public abstract class AnturaState : FSM.IState
     {
         protected ReadingGameAntura antura;
 

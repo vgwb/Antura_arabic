@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.ReadingGame
 {
-    public class ReadingGameAnswerState : IState
+    public class ReadingGameAnswerState : FSM.IState
     {
         public bool TutorialMode = false;
         ReadingGameGame game;

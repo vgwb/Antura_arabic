@@ -3,7 +3,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.ReadingGame
 {
-    public class ReadingGameQuestionState : IState
+    public class ReadingGameQuestionState : FSM.IState
     {
         ReadingGameGame game;
         bool firstRun = true;

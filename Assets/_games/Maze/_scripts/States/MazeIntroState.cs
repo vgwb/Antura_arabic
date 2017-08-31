@@ -1,6 +1,6 @@
 ﻿namespace Antura.Minigames.Maze
 {
-    public class MazeIntroState : IState
+    public class MazeIntroState : FSM.IState
     {
         MazeGame game;
 

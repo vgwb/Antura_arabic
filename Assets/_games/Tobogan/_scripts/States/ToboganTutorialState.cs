@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.Tobogan
 {
-    public class ToboganTutorialState : IState
+    public class ToboganTutorialState : FSM.IState
     {
         ToboganGame game;
 

@@ -3,7 +3,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.Scanner
 {
-	public class ScannerPlayState : IState
+	public class ScannerPlayState : FSM.IState
 	{
 		ScannerGame game;
 

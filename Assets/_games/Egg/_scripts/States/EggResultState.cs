@@ -2,7 +2,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.Egg
 {
-    public class EggResultState : IState
+    public class EggResultState : FSM.IState
     {
         EggGame game;
 

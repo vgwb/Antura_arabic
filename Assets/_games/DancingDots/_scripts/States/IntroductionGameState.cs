@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.DancingDots
 {
-    public class IntroductionGameState : IState
+    public class IntroductionGameState : FSM.IState
     {
         DancingDotsGame game;
 

@@ -3,7 +3,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.MissingLetter
 {
-    public class MissingLetterPlayState : IState
+    public class MissingLetterPlayState : FSM.IState
     {
         public MissingLetterPlayState(MissingLetterGame _game)
         {

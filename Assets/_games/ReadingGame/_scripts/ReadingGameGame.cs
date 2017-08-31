@@ -86,7 +86,7 @@ namespace Antura.Minigames.ReadingGame
             return ReadingGameConfiguration.Instance;
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return InitialState;
         }

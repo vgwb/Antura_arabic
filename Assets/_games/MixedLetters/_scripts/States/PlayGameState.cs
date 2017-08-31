@@ -3,7 +3,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.MixedLetters
 {
-    public class PlayGameState : IState
+    public class PlayGameState : FSM.IState
     {
         MixedLettersGame game;
         

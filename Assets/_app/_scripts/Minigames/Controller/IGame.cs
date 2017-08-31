@@ -1,3 +1,5 @@
+using Antura.FSM;
+
 namespace Antura.Minigames
 {
     public delegate void GameResultAction(int stars, int score);

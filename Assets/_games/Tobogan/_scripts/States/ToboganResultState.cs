@@ -1,6 +1,6 @@
 ﻿namespace Antura.Minigames.Tobogan
 {
-    public class ToboganResultGameState : IState
+    public class ToboganResultGameState : FSM.IState
     {
         ToboganGame game;
 

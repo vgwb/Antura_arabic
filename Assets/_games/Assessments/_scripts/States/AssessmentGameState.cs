@@ -2,7 +2,7 @@ using Antura.Minigames;
 
 namespace Antura.Assessment
 {
-    public class AssessmentGameState : IState
+    public class AssessmentGameState : FSM.IState
     {
         private Assessment assessment;
         private AssessmentResultState resultState;

@@ -192,7 +192,7 @@ namespace Antura.Minigames.MixedLetters
             }
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return TutorialState;
         }

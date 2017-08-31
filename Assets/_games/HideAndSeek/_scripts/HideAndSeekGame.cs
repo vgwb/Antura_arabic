@@ -57,7 +57,7 @@ namespace Antura.Minigames.HideAndSeek
             CurrentScore = 0;
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }

@@ -119,7 +119,7 @@ namespace Antura.Minigames.FastCrowd
             return FastCrowdConfiguration.Instance;
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }

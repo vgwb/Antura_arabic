@@ -128,7 +128,7 @@ namespace Antura.Minigames.ColorTickle
 
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }

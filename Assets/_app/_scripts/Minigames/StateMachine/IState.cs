@@ -1,4 +1,4 @@
-﻿namespace Antura
+﻿namespace Antura.FSM
 {
     /// <summary>
     /// Represents a game state in the StateManager

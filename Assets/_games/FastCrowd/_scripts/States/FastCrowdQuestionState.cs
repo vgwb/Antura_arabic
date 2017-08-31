@@ -2,7 +2,7 @@
 
 namespace Antura.Minigames.FastCrowd
 {
-    public class FastCrowdQuestionState : IState
+    public class FastCrowdQuestionState : FSM.IState
     {
         FastCrowdGame game;
 

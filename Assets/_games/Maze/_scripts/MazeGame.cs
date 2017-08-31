@@ -728,7 +728,7 @@ namespace Antura.Minigames.Maze
             return MazeConfiguration.Instance;
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }

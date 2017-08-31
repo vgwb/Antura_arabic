@@ -69,7 +69,7 @@ namespace Antura.Minigames.Egg
             return EggConfiguration.Instance;
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }

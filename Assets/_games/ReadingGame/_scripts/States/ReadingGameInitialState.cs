@@ -2,7 +2,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.ReadingGame
 {
-    public class ReadingGameInitialState : IState
+    public class ReadingGameInitialState : FSM.IState
     {
         ReadingGameGame game;
 

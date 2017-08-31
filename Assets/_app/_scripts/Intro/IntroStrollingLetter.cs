@@ -1,4 +1,5 @@
-﻿using Antura.LivingLetters;
+﻿using Antura.FSM;
+using Antura.LivingLetters;
 using Antura.Minigames.FastCrowd;
 using UnityEngine;
 
@@ -28,13 +29,11 @@ namespace Antura.Intro
 
         public IntroFactory factory;
 
-        public LettersWalkableArea walkableArea
-        {
+        public LettersWalkableArea walkableArea {
             get { return factory.walkableArea; }
         }
 
-        public AnturaRunnerController antura
-        {
+        public AnturaRunnerController antura {
             get { return factory.antura; }
         }
 
@@ -98,7 +97,7 @@ namespace Antura.Intro
 
         public IntroStrollingLetterState GetCurrentState()
         {
-            return (IntroStrollingLetterState) stateManager.CurrentState;
+            return (IntroStrollingLetterState)stateManager.CurrentState;
         }
 
         /// <summary>

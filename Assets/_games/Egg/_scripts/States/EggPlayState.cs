@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.Egg
 {
-    public class EggPlayState : IState
+    public class EggPlayState : FSM.IState
     {
         EggGame game;
 

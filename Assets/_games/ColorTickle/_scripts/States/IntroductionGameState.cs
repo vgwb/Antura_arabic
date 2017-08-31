@@ -5,7 +5,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.ColorTickle
 {
-    public class IntroductionGameState : IState
+    public class IntroductionGameState : FSM.IState
     {
         ColorTickleGame game;
 

@@ -1,4 +1,4 @@
-﻿namespace Antura
+﻿namespace Antura.FSM
 {
     /// <summary>
     /// Implements a Finite State Machine (FSM).
@@ -11,8 +11,7 @@
 
         private IState currentState;
 
-        public IState CurrentState
-        {
+        public IState CurrentState {
             get { return currentState; }
 
             set {

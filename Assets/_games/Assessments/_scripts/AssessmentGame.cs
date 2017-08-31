@@ -83,7 +83,7 @@ namespace Antura.Assessment
             IntroState = new AssessmentIntroState( this, GameState, context.AudioManager);
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroState;
         }

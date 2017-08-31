@@ -3,7 +3,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.TakeMeHome
 {
-    public class TakeMeHomeTutorialResetState : IState
+    public class TakeMeHomeTutorialResetState : FSM.IState
     {
 
         TakeMeHomeGame game;

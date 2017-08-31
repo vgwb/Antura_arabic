@@ -19,7 +19,7 @@ namespace Antura.Minigames.Template
             ResultState = new ResultGameState(this);
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }

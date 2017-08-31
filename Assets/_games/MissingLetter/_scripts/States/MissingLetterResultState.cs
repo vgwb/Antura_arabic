@@ -1,6 +1,6 @@
 ﻿namespace Antura.Minigames.MissingLetter
 {
-    public class MissingLetterResultState : IState
+    public class MissingLetterResultState : FSM.IState
     {
 
         public MissingLetterResultState(MissingLetterGame _game)

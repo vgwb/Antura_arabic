@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Antura.Minigames.FastCrowd
 {
-    public class FastCrowdTutorialState : IState
+    public class FastCrowdTutorialState : FSM.IState
     {
         FastCrowdGame game;
 

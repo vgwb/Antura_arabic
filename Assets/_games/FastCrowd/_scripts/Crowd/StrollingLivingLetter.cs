@@ -1,4 +1,5 @@
-﻿using Antura.LivingLetters;
+﻿using Antura.FSM;
+using Antura.LivingLetters;
 using UnityEngine;
 
 namespace Antura.Minigames.FastCrowd
@@ -51,8 +52,7 @@ namespace Antura.Minigames.FastCrowd
 
             // Just to be safe
             var currentState = GetCurrentState();
-            if (currentState != HangingState && currentState != FallingState)
-            {
+            if (currentState != HangingState && currentState != FallingState) {
                 var oldPos = transform.position;
 
                 if (oldPos.y != 0)
@@ -60,8 +60,7 @@ namespace Antura.Minigames.FastCrowd
                 transform.position = oldPos;
             }
 
-            if (Vector3.Distance(transform.position, antura.transform.position) < 15.0f)
-            {
+            if (Vector3.Distance(transform.position, antura.transform.position) < 15.0f) {
                 Scare(antura.transform.position, 5);
                 return;
             }
@@ -74,11 +73,9 @@ namespace Antura.Minigames.FastCrowd
 
         public bool Raycast(out float distance, out Vector3 position, Ray ray, float maxDistance)
         {
-            for (int i = 0, count = colliders.Length; i < count; ++i)
-            {
+            for (int i = 0, count = colliders.Length; i < count; ++i) {
                 RaycastHit info;
-                if (colliders[i].Raycast(ray, out info, maxDistance))
-                {
+                if (colliders[i].Raycast(ray, out info, maxDistance)) {
                     position = info.point;
                     distance = info.distance;
                     return true;
@@ -127,8 +124,7 @@ namespace Antura.Minigames.FastCrowd
         {
             var currentData = area.GetActiveData();
 
-            if (currentData != null)
-            {
+            if (currentData != null) {
                 bool matching = GetComponent<LivingLetterController>().Data.Equals(currentData);
 
                 if (onDropped != null)

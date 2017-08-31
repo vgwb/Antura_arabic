@@ -46,8 +46,7 @@ namespace Antura.Profile
 
         #endregion
 
-        bool allAvatarCategoriesSelected
-        {
+        bool allAvatarCategoriesSelected {
             get {
                 foreach (var cat in Categories) {
                     if (cat.SelectedIndex < 0) {
@@ -199,7 +198,7 @@ namespace Antura.Profile
                 AgeCategory.SelectedIndex + 4,
                 Categories[CategoryIndex.Gender].SelectedIndex == 0 ? PlayerGender.M : PlayerGender.F,
                 Categories[CategoryIndex.Avatar].SelectedIndex + 1,
-                (PlayerTint) (Categories[CategoryIndex.Color].SelectedIndex + 1)
+                (PlayerTint)(Categories[CategoryIndex.Color].SelectedIndex + 1)
             );
         }
 

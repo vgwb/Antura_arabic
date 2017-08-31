@@ -8,7 +8,7 @@ namespace Antura.Assessment
     /// Result state. notify the LogManager of game ended and play final animation.
     /// Also teleport to main map.
     /// </summary>
-    public class AssessmentResultState : IState
+    public class AssessmentResultState : FSM.IState
     {
         private AssessmentGame assessmentGame;
         private AssessmentAudioManager dialogueManager;

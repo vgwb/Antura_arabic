@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Antura.Minigames.ColorTickle
 {
-    public class PlayGameState : IState
+    public class PlayGameState : FSM.IState
     {
         #region PRIVATE MEMBERS
 

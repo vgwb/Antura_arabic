@@ -71,7 +71,7 @@ namespace Antura.Minigames.Tobogan
             return ToboganConfiguration.Instance;
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return QuestionState;
         }

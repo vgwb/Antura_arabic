@@ -14,7 +14,7 @@ using System;
 
 namespace Antura.Minigames.ThrowBalls
 {
-    public class GameState : IState
+    public class GameState : FSM.IState
     {
         public const int MAX_NUM_ROUNDS = 5;
         public const int NUM_LETTERS_IN_POOL = 7;

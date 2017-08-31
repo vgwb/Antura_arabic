@@ -2,7 +2,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.MakeFriends
 {
-    public class MakeFriendsIntroductionState : IState
+    public class MakeFriendsIntroductionState : FSM.IState
     {
         MakeFriendsGame game;
 

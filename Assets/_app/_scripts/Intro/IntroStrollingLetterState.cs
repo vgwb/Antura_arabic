@@ -1,6 +1,6 @@
 ﻿namespace Antura.Intro
 {
-    public abstract class IntroStrollingLetterState : IState
+    public abstract class IntroStrollingLetterState : FSM.IState
     {
         protected IntroStrollingLetter letter;
 

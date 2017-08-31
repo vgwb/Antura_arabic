@@ -1,6 +1,6 @@
 ﻿namespace Antura.AnturaSpace
 {
-    public class AnturaState : IState
+    public class AnturaState : FSM.IState
     {
         protected AnturaSpaceScene controller;
 

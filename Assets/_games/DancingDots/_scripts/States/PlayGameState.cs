@@ -3,7 +3,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.DancingDots
 {
-    public class PlayGameState : IState
+    public class PlayGameState : FSM.IState
     {
         DancingDotsGame game;
 

@@ -2,7 +2,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.Tobogan
 {
-    public class ToboganQuestionState : IState
+    public class ToboganQuestionState : FSM.IState
     {
         ToboganGame game;
 

@@ -2,7 +2,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.HideAndSeek
 {
-    public class IntroductionGameState : IState
+    public class IntroductionGameState : FSM.IState
     {
 		HideAndSeekGame game;
 

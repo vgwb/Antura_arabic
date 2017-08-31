@@ -1,6 +1,6 @@
 ﻿namespace Antura.Minigames.MakeFriends
 {
-    public class MakeFriendsResultState : IState
+    public class MakeFriendsResultState : FSM.IState
     {
         MakeFriendsGame game;
 

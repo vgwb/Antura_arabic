@@ -4,7 +4,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.SickLetters
 {
-    public class PlayGameState : IState
+    public class PlayGameState : FSM.IState
     {
         SickLettersGame game;
         Vector3 correctDotPos;

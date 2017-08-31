@@ -4,7 +4,7 @@ namespace Antura.Minigames.Template
     /// Sample game state used by the TemplateGame. 
     /// Implements a timed introduction before advancing to the next state.
     /// </summary>
-    public class IntroductionGameState : IState
+    public class IntroductionGameState : FSM.IState
     {
         TemplateGameController game;
 

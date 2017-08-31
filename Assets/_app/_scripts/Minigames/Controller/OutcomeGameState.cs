@@ -4,7 +4,7 @@ namespace Antura.Minigames
     /// The game state reached when the minigame ends.
     /// This state is present in all minigames and is always accessed last.
     /// </summary>
-    public class OutcomeGameState : IState
+    public class OutcomeGameState : FSM.IState
     {
         private MiniGameController game;
 

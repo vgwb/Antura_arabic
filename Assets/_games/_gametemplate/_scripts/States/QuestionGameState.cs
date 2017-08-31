@@ -4,7 +4,7 @@ namespace Antura.Minigames.Template
     /// Sample game state used by the TemplateGame. 
     /// Implements a phase where a question is shown to the player.
     /// </summary>
-    public class QuestionGameState : IState
+    public class QuestionGameState : FSM.IState
     {
         TemplateGameController game;
 

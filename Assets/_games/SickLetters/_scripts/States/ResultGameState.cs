@@ -2,7 +2,7 @@
 
 namespace Antura.Minigames.SickLetters
 {
-    public class ResultGameState : IState
+    public class ResultGameState : FSM.IState
     {
         SickLettersGame game;
         int stars, score;

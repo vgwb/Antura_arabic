@@ -1,6 +1,6 @@
 ﻿namespace Antura.Minigames.Balloons
 {
-    public class BalloonsIntroductionState : IState
+    public class BalloonsIntroductionState : FSM.IState
     {
         BalloonsGame game;
 

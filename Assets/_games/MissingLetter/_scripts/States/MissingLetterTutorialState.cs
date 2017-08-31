@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Antura.Minigames.MissingLetter
 {
 
-    public class MissingLetterTutorialState : IState
+    public class MissingLetterTutorialState : FSM.IState
     {
 
         public MissingLetterTutorialState(MissingLetterGame _game)

@@ -80,7 +80,7 @@ namespace Antura.Minigames.Scanner
             CurrentScoreRecord = 0;
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }

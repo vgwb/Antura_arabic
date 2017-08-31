@@ -73,7 +73,7 @@ namespace Antura.Minigames.MissingLetter
 
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }

@@ -51,7 +51,7 @@ namespace Antura.Minigames.ThrowBalls
             return ThrowBallsConfiguration.Instance;
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return GameState;
         }

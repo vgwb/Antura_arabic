@@ -3,7 +3,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.FastCrowd
 {
-    public class FastCrowdPlayState : IState
+    public class FastCrowdPlayState : FSM.IState
     {
         CountdownTimer gameTime;
         FastCrowdGame game;

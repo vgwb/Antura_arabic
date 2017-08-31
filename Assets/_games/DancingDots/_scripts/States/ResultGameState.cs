@@ -2,7 +2,7 @@
 
 namespace Antura.Minigames.DancingDots
 {
-    public class ResultGameState : IState
+    public class ResultGameState : FSM.IState
     {
         DancingDotsGame game;
 

@@ -178,7 +178,7 @@ namespace Antura.Minigames.TakeMeHome
 			return TakeMeHomeConfiguration.Instance;
 		}
 
-		protected override IState GetInitialState()
+		protected override FSM.IState GetInitialState()
 		{
 			return TutorialIntroState;
 		}

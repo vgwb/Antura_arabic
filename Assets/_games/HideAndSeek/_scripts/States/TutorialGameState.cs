@@ -2,7 +2,7 @@
 
 namespace Antura.Minigames.HideAndSeek
 {
-    public class TutorialGameState : IState
+    public class TutorialGameState : FSM.IState
     {
         HideAndSeekGame game;
 

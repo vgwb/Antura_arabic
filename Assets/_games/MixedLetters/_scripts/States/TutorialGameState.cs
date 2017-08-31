@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace Antura.Minigames.MixedLetters
 {
-    public class TutorialGameState : IState
+    public class TutorialGameState : FSM.IState
     {
         MixedLettersGame game;
 

@@ -2,7 +2,7 @@ using Antura.Minigames;
 
 namespace Antura.Minigames.FastCrowd
 {
-    public class FastCrowdIntroductionState : IState
+    public class FastCrowdIntroductionState : FSM.IState
     {
         FastCrowdGame game;
 
