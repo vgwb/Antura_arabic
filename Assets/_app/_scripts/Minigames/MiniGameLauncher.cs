@@ -1,10 +1,10 @@
-﻿using Antura.MinigamesCommon;
+using Antura.Core;
 using Antura.Teacher;
 using System;
 using System.Reflection;
 using UnityEngine;
 
-namespace Antura.Core
+namespace Antura.Minigames
 {
     /// <summary>
     /// Handles the logic to launch minigames with the correct configuration.

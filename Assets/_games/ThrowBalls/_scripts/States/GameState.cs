@@ -1,8 +1,8 @@
-﻿using Antura.Audio;
+using Antura.Audio;
 using Antura.Core;
 using Antura.Helpers;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.Tutorial;
 using Antura.UI;
 using Random = UnityEngine.Random;

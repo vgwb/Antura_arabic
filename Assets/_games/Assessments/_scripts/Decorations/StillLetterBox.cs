@@ -2,7 +2,7 @@ using DG.Tweening;
 using System;
 using Antura.Helpers;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.UI;
 using Antura.Utilities;
 using Antura.Core;

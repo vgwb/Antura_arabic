@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,7 +6,7 @@ using System;
 using Antura.Dog;
 using Antura.Audio;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.Tutorial;
 
 namespace Antura.Minigames.DancingDots

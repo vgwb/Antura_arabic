@@ -1,4 +1,4 @@
-﻿namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Concrete implementation of IGameContext. Accessible to minigames.

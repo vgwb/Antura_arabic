@@ -1,6 +1,6 @@
-﻿using Antura.UI;
+using Antura.UI;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Concrete implementation of ICheckmarkWidget. Accessible to minigames.

@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Audio;
 using Antura.LivingLetters;
 using Antura.Tutorial;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 
 namespace Antura.Minigames.HideAndSeek
 {

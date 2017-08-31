@@ -1,5 +1,5 @@
-﻿using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.LivingLetters;
+using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.ReadingGame

@@ -1,6 +1,6 @@
 ﻿using Antura.Core;
 using Antura.Database;
-using Antura.LivingLetters;
+using Antura.Minigames;
 using Antura.Profile;
 using Antura.Rewards;
 using UnityEngine;
@@ -49,8 +49,7 @@ namespace Antura.Debugging
 
         #region App Options
 
-        public bool VerboseTeacher
-        {
+        public bool VerboseTeacher {
             get { return Teacher.ConfigAI.verboseTeacher; }
             set { Teacher.ConfigAI.verboseTeacher = value; }
         }
@@ -67,8 +66,7 @@ namespace Antura.Debugging
 
         private bool _ignoreJourneyData = false;
 
-        public bool IgnoreJourneyData
-        {
+        public bool IgnoreJourneyData {
             get { return _ignoreJourneyData; }
             set {
                 _ignoreJourneyData = value;
@@ -84,8 +82,7 @@ namespace Antura.Debugging
         /// <value>
         ///   <c>true</c> if [first contact passed]; otherwise, <c>false</c>.
         /// </value>
-        public bool FirstContactPassed
-        {
+        public bool FirstContactPassed {
             get { return !AppManager.I.Player.IsFirstContact(); }
             set {
                 if (value) {

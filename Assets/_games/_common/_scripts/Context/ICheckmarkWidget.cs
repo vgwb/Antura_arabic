@@ -1,4 +1,4 @@
-﻿namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Provides access to the MinigamesCheckmarkWidget UI element for minigames.

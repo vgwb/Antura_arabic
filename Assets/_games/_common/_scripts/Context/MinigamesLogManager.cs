@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Core;
@@ -6,7 +6,7 @@ using Antura.LivingLetters;
 using Antura.Teacher;
 using Antura.Database;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Concrete implementation of the log manager, accessible to minigames.

@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Utility script that automatically destroys a game object after a given duration.

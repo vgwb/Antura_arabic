@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Antura.Database;
 
-namespace Antura.Core
+namespace Antura.Minigames
 {
     public class MainMiniGame
     {

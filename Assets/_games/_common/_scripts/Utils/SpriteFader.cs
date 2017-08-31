@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Fades a sprite from-to a specific transparency value in time.

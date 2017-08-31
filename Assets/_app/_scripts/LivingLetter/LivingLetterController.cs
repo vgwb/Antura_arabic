@@ -1,6 +1,6 @@
-﻿using Antura.Helpers;
+using Antura.Helpers;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.Utilities;
 using UnityEngine;
 using TMPro;

@@ -1,7 +1,7 @@
-﻿using Antura.LivingLetters;
+using Antura.LivingLetters;
 using Antura.Teacher;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Interface for all configuration containers of minigames.

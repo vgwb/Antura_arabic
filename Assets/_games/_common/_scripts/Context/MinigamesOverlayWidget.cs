@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using Antura.UI;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Concrete implementation of IOverlayWidget. Accessible to minigames.

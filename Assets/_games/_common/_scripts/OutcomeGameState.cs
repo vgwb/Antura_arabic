@@ -1,4 +1,4 @@
-﻿namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// The game state reached when the minigame ends.

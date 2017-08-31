@@ -1,6 +1,6 @@
-﻿using Antura.LivingLetters;
+using Antura.LivingLetters;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Provides generic log access to the core and to minigames.

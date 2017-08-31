@@ -2,7 +2,7 @@ using Kore.Coroutines;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Assessment

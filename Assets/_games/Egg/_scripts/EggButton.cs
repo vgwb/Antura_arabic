@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.UI;
 
 namespace Antura.Minigames.Egg

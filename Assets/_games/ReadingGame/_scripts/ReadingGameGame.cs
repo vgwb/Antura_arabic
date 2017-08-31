@@ -1,7 +1,7 @@
-﻿using System.IO;
+using System.IO;
 using System.Text;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.ReadingGame

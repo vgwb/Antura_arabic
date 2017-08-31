@@ -1,5 +1,5 @@
-﻿using Antura.Audio;
-using Antura.MinigamesCommon;
+using Antura.Audio;
+using Antura.Minigames;
 
 namespace Antura.Minigames.HideAndSeek
 {

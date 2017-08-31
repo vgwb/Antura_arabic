@@ -3,6 +3,7 @@ using Antura.CameraControl;
 using Antura.Core.Services;
 using Antura.Database;
 using Antura.Keeper;
+using Antura.Minigames;
 using Antura.Profile;
 using Antura.Rewards;
 using Antura.Teacher;

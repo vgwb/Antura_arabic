@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Antura.LivingLetters;
 using Antura.Minigames.Tobogan;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using DG.Tweening;
 
 namespace Antura.Minigames.Maze

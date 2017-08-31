@@ -1,4 +1,4 @@
-﻿using Antura.MinigamesCommon;
+using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.Egg

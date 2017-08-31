@@ -1,8 +1,8 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     // refactor: should be handled as other widgets are
     public class RadialGadget : MonoBehaviour

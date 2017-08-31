@@ -1,6 +1,6 @@
-﻿using Antura.Audio;
+using Antura.Audio;
 using UnityEngine;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 
 namespace Antura.Minigames.SickLetters
 {

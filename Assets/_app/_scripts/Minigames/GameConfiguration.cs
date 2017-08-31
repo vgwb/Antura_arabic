@@ -1,4 +1,4 @@
-﻿namespace Antura.Core
+﻿namespace Antura.Minigames
 {
     /// <summary>
     /// Data passed to a minigame to configure it. 

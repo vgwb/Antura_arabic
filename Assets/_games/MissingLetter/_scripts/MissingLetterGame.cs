@@ -1,5 +1,5 @@
-﻿using System;
-using Antura.MinigamesCommon;
+using System;
+using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.MissingLetter

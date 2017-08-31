@@ -1,9 +1,9 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using System;
 using Antura.LivingLetters;
 using UnityEngine;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// A circle-shaped button.

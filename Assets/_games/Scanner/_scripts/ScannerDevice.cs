@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 
 namespace Antura.Minigames.Scanner
 {
@@ -53,7 +53,7 @@ namespace Antura.Minigames.Scanner
 			
         public float speed = 1;
         public ScannerLivingLetter LL;
-        MinigamesCommon.IAudioSource wordSound;
+        Minigames.IAudioSource wordSound;
 
 
         void Update()

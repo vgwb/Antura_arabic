@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using Antura.Core;
+﻿using Antura.Core;
+using Antura.Minigames;
 using Antura.UI;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,26 +27,22 @@ namespace Antura.Debugging
         public Toggle SafeLaunchToggle;
         public Toggle AutoCorrectJourneyPosToggle;
 
-        public bool TutorialEnabled
-        {
+        public bool TutorialEnabled {
             get { return DebugManager.I.TutorialEnabled; }
             set { DebugManager.I.TutorialEnabled = value; }
         }
 
-        public bool VerboseTeacher
-        {
+        public bool VerboseTeacher {
             get { return DebugManager.I.VerboseTeacher; }
             set { DebugManager.I.VerboseTeacher = value; }
         }
 
-        public bool SafeLaunch
-        {
+        public bool SafeLaunch {
             get { return DebugManager.I.SafeLaunch; }
             set { DebugManager.I.SafeLaunch = value; }
         }
 
-        public bool AutoCorrectJourneyPos
-        {
+        public bool AutoCorrectJourneyPos {
             get { return DebugManager.I.AutoCorrectJourneyPos; }
             set { DebugManager.I.AutoCorrectJourneyPos = value; }
         }
@@ -150,8 +147,7 @@ namespace Antura.Debugging
             Close();
         }
 
-        public bool FirstContactPassed
-        {
+        public bool FirstContactPassed {
             get { return DebugManager.I.FirstContactPassed; }
             set { DebugManager.I.FirstContactPassed = value; }
         }

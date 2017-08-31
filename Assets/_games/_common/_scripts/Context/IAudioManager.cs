@@ -1,7 +1,7 @@
-﻿using Antura.LivingLetters;
+using Antura.LivingLetters;
 using UnityEngine;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Provides generic audio access to the core and to minigames.

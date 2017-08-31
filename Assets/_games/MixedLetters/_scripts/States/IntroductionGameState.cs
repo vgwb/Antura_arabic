@@ -1,7 +1,7 @@
-﻿using Antura.UI;
+using Antura.UI;
 using Antura.Minigames.FastCrowd;
 using UnityEngine;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 
 namespace Antura.Minigames.MixedLetters
 {

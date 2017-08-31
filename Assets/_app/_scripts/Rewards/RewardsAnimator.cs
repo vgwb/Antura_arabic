@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using Antura.Audio;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using DG.Tweening;
 
 namespace Antura.Rewards

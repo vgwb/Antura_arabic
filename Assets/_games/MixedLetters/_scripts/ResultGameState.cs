@@ -1,6 +1,6 @@
-﻿using Antura.LivingLetters;
+using Antura.LivingLetters;
 using Antura.UI;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 
 namespace Antura.Minigames.MixedLetters
 {

@@ -1,5 +1,5 @@
-﻿using Antura.UI;
-using Antura.MinigamesCommon;
+using Antura.UI;
+using Antura.Minigames;
 
 namespace Antura.Minigames.MixedLetters
 {

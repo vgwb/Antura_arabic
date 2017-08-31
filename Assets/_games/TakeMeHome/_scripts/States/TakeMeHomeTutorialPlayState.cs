@@ -1,5 +1,5 @@
-﻿using Antura.Tutorial;
-using Antura.MinigamesCommon;
+using Antura.Tutorial;
+using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.TakeMeHome

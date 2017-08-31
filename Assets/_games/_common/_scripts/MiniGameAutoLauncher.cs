@@ -3,7 +3,7 @@ using UnityEngine;
 
 #if UNITY_EDITOR
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Utility component to launch a minigame with a pre-set configuration. 

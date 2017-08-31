@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using Antura.MinigamesCommon;
+using System.Collections;
+using Antura.Minigames;
 using Antura.UI;
 using UnityEngine;
 

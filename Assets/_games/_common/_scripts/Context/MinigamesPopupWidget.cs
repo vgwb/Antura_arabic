@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using Antura.LivingLetters;
 using Antura.UI;
 using UnityEngine;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Concrete implementation of IPopupWidget. Accessible to minigames.

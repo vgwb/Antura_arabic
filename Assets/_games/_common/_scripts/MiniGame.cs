@@ -1,10 +1,10 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.Debugging;
 using Antura.UI;
 using Antura.Utilities;
 using UnityEngine;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     /// <summary>
     /// Base abstract class for all minigame in-scene managers.

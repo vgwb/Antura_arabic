@@ -1,7 +1,7 @@
-﻿using Antura.Audio;
+using Antura.Audio;
 using Antura.Core;
 using Antura.Helpers;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.UI;
 using UnityEngine;
 using UnityEngine.UI;

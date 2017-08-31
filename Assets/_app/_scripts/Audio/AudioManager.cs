@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using Antura.Core;
 using Antura.Database;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.Profile;
 using DG.DeAudio;
 using Antura.Helpers;

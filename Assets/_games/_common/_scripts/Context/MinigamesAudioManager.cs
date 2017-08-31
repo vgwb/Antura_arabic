@@ -1,8 +1,8 @@
-﻿using Antura.Audio;
+using Antura.Audio;
 using Antura.LivingLetters;
 using UnityEngine;
 
-namespace Antura.MinigamesCommon
+namespace Antura.Minigames
 {
     public class MinigamesAudioManager : IAudioManager
     {

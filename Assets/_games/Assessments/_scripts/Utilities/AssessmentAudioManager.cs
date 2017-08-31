@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using Antura.Database;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 
 namespace Antura.Assessment
 {

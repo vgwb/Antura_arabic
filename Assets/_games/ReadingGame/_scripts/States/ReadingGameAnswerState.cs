@@ -1,9 +1,9 @@
-﻿using DG.DeExtensions;
+using DG.DeExtensions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.Tutorial;
 using UnityEngine;
 

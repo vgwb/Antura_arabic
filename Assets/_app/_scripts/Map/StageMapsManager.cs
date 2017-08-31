@@ -1,9 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using Antura.CameraControl;
 using Antura.Core;
 using Antura.Database;
 using Antura.Keeper;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.Tutorial;
 using Antura.UI;
 using DG.Tweening;

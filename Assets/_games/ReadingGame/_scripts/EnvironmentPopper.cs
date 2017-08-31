@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 
 namespace Antura.Minigames.ReadingGame
 {
