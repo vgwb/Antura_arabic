@@ -2,13 +2,14 @@ namespace Antura.Minigames.Template
 {
     /// <summary>
     /// Sample game state used by the TemplateGame. 
-    /// Implements a phase where a question is shown to the player.
+    /// Implements a timed introduction before advancing to the next state.
     /// </summary>
-    public class QuestionGameState : IState
+    public class IntroductionGameState : IState
     {
-        TemplateGame game;
+        TemplateGameController game;
 
-        public QuestionGameState(TemplateGame game)
+        float timer = 4;
+        public IntroductionGameState(TemplateGameController game)
         {
             this.game = game;
         }
@@ -19,12 +20,15 @@ namespace Antura.Minigames.Template
 
         public void ExitState()
         {
-
         }
 
         public void Update(float delta)
         {
-            game.SetCurrentState(game.PlayState);
+            timer -= delta;
+
+            if (timer < 0) {
+                game.SetCurrentState(game.QuestionState);
+            }
         }
 
         public void UpdatePhysics(float delta)

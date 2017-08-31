@@ -1,15 +1,16 @@
-namespace Antura.Minigames.Template
+﻿namespace Antura.Minigames.Template
 {
     /// <summary>
     /// Sample game state used by the TemplateGame. 
-    /// Implements the play-state of a minigame, where actual gameplay is performed.
+    /// Implements a phase in whic the results of the play session are gathered.
+    /// Note that EndGame is called to enter the final common state: OutcomeState.
     /// </summary>
-    public class PlayGameState : IState
+    public class ResultGameState : IState
     {
-        TemplateGame game;
+        TemplateGameController game;
 
         float timer = 4;
-        public PlayGameState(TemplateGame game)
+        public ResultGameState(TemplateGameController game)
         {
             this.game = game;
         }
@@ -27,7 +28,7 @@ namespace Antura.Minigames.Template
             timer -= delta;
 
             if (timer < 0) {
-                game.SetCurrentState(game.ResultState);
+                game.EndGame(2, 100);
             }
         }
 
