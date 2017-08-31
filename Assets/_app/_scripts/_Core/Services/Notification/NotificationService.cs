@@ -34,11 +34,18 @@ namespace Antura.Core.Services.Notification
 
         private void PrepareNextLocalNotification()
         {
-            Debug.Log("Next Local Notification prepared");
+            Debug.Log("Next Local Notifications prepared");
             NotificationManager.ScheduleSimpleWithAppIcon(
-                TimeSpan.FromSeconds(10),
+                TimeSpan.FromSeconds(60),
                 "Antura and the Letters",
-                "Come back to play your daily session and earn new rewards!",
+                "Test notification after closing the app [60 seconds]",
+                Color.blue
+            );
+
+            NotificationManager.ScheduleSimpleWithAppIcon(
+                TimeSpan.FromSeconds(60 * 60 * 24),
+                "Antura and the Letters",
+                "Come back to play your daily session and earn new rewards! [the day after]",
                 Color.blue
             );
         }
@@ -54,7 +61,7 @@ namespace Antura.Core.Services.Notification
         {
             var notificationParams = new NotificationParams {
                 Id = UnityEngine.Random.Range(0, int.MaxValue),
-                Delay = TimeSpan.FromSeconds(10),
+                Delay = TimeSpan.FromSeconds(60),
                 Title = "Custom notification",
                 Message = "Message",
                 Ticker = "Ticker",
