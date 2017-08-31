@@ -1,5 +1,6 @@
 ﻿using Antura.Core;
 using Antura.Dog;
+using Antura.Extensions;
 using Antura.Helpers;
 using Antura.Rewards;
 using Antura.UI;

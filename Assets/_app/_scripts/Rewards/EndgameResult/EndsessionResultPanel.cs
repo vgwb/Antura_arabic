@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Antura.Audio;
+﻿using Antura.Audio;
+using Antura.Core;
+using Antura.Extensions;
 using Antura.Helpers;
 using Antura.UI;
 using DG.Tweening;
-using Antura.Core;
-using Antura.Utilities;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -55,8 +55,7 @@ namespace Antura.Rewards
             showTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(this.GetComponent<Image>().DOFade(0, 0.35f).From().SetEase(Ease.Linear))
                 .Join(GodraysCanvas.DOFade(0, 0.35f).From().SetEase(Ease.Linear))
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     this.gameObject.SetActive(false);
                     godraysTween.Pause();
                 });
