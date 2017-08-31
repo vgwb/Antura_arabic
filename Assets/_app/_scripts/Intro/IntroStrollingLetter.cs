@@ -1,4 +1,4 @@
-﻿using Antura.FSM;
+using Antura.FSM;
 using Antura.LivingLetters;
 using Antura.Minigames.FastCrowd;
 using UnityEngine;
@@ -13,7 +13,7 @@ namespace Antura.Intro
         public event System.Action onDestroy;
         public event System.Action<bool> onDropped;
 
-        StateManager stateManager = new StateManager();
+        StateMachineManager stateManager = new StateMachineManager();
 
         // TODO refactor: the use of FSMs is not standardized across the codebase
         public IntroStrollingLetterWalkingState WalkingState { get; private set; }

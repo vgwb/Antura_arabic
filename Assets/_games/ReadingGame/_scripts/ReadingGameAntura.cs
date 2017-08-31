@@ -1,4 +1,4 @@
-﻿using Antura.Dog;
+using Antura.Dog;
 using Antura.FSM;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ namespace Antura.Minigames.ReadingGame
         [HideInInspector]
         public AnturaAnimationController animator;
 
-        StateManager stateManager = new StateManager();
+        StateMachineManager stateManager = new StateMachineManager();
 
         public WalkAnturaState WalkingState { get; private set; }
         public IdleAnturaState IdleState { get; private set; }

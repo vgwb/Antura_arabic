@@ -1,4 +1,4 @@
-﻿using Antura.FSM;
+using Antura.FSM;
 using Antura.LivingLetters;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ namespace Antura.Minigames.FastCrowd
         public event System.Action onDestroy;
         public event System.Action<bool> onDropped;
 
-        StateManager stateManager = new StateManager();
+        StateMachineManager stateManager = new StateMachineManager();
 
         public StrollingLetterWalkingState WalkingState { get; private set; }
         public StrollingLetterIdleState IdleState { get; private set; }

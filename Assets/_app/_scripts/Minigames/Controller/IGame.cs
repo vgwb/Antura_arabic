@@ -17,6 +17,6 @@ namespace Antura.Minigames
         /// <summary>
         /// Access the GameStateManager that controls the FSM that controls the minigame flow.
         /// </summary>
-        StateManager StateManager { get; }
+        StateMachineManager StateManager { get; }
     }
 }

@@ -33,11 +33,11 @@ namespace Antura.Minigames
         /// <summary>
         /// Access the GameStateManager that controls the minigame's FSM.
         /// </summary>
-        public StateManager StateManager {
+        public StateMachineManager StateManager {
             get { return stateManager; }
         }
 
-        StateManager stateManager = new StateManager();
+        StateMachineManager stateManager = new StateMachineManager();
 
         public IState GetCurrentState()
         {

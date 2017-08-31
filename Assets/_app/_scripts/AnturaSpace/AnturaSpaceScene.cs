@@ -51,7 +51,7 @@ namespace Antura.AnturaSpace
         public AnturaWaitingThrowState WaitingThrow;
         public AnturaCatchingState Catching;
 
-        private StateManager stateManager = new StateManager();
+        private StateMachineManager stateManager = new StateMachineManager();
 
         public AnturaState CurrentState {
             get { return (AnturaState)stateManager.CurrentState; }

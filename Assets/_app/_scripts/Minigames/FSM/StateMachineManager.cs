@@ -4,7 +4,7 @@
     /// Implements a Finite State Machine (FSM).
     /// This is used to control minigame flow, and may also be used as a general purpose FSM.
     /// </summary>
-    public class StateManager
+    public class StateMachineManager
     {
         // Use to prevent recursive calls to ExitState, when the transition happens in ExitState
         private bool isInExitTransition;
