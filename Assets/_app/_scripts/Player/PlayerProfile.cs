@@ -205,7 +205,7 @@ namespace Antura.Profile
 
         #region Shop State
 
-        public ShopState CurrentShopState = new ShopState();
+        public AnturaSpace.ShopState CurrentShopState = new AnturaSpace.ShopState();
 
         #endregion
 
@@ -611,7 +611,7 @@ namespace Antura.Profile
 
             HasMaxStarsInCurrentPlaySessions = _data.GetAdditionalData().HasMaxStarsInCurrentPlaySessions;
             ConsecutivePlayDays = _data.GetAdditionalData().ConsecutivePlayDays;
-            CurrentShopState = ShopState.CreateFromJson(_data.GetAdditionalData().CurrentShopStateJSON);
+            CurrentShopState = AnturaSpace.ShopState.CreateFromJson(_data.GetAdditionalData().CurrentShopStateJSON);
 
             SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);

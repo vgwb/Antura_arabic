@@ -1,7 +1,10 @@
-﻿public class ShopAction_Photo : ShopAction
+﻿namespace Antura.AnturaSpace
 {
-    public override void PerformAction()
+    public class ShopAction_Photo : ShopAction
     {
-        // TODO: save the photo
+        public override void PerformAction()
+        {
+            // TODO: save the photo
+        }
     }
 }

@@ -1,16 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ShopDecoration : MonoBehaviour
+namespace Antura.AnturaSpace
 {
-    public string id;
-    public bool locked = true;
-
-    public void Unlock()
+    public class ShopDecoration : MonoBehaviour
     {
-        if (!locked) return;
-        locked = false;
-        gameObject.SetActive(true);
+        public string id;
+        public bool locked = true;
+
+        public void Unlock()
+        {
+            if (!locked) return;
+            locked = false;
+            gameObject.SetActive(true);
+        }
     }
 }

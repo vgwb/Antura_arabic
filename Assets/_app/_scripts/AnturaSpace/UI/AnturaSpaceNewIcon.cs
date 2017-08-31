@@ -1,7 +1,8 @@
-﻿using DG.Tweening;
+﻿using Antura.UI;
+using DG.Tweening;
 using UnityEngine;
 
-namespace Antura.UI
+namespace Antura.AnturaSpace.UI
 {
     public class AnturaSpaceNewIcon : MonoBehaviour
     {

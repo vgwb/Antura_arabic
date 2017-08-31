@@ -1,10 +1,13 @@
-﻿public class ShopAction_Ball : ShopAction
+﻿namespace Antura.AnturaSpace
 {
-    public override void PerformAction()
+    public class ShopAction_Ball : ShopAction
     {
-        SetLocked(true);
-        // TODO: enable the ball in the scene
-        // TODO: attach to the ball's lifetime. Wwhen it dies, unlock this action
-    }
+        public override void PerformAction()
+        {
+            SetLocked(true);
+            // TODO: enable the ball in the scene
+            // TODO: attach to the ball's lifetime. Wwhen it dies, unlock this action
+        }
 
+    }
 }

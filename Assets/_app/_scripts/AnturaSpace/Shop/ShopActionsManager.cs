@@ -1,33 +1,36 @@
 ﻿using Antura.Core;
 using UnityEngine;
 
-public class ShopActionsManager : MonoBehaviour
+namespace Antura.AnturaSpace
 {
-    [Header("Debug")]
-    public bool addDebugBones = false;
-
-    public ShopActionsPanelUI ShopActionsPanelUi;
-    public ShopDecorationsManager ShopDecorationsManager;
-
-    private ShopAction[] shopActions;
-
-    void Start()
+    public class ShopActionsManager : MonoBehaviour
     {
-        if (addDebugBones) {
-            AppManager.I.Player.AddBones(20);
-        }
+        [Header("Debug")]
+        public bool addDebugBones = false;
 
-        // Setup the decorations manager
-        var shopState = AppManager.I.Player.CurrentShopState;
-        ShopDecorationsManager.Initialise(shopState);
+        public ShopActionsPanelUI ShopActionsPanelUi;
+        public ShopDecorationsManager ShopDecorationsManager;
 
-        // Setup actions
-        shopActions = GetComponentsInChildren<ShopAction>();
-        foreach (var shopAction in shopActions) {
-            shopAction.InitialiseLockedState();
+        private ShopAction[] shopActions;
+
+        void Start()
+        {
+            if (addDebugBones) {
+                AppManager.I.Player.AddBones(20);
+            }
+
+            // Setup the decorations manager
+            var shopState = AppManager.I.Player.CurrentShopState;
+            ShopDecorationsManager.Initialise(shopState);
+
+            // Setup actions
+            shopActions = GetComponentsInChildren<ShopAction>();
+            foreach (var shopAction in shopActions) {
+                shopAction.InitialiseLockedState();
+            }
+            ShopActionsPanelUi.SetActions(shopActions);
+
         }
-        ShopActionsPanelUi.SetActions(shopActions);
 
     }
-
 }

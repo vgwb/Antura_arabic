@@ -1,20 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopState
+namespace Antura.AnturaSpace
 {
-    public List<string> unlockedDecorationsIDs = new List<string>();
-
-    public string ToJson()
+    public class ShopState
     {
-        return JsonUtility.ToJson(this);
-    }
+        public List<string> unlockedDecorationsIDs = new List<string>();
 
-    public static ShopState CreateFromJson(string jsonData)
-    {
-        var shopState = JsonUtility.FromJson<ShopState>(jsonData);
-        if (shopState == null) shopState = new ShopState();
-        return shopState;
-    }
+        public string ToJson()
+        {
+            return JsonUtility.ToJson(this);
+        }
 
+        public static ShopState CreateFromJson(string jsonData)
+        {
+            var shopState = JsonUtility.FromJson<ShopState>(jsonData);
+            if (shopState == null) shopState = new ShopState();
+            return shopState;
+        }
+
+    }
 }

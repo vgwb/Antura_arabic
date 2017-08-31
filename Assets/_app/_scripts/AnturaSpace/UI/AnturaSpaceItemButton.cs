@@ -1,8 +1,9 @@
 ﻿using Antura.Rewards;
+using Antura.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Antura.UI
+namespace Antura.AnturaSpace.UI
 {
     /// <summary>
     /// Button for an item in a category in the Antura Space scene.
@@ -18,8 +19,7 @@ namespace Antura.UI
         [System.NonSerialized]
         public RewardItem Data;
 
-        public bool IsNew
-        {
+        public bool IsNew {
             get { return isNew && !isNewForceHidden; }
         }
 

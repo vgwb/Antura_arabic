@@ -1,18 +1,19 @@
-﻿using DG.DeExtensions;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ShopActionsPanelUI : MonoBehaviour
+namespace Antura.AnturaSpace
 {
-    public GameObject shopActionUIPrefab;
-
-    public void SetActions(ShopAction[] shopActions)
+    public class ShopActionsPanelUI : MonoBehaviour
     {
-        foreach (var shopAction in shopActions)
+        public GameObject shopActionUIPrefab;
+
+        public void SetActions(ShopAction[] shopActions)
         {
-            var shopActionUIgo = Instantiate(shopActionUIPrefab);
-            shopActionUIgo.transform.SetParent(transform);
-            shopActionUIgo.transform.localScale = Vector3.one;
-            shopActionUIgo.GetComponent<ShopActionUI>().SetAction(shopAction);
+            foreach (var shopAction in shopActions) {
+                var shopActionUIgo = Instantiate(shopActionUIPrefab);
+                shopActionUIgo.transform.SetParent(transform);
+                shopActionUIgo.transform.localScale = Vector3.one;
+                shopActionUIgo.GetComponent<ShopActionUI>().SetAction(shopAction);
+            }
         }
     }
 }

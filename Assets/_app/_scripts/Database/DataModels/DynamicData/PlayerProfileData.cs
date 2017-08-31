@@ -194,7 +194,7 @@ namespace Antura.Database
                 ProfileCompletionState profileCompletion,
                 string currentAnturaCustomization,
                 int comboPlayDays,
-                ShopState currentShopState
+                AnturaSpace.ShopState currentShopState
                 )
         {
             Id = UNIQUE_ID;  // Only one record

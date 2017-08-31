@@ -3,28 +3,31 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopActionUI : MonoBehaviour
+namespace Antura.AnturaSpace
 {
-    public Image iconUI;
-    public TextMeshProUGUI amountUI;
-    public Button buttonUI;
-
-    private ShopAction shopAction;
-
-    public void SetAction(ShopAction shopAction)
+    public class ShopActionUI : MonoBehaviour
     {
-        this.shopAction = shopAction;
-        iconUI.sprite = shopAction.iconSprite;
-        amountUI.text = shopAction.bonesCost.ToString();
-        buttonUI.interactable = !shopAction.IsLocked;
-    }
+        public Image iconUI;
+        public TextMeshProUGUI amountUI;
+        public Button buttonUI;
 
-    public void OnClick()
-    {
-        if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost) {
-            AppManager.I.Player.RemoveBones(shopAction.bonesCost);
-            shopAction.PerformAction();
+        private ShopAction shopAction;
+
+        public void SetAction(ShopAction shopAction)
+        {
+            this.shopAction = shopAction;
+            iconUI.sprite = shopAction.iconSprite;
+            amountUI.text = shopAction.bonesCost.ToString();
+            buttonUI.interactable = !shopAction.IsLocked;
         }
-    }
 
+        public void OnClick()
+        {
+            if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost) {
+                AppManager.I.Player.RemoveBones(shopAction.bonesCost);
+                shopAction.PerformAction();
+            }
+        }
+
+    }
 }

@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Antura.Core;
 using Antura.Dog;
 using Antura.Helpers;
 using Antura.Rewards;
+using Antura.UI;
+using System;
 using DG.DeInspektor.Attributes;
 using DG.Tweening;
-using Antura.Core;
-using Antura.Utilities;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Antura.UI
+namespace Antura.AnturaSpace.UI
 {
     /// <summary>
     /// General controller of the UI in the Antura Space scene.
@@ -46,7 +45,7 @@ namespace Antura.UI
         public static event AnturaSpaceUIEvent onRewardCategorySelectedInCustomization;
 
         public static event AnturaSpaceUIEvent onRewardSelectedInCustomization;
-//        public static event AnturaSpaceUIEvent onRewardColorSelectedInCustomization;
+        //        public static event AnturaSpaceUIEvent onRewardColorSelectedInCustomization;
 
         public static AnturaSpaceUI I { get; private set; }
         public bool IsModsPanelOpen { get; private set; }
@@ -67,8 +66,7 @@ namespace Antura.UI
 
         int bonesCount = -1;
 
-        public int BonesCount
-        {
+        public int BonesCount {
             get { return bonesCount; }
             set {
                 if (value == bonesCount) {
@@ -116,8 +114,7 @@ namespace Antura.UI
                 .Join(ShopButtonsContainer.DOAnchorPosY(-830, duration))
                 .OnRewind(() => CategoriesContainer.gameObject.SetActive(false));
             showItemsTween = ItemsContainer.DOAnchorPosX(-350, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     ItemsContainer.gameObject.SetActive(false);
                     // Clear items containers children
                     foreach (Transform container in rewardsContainers) {

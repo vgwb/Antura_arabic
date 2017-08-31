@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Antura.UI;
+using UnityEngine;
 
-namespace Antura.UI
+namespace Antura.AnturaSpace.UI
 {
     public class AnturaSpaceModsButton : UIButton
     {
