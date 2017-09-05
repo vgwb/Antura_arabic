@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Antura.Database;
+using System;
 using UnityEngine;
 
 #if UNITY_IOS
@@ -35,6 +36,14 @@ namespace Antura.Core.Services.Notification
         private void PrepareNextLocalNotification()
         {
             Debug.Log("Next Local Notifications prepared");
+            var arabicString = LocalizationManager.GetLocalizationData(LocalizationDataId.Action_PressPlay);
+            NotificationManager.ScheduleSimpleWithAppIcon(
+                TimeSpan.FromSeconds(10),
+                "Antura and the Letters",
+                arabicString.Arabic,
+                Color.blue
+            );
+
             NotificationManager.ScheduleSimpleWithAppIcon(
                 TimeSpan.FromSeconds(60),
                 "Antura and the Letters",
