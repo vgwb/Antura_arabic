@@ -7,30 +7,14 @@ using UnityEngine;
 
 namespace Antura.AnturaSpace
 {
-    public enum ShopContext
-    {
-        Shopping,
-        Placement
-    }
-
     public class ShopDecorationsManager : SingletonMonoBehaviour<ShopDecorationsManager>
     {
-
-        private int maxDecorations { get { return allShopDecorations.Count; } }
 
         public bool HasSlotsForDecoration(ShopDecorationObject decorationObjectToTest)
         {
             bool result = allShopDecorationSlots.Count(x => x.IsAssignableTo(decorationObjectToTest)) > 0;
-            Debug.Log("Has slots? " + result);
+            //Debug.Log("Has slots? " + result);
             return result;
-        }
-
-        // TODO: delete this
-        public bool HasDecorationsToUnlock {
-            get {
-                int nUnlocked = allShopDecorations.Count(x => !x.locked);
-                return nUnlocked < maxDecorations;
-            }
         }
 
         private List<ShopDecorationObject> allShopDecorations = new List<ShopDecorationObject>();
@@ -49,14 +33,14 @@ namespace Antura.AnturaSpace
             foreach (var shopDecoration in allShopDecorations) {
                 shopDecoration.gameObject.SetActive(false);
             }
-            Debug.Log("Decos: " + allShopDecorations.Count);
+            //Debug.Log("Decorations: " + allShopDecorations.Count);
 
             allShopDecorationSlots = new List<ShopDecorationSlot>(GetComponentsInChildren<ShopDecorationSlot>());
             foreach (var slot in allShopDecorationSlots)
             {
                 slot.OnSelect += SelectDecorationSlot;
             }
-            Debug.Log("Slots: " + allShopDecorationSlots.Count);
+            //Debug.Log("Slots: " + allShopDecorationSlots.Count);
 
             // Load state
             foreach (var id in shopState.unlockedDecorationsIDs)
@@ -95,7 +79,7 @@ namespace Antura.AnturaSpace
 
             selectedSlot.Assign(newDecoration);
 
-            // Saved state TODO: UPDATE THIS
+            // Saved state TODO: UPDATE SAVE TO REFLECT THE NEW CHANGES
             shopState.unlockedDecorationsIDs.Add(newDecoration.id);
             AppManager.I.Player.Save();
 
@@ -105,18 +89,6 @@ namespace Antura.AnturaSpace
             {
                 shopDecorationSlot.Highlight(false);
             }
-        }
-
-        public bool UnlockNewDecoration(ShopDecorationObject UnlockableDecorationObject)
-        {
-            // Place at the first available slot
-            /*var selectedSlot = allShopDecorationSlots.FirstOrDefault(x => !x.Assigned && x.slotType == UnlockableDecorationObject.slotType);
-            if (selectedSlot != null)
-            {
-                selectedSlot.Assign(newDecoration);
-            }*/
-
-            return true;
         }
 
     }

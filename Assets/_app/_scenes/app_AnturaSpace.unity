@@ -1789,8 +1789,6 @@ MonoBehaviour:
   SceneCenter: {fileID: 544084193}
   RotatingBase: {fileID: 1279549900}
   AttentionPosition: {fileID: 1083569782}
-  BoneSpawnPosition: {fileID: 1309233017}
-  BonePrefab: {fileID: 624599005}
   PoofPrefab: {fileID: 158920, guid: d8e2525451f614f69a9a513785dbd676, type: 2}
   ObjectSpawnPivotTr: {fileID: 1309233017}
 --- !u!4 &252692185
@@ -2608,8 +2606,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -7, y: 99}
-  m_SizeDelta: {x: -141, y: 146}
+  m_AnchoredPosition: {x: -33.499954, y: 95.25003}
+  m_SizeDelta: {x: -88, y: 153.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &358700358
 MonoBehaviour:
@@ -4599,11 +4597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efd53794bd13b04ea058e1cedf9cb89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &624599005 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1021791895894508, guid: 685c462fa590b0c479d02d3418fd5f37,
-    type: 2}
-  m_PrefabInternal: {fileID: 238257997}
 --- !u!1 &624626762
 GameObject:
   m_ObjectHideFlags: 0
@@ -9288,7 +9281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1298358003
 Transform:
   m_ObjectHideFlags: 0
@@ -11501,7 +11494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1622854551
 Transform:
   m_ObjectHideFlags: 0
