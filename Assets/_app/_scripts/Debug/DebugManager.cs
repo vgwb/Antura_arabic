@@ -119,23 +119,19 @@ namespace Antura.Debugging
                 }
 
                 if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0)) {
-                    Debug.Log("DEBUG - 0");
-                    if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(0);
+                    ForceCurrentMinigameEnd(0);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) {
-                    Debug.Log("DEBUG - 1");
-                    if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(1);
+                    ForceCurrentMinigameEnd(1);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2)) {
-                    Debug.Log("DEBUG - 2");
-                    if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(2);
+                    ForceCurrentMinigameEnd(2);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3)) {
-                    Debug.Log("DEBUG - 3");
-                    if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(3);
+                    ForceCurrentMinigameEnd(3);
                 }
             }
         }
@@ -143,6 +139,14 @@ namespace Antura.Debugging
         #endregion
 
         #region Actions
+
+        public void ForceCurrentMinigameEnd(int stars)
+        {
+            if (OnForceCurrentMinigameEnd != null) {
+                Debug.Log("DEBUG - Force Current Minigame End with stars: " + stars);
+                OnForceCurrentMinigameEnd(stars);
+            }
+        }
 
         public void EnableDebugPanel()
         {
