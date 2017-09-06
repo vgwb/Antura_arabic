@@ -38,13 +38,13 @@ namespace Antura.AnturaSpace
         {
             base.Update(delta);
 
-            if (controller.DraggingBone == null) {
+            if (controller.DraggedTransform == null) {
                 controller.CurrentState = controller.Idle;
                 return;
             }
 
-            waitForLaunchPoint.transform.position = controller.DraggingBone.position + Camera.main.transform.forward * 6;
-            waitForLaunchPoint.transform.forward = (controller.DraggingBone.position - waitForLaunchPoint.transform.position).normalized;
+            waitForLaunchPoint.transform.position = controller.DraggedTransform.position + Camera.main.transform.forward * 6;
+            waitForLaunchPoint.transform.forward = (controller.DraggedTransform.position - waitForLaunchPoint.transform.position).normalized;
 
             if (shoutTimer > 0 & controller.Antura.HasReachedTarget) {
                 timeInThisState += delta;

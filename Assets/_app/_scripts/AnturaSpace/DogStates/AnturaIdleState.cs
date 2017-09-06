@@ -29,7 +29,7 @@ namespace Antura.AnturaSpace
         {
             base.Update(delta);
 
-            if (controller.DraggingBone != null) {
+            if (controller.DraggedTransform != null) {
                 controller.CurrentState = controller.WaitingThrow;
             } else if (controller.NextObjectToCatch != null) {
                 controller.CurrentState = controller.Catching;

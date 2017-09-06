@@ -39,7 +39,7 @@ namespace Antura.AnturaSpace
         {
             base.Update(delta);
 
-            if (controller.DraggingBone != null || controller.NextObjectToCatch != null) {
+            if (controller.DraggedTransform != null || controller.NextObjectToCatch != null) {
                 controller.CurrentState = controller.Idle;
                 return;
             }

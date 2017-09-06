@@ -26,12 +26,9 @@ namespace Antura.AnturaSpace
         public Transform SceneCenter;
         public Pedestal RotatingBase;
         public Transform AttentionPosition;
-        public Transform BoneSpawnPosition;
-        public GameObject BonePrefab;
         public GameObject PoofPrefab;
 
         public bool MustShowBonesButton { get; set; }
-        public Transform DraggingBone { get; private set; }
 
         public ThrowableObject NextObjectToCatch {
             get
@@ -127,10 +124,10 @@ namespace Antura.AnturaSpace
 
             UI.BonesCount = AppManager.I.Player.GetTotalNumberOfBones();
 
-            if (DraggingBone != null && !Input.GetMouseButton(0)) {
+            if (DraggedTransform != null && !Input.GetMouseButton(0)) {
                 AudioManager.I.PlaySound(Sfx.ThrowObj);
-                DraggingBone.GetComponent<ThrowableObject>().LetGo();
-                DraggingBone = null;
+                DraggedTransform.GetComponent<ThrowableObject>().LetGo();
+                DraggedTransform = null;
             }
         }
 
@@ -216,7 +213,7 @@ namespace Antura.AnturaSpace
         {
             var newObjectGo = Instantiate(ObjectPrefab.gameObject);
             newObjectGo.SetActive(true);
-            newObjectGo.transform.position = BoneSpawnPosition.position;
+            newObjectGo.transform.position = ObjectSpawnPivotTr.position;
             var throwableObject = newObjectGo.GetComponent<ThrowableObject>();
             spawnedObjects.Add(throwableObject);
             return throwableObject;
