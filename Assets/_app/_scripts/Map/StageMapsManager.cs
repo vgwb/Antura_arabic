@@ -110,11 +110,10 @@ namespace Antura.Map
                 StageMap(stage_i).Initialise(isStageUnlocked, isWholeStageUnlocked);
                 StageMap(stage_i).Hide();
             }
-            /*if (MaxUnlockedStage <= FinalStage)
-            {
-                StageMap(MaxUnlockedStage).Initialise(true, false);
-            }*/
+        }
 
+        private void Start()
+        {
             // Show the current stage
             TeleportToShownStage(shownStage);
             UpdateStageIndicatorUI(shownStage);
@@ -122,10 +121,8 @@ namespace Antura.Map
 
             playerPin.gameObject.SetActive(true);
             playerPin.ResetPlayerPosition();
-        }
 
-        private void Start()
-        {
+
             /* FIRST CONTACT FEATURE */
             if (AppManager.I.Player.IsFirstContact() || SimulateFirstContact) {
                 FirstContactBehaviour();
