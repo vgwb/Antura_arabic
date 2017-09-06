@@ -642,5 +642,19 @@ namespace Antura.Profile
 
         #endregion
 
+        public override string ToString()
+        {
+            return string.Format("ID{0}, MaxJ({1}.{2}.{3}), CurrentJ({4}.{5}.{6}), ProfCompl{7}",
+                Uuid,
+                MaxJourneyPosition.Stage,
+                MaxJourneyPosition.LearningBlock,
+                MaxJourneyPosition.PlaySession,
+
+                CurrentJourneyPosition.Stage,
+                CurrentJourneyPosition.LearningBlock,
+                CurrentJourneyPosition.PlaySession,
+                ProfileCompletion
+            );
+        }
     }
 }

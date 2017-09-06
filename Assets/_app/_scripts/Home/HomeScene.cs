@@ -49,7 +49,7 @@ namespace Antura.Scenes
         /// </summary>
         public void Play()
         {
-            Debug.Log("Play with Player ID: " + AppManager.I.Player.Uuid);
+            Debug.Log("Play with Player: " + AppManager.I.Player);
 
             GlobalUI.ShowPauseMenu(true);
 
