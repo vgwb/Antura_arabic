@@ -184,11 +184,8 @@ namespace Antura.AnturaSpace
                 AppManager.I.Player.RemoveBones(1);
 
                 AudioManager.I.PlaySound(Sfx.ThrowObj);
-                GameObject newObjectGo = Instantiate(ObjectPrefab.gameObject);
-                newObjectGo.SetActive(true);
-                newObjectGo.transform.position = ObjectSpawnPivotTr.position;
-                var throwableObject = newObjectGo.GetComponent<ThrowableObject>();
-                spawnedObjects.Add(throwableObject);
+
+                var throwableObject = SpawnNewObject(ObjectPrefab);
 
                 throwableObject.SimpleThrow();
             }
@@ -205,18 +202,24 @@ namespace Antura.AnturaSpace
 
             if (AppManager.I.Player.GetTotalNumberOfBones() > 0 && spawnedObjects.Count < MaxSpawnedObjectsInScene)
             {
-                var newObjectGo = Instantiate(ObjectPrefab.gameObject);
-                newObjectGo.SetActive(true);
-                newObjectGo.transform.position = BoneSpawnPosition.position;
-                var throwableObject = newObjectGo.GetComponent<ThrowableObject>();
-                spawnedObjects.Add(throwableObject);
+                var throwableObject = SpawnNewObject(ObjectPrefab);
 
-                DraggedTransform = newObjectGo.transform;
+                DraggedTransform = throwableObject.transform;
                 throwableObject.Drag();
             }
             else {
                 AudioManager.I.PlaySound(Sfx.KO);
             }
+        }
+
+        private ThrowableObject SpawnNewObject(ThrowableObject ObjectPrefab)
+        {
+            var newObjectGo = Instantiate(ObjectPrefab.gameObject);
+            newObjectGo.SetActive(true);
+            newObjectGo.transform.position = BoneSpawnPosition.position;
+            var throwableObject = newObjectGo.GetComponent<ThrowableObject>();
+            spawnedObjects.Add(throwableObject);
+            return throwableObject;
         }
 
         public void EatObject(ThrowableObject throwableObject)
@@ -243,6 +246,22 @@ namespace Antura.AnturaSpace
                 }
 
                 Destroy(throwableObject.gameObject);
+            }
+        }
+
+        public void HitObject(ThrowableObject throwableObject)
+        {
+            if (spawnedObjects.Remove(throwableObject))
+            {
+                AudioManager.I.PlaySound(Sfx.EggMove);
+
+                AnturaHappiness += 0.2f;
+                if (AnturaHappiness > 1)
+                {
+                    AnturaHappiness = 1;
+                }
+
+                throwableObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 20, ForceMode.Impulse);
             }
         }
 

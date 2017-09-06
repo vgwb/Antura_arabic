@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4522613700962522}
   m_Layer: 0
-  m_Name: fx_poof Small (instance)
+  m_Name: fx_poof Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

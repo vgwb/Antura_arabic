@@ -219,8 +219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d250632f868a640b8221c4f1ecf86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_oBoneRigidbody: {fileID: 54634458604420374}
-  m_oParticle: {fileID: 0}
+  Edible: 1
+  Catchable: 1
+  m_oRigidbody: {fileID: 54634458604420374}
+  m_oParticle: {fileID: 1714554665200022, guid: 71ab295ae44f54846b22c2b902dfb9d0,
+    type: 2}
   m_oParticleTime: 2
   m_oSfxOnPoof: 41
   m_v3DirectionMinValues: {x: -0.8, y: 1.5, z: 0}

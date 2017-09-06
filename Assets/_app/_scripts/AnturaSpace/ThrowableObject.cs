@@ -16,6 +16,7 @@ namespace Antura.AnturaSpace
 
         #region EXPOSED MEMBERS
 
+        [Header("References")]
         [SerializeField]
         private Rigidbody m_oRigidbody;
 
@@ -71,6 +72,9 @@ namespace Antura.AnturaSpace
         private Vector3 m_v3LastPosition;
         float m_lastPositionTime = 0;
         private float m_fTimeProgression = 0;
+
+        private float lifetime = 0.0f;
+        private float MaxLifetime = 10.0f;
 
         #endregion
 
@@ -136,6 +140,7 @@ namespace Antura.AnturaSpace
             m_lastPositionTime = Time.realtimeSinceStartup;
         }
 
+
         void Update()
         {
             //if this object is being dragged
@@ -173,6 +178,16 @@ namespace Antura.AnturaSpace
                     }
                 }
                 m_oRigidbody.position = newPos;
+            }
+
+
+            if (!Edible)
+            {
+                lifetime += Time.deltaTime;
+                if (lifetime > MaxLifetime)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 
