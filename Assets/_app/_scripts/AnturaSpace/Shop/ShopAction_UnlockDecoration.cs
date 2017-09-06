@@ -15,6 +15,8 @@ namespace Antura.AnturaSpace
                     ShopDecorationsManager.I.PrepareNewDecorationPlacement(UnlockableDecorationObject);
                     break;
                 case ShopContext.Placement:
+                    // Back to shop
+                    ShopDecorationsManager.I.CancelPlacement();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

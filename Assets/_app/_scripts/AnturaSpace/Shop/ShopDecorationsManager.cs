@@ -23,7 +23,26 @@ namespace Antura.AnturaSpace
         private ShopContext shopContext;
         private ShopDecorationObject currentUnlockableObjectPrefab;
 
+        #region Context
+
         public ShopContext ShopContext { get {  return shopContext; } }
+
+        private void SetContextPlacement()
+        {
+            shopContext = ShopContext.Placement;
+        }
+
+        private void SetContextShopping()
+        {
+            currentUnlockableObjectPrefab = null;
+            shopContext = ShopContext.Shopping;
+            foreach (var shopDecorationSlot in allShopDecorationSlots)
+            {
+                shopDecorationSlot.Highlight(false);
+            }
+        }
+
+        #endregion
 
         public void Initialise(ShopState shopState)
         {
@@ -67,13 +86,17 @@ namespace Antura.AnturaSpace
             }
 
             currentUnlockableObjectPrefab = UnlockableDecorationPrefab;
-            shopContext = ShopContext.Placement;
+            SetContextPlacement();
         }
 
-        public void SelectDecorationSlot(ShopDecorationSlot selectedSlot)
+        public void CancelPlacement()
+        {
+            SetContextShopping();
+        }
+
+        private void SelectDecorationSlot(ShopDecorationSlot selectedSlot)
         {
             var newDecoration = Instantiate(currentUnlockableObjectPrefab);
-            //var newDecoration = allShopDecorations.Where(x => x.locked).ToList().RandomSelectOne();
             newDecoration.Unlock();
             newDecoration.transform.localPosition = new Vector3(10000, 0, 0);
 

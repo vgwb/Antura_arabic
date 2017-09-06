@@ -21,8 +21,19 @@ namespace Antura.AnturaSpace
             buttonUI.interactable = !shopAction.IsLocked;
         }
 
+        public void Update()
+        {
+            // TODO: react to any spending of bones!
+            buttonUI.interactable = !shopAction.IsLocked;
+        }
+
         public void OnClick()
         {
+            if (ShopDecorationsManager.I.ShopContext != ShopContext.Shopping)
+            {
+                return;
+            }
+
             if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost) {
                 AppManager.I.Player.RemoveBones(shopAction.bonesCost);
                 shopAction.PerformAction();
@@ -31,6 +42,11 @@ namespace Antura.AnturaSpace
 
         public void OnDrag()
         {
+            if (ShopDecorationsManager.I.ShopContext != ShopContext.Shopping)
+            {
+                return;
+            }
+
             if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
             {
                 AppManager.I.Player.RemoveBones(shopAction.bonesCost);

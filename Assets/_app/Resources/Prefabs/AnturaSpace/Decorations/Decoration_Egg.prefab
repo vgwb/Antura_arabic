@@ -356,6 +356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef96ea0a2f6fe7540875d2a1663e458b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotType: 2
+  slotType: 3
   id: egg
   locked: 1

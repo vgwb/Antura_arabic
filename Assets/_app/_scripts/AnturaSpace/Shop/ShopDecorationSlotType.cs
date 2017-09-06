@@ -4,6 +4,7 @@ namespace Antura.AnturaSpace
     {
         Mountains = 0,  
         Houses = 1,
-        Tube = 2
+        Tube = 2,
+        Prop = 3
     }
 }
