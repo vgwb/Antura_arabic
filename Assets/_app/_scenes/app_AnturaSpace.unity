@@ -12041,12 +12041,12 @@ MonoBehaviour:
   FlipRewards: 1
   HideLockedSwatchesColors: 0
   BtOpenModsPanel: {fileID: 1965254904}
+  BtBonesShop: {fileID: 2079677549}
   BTRemoveMods: {fileID: 826093787}
   CategoriesContainer: {fileID: 1945071808}
   ItemsContainer: {fileID: 320989396}
   SwatchesContainer: {fileID: 474618092}
   BtItemMain: {fileID: 151898969}
-  BtBones: {fileID: 2079677549}
   ShopButtonsContainer: {fileID: 358700356}
   bonesNumber: {fileID: 1614356140}
 --- !u!224 &1668913317
@@ -18193,7 +18193,7 @@ GameObject:
   - component: {fileID: 2079677548}
   - component: {fileID: 2079677552}
   m_Layer: 5
-  m_Name: BT Bone
+  m_Name: BT Bones Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18325,52 +18325,19 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 252692184}
-          m_MethodName: ThrowBone
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 13
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 252692184}
-          m_MethodName: DragBone
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 14
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 252692184}
-          m_MethodName: LetGoBone
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []

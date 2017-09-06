@@ -29,11 +29,11 @@ namespace Antura.AnturaSpace.UI
 
         [Header("References")]
         public AnturaSpaceModsButton BtOpenModsPanel;
+        public UIButton BtBonesShop;
 
         public UIButton BTRemoveMods;
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
         public AnturaSpaceItemButton BtItemMain;
-        public UIButton BtBones;
         public RectTransform ShopButtonsContainer;
         public TMPro.TextMeshProUGUI bonesNumber;
 
@@ -50,6 +50,7 @@ namespace Antura.AnturaSpace.UI
 
         public static AnturaSpaceUI I { get; private set; }
         public bool IsModsPanelOpen { get; private set; }
+        public bool IsShopPanelOpen { get; private set; }
 
         bool isTutorialMode;
         AnturaSpaceCategoryButton[] btsCategories;
@@ -61,7 +62,7 @@ namespace Antura.AnturaSpace.UI
         List<RewardItem> currRewardDatas;
         List<RewardColorItem> currSwatchesDatas;
         AnturaSpaceCategoryButton.AnturaSpaceCategory currCategory;
-        Tween showCategoriesTween, showItemsTween, showSwatchesTween;
+        Tween showCategoriesTween, showShopTween, showItemsTween, showSwatchesTween;
 
         #region Unity
 
@@ -111,9 +112,12 @@ namespace Antura.AnturaSpace.UI
             const float duration = 0.3f;
             showCategoriesTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(CategoriesContainer.DOAnchorPosY(150, duration).From().SetEase(Ease.OutBack))
-                .Join(BtBones.RectT.DOAnchorPosY(-830, duration))
-                .Join(ShopButtonsContainer.DOAnchorPosY(-830, duration))
+                .Join(BtBonesShop.RectT.DOAnchorPosY(-830, duration))
                 .OnRewind(() => CategoriesContainer.gameObject.SetActive(false));
+            showShopTween = DOTween.Sequence().SetAutoKill(false).Pause()
+                .Append(ShopButtonsContainer.DOAnchorPosY(-830, duration).From().SetEase(Ease.OutBack))
+                .Join(BtOpenModsPanel.RectT.DOAnchorPosY(150, duration))
+                .OnRewind(() => ShopButtonsContainer.gameObject.SetActive(false));
             showItemsTween = ItemsContainer.DOAnchorPosX(-350, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
                 .OnRewind(() => {
                     ItemsContainer.gameObject.SetActive(false);
@@ -126,11 +130,13 @@ namespace Antura.AnturaSpace.UI
                 .OnRewind(() => SwatchesContainer.gameObject.SetActive(false));
 
             CategoriesContainer.gameObject.SetActive(false);
+            ShopButtonsContainer.gameObject.SetActive(false);
             ItemsContainer.gameObject.SetActive(false);
             SwatchesContainer.gameObject.SetActive(false);
 
             // Listeneres
             BtOpenModsPanel.Bt.onClick.AddListener(() => OnClick(BtOpenModsPanel));
+            BtBonesShop.Bt.onClick.AddListener(() => OnClick(BtBonesShop));
             BTRemoveMods.Bt.onClick.AddListener(() => OnClick(BTRemoveMods));
             foreach (var bt in btsCategories) {
                 var b = bt;
@@ -171,6 +177,20 @@ namespace Antura.AnturaSpace.UI
         #endregion
 
         #region Public Methods
+
+        public void ToggleShopPanel()
+        {
+            IsShopPanelOpen = !IsShopPanelOpen;
+            if (IsShopPanelOpen)
+            {
+                ShopButtonsContainer.gameObject.SetActive(true);
+                showShopTween.PlayForward();
+            }
+            else
+            {
+                showShopTween.PlayBackwards();
+            }
+        }
 
         public void ToggleModsPanel()
         {
@@ -251,7 +271,7 @@ namespace Antura.AnturaSpace.UI
 
         public void ShowBonesButton(bool show)
         {
-            BtBones.gameObject.SetActive(show);
+            BtBonesShop.gameObject.SetActive(show);
         }
 
         void SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
@@ -472,6 +492,9 @@ namespace Antura.AnturaSpace.UI
                 ToggleModsPanel();
             } else if (_bt == BTRemoveMods) {
                 SelectReward(null);
+            } else if (_bt == BtBonesShop)
+            {
+                ToggleShopPanel();
             }
         }
 
