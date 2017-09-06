@@ -237,5 +237,57 @@ namespace Antura.AnturaSpace
         }
 
         #endregion
+
+        #region Throwable actions
+
+        public Transform DraggedTransform { get; private set; }
+        public Transform ObjectSpawnPivotTr;
+        private List<GameObject> spawnedObjects = new List<GameObject>();
+
+        // TODO: these methods should also handle bones
+        public void ThrowObject(BoneBehaviour ObjectPrefab)
+        {
+            if (DraggedTransform != null)
+                return;
+
+            if (AppManager.I.Player.GetTotalNumberOfBones() > 0 && bones.Count < MaxBonesInScene)
+            {
+                AppManager.I.Player.RemoveBones(1);
+
+                AudioManager.I.PlaySound(Sfx.ThrowObj);
+                GameObject newObjectGo = Instantiate(ObjectPrefab.gameObject);
+                newObjectGo.SetActive(true);
+                newObjectGo.transform.position = ObjectSpawnPivotTr.position;
+                spawnedObjects.Add(newObjectGo);
+
+                newObjectGo.GetComponent<BoneBehaviour>().SimpleThrow();
+            }
+            else {
+                // TODO: set this as the sound for when a button is NOT clickable
+                AudioManager.I.PlaySound(Sfx.KO);
+            }
+        }
+
+        public void DragObject(BoneBehaviour ObjectPrefab)
+        {
+            if (DraggedTransform != null)
+                return;
+
+            if (AppManager.I.Player.GetTotalNumberOfBones() > 0 && bones.Count < MaxBonesInScene)
+            {
+                var newObjectGo = Instantiate(ObjectPrefab.gameObject);
+                newObjectGo.SetActive(true);
+                newObjectGo.transform.position = BoneSpawnPosition.position;
+                spawnedObjects.Add(newObjectGo);
+
+                DraggedTransform = newObjectGo.transform;
+                newObjectGo.GetComponent<BoneBehaviour>().Drag();
+            }
+            else {
+                AudioManager.I.PlaySound(Sfx.KO);
+            }
+        }
+
+        #endregion
     }
 }

@@ -23,8 +23,9 @@ GameObject:
   - component: {fileID: 135768810692549384}
   - component: {fileID: 23286777109782606}
   - component: {fileID: 54363164044817498}
+  - component: {fileID: 114959570897666474}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: ThrowableBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,6 +97,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114959570897666474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359665759431068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d250632f868a640b8221c4f1ecf86a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_oBoneRigidbody: {fileID: 54363164044817498}
+  m_oParticle: {fileID: 0}
+  m_oParticleTime: 2
+  m_oSfxOnPoof: 41
+  m_v3DirectionMinValues: {x: -0.8, y: 1.5, z: 0}
+  m_v3DirectionMaxValues: {x: -0.2, y: 3, z: 0.5}
+  m_fThrowMinMagnitude: 30
+  m_fThrowMaxMagnitude: 40
+  m_eThrowForceMode: 1
+  m_fRotationMinMagnitude: -100
+  m_fRotationMaxMagnitude: 100
+  m_eRotationForceMode: 1
+  m_fDragThrowMagnitudeScaling: 0.5
+  m_fTimeSampling: 0.1
+  m_eReleaseForceMode: 1
 --- !u!135 &135768810692549384
 SphereCollider:
   m_ObjectHideFlags: 1

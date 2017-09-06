@@ -1,5 +1,6 @@
 ﻿using Antura.Core;
 using UnityEngine;
+
 namespace Antura.AnturaSpace
 {
     public class ShopAction : MonoBehaviour
@@ -12,6 +13,11 @@ namespace Antura.AnturaSpace
         private bool locked = false;
 
         public virtual void PerformAction()
+        {
+            // nothing to do here
+        }
+
+        public virtual void PerformDrag()
         {
             // nothing to do here
         }

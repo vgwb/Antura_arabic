@@ -2,8 +2,10 @@
 
 namespace Antura.AnturaSpace
 {
-    public class ShopDecoration : MonoBehaviour
+
+    public class ShopDecorationObject : MonoBehaviour
     {
+        public ShopDecorationSlotType slotType;
         public string id;
         public bool locked = true;
 

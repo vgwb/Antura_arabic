@@ -29,5 +29,14 @@ namespace Antura.AnturaSpace
             }
         }
 
+        public void OnDrag()
+        {
+            if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
+            {
+                AppManager.I.Player.RemoveBones(shopAction.bonesCost);
+                shopAction.PerformDrag();
+            }
+        }
+
     }
 }

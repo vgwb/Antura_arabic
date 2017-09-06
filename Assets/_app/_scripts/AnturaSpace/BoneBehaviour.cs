@@ -8,6 +8,7 @@ namespace Antura.AnturaSpace
     /// <summary>
     /// Controls interactions and dynamics of a bone thrown to Antura in AnturaSpace.
     /// </summary>
+    // TODO: rename to ThrowableObject and share its logic
     public class BoneBehaviour : MonoBehaviour
     {
         #region EXPOSED MEMBERS

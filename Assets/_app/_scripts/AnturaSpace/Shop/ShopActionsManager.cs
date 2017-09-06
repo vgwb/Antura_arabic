@@ -16,7 +16,7 @@ namespace Antura.AnturaSpace
         void Start()
         {
             if (addDebugBones) {
-                AppManager.I.Player.AddBones(20);
+                AppManager.I.Player.AddBones(50);
             }
 
             // Setup the decorations manager
