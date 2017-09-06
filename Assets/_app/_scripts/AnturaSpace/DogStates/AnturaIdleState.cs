@@ -31,7 +31,7 @@ namespace Antura.AnturaSpace
 
             if (controller.DraggingBone != null) {
                 controller.CurrentState = controller.WaitingThrow;
-            } else if (controller.NextBoneToCatch != null) {
+            } else if (controller.NextObjectToCatch != null) {
                 controller.CurrentState = controller.Catching;
                 return;
             } else if (controller.InCustomizationMode) {

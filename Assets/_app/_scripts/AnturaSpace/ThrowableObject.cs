@@ -6,15 +6,18 @@ using UnityEngine;
 namespace Antura.AnturaSpace
 {
     /// <summary>
-    /// Controls interactions and dynamics of a bone thrown to Antura in AnturaSpace.
+    /// Controls interactions and dynamics of an object thrown to Antura in AnturaSpace.
     /// </summary>
-    // TODO: rename to ThrowableObject and share its logic
-    public class BoneBehaviour : MonoBehaviour
+    public class ThrowableObject : MonoBehaviour
     {
+        [Header("Parameters")]
+        public bool Edible = false;
+        public bool Catchable = false;
+
         #region EXPOSED MEMBERS
 
         [SerializeField]
-        private Rigidbody m_oBoneRigidbody;
+        private Rigidbody m_oRigidbody;
 
         [SerializeField]
         private GameObject m_oParticle;
@@ -77,13 +80,13 @@ namespace Antura.AnturaSpace
 
         #region GETTER/SETTER
 
-        public float boneRotation_MaxMagnitude
+        public float rotation_MaxMagnitude
         {
             get { return m_fRotationMaxMagnitude; }
             set { m_fRotationMaxMagnitude = value; }
         }
 
-        public float boneRotation_MinMagnitude
+        public float rotation_MinMagnitude
         {
             get { return m_fRotationMinMagnitude; }
             set { m_fRotationMinMagnitude = value; }
@@ -135,7 +138,7 @@ namespace Antura.AnturaSpace
 
         void Update()
         {
-            //if this bone is being dragged
+            //if this object is being dragged
             if (m_bIsDragged) {
                 m_fTimeProgression += Time.deltaTime;
 
@@ -147,7 +150,7 @@ namespace Antura.AnturaSpace
                 }
 
 
-                //set the bone position on the pointer(x,y) at it's current distance from the camera
+                //set the object position on the pointer(x,y) at it's current distance from the camera
                 var _fCameraDistance = 6 + 4 * (Input.mousePosition.y / Screen.height);
                 var newPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _fCameraDistance));
 
@@ -158,18 +161,18 @@ namespace Antura.AnturaSpace
                 transform.position = newPos;
             } else {
                 // Limit inside view frustum
-                var newPos = m_oBoneRigidbody.position;
+                var newPos = m_oRigidbody.position;
                 for (int i = 0, count = planes.Count; i < count; ++i) {
                     var distance = planes[i].GetDistanceToPoint(newPos);
                     if (distance < 0) {
                         var planeNormal = planes[i].normal;
 
-                        m_oBoneRigidbody.velocity -= 1.2f * Vector3.Dot(m_oBoneRigidbody.velocity, planeNormal) * planeNormal;
+                        m_oRigidbody.velocity -= 1.2f * Vector3.Dot(m_oRigidbody.velocity, planeNormal) * planeNormal;
 
                         newPos = newPos - distance * planeNormal;
                     }
                 }
-                m_oBoneRigidbody.position = newPos;
+                m_oRigidbody.position = newPos;
             }
         }
 
@@ -197,13 +200,13 @@ namespace Antura.AnturaSpace
         public void SimpleThrow()
         {
             //resets actives forces
-            m_oBoneRigidbody.isKinematic = true;
-            m_oBoneRigidbody.isKinematic = false;
+            m_oRigidbody.isKinematic = true;
+            m_oRigidbody.isKinematic = false;
 
             //disable collision and enabled after 0.5 sec for avoid that Antura collision shot bone away
-            m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = false;
+            m_oRigidbody.GetComponentInChildren<Collider>().enabled = false;
             StartCoroutine(Minigames.MissingLetter.Utils.LaunchDelay(0.5f,
-                delegate { m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = true; }));
+                delegate { m_oRigidbody.GetComponentInChildren<Collider>().enabled = true; }));
 
             ApplyDefaultForces();
         }
@@ -211,7 +214,7 @@ namespace Antura.AnturaSpace
         public void Drag()
         {
             //resets actives forces
-            m_oBoneRigidbody.isKinematic = true;
+            m_oRigidbody.isKinematic = true;
 
             //this way Antura won't eat it since collision won't happen
             gameObject.GetComponentInChildren<Collider>().isTrigger = true;
@@ -227,7 +230,7 @@ namespace Antura.AnturaSpace
 
         public void LetGo()
         {
-            m_oBoneRigidbody.isKinematic = false;
+            m_oRigidbody.isKinematic = false;
 
             gameObject.GetComponentInChildren<Collider>().isTrigger = false;
 
@@ -299,10 +302,10 @@ namespace Antura.AnturaSpace
             );
 
             //Add rotation with random magnitude
-            m_oBoneRigidbody.AddTorque(Random.insideUnitSphere.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude),
+            m_oRigidbody.AddTorque(Random.insideUnitSphere.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude),
                 m_eRotationForceMode);
             //Add translation
-            m_oBoneRigidbody.AddForce(_v3ThrowDirection.normalized * Random.Range(m_fThrowMinMagnitude, m_fThrowMaxMagnitude),
+            m_oRigidbody.AddForce(_v3ThrowDirection.normalized * Random.Range(m_fThrowMinMagnitude, m_fThrowMaxMagnitude),
                 m_eThrowForceMode);
         }
 
@@ -312,10 +315,10 @@ namespace Antura.AnturaSpace
         private void ApplyDragForces()
         {
             //Add rotation with random magnitude
-            m_oBoneRigidbody.AddTorque(Random.insideUnitSphere.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude),
+            m_oRigidbody.AddTorque(Random.insideUnitSphere.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude),
                 m_eRotationForceMode);
             //Add translation
-            m_oBoneRigidbody.AddForce(
+            m_oRigidbody.AddForce(
                 (transform.position - m_v3LastPosition) / (Time.realtimeSinceStartup - m_lastPositionTime) * m_fDragThrowMagnitudeScaling,
                 m_eReleaseForceMode);
         }

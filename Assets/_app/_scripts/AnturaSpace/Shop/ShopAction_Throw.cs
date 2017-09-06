@@ -2,7 +2,7 @@
 {
     public class ShopAction_Throw : ShopAction
     {
-        public BoneBehaviour throwingObjectPrefabGO;
+        public ThrowableObject throwingObjectPrefabGO;
 
         public override void PerformAction()
         {

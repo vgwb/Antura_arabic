@@ -4,8 +4,8 @@ namespace Antura.AnturaSpace
 {
     public class AnturaCatchingState : AnturaState
     {
-        private GameObject bone;
-        private bool boneEaten;
+        private ThrowableObject objectToCatch;
+        private bool objectEaten;
         private Rigidbody boneRigidBody;
 
         public AnturaCatchingState(AnturaSpaceScene controller) : base(controller)
@@ -16,16 +16,16 @@ namespace Antura.AnturaSpace
         {
             base.EnterState();
 
-            if (controller.NextBoneToCatch == null) {
+            if (controller.NextObjectToCatch == null) {
                 controller.CurrentState = controller.Idle;
                 return;
             }
 
-            bone = controller.NextBoneToCatch.gameObject;
-            boneEaten = false;
+            objectToCatch = controller.NextObjectToCatch;
+            objectEaten = false;
 
-            controller.Antura.SetTarget(controller.NextBoneToCatch, false);
-            boneRigidBody = controller.NextBoneToCatch.GetComponent<Rigidbody>();
+            controller.Antura.SetTarget(objectToCatch.transform, false);
+            boneRigidBody = controller.NextObjectToCatch.GetComponent<Rigidbody>();
             controller.Antura.Excited = true;
             controller.MustShowBonesButton = true;
         }
@@ -42,26 +42,28 @@ namespace Antura.AnturaSpace
         {
             base.Update(delta);
 
-            if (!boneEaten && !controller.Antura.IsJumping &&
+            if (!objectEaten && !controller.Antura.IsJumping &&
                 (controller.Antura.HasReachedTarget || controller.Antura.PlanarDistanceFromTarget < 5)) {
                 if ((controller.Antura.TargetHeight >= 2 && boneRigidBody != null && boneRigidBody.velocity.y > 10)) {
-                    boneEaten = true;
+                    objectEaten = true;
+
                     // Jump!
                     controller.Antura.AnimationController.DoSmallJumpAndGrab(() =>
                     {
-                        controller.EatBone(bone);
+                        controller.EatObject(objectToCatch);
                         controller.CurrentState = controller.Idle;
-                        bone = null;
-                        boneEaten = false;
+                        objectToCatch = null;
+                        objectEaten = false;
                     });
+
                 } else if (controller.Antura.TargetHeight <= 4.5f) {
-                    boneEaten = true;
+                    objectEaten = true;
                     controller.Antura.AnimationController.DoBite(() =>
                     {
-                        controller.EatBone(bone);
+                        controller.EatObject(objectToCatch);
                         controller.CurrentState = controller.Idle;
-                        bone = null;
-                        boneEaten = false;
+                        objectToCatch = null;
+                        objectEaten = false;
                     });
                 }
             }
