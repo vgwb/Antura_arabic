@@ -9,18 +9,13 @@ namespace Antura.AnturaSpace
 
         public override void PerformAction()
         {
-            switch (ShopDecorationsManager.I.ShopContext)
-            {
-                case ShopContext.Shopping:
-                    ShopDecorationsManager.I.PrepareNewDecorationPlacement(UnlockableDecorationObject);
-                    break;
-                case ShopContext.Placement:
-                    // Back to shop
-                    ShopDecorationsManager.I.CancelPlacement();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            ShopDecorationsManager.I.PrepareNewDecorationPlacement(UnlockableDecorationObject);
+        }
+
+        public override void CancelAction()
+        {
+            // Back to shop
+            ShopDecorationsManager.I.CancelPlacement();
         }
 
         public override void InitialiseLockedState()

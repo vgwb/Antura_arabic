@@ -31,10 +31,10 @@ namespace Antura.AnturaSpace
         {
             if (ShopDecorationsManager.I.ShopContext != ShopContext.Shopping)
             {
-                return;
+                // TODO: do this only if this was the last selected action
+                shopAction.CancelAction();
             }
-
-            if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost) {
+            else if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost) {
                 AppManager.I.Player.RemoveBones(shopAction.bonesCost);
                 shopAction.PerformAction();
             }
@@ -42,12 +42,11 @@ namespace Antura.AnturaSpace
 
         public void OnDrag()
         {
-            if (ShopDecorationsManager.I.ShopContext != ShopContext.Shopping)
+            if (ShopDecorationsManager.I.ShopContext != ShopContext.Shopping) 
             {
-                return;
+                shopAction.CancelAction();
             }
-
-            if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
+            else if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
             {
                 AppManager.I.Player.RemoveBones(shopAction.bonesCost);
                 shopAction.PerformDrag();

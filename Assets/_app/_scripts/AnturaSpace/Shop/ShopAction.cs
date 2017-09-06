@@ -17,6 +17,11 @@ namespace Antura.AnturaSpace
             // nothing to do here
         }
 
+        public virtual void CancelAction()
+        {
+            // nothing to do here
+        }
+
         public virtual void PerformDrag()
         {
             // nothing to do here

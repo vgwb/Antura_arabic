@@ -6,7 +6,7 @@
 
         public override void PerformAction()
         {
-            SetLocked(true);
+            //SetLocked(true);
             ((AnturaSpaceScene)AnturaSpaceScene.I).ThrowObject(throwingObjectPrefabGO);
             // TODO: attach to the ball's lifetime. Wwhen it dies, unlock this action
         }
