@@ -273,6 +273,12 @@ namespace Antura.Debugging
             Close();
         }
 
+        public void OnEndMinigame()
+        {
+            DebugManager.I.ForceCurrentMinigameEnd(2);
+            Close();
+        }
+
         public void ToggleAdvancedSettings(bool choice)
         {
             advancedSettingsEnabled = choice;
