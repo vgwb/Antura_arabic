@@ -13,7 +13,7 @@ Developers should follow these guidelines for contributing to the project.
   * Use **CamelCase** for public fields
   * Use **CamelCase** for all methods, public and private, for classes, enum types and enum values.
   * Use **THIS_STYLE** for constants.
-  * Regions can be used to group code logically. Use **CamelCase** for region names.
+  * Regions can be used to group code logically. No nested regiones. Use **CamelCase** for region names.
   * No copyright notice nor author metadata should be present at the start of the file, unless it is of a third party
   * **Never** commit if you encounter compilation errors or warnings.
 
@@ -47,9 +47,9 @@ What follows is a list of subsystems with their namespaces:
 **Never commit anything without a namespace, nor anything under the root Antura namespace**
 
 ## Project Structure
-### GitIgnore
+### Git Ignore
 
-there are several fiels and directories put under GitIgnore.. the useful from Dev POV are:
+there are several fiels and directories put under Git Ignore.. the useful from Dev POV are:
 
 ```
 Local/

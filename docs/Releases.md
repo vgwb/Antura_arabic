@@ -1,6 +1,14 @@
 # releases
 
-## 1.0.7 - future
+## 1.1.0 next
+
+- daily rewards
+- Antura Space Shop and Antura interactions
+- new Map UI to easy access to other modules
+- local notifications
+- repeat minigame
+
+## 1.0.7 - not public
 - switching JSON format to match Export Sheet Data from Google Sheets
 - export db from reserved area
 - manage/merge multiple databases (Desktop version)
@@ -8,8 +16,6 @@
 - free TextMesh Pro asset
 - integrated dev documentation in the /docs
 - internal code refactoring
-
----
 
 ## 1.0.6 - 9 may 2017
 - bug fixing

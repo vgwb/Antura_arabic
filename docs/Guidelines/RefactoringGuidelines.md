@@ -24,10 +24,8 @@ See the other .md files for more information.
 These notes are for current development.
 
 - Database and PlayerProfile use should be linked (no ease of access to either)
-- ModularFramework is included for some parts, but not for others. It may be better to remove it and merge what we need inside the core app instead.
 - Managers are scattered among many different folders and use widely different conventions. They should be refactored to show a common intention.
 - Many managers are static makeshift singleton-like classes. Better access should be provided.
-- Scene managers do not follow a single convention (IntroManager, HomeManager, etc). An abstract SceneManager can be added.
 - Helper / utility methods and classes use must be standardized throught the codebase.
 - Helpers should probably belong to the DB, and not to the teacher.
 
