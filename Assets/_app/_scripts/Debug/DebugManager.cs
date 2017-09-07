@@ -140,6 +140,11 @@ namespace Antura.Debugging
 
         #region Actions
 
+        public void AddBones()
+        {
+            AppManager.I.Player.AddBones(10);
+        }
+
         public void ForceCurrentMinigameEnd(int stars)
         {
             if (OnForceCurrentMinigameEnd != null) {

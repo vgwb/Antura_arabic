@@ -279,6 +279,11 @@ namespace Antura.Debugging
             Close();
         }
 
+        public void OnAddBones()
+        {
+            DebugManager.I.AddBones();
+        }
+
         public void ToggleAdvancedSettings(bool choice)
         {
             advancedSettingsEnabled = choice;
