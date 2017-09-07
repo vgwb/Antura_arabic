@@ -108,9 +108,14 @@ namespace Antura.Debugging
         void Update()
         {
             if (!DebugPanelOpened) {
-                // shortcut to Reserved Area
+                // RESERVED AREA
                 if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R)) {
                     AppManager.I.NavigationManager.GoToReservedArea();
+                }
+
+                // ADD BONES
+                if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.B)) {
+                    AddBones();
                 }
 
                 if (Input.GetKeyDown(KeyCode.Space)) {
@@ -140,6 +145,12 @@ namespace Antura.Debugging
 
         #region Actions
 
+        public void CreateTestProfile()
+        {
+            AppManager.I.PlayerProfileManager.CreatePlayerProfile(4, PlayerGender.F, 1, PlayerTint.Blue);
+            AppManager.I.NavigationManager.GoToHome(debugMode: true);
+        }
+
         public void AddBones()
         {
             AppManager.I.Player.AddBones(10);
@@ -160,8 +171,6 @@ namespace Antura.Debugging
                 debugPanelGO = Instantiate(Resources.Load("Prefabs/Debug/UI Debug Canvas") as GameObject);
             }
         }
-
-        #region Launch
 
         public void LaunchMiniGame(MiniGameCode miniGameCodeSelected, float difficulty)
         {
@@ -237,14 +246,6 @@ namespace Antura.Debugging
 
         #endregion
 
-        #region Profiles
-
-        public void CreateTestProfile()
-        {
-            AppManager.I.PlayerProfileManager.CreatePlayerProfile(4, PlayerGender.F, 1, PlayerTint.Blue);
-            AppManager.I.NavigationManager.GoToHome(debugMode: true);
-        }
-
         #region Rewards
 
         public void UnlockAll()
@@ -259,7 +260,6 @@ namespace Antura.Debugging
 
         public void UnlockNextPlaySessionRewards()
         {
-            //JourneyPosition CurrentJourney = AppManager.I.Player.CurrentJourneyPosition;
             foreach (RewardPackUnlockData pack in RewardSystemManager.GetNextRewardPack()) {
                 AppManager.I.Player.AddRewardUnlocked(pack);
                 Debug.LogFormat("Pack added: {0}", pack.ToString());
@@ -275,10 +275,6 @@ namespace Antura.Debugging
         {
             RewardSystemManager.UnlockAllRewards();
         }
-
-        #endregion
-
-        #endregion
 
         #endregion
     }
