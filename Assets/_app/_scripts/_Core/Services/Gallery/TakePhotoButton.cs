@@ -1,4 +1,5 @@
-﻿using Antura.UI;
+﻿using Antura.Audio;
+using Antura.UI;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -29,6 +30,7 @@ namespace Antura.Core.Services.Gallery
             if (PhotosAvailable > 0) {
                 GetComponent<Button>().interactable = false;
                 StartCoroutine(TakeScreenshot());
+                AudioManager.I.PlaySound(Sfx.WheelTick);
             }
         }
 
