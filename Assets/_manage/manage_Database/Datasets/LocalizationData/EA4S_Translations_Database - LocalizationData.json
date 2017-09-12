@@ -5781,6 +5781,20 @@
       "AudioFile" : "",
       "HasF" : "",
       "Notes" : ""
+    },
+    {
+      "Id" : "UI_Notification_24h",
+      "EnumId" : "414",
+      "Character" : "UI",
+      "Area" : "",
+      "When" : "",
+      "Context" : "",
+      "English" : "Antura is waiting for you to play!",
+      "Arabic" : "عنتورة هو في انتظاركم للعب!",
+      "ArabicFemale" : "",
+      "AudioFile" : "",
+      "HasF" : "",
+      "Notes" : ""
     }
   ]
 }

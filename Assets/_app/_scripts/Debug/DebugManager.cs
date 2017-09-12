@@ -118,6 +118,7 @@ namespace Antura.Debugging
                     AddBones();
                 }
 
+                // SKIPS
                 if (Input.GetKeyDown(KeyCode.Space)) {
                     Debug.Log("DEBUG - SPACE : skip");
                     if (OnSkipCurrentScene != null) OnSkipCurrentScene();
@@ -138,6 +139,12 @@ namespace Antura.Debugging
                 if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3)) {
                     ForceCurrentMinigameEnd(3);
                 }
+
+                /// VARIOUS TESTS
+                if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.T)) {
+                    AppManager.I.Services.Notifications.TestCalculateSecondsToTomorrowMidnight();
+                }
+
             }
         }
 

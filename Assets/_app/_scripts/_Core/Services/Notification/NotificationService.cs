@@ -36,27 +36,31 @@ namespace Antura.Core.Services.Notification
         private void PrepareNextLocalNotification()
         {
             Debug.Log("Next Local Notifications prepared");
-            var arabicString = LocalizationManager.GetLocalizationData(LocalizationDataId.Action_PressPlay);
+            var arabicString = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Notification_24h);
             NotificationManager.ScheduleSimpleWithAppIcon(
-                TimeSpan.FromSeconds(10),
+                TimeSpan.FromSeconds(CalculateSecondsToTomorrowMidnight()),
                 "Antura and the Letters",
                 arabicString.Arabic,
                 Color.blue
             );
 
-            NotificationManager.ScheduleSimpleWithAppIcon(
-                TimeSpan.FromSeconds(60),
-                "Antura and the Letters",
-                "Test notification after closing the app [60 seconds]",
-                Color.blue
-            );
+            //NotificationManager.ScheduleSimpleWithAppIcon(
+            //    TimeSpan.FromSeconds(60),
+            //    "Antura and the Letters",
+            //    "Test notification after closing the app [60 seconds]",
+            //    Color.blue
+            //);
+        }
 
-            NotificationManager.ScheduleSimpleWithAppIcon(
-                TimeSpan.FromSeconds(60 * 60 * 24),
-                "Antura and the Letters",
-                "Come back to play your daily session and earn new rewards! [the day after]",
-                Color.blue
-            );
+        public void TestCalculateSecondsToTomorrowMidnight()
+        {
+            Debug.Log("Tomorrows mudnight is in " + CalculateSecondsToTomorrowMidnight());
+        }
+
+        private int CalculateSecondsToTomorrowMidnight()
+        {
+            TimeSpan ts = DateTime.Today.AddDays(2).Subtract(DateTime.Now);
+            return (int)ts.TotalSeconds;
         }
 
         private void DeleteNextLocalNotfiications()
