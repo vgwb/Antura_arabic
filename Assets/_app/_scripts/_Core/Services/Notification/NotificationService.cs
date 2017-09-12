@@ -30,7 +30,7 @@ namespace Antura.Core.Services.Notification
 
         public void AppResumed()
         {
-            DeleteNextLocalNotfiications();
+            DeleteNextLocalNotifications();
         }
 
         private void PrepareNextLocalNotification()
@@ -54,7 +54,7 @@ namespace Antura.Core.Services.Notification
 
         public void TestCalculateSecondsToTomorrowMidnight()
         {
-            Debug.Log("Tomorrows mudnight is in " + CalculateSecondsToTomorrowMidnight());
+            Debug.Log("Tomorrows midnight is in " + CalculateSecondsToTomorrowMidnight() + " seconds");
         }
 
         private int CalculateSecondsToTomorrowMidnight()
@@ -63,7 +63,7 @@ namespace Antura.Core.Services.Notification
             return (int)ts.TotalSeconds;
         }
 
-        private void DeleteNextLocalNotfiications()
+        private void DeleteNextLocalNotifications()
         {
             Debug.Log("Next Local Notifications deleted");
             NotificationManager.CancelAllNotifications();
