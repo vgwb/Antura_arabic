@@ -1,21 +1,51 @@
-﻿using System.Collections;
+﻿using Antura.UI;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Antura.Core.Services.Gallery
 {
     public class TakePhotoButton : MonoBehaviour, IPointerClickHandler
     {
+        public TextRender PhotoCounterText;
+        private int PhotosAvailable;
 
         void Start()
         {
+            Init(10);
+        }
 
+        public void Init(int howManyPhotos)
+        {
+            gameObject.SetActive(true);
+            PhotosAvailable = howManyPhotos;
+            UpdateCounter();
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("Take Photo button!!");
-            StartCoroutine(TakeScreenshot());
+            Debug.Log("Take Photo button!");
+            if (PhotosAvailable > 0) {
+                GetComponent<Button>().interactable = false;
+                StartCoroutine(TakeScreenshot());
+            }
+        }
+
+        private void PhotoFinished()
+        {
+            PhotosAvailable--;
+            UpdateCounter();
+        }
+
+        private void UpdateCounter()
+        {
+            PhotoCounterText.SetText(PhotosAvailable.ToString());
+            if (PhotosAvailable > 0) {
+                GetComponent<Button>().interactable = true;
+            } else {
+                gameObject.SetActive(false);
+            }
         }
 
         private IEnumerator TakeScreenshot()
@@ -27,6 +57,7 @@ namespace Antura.Core.Services.Gallery
             texture.Apply();
 
             AppManager.I.Services.Gallery.SaveScreenshot(texture);
+            PhotoFinished();
         }
     }
 }
