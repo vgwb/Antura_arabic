@@ -1,4 +1,5 @@
 ﻿using Antura.Core;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Antura.Map
@@ -49,7 +50,7 @@ namespace Antura.Map
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                ChangeMaterialDotToRed();
+                Highlight(true);
             }
         }
 
@@ -57,18 +58,20 @@ namespace Antura.Map
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                ChangeMaterialDotToBlack();
+                Highlight(false);
             }
         }
 
-        public void ChangeMaterialDotToBlack()
+        public void Highlight(bool choice)
         {
-            GetComponent<Renderer>().material = blackDot;
-        }
-
-        public void ChangeMaterialDotToRed()
-        {
-            GetComponent<Renderer>().material = redDot;
+            if (choice)
+            {
+                GetComponent<Renderer>().material = redDot;
+            }
+            else
+            {
+                GetComponent<Renderer>().material = blackDot;
+            }
         }
 
         public void SetUnlocked()
@@ -85,8 +88,10 @@ namespace Antura.Map
 
         public void SetPlaySessionState(PlaySessionState playSessionState)
         {
-            // TODO: do something with the score
+            scoreFeedbackRenderer.gameObject.SetActive(false);
 
+            // TODO: do something with the score
+            /*
             int score = 0;
             if (playSessionState != null) score = playSessionState.score;
 
@@ -105,7 +110,28 @@ namespace Antura.Map
                 case 3:
                     mat.color = Color.yellow;
                     break;
-            }
+            }*/
         }
+
+        #region Appear / Disappear
+
+        public void Disappear()
+        {
+            transform.localScale = Vector3.zero;
+        }
+
+        public void Appear(float delay, float duration)
+        {
+            transform.DOScale(Vector3.one * 1.5f, duration)
+                .SetEase(Ease.OutElastic)
+                .SetDelay(delay);
+        }
+
+        public void FlushAppear()
+        {
+            transform.localScale = Vector3.one * 1.5f;
+        }
+
+        #endregion
     }
 }

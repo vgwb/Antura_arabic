@@ -29,6 +29,13 @@
             PlaySession = int.Parse(splits[2]);
         }
 
+        public JourneyPosition(JourneyPosition other)
+        {
+            Stage = other.Stage;
+            LearningBlock = other.LearningBlock;
+            PlaySession = other.PlaySession;
+        }
+
         public void SetPosition(int _stage, int _lb, int _ps)
         {
             Stage = _stage;

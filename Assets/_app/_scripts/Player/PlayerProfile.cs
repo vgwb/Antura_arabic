@@ -30,7 +30,7 @@ namespace Antura.Profile
 
         public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
         public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
-
+        public JourneyPosition PreviousJourneyPosition = new JourneyPosition(1, 1, 1);
 
         #region Bones/coins
 
@@ -104,6 +104,7 @@ namespace Antura.Profile
         /// </summary>
         public void AdvanceMaxJourneyPosition()
         {
+            PreviousJourneyPosition = new JourneyPosition(CurrentJourneyPosition);
             JourneyPosition p = AppManager.I.JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition);
             SetMaxJourneyPosition(p);
 
@@ -123,6 +124,7 @@ namespace Antura.Profile
                     newJourneyPosition.PlaySession);
                 CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock,
                     newJourneyPosition.PlaySession);
+                PreviousJourneyPosition = new JourneyPosition(CurrentJourneyPosition);
 
                 if (_save) {
                     Save();
@@ -168,8 +170,9 @@ namespace Antura.Profile
         /// </summary>
         public void ResetMaxJourneyPosition(bool _save = true)
         {
-            MaxJourneyPosition = JourneyPosition.InitialJourneyPosition;
-            CurrentJourneyPosition = JourneyPosition.InitialJourneyPosition;
+            MaxJourneyPosition = new JourneyPosition(JourneyPosition.InitialJourneyPosition); 
+            CurrentJourneyPosition = new JourneyPosition(JourneyPosition.InitialJourneyPosition);
+            PreviousJourneyPosition = new JourneyPosition(JourneyPosition.InitialJourneyPosition);
             if (_save) {
                 Save();
             }
@@ -615,6 +618,7 @@ namespace Antura.Profile
 
             SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
+            PreviousJourneyPosition = new JourneyPosition(CurrentJourneyPosition);
             // Antura customization save only customization data
             jsonAnturaCustomizationData = _data.CurrentAnturaCustomization;
 

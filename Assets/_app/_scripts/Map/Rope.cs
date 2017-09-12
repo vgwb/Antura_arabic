@@ -10,6 +10,7 @@ namespace Antura.Map
     public class Rope : MonoBehaviour
     {
         public List<Dot> dots = new List<Dot>();
+        public MeshRenderer meshRenderer;
 
         public Dot DotForPS(int ps)
         {

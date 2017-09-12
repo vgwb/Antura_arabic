@@ -90,7 +90,7 @@ namespace Antura.UI
 
         void DoShow(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonWithBg, bool _pulseLoop = false)
         {
-            Debug.Log("ContinueScreen DoShow " + _onContinue);
+            //Debug.Log("ContinueScreen DoShow " + _onContinue);
             IsShown = true;
             clicked = false;
             currMode = _mode;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Antura.Core;
 using Antura.Database;
@@ -29,20 +30,20 @@ namespace Antura.Map
         // Pins: one per learning blocks, plus a fake one at the start
         private List<Pin> pins;
 
-        public Vector3 GetCurrentPlayerPosition()
-        {
-            return mapLocations[currentPlayerPosIndex].Position;
-        }
-
-        public JourneyPosition GetCurrentPlayerJourneyPosition()
-        {
-            return mapLocations[currentPlayerPosIndex].JourneyPos;
-        }
-
         // Data
         private int[] nPlaySessionsPerLb;
 
         #region Properties
+
+        public Vector3 GetCurrentPlayerPosVector()
+        {
+            return mapLocations[currentPlayerPosIndex].Position;
+        }
+
+        public JourneyPosition GetCurrentPlayerPosJourneyPosition()
+        {
+            return mapLocations[currentPlayerPosIndex].JourneyPos;
+        }
 
         public Pin PinForLB(int lb)
         {
@@ -119,7 +120,78 @@ namespace Antura.Map
             }
 
             UnlockPlaySessions();
+
+            Disappear();
         }
+
+        #region Appear Animation
+        private bool hasAppeared = false;
+
+        void Disappear()
+        {
+            foreach (var pin in pins)
+            {
+                pin.Disappear();
+            }
+        }
+
+        private IEnumerator AppearCO()
+        {
+            if (hasAppeared)
+            {
+                yield break;
+            }
+
+            hasAppeared = true;
+
+            float duration = 0.2f;
+            foreach (var pin in pins)
+            {
+                duration *= 0.9f;
+                if (duration <= 0.01f) duration = 0.02f;
+
+                // First the dots
+                if (pin.rope != null)
+                {
+                    foreach (var ropeDot in pin.rope.dots)
+                    {
+                        if (!ropeDot.isLocked)
+                        {
+                            ropeDot.Appear(0.0f, duration);
+                            yield return new WaitForSeconds(duration);
+                        }
+                    }
+                }
+
+                // Then the pins
+                if (!pin.isLocked)
+                {
+                    pin.Appear(duration);
+                    yield return new WaitForSeconds(duration);
+                }
+            }
+
+        }
+
+        private void FlushAppear()
+        {
+            foreach (var pin in pins)
+            {
+                // First the dots
+                if (pin.rope != null)
+                {
+                    foreach (var ropeDot in pin.rope.dots)
+                    {
+                        ropeDot.FlushAppear();
+                    }
+                }
+
+                // Then the pins
+                pin.FlushAppear();
+            }
+        }
+
+        #endregion
 
         private void CreateDotsBetweenPins(int lb_i, Pin pinFront, Pin pinBack)
         {
@@ -245,6 +317,22 @@ namespace Antura.Map
             }
         }
 
+        public void ResetStageOnShow(bool playerIsHere)
+        {
+            Debug.Log("Stage " + name + " player here? " + playerIsHere);
+            foreach (var pin in pins)
+            {
+                pin.Highlight(playerIsHere && Equals(pin.dot.JourneyPos, GetCurrentPlayerPosJourneyPosition()));
+                if (pin.rope != null)
+                {
+                    foreach (var dot in pin.rope.dots)
+                    {
+                        dot.Highlight(playerIsHere && Equals(dot.JourneyPos, GetCurrentPlayerPosJourneyPosition()));
+                    }
+                }
+            }
+        }
+
         #endregion
 
 
@@ -294,11 +382,13 @@ namespace Antura.Map
         public void Show()
         {
             gameObject.SetActive(true);
+            StartCoroutine(AppearCO());
         }
 
         public void Hide()
         {
             gameObject.SetActive(false);
+            if (hasAppeared) FlushAppear();
         }
 
         #endregion

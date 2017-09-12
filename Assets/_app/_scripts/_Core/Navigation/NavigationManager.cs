@@ -196,8 +196,8 @@ namespace Antura.Core
                 mustShowDailyScenes = true;
                 NavData.CurrentPlayer.ConsecutivePlayDays += 1;
             }
-            Debug.Log("numberOfDaysSinceLastReward: " + numberOfDaysSinceLastReward);
-            Debug.Log("ComboPlayDays: " + numberOfDaysSinceLastReward);
+            //Debug.Log("numberOfDaysSinceLastReward: " + numberOfDaysSinceLastReward);
+            //Debug.Log("ComboPlayDays: " + numberOfDaysSinceLastReward);
 
             return mustShowDailyScenes;
         }
