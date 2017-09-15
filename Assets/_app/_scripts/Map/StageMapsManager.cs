@@ -121,7 +121,7 @@ namespace Antura.Map
 
         #endregion
 
-        private static bool TEST_JOURNEY_POS = true;
+        private static bool TEST_JOURNEY_POS = false;
 
         private void Awake()
         {
@@ -135,14 +135,12 @@ namespace Antura.Map
                 TEST_JOURNEY_POS = false;
                 AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(2, 1, 1));
                 AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(2, 1, 1));
-                AppManager.I.Player.PreviousJourneyPosition = new JourneyPosition(1, 14, 100);
-                Debug.Log("FORCED!");
+                AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 14, 100));
+                Debug.Log("FORCED TEST_JOURNEY_POS");
             }
-            //PreviousJourneyPosition.PlaySession = 1;
 
             shownStage = PreviousPlayerStage;
             targetCurrentJourneyPosition = CurrentJourneyPosition;
-
 
             // Setup stage availability
             for (int stage_i = 1; stage_i <= stageMaps.Length; stage_i++) {
@@ -159,9 +157,6 @@ namespace Antura.Map
             TeleportToShownStage(shownStage);
             UpdateStageIndicatorUI(shownStage);
             UpdateButtonsForStage(shownStage);
-
-            //Debug.LogError("PREV: " + PreviousJourneyPosition);
-            //Debug.LogError("TARGET: " + targetCurrentJourneyPosition);
 
             // Position the player
             playerPin.gameObject.SetActive(true);
@@ -194,8 +189,7 @@ namespace Antura.Map
             StageMap(shownStage).FlushAppear(PreviousJourneyPosition);
 
             bool needsAnimation = !Equals(targetCurrentJourneyPosition, PreviousJourneyPosition);
-            Debug.Log("TARGET CURRENT: " + targetCurrentJourneyPosition
-                 + "\n PREV: " + PreviousJourneyPosition);
+            //Debug.Log("TARGET CURRENT: " + targetCurrentJourneyPosition  + "\n PREV: " + PreviousJourneyPosition);
             if (!needsAnimation)
             {
                 StageMap(shownStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
@@ -204,18 +198,17 @@ namespace Antura.Map
             {
                 yield return new WaitForSeconds(1.0f);
                 StageMap(shownStage).Appear(PreviousJourneyPosition, AppManager.I.Player.MaxJourneyPosition);
-                
-                Debug.Log("Shown stage: " + shownStage + " TargetJourneyPos " + targetCurrentJourneyPosition +
-                          " PreviousJourneyPos " + PreviousJourneyPosition);
+
+                //Debug.Log("Shown stage: " + shownStage + " TargetJourneyPos " + targetCurrentJourneyPosition +   " PreviousJourneyPos " + PreviousJourneyPosition);
                 if (shownStage != targetCurrentJourneyPosition.Stage)
                 {
-                    Debug.Log("ANIMATING TO STAGE: " + targetCurrentJourneyPosition.Stage + " THEN MOVING TO " + targetCurrentJourneyPosition);
+                    //Debug.Log("ANIMATING TO STAGE: " + targetCurrentJourneyPosition.Stage + " THEN MOVING TO " + targetCurrentJourneyPosition);
                     yield return StartCoroutine(SwitchFromToStageCO(shownStage, targetCurrentJourneyPosition.Stage));
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                 }
                 else
                 {
-                    Debug.Log("JUST MOVING TO " + targetCurrentJourneyPosition);
+                    //Debug.Log("JUST MOVING TO " + targetCurrentJourneyPosition);
                     yield return new WaitForSeconds(1.0f);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                     yield return null;
@@ -446,7 +439,7 @@ namespace Antura.Map
             // End transition
             inTransition = false;
 
-            Debug.Log("We are at stage " + shownStage + ". Player current is " + CurrentPlayerStage);
+            //Debug.Log("We are at stage " + shownStage + ". Player current is " + CurrentPlayerStage);
         }
 
         #endregion

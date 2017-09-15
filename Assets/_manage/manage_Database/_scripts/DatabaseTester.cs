@@ -606,7 +606,7 @@ namespace Antura.Database.Management
         {
             dbManager.LoadDatabaseForPlayer(playerUuid);
             playerProfile = new Profile.PlayerProfile();
-            playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 2, 2);    // test
+            playerProfile.SetCurrentJourneyPosition(new JourneyPosition(1, 2, 2));    // test
             teacherAI.SetPlayerProfile(playerProfile);
             PrintOutput("Loading profile " + playerUuid);
         }

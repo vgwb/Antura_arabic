@@ -28,9 +28,26 @@ namespace Antura.Profile
 
         public ProfileCompletionState ProfileCompletion = ProfileCompletionState.New;
 
-        public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
-        public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
-        public JourneyPosition PreviousJourneyPosition = new JourneyPosition(1, 1, 1);
+        private JourneyPosition _maxJourneyPosition = JourneyPosition.InitialJourneyPosition;
+        public JourneyPosition MaxJourneyPosition
+        {
+            get { return _maxJourneyPosition; }
+            private set { _maxJourneyPosition = value; }
+        }
+
+        private JourneyPosition _currentJourneyPosition = JourneyPosition.InitialJourneyPosition;
+        public JourneyPosition CurrentJourneyPosition
+        {
+            get { return _currentJourneyPosition; }
+            private set { _currentJourneyPosition = value; }
+        }
+
+        private JourneyPosition _previousJourneyPosition = JourneyPosition.InitialJourneyPosition;
+        public JourneyPosition PreviousJourneyPosition
+        {
+            get { return _previousJourneyPosition; }
+            private set { _previousJourneyPosition = value; }
+        }
 
         #region Bones/coins
 
@@ -208,7 +225,12 @@ namespace Antura.Profile
         private void UpdatePreviousJourneyPosition()
         {
             PreviousJourneyPosition = new JourneyPosition(CurrentJourneyPosition);
-            Debug.LogError("Updating Prev to " + PreviousJourneyPosition);
+            //Debug.LogError("Updating Prev to " + PreviousJourneyPosition);
+        }
+
+        public void ForcePreviousJourneyPosition(JourneyPosition journeyPosition)
+        {
+            PreviousJourneyPosition = journeyPosition;
         }
 
         #endregion
@@ -666,5 +688,6 @@ namespace Antura.Profile
                 ProfileCompletion
             );
         }
+
     }
 }

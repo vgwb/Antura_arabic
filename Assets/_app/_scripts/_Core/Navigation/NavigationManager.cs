@@ -15,6 +15,8 @@ namespace Antura.Core
     /// </summary>
     public class NavigationManager : MonoBehaviour
     {
+        public static bool TEST_SKIP_GAMES = false;
+
         public const AppScene INITIAL_SCENE = AppScene.Home;
 
         public NavigationData NavData;
@@ -558,7 +560,6 @@ namespace Antura.Core
             }
         }
 
-        public static bool TEST_SKIP_GAMES = true;
         private void GoToFirstGameOfPlaySession()
         {
             if (TEST_SKIP_GAMES)

@@ -14,6 +14,13 @@
 
         public static JourneyPosition InitialJourneyPosition = new JourneyPosition(1, 1, 1);
 
+        public JourneyPosition()
+        {
+            Stage = 1;
+            LearningBlock = 1;
+            PlaySession = 1;
+        }
+
         public JourneyPosition(int _stage, int _lb, int _ps)
         {
             Stage = _stage;

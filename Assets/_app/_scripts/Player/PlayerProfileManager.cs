@@ -36,6 +36,7 @@ namespace Antura.Profile
                         AppManager.I.NavigationManager.InitPlayerNavigationData(_currentPlayer);
 
                         _currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
+                        _currentPlayer.SetCurrentJourneyPosition(_currentPlayer.MaxJourneyPosition);
                         if (OnProfileChanged != null) {
                             OnProfileChanged();
                         }
