@@ -258,8 +258,11 @@ namespace Antura.Map
                 fromLb = current_lb;
                 toLb = current_lb - 1;
             }
+
             var lookingFromTr = stageMap.PinForLB(fromLb).transform;
-            var lookingToTr = stageMap.PinForLB(toLb).transform;
+            var toPin = stageMap.PinForLB(toLb);
+            if (toPin == null) toPin = stageMap.PinForLB(fromLb);
+            var lookingToTr = toPin.transform;
             Quaternion toRotation = Quaternion.LookRotation(lookingToTr.transform.position - lookingFromTr.transform.position, Vector3.up);
             // Debug.Log("Current " + currRotation + " To " + toRotation);
 

@@ -208,7 +208,7 @@ namespace Antura.Profile
         private void UpdatePreviousJourneyPosition()
         {
             PreviousJourneyPosition = new JourneyPosition(CurrentJourneyPosition);
-            //Debug.LogError("Updating Prev to " + PreviousJourneyPosition);
+            Debug.LogError("Updating Prev to " + PreviousJourneyPosition);
         }
 
         #endregion

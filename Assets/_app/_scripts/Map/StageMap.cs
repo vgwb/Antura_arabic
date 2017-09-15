@@ -47,6 +47,7 @@ namespace Antura.Map
 
         public Pin PinForLB(int lb)
         {
+            if (lb >= pins.Count) return null;
             return pins[lb];    // @note: we have pin 0 as fake
         }
 
@@ -191,7 +192,7 @@ namespace Antura.Map
 
         public void FlushAppear(JourneyPosition upToJourneyPos)
         {
-            Debug.Log("FLUSH TO " + upToJourneyPos);
+            //Debug.Log("FLUSH TO " + upToJourneyPos);
             int upToPosIndex = StageMapsManager.GetPosIndexFromJourneyPosition(this, upToJourneyPos);
             foreach (var pin in pins)
             {
@@ -337,7 +338,7 @@ namespace Antura.Map
 
         public void ResetStageOnShow(bool playerIsHere)
         {
-            Debug.Log("Stage " + name + " player here? " + playerIsHere);
+            //Debug.Log("Stage " + name + " player here? " + playerIsHere);
             foreach (var pin in pins)
             {
                 pin.Highlight(playerIsHere && Equals(pin.dot.JourneyPos, GetCurrentPlayerPosJourneyPosition()));

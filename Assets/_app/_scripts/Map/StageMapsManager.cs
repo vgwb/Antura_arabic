@@ -194,6 +194,8 @@ namespace Antura.Map
             StageMap(shownStage).FlushAppear(PreviousJourneyPosition);
 
             bool needsAnimation = !Equals(targetCurrentJourneyPosition, PreviousJourneyPosition);
+            Debug.Log("TARGET CURRENT: " + targetCurrentJourneyPosition
+                 + "\n PREV: " + PreviousJourneyPosition);
             if (!needsAnimation)
             {
                 StageMap(shownStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
@@ -461,14 +463,14 @@ namespace Antura.Map
             CameraGameplayController.I.transform.rotation = pivot.rotation;
             Camera.main.backgroundColor = stageMap.color;
             Camera.main.GetComponent<CameraFog>().color = stageMap.color;
-            SwitchPlayerStageMap(stageMap);
+            SwitchPlayerStageMap(stageMap, true);
         }
 
-        private void SwitchPlayerStageMap(StageMap newStageMap)
+        private void SwitchPlayerStageMap(StageMap newStageMap, bool init = false)
         {
             if (playerPin.IsAnimating) playerPin.StopAnimation(stopWhereItIs:false);
             playerPin.stageMap = newStageMap;
-            playerPin.ForceToJourneyPosition(StageMapsManager.CurrentJourneyPosition);
+            if (!init) playerPin.ForceToJourneyPosition(StageMapsManager.CurrentJourneyPosition);
         }
 
         private void AnimateToShownStage(int stage)
