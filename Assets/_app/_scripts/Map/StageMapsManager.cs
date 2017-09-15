@@ -470,7 +470,7 @@ namespace Antura.Map
         {
             if (playerPin.IsAnimating) playerPin.StopAnimation(stopWhereItIs:false);
             playerPin.stageMap = newStageMap;
-            if (!init) playerPin.ForceToJourneyPosition(StageMapsManager.CurrentJourneyPosition);
+            if (!init && !newStageMap.PinForLB(1).rope.DotForPS(1).isLocked) playerPin.ForceToJourneyPosition(StageMapsManager.CurrentJourneyPosition);
         }
 
         private void AnimateToShownStage(int stage)
