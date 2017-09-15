@@ -104,7 +104,7 @@ namespace Antura.Profile
         /// </summary>
         public void AdvanceMaxJourneyPosition()
         {
-            PreviousJourneyPosition = new JourneyPosition(CurrentJourneyPosition);
+            UpdatePreviousJourneyPosition();
             JourneyPosition p = AppManager.I.JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition);
             SetMaxJourneyPosition(p);
 
@@ -124,7 +124,6 @@ namespace Antura.Profile
                     newJourneyPosition.PlaySession);
                 CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock,
                     newJourneyPosition.PlaySession);
-                PreviousJourneyPosition = new JourneyPosition(CurrentJourneyPosition);
 
                 if (_save) {
                     Save();
@@ -172,7 +171,7 @@ namespace Antura.Profile
         {
             MaxJourneyPosition = new JourneyPosition(JourneyPosition.InitialJourneyPosition); 
             CurrentJourneyPosition = new JourneyPosition(JourneyPosition.InitialJourneyPosition);
-            PreviousJourneyPosition = new JourneyPosition(JourneyPosition.InitialJourneyPosition);
+            UpdatePreviousJourneyPosition();
             if (_save) {
                 Save();
             }
@@ -202,6 +201,11 @@ namespace Antura.Profile
         public bool IsAssessmentTime()
         {
             return AppManager.I.JourneyHelper.IsAssessmentTime(CurrentJourneyPosition);
+        }
+
+        private void UpdatePreviousJourneyPosition()
+        {
+            PreviousJourneyPosition = new JourneyPosition(CurrentJourneyPosition);
         }
 
         #endregion
@@ -618,7 +622,7 @@ namespace Antura.Profile
 
             SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
-            PreviousJourneyPosition = new JourneyPosition(CurrentJourneyPosition);
+            UpdatePreviousJourneyPosition();
             // Antura customization save only customization data
             jsonAnturaCustomizationData = _data.CurrentAnturaCustomization;
 
