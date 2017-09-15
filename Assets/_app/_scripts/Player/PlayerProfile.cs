@@ -92,9 +92,10 @@ namespace Antura.Profile
         /// </summary>
         /// <param name="_journeyPosition">The journey position.</param>
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
-        public void SetCurrentJourneyPosition(JourneyPosition _journeyPosition, bool _save = true)
+        public void SetCurrentJourneyPosition(JourneyPosition _journeyPosition, bool _save = true, bool _updatePrevToo = true)
         {
             CurrentJourneyPosition = _journeyPosition;
+            if (_updatePrevToo) UpdatePreviousJourneyPosition();
             if (_save)
                 Save();
         }
@@ -207,6 +208,7 @@ namespace Antura.Profile
         private void UpdatePreviousJourneyPosition()
         {
             PreviousJourneyPosition = new JourneyPosition(CurrentJourneyPosition);
+            //Debug.LogError("Updating Prev to " + PreviousJourneyPosition);
         }
 
         #endregion
@@ -623,7 +625,6 @@ namespace Antura.Profile
 
             SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
-            UpdatePreviousJourneyPosition();
             // Antura customization save only customization data
             jsonAnturaCustomizationData = _data.CurrentAnturaCustomization;
 

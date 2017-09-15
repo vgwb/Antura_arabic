@@ -206,10 +206,10 @@ namespace Antura.Map
                 float stepDuration = Mathf.Max(0.1f, 0.5f / Mathf.Abs(targetIndex - tmpCurrentIndex));
                 bool isAdvancing = targetIndex > tmpCurrentIndex;
                 tmpCurrentIndex += isAdvancing ? 1 : -1;
+                LookAtPin(!isAdvancing, true, stageMap.mapLocations[tmpCurrentIndex].JourneyPos);
                 var nextPos = stageMap.mapLocations[tmpCurrentIndex].Position;
                 yield return MoveToCO(nextPos, stepDuration);
                 stageMap.currentPlayerPosIndex = tmpCurrentIndex;
-                LookAtPin(!isAdvancing, true, stageMap.mapLocations[tmpCurrentIndex].JourneyPos);
             }
 
             CheckMovementButtonsEnabling();
@@ -229,8 +229,8 @@ namespace Antura.Map
 
         private void UpdatePlayerJourneyPosition(JourneyPosition journeyPos)
         {
-            AppManager.I.Player.SetCurrentJourneyPosition(journeyPos);
-            Debug.LogWarning("Setting journey pos current: " + AppManager.I.Player.CurrentJourneyPosition);
+            AppManager.I.Player.SetCurrentJourneyPosition(journeyPos, false);
+            //Debug.LogWarning("Setting journey pos current: " + AppManager.I.Player.CurrentJourneyPosition);
         }
 
         #endregion

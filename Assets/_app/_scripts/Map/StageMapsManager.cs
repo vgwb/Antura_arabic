@@ -159,8 +159,8 @@ namespace Antura.Map
             UpdateStageIndicatorUI(shownStage);
             UpdateButtonsForStage(shownStage);
 
-            Debug.LogError("PREV: " + PreviousJourneyPosition);
-            Debug.LogError("TARGET: " + targetCurrentJourneyPosition);
+            //Debug.LogError("PREV: " + PreviousJourneyPosition);
+            //Debug.LogError("TARGET: " + targetCurrentJourneyPosition);
 
             // Position the player
             playerPin.gameObject.SetActive(true);
@@ -190,14 +190,21 @@ namespace Antura.Map
         private IEnumerator InitialMovementCO()
         {
             HidePlaySessionMovementButtons();
+            StageMap(shownStage).FlushAppear(PreviousJourneyPosition);
 
-            StageMap(shownStage).Appear(PreviousJourneyPosition, AppManager.I.Player.MaxJourneyPosition);
-
-            yield return new WaitForSeconds(1.0f);
-
-            Debug.Log("Shown stage: " + shownStage + " TargetJourneyPos " + targetCurrentJourneyPosition + " PreviousJourneyPos " + PreviousJourneyPosition);
-            if (!Equals(targetCurrentJourneyPosition, PreviousJourneyPosition))
+            bool needsAnimation = !Equals(targetCurrentJourneyPosition, PreviousJourneyPosition);
+            if (!needsAnimation)
             {
+                StageMap(shownStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
+            }
+            else
+            {
+                yield return new WaitForSeconds(1.0f);
+                StageMap(shownStage).Appear(PreviousJourneyPosition, AppManager.I.Player.MaxJourneyPosition);
+                yield return new WaitForSeconds(1.0f);
+
+                Debug.Log("Shown stage: " + shownStage + " TargetJourneyPos " + targetCurrentJourneyPosition +
+                          " PreviousJourneyPos " + PreviousJourneyPosition);
                 if (shownStage != CurrentPlayerStage)
                 {
                     Debug.Log("ANIMATING TO STAGE: " + shownStage + " THEN MOVING TO " + targetCurrentJourneyPosition);
@@ -211,6 +218,7 @@ namespace Antura.Map
                     yield return null;
                 }
             }
+
             while (playerPin.IsAnimating)
             {
                 yield return null;
@@ -404,7 +412,7 @@ namespace Antura.Map
             HidePlaySessionMovementButtons();
 
             // Change stage reference
-            StageMap(toStage).FlushAppear(CurrentJourneyPosition);
+            StageMap(toStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
             SwitchPlayerStageMap(StageMap(toStage));
 
             // Update Player Stage too, if needed

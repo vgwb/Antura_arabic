@@ -405,7 +405,7 @@ namespace Antura.Map
         public void Hide()
         {
             gameObject.SetActive(false);
-            if (hasAppeared) FlushAppear(StageMapsManager.CurrentJourneyPosition);
+            if (hasAppeared) FlushAppear(AppManager.I.Player.MaxJourneyPosition);
         }
 
         #endregion
