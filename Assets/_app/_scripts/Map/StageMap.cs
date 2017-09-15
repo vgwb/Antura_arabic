@@ -83,6 +83,7 @@ namespace Antura.Map
             for (int i = 1; i < pins.Count; i++)
             {
                 pins[i].rope = ropes[i - 1];
+                pins[i].rope.name = "MapRope " + i;
             }
 
             // Setup the first pin (it is not a LB, just for visual purposes)
