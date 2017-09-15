@@ -54,8 +54,13 @@ namespace Antura.Map
 
         #region Appear / Disappear
 
+        private bool appeared = false;
+
+        public bool Appeared { get { return appeared; } }
+
         public void Disappear()
         {
+            appeared = false;
             startPinPosition = currentPinMesh.transform.position;
             if (rope != null) startRopeScale = rope.meshRenderer.transform.localScale;
 
@@ -73,6 +78,8 @@ namespace Antura.Map
 
         public void Appear(float duration)
         {
+            if (appeared) return;
+            appeared = true;
             currentPinMesh.transform.DOMove(startPinPosition, duration*0.5f);
             dot.transform.DOScale(Vector3.one * 6, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f);
             shadowTr.DOScale(Vector3.one * 12.5f, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f);
@@ -85,6 +92,8 @@ namespace Antura.Map
 
         public void FlushAppear()
         {
+            if (appeared) return;
+            appeared = true;
             currentPinMesh.transform.position = startPinPosition;
             dot.transform.localScale = Vector3.one*6;
             shadowTr.transform.localScale = Vector3.one * 12.5f;

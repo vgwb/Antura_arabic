@@ -558,8 +558,16 @@ namespace Antura.Core
             }
         }
 
+        public static bool TEST_SKIP_GAMES = true;
         private void GoToFirstGameOfPlaySession()
         {
+            if (TEST_SKIP_GAMES)
+            {
+                LogManager.I.EndMiniGame();
+                GoToScene(AppScene.PlaySessionResult);
+                return;
+            }
+
             // Game selector -> go to the first game
             NavData.SetFirstMinigame();
             // TODO: ???

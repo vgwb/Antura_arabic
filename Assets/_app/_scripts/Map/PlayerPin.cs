@@ -112,24 +112,29 @@ namespace Antura.Map
 
         #region Movement
 
+        private int CurrentTargetPosIndex
+        {
+            get { return StageMapsManager.GetPosIndexFromJourneyPosition(stageMap, StageMapsManager.CurrentJourneyPosition); }
+        }
+
         public void MoveToNextDot()
         {
-            MoveToDot(CurrentPlayerPosIndex + 1);
+            MoveToDot(CurrentTargetPosIndex + 1);
         }
 
         public void MoveToPreviousDot()
         {
-            MoveToDot(CurrentPlayerPosIndex - 1);
+            MoveToDot(CurrentTargetPosIndex - 1);
         }
 
         public void MoveToJourneyPosition(JourneyPosition journeyPosition)
         {
-            MoveToDot(GetPosIndexFromJourneyPosition(journeyPosition)); 
+            MoveToDot(StageMapsManager.GetPosIndexFromJourneyPosition(stageMap, journeyPosition)); 
         }
 
         private void MoveToDot(int dotIndex)
         {
-            if (dotIndex == CurrentPlayerPosIndex) return;
+            //if (dotIndex == CurrentTargetPosIndex) return;
 
             if (CanMoveTo(dotIndex))
             {
@@ -146,10 +151,10 @@ namespace Antura.Map
                    (dotIndex <= stageMap.maxPlayerPosIndex);
         }
 
-        public void ForceToJourneyPosition(JourneyPosition journeyPosition)
+        public void ForceToJourneyPosition(JourneyPosition journeyPosition, bool justVisuals = false)
         {
-            int posIndex = GetPosIndexFromJourneyPosition(journeyPosition);
-            ForceToPlayerPosition(posIndex);
+            int posIndex = StageMapsManager.GetPosIndexFromJourneyPosition(stageMap, journeyPosition);
+            ForceToPlayerPosition(posIndex, justVisuals);
             LookAtNextPin(false);
         }
 
@@ -200,33 +205,14 @@ namespace Antura.Map
             if (onMoveEnd != null) onMoveEnd();
         }
 
-        void ForceToPlayerPosition(int newIndex)
+        void ForceToPlayerPosition(int newIndex, bool justVisuals = false)
         {
             //Debug.Log("Forcing to " + newIndex);
             stageMap.currentPlayerPosIndex = newIndex;
             StartCoroutine(MoveToCO(stageMap.GetCurrentPlayerPosVector(), false, 0));
 
-            UpdatePlayerJourneyPosition(stageMap.GetCurrentPlayerPosJourneyPosition());
+            if (!justVisuals) UpdatePlayerJourneyPosition(stageMap.GetCurrentPlayerPosJourneyPosition());
             CheckMovementButtonsEnabling();
-        }
-
-        private int GetPosIndexFromJourneyPosition(JourneyPosition journeyPos)
-        {
-            var current_lb = journeyPos.LearningBlock;
-            var current_ps = journeyPos.PlaySession;
-
-            if (AppManager.I.JourneyHelper.IsAssessmentTime(journeyPos))
-            {
-                // Player is on a pin
-                var pin = stageMap.PinForLB(current_lb);
-                return pin.dot.playerPosIndex;
-            }
-            else
-            {
-                // Player is on a dot
-                var dot = stageMap.PinForLB(current_lb).rope.DotForPS(current_ps);
-                return dot.playerPosIndex;
-            }
         }
 
         private void UpdatePlayerJourneyPosition(JourneyPosition journeyPos)

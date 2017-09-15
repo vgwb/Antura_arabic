@@ -135,7 +135,12 @@ namespace Antura.Map
             }
         }
 
-        private IEnumerator AppearCO()
+        public void Appear(JourneyPosition fromPos, JourneyPosition toPos)
+        {
+            StartCoroutine(AppearCO(fromPos,toPos));
+        }
+
+        private IEnumerator AppearCO(JourneyPosition fromPos, JourneyPosition toPos)
         {
             if (hasAppeared)
             {
@@ -144,37 +149,49 @@ namespace Antura.Map
 
             hasAppeared = true;
 
+            Debug.Log("Animating from " + fromPos + " to " + toPos);
+
+            // First, let all the available dots appear, up to FROM
+            FlushAppear(fromPos);
+
+            // Then, let the remaining ones appear in order, up to TO
+            int upToPosIndex = StageMapsManager.GetPosIndexFromJourneyPosition(this, toPos);
             float duration = 0.2f;
             foreach (var pin in pins)
             {
-                duration *= 0.9f;
-                if (duration <= 0.01f) duration = 0.02f;
-
                 // First the dots
                 if (pin.rope != null)
                 {
                     foreach (var ropeDot in pin.rope.dots)
                     {
-                        if (!ropeDot.isLocked)
+                        //if (!ropeDot.isLocked)
+                        if (!ropeDot.Appeared && ropeDot.playerPosIndex <= upToPosIndex)
                         {
                             ropeDot.Appear(0.0f, duration);
                             yield return new WaitForSeconds(duration);
+                            duration *= 0.9f;
+                            if (duration <= 0.01f) duration = 0.02f;
                         }
                     }
                 }
 
                 // Then the pins
-                if (!pin.isLocked)
+                //if (!pin.isLocked)
+                if (!pin.Appeared && pin.dot.playerPosIndex <= upToPosIndex)
                 {
                     pin.Appear(duration);
                     yield return new WaitForSeconds(duration);
+                    duration *= 0.9f;
+                    if (duration <= 0.01f) duration = 0.02f;
                 }
             }
 
         }
 
-        private void FlushAppear()
+        public void FlushAppear(JourneyPosition upToJourneyPos)
         {
+            Debug.Log("FLUSH TO " + upToJourneyPos);
+            int upToPosIndex = StageMapsManager.GetPosIndexFromJourneyPosition(this, upToJourneyPos);
             foreach (var pin in pins)
             {
                 // First the dots
@@ -182,12 +199,12 @@ namespace Antura.Map
                 {
                     foreach (var ropeDot in pin.rope.dots)
                     {
-                        ropeDot.FlushAppear();
+                        if (ropeDot.playerPosIndex <= upToPosIndex) ropeDot.FlushAppear();
                     }
                 }
 
                 // Then the pins
-                pin.FlushAppear();
+                if (pin.dot.playerPosIndex <= upToPosIndex) pin.FlushAppear();
             }
         }
 
@@ -382,13 +399,12 @@ namespace Antura.Map
         public void Show()
         {
             gameObject.SetActive(true);
-            StartCoroutine(AppearCO());
         }
 
         public void Hide()
         {
             gameObject.SetActive(false);
-            if (hasAppeared) FlushAppear();
+            if (hasAppeared) FlushAppear(StageMapsManager.CurrentJourneyPosition);
         }
 
         #endregion

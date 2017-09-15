@@ -69,23 +69,25 @@ namespace Antura.Map
             get { return CurrentJourneyPosition.Stage; }
         }
 
-        private JourneyPosition PreviousJourneyPosition
+        public static JourneyPosition PreviousJourneyPosition
         {
             get
             {
                 // return new JourneyPosition(1, 1, 1);
+                //return new JourneyPosition(4, 2, 2);
                 //return new JourneyPosition(1, 14, 100);
                 return AppManager.I.Player.PreviousJourneyPosition;
             }
         }
         private JourneyPosition targetCurrentJourneyPosition;
 
-        private JourneyPosition CurrentJourneyPosition
+        public static JourneyPosition CurrentJourneyPosition
         {
             get
             {
                 //return new JourneyPosition(1, 1, 2);
                 //return new JourneyPosition(2, 1, 1);
+                //return new JourneyPosition(4, 2, 100);
                 return AppManager.I.Player.CurrentJourneyPosition;
             }
         }
@@ -161,7 +163,7 @@ namespace Antura.Map
             //playerPin.onMoveStart += HidePlaySessionMovementButtons;
             playerPin.onMoveStart += CheckCurrentStageForMovement;
             //playerPin.onMoveEnd += ShowPlaySessionMovementButtons;
-            playerPin.ForceToJourneyPosition(PreviousJourneyPosition);
+            playerPin.ForceToJourneyPosition(PreviousJourneyPosition, justVisuals:true);
 
             /* FIRST CONTACT FEATURE */
             if (AppManager.I.Player.IsFirstContact() || SimulateFirstContact) {
@@ -184,6 +186,9 @@ namespace Antura.Map
         private IEnumerator InitialMovementCO()
         {
             HidePlaySessionMovementButtons();
+
+            StageMap(shownStage).Appear(PreviousJourneyPosition, targetCurrentJourneyPosition);
+
             yield return new WaitForSeconds(1.0f);
 
             Debug.Log("Shown stage: " + shownStage + " TargetJourneyPos " + targetCurrentJourneyPosition + " PreviousJourneyPos " + PreviousJourneyPosition);
@@ -191,13 +196,13 @@ namespace Antura.Map
             {
                 if (shownStage != CurrentPlayerStage)
                 {
-                    Debug.Log("ANIMATING TO STAGE: " + shownStage + " THEN MOVING TO " + CurrentJourneyPosition);
+                    Debug.Log("ANIMATING TO STAGE: " + shownStage + " THEN MOVING TO " + targetCurrentJourneyPosition);
                     yield return StartCoroutine(SwitchFromToStageCO(shownStage, targetCurrentJourneyPosition.Stage));
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                 }
                 else
                 {
-                    Debug.Log("JUST MOVING TO " + CurrentJourneyPosition);
+                    Debug.Log("JUST MOVING TO " + targetCurrentJourneyPosition);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                     yield return null;
                 }
@@ -395,6 +400,7 @@ namespace Antura.Map
             HidePlaySessionMovementButtons();
 
             // Change stage reference
+            StageMap(toStage).FlushAppear(CurrentJourneyPosition);
             SwitchPlayerStageMap(StageMap(toStage));
 
             // Update Player Stage too, if needed
@@ -526,6 +532,36 @@ namespace Antura.Map
             profileBookButton.SetActive(true);
             anturaSpaceButton.SetActive(true);
             GlobalUI.ShowPauseMenu(true);
+        }
+
+        #endregion
+
+        #region Static Utilities
+
+        public static int GetPosIndexFromJourneyPosition(StageMap stageMap, JourneyPosition journeyPos)
+        {
+            var st = journeyPos.Stage;
+            var lb = journeyPos.LearningBlock;
+            var ps = journeyPos.PlaySession;
+
+            if (stageMap.stageNumber > st)
+                return 0;
+
+            if (stageMap.stageNumber < st)
+                return stageMap.maxPlayerPosIndex;
+
+            if (AppManager.I.JourneyHelper.IsAssessmentTime(journeyPos))
+            {
+                // Player is on a pin
+                var pin = stageMap.PinForLB(lb);
+                return pin.dot.playerPosIndex;
+            }
+            else
+            {
+                // Player is on a dot
+                var dot = stageMap.PinForLB(lb).rope.DotForPS(ps);
+                return dot.playerPosIndex;
+            }
         }
 
         #endregion

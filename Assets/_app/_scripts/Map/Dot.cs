@@ -115,13 +115,20 @@ namespace Antura.Map
 
         #region Appear / Disappear
 
+        private bool appeared = false;
+
+        public bool Appeared { get { return appeared;} }
+
         public void Disappear()
         {
+            appeared = false;
             transform.localScale = Vector3.zero;
         }
 
         public void Appear(float delay, float duration)
         {
+            if (appeared) return;
+            appeared = true;
             transform.DOScale(Vector3.one * 1.5f, duration)
                 .SetEase(Ease.OutElastic)
                 .SetDelay(delay);
@@ -129,6 +136,8 @@ namespace Antura.Map
 
         public void FlushAppear()
         {
+            if (appeared) return;
+            appeared = true;
             transform.localScale = Vector3.one * 1.5f;
         }
 
