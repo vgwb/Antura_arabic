@@ -97,6 +97,11 @@ namespace Antura.Map
             currentPinMesh.transform.position = startPinPosition;
             dot.transform.localScale = Vector3.one*6;
             shadowTr.transform.localScale = Vector3.one * 12.5f;
+
+            if (rope != null)
+            {
+                rope.meshRenderer.transform.localScale = startRopeScale;
+            }
         }
 
         #endregion
