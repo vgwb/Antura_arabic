@@ -172,14 +172,26 @@ namespace Antura.Map
         private Coroutine animatePositionCO;
         void AnimateToPlayerPosition(int newIndex)
         {
+            StopAnimation();
+            animatePositionCO = StartCoroutine(AnimateToPlayerPositionCO(newIndex));
+        }
+
+        public void StopAnimation(bool forceAtTarget = false)
+        {
             if (animatePositionCO != null && isAnimating)
             {
                 StopCoroutine(animatePositionCO);
                 animatePositionCO = null;
-                UpdatePlayerJourneyPosition(stageMap.GetCurrentPlayerPosJourneyPosition());
+                if (forceAtTarget)
+                {
+                    Debug.Log("STOP ANIMATION AT: " + StageMapsManager.CurrentJourneyPosition);
+                    ForceToJourneyPosition(StageMapsManager.CurrentJourneyPosition);
+                }
+                else
+                {
+                    UpdatePlayerJourneyPosition(stageMap.GetCurrentPlayerPosJourneyPosition());
+                }
             }
-
-            animatePositionCO = StartCoroutine(AnimateToPlayerPositionCO(newIndex));
         }
 
         IEnumerator AnimateToPlayerPositionCO(int targetIndex)
@@ -195,7 +207,7 @@ namespace Antura.Map
                 bool isAdvancing = targetIndex > tmpCurrentIndex;
                 tmpCurrentIndex += isAdvancing ? 1 : -1;
                 var nextPos = stageMap.mapLocations[tmpCurrentIndex].Position;
-                yield return MoveToCO(nextPos, true, stepDuration);
+                yield return MoveToCO(nextPos, stepDuration);
                 stageMap.currentPlayerPosIndex = tmpCurrentIndex;
                 LookAtPin(!isAdvancing, true, stageMap.mapLocations[tmpCurrentIndex].JourneyPos);
             }
@@ -209,7 +221,7 @@ namespace Antura.Map
         {
             //Debug.Log("Forcing to " + newIndex);
             stageMap.currentPlayerPosIndex = newIndex;
-            StartCoroutine(MoveToCO(stageMap.GetCurrentPlayerPosVector(), false, 0));
+            ForceToCO(stageMap.GetCurrentPlayerPosVector());
 
             if (!justVisuals) UpdatePlayerJourneyPosition(stageMap.GetCurrentPlayerPosJourneyPosition());
             CheckMovementButtonsEnabling();
@@ -269,26 +281,30 @@ namespace Antura.Map
         #region Actual Movement
 
         // If animate is TRUE, animates the movement, otherwise applies the movement immediately
-        private IEnumerator MoveToCO(Vector3 position, bool animate, float stepDuration)
+        private IEnumerator MoveToCO(Vector3 position, float stepDuration)
         {
             //Debug.Log("Moving to " + position);
             if (moveTween != null) {
                 moveTween.Kill();
             }
-            if (animate)
-            {
-                moveTween = transform.DOMove(position, stepDuration).SetEase(Ease.Linear);
-                yield return moveTween.WaitForCompletion();
-            } else {
-                transform.position = position;
-            }
+            moveTween = transform.DOMove(position, stepDuration).SetEase(Ease.Linear);
+            yield return moveTween.WaitForCompletion();
         }
 
-        #endregion
+        private void ForceToCO(Vector3 position)
+        {
+            if (moveTween != null)
+            {
+                moveTween.Kill();
+            }
+            transform.position = position;
+        }
 
-        #region UI
+    #endregion
 
-        public void CheckMovementButtonsEnabling()
+    #region UI
+
+    public void CheckMovementButtonsEnabling()
         {
             //Debug.Log("Enabling buttons for " + CurrentPlayerPosIndex);
             if (CurrentPlayerPosIndex == 0) {
