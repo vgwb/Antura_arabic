@@ -176,18 +176,13 @@ namespace Antura.Map
             animatePositionCO = StartCoroutine(AnimateToPlayerPositionCO(newIndex));
         }
 
-        public void StopAnimation(bool forceAtTarget = false)
+        public void StopAnimation(bool stopWhereItIs = true)
         {
             if (animatePositionCO != null && isAnimating)
             {
                 StopCoroutine(animatePositionCO);
                 animatePositionCO = null;
-                if (forceAtTarget)
-                {
-                    Debug.Log("STOP ANIMATION AT: " + StageMapsManager.CurrentJourneyPosition);
-                    ForceToJourneyPosition(StageMapsManager.CurrentJourneyPosition);
-                }
-                else
+                if (stopWhereItIs)
                 {
                     UpdatePlayerJourneyPosition(stageMap.GetCurrentPlayerPosJourneyPosition());
                 }

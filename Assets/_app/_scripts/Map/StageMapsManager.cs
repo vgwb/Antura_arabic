@@ -121,7 +121,7 @@ namespace Antura.Map
 
         #endregion
 
-        private static bool TEST_JOURNEY_POS = false;
+        private static bool TEST_JOURNEY_POS = true;
 
         private void Awake()
         {
@@ -142,6 +142,7 @@ namespace Antura.Map
 
             shownStage = PreviousPlayerStage;
             targetCurrentJourneyPosition = CurrentJourneyPosition;
+
 
             // Setup stage availability
             for (int stage_i = 1; stage_i <= stageMaps.Length; stage_i++) {
@@ -201,19 +202,19 @@ namespace Antura.Map
             {
                 yield return new WaitForSeconds(1.0f);
                 StageMap(shownStage).Appear(PreviousJourneyPosition, AppManager.I.Player.MaxJourneyPosition);
-                yield return new WaitForSeconds(1.0f);
-
+                
                 Debug.Log("Shown stage: " + shownStage + " TargetJourneyPos " + targetCurrentJourneyPosition +
                           " PreviousJourneyPos " + PreviousJourneyPosition);
-                if (shownStage != CurrentPlayerStage)
+                if (shownStage != targetCurrentJourneyPosition.Stage)
                 {
-                    Debug.Log("ANIMATING TO STAGE: " + shownStage + " THEN MOVING TO " + targetCurrentJourneyPosition);
+                    Debug.Log("ANIMATING TO STAGE: " + targetCurrentJourneyPosition.Stage + " THEN MOVING TO " + targetCurrentJourneyPosition);
                     yield return StartCoroutine(SwitchFromToStageCO(shownStage, targetCurrentJourneyPosition.Stage));
-                    //playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
+                    playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                 }
                 else
                 {
                     Debug.Log("JUST MOVING TO " + targetCurrentJourneyPosition);
+                    yield return new WaitForSeconds(1.0f);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                     yield return null;
                 }
@@ -352,8 +353,6 @@ namespace Antura.Map
             int fromStage = shownStage;
             int toStage = shownStage + 1;
 
-            shownStage = toStage;
-
             SwitchFromToStage(fromStage, toStage);
 
             HideTutorial();
@@ -369,8 +368,6 @@ namespace Antura.Map
 
             int fromStage = shownStage;
             int toStage = shownStage - 1;
-
-            shownStage = toStage;
 
             SwitchFromToStage(fromStage, toStage);
 
@@ -406,6 +403,8 @@ namespace Antura.Map
 
         private IEnumerator SwitchFromToStageCO(int fromStage, int toStage)
         {
+            shownStage = toStage;
+
             inTransition = true;
             //Debug.Log("Switch from " + fromStage + " to " + toStage);
 
@@ -467,8 +466,9 @@ namespace Antura.Map
 
         private void SwitchPlayerStageMap(StageMap newStageMap)
         {
-            if (playerPin.IsAnimating) playerPin.StopAnimation(forceAtTarget:true);
+            if (playerPin.IsAnimating) playerPin.StopAnimation(stopWhereItIs:false);
             playerPin.stageMap = newStageMap;
+            playerPin.ForceToJourneyPosition(StageMapsManager.CurrentJourneyPosition);
         }
 
         private void AnimateToShownStage(int stage)
