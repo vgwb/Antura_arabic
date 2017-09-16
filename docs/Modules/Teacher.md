@@ -12,8 +12,7 @@ It is implemented as an Expert System that controls the learning progression of 
 It is designed to be agnostic to the specific language and highly configurable in respect to mini-games.
 
 In this document, the **Teacher** is a shorthand for the *Teacher System*.
-The person or group of persons that configure the Teacher is instead referred to
- singularly as the **Expert**.
+The person or group of persons that configure the Teacher is instead referred to singularly as the **Expert**.
 
 All code related to the Teacher can be found under the **Antura.Teacher** namespace.
 
@@ -71,9 +70,6 @@ The Difficulty Selection Engine is accessed through **TeacherAI.GetCurrentDiffic
 This is called by the **MiniGame Launcher** before loading a specific minigame and assigned to the minigame's Game Configuration class.
 The difficulty value in the Game Configuration is then read by the minigame and used for gameplay.
 
-
-
-
 ## MiniGame Selection Engine
 
 This *Engine* is in charge of selecting what minigames to use for a given play session.
@@ -85,40 +81,28 @@ filtering based on Play Sessions,
 
 ### Filtering step
 As a first step, the **Play Session Data** table in the database defines what minigames can be selected for a given *Play Session*.
- The Teacher makes sure to use this information when filtering minigames.
- Minigames which have a zero value (or no value) in the Play Session table are filtered out.
+The Teacher makes sure to use this information when filtering minigames.
+Minigames which have a zero value (or no value) in the Play Session table are filtered out.
 
-*In case of fixed sequence (*PlaySessionDataOrder.Sequence* set in the **Play Session Data** table),
- the numbers placed
- in the Play Session for each minigame are used to define the sequence.
- This is used for the initial Play Sessions to force an order on minigames.*
+> In case of fixed sequence (*PlaySessionDataOrder.Sequence* set in the **Play Session Data** table), the numbers placed in the Play Session for each minigame are used to define the sequence. This is used for the initial Play Sessions to force an order on minigames.
 
 ### Weighted selection step
 The second step performs a weighing over the available minigames, based on several variables:
 
-- **Manual weights**: in case of random sequence (*PlaySessionDataOrder.Random* set in the **Play Session Data** table), the numbers placed
- in the Play Session for each minigame are used as weights. This produces a [0,1] value for each available minigame.
-- **Recent play weight**: the number of days since the last time the minigame was played is taken into account to produce a value in the [0,1] range for each available minigame, favouring
- minigames that have not been played for a while.
+- **Manual weights**: in case of random sequence (*PlaySessionDataOrder.Random* set in the **Play Session Data** table), the numbers placed in the Play Session for each minigame are used as weights. This produces a [0,1] value for each available minigame.
+- **Recent play weight**: the number of days since the last time the minigame was played is taken into account to produce a value in the [0,1] range for each available minigame, favouring minigames that have not been played for a while.
 
 The resulting weights are added (each with a configurable contribution weight) and used in a round of roulette selection.
- The contribution weights, as well as the number of days for the *recent play* logic, can be configured in **ConfigAI**.
-
+The contribution weights, as well as the number of days for the *recent play* logic, can be configured in **ConfigAI**.
 
 ### Code
-The MiniGame Selection Engine is accessed through the method **PerformSelection(string playSessionId, int numberToSelect)**
- that returns a  **List<MiniGameData>** containing the selected minigames.
+The MiniGame Selection Engine is accessed through the method **PerformSelection(string playSessionId, int numberToSelect)** that returns a  **List<MiniGameData>** containing the selected minigames.
 
-Whenever a new play session start, this is called by the Teacher through **TeacherAI.InitialiseCurrentPlaySession()**.
-  triggered by the **MiniMap** script in the *Map scene* when a new  play session is about to start.
-
-
-
+Whenever a new play session start, this is called by the Teacher through **TeacherAI.InitialiseCurrentPlaySession()**. triggered by the **MiniMap** script in the *Map scene* when a new  play session is about to start.
 
 ## Vocabulary Selection Engine
 
-This *Engine* is in charge of selecting what vocabulary data a minigame should use in a given play session,
- based on player progression, player performance, and the minigame's requirements.
+This *Engine* is in charge of selecting what vocabulary data a minigame should use in a given play session, based on player progression, player performance, and the minigame's requirements.
 The selected vocabulary data will be used as the *focus* for each minigame session (i.e. as questions to be posed, or as correct answers to find).
 
 The logic for selection depends on three main mechanism: two fltering steps and a weighted selection step.
@@ -138,16 +122,14 @@ The focus of this filter is to make sure that data is not repeated too much, avo
   An *inter-pack* phase avoids repeating the same data in the same list of question packs, if possible.
   This can be configured per minigame with the **PackListHistory** parameters.  
 - **Journey progression**:
-The current journey progression (i.e. the position in the Stage/LearningBlock/PlaySession map) is taken into account,
-  filtering out data that is too difficult for the current learning progression (i.e. it is not available up to the current Learning Block).
+The current journey progression (i.e. the position in the Stage/LearningBlock/PlaySession map) is taken into account, filtering out data that is too difficult for the current learning progression (i.e. it is not available up to the current Learning Block).
 
 ### Journey priority step
 After the first step, we can be sure that *all* selected data can be played by the selected minigame and is suitable to the player's knowledge.
 The Teacher performs a second step by weighing vocabulary entries based on the learning block focus.
 This is used, if possible, as a strict filter.
 Data that belongs to the *current* learning block is given large priority, making sure that all data of the learning block is used if available.
-If not enough data is available for the current learning block, data from the previous play sessions (going back in the progression)
- is selected and given a weight based on linear distance from the current learning block.
+If not enough data is available for the current learning block, data from the previous play sessions (going back in the progression) is selected and given a weight based on linear distance from the current learning block.
 
 ### Weighted selection step
 As a final step, the Teacher selects the actual vocabulary entries using weighted selection, with weights based on:
@@ -157,16 +139,13 @@ As a final step, the Teacher selects the actual vocabulary entries using weighte
 - **Learning Block Focus**: Learning blocks closer to the current one receive a higher weight. (see the previous step)
 
 The final weight for each vocabulary entry is computed as a weighted sum of these variable.
- Each variable is assigned a *contribution weight*, which can be manually configured in **ConfigAI**.
+Each variable is assigned a *contribution weight*, which can be manually configured in **ConfigAI**.
 If a vocabulary entry has a too lower weight, a minimum weight can however be assigned, defined as **ConfigAI.data_minimumTotalWeight**.
 
 ### Inter-pack ordering
 
-At last, after data has been selected, an optional ordering may be enforced. This can be useful to make sure
- that the vocabulary data entires of a given minigame play session appear during play in order of difficulty
+At last, after data has been selected, an optional ordering may be enforced. This can be useful to make sure that the vocabulary data entires of a given minigame play session appear during play in order of difficulty
 The ordering is performed on the **intrinsic difficulty** of each vocabulary data entry.
-
-
 
 ### Wrong answers
 

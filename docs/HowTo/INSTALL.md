@@ -1,7 +1,8 @@
-# Install and Configure the Antura App
+# Install and Configure
 
 ## Requirements
 - Unity latest 5.5.x, Mac or Windows computer
+(it works on Unity 5.6 and 2017, but for some glitches in a couple of shaders and the need to update TextmeshPro to the relative versions)
 
 ## Optional
 - [SR Debugger](https://www.assetstore.unity3d.com/en/#!/content/27688) plugin for in-app debug tools
