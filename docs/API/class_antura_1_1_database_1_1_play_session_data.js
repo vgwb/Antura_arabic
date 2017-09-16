@@ -1,0 +1,26 @@
+var class_antura_1_1_database_1_1_play_session_data =
+[
+    [ "GetId", "class_antura_1_1_database_1_1_play_session_data.html#a3f23db96b7ab1cf3ecc32fc18c6e124d", null ],
+    [ "GetJourneyPosition", "class_antura_1_1_database_1_1_play_session_data.html#ace420475fd86d57fed6c95f3ba439aa7", null ],
+    [ "ToString", "class_antura_1_1_database_1_1_play_session_data.html#a29cd727add7385250909ea2f7b66ff22", null ],
+    [ "Id", "class_antura_1_1_database_1_1_play_session_data.html#acf10f8cfc6582595f151b384f7764a88", null ],
+    [ "LearningBlock", "class_antura_1_1_database_1_1_play_session_data.html#abcb00bfd4ac7cd2f456b3027c0616600", null ],
+    [ "Letters", "class_antura_1_1_database_1_1_play_session_data.html#afc9521b70b92d97e21800e37d0bcba4e", null ],
+    [ "Letters_list", "class_antura_1_1_database_1_1_play_session_data.html#a0d110bdfefa96d915f72ce545e6670ba", null ],
+    [ "Minigames", "class_antura_1_1_database_1_1_play_session_data.html#a488eeebc077c55aa475591346512a073", null ],
+    [ "Minigames_list", "class_antura_1_1_database_1_1_play_session_data.html#a93cdd7667ab632e5a9c238a5144ff7bb", null ],
+    [ "NumberOfMinigames", "class_antura_1_1_database_1_1_play_session_data.html#a56536e6301b290f8a0d0e8488501d83b", null ],
+    [ "NumberOfRoundsPerMinigame", "class_antura_1_1_database_1_1_play_session_data.html#a76ac65624efabef9467c755f791c7556", null ],
+    [ "Order", "class_antura_1_1_database_1_1_play_session_data.html#a83a48611a4ff4fff8ce5f43951f68bc7", null ],
+    [ "Phrases", "class_antura_1_1_database_1_1_play_session_data.html#a9afd81b76596994d0d972856d0928c6f", null ],
+    [ "Phrases_list", "class_antura_1_1_database_1_1_play_session_data.html#a1ed7983415c3bf9b0417fc1811dcf7f9", null ],
+    [ "Phrases_previous", "class_antura_1_1_database_1_1_play_session_data.html#ad5f5d34cdd73d60c3e2472fe36db1463", null ],
+    [ "Phrases_previous_list", "class_antura_1_1_database_1_1_play_session_data.html#aa5d10c80faa1f593887f4da78a4f5d5b", null ],
+    [ "PlaySession", "class_antura_1_1_database_1_1_play_session_data.html#afc60206bd275da06c35868aa166ea0da", null ],
+    [ "Stage", "class_antura_1_1_database_1_1_play_session_data.html#ad47508a8db93c3a52b63401b11cb63f9", null ],
+    [ "Type", "class_antura_1_1_database_1_1_play_session_data.html#acab9fe93c6fe7723c2a57fbc65cc042f", null ],
+    [ "Words", "class_antura_1_1_database_1_1_play_session_data.html#aff846ad9601c234fd1aef6b970ee9a2d", null ],
+    [ "Words_list", "class_antura_1_1_database_1_1_play_session_data.html#ac32c91189f97f08b43dce02e5f77238d", null ],
+    [ "Words_previous", "class_antura_1_1_database_1_1_play_session_data.html#aec17a57d4764bcfbd704f3a02a57dd15", null ],
+    [ "Words_previous_list", "class_antura_1_1_database_1_1_play_session_data.html#ad0bfdacfa869ac9286db55d85e7bc586", null ]
+];
