@@ -1,6 +1,4 @@
 # Antura and the Letters (arabic) - Developer Docs
-
-the open source project documentation  
 by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 
 ## Project references

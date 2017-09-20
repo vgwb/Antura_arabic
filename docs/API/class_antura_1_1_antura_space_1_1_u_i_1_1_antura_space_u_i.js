@@ -1,0 +1,26 @@
+var class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i =
+[
+    [ "AnturaSpaceUIEvent", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a82659a21882554f5642d7886c04bbfe1", null ],
+    [ "GetNewCategoryButton", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a950695b014102d749b1b3ec5f8f1f9a2", null ],
+    [ "GetNewItemButton", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a20fd839c4700b7b326cee89ecc6adbe3", null ],
+    [ "SetTutorialMode", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#ae70ddd11fa416df230a36bec2923585c", null ],
+    [ "ShowBonesButton", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#acd42d3d56bec2cb7c669e76390d787f2", null ],
+    [ "ToggleModsPanel", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#abf7bde2ee8e638376282c30739d3a6ed", null ],
+    [ "ToggleShopPanel", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#abe938b77e6baebe8576f42107eab41ff", null ],
+    [ "bonesNumber", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a80d6a019b7a95971c4c9b534c5c46d76", null ],
+    [ "BtBonesShop", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a57616ae6b574a2c0f43536e4e667311c", null ],
+    [ "BtItemMain", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a320a59de2832ab48042f9b44e58b3534", null ],
+    [ "BtOpenModsPanel", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a0072c63d114bb6fccb603d040a363f1e", null ],
+    [ "BTRemoveMods", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#ae676da80b977f1ec5238b0deb018a67d", null ],
+    [ "CategoriesContainer", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a3d7dcb74d794d95058b06b516bb3c88b", null ],
+    [ "FlipRewards", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a1e9cf88fda91672c8f06356117d876dc", null ],
+    [ "HideLockedSwatchesColors", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#af081a681c358dcf3774ab698d6c52e83", null ],
+    [ "MaxItems", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a302a4d52e22a758ff2fb0b8e018ac095", null ],
+    [ "RewardsLayer", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a51f7b3c4056781faa89d2ddadfe13544", null ],
+    [ "ShopButtonsContainer", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#aa3ed226f5696be226f00801aab595c4a", null ],
+    [ "BonesCount", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a55175a55ec992c5bc1d65025248528f6", null ],
+    [ "IsModsPanelOpen", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#aa558bb8a68c859016fb53c0bec13f311", null ],
+    [ "IsShopPanelOpen", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a5297afc14fba6b53f4933a081d8e60e9", null ],
+    [ "onEnterCustomization", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#aaf5aa8fdd179d6e68fbd085cc800ba84", null ],
+    [ "onExitCustomization", "class_antura_1_1_antura_space_1_1_u_i_1_1_antura_space_u_i.html#a05d151795e3e11ce6b890de58cf09fbd", null ]
+];
