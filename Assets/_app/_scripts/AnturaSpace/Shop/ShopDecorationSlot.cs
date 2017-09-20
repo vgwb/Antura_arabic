@@ -24,7 +24,7 @@ namespace Antura.AnturaSpace
         // @note: set by the Slot Group
         [Header("Auto-generated")]
         public ShopDecorationSlotType slotType;
-        public int sequentialIndex;
+        public int slotIndex;
 
 
         public bool Assigned

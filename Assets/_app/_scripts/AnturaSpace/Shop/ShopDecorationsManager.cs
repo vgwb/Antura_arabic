@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.DeInspektor;
 using DG.DeInspektor.Attributes;
+using UnityEditor;
 
 namespace Antura.AnturaSpace
 {
@@ -37,6 +38,7 @@ namespace Antura.AnturaSpace
             foreach (var slotGroup in GetComponentsInChildren<ShopDecorationSlotGroup>())
             {
                 slotGroup.EditorSetup();
+                EditorUtility.SetDirty(slotGroup);
             }
         }
 
@@ -101,7 +103,7 @@ namespace Antura.AnturaSpace
                 var slotState = shopState.occupiedSlots[i];
                 if (slotState.decorationID == "") continue;
                 var decorationPrefab = allShopDecorations.Find(x => x.id == slotState.decorationID);
-                var slot = allShopDecorationSlots.FirstOrDefault(x => x.slotType == decorationPrefab.slotType && x.sequentialIndex == slotState.slotIndex);
+                var slot = allShopDecorationSlots.FirstOrDefault(x => x.slotType == decorationPrefab.slotType && x.slotIndex == slotState.slotIndex);
                 if (slot && decorationPrefab) slot.Assign(Instantiate(decorationPrefab));
             }
 
@@ -287,13 +289,17 @@ namespace Antura.AnturaSpace
         {
             foreach (var slot in allShopDecorationSlots)
             {
+                Debug.Log("Check slot: " + slot);
                 var slotState = shopState.occupiedSlots.FirstOrDefault(x => x.MatchesSlot(slot));
                 if (slotState == null)
                 {
-                    slotState = new ShopSlotState();
+                    slotState = new ShopSlotState
+                    {
+                        slotType = slot.slotType,
+                        slotIndex = slot.slotIndex
+                    };
+                    Debug.Log("NEW SLOT STATE " + slotState.ToString());
                     shopState.occupiedSlots.Add(slotState);
-                    slotState.slotType = slot.slotType;
-                    slotState.slotIndex = slot.sequentialIndex;
                 }
                 slotState.decorationID = slot.Assigned ? slot.AssignedDecorationObject.id : "";
             }

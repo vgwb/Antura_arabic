@@ -1,6 +1,7 @@
 ﻿using System;
 using DG.DeExtensions;
 using DG.DeInspektor;
+using UnityEditor;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -20,7 +21,9 @@ namespace Antura.AnturaSpace
             foreach (var slot in slots)
             {
                 slot.slotType = slotType;
-                slot.sequentialIndex = sequentialIndex++;
+                slot.slotIndex = sequentialIndex++;
+                EditorUtility.SetDirty(slot);
+                Debug.LogError("SET SLOT INDEX: " + slot.slotIndex);
             }
         }
 

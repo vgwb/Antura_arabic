@@ -2877,7 +2877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -33.499954, y: 95.25003}
+  m_AnchoredPosition: {x: -33.499954, y: 95.25}
   m_SizeDelta: {x: -88, y: 153.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &358700358
@@ -7112,7 +7112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deletePropButtonTransform: {fileID: 613108959}
-  testDecorationFilling: 1
+  testDecorationFilling: 0
   CurrentDecorationCost: 0
 --- !u!4 &837188165
 Transform:
@@ -13493,6 +13493,11 @@ Prefab:
         type: 2}
       propertyPath: slotType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723866830139098, guid: 5291d7194b5687b44bcb37a9b805ea09,
+        type: 2}
+      propertyPath: slotIndex
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5291d7194b5687b44bcb37a9b805ea09, type: 2}

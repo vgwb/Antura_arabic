@@ -141,12 +141,14 @@ namespace Antura.Database
 
         public void UpdatePlayerProfileData(PlayerProfileData playerProfileData)
         {
+            Debug.Log(playerProfileData.AdditionalData.ToString());
             dynamicDb.InsertOrReplace(playerProfileData);
         }
 
         public PlayerProfileData GetPlayerProfileData()
         {
             var data = dynamicDb.GetPlayerProfileData();
+            Debug.Log(data.AdditionalData.ToString());
             return data;
         }
 

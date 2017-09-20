@@ -16,7 +16,12 @@ namespace Antura.AnturaSpace
 
         public bool MatchesSlot(ShopDecorationSlot slot)
         {
-            return slotType == slot.slotType && slotIndex == slot.sequentialIndex;
+            return slotType == slot.slotType && slotIndex == slot.slotIndex;
+        }
+
+        public override string ToString()
+        {
+            return slotType + "-" + slotIndex + " with decoration " + decorationID;
         }
     }
 
@@ -41,7 +46,7 @@ namespace Antura.AnturaSpace
             string s = "";
             foreach (var slotState in occupiedSlots)
             {
-                s += ("\n- slot " + slotState.slotType + "-" + slotState.slotIndex + " with decoration " + slotState.decorationID);
+                s += "- slot " + slotState + "\n";
             }
             return s;
         }
