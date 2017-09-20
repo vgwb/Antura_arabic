@@ -85,7 +85,7 @@ namespace Antura.AnturaSpace
             //setup first state, disable UI    
             _mTutorialStates = AnturaSpaceTutorialStates.ANTURA_ANIM;
             UI.ShowBonesButton(false);
-            UI.ShopButtonsContainer.gameObject.SetActive(false);
+            UI.ShopPanelContainer.gameObject.SetActive(false);
             m_oCustomizationButton.gameObject.SetActive(false);
 
             AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro, null);
@@ -272,7 +272,7 @@ namespace Antura.AnturaSpace
                     m_oAnturaBehaviour.onTouched -= AdvanceTutorial;
 
                     _mScene.ShowBackButton();
-                    UI.ShopButtonsContainer.gameObject.SetActive(true);
+                    UI.ShopPanelContainer.gameObject.SetActive(true);
 
                     AudioManager.I.StopDialogue(false);
 

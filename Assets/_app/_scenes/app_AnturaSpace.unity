@@ -1782,7 +1782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.7, y: -20}
+  m_AnchoredPosition: {x: -8.700001, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &243266631
@@ -2771,7 +2771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.7, y: -20}
+  m_AnchoredPosition: {x: -8.700001, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &350712564
@@ -2828,7 +2828,7 @@ GameObject:
   - component: {fileID: 358700356}
   - component: {fileID: 358700358}
   m_Layer: 5
-  m_Name: ShopActionsPanelUI
+  m_Name: ShopPanelUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2870,9 +2870,11 @@ MonoBehaviour:
   shopActionUIPrefab: {fileID: 1531540803489404, guid: 21d6847d9291cd94f8c9933be8996bd0,
     type: 2}
   buttonsPivotTr: {fileID: 588825824}
-  shopPanel: {fileID: 1218009425}
+  purchasePanel: {fileID: 1218009425}
   dragPanel: {fileID: 1091952477}
   confirmationPanel: {fileID: 1846403118}
+  confirmationYesButton: {fileID: 1433596577}
+  confirmationNoButton: {fileID: 913455849}
 --- !u!1001 &359159186
 Prefab:
   m_ObjectHideFlags: 0
@@ -3757,7 +3759,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.7, y: -20}
+  m_AnchoredPosition: {x: -8.700001, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &483166797
@@ -6219,7 +6221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -13.900001, y: -13.900001}
+  m_AnchoredPosition: {x: -13.900002, y: -13.900002}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &735091387
@@ -6415,7 +6417,7 @@ GameObject:
   - component: {fileID: 749273383}
   - component: {fileID: 749273382}
   m_Layer: 5
-  m_Name: TF (1)
+  m_Name: BonesCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7511,7 +7513,7 @@ GameObject:
   - component: {fileID: 913455849}
   - component: {fileID: 913455848}
   m_Layer: 5
-  m_Name: BT OK
+  m_Name: BT No
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8639,7 +8641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.7, y: -20}
+  m_AnchoredPosition: {x: -8.700001, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011130698
@@ -9743,7 +9745,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.7, y: -20}
+  m_AnchoredPosition: {x: -8.700001, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1185847395
@@ -10016,7 +10018,7 @@ GameObject:
   - component: {fileID: 1218009425}
   - component: {fileID: 1218009427}
   m_Layer: 5
-  m_Name: ShopPanel
+  m_Name: PurchasePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10565,7 +10567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.7, y: -20}
+  m_AnchoredPosition: {x: -8.700001, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1298708862
@@ -11302,7 +11304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.7, y: -20}
+  m_AnchoredPosition: {x: -8.700001, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1372460837
@@ -11579,7 +11581,7 @@ GameObject:
   - component: {fileID: 1433596577}
   - component: {fileID: 1433596576}
   m_Layer: 5
-  m_Name: BT KO
+  m_Name: BT Yes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12520,7 +12522,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.7, y: -20}
+  m_AnchoredPosition: {x: -8.700001, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1586921015
@@ -13617,7 +13619,7 @@ MonoBehaviour:
   ItemsContainer: {fileID: 320989396}
   SwatchesContainer: {fileID: 474618092}
   BtItemMain: {fileID: 151898969}
-  ShopButtonsContainer: {fileID: 358700356}
+  ShopPanelContainer: {fileID: 358700356}
   bonesNumber: {fileID: 1614356140}
 --- !u!224 &1668913317
 RectTransform:
@@ -13846,7 +13848,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -26.112099}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 153, y: -31.99997}
+  m_AnchoredPosition: {x: 153, y: -32}
   m_SizeDelta: {x: 165, y: 278}
   m_Pivot: {x: 0.5, y: 0.2}
 --- !u!114 &1693291017
@@ -14274,7 +14276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -27.5749}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -209, y: -37.99997}
+  m_AnchoredPosition: {x: -209, y: -38}
   m_SizeDelta: {x: 140.84998, y: 238.3}
   m_Pivot: {x: 0.5, y: 0.2}
 --- !u!114 &1751735802
@@ -15878,7 +15880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addDebugBones: 1
-  ShopActionsPanelUi: {fileID: 358700358}
+  ShopPanelUi: {fileID: 0}
   ShopDecorationsManager: {fileID: 837188164}
 --- !u!1 &1933035822
 GameObject:
@@ -20823,7 +20825,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.7, y: -20}
+  m_AnchoredPosition: {x: -8.700001, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2142718845

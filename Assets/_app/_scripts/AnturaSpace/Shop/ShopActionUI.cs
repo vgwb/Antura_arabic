@@ -29,7 +29,7 @@ namespace Antura.AnturaSpace
 
         public void OnClick()
         {
-            if (ShopDecorationsManager.I.ShopContext != ShopContext.Shopping)
+            if (ShopDecorationsManager.I.ShopContext != ShopContext.Purchase)
             {
                 // TODO: do this only if this was the last selected action
                 shopAction.CancelAction();
@@ -42,7 +42,7 @@ namespace Antura.AnturaSpace
 
         public void OnDrag()
         {
-            if (ShopDecorationsManager.I.ShopContext != ShopContext.Shopping) 
+            if (ShopDecorationsManager.I.ShopContext != ShopContext.Purchase) 
             {
                 shopAction.CancelAction();
             }

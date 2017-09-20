@@ -34,7 +34,7 @@ namespace Antura.AnturaSpace.UI
         public UIButton BTRemoveMods;
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
         public AnturaSpaceItemButton BtItemMain;
-        public RectTransform ShopButtonsContainer;
+        public RectTransform ShopPanelContainer;
         public TMPro.TextMeshProUGUI bonesNumber;
 
 
@@ -115,9 +115,9 @@ namespace Antura.AnturaSpace.UI
                 .Join(BtBonesShop.RectT.DOAnchorPosY(-830, duration))
                 .OnRewind(() => CategoriesContainer.gameObject.SetActive(false));
             showShopTween = DOTween.Sequence().SetAutoKill(false).Pause()
-                .Append(ShopButtonsContainer.DOAnchorPosY(-830, duration).From().SetEase(Ease.OutBack))
+                .Append(ShopPanelContainer.DOAnchorPosY(-830, duration).From().SetEase(Ease.OutBack))
                 .Join(BtOpenModsPanel.RectT.DOAnchorPosY(150, duration))
-                .OnRewind(() => ShopButtonsContainer.gameObject.SetActive(false));
+                .OnRewind(() => ShopPanelContainer.gameObject.SetActive(false));
             showItemsTween = ItemsContainer.DOAnchorPosX(-350, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
                 .OnRewind(() => {
                     ItemsContainer.gameObject.SetActive(false);
@@ -130,7 +130,7 @@ namespace Antura.AnturaSpace.UI
                 .OnRewind(() => SwatchesContainer.gameObject.SetActive(false));
 
             CategoriesContainer.gameObject.SetActive(false);
-            ShopButtonsContainer.gameObject.SetActive(false);
+            ShopPanelContainer.gameObject.SetActive(false);
             ItemsContainer.gameObject.SetActive(false);
             SwatchesContainer.gameObject.SetActive(false);
 
@@ -183,7 +183,7 @@ namespace Antura.AnturaSpace.UI
             IsShopPanelOpen = !IsShopPanelOpen;
             if (IsShopPanelOpen)
             {
-                ShopButtonsContainer.gameObject.SetActive(true);
+                ShopPanelContainer.gameObject.SetActive(true);
                 showShopTween.PlayForward();
             }
             else

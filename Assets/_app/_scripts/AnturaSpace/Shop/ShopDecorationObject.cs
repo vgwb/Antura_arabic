@@ -17,7 +17,7 @@ namespace Antura.AnturaSpace
 
         public void OnMouseDown()
         {
-            ShopDecorationsManager.I.StartDragPlacement(this);
+            ShopDecorationsManager.I.StartDragPlacement(this, false);
         }
     }
 }

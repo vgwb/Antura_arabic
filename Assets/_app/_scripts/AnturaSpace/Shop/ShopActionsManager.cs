@@ -8,7 +8,7 @@ namespace Antura.AnturaSpace
         [Header("Debug")]
         public bool addDebugBones = false;
 
-        public ShopActionsPanelUI ShopActionsPanelUi;
+        public ShopPanelUI ShopPanelUi;
         public ShopDecorationsManager ShopDecorationsManager;
 
         private ShopAction[] shopActions;
@@ -28,7 +28,7 @@ namespace Antura.AnturaSpace
             foreach (var shopAction in shopActions) {
                 shopAction.InitialiseLockedState();
             }
-            ShopActionsPanelUi.SetActions(shopActions);
+            ShopPanelUi.SetActions(shopActions);
 
         }
 

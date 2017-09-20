@@ -47,7 +47,6 @@ namespace Antura.AnturaSpace
         {
             if (!assigned) return;
             assigned = false;
-            //assignedDecorationObject.currentSlot = null;
             _assignedDecorationObject = null;
         }
 
@@ -55,7 +54,6 @@ namespace Antura.AnturaSpace
         {
             if (assigned) return;
             assigned = true;
-            //assignedDecorationObject.currentSlot = this;
             _assignedDecorationObject = assignedDecorationObject;
             _assignedDecorationObject.transform.SetParent(transform);
             _assignedDecorationObject.transform.localEulerAngles = Vector3.zero;

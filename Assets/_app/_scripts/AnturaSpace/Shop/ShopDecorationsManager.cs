@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections;
-using Antura.Core;
-using Antura.Helpers;
 using Antura.Utilities;
 using System.Collections.Generic;
 using System.Linq;
-using Antura.Audio;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +17,6 @@ namespace Antura.AnturaSpace
         private List<ShopDecorationSlot> allShopDecorationSlots = new List<ShopDecorationSlot>();
         private ShopState shopState;
         private ShopContext shopContext;
-        private ShopDecorationObject currentUnlockableObjectPrefab;
 
         public bool HasSlotsForDecoration(ShopDecorationObject decorationObjectToTest)
         {
@@ -31,7 +26,8 @@ namespace Antura.AnturaSpace
         }
 
         public Action<ShopContext> OnContextChange;
-        public Action OnConfirmationRequested;
+        public Action OnPurchaseConfirmationRequested;
+        public Action OnDeleteConfirmationRequested;
         public Action OnPurchaseComplete;
         public Action OnPurchaseCancelled;
 
@@ -39,21 +35,28 @@ namespace Antura.AnturaSpace
 
         public ShopContext ShopContext { get {  return shopContext; } }
 
-        private void SetContextPlacement()
+        private void SetContextNewPlacement()
         {
-            shopContext = ShopContext.Placement;
+            shopContext = ShopContext.NewPlacement;
+            if (OnContextChange != null) OnContextChange(shopContext);
+        }
+
+        private void SetContextMovingPlacement()
+        {
+            shopContext = ShopContext.MovingPlacement;
             if (OnContextChange != null) OnContextChange(shopContext);
         }
 
         private void SetContextShopping()
         {
-            currentUnlockableObjectPrefab = null;
+            EndPlacementContext();
+
             foreach (var shopDecorationSlot in allShopDecorationSlots)
             {
                 shopDecorationSlot.Highlight(false);
             }
 
-            shopContext = ShopContext.Shopping;
+            shopContext = ShopContext.Purchase;
             if (OnContextChange != null) OnContextChange(shopContext);
         }
 
@@ -73,10 +76,6 @@ namespace Antura.AnturaSpace
             //Debug.Log("Decorations: " + allShopDecorations.Count);
 
             allShopDecorationSlots = new List<ShopDecorationSlot>(GetComponentsInChildren<ShopDecorationSlot>());
-            /*foreach (var slot in allShopDecorationSlots)
-            {
-                slot.OnSelect += SelectDecorationSlot;
-            }*/
             //Debug.Log("Slots: " + allShopDecorationSlots.Count);
 
             // Load state
@@ -86,8 +85,7 @@ namespace Antura.AnturaSpace
             }
 
             // Initialise context
-            currentUnlockableObjectPrefab = null;
-            shopContext = ShopContext.Shopping;
+            shopContext = ShopContext.Purchase;
         }
 
 
@@ -97,48 +95,12 @@ namespace Antura.AnturaSpace
         {
             if (!HasSlotsForDecoration(UnlockableDecorationPrefab)) return null;
 
-            var availableSlots = allShopDecorationSlots.Where(x => x.IsFreeAndAssignableTo(UnlockableDecorationPrefab));
-            foreach (var shopDecorationSlot in availableSlots)
-            {
-                if (shopDecorationSlot.IsFreeAndAssignableTo(UnlockableDecorationPrefab))
-                {
-                    shopDecorationSlot.Highlight(true);
-                }
-            }
-
-            currentUnlockableObjectPrefab = UnlockableDecorationPrefab;
-            SetContextPlacement();
-
-            // FOR DRAGGING
-            var newDecoration = Instantiate(currentUnlockableObjectPrefab);
+            var newDecoration = Instantiate(UnlockableDecorationPrefab);
             newDecoration.Unlock();
             newDecoration.transform.localPosition = new Vector3(10000, 0, 0);
             return newDecoration;
-            // this.currentDraggedDecoration = newDecoration;
         }
         
-
-        // DEPRECATED
-        /*private void SelectDecorationSlot(ShopDecorationSlot selectedSlot)
-        {
-            var newDecoration = Instantiate(currentUnlockableObjectPrefab);
-            newDecoration.Unlock();
-            newDecoration.transform.localPosition = new Vector3(10000, 0, 0);
-
-            selectedSlot.Assign(newDecoration);
-
-            // Saved state TODO: UPDATE SAVE TO REFLECT THE NEW CHANGES
-            shopState.unlockedDecorationsIDs.Add(newDecoration.id);
-            AppManager.I.Player.Save();
-
-            currentUnlockableObjectPrefab = null;
-            shopContext = ShopContext.Shopping;
-            foreach (var shopDecorationSlot in allShopDecorationSlots)
-            {
-                shopDecorationSlot.Highlight(false);
-            }
-        }*/
-
         #region Drag Placement
 
         private Coroutine dragCoroutine;
@@ -148,8 +110,7 @@ namespace Antura.AnturaSpace
         public void CreateAndStartDragPlacement(ShopDecorationObject prefab)
         {
             var newDeco = SpawnNewDecoration(prefab);
-            Debug.Log("NEW DECO " + newDeco);
-            StartDragPlacement(newDeco);
+            StartDragPlacement(newDeco, true);
         }
 
         private void DeleteDecoration(ShopDecorationObject decoToDelete)
@@ -159,31 +120,27 @@ namespace Antura.AnturaSpace
             Destroy(decoToDelete.gameObject);
         }
 
-        public void StartDragPlacement(ShopDecorationObject decoToDrag)
+        public void StartDragPlacement(ShopDecorationObject decoToDrag, bool isNew)
         {
-            Debug.Log("START DRAG: " + decoToDrag);
-            this.currentDraggedDecoration = decoToDrag;
+            if (isNew) SetContextNewPlacement();
+            else SetContextMovingPlacement();
+
+            currentDraggedSlot = null;
+            currentDraggedDecoration = decoToDrag;
             dragCoroutine = StartCoroutine(DragPlacementCO());
         }
 
         private void StopDragPlacement()
         {
             StopCoroutine(dragCoroutine);
-            //SetContextShopping();
-
-            if (OnConfirmationRequested != null) OnConfirmationRequested();
-
-            // Saved state TODO: UPDATE SAVE TO REFLECT THE NEW CHANGES
-            //shopState.unlockedDecorationsIDs.Add(newDecoration.id);
-            //AppManager.I.Player.Save();
         }
 
-        private void EndDragContext()
-        { 
+        private void EndPlacementContext()
+        {
+            // TODO: can be removed
             currentDraggedDecoration = null;
             currentDraggedSlot = null;
         }
-
 
         private IEnumerator DragPlacementCO()
         {
@@ -248,36 +205,76 @@ namespace Antura.AnturaSpace
                 // Check if we are stopping the dragging
                 if (!Input.GetMouseButton(0))
                 {
-                    if (shouldBeDeleted)
-                    {
-                        // We delete on release
-                        DeleteDecoration(currentDraggedDecoration);
-                    }
-
-                    StopDragPlacement();
+                    ReleaseDragPlacement(shouldBeDeleted);
                 }
                 yield return null;
             }
+        }
+
+        private void ReleaseDragPlacement(bool shouldBeDeleted)
+        {
+            StopDragPlacement();
+            if (shouldBeDeleted)
+            {
+                if (shopContext == ShopContext.NewPlacement)
+                {
+                    // Cancel the purchase
+                    CancelPurchase();
+                }
+                else if (shopContext == ShopContext.MovingPlacement)
+                {
+                    // Ask for confirmation
+                    if (OnDeleteConfirmationRequested != null) OnDeleteConfirmationRequested();
+                }
+            }
+            else
+            {
+                if (shopContext == ShopContext.NewPlacement)
+                {
+                    // Ask for confirmation
+                    if (OnPurchaseConfirmationRequested != null) OnPurchaseConfirmationRequested();
+                }
+                else if (shopContext == ShopContext.MovingPlacement)
+                {
+                    // Move it right away
+                    ConfirmMovement();
+                }
+            }
+
+            // Saved state TODO: UPDATE SAVE TO REFLECT THE NEW CHANGES
+            //shopState.unlockedDecorationsIDs.Add(newDecoration.id);
+            //AppManager.I.Player.Save();
         }
 
         #endregion
 
         public void ConfirmPurchase()
         {
-            EndDragContext();
-            SetContextShopping();
-
             if (OnPurchaseComplete != null) OnPurchaseComplete();
+            SetContextShopping();
         }
 
         public void CancelPurchase()
         {
             DeleteDecoration(currentDraggedDecoration);
-
-            EndDragContext();
-            SetContextShopping();
-
             if (OnPurchaseCancelled != null) OnPurchaseCancelled();
+            SetContextShopping();
+        }
+
+        public void ConfirmDeletion()
+        {
+            DeleteDecoration(currentDraggedDecoration);
+            SetContextShopping();
+        }
+
+        public void CancelDeletion()
+        {
+            SetContextShopping();
+        }
+
+        public void ConfirmMovement()
+        {
+            SetContextShopping();
         }
     }
 }
