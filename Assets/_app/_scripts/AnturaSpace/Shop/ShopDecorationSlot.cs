@@ -13,7 +13,6 @@ namespace Antura.AnturaSpace
             Wrong
         }
 
-        public ShopDecorationSlotType slotType;
         private bool assigned = false;
         private ShopDecorationObject _assignedDecorationObject;
 
@@ -21,6 +20,12 @@ namespace Antura.AnturaSpace
         public GameObject highlightMeshGO;
 
         public event Action<ShopDecorationSlot> OnSelect;
+
+        // @note: set by the Slot Group
+        [Header("Auto-generated")]
+        public ShopDecorationSlotType slotType;
+        public int sequentialIndex;
+
 
         public bool Assigned
         {
@@ -31,6 +36,7 @@ namespace Antura.AnturaSpace
         {
             get { return _assignedDecorationObject; }
         }
+
 
         #region Game Logic
 

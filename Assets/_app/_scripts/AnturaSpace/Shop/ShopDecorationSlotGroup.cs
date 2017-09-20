@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.DeExtensions;
+using DG.DeInspektor;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -8,11 +9,18 @@ namespace Antura.AnturaSpace
     {
         public ShopDecorationSlotType slotType;
 
-        void Awake()
+        // @note: these are set and serialized by EditorSetup's calls in ShopDecorationManager    
+        [HideInInspector]
+        public ShopDecorationSlot[] slots;
+
+        public void EditorSetup()
         {
-            foreach (var shopDecorationSlot in GetComponentsInChildren<ShopDecorationSlot>())
+            slots = GetComponentsInChildren<ShopDecorationSlot>();
+            int sequentialIndex = 0;
+            foreach (var slot in slots)
             {
-                shopDecorationSlot.slotType = slotType;
+                slot.slotType = slotType;
+                slot.sequentialIndex = sequentialIndex++;
             }
         }
 

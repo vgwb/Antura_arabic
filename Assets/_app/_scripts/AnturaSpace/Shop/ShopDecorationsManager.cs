@@ -3,8 +3,11 @@ using System.Collections;
 using Antura.Utilities;
 using System.Collections.Generic;
 using System.Linq;
+using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.DeInspektor;
+using DG.DeInspektor.Attributes;
 
 namespace Antura.AnturaSpace
 {
@@ -20,6 +23,23 @@ namespace Antura.AnturaSpace
 
         public bool testDecorationFilling = false;
 
+        public Action<ShopContext> OnContextChange;
+        public Action OnPurchaseConfirmationRequested;
+        public Action OnDeleteConfirmationRequested;
+        public Action OnPurchaseComplete;
+        public Action OnPurchaseCancelled;
+
+
+        // @note: call this to setup slots after you change them
+        [DeMethodButton("Editor Setup")]
+        public void EditorSetup()
+        {
+            foreach (var slotGroup in GetComponentsInChildren<ShopDecorationSlotGroup>())
+            {
+                slotGroup.EditorSetup();
+            }
+        }
+
         public bool HasSlotsForDecoration(ShopDecorationObject decorationObjectToTest)
         {
             bool result = allShopDecorationSlots.Count(x => x.IsFreeAndAssignableTo(decorationObjectToTest)) > 0;
@@ -27,13 +47,6 @@ namespace Antura.AnturaSpace
             return result;
         }
 
-        public Action<ShopContext> OnContextChange;
-        public Action OnPurchaseConfirmationRequested;
-        public Action OnDeleteConfirmationRequested;
-        public Action OnPurchaseComplete;
-        public Action OnPurchaseCancelled;
-
-       
         #region Context
 
         public ShopContext ShopContext { get {  return shopContext; } }
@@ -73,7 +86,8 @@ namespace Antura.AnturaSpace
             this.shopState = shopState;
 
             allShopDecorations = new List<ShopDecorationObject>(GetComponentsInChildren<ShopDecorationObject>());
-            foreach (var shopDecoration in allShopDecorations) {
+            foreach (var shopDecoration in allShopDecorations)
+            {
                 shopDecoration.gameObject.SetActive(false);
             }
             //Debug.Log("Decorations: " + allShopDecorations.Count);
@@ -82,10 +96,16 @@ namespace Antura.AnturaSpace
             //Debug.Log("Slots: " + allShopDecorationSlots.Count);
 
             // Load state
-            foreach (var id in shopState.unlockedDecorationsIDs)
+            for (int i = 0; i < shopState.occupiedSlots.Count; i++)
             {
-                allShopDecorations.Find(x => x.id == id).Unlock();
+                var slotState = shopState.occupiedSlots[i];
+                if (slotState.decorationID == "") continue;
+                var decorationPrefab = allShopDecorations.Find(x => x.id == slotState.decorationID);
+                var slot = allShopDecorationSlots.FirstOrDefault(x => x.slotType == decorationPrefab.slotType && x.sequentialIndex == slotState.slotIndex);
+                if (slot && decorationPrefab) slot.Assign(Instantiate(decorationPrefab));
             }
+
+            Debug.Log(shopState.ToString());
 
             // Initialise context
             shopContext = ShopContext.Purchase;
@@ -113,7 +133,6 @@ namespace Antura.AnturaSpace
             if (!HasSlotsForDecoration(UnlockableDecorationPrefab)) return null;
 
             var newDecoration = Instantiate(UnlockableDecorationPrefab);
-            newDecoration.Unlock();
             newDecoration.transform.localPosition = new Vector3(10000, 0, 0);
             return newDecoration;
         }
@@ -261,9 +280,26 @@ namespace Antura.AnturaSpace
                 }
             }
 
-            // Saved state TODO: UPDATE SAVE TO REFLECT THE NEW CHANGES
-            //shopState.unlockedDecorationsIDs.Add(newDecoration.id);
-            //AppManager.I.Player.Save();
+            SaveState();
+        }
+
+        void SaveState()
+        {
+            foreach (var slot in allShopDecorationSlots)
+            {
+                var slotState = shopState.occupiedSlots.FirstOrDefault(x => x.MatchesSlot(slot));
+                if (slotState == null)
+                {
+                    slotState = new ShopSlotState();
+                    shopState.occupiedSlots.Add(slotState);
+                    slotState.slotType = slot.slotType;
+                    slotState.slotIndex = slot.sequentialIndex;
+                }
+                slotState.decorationID = slot.Assigned ? slot.AssignedDecorationObject.id : "";
+            }
+
+            Debug.Log(shopState);
+            AppManager.I.Player.Save();
         }
 
         #endregion
