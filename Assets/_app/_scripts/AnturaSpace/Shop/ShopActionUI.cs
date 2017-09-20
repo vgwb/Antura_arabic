@@ -1,4 +1,5 @@
 ﻿using Antura.Core;
+using Antura.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ namespace Antura.AnturaSpace
     {
         public Image iconUI;
         public TextMeshProUGUI amountUI;
-        public Button buttonUI;
+        public UIButton buttonUI;
 
         private ShopAction shopAction;
 
@@ -18,38 +19,34 @@ namespace Antura.AnturaSpace
             this.shopAction = shopAction;
             iconUI.sprite = shopAction.iconSprite;
             amountUI.text = shopAction.bonesCost.ToString();
-            buttonUI.interactable = !shopAction.IsLocked;
+            UpdateAction();
         }
 
-        public void Update()
+        public void UpdateAction()
         {
-            // TODO: react to any spending of bones!
-            buttonUI.interactable = !shopAction.IsLocked;
+            bool isLocked = shopAction.IsLocked;
+            buttonUI.Lock(isLocked);
         }
 
         public void OnClick()
         {
-            if (ShopDecorationsManager.I.ShopContext != ShopContext.Purchase)
+            if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase)
             {
-                // TODO: do this only if this was the last selected action
-                shopAction.CancelAction();
-            }
-            else if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
-            {
-                shopAction.PerformAction();
+                if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
+                {
+                    shopAction.PerformAction();
+                }
             }
         }
 
         public void OnDrag()
         {
-            if (ShopDecorationsManager.I.ShopContext != ShopContext.Purchase) 
+            if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase)
             {
-                shopAction.CancelAction();
-            }
-            else if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
-            {
-                //AppManager.I.Player.RemoveBones(shopAction.bonesCost);
-                shopAction.PerformDrag();
+                if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
+                {
+                    shopAction.PerformDrag();
+                }
             }
         }
 

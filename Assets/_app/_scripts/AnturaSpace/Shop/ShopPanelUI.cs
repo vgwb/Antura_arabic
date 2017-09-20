@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,20 +14,26 @@ namespace Antura.AnturaSpace
         public RectTransform purchasePanel;
         public RectTransform dragPanel;
         public RectTransform confirmationPanel;
+        public ShopConfirmationPanelUI confirmationPanelUI;
 
         public Button confirmationYesButton;
         public Button confirmationNoButton;
+
+        private List<ShopActionUI> actionUIs;    
 
         private Tween showShopPanelTween, showDragPanelTween, showConfirmationPanelTween;
 
         public void SetActions(ShopAction[] shopActions)
         {
+            actionUIs = new List<ShopActionUI>();
             foreach (var shopAction in shopActions)
             {
                 var shopActionUIgo = Instantiate(shopActionUIPrefab);
                 shopActionUIgo.transform.SetParent(buttonsPivotTr);
                 shopActionUIgo.transform.localScale = Vector3.one;
-                shopActionUIgo.GetComponent<ShopActionUI>().SetAction(shopAction);
+                var actionUI = shopActionUIgo.GetComponent<ShopActionUI>();
+                actionUI.SetAction(shopAction);
+                actionUIs.Add(actionUI);
             }
         }
 
@@ -80,7 +87,7 @@ namespace Antura.AnturaSpace
         {
             showDragPanelTween.PlayBackwards();
 
-            // TODO: setup the confirmation panel for purchase
+            confirmationPanelUI.SetupForPurchase();
             confirmationYesButton.onClick.RemoveAllListeners();
             confirmationYesButton.onClick.AddListener(ShopDecorationsManager.I.ConfirmPurchase);
             confirmationNoButton.onClick.RemoveAllListeners();
@@ -93,7 +100,7 @@ namespace Antura.AnturaSpace
         {
             showDragPanelTween.PlayBackwards();
 
-            // TODO: setup the confirmation panel for deletion
+            confirmationPanelUI.SetupForDeletion();
             confirmationYesButton.onClick.RemoveAllListeners();
             confirmationYesButton.onClick.AddListener(ShopDecorationsManager.I.ConfirmDeletion);
             confirmationNoButton.onClick.RemoveAllListeners();
@@ -102,5 +109,12 @@ namespace Antura.AnturaSpace
             showConfirmationPanelTween.PlayForward();
         }
 
+        public void UpdateAllActionButtons()
+        {
+            foreach (var actionUI in actionUIs)
+            {
+                actionUI.UpdateAction();
+            }
+        }
     }
 }

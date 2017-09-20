@@ -2873,6 +2873,7 @@ MonoBehaviour:
   purchasePanel: {fileID: 1218009425}
   dragPanel: {fileID: 1091952477}
   confirmationPanel: {fileID: 1846403118}
+  confirmationPanelUI: {fileID: 1846403121}
   confirmationYesButton: {fileID: 1433596577}
   confirmationNoButton: {fileID: 913455849}
 --- !u!1001 &359159186
@@ -7059,6 +7060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deletePropButtonTransform: {fileID: 613108959}
+  CurrentDecorationCost: 0
 --- !u!4 &837188165
 Transform:
   m_ObjectHideFlags: 0
@@ -15236,6 +15238,7 @@ GameObject:
   - component: {fileID: 1846403118}
   - component: {fileID: 1846403120}
   - component: {fileID: 1846403119}
+  - component: {fileID: 1846403121}
   m_Layer: 5
   m_Name: ConfirmationPanel
   m_TagString: Untagged
@@ -15299,6 +15302,19 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &1846403121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1846403117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 595dd8f9ba3273747b29e2eee1cb6ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bonesCostGo: {fileID: 749273380}
+  bonesCostTextUI: {fileID: 326863164}
 --- !u!1 &1853519156
 GameObject:
   m_ObjectHideFlags: 0
@@ -15880,7 +15896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addDebugBones: 1
-  ShopPanelUi: {fileID: 0}
+  ShopPanelUi: {fileID: 358700358}
   ShopDecorationsManager: {fileID: 837188164}
 --- !u!1 &1933035822
 GameObject:

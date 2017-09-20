@@ -1,4 +1,5 @@
-﻿using Antura.Core;
+﻿using System;
+using Antura.Core;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -8,9 +9,15 @@ namespace Antura.AnturaSpace
         public Sprite iconSprite;   // TODO: move to the DECO object instead?
         public int bonesCost;
 
-        public bool IsLocked { get { return locked; } }
+        public virtual bool IsLocked
+        {
+            get
+            {
+                return AppManager.I.Player.GetTotalNumberOfBones() <= bonesCost;
+            }
+        }
 
-        private bool locked = false;
+        public Action OnActionPerformed;
 
         #region Virtual
 
@@ -34,21 +41,8 @@ namespace Antura.AnturaSpace
         protected void CommitAction()
         {
             AppManager.I.Player.RemoveBones(bonesCost);
+            if (OnActionPerformed != null) OnActionPerformed();
         }
 
-        #region Locking state
-
-        public void SetLocked(bool _locked)
-        {
-            locked = _locked;
-        }
-
-        // TODO: update at each bone action spending
-        public virtual void InitialiseLockedState()
-        {
-            SetLocked(AppManager.I.Player.GetTotalNumberOfBones() <= bonesCost);
-        }
-
-        #endregion
     }
 }

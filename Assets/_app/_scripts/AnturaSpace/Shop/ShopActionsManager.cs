@@ -25,11 +25,23 @@ namespace Antura.AnturaSpace
 
             // Setup actions
             shopActions = GetComponentsInChildren<ShopAction>();
-            foreach (var shopAction in shopActions) {
-                shopAction.InitialiseLockedState();
+            foreach (var shopAction in shopActions)
+            {
+                shopAction.OnActionPerformed += HandleActionPerformed;
             }
-            ShopPanelUi.SetActions(shopActions);
 
+            ShopPanelUi.SetActions(shopActions);
+            ShopPanelUi.UpdateAllActionButtons();
+        }
+
+        private void HandleActionPerformed()
+        {
+            UpdateAllActions();
+        }
+
+        void UpdateAllActions()
+        {
+            ShopPanelUi.UpdateAllActionButtons();
         }
 
     }

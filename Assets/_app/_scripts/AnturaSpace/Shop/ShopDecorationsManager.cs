@@ -106,9 +106,11 @@ namespace Antura.AnturaSpace
         private Coroutine dragCoroutine;
         private ShopDecorationObject currentDraggedDecoration;
         private ShopDecorationSlot currentDraggedSlot;
+        public int CurrentDecorationCost = 0;
 
-        public void CreateAndStartDragPlacement(ShopDecorationObject prefab)
+        public void CreateAndStartDragPlacement(ShopDecorationObject prefab, int bonesCost)
         {
+            CurrentDecorationCost = bonesCost;
             var newDeco = SpawnNewDecoration(prefab);
             StartDragPlacement(newDeco, true);
         }

@@ -7,5 +7,14 @@
             // TODO: save the photo
             CommitAction();
         }
+
+        public override bool IsLocked
+        {
+            get
+            {
+                // TODO: set a limit for photos
+                return base.IsLocked;
+            }
+        }
     }
 }

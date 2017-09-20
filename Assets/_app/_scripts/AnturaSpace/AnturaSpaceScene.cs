@@ -164,12 +164,19 @@ namespace Antura.AnturaSpace
         public Transform ObjectSpawnPivotTr;
         private List<ThrowableObject> spawnedObjects = new List<ThrowableObject>();
 
+        public bool CanSpawnMoreObjects
+        {
+            get { return AppManager.I.Player.GetTotalNumberOfBones() > 0    // TODO: NOT NEEDED ANYMORE!
+                    &&   
+                    spawnedObjects.Count < MaxSpawnedObjectsInScene; }
+        }
+
         public void ThrowObject(ThrowableObject ObjectPrefab)
         {
             if (DraggedTransform != null)
                 return;
 
-            if (AppManager.I.Player.GetTotalNumberOfBones() > 0 && spawnedObjects.Count < MaxSpawnedObjectsInScene)
+            if (CanSpawnMoreObjects)
             {
                 AudioManager.I.PlaySound(Sfx.ThrowObj);
 
@@ -188,7 +195,7 @@ namespace Antura.AnturaSpace
             if (DraggedTransform != null)
                 return;
 
-            if (AppManager.I.Player.GetTotalNumberOfBones() > 0 && spawnedObjects.Count < MaxSpawnedObjectsInScene)
+            if (CanSpawnMoreObjects)
             {
                 var throwableObject = SpawnNewObject(ObjectPrefab);
 

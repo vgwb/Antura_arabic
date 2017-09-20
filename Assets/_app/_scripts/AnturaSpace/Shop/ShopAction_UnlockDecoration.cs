@@ -14,7 +14,7 @@ namespace Antura.AnturaSpace
 
         public override void PerformDrag()
         {
-            ShopDecorationsManager.I.CreateAndStartDragPlacement(UnlockableDecorationObject);
+            ShopDecorationsManager.I.CreateAndStartDragPlacement(UnlockableDecorationObject, bonesCost);
             ShopDecorationsManager.I.OnPurchaseComplete += CommitAction;
         }
 
@@ -24,14 +24,14 @@ namespace Antura.AnturaSpace
            // ShopDecorationsManager.I.CancelPlacement();
         }
 
-        public override void InitialiseLockedState()
+        public override bool IsLocked
         {
-            base.InitialiseLockedState();
-
-            if (!ShopDecorationsManager.I.HasSlotsForDecoration(UnlockableDecorationObject))
+            get
             {
-                SetLocked(true);
+                if (base.IsLocked) return base.IsLocked;
+                return !ShopDecorationsManager.I.HasSlotsForDecoration(UnlockableDecorationObject);
             }
         }
+
     }
 }

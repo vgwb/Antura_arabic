@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconUI: {fileID: 114299431988892758}
   amountUI: {fileID: 114479517035725512}
-  buttonUI: {fileID: 114470814201373716}
+  buttonUI: {fileID: 114930798342497000}
 --- !u!114 &114317963470653848
 MonoBehaviour:
   m_ObjectHideFlags: 1
