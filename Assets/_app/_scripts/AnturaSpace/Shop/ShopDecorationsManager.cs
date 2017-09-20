@@ -18,6 +18,8 @@ namespace Antura.AnturaSpace
         private ShopState shopState;
         private ShopContext shopContext;
 
+        public bool testDecorationFilling = false;
+
         public bool HasSlotsForDecoration(ShopDecorationObject decorationObjectToTest)
         {
             bool result = allShopDecorationSlots.Count(x => x.IsFreeAndAssignableTo(decorationObjectToTest)) > 0;
@@ -31,6 +33,7 @@ namespace Antura.AnturaSpace
         public Action OnPurchaseComplete;
         public Action OnPurchaseCancelled;
 
+       
         #region Context
 
         public ShopContext ShopContext { get {  return shopContext; } }
@@ -86,6 +89,20 @@ namespace Antura.AnturaSpace
 
             // Initialise context
             shopContext = ShopContext.Purchase;
+
+            // TEST
+            if (testDecorationFilling)
+            {
+                var allPrefabDecorations = FindObjectsOfType<ShopAction_UnlockDecoration>().ToList().ConvertAll(x => x.UnlockableDecorationObject).ToList();
+                foreach (var slot in allShopDecorationSlots)
+                {
+                    var prefab = allPrefabDecorations.FirstOrDefault(x => x.slotType == slot.slotType);
+                    if (prefab != null)
+                    {
+                        slot.Assign(Instantiate(prefab));
+                    }
+                }
+            }
         }
 
 
@@ -106,6 +123,7 @@ namespace Antura.AnturaSpace
         private Coroutine dragCoroutine;
         private ShopDecorationObject currentDraggedDecoration;
         private ShopDecorationSlot currentDraggedSlot;
+        [HideInInspector]
         public int CurrentDecorationCost = 0;
 
         public void CreateAndStartDragPlacement(ShopDecorationObject prefab, int bonesCost)
