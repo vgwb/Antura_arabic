@@ -17,7 +17,6 @@ namespace Antura.AnturaSpace
             base.EnterState();
             shoutTimer = UnityEngine.Random.Range(1, 3);
             timeInThisState = 0;
-            controller.MustShowBonesButton = true;
             controller.Antura.AnimationController.State = AnturaAnimationStates.idle;
             controller.Antura.SetTarget(controller.AttentionPosition, true);
         }

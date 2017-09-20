@@ -28,7 +28,6 @@ namespace Antura.AnturaSpace
             controller.Antura.SetTarget(objectToCatch.transform, false);
             objectRigidBody = objectToCatch.GetComponent<Rigidbody>();
             controller.Antura.Excited = true;
-            controller.MustShowBonesButton = true;
         }
 
         public override void ExitState()

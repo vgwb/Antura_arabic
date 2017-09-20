@@ -13,7 +13,6 @@ namespace Antura.AnturaSpace
         {
             base.EnterState();
             UI.AnturaSpaceUI.onRewardCategorySelectedInCustomization += AnturaSpaceUI_onRewardCategorySelectedInCustomization;
-            controller.MustShowBonesButton = false;
             controller.Antura.SetTarget(controller.SceneCenter, true, controller.RotatingBase.transform);
             controller.RotatingBase.Activated = true;
         }

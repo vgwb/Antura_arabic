@@ -19,7 +19,6 @@ namespace Antura.AnturaSpace
             base.EnterState();
             shoutTimer = Random.Range(1, 3);
             timeInThisState = 0;
-            controller.MustShowBonesButton = true;
             controller.Antura.AnimationController.State = AnturaAnimationStates.idle;
 
             waitForLaunchPoint = new GameObject("WaitForLaunch");

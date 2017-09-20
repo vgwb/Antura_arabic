@@ -16,7 +16,6 @@ namespace Antura.AnturaSpace
         {
             base.EnterState();
             timer = 4.0f;
-            controller.MustShowBonesButton = true;
 
             if (controller.AnturaHappiness > 0.95f) {
                 state = AnturaAnimationStates.dancing;

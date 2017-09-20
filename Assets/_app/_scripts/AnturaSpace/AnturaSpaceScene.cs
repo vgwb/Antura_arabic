@@ -28,7 +28,7 @@ namespace Antura.AnturaSpace
         public Transform AttentionPosition;
         public GameObject PoofPrefab;
 
-        public bool MustShowBonesButton { get; set; }
+        //public bool MustShowBonesButton { get; set; }
 
         public ThrowableObject NextObjectToCatch {
             get
@@ -116,11 +116,6 @@ namespace Antura.AnturaSpace
             }
 
             stateManager.Update(Time.deltaTime);
-
-            // TODO: the tutorial needs to change to accommodate the shop!
-            if (!Tutorial.IsRunning) {
-                UI.ShowBonesButton(MustShowBonesButton && (spawnedObjects.Count < MaxSpawnedObjectsInScene));
-            }
 
             UI.BonesCount = AppManager.I.Player.GetTotalNumberOfBones();
 

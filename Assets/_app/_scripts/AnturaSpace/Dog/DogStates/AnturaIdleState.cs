@@ -21,7 +21,6 @@ namespace Antura.AnturaSpace
             sitTimer = 0.5f;
             timeToStayInThisState = 4 + UnityEngine.Random.value * 2;
             animateTimer = UnityEngine.Random.Range(4, 8) - 2 * controller.AnturaHappiness;
-            controller.MustShowBonesButton = true;
             controller.Antura.SetTarget(controller.SceneCenter, true);
         }
 
