@@ -2,7 +2,6 @@
 
 namespace Antura.AnturaSpace
 {
-
     public class ShopDecorationObject : MonoBehaviour
     {
         public ShopDecorationSlotType slotType;
@@ -14,6 +13,11 @@ namespace Antura.AnturaSpace
             if (!locked) return;
             locked = false;
             gameObject.SetActive(true);
+        }
+
+        public void OnMouseDown()
+        {
+            ShopDecorationsManager.I.StartDragPlacement(this);
         }
     }
 }

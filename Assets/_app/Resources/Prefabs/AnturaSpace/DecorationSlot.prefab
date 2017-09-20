@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1381297082331840}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11, y: -0.99, z: 16.1}
+  m_LocalPosition: {x: -0.11, y: 0, z: 21.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4019842099053874}
@@ -85,7 +85,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4ca0a8f4efb34e54a9623db41fd0dfea, type: 2}
+  - {fileID: 2100000, guid: 9a9874c5db305b146b7d7083a0bb9f54, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -121,8 +121,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f444ff6136de5468b246d6b5066265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotType: 2
+  slotType: 0
   highlightMeshGO: {fileID: 1283298519271930}
+  slotHighlightIdleMat: {fileID: 2100000, guid: 9a9874c5db305b146b7d7083a0bb9f54,
+    type: 2}
+  slotHighlightCorrectMat: {fileID: 2100000, guid: 98896487d7eefe44f9af6de465334d9d,
+    type: 2}
+  slotHighlightWrongMat: {fileID: 2100000, guid: cb72be4fee16b9f47a8ee59ed820a94b,
+    type: 2}
 --- !u!135 &135090198144732574
 SphereCollider:
   m_ObjectHideFlags: 1

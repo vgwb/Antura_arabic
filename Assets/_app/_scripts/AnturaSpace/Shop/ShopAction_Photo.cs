@@ -5,6 +5,7 @@
         public override void PerformAction()
         {
             // TODO: save the photo
+            CommitAction();
         }
     }
 }

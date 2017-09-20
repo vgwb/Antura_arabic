@@ -6,6 +6,13 @@ namespace Antura.AnturaSpace
 {
     public class ShopDecorationSlot : MonoBehaviour
     {
+        public enum SlotHighlight
+        {
+            Idle,
+            Correct,
+            Wrong
+        }
+
         public ShopDecorationSlotType slotType;
         private bool assigned = false;
         private ShopDecorationObject _assignedDecorationObject;
@@ -36,10 +43,19 @@ namespace Antura.AnturaSpace
 
         #region Assignment
 
+        public void Free()
+        {
+            if (!assigned) return;
+            assigned = false;
+            //assignedDecorationObject.currentSlot = null;
+            _assignedDecorationObject = null;
+        }
+
         public void Assign(ShopDecorationObject assignedDecorationObject)
         {
             if (assigned) return;
             assigned = true;
+            //assignedDecorationObject.currentSlot = this;
             _assignedDecorationObject = assignedDecorationObject;
             _assignedDecorationObject.transform.SetParent(transform);
             _assignedDecorationObject.transform.localEulerAngles = Vector3.zero;
@@ -47,9 +63,19 @@ namespace Antura.AnturaSpace
             _assignedDecorationObject.transform.SetLocalScale(1);
         }
 
+        public bool IsFreeAndAssignableTo(ShopDecorationObject decorationObject)
+        {
+            return !assigned && IsAssignableTo(decorationObject);
+        }
+
         public bool IsAssignableTo(ShopDecorationObject decorationObject)
         {
-            return !assigned && slotType == decorationObject.slotType;
+            return slotType == decorationObject.slotType;
+        }
+
+        public bool HasCurrentlyAssigned(ShopDecorationObject decorationObject)
+        {
+            return _assignedDecorationObject == decorationObject;
         }
 
         #endregion
@@ -57,10 +83,27 @@ namespace Antura.AnturaSpace
 
         #region Highlight
 
-        public void Highlight(bool choice)
+        public Material slotHighlightIdleMat;
+        public Material slotHighlightCorrectMat;
+        public Material slotHighlightWrongMat;
+
+        public void Highlight(bool choice, SlotHighlight slotHighlight =SlotHighlight.Idle)
         {
             highlighted = choice;
             highlightMeshGO.SetActive(choice);
+            var renderer = highlightMeshGO.GetComponent<MeshRenderer>();
+            switch (slotHighlight)
+            {
+                case SlotHighlight.Idle:
+                    renderer.material = slotHighlightIdleMat;
+                    break;
+                case SlotHighlight.Correct:
+                    renderer.material = slotHighlightCorrectMat;
+                    break;
+                case SlotHighlight.Wrong:
+                    renderer.material = slotHighlightWrongMat;
+                    break;
+            }
         }
 
         #endregion

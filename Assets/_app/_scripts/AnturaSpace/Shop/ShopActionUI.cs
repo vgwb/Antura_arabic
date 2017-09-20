@@ -34,8 +34,8 @@ namespace Antura.AnturaSpace
                 // TODO: do this only if this was the last selected action
                 shopAction.CancelAction();
             }
-            else if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost) {
-                AppManager.I.Player.RemoveBones(shopAction.bonesCost);
+            else if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
+            {
                 shopAction.PerformAction();
             }
         }
@@ -48,7 +48,7 @@ namespace Antura.AnturaSpace
             }
             else if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
             {
-                AppManager.I.Player.RemoveBones(shopAction.bonesCost);
+                //AppManager.I.Player.RemoveBones(shopAction.bonesCost);
                 shopAction.PerformDrag();
             }
         }
