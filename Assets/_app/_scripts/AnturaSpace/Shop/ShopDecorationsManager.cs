@@ -38,7 +38,6 @@ namespace Antura.AnturaSpace
             foreach (var slotGroup in GetComponentsInChildren<ShopDecorationSlotGroup>())
             {
                 slotGroup.EditorSetup();
-                EditorUtility.SetDirty(slotGroup);
             }
         }
 
