@@ -269,6 +269,11 @@ namespace Antura.AnturaSpace.UI
 
         #region Methods
 
+        public void ShowBonesButton(bool show)
+        {
+            BtBonesShop.gameObject.SetActive(show);
+        }
+
         void SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
             StopAllCoroutines();

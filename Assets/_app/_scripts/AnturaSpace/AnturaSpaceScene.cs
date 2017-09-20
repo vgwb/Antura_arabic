@@ -28,8 +28,6 @@ namespace Antura.AnturaSpace
         public Transform AttentionPosition;
         public GameObject PoofPrefab;
 
-        //public bool MustShowBonesButton { get; set; }
-
         public ThrowableObject NextObjectToCatch {
             get
             {
