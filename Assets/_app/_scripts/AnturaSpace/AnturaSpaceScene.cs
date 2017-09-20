@@ -178,8 +178,6 @@ namespace Antura.AnturaSpace
 
             if (AppManager.I.Player.GetTotalNumberOfBones() > 0 && spawnedObjects.Count < MaxSpawnedObjectsInScene)
             {
-                AppManager.I.Player.RemoveBones(1);
-
                 AudioManager.I.PlaySound(Sfx.ThrowObj);
 
                 var throwableObject = SpawnNewObject(ObjectPrefab);
