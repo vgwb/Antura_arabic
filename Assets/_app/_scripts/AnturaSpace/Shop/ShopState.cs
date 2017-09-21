@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Antura.AnturaSpace
 {
+    [System.Serializable]
     public class ShopSlotState
     {
         public ShopDecorationSlotType slotType;
@@ -25,9 +26,10 @@ namespace Antura.AnturaSpace
         }
     }
 
+    [System.Serializable]
     public class ShopState
     {
-        public List<ShopSlotState> occupiedSlots = new List<ShopSlotState>();
+        public ShopSlotState[] occupiedSlots;
 
         public string ToJson()
         {

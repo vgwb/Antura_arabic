@@ -23,7 +23,7 @@ namespace Antura.AnturaSpace
                 slot.slotType = slotType;
                 slot.slotIndex = sequentialIndex++;
                 EditorUtility.SetDirty(slot);
-                Debug.LogError("SET SLOT INDEX: " + slot.slotIndex);
+                //Debug.LogError("SET SLOT INDEX: " + slot.slotIndex);
             }
         }
 

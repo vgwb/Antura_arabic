@@ -65,6 +65,7 @@ namespace Antura.AnturaSpace
             _assignedDecorationObject.transform.localEulerAngles = Vector3.zero;
             _assignedDecorationObject.transform.localPosition = Vector3.zero;
             _assignedDecorationObject.transform.SetLocalScale(1);
+            _assignedDecorationObject.gameObject.SetActive(true);
         }
 
         public bool IsFreeAndAssignableTo(ShopDecorationObject decorationObject)

@@ -745,7 +745,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 791, y: 266}
+  m_AnchoredPosition: {x: 738, y: 266}
   m_SizeDelta: {x: 0, y: 41.99997}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &71844670
@@ -1139,6 +1139,11 @@ Prefab:
     - target: {fileID: 4614182429260570, guid: 5291d7194b5687b44bcb37a9b805ea09, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723866830139098, guid: 5291d7194b5687b44bcb37a9b805ea09,
+        type: 2}
+      propertyPath: slotType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5291d7194b5687b44bcb37a9b805ea09, type: 2}
@@ -1858,7 +1863,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.700001, y: -20}
+  m_AnchoredPosition: {x: -8.7, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &243266631
@@ -2731,6 +2736,11 @@ Prefab:
       propertyPath: slotType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114723866830139098, guid: 5291d7194b5687b44bcb37a9b805ea09,
+        type: 2}
+      propertyPath: slotIndex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5291d7194b5687b44bcb37a9b805ea09, type: 2}
   m_IsPrefabParent: 0
@@ -2847,7 +2857,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.700001, y: -20}
+  m_AnchoredPosition: {x: -8.7, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &350712564
@@ -3668,6 +3678,11 @@ Prefab:
       propertyPath: m_Name
       value: DecorationSlot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 114723866830139098, guid: 5291d7194b5687b44bcb37a9b805ea09,
+        type: 2}
+      propertyPath: slotIndex
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5291d7194b5687b44bcb37a9b805ea09, type: 2}
   m_IsPrefabParent: 0
@@ -3839,7 +3854,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.700001, y: -20}
+  m_AnchoredPosition: {x: -8.7, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &483166797
@@ -6329,7 +6344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -13.900002, y: -13.900002}
+  m_AnchoredPosition: {x: -13.900001, y: -13.900001}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &735091387
@@ -8763,7 +8778,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.700001, y: -20}
+  m_AnchoredPosition: {x: -8.7, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011130698
@@ -9943,7 +9958,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.700001, y: -20}
+  m_AnchoredPosition: {x: -8.7, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1185847395
@@ -10783,7 +10798,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.700001, y: -20}
+  m_AnchoredPosition: {x: -8.7, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1298708862
@@ -11520,7 +11535,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.700001, y: -20}
+  m_AnchoredPosition: {x: -8.7, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1372460837
@@ -12738,7 +12753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.700001, y: -20}
+  m_AnchoredPosition: {x: -8.7, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1586921015
@@ -13412,6 +13427,11 @@ Prefab:
     - target: {fileID: 1381297082331840, guid: 5291d7194b5687b44bcb37a9b805ea09, type: 2}
       propertyPath: m_Name
       value: DecorationSlot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723866830139098, guid: 5291d7194b5687b44bcb37a9b805ea09,
+        type: 2}
+      propertyPath: slotIndex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5291d7194b5687b44bcb37a9b805ea09, type: 2}
@@ -14667,6 +14687,11 @@ Prefab:
         type: 2}
       propertyPath: slotType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723866830139098, guid: 5291d7194b5687b44bcb37a9b805ea09,
+        type: 2}
+      propertyPath: slotIndex
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5291d7194b5687b44bcb37a9b805ea09, type: 2}
@@ -16333,6 +16358,11 @@ Prefab:
       propertyPath: slotType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114723866830139098, guid: 5291d7194b5687b44bcb37a9b805ea09,
+        type: 2}
+      propertyPath: slotIndex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5291d7194b5687b44bcb37a9b805ea09, type: 2}
   m_IsPrefabParent: 0
@@ -16697,6 +16727,11 @@ Prefab:
     - target: {fileID: 1381297082331840, guid: 5291d7194b5687b44bcb37a9b805ea09, type: 2}
       propertyPath: m_Name
       value: DecorationSlot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723866830139098, guid: 5291d7194b5687b44bcb37a9b805ea09,
+        type: 2}
+      propertyPath: slotIndex
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5291d7194b5687b44bcb37a9b805ea09, type: 2}
@@ -19922,6 +19957,11 @@ Prefab:
       propertyPath: m_Name
       value: DecorationSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 114723866830139098, guid: 5291d7194b5687b44bcb37a9b805ea09,
+        type: 2}
+      propertyPath: slotIndex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5291d7194b5687b44bcb37a9b805ea09, type: 2}
   m_IsPrefabParent: 0
@@ -20748,6 +20788,10 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1772177916924650, guid: 574dc868f1bbb43b3bfd64d2556b3a90, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 574dc868f1bbb43b3bfd64d2556b3a90, type: 2}
   m_IsPrefabParent: 0
@@ -21112,7 +21156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.700001, y: -20}
+  m_AnchoredPosition: {x: -8.7, y: -20}
   m_SizeDelta: {x: 27.6, y: 27.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2142718845

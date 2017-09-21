@@ -97,13 +97,20 @@ namespace Antura.AnturaSpace
             //Debug.Log("Slots: " + allShopDecorationSlots.Count);
 
             // Load state
-            for (int i = 0; i < shopState.occupiedSlots.Count; i++)
+            if (shopState.occupiedSlots != null)
             {
-                var slotState = shopState.occupiedSlots[i];
-                if (slotState.decorationID == "") continue;
-                var decorationPrefab = allShopDecorations.Find(x => x.id == slotState.decorationID);
-                var slot = allShopDecorationSlots.FirstOrDefault(x => x.slotType == decorationPrefab.slotType && x.slotIndex == slotState.slotIndex);
-                if (slot && decorationPrefab) slot.Assign(Instantiate(decorationPrefab));
+                for (int i = 0; i < shopState.occupiedSlots.Length; i++)
+                {
+                    var slotState = shopState.occupiedSlots[i];
+                    if (slotState.decorationID == "") continue;
+                    var decorationPrefab = allShopDecorations.Find(x => x.id == slotState.decorationID);
+                    var slot = allShopDecorationSlots.FirstOrDefault(x => x.slotType == decorationPrefab.slotType && x.slotIndex == slotState.slotIndex);
+                    if (slot != null && decorationPrefab != null)
+                    {
+                        //Debug.Log("LOADING ASSIGNED " + slot + " AND " + decorationPrefab);
+                        slot.Assign(Instantiate(decorationPrefab));
+                    }
+                }
             }
 
             Debug.Log(shopState.ToString());
@@ -280,30 +287,26 @@ namespace Antura.AnturaSpace
                     ConfirmMovement();
                 }
             }
-
-            SaveState();
         }
 
         void SaveState()
         {
-            foreach (var slot in allShopDecorationSlots)
+            shopState.occupiedSlots = new ShopSlotState[allShopDecorationSlots.Count];
+            for (var index = 0; index < allShopDecorationSlots.Count; index++)
             {
+                var slot = allShopDecorationSlots[index];
                 Debug.Log("Check slot: " + slot);
-                var slotState = shopState.occupiedSlots.FirstOrDefault(x => x.MatchesSlot(slot));
-                if (slotState == null)
+                shopState.occupiedSlots[index] = new ShopSlotState
                 {
-                    slotState = new ShopSlotState
-                    {
-                        slotType = slot.slotType,
-                        slotIndex = slot.slotIndex
-                    };
-                    Debug.Log("NEW SLOT STATE " + slotState.ToString());
-                    shopState.occupiedSlots.Add(slotState);
-                }
-                slotState.decorationID = slot.Assigned ? slot.AssignedDecorationObject.id : "";
+                    slotType = slot.slotType,
+                    slotIndex = slot.slotIndex,
+                    decorationID = slot.Assigned ? slot.AssignedDecorationObject.id : ""
+                };
+                Debug.Log("NEW SLOT STATE " + shopState.occupiedSlots[index].ToString());
             }
 
             Debug.Log(shopState);
+            Debug.Log(shopState.ToJson());
             AppManager.I.Player.Save();
         }
 
@@ -312,6 +315,7 @@ namespace Antura.AnturaSpace
         public void ConfirmPurchase()
         {
             if (OnPurchaseComplete != null) OnPurchaseComplete();
+            SaveState();
             SetContextShopping();
         }
 
@@ -325,6 +329,7 @@ namespace Antura.AnturaSpace
         public void ConfirmDeletion()
         {
             DeleteDecoration(currentDraggedDecoration);
+            SaveState();
             SetContextShopping();
         }
 
@@ -335,6 +340,7 @@ namespace Antura.AnturaSpace
 
         public void ConfirmMovement()
         {
+            SaveState();
             SetContextShopping();
         }
     }
