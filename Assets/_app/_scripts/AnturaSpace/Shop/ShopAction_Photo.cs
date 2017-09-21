@@ -16,5 +16,10 @@
                 return base.IsLocked;
             }
         }
+
+        public override bool IsOnTheSide
+        {
+            get { return true; }
+        }
     }
 }

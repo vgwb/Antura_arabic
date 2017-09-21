@@ -9,6 +9,11 @@ namespace Antura.AnturaSpace
         public Sprite iconSprite;   // TODO: move to the DECO object instead?
         public int bonesCost;
 
+        public virtual bool IsOnTheSide
+        {
+            get { return false; }
+        }
+
         public virtual bool IsLocked
         {
             get

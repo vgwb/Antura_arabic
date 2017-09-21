@@ -9,9 +9,12 @@ namespace Antura.AnturaSpace
     public class ShopPanelUI : MonoBehaviour
     {
         public GameObject shopActionUIPrefab;
-        public Transform buttonsPivotTr;
 
-        public RectTransform purchasePanel;
+        public Transform bottomButtonsPivotTr;
+        public Transform sideButtonsPivotTr;
+
+        public RectTransform purchasePanelBottom;
+        public RectTransform purchasePanelSide;
         public RectTransform dragPanel;
         public RectTransform confirmationPanel;
         public ShopConfirmationPanelUI confirmationPanelUI;
@@ -29,7 +32,8 @@ namespace Antura.AnturaSpace
             foreach (var shopAction in shopActions)
             {
                 var shopActionUIgo = Instantiate(shopActionUIPrefab);
-                shopActionUIgo.transform.SetParent(buttonsPivotTr);
+                var parentTr = shopAction.IsOnTheSide ? sideButtonsPivotTr : bottomButtonsPivotTr;
+                shopActionUIgo.transform.SetParent(parentTr);
                 shopActionUIgo.transform.localScale = Vector3.one;
                 var actionUI = shopActionUIgo.GetComponent<ShopActionUI>();
                 actionUI.SetAction(shopAction);
@@ -41,7 +45,8 @@ namespace Antura.AnturaSpace
         {
             const float duration = 0.3f;
             showShopPanelTween =DOTween.Sequence() .SetAutoKill(false) .Pause()
-                    .Append(purchasePanel.DOAnchorPosY(-350, duration).From().SetEase(Ease.OutBack));
+                    .Append(purchasePanelBottom.DOAnchorPosY(-350, duration).From().SetEase(Ease.OutBack))
+                    .Append(purchasePanelSide.DOAnchorPosX(1250, duration).From().SetEase(Ease.OutBack));
             showDragPanelTween = DOTween.Sequence().SetAutoKill(false).Pause()
                     .Append(dragPanel.DOAnchorPosY(-350, duration).From().SetEase(Ease.OutBack));
             showConfirmationPanelTween =
@@ -50,7 +55,6 @@ namespace Antura.AnturaSpace
             ShopDecorationsManager.I.OnContextChange += HandleContextChange;
             ShopDecorationsManager.I.OnPurchaseConfirmationRequested += HandlePurchaseConfirmationRequested;
             ShopDecorationsManager.I.OnDeleteConfirmationRequested += HandleDeleteConfirmationRequested;
-          
         }
 
 
