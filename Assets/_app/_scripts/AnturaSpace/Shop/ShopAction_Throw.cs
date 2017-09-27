@@ -6,16 +6,21 @@ namespace Antura.AnturaSpace
     {
         public ThrowableObject throwingObjectPrefabGO;
 
+        public AnturaSpaceScene AnturaSpaceScene
+        {
+            get { return ((AnturaSpaceScene) AnturaSpaceScene.I); }
+        }
+
         public override void PerformAction()
         {
-            ((AnturaSpaceScene)AnturaSpaceScene.I).ThrowObject(throwingObjectPrefabGO);
+            AnturaSpaceScene.ThrowObject(throwingObjectPrefabGO);
             // TODO: attach to the ball's lifetime. Wwhen it dies, unlock this action
             CommitAction();
         }
 
         public override void PerformDrag()
         {
-            ((AnturaSpaceScene) AnturaSpaceScene.I).DragObject(throwingObjectPrefabGO);
+            AnturaSpaceScene.DragObject(throwingObjectPrefabGO);
             base.PerformDrag();
             CommitAction();
         }
@@ -25,7 +30,7 @@ namespace Antura.AnturaSpace
             get
             {
                 if (base.IsLocked) return base.IsLocked;
-                return !((AnturaSpaceScene) AnturaSpaceScene.I).CanSpawnMoreObjects;
+                return !AnturaSpaceScene.CanSpawnMoreObjects;
             }
         }
     }

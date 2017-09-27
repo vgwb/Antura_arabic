@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Antura.Core.Services.Gallery
 {
@@ -9,11 +10,16 @@ namespace Antura.Core.Services.Gallery
     {
         public GameObject BtnTakePhoto;
         public GameObject PhotoFrame;
+        public RawImage PhotoImage;
 
-        void Start()
+        public void ShowPreview(Texture texture)
         {
-
+            PhotoImage.texture = texture;
+            PhotoFrame.SetActive(true);
         }
-
+        public void HidePreview()
+        {
+            PhotoFrame.SetActive(false);
+        }
     }
 }

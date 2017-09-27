@@ -60,6 +60,13 @@ namespace Antura.AnturaSpace
             if (OnContextChange != null) OnContextChange(shopContext);
         }
 
+        public void SetContextSpecialAction()
+        {
+            shopContext = ShopContext.SpecialAction;
+            Debug.Log("CONTEXT: " + shopContext);
+            if (OnContextChange != null) OnContextChange(shopContext);
+        }
+
         private void SetContextNewPlacement()
         {
             shopContext = ShopContext.NewPlacement;
@@ -404,5 +411,7 @@ namespace Antura.AnturaSpace
             SaveState();
             SetContextPurchase();
         }
+
+
     }
 }

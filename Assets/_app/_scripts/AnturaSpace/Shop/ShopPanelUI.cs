@@ -45,9 +45,9 @@ namespace Antura.AnturaSpace
         private void Start()
         {
             const float duration = 0.3f;
-            showShopPanelTween =DOTween.Sequence() .SetAutoKill(false) .Pause()
+            showShopPanelTween =DOTween.Sequence() .SetAutoKill(false) .Pause() 
                     .Append(purchasePanelBottom.DOAnchorPosY(-350, duration).From().SetEase(Ease.OutBack))
-                    .Append(purchasePanelSide.DOAnchorPosX(1250, duration).From().SetEase(Ease.OutBack));
+                    .Join(purchasePanelSide.DOAnchorPosX(1250, duration).From().SetEase(Ease.OutBack));
             showDragPanelTween = DOTween.Sequence().SetAutoKill(false).Pause()
                     .Append(dragPanel.DOAnchorPosY(-350, duration).From().SetEase(Ease.OutBack));
             showConfirmationPanelTween =
@@ -56,6 +56,7 @@ namespace Antura.AnturaSpace
             ShopDecorationsManager.I.OnContextChange += HandleContextChange;
             ShopDecorationsManager.I.OnPurchaseConfirmationRequested += HandlePurchaseConfirmationRequested;
             ShopDecorationsManager.I.OnDeleteConfirmationRequested += HandleDeleteConfirmationRequested;
+            ShopPhotoManager.I.OnPhotoConfirmationRequested += HandlePhotoConfirmationRequested;
         }
 
 
@@ -81,6 +82,11 @@ namespace Antura.AnturaSpace
                 case ShopContext.MovingPlacement:
                     showShopPanelTween.PlayBackwards();
                     showDragPanelTween.PlayForward();
+                    showConfirmationPanelTween.PlayBackwards();
+                    break;
+                case ShopContext.SpecialAction:
+                    showShopPanelTween.PlayBackwards();
+                    showDragPanelTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 case ShopContext.Closed:
@@ -112,6 +118,21 @@ namespace Antura.AnturaSpace
             confirmationYesButton.onClick.AddListener(ShopDecorationsManager.I.ConfirmDeletion);
             confirmationNoButton.onClick.RemoveAllListeners();
             confirmationNoButton.onClick.AddListener(ShopDecorationsManager.I.CancelDeletion);
+
+            showConfirmationPanelTween.PlayForward();
+        }
+
+        private void HandlePhotoConfirmationRequested()
+        {
+            Debug.LogError("PLAY!");
+            showShopPanelTween.PlayBackwards();
+            showDragPanelTween.PlayBackwards();
+
+            confirmationPanelUI.SetupForPhoto();
+            confirmationYesButton.onClick.RemoveAllListeners();
+            confirmationYesButton.onClick.AddListener(ShopPhotoManager.I.ConfirmPhoto);
+            confirmationNoButton.onClick.RemoveAllListeners();
+            confirmationNoButton.onClick.AddListener(ShopPhotoManager.I.CancelPhoto);
 
             showConfirmationPanelTween.PlayForward();
         }

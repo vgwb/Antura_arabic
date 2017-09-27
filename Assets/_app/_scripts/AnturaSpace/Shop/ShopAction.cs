@@ -41,13 +41,13 @@ namespace Antura.AnturaSpace
             // nothing to do here
         }
 
-        #endregion
-
-        protected void CommitAction()
+        protected virtual void CommitAction()
         {
             AppManager.I.Player.RemoveBones(bonesCost);
             if (OnActionPerformed != null) OnActionPerformed();
         }
+        #endregion
+
 
     }
 }

@@ -12,22 +12,16 @@ namespace Antura.AnturaSpace
             iconSprite = UnlockableDecorationObject.iconSprite;
         }
 
-
-        public override void PerformAction()
-        {
-            //ShopDecorationsManager.I.PrepareNewDecorationPlacement(UnlockableDecorationObject);
-        }
-
         public override void PerformDrag()
         {
             ShopDecorationsManager.I.CreateAndStartDragPlacement(UnlockableDecorationObject, bonesCost);
             ShopDecorationsManager.I.OnPurchaseComplete += CommitAction;
         }
 
-        public override void CancelAction()
+        protected override void CommitAction()
         {
-            // Back to shop
-           // ShopDecorationsManager.I.CancelPlacement();
+            base.CommitAction();
+            ShopDecorationsManager.I.OnPurchaseComplete -= CommitAction;
         }
 
         public override bool IsLocked

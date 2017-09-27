@@ -18,5 +18,11 @@ namespace Antura.AnturaSpace
         {
             bonesCostGo.SetActive(false);
         }
+
+        public void SetupForPhoto()
+        {
+            bonesCostTextUI.text = ShopPhotoManager.I.CurrentPhotoCost.ToString();
+            bonesCostGo.SetActive(true);
+        }
     }
 }

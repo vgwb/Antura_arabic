@@ -5,6 +5,7 @@ namespace Antura.AnturaSpace
         Closed,
         Purchase,
         NewPlacement,
-        MovingPlacement
+        MovingPlacement,
+        SpecialAction
     }
 }
