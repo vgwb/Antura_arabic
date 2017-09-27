@@ -166,9 +166,7 @@ namespace Antura.AnturaSpace
 
         public bool CanSpawnMoreObjects
         {
-            get { return AppManager.I.Player.GetTotalNumberOfBones() > 0    // TODO: NOT NEEDED ANYMORE!
-                    &&   
-                    spawnedObjects.Count < MaxSpawnedObjectsInScene; }
+            get { return spawnedObjects.Count < MaxSpawnedObjectsInScene; }
         }
 
         public void ThrowObject(ThrowableObject ObjectPrefab)

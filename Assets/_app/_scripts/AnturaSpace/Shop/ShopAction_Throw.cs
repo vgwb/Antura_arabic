@@ -24,8 +24,8 @@ namespace Antura.AnturaSpace
         {
             get
             {
-                 if (base.IsLocked) return base.IsLocked;
-                return ((AnturaSpaceScene) AnturaSpaceScene.I).CanSpawnMoreObjects;
+                if (base.IsLocked) return base.IsLocked;
+                return !((AnturaSpaceScene) AnturaSpaceScene.I).CanSpawnMoreObjects;
             }
         }
     }
