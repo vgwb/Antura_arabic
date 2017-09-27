@@ -7,6 +7,12 @@ namespace Antura.AnturaSpace
     {
         public ShopDecorationObject UnlockableDecorationObject;
 
+        void Awake()
+        {
+            iconSprite = UnlockableDecorationObject.iconSprite;
+        }
+
+
         public override void PerformAction()
         {
             //ShopDecorationsManager.I.PrepareNewDecorationPlacement(UnlockableDecorationObject);

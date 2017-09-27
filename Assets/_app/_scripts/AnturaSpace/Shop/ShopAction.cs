@@ -6,7 +6,7 @@ namespace Antura.AnturaSpace
 {
     public class ShopAction : MonoBehaviour
     {
-        public Sprite iconSprite;   // TODO: move to the DECO object instead?
+        public Sprite iconSprite; 
         public int bonesCost;
 
         public virtual bool IsOnTheSide

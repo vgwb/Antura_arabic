@@ -150,8 +150,12 @@ namespace Antura.AnturaSpace
         private Coroutine dragCoroutine;
         private ShopDecorationObject currentDraggedDecoration;
         private ShopDecorationSlot currentDraggedSlot;
+        private ShopDecorationSlot startDragSlot;
         [HideInInspector]
         public int CurrentDecorationCost = 0;
+
+        public Action<ShopDecorationObject> OnDragStart;
+        public Action OnDragStop;
 
         public void CreateAndStartDragPlacement(ShopDecorationObject prefab, int bonesCost)
         {
@@ -175,10 +179,13 @@ namespace Antura.AnturaSpace
             currentDraggedSlot = null;
             currentDraggedDecoration = decoToDrag;
             dragCoroutine = StartCoroutine(DragPlacementCO());
+
+            if (OnDragStart != null) OnDragStart(decoToDrag);
         }
 
         private void StopDragPlacement()
         {
+            if (OnDragStop != null) OnDragStop();
             StopCoroutine(dragCoroutine);
         }
 

@@ -511,4 +511,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 1
   id: house
-  locked: 1
+  iconSprite: {fileID: 21300000, guid: 27eb1fd417440443092b9e1c14277a23, type: 3}

@@ -26,6 +26,7 @@ namespace Antura.AnturaSpace
 
         private Tween showShopPanelTween, showDragPanelTween, showConfirmationPanelTween;
 
+
         public void SetActions(ShopAction[] shopActions)
         {
             actionUIs = new List<ShopActionUI>();

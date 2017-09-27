@@ -6,6 +6,7 @@ namespace Antura.AnturaSpace
     {
         public ShopDecorationSlotType slotType;
         public string id;
+        public Sprite iconSprite;
 
         public void OnMouseDown()
         {

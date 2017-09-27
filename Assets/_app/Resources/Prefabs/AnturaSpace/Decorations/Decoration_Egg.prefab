@@ -371,4 +371,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 3
   id: egg
-  locked: 1
+  iconSprite: {fileID: 21300000, guid: f4b30b0fe9b041f41b11074c9e38dfa2, type: 3}

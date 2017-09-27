@@ -458,4 +458,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 3
   id: tree2
-  locked: 1
+  iconSprite: {fileID: 21300000, guid: f7e524ec42c5ccf48ae1eacb28d32c0a, type: 3}
