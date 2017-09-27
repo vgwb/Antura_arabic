@@ -32,8 +32,6 @@ namespace Antura.AnturaSpace
         public Action OnPurchaseComplete;
         public Action OnPurchaseCancelled;
 
-
-
         // @note: call this to setup slots after you change them
         [DeMethodButton("Editor Setup")]
         public void EditorSetup()
@@ -55,19 +53,28 @@ namespace Antura.AnturaSpace
 
         public ShopContext ShopContext { get {  return shopContext; } }
 
+        public void SetContextClosed()
+        {
+            shopContext = ShopContext.Closed;
+            Debug.Log("CONTEXT: " + shopContext);
+            if (OnContextChange != null) OnContextChange(shopContext);
+        }
+
         private void SetContextNewPlacement()
         {
             shopContext = ShopContext.NewPlacement;
+            Debug.Log("CONTEXT: " + shopContext);
             if (OnContextChange != null) OnContextChange(shopContext);
         }
 
         private void SetContextMovingPlacement()
         {
             shopContext = ShopContext.MovingPlacement;
+            Debug.Log("CONTEXT: " + shopContext);
             if (OnContextChange != null) OnContextChange(shopContext);
         }
 
-        private void SetContextShopping()
+        public void SetContextPurchase()
         {
             EndPlacementContext();
 
@@ -77,6 +84,7 @@ namespace Antura.AnturaSpace
             }
 
             shopContext = ShopContext.Purchase;
+            Debug.Log("CONTEXT: " + shopContext);
             if (OnContextChange != null) OnContextChange(shopContext);
         }
 
@@ -120,7 +128,7 @@ namespace Antura.AnturaSpace
             Debug.Log(shopState.ToString());
 
             // Initialise context
-            shopContext = ShopContext.Purchase;
+            SetContextClosed();
 
             // TEST
             if (testDecorationFilling)
@@ -348,33 +356,33 @@ namespace Antura.AnturaSpace
             if (OnPurchaseComplete != null) OnPurchaseComplete();
             //currentDraggedDecoration.SetAsReal();
             SaveState();
-            SetContextShopping();
+            SetContextPurchase();
         }
 
         public void CancelPurchase()
         {
             DeleteDecoration(currentDraggedDecoration);
             if (OnPurchaseCancelled != null) OnPurchaseCancelled();
-            SetContextShopping();
+            SetContextPurchase();
         }
 
         public void ConfirmDeletion()
         {
             DeleteDecoration(currentDraggedDecoration);
             SaveState();
-            SetContextShopping();
+            SetContextPurchase();
         }
 
         public void CancelDeletion()
         {
             SwitchSlotTo(startDragSlot);
-            SetContextShopping();
+            SetContextPurchase();
         }
 
         public void ConfirmMovement()
         {
             SaveState();
-            SetContextShopping();
+            SetContextPurchase();
         }
     }
 }

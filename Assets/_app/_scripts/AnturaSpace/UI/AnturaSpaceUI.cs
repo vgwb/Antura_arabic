@@ -184,10 +184,12 @@ namespace Antura.AnturaSpace.UI
             if (IsShopPanelOpen)
             {
                 ShopPanelContainer.gameObject.SetActive(true);
+                ShopDecorationsManager.I.SetContextPurchase();
                 showShopTween.PlayForward();
             }
             else
             {
+                ShopDecorationsManager.I.SetContextClosed();
                 showShopTween.PlayBackwards();
             }
         }

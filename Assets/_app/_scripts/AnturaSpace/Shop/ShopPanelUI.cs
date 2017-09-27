@@ -83,6 +83,8 @@ namespace Antura.AnturaSpace
                     showDragPanelTween.PlayForward();
                     showConfirmationPanelTween.PlayBackwards();
                     break;
+                case ShopContext.Closed:
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException("shopContext", shopContext, null);
             }
