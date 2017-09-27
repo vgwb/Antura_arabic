@@ -1,5 +1,6 @@
 ﻿using Antura.Audio;
 using Antura.Core;
+using Antura.Database;
 using Antura.UI;
 using TMPro;
 using UnityEngine;
@@ -39,8 +40,7 @@ namespace Antura.AnturaSpace
                 }
                 else
                 {
-                    // TODO: play some dialog  too
-                    AudioManager.I.PlaySound(Sfx.KO);
+                    ErrorFeedback();
                 }
             }
         }
@@ -55,9 +55,23 @@ namespace Antura.AnturaSpace
                 }
                 else
                 {
-                    // TODO: play some dialog  too
-                    AudioManager.I.PlaySound(Sfx.KO);
+                    ErrorFeedback();
                 }
+            }
+        }
+
+        void ErrorFeedback()
+        {
+            AudioManager.I.PlaySound(Sfx.KO);
+
+            if (shopAction.NotEnoughBones)
+            {
+                // TODO: change this
+                AudioManager.I.PlayDialogue(LocalizationDataId.ReservedArea_SectionDescription_Error);
+            }
+            else
+            {
+                AudioManager.I.PlayDialogue(shopAction.errorLocalizationID);
             }
         }
 

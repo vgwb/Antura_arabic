@@ -1,5 +1,6 @@
 ﻿using System;
 using Antura.Core;
+using Antura.Database;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -8,6 +9,7 @@ namespace Antura.AnturaSpace
     {
         public Sprite iconSprite; 
         public int bonesCost;
+        public LocalizationDataId errorLocalizationID;
 
         public virtual bool IsOnTheSide
         {
@@ -18,9 +20,18 @@ namespace Antura.AnturaSpace
         {
             get
             {
+                return NotEnoughBones;
+            }
+        }
+
+        public bool NotEnoughBones
+        {
+            get
+            {
                 return AppManager.I.Player.GetTotalNumberOfBones() <= bonesCost;
             }
         }
+
 
         public Action OnActionPerformed;
 
