@@ -289,4 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 2
   id: tube
-  locked: 1
+  iconSprite: {fileID: 0}
+  slotFeedbackPrefabGo: {fileID: 1933888343436626, guid: 4020ebb045f13ff47991ad7231851bdf,
+    type: 2}
+  feedback: {fileID: 0}

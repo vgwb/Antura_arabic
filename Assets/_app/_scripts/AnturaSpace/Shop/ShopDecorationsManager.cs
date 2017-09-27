@@ -6,9 +6,8 @@ using System.Linq;
 using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.DeInspektor;
 using DG.DeInspektor.Attributes;
-using UnityEditor;
+using Debug = UnityEngine.Debug;
 
 namespace Antura.AnturaSpace
 {
@@ -16,6 +15,9 @@ namespace Antura.AnturaSpace
     {
 
         public Transform deletePropButtonTransform;
+        public GameObject slotFeedbackPrefabGo;
+        public float thresholdForDelete = 200;
+        public float thresholdForPlacement = 200;
 
         private List<ShopDecorationObject> allShopDecorations = new List<ShopDecorationObject>();
         private List<ShopDecorationSlot> allShopDecorationSlots = new List<ShopDecorationSlot>();
@@ -29,6 +31,7 @@ namespace Antura.AnturaSpace
         public Action OnDeleteConfirmationRequested;
         public Action OnPurchaseComplete;
         public Action OnPurchaseCancelled;
+
 
 
         // @note: call this to setup slots after you change them
@@ -108,7 +111,8 @@ namespace Antura.AnturaSpace
                     if (slot != null && decorationPrefab != null)
                     {
                         //Debug.Log("LOADING ASSIGNED " + slot + " AND " + decorationPrefab);
-                        slot.Assign(Instantiate(decorationPrefab));
+                        var newDeco = SpawnNewDecoration(decorationPrefab);
+                        slot.Assign(newDeco);
                     }
                 }
             }
@@ -136,12 +140,14 @@ namespace Antura.AnturaSpace
 
         #endregion
 
+
         private ShopDecorationObject SpawnNewDecoration(ShopDecorationObject UnlockableDecorationPrefab)
         {
             if (!HasSlotsForDecoration(UnlockableDecorationPrefab)) return null;
 
             var newDecoration = Instantiate(UnlockableDecorationPrefab);
             newDecoration.transform.localPosition = new Vector3(10000, 0, 0);
+            newDecoration.Initialise(slotFeedbackPrefabGo);
             return newDecoration;
         }
         
@@ -178,6 +184,7 @@ namespace Antura.AnturaSpace
 
             currentDraggedSlot = null;
             currentDraggedDecoration = decoToDrag;
+            currentDraggedDecoration.FocusHighlight(true);
             dragCoroutine = StartCoroutine(DragPlacementCO());
 
             if (OnDragStart != null) OnDragStart(decoToDrag);
@@ -186,6 +193,7 @@ namespace Antura.AnturaSpace
         private void StopDragPlacement()
         {
             if (OnDragStop != null) OnDragStop();
+            currentDraggedDecoration.FocusHighlight(false);
             StopCoroutine(dragCoroutine);
         }
 
@@ -208,7 +216,8 @@ namespace Antura.AnturaSpace
                 foreach (var slot in allAssignableSlots)
                 {
                     float distance = (Camera.main.WorldToScreenPoint(slot.transform.position) - Input.mousePosition).sqrMagnitude;
-                    if (distance < minDistance)
+                    
+                    if (distance < minDistance && distance < thresholdForPlacement*thresholdForPlacement )
                     {
                         minDistance = distance;
                         closestSlot = slot;
@@ -218,7 +227,6 @@ namespace Antura.AnturaSpace
                 // Check whether we are close to the delete button, instead
                 bool shouldBeDeleted = false;
                 float distanceForDelete = (Camera.main.WorldToScreenPoint(deletePropButtonTransform.position) - Input.mousePosition).sqrMagnitude;
-                float thresholdForDelete = 200;
                 if (distanceForDelete < thresholdForDelete * thresholdForDelete)
                 {
                     closestSlot = null;
@@ -230,12 +238,10 @@ namespace Antura.AnturaSpace
                     deletePropButtonTransform.GetComponent<Image>().color = Color.red;
                 }
 
-                // Place the object there
+                // Place the object there (change slot)
                 if (closestSlot != currentDraggedSlot && closestSlot != null)
                 {
-                    if (currentDraggedSlot != null) currentDraggedSlot.Free();
-                    currentDraggedSlot = closestSlot;
-                    currentDraggedSlot.Assign(currentDraggedDecoration);
+                    SwitchSlotTo(closestSlot);
                 }
 
                 // Update highlights
@@ -263,6 +269,24 @@ namespace Antura.AnturaSpace
                 }
                 yield return null;
             }
+        }
+
+        private void SwitchSlotTo(ShopDecorationSlot newSlot)
+        {
+            if (currentDraggedSlot != null)
+            {
+                currentDraggedSlot.Free();
+            }
+            else
+            {
+                startDragSlot = newSlot;
+                Debug.LogWarning("SET START: " + startDragSlot);
+            }
+            Debug.Log("Switching to " + newSlot);
+            Debug.Log("Deco is " + currentDraggedDecoration);
+            currentDraggedSlot = newSlot;
+            currentDraggedDecoration.Spawn();
+            currentDraggedSlot.Assign(currentDraggedDecoration);
         }
 
         private void ReleaseDragPlacement(bool shouldBeDeleted)
@@ -322,6 +346,7 @@ namespace Antura.AnturaSpace
         public void ConfirmPurchase()
         {
             if (OnPurchaseComplete != null) OnPurchaseComplete();
+            //currentDraggedDecoration.SetAsReal();
             SaveState();
             SetContextShopping();
         }
@@ -342,6 +367,7 @@ namespace Antura.AnturaSpace
 
         public void CancelDeletion()
         {
+            SwitchSlotTo(startDragSlot);
             SetContextShopping();
         }
 
