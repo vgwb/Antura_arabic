@@ -238,6 +238,7 @@ namespace Antura.AnturaSpace
                 if (distanceForDelete < thresholdForDelete * thresholdForDelete)
                 {
                     closestSlot = null;
+                    SwitchSlotTo(null);
                     deletePropButtonTransform.GetComponent<Image>().color = Color.cyan;
                     shouldBeDeleted = true;
                 }
@@ -285,16 +286,28 @@ namespace Antura.AnturaSpace
             {
                 currentDraggedSlot.Free();
             }
-            else
+
+            if (startDragSlot == null)
             {
                 startDragSlot = newSlot;
                 Debug.LogWarning("SET START: " + startDragSlot);
             }
+
             Debug.Log("Switching to " + newSlot);
             Debug.Log("Deco is " + currentDraggedDecoration);
+
             currentDraggedSlot = newSlot;
-            currentDraggedDecoration.Spawn();
-            currentDraggedSlot.Assign(currentDraggedDecoration);
+            if (currentDraggedSlot == null)
+            {
+                currentDraggedDecoration.Despawn();
+                currentDraggedDecoration.transform.position = Vector3.right * 10000;
+            }
+            else
+            {
+                currentDraggedDecoration.Spawn();
+                currentDraggedSlot.Assign(currentDraggedDecoration);
+            }
+
         }
 
         private void ReleaseDragPlacement(bool shouldBeDeleted)
