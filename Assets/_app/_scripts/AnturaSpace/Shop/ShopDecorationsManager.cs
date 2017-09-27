@@ -91,7 +91,7 @@ namespace Antura.AnturaSpace
             }
 
             shopContext = ShopContext.Purchase;
-            Debug.Log("CONTEXT: " + shopContext);
+            //Debug.Log("CONTEXT: " + shopContext);
             if (OnContextChange != null) OnContextChange(shopContext);
         }
 
@@ -301,11 +301,11 @@ namespace Antura.AnturaSpace
             if (startDragSlot == null)
             {
                 startDragSlot = newSlot;
-                Debug.LogWarning("SET START: " + startDragSlot);
+                //Debug.LogWarning("SET START: " + startDragSlot);
             }
 
-            Debug.Log("Switching to " + newSlot);
-            Debug.Log("Deco is " + currentDraggedDecoration);
+            //Debug.Log("Switching to " + newSlot);
+            //Debug.Log("Deco is " + currentDraggedDecoration);
 
             currentDraggedSlot = newSlot;
             if (currentDraggedSlot == null)
@@ -363,18 +363,18 @@ namespace Antura.AnturaSpace
             for (var index = 0; index < allShopDecorationSlots.Count; index++)
             {
                 var slot = allShopDecorationSlots[index];
-                Debug.Log("Check slot: " + slot);
+                //Debug.Log("Check slot: " + slot);
                 shopState.occupiedSlots[index] = new ShopSlotState
                 {
                     slotType = slot.slotType,
                     slotIndex = slot.slotIndex,
                     decorationID = slot.Assigned ? slot.AssignedDecorationObject.id : ""
                 };
-                Debug.Log("NEW SLOT STATE " + shopState.occupiedSlots[index].ToString());
+                //Debug.Log("NEW SLOT STATE " + shopState.occupiedSlots[index].ToString());
             }
 
-            Debug.Log(shopState);
-            Debug.Log(shopState.ToJson());
+            //Debug.Log(shopState);
+            //Debug.Log(shopState.ToJson());
             AppManager.I.Player.Save();
         }
 
@@ -384,7 +384,6 @@ namespace Antura.AnturaSpace
         {
             currentDraggedSlot.Spawn();
             if (OnPurchaseComplete != null) OnPurchaseComplete();
-            //currentDraggedDecoration.SetAsReal();
             SaveState();
             SetContextPurchase();
         }
