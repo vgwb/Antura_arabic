@@ -218,9 +218,9 @@ namespace Antura.AnturaSpace
 
         private void EndPlacementContext()
         {
-            // TODO: can be removed
             currentDraggedDecoration = null;
             currentDraggedSlot = null;
+            startDragSlot = null;
         }
 
         private IEnumerator DragPlacementCO()
