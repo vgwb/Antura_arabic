@@ -46,8 +46,6 @@ namespace Antura.AnturaSpace
 
             yield return new WaitForEndOfFrame();
 
-            Debug.Log("Taking the SCREEN");
-
             currentPhotoTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
             currentPhotoTexture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
             currentPhotoTexture.Apply();
@@ -64,7 +62,6 @@ namespace Antura.AnturaSpace
 
         public void ConfirmPhoto()
         {
-            Debug.Log("Saving the SCREEN");
             AppManager.I.Services.Gallery.SaveScreenshot(currentPhotoTexture);
             currentPhotoTexture = null;
             if (OnPurchaseCompleted != null) OnPurchaseCompleted();

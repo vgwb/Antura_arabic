@@ -124,7 +124,6 @@ namespace Antura.AnturaSpace
 
         private void HandlePhotoConfirmationRequested()
         {
-            Debug.LogError("PLAY!");
             showShopPanelTween.PlayBackwards();
             showDragPanelTween.PlayBackwards();
 

@@ -56,28 +56,28 @@ namespace Antura.AnturaSpace
         public void SetContextClosed()
         {
             shopContext = ShopContext.Closed;
-            Debug.Log("CONTEXT: " + shopContext);
+            //Debug.Log("CONTEXT: " + shopContext);
             if (OnContextChange != null) OnContextChange(shopContext);
         }
 
         public void SetContextSpecialAction()
         {
             shopContext = ShopContext.SpecialAction;
-            Debug.Log("CONTEXT: " + shopContext);
+            //Debug.Log("CONTEXT: " + shopContext);
             if (OnContextChange != null) OnContextChange(shopContext);
         }
 
         private void SetContextNewPlacement()
         {
             shopContext = ShopContext.NewPlacement;
-            Debug.Log("CONTEXT: " + shopContext);
+            //Debug.Log("CONTEXT: " + shopContext);
             if (OnContextChange != null) OnContextChange(shopContext);
         }
 
         private void SetContextMovingPlacement()
         {
             shopContext = ShopContext.MovingPlacement;
-            Debug.Log("CONTEXT: " + shopContext);
+            //Debug.Log("CONTEXT: " + shopContext);
             if (OnContextChange != null) OnContextChange(shopContext);
         }
 
@@ -112,6 +112,10 @@ namespace Antura.AnturaSpace
             //Debug.Log("Decorations: " + allShopDecorations.Count);
 
             allShopDecorationSlots = new List<ShopDecorationSlot>(GetComponentsInChildren<ShopDecorationSlot>());
+            foreach (var slot in allShopDecorationSlots)
+            {
+                slot.Initialise(slotFeedbackPrefabGo);
+            }
             //Debug.Log("Slots: " + allShopDecorationSlots.Count);
 
             // Load state
@@ -306,12 +310,10 @@ namespace Antura.AnturaSpace
             currentDraggedSlot = newSlot;
             if (currentDraggedSlot == null)
             {
-                currentDraggedDecoration.Despawn();
                 currentDraggedDecoration.transform.position = Vector3.right * 10000;
             }
             else
             {
-                currentDraggedDecoration.Spawn();
                 currentDraggedSlot.Assign(currentDraggedDecoration);
             }
 
@@ -380,6 +382,7 @@ namespace Antura.AnturaSpace
 
         public void ConfirmPurchase()
         {
+            currentDraggedSlot.Spawn();
             if (OnPurchaseComplete != null) OnPurchaseComplete();
             //currentDraggedDecoration.SetAsReal();
             SaveState();
@@ -388,6 +391,7 @@ namespace Antura.AnturaSpace
 
         public void CancelPurchase()
         {
+            currentDraggedSlot.Despawn();
             DeleteDecoration(currentDraggedDecoration);
             if (OnPurchaseCancelled != null) OnPurchaseCancelled();
             SetContextPurchase();
@@ -395,6 +399,7 @@ namespace Antura.AnturaSpace
 
         public void ConfirmDeletion()
         {
+            startDragSlot.Despawn();
             DeleteDecoration(currentDraggedDecoration);
             SaveState();
             SetContextPurchase();
@@ -408,6 +413,7 @@ namespace Antura.AnturaSpace
 
         public void ConfirmMovement()
         {
+            currentDraggedSlot.Spawn();
             SaveState();
             SetContextPurchase();
         }

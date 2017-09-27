@@ -14,7 +14,7 @@ namespace Antura.AnturaSpace
         {
             var shopActionUI = GetComponent<ShopActionUI>();
             shopActionUI.SetAction(this);
-            ShopPhotoManager.I.OnPhotoConfirmationRequested += CommitAction;
+            ShopPhotoManager.I.OnPurchaseCompleted += CommitAction;
             ShopPhotoManager.I.CurrentPhotoCost = bonesCost;
         }
 

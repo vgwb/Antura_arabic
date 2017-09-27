@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4783989469421686}
   - component: {fileID: 114002241781352780}
   m_Layer: 0
-  m_Name: SlotFeedbackPrefab
+  m_Name: ShopSlotFeedbackPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
