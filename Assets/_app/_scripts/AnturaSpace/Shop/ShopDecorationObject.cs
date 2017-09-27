@@ -33,11 +33,12 @@ namespace Antura.AnturaSpace
 
         private void SetAsPreview()
         {
-
+            pulseTween = transform.DOScale(Vector3.one * 1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutCubic);
         }
 
         private void SetAsReal()
         {
+            pulseTween.Kill(true);
         }
 
         public void FocusHighlight(bool choice)
