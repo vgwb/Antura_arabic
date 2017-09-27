@@ -184,10 +184,6 @@ namespace Antura.AnturaSpace
 
                 throwableObject.SimpleThrow();
             }
-            else {
-                // TODO: set this as the sound for when a button is NOT clickable
-                AudioManager.I.PlaySound(Sfx.KO);
-            }
         }
 
         public void DragObject(ThrowableObject ObjectPrefab)
@@ -201,9 +197,6 @@ namespace Antura.AnturaSpace
 
                 DraggedTransform = throwableObject.transform;
                 throwableObject.Drag();
-            }
-            else {
-                AudioManager.I.PlaySound(Sfx.KO);
             }
         }
 
