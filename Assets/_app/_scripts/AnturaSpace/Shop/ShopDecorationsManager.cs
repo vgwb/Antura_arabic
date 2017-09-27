@@ -300,6 +300,13 @@ namespace Antura.AnturaSpace
         private void ReleaseDragPlacement(bool shouldBeDeleted)
         {
             StopDragPlacement();
+
+            // If not dragged on anything
+            if (!shouldBeDeleted && currentDraggedSlot == null)
+            {
+                CancelPurchase();
+            }
+
             if (shouldBeDeleted)
             {
                 if (shopContext == ShopContext.NewPlacement)

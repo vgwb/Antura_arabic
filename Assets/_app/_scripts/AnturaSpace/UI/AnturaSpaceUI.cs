@@ -180,6 +180,9 @@ namespace Antura.AnturaSpace.UI
 
         public void ToggleShopPanel()
         {
+            if (IsShopPanelOpen && ShopDecorationsManager.I.ShopContext != ShopContext.Purchase)
+                return;
+
             IsShopPanelOpen = !IsShopPanelOpen;
             if (IsShopPanelOpen)
             {

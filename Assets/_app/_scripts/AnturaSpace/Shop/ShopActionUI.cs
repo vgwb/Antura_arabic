@@ -1,4 +1,5 @@
-﻿using Antura.Core;
+﻿using Antura.Audio;
+using Antura.Core;
 using Antura.UI;
 using TMPro;
 using UnityEngine;
@@ -32,9 +33,14 @@ namespace Antura.AnturaSpace
         {
             if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase)
             {
-                if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
+                if (!shopAction.IsLocked)
                 {
                     shopAction.PerformAction();
+                }
+                else
+                {
+                    // TODO: play some dialog  too
+                    AudioManager.I.PlaySound(Sfx.KO);
                 }
             }
         }
@@ -43,9 +49,14 @@ namespace Antura.AnturaSpace
         {
             if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase)
             {
-                if (AppManager.I.Player.GetTotalNumberOfBones() >= shopAction.bonesCost)
+                if (!shopAction.IsLocked)
                 {
                     shopAction.PerformDrag();
+                }
+                else
+                {
+                    // TODO: play some dialog  too
+                    AudioManager.I.PlaySound(Sfx.KO);
                 }
             }
         }
