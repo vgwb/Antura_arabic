@@ -169,33 +169,35 @@ namespace Antura.AnturaSpace
             get { return spawnedObjects.Count < MaxSpawnedObjectsInScene; }
         }
 
-        public void ThrowObject(ThrowableObject ObjectPrefab)
+        public ThrowableObject ThrowObject(ThrowableObject ObjectPrefab)
         {
             if (DraggedTransform != null)
-                return;
+                return null;
 
             if (CanSpawnMoreObjects)
             {
                 AudioManager.I.PlaySound(Sfx.ThrowObj);
 
                 var throwableObject = SpawnNewObject(ObjectPrefab);
-
                 throwableObject.SimpleThrow();
+                return throwableObject;
             }
+            return null;
         }
 
-        public void DragObject(ThrowableObject ObjectPrefab)
+        public ThrowableObject DragObject(ThrowableObject ObjectPrefab)
         {
             if (DraggedTransform != null)
-                return;
+                return null;
 
             if (CanSpawnMoreObjects)
             {
                 var throwableObject = SpawnNewObject(ObjectPrefab);
-
                 DraggedTransform = throwableObject.transform;
                 throwableObject.Drag();
+                return throwableObject;
             }
+            return null;
         }
 
         private ThrowableObject SpawnNewObject(ThrowableObject ObjectPrefab)

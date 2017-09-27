@@ -33,7 +33,8 @@ namespace Antura.AnturaSpace
         }
 
 
-        public Action OnActionPerformed;
+        public Action OnActionCommitted;
+        public Action OnActionRefreshed;
 
         #region Virtual
 
@@ -55,8 +56,14 @@ namespace Antura.AnturaSpace
         protected virtual void CommitAction()
         {
             AppManager.I.Player.RemoveBones(bonesCost);
-            if (OnActionPerformed != null) OnActionPerformed();
+            if (OnActionCommitted != null) OnActionCommitted();
         }
+
+        protected void RefreshAction()
+        {
+            if (OnActionRefreshed != null) OnActionRefreshed();
+        }
+
         #endregion
 
 

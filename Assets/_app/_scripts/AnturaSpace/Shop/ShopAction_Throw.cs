@@ -13,15 +13,21 @@ namespace Antura.AnturaSpace
 
         public override void PerformAction()
         {
-            AnturaSpaceScene.ThrowObject(throwingObjectPrefabGO);
-            // TODO: attach to the ball's lifetime. Wwhen it dies, unlock this action
+            ThrowableObject thrownObject = AnturaSpaceScene.ThrowObject(throwingObjectPrefabGO);
+            if (thrownObject != null)
+            {
+                thrownObject.OnDeath += RefreshAction;
+            }
             CommitAction();
         }
 
         public override void PerformDrag()
         {
-            AnturaSpaceScene.DragObject(throwingObjectPrefabGO);
-            base.PerformDrag();
+            ThrowableObject thrownObject = AnturaSpaceScene.DragObject(throwingObjectPrefabGO);
+            if (thrownObject != null)
+            {
+                thrownObject.OnDeath += RefreshAction;
+            }
             CommitAction();
         }
 

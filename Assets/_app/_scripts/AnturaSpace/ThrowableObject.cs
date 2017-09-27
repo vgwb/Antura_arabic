@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using Antura.Audio;
 using Antura.Minigames;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Antura.AnturaSpace
 {
@@ -103,6 +105,8 @@ namespace Antura.AnturaSpace
             return m_bIsDragged;
         }
 
+        public Action OnDeath;
+
         #endregion
 
         #region INTERNALS
@@ -202,6 +206,8 @@ namespace Antura.AnturaSpace
                 poofSound.Stop();
                 poofSound = null;
             }
+
+            if (OnDeath != null) OnDeath();
             CancelInvoke();
         }
 

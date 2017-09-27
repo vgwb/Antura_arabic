@@ -27,7 +27,8 @@ namespace Antura.AnturaSpace
             shopActions = GetComponentsInChildren<ShopAction>();
             foreach (var shopAction in shopActions)
             {
-                shopAction.OnActionPerformed += HandleActionPerformed;
+                shopAction.OnActionCommitted += HandleActionPerformed;
+                shopAction.OnActionRefreshed += HandleActionRefreshed;
             }
 
             ShopPanelUi.SetActions(shopActions);
@@ -35,6 +36,11 @@ namespace Antura.AnturaSpace
         }
 
         private void HandleActionPerformed()
+        {
+            UpdateAllActions();
+        }
+
+        private void HandleActionRefreshed()
         {
             UpdateAllActions();
         }

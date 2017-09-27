@@ -7,9 +7,6 @@ namespace Antura.AnturaSpace
 {
     public class ShopAction_Photo : ShopAction
     {
-        // TODO: set a limit for photos to be saved
-        //public int photoLimit = 10;
-
         void Awake()
         {
             var shopActionUI = GetComponent<ShopActionUI>();
@@ -23,11 +20,14 @@ namespace Antura.AnturaSpace
             ShopPhotoManager.I.TakePhoto();
         }
 
+        // TODO: optionally set a limit for photos to be saved
+        //public int photoLimit = 10;
+
         public override bool IsLocked
         {
             get
             {
-                if (base.IsLocked) return base.IsLocked;
+                if (base.IsLocked) return true;
                 return false;
             }
         }
