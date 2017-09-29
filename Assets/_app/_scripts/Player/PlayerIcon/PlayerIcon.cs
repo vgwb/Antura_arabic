@@ -22,7 +22,7 @@ namespace Antura.Profile
         public bool AutoInit;
 
         public Sprite EndgameHat, EndgameHatWStars;
-        public Image HighlightImage;
+        public GameObject HighlightImage;
         public Image HatImage;
         public Image IconImage;
         public string Uuid { get; private set; }
@@ -103,7 +103,7 @@ namespace Antura.Profile
             }
 
             // Debug.Log("hasMaxStarsInCurrentPlaySessions: " + hasMaxStarsInCurrentPlaySessions);
-            HighlightImage.gameObject.SetActive(hasMaxStarsInCurrentPlaySessions);
+            HighlightImage.SetActive(hasMaxStarsInCurrentPlaySessions);
         }
 
         [DeMethodButton("DEBUG: Randomize Appearance", mode = DeButtonMode.PlayModeOnly)]
