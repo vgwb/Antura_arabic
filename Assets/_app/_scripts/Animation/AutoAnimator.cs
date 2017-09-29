@@ -17,10 +17,12 @@ namespace Antura.Animation
         public AnimationType AnimType;
         public float To;
         public float Duration;
+        public bool ScaleInOnEnable;
+        public float ScaleInDuration = 0.3f;
 
         #endregion
 
-        Tween animTween;
+        Sequence animTween;
 
         #region Unity
 
@@ -46,10 +48,18 @@ namespace Antura.Animation
 
         void CreateAnimation()
         {
+            animTween = DOTween.Sequence().SetAutoKill(false);
+            if (ScaleInOnEnable) {
+                animTween.Append(
+                    transform.DOScale(0.0001f, ScaleInDuration).From().SetEase(Ease.OutSine)
+                );
+            }
             switch (AnimType)
             {
                 case AnimationType.RotateZ:
-                    animTween = transform.DORotate(new Vector3(0, 0, To), Duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+                    animTween = animTween.Join(
+                        transform.DORotate(new Vector3(0, 0, To), Duration, RotateMode.FastBeyond360).SetLoops(int.MaxValue).SetEase(Ease.Linear)
+                    );
                     break;
             }
         }
