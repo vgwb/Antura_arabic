@@ -7,7 +7,7 @@ namespace Antura.AnturaSpace
 {
     public class ShopAction_Photo : ShopAction
     {
-        void Awake()
+        void Start()
         {
             var shopActionUI = GetComponent<ShopActionUI>();
             shopActionUI.SetAction(this);
@@ -27,7 +27,10 @@ namespace Antura.AnturaSpace
         {
             get
             {
-                if (base.IsLocked) return true;
+                if (base.IsLocked)
+                {
+                    return true;
+                }
                 return false;
             }
         }
