@@ -16,6 +16,11 @@ namespace Antura.AnturaSpace
             get { return false; }
         }
 
+        public virtual bool CanPurchaseAnywhere
+        {
+            get { return false; }
+        }
+
         public virtual bool IsLocked
         {
             get

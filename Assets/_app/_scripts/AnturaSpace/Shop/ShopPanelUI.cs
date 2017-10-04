@@ -15,6 +15,7 @@ namespace Antura.AnturaSpace
 
         public RectTransform purchasePanelBottom;
         public RectTransform purchasePanelSide;
+        public RectTransform purchasePanelAlwaysAvailableUI;
         public RectTransform dragPanel;
         public RectTransform confirmationPanel;
         public ShopConfirmationPanelUI confirmationPanelUI;
@@ -22,9 +23,12 @@ namespace Antura.AnturaSpace
         public Button confirmationYesButton;
         public Button confirmationNoButton;
 
-        private List<ShopActionUI> actionUIs;    
+        private List<ShopActionUI> actionUIs;
 
-        private Tween showShopPanelTween, showDragPanelTween, showConfirmationPanelTween;
+        private Tween showShopPanelTween,
+            showDragPanelTween,
+            showConfirmationPanelTween,
+            showPurchasePanelAlwaysAvailableTween;
 
 
         public void SetActions(ShopAction[] shopActions)
@@ -51,7 +55,12 @@ namespace Antura.AnturaSpace
             showDragPanelTween = DOTween.Sequence().SetAutoKill(false).Pause()
                     .Append(dragPanel.DOAnchorPosY(-350, duration).From().SetEase(Ease.OutBack));
             showConfirmationPanelTween =
-                confirmationPanel.DOAnchorPosY(-350, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause();
+                confirmationPanel.DOAnchorPosY(-350, duration).From().SetEase(Ease.Linear).SetAutoKill(false).Pause();
+            showPurchasePanelAlwaysAvailableTween =
+                purchasePanelAlwaysAvailableUI.DOAnchorPosX(1250, duration)
+                    .From()
+                    .SetEase(Ease.OutBack)
+                    .SetAutoKill(false);
 
             ShopDecorationsManager.I.OnContextChange += HandleContextChange;
             ShopDecorationsManager.I.OnPurchaseConfirmationRequested += HandlePurchaseConfirmationRequested;
@@ -67,6 +76,7 @@ namespace Antura.AnturaSpace
 
         private void HandleContextChange(ShopContext shopContext)
         {
+            //Debug.Log("CONTEXT: " + shopContext);
             switch (shopContext)
             {
                 case ShopContext.Purchase:
@@ -90,6 +100,8 @@ namespace Antura.AnturaSpace
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 case ShopContext.Closed:
+                    showPurchasePanelAlwaysAvailableTween.PlayForward();
+                    showConfirmationPanelTween.PlayBackwards();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("shopContext", shopContext, null);
@@ -99,6 +111,7 @@ namespace Antura.AnturaSpace
         private void HandlePurchaseConfirmationRequested()
         {
             showDragPanelTween.PlayBackwards();
+            showPurchasePanelAlwaysAvailableTween.PlayBackwards();
 
             confirmationPanelUI.SetupForPurchase();
             confirmationYesButton.onClick.RemoveAllListeners();
@@ -112,6 +125,7 @@ namespace Antura.AnturaSpace
         private void HandleDeleteConfirmationRequested()
         {
             showDragPanelTween.PlayBackwards();
+            showPurchasePanelAlwaysAvailableTween.PlayBackwards();
 
             confirmationPanelUI.SetupForDeletion();
             confirmationYesButton.onClick.RemoveAllListeners();
@@ -126,6 +140,7 @@ namespace Antura.AnturaSpace
         {
             showShopPanelTween.PlayBackwards();
             showDragPanelTween.PlayBackwards();
+            showPurchasePanelAlwaysAvailableTween.PlayBackwards();
 
             confirmationPanelUI.SetupForPhoto();
             confirmationYesButton.onClick.RemoveAllListeners();

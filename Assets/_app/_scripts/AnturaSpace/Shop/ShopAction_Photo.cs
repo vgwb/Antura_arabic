@@ -35,6 +35,11 @@ namespace Antura.AnturaSpace
             }
         }
 
+        public override bool CanPurchaseAnywhere
+        {
+            get { return true; }
+        }
+
         public override bool IsOnTheSide
         {
             get { return true; }

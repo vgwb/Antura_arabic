@@ -31,7 +31,7 @@ namespace Antura.AnturaSpace
 
         public void OnClick()
         {
-            if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase)
+            if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase || shopAction.CanPurchaseAnywhere)
             {
                 if (!shopAction.IsLocked)
                 {

@@ -50,7 +50,7 @@ namespace Antura.AnturaSpace.UI
 
         public static AnturaSpaceUI I { get; private set; }
         public bool IsModsPanelOpen { get; private set; }
-        public bool IsShopPanelOpen { get; private set; }
+        //public bool IsShopPanelOpen { get; private set; }
 
         bool isTutorialMode;
         AnturaSpaceCategoryButton[] btsCategories;
@@ -180,11 +180,11 @@ namespace Antura.AnturaSpace.UI
 
         public void ToggleShopPanel()
         {
-            if (IsShopPanelOpen && ShopDecorationsManager.I.ShopContext != ShopContext.Purchase)
-                return;
+            //if (IsShopPanelOpen && ShopDecorationsManager.I.ShopContext != ShopContext.Purchase)
+            //    return;
 
-            IsShopPanelOpen = !IsShopPanelOpen;
-            if (IsShopPanelOpen)
+            //IsShopPanelOpen = !IsShopPanelOpen;
+            if (ShopDecorationsManager.I.ShopContext == ShopContext.Closed)
             {
                 ShopPanelContainer.gameObject.SetActive(true);
                 ShopDecorationsManager.I.SetContextPurchase();
