@@ -9,6 +9,7 @@ namespace Antura.AnturaSpace
     public class ShopDragIconUI : MonoBehaviour
     {
         public Image iconUI;
+        public CanvasScaler canvasScaler;
 
         private void Start()
         {
@@ -33,7 +34,8 @@ namespace Antura.AnturaSpace
         {
             if (isDragging)
             {
-                iconUI.rectTransform.anchoredPosition = Input.mousePosition - new Vector3(Screen.width/2, Screen.height/2);
+                float resolutionRatio = Screen.height / canvasScaler.referenceResolution.y;
+                iconUI.rectTransform.anchoredPosition = (Input.mousePosition- new Vector3(Screen.width/2, Screen.height/2))  / resolutionRatio;
             }
             else
             {

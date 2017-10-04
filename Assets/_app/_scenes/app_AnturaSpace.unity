@@ -3038,6 +3038,7 @@ MonoBehaviour:
   sideButtonsPivotTr: {fileID: 1174128379}
   purchasePanelBottom: {fileID: 1218009425}
   purchasePanelSide: {fileID: 71844669}
+  purchasePanelAlwaysAvailableUI: {fileID: 761636412}
   dragPanel: {fileID: 1091952477}
   confirmationPanel: {fileID: 1846403118}
   confirmationPanelUI: {fileID: 1846403121}
@@ -7132,7 +7133,7 @@ GameObject:
   - component: {fileID: 761636414}
   - component: {fileID: 761636413}
   m_Layer: 5
-  m_Name: SideShopButtonsPivot
+  m_Name: ShopAlwaysAvailableButtonsPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8116,6 +8117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconUI: {fileID: 909240290}
+  canvasScaler: {fileID: 1668913314}
 --- !u!1 &911961470
 GameObject:
   m_ObjectHideFlags: 0
@@ -10124,7 +10126,7 @@ Prefab:
     - target: {fileID: 224859546621181490, guid: 21d6847d9291cd94f8c9933be8996bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -273
       objectReference: {fileID: 0}
     - target: {fileID: 224859546621181490, guid: 21d6847d9291cd94f8c9933be8996bd0,
         type: 2}
