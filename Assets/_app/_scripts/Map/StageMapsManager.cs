@@ -558,8 +558,12 @@ namespace Antura.Map
                 return 0;
 
             if (stageMap.stageNumber < st)
-                return stageMap.maxPlayerPosIndex;
+                return stageMap.maxPinIndex;
 
+            var pin = stageMap.PinForJourneyPosition(journeyPos);
+            return pin.pinIndex;
+
+            /*
             if (AppManager.I.JourneyHelper.IsAssessmentTime(journeyPos))
             {
                 // Player is on a pin
@@ -571,7 +575,7 @@ namespace Antura.Map
                 // Player is on a dot
                 var dot = stageMap.PinForLB(lb).rope.DotForPS(ps);
                 return dot.playerPosIndex;
-            }
+            }*/
         }
 
         #endregion

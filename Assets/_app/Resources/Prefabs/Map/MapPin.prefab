@@ -125,7 +125,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 221.8, y: -2.19, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4062364546475702}
@@ -444,6 +444,7 @@ MonoBehaviour:
   pinAssessment: {fileID: 104780}
   currentPinMesh: {fileID: 0}
   isLocked: 0
+  pinIndex: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -1108,7 +1109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf6386558ab7e145856d03affd5cadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPosIndex: 0
   isLocked: 0
   blackDot: {fileID: 2100000, guid: 4e4094f1e77806a48b7614b34330a0d6, type: 2}
   redDot: {fileID: 2100000, guid: a5e4f68df693e0a4b9ef30f50a24a399, type: 2}

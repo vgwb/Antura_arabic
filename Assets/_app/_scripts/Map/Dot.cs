@@ -6,10 +6,11 @@ namespace Antura.Map
 {
     /// <summary>
     /// A dot on the map. 
-    /// Defines a non-assessment play session.
+    /// DEPRECATED - it should now be only VISUAL
     /// </summary>
-    public class Dot : MonoBehaviour, IMapLocation
+    public class Dot : MonoBehaviour //, IMapLocation
     {
+        /*
         public Vector3 Position
         {
             get { return transform.position; }
@@ -21,9 +22,10 @@ namespace Antura.Map
         }
 
         [HideInInspector]
-        public int playerPosIndex;
+        public int pinIndex;
 
         private JourneyPosition journeyPosition;
+        */
 
         [HideInInspector]
         public bool isLocked;
@@ -34,10 +36,10 @@ namespace Antura.Map
 
         public MeshRenderer scoreFeedbackRenderer;
 
-        public void Initialise(JourneyPosition _journeyPosition) //int _stage, int _learningBlock, int _playSession)
+        /*public void Initialise(JourneyPosition _journeyPosition) //int _stage, int _learningBlock, int _playSession)
         {
             this.journeyPosition = _journeyPosition;
-        }
+        }*/
 
         private void OnTriggerEnter(Collider other)
         {
@@ -79,6 +81,7 @@ namespace Antura.Map
             gameObject.SetActive(false);
         }
 
+        /*
         public void SetPlaySessionState(PlaySessionState playSessionState)
         {
             scoreFeedbackRenderer.gameObject.SetActive(false);
@@ -104,7 +107,7 @@ namespace Antura.Map
                     mat.color = Color.yellow;
                     break;
             }*/
-        }
+        /*}*/
 
         #region Appear / Disappear
 

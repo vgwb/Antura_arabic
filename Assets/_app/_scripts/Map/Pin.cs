@@ -9,15 +9,15 @@ namespace Antura.Map
     /// A pin on the map. 
     /// Defines a PlaySession. Either assessment or minigame.
     /// </summary>
-    public class Pin : MonoBehaviour
+    public class Pin : MonoBehaviour, IMapLocation
     {
         [HideInInspector]
-        public int learningBlock;
+        public int learningBlock;   // DEPRECATED
         [HideInInspector]
         public JourneyPosition journeyPosition;
 
         [Header("References")]
-        public Dot dot;
+        public Dot dot;     // DEPRECATED (only for visual purposes)
 
         [HideInInspector]
         public Rope rope;
@@ -38,11 +38,24 @@ namespace Antura.Map
         private Vector3 startPinPosition;
         private Vector3 startRopeScale;
 
-        public void Initialise(JourneyPosition _journeyPosition) //int _stage, int _learningBlock, int _playSession)
+        public Vector3 Position
         {
+            get { return transform.position; }
+        }
+
+        public JourneyPosition JourneyPos
+        {
+            get { return journeyPosition; }
+        }
+
+        public int pinIndex;
+
+        public void Initialise(int _pinIndex, JourneyPosition _journeyPosition) //int _stage, int _learningBlock, int _playSession)
+        {
+            pinIndex = _pinIndex;
             journeyPosition = _journeyPosition;
 
-            this.name = "Pin_" + _journeyPosition.ToString();
+            name = "Pin_" + _journeyPosition.ToString();
 
             // Coloring of the PIN based on the journey position
             pinV1.gameObject.SetActive(false);
@@ -66,7 +79,7 @@ namespace Antura.Map
 
             // TODO: no more dots?
             // The dot is set at the assessment
-            dot.Initialise(journeyPosition);
+            //dot.Initialise(journeyPosition);
 
             shadowTr = transform.Find("shadow");
         }
@@ -184,5 +197,6 @@ namespace Antura.Map
             }
             */
         }
+
     }
 }
