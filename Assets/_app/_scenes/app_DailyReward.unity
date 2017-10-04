@@ -972,7 +972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.4197388, y: -128}
+  m_AnchoredPosition: {x: 1.4197388, y: -145}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &747543540
@@ -1120,7 +1120,7 @@ Prefab:
     - target: {fileID: 224690145760554942, guid: 85570567766281647a4e4c7f2f60470e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -227.5
+      value: -227.29706
       objectReference: {fileID: 0}
     - target: {fileID: 224690145760554942, guid: 85570567766281647a4e4c7f2f60470e,
         type: 2}
@@ -1517,7 +1517,7 @@ MonoBehaviour:
   To: -360
   Duration: 10
   ScaleInOnEnable: 1
-  ScaleInDuration: 0.5
+  ScaleInDuration: 0.25
 --- !u!114 &1236241909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2095,7 +2095,7 @@ Prefab:
     - target: {fileID: 224690145760554942, guid: 85570567766281647a4e4c7f2f60470e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -227.5
+      value: -227.29706
       objectReference: {fileID: 0}
     - target: {fileID: 224690145760554942, guid: 85570567766281647a4e4c7f2f60470e,
         type: 2}
@@ -2381,7 +2381,7 @@ MonoBehaviour:
   To: 360
   Duration: 10
   ScaleInOnEnable: 1
-  ScaleInDuration: 0.5
+  ScaleInDuration: 0.25
 --- !u!114 &1501019512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2470,7 +2470,7 @@ Prefab:
     - target: {fileID: 224690145760554942, guid: 85570567766281647a4e4c7f2f60470e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -227.5
+      value: -227.29706
       objectReference: {fileID: 0}
     - target: {fileID: 224690145760554942, guid: 85570567766281647a4e4c7f2f60470e,
         type: 2}
@@ -3095,7 +3095,7 @@ Prefab:
     - target: {fileID: 224690145760554942, guid: 85570567766281647a4e4c7f2f60470e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -227.5
+      value: -227.29706
       objectReference: {fileID: 0}
     - target: {fileID: 224690145760554942, guid: 85570567766281647a4e4c7f2f60470e,
         type: 2}
@@ -3229,7 +3229,7 @@ Prefab:
     - target: {fileID: 224690145760554942, guid: 85570567766281647a4e4c7f2f60470e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -227.5
+      value: -227.29706
       objectReference: {fileID: 0}
     - target: {fileID: 224690145760554942, guid: 85570567766281647a4e4c7f2f60470e,
         type: 2}

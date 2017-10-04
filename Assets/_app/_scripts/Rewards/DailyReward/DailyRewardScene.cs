@@ -103,10 +103,13 @@ namespace Antura.Rewards
             {
                 dailyRewardUIs[combo_i].SetUnlocked();
             }
+            // Prepare the next one
+            dailyRewardUIs[newRewardUIIndex].SetReadyToBeUnlocked();
 
             // Initialise UI as hidden
             bonesCounter.Hide();
             todayPivot.transform.position = Vector3.right * 1000;
+            todayPivot.gameObject.SetActive(false);
             yesterdayTextGo.SetActive(newRewardUIIndex > 0);
             claimButton.gameObject.SetActive(false);
 
@@ -121,20 +124,29 @@ namespace Antura.Rewards
             if (withTranslation)
                 dailyRewardUIPivot.transform.localPosition = Vector3.left * 200;
 
-            yield return new WaitForSeconds(1.0f);
+            Sequence s = DOTween.Sequence().AppendInterval(1f);
+            if (withTranslation) s.Append(dailyRewardUIPivot.DOLocalMoveX(0, 1f).SetEase(Ease.InOutSine));
+            s.AppendCallback(() => {
+                todayPivot.transform.position = dailyRewardUIs[newRewardUIIndex].transform.position;
+                todayPivot.gameObject.SetActive(true);
+            });
+            s.Insert(s.Duration() - 0.15f, dailyRewardUIs[newRewardUIIndex].transform.DOScale(1.2f, 0.35f).SetEase(Ease.OutBack));
+            yield return s.WaitForCompletion();
 
-            //  Translate to the middle
-            if (withTranslation)
-                dailyRewardUIPivot.DOLocalMoveX(0, 1f).SetEase(Ease.InOutCubic);
-
-            dailyRewardUIs[newRewardUIIndex].transform.DOScale(1.2f, 1f).SetEase(Ease.InOutCubic);
-
-            yield return new WaitForSeconds(1.0f);
+//            yield return new WaitForSeconds(1.0f);
+//
+//            //  Translate to the middle
+//            if (withTranslation)
+//                dailyRewardUIPivot.DOLocalMoveX(0, 1f).SetEase(Ease.InOutSine);
+//
+//            dailyRewardUIs[newRewardUIIndex].transform.DOScale(1.3f, 1f).SetEase(Ease.OutBack);
+//
+//            yield return new WaitForSeconds(1.0f);
 
             // Show the TODAY on the new one
-            todayPivot.transform.position = dailyRewardUIs[newRewardUIIndex].transform.position;
+//            todayPivot.transform.position = dailyRewardUIs[newRewardUIIndex].transform.position;
 
-            yield return new WaitForSeconds(1.0f);
+//            yield return new WaitForSeconds(1.0f);
 
             // Show the bones counter
             bonesCounter.Show();
@@ -175,7 +187,7 @@ namespace Antura.Rewards
         IEnumerator UnlockNewRewardCO()
         {
             // Unlock the new one
-            dailyRewardUIs[newRewardUIIndex].SetUnlocked();
+            dailyRewardUIs[newRewardUIIndex].SetUnlocked(true);
 
             // Add the new reward (for now, just bones)
             int nNewBones = dailyRewardManager.GetReward(newRewardContentIndex).amount;

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using Antura.UI;
+using DG.DeExtensions;
+using DG.Tweening;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -9,22 +11,41 @@ namespace Antura.Rewards
 {
     public class DailyRewardUI : MonoBehaviour
     {
+        public Color unlockedColor = Color.green;
+
         public Sprite bonesSprite;
         public Sprite test1Sprite;
         public Sprite test2Sprite;
 
+        public Image bgImg;
         public Image imageUI;
         public TextMeshProUGUI amountTextUI;
 
         public Image lockUI;
-        public Image unlockUI;
+        public CanvasGroup unlockUI;
 
         public TextRender dayTextUI;
+
+        Color lockedColor;
+        Tween unlockTween;
 
         void Awake()
         {
             // @note: Lock is not used anymore, we hide it
+            lockedColor = bgImg.color;
             lockUI.gameObject.SetActive(false);
+
+            unlockTween = DOTween.Sequence().SetAutoKill(false).Pause()
+                .Append(this.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.5f))
+                .Join(bgImg.DOColor(unlockedColor, 0.5f))
+                .Join(unlockUI.DOFade(0, 0.5f).From())
+                .Join(imageUI.transform.DOPunchRotation(new Vector3(0, 0, 20), 0.8f));
+            unlockTween.ForceInit();
+        }
+
+        void OnDestroy()
+        {
+            unlockTween.Kill();
         }
 
         public void SetReward(DailyRewardManager.DailyReward reward)
@@ -58,12 +79,32 @@ namespace Antura.Rewards
 
         public void SetLocked()
         {
+            unlockTween.Rewind();
+            bgImg.SetAlpha(0.6f);
+            imageUI.SetAlpha(0.6f);
             unlockUI.gameObject.SetActive(false);
         }
 
-        public void SetUnlocked()
+        public void SetReadyToBeUnlocked()
         {
-            unlockUI.gameObject.SetActive(true);
+            SetLocked();
+            bgImg.SetAlpha(1f);
+            imageUI.SetAlpha(1f);
+        }
+
+        public void SetUnlocked(bool animate = false)
+        {
+            bgImg.color = unlockedColor;
+            if (!animate)
+            {
+                bgImg.SetAlpha(1);
+                imageUI.SetAlpha(1);
+                unlockUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                unlockTween.Restart();
+            }
         }
 
         public void SetDay(int day)
