@@ -21,6 +21,12 @@ namespace Antura.Rewards
 
         public TextRender dayTextUI;
 
+        void Awake()
+        {
+            // @note: Lock is not used anymore, we hide it
+            lockUI.gameObject.SetActive(false);
+        }
+
         public void SetReward(DailyRewardManager.DailyReward reward)
         {
             SetRewardType(reward.rewardType);
@@ -52,19 +58,22 @@ namespace Antura.Rewards
 
         public void SetLocked()
         {
-            lockUI.gameObject.SetActive(true);
             unlockUI.gameObject.SetActive(false);
         }
 
         public void SetUnlocked()
         {
-            lockUI.gameObject.SetActive(false);
             unlockUI.gameObject.SetActive(true);
         }
 
         public void SetDay(int day)
         {
             dayTextUI.text = "Day " + day;
+        }
+
+        public void HideDay()
+        {
+            dayTextUI.gameObject.SetActive(false);
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Antura.Core;
 using Antura.UI;
+using DG.Tweening;
 using UnityEngine.UI;
 
 
@@ -16,7 +17,7 @@ namespace Antura.Rewards
     /// </summary>
     public class DailyRewardScene : SceneBase
     {
-        private static int N_REWARDS_TO_SHOW = 5;
+        private static int MAX_REWARDS_TO_SHOW = 5;
 
         public GameObject dailyRewardUIPrefab;
         public Transform dailyRewardUIPivot;
@@ -28,8 +29,11 @@ namespace Antura.Rewards
         private DailyRewardManager dailyRewardManager;
         private List<DailyRewardUI> dailyRewardUIs;
         private int newRewardUIIndex;
-        private int newRewardIndex;
+        private int newRewardContentIndex;
 
+        [Header("Debug")]
+        public bool useForcedConsecutiveDays = false;
+        public int forcedConsecutiveDays = 1;
 
         protected override void Start()
         {
@@ -48,21 +52,38 @@ namespace Antura.Rewards
             Debug.Assert(nCurrentConsecutiveDaysOfPlaying >= 1, "Should not access this scene with 0 consecutive days");
             nCurrentConsecutiveDaysOfPlaying = Mathf.Max(nCurrentConsecutiveDaysOfPlaying, 1);
 
-            newRewardIndex = nCurrentConsecutiveDaysOfPlaying - 1;
+            if (useForcedConsecutiveDays)
+            {
+                nCurrentConsecutiveDaysOfPlaying = forcedConsecutiveDays;
+                Debug.LogError("FORCING CONSECUTIVE DAYS: " + nCurrentConsecutiveDaysOfPlaying);
+            }
+
+            // Index of the new reward (for the content, not the UI)
+            newRewardContentIndex = nCurrentConsecutiveDaysOfPlaying - 1;
+
+            // How many rewards to show
+            int nRewardsToShowToday = Mathf.Min(MAX_REWARDS_TO_SHOW, nCurrentConsecutiveDaysOfPlaying + 2);
 
             // 0 days -> nothing!
             // 1 days -> first reward
             // 2+ days -> second reward
-            newRewardUIIndex = Mathf.Min(newRewardIndex, 1);
+            newRewardUIIndex = Mathf.Min(newRewardContentIndex, 2);
 
-            int newRewardOffset = Mathf.Max(0, nCurrentConsecutiveDaysOfPlaying - 2);
+            // Offset of where the NEW reward is (0 -> all to the right)
+            int newRewardOffset = 0;
+
+            /*
+            Debug.Log("New Reward Index: " + newRewardContentIndex);
+            Debug.Log("New Reward UI Index: " + newRewardUIIndex);
+            Debug.Log("New Reward Offset: " + newRewardOffset);
+            */
 
             // Initialise rewards
             dailyRewardUIs = new List<DailyRewardUI>();
             int dayCounter = 0;
             dayCounter += newRewardOffset;
 
-            foreach (var reward in dailyRewardManager.GetRewards(newRewardOffset, newRewardOffset + N_REWARDS_TO_SHOW))
+            foreach (var reward in dailyRewardManager.GetRewards(newRewardOffset, newRewardOffset + nRewardsToShowToday))
             {
                 dayCounter++;
                 var dailyRewardUIGo = Instantiate(dailyRewardUIPrefab);
@@ -72,6 +93,7 @@ namespace Antura.Rewards
                 var dailyRewardUI = dailyRewardUIGo.GetComponent<DailyRewardUI>();
                 dailyRewardUI.SetReward(reward);
                 dailyRewardUI.SetDay(dayCounter);
+                dailyRewardUI.HideDay();
                 dailyRewardUI.SetLocked();
                 dailyRewardUIs.Add(dailyRewardUI);
             }
@@ -90,11 +112,23 @@ namespace Antura.Rewards
 
             claimButton.onClick.AddListener(UnlockNewReward);
 
-            StartCoroutine(ShowRewardsCO());
+            StartCoroutine(ShowRewardsCO(nCurrentConsecutiveDaysOfPlaying != 1));
         }
 
-        IEnumerator ShowRewardsCO()
+        IEnumerator ShowRewardsCO(bool withTranslation)
         {
+            // Start to the left
+            if (withTranslation)
+                dailyRewardUIPivot.transform.localPosition = Vector3.left * 200;
+
+            yield return new WaitForSeconds(1.0f);
+
+            //  Translate to the middle
+            if (withTranslation)
+                dailyRewardUIPivot.DOLocalMoveX(0, 1f).SetEase(Ease.InOutCubic);
+
+            dailyRewardUIs[newRewardUIIndex].transform.DOScale(1.2f, 1f).SetEase(Ease.InOutCubic);
+
             yield return new WaitForSeconds(1.0f);
 
             // Show the TODAY on the new one
@@ -105,13 +139,36 @@ namespace Antura.Rewards
             // Show the bones counter
             bonesCounter.Show();
 
-            // Show the CLAIM button
-            claimButton.gameObject.SetActive(true);
+            // Set in CLAIM mode (any click will work)
+            waitForClaimCoroutine = StartCoroutine(WaitForClaimCO());
+        }
+
+        private Coroutine waitForClaimCoroutine;
+        IEnumerator WaitForClaimCO()
+        {
+            float waitTime = 0.0f;
+            while (true)
+            {
+                waitTime += Time.deltaTime;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    UnlockNewReward();
+                }
+
+                yield return null;
+
+                if (waitTime > 5.0f)
+                {
+                    waitTime -= 2.0f;
+                    Tutorial.TutorialUI.Click(dailyRewardUIs[newRewardUIIndex].transform.position);
+                }
+            }
         }
 
         public void UnlockNewReward()
         {
-            claimButton.gameObject.SetActive(false);
+            StopCoroutine(waitForClaimCoroutine);
             StartCoroutine(UnlockNewRewardCO());
         }
 
@@ -121,7 +178,7 @@ namespace Antura.Rewards
             dailyRewardUIs[newRewardUIIndex].SetUnlocked();
 
             // Add the new reward (for now, just bones)
-            int nNewBones = dailyRewardManager.GetReward(newRewardIndex).amount;
+            int nNewBones = dailyRewardManager.GetReward(newRewardContentIndex).amount;
             for (int bone_i = 0; bone_i < nNewBones; bone_i++)
             {
                 bonesCounter.IncreaseByOne();
@@ -134,7 +191,8 @@ namespace Antura.Rewards
             // Log
             LogManager.I.LogInfo(InfoEvent.DailyRewardReceived);
 
-            ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
+            // Continue after a little while
+            Invoke("Continue", 2.0f);
         }
 
         private void Continue()
