@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using Antura.Core;
 using Antura.Database;
+using Antura.Teacher;
 using DG.DeExtensions;
 using UnityEngine;
+using DG.DeInspektor;
+using DG.DeInspektor.Attributes;
+using UnityEditor;
 
 namespace Antura.Map
 {
     /// <summary>
-    /// A single stage map. Contains all dots and pins for the current stage.
+    /// A single stage map. Contains all pins for the current stage.
     /// </summary>
     public class StageMap : MonoBehaviour
     {
@@ -27,7 +32,8 @@ namespace Antura.Map
         // Max position index PlayerPin can take
         public int maxPlayerPosIndex;
 
-        // Pins: one per learning blocks, plus a fake one at the start
+        // Pins: one per Play Session
+        // (TODO: remove: plus a fake one at the start ?)
         private List<Pin> pins;
 
         // Data
@@ -67,6 +73,32 @@ namespace Antura.Map
            
         #region Setup
 
+        [DeMethodButton("Rename Pins")]
+        public void RenamePins()
+        {
+            var pins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
+            for (var index = 0; index < pins.Count; index++)
+            {
+                var pin = pins[index];
+                pin.gameObject.name = "Pin_" + (index+1);
+                EditorUtility.SetDirty(pin.gameObject);
+            }
+        }
+
+        [DeMethodButton("Randomize Pins")]
+        public void RandomizePins()
+        {
+            // Randomize the position of the pins
+            var pins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
+            for (var index = 0; index < pins.Count; index++)
+            {
+                var pin = pins[index];
+                pin.transform.localPosition = new Vector3(index * (-30), 0, Random.Range(-30, 30));
+                EditorUtility.SetDirty(pin.gameObject);
+            }
+        }
+
+
         public void Initialise(bool _stageUnlocked, bool _wholeStageUnlocked)
         {
             stageUnlocked = _stageUnlocked;
@@ -83,29 +115,52 @@ namespace Antura.Map
 
             for (int i = 1; i < pins.Count; i++)
             {
-                pins[i].rope = ropes[i - 1];
+                //pins[i].rope = ropes[i - 1];  
+                pins[i].rope = ropes[Mathf.Min(i-1,ropes.Count-1)];      // TEMPORARY
+
                 pins[i].rope.name = "MapRope " + i;
             }
 
             // Setup the first pin (it is not a LB, just for visual purposes)
             pins[0].SetLocked();
-            pins[0].Initialise(stageNumber, 0);
+            pins[0].Initialise(new JourneyPosition(0,0,0));
 
-            // Set the correct data (also creating the dots)
+            // Set the correct data to all pins (also creating the dots)
             var allPlaySessionStates = GetAllPlaySessionStatesForStage(stageNumber);
-            int playerPosIndexCount = 0; 
-            for (var lb_i = 1; lb_i < pins.Count; lb_i++)
+
+            if (allPlaySessionStates.Count > pins.Count)
             {
-                var pin = pins[lb_i];
-                pin.Initialise(stageNumber, lb_i);
+                Debug.LogError("Stage " + stageNumber + " has only " + pins.Count + " pins but needs " + allPlaySessionStates.Count);
+                return;
+            }
+            else if (allPlaySessionStates.Count < pins.Count)
+            {
+                Debug.LogError("Stage " + stageNumber + " has " + pins.Count + " pins but needs only " + allPlaySessionStates.Count);
+                return;
+            }
+
+            int playerPosIndexCount = 0; 
+            JourneyPosition assignedJourneyPosition = new JourneyPosition(stageNumber,1,1);
+
+            for (int jp_i = 0; jp_i < allPlaySessionStates.Count; jp_i++)
+            {
+                var pin = pins[jp_i];
+                var psState = allPlaySessionStates[jp_i];
+                var journeyPos = psState.data.GetJourneyPosition();
+                pin.Initialise(journeyPos);
+
+                // Advance to the next one
+                //assignedJourneyPosition = AppManager.I.JourneyHelper.FindNextJourneyPosition(assignedJourneyPosition);
+                // TODO: advance assignedJourneyPosition
+
                 pin.SetLocked();
-                pin.SetPlaySessionState(allPlaySessionStates.Find(x => 
-                        x.data.LearningBlock == lb_i
-                        && x.data.PlaySession == AppManager.I.JourneyHelper.AssessmentPlaySessionIndex
+                pin.SetPlaySessionState(allPlaySessionStates.Find(x =>
+                    x.data.GetJourneyPosition().Equals(assignedJourneyPosition)
                 ));
 
+                // TODO: dots are now handled DIFFERENTLY, they are all pins and the dots are just small visual dots
+                /*
                 CreateDotsBetweenPins(lb_i, pins[lb_i], pins[lb_i-1]);
-
                 for (var ps_i = 1; ps_i <= pin.rope.dots.Count; ps_i++)
                 {
                     var dot = pin.rope.DotForPS(ps_i);
@@ -115,7 +170,7 @@ namespace Antura.Map
                     dot.SetPlaySessionState(allPlaySessionStates.Find(x =>
                             x.data.LearningBlock == lb_i && x.data.PlaySession == ps_i
                     ));
-                }
+                }*/
 
                 mapLocations.Add(pin.dot);
                 pin.dot.playerPosIndex = playerPosIndexCount++;

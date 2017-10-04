@@ -7,12 +7,14 @@ namespace Antura.Map
 {
     /// <summary>
     /// A pin on the map. 
-    /// Defines an assessment play session.
+    /// Defines a PlaySession. Either assessment or minigame.
     /// </summary>
     public class Pin : MonoBehaviour
     {
         [HideInInspector]
         public int learningBlock;
+        [HideInInspector]
+        public JourneyPosition journeyPosition;
 
         [Header("References")]
         public Dot dot;
@@ -22,6 +24,7 @@ namespace Antura.Map
 
         public GameObject pinV1;
         public GameObject pinV2;
+        public GameObject pinAssessment;
 
         [HideInInspector]
         public GameObject currentPinMesh;
@@ -35,19 +38,35 @@ namespace Antura.Map
         private Vector3 startPinPosition;
         private Vector3 startRopeScale;
 
-        public void Initialise(int _stage, int _learningBlock)
+        public void Initialise(JourneyPosition _journeyPosition) //int _stage, int _learningBlock, int _playSession)
         {
-            learningBlock = _learningBlock;
-            if (_learningBlock % 2 == 0) {
-                pinV2.gameObject.SetActive(false);
-                currentPinMesh = pinV1;
-            } else {
-                pinV1.gameObject.SetActive(false);
-                currentPinMesh = pinV2;
-            }
+            journeyPosition = _journeyPosition;
 
+            this.name = "Pin_" + _journeyPosition.ToString();
+
+            // Coloring of the PIN based on the journey position
+            pinV1.gameObject.SetActive(false);
+            pinV2.gameObject.SetActive(false);
+            pinAssessment.gameObject.SetActive(false);
+            if (journeyPosition.IsAssessment())
+            {
+                currentPinMesh = pinAssessment;
+            }
+            else
+            {
+                if (journeyPosition.LearningBlock % 2 == 0)
+                {
+                    currentPinMesh = pinV1;
+                }
+                else {
+                    currentPinMesh = pinV2;
+                }
+            }
+            currentPinMesh.gameObject.SetActive(true);
+
+            // TODO: no more dots?
             // The dot is set at the assessment
-            dot.Initialise(_stage, _learningBlock, AppManager.I.JourneyHelper.AssessmentPlaySessionIndex);
+            dot.Initialise(journeyPosition);
 
             shadowTr = transform.Find("shadow");
         }

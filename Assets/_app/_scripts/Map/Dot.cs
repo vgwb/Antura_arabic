@@ -17,18 +17,13 @@ namespace Antura.Map
 
         public JourneyPosition JourneyPos
         {
-            get { return new JourneyPosition(stage, learningBlock, playSession); }
+            get { return journeyPosition; }
         }
 
         [HideInInspector]
         public int playerPosIndex;
 
-        [HideInInspector]
-        public int stage;
-        [HideInInspector]
-        public int learningBlock;
-        [HideInInspector]
-        public int playSession;
+        private JourneyPosition journeyPosition;
 
         [HideInInspector]
         public bool isLocked;
@@ -39,11 +34,9 @@ namespace Antura.Map
 
         public MeshRenderer scoreFeedbackRenderer;
 
-        public void Initialise(int _stage, int _learningBlock, int _playSession)
+        public void Initialise(JourneyPosition _journeyPosition) //int _stage, int _learningBlock, int _playSession)
         {
-            stage = _stage;
-            learningBlock = _learningBlock;
-            playSession = _playSession;
+            this.journeyPosition = _journeyPosition;
         }
 
         private void OnTriggerEnter(Collider other)
