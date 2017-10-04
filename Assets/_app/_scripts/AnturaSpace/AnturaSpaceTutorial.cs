@@ -68,6 +68,13 @@ namespace Antura.AnturaSpace
 
         void Start()
         {
+            // DEBUG: removing the tutorial for now
+            {
+                gameObject.SetActive(false);
+                IsRunning = false;
+                return;
+            }
+
             //if this isn't the first contact disable yourself and return
             if (AppManager.I.Player.IsFirstContact() == false) {
                 gameObject.SetActive(false);

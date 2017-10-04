@@ -46,9 +46,12 @@ namespace Antura.AnturaSpace
         public override string ToString()
         {
             string s = "";
-            foreach (var slotState in occupiedSlots)
+            if (occupiedSlots != null)
             {
-                s += "- slot " + slotState + "\n";
+                foreach (var slotState in occupiedSlots)
+                {
+                    s += "- slot " + slotState + "\n";
+                }
             }
             return s;
         }
