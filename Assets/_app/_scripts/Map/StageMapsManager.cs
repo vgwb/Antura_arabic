@@ -385,6 +385,16 @@ namespace Antura.Map
             }
         }
 
+        public void MoveToStageMap(int toStage)
+        {
+            if (inTransition) return;
+
+            int fromStage = shownStage;
+            if (toStage == fromStage) return;
+
+            SwitchFromToStage(fromStage, toStage);
+        }
+
         private void UpdateButtonsForStage(int stage)
         {
             UpdateStageButtonsUI();
@@ -573,7 +583,7 @@ namespace Antura.Map
                 return 0;
 
             if (stageMap.stageNumber < st)
-                return stageMap.maxUnlockedPinIndex;
+                return stageMap.MaxUnlockedPinIndex;
 
             var pin = stageMap.PinForJourneyPosition(journeyPos);
             return pin.pinIndex;

@@ -32,6 +32,9 @@ namespace Antura.Map
 
         // Configuration
         private static float dotsSpan = 5.0f;
+        private static float startAppearDuration = 0.5f;
+        private static float appearSpeedupMultiplier = 0.9f;
+        private static float minAppearDuration = 0.02f;
 
         #region Properties
 
@@ -40,6 +43,11 @@ namespace Antura.Map
 
         // Max position index PlayerPin can take in this stage map
         public int MaxUnlockedPinIndex { get; private set; }
+
+        public void ForceCurrentPinIndex(int newIndex)
+        {
+            CurrentPinIndex = newIndex;
+        }
 
         public Vector3 CurrentPlayerPosVector
         {
@@ -173,6 +181,7 @@ namespace Antura.Map
         }
 
         #region Appear Animation
+
         private bool hasAppeared = false;
 
         void Disappear()
@@ -197,14 +206,14 @@ namespace Antura.Map
 
             hasAppeared = true;
 
-            Debug.Log("Animating from " + fromPos + " to " + toPos);
+            //Debug.Log("Animating from " + fromPos + " to " + toPos);
 
             // First, let all the available dots appear, up to FROM
             FlushAppear(fromPos);
 
             // Then, let the remaining ones appear in order, up to TO
             int upToPosIndex = StageMapsManager.GetPosIndexFromJourneyPosition(this, toPos);
-            float duration = 0.2f;
+            float duration = startAppearDuration;
             foreach (var pin in playPins)
             {
                 // First the dots that connect the pins
@@ -214,8 +223,8 @@ namespace Antura.Map
                     {
                         dot.Appear(0.0f, duration);
                         yield return new WaitForSeconds(duration);
-                        duration *= 0.9f;
-                        if (duration <= 0.01f) duration = 0.02f;
+                        duration *= appearSpeedupMultiplier;
+                        if (duration <= minAppearDuration) duration = minAppearDuration;
                     }
                 }
 
@@ -224,8 +233,8 @@ namespace Antura.Map
                 {
                     pin.Appear(duration);
                     yield return new WaitForSeconds(duration);
-                    duration *= 0.9f;
-                    if (duration <= 0.01f) duration = 0.02f;
+                    duration *= appearSpeedupMultiplier;
+                    if (duration <= minAppearDuration) duration = minAppearDuration;
                 }
             }
 

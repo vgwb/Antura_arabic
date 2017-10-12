@@ -41,6 +41,13 @@ namespace Antura.Map
                 }
             }
 
+            // Assigns stage numbers
+            len = icons.Count;
+            for (int i = 0; i < len; ++i)
+            {
+                icons[i].assignedStage = len - i;
+            }
+
             // Set current stage
             len = icons.Count;
             for (int i = 0; i < len; ++i) {

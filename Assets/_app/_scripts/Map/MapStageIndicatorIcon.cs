@@ -5,6 +5,9 @@ namespace Antura.Map
 {
     public class MapStageIndicatorIcon : MonoBehaviour
     {
+        public StageMapsManager stageMapsManager;
+        public int assignedStage = 0;
+
         public Color SelectedColor = Color.white;
         public Image ColorizedImage;
 
@@ -19,6 +22,11 @@ namespace Antura.Map
             }
 
             ColorizedImage.color = doSelect ? SelectedColor : defColor;
+        }
+
+        public void OnClick()
+        {
+            stageMapsManager.MoveToStageMap(assignedStage);
         }
     }
 }

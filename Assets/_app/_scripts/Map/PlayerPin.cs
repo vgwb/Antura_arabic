@@ -91,7 +91,7 @@ namespace Antura.Map
 
         private int CurrentPinIndex
         {
-            get { return currentStageMap.currentPinIndex; }
+            get { return currentStageMap.CurrentPinIndex; }
         }
 
         private int CurrentTargetPosIndex
@@ -122,7 +122,7 @@ namespace Antura.Map
             {
                 int lastIndex = CurrentPinIndex;
                 AnimateToPin(pinIndex);
-                LookAtPin(pinIndex < lastIndex, true, currentStageMap.GetCurrentPlayerPosJourneyPosition());
+                LookAtPin(pinIndex < lastIndex, true, currentStageMap.CurrentPlayerPosJourneyPosition);
             }
         }
 
@@ -130,7 +130,7 @@ namespace Antura.Map
         {
             return pinIndex >= 0 &&
                    (pinIndex < currentStageMap.mapLocations.Count) &&
-                   (pinIndex <= currentStageMap.maxUnlockedPinIndex);
+                   (pinIndex <= currentStageMap.MaxUnlockedPinIndex);
         }
 
         public void ForceToJourneyPosition(JourneyPosition journeyPosition, bool justVisuals = false)
@@ -143,7 +143,7 @@ namespace Antura.Map
         public void ResetPlayerPositionAfterStageChange(bool comingFromHigherStage)
         {
             if (comingFromHigherStage) {
-                ForceToPin(currentStageMap.maxUnlockedPinIndex);
+                ForceToPin(currentStageMap.MaxUnlockedPinIndex);
                 LookAtPreviousPin(false);
             } else {
                 ForceToPin(0);
@@ -166,7 +166,7 @@ namespace Antura.Map
                 animateToPinCO = null;
                 if (stopWhereItIs)
                 {
-                    UpdatePlayerJourneyPosition(currentStageMap.GetCurrentPlayerPosJourneyPosition());
+                    UpdatePlayerJourneyPosition(currentStageMap.CurrentPlayerPosJourneyPosition);
                 }
             }
         }
@@ -176,7 +176,7 @@ namespace Antura.Map
             isAnimating = true;
             if (onMoveStart != null) onMoveStart();
             CheckMovementButtonsEnabling();
-            int tmpCurrentIndex = currentStageMap.currentPinIndex;
+            int tmpCurrentIndex = currentStageMap.CurrentPinIndex;
             UpdatePlayerJourneyPosition(currentStageMap.mapLocations[targetIndex].JourneyPos);
             while (tmpCurrentIndex != targetIndex)
             {
@@ -186,7 +186,7 @@ namespace Antura.Map
                 LookAtPin(!isAdvancing, true, currentStageMap.mapLocations[tmpCurrentIndex].JourneyPos);
                 var nextPos = currentStageMap.mapLocations[tmpCurrentIndex].Position;
                 yield return MoveToCO(nextPos, stepDuration);
-                currentStageMap.currentPinIndex = tmpCurrentIndex;
+                currentStageMap.ForceCurrentPinIndex(tmpCurrentIndex);
             }
 
             CheckMovementButtonsEnabling();
@@ -197,10 +197,10 @@ namespace Antura.Map
         void ForceToPin(int newIndex, bool justVisuals = false)
         {
             //Debug.Log("Forcing to " + newIndex);
-            currentStageMap.currentPinIndex = newIndex;
-            ForceToCO(currentStageMap.GetCurrentPlayerPosVector());
+            currentStageMap.ForceCurrentPinIndex(newIndex);
+            ForceToCO(currentStageMap.CurrentPlayerPosVector);
 
-            if (!justVisuals) UpdatePlayerJourneyPosition(currentStageMap.GetCurrentPlayerPosJourneyPosition());
+            if (!justVisuals) UpdatePlayerJourneyPosition(currentStageMap.CurrentPlayerPosJourneyPosition);
             CheckMovementButtonsEnabling();
         }
 
@@ -279,14 +279,14 @@ namespace Antura.Map
         {
             //Debug.Log("Enabling buttons for " + CurrentPinIndex);
             if (CurrentPinIndex == 0) {
-                if (currentStageMap.maxUnlockedPinIndex == 0) {
+                if (currentStageMap.MaxUnlockedPinIndex == 0) {
                     moveRightButton.SetActive(false);
                     moveLeftButton.SetActive(false);
                 } else {
                     moveRightButton.SetActive(false);
                     moveLeftButton.SetActive(true);
                 }
-            } else if (CurrentPinIndex == currentStageMap.maxUnlockedPinIndex) {
+            } else if (CurrentPinIndex == currentStageMap.MaxUnlockedPinIndex) {
                 moveRightButton.SetActive(true);
                 moveLeftButton.SetActive(false);
             } else {
