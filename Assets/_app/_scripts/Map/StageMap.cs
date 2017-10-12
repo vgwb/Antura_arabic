@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Core;
-using Antura.Database;
 using DG.DeExtensions;
 using UnityEngine;
 using DG.DeInspektor.Attributes;
@@ -97,7 +96,7 @@ namespace Antura.Map
 
         public List<IMapLocation> mapLocations = new List<IMapLocation>();
            
-        #region Setup
+        #region Editor Setup
 
         [DeMethodButton("Rename Pins")]
         public void RenamePins()
@@ -124,6 +123,9 @@ namespace Antura.Map
             }
         }
 
+        #endregion
+
+        #region Initialisation
 
         public void Initialise(bool _stageUnlocked, bool _wholeStageUnlocked)
         {
@@ -284,6 +286,7 @@ namespace Antura.Map
 
             // Create and stretch the rope
             GameObject ropeGo = Instantiate(ropePrefab);
+            ropeGo.transform.SetParent(dotsPivot);
             var rope = ropeGo.GetComponent<Rope>();
             rope.name = "MapRope_" + pinFront.pinIndex;
             pinFront.rope = rope;
@@ -369,23 +372,6 @@ namespace Antura.Map
             return playSessionStateList;
         }
 
-        /* NOT NEEDED?
-        /// <summary>
-        /// Given a stage, returns the list of all play session data corresponding to it.
-        /// </summary>
-        private List<PlaySessionData> GetAllPlaySessionDataForStage(int _stage)
-        {
-            return AppManager.I.DB.FindPlaySessionData(x => x.Stage == _stage);
-        }
-
-        /// <summary>
-        /// Given a stage, returns the list of all learning block data corresponding to it.
-        /// </summary>
-        private List<LearningBlockData> GetAllLearningBlockDataForStage(int _stage)
-        {
-            return AppManager.I.DB.FindLearningBlockData(x => x.Stage == _stage);
-        }
-        */
         #endregion
 
         #region Show / Hide

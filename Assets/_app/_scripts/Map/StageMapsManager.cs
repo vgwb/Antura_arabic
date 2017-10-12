@@ -262,6 +262,24 @@ namespace Antura.Map
 
         #endregion
 
+        #region Highlight
+
+        public void UpdateDotHighlights()
+        {
+            foreach (var stageMap in stageMaps)
+            {
+                foreach (var pin in stageMap.Pins)
+                {
+                    pin.Highlight(false);
+                }
+
+                var correctPin = stageMap.PinForJourneyPosition(CurrentJourneyPosition);
+                if (correctPin != null) correctPin.Highlight(true);
+            }
+        }
+
+        #endregion
+
         #region First Contact Session        
 
         /// <summary>
@@ -475,11 +493,10 @@ namespace Antura.Map
             var stageMap = StageMap(stage);
             stageMap.Show();
 
-            var pivot = stageMap.cameraPivotStart;
-            CameraGameplayController.I.transform.position = pivot.position;
-            CameraGameplayController.I.transform.rotation = pivot.rotation;
+            mapCamera.TeleportTo(stageMap.cameraPivotStart);
             Camera.main.backgroundColor = stageMap.color;
             Camera.main.GetComponent<CameraFog>().color = stageMap.color;
+
             SwitchStageMapForPlayer(stageMap, true);
         }
 
@@ -490,8 +507,7 @@ namespace Antura.Map
             stageMap.Show();
             stageMap.ResetStageOnShow(CurrentPlayerStage == stage);
 
-            var pivot = stageMap.cameraPivotStart;
-            mapCamera.SetAutoMoveToTransformFree(pivot, 0.6f);
+            mapCamera.SetAutoMoveToTransformFree(stageMap.cameraPivotStart, 0.6f);
             Camera.main.DOColor(stageMap.color, 1);
             Camera.main.GetComponent<CameraFog>().color = stageMap.color;
         }
@@ -591,18 +607,5 @@ namespace Antura.Map
 
         #endregion
 
-        public void UpdateDotHighlights()
-        {
-            foreach (var stageMap in stageMaps)
-            {
-                foreach (var pin in stageMap.Pins)
-                {
-                    pin.Highlight(false);
-                }
-
-                var correctPin = stageMap.PinForJourneyPosition(CurrentJourneyPosition);
-                if (correctPin != null) correctPin.Highlight(true);
-            }
-        }
     }
 }

@@ -16,7 +16,7 @@ namespace Antura.Map
         public JourneyPosition journeyPosition;
 
         [Header("References")]
-        public Dot mainDot;     // DEPRECATED  LOGIC (only for visual purposes)
+        public Dot mainDot;  
         [HideInInspector]
         public Rope rope;
         [HideInInspector]

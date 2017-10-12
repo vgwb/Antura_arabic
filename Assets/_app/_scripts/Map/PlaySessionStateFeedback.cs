@@ -1,7 +1,4 @@
 ﻿using Antura.Core;
-using Boo.Lang;
-using DG.DeExtensions;
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 

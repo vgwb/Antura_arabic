@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Threading;
-using Antura.Audio;
-using Antura.CameraControl;
+﻿using Antura.Audio;
 using DG.Tweening;
 using UnityEngine;
 
@@ -11,7 +8,6 @@ namespace Antura.Map
     /// Controls the new Map camera.
     /// Handles touch to scroll the map right and left.
     /// Makes sure to not conflict with CameraGameplayController (which is now deprecated)
-    /// TODO: make it work with the camera
     /// </summary>
     public class MapCameraController : MonoBehaviour
     {
@@ -198,6 +194,12 @@ namespace Antura.Map
                 .Append(transform.DOLocalMove(newPosition, duration))
                 .Insert(0, transform.DOLocalRotate(newRotation.eulerAngles, duration))
                 .OnComplete(callback);
+        }
+
+        public void TeleportTo(Transform pivot)
+        {
+            transform.position = pivot.position;
+            transform.rotation = pivot.rotation;
         }
     }
 }

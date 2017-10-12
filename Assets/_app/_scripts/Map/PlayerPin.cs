@@ -18,7 +18,6 @@ namespace Antura.Map
         [Header("References")]
         public StageMapsManager stageMapsManager;
         public StageMap currentStageMap;
-        //public FingerStage swipeScript;
 
         [Header("UIButtons")]
         public GameObject moveRightButton;
@@ -63,9 +62,8 @@ namespace Antura.Map
         void LateUpdate()
         {
             // Map movement controls
-            // @note: using late update so this interaction happens after FingerStage (so that touch swipe takes precedence)
-            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject()) { 
-          //      && !swipeScript.isSwiping) {  // TODO: check the new map camera controller instead
+            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
+            { 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 RaycastHit hit;
@@ -78,7 +76,6 @@ namespace Antura.Map
                         if (pin.isLocked) return;
 
                         AudioManager.I.PlaySound(Sfx.UIButtonClick);
-                        
                         MoveToPin(pin.pinIndex);
                     }
                 }
@@ -97,11 +94,13 @@ namespace Antura.Map
             get { return StageMapsManager.GetPosIndexFromJourneyPosition(currentStageMap, StageMapsManager.CurrentJourneyPosition); }
         }
 
+        // Called by buttons
         public void MoveToNextDot()
         {
             MoveToPin(CurrentTargetPosIndex + 1);
         }
 
+        // Called by buttons
         public void MoveToPreviousDot()
         {
             MoveToPin(CurrentTargetPosIndex - 1);
@@ -120,7 +119,7 @@ namespace Antura.Map
                 stageMapsManager.mapCamera.SetAutoFollowTransformCurrentMap(transform);
                 int lastIndex = CurrentPinIndex;
                 AnimateToPin(pinIndex);
-                LookAtPin(pinIndex < lastIndex, true, currentStageMap.CurrentPlayerPosJourneyPosition);
+                LookAtPin(pinIndex < lastIndex, true);
             }
         }
 
@@ -181,7 +180,7 @@ namespace Antura.Map
                 float stepDuration = Mathf.Max(0.1f, 0.5f / Mathf.Abs(targetIndex - tmpCurrentIndex));
                 bool isAdvancing = targetIndex > tmpCurrentIndex;
                 tmpCurrentIndex += isAdvancing ? 1 : -1;
-                LookAtPin(!isAdvancing, true, currentStageMap.mapLocations[tmpCurrentIndex].JourneyPos);
+                LookAtPin(!isAdvancing, true);
                 var nextPos = currentStageMap.mapLocations[tmpCurrentIndex].Position;
                 yield return MoveToCO(nextPos, stepDuration);
                 currentStageMap.ForceCurrentPinIndex(tmpCurrentIndex);
@@ -215,15 +214,15 @@ namespace Antura.Map
 
         void LookAtNextPin(bool animated)
         {
-            LookAtPin(false, animated, AppManager.I.Player.CurrentJourneyPosition);
+            LookAtPin(false, animated);
         }
 
         void LookAtPreviousPin(bool animated)
         {
-            LookAtPin(true, animated, AppManager.I.Player.CurrentJourneyPosition);
+            LookAtPin(true, animated);
         }
 
-        void LookAtPin(bool lookAtPrevious, bool animated, JourneyPosition fromJourneyPosition)
+        void LookAtPin(bool lookAtPrevious, bool animated)
         {
             rotateTween.Kill();
 
@@ -275,7 +274,7 @@ namespace Antura.Map
 
     #region UI
 
-    public void CheckMovementButtonsEnabling()
+        public void CheckMovementButtonsEnabling()
         {
             //Debug.Log("Enabling buttons for " + CurrentPinIndex);
             if (CurrentPinIndex == 0) {
