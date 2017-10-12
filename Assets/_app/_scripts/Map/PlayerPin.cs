@@ -17,7 +17,7 @@ namespace Antura.Map
     {
         [Header("References")]
         public StageMap stageMap;
-        public FingerStage swipeScript;
+        //public FingerStage swipeScript;
 
         [Header("UIButtons")]
         public GameObject moveRightButton;
@@ -61,61 +61,36 @@ namespace Antura.Map
 
         void LateUpdate()
         {
+            // Map movement controls
             // @note: using late update so this interaction happens after FingerStage (so that touch swipe takes precedence)
-            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject() && !swipeScript.isSwiping) {
+            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject()) { 
+          //      && !swipeScript.isSwiping) {  // TODO: check the new map camera controller instead
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 RaycastHit hit;
                 int layerMask = 1 << 15;
                 if (Physics.Raycast(ray, out hit, 500, layerMask))
                 {
-                    // TODO: no more rope clicking!
-                    /*
-                    if (hit.collider.CompareTag("Rope")) {
-                        Rope selectedRope = hit.transform.parent.gameObject.GetComponent<Rope>();
-                        int nUnlockedDots = selectedRope.dots.Count(x => !x.isLocked);
-                        if (nUnlockedDots == 0) {
-                            return;
-                        }
-
-                        int closerDotIndex = 0;
-                        if (nUnlockedDots > 1) {
-                            float distaceHitToDot = 1000;
-                            closerDotIndex = 0;
-
-                            for (int i = 0; i < nUnlockedDots; i++) {
-                                var distanceHitBefore = Vector3.Distance(hit.point,
-                                    selectedRope.dots[i].transform.position);
-                                if (distanceHitBefore < distaceHitToDot) {
-                                    distaceHitToDot = distanceHitBefore;
-                                    closerDotIndex = i;
-                                }
-                            }
-                        }
-
-                        AudioManager.I.PlaySound(Sfx.UIButtonClick);
-                        var dot = selectedRope.dots[closerDotIndex];
-                        MoveToPin(dot.pinIndex);
-
-                    }
-                    else */
                     if (hit.collider.CompareTag("Pin"))
                     {
                         var pin = hit.collider.transform.gameObject.GetComponent<Pin>();
                         if (pin.isLocked) return;
 
                         AudioManager.I.PlaySound(Sfx.UIButtonClick);
+
+                        // TODO: move the camera too
                         MoveToPin(pin.pinIndex);
                     }
                 }
             }
         }
 
-        private int CurrentPinIndex {
+        #region Movement
+
+        private int CurrentPinIndex
+        {
             get { return stageMap.currentPinIndex; }
         }
-
-        #region Movement
 
         private int CurrentTargetPosIndex
         {
@@ -153,7 +128,7 @@ namespace Antura.Map
         {
             return pinIndex >= 0 &&
                    (pinIndex < stageMap.mapLocations.Count) &&
-                   (pinIndex <= stageMap.maxPinIndex);
+                   (pinIndex <= stageMap.maxUnlockedPinIndex);
         }
 
         public void ForceToJourneyPosition(JourneyPosition journeyPosition, bool justVisuals = false)
@@ -166,7 +141,7 @@ namespace Antura.Map
         public void ResetPlayerPositionAfterStageChange(bool comingFromHigherStage)
         {
             if (comingFromHigherStage) {
-                ForceToPin(stageMap.maxPinIndex);
+                ForceToPin(stageMap.maxUnlockedPinIndex);
                 LookAtPreviousPin(false);
             } else {
                 ForceToPin(0);
@@ -249,26 +224,21 @@ namespace Antura.Map
 
         void LookAtPin(bool lookAtPrevious, bool animated, JourneyPosition fromJourneyPosition)
         {
-            var current_lb = fromJourneyPosition.LearningBlock;
-            //Debug.Log("Looking " + current_lb + " prev? " + lookAtPrevious);
-
             rotateTween.Kill();
 
-            Quaternion currRotation = transform.rotation;
-
             // Target rotation 
-            // TODO: use pinIndex instead
             int fromPinIndex = lookAtPrevious ? CurrentPinIndex : CurrentPinIndex - 1;
             int toPinIndex = lookAtPrevious ? CurrentPinIndex -1 : CurrentPinIndex;
 
-            var lookingFromTr = stageMap.PinForIndex(fromPinIndex).transform;
+            var fromPin = stageMap.PinForIndex(fromPinIndex);
             var toPin = stageMap.PinForIndex(toPinIndex);
-            var lookingToTr = toPin != null ? toPin.transform : lookingFromTr;
+            var lookingFromTr = fromPin != null? fromPin.transform : toPin.transform;
+            var lookingToTr = toPin != null ? toPin.transform : fromPin.transform;
             Quaternion toRotation = Quaternion.LookRotation(lookingToTr.transform.position - lookingFromTr.transform.position, Vector3.up);
             // Debug.Log("Current " + currRotation + " To " + toRotation);
 
             if (animated) {
-                transform.rotation = currRotation;
+                transform.rotation = transform.rotation;
                 rotateTween = transform.DORotate(toRotation.eulerAngles, 0.15f).SetEase(Ease.InOutQuad);
             } else {
                 transform.rotation = toRotation;
@@ -307,14 +277,14 @@ namespace Antura.Map
         {
             //Debug.Log("Enabling buttons for " + CurrentPinIndex);
             if (CurrentPinIndex == 0) {
-                if (stageMap.maxPinIndex == 0) {
+                if (stageMap.maxUnlockedPinIndex == 0) {
                     moveRightButton.SetActive(false);
                     moveLeftButton.SetActive(false);
                 } else {
                     moveRightButton.SetActive(false);
                     moveLeftButton.SetActive(true);
                 }
-            } else if (CurrentPinIndex == stageMap.maxPinIndex) {
+            } else if (CurrentPinIndex == stageMap.maxUnlockedPinIndex) {
                 moveRightButton.SetActive(true);
                 moveLeftButton.SetActive(false);
             } else {

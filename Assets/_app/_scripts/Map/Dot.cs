@@ -5,41 +5,16 @@ using UnityEngine;
 namespace Antura.Map
 {
     /// <summary>
-    /// A dot on the map. 
-    /// DEPRECATED - it should now be only VISUAL
+    /// A dot on the map. Just visuals. 
     /// </summary>
-    public class Dot : MonoBehaviour //, IMapLocation
+    public class Dot : MonoBehaviour
     {
-        /*
-        public Vector3 Position
-        {
-            get { return transform.position; }
-        }
-
-        public JourneyPosition JourneyPos
-        {
-            get { return journeyPosition; }
-        }
-
-        [HideInInspector]
-        public int pinIndex;
-
-        private JourneyPosition journeyPosition;
-        */
-
         [HideInInspector]
         public bool isLocked;
 
         [Header("References")]
         public Material blackDot;
         public Material redDot;
-
-        public MeshRenderer scoreFeedbackRenderer;
-
-        /*public void Initialise(JourneyPosition _journeyPosition) //int _stage, int _learningBlock, int _playSession)
-        {
-            this.journeyPosition = _journeyPosition;
-        }*/
 
         private void OnTriggerEnter(Collider other)
         {
@@ -69,6 +44,7 @@ namespace Antura.Map
             }
         }
 
+        /*
         public void SetUnlocked()
         {
             isLocked = false;
@@ -80,34 +56,7 @@ namespace Antura.Map
             isLocked = true;
             gameObject.SetActive(false);
         }
-
-        /*
-        public void SetPlaySessionState(PlaySessionState playSessionState)
-        {
-            scoreFeedbackRenderer.gameObject.SetActive(false);
-
-            // TODO: do something with the score
-            /*
-            int score = 0;
-            if (playSessionState != null) score = playSessionState.score;
-
-            var mat = scoreFeedbackRenderer.GetComponentInChildren<MeshRenderer>().material;
-            switch (score)
-            {
-                case 0:
-                    mat.color = Color.black;
-                    break;
-                case 1:
-                    mat.color = Color.red;
-                    break;
-                case 2:
-                    mat.color = Color.blue;
-                    break;
-                case 3:
-                    mat.color = Color.yellow;
-                    break;
-            }*/
-        /*}*/
+        */
 
         #region Appear / Disappear
 

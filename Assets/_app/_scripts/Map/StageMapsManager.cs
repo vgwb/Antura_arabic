@@ -49,9 +49,14 @@ namespace Antura.Map
 
         #region State
 
-        // Current stage shown for the map. 
+        // The stage that is currently shown to the player
         private int shownStage;
         private bool inTransition;
+
+        #endregion
+
+        #region Tutorial
+
         private static int firstContactSimulationStep;
         private GameObject tutorialUiGo;
 
@@ -159,7 +164,7 @@ namespace Antura.Map
         private void Start()
         {
             // Show the current stage
-            TeleportToShownStage(shownStage);
+            TeleportCameraToShownStage(shownStage);
             UpdateStageIndicatorUI(shownStage);
             UpdateButtonsForStage(shownStage);
 
@@ -416,7 +421,7 @@ namespace Antura.Map
 
             // Change stage reference
             StageMap(toStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
-            SwitchPlayerStageMap(StageMap(toStage));
+            SwitchStageMapForPlayer(StageMap(toStage));
 
             // Update Player Stage too, if needed
             if (MovePlayerWithStageChange) {
@@ -427,7 +432,7 @@ namespace Antura.Map
             }
 
             // Animate the switch
-            AnimateToShownStage(toStage);
+            AnimateCameraToShownStage(toStage);
             yield return new WaitForSeconds(0.8f);
 
             // Show the new stage
@@ -455,7 +460,7 @@ namespace Antura.Map
 
         #region Camera
 
-        private void TeleportToShownStage(int stage)
+        private void TeleportCameraToShownStage(int stage)
         {
             var stageMap = StageMap(stage);
             stageMap.Show();
@@ -465,24 +470,10 @@ namespace Antura.Map
             CameraGameplayController.I.transform.rotation = pivot.rotation;
             Camera.main.backgroundColor = stageMap.color;
             Camera.main.GetComponent<CameraFog>().color = stageMap.color;
-            SwitchPlayerStageMap(stageMap, true);
+            SwitchStageMapForPlayer(stageMap, true);
         }
 
-        private void SwitchPlayerStageMap(StageMap newStageMap, bool init = false)
-        {
-            if (playerPin.IsAnimating) playerPin.StopAnimation(stopWhereItIs:false);
-            playerPin.stageMap = newStageMap;
-
-            // TODO: re-add
-            //var pin = stageMap.PinForJourneyPosition(journeyPos);
-            // Move the player too, if the stage is unlocked
-            if (!init && !newStageMap.FirstPin.isLocked)
-            {
-                playerPin.ForceToJourneyPosition(CurrentJourneyPosition);
-            }
-        }
-
-        private void AnimateToShownStage(int stage)
+        private void AnimateCameraToShownStage(int stage)
         {
             //Debug.Log("Animating to stage " + stage);
             var stageMap = StageMap(stage);
@@ -493,6 +484,18 @@ namespace Antura.Map
             CameraGameplayController.I.MoveToPosition(pivot.position, pivot.rotation, 0.6f);
             Camera.main.DOColor(stageMap.color, 1);
             Camera.main.GetComponent<CameraFog>().color = stageMap.color;
+        }
+
+        private void SwitchStageMapForPlayer(StageMap newStageMap, bool init = false)
+        {
+            if (playerPin.IsAnimating) playerPin.StopAnimation(stopWhereItIs: false);
+            playerPin.stageMap = newStageMap;
+
+            // Move the player too, if the stage is unlocked
+            if (!init && !newStageMap.FirstPin.isLocked)
+            {
+                playerPin.ForceToJourneyPosition(CurrentJourneyPosition);
+            }
         }
 
         #endregion
@@ -570,7 +573,7 @@ namespace Antura.Map
                 return 0;
 
             if (stageMap.stageNumber < st)
-                return stageMap.maxPinIndex;
+                return stageMap.maxUnlockedPinIndex;
 
             var pin = stageMap.PinForJourneyPosition(journeyPos);
             return pin.pinIndex;

@@ -1,4 +1,5 @@
 ﻿using Antura.Core;
+using Boo.Lang;
 using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
@@ -15,10 +16,11 @@ namespace Antura.Map
         public JourneyPosition journeyPosition;
 
         [Header("References")]
-        public Dot dot;     // DEPRECATED (only for visual purposes)
-
+        public Dot mainDot;     // DEPRECATED  LOGIC (only for visual purposes)
         [HideInInspector]
         public Rope rope;
+        [HideInInspector]
+        public List<Dot> dots = new List<Dot>();
 
         public GameObject pinV1;
         public GameObject pinV2;
@@ -26,6 +28,8 @@ namespace Antura.Map
 
         [HideInInspector]
         public GameObject currentPinMesh;
+
+        public PlaySessionStateFeedback playSessionFeedback;
 
         [HideInInspector]
         public bool isLocked;
@@ -46,16 +50,17 @@ namespace Antura.Map
             get { return journeyPosition; }
         }
 
+        // Sequential index for the stage map this pin is in
         public int pinIndex;
 
-        public void Initialise(int _pinIndex, JourneyPosition _journeyPosition) //int _stage, int _learningBlock, int _playSession)
+        public void Initialise(int _pinIndex, JourneyPosition _journeyPosition)
         {
             pinIndex = _pinIndex;
             journeyPosition = _journeyPosition;
 
-            name = "Pin_" + _journeyPosition.ToString();
+            name = "Pin_" + _journeyPosition;
 
-            // Coloring of the PIN based on the journey position
+            // Choosing the correct PIN based on the journey position
             pinV1.gameObject.SetActive(false);
             pinV2.gameObject.SetActive(false);
             pinAssessment.gameObject.SetActive(false);
@@ -75,10 +80,6 @@ namespace Antura.Map
             }
             currentPinMesh.gameObject.SetActive(true);
 
-            // TODO: no more dots?
-            // The dot is set at the assessment
-            //dot.Initialise(journeyPosition);
-
             shadowTr = transform.Find("shadow");
         }
 
@@ -95,12 +96,12 @@ namespace Antura.Map
             if (rope != null) startRopeScale = rope.meshRenderer.transform.localScale;
 
             currentPinMesh.transform.position = startPinPosition + Vector3.up * 60;
-            dot.transform.SetLocalScale(0);
+            mainDot.transform.SetLocalScale(0);
             if (rope != null)
             {
                 rope.meshRenderer.transform.SetLocalScale(0);
-                foreach (var ropeDot in rope.dots)
-                    ropeDot.Disappear();
+                foreach (var dot in dots)
+                    dot.Disappear();
             }
 
             shadowTr.SetLocalScale(0);
@@ -111,7 +112,7 @@ namespace Antura.Map
             if (appeared) return;
             appeared = true;
             currentPinMesh.transform.DOMove(startPinPosition, duration*0.5f);
-            dot.transform.DOScale(Vector3.one * 6, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f);
+            mainDot.transform.DOScale(Vector3.one * 6, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f);
             shadowTr.DOScale(Vector3.one * 12.5f, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f);
 
             if (rope != null)
@@ -125,7 +126,7 @@ namespace Antura.Map
             if (appeared) return;
             appeared = true;
             currentPinMesh.transform.position = startPinPosition;
-            dot.transform.localScale = Vector3.one*6;
+            mainDot.transform.localScale = Vector3.one*6;
             shadowTr.transform.localScale = Vector3.one * 12.5f;
 
             if (rope != null)
@@ -136,16 +137,21 @@ namespace Antura.Map
 
         #endregion
 
+        #region Locking
+
         public void SetUnlocked()
         {
             isLocked = false;
-            dot.gameObject.SetActive(true);
+            mainDot.gameObject.SetActive(true);
         }
+
         public void SetLocked()
         {
             isLocked = true;
-            dot.gameObject.SetActive(false);
+            mainDot.gameObject.SetActive(false);
         }
+        
+        #endregion
 
         private void OnTriggerEnter(Collider other)
         {
@@ -166,34 +172,12 @@ namespace Antura.Map
         public void Highlight(bool choice)
         {
             currentPinMesh.SetActive(!choice);
-            dot.Highlight(choice);
+            mainDot.Highlight(choice);
         }
 
         public void SetPlaySessionState(PlaySessionState playSessionState)
         {
-            // TODO: do something with the score
-
-            //int score = 0;
-            // if (playSessionState != null) score = playSessionState.score;
-
-            /*
-            var mat = currentPinMesh.GetComponentInChildren<MeshRenderer>().material;
-            switch (score)
-            {
-                case 0:
-                    mat.color = Color.black;
-                    break;
-                case 1:
-                    mat.color = Color.red;
-                    break;
-                case 2:
-                    mat.color = Color.blue;
-                    break;
-                case 3:
-                    mat.color = Color.yellow;
-                    break;
-            }
-            */
+            playSessionFeedback.Initialise(journeyPosition, playSessionState);
         }
 
     }
