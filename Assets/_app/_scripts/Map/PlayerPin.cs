@@ -228,15 +228,16 @@ namespace Antura.Map
             rotateTween.Kill();
 
             // Target rotation 
-            int fromPinIndex = lookAtPrevious ? CurrentPinIndex : CurrentPinIndex - 1;
-            int toPinIndex = lookAtPrevious ? CurrentPinIndex -1 : CurrentPinIndex;
+            int fromPinIndex = CurrentPinIndex;
+            int toPinIndex = lookAtPrevious ? CurrentPinIndex -1 : CurrentPinIndex + 1;
 
             var fromPin = currentStageMap.PinForIndex(fromPinIndex);
             var toPin = currentStageMap.PinForIndex(toPinIndex);
             var lookingFromTr = fromPin != null? fromPin.transform : toPin.transform;
             var lookingToTr = toPin != null ? toPin.transform : fromPin.transform;
             Quaternion toRotation = Quaternion.LookRotation(lookingToTr.transform.position - lookingFromTr.transform.position, Vector3.up);
-            // Debug.Log("Current " + currRotation + " To " + toRotation);
+            //Debug.Log("Look from " + fromPin + " To " + toPin);
+            //Debug.Log("Current " + transform.rotation + " To " + toRotation);
 
             if (animated) {
                 transform.rotation = transform.rotation;
