@@ -155,24 +155,26 @@ namespace Antura.Map
 
         private void OnTriggerEnter(Collider other)
         {
-            if (Dot.highlightOnPlayerCollision && other.gameObject.CompareTag("Player"))
+            if (other.gameObject.CompareTag("Player"))
             {
-                Highlight(true);
+                currentPinMesh.SetActive(false);
+                if (Dot.highlightOnPlayerCollision) Highlight(true);
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (Dot.highlightOnPlayerCollision && other.gameObject.CompareTag("Player"))
+            if (other.gameObject.CompareTag("Player"))
             {
-                Highlight(false);
+                currentPinMesh.SetActive(true);
+                if (Dot.highlightOnPlayerCollision ) Highlight(false);
             }
         }
 
         public void Highlight(bool choice)
         {
-            currentPinMesh.SetActive(!choice);
             mainDot.Highlight(choice);
+            playSessionFeedback.Highlight(choice);
         }
 
         public void SetPlaySessionState(PlaySessionState playSessionState)

@@ -214,14 +214,14 @@ namespace Antura.Map
                 {
                     //Debug.Log("ANIMATING TO STAGE: " + targetCurrentJourneyPosition.Stage + " THEN MOVING TO " + targetCurrentJourneyPosition);
                     yield return StartCoroutine(SwitchFromToStageCO(shownStage, targetCurrentJourneyPosition.Stage));
-                    mapCamera.FollowPlayer(playerPin);
+                    mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                 }
                 else
                 {
                     //Debug.Log("JUST MOVING TO " + targetCurrentJourneyPosition);
                     yield return new WaitForSeconds(1.0f);
-                    mapCamera.FollowPlayer(playerPin);
+                    mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                     yield return null;
                 }
@@ -232,7 +232,7 @@ namespace Antura.Map
                 yield return null;
             }
 
-            mapCamera.ManualMovement();
+            mapCamera.SetManualMovementCurrentMap();
             ShowPlaySessionMovementButtons();
         }
 
@@ -491,7 +491,7 @@ namespace Antura.Map
             stageMap.ResetStageOnShow(CurrentPlayerStage == stage);
 
             var pivot = stageMap.cameraPivotStart;
-            CameraGameplayController.I.MoveToPosition(pivot.position, pivot.rotation, 0.6f);
+            mapCamera.SetAutoMoveToTransformFree(pivot, 0.6f);
             Camera.main.DOColor(stageMap.color, 1);
             Camera.main.GetComponent<CameraFog>().color = stageMap.color;
         }

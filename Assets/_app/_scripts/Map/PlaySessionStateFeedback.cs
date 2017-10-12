@@ -58,14 +58,28 @@ namespace Antura.Map
 
         #region Show / Hide
 
-        public void ShowFullInfo()
+        public void Highlight(bool choice)
         {
-            // TODO: show stars and numbers and text and so on...
+            if (choice)
+            {
+                ShowFullInfo();
+            }
+            else
+            {
+                ShowBasicInfo();
+            }
         }
 
-        public void ShowBasicInfo()
+        private void ShowFullInfo()
+        {
+            // TODO: show stars and numbers and text and so on...
+            textUI.gameObject.SetActive(false);
+        }
+
+        private void ShowBasicInfo()
         {
             // TODO: show just some small info
+            textUI.gameObject.SetActive(true);
         }
 
         #endregion

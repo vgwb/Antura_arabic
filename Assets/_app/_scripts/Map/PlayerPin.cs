@@ -78,9 +78,7 @@ namespace Antura.Map
                         if (pin.isLocked) return;
 
                         AudioManager.I.PlaySound(Sfx.UIButtonClick);
-
-                        // TODO: move the camera too
-                        stageMapsManager.mapCamera.FollowPlayer(this);
+                        
                         MoveToPin(pin.pinIndex);
                     }
                 }
@@ -117,9 +115,9 @@ namespace Antura.Map
         private void MoveToPin(int pinIndex)
         {
             //if (pinIndex == CurrentTargetPosIndex) return;
-
             if (CanMoveTo(pinIndex))
             {
+                stageMapsManager.mapCamera.SetAutoFollowTransformCurrentMap(transform);
                 int lastIndex = CurrentPinIndex;
                 AnimateToPin(pinIndex);
                 LookAtPin(pinIndex < lastIndex, true, currentStageMap.CurrentPlayerPosJourneyPosition);
@@ -207,7 +205,7 @@ namespace Antura.Map
         private void UpdatePlayerJourneyPosition(JourneyPosition journeyPos)
         {
             AppManager.I.Player.SetCurrentJourneyPosition(journeyPos, false);
-            stageMapsManager.UpdateDotHighlight();
+            stageMapsManager.UpdateDotHighlights();
             //Debug.LogWarning("Setting journey pos current: " + AppManager.I.Player.CurrentJourneyPosition);
         }
 

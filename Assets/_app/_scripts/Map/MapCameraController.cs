@@ -1,5 +1,8 @@
 ﻿using System.Collections;
+using System.Threading;
+using Antura.Audio;
 using Antura.CameraControl;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Antura.Map
@@ -12,6 +15,14 @@ namespace Antura.Map
     /// </summary>
     public class MapCameraController : MonoBehaviour
     {
+        enum MovementType
+        {
+            AUTO,
+            MANUAL
+        }
+
+        private MovementType movementType;
+
         // State
         private bool isFollowing = false;
         private Transform followedTransform;
@@ -20,8 +31,9 @@ namespace Antura.Map
         private StageMapsManager _stageMapsManager;
 
         // Touch controls
-        private bool isSwiping;
+       // private bool swipeOnCooldown;
         private float xDown;
+        private System.DateTime timeDown;
         public float sensibility = 0.1f;
         public float deceleration = 20.0f;
         public float minScreenPercentage = 0.3f;
@@ -29,43 +41,86 @@ namespace Antura.Map
         private void Start()
         {
             _stageMapsManager = FindObjectOfType<StageMapsManager>();
-            isSwiping = false;
+        }
+
+        #region Movements
+
+        /// <summary>
+        /// Follows the target transform.
+        /// Mantains the X over the current map
+        /// </summary>
+        public void SetAutoFollowTransformCurrentMap(Transform targetTransform)
+        {
+            movementType = MovementType.AUTO;
+            followedTransform = targetTransform;
         }
 
         /// <summary>
-        /// Follows the target player over this map
+        /// Move to a new transform.
+        /// Does NOT mantain X over the current map.
+        /// Restores manual movement at the end.
         /// </summary>
-        public void FollowPlayer(PlayerPin playerPin)
+        public void SetAutoMoveToTransformFree(Transform pivotTr, float duration)
         {
-            isFollowing = true;
-            followedTransform = playerPin.transform;
+            movementType = MovementType.AUTO;
+            followedTransform = null;
+
+            AudioManager.I.PlaySound(Sfx.CameraMovementShort);
+            TweenToTransform(pivotTr.position, pivotTr.rotation, duration, SetManualMovementCurrentMap);
         }
 
-        public void ManualMovement()
+        /// <summary>
+        /// Restore manual movement.
+        /// Forces the movement on the current map.
+        /// </summary>
+        public void SetManualMovementCurrentMap()
         {
-            isFollowing = false;
+            currentSpeed = 0.0f;
+            movementType = MovementType.MANUAL;
             followedTransform = null;
         }
 
-        private System.DateTime timeDown;
+        #endregion
+
         private void Update()
         {
-            // Player following
-            if (isFollowing)
+            if (movementType == MovementType.AUTO)
             {
-                MoveToLookPosition(followedTransform.position);
-                return;
+                // Auto-follow
+                if (followedTransform != null)
+                {
+                    // When slowed down enough, we may re-enable manual movement
+                    if (Mathf.Abs(currentSpeed) < 10.0f && Input.GetMouseButtonDown(0))
+                    {
+                        SetManualMovementCurrentMap();
+                        currentSpeed = 0.0f;
+                    }
+                    else
+                    {
+                        currentSpeed = (followedTransform.position.x - transform.position.x) * 10.0f;
+                        CameraMoveUpdate();
+                    }
+                }
             }
 
-            if (isSwiping) return;
+            if (movementType == MovementType.MANUAL)
+            {
+                // Manual control
+                SwipeControls();
+                CameraMoveUpdate();
+            }
+        }
 
-            // Swipe control
+        private void SwipeControls()
+        {
+            // Swipe start
             if (Input.GetMouseButtonDown(0))
             {
                 xDown = Input.mousePosition.x;
                 timeDown = System.DateTime.Now;
             }
 
+            // Swipe end
             if (Input.GetMouseButtonUp(0))
             {
                 var xUp = Input.mousePosition.x;
@@ -75,54 +130,47 @@ namespace Antura.Map
                 var timeUp = System.DateTime.Now;
                 var timeDelta = timeDown - timeUp;
 
-                float speed = xDelta / (float)timeDelta.TotalSeconds * sensibility;
-                Debug.Log("x " + xDelta + " time " + (float)timeDelta.TotalSeconds);
+                float addedSpeed = xDelta / (float) timeDelta.TotalSeconds * sensibility;
+                //Debug.Log("x " + xDelta + " time " + (float)timeDelta.TotalSeconds);
 
                 float width = Screen.width;
                 if (Mathf.Abs(xDelta) > width * minScreenPercentage)
                 {
-                    StartMoving(speed);
-                    isSwiping = true;
-                    StartCoroutine(SwipeCooldownCO());
+                    currentSpeed += addedSpeed;
+                }
+                else
+                {
+                    // Stop here
+                    currentSpeed = 0.0f;
                 }
             }
         }
-        private IEnumerator SwipeCooldownCO()
-        {
-            yield return new WaitForSeconds(0.3f);
-            isSwiping = false;
-        }
 
-        public float swipeMovementDistance = 50;
-
-        void StartMoving(float speed)
+        private float currentSpeed = 0.0f;
+        void CameraMoveUpdate()
         {
-            StartCoroutine(StartMovingCO(speed));
-            //MoveToLookPosition(transform.position + Vector3.right * swipeMovementDistance);
-        }
-
-        IEnumerator StartMovingCO(float speed)
-        {
-            Debug.Log("MOVE WITH SPEED " + speed);
-            Vector3 currentTargetPos = transform.position;
-            float currentSpeed = speed;
-            int startDir = (int)Mathf.Sign(speed);
-            while (currentSpeed != 0.0f)
+            if (currentSpeed != 0.0f)
             {
-                Debug.Log(currentSpeed);
+                //Debug.Log("MOVE WITH SPEED " + currentSpeed);
 
-                if ((int) Mathf.Sign(currentSpeed) != startDir) 
-                {
-                    break;
-                }
-
-                currentTargetPos += Vector3.right * currentSpeed * Time.deltaTime;
+                //Debug.Log(currentSpeed);
+                int startDir = (int)Mathf.Sign(currentSpeed);
                 currentSpeed -= Time.deltaTime * deceleration * startDir;
+                //Debug.Log("DECEL SPEED: " + currentSpeed);
+
+                if ((int)Mathf.Sign(currentSpeed) != startDir)
+                {
+                    currentSpeed = 0.0f;
+                }
 
                 if (Mathf.Abs(currentSpeed) <= 10.0f)
                 {
-                    break;
+                    currentSpeed = 0.0f;
+                    //followedTransform = null; // Stop following
                 }
+
+                Vector3 currentTargetPos = transform.position;
+                currentTargetPos += Vector3.right * currentSpeed * Time.deltaTime;
 
                 // Camera position
                 var nextCameraPosition = currentTargetPos;
@@ -140,29 +188,16 @@ namespace Antura.Map
 
                 // Assign the position
                 transform.position = nextCameraPosition;
-
-                yield return null;
             }
-            Debug.Log("Finished movement.");
+            //Debug.Log("Finished movement.");
         }
 
-        void MoveToLookPosition(Vector3 lookPosition)
+        private void TweenToTransform(Vector3 newPosition, Quaternion newRotation, float duration = 1, TweenCallback callback = null)
         {
-            // Use only the X
-            var nextCameraPosition = transform.position;
-            nextCameraPosition.x = lookPosition.x;    
-
-            // Camera limits
-            var startX = _stageMapsManager.CurrentShownStageMap.cameraPivotStart.position.x;
-            var endX = _stageMapsManager.CurrentShownStageMap.cameraPivotEnd.position.x;
-            var minX = startX < endX ? startX : endX;
-            var maxX = startX < endX ? endX : startX;
-            nextCameraPosition.x = Mathf.Clamp(nextCameraPosition.x, minX, maxX);
-
-            // Move
-            // TODO: use a coroutine for this instead
-            CameraGameplayController.I.MoveToPosition(nextCameraPosition, transform.rotation, 0.5f);
+            DOTween.Sequence()
+                .Append(transform.DOLocalMove(newPosition, duration))
+                .Insert(0, transform.DOLocalRotate(newRotation.eulerAngles, duration))
+                .OnComplete(callback);
         }
-
     }
 }
