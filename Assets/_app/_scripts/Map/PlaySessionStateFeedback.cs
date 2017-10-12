@@ -28,7 +28,7 @@ namespace Antura.Map
         private void HandlePlaySessionState(PlaySessionState playSessionState)
         {
             int score = 0;
-            if (playSessionState != null) score = playSessionState.score;
+            if (playSessionState != null && playSessionState.scoreData != null) score = (int)playSessionState.scoreData.GetScore();
 
             var mat = feedbackMR.GetComponentInChildren<MeshRenderer>().material;
             switch (score)

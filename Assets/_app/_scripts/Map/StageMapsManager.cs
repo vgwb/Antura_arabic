@@ -131,7 +131,7 @@ namespace Antura.Map
 
         #endregion
 
-        private static bool TEST_JOURNEY_POS = true;
+        private static bool TEST_JOURNEY_POS = false;
 
         private void Awake()
         {
@@ -171,7 +171,7 @@ namespace Antura.Map
             // Position the player
             playerPin.gameObject.SetActive(true);
             //playerPin.onMoveStart += HidePlaySessionMovementButtons;
-            playerPin.onMoveStart += CheckCurrentStageForMovement;
+            playerPin.onMoveStart += CheckCurrentStageForPlayerReset;
             //playerPin.onMoveEnd += ShowPlaySessionMovementButtons;
             playerPin.ForceToJourneyPosition(PreviousJourneyPosition, justVisuals:true);
 
@@ -423,7 +423,7 @@ namespace Antura.Map
             lockUI.SetActive(!playable);
         }
 
-        private void CheckCurrentStageForMovement()
+        private void CheckCurrentStageForPlayerReset()
         {
             //Debug.Log("ShownStage: " + shownStage + " Current: " + CurrentPlayerStage);
             if (shownStage != CurrentPlayerStage)

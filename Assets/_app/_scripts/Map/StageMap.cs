@@ -144,28 +144,31 @@ namespace Antura.Map
                 Debug.LogError("Stage " + stageNumber + " has only " + playPins.Count + " pins but needs " + allPlaySessionStates.Count);
                 return;
             }
+            /*
             else if (allPlaySessionStates.Count < playPins.Count)
             {
                 Debug.LogError("Stage " + stageNumber + " has " + playPins.Count + " pins but needs only " + allPlaySessionStates.Count);
                 return;
-            }
+            }*/
 
             int playerPosIndexCount = 0; 
             JourneyPosition assignedJourneyPosition = new JourneyPosition(stageNumber,1,1);
 
-            for (int jp_i = 0; jp_i < allPlaySessionStates.Count; jp_i++)
+            for (int jp_i = 0; jp_i < playPins.Count; jp_i++)
             {
                 var pin = playPins[jp_i];
-                var psState = allPlaySessionStates[jp_i];
-                var journeyPos = psState.data.GetJourneyPosition();
-                pin.Initialise(playerPosIndexCount++, journeyPos);
+                //var psState = allPlaySessionStates[jp_i];
+                //var journeyPos = psState.data.GetJourneyPosition();
+                pin.Initialise(playerPosIndexCount++, assignedJourneyPosition);
                 mapLocations.Add(pin);
 
                 pin.SetLocked();
                 //Debug.Log(assignedJourneyPosition);
-                pin.SetPlaySessionState(allPlaySessionStates.Find(x =>
-                    x.data.GetJourneyPosition().Equals(assignedJourneyPosition)
-                ));
+                var psState = allPlaySessionStates.Find(x =>  x.psData.GetJourneyPosition().Equals(assignedJourneyPosition));
+                if (psState != null)
+                {
+                    pin.SetPlaySessionState(psState);
+                }
 
                 // Create visual dots and a rope
                 if (jp_i > 0)
@@ -358,15 +361,19 @@ namespace Antura.Map
         /// <returns></returns>
         private List<PlaySessionState> GetAllPlaySessionStatesForStage(int _stage)
         {
-            // Get all available scores for this stage
-            var scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);
+            // Get all PS for this stage
+            var allPlaySessionData = AppManager.I.DB.GetAllPlaySessionData().Where(ps => ps.Stage == _stage).ToList();
 
-            // For each score entry, get its play session data and build a structure containing both
+            // Get all available scores for this stage
+            var allScoreData = AppManager.I.ScoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);
+
+            // Build a structure containing both
             var playSessionStateList = new List<PlaySessionState>();
-            for (var i = 0; i < scoreData_list.Count; i++)
+            for (var i = 0; i < allPlaySessionData.Count; i++)
             {
-                var data = AppManager.I.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
-                playSessionStateList.Add(new PlaySessionState(data, scoreData_list[i].Stars));
+                //var data = AppManager.I.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
+                var scoreData = allScoreData.FirstOrDefault(sc => sc.ElementId == allPlaySessionData[i].Id);
+                playSessionStateList.Add(new PlaySessionState(allPlaySessionData[i], scoreData));
                 //Debug.Log(scoreData_list[i].ElementId + " SCORE " + scoreData_list[i].Stars);
             }
             return playSessionStateList;

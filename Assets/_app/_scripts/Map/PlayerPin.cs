@@ -137,10 +137,13 @@ namespace Antura.Map
 
         public void ResetPlayerPositionAfterStageChange(bool comingFromHigherStage)
         {
-            if (comingFromHigherStage) {
+            if (comingFromHigherStage)
+            {
                 ForceToPin(currentStageMap.MaxUnlockedPinIndex);
                 LookAtPreviousPin(false);
-            } else {
+            }
+            else
+            {
                 ForceToPin(0);
                 LookAtNextPin(false);
             }
