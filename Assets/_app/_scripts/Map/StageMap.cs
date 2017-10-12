@@ -64,6 +64,14 @@ namespace Antura.Map
             get { return playPins[0]; } 
         }
 
+        public List<Pin> Pins
+        {
+            get
+            {
+                return playPins;
+            }
+        }
+
         public Pin PinForJourneyPosition(JourneyPosition jp)
         {
             return playPins.FirstOrDefault(p => p.JourneyPos.Equals(jp));
@@ -333,13 +341,6 @@ namespace Antura.Map
             foreach (var pin in playPins)
             {
                 pin.Highlight(playerIsHere && Equals(pin.JourneyPos, CurrentPlayerPosJourneyPosition));
-                /*if (pin.rope != null)
-                {
-                    foreach (var dot in pin.rope.dots)
-                    {
-                        dot.Highlight(playerIsHere && Equals(dot.JourneyPos, GetCurrentPlayerPosJourneyPosition()));
-                    }
-                }*/
             }
         }
 

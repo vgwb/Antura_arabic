@@ -9,16 +9,16 @@ namespace Antura.Map
     /// </summary>
     public class Dot : MonoBehaviour
     {
-        [HideInInspector]
-        public bool isLocked;
-
         [Header("References")]
         public Material blackDot;
         public Material redDot;
 
+        // Configuration
+        public static bool highlightOnPlayerCollision = false;
+
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (highlightOnPlayerCollision && other.gameObject.CompareTag("Player"))
             {
                 Highlight(true);
             }
@@ -26,7 +26,7 @@ namespace Antura.Map
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (highlightOnPlayerCollision && other.gameObject.CompareTag("Player"))
             {
                 Highlight(false);
             }
@@ -44,36 +44,20 @@ namespace Antura.Map
             }
         }
 
-        /*
-        public void SetUnlocked()
-        {
-            isLocked = false;
-            gameObject.SetActive(true);
-        }
-
-        public void SetLocked()
-        {
-            isLocked = true;
-            gameObject.SetActive(false);
-        }
-        */
-
         #region Appear / Disappear
 
-        private bool appeared = false;
-
-        public bool Appeared { get { return appeared;} }
+        public bool Appeared { get; private set; }
 
         public void Disappear()
         {
-            appeared = false;
+            Appeared = false;
             transform.localScale = Vector3.zero;
         }
 
         public void Appear(float delay, float duration)
         {
-            if (appeared) return;
-            appeared = true;
+            if (Appeared) return;
+            Appeared = true;
             transform.DOScale(Vector3.one * 1.5f, duration)
                 .SetEase(Ease.OutElastic)
                 .SetDelay(delay);
@@ -81,8 +65,8 @@ namespace Antura.Map
 
         public void FlushAppear()
         {
-            if (appeared) return;
-            appeared = true;
+            if (Appeared) return;
+            Appeared = true;
             transform.localScale = Vector3.one * 1.5f;
         }
 

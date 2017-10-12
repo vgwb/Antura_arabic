@@ -155,7 +155,7 @@ namespace Antura.Map
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (Dot.highlightOnPlayerCollision && other.gameObject.CompareTag("Player"))
             {
                 Highlight(true);
             }
@@ -163,7 +163,7 @@ namespace Antura.Map
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (Dot.highlightOnPlayerCollision && other.gameObject.CompareTag("Player"))
             {
                 Highlight(false);
             }

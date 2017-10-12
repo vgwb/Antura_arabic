@@ -14,13 +14,17 @@ namespace Antura.Map
     {
         // State
         private bool isFollowing = false;
+        private Transform followedTransform;
 
         // References
         private StageMapsManager _stageMapsManager;
 
         // Touch controls
-        public bool isSwiping;
-        private float xDown, xUp, x;
+        private bool isSwiping;
+        private float xDown;
+        public float sensibility = 0.1f;
+        public float deceleration = 20.0f;
+        public float minScreenPercentage = 0.3f;
 
         private void Start()
         {
@@ -28,33 +32,28 @@ namespace Antura.Map
             isSwiping = false;
         }
 
-        private Transform targetTransform;
-
         /// <summary>
-        /// Follows on the X axis.
-        /// Keeps limits based on the stage.
+        /// Follows the target player over this map
         /// </summary>
-        /// <param name="playerPin"></param>
         public void FollowPlayer(PlayerPin playerPin)
         {
-            targetTransform = playerPin.transform;
             isFollowing = true;
-            // TODO: use a coroutine for this instead
-            //CameraGameplayController.I.MoveToPosition(nextCameraPosition, transform.rotation, 0.5f);
-            // TODO: stage limits
+            followedTransform = playerPin.transform;
         }
 
         public void ManualMovement()
         {
             isFollowing = false;
+            followedTransform = null;
         }
 
+        private System.DateTime timeDown;
         private void Update()
         {
             // Player following
             if (isFollowing)
             {
-                MoveToLookPosition(targetTransform.position);
+                MoveToLookPosition(followedTransform.position);
                 return;
             }
 
@@ -64,35 +63,27 @@ namespace Antura.Map
             if (Input.GetMouseButtonDown(0))
             {
                 xDown = Input.mousePosition.x;
+                timeDown = System.DateTime.Now;
             }
 
             if (Input.GetMouseButtonUp(0))
             {
-                xUp = Input.mousePosition.x;
-                x = xDown - xUp;
+                var xUp = Input.mousePosition.x;
+                var xDelta = xDown - xUp;
                 xDown = 0;
-                xUp = 0;
+
+                var timeUp = System.DateTime.Now;
+                var timeDelta = timeDown - timeUp;
+
+                float speed = xDelta / (float)timeDelta.TotalSeconds * sensibility;
+                Debug.Log("x " + xDelta + " time " + (float)timeDelta.TotalSeconds);
 
                 float width = Screen.width;
-
-                if (Mathf.Abs(x) > width * 0.3f)
+                if (Mathf.Abs(xDelta) > width * minScreenPercentage)
                 {
-                    if (x < 0) //&& !_stageMapsManager.IsAtFinalStage)
-                    {
-                        //_stageMapsManager.MoveToNextStageMap();
-                        MoveRight();
-
-                        isSwiping = true;
-                        StartCoroutine(SwipeCooldownCO());
-                    }
-                    if (x > 0)//&&  !_stageMapsManager.IsAtFirstStage)
-                    {
-                        //_stageMapsManager.MoveToPreviousStageMap();
-                        MoveLeft();
-
-                        isSwiping = true;
-                        StartCoroutine(SwipeCooldownCO());
-                    }
+                    StartMoving(speed);
+                    isSwiping = true;
+                    StartCoroutine(SwipeCooldownCO());
                 }
             }
         }
@@ -104,14 +95,55 @@ namespace Antura.Map
 
         public float swipeMovementDistance = 50;
 
-        void MoveLeft()
+        void StartMoving(float speed)
         {
-            MoveToLookPosition(transform.position + Vector3.left * swipeMovementDistance);
+            StartCoroutine(StartMovingCO(speed));
+            //MoveToLookPosition(transform.position + Vector3.right * swipeMovementDistance);
         }
 
-        void MoveRight()
+        IEnumerator StartMovingCO(float speed)
         {
-            MoveToLookPosition(transform.position + Vector3.right * swipeMovementDistance);
+            Debug.Log("MOVE WITH SPEED " + speed);
+            Vector3 currentTargetPos = transform.position;
+            float currentSpeed = speed;
+            int startDir = (int)Mathf.Sign(speed);
+            while (currentSpeed != 0.0f)
+            {
+                Debug.Log(currentSpeed);
+
+                if ((int) Mathf.Sign(currentSpeed) != startDir) 
+                {
+                    break;
+                }
+
+                currentTargetPos += Vector3.right * currentSpeed * Time.deltaTime;
+                currentSpeed -= Time.deltaTime * deceleration * startDir;
+
+                if (Mathf.Abs(currentSpeed) <= 10.0f)
+                {
+                    break;
+                }
+
+                // Camera position
+                var nextCameraPosition = currentTargetPos;
+
+                // Camera limits
+                var startX = _stageMapsManager.CurrentShownStageMap.cameraPivotStart.position.x;
+                var endX = _stageMapsManager.CurrentShownStageMap.cameraPivotEnd.position.x;
+                var minX = startX < endX ? startX : endX;
+                var maxX = startX < endX ? endX : startX;
+                if (nextCameraPosition.x > maxX || nextCameraPosition.x < minX)
+                {
+                    currentSpeed = 0.0f;
+                }
+                nextCameraPosition.x = Mathf.Clamp(nextCameraPosition.x, minX, maxX);
+
+                // Assign the position
+                transform.position = nextCameraPosition;
+
+                yield return null;
+            }
+            Debug.Log("Finished movement.");
         }
 
         void MoveToLookPosition(Vector3 lookPosition)

@@ -207,6 +207,7 @@ namespace Antura.Map
         private void UpdatePlayerJourneyPosition(JourneyPosition journeyPos)
         {
             AppManager.I.Player.SetCurrentJourneyPosition(journeyPos, false);
+            stageMapsManager.UpdateDotHighlight();
             //Debug.LogWarning("Setting journey pos current: " + AppManager.I.Player.CurrentJourneyPosition);
         }
 

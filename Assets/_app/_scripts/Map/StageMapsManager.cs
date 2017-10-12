@@ -590,5 +590,19 @@ namespace Antura.Map
         }
 
         #endregion
+
+        public void UpdateDotHighlights()
+        {
+            foreach (var stageMap in stageMaps)
+            {
+                foreach (var pin in stageMap.Pins)
+                {
+                    pin.Highlight(false);
+                }
+
+                var correctPin = stageMap.PinForJourneyPosition(CurrentJourneyPosition);
+                if (correctPin != null) correctPin.Highlight(true);
+            }
+        }
     }
 }
