@@ -2,8 +2,6 @@
 using Antura.Audio;
 using Antura.Core;
 using DG.Tweening;
-using System.Linq;
-using Antura.Teacher;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -113,7 +111,7 @@ namespace Antura.Map
 
         private void MoveToPin(int pinIndex)
         {
-            //if (pinIndex == CurrentTargetPosIndex) return;
+            if (pinIndex == CurrentTargetPosIndex) return;
             if (CanMoveTo(pinIndex))
             {
                 stageMapsManager.mapCamera.SetAutoFollowTransformCurrentMap(transform);
@@ -175,16 +173,24 @@ namespace Antura.Map
             CheckMovementButtonsEnabling();
             int tmpCurrentIndex = currentStageMap.CurrentPinIndex;
             UpdatePlayerJourneyPosition(currentStageMap.mapLocations[targetIndex].JourneyPos);
-            while (tmpCurrentIndex != targetIndex)
+            // Debug.Log("ANIMATING TO " + targetIndex);
+            do
             {
-                float stepDuration = Mathf.Max(0.1f, 0.5f / Mathf.Abs(targetIndex - tmpCurrentIndex));
+                //Debug.Log("inner target is " + targetIndex + " tmp is " + tmpCurrentIndex);
+                const float maxStepDuration = 0.5f;
+                const float minStepDuration = 0.25f;
+                float stepDuration = Mathf.Clamp(0.5f / Mathf.Abs(targetIndex - tmpCurrentIndex), minStepDuration, maxStepDuration);
                 bool isAdvancing = targetIndex > tmpCurrentIndex;
-                tmpCurrentIndex += isAdvancing ? 1 : -1;
+                if (tmpCurrentIndex != targetIndex)
+                {
+                    tmpCurrentIndex += isAdvancing ? 1 : -1;
+                }
                 LookAtPin(!isAdvancing, true);
                 var nextPos = currentStageMap.mapLocations[tmpCurrentIndex].Position;
                 yield return MoveToCO(nextPos, stepDuration);
                 currentStageMap.ForceCurrentPinIndex(tmpCurrentIndex);
             }
+            while (tmpCurrentIndex != targetIndex);
 
             CheckMovementButtonsEnabling();
             isAnimating = false;
@@ -253,7 +259,7 @@ namespace Antura.Map
         // If animate is TRUE, animates the movement, otherwise applies the movement immediately
         private IEnumerator MoveToCO(Vector3 position, float stepDuration)
         {
-            //Debug.Log("Moving to " + position);
+            //Debug.Log("Moving to " + position + " with " + stepDuration);
             if (moveTween != null) {
                 moveTween.Kill();
             }
