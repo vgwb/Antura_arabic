@@ -25,32 +25,30 @@ namespace Antura.Map
         public Transform cameraPivotStart;
         public Transform cameraPivotEnd;
 
-        [HideInInspector]
-        // Current position of the PlayerPin in this stage map
-        public int currentPinIndex; 
-        [HideInInspector]
-        // Max position index PlayerPin can take in this stage map
-        public int maxUnlockedPinIndex;
-
-        // Pins: one per Play Session
-        private List<Pin> playPins;
-
-        // Data
-        private int[] nPlaySessionsPerLb;
+        [Header("References")]
+        public Transform dotsPivot;
+        public GameObject dotPrefab;
+        public GameObject ropePrefab;
 
         // Configuration
         private static float dotsSpan = 5.0f;
 
         #region Properties
 
-        public Vector3 GetCurrentPlayerPosVector()
+        // Current position of the PlayerPin in this stage map
+        public int CurrentPinIndex { get; private set; }
+
+        // Max position index PlayerPin can take in this stage map
+        public int MaxUnlockedPinIndex { get; private set; }
+
+        public Vector3 CurrentPlayerPosVector
         {
-            return mapLocations[currentPinIndex].Position;
+            get { return mapLocations[CurrentPinIndex].Position; }
         }
 
-        public JourneyPosition GetCurrentPlayerPosJourneyPosition()
+        public JourneyPosition CurrentPlayerPosJourneyPosition
         {
-            return mapLocations[currentPinIndex].JourneyPos;
+            get { return mapLocations[CurrentPinIndex].JourneyPos; }
         }
 
         public Pin FirstPin
@@ -69,17 +67,18 @@ namespace Antura.Map
         }
         #endregion
 
-        [Header("References")]
-        public Transform dotsPivot;
-        public GameObject dotPrefab;
-        public GameObject ropePrefab;
+        #region State
+
+        // Pins: one per Play Session
+        private List<Pin> playPins;
 
         [HideInInspector]
         private bool stageUnlocked;   // at least one PS for this stage is unlocked
         [HideInInspector]
         private bool wholeStageUnlocked;    // all PS and LB of this stage are unlocked
 
-        [Header("PlayerPin")]
+        #endregion
+
         public List<IMapLocation> mapLocations = new List<IMapLocation>();
            
         #region Setup
@@ -114,8 +113,6 @@ namespace Antura.Map
         {
             stageUnlocked = _stageUnlocked;
             wholeStageUnlocked = _wholeStageUnlocked;
-
-            CountPlaySessionsPerLearningBlock();
 
             // Find all pins 
             playPins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
@@ -211,23 +208,18 @@ namespace Antura.Map
             foreach (var pin in playPins)
             {
                 // First the dots that connect the pins
-                //if (pin.rope != null)
+                foreach (var dot in pin.dots)
                 {
-                    foreach (var ropeDot in pin.dots)
+                    if (!dot.Appeared) 
                     {
-                        //if (!ropeDot.isLocked)
-                        if (!ropeDot.Appeared) // && ropeDot.playerPosIndex <= upToPosIndex)
-                        {
-                            ropeDot.Appear(0.0f, duration);
-                            yield return new WaitForSeconds(duration);
-                            duration *= 0.9f;
-                            if (duration <= 0.01f) duration = 0.02f;
-                        }
+                        dot.Appear(0.0f, duration);
+                        yield return new WaitForSeconds(duration);
+                        duration *= 0.9f;
+                        if (duration <= 0.01f) duration = 0.02f;
                     }
                 }
 
                 // Then the pins
-                //if (!pin.isLocked)
                 if (!pin.Appeared && pin.pinIndex <= upToPosIndex)
                 {
                     pin.Appear(duration);
@@ -251,17 +243,12 @@ namespace Antura.Map
                 }
 
                 // First the dots
-                //if (pin.rope != null)
+                foreach (var dot in pin.dots)
                 {
-                    foreach (var ropeDot in pin.dots)
-                    {
-                        //if (ropeDot.playerPosIndex <= upToPosIndex)
-                        ropeDot.FlushAppear();
-                    }
+                    dot.FlushAppear();
                 }
 
-                // Then the pin
-                //if (pin.pinIndex <= upToPosIndex)
+                // Then the pin itself
                 pin.FlushAppear();
             }
         }
@@ -300,7 +287,6 @@ namespace Antura.Map
                 dotGo.transform.SetParent(dotsPivot);
                 var dot = dotGo.GetComponent<Dot>();
                 pinFront.dots.Add(dot);
-
             }
         }
 
@@ -309,90 +295,26 @@ namespace Antura.Map
             if (!stageUnlocked)
             {
                 // All is locked
-                maxUnlockedPinIndex = 0;
+                MaxUnlockedPinIndex = 0;
             }
             else if (wholeStageUnlocked)
             {
                 // All is unlocked
-                for (var i = 0; i < playPins.Count; i++)
-                {
-                    var pin = playPins[i];
-                    pin.SetUnlocked();
-                    /*foreach (var dot in pin.rope.dots)
-                    {
-                        dot.SetUnlocked();
-                    }*/
-                }
-
-                maxUnlockedPinIndex = playPins.Last().pinIndex;
+                playPins.ForEach(pin => pin.SetUnlocked());
+                MaxUnlockedPinIndex = playPins.Last().pinIndex;
             }
             else
             {
-                // Part is locked
-                var max_lb = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
-                var max_ps = AppManager.I.Player.MaxJourneyPosition.PlaySession;
-
-                // TODO: get the journey position of each pin and check agaisnt MaxJourneyPosition
-                foreach (var pin in playPins)
+                // Part of the stage is locked
+                var maxJp = AppManager.I.Player.MaxJourneyPosition;
+                playPins.ForEach(pin =>
                 {
-                    if (pin.JourneyPos.IsMinorOrEqual(AppManager.I.Player.MaxJourneyPosition))
+                    if (pin.JourneyPos.IsMinorOrEqual(maxJp))
                     {
                         pin.SetUnlocked();
+                        MaxUnlockedPinIndex = pin.pinIndex;
                     }
-                }
-                // TODO: set the maxUnlockedPinIndex too
-
-                /*
-                for (var lb = 1; lb <= max_lb; lb++)
-                {
-                    var pin = PinForLB(lb);
-
-                    if (lb < max_lb)
-                    {
-                        // Completed LB: enable all dots of that lb
-                        pin.SetUnlocked();
-                        /*for (var ps = 1; ps <= pin.rope.dots.Count; ps++)
-                        {
-                            var dot = pin.rope.DotForPS(ps);
-                            dot.SetUnlocked();
-                        }*/
-                   /* }
-                    else
-                    { 
-                        // Maximum reached LB: we check the max PS we reached
-                        if (max_ps == AppManager.I.JourneyHelper.AssessmentPlaySessionIndex)
-                        {
-                            max_ps = pin.rope.dots.Count; // fake 100 -> N
-                            pin.SetUnlocked();
-                            maxUnlockedPinIndex = pin.dot.playerPosIndex;
-                        }
-                        else
-                        {
-                            maxUnlockedPinIndex = pin.rope.DotForPS(max_ps).playerPosIndex;
-                        }
-
-                        for (var ps = 1; ps <= max_ps; ps++)
-                        {
-                            var dot = pin.rope.DotForPS(ps);
-                            dot.SetUnlocked();
-                        }
-                    }
-                }*/
-            }
-        }
-
-        // Count the number of steps (PlaySessions) per each learning block
-        private void CountPlaySessionsPerLearningBlock()
-        {
-            var psDataList = GetAllPlaySessionDataForStage(stageNumber);
-            var lbDataList = GetAllLearningBlockDataForStage(stageNumber);
-            nPlaySessionsPerLb = new int[lbDataList.Count];
-            foreach (PlaySessionData psData in psDataList)
-            {
-                if (!psData.GetJourneyPosition().IsAssessment())
-                {
-                    nPlaySessionsPerLb[psData.LearningBlock-1]++;
-                }
+                });
             }
         }
 
@@ -401,7 +323,7 @@ namespace Antura.Map
             //Debug.Log("Stage " + name + " player here? " + playerIsHere);
             foreach (var pin in playPins)
             {
-                pin.Highlight(playerIsHere && Equals(pin.JourneyPos, GetCurrentPlayerPosJourneyPosition()));
+                pin.Highlight(playerIsHere && Equals(pin.JourneyPos, CurrentPlayerPosJourneyPosition));
                 /*if (pin.rope != null)
                 {
                     foreach (var dot in pin.rope.dots)
@@ -413,7 +335,6 @@ namespace Antura.Map
         }
 
         #endregion
-
 
         #region Play Session State
 
@@ -428,17 +349,17 @@ namespace Antura.Map
             var scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);
 
             // For each score entry, get its play session data and build a structure containing both
-            var playSessionState_list = new List<PlaySessionState>();
+            var playSessionStateList = new List<PlaySessionState>();
             for (var i = 0; i < scoreData_list.Count; i++)
             {
                 var data = AppManager.I.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
-                playSessionState_list.Add(new PlaySessionState(data, scoreData_list[i].Stars));
+                playSessionStateList.Add(new PlaySessionState(data, scoreData_list[i].Stars));
                 //Debug.Log(scoreData_list[i].ElementId + " SCORE " + scoreData_list[i].Stars);
             }
-
-            return playSessionState_list;
+            return playSessionStateList;
         }
 
+        /* NOT NEEDED?
         /// <summary>
         /// Given a stage, returns the list of all play session data corresponding to it.
         /// </summary>
@@ -454,6 +375,7 @@ namespace Antura.Map
         {
             return AppManager.I.DB.FindLearningBlockData(x => x.Stage == _stage);
         }
+        */
         #endregion
 
         #region Show / Hide

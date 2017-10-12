@@ -489,7 +489,7 @@ namespace Antura.Map
         private void SwitchStageMapForPlayer(StageMap newStageMap, bool init = false)
         {
             if (playerPin.IsAnimating) playerPin.StopAnimation(stopWhereItIs: false);
-            playerPin.stageMap = newStageMap;
+            playerPin.currentStageMap = newStageMap;
 
             // Move the player too, if the stage is unlocked
             if (!init && !newStageMap.FirstPin.isLocked)
