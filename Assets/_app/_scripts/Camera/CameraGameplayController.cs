@@ -8,6 +8,7 @@ namespace Antura.CameraControl
 {
     /// <summary>
     /// Controller for the camera used during gameplay and to show the 3D world.
+    /// Movement is mainly used in the map scene.
     /// </summary>
     public class CameraGameplayController : MonoBehaviour
     {

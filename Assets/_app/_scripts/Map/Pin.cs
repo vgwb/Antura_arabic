@@ -12,8 +12,6 @@ namespace Antura.Map
     public class Pin : MonoBehaviour, IMapLocation
     {
         [HideInInspector]
-        public int learningBlock;   // DEPRECATED
-        [HideInInspector]
         public JourneyPosition journeyPosition;
 
         [Header("References")]

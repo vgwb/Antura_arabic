@@ -258,17 +258,12 @@ namespace Antura.Map
 
             // Target rotation 
             // TODO: use pinIndex instead
-            int fromLb = current_lb - 1;
-            int toLb = current_lb;
-            if (lookAtPrevious) {
-                fromLb = current_lb;
-                toLb = current_lb - 1;
-            }
+            int fromPinIndex = lookAtPrevious ? CurrentPinIndex : CurrentPinIndex - 1;
+            int toPinIndex = lookAtPrevious ? CurrentPinIndex -1 : CurrentPinIndex;
 
-            var lookingFromTr = stageMap.PinForLB(fromLb).transform;
-            var toPin = stageMap.PinForLB(toLb);
-            if (toPin == null) toPin = stageMap.PinForLB(fromLb);
-            var lookingToTr = toPin.transform;
+            var lookingFromTr = stageMap.PinForIndex(fromPinIndex).transform;
+            var toPin = stageMap.PinForIndex(toPinIndex);
+            var lookingToTr = toPin != null ? toPin.transform : lookingFromTr;
             Quaternion toRotation = Quaternion.LookRotation(lookingToTr.transform.position - lookingFromTr.transform.position, Vector3.up);
             // Debug.Log("Current " + currRotation + " To " + toRotation);
 

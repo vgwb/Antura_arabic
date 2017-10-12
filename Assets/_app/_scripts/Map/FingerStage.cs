@@ -5,6 +5,7 @@ namespace Antura.Map
 {
     /// <summary>
     /// Handles touch swipes to change stage map
+    /// DEPRECATED!
     /// </summary>
     public class FingerStage : MonoBehaviour
     {

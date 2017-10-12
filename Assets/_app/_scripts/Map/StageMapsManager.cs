@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Resources;
 using Antura.CameraControl;
 using Antura.Core;
 using Antura.Database;
@@ -28,6 +27,7 @@ namespace Antura.Map
         [Header("References")]
         public StageMap[] stageMaps;
         public PlayerPin playerPin;
+        public MapCameraController mapCamera;
 
         [Header("UI")]
         public MapStageIndicator mapStageIndicator;
@@ -114,6 +114,11 @@ namespace Antura.Map
             get { return shownStage == FinalStage; }
         }
 
+        public StageMap CurrentShownStageMap
+        {
+            get { return StageMap(shownStage); }
+        }
+
         private bool IsStagePlayable(int stage)
         {
             return stage <= MaxUnlockedStage;
@@ -121,7 +126,7 @@ namespace Antura.Map
 
         #endregion
 
-        private static bool TEST_JOURNEY_POS = false;
+        private static bool TEST_JOURNEY_POS = true;
 
         private void Awake()
         {
@@ -133,9 +138,9 @@ namespace Antura.Map
             if (TEST_JOURNEY_POS)
             {
                 TEST_JOURNEY_POS = false;
-                AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(2, 1, 1));
-                AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(2, 1, 1));
-                AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 14, 100));
+                AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(1, 1, 2));
+                AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(1, 1, 2));
+                AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 1, 1));
                 Debug.Log("FORCED TEST_JOURNEY_POS");
             }
 
@@ -204,12 +209,14 @@ namespace Antura.Map
                 {
                     //Debug.Log("ANIMATING TO STAGE: " + targetCurrentJourneyPosition.Stage + " THEN MOVING TO " + targetCurrentJourneyPosition);
                     yield return StartCoroutine(SwitchFromToStageCO(shownStage, targetCurrentJourneyPosition.Stage));
+                    mapCamera.FollowPlayer(playerPin);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                 }
                 else
                 {
                     //Debug.Log("JUST MOVING TO " + targetCurrentJourneyPosition);
                     yield return new WaitForSeconds(1.0f);
+                    mapCamera.FollowPlayer(playerPin);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                     yield return null;
                 }
@@ -219,6 +226,8 @@ namespace Antura.Map
             {
                 yield return null;
             }
+
+            mapCamera.ManualMovement();
             ShowPlaySessionMovementButtons();
         }
 
@@ -451,7 +460,7 @@ namespace Antura.Map
             var stageMap = StageMap(stage);
             stageMap.Show();
 
-            var pivot = stageMap.cameraPivot;
+            var pivot = stageMap.cameraPivotStart;
             CameraGameplayController.I.transform.position = pivot.position;
             CameraGameplayController.I.transform.rotation = pivot.rotation;
             Camera.main.backgroundColor = stageMap.color;
@@ -465,7 +474,12 @@ namespace Antura.Map
             playerPin.stageMap = newStageMap;
 
             // TODO: re-add
-            //if (!init && !newStageMap.PinForLB(1).rope.DotForPS(1).isLocked) playerPin.ForceToJourneyPosition(StageMapsManager.CurrentJourneyPosition);
+            //var pin = stageMap.PinForJourneyPosition(journeyPos);
+            // Move the player too, if the stage is unlocked
+            if (!init && !newStageMap.FirstPin.isLocked)
+            {
+                playerPin.ForceToJourneyPosition(CurrentJourneyPosition);
+            }
         }
 
         private void AnimateToShownStage(int stage)
@@ -475,7 +489,7 @@ namespace Antura.Map
             stageMap.Show();
             stageMap.ResetStageOnShow(CurrentPlayerStage == stage);
 
-            var pivot = stageMap.cameraPivot;
+            var pivot = stageMap.cameraPivotStart;
             CameraGameplayController.I.MoveToPosition(pivot.position, pivot.rotation, 0.6f);
             Camera.main.DOColor(stageMap.color, 1);
             Camera.main.GetComponent<CameraFog>().color = stageMap.color;
@@ -551,8 +565,6 @@ namespace Antura.Map
         public static int GetPosIndexFromJourneyPosition(StageMap stageMap, JourneyPosition journeyPos)
         {
             var st = journeyPos.Stage;
-            var lb = journeyPos.LearningBlock;
-            var ps = journeyPos.PlaySession;
 
             if (stageMap.stageNumber > st)
                 return 0;
@@ -562,20 +574,6 @@ namespace Antura.Map
 
             var pin = stageMap.PinForJourneyPosition(journeyPos);
             return pin.pinIndex;
-
-            /*
-            if (AppManager.I.JourneyHelper.IsAssessmentTime(journeyPos))
-            {
-                // Player is on a pin
-                var pin = stageMap.PinForLB(lb);
-                return pin.dot.playerPosIndex;
-            }
-            else
-            {
-                // Player is on a dot
-                var dot = stageMap.PinForLB(lb).rope.DotForPS(ps);
-                return dot.playerPosIndex;
-            }*/
         }
 
         #endregion

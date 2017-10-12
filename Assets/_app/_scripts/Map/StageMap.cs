@@ -25,7 +25,8 @@ namespace Antura.Map
 
         [Header("Settings")]
         public Color color;
-        public Transform cameraPivot;
+        public Transform cameraPivotStart;
+        public Transform cameraPivotEnd;
 
         [HideInInspector]
         // Current position of the PlayerPin in this stage map
@@ -53,18 +54,26 @@ namespace Antura.Map
             return mapLocations[currentPinIndex].JourneyPos;
         }
 
-        public Pin PinForLB(int lb)
+        /*public Pin PinForLB(int lb)
         {
             if (lb >= pins.Count) return null;
             return pins[lb];    // @note: we have pin 0 as fake
-        }
+        }*/
 
+        public Pin FirstPin
+        {
+            get { return pins[1]; } 
+        }
 
         public Pin PinForJourneyPosition(JourneyPosition jp)
         {
             return pins.FirstOrDefault(p => p.JourneyPos.Equals(jp));
         }
 
+        public Pin PinForIndex(int index)
+        {
+            return pins.FirstOrDefault(p => p.pinIndex == index);
+        }
         #endregion
 
         [Header("References")]
