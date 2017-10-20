@@ -115,9 +115,9 @@ namespace Antura.Map
             if (CanMoveTo(pinIndex))
             {
                 stageMapsManager.mapCamera.SetAutoFollowTransformCurrentMap(transform);
-                int lastIndex = CurrentPinIndex;
+                //int lastIndex = CurrentPinIndex;
                 AnimateToPin(pinIndex);
-                LookAtPin(pinIndex < lastIndex, true);
+                //LookAtPin(pinIndex < lastIndex, true);
             }
         }
 
@@ -242,8 +242,8 @@ namespace Antura.Map
             var lookingFromTr = fromPin != null? fromPin.transform : toPin.transform;
             var lookingToTr = toPin != null ? toPin.transform : fromPin.transform;
             Quaternion toRotation = Quaternion.LookRotation(lookingToTr.transform.position - lookingFromTr.transform.position, Vector3.up);
-            Debug.Log("Look from " + fromPin + " To " + toPin);
-            Debug.Log("Current " + transform.rotation + " To " + toRotation);
+            //Debug.Log("Look  PREV " + lookAtPrevious + " from " + fromPin + " To " + toPin);
+            //Debug.Log("Current " + transform.rotation + " To " + toRotation);
 
             if (animated) {
                 transform.rotation = transform.rotation;

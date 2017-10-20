@@ -27,12 +27,20 @@ namespace Antura.Map
         private StageMapsManager _stageMapsManager;
 
         // Touch controls
-       // private bool swipeOnCooldown;
+        public bool useSwipe = true;
+        public bool useDrag = true;
+
         private float xDown;
         private System.DateTime timeDown;
         public float sensibility = 0.1f;
         public float deceleration = 20.0f;
         public float minScreenPercentage = 0.3f;
+        public float swipeMaxTime = 0.3f;
+
+        private bool isFollowingFinger = false;
+        private float startFingerX = 0.0f;
+        private float startCameraX = 0.0f;
+        public float dragSensibility = 0.1f;
 
         private void Start()
         {
@@ -129,93 +137,113 @@ namespace Antura.Map
                 }
             }
 
+            HandleMouseUp();
             if (movementType == MovementType.MANUAL)
             {
                 // Manual control
-                SwipeControls();
+                HandleMouseDown();
                 CameraMoveUpdate();
             }
         }
 
-        private void SwipeControls()
+        private void HandleMouseUp()
         {
-            // Swipe start
-            if (Input.GetMouseButtonDown(0))
-            {
-                xDown = Input.mousePosition.x;
-                timeDown = System.DateTime.Now;
-            }
-
             // Swipe end
             if (Input.GetMouseButtonUp(0))
             {
-                var xUp = Input.mousePosition.x;
-                var xDelta = xDown - xUp;
-                xDown = 0;
-
-                var timeUp = System.DateTime.Now;
-                var timeDelta = timeDown - timeUp;
-
-                float addedSpeed = xDelta / (float) timeDelta.TotalSeconds * sensibility;
-                //Debug.Log("x " + xDelta + " time " + (float)timeDelta.TotalSeconds);
-
-                float width = Screen.width;
-                if (Mathf.Abs(xDelta) > width * minScreenPercentage)
+                if (useDrag)
                 {
-                    currentSpeed += addedSpeed;
+                    isFollowingFinger = false;
                 }
-                else
+
+                if (movementType == MovementType.MANUAL)
                 {
-                    // Stop here
-                    currentSpeed = 0.0f;
+                    if (useSwipe)
+                    {
+                        var xUp = Input.mousePosition.x;
+                        var xDelta = xUp - xDown;
+                        xDown = 0;
+
+                        var timeUp = System.DateTime.Now;
+                        var timeDelta = timeUp - timeDown;
+                        if ((float)timeDelta.TotalSeconds <= swipeMaxTime)
+                        {
+                            float addedSpeed = xDelta / (float)timeDelta.TotalSeconds * sensibility;
+                            //Debug.Log("x " + xDelta + " time " + (float)timeDelta.TotalSeconds);
+                            currentSpeed = Mathf.Abs(xDelta) > Screen.width * minScreenPercentage ? (currentSpeed + addedSpeed) : 0.0f;
+                        }
+                    }
                 }
+            }
+
+        }
+
+        private void HandleMouseDown()
+        {
+            // Swipe start
+            if(Input.GetMouseButtonDown(0))
+            {
+                if (useDrag)
+                {
+                    isFollowingFinger = true;
+                    startFingerX = Input.mousePosition.x;
+                    startCameraX = Camera.main.transform.position.x;
+                }
+
+                if (useSwipe)
+                {
+                    xDown = Input.mousePosition.x;
+                    timeDown = System.DateTime.Now;
+                }
+            }
+
+            if (useDrag && isFollowingFinger)
+            {
+                var xDrag = Input.mousePosition.x;
+                var xDelta = xDrag - startFingerX;
+
+                Vector3 nextCameraPosition = transform.position;
+                nextCameraPosition.x = startCameraX + xDelta * dragSensibility;
+
+                AssignCameraPosition(nextCameraPosition);
             }
         }
 
         private float currentSpeed = 0.0f;
         void CameraMoveUpdate()
         {
+            if (isFollowingFinger) currentSpeed = 0.0f;
             if (currentSpeed != 0.0f)
             {
-                //Debug.Log("MOVE WITH SPEED " + currentSpeed);
-
-                //Debug.Log(currentSpeed);
                 int startDir = (int)Mathf.Sign(currentSpeed);
                 currentSpeed -= Time.deltaTime * deceleration * startDir;
-                //Debug.Log("DECEL SPEED: " + currentSpeed);
 
-                if ((int)Mathf.Sign(currentSpeed) != startDir)
+                if ((int)Mathf.Sign(currentSpeed) != startDir
+                    || Mathf.Abs(currentSpeed) <= 10.0f)
                 {
                     currentSpeed = 0.0f;
                 }
 
-                if (Mathf.Abs(currentSpeed) <= 10.0f)
-                {
-                    currentSpeed = 0.0f;
-                    //followedTransform = null; // Stop following
-                }
-
-                Vector3 currentTargetPos = transform.position;
-                currentTargetPos += Vector3.right * currentSpeed * Time.deltaTime;
-
-                // Camera position
-                var nextCameraPosition = currentTargetPos;
-
-                // Camera limits
-                var startX = _stageMapsManager.CurrentShownStageMap.cameraPivotStart.position.x;
-                var endX = _stageMapsManager.CurrentShownStageMap.cameraPivotEnd.position.x;
-                var minX = startX < endX ? startX : endX;
-                var maxX = startX < endX ? endX : startX;
-                if (nextCameraPosition.x > maxX || nextCameraPosition.x < minX)
-                {
-                    currentSpeed = 0.0f;
-                }
-                nextCameraPosition.x = Mathf.Clamp(nextCameraPosition.x, minX, maxX);
-
-                // Assign the position
-                transform.position = nextCameraPosition;
+                Vector3 nextCameraPosition = transform.position + Vector3.right * currentSpeed * Time.deltaTime;
+                AssignCameraPosition(nextCameraPosition);
             }
-            //Debug.Log("Finished movement.");
+        }
+
+        private void AssignCameraPosition(Vector3 nextCameraPosition)
+        {
+            // Camera limits
+            var startX = _stageMapsManager.CurrentShownStageMap.cameraPivotStart.position.x;
+            var endX = _stageMapsManager.CurrentShownStageMap.cameraPivotEnd.position.x;
+            var minX = startX < endX ? startX : endX;
+            var maxX = startX < endX ? endX : startX;
+            if (nextCameraPosition.x > maxX || nextCameraPosition.x < minX)
+            {
+                currentSpeed = 0.0f;
+            }
+            nextCameraPosition.x = Mathf.Clamp(nextCameraPosition.x, minX, maxX);
+
+            // Assign the position
+            transform.position = nextCameraPosition;
         }
 
         private void TweenTo(Vector3 newPosition, Quaternion newRotation, float duration = 1, TweenCallback callback = null)
