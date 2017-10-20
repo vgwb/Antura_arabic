@@ -20,6 +20,7 @@ namespace Antura.Map
     {
         [Header("Options")]
         public bool MovePlayerWithStageChange = true;
+        public bool ShowStageButtons = false;
 
         [Header("Debug")]
         public bool SimulateFirstContact;
@@ -30,10 +31,8 @@ namespace Antura.Map
         public MapCameraController mapCamera;
 
         [Header("UI")]
-        public bool showStageButtons = false;
 
         public Camera UICamera;
-
         public MapStageIndicator mapStageIndicator;
         public GameObject leftStageButton;
         public GameObject rightStageButton;
@@ -204,10 +203,12 @@ namespace Antura.Map
             StageMap(shownStage).FlushAppear(PreviousJourneyPosition);
 
             bool needsAnimation = !Equals(targetCurrentJourneyPosition, PreviousJourneyPosition);
-            //Debug.Log("TARGET CURRENT: " + targetCurrentJourneyPosition  + "\n PREV: " + PreviousJourneyPosition);
+            Debug.Log("TARGET CURRENT: " + targetCurrentJourneyPosition  + " PREV: " + PreviousJourneyPosition);
             if (!needsAnimation)
             {
+                Debug.Log("Already at the correct stage " + shownStage);
                 StageMap(shownStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
+                TeleportCameraToShownStage(shownStage);
             }
             else
             {
@@ -217,14 +218,14 @@ namespace Antura.Map
                 //Debug.Log("Shown stage: " + shownStage + " TargetJourneyPos " + targetCurrentJourneyPosition +   " PreviousJourneyPos " + PreviousJourneyPosition);
                 if (shownStage != targetCurrentJourneyPosition.Stage)
                 {
-                    //Debug.Log("ANIMATING TO STAGE: " + targetCurrentJourneyPosition.Stage + " THEN MOVING TO " + targetCurrentJourneyPosition);
+                    Debug.Log("ANIMATING TO STAGE: " + targetCurrentJourneyPosition.Stage + " THEN MOVING TO " + targetCurrentJourneyPosition);
                     yield return StartCoroutine(SwitchFromToStageCO(shownStage, targetCurrentJourneyPosition.Stage));
                     mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                 }
                 else
                 {
-                    //Debug.Log("JUST MOVING TO " + targetCurrentJourneyPosition);
+                    Debug.Log("JUST MOVING TO " + targetCurrentJourneyPosition);
                     yield return new WaitForSeconds(1.0f);
                     mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
@@ -457,8 +458,10 @@ namespace Antura.Map
             SwitchStageMapForPlayer(StageMap(toStage));
 
             // Update Player Stage too, if needed
-            if (MovePlayerWithStageChange) {
-                if (IsStagePlayable(toStage) && toStage != shownStage) {
+            if (MovePlayerWithStageChange)
+            {
+                if (IsStagePlayable(toStage) && toStage != shownStage)
+                {
                     bool comingFromHigherStage = fromStage > toStage;
                     playerPin.ResetPlayerPositionAfterStageChange(comingFromHigherStage);
                 }
@@ -498,7 +501,7 @@ namespace Antura.Map
             var stageMap = StageMap(stage);
             stageMap.Show();
 
-            mapCamera.TeleportTo(stageMap.cameraPivotStart);
+            mapCamera.TeleportToLookAtFree(playerPin.transform, stageMap.cameraPivotStart);
             Camera.main.backgroundColor = stageMap.color;
             Camera.main.GetComponent<CameraFog>().color = stageMap.color;
 
@@ -512,7 +515,8 @@ namespace Antura.Map
             stageMap.Show();
             stageMap.ResetStageOnShow(CurrentPlayerStage == stage);
 
-            mapCamera.SetAutoMoveToTransformFree(stageMap.cameraPivotStart, 0.6f);
+            // We'll look at the current player position
+            mapCamera.SetAutoMoveToLookAtFree(playerPin.transform, stageMap.cameraPivotStart, 0.6f);
             Camera.main.DOColor(stageMap.color, 1);
             Camera.main.GetComponent<CameraFog>().color = stageMap.color;
         }
@@ -540,7 +544,7 @@ namespace Antura.Map
 
         private void UpdateStageButtonsUI()
         {
-            if (!showStageButtons)
+            if (!ShowStageButtons)
             {
                 rightStageButton.SetActive(false);
                 leftStageButton.SetActive(false);

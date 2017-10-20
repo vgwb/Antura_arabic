@@ -62,7 +62,37 @@ namespace Antura.Map
             followedTransform = null;
 
             AudioManager.I.PlaySound(Sfx.CameraMovementShort);
-            TweenToTransform(pivotTr.position, pivotTr.rotation, duration, SetManualMovementCurrentMap);
+            TweenTo(pivotTr.position, pivotTr.rotation, duration, SetManualMovementCurrentMap);
+        }
+
+        /// <summary>
+        /// Move to a new transform.
+        /// Will match the x of the new map
+        /// Restores manual movement at the end.
+        /// </summary>
+        public void SetAutoMoveToLookAtFree(Transform lookAtTr, Transform pivotTr, float duration, bool teleport = false)
+        {
+            movementType = MovementType.AUTO;
+            followedTransform = null;
+
+            Vector3 pos = lookAtTr.position;
+            pos.y = pivotTr.position.y;
+            pos.z = pivotTr.position.z;
+
+            if (teleport)
+            {
+                TeleportTo(pos, pivotTr.rotation);
+            }
+            else
+            {
+                AudioManager.I.PlaySound(Sfx.CameraMovementShort);
+                TweenTo(pos, pivotTr.rotation, duration, SetManualMovementCurrentMap);
+            }
+        }
+
+        public void TeleportToLookAtFree(Transform lookAtTr, Transform pivotTr)
+        {
+            SetAutoMoveToLookAtFree(lookAtTr, pivotTr, 0, true);
         }
 
         /// <summary>
@@ -188,7 +218,7 @@ namespace Antura.Map
             //Debug.Log("Finished movement.");
         }
 
-        private void TweenToTransform(Vector3 newPosition, Quaternion newRotation, float duration = 1, TweenCallback callback = null)
+        private void TweenTo(Vector3 newPosition, Quaternion newRotation, float duration = 1, TweenCallback callback = null)
         {
             DOTween.Sequence()
                 .Append(transform.DOLocalMove(newPosition, duration))
@@ -196,10 +226,15 @@ namespace Antura.Map
                 .OnComplete(callback);
         }
 
+        public void TeleportTo(Vector3 pos, Quaternion rot)
+        {
+            transform.position = pos;
+            transform.rotation = rot;
+        }
+
         public void TeleportTo(Transform pivot)
         {
-            transform.position = pivot.position;
-            transform.rotation = pivot.rotation;
+            TeleportTo(pivot.position, pivot.rotation);
         }
     }
 }
