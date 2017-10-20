@@ -270,7 +270,7 @@ namespace Antura.Map
 
         #region Highlight
 
-        public void UpdateDotHighlights()
+        public void UpdateHighlights()
         {
             foreach (var stageMap in stageMaps)
             {

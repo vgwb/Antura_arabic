@@ -13,8 +13,8 @@ namespace Antura.Map
         private PlaySessionState playSessionState;
 
         [Header("Visuals")]
-        public MeshRenderer feedbackMR;
-        public TextMeshPro textUI;
+        public MeshRenderer scoreFeedbackMR;
+        public TextMeshPro journeyPosTextUI;
 
         public void Initialise(JourneyPosition _journeyPosition, PlaySessionState _playSessionState)
         {
@@ -30,7 +30,7 @@ namespace Antura.Map
             int score = 0;
             if (playSessionState != null && playSessionState.scoreData != null) score = (int)playSessionState.scoreData.GetScore();
 
-            var mat = feedbackMR.GetComponentInChildren<MeshRenderer>().material;
+            var mat = scoreFeedbackMR.GetComponentInChildren<MeshRenderer>().material;
             switch (score)
             {
                 case 0:
@@ -50,7 +50,7 @@ namespace Antura.Map
 
         private void HandleJourneyPosition(JourneyPosition journeyPosition)
         {
-            textUI.text = journeyPosition.ToString();
+            journeyPosTextUI.text = journeyPosition.ToString();
         }
 
         #region Show / Hide
@@ -59,24 +59,32 @@ namespace Antura.Map
         {
             if (choice)
             {
-                ShowFullInfo();
+                ShowHighlightedInfo();
             }
             else
             {
-                ShowBasicInfo();
+                ShowUnhighlightedInfo();
             }
         }
 
-        private void ShowFullInfo()
+        public void HideAllInfo()
         {
-            // TODO: show stars and numbers and text and so on...
-            textUI.gameObject.SetActive(false);
+            journeyPosTextUI.gameObject.SetActive(false);
+            scoreFeedbackMR.gameObject.SetActive(false);
         }
 
-        private void ShowBasicInfo()
+        public void ShowHighlightedInfo()
         {
-            // TODO: show just some small info
-            textUI.gameObject.SetActive(true);
+            // TODO: show info with the player on that PS
+            journeyPosTextUI.gameObject.SetActive(false);
+            scoreFeedbackMR.gameObject.SetActive(true);
+        }
+
+        public void ShowUnhighlightedInfo()
+        {
+            // TODO: show info with the player not on that PS
+            journeyPosTextUI.gameObject.SetActive(true);
+            scoreFeedbackMR.gameObject.SetActive(true);
         }
 
         #endregion

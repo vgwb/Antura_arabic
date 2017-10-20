@@ -143,12 +143,16 @@ namespace Antura.Map
         {
             isLocked = false;
             mainDot.gameObject.SetActive(true);
+
+            playSessionFeedback.ShowUnhighlightedInfo();
         }
 
         public void SetLocked()
         {
             isLocked = true;
             mainDot.gameObject.SetActive(false);
+
+            playSessionFeedback.HideAllInfo();
         }
         
         #endregion
@@ -173,14 +177,21 @@ namespace Antura.Map
 
         public void Highlight(bool choice)
         {
-            mainDot.Highlight(choice);
-            playSessionFeedback.Highlight(choice);
+            if (!isLocked)
+            {
+                mainDot.Highlight(choice);
+                playSessionFeedback.Highlight(choice);
+            }
         }
+
+        #region Play Session State
 
         public void SetPlaySessionState(PlaySessionState playSessionState)
         {
             playSessionFeedback.Initialise(journeyPosition, playSessionState);
         }
+
+        #endregion
 
     }
 }

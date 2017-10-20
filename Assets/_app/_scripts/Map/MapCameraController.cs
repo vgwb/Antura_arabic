@@ -20,7 +20,6 @@ namespace Antura.Map
         private MovementType movementType;
 
         // State
-        private bool isFollowing = false;
         private Transform followedTransform;
 
         // References
