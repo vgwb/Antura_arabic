@@ -176,13 +176,11 @@ namespace Antura.Map
             CheckMovementButtonsEnabling();
             int tmpCurrentIndex = currentStageMap.CurrentPinIndex;
             UpdatePlayerJourneyPosition(currentStageMap.mapLocations[targetIndex].JourneyPos);
-            // Debug.Log("ANIMATING TO " + targetIndex);
+            //Debug.Log("ANIMATING FROM " + tmpCurrentIndex + " TO " + targetIndex);
             do
             {
                 //Debug.Log("inner target is " + targetIndex + " tmp is " + tmpCurrentIndex);
-                const float maxStepDuration = 0.5f;
-                const float minStepDuration = 0.25f;
-                float stepDuration = Mathf.Clamp(0.5f / Mathf.Abs(targetIndex - tmpCurrentIndex), minStepDuration, maxStepDuration);
+                float speed = Mathf.Clamp(50*Mathf.Abs(targetIndex - tmpCurrentIndex), 50,  100);
                 bool isAdvancing = targetIndex > tmpCurrentIndex;
                 if (tmpCurrentIndex != targetIndex)
                 {
@@ -190,7 +188,7 @@ namespace Antura.Map
                 }
                 LookAtPin(!isAdvancing, true);
                 var nextPos = currentStageMap.mapLocations[tmpCurrentIndex].Position;
-                yield return MoveToCO(nextPos, stepDuration);
+                yield return MoveToCO(nextPos, speed);
                 currentStageMap.ForceCurrentPinIndex(tmpCurrentIndex);
             }
             while (tmpCurrentIndex != targetIndex);
@@ -244,8 +242,8 @@ namespace Antura.Map
             var lookingFromTr = fromPin != null? fromPin.transform : toPin.transform;
             var lookingToTr = toPin != null ? toPin.transform : fromPin.transform;
             Quaternion toRotation = Quaternion.LookRotation(lookingToTr.transform.position - lookingFromTr.transform.position, Vector3.up);
-            //Debug.Log("Look from " + fromPin + " To " + toPin);
-            //Debug.Log("Current " + transform.rotation + " To " + toRotation);
+            Debug.Log("Look from " + fromPin + " To " + toPin);
+            Debug.Log("Current " + transform.rotation + " To " + toRotation);
 
             if (animated) {
                 transform.rotation = transform.rotation;
@@ -260,13 +258,13 @@ namespace Antura.Map
         #region Actual Movement
 
         // If animate is TRUE, animates the movement, otherwise applies the movement immediately
-        private IEnumerator MoveToCO(Vector3 position, float stepDuration)
+        private IEnumerator MoveToCO(Vector3 position, float speed)
         {
-            //Debug.Log("Moving to " + position + " with " + stepDuration);
+            //Debug.Log("Moving to " + position + " with " + speed);
             if (moveTween != null) {
                 moveTween.Kill();
             }
-            moveTween = transform.DOMove(position, stepDuration).SetEase(Ease.Linear);
+            moveTween = transform.DOMove(position, speed).SetSpeedBased(true).SetEase(Ease.Linear);
             yield return moveTween.WaitForCompletion();
         }
 
