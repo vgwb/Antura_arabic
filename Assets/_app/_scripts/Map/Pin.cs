@@ -105,34 +105,36 @@ namespace Antura.Map
             }
 
             shadowTr.SetLocalScale(0);
+            currentPinMesh.gameObject.SetActive(false);
+            playSessionFeedback.gameObject.SetActive(false);
         }
 
         public void Appear(float duration)
         {
             if (appeared) return;
             appeared = true;
+            currentPinMesh.gameObject.SetActive(true);
             currentPinMesh.transform.DOMove(startPinPosition, duration*0.5f);
-            mainDot.transform.DOScale(Vector3.one * 6, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f);
+            mainDot.transform.DOScale(Vector3.one * 6, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f).OnComplete(
+                () =>
+                playSessionFeedback.gameObject.SetActive(true)  // make the feedback appear at the end
+                );
             shadowTr.DOScale(Vector3.one * 12.5f, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f);
 
-            if (rope != null)
-            {
-                rope.meshRenderer.transform.DOScale(startRopeScale, duration * 0.5f).SetDelay(duration * 0.5f);
-            }
+            if (rope != null) rope.meshRenderer.transform.DOScale(startRopeScale, duration * 0.5f).SetDelay(duration * 0.5f);
         }
 
         public void FlushAppear()
         {
             if (appeared) return;
             appeared = true;
+            currentPinMesh.gameObject.SetActive(true);
             currentPinMesh.transform.position = startPinPosition;
-            mainDot.transform.localScale = Vector3.one*6;
+            mainDot.transform.localScale = Vector3.one * 6;
             shadowTr.transform.localScale = Vector3.one * 12.5f;
+            playSessionFeedback.gameObject.SetActive(true);  
 
-            if (rope != null)
-            {
-                rope.meshRenderer.transform.localScale = startRopeScale;
-            }
+            if (rope != null) rope.meshRenderer.transform.localScale = startRopeScale;
         }
 
         #endregion

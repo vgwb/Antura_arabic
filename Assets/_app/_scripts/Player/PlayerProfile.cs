@@ -135,9 +135,9 @@ namespace Antura.Profile
         /// </summary>
         /// <param name="newJourneyPosition">The journey position.</param>
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
-        public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true)
+        public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true, bool _forced = false)
         {
-            if (MaxJourneyPosition.IsMinor(newJourneyPosition))
+            if (MaxJourneyPosition.IsMinor(newJourneyPosition) || _forced)
             {
                 MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock,
                     newJourneyPosition.PlaySession);

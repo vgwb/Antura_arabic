@@ -187,7 +187,6 @@ namespace Antura.Map
                 assignedJourneyPosition = AppManager.I.JourneyHelper.FindNextJourneyPosition(assignedJourneyPosition);
             }
 
-
             UnlockPlaySessions();
 
             Disappear();
@@ -229,21 +228,21 @@ namespace Antura.Map
             float duration = startAppearDuration;
             foreach (var pin in playPins)
             {
-                // First the dots that connect the pins
-                foreach (var dot in pin.dots)
-                {
-                    if (!dot.Appeared) 
-                    {
-                        dot.Appear(0.0f, duration);
-                        yield return new WaitForSeconds(duration);
-                        duration *= appearSpeedupMultiplier;
-                        if (duration <= minAppearDuration) duration = minAppearDuration;
-                    }
-                }
-
                 // Then the pins
                 if (!pin.Appeared && pin.pinIndex <= upToPosIndex)
                 {
+                    // First the dots that connect the pins
+                    foreach (var dot in pin.dots)
+                    {
+                        if (!dot.Appeared) 
+                        {
+                            dot.Appear(0.0f, duration);
+                            yield return new WaitForSeconds(duration);
+                            duration *= appearSpeedupMultiplier;
+                            if (duration <= minAppearDuration) duration = minAppearDuration;
+                        }
+                    }
+
                     pin.Appear(duration);
                     yield return new WaitForSeconds(duration);
                     duration *= appearSpeedupMultiplier;

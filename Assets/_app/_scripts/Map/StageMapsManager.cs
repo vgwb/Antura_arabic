@@ -147,9 +147,17 @@ namespace Antura.Map
             if (TEST_JOURNEY_POS)
             {
                 TEST_JOURNEY_POS = false;
-                AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(1, 1, 2));
+
+                // TEST: basic PS
+                AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(1, 1, 2), _forced: true);
                 AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(1, 1, 2));
                 AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 1, 1));
+
+                // TEST: next-stage PS
+                AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(2, 1, 1), _forced: true);
+                AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(2, 1, 1));
+                AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 14, 100));
+
                 Debug.Log("FORCED TEST_JOURNEY_POS");
             }
 
@@ -193,6 +201,8 @@ namespace Antura.Map
                 PlayRandomAssessmentDialog();
             }
 
+            UpdateHighlights();
+
             // Coming from the other stage
             StartCoroutine(InitialMovementCO());
         }
@@ -203,12 +213,12 @@ namespace Antura.Map
             StageMap(shownStage).FlushAppear(PreviousJourneyPosition);
 
             bool needsAnimation = !Equals(targetCurrentJourneyPosition, PreviousJourneyPosition);
-            Debug.Log("TARGET CURRENT: " + targetCurrentJourneyPosition  + " PREV: " + PreviousJourneyPosition);
+            //Debug.Log("TARGET CURRENT: " + targetCurrentJourneyPosition  + " PREV: " + PreviousJourneyPosition);
+            TeleportCameraToShownStage(shownStage);
             if (!needsAnimation)
             {
-                Debug.Log("Already at the correct stage " + shownStage);
+                //Debug.Log("Already at the correct stage " + shownStage);
                 StageMap(shownStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
-                TeleportCameraToShownStage(shownStage);
             }
             else
             {
@@ -218,15 +228,15 @@ namespace Antura.Map
                 //Debug.Log("Shown stage: " + shownStage + " TargetJourneyPos " + targetCurrentJourneyPosition +   " PreviousJourneyPos " + PreviousJourneyPosition);
                 if (shownStage != targetCurrentJourneyPosition.Stage)
                 {
-                    Debug.Log("ANIMATING TO STAGE: " + targetCurrentJourneyPosition.Stage + " THEN MOVING TO " + targetCurrentJourneyPosition);
+                    //Debug.Log("ANIMATING TO STAGE: " + targetCurrentJourneyPosition.Stage + " THEN MOVING TO " + targetCurrentJourneyPosition);
                     yield return StartCoroutine(SwitchFromToStageCO(shownStage, targetCurrentJourneyPosition.Stage));
                     mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                 }
                 else
                 {
-                    Debug.Log("JUST MOVING TO " + targetCurrentJourneyPosition);
-                    yield return new WaitForSeconds(1.0f);
+                    //Debug.Log("JUST MOVING TO " + targetCurrentJourneyPosition);
+                    yield return new WaitForSeconds(3.0f);
                     mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                     yield return null;
@@ -501,7 +511,17 @@ namespace Antura.Map
             var stageMap = StageMap(stage);
             stageMap.Show();
 
-            mapCamera.TeleportToLookAtFree(playerPin.transform, stageMap.cameraPivotStart);
+            // We'll look at the current player position, if possible.
+            bool playable = IsStagePlayable(stage);
+            if (playable)
+            {
+                mapCamera.TeleportToLookAtFree(playerPin.transform, stageMap.cameraPivotStart);
+            }
+            else
+            {
+                mapCamera.TeleportTo(stageMap.cameraPivotStart);
+            }
+
             Camera.main.backgroundColor = stageMap.color;
             Camera.main.GetComponent<CameraFog>().color = stageMap.color;
 
@@ -515,8 +535,17 @@ namespace Antura.Map
             stageMap.Show();
             stageMap.ResetStageOnShow(CurrentPlayerStage == stage);
 
-            // We'll look at the current player position
-            mapCamera.SetAutoMoveToLookAtFree(playerPin.transform, stageMap.cameraPivotStart, 0.6f);
+            // We'll look at the current player position, if possible.
+            bool playable = IsStagePlayable(stage);
+            if (playable)
+            {
+                mapCamera.SetAutoMoveToLookAtFree(playerPin.transform, stageMap.cameraPivotStart, 0.6f);
+            }
+            else
+            {
+                mapCamera.SetAutoMoveToTransformFree(stageMap.cameraPivotStart, 0.6f);
+            }
+
             Camera.main.DOColor(stageMap.color, 1);
             Camera.main.GetComponent<CameraFog>().color = stageMap.color;
         }
