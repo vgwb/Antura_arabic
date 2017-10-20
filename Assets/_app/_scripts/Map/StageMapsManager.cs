@@ -30,14 +30,19 @@ namespace Antura.Map
         public MapCameraController mapCamera;
 
         [Header("UI")]
-        public MapStageIndicator mapStageIndicator;
+        public bool showStageButtons = false;
+
         public Camera UICamera;
-        public GameObject lockUI;
+
+        public MapStageIndicator mapStageIndicator;
         public GameObject leftStageButton;
         public GameObject rightStageButton;
+        public GameObject lockUI;
+
         public GameObject uiButtonMovementPlaySession;
         public GameObject nextPlaySessionButton;
         public GameObject beforePlaySessionButton;
+
         public GameObject playButton;
 
         // Additional UI for navigation
@@ -535,13 +540,25 @@ namespace Antura.Map
 
         private void UpdateStageButtonsUI()
         {
-            if (IsAtFirstStage) {
+            if (!showStageButtons)
+            {
                 rightStageButton.SetActive(false);
-            } else if (IsAtFinalStage) {
                 leftStageButton.SetActive(false);
-            } else {
-                rightStageButton.SetActive(true);
-                leftStageButton.SetActive(true);
+            }
+            else
+            {
+                if (IsAtFirstStage)
+                {
+                    rightStageButton.SetActive(false);
+                }
+                else if (IsAtFinalStage)
+                {
+                    leftStageButton.SetActive(false);
+                }
+                else {
+                    rightStageButton.SetActive(true);
+                    leftStageButton.SetActive(true);
+                }
             }
         }
 
