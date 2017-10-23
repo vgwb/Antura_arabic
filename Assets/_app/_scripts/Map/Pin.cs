@@ -67,7 +67,7 @@ namespace Antura.Map
 
             // Road sign with LB
             roadSignGO.SetActive(journeyPosition.PlaySession == 1);
-            roadSignTextUI.SetText(journeyPosition.Stage + "-" + journeyPosition.LearningBlock);
+            roadSignTextUI.SetText(journeyPosition.ToDisplayedString(false));
 
             // Choosing the correct PIN based on the journey position
             pinV1.gameObject.SetActive(false);

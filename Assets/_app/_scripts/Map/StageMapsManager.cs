@@ -284,6 +284,12 @@ namespace Antura.Map
 
         #region Selection
 
+        public void ReSelectCurrentPin()
+        {
+            var playerStageMap = StageMap(CurrentPlayerStage);
+            SelectPin(playerStageMap.PinForIndex(playerPin.CurrentPinIndex));
+        }
+
         public void SelectPin(Pin pin)
         {
             playPanel.SetPin(pin);

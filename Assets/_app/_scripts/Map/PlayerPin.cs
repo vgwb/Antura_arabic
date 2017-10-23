@@ -60,7 +60,7 @@ namespace Antura.Map
 
         #region Movement
 
-        private int CurrentPinIndex
+        public int CurrentPinIndex
         {
             get { return currentStageMap.CurrentPinIndex; }
         }

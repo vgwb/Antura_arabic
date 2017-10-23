@@ -59,7 +59,7 @@ namespace Antura.Map
 
             lockedBtn.gameObject.SetActive(pin.isLocked);
 
-            psNumberTextUI.SetText(pin.journeyPosition.GetShortTitle());
+            psNumberTextUI.SetText(pin.journeyPosition.ToDisplayedString(true));
             psNameTextUI.SetText(lbData.Title_Ar);
         }
 

@@ -74,7 +74,29 @@
 
         public string GetShortTitle()
         {
-            return Stage + "." + LearningBlock;
+            return Stage + "-" + LearningBlock;
+        }
+
+        public string ToDisplayedString(bool withPlaySession = false)
+        {
+            var psCode = "";
+            switch (PlaySession)
+            {
+                case 1:
+                    psCode = "1";
+                    break;
+                case 2:
+                    psCode = "2";
+                    break;
+                case 100:
+                    psCode = "*";
+                    break;
+            }
+
+            if (withPlaySession)
+                return Stage + "-" + LearningBlock + " " + psCode;
+            else 
+                return Stage + "-" + LearningBlock;
         }
 
         public bool IsMinor(JourneyPosition other)
