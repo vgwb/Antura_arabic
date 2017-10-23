@@ -1,4 +1,5 @@
-﻿using Antura.Audio;
+﻿using System.Linq;
+using Antura.Audio;
 using DG.Tweening;
 using UnityEngine;
 
@@ -11,6 +12,9 @@ namespace Antura.Map
     /// </summary>
     public class MapCameraController : MonoBehaviour
     {
+        [Header("Options")]
+        public bool CanDragBetweenStages = false;
+
         enum MovementType
         {
             AUTO,
@@ -42,6 +46,7 @@ namespace Antura.Map
         public float dragSensibility = 0.1f;
 
         public bool dragWorld = true;   // If true, a finger movement will drag the WORLD and not the CAMERA
+        public int DragWorldDir {  get { return dragWorld ? -1 : 1; } }
 
         private void Start()
         {
@@ -145,6 +150,30 @@ namespace Antura.Map
                 HandleMouseDown();
                 CameraMoveUpdate();
             }
+
+            CheckStageSwitching();
+        }
+
+        void CheckStageSwitching()
+        {
+            // If dragging between stages, we may need to change stage as we move.
+            if (CanDragBetweenStages)
+            {
+                float currentX = transform.position.x;
+
+                foreach (var stageMap in _stageMapsManager.stageMaps)
+                {
+                    float startX = stageMap.cameraPivotStart.position.x;
+                    float endX = stageMap.cameraPivotEnd.position.x;
+                    float minX = startX < endX ? startX : endX;
+                    float maxX = startX < endX ? endX : startX;
+
+                    if (currentX > minX && currentX < maxX)
+                    {
+                        _stageMapsManager.MoveToStageMap(stageMap.stageNumber, animateCamera:false);
+                    }
+                }
+            }
         }
 
         private void HandleMouseUp()
@@ -169,7 +198,7 @@ namespace Antura.Map
                         var timeDelta = timeUp - timeDown;
                         if ((float)timeDelta.TotalSeconds <= swipeMaxTime)
                         {
-                            float addedSpeed = xDelta / (float)timeDelta.TotalSeconds * sensibility;
+                            float addedSpeed = DragWorldDir * xDelta / (float)timeDelta.TotalSeconds * sensibility;
                             //Debug.Log("x " + xDelta + " time " + (float)timeDelta.TotalSeconds);
                             currentSpeed = Mathf.Abs(xDelta) > Screen.width * minScreenPercentage ? (currentSpeed + addedSpeed) : 0.0f;
                         }
@@ -204,7 +233,7 @@ namespace Antura.Map
                 var xDelta = xDrag - startFingerX;
 
                 Vector3 nextCameraPosition = transform.position;
-                nextCameraPosition.x = startCameraX + (dragWorld ? -1 : 1) * xDelta * dragSensibility;
+                nextCameraPosition.x = startCameraX + DragWorldDir * xDelta * dragSensibility;
 
                 AssignCameraPosition(nextCameraPosition);
             }
@@ -225,8 +254,7 @@ namespace Antura.Map
                     currentSpeed = 0.0f;
                 }
 
-                Vector3 nextCameraPosition = transform.position +
-                                             Vector3.right * (dragWorld ? -1 : 1) * currentSpeed * Time.deltaTime;
+                Vector3 nextCameraPosition = transform.position + Vector3.right  * currentSpeed * Time.deltaTime;
                 AssignCameraPosition(nextCameraPosition);
             }
         }
@@ -236,8 +264,16 @@ namespace Antura.Map
             // Camera limits
             var startX = _stageMapsManager.CurrentShownStageMap.cameraPivotStart.position.x;
             var endX = _stageMapsManager.CurrentShownStageMap.cameraPivotEnd.position.x;
+           
+            if (CanDragBetweenStages)
+            {
+                startX = _stageMapsManager.stageMaps.First().cameraPivotStart.position.x;
+                endX = _stageMapsManager.stageMaps.Last().cameraPivotEnd.position.x;
+            }
+
             var minX = startX < endX ? startX : endX;
             var maxX = startX < endX ? endX : startX;
+
             if (nextCameraPosition.x > maxX || nextCameraPosition.x < minX)
             {
                 currentSpeed = 0.0f;
@@ -246,7 +282,10 @@ namespace Antura.Map
 
             // Assign the position
             transform.position = nextCameraPosition;
+
         }
+
+
 
         private void TweenTo(Vector3 newPosition, Quaternion newRotation, float duration = 1, TweenCallback callback = null)
         {

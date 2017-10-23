@@ -26,7 +26,7 @@ namespace Antura.Map
 
         public void OnClick()
         {
-            stageMapsManager.MoveToStageMap(assignedStage);
+            stageMapsManager.MoveToStageMap(assignedStage, animateCamera: true);
         }
     }
 }

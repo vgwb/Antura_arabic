@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114622299285948232}
   - component: {fileID: 114798632286755554}
   - component: {fileID: 114779418337972412}
+  - component: {fileID: 114582152266382504}
   m_Layer: 0
   m_Name: Camera_Gameplay_Map
   m_TagString: MainCamera
@@ -106,6 +107,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628dddab2b23744d286b087760cffde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114582152266382504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1438106509194900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b151e2819eb4545be24feb4b358c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPin: {fileID: 0}
+  stageMapsManager: {fileID: 0}
 --- !u!114 &114622299285948232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,9 +146,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b8508336c3d3004fba60b08ed7ef2c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanDragBetweenStages: 1
+  useSwipe: 1
+  useDrag: 1
   sensibility: 0.1
   deceleration: 400
   minScreenPercentage: 0.1
+  swipeMaxTime: 0.3
+  dragSensibility: 0.1
+  dragWorld: 1
 --- !u!114 &114798632286755554
 MonoBehaviour:
   m_ObjectHideFlags: 1

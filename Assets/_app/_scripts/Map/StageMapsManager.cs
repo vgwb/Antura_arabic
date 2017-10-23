@@ -174,7 +174,7 @@ namespace Antura.Map
                 bool isStageUnlocked = stage_i <= MaxUnlockedStage;
                 bool isWholeStageUnlocked = stage_i < MaxUnlockedStage;
                 StageMap(stage_i).Initialise(isStageUnlocked, isWholeStageUnlocked);
-                StageMap(stage_i).Hide();
+                //StageMap(stage_i).Hide();
             }
         }
 
@@ -234,7 +234,7 @@ namespace Antura.Map
                 if (shownStage != targetCurrentJourneyPosition.Stage)
                 {
                     //Debug.Log("ANIMATING TO STAGE: " + targetCurrentJourneyPosition.Stage + " THEN MOVING TO " + targetCurrentJourneyPosition);
-                    yield return StartCoroutine(SwitchFromToStageCO(shownStage, targetCurrentJourneyPosition.Stage));
+                    yield return StartCoroutine(SwitchFromToStageCO(shownStage, targetCurrentJourneyPosition.Stage, true));
                     mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
                 }
@@ -289,6 +289,9 @@ namespace Antura.Map
         {
             var playerStageMap = StageMap(CurrentPlayerStage);
             SelectPin(playerStageMap.PinForIndex(playerPin.CurrentPinIndex));
+
+            // Make sure to move the camera too
+            mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
         }
 
         public void SelectPin(Pin pin)
@@ -417,7 +420,8 @@ namespace Antura.Map
         #region Stage Navigation
 
         /// <summary>
-        ///     Move to the next Stage map
+        /// Move to the next Stage map
+        /// Called by buttons.
         /// </summary>
         public void MoveToNextStageMap()
         {
@@ -427,13 +431,14 @@ namespace Antura.Map
             int fromStage = shownStage;
             int toStage = shownStage + 1;
 
-            SwitchFromToStage(fromStage, toStage);
+            SwitchFromToStage(fromStage, toStage, true);
 
             HideTutorial();
         }
 
         /// <summary>
-        ///     Move to the previous Stage map
+        /// Move to the previous Stage map
+        /// Called by buttons.
         /// </summary>
         public void MoveToPreviousStageMap()
         {
@@ -443,21 +448,21 @@ namespace Antura.Map
             int fromStage = shownStage;
             int toStage = shownStage - 1;
 
-            SwitchFromToStage(fromStage, toStage);
+            SwitchFromToStage(fromStage, toStage, true);
 
             if (IsAtFirstStage) {
                 ShowTutorial();
             }
         }
 
-        public void MoveToStageMap(int toStage)
+        public void MoveToStageMap(int toStage, bool animateCamera = false)
         {
             if (inTransition) return;
 
             int fromStage = shownStage;
             if (toStage == fromStage) return;
 
-            SwitchFromToStage(fromStage, toStage);
+            SwitchFromToStage(fromStage, toStage, animateCamera);
         }
 
         private void UpdateButtonsForStage(int stage)
@@ -482,12 +487,12 @@ namespace Antura.Map
             }
         }
 
-        private void SwitchFromToStage(int fromStage, int toStage)
+        private void SwitchFromToStage(int fromStage, int toStage, bool animateCamera = false)
         {
-            StartCoroutine(SwitchFromToStageCO(fromStage, toStage));
+            StartCoroutine(SwitchFromToStageCO(fromStage, toStage, animateCamera));
         }
 
-        private IEnumerator SwitchFromToStageCO(int fromStage, int toStage)
+        private IEnumerator SwitchFromToStageCO(int fromStage, int toStage, bool animateCamera = false)
         {
             shownStage = toStage;
 
@@ -511,8 +516,15 @@ namespace Antura.Map
             }
 
             // Animate the switch
-            AnimateCameraToShownStage(toStage);
-            yield return new WaitForSeconds(0.8f);
+            if (animateCamera)
+            {
+                AnimateCameraToShownStage(toStage);
+                yield return new WaitForSeconds(0.8f);
+            }
+            else
+            {
+                ColorCameraToShownStage(toStage);
+            }
 
             // Show the new stage
             UpdateStageIndicatorUI(toStage);
@@ -529,12 +541,14 @@ namespace Antura.Map
             */
 
             // Hide the last stage
-            StageMap(fromStage).Hide();
+            //StageMap(fromStage).Hide();
 
             // End transition
             inTransition = false;
 
             //Debug.Log("We are at stage " + shownStage + ". Player current is " + CurrentPlayerStage);
+
+            yield return null;
         }
 
         #endregion
@@ -585,13 +599,20 @@ namespace Antura.Map
             Camera.main.GetComponent<CameraFog>().color = stageMap.color;
         }
 
+        private void ColorCameraToShownStage(int stage)
+        {
+            var stageMap = StageMap(stage);
+            Camera.main.DOColor(stageMap.color, 1);
+            Camera.main.GetComponent<CameraFog>().color = stageMap.color;
+        }
+
         private void SwitchStageMapForPlayer(StageMap newStageMap, bool init = false)
         {
             if (playerPin.IsAnimating) playerPin.StopAnimation(stopWhereItIs: false);
             playerPin.currentStageMap = newStageMap;
 
             // Move the player too, if the stage is unlocked
-            if (!init && !newStageMap.FirstPin.isLocked)
+            if (!init && !newStageMap.FirstPin.isLocked && MovePlayerWithStageChange)
             {
                 playerPin.ForceToJourneyPosition(CurrentJourneyPosition);
             }
