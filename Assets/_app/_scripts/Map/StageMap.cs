@@ -286,18 +286,21 @@ namespace Antura.Map
             int nDots = Mathf.FloorToInt(distance / dotsSpan) - 1;  // -1 as we have the two pins as start and end
             var dir = Vector3.Normalize(pFront - pBack);
 
-            // Create and stretch the rope
-            GameObject ropeGo = Instantiate(ropePrefab);
-            ropeGo.transform.SetParent(dotsPivot);
-            var rope = ropeGo.GetComponent<Rope>();
-            rope.name = "MapRope_" + pinFront.pinIndex;
-            pinFront.rope = rope;
-            rope.transform.position = pinBack.transform.position;
-            rope.transform.position += pinBack.currentPinMesh.transform.up * 4;
-            rope.transform.LookAt(pinFront.transform.position + pinFront.currentPinMesh.transform.up * 4);
-            rope.transform.Rotate(Vector3.forward,-90f);
-            rope.transform.Rotate(0, 4, 0);
-            rope.transform.SetLocalScaleZ((distance / 20f) * 1.1f);
+            // Create and stretch the rope between pins of the same Learning Block
+            if (!pinBack.journeyPosition.IsAssessment())
+            {
+                GameObject ropeGo = Instantiate(ropePrefab);
+                ropeGo.transform.SetParent(dotsPivot);
+                var rope = ropeGo.GetComponent<Rope>();
+                rope.name = "MapRope_" + pinFront.pinIndex;
+                pinFront.rope = rope;
+                rope.transform.position = pinBack.transform.position;
+                rope.transform.position += pinBack.currentPinMesh.transform.up * 4;
+                rope.transform.LookAt(pinFront.transform.position + pinFront.currentPinMesh.transform.up * 4);
+                rope.transform.Rotate(Vector3.forward, -90f);
+                rope.transform.Rotate(0, 4, 0);
+                rope.transform.SetLocalScaleZ((distance / 20f) * 1.1f);
+            }
 
             // Create the dots
             for (int dot_i = 1; dot_i <= nDots; dot_i++)

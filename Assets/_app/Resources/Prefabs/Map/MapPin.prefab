@@ -124,7 +124,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -8}
+  m_LocalPosition: {x: -90, y: 0, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4062364546475702}
@@ -1589,7 +1589,7 @@ MonoBehaviour:
   m_text: "\u0627\u0644\u062C\u0628\u0627\u0644"
   isTMPro: 1
   isUI: 0
-  isArabic: 1
+  isArabic: 0
   isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!114 &114912705528569094

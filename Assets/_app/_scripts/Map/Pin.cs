@@ -105,13 +105,13 @@ namespace Antura.Map
             if (rope != null) startRopeScale = rope.meshRenderer.transform.localScale;
 
             currentPinMesh.transform.position = startPinPosition + Vector3.up * 60;
-            mainDot.transform.SetLocalScale(0);
+            mainDot.transform.SetLocalScale(6f);
             if (rope != null)
             {
                 rope.meshRenderer.transform.SetLocalScale(0);
-                foreach (var dot in dots)
-                    dot.Disappear();
             }
+            foreach (var dot in dots)
+                dot.Disappear();
 
             shadowTr.SetLocalScale(0);
             currentPinMesh.gameObject.SetActive(false);
@@ -153,7 +153,7 @@ namespace Antura.Map
         public void SetUnlocked()
         {
             isLocked = false;
-            mainDot.gameObject.SetActive(true);
+            //mainDot.gameObject.SetActive(true);
 
             playSessionFeedback.ShowUnhighlightedInfo();
         }
@@ -161,7 +161,7 @@ namespace Antura.Map
         public void SetLocked()
         {
             isLocked = true;
-            mainDot.gameObject.SetActive(false);
+            //mainDot.gameObject.SetActive(false);
 
             playSessionFeedback.HideAllInfo();
         }

@@ -51,7 +51,7 @@ namespace Antura.Map
         public void Disappear()
         {
             Appeared = false;
-            transform.localScale = Vector3.zero;
+            transform.localScale = Vector3.one * 0.5f;
         }
 
         public void Appear(float delay, float duration)
