@@ -2,8 +2,6 @@
 using Antura.Audio;
 using Antura.Core;
 using DG.Tweening;
-using System.Linq;
-using Antura.Teacher;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,12 +9,13 @@ namespace Antura.Map
 {
     /// <summary>
     /// The pin representing the player on the map.
+    /// The player pin will move from one Pin to the next
     /// </summary>
     public class PlayerPin : MonoBehaviour
     {
         [Header("References")]
-        public StageMap stageMap;
-        public FingerStage swipeScript;
+        public StageMapsManager stageMapsManager;
+        public StageMap currentStageMap;
 
         [Header("UIButtons")]
         public GameObject moveRightButton;
@@ -60,171 +59,156 @@ namespace Antura.Map
 
         void LateUpdate()
         {
-            // @note: using late update so this interaction happens after FingerStage (so that touch swipe takes precedence)
-            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject() && !swipeScript.isSwiping) {
+            // Map movement controls
+            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
+            { 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 RaycastHit hit;
                 int layerMask = 1 << 15;
-                if (Physics.Raycast(ray, out hit, 500, layerMask)) {
-                    if (hit.collider.CompareTag("Rope")) {
-                        Rope selectedRope = hit.transform.parent.gameObject.GetComponent<Rope>();
-                        int nUnlockedDots = selectedRope.dots.Count(x => !x.isLocked);
-                        if (nUnlockedDots == 0) {
-                            return;
-                        }
-
-                        int closerDotIndex = 0;
-                        if (nUnlockedDots > 1) {
-                            float distaceHitToDot = 1000;
-                            closerDotIndex = 0;
-
-                            for (int i = 0; i < nUnlockedDots; i++) {
-                                var distanceHitBefore = Vector3.Distance(hit.point,
-                                    selectedRope.dots[i].transform.position);
-                                if (distanceHitBefore < distaceHitToDot) {
-                                    distaceHitToDot = distanceHitBefore;
-                                    closerDotIndex = i;
-                                }
-                            }
-                        }
-
-                        AudioManager.I.PlaySound(Sfx.UIButtonClick);
-                        var dot = selectedRope.dots[closerDotIndex];
-                        MoveToDot(dot.playerPosIndex);
-
-                    }
-                    else if (hit.collider.CompareTag("Pin"))
+                if (Physics.Raycast(ray, out hit, 500, layerMask))
+                {
+                    if (hit.collider.CompareTag("Pin"))
                     {
                         var pin = hit.collider.transform.gameObject.GetComponent<Pin>();
                         if (pin.isLocked) return;
 
                         AudioManager.I.PlaySound(Sfx.UIButtonClick);
-                        MoveToDot(pin.dot.playerPosIndex);
+                        MoveToPin(pin.pinIndex);
                     }
                 }
             }
         }
 
-        private int CurrentPlayerPosIndex {
-            get { return stageMap.currentPlayerPosIndex; }
-        }
-
         #region Movement
+
+        private int CurrentPinIndex
+        {
+            get { return currentStageMap.CurrentPinIndex; }
+        }
 
         private int CurrentTargetPosIndex
         {
-            get { return StageMapsManager.GetPosIndexFromJourneyPosition(stageMap, StageMapsManager.CurrentJourneyPosition); }
+            get { return StageMapsManager.GetPosIndexFromJourneyPosition(currentStageMap, StageMapsManager.CurrentJourneyPosition); }
         }
 
+        // Called by buttons
         public void MoveToNextDot()
         {
-            MoveToDot(CurrentTargetPosIndex + 1);
+            MoveToPin(CurrentTargetPosIndex + 1);
         }
 
+        // Called by buttons
         public void MoveToPreviousDot()
         {
-            MoveToDot(CurrentTargetPosIndex - 1);
+            MoveToPin(CurrentTargetPosIndex - 1);
         }
 
         public void MoveToJourneyPosition(JourneyPosition journeyPosition)
         {
-            MoveToDot(StageMapsManager.GetPosIndexFromJourneyPosition(stageMap, journeyPosition)); 
+            MoveToPin(StageMapsManager.GetPosIndexFromJourneyPosition(currentStageMap, journeyPosition)); 
         }
 
-        private void MoveToDot(int dotIndex)
+        private void MoveToPin(int pinIndex)
         {
-            //if (dotIndex == CurrentTargetPosIndex) return;
-
-            if (CanMoveTo(dotIndex))
+            if (CanMoveTo(pinIndex))
             {
-                int lastIndex = CurrentPlayerPosIndex;
-                AnimateToPlayerPosition(dotIndex);
-                LookAtPin(dotIndex < lastIndex, true, stageMap.GetCurrentPlayerPosJourneyPosition());
+                stageMapsManager.mapCamera.SetAutoFollowTransformCurrentMap(transform);
+                AnimateToPin(pinIndex);
             }
         }
 
-        private bool CanMoveTo(int dotIndex)
+        private bool CanMoveTo(int pinIndex)
         {
-            return dotIndex >= 0 &&
-                   (dotIndex < stageMap.mapLocations.Count) &&
-                   (dotIndex <= stageMap.maxPlayerPosIndex);
+            return pinIndex >= 0 &&
+                   (pinIndex < currentStageMap.mapLocations.Count) &&
+                   (pinIndex <= currentStageMap.MaxUnlockedPinIndex);
         }
 
         public void ForceToJourneyPosition(JourneyPosition journeyPosition, bool justVisuals = false)
         {
-            int posIndex = StageMapsManager.GetPosIndexFromJourneyPosition(stageMap, journeyPosition);
-            ForceToPlayerPosition(posIndex, justVisuals);
+            int posIndex = StageMapsManager.GetPosIndexFromJourneyPosition(currentStageMap, journeyPosition);
+            ForceToPin(posIndex, justVisuals);
             LookAtNextPin(false);
         }
 
         public void ResetPlayerPositionAfterStageChange(bool comingFromHigherStage)
         {
-            if (comingFromHigherStage) {
-                ForceToPlayerPosition(stageMap.maxPlayerPosIndex);
+            if (comingFromHigherStage)
+            {
+                ForceToPin(currentStageMap.MaxUnlockedPinIndex);
                 LookAtPreviousPin(false);
-            } else {
-                ForceToPlayerPosition(0);
+            }
+            else
+            {
+                ForceToPin(0);
                 LookAtNextPin(false);
             }
         }
 
-        private Coroutine animatePositionCO;
-        void AnimateToPlayerPosition(int newIndex)
+        private Coroutine animateToPinCO;
+        void AnimateToPin(int newIndex)
         {
             StopAnimation();
-            animatePositionCO = StartCoroutine(AnimateToPlayerPositionCO(newIndex));
+            animateToPinCO = StartCoroutine(AnimateToPinCO(newIndex));
         }
 
         public void StopAnimation(bool stopWhereItIs = true)
         {
-            if (animatePositionCO != null && isAnimating)
+            if (animateToPinCO != null && isAnimating)
             {
-                StopCoroutine(animatePositionCO);
-                animatePositionCO = null;
+                StopCoroutine(animateToPinCO);
+                animateToPinCO = null;
                 if (stopWhereItIs)
                 {
-                    UpdatePlayerJourneyPosition(stageMap.GetCurrentPlayerPosJourneyPosition());
+                    UpdatePlayerJourneyPosition(currentStageMap.CurrentPlayerPosJourneyPosition);
                 }
             }
         }
 
-        IEnumerator AnimateToPlayerPositionCO(int targetIndex)
+        IEnumerator AnimateToPinCO(int targetIndex)
         {
             isAnimating = true;
             if (onMoveStart != null) onMoveStart();
             CheckMovementButtonsEnabling();
-            int tmpCurrentIndex = stageMap.currentPlayerPosIndex;
-            UpdatePlayerJourneyPosition(stageMap.mapLocations[targetIndex].JourneyPos);
-            while (tmpCurrentIndex != targetIndex)
+            int tmpCurrentIndex = currentStageMap.CurrentPinIndex;
+            UpdatePlayerJourneyPosition(currentStageMap.mapLocations[targetIndex].JourneyPos);
+            //Debug.Log("ANIMATING FROM " + tmpCurrentIndex + " TO " + targetIndex);
+            do
             {
-                float stepDuration = Mathf.Max(0.1f, 0.5f / Mathf.Abs(targetIndex - tmpCurrentIndex));
+                //Debug.Log("inner target is " + targetIndex + " tmp is " + tmpCurrentIndex);
+                float speed = Mathf.Clamp(50*Mathf.Abs(targetIndex - tmpCurrentIndex), 50,  100);
                 bool isAdvancing = targetIndex > tmpCurrentIndex;
-                tmpCurrentIndex += isAdvancing ? 1 : -1;
-                LookAtPin(!isAdvancing, true, stageMap.mapLocations[tmpCurrentIndex].JourneyPos);
-                var nextPos = stageMap.mapLocations[tmpCurrentIndex].Position;
-                yield return MoveToCO(nextPos, stepDuration);
-                stageMap.currentPlayerPosIndex = tmpCurrentIndex;
+                if (tmpCurrentIndex != targetIndex)
+                {
+                    tmpCurrentIndex += isAdvancing ? 1 : -1;
+                }
+                LookAtPin(!isAdvancing, true);
+                var nextPos = currentStageMap.mapLocations[tmpCurrentIndex].Position;
+                yield return MoveToCO(nextPos, speed);
+                currentStageMap.ForceCurrentPinIndex(tmpCurrentIndex);
             }
+            while (tmpCurrentIndex != targetIndex);
 
             CheckMovementButtonsEnabling();
             isAnimating = false;
             if (onMoveEnd != null) onMoveEnd();
         }
 
-        void ForceToPlayerPosition(int newIndex, bool justVisuals = false)
+        void ForceToPin(int newIndex, bool justVisuals = false)
         {
             //Debug.Log("Forcing to " + newIndex);
-            stageMap.currentPlayerPosIndex = newIndex;
-            ForceToCO(stageMap.GetCurrentPlayerPosVector());
+            currentStageMap.ForceCurrentPinIndex(newIndex);
+            ForceToCO(currentStageMap.CurrentPlayerPosVector);
 
-            if (!justVisuals) UpdatePlayerJourneyPosition(stageMap.GetCurrentPlayerPosJourneyPosition());
+            if (!justVisuals) UpdatePlayerJourneyPosition(currentStageMap.CurrentPlayerPosJourneyPosition);
             CheckMovementButtonsEnabling();
         }
 
         private void UpdatePlayerJourneyPosition(JourneyPosition journeyPos)
         {
             AppManager.I.Player.SetCurrentJourneyPosition(journeyPos, false);
+            stageMapsManager.UpdateHighlights();
             //Debug.LogWarning("Setting journey pos current: " + AppManager.I.Player.CurrentJourneyPosition);
         }
 
@@ -234,40 +218,38 @@ namespace Antura.Map
 
         void LookAtNextPin(bool animated)
         {
-            LookAtPin(false, animated, AppManager.I.Player.CurrentJourneyPosition);
+            LookAtPin(false, animated);
         }
 
         void LookAtPreviousPin(bool animated)
         {
-            LookAtPin(true, animated, AppManager.I.Player.CurrentJourneyPosition);
+            LookAtPin(true, animated);
         }
 
-        void LookAtPin(bool lookAtPrevious, bool animated, JourneyPosition fromJourneyPosition)
+        void LookAtPin(bool lookAtPrevious, bool animated)
         {
-            var current_lb = fromJourneyPosition.LearningBlock;
-            //Debug.Log("Looking " + current_lb + " prev? " + lookAtPrevious);
-
             rotateTween.Kill();
 
-            Quaternion currRotation = transform.rotation;
-
             // Target rotation 
-            int fromLb = current_lb - 1;
-            int toLb = current_lb;
-            if (lookAtPrevious) {
-                fromLb = current_lb;
-                toLb = current_lb - 1;
-            }
+            int fromPinIndex = CurrentPinIndex;
+            int toPinIndex = lookAtPrevious ? CurrentPinIndex -1 : CurrentPinIndex + 1;
 
-            var lookingFromTr = stageMap.PinForLB(fromLb).transform;
-            var toPin = stageMap.PinForLB(toLb);
-            if (toPin == null) toPin = stageMap.PinForLB(fromLb);
-            var lookingToTr = toPin.transform;
-            Quaternion toRotation = Quaternion.LookRotation(lookingToTr.transform.position - lookingFromTr.transform.position, Vector3.up);
-            // Debug.Log("Current " + currRotation + " To " + toRotation);
+            var fromPin = currentStageMap.PinForIndex(fromPinIndex);
+            var toPin = currentStageMap.PinForIndex(toPinIndex);
+            var lookingFromTr = fromPin != null? fromPin.transform : toPin.transform;
+            var lookingToTr = toPin != null ? toPin.transform : fromPin.transform;
+
+            Quaternion toRotation;
+            if (lookingToTr == lookingFromTr) 
+                toRotation = Quaternion.LookRotation(lookingFromTr.transform.position + Vector3.left);
+            else 
+                toRotation = Quaternion.LookRotation(lookingToTr.transform.position - lookingFromTr.transform.position, Vector3.up);
+            
+            //Debug.Log("Look  PREV " + lookAtPrevious + " from " + fromPin + " To " + toPin);
+            //Debug.Log("Current " + transform.rotation + " To " + toRotation);
 
             if (animated) {
-                transform.rotation = currRotation;
+                transform.rotation = transform.rotation;
                 rotateTween = transform.DORotate(toRotation.eulerAngles, 0.15f).SetEase(Ease.InOutQuad);
             } else {
                 transform.rotation = toRotation;
@@ -279,13 +261,13 @@ namespace Antura.Map
         #region Actual Movement
 
         // If animate is TRUE, animates the movement, otherwise applies the movement immediately
-        private IEnumerator MoveToCO(Vector3 position, float stepDuration)
+        private IEnumerator MoveToCO(Vector3 position, float speed)
         {
-            //Debug.Log("Moving to " + position);
+            //Debug.Log("Moving to " + position + " with " + speed);
             if (moveTween != null) {
                 moveTween.Kill();
             }
-            moveTween = transform.DOMove(position, stepDuration).SetEase(Ease.Linear);
+            moveTween = transform.DOMove(position, speed).SetSpeedBased(true).SetEase(Ease.Linear);
             yield return moveTween.WaitForCompletion();
         }
 
@@ -302,18 +284,18 @@ namespace Antura.Map
 
     #region UI
 
-    public void CheckMovementButtonsEnabling()
+        public void CheckMovementButtonsEnabling()
         {
-            //Debug.Log("Enabling buttons for " + CurrentPlayerPosIndex);
-            if (CurrentPlayerPosIndex == 0) {
-                if (stageMap.maxPlayerPosIndex == 0) {
+            //Debug.Log("Enabling buttons for " + CurrentPinIndex);
+            if (CurrentPinIndex == 0) {
+                if (currentStageMap.MaxUnlockedPinIndex == 0) {
                     moveRightButton.SetActive(false);
                     moveLeftButton.SetActive(false);
                 } else {
                     moveRightButton.SetActive(false);
                     moveLeftButton.SetActive(true);
                 }
-            } else if (CurrentPlayerPosIndex == stageMap.maxPlayerPosIndex) {
+            } else if (CurrentPinIndex == currentStageMap.MaxUnlockedPinIndex) {
                 moveRightButton.SetActive(true);
                 moveLeftButton.SetActive(false);
             } else {

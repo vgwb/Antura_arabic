@@ -1,14 +1,16 @@
-﻿namespace Antura.Map
+﻿using Antura.Database;
+
+namespace Antura.Map
 {
     public class PlaySessionState
     {
-        public Database.PlaySessionData data;
-        public int score;
+        public PlaySessionData psData;
+        public JourneyScoreData scoreData;
 
-        public PlaySessionState(Database.PlaySessionData _data, int _score)
+        public PlaySessionState(Database.PlaySessionData _psData, JourneyScoreData _scoreData)
         {
-            this.data = _data;
-            this.score = _score;
+            this.psData = _psData;
+            this.scoreData = _scoreData;
         }
     }
 }
