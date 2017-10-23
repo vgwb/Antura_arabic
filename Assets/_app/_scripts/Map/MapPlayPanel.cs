@@ -13,7 +13,11 @@ namespace Antura.Map
     /// </summary>
     public class MapPlayPanel : MonoBehaviour
     {
+        public Camera cam;
+        public CanvasScaler canvasScaler;
         public RectTransform rectTr;
+
+        public GameObject panelPivotGO;
 
         public Button playBtn;
         public Button lockedBtn;
@@ -21,10 +25,32 @@ namespace Antura.Map
         public TextRender psNumberTextUI;
         public TextRender psNameTextUI;
 
+        private Pin targetPin = null;
+
+
+        void Update()
+        {
+            if (targetPin != null)
+            {
+                // Follow pin
+                var pinOnScreen = cam.WorldToScreenPoint(targetPin.transform.position);
+                float resolutionRatio = Screen.height / canvasScaler.referenceResolution.y;
+                rectTr.anchoredPosition = (pinOnScreen - new Vector3(Screen.width / 2, Screen.height / 2)) / resolutionRatio;
+
+                // Auto show/hide
+                panelPivotGO.SetActive(pinOnScreen.x >= 0 && pinOnScreen.x < Screen.width);
+            }
+        }
+
+        public void RemovePin()
+        {
+            targetPin = null;
+            gameObject.SetActive(false);
+        }
+
         public void SetPin(Pin pin)
         {
-            rectTr.anchoredPosition = Camera.main.WorldToScreenPoint(pin.transform.position);
-
+            targetPin = pin;
             var lbData =
                 AppManager.I.DB.FindLearningBlockData(
                     x => x.Stage == pin.journeyPosition.Stage && x.LearningBlock == pin.journeyPosition.LearningBlock)[0];

@@ -41,6 +41,8 @@ namespace Antura.Map
         private float startCameraX = 0.0f;
         public float dragSensibility = 0.1f;
 
+        public bool dragWorld = true;   // If true, a finger movement will drag the WORLD and not the CAMERA
+
         private void Start()
         {
             _stageMapsManager = FindObjectOfType<StageMapsManager>();
@@ -202,7 +204,7 @@ namespace Antura.Map
                 var xDelta = xDrag - startFingerX;
 
                 Vector3 nextCameraPosition = transform.position;
-                nextCameraPosition.x = startCameraX + xDelta * dragSensibility;
+                nextCameraPosition.x = startCameraX + (dragWorld ? -1 : 1) * xDelta * dragSensibility;
 
                 AssignCameraPosition(nextCameraPosition);
             }
@@ -223,7 +225,8 @@ namespace Antura.Map
                     currentSpeed = 0.0f;
                 }
 
-                Vector3 nextCameraPosition = transform.position + Vector3.right * currentSpeed * Time.deltaTime;
+                Vector3 nextCameraPosition = transform.position +
+                                             Vector3.right * (dragWorld ? -1 : 1) * currentSpeed * Time.deltaTime;
                 AssignCameraPosition(nextCameraPosition);
             }
         }

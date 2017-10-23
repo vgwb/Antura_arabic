@@ -213,7 +213,7 @@ namespace Antura.Map
 
         private IEnumerator InitialMovementCO()
         {
-            HidePlayPanel();
+            //HidePlayPanel();
             StageMap(shownStage).FlushAppear(PreviousJourneyPosition);
 
             bool needsAnimation = !Equals(targetCurrentJourneyPosition, PreviousJourneyPosition);
@@ -253,7 +253,7 @@ namespace Antura.Map
             }
 
             mapCamera.SetManualMovementCurrentMap();
-            ShowPlayPanel();
+            //ShowPlayPanel();
         }
 
         private bool WillPlayAssessmentNext()
@@ -297,7 +297,7 @@ namespace Antura.Map
         public void UpdateSelection()
         {
             UpdateHighlights();
-            ShowPlayPanel();
+            //ShowPlayPanel();
         }
 
         #endregion
@@ -487,7 +487,7 @@ namespace Antura.Map
             inTransition = true;
             //Debug.Log("Switch from " + fromStage + " to " + toStage);
 
-            HidePlayPanel();
+           // HidePlayPanel();
 
             // Change stage reference
             StageMap(toStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
@@ -511,6 +511,7 @@ namespace Antura.Map
             UpdateStageIndicatorUI(toStage);
             UpdateButtonsForStage(toStage);
 
+            /*
             if (MovePlayerWithStageChange) {
                 ShowPlayPanel();
             } else {
@@ -518,6 +519,7 @@ namespace Antura.Map
                     ShowPlayPanel();
                 }
             }
+            */
 
             // Hide the last stage
             StageMap(fromStage).Hide();
@@ -661,6 +663,11 @@ namespace Antura.Map
             profileBookButton.SetActive(true);
             anturaSpaceButton.SetActive(true);
             GlobalUI.ShowPauseMenu(true);
+        }
+
+        public void HandleLockedButton()
+        {
+            GlobalUI.ShowPrompt("LOCKED", "LOCKED", null, null);
         }
 
         #endregion
