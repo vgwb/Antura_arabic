@@ -1,8 +1,10 @@
 ﻿using Antura.Core;
+using Antura.UI;
 using Boo.Lang;
 using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Antura.Map
 {
@@ -25,6 +27,9 @@ namespace Antura.Map
         public GameObject pinV1;
         public GameObject pinV2;
         public GameObject pinAssessment;
+
+        public GameObject roadSignGO;
+        public TextRender roadSignTextUI;
 
         [HideInInspector]
         public GameObject currentPinMesh;
@@ -59,6 +64,10 @@ namespace Antura.Map
             journeyPosition = _journeyPosition;
 
             name = "Pin_" + _journeyPosition;
+
+            // Road sign with LB
+            roadSignGO.SetActive(journeyPosition.PlaySession == 1);
+            roadSignTextUI.SetText(journeyPosition.Stage + "-" + journeyPosition.LearningBlock);
 
             // Choosing the correct PIN based on the journey position
             pinV1.gameObject.SetActive(false);
