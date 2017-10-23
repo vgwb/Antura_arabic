@@ -244,7 +244,7 @@ namespace Antura.Map
                     yield return new WaitForSeconds(3.0f);
                     mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition);
-                    yield return null;
+
                 }
             }
 
@@ -254,7 +254,7 @@ namespace Antura.Map
             }
 
             mapCamera.SetManualMovementCurrentMap();
-            //ShowPlayPanel();
+            ReSelectCurrentPin();
         }
 
         private bool WillPlayAssessmentNext()

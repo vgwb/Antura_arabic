@@ -27,6 +27,10 @@ namespace Antura.Map
 
         private Pin targetPin = null;
 
+        void Awake()
+        {
+            RemovePin();
+        }
 
         void Update()
         {
@@ -45,7 +49,7 @@ namespace Antura.Map
         public void RemovePin()
         {
             targetPin = null;
-            gameObject.SetActive(false);
+            panelPivotGO.SetActive(false);
         }
 
         public void SetPin(Pin pin)
