@@ -20,6 +20,7 @@ namespace Antura.Map
     {
         [Header("Options")]
         public bool MovePlayerWithStageChange = true;
+        public bool FollowPlayerWhenMoving = false;
         public bool ShowStageButtons = false;
         public bool ShowMovementButtons = false;
 

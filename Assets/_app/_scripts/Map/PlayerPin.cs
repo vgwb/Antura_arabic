@@ -91,7 +91,7 @@ namespace Antura.Map
         {
             if (CanMoveTo(pinIndex))
             {
-                stageMapsManager.mapCamera.SetAutoFollowTransformCurrentMap(transform);
+                if (stageMapsManager.FollowPlayerWhenMoving) stageMapsManager.mapCamera.SetAutoFollowTransformCurrentMap(transform);
                 AnimateToPin(pinIndex);
             }
         }
@@ -152,6 +152,19 @@ namespace Antura.Map
             int tmpCurrentIndex = currentStageMap.CurrentPinIndex;
             UpdatePlayerJourneyPosition(currentStageMap.mapLocations[targetIndex].JourneyPos);
             //Debug.Log("ANIMATING FROM " + tmpCurrentIndex + " TO " + targetIndex);
+
+            // Antura too far: teleport hime
+            const int teleportDistance = 4;
+            if (Mathf.Abs(targetIndex - tmpCurrentIndex) >= teleportDistance)
+            {
+                bool isAdvancing = targetIndex > tmpCurrentIndex;
+                int teleportIndex = targetIndex + (isAdvancing ? -teleportDistance : teleportDistance);
+                teleportIndex = Mathf.Clamp(teleportIndex, 0, currentStageMap.MaxUnlockedPinIndex);
+                currentStageMap.ForceCurrentPinIndex(teleportIndex);
+                ForceToJourneyPosition(currentStageMap.mapLocations[teleportIndex].JourneyPos, true);
+                tmpCurrentIndex = teleportIndex;
+            }
+
             do
             {
                 //Debug.Log("inner target is " + targetIndex + " tmp is " + tmpCurrentIndex);

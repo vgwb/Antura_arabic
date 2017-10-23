@@ -23,6 +23,9 @@ namespace Antura.Map
 
             HandleJourneyPosition(journeyPosition);
             HandlePlaySessionState(playSessionState);
+
+            // @note: we do not show the JourneyPos text now
+            journeyPosTextUI.gameObject.SetActive(false);
         }
 
         private void HandlePlaySessionState(PlaySessionState playSessionState)
@@ -69,21 +72,21 @@ namespace Antura.Map
 
         public void HideAllInfo()
         {
-            journeyPosTextUI.gameObject.SetActive(false);
+            //journeyPosTextUI.gameObject.SetActive(false);
             scoreFeedbackMR.gameObject.SetActive(false);
         }
 
         public void ShowHighlightedInfo()
         {
             // TODO: show info with the player on that PS
-            journeyPosTextUI.gameObject.SetActive(false);
+            //journeyPosTextUI.gameObject.SetActive(false);
             scoreFeedbackMR.gameObject.SetActive(true);
         }
 
         public void ShowUnhighlightedInfo()
         {
             // TODO: show info with the player not on that PS
-            journeyPosTextUI.gameObject.SetActive(true);
+            //journeyPosTextUI.gameObject.SetActive(true);
             scoreFeedbackMR.gameObject.SetActive(true);
         }
 
