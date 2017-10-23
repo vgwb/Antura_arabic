@@ -17,6 +17,7 @@ namespace Antura.Map
         public StageMapsManager stageMapsManager;
         public StageMap currentStageMap;
 
+        // DEPRECATED
         [Header("UIButtons")]
         public GameObject moveRightButton;
         public GameObject moveLeftButton;
@@ -57,29 +58,6 @@ namespace Antura.Map
 
         #endregion
 
-        void LateUpdate()
-        {
-            // Map movement controls
-            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
-            { 
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                RaycastHit hit;
-                int layerMask = 1 << 15;
-                if (Physics.Raycast(ray, out hit, 500, layerMask))
-                {
-                    if (hit.collider.CompareTag("Pin"))
-                    {
-                        var pin = hit.collider.transform.gameObject.GetComponent<Pin>();
-                        if (pin.isLocked) return;
-
-                        AudioManager.I.PlaySound(Sfx.UIButtonClick);
-                        MoveToPin(pin.pinIndex);
-                    }
-                }
-            }
-        }
-
         #region Movement
 
         private int CurrentPinIndex
@@ -109,7 +87,7 @@ namespace Antura.Map
             MoveToPin(StageMapsManager.GetPosIndexFromJourneyPosition(currentStageMap, journeyPosition)); 
         }
 
-        private void MoveToPin(int pinIndex)
+        public void MoveToPin(int pinIndex)
         {
             if (CanMoveTo(pinIndex))
             {
@@ -207,8 +185,9 @@ namespace Antura.Map
 
         private void UpdatePlayerJourneyPosition(JourneyPosition journeyPos)
         {
+            // This will select the PIN too
             AppManager.I.Player.SetCurrentJourneyPosition(journeyPos, false);
-            stageMapsManager.UpdateHighlights();
+            stageMapsManager.UpdateSelection();
             //Debug.LogWarning("Setting journey pos current: " + AppManager.I.Player.CurrentJourneyPosition);
         }
 
@@ -286,6 +265,12 @@ namespace Antura.Map
 
         public void CheckMovementButtonsEnabling()
         {
+            if (!stageMapsManager.ShowMovementButtons)
+            {
+                moveRightButton.SetActive(false);
+                moveLeftButton.SetActive(false);
+                return;
+            }
             //Debug.Log("Enabling buttons for " + CurrentPinIndex);
             if (CurrentPinIndex == 0) {
                 if (currentStageMap.MaxUnlockedPinIndex == 0) {

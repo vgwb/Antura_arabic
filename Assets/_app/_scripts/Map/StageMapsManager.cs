@@ -21,6 +21,7 @@ namespace Antura.Map
         [Header("Options")]
         public bool MovePlayerWithStageChange = true;
         public bool ShowStageButtons = false;
+        public bool ShowMovementButtons = false;
 
         [Header("Debug")]
         public bool SimulateFirstContact;
@@ -38,8 +39,11 @@ namespace Antura.Map
         public GameObject rightStageButton;
         public GameObject lockUI;
 
-        public GameObject uiButtonMovementPlaySession;
+        public MapPlayPanel playPanel;
+
+        // DEPRECATED
         public GameObject nextPlaySessionButton;
+        // DEPRECATED
         public GameObject beforePlaySessionButton;
 
         public GameObject playButton;
@@ -182,9 +186,9 @@ namespace Antura.Map
 
             // Position the player
             playerPin.gameObject.SetActive(true);
-            //playerPin.onMoveStart += HidePlaySessionMovementButtons;
+            //playerPin.onMoveStart += HidePlayPanel;
             playerPin.onMoveStart += CheckCurrentStageForPlayerReset;
-            //playerPin.onMoveEnd += ShowPlaySessionMovementButtons;
+            //playerPin.onMoveEnd += ShowPlayPanel;
             playerPin.ForceToJourneyPosition(PreviousJourneyPosition, justVisuals:true);
 
             /* FIRST CONTACT FEATURE */
@@ -201,7 +205,7 @@ namespace Antura.Map
                 PlayRandomAssessmentDialog();
             }
 
-            UpdateHighlights();
+            UpdateSelection();
 
             // Coming from the other stage
             StartCoroutine(InitialMovementCO());
@@ -209,7 +213,7 @@ namespace Antura.Map
 
         private IEnumerator InitialMovementCO()
         {
-            HidePlaySessionMovementButtons();
+            HidePlayPanel();
             StageMap(shownStage).FlushAppear(PreviousJourneyPosition);
 
             bool needsAnimation = !Equals(targetCurrentJourneyPosition, PreviousJourneyPosition);
@@ -249,7 +253,7 @@ namespace Antura.Map
             }
 
             mapCamera.SetManualMovementCurrentMap();
-            ShowPlaySessionMovementButtons();
+            ShowPlayPanel();
         }
 
         private bool WillPlayAssessmentNext()
@@ -278,9 +282,29 @@ namespace Antura.Map
 
         #endregion
 
+        #region Selection
+
+        public void SelectPin(Pin pin)
+        {
+            playPanel.SetPin(pin);
+
+            if (!pin.isLocked)
+            {
+                playerPin.MoveToPin(pin.pinIndex);
+            }
+        }
+
+        public void UpdateSelection()
+        {
+            UpdateHighlights();
+            ShowPlayPanel();
+        }
+
+        #endregion
+
         #region Highlight
 
-        public void UpdateHighlights()
+        private void UpdateHighlights()
         {
             foreach (var stageMap in stageMaps)
             {
@@ -434,8 +458,10 @@ namespace Antura.Map
             UpdateStageButtonsUI();
             bool playable = IsStagePlayable(stage);
             playButton.SetActive(playable);
-            nextPlaySessionButton.SetActive(playable);
-            beforePlaySessionButton.SetActive(playable);
+
+            nextPlaySessionButton.SetActive(ShowMovementButtons && playable);
+            beforePlaySessionButton.SetActive(ShowMovementButtons && playable);
+
             lockUI.SetActive(!playable);
         }
 
@@ -461,7 +487,7 @@ namespace Antura.Map
             inTransition = true;
             //Debug.Log("Switch from " + fromStage + " to " + toStage);
 
-            HidePlaySessionMovementButtons();
+            HidePlayPanel();
 
             // Change stage reference
             StageMap(toStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
@@ -486,10 +512,10 @@ namespace Antura.Map
             UpdateButtonsForStage(toStage);
 
             if (MovePlayerWithStageChange) {
-                ShowPlaySessionMovementButtons();
+                ShowPlayPanel();
             } else {
                 if (toStage == CurrentPlayerStage) {
-                    ShowPlaySessionMovementButtons();
+                    ShowPlayPanel();
                 }
             }
 
@@ -605,20 +631,20 @@ namespace Antura.Map
             playButton.SetActive(false);
         }
 
-        private void ShowPlaySessionMovementButtons()
+        private void ShowPlayPanel()
         {
-            uiButtonMovementPlaySession.SetActive(true);
+            playPanel.gameObject.SetActive(true);
             playerPin.CheckMovementButtonsEnabling();
         }
 
-        private void HidePlaySessionMovementButtons()
+        private void HidePlayPanel()
         {
-            uiButtonMovementPlaySession.SetActive(false);
+            playPanel.gameObject.SetActive(false);
         }
 
         private void DeactivateUI()
         {
-            uiButtonMovementPlaySession.SetActive(false);
+            playPanel.gameObject.SetActive(false);
             learningBookButton.SetActive(false);
             minigamesBookButton.SetActive(false);
             profileBookButton.SetActive(false);
@@ -628,7 +654,7 @@ namespace Antura.Map
 
         private void ActivateUI()
         {
-            uiButtonMovementPlaySession.SetActive(true);
+            playPanel.gameObject.SetActive(true);
             navigationIconsPanel.SetActive(true);
             learningBookButton.SetActive(true);
             minigamesBookButton.SetActive(true);
