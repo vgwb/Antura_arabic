@@ -30,7 +30,7 @@ namespace Antura.Map
         public GameObject ropePrefab;
 
         // Configuration
-        private static float dotsSpan = 5.0f;
+        private static float preferredDotsSpan = 5.0f;
         private static float startAppearDuration = 0.4f;
         private static float appearSpeedupMultiplier = 0.9f;
         private static float minAppearDuration = 0.01f;
@@ -283,7 +283,8 @@ namespace Antura.Map
             Vector3 pBack = pinBack.transform.position;
 
             var distance = Vector3.Distance(pFront, pBack);
-            int nDots = Mathf.FloorToInt(distance / dotsSpan) - 1;  // -1 as we have the two pins as start and end
+            int nDots = Mathf.FloorToInt(distance / preferredDotsSpan) - 1;  // -1 as we have the two pins as start and end
+            float actualDotsSpan = distance / nDots;
             var dir = Vector3.Normalize(pFront - pBack);
 
             // Create and stretch the rope between pins of the same Learning Block
@@ -306,7 +307,7 @@ namespace Antura.Map
             for (int dot_i = 1; dot_i <= nDots; dot_i++)
             {
                 // Create a new dot
-                var dotPos = pBack + dir * dot_i * dotsSpan;
+                var dotPos = pBack + dir * dot_i * actualDotsSpan;
                 var dotRot = Quaternion.Euler(90, 0, 0);
                 GameObject dotGo = Instantiate(dotPrefab, dotPos, dotRot);
                 dotGo.transform.SetParent(dotsPivot);

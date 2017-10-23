@@ -462,6 +462,7 @@ namespace Antura.Map
             int fromStage = shownStage;
             if (toStage == fromStage) return;
 
+            Debug.Log("FROM " + fromStage + " TO " + toStage);
             SwitchFromToStage(fromStage, toStage, animateCamera);
         }
 
@@ -503,8 +504,7 @@ namespace Antura.Map
 
             // Change stage reference
             StageMap(toStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
-            SwitchStageMapForPlayer(StageMap(toStage));
-
+            
             // Update Player Stage too, if needed
             if (MovePlayerWithStageChange)
             {
@@ -525,6 +525,9 @@ namespace Antura.Map
             {
                 ColorCameraToShownStage(toStage);
             }
+
+            // Update the stage map for the player too
+            if (MovePlayerWithStageChange) SwitchStageMapForPlayer(StageMap(toStage));
 
             // Show the new stage
             UpdateStageIndicatorUI(toStage);
@@ -579,14 +582,15 @@ namespace Antura.Map
 
         private void AnimateCameraToShownStage(int stage)
         {
-            //Debug.Log("Animating to stage " + stage);
+            Debug.Log("Animating to stage " + stage);
             var stageMap = StageMap(stage);
             stageMap.Show();
             stageMap.ResetStageOnShow(CurrentPlayerStage == stage);
 
-            // We'll look at the current player position, if possible.
+            // We'll look at the current player position, if possible
+            // AND if the player is in that stage
             bool playable = IsStagePlayable(stage);
-            if (playable)
+            if (playable && playerPin.currentStageMap == stageMap)
             {
                 mapCamera.SetAutoMoveToLookAtFree(playerPin.transform, stageMap.cameraPivotStart, 0.6f);
             }
