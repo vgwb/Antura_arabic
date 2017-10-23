@@ -26,13 +26,13 @@ namespace Antura.Rewards
 
         public TextRender dayTextUI;
 
-        Color lockedColor;
+        //Color lockedColor;
         Tween unlockTween;
 
         void Awake()
         {
             // @note: Lock is not used anymore, we hide it
-            lockedColor = bgImg.color;
+            //lockedColor = bgImg.color;
             lockUI.gameObject.SetActive(false);
 
             unlockTween = DOTween.Sequence().SetAutoKill(false).Pause()

@@ -14,6 +14,8 @@ namespace Antura.AnturaSpace
     /// </summary>
     public class AnturaSpaceTutorial : MonoBehaviour
     {
+        private static bool TEST_DISABLE_TUTORIAL = true;
+
         // note that the tutorial is totally sequentially
         private enum AnturaSpaceTutorialStates
         {
@@ -69,6 +71,7 @@ namespace Antura.AnturaSpace
         void Start()
         {
             // DEBUG: removing the tutorial for now
+            if(TEST_DISABLE_TUTORIAL)
             {
                 gameObject.SetActive(false);
                 IsRunning = false;
