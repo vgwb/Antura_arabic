@@ -19,7 +19,7 @@ namespace Antura.Rewards
         public BonesCounter BonesCounter;
         public Vector2 BonesCounterEndgamePos, BonesCounterEndsessionPos;
 
-        const string ResourcesPath = "Prefabs/UI/GameResultUI";
+        const string GameResultUIResourcesPath = "Prefabs/UI/GameResultUI";
 
         #region Unity + Init
 
@@ -27,7 +27,7 @@ namespace Antura.Rewards
         {
             if (I != null) return;
 
-            I = Instantiate(Resources.Load<GameResultUI>(ResourcesPath));
+            I = Instantiate(Resources.Load<GameResultUI>(GameResultUIResourcesPath));
             I.BonesCounter.Hide();
         }
 
