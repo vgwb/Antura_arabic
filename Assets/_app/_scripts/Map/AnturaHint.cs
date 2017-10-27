@@ -21,12 +21,11 @@ namespace Antura.Map
         public Image goLeftImage;
         public Image goRightImage;
 
-        private int offsetX = 180;
+        public int offsetX = 116;
 
         void Update()
         {
-            if (playerPin != null)
-            {
+            if (playerPin != null) {
                 // Follow pin (on the sides)
                 var playerOnScreen = cam.WorldToScreenPoint(playerPin.transform.position);
                 float resolutionRatio = Screen.height / canvasScaler.referenceResolution.y;
@@ -38,14 +37,12 @@ namespace Antura.Map
                 goLeftImage.gameObject.SetActive(playerIsLeft);
                 goRightImage.gameObject.SetActive(playerIsRight);
 
-                if (playerIsRight)
-                {
+                if (playerIsRight) {
                     rectTr.anchorMin = new Vector2(1, rectTr.anchorMin.y);
                     rectTr.anchorMax = new Vector2(1, rectTr.anchorMax.y);
                     rectTr.anchoredPosition = new Vector3(-offsetX, rectTr.anchoredPosition.y, 0);
                 }
-                if (playerIsLeft)
-                {
+                if (playerIsLeft) {
                     rectTr.anchorMin = new Vector2(0, rectTr.anchorMin.y);
                     rectTr.anchorMax = new Vector2(0, rectTr.anchorMax.y);
                     rectTr.anchoredPosition = new Vector3(offsetX, rectTr.anchoredPosition.y, 0);
