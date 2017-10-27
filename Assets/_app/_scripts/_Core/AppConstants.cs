@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 namespace Antura.Core
@@ -12,7 +13,7 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.1.0a2";
+        public const string AppVersion = "1.1.0a3";
 
         #region Debug Options
 
@@ -58,7 +59,6 @@ namespace Antura.Core
 
         // public URLs
         public const string UrlWebsite = "http://www.antura.org";
-
         public const string UrlPrivacy = "http://www.antura.org/en/privacy-policy/";
         public const string UrlUploadData = "https://upload.antura.org";
         public const string UrlStoreiOSApple = "https://itunes.apple.com/us/app/antura-and-the-letters/id1210334699?ls=1&mt=8";
@@ -66,8 +66,7 @@ namespace Antura.Core
         public const string UrlCommunityTelegram = "https://t.me/antura";
         public const string UrlCommunityFacebook = "https://www.facebook.com/antura.initiative";
 
-        public const string UrlSupportForm =
-            "https://docs.google.com/forms/d/e/1FAIpQLScWxs5I0w-k8GlIgPFKoWBitMVJ9gxxJlKvGKOXzZsnAA0qNw/viewform";
+        public const string UrlSupportForm = "https://docs.google.com/forms/d/e/1FAIpQLScWxs5I0w-k8GlIgPFKoWBitMVJ9gxxJlKvGKOXzZsnAA0qNw/viewform";
 
         public const string UrlGithubRepository = "https://github.com/vgwb/Antura_arabic";
         public const string UrlDeveloperDocs = "https://vgwb.github.io/Antura_arabic/";
@@ -75,6 +74,7 @@ namespace Antura.Core
         // files
         public const string PdfAndroidInstall = "AndroidInstallHelp.pdf";
 
+        // the directories of exported / imported databases
         public const string DbPlayersFolder = "players";
         public const string DbExportFolder = "export";
         public const string DbImportFolder = "import";
@@ -112,12 +112,12 @@ namespace Antura.Core
 
         public static string GetPlayerDatabaseFilenameForExport(string playerUuid)
         {
-            return "export_Antura_Player_" + playerUuid + "_" + System.DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
+            return "export_Antura_Player_" + playerUuid + "_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
         }
 
         public static string GetJoinedDatabaseFilename()
         {
-            return "Antura_Joined_" + System.DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
+            return "Antura_Joined_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
         }
     }
 }
