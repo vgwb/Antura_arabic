@@ -1,6 +1,6 @@
 ﻿using Antura.Core;
 using Antura.UI;
-using Boo.Lang;
+using System.Collections.Generic;
 using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
