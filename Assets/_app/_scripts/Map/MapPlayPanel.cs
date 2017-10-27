@@ -34,12 +34,14 @@ namespace Antura.Map
 
         void Update()
         {
-            if (targetPin != null)
-            {
+            if (targetPin != null) {
                 // Follow pin
                 var pinOnScreen = cam.WorldToScreenPoint(targetPin.transform.position);
                 float resolutionRatio = Screen.height / canvasScaler.referenceResolution.y;
-                rectTr.anchoredPosition = (pinOnScreen - new Vector3(Screen.width / 2, Screen.height / 2)) / resolutionRatio;
+
+                Vector2 newAnchor = (pinOnScreen - new Vector3(Screen.width / 2, Screen.height / 2)) / resolutionRatio;
+                newAnchor.y = rectTr.anchoredPosition.y;
+                rectTr.anchoredPosition = newAnchor;
 
                 // Auto show/hide
                 panelPivotGO.SetActive(pinOnScreen.x >= 0 && pinOnScreen.x < Screen.width);
