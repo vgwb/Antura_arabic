@@ -1,8 +1,11 @@
 ﻿using System;
 using DG.DeExtensions;
 using DG.DeInspektor;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Antura.AnturaSpace
 {
@@ -14,18 +17,19 @@ namespace Antura.AnturaSpace
         [HideInInspector]
         public ShopDecorationSlot[] slots;
 
+#if UNITY_EDITOR
         public void EditorSetup()
         {
             slots = GetComponentsInChildren<ShopDecorationSlot>();
             int sequentialIndex = 0;
-            foreach (var slot in slots)
-            {
+            foreach (var slot in slots) {
                 slot.slotType = slotType;
                 slot.slotIndex = sequentialIndex++;
                 EditorUtility.SetDirty(slot);
                 //Debug.LogError("SET SLOT INDEX: " + slot.slotIndex);
             }
         }
+#endif
 
     }
 }

@@ -5,7 +5,10 @@ using Antura.Core;
 using DG.DeExtensions;
 using UnityEngine;
 using DG.DeInspektor.Attributes;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 namespace Antura.Map
 {
@@ -48,25 +51,20 @@ namespace Antura.Map
             CurrentPinIndex = newIndex;
         }
 
-        public Vector3 CurrentPlayerPosVector
-        {
+        public Vector3 CurrentPlayerPosVector {
             get { return mapLocations[CurrentPinIndex].Position; }
         }
 
-        public JourneyPosition CurrentPlayerPosJourneyPosition
-        {
+        public JourneyPosition CurrentPlayerPosJourneyPosition {
             get { return mapLocations[CurrentPinIndex].JourneyPos; }
         }
 
-        public Pin FirstPin
-        {
-            get { return playPins[0]; } 
+        public Pin FirstPin {
+            get { return playPins[0]; }
         }
 
-        public List<Pin> Pins
-        {
-            get
-            {
+        public List<Pin> Pins {
+            get {
                 return playPins;
             }
         }
@@ -95,17 +93,16 @@ namespace Antura.Map
         #endregion
 
         public List<IMapLocation> mapLocations = new List<IMapLocation>();
-           
-        #region Editor Setup
 
+        #region Editor Setup
+#if UNITY_EDITOR
         [DeMethodButton("Rename Pins")]
         public void RenamePins()
         {
             var allPins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
-            for (var index = 0; index < allPins.Count; index++)
-            {
+            for (var index = 0; index < allPins.Count; index++) {
                 var pin = allPins[index];
-                pin.gameObject.name = "Pin_" + (index+1);
+                pin.gameObject.name = "Pin_" + (index + 1);
                 EditorUtility.SetDirty(pin.gameObject);
             }
         }
@@ -115,14 +112,13 @@ namespace Antura.Map
         {
             // Randomize the position of the pins
             var pins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
-            for (var index = 0; index < pins.Count; index++)
-            {
+            for (var index = 0; index < pins.Count; index++) {
                 var pin = pins[index];
                 pin.transform.localPosition = new Vector3(index * (-30), 0, Random.Range(-30, 30));
                 EditorUtility.SetDirty(pin.gameObject);
             }
         }
-
+#endif
         #endregion
 
         #region Initialisation
@@ -139,8 +135,7 @@ namespace Antura.Map
             // Set the correct data to all pins (also creating the dots)
             var allPlaySessionStates = GetAllPlaySessionStatesForStage(stageNumber);
 
-            if (allPlaySessionStates.Count > playPins.Count)
-            {
+            if (allPlaySessionStates.Count > playPins.Count) {
                 Debug.LogError("Stage " + stageNumber + " has only " + playPins.Count + " pins but needs " + allPlaySessionStates.Count);
                 return;
             }
@@ -151,11 +146,10 @@ namespace Antura.Map
                 return;
             }*/
 
-            int playerPosIndexCount = 0; 
-            JourneyPosition assignedJourneyPosition = new JourneyPosition(stageNumber,1,1);
+            int playerPosIndexCount = 0;
+            JourneyPosition assignedJourneyPosition = new JourneyPosition(stageNumber, 1, 1);
 
-            for (int jp_i = 0; jp_i < playPins.Count; jp_i++)
-            {
+            for (int jp_i = 0; jp_i < playPins.Count; jp_i++) {
                 var pin = playPins[jp_i];
                 //var psState = allPlaySessionStates[jp_i];
                 //var journeyPos = psState.data.GetJourneyPosition();
@@ -164,21 +158,18 @@ namespace Antura.Map
 
                 pin.SetLocked();
                 //Debug.Log(assignedJourneyPosition);
-                var psState = allPlaySessionStates.Find(x =>  x.psData.GetJourneyPosition().Equals(assignedJourneyPosition));
-                if (psState != null)
-                {
+                var psState = allPlaySessionStates.Find(x => x.psData.GetJourneyPosition().Equals(assignedJourneyPosition));
+                if (psState != null) {
                     pin.SetPlaySessionState(psState);
                 }
 
                 // Create visual dots and a rope
-                if (jp_i > 0)
-                {
+                if (jp_i > 0) {
                     CreateVisualsBetweenPins(playPins[jp_i], playPins[jp_i - 1]);
                 }
 
                 // Dialogues added to first JP of the stage
-                if (jp_i == 0)
-                {
+                if (jp_i == 0) {
                     var introDialogues = playPins[jp_i].gameObject.AddComponent<IntroDialogues>();
                     introDialogues.stageNumber = stageNumber;
                 }
@@ -198,21 +189,19 @@ namespace Antura.Map
 
         void Disappear()
         {
-            foreach (var pin in playPins)
-            {
+            foreach (var pin in playPins) {
                 pin.Disappear();
             }
         }
 
         public void Appear(JourneyPosition fromPos, JourneyPosition toPos)
         {
-            StartCoroutine(AppearCO(fromPos,toPos));
+            StartCoroutine(AppearCO(fromPos, toPos));
         }
 
         private IEnumerator AppearCO(JourneyPosition fromPos, JourneyPosition toPos)
         {
-            if (hasAppeared)
-            {
+            if (hasAppeared) {
                 yield break;
             }
 
@@ -226,16 +215,12 @@ namespace Antura.Map
             // Then, let the remaining ones appear in order, up to TO
             int upToPosIndex = StageMapsManager.GetPosIndexFromJourneyPosition(this, toPos);
             float duration = startAppearDuration;
-            foreach (var pin in playPins)
-            {
+            foreach (var pin in playPins) {
                 // Then the pins
-                if (!pin.Appeared && pin.pinIndex <= upToPosIndex)
-                {
+                if (!pin.Appeared && pin.pinIndex <= upToPosIndex) {
                     // First the dots that connect the pins
-                    foreach (var dot in pin.dots)
-                    {
-                        if (!dot.Appeared) 
-                        {
+                    foreach (var dot in pin.dots) {
+                        if (!dot.Appeared) {
                             dot.Appear(0.0f, duration);
                             yield return new WaitForSeconds(duration);
                             duration *= appearSpeedupMultiplier;
@@ -256,16 +241,13 @@ namespace Antura.Map
         {
             //Debug.Log("FLUSH TO " + upToJourneyPos);
             int upToPosIndex = StageMapsManager.GetPosIndexFromJourneyPosition(this, upToJourneyPos);
-            foreach (var pin in playPins)
-            {
-                if (pin.pinIndex > upToPosIndex)
-                {
+            foreach (var pin in playPins) {
+                if (pin.pinIndex > upToPosIndex) {
                     break;
                 }
 
                 // First the dots
-                foreach (var dot in pin.dots)
-                {
+                foreach (var dot in pin.dots) {
                     dot.FlushAppear();
                 }
 
@@ -288,8 +270,7 @@ namespace Antura.Map
             var dir = Vector3.Normalize(pFront - pBack);
 
             // Create and stretch the rope between pins of the same Learning Block
-            if (!pinBack.journeyPosition.IsAssessment())
-            {
+            if (!pinBack.journeyPosition.IsAssessment()) {
                 GameObject ropeGo = Instantiate(ropePrefab);
                 ropeGo.transform.SetParent(dotsPivot);
                 var rope = ropeGo.GetComponent<Rope>();
@@ -304,8 +285,7 @@ namespace Antura.Map
             }
 
             // Create the dots
-            for (int dot_i = 1; dot_i <= nDots; dot_i++)
-            {
+            for (int dot_i = 1; dot_i <= nDots; dot_i++) {
                 // Create a new dot
                 var dotPos = pBack + dir * dot_i * actualDotsSpan;
                 var dotRot = Quaternion.Euler(90, 0, 0);
@@ -318,25 +298,18 @@ namespace Antura.Map
 
         private void UnlockPlaySessions()
         {
-            if (!stageUnlocked)
-            {
+            if (!stageUnlocked) {
                 // All is locked
                 MaxUnlockedPinIndex = 0;
-            }
-            else if (wholeStageUnlocked)
-            {
+            } else if (wholeStageUnlocked) {
                 // All is unlocked
                 playPins.ForEach(pin => pin.SetUnlocked());
                 MaxUnlockedPinIndex = playPins.Last().pinIndex;
-            }
-            else
-            {
+            } else {
                 // Part of the stage is locked
                 var maxJp = AppManager.I.Player.MaxJourneyPosition;
-                playPins.ForEach(pin =>
-                {
-                    if (pin.JourneyPos.IsMinorOrEqual(maxJp))
-                    {
+                playPins.ForEach(pin => {
+                    if (pin.JourneyPos.IsMinorOrEqual(maxJp)) {
                         pin.SetUnlocked();
                         MaxUnlockedPinIndex = pin.pinIndex;
                     }
@@ -347,8 +320,7 @@ namespace Antura.Map
         public void ResetStageOnShow(bool playerIsHere)
         {
             //Debug.Log("Stage " + name + " player here? " + playerIsHere);
-            foreach (var pin in playPins)
-            {
+            foreach (var pin in playPins) {
                 pin.Highlight(playerIsHere && Equals(pin.JourneyPos, CurrentPlayerPosJourneyPosition));
             }
         }
@@ -372,8 +344,7 @@ namespace Antura.Map
 
             // Build a structure containing both
             var playSessionStateList = new List<PlaySessionState>();
-            for (var i = 0; i < allPlaySessionData.Count; i++)
-            {
+            for (var i = 0; i < allPlaySessionData.Count; i++) {
                 //var data = AppManager.I.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
                 var scoreData = allScoreData.FirstOrDefault(sc => sc.ElementId == allPlaySessionData[i].Id);
                 playSessionStateList.Add(new PlaySessionState(allPlaySessionData[i], scoreData));
