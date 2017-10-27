@@ -159,8 +159,7 @@ namespace Antura.Book
             CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Letters);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData
-                {
+                new GenericCategoryData {
                     area = VocabularyChapter.Letters,
                     Id = "letters",
                     Title = CategoryData.Arabic,
@@ -174,8 +173,7 @@ namespace Antura.Book
             CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Symbols);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData
-                {
+                new GenericCategoryData {
                     area = VocabularyChapter.Letters,
                     Id = "symbols",
                     Title = CategoryData.Arabic,
@@ -189,8 +187,7 @@ namespace Antura.Book
             CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Combinations);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData
-                {
+                new GenericCategoryData {
                     area = VocabularyChapter.Letters,
                     Id = "combinations",
                     Title = CategoryData.Arabic,
@@ -280,8 +277,7 @@ namespace Antura.Book
                 CategoryData = LocalizationManager.GetWordCategoryData(cat);
                 btnGO.GetComponent<MenuItemCategory>().Init(
                     this,
-                    new GenericCategoryData
-                    {
+                    new GenericCategoryData {
                         area = VocabularyChapter.Words,
                         wordCategory = cat,
                         Id = cat.ToString(),
@@ -360,8 +356,7 @@ namespace Antura.Book
                 CategoryData = LocalizationManager.GetPhraseCategoryData(cat);
                 btnGO.GetComponent<MenuItemCategory>().Init(
                     this,
-                    new GenericCategoryData
-                    {
+                    new GenericCategoryData {
                         area = VocabularyChapter.Phrases,
                         phraseCategory = cat,
                         Id = cat.ToString(),
@@ -432,6 +427,7 @@ namespace Antura.Book
             }
         }
 
+        #region buttons
         public void BtnOpenLetters()
         {
             OpenArea(VocabularyChapter.Letters);
@@ -446,6 +442,7 @@ namespace Antura.Book
         {
             OpenArea(VocabularyChapter.Phrases);
         }
+        #endregion
 
         void ResetLL()
         {
