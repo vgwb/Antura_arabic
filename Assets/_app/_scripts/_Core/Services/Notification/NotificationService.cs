@@ -19,15 +19,23 @@ namespace Antura.Core.Services.Notification
 #endif
         }
 
+        #region main
+        /// <summary>
+        /// automatically call everything to setup Notifications at AppSuspended
+        /// </summary>
         public void AppSuspended()
         {
             PrepareNextLocalNotification();
         }
 
+        /// <summary>
+        /// automatically restore all Notifications at AppResumed
+        /// </summary>
         public void AppResumed()
         {
-            DeleteNextLocalNotifications();
+            DeleteAllLocalNotifications();
         }
+        #endregion
 
         private void PrepareNextLocalNotification()
         {
@@ -48,6 +56,7 @@ namespace Antura.Core.Services.Notification
             //);
         }
 
+        #region direct plugins methods
         /// <summary>
         /// Schedule simple notification without app icon.
         /// </summary>
@@ -90,42 +99,26 @@ namespace Antura.Core.Services.Notification
             });
         }
 
-
-        public void TestCalculateSecondsToTomorrowMidnight()
+        private void DeleteAllLocalNotifications()
         {
-            Debug.Log("Tomorrows midnight is in " + CalculateSecondsToTomorrowMidnight() + " seconds");
+            Debug.Log("NotificationService:DeleteNextLocalNotifications()");
+            pluginBridge.CancelAllNotifications();
         }
+        #endregion
 
+        #region utilities
         private int CalculateSecondsToTomorrowMidnight()
         {
             TimeSpan ts = DateTime.Today.AddDays(2).Subtract(DateTime.Now);
             return (int)ts.TotalSeconds;
         }
+        #endregion
 
-        private void DeleteNextLocalNotifications()
+        #region tests
+        public void TestCalculateSecondsToTomorrowMidnight()
         {
-            Debug.Log("NotificationService:DeleteNextLocalNotifications()");
-            pluginBridge.CancelAllNotifications();
+            Debug.Log("Tomorrows midnight is in " + CalculateSecondsToTomorrowMidnight() + " seconds");
         }
-
-
-        public void ScheduleCustomNotification()
-        {
-            var notificationParams = new NotificationParams {
-                Id = UnityEngine.Random.Range(0, int.MaxValue),
-                Delay = TimeSpan.FromSeconds(60),
-                Title = "Custom notification",
-                Message = "Message",
-                Ticker = "Ticker",
-                Sound = true,
-                Vibrate = true,
-                Light = true,
-                SmallIcon = NotificationIcon.Heart,
-                SmallIconColor = new Color(0, 0.5f, 0),
-                LargeIcon = "app_icon"
-            };
-
-            pluginBridge.ScheduleNotification(notificationParams);
-        }
+        #endregion
     }
 }

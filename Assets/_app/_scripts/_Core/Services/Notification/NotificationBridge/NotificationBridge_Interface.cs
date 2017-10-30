@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Antura.Core.Services.Notification
+﻿namespace Antura.Core.Services.Notification
 {
 
     public interface NotificationBridge_Interface

@@ -41,7 +41,6 @@ namespace Antura.Core.Services.Notification
 
         public void CancelNotification(int id)
         {
-
             foreach (UnityEngine.iOS.LocalNotification notif in UnityEngine.iOS.NotificationServices.scheduledLocalNotifications) {
                 if ((int)notif.fireDate.Ticks == id) {
                     UnityEngine.iOS.NotificationServices.CancelLocalNotification(notif);
@@ -52,12 +51,6 @@ namespace Antura.Core.Services.Notification
         public void CancelAllNotifications()
         {
             UnityEngine.iOS.NotificationServices.ClearLocalNotifications();
-        }
-
-        private int ColorToInt(Color color)
-        {
-            var smallIconColor = (Color32)color;
-            return smallIconColor.r * 65536 + smallIconColor.g * 256 + smallIconColor.b;
         }
 
     }

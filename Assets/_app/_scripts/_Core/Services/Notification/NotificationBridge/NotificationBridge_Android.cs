@@ -1,7 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using System.Linq;
-
 
 namespace Antura.Core.Services.Notification
 {
@@ -65,13 +63,11 @@ namespace Antura.Core.Services.Notification
             if (pluginClass != null) {
                 pluginClass.CallStatic("CancelAllNotifications");
             }
-
         }
 
         private int ColorToInt(Color color)
         {
             var smallIconColor = (Color32)color;
-
             return smallIconColor.r * 65536 + smallIconColor.g * 256 + smallIconColor.b;
         }
 
