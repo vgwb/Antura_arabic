@@ -65,7 +65,7 @@ namespace Antura.Core.Services.Notification
 
         private void DeleteNextLocalNotifications()
         {
-            Debug.Log("Next Local Notifications deleted");
+            Debug.Log("NotificationService:DeleteNextLocalNotifications()");
             NotificationManager.CancelAllNotifications();
         }
 

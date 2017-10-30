@@ -28,19 +28,23 @@
             PlaySession = _ps;
         }
 
-        public JourneyPosition(string psId)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Antura.Core.JourneyPosition"/> class.
+        /// </summary>
+        /// <param name="journeyPositionId">identifier formatted like Stage.LearningBlock.PlaySession</param>
+        public JourneyPosition(string journeyPositionId)
         {
-            var splits = psId.Split('.');
+            var splits = journeyPositionId.Split('.');
             Stage = int.Parse(splits[0]);
             LearningBlock = int.Parse(splits[1]);
             PlaySession = int.Parse(splits[2]);
         }
 
-        public JourneyPosition(JourneyPosition other)
+        public JourneyPosition(JourneyPosition newJourneyPosition)
         {
-            Stage = other.Stage;
-            LearningBlock = other.LearningBlock;
-            PlaySession = other.PlaySession;
+            Stage = newJourneyPosition.Stage;
+            LearningBlock = newJourneyPosition.LearningBlock;
+            PlaySession = newJourneyPosition.PlaySession;
         }
 
         public void SetPosition(int _stage, int _lb, int _ps)
@@ -48,12 +52,6 @@
             Stage = _stage;
             LearningBlock = _lb;
             PlaySession = _ps;
-        }
-
-        public override bool Equals(object obj)
-        {
-            var otherPos = (JourneyPosition) obj;
-            return Stage == otherPos.Stage && LearningBlock == otherPos.LearningBlock && PlaySession == otherPos.PlaySession;
         }
 
         public override int GetHashCode()
@@ -80,8 +78,7 @@
         public string ToDisplayedString(bool withPlaySession = false)
         {
             var psCode = "";
-            switch (PlaySession)
-            {
+            switch (PlaySession) {
                 case 1:
                     psCode = "1";
                     break;
@@ -93,10 +90,17 @@
                     break;
             }
 
-            if (withPlaySession)
+            if (withPlaySession) {
                 return Stage + "-" + LearningBlock + " " + psCode;
-            else 
+            } else {
                 return Stage + "-" + LearningBlock;
+            }
+        }
+
+        public override bool Equals(object obj)
+        {
+            var otherPos = (JourneyPosition)obj;
+            return Stage == otherPos.Stage && LearningBlock == otherPos.LearningBlock && PlaySession == otherPos.PlaySession;
         }
 
         public bool IsMinor(JourneyPosition other)
