@@ -2,24 +2,20 @@
 using System;
 using UnityEngine;
 
-#if UNITY_IOS
-using NotificationServices = UnityEngine.iOS.NotificationServices;
-using NotificationType = UnityEngine.iOS.NotificationType;
-#endif
-
 namespace Antura.Core.Services.Notification
 {
     public class NotificationService
     {
+        private NotificationBridge_Interface pluginBridge;
+
         public NotificationService()
         {
-#if UNITY_IOS
-            NotificationServices.RegisterForNotifications(
-                NotificationType.Alert |
-                NotificationType.Badge |
-                NotificationType.Sound
-            );
-            Debug.Log("Registered for Notifications");
+#if (UNITY_IPHONE && !UNITY_EDITOR)
+            pluginBridge = (NotificationBridge_Interface)new NotificationBridge_iOS();
+#elif (UNITY_ANDROID && !UNITY_EDITOR)
+            pluginBridge = (NotificationBridge_Interface)new NotificationBridge_Android();
+#else
+            pluginBridge = (NotificationBridge_Interface)new NotificationBridge_Editor();
 #endif
         }
 
@@ -37,7 +33,7 @@ namespace Antura.Core.Services.Notification
         {
             Debug.Log("Next Local Notifications prepared");
             var arabicString = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Notification_24h);
-            NotificationManager.ScheduleSimpleWithAppIcon(
+            ScheduleSimpleWithAppIcon(
                 TimeSpan.FromSeconds(CalculateSecondsToTomorrowMidnight()),
                 "Antura and the Letters",
                 arabicString.Arabic,
@@ -51,6 +47,49 @@ namespace Antura.Core.Services.Notification
             //    Color.blue
             //);
         }
+
+        /// <summary>
+        /// Schedule simple notification without app icon.
+        /// </summary>
+        /// <param name="smallIcon">List of build-in small icons: notification_icon_bell (default), notification_icon_clock, notification_icon_heart, notification_icon_message, notification_icon_nut, notification_icon_star, notification_icon_warning.</param>
+        public int ScheduleSimple(TimeSpan delay, string title, string message, Color smallIconColor, NotificationIcon smallIcon = 0)
+        {
+            return pluginBridge.ScheduleNotification(new NotificationParams {
+                Id = new System.Random().Next(),
+                Delay = delay,
+                Title = title,
+                Message = message,
+                Ticker = message,
+                Sound = true,
+                Vibrate = true,
+                Light = true,
+                SmallIcon = smallIcon,
+                SmallIconColor = smallIconColor,
+                LargeIcon = ""
+            });
+        }
+
+        /// <summary>
+        /// Schedule notification with app icon.
+        /// </summary>
+        /// <param name="smallIcon">List of build-in small icons: notification_icon_bell (default), notification_icon_clock, notification_icon_heart, notification_icon_message, notification_icon_nut, notification_icon_star, notification_icon_warning.</param>
+        public int ScheduleSimpleWithAppIcon(TimeSpan delay, string title, string message, Color smallIconColor, NotificationIcon smallIcon = 0)
+        {
+            return pluginBridge.ScheduleNotification(new NotificationParams {
+                Id = new System.Random().Next(),
+                Delay = delay,
+                Title = title,
+                Message = message,
+                Ticker = message,
+                Sound = true,
+                Vibrate = true,
+                Light = true,
+                SmallIcon = smallIcon,
+                SmallIconColor = smallIconColor,
+                LargeIcon = "app_icon"
+            });
+        }
+
 
         public void TestCalculateSecondsToTomorrowMidnight()
         {
@@ -66,7 +105,7 @@ namespace Antura.Core.Services.Notification
         private void DeleteNextLocalNotifications()
         {
             Debug.Log("NotificationService:DeleteNextLocalNotifications()");
-            NotificationManager.CancelAllNotifications();
+            pluginBridge.CancelAllNotifications();
         }
 
 
@@ -86,8 +125,7 @@ namespace Antura.Core.Services.Notification
                 LargeIcon = "app_icon"
             };
 
-            NotificationManager.ScheduleNotification(notificationParams);
+            pluginBridge.ScheduleNotification(notificationParams);
         }
-
     }
 }
