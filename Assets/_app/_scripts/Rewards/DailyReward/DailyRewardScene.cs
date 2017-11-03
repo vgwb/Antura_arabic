@@ -121,11 +121,12 @@ namespace Antura.Rewards
         IEnumerator ShowRewardsCO(bool withTranslation)
         {
             // Start to the left
+            float targetX = dailyRewardUIPivot.transform.localPosition.x;
             if (withTranslation)
-                dailyRewardUIPivot.transform.localPosition = Vector3.left * 200;
+                dailyRewardUIPivot.transform.localPosition += Vector3.left * 200;
 
             Sequence s = DOTween.Sequence().AppendInterval(1f);
-            if (withTranslation) s.Append(dailyRewardUIPivot.DOLocalMoveX(0, 1f).SetEase(Ease.InOutSine));
+            if (withTranslation) s.Append(dailyRewardUIPivot.DOLocalMoveX(targetX, 1f).SetEase(Ease.InOutSine));
             s.AppendCallback(() => {
                 todayPivot.transform.position = dailyRewardUIs[newRewardUIIndex].transform.position;
                 todayPivot.gameObject.SetActive(true);
@@ -170,9 +171,9 @@ namespace Antura.Rewards
 
                 yield return null;
 
-                if (waitTime > 5.0f)
+                if (waitTime > 1.0f)
                 {
-                    waitTime -= 2.0f;
+                    waitTime -= 1.0f;
                     Tutorial.TutorialUI.Click(dailyRewardUIs[newRewardUIIndex].transform.position);
                 }
             }
