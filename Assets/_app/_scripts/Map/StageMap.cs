@@ -118,6 +118,20 @@ namespace Antura.Map
                 pin.transform.localPosition = new Vector3(index * (-30), 0, Random.Range(-30, 30));
                 EditorUtility.SetDirty(pin.gameObject);
             }
+
+            // Set the second pin of a LB dependant on the previous and next one
+            for (var index = 0; index < pins.Count; index++)
+            {
+                var pin = pins[index];
+                if (index % 3 == 1)
+                {
+                    pin.transform.position = Vector3.Lerp(
+                        pins[index - 1].transform.position,
+                        pins[index + 1].transform.position, 0.5f);
+                }
+                EditorUtility.SetDirty(pin.gameObject);
+            }
+
         }
 #endif
         #endregion
