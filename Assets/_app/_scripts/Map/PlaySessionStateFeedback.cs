@@ -13,8 +13,10 @@ namespace Antura.Map
         private PlaySessionState playSessionState;
 
         [Header("Visuals")]
+        public GameObject starsPivotGO;
         public PlaySessionStateStar[] stars;
         public TextMeshPro journeyPosTextUI;
+        public GameObject surpriseGO;
 
         public void Initialise(JourneyPosition _journeyPosition, PlaySessionState _playSessionState)
         {
@@ -26,6 +28,11 @@ namespace Antura.Map
 
             // @note: we do not show the JourneyPos text now
             journeyPosTextUI.gameObject.SetActive(false);
+
+            if (journeyPosition.IsAssessment())
+            {
+                starsPivotGO.SetActive(false);
+            }
         }
 
         private void HandlePlaySessionState(PlaySessionState playSessionState)
@@ -34,10 +41,20 @@ namespace Antura.Map
             if (playSessionState != null && playSessionState.scoreData != null)
                 score = (int)playSessionState.scoreData.GetScore();
 
-            //Debug.Log("SCORE: " + score);
-            for (int i = 0; i < stars.Length; i++)
+            if (journeyPosition.IsAssessment())
             {
-                stars[i].SetObtained(score >= i+1);
+                //Debug.Log( playSessionState.psData.Id + " SCORE: " + score);
+                // Show surprise if this is a not yet completed assessment
+                surpriseGO.SetActive(score == 0);
+            }
+            else
+            {
+                surpriseGO.SetActive(false);
+
+                for (int i = 0; i < stars.Length; i++)
+                {
+                    stars[i].SetObtained(score >= i + 1);
+                }
             }
         }
 

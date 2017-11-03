@@ -157,6 +157,11 @@ namespace Antura.Map
                 AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(1, 1, 2));
                 AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 1, 1));
 
+                // TEST: basic assessment
+                AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(1, 1, 100), _forced: true);
+                AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(1, 1, 100));
+                AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 1, 2));
+
                 // TEST: next-stage PS
                 //AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(2, 1, 1), _forced: true);
                 //AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(2, 1, 1));

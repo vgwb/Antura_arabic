@@ -30,7 +30,6 @@ namespace Antura.Map
 
         public GameObject playButtonGO;
         public GameObject lockedButtonGO;
-        public GameObject surpriseGO;
 
         public GameObject roadSignGO;
         public TextRender roadSignTextUI;
@@ -98,12 +97,6 @@ namespace Antura.Map
             playButtonGO.SetActive(false);
             lockedButtonGO.SetActive(false);
 
-            // Show surprise if this is a not yet completed assessment
-            surpriseGO.SetActive(false);
-            if (journeyPosition.IsAssessment())
-            {
-                surpriseGO.SetActive(true); // TODO: check for completeness
-            }
         }
 
         #region Appear / Disappear
@@ -129,7 +122,7 @@ namespace Antura.Map
 
             shadowTr.SetLocalScale(0);
             currentPinMesh.gameObject.SetActive(false);
-            playSessionFeedback.gameObject.SetActive(false);
+            //playSessionFeedback.gameObject.SetActive(false);
         }
 
         public void Appear(float duration)
