@@ -13,7 +13,7 @@ namespace Antura.Map
         private PlaySessionState playSessionState;
 
         [Header("Visuals")]
-        public MeshRenderer scoreFeedbackMR;
+        public PlaySessionStateStar[] stars;
         public TextMeshPro journeyPosTextUI;
 
         public void Initialise(JourneyPosition _journeyPosition, PlaySessionState _playSessionState)
@@ -31,23 +31,12 @@ namespace Antura.Map
         private void HandlePlaySessionState(PlaySessionState playSessionState)
         {
             int score = 0;
-            if (playSessionState != null && playSessionState.scoreData != null) score = (int)playSessionState.scoreData.GetScore();
+            if (playSessionState != null && playSessionState.scoreData != null)
+                score = (int)playSessionState.scoreData.GetScore();
 
-            var mat = scoreFeedbackMR.GetComponentInChildren<MeshRenderer>().material;
-            switch (score)
+            for (int i = 0; i < stars.Length; i++)
             {
-                case 0:
-                    mat.color = Color.black;
-                    break;
-                case 1:
-                    mat.color = Color.red;
-                    break;
-                case 2:
-                    mat.color = Color.blue;
-                    break;
-                case 3:
-                    mat.color = Color.yellow;
-                    break;
+                stars[i].SetObtained(score >= i);
             }
         }
 
@@ -73,21 +62,28 @@ namespace Antura.Map
         public void HideAllInfo()
         {
             //journeyPosTextUI.gameObject.SetActive(false);
-            scoreFeedbackMR.gameObject.SetActive(false);
+            foreach (var playSessionStateStar in stars)
+            {
+                playSessionStateStar.gameObject.SetActive(false);
+            }
         }
 
         public void ShowHighlightedInfo()
         {
-            // TODO: show info with the player on that PS
             //journeyPosTextUI.gameObject.SetActive(false);
-            scoreFeedbackMR.gameObject.SetActive(true);
+            foreach (var playSessionStateStar in stars)
+            {
+                playSessionStateStar.gameObject.SetActive(true);
+            }
         }
 
         public void ShowUnhighlightedInfo()
         {
-            // TODO: show info with the player not on that PS
             //journeyPosTextUI.gameObject.SetActive(true);
-            scoreFeedbackMR.gameObject.SetActive(true);
+            foreach (var playSessionStateStar in stars)
+            {
+                playSessionStateStar.gameObject.SetActive(true);
+            }
         }
 
         #endregion

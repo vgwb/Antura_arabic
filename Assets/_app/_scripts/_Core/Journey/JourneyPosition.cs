@@ -91,7 +91,7 @@
             }
 
             if (withPlaySession) {
-                return Stage + "-" + LearningBlock + " " + psCode;
+                return Stage + "-" + LearningBlock + "-" + psCode;
             } else {
                 return Stage + "-" + LearningBlock;
             }

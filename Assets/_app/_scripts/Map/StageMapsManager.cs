@@ -38,7 +38,6 @@ namespace Antura.Map
         public MapStageIndicator mapStageIndicator;
         public GameObject leftStageButton;
         public GameObject rightStageButton;
-        public GameObject lockUI;
 
         public MapPlayPanel playPanel;
 
@@ -206,7 +205,6 @@ namespace Antura.Map
                 PlayRandomAssessmentDialog();
             }
 
-            UpdateSelection();
 
             // Coming from the other stage
             StartCoroutine(InitialMovementCO());
@@ -285,7 +283,22 @@ namespace Antura.Map
 
         #region Selection
 
-        public void ReSelectCurrentPin()
+        private Pin selectedPin = null;
+
+        // Used by the Antura Hint
+        public void MoveToPlayerPin()
+        {
+            var playerStageMap = StageMap(CurrentPlayerStage);
+            var targetPin = playerStageMap.PinForIndex(playerPin.CurrentPinIndex);
+            mapCamera.SetAutoFollowTransformCurrentMap(targetPin.transform);
+
+            if (targetPin != selectedPin)
+            {
+                SelectPin(targetPin);
+            }
+        }
+
+        private void ReSelectCurrentPin()
         {
             var playerStageMap = StageMap(CurrentPlayerStage);
             SelectPin(playerStageMap.PinForIndex(playerPin.CurrentPinIndex));
@@ -296,35 +309,58 @@ namespace Antura.Map
 
         public void SelectPin(Pin pin)
         {
-            playPanel.SetPin(pin);
-
-            if (!pin.isLocked)
+            if (selectedPin == pin)
             {
-                playerPin.MoveToPin(pin.pinIndex);
+                // Already selected: PLAY directly (if not locked)
+                if (selectedPin.isLocked)
+                {
+                    HandleLockedButton();
+                }
+                else
+                {
+                    PlayCurrentPlaySession();
+                }
+            }
+            else
+            {
+                // New selection
+                selectedPin = pin;
+
+                ResetSelections();
+                selectedPin.Select(true);
+
+                playPanel.SetPin(pin);
+
+                // Optionally move Antura there
+                if (!pin.isLocked)
+                {
+                    playerPin.MoveToPin(pin.pinIndex);
+                }
             }
         }
 
-        public void UpdateSelection()
+        void PlayCurrentPlaySession()
         {
-            UpdateHighlights();
-            //ShowPlayPanel();
+            AppManager.I.NavigationManager.GoToNextScene();
         }
 
         #endregion
 
-        #region Highlight
+        #region Selection
 
-        private void UpdateHighlights()
+        public void ResetSelections()
         {
             foreach (var stageMap in stageMaps)
             {
+                // Deselect all pins
                 foreach (var pin in stageMap.Pins)
                 {
-                    pin.Highlight(false);
+                    pin.Select(false);
                 }
 
-                var correctPin = stageMap.PinForJourneyPosition(CurrentJourneyPosition);
-                if (correctPin != null) correctPin.Highlight(true);
+                // Select the current pin
+                //var correctPin = stageMap.PinForJourneyPosition(CurrentJourneyPosition);
+                //if (correctPin != null) correctPin.Select(true);
             }
         }
 
@@ -469,13 +505,12 @@ namespace Antura.Map
         private void UpdateButtonsForStage(int stage)
         {
             UpdateStageButtonsUI();
+
             bool playable = IsStagePlayable(stage);
-            playButton.SetActive(playable);
+            //playButton.SetActive(playable);
 
             nextPlaySessionButton.SetActive(ShowMovementButtons && playable);
             beforePlaySessionButton.SetActive(ShowMovementButtons && playable);
-
-            lockUI.SetActive(!playable);
         }
 
         private void CheckCurrentStageForPlayerReset()

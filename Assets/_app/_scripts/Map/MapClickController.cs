@@ -6,11 +6,10 @@ using UnityEngine.EventSystems;
 namespace Antura.Map
 {
     /// <summary>
-    /// Controls click on the Map.
+    /// Controls clicks on the Map.
     /// </summary>
     public class MapClickController : MonoBehaviour
     {
-        public PlayerPin playerPin;
         public StageMapsManager stageMapsManager;
 
         void LateUpdate()

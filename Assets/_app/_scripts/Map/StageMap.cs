@@ -320,8 +320,9 @@ namespace Antura.Map
         public void ResetStageOnShow(bool playerIsHere)
         {
             //Debug.Log("Stage " + name + " player here? " + playerIsHere);
-            foreach (var pin in playPins) {
-                pin.Highlight(playerIsHere && Equals(pin.JourneyPos, CurrentPlayerPosJourneyPosition));
+            foreach (var pin in playPins)
+            {
+                pin.Select(playerIsHere && Equals(pin.JourneyPos, CurrentPlayerPosJourneyPosition));
             }
         }
 

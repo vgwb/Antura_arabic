@@ -61,9 +61,8 @@ namespace Antura.Map
                 AppManager.I.DB.FindLearningBlockData(
                     x => x.Stage == pin.journeyPosition.Stage && x.LearningBlock == pin.journeyPosition.LearningBlock)[0];
 
-            playBtn.gameObject.SetActive(!pin.isLocked);
-
-            lockedBtn.gameObject.SetActive(pin.isLocked);
+            //playBtn.gameObject.SetActive(!pin.isLocked);
+            //lockedBtn.gameObject.SetActive(pin.isLocked);
 
             psNumberTextUI.SetText(pin.journeyPosition.ToDisplayedString(true));
             psNameTextUI.SetText(lbData.Title_Ar);

@@ -200,7 +200,7 @@ namespace Antura.Map
         {
             // This will select the PIN too
             AppManager.I.Player.SetCurrentJourneyPosition(journeyPos, false);
-            stageMapsManager.UpdateSelection();
+            //stageMapsManager.ResetSelections();
             //Debug.LogWarning("Setting journey pos current: " + AppManager.I.Player.CurrentJourneyPosition);
         }
 

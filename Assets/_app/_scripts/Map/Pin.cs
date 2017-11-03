@@ -28,6 +28,10 @@ namespace Antura.Map
         public GameObject pinV2;
         public GameObject pinAssessment;
 
+        public GameObject playButtonGO;
+        public GameObject lockedButtonGO;
+        public GameObject surpriseGO;
+
         public GameObject roadSignGO;
         public TextRender roadSignTextUI;
 
@@ -90,6 +94,16 @@ namespace Antura.Map
             currentPinMesh.gameObject.SetActive(true);
 
             shadowTr = transform.Find("shadow");
+
+            playButtonGO.SetActive(false);
+            lockedButtonGO.SetActive(false);
+
+            // Show surprise if this is a not yet completed assessment
+            surpriseGO.SetActive(false);
+            if (journeyPosition.IsAssessment())
+            {
+                surpriseGO.SetActive(true); // TODO: check for completeness
+            }
         }
 
         #region Appear / Disappear
@@ -165,15 +179,16 @@ namespace Antura.Map
 
             playSessionFeedback.HideAllInfo();
         }
-        
+
         #endregion
+
+        #region PlayerPin Interaction
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Player"))
             {
                 currentPinMesh.SetActive(false);
-                if (Dot.highlightOnPlayerCollision) Highlight(true);
             }
         }
 
@@ -182,18 +197,26 @@ namespace Antura.Map
             if (other.gameObject.CompareTag("Player"))
             {
                 currentPinMesh.SetActive(true);
-                if (Dot.highlightOnPlayerCollision ) Highlight(false);
             }
         }
 
-        public void Highlight(bool choice)
+        #endregion
+
+        #region Highlight
+
+        public void Select(bool choice)
         {
+            lockedButtonGO.SetActive(choice && isLocked);
+            playButtonGO.SetActive(choice && !isLocked);
+
+            mainDot.Highlight(choice);
             if (!isLocked)
             {
-                mainDot.Highlight(choice);
                 playSessionFeedback.Highlight(choice);
             }
         }
+
+        #endregion
 
         #region Play Session State
 

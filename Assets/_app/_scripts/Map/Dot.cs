@@ -13,35 +13,9 @@ namespace Antura.Map
         public Material blackDot;
         public Material redDot;
 
-        // Configuration
-        public static bool highlightOnPlayerCollision = false;
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (highlightOnPlayerCollision && other.gameObject.CompareTag("Player"))
-            {
-                Highlight(true);
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (highlightOnPlayerCollision && other.gameObject.CompareTag("Player"))
-            {
-                Highlight(false);
-            }
-        }
-
         public void Highlight(bool choice)
         {
-            if (choice)
-            {
-                GetComponent<Renderer>().material = redDot;
-            }
-            else
-            {
-                GetComponent<Renderer>().material = blackDot;
-            }
+            GetComponent<Renderer>().material = choice ? redDot : blackDot;
         }
 
         #region Appear / Disappear
