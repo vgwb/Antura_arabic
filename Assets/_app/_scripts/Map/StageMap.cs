@@ -49,6 +49,7 @@ namespace Antura.Map
         public void ForceCurrentPinIndex(int newIndex)
         {
             CurrentPinIndex = newIndex;
+            //Debug.Log("STAGE " + stageNumber + "SET CURRENT PIN INDEX: " + CurrentPinIndex);
         }
 
         public Vector3 CurrentPlayerPosVector {

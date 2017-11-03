@@ -73,34 +73,34 @@ namespace Antura.Map
         // Called by buttons
         public void MoveToNextDot()
         {
-            MoveToPin(CurrentTargetPosIndex + 1);
+            MoveToPin(CurrentTargetPosIndex + 1, currentStageMap.stageNumber);
         }
 
         // Called by buttons
         public void MoveToPreviousDot()
         {
-            MoveToPin(CurrentTargetPosIndex - 1);
+            MoveToPin(CurrentTargetPosIndex - 1, currentStageMap.stageNumber);
         }
 
-        public void MoveToJourneyPosition(JourneyPosition journeyPosition)
+        public void MoveToJourneyPosition(JourneyPosition journeyPosition, StageMap stageMap)
         {
-            MoveToPin(StageMapsManager.GetPosIndexFromJourneyPosition(currentStageMap, journeyPosition)); 
+            MoveToPin(StageMapsManager.GetPosIndexFromJourneyPosition(stageMap, journeyPosition), stageMap.stageNumber); 
         }
 
-        public void MoveToPin(int pinIndex)
+        public void MoveToPin(int pinIndex, int stageNumber)
         {
-            if (CanMoveTo(pinIndex))
+            if (CanMoveTo(pinIndex, stageNumber))
             {
                 if (stageMapsManager.FollowPlayerWhenMoving) stageMapsManager.mapCamera.SetAutoFollowTransformCurrentMap(transform);
                 AnimateToPin(pinIndex);
             }
         }
 
-        private bool CanMoveTo(int pinIndex)
+        private bool CanMoveTo(int pinIndex, int stageNumber)
         {
             return pinIndex >= 0 &&
-                   (pinIndex < currentStageMap.mapLocations.Count) &&
-                   (pinIndex <= currentStageMap.MaxUnlockedPinIndex);
+                   (pinIndex < stageMapsManager.StageMap(stageNumber).mapLocations.Count) &&
+                   (pinIndex <= stageMapsManager.StageMap(stageNumber).MaxUnlockedPinIndex);
         }
 
         public void ForceToJourneyPosition(JourneyPosition journeyPosition, bool justVisuals = false)
@@ -110,6 +110,7 @@ namespace Antura.Map
             LookAtNextPin(false);
         }
 
+        /*
         public void ResetPlayerPositionAfterStageChange(bool comingFromHigherStage)
         {
             if (comingFromHigherStage)
@@ -122,7 +123,7 @@ namespace Antura.Map
                 ForceToPin(0);
                 LookAtNextPin(false);
             }
-        }
+        }*/
 
         private Coroutine animateToPinCO;
         void AnimateToPin(int newIndex)
@@ -153,10 +154,30 @@ namespace Antura.Map
             UpdatePlayerJourneyPosition(currentStageMap.mapLocations[targetIndex].JourneyPos);
             //Debug.Log("ANIMATING FROM " + tmpCurrentIndex + " TO " + targetIndex);
 
-            // Antura too far: teleport hime
+            // Different stage: we will teleport antura
+            int newStageIndex = stageMapsManager.CurrentShownStageMap.stageNumber;
+            int oldStageIndex = currentStageMap.stageNumber;
+            if (newStageIndex != oldStageIndex)
+            {
+                currentStageMap = stageMapsManager.CurrentShownStageMap;
+                if (newStageIndex > oldStageIndex)
+                {
+                    tmpCurrentIndex = 0;
+                }
+                else
+                {
+                    tmpCurrentIndex = currentStageMap.MaxUnlockedPinIndex;
+                }
+                //Debug.Log("MOVING TO NEW STAGE AT INDEX " + tmpCurrentIndex + " STAGE " + currentStageMap.stageNumber);
+                currentStageMap.ForceCurrentPinIndex(tmpCurrentIndex);
+                ForceToJourneyPosition(currentStageMap.mapLocations[tmpCurrentIndex].JourneyPos, true);
+            }
+
+            // Antura too far: teleport him
             const int teleportDistance = 4;
             if (Mathf.Abs(targetIndex - tmpCurrentIndex) >= teleportDistance)
             {
+                //Debug.Log("TELEPORTING because distance is " + Mathf.Abs(targetIndex - tmpCurrentIndex) + " from " + tmpCurrentIndex + " to " + targetIndex);
                 bool isAdvancing = targetIndex > tmpCurrentIndex;
                 int teleportIndex = targetIndex + (isAdvancing ? -teleportDistance : teleportDistance);
                 teleportIndex = Mathf.Clamp(teleportIndex, 0, currentStageMap.MaxUnlockedPinIndex);
@@ -165,6 +186,8 @@ namespace Antura.Map
                 tmpCurrentIndex = teleportIndex;
             }
 
+
+            //Debug.Log("Starting movement from " + tmpCurrentIndex + " to " + targetIndex);
             do
             {
                 //Debug.Log("inner target is " + targetIndex + " tmp is " + tmpCurrentIndex);
@@ -180,6 +203,8 @@ namespace Antura.Map
                 currentStageMap.ForceCurrentPinIndex(tmpCurrentIndex);
             }
             while (tmpCurrentIndex != targetIndex);
+
+            //Debug.Log("Current index is now: " + tmpCurrentIndex);
 
             CheckMovementButtonsEnabling();
             isAnimating = false;

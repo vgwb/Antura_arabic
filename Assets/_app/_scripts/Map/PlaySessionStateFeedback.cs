@@ -34,9 +34,10 @@ namespace Antura.Map
             if (playSessionState != null && playSessionState.scoreData != null)
                 score = (int)playSessionState.scoreData.GetScore();
 
+            //Debug.Log("SCORE: " + score);
             for (int i = 0; i < stars.Length; i++)
             {
-                stars[i].SetObtained(score >= i);
+                stars[i].SetObtained(score >= i+1);
             }
         }
 

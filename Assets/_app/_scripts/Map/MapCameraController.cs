@@ -87,7 +87,7 @@ namespace Antura.Map
         /// </summary>
         public void SetAutoMoveToLookAtFree(Transform lookAtTr, Transform pivotTr, float duration, bool teleport = false)
         {
-            Debug.Log("LOOK AT " + lookAtTr.position);
+            //Debug.Log("LOOK AT " + lookAtTr.position);
             movementType = MovementType.AUTO;
             followedTransform = null;
 
