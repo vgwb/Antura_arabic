@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Antura.Audio;
+using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
 
@@ -289,17 +290,24 @@ namespace Antura.Map
 
 
         private void TweenTo(Vector3 newPosition, Quaternion newRotation, float duration = 1, TweenCallback callback = null)
-        {
+        { 
+            // @note: we just use the X and mantain the original camera's transform now
+            Vector3 targetPos = transform.position;
+            targetPos.x = newPosition.x;
+            Quaternion targetRotation = transform.rotation;
+
             DOTween.Sequence()
-                .Append(transform.DOLocalMove(newPosition, duration))
-                .Insert(0, transform.DOLocalRotate(newRotation.eulerAngles, duration))
+                .Append(transform.DOLocalMove(targetPos, duration))
+                .Insert(0, transform.DOLocalRotate(targetRotation.eulerAngles, duration))
                 .OnComplete(callback);
         }
 
         public void TeleportTo(Vector3 pos, Quaternion rot)
         {
-            transform.position = pos;
-            transform.rotation = rot;
+            // @note: we just use the X and mantain the original camera's transform now
+            transform.SetX(pos.x);
+            //transform.position = pos;
+            //transform.rotation = rot;
         }
 
         public void TeleportTo(Transform pivot)
