@@ -139,7 +139,7 @@ namespace Antura.Map
 
         #endregion
 
-        private static bool TEST_JOURNEY_POS = true;
+        private static bool TEST_JOURNEY_POS = false;
 
         private void Awake()
         {
