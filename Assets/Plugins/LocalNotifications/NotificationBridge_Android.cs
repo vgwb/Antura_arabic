@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Antura.Core.Services.Notification
+namespace Antura.Plugins.Notification
 {
     public class NotificationBridge_Android : NotificationBridge_Interface
     {

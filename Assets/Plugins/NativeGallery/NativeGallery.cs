@@ -2,7 +2,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace Antura.Plugins
+namespace Antura.Plugins.NativeGallery
 {
     public static class NativeGallery
     {

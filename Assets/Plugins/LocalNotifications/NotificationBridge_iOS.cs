@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace Antura.Core.Services.Notification
+namespace Antura.Plugins.Notification
 {
 
     public class NotificationBridge_iOS : NotificationBridge_Interface

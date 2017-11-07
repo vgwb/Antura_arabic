@@ -1,4 +1,4 @@
-﻿namespace Antura.Core.Services.Notification
+﻿namespace Antura.Plugins.Notification
 {
     public enum NotificationIcon
     {
