@@ -117,8 +117,8 @@ namespace Antura.Map
             {
                 var pin = pins[index];
 
-                float pinZ = index > 0 ? (pins[index - 1].transform.localPosition.z + Random.Range(-20, 20)): Random.Range(-30, 30);
-                pinZ = Mathf.Clamp(pinZ, -30, 30);
+                float pinZ = index > 0 ? (pins[index - 1].transform.localPosition.z + Random.Range(-20, 20)): Random.Range(-30, 10);
+                pinZ = Mathf.Clamp(pinZ, -30, 10);
                 pin.transform.localPosition = new Vector3(index * (-30), 0, pinZ);
 
                 // The first pin of a new 
