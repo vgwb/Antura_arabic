@@ -2997,7 +2997,7 @@ MonoBehaviour:
   todayPivot: {fileID: 1241945457}
   yesterdayTextGo: {fileID: 602511195}
   claimButton: {fileID: 140161110}
-  useForcedConsecutiveDays: 1
+  useForcedConsecutiveDays: 0
   forcedConsecutiveDays: 2
 --- !u!4 &2006303659
 Transform:
