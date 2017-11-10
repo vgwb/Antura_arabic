@@ -113,9 +113,20 @@ namespace Antura.Map
         {
             // Randomize the position of the pins
             var pins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
-            for (var index = 0; index < pins.Count; index++) {
+            for (var index = 0; index < pins.Count; index++)
+            {
                 var pin = pins[index];
-                pin.transform.localPosition = new Vector3(index * (-30), 0, Random.Range(-30, 30));
+
+                float pinZ = index > 0 ? (pins[index - 1].transform.localPosition.z + Random.Range(-20, 20)): Random.Range(-30, 30);
+                pinZ = Mathf.Clamp(pinZ, -30, 30);
+                pin.transform.localPosition = new Vector3(index * (-30), 0, pinZ);
+
+                // The first pin of a new 
+                if (index % 3 == 0)
+                {
+                    
+                }
+
                 EditorUtility.SetDirty(pin.gameObject);
             }
 

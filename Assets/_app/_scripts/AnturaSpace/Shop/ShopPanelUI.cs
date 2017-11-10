@@ -19,11 +19,13 @@ namespace Antura.AnturaSpace
         public RectTransform dragPanel;
         public RectTransform confirmationPanel;
         public ShopConfirmationPanelUI confirmationPanelUI;
+        public ScrollRect scrollRect;
 
         public Button confirmationYesButton;
         public Button confirmationNoButton;
 
         private List<ShopActionUI> actionUIs;
+
 
         private Tween showShopPanelTween,
             showDragPanelTween,
@@ -41,6 +43,7 @@ namespace Antura.AnturaSpace
                 shopActionUIgo.transform.SetParent(parentTr);
                 shopActionUIgo.transform.localScale = Vector3.one;
                 var actionUI = shopActionUIgo.GetComponent<ShopActionUI>();
+                actionUI.scrollRect = this.scrollRect;
                 actionUI.SetAction(shopAction);
                 actionUIs.Add(actionUI);
             }

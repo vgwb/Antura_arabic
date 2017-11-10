@@ -29,6 +29,11 @@ namespace Antura.AnturaSpace
             }
         }
 
+        public virtual bool IsClickButton
+        {
+            get { return false; }
+        }
+
         public bool NotEnoughBones
         {
             get

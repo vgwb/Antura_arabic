@@ -1,4 +1,6 @@
-﻿using Antura.Core;
+﻿using Antura.AnturaSpace.UI;
+using Antura.Core;
+using Antura.Helpers;
 using Antura.UI;
 using TMPro;
 using UnityEngine;
@@ -34,8 +36,8 @@ namespace Antura.AnturaSpace
         {
             if (isDragging)
             {
-                float resolutionRatio = Screen.height / canvasScaler.referenceResolution.y;
-                iconUI.rectTransform.anchoredPosition = (Input.mousePosition- new Vector3(Screen.width/2, Screen.height/2))  / resolutionRatio;
+                var mousePos = AnturaSpaceUI.I.ScreenToUIPoint(Input.mousePosition);
+                iconUI.rectTransform.anchoredPosition = mousePos;
             }
             else
             {

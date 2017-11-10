@@ -44,5 +44,10 @@ namespace Antura.AnturaSpace
         {
             get { return true; }
         }
+
+        public override bool IsClickButton
+        {
+            get { return true; }
+        }
     }
 }

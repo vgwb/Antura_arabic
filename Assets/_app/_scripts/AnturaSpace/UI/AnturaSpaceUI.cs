@@ -10,6 +10,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Antura.AnturaSpace.UI
 {
@@ -551,5 +552,19 @@ namespace Antura.AnturaSpace.UI
         }
 
         #endregion
+
+        public CanvasScaler canvasScaler;
+        public Camera uiCamera;
+
+        public Vector3 ScreenToUIPoint(Vector3 pos)
+        {
+            float resolutionRatio = Screen.height / canvasScaler.referenceResolution.y;
+            return (pos - new Vector3(Screen.width / 2, Screen.height / 2)) / resolutionRatio;
+        }
+
+        public Vector3 WorldToUIPoint(Vector3 pos)
+        {
+            return ScreenToUIPoint(uiCamera.WorldToScreenPoint(pos));
+        }
     }
 }

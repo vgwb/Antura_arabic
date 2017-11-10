@@ -192,9 +192,11 @@ namespace Antura.AnturaSpace
 
             if (CanSpawnMoreObjects)
             {
+                ShopDecorationsManager.I.SetContextNewPlacement();
                 var throwableObject = SpawnNewObject(ObjectPrefab);
                 DraggedTransform = throwableObject.transform;
                 throwableObject.Drag();
+                throwableObject.OnRelease += ShopDecorationsManager.I.SetContextPurchase;
                 return throwableObject;
             }
             return null;

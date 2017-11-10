@@ -106,6 +106,7 @@ namespace Antura.AnturaSpace
         }
 
         public Action OnDeath;
+        public Action OnRelease;
 
         #endregion
 
@@ -261,6 +262,8 @@ namespace Antura.AnturaSpace
 
             //apply stored forces
             ApplyDragForces();
+
+            if (OnRelease != null) OnRelease();
         }
 
         /// <summary>

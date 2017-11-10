@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Antura.AnturaSpace.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
@@ -84,7 +85,7 @@ namespace Antura.AnturaSpace
             SwitchToContext(ShopContext.SpecialAction);
         }
 
-        private void SetContextNewPlacement()
+        public void SetContextNewPlacement()
         {
             SwitchToContext(ShopContext.NewPlacement);
         }
@@ -233,8 +234,11 @@ namespace Antura.AnturaSpace
                     x.IsFreeAndAssignableTo(currentDraggedDecoration) || x.HasCurrentlyAssigned(currentDraggedDecoration));
                 ShopDecorationSlot closestSlot = null;
                 float minDistance = Int32.MaxValue;
-                foreach (var slot in allAssignableSlots) {
-                    float distance = (Camera.main.WorldToScreenPoint(slot.transform.position) - Input.mousePosition).sqrMagnitude;
+                foreach (var slot in allAssignableSlots)
+                {
+                    var mousePos = AnturaSpaceUI.I.ScreenToUIPoint(Input.mousePosition);
+                    var slotPos = AnturaSpaceUI.I.WorldToUIPoint(slot.transform.position);
+                    float distance = (mousePos - slotPos).sqrMagnitude;
 
                     if (distance < minDistance && distance < thresholdForPlacement * thresholdForPlacement) {
                         minDistance = distance;
