@@ -11,11 +11,13 @@ namespace Antura.Map
     public class MapClickController : MonoBehaviour
     {
         public StageMapsManager stageMapsManager;
+        public MapCameraController mapCameraController;
 
-        void LateUpdate()
+        void Update()
         {
             // Touch movement controls
-            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject()
+              && !mapCameraController.IsFollowingFinger)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

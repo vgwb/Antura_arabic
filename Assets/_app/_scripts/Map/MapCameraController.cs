@@ -49,6 +49,11 @@ namespace Antura.Map
         public bool dragWorld = true;   // If true, a finger movement will drag the WORLD and not the CAMERA
         public int DragWorldDir {  get { return dragWorld ? -1 : 1; } }
 
+        public bool IsFollowingFinger
+        {
+            get { return isFollowingFinger; }
+        }
+
         private void Start()
         {
             _stageMapsManager = FindObjectOfType<StageMapsManager>();
@@ -124,7 +129,7 @@ namespace Antura.Map
 
         #endregion
 
-        private void Update()
+        private void LateUpdate()
         {
             if (movementType == MovementType.AUTO)
             {
@@ -217,7 +222,6 @@ namespace Antura.Map
             {
                 if (useDrag)
                 {
-                    isFollowingFinger = true;
                     startFingerX = Input.mousePosition.x;
                     startCameraX = Camera.main.transform.position.x;
                 }
@@ -229,10 +233,13 @@ namespace Antura.Map
                 }
             }
 
-            if (useDrag && isFollowingFinger)
+            if (useDrag && Input.GetMouseButton(0))
             {
                 var xDrag = Input.mousePosition.x;
                 var xDelta = xDrag - startFingerX;
+
+                if (Mathf.Abs(xDelta) > 10)
+                    isFollowingFinger = true;
 
                 Vector3 nextCameraPosition = transform.position;
                 nextCameraPosition.x = startCameraX + DragWorldDir * xDelta * dragSensibility;
