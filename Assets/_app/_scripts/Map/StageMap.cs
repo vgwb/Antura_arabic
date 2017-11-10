@@ -121,12 +121,6 @@ namespace Antura.Map
                 pinZ = Mathf.Clamp(pinZ, -30, 10);
                 pin.transform.localPosition = new Vector3(index * (-30), 0, pinZ);
 
-                // The first pin of a new 
-                if (index % 3 == 0)
-                {
-                    
-                }
-
                 EditorUtility.SetDirty(pin.gameObject);
             }
 
