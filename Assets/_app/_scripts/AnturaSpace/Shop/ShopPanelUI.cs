@@ -57,7 +57,7 @@ namespace Antura.AnturaSpace
             showConfirmationPanelTween =
                 confirmationPanel.DOAnchorPosY(-350, duration).From().SetEase(Ease.Linear).SetAutoKill(false).Pause();
             showPurchasePanelAlwaysAvailableTween =
-                purchasePanelAlwaysAvailableUI.DOAnchorPosX(1250, duration)
+                purchasePanelAlwaysAvailableUI.DOAnchorPosX(200, duration)
                     .From()
                     .SetEase(Ease.OutBack)
                     .SetAutoKill(false);
@@ -80,16 +80,19 @@ namespace Antura.AnturaSpace
             switch (shopContext)
             {
                 case ShopContext.Purchase:
+                    showPurchasePanelAlwaysAvailableTween.PlayForward();
                     showShopPanelTween.PlayForward();
                     showDragPanelTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 case ShopContext.NewPlacement:
+                    showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showShopPanelTween.PlayBackwards();
                     showDragPanelTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 case ShopContext.MovingPlacement:
+                    showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showShopPanelTween.PlayBackwards();
                     showDragPanelTween.PlayForward();
                     showConfirmationPanelTween.PlayBackwards();
@@ -101,6 +104,10 @@ namespace Antura.AnturaSpace
                     break;
                 case ShopContext.Closed:
                     showPurchasePanelAlwaysAvailableTween.PlayForward();
+                    showConfirmationPanelTween.PlayBackwards();
+                    break;
+                case ShopContext.Customization:
+                    showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 default:

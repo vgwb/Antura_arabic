@@ -65,7 +65,9 @@ namespace Antura.AnturaSpace
             AppManager.I.Services.Gallery.SaveScreenshot(currentPhotoTexture);
             currentPhotoTexture = null;
             if (OnPurchaseCompleted != null) OnPurchaseCompleted();
-            ShopDecorationsManager.I.SetContextClosed();
+
+            ShopDecorationsManager.I.SetPreviousContext();
+
             AppManager.I.Player.Save();
 
             GalleryManager.HidePreview();
@@ -73,7 +75,8 @@ namespace Antura.AnturaSpace
 
         public void CancelPhoto()
         {
-            ShopDecorationsManager.I.SetContextClosed();
+            ShopDecorationsManager.I.SetPreviousContext();
+
             currentPhotoTexture = null;
 
             GalleryManager.HidePreview();

@@ -3388,6 +3388,18 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1756637292299136, guid: 99aeed0ca49e24e688fbd1a8850e80e4, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153205255629072, guid: 99aeed0ca49e24e688fbd1a8850e80e4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030289054366530, guid: 99aeed0ca49e24e688fbd1a8850e80e4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99aeed0ca49e24e688fbd1a8850e80e4, type: 2}
   m_IsPrefabParent: 0
@@ -10126,7 +10138,7 @@ Prefab:
     - target: {fileID: 224859546621181490, guid: 21d6847d9291cd94f8c9933be8996bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -273
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224859546621181490, guid: 21d6847d9291cd94f8c9933be8996bd0,
         type: 2}
@@ -14710,6 +14722,7 @@ MonoBehaviour:
   HideLockedSwatchesColors: 0
   BtOpenModsPanel: {fileID: 1965254904}
   BtBonesShop: {fileID: 2079677549}
+  SideActionsContainer: {fileID: 761636412}
   BTRemoveMods: {fileID: 826093787}
   CategoriesContainer: {fileID: 1945071808}
   ItemsContainer: {fileID: 320989396}
@@ -16901,7 +16914,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628dddab2b23744d286b087760cffde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CallbackManager: {fileID: 0}
 --- !u!81 &1920108685
 AudioListener:
   m_ObjectHideFlags: 0
@@ -20987,7 +20999,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628dddab2b23744d286b087760cffde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CallbackManager: {fileID: 0}
 --- !u!81 &2048069786
 AudioListener:
   m_ObjectHideFlags: 0

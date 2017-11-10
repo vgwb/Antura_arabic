@@ -30,6 +30,7 @@ namespace Antura.AnturaSpace.UI
         [Header("References")]
         public AnturaSpaceModsButton BtOpenModsPanel;
         public UIButton BtBonesShop;
+        public RectTransform SideActionsContainer;
 
         public UIButton BTRemoveMods;
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
@@ -113,6 +114,7 @@ namespace Antura.AnturaSpace.UI
             showCategoriesTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(CategoriesContainer.DOAnchorPosY(150, duration).From().SetEase(Ease.OutBack))
                 .Join(BtBonesShop.RectT.DOAnchorPosY(-830, duration))
+                //.Join(SideActionsContainer.DOAnchorPosY(-830, duration))
                 .OnRewind(() => CategoriesContainer.gameObject.SetActive(false));
             showShopTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(ShopPanelContainer.DOAnchorPosY(-830, duration).From().SetEase(Ease.OutBack))
@@ -180,10 +182,6 @@ namespace Antura.AnturaSpace.UI
 
         public void ToggleShopPanel()
         {
-            //if (IsShopPanelOpen && ShopDecorationsManager.I.ShopContext != ShopContext.Purchase)
-            //    return;
-
-            //IsShopPanelOpen = !IsShopPanelOpen;
             if (ShopDecorationsManager.I.ShopContext == ShopContext.Closed)
             {
                 ShopPanelContainer.gameObject.SetActive(true);
@@ -202,21 +200,28 @@ namespace Antura.AnturaSpace.UI
             if (IsModsPanelOpen && isTutorialMode) return;
 
             IsModsPanelOpen = !IsModsPanelOpen;
-            if (IsModsPanelOpen) {
+            if (IsModsPanelOpen)
+            {
                 BtOpenModsPanel.SetAsNew(false);
                 CategoriesContainer.gameObject.SetActive(true);
                 showCategoriesTween.PlayForward();
                 RefreshCategories();
 
+                ShopDecorationsManager.I.SetContextCustomization();
+
                 if (onEnterCustomization != null) {
                     onEnterCustomization();
                 }
-            } else {
+            }
+            else
+            {
                 BtOpenModsPanel.SetAsNew(AppManager.I.Player.ThereIsSomeNewReward());
                 SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
                 showCategoriesTween.PlayBackwards();
                 showItemsTween.PlayBackwards();
                 showSwatchesTween.PlayBackwards();
+
+                ShopDecorationsManager.I.SetContextClosed();
 
                 if (onExitCustomization != null) {
                     onExitCustomization();

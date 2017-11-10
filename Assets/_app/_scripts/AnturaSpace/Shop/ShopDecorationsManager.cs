@@ -53,33 +53,45 @@ namespace Antura.AnturaSpace
         #region Context
 
         public ShopContext ShopContext { get { return shopContext; } }
+        private ShopContext previousShopContext;
+
+        public void SetPreviousContext()
+        {
+            shopContext = previousShopContext;
+            if (OnContextChange != null) OnContextChange(shopContext);
+        }
+
+        private void SwitchToContext(ShopContext newContext)
+        {
+            //Debug.Log("CONTEXT: " + newContext);
+            previousShopContext = shopContext;
+            shopContext = newContext;
+            if (OnContextChange != null) OnContextChange(shopContext);
+        }
+
+        public void SetContextCustomization()
+        {
+            SwitchToContext(ShopContext.Customization);
+        }
 
         public void SetContextClosed()
         {
-            shopContext = ShopContext.Closed;
-            //Debug.Log("CONTEXT: " + shopContext);
-            if (OnContextChange != null) OnContextChange(shopContext);
+            SwitchToContext(ShopContext.Closed);
         }
 
         public void SetContextSpecialAction()
         {
-            shopContext = ShopContext.SpecialAction;
-            //Debug.Log("CONTEXT: " + shopContext);
-            if (OnContextChange != null) OnContextChange(shopContext);
+            SwitchToContext(ShopContext.SpecialAction);
         }
 
         private void SetContextNewPlacement()
         {
-            shopContext = ShopContext.NewPlacement;
-            //Debug.Log("CONTEXT: " + shopContext);
-            if (OnContextChange != null) OnContextChange(shopContext);
+            SwitchToContext(ShopContext.NewPlacement);
         }
 
         private void SetContextMovingPlacement()
         {
-            shopContext = ShopContext.MovingPlacement;
-            //Debug.Log("CONTEXT: " + shopContext);
-            if (OnContextChange != null) OnContextChange(shopContext);
+            SwitchToContext(ShopContext.MovingPlacement);
         }
 
         public void SetContextPurchase()
@@ -90,9 +102,7 @@ namespace Antura.AnturaSpace
                 shopDecorationSlot.Highlight(false);
             }
 
-            shopContext = ShopContext.Purchase;
-            //Debug.Log("CONTEXT: " + shopContext);
-            if (OnContextChange != null) OnContextChange(shopContext);
+            SwitchToContext(ShopContext.Purchase);
         }
 
         #endregion
@@ -351,7 +361,7 @@ namespace Antura.AnturaSpace
 
         public void CancelPurchase()
         {
-            currentDraggedSlot.Despawn();
+            if (currentDraggedSlot) currentDraggedSlot.Despawn();
             DeleteDecoration(currentDraggedDecoration);
             if (OnPurchaseCancelled != null) OnPurchaseCancelled();
             SetContextPurchase();

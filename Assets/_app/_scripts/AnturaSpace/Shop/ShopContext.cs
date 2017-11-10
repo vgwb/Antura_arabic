@@ -6,6 +6,7 @@ namespace Antura.AnturaSpace
         Purchase,
         NewPlacement,
         MovingPlacement,
-        SpecialAction
+        SpecialAction,
+        Customization
     }
 }
