@@ -300,12 +300,19 @@ namespace Antura.Map
         // Used by the Antura Hint
         public void MoveToPlayerPin()
         {
+            // Do not teleport to player while he is animating!
+            //if (playerPin.IsAnimating) return;
+
             var playerStageMap = StageMap(CurrentPlayerStage);
+            //Debug.Log("Player current pin is " + playerPin.CurrentPinIndex);
+            //Debug.Log("CurrentPlayerStage: " + CurrentPlayerStage);
+            //Debug.Log("current player stage map: " + playerStageMap.stageNumber);
             var targetPin = playerStageMap.PinForIndex(playerPin.CurrentPinIndex);
             mapCamera.SetAutoFollowTransformCurrentMap(targetPin.transform);
 
             if (targetPin != selectedPin)
             {
+                //Debug.Log("Selecting pin " + targetPin.journeyPosition);
                 SelectPin(targetPin);
             }
         }
@@ -630,7 +637,7 @@ namespace Antura.Map
 
         private void AnimateCameraToShownStage(int stage)
         {
-            Debug.Log("Animating to stage " + stage);
+            //Debug.Log("Animating to stage " + stage);
             var stageMap = StageMap(stage);
             stageMap.Show();
             stageMap.ResetStageOnShow(CurrentPlayerStage == stage);

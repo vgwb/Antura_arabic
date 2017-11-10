@@ -170,7 +170,7 @@ namespace Antura.Map
                 }
                 //Debug.Log("MOVING TO NEW STAGE AT INDEX " + tmpCurrentIndex + " STAGE " + currentStageMap.stageNumber);
                 currentStageMap.ForceCurrentPinIndex(tmpCurrentIndex);
-                ForceToJourneyPosition(currentStageMap.mapLocations[tmpCurrentIndex].JourneyPos, true);
+                ForceToJourneyPosition(currentStageMap.mapLocations[tmpCurrentIndex].JourneyPos, false);
             }
 
 
@@ -183,7 +183,7 @@ namespace Antura.Map
                 int teleportIndex = targetIndex + (isAdvancing ? -teleportDistance : teleportDistance);
                 teleportIndex = Mathf.Clamp(teleportIndex, 0, currentStageMap.MaxUnlockedPinIndex);
                 currentStageMap.ForceCurrentPinIndex(teleportIndex);
-                ForceToJourneyPosition(currentStageMap.mapLocations[teleportIndex].JourneyPos, true);
+                ForceToJourneyPosition(currentStageMap.mapLocations[teleportIndex].JourneyPos, false);
                 tmpCurrentIndex = teleportIndex;
             }
 
@@ -201,6 +201,7 @@ namespace Antura.Map
                 var nextPos = currentStageMap.mapLocations[tmpCurrentIndex].Position;
                 yield return MoveToCO(nextPos, speed);
                 currentStageMap.ForceCurrentPinIndex(tmpCurrentIndex);
+                ForceToJourneyPosition(currentStageMap.mapLocations[tmpCurrentIndex].JourneyPos, false);
             }
             while (tmpCurrentIndex != targetIndex);
 
