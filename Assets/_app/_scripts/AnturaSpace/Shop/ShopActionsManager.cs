@@ -22,6 +22,7 @@ namespace Antura.AnturaSpace
             // Setup the decorations manager
             var shopState = AppManager.I.Player.CurrentShopState;
             ShopDecorationsManager.Initialise(shopState);
+            ShopDecorationsManager.OnContextChange += (x) => UpdateAllActions();
 
             // Setup actions
             shopActions = GetComponentsInChildren<ShopAction>();
