@@ -39,7 +39,8 @@ namespace Antura.Map
         public GameObject leftStageButton;
         public GameObject rightStageButton;
 
-        public MapPlayPanel playPanel;
+        public MapPlayInfoPanel playInfoPanel;
+        public MapPlayButtonsPanel playButtonsPanel;
 
         // DEPRECATED
         public GameObject nextPlaySessionButton;
@@ -336,7 +337,8 @@ namespace Antura.Map
                 ResetSelections();
                 selectedPin.Select(true);
 
-                playPanel.SetPin(pin);
+                playInfoPanel.SetPin(pin);
+                playButtonsPanel.SetPin(pin);
 
                 // Optionally move Antura there
                 if (!pin.isLocked)
@@ -709,18 +711,21 @@ namespace Antura.Map
 
         private void ShowPlayPanel()
         {
-            playPanel.gameObject.SetActive(true);
+            playButtonsPanel.gameObject.SetActive(true);
+            playInfoPanel.gameObject.SetActive(true);
             playerPin.CheckMovementButtonsEnabling();
         }
 
         private void HidePlayPanel()
         {
-            playPanel.gameObject.SetActive(false);
+            playButtonsPanel.gameObject.SetActive(false);
+            playInfoPanel.gameObject.SetActive(false);
         }
 
         private void DeactivateUI()
         {
-            playPanel.gameObject.SetActive(false);
+            playButtonsPanel.gameObject.SetActive(false);
+            playInfoPanel.gameObject.SetActive(false);
             learningBookButton.SetActive(false);
             minigamesBookButton.SetActive(false);
             profileBookButton.SetActive(false);
@@ -730,7 +735,8 @@ namespace Antura.Map
 
         private void ActivateUI()
         {
-            playPanel.gameObject.SetActive(true);
+            playButtonsPanel.gameObject.SetActive(true);
+            playInfoPanel.gameObject.SetActive(true);
             navigationIconsPanel.SetActive(true);
             learningBookButton.SetActive(true);
             minigamesBookButton.SetActive(true);

@@ -1,8 +1,3 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Antura.Core;
-using Antura.UI;
-using DG.DeInspektor.Attributes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +5,9 @@ namespace Antura.Map
 {
     /// <summary>
     /// UI that appears when you select a Pin.
+    /// Has the button for play.
     /// </summary>
-    public class MapPlayPanel : MonoBehaviour
+    public class MapPlayButtonsPanel : MonoBehaviour
     {
         public Camera cam;
         public CanvasScaler canvasScaler;
@@ -22,9 +18,6 @@ namespace Antura.Map
         public Button playBtn;
         public Button lockedBtn;
 
-        public TextRender psNumberTextUI;
-        public TextRender psNameTextUI;
-
         private Pin targetPin = null;
 
         void Awake()
@@ -34,13 +27,13 @@ namespace Antura.Map
 
         void Update()
         {
-            if (targetPin != null) {
+            if (targetPin != null)
+            {
                 // Follow pin
                 var pinOnScreen = cam.WorldToScreenPoint(targetPin.transform.position);
                 float resolutionRatio = Screen.height / canvasScaler.referenceResolution.y;
 
                 Vector2 newAnchor = (pinOnScreen - new Vector3(Screen.width / 2, Screen.height / 2)) / resolutionRatio;
-                newAnchor.y = rectTr.anchoredPosition.y;
                 rectTr.anchoredPosition = newAnchor;
 
                 // Auto show/hide
@@ -57,15 +50,8 @@ namespace Antura.Map
         public void SetPin(Pin pin)
         {
             targetPin = pin;
-            var lbData =
-                AppManager.I.DB.FindLearningBlockData(
-                    x => x.Stage == pin.journeyPosition.Stage && x.LearningBlock == pin.journeyPosition.LearningBlock)[0];
-
-            //playBtn.gameObject.SetActive(!pin.isLocked);
-            //lockedBtn.gameObject.SetActive(pin.isLocked);
-
-            psNumberTextUI.SetText(pin.journeyPosition.ToDisplayedString(true));
-            psNameTextUI.SetText(lbData.Title_Ar);
+            playBtn.gameObject.SetActive(!pin.isLocked);
+            lockedBtn.gameObject.SetActive(pin.isLocked);
         }
 
     }
