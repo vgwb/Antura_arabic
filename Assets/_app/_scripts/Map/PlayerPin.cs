@@ -173,6 +173,7 @@ namespace Antura.Map
                 ForceToJourneyPosition(currentStageMap.mapLocations[tmpCurrentIndex].JourneyPos, true);
             }
 
+
             // Antura too far: teleport him
             const int teleportDistance = 4;
             if (Mathf.Abs(targetIndex - tmpCurrentIndex) >= teleportDistance)
@@ -186,13 +187,12 @@ namespace Antura.Map
                 tmpCurrentIndex = teleportIndex;
             }
 
-
             //Debug.Log("Starting movement from " + tmpCurrentIndex + " to " + targetIndex);
             do
             {
                 //Debug.Log("inner target is " + targetIndex + " tmp is " + tmpCurrentIndex);
                 float speed = Mathf.Clamp(50*Mathf.Abs(targetIndex - tmpCurrentIndex), 50,  100);
-                bool isAdvancing = targetIndex > tmpCurrentIndex;
+                bool isAdvancing = targetIndex >= tmpCurrentIndex;
                 if (tmpCurrentIndex != targetIndex)
                 {
                     tmpCurrentIndex += isAdvancing ? 1 : -1;
@@ -262,7 +262,7 @@ namespace Antura.Map
             else 
                 toRotation = Quaternion.LookRotation(lookingToTr.transform.position - lookingFromTr.transform.position, Vector3.up);
             
-            //Debug.Log("Look  PREV " + lookAtPrevious + " from " + fromPin + " To " + toPin);
+            //Debug.Log("Look at pin " + toPinIndex + " from pin " + fromPinIndex + "\nPREV? " + lookAtPrevious + " from " + fromPin + " To " + toPin);
             //Debug.Log("Current " + transform.rotation + " To " + toRotation);
 
             if (animated) {
