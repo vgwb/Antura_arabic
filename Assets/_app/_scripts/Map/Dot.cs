@@ -11,11 +11,35 @@ namespace Antura.Map
     {
         [Header("References")]
         public Material blackDot;
-        public Material redDot;
+        public Material highlightedDot;
+
+        public Material playDot;
+        public Material lockDot;
+
+        public Renderer baseRenderer;
+        public Renderer iconRenderer;
+
+        public void SetAsPlay()
+        {
+            iconRenderer.material = playDot;
+            iconRenderer.gameObject.SetActive(true);
+        }
+
+        public void SetAsLock()
+        {
+            iconRenderer.material = lockDot;
+            iconRenderer.gameObject.SetActive(true);
+        }
+
+        public void SetAsNothing()
+        {
+            iconRenderer.gameObject.SetActive(false);
+        }
 
         public void Highlight(bool choice)
         {
-            GetComponent<Renderer>().material = choice ? redDot : blackDot;
+            transform.localScale = choice ? Vector3.one * 15 : Vector3.one * 6;
+            baseRenderer.material = choice ? highlightedDot : blackDot;
         }
 
         #region Appear / Disappear

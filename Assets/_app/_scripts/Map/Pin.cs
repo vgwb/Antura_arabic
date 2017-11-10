@@ -199,10 +199,21 @@ namespace Antura.Map
 
         public void Select(bool choice)
         {
-            lockedButtonGO.SetActive(choice && isLocked);
-            playButtonGO.SetActive(choice && !isLocked);
+            // 3D buttons (DEPRECATED)
+            //lockedButtonGO.SetActive(choice && isLocked);
+            //playButtonGO.SetActive(choice && !isLocked);
 
             mainDot.Highlight(choice);
+            if (choice)
+            {
+                if (isLocked) mainDot.SetAsLock();
+                else mainDot.SetAsPlay();
+            }
+            else
+            {
+                mainDot.SetAsNothing();
+            }
+
             if (!isLocked)
             {
                 playSessionFeedback.Highlight(choice);

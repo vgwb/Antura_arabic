@@ -181,6 +181,9 @@ namespace Antura.Map
                 StageMap(stage_i).Initialise(isStageUnlocked, isWholeStageUnlocked);
                 //StageMap(stage_i).Hide();
             }
+
+            // Disable 2D play buttons
+            playButtonsPanel.gameObject.SetActive(false);
         }
 
         private void Start()
@@ -711,7 +714,7 @@ namespace Antura.Map
 
         private void ShowPlayPanel()
         {
-            playButtonsPanel.gameObject.SetActive(true);
+            //playButtonsPanel.gameObject.SetActive(true);
             playInfoPanel.gameObject.SetActive(true);
             playerPin.CheckMovementButtonsEnabling();
         }
@@ -735,7 +738,7 @@ namespace Antura.Map
 
         private void ActivateUI()
         {
-            playButtonsPanel.gameObject.SetActive(true);
+            //playButtonsPanel.gameObject.SetActive(true);
             playInfoPanel.gameObject.SetActive(true);
             navigationIconsPanel.SetActive(true);
             learningBookButton.SetActive(true);
