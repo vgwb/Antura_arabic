@@ -1,4 +1,5 @@
 using System.Collections;
+using Antura.Audio;
 using Antura.CameraControl;
 using Antura.Core;
 using Antura.Database;
@@ -750,7 +751,7 @@ namespace Antura.Map
 
         public void HandleLockedButton()
         {
-            GlobalUI.ShowPrompt("LOCKED", "LOCKED", null, null);
+            AudioManager.I.PlaySound(Sfx.KO);
         }
 
         #endregion
