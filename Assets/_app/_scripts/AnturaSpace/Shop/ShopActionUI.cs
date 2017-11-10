@@ -48,7 +48,7 @@ namespace Antura.AnturaSpace
             }
         }
 
-        private int minHeightForDragAction = 50;
+        private int minHeightForDragAction = 80;
         public ScrollRect scrollRect;
 
         public void OnBeginDrag(PointerEventData eventData)
