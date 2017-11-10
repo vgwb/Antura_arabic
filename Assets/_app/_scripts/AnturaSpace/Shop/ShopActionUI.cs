@@ -55,13 +55,14 @@ namespace Antura.AnturaSpace
         {
             // Push the drag action to the scroll rect too
             scrollRect.OnBeginDrag(eventData);
-
+            scrollRect.movementType = ScrollRect.MovementType.Unrestricted;
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
             // Push the drag action to the scroll rect too
             scrollRect.OnEndDrag(eventData);
+            scrollRect.movementType = ScrollRect.MovementType.Elastic;
         }
 
         public void OnDrag(PointerEventData eventData)
