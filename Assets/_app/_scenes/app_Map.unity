@@ -15963,6 +15963,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 39.54
       objectReference: {fileID: 0}
+    - target: {fileID: 114582152266382504, guid: 3097ed3c3f2d0754db774695fb5ebcc5,
+        type: 2}
+      propertyPath: mapCameraController
+      value: 
+      objectReference: {fileID: 982131107}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3097ed3c3f2d0754db774695fb5ebcc5, type: 2}
   m_IsPrefabParent: 0
@@ -30418,7 +30423,7 @@ Prefab:
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
@@ -53481,7 +53486,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1192228804}
-  m_LocalRotation: {x: 0.6101385, y: -0.35739478, z: 0.35739478, w: 0.6101385}
+  m_LocalRotation: {x: 0.61013854, y: -0.3573948, z: 0.3573948, w: 0.61013854}
   m_LocalPosition: {x: 20.705906, y: -51.628124, z: 18.345917}
   m_LocalScale: {x: 10.50074, y: 10.500757, z: 10.500754}
   m_Children:
