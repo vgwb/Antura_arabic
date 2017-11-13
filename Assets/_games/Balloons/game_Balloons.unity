@@ -4251,7 +4251,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22477666, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 160
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22477666, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_AnchorMin.x
@@ -4331,7 +4331,7 @@ Prefab:
     - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
         type: 2}
@@ -4341,15 +4341,15 @@ Prefab:
     - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 160
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -4357,11 +4357,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 114000013858608506, guid: 9957d9cfc035045cb9a389ed852a2e79,
         type: 2}
@@ -7009,12 +7009,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MiniGameCode: 8
-  Difficulty: 1
-  TutorialEnabled: 0
-  NumberOfRounds: 1
   Stage: 1
   LearningBlock: 1
   PlaySession: 1
+  Difficulty: 1
+  TutorialEnabled: 0
+  NumberOfRounds: 1
 --- !u!1 &520641055
 GameObject:
   m_ObjectHideFlags: 0

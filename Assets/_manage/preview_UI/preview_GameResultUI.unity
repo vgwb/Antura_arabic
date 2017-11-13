@@ -3182,7 +3182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628dddab2b23744d286b087760cffde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CallbackManager: {fileID: 0}
 --- !u!20 &766691745
 Camera:
   m_ObjectHideFlags: 0
@@ -4026,7 +4025,7 @@ Prefab:
     - target: {fileID: 224000012716898888, guid: fc05d6184196b5440810c94d36962a50,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 406
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc05d6184196b5440810c94d36962a50, type: 2}
