@@ -3,7 +3,7 @@ using System;
 
 namespace Antura.Plugins.Notification
 {
-
+#if (UNITY_IPHONE || UNITY_EDITOR)
     public class NotificationBridge_iOS : NotificationBridge_Interface
     {
         public NotificationBridge_iOS()
@@ -54,4 +54,5 @@ namespace Antura.Plugins.Notification
         }
 
     }
+#endif
 }
