@@ -22,7 +22,7 @@ Note that part of the *core* code can be used by minigame code, such as *Tutoria
 
 The App Manager represents the core of the application.
 It functions as a general manager and entry point for all other systems and managers.
-It is instantiated as a Singleton, accessible as **AppManager.Instance****.
+It is instantiated as a Singleton, accessible as **AppManager.I**.
 
 The App Manager is used to start, reset, pause, and exit the game.
 It also controls the general flow of the application.

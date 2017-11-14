@@ -2,9 +2,9 @@
 
 ## 1.1.0 next
 
-- daily rewards
+- Daily Rewards
 - Antura Space Shop and Antura interactions
-- new Map UI to easy access to other modules
+- new Map
 - local notifications
 - repeat minigame
 

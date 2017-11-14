@@ -5,10 +5,12 @@
 
 The Teacher System represents the teacher of the language inside the application.
 It is implemented as an Expert System that controls the learning progression of the player based on:
+
 - Player journey progression
 - Player learning performance
 - Expert configuration
 - Minigame support requirements
+
 It is designed to be agnostic to the specific language and highly configurable in respect to mini-games.
 
 In this document, the **Teacher** is a shorthand for the *Teacher System*.
@@ -43,8 +45,6 @@ In general, the Teacher can be configured by the Expert through two main mechani
 Please refer to the following sections for specific details.
 - By editing a set of weights, the Expert can further configure the logic inside the Teacher.
 This is implemented as constants in the **ConfigAI** static class.
-
-
 
 ## Difficulty Selection Engine
 
