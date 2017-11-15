@@ -33,18 +33,16 @@ namespace Antura.Minigames
         void Update()
         {
             var old = sprite.color;
-
             var target = startAlpha * (show ? 1 : 0);
-
             var distance = target - currentAlpha;
-
             float delta = fadeSpeed * Time.deltaTime;
 
             if (target <= 0.001f) {
                 currentAlpha -= delta;
 
-                if (currentAlpha < 0)
+                if (currentAlpha < 0) {
                     currentAlpha = 0;
+                }
             } else {
                 if (Mathf.Abs(distance) > 0.05f) {
                     currentAlpha += Mathf.Sign(distance) * delta;
