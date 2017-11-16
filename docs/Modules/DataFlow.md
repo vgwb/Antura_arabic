@@ -14,16 +14,16 @@ All vocabulary data of a given language (letters, words, and phrases), as well a
 The Teacher can directly access the database.
 The database must instead not be accessed directly by the minigames, as the Teacher must filter the data based on learning requirements.
 
-Refer to the (Database)[Database.md] documentation for further details.
+Refer to the [Database](Database.md) documentation for further details.
 
 ### Teacher filtering
 
-The minigame data flow is started whenever a minigame is launched through **MiniGameAPI.StartGame()**.
+The minigame data flow is started whenever a minigame is launched through `MiniGameAPI.StartGame()`.
 
-Prior to loading the minigame, the Teacher retrieves the static minigame configuration (*IGameConfiguration*) and obtains from it the configured **IQuestionBuilder** through a call to **IGameConfiguration.SetupBuilder()**.
+Prior to loading the minigame, the Teacher retrieves the static minigame configuration (`IGameConfiguration`) and obtains from it the configured **IQuestionBuilder** through a call to `IGameConfiguration.SetupBuilder()`.
 The **IQuestionBuilder** defines the learning rules and requirements for the current minigame variation.
 
-Based on the minigame rules and requirements, the Teacher then selects the vocabulary data suited to the current context and generates a list of **IQuestionPack** through **QuestionPacksGenerator.GenerateQuestionPacks(IQuestionBuilder builder)**.
+Based on the minigame rules and requirements, the Teacher then selects the vocabulary data suited to the current context and generates a list of **IQuestionPack** through `QuestionPacksGenerator.GenerateQuestionPacks(IQuestionBuilder builder)`.
 
 Each **IQuestionPack** thus generated contains a list of questions, correct answers, and wrong answers suitable for the current learning progression and supported by the minigame.
 
@@ -36,7 +36,7 @@ Refer to the **Teacher** documentation for further details on **QuestionBuilders
 
 ### Question Provider & Minigame Data Access
 
-At any point during play (but, usually, during the minigame's initialisation), the minigame code can access the next question pack for play by calling its static configuration's instance **IGameConfiguration.Questions.GetNextQuestion()** and thus retrieving a **IQuestionPack**.
+At any point during play (but, usually, during the minigame's initialisation), the minigame code can access the next question pack for play by calling its static configuration's instance `IGameConfiguration.Questions.GetNextQuestion()` and thus retrieving a **IQuestionPack**.
 
 The minigame is then free to display the vocabulary data to the player according to its inner workings.
 For this purpose, Living Letters can be used as a convenient and shared way to display the vocabulary data.

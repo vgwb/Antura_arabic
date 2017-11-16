@@ -10,9 +10,9 @@ The purpose of the interface is to expose to mini-games a unified and simplified
 way to access core functionalities, and to define how minigames are launched and configured,
 including the dataflow from the content (e.g. question sets) database towards each minigame.
 
-## Creating a new minigame project
+## Creating a new MiniGame project
 
-All the minigames are in the **_games** directory of the Antura’s Unity3D project.
+All the minigames are in the **_games** directory of the Antura’s Unity project.
 
 Instead of starting your own minigame from scratch, you can use the provided game template:
 
@@ -46,12 +46,10 @@ For this purpose, the following should be performed:
 # Game Structure
 
 Here we describe the software architecture that should be followed by your mini-games.
-If you copied the Minigame template, the main classes are already partially implemented to be compliant with such architecture.
+If you copied the MiniGame template, the main classes are already partially implemented to be compliant with such architecture.
 
-The minigame main class should extend **MiniGame** class, inside the Antura namespace.
+The MiniGame main class should extend **MiniGame** class, inside the Antura namespace.
 Such class is realized using the [*State Pattern*](https://en.wikipedia.org/wiki/State_pattern)
-
-
 The game is divided in an arbitrary number of states, for example:
 
 - *IntroductionState*, a state in which you present the game e.g. through an animation
@@ -72,14 +70,13 @@ Each state must have a reference to the minigame main class, that you could pass
 
 In this way, when you want to switch game state, you can call:
 
-```
+```C#
 game.SetCurrentState(game.NewStateName);
 ```
 
 each time a state transition is completed, the `ExitState()` method is called on the previous state, and `EnterState()` is called on the next state.
 
 The purpose of these methods is to process things like setting up the scene graphics, resetting timers, showing/hiding panels, etc.
-
 
 # Ending the Game
 
@@ -111,16 +108,14 @@ all the game-related scripts, should be placed inside the **_scripts** folder;
 The first requirement of your minigame is to have a game configuration script.
 If you want to see how a configuration class is made, you could just copy it from the template directory.
 
-The {GameName}Configuration.cs defines how a minigame is configured by the app,
-and provides the minigame some useful interfaces.
+The {GameName}Configuration.cs defines how a minigame is configured by the app, and provides the minigame some useful interfaces.
 
 
 
 # Minigame Variations
 
 Each minigame is created inside its own scene and namespace.
-Usually, the core application refers to the minigame using
- a 1-to-1 relationship, detailed by the **MiniGameCode** that represents the minigame in the core application.
+Usually, the core application refers to the minigame using a 1-to-1 relationship, detailed by the **MiniGameCode** that represents the minigame in the core application.
 
 However, sometimes it is useful to have a single scene support multiple instances of minigames with slight variations.
 These minigames are called *variations*.
@@ -133,7 +128,7 @@ Variations are specified in the specific minigame's configuration code, if neede
 The game configuration provides a difficulty level.
 This difficulty value is provided by the Teacher and can be accessed as:
 
-```
+```C#
 float difficulty = {GameName}Configuration.Instance.Difficulty;
 ```
 
@@ -148,7 +143,8 @@ Possible choices for difficulty can be:
 - Short-term memory
 
 For example, the minigame can linearly control the game speed based on difficulty:
-```
+
+```C#
 _speed = normalSpeed- difficulty;
 ```
 
@@ -180,9 +176,11 @@ This is because learning difficulty is already taken care of by the Teacher gene
 When you need to access a core feature in any part of your game {GameName},
 you do it through the **game context**:
 
-**_var context = {GameName}Configuration.Instance.Context;_**
+```C#
+var context = {GameName}Configuration.Instance.Context;
+```
 
-such object implements the **IGameContext** interface, which is defined in _common/_scripts/Context/IGameContext.cs.
+such object implements the **IGameContext** interface, which is defined in `_common/_scripts/Context/IGameContext.cs`.
 When you need a core functionality, take a look at that file.
 
 For example, to show the popup widget (that is, a large dialog with some text inside it),
@@ -206,21 +204,18 @@ take a look into the `IGameContext` source.
 
 The Audio Manager provides some simple methods to play in-game audio, for example:
 
-**_IAudioSource PlaySound(Sfx sfx);_**
-
-**_IAudioSource PlayLetterData(ILivingLetterData id);_**
-
+```C#
+IAudioSource PlaySound(Sfx sfx);
+IAudioSource PlayLetterData(ILivingLetterData id);
+```
 such methods returns an *IAudioSource.*
 
 It behaves in a similar way to Unity’s AudioSource.
 It exposes some properties and methods like:
 
 * Pitch
-
 * Volume
-
 * IsPlaying()
-
 * Pause()/Stop()/Play()
 
 ## Working with the UI
@@ -229,13 +224,12 @@ When you are working on your mini-game, you do not need to know what prefab are 
 The game context, **_{GameName}Configuration.Instance.Context_**, will provide you a set of interfaces to widgets that you can call from your game code.
 
 For example:
-**_ISubtitlesWidget GetSubtitleWidget();_**
-
-**_IStarsWidget GetStarsWidget();_**
-
-**_IPopupWidget GetPopupWidget();_**
-
-**_ICheckmarkWidget GetCheckmarkWidget();_**
+```C#
+ISubtitlesWidget GetSubtitleWidget();
+IStarsWidget GetStarsWidget();
+IPopupWidget GetPopupWidget();
+ICheckmarkWidget GetCheckmarkWidget();
+```
 
 More widgets’ interfaces will be added to the context as soon the graphics will be produced.
 
@@ -291,7 +285,6 @@ What follows is a list of possible examples:
    - The correct answers is the set made just by the correct sign/dot
    - The wrong answers are all the other possible signs/dots
 
-
 # Question Builder
 
 Each minigame (or minigame variation) requires question packs in different forms and this is defined by implementing the method `SetupBuilder()` inside the Game Configuration, which returns an object implementing the *IQuestionBuilder* interface.
@@ -299,9 +292,7 @@ Each minigame (or minigame variation) requires question packs in different forms
 The **IQuestionBuilder** defines the learning rules and requirements for the current minigame variation and must be correctly setup and configured.
 The Question Builder will generate the correct **Question Packs** for a given minigame instance.
 
-The minigame developer can choose from a set of question builders that the Teacher can support.
-Refer to the Teacher documentation for further details.
-
+The minigame developer can choose from a set of question builders that the Teacher can support. Refer to the Teacher documentation for further details.
 
 # Generating content for test purposes
 
@@ -310,12 +301,12 @@ To do so, just define a default **Question Provider** in your **Game Configurati
 
 For example:
 
-```
+```C#
 private {GameName}Configuration()
 {
-            Questions = new MyQuestionProvider();
-            Context = new SampleGameContext();
-            Difficulty = 0.0f;
+  Questions = new MyQuestionProvider();
+  Context = new SampleGameContext();
+  Difficulty = 0.0f;
 }
 ```
 
@@ -358,71 +349,66 @@ If you need a custom prefab, instantiate it in the scene, add your components on
 The prefab has a **LetterObjectView** component that let you change animation and set the arabic word/letter on it.
 
 To set the current vocabulary data, use one of the following methods:
-* **void Initialize(ILivingLetterData _data)**
-* **void Initialize(ILivingLetterData data, string customText, float scale)**
+
+```C#
+void Initialize(ILivingLetterData _data);
+void Initialize(ILivingLetterData data, string customText, float scale);
+```
+
 by passing the data that you want to see displayed on the LL.
 
-Use **letterObjectView.Data** to get the current data.
+Use `letterObjectView.Data` to get the current data.
 
 Then, you can drive the animations using the following interface.
 
-**_bool Crouching;_** // the LL is crouching
-
-**_bool Falling;_** // the LL is falling*
-
-**_bool Horraying;_** // continous horray
+```C#
+bool Crouching; // the LL is crouching
+bool Falling; // the LL is falling*
+bool Horraying; // continous horray
+```
 
 You can switch state by using the following method:
-**_void SetState(LLAnimationStates newState)_**
+`void SetState(LLAnimationStates newState);`
 
 The supported states are:
-**_        LL_idle,_** // when the LL is standing
-
-**_        LL_walking,_** // when the LL is walking or running
-
-**_        LL_dragging,_** // when the player is dragging the LL
-
-**_        LL_hanging,_** // special state for Baloons game (still waiting for animation in the fbx)
-
-**_        LL_dancing,_** // Dance!
-
-**_        LL_rocketing,_** // LL on the Rocket (use DoHorray/{set horraying} for rocket hooray)
-
-**_        LL_tickling,_** // LL is tickling
-
-**_        LL_limbless_** // when the LL has no arms and legs
+```C#
+LL_idle, // when the LL is standing
+LL_walking, // when the LL is walking or running
+LL_dragging, // when the player is dragging the LL
+LL_hanging, // special state for Baloons game (still waiting for animation in the fbx)
+LL_dancing, // Dance!
+LL_rocketing, // LL on the Rocket (use DoHorray/{set horraying} for rocket hooray)
+LL_tickling, // LL is tickling
+LL_limbless // when the LL has no arms and legs
+```
 
 To switch between Walking and running use:
 
-**_void SetWalkingSpeed(speed);_**
+`void SetWalkingSpeed(speed);`
 
 *the animation will blend between walk (speed = 0) and run (speed = 1).*
 
 Special animation triggers (it will perform an animation and go back to idle).
 
-**_void DoHorray();_** // triggers a single horray
-
-**_void DoAngry();_**
-
-**_void DoHighFive();_**
-
-**_void DoDancingWin();_**
-
-**_void DoDancingLose();_**
-
-**_void ToggleDance();_** // Switch dance between dancing1 and dancing2
-
-**_void DoTwirl(System.Action onLetterShowingBack);_**
+```C#
+void DoHorray(); // triggers a single horray
+void DoAngry();
+void DoHighFive();
+void DoDancingWin();
+void DoDancingLose();
+void ToggleDance(); // Switch dance between dancing1 and dancing2
+void DoTwirl(System.Action onLetterShowingBack);
+```
 
 The DoTwirl animation will trigger your callback when the letter is showing its back to the camera (so you can change letter in that moment).
 
 The following methods can be used to perform a jump. Animations are in place, so you have to move transform when performing jump and just notify the animator with the following events.
 
-**_void OnJumpStart();_**
-
-**_void OnJumpMaximumHeightReached();_**
-
-**_void OnJumpEnded();_**
+```C#
+void OnJumpStart();
+void OnJumpMaximumHeightReached();
+void OnJumpEnded();
+```
 
 The Living Letter View has a **Poof()** method that let you create a "poof" particle animation in the current position of the letter. You can use it when you want to make the LL disappear and re-appear on another position, or simply destroy it;
 
@@ -447,20 +433,18 @@ The prefab has a **AnturaAnimationController** component that let you change ani
 
 
 You can switch state by using the following property:
-**_AnturaAnimationStates State_**
+`AnturaAnimationStates State`
 
 The supported states are:
-**_    idle,_**  // Antura is standing
 
-**_    walking,_** // Antura walking/running,
-
-**_    sitting,_** // Antura is sitting
-
-**_    sleeping,_** // Antura is sleeping
-
-**_    sheeping,_** // Antura is jumping in place
-
-**_    sucking_** // Antura is inhaling
+```C#
+idle,  // Antura is standing
+walking, // Antura walking/running,
+sitting, // Antura is sitting
+sleeping, // Antura is sleeping
+sheeping, // Antura is jumping in place
+sucking // Antura is inhaling
+```
 
 Properties:
 
@@ -480,30 +464,34 @@ To switch between Walking and running use:
 
 *the animation will blend between walk (speed = 0) and run (speed = 1).*
 
-**_void DoBark()_**
+```C#
+void DoBark();
 
-**_void DoSniff()_**
+void DoSniff();
 
-**_void DoShout()_**
+void DoShout();
 
-**_void DoBurp()_**
+void DoBurp();
 
-**_DoSpit(bool openMouth)_**
+DoSpit(bool openMouth);
+```
 
 The following methods can be used to perform a jump. Animations are in place, so you have to move transform when performing jump and just notify the animator with the following events.
 Such events must be called in this order:
 
-**_void OnJumpStart();_**
+```C#
+void OnJumpStart();
 
-**_void OnJumpMaximumHeightReached();_**
+void OnJumpMaximumHeightReached();
 
-**_void OnJumpGrab()_**
+void OnJumpGrab();
 
-**_void OnJumpEnded();_**
+void OnJumpEnded();
+```
 
 This method:
 
-**_void DoCharge(System.Action onChargeEnded)_**
+`void DoCharge(System.Action onChargeEnded);`
 makes Antura do an angry charge.
 The Dog makes an angry charging animation (it must stay in the same position during this animation);
 IsAngry is set to true automatically (needed to use the angry run).

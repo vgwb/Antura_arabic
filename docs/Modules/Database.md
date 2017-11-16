@@ -16,8 +16,8 @@ This includes:
 - Vocabulary data: letters, words, and phrases of the given language.
 - Minigame data: details on the available minigames and how they tie with Journey and Vocabulary data.
 
-The data is compiled into JSON files contained inside the **_manage/manage_Database/Datasets** folder.
-The JSON files are loaded using the **_manage/manage_Database/manage_Database** scene, where consistency checks are performed and the database contents can be inspected.
+The data is compiled into JSON files contained inside the `_manage/manage_Database/Datasets` folder.
+The JSON files are loaded using the `_manage/manage_Database/manage_Database` scene, where consistency checks are performed and the database contents can be inspected.
 `@todo: explain DataParsers too.`
 
 The database is converted from JSON to a set of custom assets (deriving from **ScriptableObject**) that contain a table of data, with one asset per data type. The contents of *Database/DatabaseObjects** define the scriptable objects from which the custom assets are derived.

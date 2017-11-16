@@ -10,34 +10,31 @@
 
 The code of Antura is separated in two main sections.
 
-- **core** code is related to the main application. This code should not be touched by mini-games developers.
-- **minigame** code is produced by minigame developers. This code should be dependant on the core code, but not the other way around.
+- **Core** code is related to the main application. This code should not be touched by MiniGames developers.
+- **MiniGames** code is produced by MiniGames developers. This code should be dependant on the core Code, but not the other way around.
 This allows minigames to be created and removed at will.
 
 Note that part of the *core* code can be used by minigame code, such as *Tutorial* or *UI* code, this is referred to as *shared minigames code* and is part of the core application.
 
-
 ## App Manager
 
-The App Manager represents the core of the application.
-It functions as a general manager and entry point for all other systems and managers.
-It is instantiated as a Singleton, accessible as **AppManager.I**.
+The AppManager is the core of the application.
+It is instantiated as a Singleton, accessible as **AppManager.I** and works as a general manager and entry point for all other systems and managers.
 
-The App Manager is used to start, reset, pause, and exit the game.
+The AppManager is used to start, reset, pause, and exit the game.
 It also controls the general flow of the application.
 
 The `AppManager.GameSetup()` method functions as the entry point of the application, regardless of player profile.
 All subsystems initialisation is carried out in this method.
-
 The `AppManager.InitTeacherForPlayer()` method instead initializes all subsystems and loads all data related to a specific player profile and must be called whenever a new profile is selected.
 
-## Application Flow
+## Flow
 
 This section details the flow of the player inside the application and what classes and sub-systems are affected.
 
-The flow of the whole application is handled by the *Navigation Manager*, which controls the transitions between different scenes in the application.
+The flow of the whole application is handled by the `Navigation Manager`, which controls the transitions between different scenes in the application.
 
-### Home and Intro
+### Start, Home and Intro
 
 The entry point for the application is the **Start scene** (`app/_scenes/_Start`), managed by the *Home Manager*.
 This scene initialises the *App Manager*, shows the *Profile Selector UI* to allow the user to select a profile throught the *Player Profile Manager*.
@@ -54,14 +51,9 @@ If the first encounter is instead passed, the Map is accessed directly.
 
 ### The Map scene
 
-The **Map scene** functions as a central hub for the player.
-Stages (map levels), learning blocks (ropes) and play sessions (dots, with larger dots representing assessments) are setup according to the data obtained from the database on Stages, Learning Blocks, and Play Sessions.
-This is achieved through `Antura.Map.MiniMap.GetAllPlaySessionStateForStage()`, which, for a given stage, obtains the data of available play sessions.
-
-The user may navigate the map through the UI.
-This is performed through `Antura.Map.LetterMovement` (to navigate play sessions and learning blocks inside a stage) and `Antura.Map.StageManager` (to navigate between different stages).
-At each movement, a call to `Antura.Map.LetterMovement.UpdateCurrenJourneyPosition()` sets the current journey position of the player on the map (see **PlayerProfile.md** for further details on journey positions.)
- @todo: maybe move here the stage-play sessions stuff?
+The **Map scene** is the central hub for the player.
+Stages (map levels), Learning Blocks (ropes) and Play Sessions (dots, with larger dots representing assessments) are setup according to the data obtained from the Database.
+This is achieved through `Antura.Map.MiniMap.GetAllPlaySessionStateForStage()`.
 
 The **Map scene** allows several actions to be performed through its UI:
 - The user may access the **Antura Space scene**.

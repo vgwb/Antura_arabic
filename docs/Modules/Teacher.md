@@ -1,21 +1,19 @@
-# Teacher System
+# Teacher AI System
 
 * TOC
 {:toc}
 
-The Teacher System represents the teacher of the language inside the application.
-It is implemented as an Expert System that controls the learning progression of the player based on:
+The Teacher AI is the System that controls the learning progression of the player based on:
 
 - Player journey progression
 - Player learning performance
 - Expert configuration
 - Minigame support requirements
 
-It is designed to be agnostic to the specific language and highly configurable in respect to mini-games.
+It is designed to be agnostic to the specific language and highly configurable in respect to MiniGames.
 
-In this document, the **Teacher** is a shorthand for the *Teacher System*.
+In this document, the **Teacher** is a shorthand for the *Teacher AI System*.
 The person or group of persons that configure the Teacher is instead referred to singularly as the **Expert**.
-
 All code related to the Teacher can be found under the **Antura.Teacher** namespace.
 
 ## Classes
@@ -30,7 +28,7 @@ Engines and Helpers are sub-elements of the Teacher and reside in their own clas
     - **Difficulty Selection AI** is in charge of selecting what difficulty to use for a given minigame.
     - **MiniGame Selection AI** is in charge of selecting what minigames to play during a given playsession
     - **Vocabulary Selection AI** is in charge of selecting what vocabulary data a minigame should use.
-    - **Log AI ** handles the logic behind the logging of data at runtime.
+    - **Log AI** handles the logic behind the logging of data at runtime.
 
 - **Helper** classes expose interfaces for easier interaction with the Teacher and the app's Database:
     - **Score Helper** provides methods for storing, retrieving, and updating score values related to the learning progression.
