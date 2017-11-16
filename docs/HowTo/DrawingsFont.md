@@ -2,14 +2,14 @@
 
 the art department provides a single grid with all drawings (rename it in SVG/EA4S_WordDrawings_grid.svg
 
-1.  Open it with Affinity Designer (maybe we could use Inkscape but i'm not sure it exports slices). check that every layer is named as the word_id in the Sheet.
-2.  Export all groups/layers as slices as SVG (for web) into the SVG/todo
-3.  Import all these single SVG files into Glyph (could be any OTF font maker), assigning the Unicode to the Sheet and moving the svg file into the "used" folder
-4.  make sure that every unicode id in Google Sheet WordData is unique
-5.  Export the OTF font into `/Assets/_app/Fonts/EA4S_WordDrawings.otf`
-6.  open TextMesh Pro Font Asset Creator using these parameters:
+1. Open it with Affinity Designer (maybe we could use Inkscape but i'm not sure it exports slices). check that every layer is named as the word_id in the Sheet.
+2. Export all groups/layers as slices as SVG (for web) into the SVG/todo
+3. Import all these single SVG files into Glyph (could be any OTF font maker), assigning the Unicode to the Sheet and moving the svg file into the "used" folder
+4. make sure that every unicode id in Google Sheet WordData is unique
+5. Export the OTF font into `/Assets/_app/Fonts/EA4S_WordDrawings.otf`
+6. open TextMesh Pro Font Asset Creator using these parameters:
 
-```
+```text
 Font Source: EA4S_WordDrawings.otf
 Font Size: Auto Sizing
 

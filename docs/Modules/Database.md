@@ -11,6 +11,7 @@ Learning data comprehends all information needed to provide a correct learning e
 This data is included with the application at startup.
 
 This includes:
+
 - Journey data: stage, learning block, and play session configurations
 - Vocabulary data: letters, words, and phrases of the given language.
 - Minigame data: details on the available minigames and how they tie with Journey and Vocabulary data.
@@ -24,7 +25,6 @@ These assets can be found in the **Assets/Resources/Database** folder.
 To perform the JSON-to-asset conversion, the **DatabaseLoader** scripts employs a *DataParser* for each data type to load, which defines how to parse the JSON file into the corresponding data structure.
 
 At runtime, **EA4S.Db.Database** functions as an entry point for all the assets containing the data tables and is managed by a **EA4S.DatabaseManager** instance.
-
 
 `@todo: describe Journey and Minigame data?`
 
@@ -75,27 +75,26 @@ To read learning or logging data, a single entry point is used throughout the ap
 The Database Manager provides several methods for each data type represented in the learning and logging data.
 
 To access learning data, the following methods can be used:
-- **GetAllXXXData**, which returns a list o all data of the chosen type.
-- **GetXXXDataById**, which returns a single data structure of the chosen type given its Id.
-- **FindXXXData**, which require a predicate as a parameter to filter the database. The methods returns the list of filtered data of the chosen type.
+- `GetAllXXXData`, which returns a list o all data of the chosen type.
+- `GetXXXDataById`, which returns a single data structure of the chosen type given its Id.
+- `FindXXXData`, which require a predicate as a parameter to filter the database. The methods returns the list of filtered data of the chosen type.
 
 To access logging data, the following methods can be used:
 
-- For logging data, literal queries in SQL can be also used through **FindXXXDataByQuery()** methods.
+- For logging data, literal queries in SQL can be also used through `FindXXXDataByQuery()` methods.
 
 
 ## Writing API
 
 To write to the database, the Database Manager provides the following methods:
-- **Insert<T>()** to insert new data in the database (used by the logging system)
-- **UpdateVocabularyScoreData()** to overwrite the current vocabulary score data for a given element.
-- **UpdateJourneyScoreData()** to overwrite the current journey score data for a given element.
-- **UpdateRewardPackUnlockData()** to overwrite the current unlock state for a given reward.
-- **UpdatePlayerProfileData()** to overwrite the current player profile.
+- `Insert<T>()` to insert new data in the database (used by the logging system)
+- `UpdateVocabularyScoreData()` to overwrite the current vocabulary score data for a given element.
+- `UpdateJourneyScoreData()` to overwrite the current journey score data for a given element.
+- `UpdateRewardPackUnlockData()` to overwrite the current unlock state for a given reward.
+- `UpdatePlayerProfileData()` to overwrite the current player profile.
 
 Note that these methods should not be called directly and that all minigames should use the *LogManager* to indirectly write to the database.
 Note that the vocabulary data is static and thus not writeable at runtime.
-
 
 ## Refactoring notes
 

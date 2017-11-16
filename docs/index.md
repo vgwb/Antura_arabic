@@ -1,4 +1,5 @@
-## Project references
+# Project references
+
 - **Developer Docs:** [vgwb.github.io/Antura_arabic](https://vgwb.github.io/Antura_arabic)
 - **GitHub project:** [github.com/vgwb/Antura_arabic](https://github.com/vgwb/Antura_arabic)
 - **Public Website:** [www.antura.org](http://www.antura.org)
@@ -6,10 +7,12 @@
 - [Releases](Releases.md) the history of app releases and major changelog
 
 ## User and Tester guides
+
 - [Debug Shortcuts](HowTo/DebugShortcuts.md) cheats and keyboard shortcuts
 - [Export Database](HowTo/ExportPlayerDatabase.md) how to export player databases
 
 ## Developer guides
+
 - [Install](HowTo/INSTALL.md) how to install and configure the Unity project
 - [Build](HowTo/Build.md) how to build the app for mobile devices
 - [Collaborator](Guidelines/Collaborator.md) how to collaborate
@@ -20,6 +23,7 @@
 - [Drawing Font](HowTo/DrawingsFont.md) how to create the drawings font Atlas with TextMeshPro
 
 ### Core and Modules
+
 - [Project Structure](Guidelines/ProjectStructure.md) the structure of the Unity3D project.
 - [Application Flow](Modules/ApplicationFlow.md) the complete flow of the application, useful if you want to understand the call flow.
 - [Data Flow](Modules/DataFlow.md) how the learning content data flows from the database, to the teacher system, and finally to minigames.
@@ -29,11 +33,13 @@
 - [Teacher](Modules/Teacher.md) how the Teacher System works. This subsystem is responsible for providing learning content data to the minigames.
 
 ### Database
+
 - [Database](Modules/Database.md) the datasets used everywhere.
 - [Database Schemas](Modules/DatabaseSchemas.md) details on db tables and schemas
 - [Database Management](Modules/DatabaseManagement.md)
 
-### Minigames
+### MiniGames
+
 - [Assessments](Minigames/Assessments.md)
 - [Balloons](Minigames/Balloons.md)
 - [ColorTickle](Minigames/ColorTickle.md)
@@ -53,9 +59,11 @@
 - [Tobogan](Minigames/Tobogan.md)
 
 ### API
+
 - [DoxyGen docs](API/index.html)
 - [How To regenerate DoxyGen docs](HowTo/APIDocsGeneration.html)
 
-## Licensing
+## License
+
 Antura is licensed under the BSD 2-clause "Simplified" License and the Creative Commons Attribution 4.0 International.
 Copyright [TH Köln / Cologne Game Lab](http://www.colognegamelab.de/), [Video Games Without Borders](http://vgwb.org) & [Wixel Studios](www.wixelstudios.com)

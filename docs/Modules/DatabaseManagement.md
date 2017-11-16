@@ -1,4 +1,4 @@
-# Antura Database Info and Management
+# Database Info and Management
 
 Here is a description of the Antura Database and proposal for the web application to deal with the upload of the db files from the Antura app to the servers and their management.
 
@@ -37,13 +37,14 @@ But the main database should be mysql, which allow greater flexibility and featu
 As a first very easy and powerful tool to manage the master Mysql db, we should have PhpMyAdmin ( https://www.phpmyadmin.net/ ) installed into the server. From there we can export the db and make basic queries without writing anything custom.
 
 ## Parsing the SQLite files
+
 The PHP has native SQLite3 functions (since 5.3.0, see http://php.net/manual/en/sqlite3.installation.php ) and should be safe to open the single sqlite files.
 The SQLite -> Mysql migration need to take care of these points:
 1. To inject the UUID (found in the sqlite filename or in the PlayerProfileData table) into every uuid field of every table.
 2. Obviously the SQLIte indexes shouldn’t be migrated (and aren’t used in any case)
 3. The data structure is quite the same in both DB, so no data conversion is needed.
 
-# Databases
+## Databases
 App SQLite file
 
 ## Db filename
@@ -52,7 +53,7 @@ Filename: Antura_Player_e7e8d59a-b148-48b0-a848-4fa6fb4116cb.sqlite3
 The “e7e8d59a-b148-48b0-a848-4fa6fb4116cb” is the uuid (universal identifier) that defines the player
 
 ## Procedures
-```
+```sql
 update DatabaseInfoData set Uuid = "e7e8d59a-b148-48b0-a848-4fa6fb4116cb";
 update JourneyScoreData set Uuid = "e7e8d59a-b148-48b0-a848-4fa6fb4116cb";
 update LogInfoData set Uuid = "e7e8d59a-b148-48b0-a848-4fa6fb4116cb";
@@ -66,6 +67,7 @@ update VocabularyScoreData set Uuid = "e7e8d59a-b148-48b0-a848-4fa6fb4116cb";
 ```
 
 ## Queries
+
 These are the first db queries supported by current data model
 
 1. Curve of Duration of play sessions (one player, a group)

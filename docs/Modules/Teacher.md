@@ -29,7 +29,7 @@ Engines and Helpers are sub-elements of the Teacher and reside in their own clas
 - **Engine** classes are used to implement the expert system for a specific role:
     - **Difficulty Selection AI** is in charge of selecting what difficulty to use for a given minigame.
     - **MiniGame Selection AI** is in charge of selecting what minigames to play during a given playsession
-    - **Vocabulary Selection AI** is in charge of selecting what vocabulary data a minigame should use.  
+    - **Vocabulary Selection AI** is in charge of selecting what vocabulary data a minigame should use.
     - **Log AI ** handles the logic behind the logging of data at runtime.
 
 - **Helper** classes expose interfaces for easier interaction with the Teacher and the app's Database:
@@ -52,13 +52,11 @@ Minigames can be configured to be more or less difficult (i.e. challanging) for 
 This *Engine* is in charge of selecting what difficulty to use for a given minigame session.
 Difficulty is defined as a float value in the range [0,1], with 0 being the easiest, and 1 being the hardest.
 
-Note that the difficulty value is related only to the specific minigame (and thus not related to other minigames)
-  and is implemented in the minigame's logic, following the above general rule.
- See the [Minigames](Minigames.md) documentation for further details.
+Note that the difficulty value is related only to the specific minigame (and thus not related to other minigames) and is implemented in the minigame's logic, following the above general rule. See the [Minigames](Minigames.md) documentation for further details.
 
 The difficulty value logic depends on several variables:
-- The current performance of the player for the given minigame. The game is more difficult the better the player gets. The current performance starts from zero and may rise up to 1.
- Failing a minigame (score 0) diminishes the performance. Completing  a minigame with a score of 2 or more increases it. Completing it with a score of 1 is ininfluent (steady performance).
+- The current performance of the player for the given minigame. The game is more difficult the better the player gets. The current performance starts from 0 and may rise up to 1.
+Failing a minigame (score 0) diminishes the performance. Completing a minigame with a score of 2 or more increases it. Completing it with a score of 1 is ininfluent (steady performance).
 - **REMOVED:** The age of the player. The game will be more difficult for older players.
 - **REMOVED:** The current journey position of the player. The game is more difficult at advanced stages.
 
@@ -76,8 +74,7 @@ This *Engine* is in charge of selecting what minigames to use for a given play s
  The Teacher may call this Engine with the number of requested minigames as a parameter.
 
 The logic for selection depends on two main mechanism:
-filtering based on Play Sessions,
-  and weighing based on past performance.
+filtering based on Play Sessions, and weighing based on past performance.
 
 ### Filtering step
 As a first step, the **Play Session Data** table in the database defines what minigames can be selected for a given *Play Session*.
@@ -96,9 +93,9 @@ The resulting weights are added (each with a configurable contribution weight) a
 The contribution weights, as well as the number of days for the *recent play* logic, can be configured in **ConfigAI**.
 
 ### Code
-The MiniGame Selection Engine is accessed through the method **PerformSelection(string playSessionId, int numberToSelect)** that returns a  **List<MiniGameData>** containing the selected minigames.
+The MiniGame Selection Engine is accessed through the method **PerformSelection(string playSessionId, int numberToSelect)** that returns a **List<MiniGameData>** containing the selected minigames.
 
-Whenever a new play session start, this is called by the Teacher through **TeacherAI.InitialiseCurrentPlaySession()**. triggered by the **MiniMap** script in the *Map scene* when a new  play session is about to start.
+Whenever a new play session start, this is called by the Teacher through **TeacherAI.InitialiseCurrentPlaySession()**. triggered by the **MiniMap** script in the *Map scene* when a new play session is about to start.
 
 ## Vocabulary Selection Engine
 
@@ -107,31 +104,33 @@ The selected vocabulary data will be used as the *focus* for each minigame sessi
 
 The logic for selection depends on three main mechanism: two fltering steps and a weighted selection step.
 
-### Filtering step
-The first step is needed to make sure that all data to be selected matches the player's knowledge.
-The step filters all vocabulary data in the database based on:
+### Filtering STEP
 
-- **Minigame requirements**:
- The selected minigame  usually works with a subset of the whole data.
- For example, many minigames work with letters, but not with words. rules and requirements may.
- This is performed through a configured **QuestionBuilder** (refer to the section below).
-- **Data Variability**: Previously selected data for the same minigame instance may be filtered out to increase variability.
+The first step is needed to make sure that all data to be selected matches the player's knowledge. The step filters all vocabulary data in the database based on:
+
+#### 1. Minigame requirements
+The selected minigame usually works with a subset of the whole data.
+For example, many minigames work with letters, but not with words. rules and requirements may.
+This is performed through a configured **QuestionBuilder** (refer to the section below).
+
+#### 2. Data Variability
+Previously selected data for the same minigame instance may be filtered out to increase variability.
 The focus of this filter is to make sure that data is not repeated too much, avoiding repeating the same data in succession in the same play sessions.
- This is performed through two phases. An *intra-pack* phase avoids repeating the same data in the same question pack, if possible.
-  This can be configured per minigame with the **SelectionSeverity** parameters.  
-  An *inter-pack* phase avoids repeating the same data in the same list of question packs, if possible.
-  This can be configured per minigame with the **PackListHistory** parameters.  
-- **Journey progression**:
+ This is performed through two phases. An *intra-pack* phase avoids repeating the same data in the same question pack, if possible.This can be configured per minigame with the **SelectionSeverity** parameters.
+An *inter-pack* phase avoids repeating the same data in the same list of question packs, if possible.
+This can be configured per minigame with the **PackListHistory** parameters.
+
+#### 3. Journey progression
 The current journey progression (i.e. the position in the Stage/LearningBlock/PlaySession map) is taken into account, filtering out data that is too difficult for the current learning progression (i.e. it is not available up to the current Learning Block).
 
-### Journey priority step
+### Journey priority STEP
 After the first step, we can be sure that *all* selected data can be played by the selected minigame and is suitable to the player's knowledge.
 The Teacher performs a second step by weighing vocabulary entries based on the learning block focus.
 This is used, if possible, as a strict filter.
 Data that belongs to the *current* learning block is given large priority, making sure that all data of the learning block is used if available.
 If not enough data is available for the current learning block, data from the previous play sessions (going back in the progression) is selected and given a weight based on linear distance from the current learning block.
 
-### Weighted selection step
+### Weighted selection STEP
 As a final step, the Teacher selects the actual vocabulary entries using weighted selection, with weights based on:
 
 - **Learning Score**: Lower scores for a vocabulary entry (as retrieved from **VocabularyScoreData** instances) will prompt a given data entry to appear more.
@@ -157,7 +156,6 @@ This changes the filtering steps so to avoid filtering out all data of the curre
 
 Note that minigames may have specific requirements also for wrong answers (see the next section).
 
-
 ## Minigame requirements
 
 The Teacher System is designed so that many minigames, with various requirements, can be supported through a single interface.
@@ -170,9 +168,9 @@ This is accomplished through two methods:
 - A journey progression / minigame matching is provided to the teacher through the database's PlaySessionData ntries. This is used by the teacher to select minigames for a given playsession and make sure that a minigame can support at least some of the dictionary content for the learning objectives.
 - Whenever a specific minigame is selected, the Teacher is configured to generate vocabulary data that can be supported by the minigame. This is handled by the **Question Builders**
 
-**Question Builders** define rules and requirements that the teacher should follow  when generating **Question Packs**.
+**Question Builders** define rules and requirements that the teacher should follow when generating **Question Packs**.
 A **Question Pack** contains the dictionary data that the minigame should use for its gameplay under the form of a question, a set of correct answers, and a set of wrong answers (refer to the [Data Flow documentation](DataFlow.md)).
-Whenever required by the Teacher, a **IQuestionBuilder** must be returned by the minigame's configuration class. This is performed through  **IGameConfiguration.SetupBuilder()**.
+Whenever required by the Teacher, a **IQuestionBuilder** must be returned by the minigame's configuration class. This is performed through **IGameConfiguration.SetupBuilder()**.
 
 A **Question Builder** thus defines:
 - the amount of Question Packs that a minigame instance can support
@@ -180,7 +178,6 @@ A **Question Builder** thus defines:
 - The relationship among the different data objects (random words, all letters in a words, etc.)
 
 The chosen **Question Builder** implementation defines what kind of dictionary data (letters, words, etc..) will be included inside the **Question Packs**. For example, a **RandomLettersQuestionBuilder** generates packs that contain letters as question and answers, while a **CommonLettersInWordBuilder** uses letters for its questions and words as the answers.
-
 
 Several pre-created **Question Builders** have been created to support common rules:
 - **AlphabetQuestionBuilder** creates a pack made of part of the alphabet.
@@ -196,7 +193,6 @@ Several pre-created **Question Builders** have been created to support common ru
 Refer to the API documentation for a complete list of question builders.
 
 Note however that a new QuestionBuilder can be created for specific minigame, if the need arises.
-
 
 ## Question Builder configuration
 
@@ -215,27 +211,25 @@ A **QuestionBuilderParameters** defines additional common parameters and include
 - **bool useJourneyForCorrect**: whether the dictionary data available for use as correct answers should be limited to what the player has already unlocked. Defaults to *true*.
 - **bool useJourneyForWrong**: whether the dictionary data available for use as wrong answers should be limited to what the player has already unlocked. Defaults to *false*.
 - **SelectionSeverity correctSeverity**: the logic to use when selecting correct answers when data is not enough (see below). Defaults to *MayRepeatIfNotEnough*.
-- **SelectionSeverity wrongSeverity**: the logic to use when selecting wrong answers when data is not enough (see below).  Defaults to *MayRepeatIfNotEnough*.
+- **SelectionSeverity wrongSeverity**: the logic to use when selecting wrong answers when data is not enough (see below). Defaults to *MayRepeatIfNotEnough*.
 - **LetterFilters letterFilters**: additional language-specific rules that define if some letters should be left out when performing the selection. Refer to the API for further details.
 - **WordFilters wordFilters**: additional language-specific rules that define if some words should be left out when performing the selection. Refer to the API for further details.
 - **PhraseFilters phraseFilters**: additional language-specific rules that define if some phrases should be left out when performing the selection. Refer to the API for further details.
 
 **PackListHistory** may take one of the following values:
-- **NoFilter**:  Multiple packs in the game have no influence one over the other
+- **NoFilter**: Multiple packs in the game have no influence one over the other
 - **ForceAllDifferent**: Makes sure that multiple packs in a list do not contain the same values
-- **RepeatWhenFull**:  Try to make sure that multiple packs have not the same values, fallback to NoFilter if we cannot get enough data
-- **SkipPacks**:  If we cannot find enough data, reduce the number of packs to be generated
+- **RepeatWhenFull**: Try to make sure that multiple packs have not the same values, fallback to NoFilter if we cannot get enough data
+- **SkipPacks**: If we cannot find enough data, reduce the number of packs to be generated
 
 **SelectionSeverity** may take one of the following values:
 - **AsManyAsPossible**: If possible, the given number of data values is asked for, or less if there are not enough.
 - **AllRequired**: The given number of data values is required. Error if it is not reached.
 - **MayRepeatIfNotEnough**: May repeat the same values if not enough values are found
 
-
-
 ## Question Builder implementation
 
-Whenever a new minigame instance is started, the Teacher retrieves the minigame's **IQuestionBuilder** through **SetupBuilder()**, then  generates a **List\<QuestionPacks\>** through the builder's **CreateAllQuestionPacks()** method.
+Whenever a new minigame instance is started, the Teacher retrieves the minigame's **IQuestionBuilder** through **SetupBuilder()**, then generates a **List\<QuestionPacks\>** through the builder's **CreateAllQuestionPacks()** method.
 
 **CreateAllQuestionPacks()** is implemented differently for each Question Builder, but in general it just generatas a sequential list of packs through multiple casll to **CreateSingleQuestionPackData()**.
 
@@ -245,14 +239,13 @@ The **Question Builder** will thus generate the question, the correct answers, a
 - **System.Func\<List\<T\>\> builderSelectionFunction** is a delegate that defines what data to work from based on the question builder logic. For example, for the **RandomLettersQuestionBuilder** this is all the available letters given the current letter filters. This is usually performed through the **WordHelper** class methods, which help in retrieving dictionary data from the database based on specific rules.
 - **SelectionParameters selectionParams** is an internal structure that defines parameters for filtering and selecting learning data based on the minigame requirements. This is built from the **QuestionBuilderPamaters** instance defined above.
 
-
 ## Configuration
 
 The learning progression can be configured through two main sources:
 
 - Editing the PlaySessionData and LearningBlockData tables in the static database. These define the progression of the learning content from lower to higher stages.
- The learning content should be distributed so that harder content appears at higher stages.
- The system will make sure to use this information when **filtering** dictionary content.
+The learning content should be distributed so that harder content appears at higher stages.
+The system will make sure to use this information when **filtering** dictionary content.
 *Example: content at higher learning blocks cannot appear at lower play sessions*
 
 - Editing the ConfigAI weight constants. These values define how much weight to give to each rule when selecting dictionary content.

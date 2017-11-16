@@ -3,11 +3,13 @@
 We store all static data as JSON files.
 These can be exported from Google Sheets by an open source addon: "Export Sheet Data".
 
-### Install this addo to Google Sheets:
+## Install this addo to Google Sheets:
+
 - in a Google Sheet, click "Add-ons/Get Add-ons"
 - find "Export Sheet Data" and add it
 
-### Export JSON data:
+## Export JSON data:
+
 - Open the Sheet you want to export
 - click Add-ons/Export Sheet Data/Open Sidebar
 - keep everything at the default settings, but:

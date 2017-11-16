@@ -8,7 +8,7 @@ Logging allows the application to gather information on the player's progression
 
 The Logging System is based on three main classes: the MinigameLogManager, the LogManager, and the LogAI.
 
-- The **MinigameLogManager** is the  concrete implementation of **ILogManager** that is passed to the Game Context instance and provides access to the logging functionalities from minigames.
+- The **MinigameLogManager** is the concrete implementation of **ILogManager** that is passed to the Game Context instance and provides access to the logging functionalities from minigames.
 - The **LogManager** is the entry point for all log functionality throughout the application, used both by the MinigameLogManager and the rest of the core codebase.
 - The **LogAI** mediates the logging of data by the core application so that correct values are inserted into the database and filters it according to the learning rules that can be configured by the expert.
 
@@ -84,9 +84,9 @@ As the minigame ends, the MinigameLogManager collects the buffered instances and
 A list of **LearnResultParameters** instances is thus created, which are then flushed to the LogManager.
 
 The LogManager then routes the call to **LogAI.LogLearn()**.
-The LogAI will then retrieved the **MiniGameLearnRules** for that specific minigame, a collection of parameters  used to define how the obtained values should be interpreted .
+The LogAI will then retrieved the **MiniGameLearnRules** for that specific minigame, a collection of parameters used to define how the obtained values should be interpreted .
 
-The **MiniGameLearnRules** define how to convert the correct/wrong measurements to a summary **[-1,1]** *grade* value that can be later used to compare the current performance to other play sessions for the same minigame or  of other minigames.
+The **MiniGameLearnRules** define how to convert the correct/wrong measurements to a summary **[-1,1]** *grade* value that can be later used to compare the current performance to other play sessions for the same minigame or of other minigames.
 
 **MiniGameLearnRules** can be parametrized through its fields based on the minigame's nature:
 - **VoteLogic voteLogic** defines the underlying logic for how to interpet the number of correct and wrong results to determine the outcome of a single minigame related to a specific data content.
@@ -98,7 +98,7 @@ After a grade is obtained for each Learning Item found in the play session, the 
 At this time, the overall learning score for the Learning Item is also updated using a moving average to reflect its current state.
 
 **As an example**, a minigame may show a specific letter of the alphabet five times during play, each time requiring the player to recognize the letter.
-If the player recognizes the letter three out of the five times it is shown,  the MinigameLogManager registers a value of 3 correct answers and 2 wrong answers for that specific letter.
+If the player recognizes the letter three out of the five times it is shown, the MinigameLogManager registers a value of 3 correct answers and 2 wrong answers for that specific letter.
 
 If the minigame learning rules define that the correct-to-wrong ratio should be considered as a threshold, and that at least 50% of answers must be correct, the final grade for that play session will be 1 (3 out of 5).
 
@@ -113,15 +113,14 @@ This is a value in the **[-1,1]** range and represents a moving average of past 
 A score update is performed at the end of each minigame.
 See the above discussion on *Learning logging* for further details.
 
-- Minigame-related score levels for MiniGames, PlaySessions, LearningBlocks inside a **JourneyScoreData** instance.
+- MiniGame-related score levels for MiniGames, PlaySessions, LearningBlocks inside a **JourneyScoreData** instance.
      This is a value in the **[1,3]** range and represents the maximum score achieved for that item.
 	  A score update is performed at the end of each minigame, play session, or learning block respectively.
 	  This happens at different times and in different ways:
 	   - For Minigames, the score is saved at the end of the minigame itself, through a call to **MiniGame.EndGame(int stars, int score)**, subsequently to **MinigameLogManager.OnMiniGameResult(...)**,	**LogMinigameScore.LogMinigameScore(...), and finally **LogAI.LogMiniGameScore(...)**.
 	   - For Play Sessions, the score is saved at the end of the play session, i.e. when the PlaySessionResult scene is accessed.
 		 This is performed  in **PlaySessionResultManager.Start()**, which calls **LogManager.LogPlaySessionScore(...)** and finally **LogAI.LogPlaySessionScore(...)**.
-		- For Learning Blocks,
-			@todo: THIS IS NOT DEFINED!!
+		- For Learning Blocks, @todo: THIS IS NOT DEFINED!!
 
 To generate the score values, the LogAI implements a few utility methods that help in updating the score values kept in the database using the correct logic:
 - **UpdateScoreDataWithMaximum()** updates the score value by keeping only the maximum value between the current and the new one.

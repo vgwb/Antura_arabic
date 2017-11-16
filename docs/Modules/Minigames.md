@@ -1,4 +1,4 @@
-# Antura Minigames Interface
+# Antura MiniGames Interface
 
 * TOC
 {:toc}
@@ -10,7 +10,7 @@ The purpose of the interface is to expose to mini-games a unified and simplified
 way to access core functionalities, and to define how minigames are launched and configured,
 including the dataflow from the content (e.g. question sets) database towards each minigame.
 
-# Creating a new minigame project
+## Creating a new minigame project
 
 All the minigames are in the **_games** directory of the Antura’s Unity3D project.
 
@@ -23,11 +23,8 @@ Instead of starting your own minigame from scratch, you can use the provided gam
 3. In the folder (*MyNewMasterpiece*) you will find a set of files and subfolders. You must find and rename "TemplateGame.cs" and “TemplateConfiguration.cs” into “MyNewMasterpieceGame.cs” and “MyNewMasterpieceConfiguration.cs”, according to the game name you chose;
 
 4. Edit these source files, and change the class names in order to comply with this name change, for example:
-
     1. **Antura.Template** namespace should become *Antura.MyNewMasterpiece*
-
     2. **TemplateGame** class should become *MyNewMasterpieceGame*
-
     3. **TemplateConfiguration** class should become *MyNewMasterpieceConfiguration*
 
 ***note: MiniGame namespaces may change***
@@ -88,7 +85,7 @@ The purpose of these methods is to process things like setting up the scene grap
 
 When the game is over, call the method EndGame of the {GameName}Game class:
 
-```
+```C#
 game.EndGame(howMuchStars, gameScore);
 ```
 
@@ -157,19 +154,19 @@ _speed = normalSpeed- difficulty;
 
 or, it could have a finite set of parameters configurations, based on difficulty interval:
 
-```
+```C#
 if (difficulty < 0.333f)
 {
-	// configure game for "easy"
+  // configure game for "easy"
 }
 
 else if (difficulty < 0.666f)
 {
-	// configure game for "medium"
+  // configure game for "medium"
 }
 else
 {
-	// configure game for "hard"
+  // configure game for "hard"
 }
 ```
 
@@ -192,13 +189,13 @@ For example, to show the popup widget (that is, a large dialog with some text in
 
 you call:
 
-```
+```C#
 context.GetPopupWidget().Show(callback, text, isArabic);
 ```
 
 or, to play the game music:
 
-```
+```C#
 context.GetAudioManager().PlayMusic(Music.MainTheme);
 ```
 
@@ -241,10 +238,6 @@ For example:
 **_ICheckmarkWidget GetCheckmarkWidget();_**
 
 More widgets’ interfaces will be added to the context as soon the graphics will be produced.
-
-
-
-
 
 # Retrieving dictionary content from core
 
@@ -328,25 +321,25 @@ private {GameName}Configuration()
 
 Then, implement your question provider by generating (*ILivingLetterData*) using:
 
-```
+```C#
 var newWord = AppManager.Instance.Teacher.GetRandomTestWordDataLL()
 var newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
 ```
 @todo: remove references to the teacher.
 
 You can also decompose a word in letters:
-```
+```C#
 var letters = ArabicAlphabetHelper.LetterDataListFromWord(newWord.Data.Arabic, AppManager.Instance.Letters)
 ```
 @todo: remove references to the arabic language.
 
 Or instead get all Letters/Words/Phrases:
 
-'''
+```C#
 var letters = AppManager.Instance.DB.GetAllLetterData();
 var words = AppManager.Instance.DB.GetAllWordData();
 var phrases = AppManager.Instance.DB.GetAllPhraseData();
-'''
+```
 
 
 The default Question Provider is used when you launch the game's scene directly.
