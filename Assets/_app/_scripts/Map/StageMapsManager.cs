@@ -351,6 +351,13 @@ namespace Antura.Map
                 // New selection
                 selectedPin = pin;
 
+                // Check for stage change (can happen at the sides!)
+                if (shownStage != pin.journeyPosition.Stage)
+                {
+                    shownStage = pin.journeyPosition.Stage;
+                    ColorCameraToShownStage(shownStage);
+                }
+
                 ResetSelections();
                 selectedPin.Select(true);
 
