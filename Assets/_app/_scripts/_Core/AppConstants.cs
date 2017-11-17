@@ -13,7 +13,7 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.1.0a4";
+        public const string AppVersion = "1.1.0a5";
 
         #region Debug Options
 
@@ -80,16 +80,16 @@ namespace Antura.Core
         public const string DbImportFolder = "import";
         public const string DbJoinedFolder = "joined";
 
-        // Application details (used by Teacher and maybe other)
+        // Range and Constrain values
         public const float MinPlayerAge = 4;
         public const float MaxPlayerAge = 10;
-        public const int MinimumStage = 1;
-        public const int MaximumStage = 6;
-        public const int MinimumMoodValue = 1;
-        public const int MaximumMoodValue = 5;
+        public const int MinStage = 1;
+        public const int MaxStage = 6;
+        public const int MinMoodValue = 1;
+        public const int MaxMoodValue = 5;
         public const int MaxNumberOfPlayerProfiles = 5;
-        public const int MinimumMinigameScore = 0;
-        public const int MaximumMinigameScore = 3;
+        public const int MinMiniGameScore = 0;
+        public const int MaxMiniGameScore = 3;
 
         // Language specifics
         public static readonly TextDirection TextDirection = TextDirection.RightToLeft;

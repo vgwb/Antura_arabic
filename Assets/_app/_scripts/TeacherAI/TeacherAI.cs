@@ -1,10 +1,11 @@
-using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
 using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
 using Antura.LivingLetters;
+using Antura.Profile;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace Antura.Teacher
 {
@@ -20,7 +21,7 @@ namespace Antura.Teacher
 
         // References
         private DatabaseManager dbManager;
-        private Profile.PlayerProfile playerProfile;
+        private PlayerProfile playerProfile;
 
         // Inner engines
         public LogAI logAI;
@@ -30,9 +31,9 @@ namespace Antura.Teacher
 
         // Helpers
         // TODO refactor: these helpers should be separated from the TeacherAI.
-        private VocabularyHelper VocabularyHelper;
-        private JourneyHelper JourneyHelper;
-        private ScoreHelper ScoreHelper;
+        private VocabularyHelper vocabularyHelper;
+        private JourneyHelper journeyHelper;
+        private ScoreHelper scoreHelper;
 
         #region Setup
 
@@ -41,27 +42,27 @@ namespace Antura.Teacher
             I = this;
             dbManager = _dbManager;
 
-            VocabularyHelper = _vocabularyHelper;
-            JourneyHelper = _journeyHelper;
-            ScoreHelper = _scoreHelper;
+            vocabularyHelper = _vocabularyHelper;
+            journeyHelper = _journeyHelper;
+            scoreHelper = _scoreHelper;
 
             logAI = new LogAI(_dbManager);
             minigameSelectionAI = new MiniGameSelectionAI(dbManager);
             VocabularyAi = new VocabularySelectionAI(dbManager);
             difficultySelectionAI = new DifficultySelectionAI(dbManager);
 
-            BuildMinimumMiniGameJourneyPositions();
+            buildMinimumMiniGameJourneyPositions();
         }
 
-        public void SetPlayerProfile(Profile.PlayerProfile _playerProfile)
+        public void SetPlayerProfile(PlayerProfile _playerProfile)
         {
             playerProfile = _playerProfile;
             difficultySelectionAI.SetPlayerProfile(_playerProfile);
         }
 
-        private void ResetPlaySession()
+        private void resetPlaySession()
         {
-            var currentPlaySessionId = JourneyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
+            var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
             minigameSelectionAI.InitNewPlaySession();
             VocabularyAi.LoadCurrentPlaySessionData(currentPlaySessionId);
         }
@@ -72,31 +73,43 @@ namespace Antura.Teacher
 
         public void InitNewPlaySession()
         {
-            ResetPlaySession();
+            resetPlaySession();
         }
 
+        /// <summary>
+        /// Selects the mini games forthe current PlaySession
+        /// </summary>
+        /// <returns>The mini games List</returns>
         public List<MiniGameData> SelectMiniGames()
         {
             // Check the number of minigames for the current play session
-            var currentPlaySessionId = JourneyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
+            var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
             var playSessionData = dbManager.GetPlaySessionDataById(currentPlaySessionId);
             int nMinigamesToSelect = playSessionData.NumberOfMinigames;
-            if (nMinigamesToSelect == 0) {
+            if (nMinigamesToSelect == 0)
+            {
                 // Force at least one minigame (needed for assessment, since we always need one)
                 nMinigamesToSelect = 1;
             }
 
-            return SelectMiniGames(nMinigamesToSelect);
+            return selectMiniGames(nMinigamesToSelect);
         }
 
-        private List<MiniGameData> SelectMiniGames(int nMinigamesToSelect)
+        public List<MiniGameData> SelectMiniGamesForPlaySession(string playSessionId, int numberToSelect)
         {
-            List<MiniGameData> newPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+            return minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
+        }
 
-            if (ConfigAI.VerboseTeacher) {
+        private List<MiniGameData> selectMiniGames(int nMinigamesToSelect)
+        {
+            List<MiniGameData> newPlaySessionMiniGames = selectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+
+            if (ConfigAI.VerboseTeacher)
+            {
                 var debugString = "";
                 debugString += ConfigAI.FormatTeacherReportHeader("Minigames Selected");
-                foreach (var minigame in newPlaySessionMiniGames) {
+                foreach (var minigame in newPlaySessionMiniGames)
+                {
                     debugString += "\n" + minigame.Code;
                 }
                 Debug.Log(debugString);
@@ -105,28 +118,26 @@ namespace Antura.Teacher
             return newPlaySessionMiniGames;
         }
 
-        private List<MiniGameData> SelectMiniGamesForCurrentPlaySession(int nMinigamesToSelect)
+        private List<MiniGameData> selectMiniGamesForCurrentPlaySession(int nMinigamesToSelect)
         {
-            var currentPlaySessionId = JourneyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
+            var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
             return SelectMiniGamesForPlaySession(currentPlaySessionId, nMinigamesToSelect);
-        }
-
-        public List<MiniGameData> SelectMiniGamesForPlaySession(string playSessionId, int numberToSelect)
-        {
-            return minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
 
         #region MiniGame Validity
 
         private Dictionary<MiniGameCode, JourneyPosition> minimumMiniGameJourneyPositions = new Dictionary<MiniGameCode, JourneyPosition>();
 
-        private void BuildMinimumMiniGameJourneyPositions()
+        private void buildMinimumMiniGameJourneyPositions()
         {
             var allPsData = dbManager.GetAllPlaySessionData();
-            foreach (var mgcode in GenericHelper.SortEnums<MiniGameCode>()) {
+            foreach (var mgcode in GenericHelper.SortEnums<MiniGameCode>())
+            {
                 minimumMiniGameJourneyPositions[mgcode] = null;
-                foreach (var psData in allPsData) {
-                    if (CanMiniGameBePlayedAtPlaySession(psData, mgcode)) {
+                foreach (var psData in allPsData)
+                {
+                    if (CanMiniGameBePlayedAtPlaySession(psData, mgcode))
+                    {
                         minimumMiniGameJourneyPositions[mgcode] = psData.GetJourneyPosition();
                         //Debug.Log(mgcode + " min at " + psData.GetJourneyPosition());
                         break;
@@ -147,9 +158,11 @@ namespace Antura.Teacher
 
         public bool CanMiniGameBePlayedAtPlaySession(PlaySessionData psData, MiniGameCode code)
         {
-            if (psData != null) {
+            if (psData != null)
+            {
                 var mgIndex = psData.Minigames.ToList().FindIndex(x => x.MiniGameCode == code);
-                if (mgIndex >= 0) {
+                if (mgIndex >= 0)
+                {
                     return true;
                 }
             }
@@ -162,7 +175,8 @@ namespace Antura.Teacher
         /// </summary>
         public bool CanMiniGameBePlayedAfterMinPlaySession(JourneyPosition jp, MiniGameCode code)
         {
-            if (minimumMiniGameJourneyPositions[code] == null) {
+            if (minimumMiniGameJourneyPositions[code] == null)
+            {
                 return false;
             }
             return minimumMiniGameJourneyPositions[code].IsMinor(jp)
@@ -199,7 +213,7 @@ namespace Antura.Teacher
         {
             // STUB: we always show the tutorial for now
             // TODO: define the logic for when the tutorial should not be shown anymore!
-            return true; 
+            return true;
         }
 
         #endregion
@@ -209,8 +223,8 @@ namespace Antura.Teacher
         // TODO refactor: Not used. 
         public float GetLearningBlockScore(LearningBlockData lb)
         {
-            var allScores = ScoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(lb.Stage, lb.LearningBlock);
-            return ScoreHelper.GetAverageScore(allScores);
+            var allScores = scoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(lb.Stage, lb.LearningBlock);
+            return scoreHelper.GetAverageScore(allScores);
         }
 
         #endregion
@@ -283,26 +297,28 @@ namespace Antura.Teacher
         {
             if (filters == null) { filters = new LetterFilters(); }
 
-            if (useMaxJourneyData) {
+            if (useMaxJourneyData)
+            {
                 VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
             }
 
             var availableLetters = VocabularyAi.SelectData(
-              () => VocabularyHelper.GetAllLetters(filters),
+              () => vocabularyHelper.GetAllLetters(filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
                 , true
             );
 
-            List<LL_LetterData> list = new List<LL_LetterData>();
-            foreach (var letterData in availableLetters) {
-                list.Add(BuildLetterData_LL(letterData));
+            var output_list = new List<LL_LetterData>();
+            foreach (var letterData in availableLetters)
+            {
+                output_list.Add(BuildLetterData_LL(letterData));
             }
             /*if (ConfigAI.verboseTeacher)
             {
                 Debug.Log("All test letter data requested to teacher.");
             }*/
 
-            return list;
+            return output_list;
         }
 
         public LL_LetterData GetRandomTestLetterLL(LetterFilters filters = null, bool useMaxJourneyData = false)
@@ -311,21 +327,26 @@ namespace Antura.Teacher
 
             List<LetterData> availableLetters = null;
 
-            if (AppManager.I.Player == null) {
-                availableLetters = VocabularyHelper.GetAllLetters(filters);
-            } else {
-                if (useMaxJourneyData) {
+            if (AppManager.I.Player == null)
+            {
+                availableLetters = vocabularyHelper.GetAllLetters(filters);
+            }
+            else
+            {
+                if (useMaxJourneyData)
+                {
                     VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
                 }
 
                 availableLetters = VocabularyAi.SelectData(
-                  () => VocabularyHelper.GetAllLetters(filters),
+                  () => vocabularyHelper.GetAllLetters(filters),
                     new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
                   , true
                 );
             }
 
-            if (giveWarningOnFake) {
+            if (giveWarningOnFake)
+            {
                 Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
                 giveWarningOnFake = false;
             }
@@ -344,17 +365,19 @@ namespace Antura.Teacher
         {
             if (filters == null) { filters = new WordFilters(); }
 
-            if (useMaxJourneyData) {
+            if (useMaxJourneyData)
+            {
                 VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
             }
 
-            if (giveWarningOnFake) {
+            if (giveWarningOnFake)
+            {
                 Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
                 giveWarningOnFake = false;
             }
 
             var availableWords = VocabularyAi.SelectData(
-              () => VocabularyHelper.GetWordsByCategory(WordDataCategory.Animal, filters),
+              () => vocabularyHelper.GetWordsByCategory(WordDataCategory.Animal, filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
                , true
               );

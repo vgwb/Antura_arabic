@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
@@ -289,7 +289,7 @@ namespace Antura.Teacher
 
             var allMiniGameInfo = GetAllMiniGameInfo();
             foreach (var miniGameInfo in allMiniGameInfo) {
-                if (miniGameInfo.score != AppConstants.MaximumMinigameScore) {
+                if (miniGameInfo.score != AppConstants.MaxMiniGameScore) {
                     return false;
                 }
             }
@@ -312,7 +312,7 @@ namespace Antura.Teacher
             {
                 if (playSessionInfo.data.GetJourneyPosition().IsMinor(maxJP))
                 {
-                    if (playSessionInfo.score < AppConstants.MaximumMinigameScore)
+                    if (playSessionInfo.score < AppConstants.MaxMiniGameScore)
                     {
                         return false;
                     }

@@ -398,12 +398,12 @@ namespace Antura.Teacher
             }
 
             // Given a (filtered) list of data, select some using weights
-            List<VocabularyScoreData> score_data_list = dbManager.Query<VocabularyScoreData>("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "'");
+            var score_data_list = dbManager.Query<VocabularyScoreData>("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "'");
 
             string debugString = "";
             debugString += ConfigAI.FormatTeacherReportHeader("Selection Weights");
 
-            List<float> weights_list = new List<float>();
+            var weights_list = new List<float>();
             foreach (var sourceData in source_data_list)
             {
                 float cumulativeWeight = 0;
@@ -524,7 +524,7 @@ namespace Antura.Teacher
             var lbData = dbManager.GetLearningBlockDataById(lbId);
             var psData_list = dbManager.GetPlaySessionsOfLearningBlock(lbData);
 
-            HashSet<LetterData> letterData_set = new HashSet<LetterData>();
+            var letterData_set = new HashSet<LetterData>();
             foreach (var psData in psData_list)
             {
                 var ps_letterData = GetLettersInPlaySession(psData.Id, pastBlocksToo);
@@ -537,14 +537,14 @@ namespace Antura.Teacher
         {
             var psData = dbManager.GetPlaySessionDataById(psId);
 
-            HashSet<string> ids_set = new HashSet<string>();
+            var ids_set = new HashSet<string>();
             ids_set.UnionWith(psData.Letters);
             if (pastSessionsToo)
             {
                 ids_set.UnionWith(this.GetAllLetterIdsFromPreviousPlaySessions(psData));
             }
 
-            List<string> ids_list = new List<string>(ids_set);
+            var ids_list = new List<string>(ids_set);
             return ids_list.ConvertAll(x => dbManager.GetLetterDataById(x));
         }
 
@@ -554,7 +554,7 @@ namespace Antura.Teacher
             var all_ps_list = dbManager.GetAllPlaySessionData();
             int current_id = all_ps_list.IndexOf(current_ps);
 
-            List<string> all_ids = new List<string>();
+            var all_ids = new List<string>();
             for (int prev_id = 0; prev_id < current_id; prev_id++)
             {
                 all_ids.AddRange(all_ps_list[prev_id].Letters);
@@ -571,7 +571,7 @@ namespace Antura.Teacher
             var lbData = dbManager.GetLearningBlockDataById(lbId);
             var psData_list = dbManager.GetPlaySessionsOfLearningBlock(lbData);
 
-            HashSet<WordData> wordData_set = new HashSet<WordData>();
+            var wordData_set = new HashSet<WordData>();
             foreach (var psData in psData_list)
             {
                 var ps_wordData = GetWordsInPlaySession(psData.Id, previousToo, pastBlocksToo);
@@ -584,12 +584,12 @@ namespace Antura.Teacher
         {
             var psData = dbManager.GetPlaySessionDataById(psId);
 
-            HashSet<string> ids_set = new HashSet<string>();
+            var ids_set = new HashSet<string>();
             ids_set.UnionWith(psData.Words);
             if (previousToo) { ids_set.UnionWith(psData.Words_previous); }
             if (pastSessionsToo) { ids_set.UnionWith(this.GetAllWordIdsFromPreviousPlaySessions(psData)); }
 
-            List<string> ids_list = new List<string>(ids_set);
+            var ids_list = new List<string>(ids_set);
             return ids_list.ConvertAll(x => dbManager.GetWordDataById(x));
         }
 
@@ -599,7 +599,7 @@ namespace Antura.Teacher
             var all_ps_list = dbManager.GetAllPlaySessionData();
             int current_id = all_ps_list.IndexOf(current_ps);
 
-            List<string> all_ids = new List<string>();
+            var all_ids = new List<string>();
             for (int prev_id = 0; prev_id < current_id; prev_id++)
             {
                 all_ids.AddRange(all_ps_list[prev_id].Words);
@@ -618,7 +618,7 @@ namespace Antura.Teacher
             var lbData = dbManager.GetLearningBlockDataById(lbId);
             var psData_list = dbManager.GetPlaySessionsOfLearningBlock(lbData);
 
-            HashSet<PhraseData> phraseData_set = new HashSet<PhraseData>();
+            var phraseData_set = new HashSet<PhraseData>();
             foreach (var psData in psData_list)
             {
                 var ps_phraseData = GetPhrasesInPlaySession(psData.Id, previousToo, pastBlocksToo);
@@ -631,12 +631,12 @@ namespace Antura.Teacher
         {
             var psData = dbManager.GetPlaySessionDataById(lbId);
 
-            HashSet<string> ids_set = new HashSet<string>();
+            var ids_set = new HashSet<string>();
             ids_set.UnionWith(psData.Phrases);
             if (previousToo) { ids_set.UnionWith(psData.Phrases_previous); }
             if (pastSessionsToo) { ids_set.UnionWith(this.GetAllPhraseIdsFromPreviousPlaySessions(psData)); }
 
-            List<string> ids_list = new List<string>(ids_set);
+            var ids_list = new List<string>(ids_set);
             return ids_list.ConvertAll(x => dbManager.GetPhraseDataById(x));
         }
 
@@ -646,7 +646,7 @@ namespace Antura.Teacher
             var all_ps_list = dbManager.GetAllPlaySessionData();
             int current_id = all_ps_list.IndexOf(current_ps);
 
-            List<string> all_ids = new List<string>();
+            var all_ids = new List<string>();
             for (int prev_id = 0; prev_id < current_id; prev_id++)
             {
                 all_ids.AddRange(all_ps_list[prev_id].Phrases);
