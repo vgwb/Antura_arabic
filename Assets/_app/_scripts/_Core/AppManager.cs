@@ -40,11 +40,13 @@ namespace Antura.Core
 
         public PlayerProfileManager PlayerProfileManager;
 
-        public AppSettings AppSettings {
+        public AppSettings AppSettings
+        {
             get { return AppSettingsManager.Settings; }
         }
 
-        public PlayerProfile Player {
+        public PlayerProfile Player
+        {
             get { return PlayerProfileManager.CurrentPlayer; }
             set { PlayerProfileManager.CurrentPlayer = value; }
         }
@@ -62,8 +64,9 @@ namespace Antura.Core
         /// </summary>
         protected override void Init()
         {
-            if (alreadySetup)
+            if (alreadySetup) {
                 return;
+            }
 
             base.Init();
 
@@ -108,15 +111,19 @@ namespace Antura.Core
             // Exit with Android back button
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 if (Application.platform == RuntimePlatform.Android) {
-                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
-                        Debug.Log("Application Quit");
-                        Application.Quit();
-                    }, () => { });
+                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () =>
+                        {
+                            Debug.Log("Application Quit");
+                            Application.Quit();
+                        }, () =>
+                        {
+                        });
                 }
             }
         }
 
         #region Settings
+
         // TODO move into AppSettings Manager
 
         public void ToggleQualitygfx()
@@ -161,8 +168,8 @@ namespace Antura.Core
         public void OpenSupportForm()
         {
             var parameters = "";
-            parameters += "?entry.346861357=" + WWW.EscapeURL(JsonUtility.ToJson(new DeviceInfo()));
-            parameters += "&entry.1999287882=" + WWW.EscapeURL(JsonUtility.ToJson(Player));
+            parameters += "?entry.346861357=" + WWW.EscapeURL(new DeviceInfo().ToJsonData());
+            parameters += "&entry.1999287882=" + WWW.EscapeURL(Player.ToJsonData());
 
             Application.OpenURL(AppConstants.UrlSupportForm + parameters);
         }

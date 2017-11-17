@@ -29,6 +29,7 @@ namespace Antura.Profile
         public ProfileCompletionState ProfileCompletion = ProfileCompletionState.New;
 
         private JourneyPosition _maxJourneyPosition = JourneyPosition.InitialJourneyPosition;
+
         public JourneyPosition MaxJourneyPosition
         {
             get { return _maxJourneyPosition; }
@@ -36,6 +37,7 @@ namespace Antura.Profile
         }
 
         private JourneyPosition _currentJourneyPosition = JourneyPosition.InitialJourneyPosition;
+
         public JourneyPosition CurrentJourneyPosition
         {
             get { return _currentJourneyPosition; }
@@ -43,6 +45,7 @@ namespace Antura.Profile
         }
 
         private JourneyPosition _previousJourneyPosition = JourneyPosition.InitialJourneyPosition;
+
         public JourneyPosition PreviousJourneyPosition
         {
             get { return _previousJourneyPosition; }
@@ -85,7 +88,7 @@ namespace Antura.Profile
 
         #endregion
 
-        #region Journey position        
+        #region Journey position
 
         /// <summary>
         /// Sets the actual journey position and save to profile.
@@ -112,7 +115,8 @@ namespace Antura.Profile
         public void SetCurrentJourneyPosition(JourneyPosition _journeyPosition, bool _save = true, bool _updatePrevToo = true)
         {
             CurrentJourneyPosition = _journeyPosition;
-            if (_updatePrevToo) UpdatePreviousJourneyPosition();
+            if (_updatePrevToo)
+                UpdatePreviousJourneyPosition();
             if (_save)
                 Save();
         }
@@ -137,8 +141,7 @@ namespace Antura.Profile
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
         public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true, bool _forced = false)
         {
-            if (MaxJourneyPosition.IsMinor(newJourneyPosition) || _forced)
-            {
+            if (MaxJourneyPosition.IsMinor(newJourneyPosition) || _forced) {
                 MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock,
                     newJourneyPosition.PlaySession);
                 CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock,
@@ -203,8 +206,8 @@ namespace Antura.Profile
         public bool IsAtMaxJourneyPosition()
         {
             return (CurrentJourneyPosition.Stage == MaxJourneyPosition.Stage) &&
-                   (CurrentJourneyPosition.LearningBlock == MaxJourneyPosition.LearningBlock) &&
-                   (CurrentJourneyPosition.PlaySession == MaxJourneyPosition.PlaySession);
+            (CurrentJourneyPosition.LearningBlock == MaxJourneyPosition.LearningBlock) &&
+            (CurrentJourneyPosition.PlaySession == MaxJourneyPosition.PlaySession);
         }
 
         public void AdvanceCurrentStage()
@@ -248,7 +251,8 @@ namespace Antura.Profile
         /// <summary>
         /// The current antura customizations
         /// </summary>
-        public AnturaCustomization CurrentAnturaCustomizations {
+        public AnturaCustomization CurrentAnturaCustomizations
+        {
             get {
                 if (_currentAnturaCustomizations == null) {
                     _currentAnturaCustomizations = new AnturaCustomization();
@@ -272,7 +276,8 @@ namespace Antura.Profile
         /// <value>
         /// The rewards unlocked.
         /// </value>
-        public List<RewardPackUnlockData> RewardsUnlocked {
+        public List<RewardPackUnlockData> RewardsUnlocked
+        {
             get {
                 if (_rewardsUnlocked == null) {
                     _rewardsUnlocked = LoadRewardsUnlockedFromDB();
@@ -342,7 +347,7 @@ namespace Antura.Profile
                     break;
                 case RewardTypes.decal:
                     counter = RewardSystemManager.GetConfig().RewardsDecal.Count -
-                              RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
+                    RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
                     break;
             }
 
@@ -513,8 +518,12 @@ namespace Antura.Profile
         /// </returns>
         public bool IsFirstContact(int _step)
         {
-            if (_step < (int)ProfileCompletionState.FirstContact1) return true;
-            if (_step >= (int)ProfileCompletionState.FirstContact2) return false;
+            if (_step < (int)ProfileCompletionState.FirstContact1) {
+                return true;
+            }
+            if (_step >= (int)ProfileCompletionState.FirstContact2) {
+                return false;
+            }
 
             if ((int)ProfileCompletion == _step - 1) {
                 return true;
@@ -551,7 +560,7 @@ namespace Antura.Profile
 
         #endregion
 
-        #region BookVisited (ProfileCompletion = 3)                
+        #region BookVisited (ProfileCompletion = 3)
 
         /// <summary>
         /// Determines whether [is first time book].
@@ -606,23 +615,7 @@ namespace Antura.Profile
 
         #endregion
 
-        #region To/From PlayerProfileData        
-
-        /// <summary>
-        /// Converts this instance to PlayerProfileData.
-        /// </summary>
-        /// <returns></returns>
-        public PlayerProfileData ToData()
-        {
-            PlayerProfileData newProfileData =
-                new PlayerProfileData(
-                    Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars, HasMaxStarsInCurrentPlaySessions,
-                    Age, TotalNumberOfBones, ProfileCompletion, this.CurrentAnturaCustomizations.GetJsonListOfIds(), ConsecutivePlayDays, CurrentShopState
-                );
-            newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
-            newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
-            return newProfileData;
-        }
+        #region Input
 
         /// <summary>
         /// Charge this with PlayerProfileData.
@@ -655,11 +648,28 @@ namespace Antura.Profile
 
         #endregion
 
-        #region Player icon data
+        #region Output
+
+        /// <summary>
+        /// Converts this instance to PlayerProfileData.
+        /// </summary>
+        /// <returns></returns>
+        public PlayerProfileData ToData()
+        {
+            PlayerProfileData newProfileData =
+                new PlayerProfileData(
+                    Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars, HasMaxStarsInCurrentPlaySessions,
+                    Age, TotalNumberOfBones, ProfileCompletion, this.CurrentAnturaCustomizations.GetJsonListOfIds(), ConsecutivePlayDays, CurrentShopState
+                );
+            newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
+            newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
+            return newProfileData;
+        }
 
         public PlayerIconData GetPlayerIconData()
         {
-            PlayerIconData returnIconData = new PlayerIconData() {
+            PlayerIconData returnIconData = new PlayerIconData()
+            {
                 Uuid = this.Uuid,
                 AvatarId = this.AvatarId,
                 Gender = this.Gender,
@@ -672,7 +682,10 @@ namespace Antura.Profile
             return returnIconData;
         }
 
-        #endregion
+        public string ToJsonData()
+        {
+            return JsonUtility.ToJson(this);
+        }
 
         public override string ToString()
         {
@@ -688,6 +701,8 @@ namespace Antura.Profile
                 ProfileCompletion
             );
         }
+
+        #endregion
 
     }
 }
