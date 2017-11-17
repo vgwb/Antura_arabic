@@ -200,6 +200,7 @@ namespace Antura.Map
             //playerPin.onMoveStart += CheckCurrentStageForPlayerReset;
             //playerPin.onMoveEnd += ShowPlayPanel;
             playerPin.ForceToJourneyPosition(PreviousJourneyPosition, justVisuals:true);
+            playerPin.LookAtNextPin(false);
 
             /* FIRST CONTACT FEATURE */
             if (AppManager.I.Player.IsFirstContact() || SimulateFirstContact) {

@@ -107,7 +107,6 @@ namespace Antura.Map
         {
             int posIndex = StageMapsManager.GetPosIndexFromJourneyPosition(currentStageMap, journeyPosition);
             ForceToPin(posIndex, justVisuals);
-            LookAtNextPin(false);
         }
 
         /*
@@ -234,7 +233,7 @@ namespace Antura.Map
 
         #region LookAt
 
-        void LookAtNextPin(bool animated)
+        public void LookAtNextPin(bool animated)
         {
             LookAtPin(false, animated);
         }
