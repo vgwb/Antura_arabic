@@ -87,7 +87,7 @@ namespace Antura.Minigames
             if (minPos2.IsMinor(minPos1)) return 1;
 
             // Check play session order
-            var sharedPlaySessionData = AppManager.I.DB.GetPlaySessionDataById(minPos1.ToStringId());
+            var sharedPlaySessionData = AppManager.I.DB.GetPlaySessionDataById(minPos1.Id());
             int ret = 0;
             switch (sharedPlaySessionData.Order) {
                 case PlaySessionDataOrder.Random:

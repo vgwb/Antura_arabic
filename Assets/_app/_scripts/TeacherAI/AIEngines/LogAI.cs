@@ -372,7 +372,7 @@ namespace Antura.Teacher
 
         public void LogPlaySessionScore(int appSession, JourneyPosition pos, int score, float playTime)
         {
-            if (AppConstants.DebugLogEnabled) Debug.Log("LogPlaySessionScore " + pos.ToStringId() + " / " + score);
+            if (AppConstants.DebugLogEnabled) Debug.Log("LogPlaySessionScore " + pos.Id() + " / " + score);
 
             // Log for history
             var data = new LogPlaySessionScoreData(appSession, pos, score, playTime);
@@ -383,7 +383,7 @@ namespace Antura.Teacher
             List<JourneyScoreData> previousScoreDataList = db.Query<JourneyScoreData>(query);
 
             // Score update
-            var scoreData = GetJourneyScoreDataWithMaximum(JourneyDataType.PlaySession, pos.ToStringId(), score, previousScoreDataList);
+            var scoreData = GetJourneyScoreDataWithMaximum(JourneyDataType.PlaySession, pos.Id(), score, previousScoreDataList);
             db.InsertOrReplace(scoreData);
         }
 
@@ -402,7 +402,7 @@ namespace Antura.Teacher
                 logDataList.Add(logData);
 
                 // Score update
-                var scoreData = GetJourneyScoreDataWithMaximum(JourneyDataType.PlaySession, parameters.Pos.ToStringId(), parameters.Score, previousScoreDataList);
+                var scoreData = GetJourneyScoreDataWithMaximum(JourneyDataType.PlaySession, parameters.Pos.Id(), parameters.Score, previousScoreDataList);
                 scoreDataList.Add(scoreData);
             }
 

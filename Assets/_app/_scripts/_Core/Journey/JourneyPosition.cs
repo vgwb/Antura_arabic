@@ -62,10 +62,10 @@
         // TODO refactor: this is used by part of the application to convert hourney to an ID for DB purposes. Make this more robust.
         public override string ToString()
         {
-            return Stage + "." + LearningBlock + "." + PlaySession;
+            return Id();
         }
 
-        public string ToStringId()
+        public string Id()
         {
             return Stage + "." + LearningBlock + "." + PlaySession;
         }
@@ -78,7 +78,8 @@
         public string ToDisplayedString(bool withPlaySession = false)
         {
             var psCode = "";
-            switch (PlaySession) {
+            switch (PlaySession)
+            {
                 case 1:
                     psCode = "1";
                     break;
@@ -90,9 +91,12 @@
                     break;
             }
 
-            if (withPlaySession) {
+            if (withPlaySession)
+            {
                 return Stage + "-" + LearningBlock + "-" + psCode;
-            } else {
+            }
+            else
+            {
                 return Stage + "-" + LearningBlock;
             }
         }
@@ -105,13 +109,16 @@
 
         public bool IsMinor(JourneyPosition other)
         {
-            if (Stage < other.Stage) {
+            if (Stage < other.Stage)
+            {
                 return true;
             }
-            if (Stage <= other.Stage && LearningBlock < other.LearningBlock) {
+            if (Stage <= other.Stage && LearningBlock < other.LearningBlock)
+            {
                 return true;
             }
-            if (Stage <= other.Stage && LearningBlock <= other.LearningBlock && PlaySession < other.PlaySession) {
+            if (Stage <= other.Stage && LearningBlock <= other.LearningBlock && PlaySession < other.PlaySession)
+            {
                 return true;
             }
             return false;

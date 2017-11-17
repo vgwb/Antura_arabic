@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
@@ -573,7 +573,7 @@ namespace Antura.Rewards
             if (RewardAlreadyUnlocked(journeyPosition) && !_forceToReturnReward)
                 return returnList;
             // What kind of reward it is?
-            PlaySessionRewardUnlock unlock = GetConfig().PlaySessionRewardsUnlock.Find(r => r.PlaySession == journeyPosition.ToStringId());
+            PlaySessionRewardUnlock unlock = GetConfig().PlaySessionRewardsUnlock.Find(r => r.PlaySession == journeyPosition.Id());
             if (unlock == null) {
                 Debug.LogErrorFormat("Unable to find reward type for this playsession {0}", journeyPosition);
             }

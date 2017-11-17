@@ -1,4 +1,4 @@
-﻿using Antura.Audio;
+using Antura.Audio;
 using Antura.Core;
 using Antura.Database;
 using Antura.Rewards;
@@ -23,7 +23,7 @@ namespace Antura.GamesSelector
         {
             // Fill with data
             JourneyPosition journeyPos = AppManager.I.Player.CurrentJourneyPosition;
-            PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.ToStringId());
+            PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.Id());
             LearningBlockData learningBlock =
                 AppManager.I.DB.GetLearningBlockDataById(playSessionData.Stage + "." + playSessionData.LearningBlock.ToString());
             TitleCode.text = journeyPos.ToString();
