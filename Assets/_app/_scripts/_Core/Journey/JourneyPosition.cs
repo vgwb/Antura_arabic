@@ -14,6 +14,11 @@
 
         public static JourneyPosition InitialJourneyPosition = new JourneyPosition(1, 1, 1);
 
+        public string Id
+        {
+            get { return Stage + "." + LearningBlock + "." + PlaySession; }
+        }
+
         public JourneyPosition()
         {
             Stage = 1;
@@ -62,12 +67,7 @@
         // TODO refactor: this is used by part of the application to convert hourney to an ID for DB purposes. Make this more robust.
         public override string ToString()
         {
-            return Id();
-        }
-
-        public string Id()
-        {
-            return Stage + "." + LearningBlock + "." + PlaySession;
+            return Id;
         }
 
         public string GetShortTitle()

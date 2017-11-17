@@ -28,7 +28,7 @@ namespace Antura.Teacher
 
         public PlaySessionData GetCurrentPlaySessionData()
         {
-            return AppManager.I.DB.GetPlaySessionDataById(AppManager.I.Player.CurrentJourneyPosition.Id());
+            return AppManager.I.DB.GetPlaySessionDataById(AppManager.I.Player.CurrentJourneyPosition.Id);
         }
 
         #endregion
@@ -43,7 +43,7 @@ namespace Antura.Teacher
 
         public JourneyPosition FindNextJourneyPosition(JourneyPosition currentPosition)
         {
-            var id = currentPosition.Id();
+            var id = currentPosition.Id;
 
             var allPlaySessions = dbManager.GetAllPlaySessionData();
             int next_id = -1;
@@ -96,7 +96,7 @@ namespace Antura.Teacher
                     for (int ps = 1; ps <= NBasePlaySession; ps++)
                     {
                         var jp = new JourneyPosition(s, lb, ps);
-                        if (AppManager.I.DB.HasPlaySessionDataById(jp.Id()))
+                        if (AppManager.I.DB.HasPlaySessionDataById(jp.Id))
                         {
                             if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(jp, minigameCode))
                             {
@@ -107,7 +107,7 @@ namespace Antura.Teacher
                     int assessmentCode = AssessmentPlaySessionIndex;
                     var jp_assessment = new JourneyPosition(s, lb, assessmentCode);
 
-                    if (AppManager.I.DB.HasPlaySessionDataById(jp_assessment.Id()))
+                    if (AppManager.I.DB.HasPlaySessionDataById(jp_assessment.Id))
                     {
                         if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(jp_assessment, minigameCode))
                         {

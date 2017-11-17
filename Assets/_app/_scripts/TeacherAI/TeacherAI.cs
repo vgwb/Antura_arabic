@@ -62,7 +62,7 @@ namespace Antura.Teacher
 
         private void resetPlaySession()
         {
-            var currentPlaySessionId = playerProfile.CurrentJourneyPosition.Id();
+            var currentPlaySessionId = playerProfile.CurrentJourneyPosition.Id;
             minigameSelectionAI.InitNewPlaySession();
             VocabularyAi.LoadCurrentPlaySessionData(currentPlaySessionId);
         }
@@ -83,7 +83,7 @@ namespace Antura.Teacher
         public List<MiniGameData> SelectMiniGames()
         {
             // Check the number of minigames for the current play session
-            var currentPlaySessionId = playerProfile.CurrentJourneyPosition.Id();
+            var currentPlaySessionId = playerProfile.CurrentJourneyPosition.Id;
             var playSessionData = dbManager.GetPlaySessionDataById(currentPlaySessionId);
             int nMinigamesToSelect = playSessionData.NumberOfMinigames;
             if (nMinigamesToSelect == 0)
@@ -120,7 +120,7 @@ namespace Antura.Teacher
 
         private List<MiniGameData> selectMiniGamesForCurrentPlaySession(int nMinigamesToSelect)
         {
-            var currentPlaySessionId = playerProfile.CurrentJourneyPosition.Id();
+            var currentPlaySessionId = playerProfile.CurrentJourneyPosition.Id;
             return SelectMiniGamesForPlaySession(currentPlaySessionId, nMinigamesToSelect);
         }
 
@@ -152,7 +152,7 @@ namespace Antura.Teacher
         /// </summary>
         public bool CanMiniGameBePlayedAtPlaySession(JourneyPosition journeyPos, MiniGameCode code)
         {
-            var psData = dbManager.GetPlaySessionDataById(journeyPos.Id());
+            var psData = dbManager.GetPlaySessionDataById(journeyPos.Id);
             return CanMiniGameBePlayedAtPlaySession(psData, code);
         }
 
@@ -205,7 +205,7 @@ namespace Antura.Teacher
         public int GetCurrentNumberOfRounds(MiniGameCode miniGameCode)
         {
             var currentPos = AppManager.I.Player.CurrentJourneyPosition;
-            var psData = dbManager.GetPlaySessionDataById(currentPos.Id());
+            var psData = dbManager.GetPlaySessionDataById(currentPos.Id);
             return psData.NumberOfRoundsPerMinigame;
         }
 
