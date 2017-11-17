@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 using Antura.Helpers;
 
@@ -86,7 +86,7 @@ namespace Antura.Teacher
                 var nonCommonLetters = vocabularyHelper.GetLettersNotIn(parameters.letterFilters, commonLetters.ToArray()).RandomSelect(nWrong);
 
                 // Debug
-                if (ConfigAI.verboseQuestionPacks)
+                if (ConfigAI.VerboseQuestionPacks)
                 { 
                     string debugString = "--------- TEACHER: question pack result ---------";
                     debugString += "\nCommon letters: ";

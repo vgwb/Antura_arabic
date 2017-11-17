@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 using Antura.Helpers;
 
@@ -91,7 +91,7 @@ namespace Antura.Teacher
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs,
                         journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage));
 
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nQuestion: " + question;

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Database;
 using Antura.Helpers;
 using Antura.Core;
@@ -105,7 +105,7 @@ namespace Antura.Teacher
             var correctAnswers = new List<LetterData>();
             correctAnswers.Add(letter);
 
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nQuestion: " + question;

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 
 namespace Antura.Teacher
@@ -69,7 +69,7 @@ namespace Antura.Teacher
                 }
 
                 // Debug
-                if (ConfigAI.verboseQuestionPacks)
+                if (ConfigAI.VerboseQuestionPacks)
                 {
                     string debugString = "--------- TEACHER: question pack result ---------";
                     debugString += "\nQuestion: " + wordWithArticle;

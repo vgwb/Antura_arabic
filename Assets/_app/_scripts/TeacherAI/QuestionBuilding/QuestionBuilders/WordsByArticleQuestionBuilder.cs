@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 using Antura.Helpers;
 
@@ -82,7 +82,7 @@ namespace Antura.Teacher
             // Shuffle the packs at the end
             packs.Shuffle();
 
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 foreach (var pack in packs)
                 {

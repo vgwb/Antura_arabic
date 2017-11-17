@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Database;
 using Antura.Core;
 using Antura.Helpers;
@@ -123,7 +123,7 @@ namespace Antura.Teacher
                 currentRoundIDs_letters.AddRange(wrongLetters.ConvertAll(w => w.Id));
             }
 
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nQuestion: " + wordQuestion;

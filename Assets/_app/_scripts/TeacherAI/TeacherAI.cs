@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Core;
@@ -93,9 +93,9 @@ namespace Antura.Teacher
         {
             List<MiniGameData> newPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
 
-            if (ConfigAI.verboseTeacher) {
+            if (ConfigAI.VerboseTeacher) {
                 var debugString = "";
-                debugString += ConfigAI.FormatTeacherHeader("Minigames Selected");
+                debugString += ConfigAI.FormatTeacherReportHeader("Minigames Selected");
                 foreach (var minigame in newPlaySessionMiniGames) {
                     debugString += "\n" + minigame.Code;
                 }

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Core;
@@ -239,7 +239,7 @@ namespace Antura.Teacher
                 logDataList.Add(logData);
 
                 // We also update the score for that data element
-                var scoreData = GetVocabularyScoreDataWithMovingAverage(result.dataType, result.elementId, score, previousScoreDataList, ConfigAI.scoreMovingAverageWindow);
+                var scoreData = GetVocabularyScoreDataWithMovingAverage(result.dataType, result.elementId, score, previousScoreDataList, ConfigAI.ScoreMovingAverageWindow);
                 scoreDataList.Add(scoreData);
 
                 // Check whether the vocabulary data was in the journey (and can thus be unlocked)

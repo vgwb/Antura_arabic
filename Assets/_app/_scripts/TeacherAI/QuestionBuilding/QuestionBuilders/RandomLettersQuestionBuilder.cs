@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 
 namespace Antura.Teacher
@@ -75,7 +75,7 @@ namespace Antura.Teacher
 
             var question = firstCorrectIsQuestion ? correctLetters[0] : null;
 
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nCorrect Letters: " + correctLetters.Count;

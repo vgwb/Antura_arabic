@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.LivingLetters;
 using Antura.Core;
 
@@ -26,7 +26,7 @@ namespace Antura.Teacher
                     break;
                 }
                 catch (System.Exception e) {
-                    if (!ConfigAI.teacherSafetyFallbackEnabled) {
+                    if (!ConfigAI.TeacherSafetyFallbackEnabled) {
                         throw e;
                     } else {
                         safetyCounter--;

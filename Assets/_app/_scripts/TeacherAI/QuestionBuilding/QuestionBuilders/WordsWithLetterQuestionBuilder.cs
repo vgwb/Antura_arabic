@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Antura.Core;
 
@@ -110,7 +110,7 @@ namespace Antura.Teacher
 
             var pack = QuestionPackData.Create(commonLetter, correctWords, wrongWords);
 
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nQuestion: " + commonLetter;

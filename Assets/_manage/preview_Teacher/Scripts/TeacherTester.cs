@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Antura.Assessment;
@@ -135,7 +135,7 @@ namespace Antura.Teacher.Test
             // Setup for testing
             Application.runInBackground = true;
             SetVerboseAI(true);
-            ConfigAI.forceJourneyIgnore = false;
+            ConfigAI.ForceJourneyIgnore = false;
 
             /*
             journey_stage_in.onValueChanged.AddListener(x => { currentJourneyStage = int.Parse(x); });
@@ -171,17 +171,17 @@ namespace Antura.Teacher.Test
 
         void SetVerboseAI(bool choice)
         {
-            ConfigAI.verboseTeacher = choice;
+            ConfigAI.VerboseTeacher = choice;
         }
 
         #region Testing API
 
         void ApplyParameters()
         {
-            ConfigAI.verboseQuestionPacks = verboseQuestionPacks;
-            ConfigAI.verboseDataFiltering = verboseDataFiltering;
-            ConfigAI.verboseDataSelection = verboseDataSelection;
-            ConfigAI.verbosePlaySessionInitialisation = verbosePlaySessionInitialisation;
+            ConfigAI.VerboseQuestionPacks = verboseQuestionPacks;
+            ConfigAI.VerboseDataFiltering = verboseDataFiltering;
+            ConfigAI.VerboseDataSelection = verboseDataSelection;
+            ConfigAI.VerbosePlaySessionInitialisation = verbosePlaySessionInitialisation;
         }
 
         private bool IsCodeValid(MiniGameCode code)

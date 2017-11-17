@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 
 namespace Antura.Teacher
@@ -58,7 +58,7 @@ namespace Antura.Teacher
                 }
             );
 
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 string debugString = "Letters: " + alphabetLetters.Count;
                 foreach (var l in alphabetLetters) debugString += " " + l;

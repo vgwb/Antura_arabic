@@ -47,7 +47,7 @@ namespace Antura.Minigames.SickLetters
             TutorialEnabled = true;
             //SickLettersQuestions = new SickLettersQuestionProvider();
             Difficulty = 0.1f;
-            ConfigAI.verboseTeacher = true;
+            ConfigAI.VerboseTeacher = true;
         }
 
         public IQuestionBuilder SetupBuilder() {

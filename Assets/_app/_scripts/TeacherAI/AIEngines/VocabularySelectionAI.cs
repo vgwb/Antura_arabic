@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Core;
@@ -15,9 +15,9 @@ namespace Antura.Teacher
 
         public HashSet<T> GetHashSet<T>()
         {
-            if (typeof(T) == typeof(LetterData)) return letters as HashSet<T>;
-            if (typeof(T) == typeof(WordData)) return words as HashSet<T>;
-            if (typeof(T) == typeof(PhraseData)) return phrases as HashSet<T>;
+            if (typeof(T) == typeof(LetterData)) { return letters as HashSet<T>; }
+            if (typeof(T) == typeof(WordData)) { return words as HashSet<T>; }
+            if (typeof(T) == typeof(PhraseData)) { return phrases as HashSet<T>; }
             return null;
         }
 
@@ -45,8 +45,12 @@ namespace Antura.Teacher
             var set = GetHashSet<T>();
             var newList = new List<T>();
             foreach (var v in targetList)
+            {
                 if (set.Contains(v))
+                {
                     newList.Add(v);
+                }
+            }
             return newList;
         }
 
@@ -99,14 +103,16 @@ namespace Antura.Teacher
         {
             return CreateContentsFromFunc(pair => pair.Key.Stage == pos.Stage);
         }
-        
+
         #endregion
 
-        private VocabularyContents CreateContentsFromFunc(Func<KeyValuePair<JourneyPosition, VocabularyContents>,bool> function)
+        private VocabularyContents CreateContentsFromFunc(Func<KeyValuePair<JourneyPosition, VocabularyContents>, bool> function)
         {
             var contents = new VocabularyContents();
             foreach (var pair in playSessionsContents.Where(function))
+            {
                 contents.UnionWith(pair.Value);
+            }
             return contents;
         }
 
@@ -133,7 +139,7 @@ namespace Antura.Teacher
     /// <summary>
     /// Handles the selection of what vocabulary data a minigame should use, given a playsession
     /// </summary>
-    public class VocabularySelectionAI 
+    public class VocabularySelectionAI
     {
         // References
         private DatabaseManager dbManager;
@@ -168,10 +174,10 @@ namespace Antura.Teacher
             currentBlockContents = progressionContents.GetContentsOfLearningBlock(pos);
             currentStageContents = progressionContents.GetContentsOfStage(pos);
 
-            if (ConfigAI.verbosePlaySessionInitialisation)
+            if (ConfigAI.VerbosePlaySessionInitialisation)
             {
                 string debugString = "";
-                debugString += ConfigAI.FormatTeacherHeader("Play Session Initalisation ("+ currentPlaySessionId+")");
+                debugString += ConfigAI.FormatTeacherReportHeader("Play Session Initalisation (" + currentPlaySessionId + ")");
                 debugString += "\n Current PS:\n" + currentPlaySessionContents;
                 debugString += "\n Current LB:\n" + currentBlockContents;
                 debugString += "\n Current ST:\n" + currentStageContents;
@@ -186,10 +192,13 @@ namespace Antura.Teacher
         public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams, bool isTest = false, bool canReturnZero = false) where T : IVocabularyData
         {
             // skip if we require 0 values
-            if (selectionParams.nRequired == 0 && !selectionParams.getMaxData) return new List<T>();
+            if (selectionParams.nRequired == 0 && !selectionParams.getMaxData)
+            {
+                return new List<T>();
+            }
 
             string debugString = "";
-            debugString += ConfigAI.FormatTeacherHeader("Data Selection: " + typeof(T).Name);
+            debugString += ConfigAI.FormatTeacherReportHeader("Data Selection: " + typeof(T).Name);
 
             // (1) Filtering based on the builder's logic
             var dataList = builderSelectionFunction();
@@ -197,7 +206,7 @@ namespace Antura.Teacher
             debugString += ("\n  Builder: " + dataList.Count);
 
             // (2) Filtering based on journey
-            if (selectionParams.useJourney && !ConfigAI.forceJourneyIgnore)
+            if (selectionParams.useJourney && !ConfigAI.ForceJourneyIgnore)
             {
                 switch (selectionParams.journeyFilter)
                 {
@@ -210,7 +219,7 @@ namespace Antura.Teacher
                         break;
                 }
             }
-            if (selectionParams.severity == SelectionSeverity.AllRequired) 
+            if (selectionParams.severity == SelectionSeverity.AllRequired)
             {
                 if (!CheckRequiredNumberReached(dataList, selectionParams, nAfterBuilder))
                 {
@@ -255,14 +264,14 @@ namespace Antura.Teacher
             debugString += ("\n  History: " + dataList.Count);
 
             // (4) Priority filtering based on current focus
-            List <T> priorityFilteredList = new List<T>();
+            List<T> priorityFilteredList = new List<T>();
             if (!isTest && !selectionParams.getMaxData)
             {
-                string s = ConfigAI.FormatTeacherHeader("Priority Filtering");
+                string s = ConfigAI.FormatTeacherReportHeader("Priority Filtering");
                 int nBefore = selectionParams.nRequired;
                 int nRemaining = selectionParams.nRequired;
                 AddToListFilteringByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
-               
+
                 s += "\n Required: " + nRemaining + " " + typeof(T).Name.ToString();
                 s += "\n" + (nBefore - nRemaining) + " from PS";
                 if (nRemaining > 0)
@@ -291,7 +300,10 @@ namespace Antura.Teacher
                     s += "\n" + (nBefore - nRemaining) + " from the complete contents.";
                 }
 
-                if (ConfigAI.verboseDataFiltering) ConfigAI.AppendToTeacherReport(s);
+                if (ConfigAI.VerboseDataFiltering)
+                {
+                    ConfigAI.AppendToTeacherReport(s);
+                }
                 debugString += ("\n  Priority: " + priorityFilteredList.Count);
             }
             else
@@ -301,15 +313,22 @@ namespace Antura.Teacher
 
             // (5) Weighted selection on the remaining number
             List<T> selectedList = null;
-            if (selectionParams.getMaxData) selectedList = priorityFilteredList;
-            else selectedList = WeightedDataSelect(priorityFilteredList, selectionParams.nRequired, selectionParams.severity);
+            if (selectionParams.getMaxData)
+            {
+                selectedList = priorityFilteredList;
+            }
+            else
+            {
+                selectedList = WeightedDataSelect(priorityFilteredList, selectionParams.nRequired, selectionParams.severity);
+            }
             debugString += ("\n  Selection: " + selectedList.Count);
 
-            if (ConfigAI.verboseDataFiltering && !isTest)
+            if (ConfigAI.VerboseDataFiltering && !isTest)
             {
-                foreach(var selectedEntry in selectedList)
+                foreach (var selectedEntry in selectedList)
+                {
                     debugString += "   [" + selectedEntry + "]";
-
+                }
                 ConfigAI.AppendToTeacherReport(debugString);
             }
 
@@ -321,7 +340,7 @@ namespace Antura.Teacher
                 }
 
                 throw new System.Exception("The teacher could not find any data with the current filters. The game does not seem to be playable at the selected play session."
-                     +"\n" + debugString);
+                     + "\n" + debugString);
             }
 
             // Update the filtering ids
@@ -343,10 +362,17 @@ namespace Antura.Teacher
         {
             int nBefore = outputList.Count;
             foreach (var data in contents.FilterListByContents(inputList))
+            {
                 if (!outputList.Contains(data))
+                {
                     outputList.Add(data);
+                }
+            }
             nRemaining -= outputList.Count - nBefore;
-            if (nRemaining < 0) nRemaining = 0;
+            if (nRemaining < 0)
+            {
+                nRemaining = 0;
+            }
         }
 
         private bool CheckRequiredNumberReached<T>(List<T> dataList, SelectionParameters selectionParams, int nAfterBuilder)
@@ -358,21 +384,30 @@ namespace Antura.Teacher
         private List<T> WeightedDataSelect<T>(List<T> source_data_list, int nToSelect, SelectionSeverity severity) where T : IData
         {
             VocabularyDataType dataType = VocabularyDataType.Letter;
-            if (typeof(T) == typeof(LetterData)) dataType = VocabularyDataType.Letter;
-            else if (typeof(T) == typeof(WordData)) dataType = VocabularyDataType.Word;
-            else if (typeof(T) == typeof(PhraseData)) dataType = VocabularyDataType.Phrase;
+            if (typeof(T) == typeof(LetterData))
+            {
+                dataType = VocabularyDataType.Letter;
+            }
+            else if (typeof(T) == typeof(WordData))
+            {
+                dataType = VocabularyDataType.Word;
+            }
+            else if (typeof(T) == typeof(PhraseData))
+            {
+                dataType = VocabularyDataType.Phrase;
+            }
 
             // Given a (filtered) list of data, select some using weights
             List<VocabularyScoreData> score_data_list = dbManager.Query<VocabularyScoreData>("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "'");
 
             string debugString = "";
-            debugString += ConfigAI.FormatTeacherHeader("Selection Weights");
+            debugString += ConfigAI.FormatTeacherReportHeader("Selection Weights");
 
             List<float> weights_list = new List<float>();
             foreach (var sourceData in source_data_list)
             {
                 float cumulativeWeight = 0;
-                debugString += "\n"+ sourceData.GetId() + " ---";
+                debugString += "\n" + sourceData.GetId() + " ---";
 
                 // Get score data
                 var score_data = score_data_list.Find(x => x.ElementId == sourceData.GetId());
@@ -388,28 +423,37 @@ namespace Antura.Teacher
 
                 // Score Weight [0,1]: higher the lower the score [-1,1] is
                 var scoreWeight = 0.5f * (1 - currentScore);
-                cumulativeWeight += scoreWeight * ConfigAI.data_scoreWeight;
-                debugString += " \tScore: " + scoreWeight * ConfigAI.data_scoreWeight + "(" + scoreWeight + ")";
+                cumulativeWeight += scoreWeight * ConfigAI.Data_scoreWeight;
+                debugString += " \tScore: " + scoreWeight * ConfigAI.Data_scoreWeight + "(" + scoreWeight + ")";
 
                 // RecentPlay Weight  [1,0]: higher the more in the past we saw that data
-                const float dayLinerWeightDecrease = 1f / ConfigAI.daysForMaximumRecentPlayMalus;
+                const float dayLinerWeightDecrease = 1f / ConfigAI.DaysForMaximumRecentPlayMalus;
                 float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
                 float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
-                cumulativeWeight += recentPlayWeight * ConfigAI.data_recentPlayWeight;
-                debugString += " \tRecent: " + recentPlayWeight * ConfigAI.data_recentPlayWeight + "(" + recentPlayWeight + ")";
+                cumulativeWeight += recentPlayWeight * ConfigAI.Data_recentPlayWeight;
+                debugString += " \tRecent: " + recentPlayWeight * ConfigAI.Data_recentPlayWeight + "(" + recentPlayWeight + ")";
 
                 // Current focus weight [1,0]: higher if the data is part of the current play session / learning block / stage
                 float currentPlaySessionWeight = 0;
-                if (currentPlaySessionContents.Contains(sourceData)) currentPlaySessionWeight = 1;
-                else if (currentBlockContents.Contains(sourceData)) currentPlaySessionWeight = 0.5f;
-                else if (currentStageContents.Contains(sourceData)) currentPlaySessionWeight = 0.2f;
-                cumulativeWeight += currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight;
-                debugString += " \tFocus: " + currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight + "(" + currentPlaySessionWeight + ")";
+                if (currentPlaySessionContents.Contains(sourceData))
+                {
+                    currentPlaySessionWeight = 1;
+                }
+                else if (currentBlockContents.Contains(sourceData))
+                {
+                    currentPlaySessionWeight = 0.5f;
+                }
+                else if (currentStageContents.Contains(sourceData))
+                {
+                    currentPlaySessionWeight = 0.2f;
+                }
+                cumulativeWeight += currentPlaySessionWeight * ConfigAI.Data_currentPlaySessionWeight;
+                debugString += " \tFocus: " + currentPlaySessionWeight * ConfigAI.Data_currentPlaySessionWeight + "(" + currentPlaySessionWeight + ")";
 
                 // If the cumulative weight goes to the negatives, we give it a fixed weight
                 if (cumulativeWeight <= 0)
                 {
-                    cumulativeWeight = ConfigAI.data_minimumTotalWeight;
+                    cumulativeWeight = ConfigAI.Data_minimumTotalWeight;
                     continue;
                 }
 
@@ -418,7 +462,10 @@ namespace Antura.Teacher
                 debugString += " TOTw: " + cumulativeWeight;
             }
 
-            if (ConfigAI.verboseDataSelection) ConfigAI.AppendToTeacherReport(debugString);
+            if (ConfigAI.VerboseDataSelection)
+            {
+                ConfigAI.AppendToTeacherReport(debugString);
+            }
 
             // Select data from the list
             List<T> selected_data_list = new List<T>();
@@ -464,7 +511,7 @@ namespace Antura.Teacher
             return progressionContents.GetContentsUpToPlaySession(jp);
         }
 
-        public VocabularyContents CurrentJourneyContents {  get { return currentJourneyContents; } }
+        public VocabularyContents CurrentJourneyContents { get { return currentJourneyContents; } }
 
         #endregion
 
@@ -492,7 +539,10 @@ namespace Antura.Teacher
 
             HashSet<string> ids_set = new HashSet<string>();
             ids_set.UnionWith(psData.Letters);
-            if (pastSessionsToo) ids_set.UnionWith(this.GetAllLetterIdsFromPreviousPlaySessions(psData));
+            if (pastSessionsToo)
+            {
+                ids_set.UnionWith(this.GetAllLetterIdsFromPreviousPlaySessions(psData));
+            }
 
             List<string> ids_list = new List<string>(ids_set);
             return ids_list.ConvertAll(x => dbManager.GetLetterDataById(x));
@@ -536,8 +586,8 @@ namespace Antura.Teacher
 
             HashSet<string> ids_set = new HashSet<string>();
             ids_set.UnionWith(psData.Words);
-            if (previousToo) ids_set.UnionWith(psData.Words_previous);
-            if (pastSessionsToo) ids_set.UnionWith(this.GetAllWordIdsFromPreviousPlaySessions(psData));
+            if (previousToo) { ids_set.UnionWith(psData.Words_previous); }
+            if (pastSessionsToo) { ids_set.UnionWith(this.GetAllWordIdsFromPreviousPlaySessions(psData)); }
 
             List<string> ids_list = new List<string>(ids_set);
             return ids_list.ConvertAll(x => dbManager.GetWordDataById(x));
@@ -563,7 +613,7 @@ namespace Antura.Teacher
 
         #region LearningBlock / PlaySession -> Phrase
 
-        private List<PhraseData> GePhrasesInLearningBlock(string lbId, bool previousToo = true, bool pastBlocksToo = false)
+        private List<PhraseData> GetPhrasesInLearningBlock(string lbId, bool previousToo = true, bool pastBlocksToo = false)
         {
             var lbData = dbManager.GetLearningBlockDataById(lbId);
             var psData_list = dbManager.GetPlaySessionsOfLearningBlock(lbData);
@@ -583,8 +633,8 @@ namespace Antura.Teacher
 
             HashSet<string> ids_set = new HashSet<string>();
             ids_set.UnionWith(psData.Phrases);
-            if (previousToo) ids_set.UnionWith(psData.Phrases_previous);
-            if (pastSessionsToo) ids_set.UnionWith(this.GetAllPhraseIdsFromPreviousPlaySessions(psData));
+            if (previousToo) { ids_set.UnionWith(psData.Phrases_previous); }
+            if (pastSessionsToo) { ids_set.UnionWith(this.GetAllPhraseIdsFromPreviousPlaySessions(psData)); }
 
             List<string> ids_list = new List<string>(ids_set);
             return ids_list.ConvertAll(x => dbManager.GetPhraseDataById(x));

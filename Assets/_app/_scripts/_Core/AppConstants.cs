@@ -81,9 +81,8 @@ namespace Antura.Core
         public const string DbJoinedFolder = "joined";
 
         // Application details (used by Teacher and maybe other)
-        public const float MinimumAge = 4;
-
-        public const float MaximumAge = 10;
+        public const float MinPlayerAge = 4;
+        public const float MaxPlayerAge = 10;
         public const int MinimumStage = 1;
         public const int MaximumStage = 6;
         public const int MinimumMoodValue = 1;

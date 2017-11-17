@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 
 namespace Antura.Teacher
@@ -58,7 +58,7 @@ namespace Antura.Teacher
             if (skipWordZero) words.RemoveAt(0);
 
 
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 string debugString = "Words: " + words.Count;
                 foreach (var w in words) debugString += " " + w;
