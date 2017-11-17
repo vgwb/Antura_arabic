@@ -1,6 +1,8 @@
+using Antura.Core;
+using Antura.Database;
 using System;
 using System.Collections.Generic;
-using Antura.Core;
+
 
 namespace Antura.Teacher
 {
@@ -53,7 +55,10 @@ namespace Antura.Teacher
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             // HACK: the game may need unseparated letters
-            if (forceUnseparatedLetters) AppManager.I.VocabularyHelper.ForceUnseparatedLetters = true;
+            if (forceUnseparatedLetters)
+            {
+                AppManager.I.VocabularyHelper.ForceUnseparatedLetters = true;
+            }
 
             previousPacksIDs_letters.Clear();
             previousPacksIDs_words.Clear();
@@ -79,7 +84,10 @@ namespace Antura.Teacher
 
             bool useJourneyForLetters = parameters.useJourneyForCorrect;
             // @note: we also force the journey if the packs must be used together, as the data filters for journey clash with the new filter
-            if (packsUsedTogether) useJourneyForLetters = false;
+            if (packsUsedTogether)
+            {
+                useJourneyForLetters = false;
+            }
 
             // Get a letter
             var usableLetters = teacher.VocabularyAi.SelectData(
@@ -98,7 +106,7 @@ namespace Antura.Teacher
             currentRoundIDs_words.AddRange(correctWords.ConvertAll(w => w.Id));
 
             // Get words without the letter (only for the first pack of a round)
-            List<Database.WordData> wrongWords = new List<Database.WordData>();
+            var wrongWords = new List<WordData>();
             if (inRoundPackIndex == 0)
             {
                 wrongWords = teacher.VocabularyAi.SelectData(
@@ -124,9 +132,9 @@ namespace Antura.Teacher
             return pack;
         }
 
-        private List<Database.LetterData> FindEligibleLetters(int atLeastNWords)
+        private List<LetterData> FindEligibleLetters(int atLeastNWords)
         {
-            List<Database.LetterData> eligibleLetters = new List<Database.LetterData>();
+            var eligibleLetters = new List<LetterData>();
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             var allLetters = vocabularyHelper.GetAllLetters(parameters.letterFilters);
             var bad_words = new List<string>(currentRoundIDs_words);
@@ -137,16 +145,28 @@ namespace Antura.Teacher
                 var wordsWithLetterFull = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, id);
                 wordsWithLetterFull.RemoveAll(x => bad_words.Contains(x.Id));  // Remove the already used words
                 wordsWithLetterFull.RemoveAll(x => vocabularyHelper.ProblematicWordIds.Contains(x.Id));  // HACK: Skip the problematic words (for now)
-                if (wordsWithLetterFull.Count == 0) continue;
+
+                if (wordsWithLetterFull.Count == 0)
+                {
+                    continue;
+                }
+
                 var wordsWithLetter = AppManager.I.Teacher.VocabularyAi.SelectData(
                     () => wordsWithLetterFull,
                         new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: true), canReturnZero: true);
 
                 int nWords = wordsWithLetter.Count;
-                if (nWords < atLeastNWords) continue;
+
+                if (nWords < atLeastNWords)
+                {
+                    continue;
+                }
 
                 // Avoid using letters that already appeared in the current round's words
-                if (packsUsedTogether && vocabularyHelper.AnyWordContainsLetter(letter, currentRoundIDs_words)) continue;
+                if (packsUsedTogether && vocabularyHelper.AnyWordContainsLetter(letter, currentRoundIDs_words))
+                {
+                    continue;
+                }
 
                 //UnityEngine.Debug.Log("OK letter: " + letter + " with nwords: "  + wordsWithLetter.Count);
 
@@ -155,35 +175,45 @@ namespace Antura.Teacher
             return eligibleLetters;
         }
 
-        private List<Database.WordData> FindCorrectWords(Database.LetterData commonLetter)
+        private List<WordData> FindCorrectWords(LetterData commonLetter)
         {
-            List<Database.WordData> eligibleWords = new List<Database.WordData>();
+            var eligibleWords = new List<WordData>();
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             var words = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, commonLetter.Id);
             var bad_letters = new List<string>(currentRoundIDs_letters);
             bad_letters.Remove(commonLetter.Id);
             foreach (var w in words)
             {
-                if (vocabularyHelper.ProblematicWordIds.Contains(w.Id)) continue;  // HACK: Skip the problematic words (for now)
+                if (vocabularyHelper.ProblematicWordIds.Contains(w.Id))
+                {
+                    // HACK: Skip the problematic words (for now)
+                    continue;
+                }
 
                 // Not words that have one of the previous letters (but the current one)
-                if (vocabularyHelper.WordContainsAnyLetter(w, bad_letters)) continue;
+                if (vocabularyHelper.WordContainsAnyLetter(w, bad_letters))
+                {
+                    continue;
+                }
 
                 eligibleWords.Add(w);
             }
             return eligibleWords;
         }
 
-        private List<Database.WordData> FindWrongWords(List<Database.WordData> correctWords)
+        private List<WordData> FindWrongWords(List<WordData> correctWords)
         {
-            List<Database.WordData> eligibleWords = new List<Database.WordData>();
+            var eligibleWords = new List<WordData>();
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             var words = vocabularyHelper.GetWordsNotIn(parameters.wordFilters, correctWords.ToArray());
             var bad_letters = new List<string>(currentRoundIDs_letters);
             foreach (var w in words)
             {
                 // Not words that have one of the previous letters
-                if (vocabularyHelper.WordContainsAnyLetter(w, bad_letters)) continue;
+                if (vocabularyHelper.WordContainsAnyLetter(w, bad_letters))
+                {
+                    continue;
+                }
 
                 eligibleWords.Add(w);
             }

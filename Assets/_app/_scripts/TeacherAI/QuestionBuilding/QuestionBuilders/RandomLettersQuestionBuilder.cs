@@ -28,7 +28,10 @@ namespace Antura.Teacher
 
         public RandomLettersQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false, QuestionBuilderParameters parameters = null)
         {
-            if (parameters == null) parameters = new QuestionBuilderParameters();
+            if (parameters == null)
+            {
+                parameters = new QuestionBuilderParameters();
+            }
 
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
@@ -37,7 +40,7 @@ namespace Antura.Teacher
             this.parameters = parameters;
 
             // Forced filters
-            this.parameters.letterFilters.excludeDiphthongs = true; 
+            this.parameters.letterFilters.excludeDiphthongs = true;
         }
 
         private List<string> previousPacksIDs = new List<string>();
@@ -46,7 +49,7 @@ namespace Antura.Teacher
         {
             previousPacksIDs.Clear();
 
-            List<QuestionPackData> packs = new List<QuestionPackData>();
+            var packs = new List<QuestionPackData>();
             for (int pack_i = 0; pack_i < nPacks; pack_i++)
             {
                 var pack = CreateSingleQuestionPackData();

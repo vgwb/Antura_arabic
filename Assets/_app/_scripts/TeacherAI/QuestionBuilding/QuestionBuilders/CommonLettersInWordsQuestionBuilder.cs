@@ -45,7 +45,7 @@ namespace Antura.Teacher
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             previousPacksIDs.Clear();
-            List<QuestionPackData> packs = new List<QuestionPackData>();
+            var packs = new List<QuestionPackData>();
             for (int pack_i = 0; pack_i < nPacks; pack_i++)
             {
                 packs.Add(CreateSingleQuestionPackData());
@@ -87,11 +87,14 @@ namespace Antura.Teacher
 
                 // Debug
                 if (ConfigAI.VerboseQuestionPacks)
-                { 
+                {
                     string debugString = "--------- TEACHER: question pack result ---------";
                     debugString += "\nCommon letters: ";
-                    foreach (var l in commonLetters) debugString += " " + l;
-                    foreach(var word in wordsToUse)
+                    foreach (var l in commonLetters)
+                    {
+                        debugString += " " + l;
+                    }
+                    foreach (var word in wordsToUse)
                     {
                         debugString += "\nWord: " + word;
                         foreach (var l in word.Letters) debugString += " " + l;
@@ -110,7 +113,7 @@ namespace Antura.Teacher
 
             return pack;
         }
-        
+
 
     }
 }

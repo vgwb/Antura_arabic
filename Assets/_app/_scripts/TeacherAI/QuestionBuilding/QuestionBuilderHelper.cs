@@ -10,10 +10,10 @@ namespace Antura.Teacher
     {
         public static void SortPacksByDifficulty(List<QuestionPackData> packs)
         {
-            packs.Sort((x, y) => (int) (GetAverageIntrinsicDifficulty(x) - GetAverageIntrinsicDifficulty(y)));
+            packs.Sort((x, y) => (int)(getAverageIntrinsicDifficulty(x) - getAverageIntrinsicDifficulty(y)));
         }
 
-        private static float GetAverageIntrinsicDifficulty(QuestionPackData pack)
+        private static float getAverageIntrinsicDifficulty(QuestionPackData pack)
         {
             float qDiff = 0;
             float cDiff = 0;
@@ -21,22 +21,31 @@ namespace Antura.Teacher
             float qWeight = 0.5f;
             float cWeight = 0.5f;
 
-            if (pack.questions != null && pack.questions.Count > 0) {
-                foreach (var q in pack.questions) qDiff += ((IVocabularyData) q).GetIntrinsicDifficulty();
+            if (pack.questions != null && pack.questions.Count > 0)
+            {
+                foreach (var q in pack.questions) qDiff += ((IVocabularyData)q).GetIntrinsicDifficulty();
                 qDiff /= pack.questions.Count;
             }
-            if (pack.question != null) {
-                qDiff += ((IVocabularyData) pack.question).GetIntrinsicDifficulty();
-            } else {
+
+            if (pack.question != null)
+            {
+                qDiff += ((IVocabularyData)pack.question).GetIntrinsicDifficulty();
+            }
+            else
+            {
                 qWeight = 0;
             }
 
-            if (pack.correctAnswers.Count > 0) {
-                foreach (var c in pack.correctAnswers) {
-                    cDiff += ((IVocabularyData) c).GetIntrinsicDifficulty();
+            if (pack.correctAnswers.Count > 0)
+            {
+                foreach (var c in pack.correctAnswers)
+                {
+                    cDiff += ((IVocabularyData)c).GetIntrinsicDifficulty();
                 }
                 cDiff /= pack.correctAnswers.Count;
-            } else {
+            }
+            else
+            {
                 cWeight = 0;
             }
 

@@ -61,11 +61,11 @@ namespace Antura.Teacher
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             // HACK: the game may need unseparated letters
-            if (forceUnseparatedLetters) AppManager.I.VocabularyHelper.ForceUnseparatedLetters = true;
+            if (forceUnseparatedLetters) { AppManager.I.VocabularyHelper.ForceUnseparatedLetters = true; }
 
             previousPacksIDs_words.Clear();
             previousPacksIDs_letters.Clear();
-            List<QuestionPackData> packs = new List<QuestionPackData>();
+            var packs = new List<QuestionPackData>();
             for (int round_i = 0; round_i < nRounds; round_i++)
             {
                 // At each round, we must make sure to not repeat some words / letters
@@ -89,7 +89,8 @@ namespace Antura.Teacher
             var usableWords = teacher.VocabularyAi.SelectData(
                 () => FindEligibleWords(maxWordLength: maximumWordLength),
                     new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
-                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
+                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words)
+            );
             var wordQuestion = usableWords[0];
             currentRoundIDs_words.Add(wordQuestion.Id);
             //UnityEngine.Debug.LogWarning("Chosen word: " + question);
@@ -106,13 +107,13 @@ namespace Antura.Teacher
             // Get some letters (from that word)
             var correctLetters = teacher.VocabularyAi.SelectData(
                 () => FindCorrectLetters(wordQuestion, wordLetters),
-                 new SelectionParameters(parameters.correctSeverity, nCorrect, getMaxData:useAllCorrectLetters, 
+                 new SelectionParameters(parameters.correctSeverity, nCorrect, getMaxData: useAllCorrectLetters,
                     useJourney: useJourneyForLetters, filteringIds: previousPacksIDs_letters));
             currentRoundIDs_letters.AddRange(correctLetters.ConvertAll(w => w.Id));
 
             // Get some wrong letters (not from that word, nor other words, nor previous letters)
             // Only for the first pack of the round
-            List<LetterData> wrongLetters = new List<LetterData>();
+            var wrongLetters = new List<LetterData>();
             if (inRoundPackIndex == 0)
             {
                 wrongLetters = teacher.VocabularyAi.SelectData(
@@ -140,20 +141,32 @@ namespace Antura.Teacher
         public List<WordData> FindEligibleWords(int maxWordLength)
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
-            List<WordData> eligibleWords = new List<WordData>();
-            foreach(var word in vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters))
+            var eligibleWords = new List<WordData>();
+            foreach (var word in vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters))
             {
                 // HACK: Skip the problematic words (for now)
-                if (vocabularyHelper.ProblematicWordIds.Contains(word.Id)) continue;
+                if (vocabularyHelper.ProblematicWordIds.Contains(word.Id))
+                {
+                    continue;
+                }
 
                 // Check max length
-                if (word.Letters.Length > maxWordLength) continue;
+                if (word.Letters.Length > maxWordLength)
+                {
+                    continue;
+                }
 
                 // Avoid using words that contain previously chosen letters
-                if (vocabularyHelper.WordContainsAnyLetter(word, currentRoundIDs_letters)) continue;
+                if (vocabularyHelper.WordContainsAnyLetter(word, currentRoundIDs_letters))
+                {
+                    continue;
+                }
 
                 // Avoid using words that have ONLY letters that appeared in previous words
-                if (vocabularyHelper.WordHasAllLettersInCommonWith(word, currentRoundIDs_words)) continue;
+                if (vocabularyHelper.WordHasAllLettersInCommonWith(word, currentRoundIDs_words))
+                {
+                    continue;
+                }
 
                 eligibleWords.Add(word);
             }
@@ -164,13 +177,16 @@ namespace Antura.Teacher
         public List<LetterData> FindCorrectLetters(WordData selectedWord, List<LetterData> wordLetters)
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
-            List<LetterData> eligibleLetters = new List<LetterData>();
+            var eligibleLetters = new List<LetterData>();
             var bad_words = new List<string>(currentRoundIDs_words);
             bad_words.Remove(selectedWord.Id);
             foreach (var letter in wordLetters)
             {
                 // Avoid using letters that appeared in previous words
-                if (vocabularyHelper.LetterContainedInAnyWord(letter, bad_words)) continue;
+                if (vocabularyHelper.LetterContainedInAnyWord(letter, bad_words))
+                {
+                    continue;
+                }
 
                 eligibleLetters.Add(letter);
             }
@@ -180,14 +196,17 @@ namespace Antura.Teacher
         public List<LetterData> FindWrongLetters(WordData selectedWord, List<LetterData> wordLetters)
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
-            List<LetterData> noWordLetters = vocabularyHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray());
-            List<LetterData> eligibleLetters = new List<LetterData>();
+            var noWordLetters = vocabularyHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray());
+            var eligibleLetters = new List<LetterData>();
             var bad_words = new List<string>(currentRoundIDs_words);
             bad_words.Remove(selectedWord.Id);
             foreach (var letter in noWordLetters)
             {
                 // Avoid using letters that appeared in previous words
-                if (vocabularyHelper.LetterContainedInAnyWord(letter, bad_words)) continue;
+                if (vocabularyHelper.LetterContainedInAnyWord(letter, bad_words))
+                {
+                    continue;
+                }
 
                 eligibleLetters.Add(letter);
             }

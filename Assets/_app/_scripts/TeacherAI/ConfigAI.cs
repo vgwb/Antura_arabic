@@ -75,17 +75,17 @@ namespace Antura.Teacher
 
         public static void PrintTeacherReport(bool logOnly = false)
         {
-            teacherReportString = "----- TEACHER REPORT " + DateTime.Now + "----" + teacherReportString;
             if (VerboseTeacher)
             {
+                teacherReportString = "----- TEACHER REPORT " + DateTime.Now + "----" + teacherReportString;
                 Debug.Log(teacherReportString);
-            }
 #if UNITY_EDITOR
-            if (VerboseTeacher && !logOnly)
-            {
-                System.IO.File.WriteAllText(Application.persistentDataPath + "/teacher_report.txt", teacherReportString);
-            }
+                if (!logOnly)
+                {
+                    System.IO.File.WriteAllText(Application.persistentDataPath + "/teacher_report.txt", teacherReportString);
+                }
 #endif
+            }
         }
 
         public static void ReportPacks(List<QuestionPackData> packs)

@@ -104,7 +104,6 @@ namespace Antura.Minigames
                     // No specific sorting
                     ret = 0;
                     break;
-                    ;
                 case PlaySessionDataOrder.Sequence:
                     // In case of a Sequence PS, two minigames with the same minimum play session are sorted based on the sequence order
                     var miniGameInPlaySession1 =
