@@ -261,8 +261,13 @@ namespace Antura.Map
         {
             //Debug.Log("FLUSH TO " + upToJourneyPos);
             int upToPosIndex = StageMapsManager.GetPosIndexFromJourneyPosition(this, upToJourneyPos);
-            foreach (var pin in playPins) {
-                if (pin.pinIndex > upToPosIndex) {
+            foreach (var pin in playPins)
+            {
+                // Stop when we find locked pins
+                if (pin.isLocked) break;
+
+                if (pin.pinIndex > upToPosIndex)
+                {
                     break;
                 }
 
