@@ -16,7 +16,8 @@ namespace Antura.Map
         void Update()
         {
             // Touch movement controls
-            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject()
+            if (Input.GetMouseButtonUp(0) 
+                && !IsTouchingSomething()
               && !mapCameraController.IsFollowingFinger)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -34,6 +35,17 @@ namespace Antura.Map
                     }
                 }
             }
+        }
+
+        private bool IsTouchingSomething()
+        {
+            // Mouse is -1, the rest are fingers
+            for (int touchId = -1; touchId < Input.touchCount; touchId++)
+            {
+                bool isTouching = EventSystem.current.IsPointerOverGameObject(touchId);
+                if (isTouching) return true;
+            }
+            return false;
         }
 
     }
