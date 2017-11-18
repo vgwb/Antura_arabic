@@ -32,18 +32,16 @@ namespace Antura.Teacher
         // Helpers
         // TODO refactor: these helpers should be separated from the TeacherAI.
         private VocabularyHelper vocabularyHelper;
-        private JourneyHelper journeyHelper;
         private ScoreHelper scoreHelper;
 
         #region Setup
 
-        public TeacherAI(DatabaseManager _dbManager, VocabularyHelper _vocabularyHelper, JourneyHelper _journeyHelper, ScoreHelper _scoreHelper)
+        public TeacherAI(DatabaseManager _dbManager, VocabularyHelper _vocabularyHelper, ScoreHelper _scoreHelper)
         {
             I = this;
             dbManager = _dbManager;
 
             vocabularyHelper = _vocabularyHelper;
-            journeyHelper = _journeyHelper;
             scoreHelper = _scoreHelper;
 
             logAI = new LogAI(_dbManager);
