@@ -56,6 +56,7 @@ Stages (map levels), Learning Blocks (ropes) and Play Sessions (dots, with large
 This is achieved through `Antura.Map.MiniMap.GetAllPlaySessionStateForStage()`.
 
 The **Map scene** allows several actions to be performed through its UI:
+
 - The user may access the **Antura Space scene**.
 - The user may access the **Player Book scene**.
 - The user may start a new *Play Session* by reaching one of the available (i.e. unlocked) pins on the map and pressing the *play* button.
@@ -67,11 +68,11 @@ Refer to **Teacher.md** for details on minigame selection for a given play sessi
 
 `** WARNING: the CurrentMiniGameInPlaySession data is now handled by the Teacher and PlayerProfile, but this is bad. Refactor it, then detail it here. **`
 
-Depending on whether the next play session is an Assessment or not, the navigation may change.
+Depending on whether the next PlaySession is an Assessment or not, the navigation may change:
 
-If the next play session is an Assessment, the *Navigation Manager* calls `GoToGameScene(MiniGameData _miniGame)` directly. Refer to the next section.
+- If the next PlaySession is an Assessment, the *Navigation Manager* calls `GoToGameScene(MiniGameData _miniGame)` directly. Refer to the next section.
 
-If the next play session is not an Assessment, the *Navigation Manager* instead accesses the **Game Selector scene**, which is responsible for showing in a playful way what minigames were selected by the Teacher System.
+- If the next PlaySession is MiniGames, the *Navigation Manager* instead accesses the **Game Selector scene**, which is responsible for showing in a playful way what minigames were selected by the Teacher System.
 The Game Selector scene will first automatically call the method `GamesSelector.AutoLoadMinigames()`, which calls `GamesSelector.Show()` passing the list of currently selected minigames.
 The method also adds the delegate `GameSelector.GoToMiniGame()` to the `GamesSelector.OnComplete` event, triggered when the user finishes interaction with the Games Selector.
 `GameSelector.GoToMiniGame()` will at last signal the *Navigation Manager* to access the first selected minigame.
@@ -80,21 +81,21 @@ The method also adds the delegate `GameSelector.GoToMiniGame()` to the `GamesSel
 
 Any call to `NavigationManager.GoToGameScene(MiniGameData _miniGame)` triggers a subseuqnet call to `MiniGameLauncher.LaunchGame(MiniGameCode miniGameCode)` to launch the next of the minigames for that play session.
 
-The **MiniGameLauncher** is responsible for correcting loading minigames with teacher-approved data, given a **MiniGameCode** that represents what minigame to load.
+The **MiniGameLauncher** is responsible for the correct launch of MiniGames with teacher-approved data.
 The start of a minigame is initialised by a call to `MiniGameLauncher.LaunchGame(MiniGameCode miniGameCode)`.
 The launcher then calls `TeacherAI.GetCurrentDifficulty(MiniGameCode miniGameCode)` to obtain the difficulty value for the specific minigame session, generates a **GameConfiguration** instance with the correct difficulty settings, and starts the minigame through `MiniGameAPI.StartGameMiniGameCode(MiniGameCode _gameCode, GameConfiguration _gameConfiguration)`
 
-The `MiniGameAPI.StartGameMiniGameCode()` method first retrieves the data related to the specified minigame from the database for later retrieval and assigns it to `AppManager.CurrentMinigame`
+The `MiniGameAPI.StartGameMiniGameCode()` method first retrieves the data related to the specified minigame from the database for later retrieval and assigns it to `AppManager.CurrentMinigame`.
 The process then calls **MiniGameAPI.ConfigureMiniGame** to retrieve the concrete **IGameConfiguration** and **IGameContext** for the given minigame code, assigning them to the minigame static **IGameConfiguration** concrete implementation.
 
-At this point, the Teacher System is queried in order to retrieve a set of **QuestionPack** instances that define the learning content that the minigame should access and that are accessible through the `IGameConfiguration.Questions` field.
+At this point, the Teacher System is queried to retrieve a set of **QuestionPack** instances that define the learning content that the minigame should access and that are accessible through the `IGameConfiguration.Questions` field.
 Refer to **Teacher.md** and **MiniGame.md** for further details on how the learning data is selected and passed to minigames.
 
 At last, the minigame being correctly configured, it can be started, and the *Navigation Manager* will thus load the scene that matches the specific minigame.
 
 ### MiniGame Play
 
-Minigames are responsible for handling their internal state, while the core application waits for the minigame to end.
+MiniGames are responsible for handling their internal state, while the core application waits for the minigame to end.
 Refer to **MiniGame.md** for details on how the minigame flow is implemented.
 
 ### MiniGame End

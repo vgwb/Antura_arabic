@@ -50,7 +50,7 @@ Minigames can be configured to be more or less difficult (i.e. challanging) for 
 This *Engine* is in charge of selecting what difficulty to use for a given minigame session.
 Difficulty is defined as a float value in the range [0,1], with 0 being the easiest, and 1 being the hardest.
 
-Note that the difficulty value is related only to the specific minigame (and thus not related to other minigames) and is implemented in the minigame's logic, following the above general rule. See the [Minigames](Minigames.md) documentation for further details.
+Note that the difficulty value is related only to the specific minigame (and thus not related to other minigames) and is implemented in the minigame's logic, following the above general rule. See the [MiniGame](MiniGame.md) documentation for further details.
 
 The difficulty value logic depends on several variables:
 - The current performance of the player for the given minigame. The game is more difficult the better the player gets. The current performance starts from 0 and may rise up to 1.
