@@ -75,8 +75,8 @@ namespace Antura.Teacher
         /// Play sessions unlocked thus far
         /// </summary>
         private Dictionary<JourneyPosition, VocabularyContents> playSessionsContents = new Dictionary<JourneyPosition, VocabularyContents>();
-        private VocabularyContents allContents = new VocabularyContents();
 
+        private VocabularyContents allContents = new VocabularyContents();
         public VocabularyContents AllContents
         {
             get { return allContents; }
@@ -468,7 +468,7 @@ namespace Antura.Teacher
             }
 
             // Select data from the list
-            List<T> selected_data_list = new List<T>();
+            var selected_data_list = new List<T>();
             if (source_data_list.Count > 0)
             {
                 int nToSelectFromCurrentList = 0;
@@ -519,13 +519,13 @@ namespace Antura.Teacher
         // @todo: move these to JourneyHelper instead?
         #region LearningBlock / PlaySession -> Letter
 
-        public List<LetterData> GetLettersInLearningBlock(string lbId, bool pastBlocksToo = false)
+        public List<LetterData> GetLettersInLearningBlock(string LB_Id, bool pastBlocksToo = false)
         {
-            var lbData = dbManager.GetLearningBlockDataById(lbId);
-            var psData_list = dbManager.GetPlaySessionsOfLearningBlock(lbData);
+            var LB_Data = dbManager.GetLearningBlockDataById(LB_Id);
+            var PS_Data_list = dbManager.GetPlaySessionsOfLearningBlock(LB_Data);
 
             var letterData_set = new HashSet<LetterData>();
-            foreach (var psData in psData_list)
+            foreach (var psData in PS_Data_list)
             {
                 var ps_letterData = GetLettersInPlaySession(psData.Id, pastBlocksToo);
                 letterData_set.UnionWith(ps_letterData);
@@ -533,15 +533,15 @@ namespace Antura.Teacher
             return new List<LetterData>(letterData_set);
         }
 
-        private List<LetterData> GetLettersInPlaySession(string psId, bool pastSessionsToo = false)
+        private List<LetterData> GetLettersInPlaySession(string PS_Id, bool pastSessionsToo = false)
         {
-            var psData = dbManager.GetPlaySessionDataById(psId);
+            var PlaySessionData = dbManager.GetPlaySessionDataById(PS_Id);
 
             var ids_set = new HashSet<string>();
-            ids_set.UnionWith(psData.Letters);
+            ids_set.UnionWith(PlaySessionData.Letters);
             if (pastSessionsToo)
             {
-                ids_set.UnionWith(this.GetAllLetterIdsFromPreviousPlaySessions(psData));
+                ids_set.UnionWith(this.GetAllLetterIdsFromPreviousPlaySessions(PlaySessionData));
             }
 
             var ids_list = new List<string>(ids_set);

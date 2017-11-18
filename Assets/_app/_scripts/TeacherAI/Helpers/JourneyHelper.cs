@@ -127,24 +127,24 @@ namespace Antura.Teacher
         {
             // @todo: this could use the new ScoreHelper methods
             // @todo: probably move this to ScoreHelper
-            List<LearningBlockInfo> learningBlockInfo_list = new List<LearningBlockInfo>();
+            var learningBlockInfo_list = new List<LearningBlockInfo>();
+            var learningBlockData_list = FindLearningBlockDataOfStage(targetStage);
 
-            List<LearningBlockData> learningBlockData_list = FindLearningBlockDataOfStage(targetStage);
             foreach (var learningBlockData in learningBlockData_list)
             {
-                LearningBlockInfo info = new LearningBlockInfo();
-                info.data = learningBlockData;
-                info.score = 0; // 0 if not found otherwise in the next step
-                learningBlockInfo_list.Add(info);
+                var LB_info = new LearningBlockInfo();
+                LB_info.data = learningBlockData;
+                LB_info.score = 0; // 0 if not found otherwise in the next step
+                learningBlockInfo_list.Add(LB_info);
             }
 
             // Find all previous scores
-            List<JourneyScoreData> scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
+            var scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
             for (int i = 0; i < learningBlockInfo_list.Count; i++)
             {
-                var info = learningBlockInfo_list[i];
-                var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.LearningBlock && x.ElementId == info.data.Id);
-                info.score = scoreData.GetScore();
+                var LB_info = learningBlockInfo_list[i];
+                var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.LearningBlock && x.ElementId == LB_info.data.Id);
+                LB_info.score = scoreData.GetScore();
             }
 
             return learningBlockInfo_list;
@@ -153,32 +153,30 @@ namespace Antura.Teacher
         /// <summary>
         /// Returns a list of all play session data with its current score for the given stage and learning block.
         /// </summary>
-        /// <param name="_stage"></param>
+        /// <param name="targetStage"></param>
+        /// <param name="targetLearningBlock"></param>
         /// <returns></returns>
         public List<PlaySessionInfo> GetPlaySessionInfosForLearningBlock(int targetStage, int targetLearningBlock)
         {
             // @todo: this could use the new ScoreHelper methods
             // @todo: probably move this to ScoreHelper
-            List<PlaySessionInfo> playSessionInfo_list = new List<PlaySessionInfo>();
-
-            List<Database.PlaySessionData> playSessionData_list =
-                FindPlaySessionDataOfStageAndLearningBlock(targetStage, targetLearningBlock);
+            var playSessionInfo_list = new List<PlaySessionInfo>();
+            var playSessionData_list = FindPlaySessionDataOfStageAndLearningBlock(targetStage, targetLearningBlock);
             foreach (var playSessionData in playSessionData_list)
             {
-                PlaySessionInfo info = new PlaySessionInfo();
-                info.data = playSessionData;
-                info.score = 0; // 0 if not found otherwise in the next step
-                playSessionInfo_list.Add(info);
+                var PS_info = new PlaySessionInfo();
+                PS_info.data = playSessionData;
+                PS_info.score = 0; // 0 if not found otherwise in the next step
+                playSessionInfo_list.Add(PS_info);
             }
 
             // Find all previous scores
-            List<JourneyScoreData> scoreData_list =
-                AppManager.I.ScoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
+            var scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
             for (int i = 0; i < playSessionInfo_list.Count; i++)
             {
-                var info = playSessionInfo_list[i];
-                var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.PlaySession && x.ElementId == info.data.Id);
-                info.score = scoreData.GetScore();
+                var PS_info = playSessionInfo_list[i];
+                var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.PlaySession && x.ElementId == PS_info.data.Id);
+                PS_info.score = scoreData.GetScore();
             }
 
             return playSessionInfo_list;

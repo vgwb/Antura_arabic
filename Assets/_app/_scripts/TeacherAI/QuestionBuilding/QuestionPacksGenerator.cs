@@ -61,7 +61,7 @@ namespace Antura.Teacher
 
             ConfigAI.ReportPacks(questionPackDataList);
 
-            var questionPackList = ConvertToQuestionPacks(questionPackDataList);
+            var questionPackList = ConvertQuestionPackDataToQuestionPack(questionPackDataList);
             return questionPackList;
         }
 
@@ -121,7 +121,7 @@ namespace Antura.Teacher
             return isSame;
         }
 
-        private List<IQuestionPack> ConvertToQuestionPacks(List<QuestionPackData> questionPackDataList)
+        private List<IQuestionPack> ConvertQuestionPackDataToQuestionPack(List<QuestionPackData> questionPackDataList)
         {
             var questionPackList = new List<IQuestionPack>();
             foreach (var questionPackData in questionPackDataList)

@@ -126,19 +126,19 @@ namespace Antura.Teacher
 
         #region MiniGame Validity
 
-        private Dictionary<MiniGameCode, JourneyPosition> minimumMiniGameJourneyPositions = new Dictionary<MiniGameCode, JourneyPosition>();
+        private Dictionary<MiniGameCode, JourneyPosition> minMiniGameJourneyPositions = new Dictionary<MiniGameCode, JourneyPosition>();
 
         private void buildMinimumMiniGameJourneyPositions()
         {
             var allPsData = dbManager.GetAllPlaySessionData();
             foreach (var mgcode in GenericHelper.SortEnums<MiniGameCode>())
             {
-                minimumMiniGameJourneyPositions[mgcode] = null;
+                minMiniGameJourneyPositions[mgcode] = null;
                 foreach (var psData in allPsData)
                 {
                     if (CanMiniGameBePlayedAtPlaySession(psData, mgcode))
                     {
-                        minimumMiniGameJourneyPositions[mgcode] = psData.GetJourneyPosition();
+                        minMiniGameJourneyPositions[mgcode] = psData.GetJourneyPosition();
                         //Debug.Log(mgcode + " min at " + psData.GetJourneyPosition());
                         break;
                     }
@@ -175,12 +175,12 @@ namespace Antura.Teacher
         /// </summary>
         public bool CanMiniGameBePlayedAfterMinPlaySession(JourneyPosition jp, MiniGameCode code)
         {
-            if (minimumMiniGameJourneyPositions[code] == null)
+            if (minMiniGameJourneyPositions[code] == null)
             {
                 return false;
             }
-            return minimumMiniGameJourneyPositions[code].IsMinor(jp)
-                 || minimumMiniGameJourneyPositions[code].Equals(jp);
+            return minMiniGameJourneyPositions[code].IsMinor(jp)
+                 || minMiniGameJourneyPositions[code].Equals(jp);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace Antura.Teacher
         /// </summary>
         public bool CanMiniGameBePlayedAtAnyPlaySession(MiniGameCode code)
         {
-            return minimumMiniGameJourneyPositions[code] != null;
+            return minMiniGameJourneyPositions[code] != null;
         }
 
         #endregion
@@ -281,7 +281,7 @@ namespace Antura.Teacher
         public List<LogMoodData> GetLastMoodData(int number)
         {
             string query = string.Format("SELECT * FROM " + typeof(LogMoodData).Name + " ORDER BY Timestamp LIMIT {0}", number);
-            List<LogMoodData> list = dbManager.FindLogMoodDataByQuery(query);
+            var list = dbManager.FindLogMoodDataByQuery(query);
             return list;
         }
 

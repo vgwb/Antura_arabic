@@ -90,8 +90,9 @@ namespace Antura.Teacher
         {
             // Get all minigames ids for the given playsession (from PlaySessionData)
             // ... also, keep the weights around
-            var playsession_weights_dict = new Dictionary<MiniGameCode, float>();
             var minigame_id_list = new List<string>();
+            var playsession_weights_dict = new Dictionary<MiniGameCode, float>();
+
             foreach (var minigameInPlaySession in playSessionData.Minigames)
             {
                 minigame_id_list.Add(minigameInPlaySession.MiniGameCode.ToString());
@@ -114,6 +115,7 @@ namespace Antura.Teacher
             var required_minigames = new List<MiniGameData>();
 
             string debugString = ConfigAI.FormatTeacherReportHeader("Minigame Selection");
+
             foreach (var minigame_data in minigame_data_list)
             {
                 float cumulativeWeight = 0;
@@ -135,8 +137,7 @@ namespace Antura.Teacher
                 if (playsession_weights_dict[minigame_data.Code] >= 100)
                 {
                     required_minigames.Add(minigame_data);
-                    debugString += " REQUIRED! ";
-                    debugString += "\n";
+                    debugString += " REQUIRED!\n";
                     continue;
                 }
 
@@ -149,8 +150,7 @@ namespace Antura.Teacher
 
                 // Save cumulative weight
                 weights_list.Add(cumulativeWeight);
-                debugString += " TOTw: " + cumulativeWeight;
-                debugString += "\n";
+                debugString += " TOTw: " + cumulativeWeight + "\n";
             }
             if (ConfigAI.VerboseMinigameSelection)
             {

@@ -91,6 +91,9 @@ namespace Antura.Core
         public const int MinMiniGameScore = 0;
         public const int MaxMiniGameScore = 3;
 
+        // used for float to float comparisons
+        public const float EPSILON = 0.00001f;
+
         // Language specifics
         public static readonly TextDirection TextDirection = TextDirection.RightToLeft;
 
