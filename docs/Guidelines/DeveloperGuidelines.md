@@ -22,7 +22,7 @@ Developers should follow these guidelines for contributing to the project.
 
 - Use *MiniGame*, not *Minigame* (but *minigame* when lowercase)
 - All data related to the learning content should be referred to as *Vocabulary data* (instead of the triad Letter/Word/Phrase)
-- All data related to the journey progression should be referred to as *Journey data*
+- All data related to the journey progression should be referred to as *Journey data* (which consists of Stage + LearningBlock + PlaySession)
 
 ## Namespaces
 
@@ -47,9 +47,7 @@ What follows is a list of subsystems with their namespaces:
 
 **Never commit anything without a namespace, nor anything under the root Antura namespace**
 
-## Project Structure
-
-### Git Ignore
+## Git Ignore
 
 there are several fiels and directories put under Git Ignore.. the useful from Dev POV are:
 

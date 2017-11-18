@@ -40,9 +40,9 @@ Refer to the [Database documentation](Database.md).
 ## Creation & Deletion
 
 The Player Profile Manager handles creation, selection, and deletion of player profiles.
-The system is designed to support a maximum number of players, defined as **PlayerProfileManager.MaxNumberOfPlayerProfiles**.
+The system is designed to support a maximum number of players, defined as `PlayerProfileManager.MaxNumberOfPlayerProfiles`.
 
-A list of existing player profiles can be retrieved from the **AppManager.GameSettings.AvailablePlayers**.
+A list of existing player profiles can be retrieved from the `AppManager.GameSettings.AvailablePlayers`.
 
 Whenever a Player Profile is created, an exclusive Avatar Id is also selected, which represents the avatar image assigned to that profile.
 
