@@ -6,7 +6,7 @@ namespace Antura.Editor
 {
     public class InfoView : EditorWindow
     {
-        [MenuItem("Tools/Antura/Info", false, 300)]
+        [MenuItem("Antura/Info", false, 300)]
         static void ShowWindow()
         {
             EditorWindow.GetWindow(typeof(InfoView));

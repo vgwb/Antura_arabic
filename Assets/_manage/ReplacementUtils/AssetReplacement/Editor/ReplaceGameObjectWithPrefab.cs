@@ -10,7 +10,7 @@ namespace Replacement
         static GameObject go;
         static GameObject prefab;
 
-        [MenuItem("Tools/Antura/Replacement/Replace GameObject With Prefab")]
+        [MenuItem("Antura/Replacement/Replace GameObject With Prefab")]
         static void Init()
         {
             GetWindow<ReplaceGameObjectWithPrefab>().Show();

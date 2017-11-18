@@ -10,7 +10,7 @@ namespace Replacement
     {
         static Object obj;
 
-        [MenuItem("Tools/Antura/Replacement/Parse Asset As Text")]
+        [MenuItem("Antura/Replacement/Parse Asset As Text")]
         static void Init()
         {
             GetWindow<ParseAssetAsText>().Show();
