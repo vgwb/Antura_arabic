@@ -16,11 +16,11 @@
     <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
     <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
     <a href="{{site.github.url}}" class="btn">Home</a>
-    <a href="/Releases.html" class="btn">Releases</a>
-    <a href="/API/" class="btn">API</a>
+    <a href="{{site.github.url}}/Releases.html" class="btn">Releases</a>
+    <a href="{{site.github.url}}/API/" class="btn">API</a>
 
     {% if site.github.is_project_page %}
-    <a href="{{ site.github.repository_url }}" class="btn">GitHub</a>
+    <a href="{{site.github.repository_url}}" class="btn">GitHub</a>
     {% endif %}
 
   </section>
