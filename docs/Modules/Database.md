@@ -50,27 +50,28 @@ The data is divided in several categories:
 
 - **Player Profile Data** holds the player's information and current preferences.
 
-See the Logging.md document for further details on logging.
+See the [Loggin](Logging.md) document for further details on logging.
+
+### SQLite
 
 The database is implemented in SQLite.
 The SQLite database is loaded and connected to whenever a player profile is selected, and generated if non-existing.
 All communication with the SQLite database is performed through a **Antura.Db.DBService** instance, managed by the **DatabaseManager**.
-The structure of the SQLite database can be generated a runtime and this is controlled through the **DBService.GenerateTable(bool create, bool drop)**, which can be updated to reflect any changes in the DB scheme.
+The structure of the SQLite database can be generated a runtime and this is controlled through the `DBService.GenerateTable(bool create, bool drop)`, which can be updated to reflect any changes in the DB scheme.
 Note that any change to the database scheme must also prompt a sequential update of **AppConstants.DbSchemeVersion** for versioning to function correctly.
 
 ## Profile API
 
 The logging database supports multiple profiles.
-A profile can be selected using **Antura.Db.DatabaseManager.LoadDynamicDbForPlayerProfile(int profileId)**, which loads (or creates if it does not exists) a database for logging data of the chosen player.
+A profile can be selected using `Antura.Db.DatabaseManager.LoadDynamicDbForPlayerProfile(int profileId)`, which loads (or creates if it does not exists) a database for logging data of the chosen player.
 Player profiles are also supported with:
-- New profile creation (through **CreateProfile()**)
-- Profile deletion (through **DropProfile()**)
-
+- New profile creation (through `CreateProfile()`)
+- Profile deletion (through `DropProfile()`)
 
 ## Reading API
 
 To read learning or logging data, a single entry point is used throughout the application.
-**Antura.DatabaseManager** is the entry point and can be access through the public field **AppManager.I.Db**.
+**Antura.DatabaseManager** is the entry point and can be access through the public field `AppManager.I.Db`.
 
 The Database Manager provides several methods for each data type represented in the learning and logging data.
 

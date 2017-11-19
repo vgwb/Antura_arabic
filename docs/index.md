@@ -6,59 +6,19 @@
 - [Credits](Credits.md)
 - [Releases](Releases.md) the history of app releases and major changelog
 
-## User and Tester guides
+## Dev, User and Tester guides
 
-- [Debug Shortcuts](HowTo/DebugShortcuts.md) cheats and keyboard shortcuts
-- [Export Database](HowTo/ExportPlayerDatabase.md) how to export player databases
+- [HowTo](HowTo.md)
 
-## Developer guides
+## Project Architecture
 
-- [Install](HowTo/INSTALL.md) how to install and configure the Unity project
-- [Build](HowTo/Build.md) how to build the app for mobile devices
-- [Collaborator](Guidelines/Collaborator.md) how to collaborate
-- [Developer Guidelines and Tips](Guidelines/DeveloperGuidelines.md) general guidelines for developers that want to contribute to the project
-- [Refactoring Guidelines](Guidelines/RefactoringGuidelines.md)
-- [Export Google Sheet Data](HowTo/ExportGoogleSheetData.md) as JSON files
-- [Arabic Font](HowTo/ArabicFont.md) how to create the arabic Atlas with TextMeshPro
-- [Drawing Font](HowTo/DrawingsFont.md) how to create the drawings font Atlas with TextMeshPro
+- [Project Architecture](Architecture.md)
 
-### Core and Modules
+## MiniGames
 
-- [Project Structure](Guidelines/ProjectStructure.md) the structure of the Unity project.
-- [Application Flow](Modules/ApplicationFlow.md) the complete flow of the application, useful if you want to understand the call flow.
-- [Data Flow](Modules/DataFlow.md) how the learning content data flows from the database, to the teacher system, and finally to minigames.
-- [Logging](Modules/Logging.md) the implementation and use of the Logging System.
-- [MiniGame](Modules/MiniGame.md) how a MiniGame works, how to create new ones and link them to the core application.
-- [Player Profile](Modules/PlayerProfile.md) how the Player Profile Manager works, a subsystem that allows the use of several profiles on the same device.
-- [Teacher](Modules/Teacher.md) how the Teacher System works. This subsystem is responsible for providing learning content data to the minigames.
+- [MiniGames docs](MiniGames.md)
 
-### Database
-
-- [Database](Modules/Database.md) the datasets used everywhere.
-- [Database Schemas](Modules/DatabaseSchemas.md) details on db tables and schemas
-- [Database Management](Modules/DatabaseManagement.md)
-
-### MiniGames
-
-- [Assessments](Minigames/Assessments.md)
-- [Balloons](Minigames/Balloons.md)
-- [ColorTickle](Minigames/ColorTickle.md)
-- [DancingDots](Minigames/DancingDots.md)
-- [Egg](Minigames/Egg.md)
-- [FastCrowd](Minigames/FastCrowd.md)
-- [HideAndSeek](Minigames/HideAndSeek.md)
-- [MakeFriends](Minigames/MakeFriends.md)
-- [Maze](Minigames/Maze.md)
-- [MissingLetter](Minigames/MissingLetter.md)
-- [MixedLetters](Minigames/MixedLetters.md)
-- [ReadingGame](Minigames/ReadingGame.md)
-- [Scanner](Minigames/Scanner.md)
-- [SickLetters](Minigames/SickLetters.md)
-- [TakeMeHome](Minigames/TakeMeHome.md)
-- [ThrowBalls](Minigames/ThrowBalls.md)
-- [Tobogan](Minigames/Tobogan.md)
-
-### API
+## API
 
 - [DoxyGen docs](API/index.html)
 - [How To regenerate DoxyGen docs](HowTo/APIDocsGeneration.html)

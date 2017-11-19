@@ -3,8 +3,6 @@
 * TOC
 {:toc}
 
-This document explains how Player Profiles are handled throughout the application.
-
 A Player Profile contains data on a given player, allowing multiple players to use the application and to keep updates on their progression.
 
 ## Contents
@@ -51,18 +49,6 @@ Whenever a Player Profile is created, an exclusive Avatar Id is also selected, w
 
 At runtime, creation, deletion, and selection of player profiles is performed in the Home (`_Start`) scene through the **Profile Selector**.
 
-## Journey position
-
-The Journey position is defined as a hierarchical structure, made of Stages, Learning Blocks, and Play Sessions.
-
-* **Stages** define overall learning goals. Each stage is assigned to a specific Map.
-* **Learning Blocks** define general learning requirements for a set of play sessions.
-* **Play Sessions** define single play instances, composed of several minigames and a result. A Play Session may be considered an **Assessment**, in this case the value is always 100.
-
-Each is defined by a sequential integer value.
-A combination of three values identifies a single playing session, which is referred to as **Journey Position**.
-
-A Journey Position is thus identified by a the sequence **X.Y.Z** where X is the Stage, Y the Learning Block, and Z the Play Session.
 
 ## Refactoring Notes
 
