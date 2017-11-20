@@ -1,4 +1,4 @@
-# Minigame Fast Crowd
+# MiniGame: Fast Crowd
 
 ## Testing procedure
 Total tests: 5

@@ -1,4 +1,6 @@
-# Minigame Reading Game
+# MiniGame: Reading Game
+
+![ReadingGame](images/ReadingGame.jpg)
 
 ## Testing procedure
 Total tests: 2
@@ -41,10 +43,9 @@ Time to answer decreases with difficulty.
 
 ## Optimization
 
-## Game Design doc
+---
 
-![ReadingGame](images/ReadingGame.jpg)
-
+## Game Design Docs
 
 ### Objectives
 **Pedagogical**: Teach reading fluency.
