@@ -26,7 +26,7 @@ namespace Antura.Minigames
                 {
                     dictionary[minigameInfo.data.Main] = new MainMiniGame
                     {
-                        id = minigameInfo.data.Main,
+                        MainId = minigameInfo.data.Main,
                         variations = new List<MiniGameInfo>()
                     };
                 }
@@ -36,7 +36,7 @@ namespace Antura.Minigames
             List<MainMiniGame> outputMainMiniGamesList = new List<MainMiniGame>();
             foreach (var k in dictionary.Keys)
             {
-                if (dictionary[k].id == "Assessment" && skipAssessments) continue;
+                if (dictionary[k].MainId == "Assessment" && skipAssessments) continue;
                 outputMainMiniGamesList.Add(dictionary[k]);
             }
 
@@ -73,7 +73,7 @@ namespace Antura.Minigames
             switch (sortLogic)
             {
                 case MiniGameSortLogic.Alphanumeric:
-                    outputMainMiniGamesList.Sort((g1, g2) => string.Compare(g1.id, g2.id, StringComparison.Ordinal));
+                    outputMainMiniGamesList.Sort((g1, g2) => string.Compare(g1.MainId, g2.MainId, StringComparison.Ordinal));
                     break;
 
                 case MiniGameSortLogic.Appearance:

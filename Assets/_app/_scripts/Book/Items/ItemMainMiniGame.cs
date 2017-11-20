@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.Minigames;
 using Antura.Database;
 using Antura.UI;
@@ -76,7 +76,7 @@ namespace Antura.Book
         public void Select(MiniGameInfo gameInfo = null)
         {
             if (gameInfo != null) {
-                isSelected = (gameInfo.data.Main == mainGameInfo.id);
+                isSelected = (gameInfo.data.Main == mainGameInfo.MainId);
             } else {
                 isSelected = false;
             }
