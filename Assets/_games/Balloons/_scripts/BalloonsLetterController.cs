@@ -64,7 +64,8 @@ namespace Antura.Minigames.Balloons
 
             springJoints = new List<SpringJoint>();
 
-            foreach (SpringJoint springJoint in GetComponents<SpringJoint>()) {
+            foreach (SpringJoint springJoint in GetComponents<SpringJoint>())
+            {
                 springJoints.Add(springJoint);
             }
         }
@@ -83,11 +84,13 @@ namespace Antura.Minigames.Balloons
         {
             Spin();
 
-            if (keepFocusingLetter) {
+            if (keepFocusingLetter)
+            {
                 FocusLetter();
             }
 
-            if (transform.position.y < -10) {
+            if (transform.position.y < -10)
+            {
                 Destroy(gameObject);
             }
         }
@@ -103,7 +106,8 @@ namespace Antura.Minigames.Balloons
         {
             Vector3 anchor;
 
-            switch (_data.DataType) {
+            switch (_data.DataType)
+            {
                 case LivingLetterDataType.Letter:
                     anchor = new Vector3(0f, 5.5f, -0.2f);
                     break;
@@ -118,7 +122,8 @@ namespace Antura.Minigames.Balloons
                     break;
             }
 
-            foreach (SpringJoint springJoint in springJoints) {
+            foreach (SpringJoint springJoint in springJoints)
+            {
                 springJoint.anchor = anchor;
             }
         }
@@ -167,7 +172,8 @@ namespace Antura.Minigames.Balloons
 
         private void SpeakLetter()
         {
-            if (letterData != null && letterData.Id != null) {
+            if (letterData != null && letterData.Id != null)
+            {
                 BalloonsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
             }
         }
@@ -178,7 +184,8 @@ namespace Antura.Minigames.Balloons
             //transform.rotation = Quaternion.Euler(baseRotation);
             parentFloatingLetter.Focus();
 
-            if (focusProgress < focusDuration) {
+            if (focusProgress < focusDuration)
+            {
                 focusProgress += Time.deltaTime;
                 focusProgressPercentage = focusProgress / focusDuration;
             }
@@ -199,14 +206,18 @@ namespace Antura.Minigames.Balloons
 
         private void Spin()
         {
-            if (keepSpinning) {
-                if (unfocusProgress < unfocusDuration) {
+            if (keepSpinning)
+            {
+                if (unfocusProgress < unfocusDuration)
+                {
                     unfocusProgress += Time.deltaTime;
                     unfocusProgressPercentage = unfocusProgress / unfocusDuration;
                 }
                 var spinRotation = Quaternion.Euler(baseRotation.x, baseRotation.y + spinDirection * spinAngle * Mathf.Sin(spinSpeed * Time.time + randomOffset), baseRotation.z);
                 transform.rotation = Quaternion.Lerp(transform.rotation, spinRotation, unfocusProgressPercentage);
-            } else {
+            }
+            else
+            {
                 keepSpinning = spinEnabled;
             }
         }
@@ -237,7 +248,8 @@ namespace Antura.Minigames.Balloons
 
         public void FlashLetterInWord(LetterData letterToFlash, Color color)
         {
-            if (flashLetterInWordCoroutine != null) {
+            if (flashLetterInWordCoroutine != null)
+            {
                 StopCoroutine(flashLetterInWordCoroutine);
             }
 
@@ -247,21 +259,25 @@ namespace Antura.Minigames.Balloons
 
         private IEnumerator FlashLetterInWordCoroutine(LetterData letterToFlash, Color color)
         {
-            if (letterData is LL_WordData) {
+            if (letterData is LL_WordData)
+            {
                 var splitLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, ((LL_WordData)letterData).Data);
 
                 int charPosition = 0;
                 List<int> foundLetterIndices = new List<int>();
 
-                for (int index = 0; index < splitLetters.Count; ++index) {
-                    if (splitLetters[index].letter.Id == letterToFlash.Id) {
+                for (int index = 0; index < splitLetters.Count; ++index)
+                {
+                    if (splitLetters[index].letter.Id == letterToFlash.Id)
+                    {
                         foundLetterIndices.Add(charPosition);
                     }
 
                     charPosition += splitLetters[index].letter.GetChar().Length;
                 }
 
-                if (foundLetterIndices.Count != 0) {
+                if (foundLetterIndices.Count != 0)
+                {
                     string originalText = ((LL_WordData)letterData).TextForLivingLetter;
 
                     letterObjectView.Label.SetText(originalText);
@@ -274,14 +290,18 @@ namespace Antura.Minigames.Balloons
                     string preparedText = ArabicAlphabetHelper.ProcessArabicString(originalText);
                     preparedText = originalText;
 
-                    while (numCompletedCycles < NUM_FLASH_CYCLES) {
-                        float interpolant = timeElapsed < halfDuration ? timeElapsed / halfDuration : 1 - ((timeElapsed - halfDuration) / halfDuration);
+                    while (numCompletedCycles < NUM_FLASH_CYCLES)
+                    {
+                        float interpolant = timeElapsed < halfDuration
+                            ? timeElapsed / halfDuration
+                            : 1 - ((timeElapsed - halfDuration) / halfDuration);
                         string tagStart = "<color=#" + GenericHelper.ColorToHex(Color.Lerp(Color.black, color, interpolant)) + ">";
                         string tagEnd = "</color>";
 
                         string composedString = "";
 
-                        for (int i = 0; i < foundLetterIndices.Count; i++) {
+                        for (int i = 0; i < foundLetterIndices.Count; i++)
+                        {
                             int startIdx = i == 0 ? 0 : foundLetterIndices[i - 1] + letterToFlash.GetChar().Length;
                             int endIdx = foundLetterIndices[i] - 1;
 
@@ -297,7 +317,8 @@ namespace Antura.Minigames.Balloons
                         letterObjectView.Label.SetText(composedString);
 
                         timeElapsed += Time.fixedDeltaTime;
-                        if (timeElapsed >= FLASH_CYCLE_DURATION) {
+                        if (timeElapsed >= FLASH_CYCLE_DURATION)
+                        {
                             numCompletedCycles++;
                             timeElapsed = 0f;
                         }
@@ -314,11 +335,12 @@ namespace Antura.Minigames.Balloons
 
         private Transform FindDescendant(Transform parent, string name)
         {
-            if (parent.name.Equals(name)) return parent;
+            if (parent.name.Equals(name)) { return parent; }
 
-            foreach (Transform child in parent) {
+            foreach (Transform child in parent)
+            {
                 Transform result = FindDescendant(child, name);
-                if (result != null) return result;
+                if (result != null) { return result; }
             }
 
             return null;

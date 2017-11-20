@@ -30,7 +30,6 @@ namespace Antura.Minigames.Balloons
             }
         }
 
-
         public void Init(LL_LetterData _letterData)
         {
             LetterData = _letterData;

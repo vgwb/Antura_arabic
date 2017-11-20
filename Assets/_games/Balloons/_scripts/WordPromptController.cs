@@ -11,7 +11,11 @@ namespace Antura.Minigames.Balloons
         [HideInInspector]
         public List<LetterPromptController> IdleLetterPrompts
         {
-            get { return new List<LetterPromptController>(letterPrompts).FindAll(prompt => prompt.isActiveAndEnabled && prompt.State == LetterPromptController.PromptState.IDLE); }
+            get
+            {
+                return new List<LetterPromptController>(letterPrompts).FindAll(
+                prompt => prompt.isActiveAndEnabled && prompt.State == LetterPromptController.PromptState.IDLE);
+            }
         }
         [HideInInspector]
         public int activePromptsCount;
