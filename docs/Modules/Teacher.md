@@ -8,7 +8,7 @@ The Teacher AI is the System that controls the learning progression of the playe
 - Player journey progression
 - Player learning performance
 - Expert configuration
-- Minigame support requirements
+- MiniGame support requirements
 
 It is designed to be agnostic to the specific language and highly configurable in respect to MiniGames.
 
@@ -21,18 +21,20 @@ All code related to the Teacher can be found under the **Antura.Teacher namespac
 The Teacher is composed of several interrelated classes, joined by a composition relationship.
 
 `Antura.TeacherAI` works as the entry point to the teacher functions.
-All of the Teacher functionalities should be accessed through a singleton instance of TeacherAI: `AppManager.I.Teacher`.
+All the Teacher functionalities should be accessed through a singleton instance of TeacherAI: `AppManager.I.Teacher`.
 Engines and Helpers are sub-elements of the Teacher and reside in their own classes.
 
 ### Engines
+
 **Engine** classes are used to implement the expert system for a specific role:
 
-- **Difficulty Selection AI** selects the difficulty to use for a given MiniGame.
+- **Difficulty Selection AI** selects the difficulty to use for a given MiniGame
 - **MiniGame Selection AI** selects what MiniGames to play during a given PlaySession
-- **Vocabulary Selection AI** selects what vocabulary data a MiniGame should use.
-- **Log AI** handles the logic behind the logging of data at runtime.
+- **Vocabulary Selection AI** selects what vocabulary data a MiniGame should use
+- **Log AI** handles the logic behind the logging of data at runtime
 
 ### Helpers
+
 **Helper** classes expose interfaces for easier interaction with the Teacher and the Database:
 
 - **Score Helper** for storing, retrieving, and updating score values related to the learning progression.
@@ -44,23 +46,21 @@ Engines and Helpers are sub-elements of the Teacher and reside in their own clas
 In general, the Teacher can be configured by the Expert through two main mechanisms:
 
 - By editing the database contents through an Excel file / Google Sheet, the Teacher can define the contents of *Play Sessions*, *Learning Blocks*, and the whole vocabulary.
-Please refer to the following sections for specific details.
-- By editing a set of weights, the Expert can further configure the logic inside the Teacher.
-This is implemented as constants in the **ConfigAI** static class.
+- By editing a set of weights, the Expert can further configure the logic inside the Teacher. This is implemented as constants in the **ConfigAI** static class.
 
 ## Difficulty Selection Engine
 
 Minigames can be configured to be more or less difficult (i.e. challanging) for the player.
 This *Engine* is in charge of selecting what difficulty to use for a given MiniGame session.
-Difficulty is defined as a float value in the range [0,1], with 0 being the easiest, and 1 being the hardest.
+Difficulty is defined as a float value in the range [0,1], easiest to hardest.
 
-Note that the difficulty value is related only to the specific MiniGame (and thus not related to other MiniGames) and is implemented in the MiniGame's logic, following the above general rule. See the [MiniGame](MiniGame.md) documentation for further details.
+Note that the difficulty value is related only to the specific MiniGame and is implemented in the MiniGame's logic, following the above general rule. See the [MiniGame](MiniGame.md) documentation for further details.
 
 The difficulty value logic depends on several variables:
-- The current **performance** of the player for the given MiniGame. The game is more difficult the better the player gets. The current performance starts from 0 and may rise up to 1.
-Failing a MiniGame (score 0) diminishes the performance. Completing a MiniGame with a score of 2 or more increases it. Completing it with a score of 1 is ininfluent (steady performance).
-- **REMOVED:** The age of the player. The game will be more difficult for older players.
-- **REMOVED:** The current journey position of the player. The game is more difficult at advanced stages.
+
+- The current **performance** of the player for the given MiniGame. The game gets more difficult as the player improves his skills. The current performance starts from 0 and may rise up to 1. Failing a MiniGame (score 0) diminishes the performance. Completing a MiniGame with a score of 2 or more increases it. Completing it with a score of 1 is ininfluent (steady performance).
+- **CURRENTLY NOT USED** The **age of the player**. The game will be more difficult for older players.
+- **CURRENTLY NOT USED** The current **JourneyPosition** of the player. The game is more difficult at advanced stages.
 
 The weight contributions of the different variables can be statically configured in **ConfigAI**.
 
@@ -68,7 +68,6 @@ The weight contributions of the different variables can be statically configured
 
 The Difficulty Selection Engine is accessed through `TeacherAI.GetCurrentDifficulty(MiniGameCode miniGameCode)`.
 This is called by the **MiniGame Launcher** before loading a specific MiniGame and assigned to the MiniGame's Game Configuration class.
-The difficulty value in the Game Configuration is then read by the MiniGame and used for gameplay.
 
 ## MiniGame Selection Engine
 
@@ -178,6 +177,8 @@ This is accomplished through two methods:
 - A journey progression / MiniGame matching is provided to the teacher through the database's PlaySessionData ntries. This is used by the teacher to select MiniGames for a given playsession and make sure that a MiniGame can support at least some of the dictionary content for the learning objectives.
 - Whenever a specific MiniGame is selected, the Teacher is configured to generate vocabulary data that can be supported by the MiniGame. This is handled by the **Question Builders**
 
+## Question Builders
+
 **Question Builders** define rules and requirements that the teacher should follow when generating **Question Packs**.
 A **Question Pack** contains the dictionary data that the MiniGame should use for its gameplay under the form of a question, a set of correct answers, and a set of wrong answers (refer to the [Data Flow documentation](DataFlow.md)).
 Whenever required by the Teacher, a **IQuestionBuilder** must be returned by the MiniGame's configuration class. This is performed through `IGameConfiguration.SetupBuilder()`.
@@ -204,7 +205,7 @@ Refer to the API documentation for a complete list of question builders.
 
 Note however that a new QuestionBuilder can be created for specific MiniGame, if the need arises.
 
-## Question Builder configuration
+### Question Builder configuration
 
 **Question Builders** are designed to be flexible, so that MiniGames can safely configure them with their specific requirements.
 In its `SetupBuilder()` call, a MiniGame's configuration class may configure the **Question Builder** by specifying a set of parameters.
@@ -238,32 +239,17 @@ A **QuestionBuilderParameters** defines additional common parameters and include
 - **AllRequired**: The given number of data values is required. Error if it is not reached.
 - **MayRepeatIfNotEnough**: May repeat the same values if not enough values are found
 
-## Question Builder implementation
+### Question Builder implementation
 
 Whenever a MiniGame is launched, the Teacher retrieves its `IQuestionBuilder` through `SetupBuilder()`, then generates a `List<QuestionPacks>` through `CreateAllQuestionPacks()` method.
 
 `CreateAllQuestionPacks()` is implemented differently for each Question Builder, but in general it just generatas a sequential list of packs through multiple calls to `CreateSingleQuestionPackData()`.
-
-### CreateSingleQuestionPackData()
 
 `CreateSingleQuestionPackData()` defines the actual logic for generating the Question Pack and is thus the core of the Question Builder. This method ends with a call to `QuestionPackData.Create(question, correctAnswers, wrongAnswers)` which creates the final pack from different sets of `IConvertibleToLivingLetterData` instances, which define the dictionary data that should be used and for what roles. For the current system, this can be either a **LetterData**, a **WordData**, or a **PhraseData**.
 
 The **Question Builder** will thus generate the question, the correct answers, and the wrong answers using calls to `WordSelectionAI.SelectData()` and by specifying what data it wants to use through the method's arguments:
 - `System.Func<List<T>> builderSelectionFunction` is a delegate that defines what data to work from based on the question builder logic. For example, for the `RandomLettersQuestionBuilder` this is all the available letters given the current letter filters. This is usually performed through the `WordHelper` class methods, which help in retrieving dictionary data from the database based on specific rules.
 - `SelectionParameters selectionParams` is an internal structure that defines parameters for filtering and selecting learning data based on the MiniGame requirements. This is built from the `QuestionBuilderPamaters` instance defined above.
-
-## Configuration
-
-The learning progression can be configured through two main sources:
-
-1) Editing the PlaySessionData and LearningBlockData tables in the static database. These define the progression of the learning content from lower to higher stages.
-The learning content should be distributed so that harder content appears at higher stages.
-The system will make sure to use this information when **filtering** dictionary content.
-*Example: content at higher learning blocks cannot appear at lower play sessions*
-
-2) Editing the ConfigAI weight constants. These values define how much weight to give to each rule when selecting contents.
-The system will make sure to use this information when **weighing** dictionary content.
-*Example: content that has been seen recently may appear less often*
 
 ## Refactoring Notes
 

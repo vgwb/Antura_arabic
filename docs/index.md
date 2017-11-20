@@ -1,27 +1,15 @@
-# Project references
-
 - **Developer Docs:** [vgwb.github.io/Antura_arabic](https://vgwb.github.io/Antura_arabic)
 - **GitHub project:** [github.com/vgwb/Antura_arabic](https://github.com/vgwb/Antura_arabic)
 - **Public Website:** [www.antura.org](http://www.antura.org)
-- [Credits](Credits.md)
+
 - [Releases](Releases.md) the history of app releases and major changelog
 
-## Dev, User and Tester guides
-
-- [HowTo](HowTo.md)
-
-## Project Architecture
-
+- [Dev, User and Tester HowTo](HowTo.md)
 - [Project Architecture](Architecture.md)
-
-## MiniGames
-
 - [MiniGames docs](MiniGames.md)
+- [API - DoxyGen docs](API/index.html)
 
-## API
-
-- [DoxyGen docs](API/index.html)
-- [How To regenerate DoxyGen docs](HowTo/APIDocsGeneration.html)
+- [Credits](Credits.md)
 
 ## License
 

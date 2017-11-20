@@ -13,3 +13,5 @@
 - [Export Google Sheet Data](HowTo/ExportGoogleSheetData.md) as JSON files
 - [Arabic Font](HowTo/ArabicFont.md) how to create the arabic Atlas with TextMeshPro
 - [Drawing Font](HowTo/DrawingsFont.md) how to create the drawings font Atlas with TextMeshPro
+
+- [How To regenerate DoxyGen docs](HowTo/APIDocsGeneration.html)
