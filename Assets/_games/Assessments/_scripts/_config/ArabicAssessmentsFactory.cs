@@ -1,4 +1,5 @@
 using Antura.Core;
+using Antura.Database;
 using Antura.LivingLetters;
 using UnityEngine;
 
@@ -41,7 +42,7 @@ namespace Antura.Assessment
         public static Assessment CreateCompleteWord_FormAssessment(AssessmentContext context)
         {
             //TODO: Maybe need a different description?
-            context.GameDescription = Database.LocalizationDataId.Assessment_Match_Letters_Words;
+            context.GameDescription = LocalizationDataId.Assessment_Match_Letters_Words;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the complete word
@@ -74,7 +75,7 @@ namespace Antura.Assessment
         public static Assessment CreateMatchLettersToWord_FormAssessment(AssessmentContext context)
         {
             //TODO: Maybe need a different description?
-            context.GameDescription = Database.LocalizationDataId.Assessment_Match_Letters_Words;
+            context.GameDescription = LocalizationDataId.Assessment_Match_Letters_Words;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
@@ -105,7 +106,7 @@ namespace Antura.Assessment
         public static Assessment CreateMatchWordToImageAssessment(AssessmentContext context)
         {
             // Assessment Specific configuration.
-            context.GameDescription = Database.LocalizationDataId.Assessment_Match_Word_Image;
+            context.GameDescription = LocalizationDataId.Assessment_Match_Word_Image;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Do not pronunce name of a picture
             AssessmentOptions.Instance.ShowQuestionAsImage = true;
@@ -139,7 +140,7 @@ namespace Antura.Assessment
 
         public static Assessment CreateOrderLettersInWordAssessment(AssessmentContext context)
         {
-            context.GameDescription = Database.LocalizationDataId.Assessment_Order_Letters;
+            context.GameDescription = LocalizationDataId.Assessment_Order_Letters;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = true;
@@ -170,7 +171,7 @@ namespace Antura.Assessment
 
         public static Assessment CreateCompleteWordAssessment(AssessmentContext context)
         {
-            context.GameDescription = Database.LocalizationDataId.Assessment_Select_Letter_Image;
+            context.GameDescription = LocalizationDataId.Assessment_Select_Letter_Image;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the complete word
@@ -201,7 +202,7 @@ namespace Antura.Assessment
 
         public static Assessment CreateMatchLettersWordAssessment(AssessmentContext context)
         {
-            context.GameDescription = Database.LocalizationDataId.Assessment_Match_Letters_Words;
+            context.GameDescription = LocalizationDataId.Assessment_Match_Letters_Words;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
@@ -231,7 +232,7 @@ namespace Antura.Assessment
 
         public static Assessment CreateQuestionAndReplyAssessment(AssessmentContext context)
         {
-            context.GameDescription = Database.LocalizationDataId.Assessment_Match_Sentences;
+            context.GameDescription = LocalizationDataId.Assessment_Match_Sentences;
             AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = false; // Child should read question
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold read answer
@@ -264,7 +265,7 @@ namespace Antura.Assessment
 
         public static Assessment CreateSunMoonWordAssessment(AssessmentContext context)
         {
-            context.GameDescription = Database.LocalizationDataId.Assessment_Classify_Words_Article;
+            context.GameDescription = LocalizationDataId.Assessment_Classify_Words_Article;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
@@ -296,7 +297,7 @@ namespace Antura.Assessment
 
         public static Assessment CreateSingularDualPluralAssessment(AssessmentContext context)
         {
-            context.GameDescription = Database.LocalizationDataId.Assessment_Classify_Word_Nouns;
+            context.GameDescription = LocalizationDataId.Assessment_Classify_Word_Nouns;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
@@ -328,7 +329,7 @@ namespace Antura.Assessment
 
         public static Assessment CreateWordArticleAssessment(AssessmentContext context)
         {
-            context.GameDescription = Database.LocalizationDataId.Assessment_Classify_Word_Article;
+            context.GameDescription = LocalizationDataId.Assessment_Classify_Word_Article;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
@@ -360,7 +361,7 @@ namespace Antura.Assessment
 
         public static Assessment CreateSunMoonLetterAssessment(AssessmentContext context)
         {
-            context.GameDescription = Database.LocalizationDataId.Assessment_Classify_Letters_Article;
+            context.GameDescription = LocalizationDataId.Assessment_Classify_Letters_Article;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
 
@@ -392,7 +393,7 @@ namespace Antura.Assessment
 
         public static Assessment CreateLetterFormAssessment(AssessmentContext context)
         {
-            context.GameDescription = Database.LocalizationDataId.Assessment_Select_Letter_Listen;
+            context.GameDescription = LocalizationDataId.Assessment_Select_Letter_Listen;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold identify the letter
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
@@ -421,7 +422,7 @@ namespace Antura.Assessment
 
         public static Assessment CreatePronouncedWordAssessment(AssessmentContext context)
         {
-            context.GameDescription = Database.LocalizationDataId.Assessment_Select_Word_Listen;
+            context.GameDescription = LocalizationDataId.Assessment_Select_Word_Listen;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child should identify the word
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
@@ -451,7 +452,7 @@ namespace Antura.Assessment
 
         public static Assessment CreateWordsWithLetterAssessment(AssessmentContext context)
         {
-            context.GameDescription = Database.LocalizationDataId.Assessment_Select_Words;
+            context.GameDescription = LocalizationDataId.Assessment_Select_Words;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
@@ -533,19 +534,31 @@ namespace Antura.Assessment
                 AnswerPlacerType answerPlacer)
         {
             if (dragManager == DragManagerType.Default)
+            {
                 context.DragManager = new DefaultDragManager(context.AudioManager, context.AnswerChecker);
+            }
             else
+            {
                 context.DragManager = new SortingDragManager(context.AudioManager, context.CheckMarkWidget);
+            }
 
             if (logicInjector == LogicInjectorType.Default)
+            {
                 context.LogicInjector = new DefaultLogicInjector(context.DragManager, context.Events);
+            }
             else
+            {
                 context.LogicInjector = new SortingLogicInjector(context.DragManager, context.Events);
+            }
 
             if (answerPlacer == AnswerPlacerType.Line)
+            {
                 context.AnswerPlacer = new LineAnswerPlacer(context.AudioManager, 3);
+            }
             else
+            {
                 context.AnswerPlacer = new OrderedAnswerPlacer(context.AudioManager, placerOptions);
+            }
         }
     }
 }

@@ -23,11 +23,14 @@ namespace Antura.Assessment
         /// Externally provided Question provider
         /// </summary>
         private IQuestionProvider questionProvider;
-        public IQuestionProvider Questions {
-            get {
+        public IQuestionProvider Questions
+        {
+            get
+            {
                 return GetQuestionProvider();
             }
-            set {
+            set
+            {
                 questionProvider = value;
             }
         }
@@ -77,10 +80,14 @@ namespace Antura.Assessment
         /////////////////
         // Singleton Pattern
         static AssessmentConfiguration instance;
-        public static AssessmentConfiguration Instance {
-            get {
+        public static AssessmentConfiguration Instance
+        {
+            get
+            {
                 if (instance == null)
+                {
                     instance = new AssessmentConfiguration();
+                }
                 return instance;
             }
         }
@@ -93,7 +100,8 @@ namespace Antura.Assessment
         /// <returns>Custom question data for the assessment</returns>
         public IQuestionBuilder SetupBuilder()
         {
-            switch (Variation) {
+            switch (Variation)
+            {
                 case AssessmentVariation.LetterForm:
                     return Setup_LetterForm_Builder();
 
@@ -182,10 +190,14 @@ namespace Antura.Assessment
             int maxLetters = 7;
 
             if (screenRatio > 1.4999f)
+            {
                 maxLetters = 8;
+            }
 
             if (screenRatio > 1.7777f)
+            {
                 maxLetters = 9;
+            }
 
             return new LettersInWordQuestionBuilder(
                 NumberOfRounds,
@@ -323,7 +335,8 @@ namespace Antura.Assessment
         {
             // This assessment changes behaviour based on the current stage
             var jp = AppManager.I.Player.CurrentJourneyPosition;
-            switch (jp.Stage) {
+            switch (jp.Stage)
+            {
                 case 1:
                     SimultaneosQuestions = 1;
                     break;
@@ -372,7 +385,8 @@ namespace Antura.Assessment
         {
             // This assessment changes behaviour based on the current stage
             var jp = AppManager.I.Player.CurrentJourneyPosition;
-            switch (jp.Stage) {
+            switch (jp.Stage)
+            {
                 case 1:
                     SimultaneosQuestions = 1;
                     break;
@@ -427,7 +441,8 @@ namespace Antura.Assessment
 
         public MiniGameLearnRules SetupLearnRules()
         {
-            switch (Variation) {
+            switch (Variation)
+            {
                 case AssessmentVariation.LetterForm:
                     return Setup_LetterForm_LearnRules();
 

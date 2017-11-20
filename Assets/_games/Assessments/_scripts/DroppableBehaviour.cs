@@ -8,37 +8,43 @@ namespace Antura.Assessment
     {
         IDragManager dragManager = null;
 
-        public void SetDragManager( IDragManager dragManager)
+        public void SetDragManager(IDragManager dragManager)
         {
             this.dragManager = dragManager;
         }
 
         public Answer GetAnswer()
         {
-            return GetComponent< Answer>();
+            return GetComponent<Answer>();
         }
 
         Vector3 origin; // Memorize starting position for going back
         void OnMouseDown()
         {
             if (!dragEnabled)
+            {
                 return;
+            }
 
             // If I place an LL above another one, then the other one should fall down
             // So when I click a LL that is linked I keep its original position
-            if(GetLinkedPlaceholder()==null)
+            if (GetLinkedPlaceholder() == null)
+            {
                 origin = transform.localPosition;
+            }
 
-            dragManager.StartDragging( this);
-            GetComponent< StillLetterBox>().Grabbed();
+            dragManager.StartDragging(this);
+            GetComponent<StillLetterBox>().Grabbed();
         }
 
         void OnMouseUp()
         {
             if (!dragEnabled)
+            {
                 return;
+            }
 
-            dragManager.StopDragging( this);
+            dragManager.StopDragging(this);
         }
 
         bool dragEnabled = false;
@@ -63,31 +69,33 @@ namespace Antura.Assessment
             }
         }
 
-        Action< IDroppable> OnGoDestroyed = null;
-        public void StartDrag( Action< IDroppable> onDestroyed)
+        Action<IDroppable> OnGoDestroyed = null;
+        public void StartDrag(Action<IDroppable> onDestroyed)
         {
             canUpdate = true;
             OnGoDestroyed = onDestroyed;
-            GetComponent< StillLetterBox>().Grabbed();
+            GetComponent<StillLetterBox>().Grabbed();
         }
 
         void OnDestroy()
         {
             dragEnabled = false;
             if (OnGoDestroyed != null)
+            {
                 OnGoDestroyed(this);
+            }
         }
 
         public void StopDrag()
         {
             OnGoDestroyed = null;
-            GetComponent< StillLetterBox>().TweenScale( 1);
+            GetComponent<StillLetterBox>().TweenScale(1);
             var v = transform.localPosition;
-            transform.localPosition = new Vector3( v.x, v.y, Z);
+            transform.localPosition = new Vector3(v.x, v.y, Z);
         }
 
         private float Z = 5f;
-        public void SetZ( float Z)
+        public void SetZ(float Z)
         {
             this.Z = Z;
         }
@@ -98,11 +106,13 @@ namespace Antura.Assessment
         }
 
         PlaceholderBehaviour linkedBehaviour = null;
-        public void LinkToPlaceholder( PlaceholderBehaviour behaviour)
+        public void LinkToPlaceholder(PlaceholderBehaviour behaviour)
         {
             linkedBehaviour = behaviour;
             if (behaviour.LinkedDroppable != null)
+            {
                 behaviour.LinkedDroppable.Detach();
+            }
 
             // Link this answer to placeholder
             transform.localPosition = behaviour.transform.localPosition;
@@ -110,15 +120,17 @@ namespace Antura.Assessment
             behaviour.LinkedDroppable = this;
         }
 
-        public void Detach( bool jumpBack = true)
+        public void Detach(bool jumpBack = true)
         {
-            if(jumpBack)
-                transform.DOLocalMove( origin, 0.5f).SetEase( Ease.OutBounce);
+            if (jumpBack)
+            {
+                transform.DOLocalMove(origin, 0.5f).SetEase(Ease.OutBounce);
+            }
 
             if (linkedBehaviour != null)
             {
                 var quest = linkedBehaviour.Placeholder.GetQuestion();
-                quest.GetAnswerSet().OnRemovedAnswer( GetAnswer());
+                quest.GetAnswerSet().OnRemovedAnswer(GetAnswer());
                 linkedBehaviour.LinkedDroppable = null;
             }
 
