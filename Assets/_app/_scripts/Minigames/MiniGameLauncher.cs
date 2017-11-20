@@ -30,7 +30,8 @@ namespace Antura.Minigames
             bool forceNewPlaySession = false)
         {
             ConfigAI.StartTeacherReport();
-            if (_launchConfiguration == null) {
+            if (_launchConfiguration == null)
+            {
                 var difficulty = teacher.GetCurrentDifficulty(_gameCode);
                 var numberOfRounds = teacher.GetCurrentNumberOfRounds(_gameCode);
                 var tutorialEnabled = teacher.GetTutorialEnabled(_gameCode);
@@ -39,7 +40,8 @@ namespace Antura.Minigames
 
             var miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
 
-            if (forceNewPlaySession) {
+            if (forceNewPlaySession)
+            {
                 AppManager.I.NavigationManager.InitNewPlaySession(miniGameData);
             }
 
@@ -53,7 +55,8 @@ namespace Antura.Minigames
 
             // Set also the number of rounds
             // @note: only for assessment, for now
-            if (currentGameConfig is Assessment.IAssessmentConfiguration) {
+            if (currentGameConfig is Assessment.IAssessmentConfiguration)
+            {
                 var assessmentConfig = currentGameConfig as Assessment.IAssessmentConfiguration;
                 assessmentConfig.NumberOfRounds = _launchConfiguration.NumberOfRounds;
             }
@@ -97,25 +100,29 @@ namespace Antura.Minigames
 
             string miniGameSceneKey = miniGameData.Scene.Split('_')[1];
             string configurationClassName = miniGameSceneKey + "." + miniGameSceneKey + configurationKey;
-            if (miniGameSceneKey != assessmentNamespaceKey) {
+            if (miniGameSceneKey != assessmentNamespaceKey)
+            {
                 configurationClassName = minigamesNamespaceKey + "." + configurationClassName;
             }
             configurationClassName = baseNamespaceKey + "." + configurationClassName;
 
-            Type configurationClassType = Type.GetType(configurationClassName);
-            if (configurationClassType == null) {
+            var configurationClassType = Type.GetType(configurationClassName);
+            if (configurationClassType == null)
+            {
                 throw new Exception("Type " + configurationClassName + " not found. Are the minigame scene and Configuration class ready?");
             }
 
             var property = configurationClassType.GetProperty(instanceFieldName, BindingFlags.Public | BindingFlags.Static);
-            if (property == null) {
+            if (property == null)
+            {
                 throw new Exception("Public static property named " + instanceFieldName +
                                     " not found. This should be present in the minigame's Configuration class.");
             }
 
-            IGameConfiguration currentGameConfig = (IGameConfiguration)property.GetValue(null, null);
+            var currentGameConfig = (IGameConfiguration)property.GetValue(null, null);
 
-            if (currentGameConfig != null) {
+            if (currentGameConfig != null)
+            {
                 currentGameConfig.Context = defaultContext;
                 currentGameConfig.SetMiniGameCode(code);
             }

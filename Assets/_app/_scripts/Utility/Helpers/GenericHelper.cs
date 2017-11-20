@@ -19,7 +19,7 @@ namespace Antura.Helpers
         /// </summary>
         public static IOrderedEnumerable<TEnum> SortEnums<TEnum>()
         {
-            return ((TEnum[]) Enum.GetValues(typeof(TEnum))).OrderBy(v => v.ToString());
+            return ((TEnum[])Enum.GetValues(typeof(TEnum))).OrderBy(v => v.ToString());
         }
 
         #endregion
@@ -28,9 +28,12 @@ namespace Antura.Helpers
 
         public static string ReverseText(string _source)
         {
-            if (_source.Contains('\n')) {
+            if (_source.Contains('\n'))
+            {
                 return ReverseMultiParagraphText(_source);
-            } else {
+            }
+            else
+            {
                 return ReverseSingleParagraphText(_source);
             }
         }
@@ -40,11 +43,12 @@ namespace Antura.Helpers
         /// </summary>
         /// <returns>The text reversed.</returns>
         /// <param name="_source">Source.</param>
-        static string ReverseSingleParagraphText(string _source)
+        private static string ReverseSingleParagraphText(string _source)
         {
             var cArray = _source.ToCharArray();
             var reverse = String.Empty;
-            for (var i = cArray.Length - 1; i > -1; i--) {
+            for (var i = cArray.Length - 1; i > -1; i--)
+            {
                 reverse += cArray[i];
             }
             return reverse;
@@ -55,12 +59,13 @@ namespace Antura.Helpers
         /// </summary>
         /// <returns>The text with all paragraphs reversed.</returns>
         /// <param name="_source">Source.</param>
-        static string ReverseMultiParagraphText(string _source)
+        private static string ReverseMultiParagraphText(string _source)
         {
-            char[] split = {'\n'};
+            char[] split = { '\n' };
             string[] paragraphs = _source.Split(split);
             string result = "";
-            foreach (string paragraph in paragraphs) {
+            foreach (string paragraph in paragraphs)
+            {
                 result += ReverseSingleParagraphText(paragraph);
                 result += "\n";
             }
@@ -76,13 +81,13 @@ namespace Antura.Helpers
         public static int GetRelativeTimestampFromNow(int deltaDays)
         {
             var timeSpan = new TimeSpan(deltaDays, 0, 0, 0, 0);
-            return GetTimestampForNow() + (int) timeSpan.TotalSeconds;
+            return GetTimestampForNow() + (int)timeSpan.TotalSeconds;
         }
 
         public static int GetTimestampForNow()
         {
             var timeSpan = (DateTime.UtcNow - TIME_START);
-            return (int) timeSpan.TotalSeconds;
+            return (int)timeSpan.TotalSeconds;
         }
 
         public static DateTime FromTimestamp(int timestamp)
@@ -104,7 +109,8 @@ namespace Antura.Helpers
         {
             int layerIndex = 0;
             int layer = _mask.value;
-            while (layer > 1) {
+            while (layer > 1)
+            {
                 layer = layer >> 1;
                 layerIndex++;
             }
@@ -139,7 +145,8 @@ namespace Antura.Helpers
         public static Color GetColorFromString(string color)
         {
             Color drawingColor;
-            switch (color) {
+            switch (color)
+            {
                 case "blue":
                     drawingColor = Color.blue;
                     break;
