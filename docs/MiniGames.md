@@ -1,4 +1,4 @@
-## MiniGames
+## MiniGames Design and Dev docs
 
 - [Assessments](Minigames/Assessments.md)
 - [Balloons](Minigames/Balloons.md)

@@ -1,16 +1,20 @@
-- **Developer Docs:** [vgwb.github.io/Antura_arabic](https://vgwb.github.io/Antura_arabic)
+this documentation website is dedicated to Teachers, Designers and Developers, maintained by the Antura Core Team directly inside the project repository as an handbook for whatever can't be put inside the Source Code itself.
+
+- **Developer Book:** [vgwb.github.io/Antura_arabic](https://vgwb.github.io/Antura_arabic)
 - **GitHub project:** [github.com/vgwb/Antura_arabic](https://github.com/vgwb/Antura_arabic)
 - **Public Website:** [www.antura.org](http://www.antura.org)
 
-- [Releases](Releases.md) the history of app releases and major changelog
-
-- [Dev, User and Tester HowTo](HowTo.md)
+- [Releases](Releases.md) history of app releases and major changelog
+- [User, Tester and Dev HowTo](HowTo.md) several HowTo guides
 - [Game Design](GameDesign.md)
-- [Project Architecture and Modules](Architecture.md)
-- [MiniGames docs](MiniGames.md)
-- [API - DoxyGen docs](API/index.html)
-
+- [Project Architecture and Modules](Architecture.md) mostly for Developers
+- [MiniGames](MiniGames.md) Design and Developer docs
+- [API](API/index.html) the automatically generated DoxyGen docs
 - [Credits](Credits.md)
+
+## Issues and Contacts
+Did you find an issue or error in these docs or have some suggestions?
+please help us improve by [opening a issue](https://github.com/vgwb/Antura_arabic/issues)
 
 ## License
 

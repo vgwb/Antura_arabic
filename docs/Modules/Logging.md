@@ -4,7 +4,7 @@
 {:toc}
 
 This document describes the Logging System implemented in Antura.
-Logging allows the application to gather information on the player's progression and save it to the database (see Database.md).
+Logging allows the application to gather information on the player's progression and save it to the database (see [Database](Database.md)).
 
 The Logging System is based on three main classes: the MinigameLogManager, the LogManager, and the LogAI.
 

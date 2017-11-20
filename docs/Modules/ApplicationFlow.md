@@ -64,7 +64,7 @@ The **Map scene** allows several actions to be performed through its UI:
 ### Play Session start
 
 When the user selects *play*, the **Antura.Map.MiniMap** method is called, which initialises the new play session by notifying the teacher system through `Teacher.TeacherAI.InitialiseCurrentPlaySession()`, which resets the current play session status and selects the MiniGames to play for that play session (the amount of which is defined by the constant `ConfigAI.numberOfMinigamesPerPlaySession`).
-Refer to **Teacher.md** for details on MiniGame selection for a given play session.
+Refer to [Teacher](Teacher.md) for details on MiniGame selection for a given play session.
 
 `** WARNING: the CurrentMiniGameInPlaySession data is now handled by the Teacher and PlayerProfile, but this is bad. Refactor it, then detail it here. **`
 
@@ -86,17 +86,17 @@ The start of a MiniGame is initialised by a call to `MiniGameLauncher.LaunchGame
 The launcher then calls `TeacherAI.GetCurrentDifficulty(MiniGameCode miniGameCode)` to obtain the difficulty value for the specific MiniGame session, generates a **GameConfiguration** instance with the correct difficulty settings, and starts the MiniGame through `MiniGameAPI.StartGameMiniGameCode(MiniGameCode _gameCode, GameConfiguration _gameConfiguration)`
 
 The `MiniGameAPI.StartGameMiniGameCode()` method first retrieves the data related to the specified MiniGame from the database for later retrieval and assigns it to `AppManager.CurrentMinigame`.
-The process then calls **MiniGameAPI.ConfigureMiniGame** to retrieve the concrete **IGameConfiguration** and **IGameContext** for the given MiniGame code, assigning them to the MiniGame static **IGameConfiguration** concrete implementation.
+The process then calls `MiniGameAPI.ConfigureMiniGame` to retrieve the concrete `IGameConfiguration` and **IGameContext** for the given MiniGame code, assigning them to the MiniGame static **IGameConfiguration** concrete implementation.
 
 At this point, the Teacher System is queried to retrieve a set of **QuestionPack** instances that define the learning content that the MiniGame should access and that are accessible through the `IGameConfiguration.Questions` field.
-Refer to **Teacher.md** and **MiniGame.md** for further details on how the learning data is selected and passed to MiniGames.
+Refer to [Teacher](Teacher.md) and [MiniGame](MiniGame.md) docs for further details on how the learning data is selected and passed to MiniGames.
 
 At last, the MiniGame being correctly configured, it can be started, and the *Navigation Manager* will thus load the scene that matches the specific MiniGame.
 
 ### MiniGame Play
 
 MiniGames are responsible for handling their internal state, while the core application waits for the MiniGame to end.
-Refer to **MiniGame.md** for details on how the MiniGame flow is implemented.
+Refer to [MiniGame](MiniGame.md) for details on how the MiniGame flow is implemented.
 
 ### MiniGame End
 

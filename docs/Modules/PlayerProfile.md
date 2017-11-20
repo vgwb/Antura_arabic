@@ -22,18 +22,18 @@ A Player Profile contains the following data:
   * *TotalNumberOfBones*: number of bones collected.
   * *CurrentAnturaCustomizations*: selected customization for Antura.
 
-Note that additional progression data is also contained in the runtime database (see Database.md).
+Note that additional progression data is also contained in the runtime database (see [Database](Database.md)).
 
 Note that each profile is assigned an unique Id.
 This Id is used for:
 
 * selecting and identifying the player profile by the Player Profile Manager
-* identifying the database assigned to the player (see Database.md)
+* identifying the database assigned to the player (see [Database](Database.md))
 
 ## Serialization
 
 All data related to the Player Profile is serialized and saved inside the dynamic database.
-Refer to the [Database documentation](Database.md).
+Refer to the [Database](Database.md).
 
 ## Creation & Deletion
 
@@ -44,8 +44,8 @@ A list of existing player profiles can be retrieved from the `AppManager.GameSet
 
 Whenever a Player Profile is created, an exclusive Avatar Id is also selected, which represents the avatar image assigned to that profile.
 
-**PlayerProfileManager.CurrentPlayer** holds the current player profile.
-**AppManager.I.GameSettings.LastActivePlayerId** contains the Id of the profile last accessed through the application.
+`PlayerProfileManager.CurrentPlayer` holds the current player profile.
+`AppManager.I.GameSettings.LastActivePlayerId` contains the Id of the profile last accessed through the application.
 
 At runtime, creation, deletion, and selection of player profiles is performed in the Home (`_Start`) scene through the **Profile Selector**.
 

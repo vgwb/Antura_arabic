@@ -34,12 +34,12 @@ Instead of starting your own MiniGame from scratch, you can use the provided gam
 
 A MiniGame does not exist in a vacuum. The core app needs to know of its existance and how to handle it.
 For this purpose, the following should be performed:
-- a new entry named *MyNewMasterpiece* should be added to the **MiniGameCode** enumerator
-- the database should be updated to support the new MiniGame. (refer to the **Database.md** document)  This requires:
-	- adding a new **MiniGameData** entry
-	- updating the table of **PlaySessionData** to support the new MiniGame at a given learning block
-- **MiniGameAPI.ConfigureMiniGame()** should be updated to provide the correct configuration for the new MiniGame code.
-- **LogAI.GetLearnRules(MiniGameCode code)** should be updated to provide the correct logging rules for the new MiniGame.
+- a new entry named *MyNewMasterpiece* should be added to the `MiniGameCode` enumerator
+- the database should be updated to support the new MiniGame. (refer to the [Database](Database.md) doc). This requires:
+  - adding a new **MiniGameData** entry
+  - updating the table of **PlaySessionData** to support the new MiniGame at a given learning block
+- `MiniGameAPI.ConfigureMiniGame()` should be updated to provide the correct configuration for the new MiniGame code.
+- `LogAI.GetLearnRules(MiniGameCode code)` should be updated to provide the correct logging rules for the new MiniGame.
 
 ***note: the above requirements are bound to change as it couples MiniGames with the core codebase***
 

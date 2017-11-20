@@ -8,7 +8,7 @@
 - local notifications
 - repeat minigame
 
-## 1.0.7 - not public
+## 1.0.7 - 5 sept 2017 (not public)
 
 - switching JSON format to match Export Sheet Data from Google Sheets
 - export db from reserved area
