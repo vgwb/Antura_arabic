@@ -16,8 +16,8 @@ namespace Antura.Teacher
         private PlayerProfile playerProfile;
 
         // Weights
-        private float ageWeightContribution = ConfigAI.Difficulty_AgeWeight;                   // Higher age -> higher difficulty
-        private float performanceWeightContribution = ConfigAI.Difficulty_wPerformanceWeight   // Higher performance -> higher difficulty
+        private float ageWeightContribution = ConfigAI.Difficulty_Age_Weight;                   // Higher age -> higher difficulty
+        private float performanceWeightContribution = ConfigAI.Difficulty_Performance_Weight;  // Higher performance -> higher difficulty
 
         public DifficultySelectionAI(DatabaseManager _dbManager)
         {
