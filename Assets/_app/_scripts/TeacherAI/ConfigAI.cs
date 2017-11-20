@@ -31,19 +31,19 @@ namespace Antura.Teacher
         public const int DaysForMaximumRecentPlayMalus = 4;
 
         // MiniGame selection weights
-        public const float MiniGame_playSessionWeight = 1f;
-        public const float MiniGame_recentPlayWeight = 1f;
+        public const float MiniGame_PlaySession_Weight = 1f;
+        public const float MiniGame_RecentPlay_Weight = 1f;
 
         // Vocabulary data selection weights
-        public const float Data_scoreWeight = 1f;
-
-        public const float Data_recentPlayWeight = 1f;
-        public const float Data_currentPlaySessionWeight = 10f;
-        public const float Data_minimumTotalWeight = 0.1f;
+        public const float Vocabulary_Score_Weight = 1f;
+        public const float Vocabulary_RecentPlay_Weight = 1f;
+        public const float Vocabulary_CurrentPlaySession_Weight = 10f;
+        // the minimal value for this Weight
+        public const float Vocabulary_MinTotal_Weight = 0.1f;
 
         // Difficulty selection weights
-        public const float Difficulty_weight_age = 0f;
-        public const float Difficulty_weight_performance = 1f;
+        public const float Difficulty_Age_Weight = 0f;
+        public const float Difficulty_Performance_Weight = 1f;
         public const float StartingDifficultyForNewMiniGame = 0f;
 
         public const int LastScoresForPerformanceWindow = 10;

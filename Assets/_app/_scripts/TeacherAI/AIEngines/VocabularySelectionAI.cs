@@ -423,15 +423,15 @@ namespace Antura.Teacher
 
                 // Score Weight [0,1]: higher the lower the score [-1,1] is
                 var scoreWeight = 0.5f * (1 - currentScore);
-                cumulativeWeight += scoreWeight * ConfigAI.Data_scoreWeight;
-                debugString += " \tScore: " + scoreWeight * ConfigAI.Data_scoreWeight + "(" + scoreWeight + ")";
+                cumulativeWeight += scoreWeight * ConfigAI.Vocabulary_Score_Weight;
+                debugString += " \tScore: " + scoreWeight * ConfigAI.Vocabulary_Score_Weight + "(" + scoreWeight + ")";
 
                 // RecentPlay Weight  [1,0]: higher the more in the past we saw that data
                 const float dayLinerWeightDecrease = 1f / ConfigAI.DaysForMaximumRecentPlayMalus;
                 float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
                 float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
-                cumulativeWeight += recentPlayWeight * ConfigAI.Data_recentPlayWeight;
-                debugString += " \tRecent: " + recentPlayWeight * ConfigAI.Data_recentPlayWeight + "(" + recentPlayWeight + ")";
+                cumulativeWeight += recentPlayWeight * ConfigAI.Vocabulary_RecentPlay_Weight;
+                debugString += " \tRecent: " + recentPlayWeight * ConfigAI.Vocabulary_RecentPlay_Weight + "(" + recentPlayWeight + ")";
 
                 // Current focus weight [1,0]: higher if the data is part of the current play session / learning block / stage
                 float currentPlaySessionWeight = 0;
@@ -447,13 +447,15 @@ namespace Antura.Teacher
                 {
                     currentPlaySessionWeight = 0.2f;
                 }
-                cumulativeWeight += currentPlaySessionWeight * ConfigAI.Data_currentPlaySessionWeight;
-                debugString += " \tFocus: " + currentPlaySessionWeight * ConfigAI.Data_currentPlaySessionWeight + "(" + currentPlaySessionWeight + ")";
+                cumulativeWeight += currentPlaySessionWeight * ConfigAI.Vocabulary_CurrentPlaySession_Weight;
+                debugString += " \tFocus: " + currentPlaySessionWeight * ConfigAI.Vocabulary_CurrentPlaySession_Weight + "(" + currentPlaySessionWeight + ")";
 
                 // If the cumulative weight goes to the negatives, we give it a fixed weight
+                // TODO check if we shound use if (cumulativeWeight <= ConfigAI.Vocabulary_MinTotal_Weight)
+                // TODO check the "continue" because it wont' save the data
                 if (cumulativeWeight <= 0)
                 {
-                    cumulativeWeight = ConfigAI.Data_minimumTotalWeight;
+                    cumulativeWeight = ConfigAI.Vocabulary_MinTotal_Weight;
                     continue;
                 }
 

@@ -130,8 +130,8 @@ namespace Antura.Teacher
 
                 // PlaySession Weight [0,1]
                 float playSessionWeight = playsession_weights_dict[minigame_data.Code] / 100f; //  [0-100]
-                cumulativeWeight += playSessionWeight * ConfigAI.MiniGame_playSessionWeight;
-                debugString += " PSw: " + playSessionWeight * ConfigAI.MiniGame_playSessionWeight + "(" + playSessionWeight + ")";
+                cumulativeWeight += playSessionWeight * ConfigAI.MiniGame_PlaySession_Weight;
+                debugString += " PSw: " + playSessionWeight * ConfigAI.MiniGame_PlaySession_Weight + "(" + playSessionWeight + ")";
 
                 // Some minigames are required to appear (weight 100+)
                 if (playsession_weights_dict[minigame_data.Code] >= 100)
@@ -145,8 +145,8 @@ namespace Antura.Teacher
                 const float dayLinerWeightDecrease = 1f / ConfigAI.DaysForMaximumRecentPlayMalus;
                 float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
                 float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
-                cumulativeWeight += recentPlayWeight * ConfigAI.MiniGame_recentPlayWeight;
-                debugString += " RPw: " + recentPlayWeight * ConfigAI.MiniGame_recentPlayWeight + "(" + recentPlayWeight + ")";
+                cumulativeWeight += recentPlayWeight * ConfigAI.MiniGame_RecentPlay_Weight;
+                debugString += " RPw: " + recentPlayWeight * ConfigAI.MiniGame_RecentPlay_Weight + "(" + recentPlayWeight + ")";
 
                 // Save cumulative weight
                 weights_list.Add(cumulativeWeight);
