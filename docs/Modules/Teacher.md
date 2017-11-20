@@ -105,9 +105,9 @@ Whenever a new play session start, this is called by the Teacher through `Teache
 This *Engine* is in charge of selecting what vocabulary data a MiniGame should use in a given play session, based on player progression, player performance, and the MiniGame's requirements.
 The selected vocabulary data will be used as the *focus* for each MiniGame session (i.e. as questions to be posed, or as correct answers to find).
 
-The logic for selection depends on three main mechanism: two fltering steps and a weighted selection step.
+The logic for selection depends on three main mechanism: two filtering steps and a weighted selection step.
 
-### Filtering STEP
+### 1) Filtering STEP
 
 The first step is needed to make sure that all data to be selected matches the player's knowledge. The step filters all vocabulary data in the database based on:
 
@@ -129,15 +129,15 @@ This can be configured per MiniGame with the **PackListHistory** parameters.
 
 The current journey progression (i.e. the position in the Stage/LearningBlock/PlaySession map) is taken into account, filtering out data that is too difficult for the current learning progression (i.e. it is not available up to the current Learning Block).
 
-### Journey priority STEP
+### 2) Journey priority STEP
 
 After the first step, we can be sure that *all* selected data can be played by the selected MiniGame and is suitable to the player's knowledge.
 The Teacher performs a second step by weighing vocabulary entries based on the learning block focus.
 This is used, if possible, as a strict filter.
-Data that belongs to the *current* learning block is given large priority, making sure that all data of the learning block is used if available.
+Data that belongs to the *current* Learning Block is given large priority, making sure that all data of the learning block is used if available.
 If not enough data is available for the current learning block, data from the previous play sessions (going back in the progression) is selected and given a weight based on linear distance from the current learning block.
 
-### Weighted selection STEP
+### 3) Weighted selection STEP
 
 As a final step, the Teacher selects the actual vocabulary entries using weighted selection, with weights based on:
 
@@ -149,9 +149,9 @@ The final weight for each vocabulary entry is computed as a weighted sum of thes
 Each variable is assigned a *contribution weight*, which can be manually configured in **ConfigAI**.
 If a vocabulary entry has a too lower weight, a minimum weight can however be assigned, defined as `ConfigAI.data_minimumTotalWeight`.
 
-### Inter-pack ordering
+### 4) Optional reordering
 
-At last, after data has been selected, an optional ordering may be enforced. This can be useful to make sure that the vocabulary data entires of a given MiniGame play session appear during play in order of difficulty
+At last, after data has been selected, an optional ordering may be enforced. This can be useful to make sure that all the vocabulary data of a given MiniGame play session appear during play in order of difficulty.
 The ordering is performed on the **intrinsic difficulty** of each vocabulary data entry.
 
 ### Wrong answers

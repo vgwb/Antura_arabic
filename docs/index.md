@@ -5,7 +5,8 @@
 - [Releases](Releases.md) the history of app releases and major changelog
 
 - [Dev, User and Tester HowTo](HowTo.md)
-- [Project Architecture](Architecture.md)
+- [Game Design](GameDesign.md)
+- [Project Architecture and Modules](Architecture.md)
 - [MiniGames docs](MiniGames.md)
 - [API - DoxyGen docs](API/index.html)
 
