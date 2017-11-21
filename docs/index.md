@@ -5,11 +5,11 @@ this documentation website is dedicated to Teachers, Designers and Developers, m
 - **Public Website:** [www.antura.org](http://www.antura.org)
 
 - [Releases](Releases.md) history of app releases and major changelog
-- [User, Tester and Dev HowTo](HowTo.md) several HowTo guides
-- [Game Design](GameDesign.md)
-- [Project Architecture and Modules](Architecture.md) mostly for Developers
+- [User, Tester and Dev HowTo](HowTo/) several HowTo guides
+- [Game Design](GameDesign/)
+- [Project Architecture and Modules](Modules/) mostly for Developers
 - [MiniGames](Minigames/) Design and Developer docs
-- [API](API/index.html) the automatically generated DoxyGen docs
+- [API](API/) the automatically generated DoxyGen docs
 - [Credits](Credits.md)
 
 ## Issues and Contacts
