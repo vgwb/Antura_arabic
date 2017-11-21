@@ -79,7 +79,7 @@ The method also adds the delegate `GameSelector.GoToMiniGame()` to the `GamesSel
 
 ### MiniGame Start
 
-Any call to `NavigationManager.GoToGameScene(MiniGameData _miniGame)` triggers a subseuqnet call to `MiniGameLauncher.LaunchGame(MiniGameCode miniGameCode)` to launch the next of the MiniGames for that play session.
+Any call to `NavigationManager.GoToGameScene(MiniGameData _miniGame)` triggers a subsequent call to `MiniGameLauncher.LaunchGame(MiniGameCode miniGameCode)` to launch the next of the MiniGames for that play session.
 
 The **MiniGameLauncher** is responsible for the correct launch of MiniGames with teacher-approved data.
 The start of a MiniGame is initialised by a call to `MiniGameLauncher.LaunchGame(MiniGameCode miniGameCode)`.

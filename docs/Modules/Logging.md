@@ -31,7 +31,7 @@ Each type follows a specific path in the logging system.
 ## Mood logging
 
 Mood logging is performed in the Mood scene.
-The scene obtains from the player an integer value between *AppConstants.minimumMoodValue* and *AppConstants.maximumMoodValue*.
+The scene obtains from the player an integer value between *AppConstants.minMoodValue* and *AppConstants.maxMoodValue*.
 This value is then passed to *LogAI.LogMood(int mood)*, which inserts it as a new *LogMoodData* instance inside the database, with a timestamp.
 
 ## Info logging
@@ -65,7 +65,7 @@ This could be, as an example, the reaction time when selecting the correct answe
 
 ## Learning logging
 
-Learning data is defined by the class **LogLearnData** and represents the learning achievements of the player regarding a specific dictionary content (letter, word, etc.), hereby referred to as *Learning Item* for ease of discussion.
+Learning data is defined by the class **LogLearnData** and represents the learning achievements of the player regarding a specific vocabulary content (letter, word, etc.), hereby referred to as *Learning Item* for ease of discussion.
 
 These measurements are very important for the teaching goals, so the system is designed to help MiniGames in standardizing their measurements.
 
@@ -75,7 +75,7 @@ The following text explains the process in detail.
 The logging is a two-phases procedure.
 As a first phase, the MiniGame gathers measurements whenever it detects that a learning action has been completed.
 This can happen anytime while playing the MiniGame and is related to a specific Learning Item.
-The MiniGame code may call call **MinigameLogManager.OnAnswer(ILivingLetterData _data, bool _isPositiveResult)**, determining whether an interaction with a specific learning content instance (represented by the ILivingLetterData reference) is to be considered positive or negative.
+The MiniGame code may call5 `MinigameLogManager.OnAnswer(ILivingLetterData _data, bool _isPositiveResult)`, determining whether an interaction with a specific learning content instance (represented by the ILivingLetterData reference) is to be considered positive or negative.
 This will create a **ILivingLetterAnswerData** instance.
 
 **ILivingLetterAnswerData** instances are buffered by the MinigameLogManager during play.
