@@ -8,7 +8,7 @@ this documentation website is dedicated to Teachers, Designers and Developers, m
 - [User, Tester and Dev HowTo](HowTo.md) several HowTo guides
 - [Game Design](GameDesign.md)
 - [Project Architecture and Modules](Architecture.md) mostly for Developers
-- [MiniGames](MiniGames.md) Design and Developer docs
+- [MiniGames](Minigames/) Design and Developer docs
 - [API](API/index.html) the automatically generated DoxyGen docs
 - [Credits](Credits.md)
 

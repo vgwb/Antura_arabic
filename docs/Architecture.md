@@ -1,4 +1,4 @@
-## Project Modules / Architecture
+# Project Modules / Architecture
 
 - [Project Structure](Modules/ProjectStructure.md) the structure of the Unity project.
 - [Application Flow](Modules/ApplicationFlow.md) the complete flow of the application, useful if you want to understand the call flow.
