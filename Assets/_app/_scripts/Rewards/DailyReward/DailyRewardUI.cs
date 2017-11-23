@@ -13,7 +13,7 @@ namespace Antura.Rewards
     {
         public Color unlockedColor = Color.green;
 
-        public Sprite bonesSprite;
+        public Sprite bonesSprite, usedBonesSprite;
         public Sprite test1Sprite;
         public Sprite test2Sprite;
 
@@ -95,6 +95,7 @@ namespace Antura.Rewards
         public void SetUnlocked(bool animate = false)
         {
             bgImg.color = unlockedColor;
+            imageUI.sprite = usedBonesSprite;
             if (!animate)
             {
                 bgImg.SetAlpha(1);
