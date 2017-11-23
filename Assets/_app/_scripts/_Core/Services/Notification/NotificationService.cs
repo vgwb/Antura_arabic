@@ -102,7 +102,7 @@ namespace Antura.Core.Services.Notification
 
         private void DeleteAllLocalNotifications()
         {
-            Debug.Log("NotificationService:DeleteNextLocalNotifications()");
+            //Debug.Log("NotificationService:DeleteNextLocalNotifications()");
             pluginBridge.CancelAllNotifications();
         }
         #endregion
