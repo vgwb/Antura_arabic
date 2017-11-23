@@ -13,7 +13,7 @@ namespace Antura.AnturaSpace
 
         private ShopAction[] shopActions;
 
-        void Start()
+        public void Initialise()
         {
             if (addDebugBones) {
                 AppManager.I.Player.AddBones(50);

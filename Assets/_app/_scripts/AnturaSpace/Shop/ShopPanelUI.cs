@@ -49,7 +49,7 @@ namespace Antura.AnturaSpace
             }
         }
 
-        private void Start()
+        public void Initialise()
         {
             const float duration = 0.3f;
             showShopPanelTween =DOTween.Sequence() .SetAutoKill(false) .Pause() 
@@ -79,7 +79,7 @@ namespace Antura.AnturaSpace
 
         private void HandleContextChange(ShopContext shopContext)
         {
-            Debug.Log("CONTEXT: " + shopContext);
+            //Debug.Log("CONTEXT UI SHOP: " + shopContext);
             switch (shopContext)
             {
                 case ShopContext.Purchase:

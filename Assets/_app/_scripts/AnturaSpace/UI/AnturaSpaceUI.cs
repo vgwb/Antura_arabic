@@ -36,6 +36,7 @@ namespace Antura.AnturaSpace.UI
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
         public AnturaSpaceItemButton BtItemMain;
         public RectTransform ShopPanelContainer;
+        public ShopPanelUI ShopPanelUI;
         public TMPro.TextMeshProUGUI bonesNumber;
 
 
@@ -92,6 +93,7 @@ namespace Antura.AnturaSpace.UI
             btsSwatches = SwatchesContainer.GetComponentsInChildren<AnturaSpaceSwatchButton>(true);
             SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
             BtOpenModsPanel.SetAsNew(AppManager.I.Player.ThereIsSomeNewReward());
+            
 
             // Create items
             rewardsContainers = new List<Transform>();
@@ -151,6 +153,8 @@ namespace Antura.AnturaSpace.UI
                 var b = bt;
                 b.Bt.onClick.AddListener(() => OnClickSwatch(b));
             }
+
+            ShopPanelUI.Initialise();
         }
 
         void OnDestroy()

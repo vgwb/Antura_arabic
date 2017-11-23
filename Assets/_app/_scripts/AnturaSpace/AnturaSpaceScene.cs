@@ -23,6 +23,7 @@ namespace Antura.AnturaSpace
         public AnturaLocomotion Antura;
 
         public AnturaSpaceUI UI;
+        public ShopActionsManager ShopActionsManager;
 
         public Transform SceneCenter;
         public Pedestal RotatingBase;
@@ -103,6 +104,7 @@ namespace Antura.AnturaSpace
 
             CurrentState = Idle;
 
+            ShopActionsManager.Initialise();
             UI.Initialise();
 
             TutorialManager tutorialManager = gameObject.GetComponentInChildren<AnturaSpaceTutorialManager>();

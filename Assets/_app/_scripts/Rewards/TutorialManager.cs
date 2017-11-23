@@ -37,6 +37,15 @@ namespace Antura.Rewards
             InternalHandleStart();
         }
 
+        protected void CompleteTutorialPhase()
+        {
+            IsRunning = false;
+            FirstContactManager.I.CompleteCurrentPhase();
+
+            // Check if we have more
+            HandleStart();
+        }
+
         protected abstract void InternalHandleStart();
     }
 }

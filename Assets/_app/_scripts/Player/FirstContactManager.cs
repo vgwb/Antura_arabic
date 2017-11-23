@@ -67,7 +67,7 @@ namespace Antura.Profile
         private FirstContactPhase SIMULATE_FIRST_CONTACT_PHASE = FirstContactPhase.Reward_FirstBig;
 
         private static bool FORCE_FIRST_CONTACT = true;
-        private FirstContactPhase FORCED_FIRST_CONTACT_PHASE = FirstContactPhase.AnturaSpace_TouchAntura;
+        private FirstContactPhase FORCED_FIRST_CONTACT_PHASE = FirstContactPhase.AnturaSpace_Customization;
 
         #region Checks
 

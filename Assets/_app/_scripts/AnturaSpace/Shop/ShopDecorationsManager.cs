@@ -64,7 +64,7 @@ namespace Antura.AnturaSpace
 
         private void SwitchToContext(ShopContext newContext)
         {
-            Debug.Log("SWITCH TO CONTEXT: " + newContext);
+            //Debug.Log("SWITCH TO CONTEXT: " + newContext);
             previousShopContext = shopContext;
             shopContext = newContext;
             if (OnContextChange != null) OnContextChange(shopContext);
