@@ -496,55 +496,6 @@ namespace Antura.Profile
 
         #region Profile completion
 
-        #region First Contact (ProfileCompletion = 1 & 2)
-
-        /// <summary>
-        /// Determines whether [is first contact].
-        /// </summary>
-        /// <returns>
-        ///   <c>true</c> if [is first contact]; otherwise, <c>false</c>.
-        /// </returns>
-        /*public bool IsFirstContact()
-        {
-            return ProfileCompletion < ProfileCompletionState.FirstContact2;
-        }*/
-
-        /// <summary>
-        /// Determines whether [is first contact] whit [the specified step] (1 or 2).
-        /// </summary>
-        /// <param name="_step">The step.</param>
-        /// <returns>
-        ///   <c>true</c> if [is first contact] [the specified step]; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsAtFirstContactPhase(int _step)
-        {
-            if (_step < (int)ProfileCompletionState.FirstContact1) {
-                return true;
-            }
-            if (_step >= (int)ProfileCompletionState.FirstContact2) {
-                return false;
-            }
-
-            return (int)ProfileCompletion == _step - 1;
-        }
-
-        /// <summary>
-        /// Set firsts contact flag as passed for step specified.
-        /// </summary>
-        /// <param name="_step">The step (1 (default) or 2).</param>
-        public void SetFirstContactPassed(int _step = 1)
-        {
-            switch (_step) {
-                case 1:
-                    ProfileCompletion = ProfileCompletionState.FirstContact1;
-                    break;
-                case 2:
-                    ProfileCompletion = ProfileCompletionState.FirstContact2;
-                    break;
-            }
-            Save();
-        }
-
         /// <summary>
         /// Resets the player profile completion.
         /// </summary>
@@ -553,8 +504,6 @@ namespace Antura.Profile
             ProfileCompletion = ProfileCompletionState.New;
             Save();
         }
-
-        #endregion
 
         #region GameEnded
 
@@ -575,12 +524,12 @@ namespace Antura.Profile
 
         public bool HasFinalBeenShown()
         {
-            return ProfileCompletion >= ProfileCompletionState.GameCompletedAndFinalShowed;
+            return ProfileCompletion >= ProfileCompletionState.GameCompletedAndFinalShown;
         }
 
         public void SetFinalShown()
         {
-            ProfileCompletion = ProfileCompletionState.GameCompletedAndFinalShowed;
+            ProfileCompletion = ProfileCompletionState.GameCompletedAndFinalShown;
         }
 
         #endregion

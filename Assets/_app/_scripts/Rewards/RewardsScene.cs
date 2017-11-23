@@ -24,6 +24,8 @@ namespace Antura.Rewards
         public AnturaAnimationController AnturaAnimController;
         public Button AnturaSpaceBtton;
 
+        private TutorialManager tutorialManager;
+
         protected override void Start()
         {
             base.Start();
@@ -33,14 +35,20 @@ namespace Antura.Rewards
             AnturaAnimController.State = AnturaAnimation;
             ShowReward();
 
-            if (!FirstContactManager.I.IsInFirstContact())
-            {
-                AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
-            }
-            else
-            {
-                AnturaSpaceBtton.gameObject.SetActive(false);
-            }
+            AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
+
+            var tutorialManager = gameObject.AddComponent<RewardsTutorialManager>();
+            tutorialManager.HandleStart();
+
+            // TODO: should be handled by a TutorialManager instead
+            /* if (FirstContactManager.I.IsInsideFirstContact())
+             {
+                 AnturaSpaceBtton.gameObject.SetActive(false);
+             }
+             else
+             {
+                 AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
+             }*/
         }
 
         public void ShowReward()
@@ -50,7 +58,7 @@ namespace Antura.Rewards
 
         IEnumerator StartReward()
         {
-            if (FirstContactManager.I.IsInFirstContact())
+            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Intro))
             {
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Reward_Intro);
             }
@@ -89,7 +97,7 @@ namespace Antura.Rewards
         /// <returns></returns>
         public RewardPackUnlockData GetRewardToInstantiate()
         {
-            if (FirstContactManager.I.IsInFirstContact())
+            if (FirstContactManager.I.IsInsideFirstContact())
             {
                 return AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
             }

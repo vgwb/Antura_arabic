@@ -7,6 +7,7 @@ using Antura.UI;
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Profile;
+using Antura.Rewards;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -22,7 +23,6 @@ namespace Antura.AnturaSpace
         public AnturaLocomotion Antura;
 
         public AnturaSpaceUI UI;
-        public AnturaSpaceTutorial Tutorial;
 
         public Transform SceneCenter;
         public Pedestal RotatingBase;
@@ -99,14 +99,12 @@ namespace Antura.AnturaSpace
             base.Start();
 
             GlobalUI.ShowPauseMenu(false);
-
-            // TODO: UI Change based on FirstContact
-            if (!FirstContactManager.I.IsInFirstContact())
-            {
-                ShowBackButton();
-            }
+            ShowBackButton();
 
             CurrentState = Idle;
+
+            TutorialManager tutorialManager = gameObject.AddComponent<AnturaSpaceTutorialManager>();
+            tutorialManager.HandleStart();
         }
 
         public void Update()
@@ -135,6 +133,10 @@ namespace Antura.AnturaSpace
         public void ShowBackButton()
         {
             GlobalUI.ShowBackButton(true, OnExit);
+        }
+        public void HideBackButton()
+        {
+            GlobalUI.ShowBackButton(false);
         }
 
         void OnExit()

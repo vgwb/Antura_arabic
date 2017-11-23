@@ -172,7 +172,7 @@ namespace Antura.Profile
             returnProfile.Tint = tint;
             returnProfile.IsDemoUser = isDemoUser;
             returnProfile.ProfileCompletion =
-                isDemoUser ? ProfileCompletionState.GameCompletedAndFinalShowed : ProfileCompletionState.New;
+                isDemoUser ? ProfileCompletionState.GameCompletedAndFinalShown : ProfileCompletionState.New;
 
             // DB Creation
             AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());

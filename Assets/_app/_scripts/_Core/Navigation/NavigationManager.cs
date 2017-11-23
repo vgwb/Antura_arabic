@@ -171,11 +171,6 @@ namespace Antura.Core
 
         private bool CheckDailySceneTrigger()
         {
-            if (FirstContactManager.I.IsInFirstContact()) {
-                LogManager.I.LogInfo(InfoEvent.DailyRewardReceived, "first contact");
-                return false;
-            }
-
             bool mustShowDailyScenes = false;
             int numberOfDaysSinceLastReward = AppManager.I.Teacher.logAI.DaysSinceLastReward();
 
@@ -224,29 +219,36 @@ namespace Antura.Core
 
         #region Direct navigation (private)
 
-        private void GoToScene(AppScene newScene, Database.MiniGameData minigameData = null)
+        private void GoToScene(AppScene wantedNewScene, MiniGameData minigameData = null)
         {
-            newScene = FirstContactManager.I.FilterNavigation(GetCurrentScene(), newScene);
+            bool keepPrevAsBackable = false;
+            AppScene filteredNewScene = FirstContactManager.I.FilterNavigation(GetCurrentScene(), wantedNewScene, out keepPrevAsBackable);
+            if (keepPrevAsBackable) UpdatePrevSceneStack(wantedNewScene);
 
-            // Additional checks for specific scenes
-            switch (newScene) {
-                case AppScene.Map:
-                    // When coming back to the map, we need to check whether a new daily reward is needed
-                    if (CheckDailySceneTrigger()) {
-                        GoToScene(AppScene.Mood);
-                        return;
-                    }
-                    break;
+            if (!FirstContactManager.I.IsInsideFirstContact())
+            {
+                // Additional general checks when entering specific scenes
+                switch (filteredNewScene)
+                {
+                    case AppScene.Map:
+                        // When coming back to the map, we need to check whether a new daily reward is needed
+                        if (CheckDailySceneTrigger())
+                        {
+                            GoToScene(AppScene.Mood);
+                            return;
+                        }
+                        break;
+                }
             }
 
             // Scene switch
-            UpdatePrevSceneStack(newScene);
-            NavData.CurrentScene = newScene;
+            UpdatePrevSceneStack(filteredNewScene);
+            NavData.CurrentScene = filteredNewScene;
 
             // check to have closed any possible Keeper Dialog
             KeeperManager.I.ResetKeeper();
 
-            GoToSceneByName(AppSceneHelper.GetSceneName(newScene, minigameData));
+            GoToSceneByName(AppSceneHelper.GetSceneName(filteredNewScene, minigameData));
         }
 
         private void GoToSceneByName(string sceneName)

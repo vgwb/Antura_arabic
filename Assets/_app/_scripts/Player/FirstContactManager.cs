@@ -1,9 +1,51 @@
 
 using System.Collections.Generic;
 using Antura.Core;
+using UnityEngine;
 
 namespace Antura.Profile
 {
+    /// <summary>
+    /// Defines different phases for the First Contact.
+    /// @note: these are not in sequence, the sequence is defined by the sequence list!
+    /// </summary>
+    public enum FirstContactPhase
+    {
+        Intro,
+
+        Map_Play,
+        Map_GoToAnturaSpace,
+        Map_GoToMinigames,
+        Map_GoToBook,
+        Map_GoToProfile,
+        Map_CollectBones,
+
+        AnturaSpace_TouchAntura,
+        AnturaSpace_Customization,
+        AnturaSpace_Exit,
+        AnturaSpace_Shop,
+        AnturaSpace_Photo,
+
+        Finished
+    }
+
+    // What do we need for the first contact
+    // - linear progression VS phases unlocked
+    // - phases are SEPARATED, like a FSM, each scene will check for the current phase and register to those it is concerned with!
+    // - the flow of the first contact is instead defined by a list of phases in order. Each phase will start when the previous is finished.
+    //   - NOTE: this makes the flow LINEAR!  
+
+    // - allow some parts to be unlocked with LBs
+    // - move the player to AnturaSpace when you unlock the first reward
+    // - tutorials also unlock
+    // - reward 1 tutorial: 
+    // - anturaspace 3 tutorials: customization, shop, photo
+    // - map 2 tutorials: map, gotoAnturaSpace, gotoBook, gotoProfile, gotoMinigames
+    // - map triggers on specific LB/PS to start the new 'phase'
+
+    // TODO: define triggers that enable or not the tutorial!!!
+        // - example: trigger after a specific PS (or when we increase MaxPS)
+
     /// <summary>
     /// Manages the flow of First Contact (i.e. the tutorial) throughout the application
     /// </summary>
@@ -14,46 +56,67 @@ namespace Antura.Profile
             get { return AppManager.I.FirstContactManager; }
         }
 
-        // TODO: FirstContactFlow that changes the NavigationManger based on FirstContact requirements!
-
-        /// <summary>
-        /// Defines the different phases of the First Contact
-        /// The player will traverse these in sequence
-        /// </summary>
-        /// // TODO: maybe define them all, also in the first Reward and so on?
-        public enum Phase
-        {
-            NewPlayer,
-            Map_FirstEncounter,
-            Map_SecondEncounter,
-            Finished
-        }
-
         // State
-        private Phase phase = Phase.NewPlayer;
+        private FirstContactPhase currentPhase = FirstContactPhase.Intro;
+        private List<FirstContactPhase> phasesSequence;
 
-        // Parameters
-        //[Header("Debug")]
-        private bool SimulateFirstContact;
+        // Debug
+        private static bool SIMULATE_FIRST_CONTACT = true;
+        private FirstContactPhase SIMULATE_FIRST_CONTACT_PHASE = FirstContactPhase.Finished;
 
         #region Checks
 
-        public bool IsInFirstContact()
+        public bool IsInsideFirstContact()
         {
-            return phase < Phase.Finished || SimulateFirstContact;
+            return CurrentPhase < FirstContactPhase.Finished || SIMULATE_FIRST_CONTACT;
         }
 
-        public bool HasPassedPhase(Phase _phase)
+        public bool HasPassedPhase(FirstContactPhase _phase)
         {
-            return phase < _phase;
+            return CurrentPhase < _phase;
         }
 
-        public bool IsInPhase(Phase _phase)
+        public bool IsInPhase(FirstContactPhase _phase)
         {
-            return phase == _phase;
+            return CurrentPhase == _phase;
         }
 
-        // TODO: Check PlayerProfile.IsInFirstContact()
+        public FirstContactPhase CurrentPhase
+        {
+            get
+            {
+                if (SIMULATE_FIRST_CONTACT) return SIMULATE_FIRST_CONTACT_PHASE;
+                return currentPhase;
+            }
+        }
+
+        #endregion
+
+        #region Setters
+
+        public void CompleteCurrentPhase()
+        {
+            // Advance in the sequence
+            Debug.Log("First Contact phase " + currentPhase + " completed!");
+            currentPhase = phasesSequence[phasesSequence.IndexOf(currentPhase) + 1];
+            Debug.Log("First Contact phase " + currentPhase + " starting...");
+        }
+
+        public void PassPhase(FirstContactPhase passedPhase)
+        {
+            currentPhase = passedPhase + 1;
+            AppManager.I.Player.Save();
+
+            Debug.Log("First Contact phase " + passedPhase + " completed!");
+        }
+
+        public void ForceAtPhase(FirstContactPhase forcedPhase)
+        {
+            currentPhase = forcedPhase;
+            AppManager.I.Player.Save();
+
+            Debug.Log("FORCING First Contact phase " + forcedPhase);
+        }
 
         #endregion
 
@@ -61,11 +124,13 @@ namespace Antura.Profile
         {
             public AppScene fromScene;
             public AppScene toScene;
+            public bool keepAsBackable;
 
-            public SceneTransition(AppScene fromScene, AppScene toScene)
+            public SceneTransition(AppScene fromScene, AppScene toScene, bool keepAsBackable = false)
             {
                 this.fromScene = fromScene;
                 this.toScene = toScene;
+                this.keepAsBackable = keepAsBackable;
             }
 
 
@@ -94,33 +159,72 @@ namespace Antura.Profile
 
         public FirstContactManager()
         {
+            if (!Application.isEditor)
+            {
+                SIMULATE_FIRST_CONTACT = false; // Force debug options to FALSE if we're not in the editor
+            }
+
+            phasesSequence = new List<FirstContactPhase>
+            {
+                FirstContactPhase.Intro,
+
+                FirstContactPhase.AnturaSpace_TouchAntura,
+                FirstContactPhase.AnturaSpace_Customization,
+                FirstContactPhase.AnturaSpace_Exit,
+
+                FirstContactPhase.Map_Play,
+                FirstContactPhase.Map_GoToAnturaSpace,
+
+                // TODO: the scene should handle MULTIPLE tutorials in sequence, disjointed (check after each tutorial ends!)
+                FirstContactPhase.AnturaSpace_Shop,
+                FirstContactPhase.AnturaSpace_Photo,
+
+            };
+
             // Setup filtered transitions
-
-            // Home to Intro instead of map
-            filteredTransitionsMap.Add(new SceneTransition(AppScene.Home,AppScene.Map), AppScene.Intro);
-           
-            // Rewards to AnturaSpace directly when you earn the first reward
-            filteredTransitionsMap.Add(new SceneTransition(AppScene.Rewards, AppScene.Map), AppScene.AnturaSpace);
-
-            // Map to Rewards directly instead of AnturaSpace.
-            filteredTransitionsMap.Add(new SceneTransition(AppScene.Map, AppScene.AnturaSpace), AppScene.Rewards);
-            // TODO: We must force the prev scene stack to hold the Map <-> AnturaSpace transition
-            //    UpdatePrevSceneStack(AppScene.AnturaSpace);
-
+            SetupFilteredTransitions();
         }
+
+        private void SetupFilteredTransitions()
+        {
+          }
 
         /// <summary>
         /// Filter the navigation from a scene to the next based on the first contact requirements
         /// </summary>
-        public AppScene FilterNavigation(AppScene fromScene, AppScene toScene)
+        public AppScene FilterNavigation(AppScene fromScene, AppScene toScene, out bool keepPrevAsBackable)
         {
-            if (!IsInFirstContact()) return toScene;
+            keepPrevAsBackable = false;
+            if (!IsInsideFirstContact()) return toScene;
 
+            // TODO: Remove the map!
+            filteredTransitionsMap = new Dictionary<SceneTransition, AppScene>();
+            switch (CurrentPhase)
+            {
+                // Home to Intro instead of Map
+                case FirstContactPhase.Intro:
+                    filteredTransitionsMap.Add(new SceneTransition(AppScene.Home, AppScene.Map), AppScene.Intro);
+                    break;
+
+                // Rewards to AnturaSpace directly when you earn the first reward
+                case FirstContactPhase.AnturaSpace_Customization:
+                    filteredTransitionsMap.Add(new SceneTransition(AppScene.Rewards, AppScene.Map), AppScene.AnturaSpace);
+                    break;
+
+                // Map to Rewards directly instead of AnturaSpace when you finish the first map step (TODO)
+                case FirstContactPhase.Map_GoToAnturaSpace:
+                    filteredTransitionsMap.Add(new SceneTransition(AppScene.Map, AppScene.AnturaSpace, true), AppScene.Rewards);
+                    // TODO: We must force the prev scene stack to hold the Map <-> AnturaSpace transition (should be in, test it!)
+                    break;
+            }
+
+            // Handle the transition
             var currentTransition = new SceneTransition(fromScene, toScene);
             foreach (var filteredTransition in filteredTransitionsMap.Keys)
             {
                 if (filteredTransition.Equals(currentTransition))
                 {
+                    keepPrevAsBackable = filteredTransition.keepAsBackable;
                     return filteredTransitionsMap[filteredTransition];
                 }
             }
@@ -128,4 +232,5 @@ namespace Antura.Profile
             return toScene;
         }
     }
+
 }

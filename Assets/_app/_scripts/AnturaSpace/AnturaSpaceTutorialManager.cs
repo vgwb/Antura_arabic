@@ -7,16 +7,15 @@ using Antura.UI;
 using UnityEngine;
 using System.Collections;
 using Antura.Profile;
+using Antura.Rewards;
 
 namespace Antura.AnturaSpace
 {
     /// <summary>
     /// Implements a tutorial for the AnturaSpace scene.
     /// </summary>
-    public class AnturaSpaceTutorial : MonoBehaviour
+    public class AnturaSpaceTutorialManager : TutorialManager
     {
-        private static bool TEST_DISABLE_TUTORIAL = true;
-
         // note that the tutorial is totally sequentially
         private enum AnturaSpaceTutorialStates
         {
@@ -54,43 +53,23 @@ namespace Antura.AnturaSpace
         private AnturaSpaceTutorialStates _mTutorialStates = AnturaSpaceTutorialStates.ANTURA_ANIM;
         private bool m_bIsDragAnimPlaying = false;
 
-        public bool IsRunning { get; private set; }
-
         #endregion
 
         #region GETTER/SETTER
 
         #endregion
 
-        void Awake()
-        {
-            IsRunning = true;
-        }
 
         #region INTERNALS
 
-        void Start()
+        protected override void InternalHandleStart()
         {
-            // DEBUG: removing the tutorial for now
-            if(TEST_DISABLE_TUTORIAL)
-            {
-                gameObject.SetActive(false);
-                IsRunning = false;
-                return;
-            }
-
-            //if this isn't the first contact disable yourself and return
-            if (!FirstContactManager.I.IsInFirstContact())
-            {
-                gameObject.SetActive(false);
-                IsRunning = false;
-                return;
-            }
-
             _mScene = FindObjectOfType<AnturaSpaceScene>();
             _mScene.Antura.transform.position = _mScene.SceneCenter.position;
             _mScene.Antura.AnimationController.State = AnturaAnimationStates.sleeping;
             _mScene.CurrentState = _mScene.Sleeping;
+
+            _mScene.HideBackButton();
 
             TutorialUI.SetCamera(m_oCameraUI);
 

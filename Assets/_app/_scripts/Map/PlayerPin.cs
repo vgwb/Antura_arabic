@@ -37,7 +37,8 @@ namespace Antura.Map
         {
             StartFloatingAnimation();
 
-            if (!FirstContactManager.I.IsInFirstContact()) {
+            // TODO: treat with the TUTORIAL
+            if (!FirstContactManager.I.IsInsideFirstContact()) {
                 CheckMovementButtonsEnabling();
             }
         }

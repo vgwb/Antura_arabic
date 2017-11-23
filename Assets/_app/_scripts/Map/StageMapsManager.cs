@@ -6,7 +6,7 @@ using Antura.Database;
 using Antura.Keeper;
 using Antura.Minigames;
 using Antura.Profile;
-using Antura.Tutorial;
+using Antura.Rewards;
 using Antura.UI;
 using DG.Tweening;
 using UnityEngine;
@@ -25,9 +25,6 @@ namespace Antura.Map
         public bool FollowPlayerWhenMoving = false;
         public bool ShowStageButtons = false;
         public bool ShowMovementButtons = false;
-
-        [Header("Debug")]
-        public bool SimulateFirstContact;
 
         [Header("References")]
         public StageMap[] stageMaps;
@@ -63,13 +60,6 @@ namespace Antura.Map
         // The stage that is currently shown to the player
         private int shownStage;
         private bool inTransition;
-
-        #endregion
-
-        #region Tutorial
-
-        private static int firstContactSimulationStep;  // TODO: remove this and use the FirstContactManager instead
-        private GameObject tutorialUiGo;
 
         #endregion
 
@@ -146,10 +136,6 @@ namespace Antura.Map
 
         private void Awake()
         {
-            if (!Application.isEditor) {
-                SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
-            }
-
             // DEBUG
             if (TEST_JOURNEY_POS)
             {
@@ -208,13 +194,6 @@ namespace Antura.Map
             playerPin.ForceToJourneyPosition(PreviousJourneyPosition, justVisuals:true);
             playerPin.LookAtNextPin(false);
 
-            /* FIRST CONTACT FEATURE */
-            if (FirstContactManager.I.IsInFirstContact() || SimulateFirstContact) {
-                FirstContactBehaviour();
-                mapStageIndicator.gameObject.SetActive(false);
-            }
-            /* --------------------- */
-
             UpdateStageButtonsUI();
 
             var isGameCompleted = AppManager.I.Player.HasFinalBeenShown();
@@ -222,9 +201,11 @@ namespace Antura.Map
                 PlayRandomAssessmentDialog();
             }
 
-
             // Coming from the other stage
             StartCoroutine(InitialMovementCO());
+
+            var tutorialManager = gameObject.AddComponent<MapTutorialManager>();
+            tutorialManager.HandleStart();
         }
 
         private IEnumerator InitialMovementCO()
@@ -402,91 +383,11 @@ namespace Antura.Map
 
         #region First Contact Session        
 
-        /// <summary>
-        ///     Firsts the contact behaviour.
-        ///     Put Here logic for first contact only situations.
-        /// </summary>
-        private void FirstContactBehaviour()
-        {
-            if (SimulateFirstContact) firstContactSimulationStep++;
-            var isFirstStep = SimulateFirstContact
-                ? firstContactSimulationStep == 1
-                : AppManager.I.Player.IsAtFirstContactPhase(1);
-            var isSecondStep = SimulateFirstContact
-                ? firstContactSimulationStep == 2
-                : AppManager.I.Player.IsAtFirstContactPhase(2);
-
-            if (isFirstStep) {
-                DeactivateUI();
-
-                KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro, true, true, () => {
-                    KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_AnturaSpace, true, true, ActivateAnturaButton);
-                });
-
-                // TODO: advance in the FirstContactManager
-                AppManager.I.Player.SetFirstContactPassed();
-                Debug.Log("First Contact Step1 finished! Go to Antura Space!");
-            } else if (isSecondStep) {
-                ActivateUI();
-
-                // TODO: advance in the FirstContactManager
-                AppManager.I.Player.SetFirstContactPassed(2);
-
-                KeeperManager.I.PlayDialog(LocalizationDataId.Map_First, true, true, () => {
-                    KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_Map1);
-                });
-
-
-                Debug.Log("First Contact Step2 finished! Good Luck!");
-                //tuto anim on the play button
-                StartCoroutine(CO_Tutorial_PlayButton());
-            }
-        }
-
         // TODO: check if something called this
         /*private void PlayDialogStages(LocalizationDataId data)
         {
             KeeperManager.I.PlayDialog(data);
         }*/
-
-        private void ActivateAnturaButton()
-        {
-            anturaSpaceButton.SetActive(true);
-            StartCoroutine(CO_Tutorial());
-        }
-
-        private IEnumerator CO_Tutorial()
-        {
-            TutorialUI.SetCamera(UICamera);
-            var anturaBtPos = anturaSpaceButton.transform.position;
-            anturaBtPos.z -= 1;
-            while (true) {
-                TutorialUI.Click(anturaSpaceButton.transform.position);
-                yield return new WaitForSeconds(0.85f);
-            }
-        }
-
-        private IEnumerator CO_Tutorial_PlayButton()
-        {
-            TutorialUI.SetCamera(UICamera);
-            var pos = playButton.transform.position;
-            pos.y += 2;
-            while (true) {
-                TutorialUI.Click(pos);
-                yield return new WaitForSeconds(0.85f);
-            }
-        }
-
-        private void HideTutorial()
-        {
-            tutorialUiGo = GameObject.Find("[TutorialUI]");
-            if (tutorialUiGo != null) tutorialUiGo.transform.localScale = new Vector3(0, 0, 0);
-        }
-
-        private void ShowTutorial()
-        {
-            if (tutorialUiGo != null) tutorialUiGo.transform.localScale = new Vector3(1, 1, 1);
-        }
 
         #endregion
 
@@ -506,7 +407,7 @@ namespace Antura.Map
 
             SwitchFromToStage(fromStage, toStage, true);
 
-            HideTutorial();
+            //HideTutorial();
         }
 
         /// <summary>
@@ -523,9 +424,9 @@ namespace Antura.Map
 
             SwitchFromToStage(fromStage, toStage, true);
 
-            if (IsAtFirstStage) {
-                ShowTutorial();
-            }
+            //if (IsAtFirstStage) {
+            //    ShowTutorial();
+            //}
         }
 
         public void MoveToStageMap(int toStage, bool animateCamera = false)
@@ -750,7 +651,7 @@ namespace Antura.Map
             playInfoPanel.gameObject.SetActive(false);
         }
 
-        private void DeactivateUI()
+        public void DeactivateUI()
         {
             playButtonsPanel.gameObject.SetActive(false);
             playInfoPanel.gameObject.SetActive(false);
@@ -761,7 +662,7 @@ namespace Antura.Map
             GlobalUI.ShowPauseMenu(false);
         }
 
-        private void ActivateUI()
+        public void ActivateUI()
         {
             //playButtonsPanel.gameObject.SetActive(true);
             playInfoPanel.gameObject.SetActive(true);

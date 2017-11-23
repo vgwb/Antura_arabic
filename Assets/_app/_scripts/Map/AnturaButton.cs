@@ -11,7 +11,8 @@ namespace Antura.Map
         void Start()
         {
             GameObject icoNew = GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
-            icoNew.SetActive(!FirstContactManager.I.IsInFirstContact() && AppManager.I.Player.ThereIsSomeNewReward());
+            // TODO: this should be handled by the TUtorial instead
+            icoNew.SetActive(!FirstContactManager.I.IsInsideFirstContact() && AppManager.I.Player.ThereIsSomeNewReward());
         }
     }
 }

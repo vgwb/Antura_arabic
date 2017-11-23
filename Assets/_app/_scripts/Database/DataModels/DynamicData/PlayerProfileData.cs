@@ -117,7 +117,7 @@ namespace Antura.Database
 
         /// <summary>
         /// State of completion for the player profile.
-        /// Can be 0,1,2,3. See PlayerProfile for further details.
+        /// See PlayerProfile for further details.
         /// </summary>
         public ProfileCompletionState ProfileCompletion { get; set; }
 
