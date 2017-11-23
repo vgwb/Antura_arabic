@@ -54,9 +54,9 @@ namespace Antura.Map
             get { return isFollowingFinger; }
         }
 
-        private void Start()
+        public void Initialise(StageMapsManager _stageMapsManager)
         {
-            _stageMapsManager = FindObjectOfType<StageMapsManager>();
+            this._stageMapsManager = _stageMapsManager;
         }
 
         #region Movements

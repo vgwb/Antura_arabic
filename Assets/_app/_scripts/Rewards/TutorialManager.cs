@@ -8,6 +8,8 @@ namespace Antura.Rewards
     /// </summary>
     public abstract class TutorialManager : MonoBehaviour
     {
+        public static bool VERBOSE = false;
+
         public bool IsRunning { get; protected set; }
 
         public void HandleStart()
@@ -16,11 +18,11 @@ namespace Antura.Rewards
             {
                 gameObject.SetActive(false);
                 IsRunning = false;
-                Debug.Log("TUTORIAL - First contact is off");
+                if (VERBOSE) Debug.Log("TUTORIAL - First contact is off");
                 return;
             }
 
-            Debug.Log("TUTORIAL - phase " + FirstContactManager.I.CurrentPhase + "");
+            if (VERBOSE) Debug.Log("TUTORIAL - phase " + FirstContactManager.I.CurrentPhase + "");
             IsRunning = true;
 
             InternalHandleStart();

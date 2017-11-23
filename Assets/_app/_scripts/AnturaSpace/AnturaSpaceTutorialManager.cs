@@ -40,9 +40,6 @@ namespace Antura.AnturaSpace
         protected override void InternalHandleStart()
         {
             _mScene = FindObjectOfType<AnturaSpaceScene>();
-            _mScene.Antura.transform.position = _mScene.SceneCenter.position;
-            _mScene.Antura.AnimationController.State = AnturaAnimationStates.sleeping;
-            _mScene.CurrentState = _mScene.Sleeping;
             _mScene.HideBackButton();
 
             TutorialUI.SetCamera(m_oCameraUI);
@@ -91,6 +88,11 @@ namespace Antura.AnturaSpace
             // Push the player to touch Antura
 
             //TutorialUI.Clear(false);
+
+            // Reset antura as sleeping
+            _mScene.Antura.transform.position = _mScene.SceneCenter.position;
+            _mScene.Antura.AnimationController.State = AnturaAnimationStates.sleeping;
+            _mScene.CurrentState = _mScene.Sleeping;
 
             AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro, null);
 

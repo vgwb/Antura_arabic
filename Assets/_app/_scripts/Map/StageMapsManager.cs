@@ -204,7 +204,9 @@ namespace Antura.Map
             // Coming from the other stage
             StartCoroutine(InitialMovementCO());
 
-            var tutorialManager = gameObject.AddComponent<MapTutorialManager>();
+            mapCamera.Initialise(this);
+
+            var tutorialManager = gameObject.GetComponentInChildren<MapTutorialManager>();
             tutorialManager.HandleStart();
         }
 
