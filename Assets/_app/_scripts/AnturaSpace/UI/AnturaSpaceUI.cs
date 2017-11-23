@@ -118,7 +118,7 @@ namespace Antura.AnturaSpace.UI
                 .Join(BtBonesShop.RectT.DOAnchorPosY(-830, duration))
                 .OnRewind(() => CategoriesContainer.gameObject.SetActive(false));
             showShopTween = DOTween.Sequence().SetAutoKill(false).Pause()
-                .Append(ShopPanelContainer.DOAnchorPosY(-830, duration).From().SetEase(Ease.OutBack))
+                .Append(ShopPanelContainer.DOAnchorPosY(-830, duration).From().SetEase(Ease.OutQuad))
                 .Join(BtOpenModsPanel.RectT.DOAnchorPosY(150, duration))
                 .OnRewind(() => ShopPanelContainer.gameObject.SetActive(false));
             showItemsTween = ItemsContainer.DOAnchorPosX(-350, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Antura.Core;
+using Antura.Helpers;
 using Antura.UI;
 using DG.Tweening;
 using UnityEngine.UI;
@@ -25,6 +26,8 @@ namespace Antura.Rewards
         public GameObject todayPivot;
         public GameObject yesterdayTextGo;
         public Button claimButton;
+        [SerializeField] DailyRewardPopupPool popupPool;
+        [SerializeField] RectTransform fromPopupPivot, toPopupPivot;
 
         private DailyRewardManager dailyRewardManager;
         private List<DailyRewardUI> dailyRewardUIs;
@@ -131,8 +134,10 @@ namespace Antura.Rewards
                 todayPivot.transform.position = dailyRewardUIs[newRewardUIIndex].transform.position;
                 todayPivot.gameObject.SetActive(true);
             });
-            s.Insert(s.Duration() - 0.15f, dailyRewardUIs[newRewardUIIndex].transform.DOScale(1.2f, 0.35f).SetEase(Ease.OutBack));
+            s.Insert(s.Duration() - 0.15f, dailyRewardUIs[newRewardUIIndex].transform.DOScale(1.25f, 0.35f).SetEase(Ease.OutBack));
             yield return s.WaitForCompletion();
+
+            dailyRewardUIs[newRewardUIIndex].Bounce(true);
 
 //            yield return new WaitForSeconds(1.0f);
 //
@@ -192,9 +197,12 @@ namespace Antura.Rewards
 
             // Add the new reward (for now, just bones)
             int nNewBones = dailyRewardManager.GetReward(newRewardContentIndex).amount;
+            List<DailyRewardPopup> popups = popupPool.Spawn(nNewBones);
+            Vector2 toP = UIHelper.SwitchToRectTransform(toPopupPivot, popupPool.GetComponent<RectTransform>());
             for (int bone_i = 0; bone_i < nNewBones; bone_i++)
             {
                 bonesCounter.IncreaseByOne();
+                popups[bone_i].PopFromTo(fromPopupPivot.anchoredPosition, toP);
                 yield return new WaitForSeconds(0.1f);
             }
             AppManager.I.Player.AddBones(nNewBones);

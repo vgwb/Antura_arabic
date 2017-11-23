@@ -6,6 +6,7 @@ using Antura.Database;
 using Antura.Keeper;
 using Antura.Profile;
 using Antura.UI;
+using DG.Tweening;
 using UnityEngine.UI;
 
 namespace Antura.Rewards
@@ -25,6 +26,7 @@ namespace Antura.Rewards
         public Button AnturaSpaceBtton;
 
         private TutorialManager tutorialManager;
+        Tween btAnturaTween;
 
         protected override void Start()
         {
@@ -33,22 +35,18 @@ namespace Antura.Rewards
             Debug.Log("RewardsManager playsession: " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
             AnturaAnimController.State = AnturaAnimation;
+            //AnturaSpaceBtton.gameObject.SetActive(false);
             ShowReward();
 
             AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
 
-            var tutorialManager = gameObject.AddComponent<RewardsTutorialManager>();
+            var tutorialManager = gameObject.GetComponentInChildren<RewardsTutorialManager>();
             tutorialManager.HandleStart();
-
-            // TODO: should be handled by a TutorialManager instead
-            /* if (FirstContactManager.I.IsInsideFirstContact())
-             {
-                 AnturaSpaceBtton.gameObject.SetActive(false);
-             }
-             else
-             {
-                 AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
-             }*/
+		}
+		
+        void OnDestroy()
+        {
+            btAnturaTween.Kill();
         }
 
         public void ShowReward()
@@ -77,6 +75,10 @@ namespace Antura.Rewards
             // Wait animation ending before show continue button
             yield return new WaitForSeconds(4.4f);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
+            if (!FirstContactManager.I.IsInsideFirstContact()){ 
+                AnturaSpaceBtton.gameObject.SetActive(true);
+                btAnturaTween = AnturaSpaceBtton.transform.DOScale(0.1f, 0.4f).From().SetEase(Ease.OutBack);
+            }
             yield return null;
         }
 
