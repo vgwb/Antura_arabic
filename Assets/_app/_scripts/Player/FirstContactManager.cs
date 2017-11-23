@@ -59,17 +59,55 @@ namespace Antura.Profile
         }
 
         // State
-        private FirstContactPhase currentPhase = FirstContactPhase.Reward_FirstBig;
+        private FirstContactPhase currentPhase = FirstContactPhase.Intro;
         private List<FirstContactPhase> phasesSequence;
 
         // Debug
-        public static bool DISABLE_FIRST_CONTACT = true;
+        public static bool DISABLE_FIRST_CONTACT = false;
 
         private static bool SIMULATE_FIRST_CONTACT = false;
         private FirstContactPhase SIMULATE_FIRST_CONTACT_PHASE = FirstContactPhase.Reward_FirstBig;
 
-        private static bool FORCE_FIRST_CONTACT = false;
-        private FirstContactPhase FORCED_FIRST_CONTACT_PHASE = FirstContactPhase.Intro;
+        private static bool FORCE_FIRST_CONTACT = true;
+        private FirstContactPhase FORCED_FIRST_CONTACT_PHASE = FirstContactPhase.AnturaSpace_TouchAntura;
+
+        private Dictionary<SceneTransition, AppScene> filteredTransitionsMap = new Dictionary<SceneTransition, AppScene>();
+
+        public FirstContactManager()
+        {
+            if (!Application.isEditor)
+            {
+                // Force debug options to FALSE if we're not in the editor
+                SIMULATE_FIRST_CONTACT = false; 
+                FORCE_FIRST_CONTACT = false;
+            }
+
+            // Define the first contact sequence
+            phasesSequence = new List<FirstContactPhase>
+            {
+                FirstContactPhase.Reward_FirstBig,
+
+                FirstContactPhase.AnturaSpace_TouchAntura,
+                FirstContactPhase.AnturaSpace_Customization,
+                FirstContactPhase.AnturaSpace_Exit,
+
+                FirstContactPhase.Map_Play,
+                FirstContactPhase.Map_GoToAnturaSpace,
+
+                FirstContactPhase.AnturaSpace_Shop,
+                FirstContactPhase.AnturaSpace_Photo,
+            };
+
+        }
+
+        public void InitialiseForCurrentPlayer()
+        {
+            if (FORCE_FIRST_CONTACT)
+            {
+                ForceAtPhase(FORCED_FIRST_CONTACT_PHASE);
+            }
+        }
+
 
         #region Checks
 
@@ -128,77 +166,6 @@ namespace Antura.Profile
 
         #endregion
 
-        public struct SceneTransition
-        {
-            public AppScene fromScene;
-            public AppScene toScene;
-            public bool keepAsBackable;
-
-            public SceneTransition(AppScene fromScene, AppScene toScene, bool keepAsBackable = false)
-            {
-                this.fromScene = fromScene;
-                this.toScene = toScene;
-                this.keepAsBackable = keepAsBackable;
-            }
-
-
-            public bool Equals(SceneTransition other)
-            {
-                return fromScene == other.fromScene && toScene == other.toScene;
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (ReferenceEquals(null, obj)) return false;
-                return obj is SceneTransition && Equals((SceneTransition) obj);
-            }
-
-            public override int GetHashCode()
-            {
-                unchecked
-                {
-                    return ((int) fromScene * 397) ^ (int) toScene;
-                }
-            }
-
-        }
-
-        private Dictionary<SceneTransition, AppScene> filteredTransitionsMap = new Dictionary<SceneTransition, AppScene>();
-
-        public FirstContactManager()
-        {
-            if (!Application.isEditor)
-            {
-                // Force debug options to FALSE if we're not in the editor
-                SIMULATE_FIRST_CONTACT = false; 
-                FORCE_FIRST_CONTACT = false;
-            }
-
-            phasesSequence = new List<FirstContactPhase>
-            {
-                FirstContactPhase.Reward_FirstBig,
-
-                FirstContactPhase.AnturaSpace_TouchAntura,
-                FirstContactPhase.AnturaSpace_Customization,
-                FirstContactPhase.AnturaSpace_Exit,
-
-                FirstContactPhase.Map_Play,
-                FirstContactPhase.Map_GoToAnturaSpace,
-
-                FirstContactPhase.AnturaSpace_Shop,
-                FirstContactPhase.AnturaSpace_Photo,
-
-            };
-
-        }
-
-        public void InitialiseForCurrentPlayer()
-        {
-            if (FORCE_FIRST_CONTACT)
-            {
-                ForceAtPhase(FORCED_FIRST_CONTACT_PHASE);
-            }
-        }
 
 
         /// <summary>
@@ -211,6 +178,7 @@ namespace Antura.Profile
 
             // Check whether this transition is completing a tutorial phase
             if (fromScene == AppScene.Intro && CurrentPhase == FirstContactPhase.Intro) CompleteCurrentPhase();
+            if (fromScene == AppScene.Map && toScene == AppScene.AnturaSpace && CurrentPhase == FirstContactPhase.Map_GoToAnturaSpace) CompleteCurrentPhase();
 
             // TODO: Remove the map!
             filteredTransitionsMap = new Dictionary<SceneTransition, AppScene>();
@@ -263,6 +231,41 @@ namespace Antura.Profile
             }
 
             return toScene;
+        }
+
+        public struct SceneTransition
+        {
+            public AppScene fromScene;
+            public AppScene toScene;
+            public bool keepAsBackable;
+
+            public SceneTransition(AppScene fromScene, AppScene toScene, bool keepAsBackable = false)
+            {
+                this.fromScene = fromScene;
+                this.toScene = toScene;
+                this.keepAsBackable = keepAsBackable;
+            }
+
+
+            public bool Equals(SceneTransition other)
+            {
+                return fromScene == other.fromScene && toScene == other.toScene;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (ReferenceEquals(null, obj)) return false;
+                return obj is SceneTransition && Equals((SceneTransition)obj);
+            }
+
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    return ((int)fromScene * 397) ^ (int)toScene;
+                }
+            }
+
         }
 
     }

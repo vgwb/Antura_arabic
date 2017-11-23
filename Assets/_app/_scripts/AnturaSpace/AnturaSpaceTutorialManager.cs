@@ -96,10 +96,17 @@ namespace Antura.AnturaSpace
 
             AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro, null);
 
-            m_oAnturaBehaviour.onTouched += CompleteTutorialPhase;
+            m_oAnturaBehaviour.onTouched += HandleAnturaTouched;
+
             Vector3 clickOffset = m_oAnturaBehaviour.IsSleeping ? Vector3.down * 2 : Vector3.zero;
             TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position + clickOffset + Vector3.forward * -2 + Vector3.up,
                 float.MaxValue, 1);
+        }
+
+        private void HandleAnturaTouched()
+        {
+            m_oAnturaBehaviour.onTouched -= HandleAnturaTouched;
+            CompleteTutorialPhase();
         }
 
         #endregion
