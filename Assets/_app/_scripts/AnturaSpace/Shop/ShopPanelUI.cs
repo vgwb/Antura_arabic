@@ -25,6 +25,7 @@ namespace Antura.AnturaSpace
         public Button confirmationNoButton;
 
         private List<ShopActionUI> actionUIs;
+        Tween scrollShowTween;
 
 
         private Tween showShopPanelTween,
@@ -52,11 +53,11 @@ namespace Antura.AnturaSpace
         private void Start()
         {
             const float duration = 0.3f;
-            showShopPanelTween =DOTween.Sequence() .SetAutoKill(false) .Pause() 
-                    .Append(purchasePanelBottom.DOAnchorPosY(-350, duration).From().SetEase(Ease.OutBack))
-                    .Join(purchasePanelSide.DOAnchorPosX(1250, duration).From().SetEase(Ease.OutBack));
+            showShopPanelTween = DOTween.Sequence().SetAutoKill(false).Pause()
+                .Append(purchasePanelBottom.DOAnchorPosY(-150, duration).From().SetEase(Ease.OutQuad));
+//                    .Join(purchasePanelSide.DOAnchorPosX(1250, duration).From().SetEase(Ease.OutBack));
             showDragPanelTween = DOTween.Sequence().SetAutoKill(false).Pause()
-                    .Append(dragPanel.DOAnchorPosY(-350, duration).From().SetEase(Ease.OutBack));
+                    .Append(dragPanel.DOAnchorPosY(-350, duration).From().SetEase(Ease.OutQuad));
             showConfirmationPanelTween =
                 confirmationPanel.DOAnchorPosY(-350, duration).From().SetEase(Ease.Linear).SetAutoKill(false).Pause();
             showPurchasePanelAlwaysAvailableTween =
@@ -64,6 +65,9 @@ namespace Antura.AnturaSpace
                     .From()
                     .SetEase(Ease.OutBack)
                     .SetAutoKill(false);
+            scrollRect.horizontalNormalizedPosition = 0;
+            scrollShowTween = scrollRect.DOHorizontalNormalizedPos(1, 0.6f).SetAutoKill(false).Pause().SetDelay(0.15f);
+            scrollShowTween.ForceInit();
 
             ShopDecorationsManager.I.OnContextChange += HandleContextChange;
             ShopDecorationsManager.I.OnPurchaseConfirmationRequested += HandlePurchaseConfirmationRequested;
@@ -75,11 +79,17 @@ namespace Antura.AnturaSpace
         private void OnEnable()
         {
             HandleContextChange(ShopContext.Purchase);
+            scrollShowTween.Restart();
+        }
+
+        void OnDestroy()
+        {
+            scrollShowTween.Kill();
         }
 
         private void HandleContextChange(ShopContext shopContext)
         {
-            //Debug.Log("CONTEXT: " + shopContext);
+//            Debug.Log("CONTEXT: " + shopContext);
             switch (shopContext)
             {
                 case ShopContext.Purchase:
