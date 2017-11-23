@@ -10,7 +10,7 @@ Go to the Folder:
 You will find 1 to 5 files names like:
 `Antura_Player_5b8e61c3-f990-43f5-a43f-e7cbf9556f17.sqlite3`
 
-5b8e61c3-f990-43f5-a43f-e7cbf9556f17 being the UID of the profile/player 
+**5b8e61c3-f990-43f5-a43f-e7cbf9556f17** being the UID of the profile/player 
 _NOTE: the number of files depends of the number of profiles that have been created on the phone_
  
 COPY ALL THE FILES YOU FIND!  

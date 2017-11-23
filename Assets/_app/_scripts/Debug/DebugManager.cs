@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.Database;
 using Antura.Minigames;
 using Antura.Profile;
@@ -50,8 +50,8 @@ namespace Antura.Debugging
         #region App Options
 
         public bool VerboseTeacher {
-            get { return Teacher.ConfigAI.verboseTeacher; }
-            set { Teacher.ConfigAI.verboseTeacher = value; }
+            get { return Teacher.ConfigAI.VerboseTeacher; }
+            set { Teacher.ConfigAI.VerboseTeacher = value; }
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Antura.Debugging
             get { return _ignoreJourneyData; }
             set {
                 _ignoreJourneyData = value;
-                Teacher.ConfigAI.forceJourneyIgnore = _ignoreJourneyData;
+                Teacher.ConfigAI.ForceJourneyIgnore = _ignoreJourneyData;
             }
         }
 

@@ -7,7 +7,7 @@ using TMPro;
 
 class ReplaceTextForTextMeshPro : EditorWindow
 {
-    [MenuItem("Tools/Antura/TMPro Utils/Select Text Components")]
+    [MenuItem("Antura/TMPro Utils/Select Text Components")]
     public static void SelectText(MenuCommand command)
     {
         Transform[] ts = FindObjectsOfType<Transform>();
@@ -21,7 +21,7 @@ class ReplaceTextForTextMeshPro : EditorWindow
         Selection.objects = selection.ToArray();
     }
 
-    [MenuItem("Tools/Antura/TMPro Utils/Convert selected Text -> TextMeshUGUI ")]
+    [MenuItem("Antura/TMPro Utils/Convert selected Text -> TextMeshUGUI ")]
     public static void TextMeshTransmorphSingle(MenuCommand command)
     {
         Text currentUIText = Selection.activeGameObject.GetComponent<Text>();
@@ -75,7 +75,7 @@ class ReplaceTextForTextMeshPro : EditorWindow
         }
     }
 
-    [MenuItem("Tools/Antura/TMPro Utils/Convert all Texts -> TextMeshUGUI ")]
+    [MenuItem("Antura/TMPro Utils/Convert all Texts -> TextMeshUGUI ")]
     public static void TextMeshTransmorphAll(MenuCommand command)
     {
         Text[] texts = FindObjectsOfType<Text>();
@@ -172,7 +172,7 @@ class ReplaceTextForTextMeshPro : EditorWindow
         }
     }
 
-    [MenuItem("Tools/Antura/TMPro Utils/Log Text Properties")]
+    [MenuItem("Antura/TMPro Utils/Log Text Properties")]
     public static void LogTextFontProperties(MenuCommand command)
     {
         TMP_FontAsset newFont = Resources.Load("Fonts/Arial Latin SDF", typeof(TMP_FontAsset)) as TMP_FontAsset;

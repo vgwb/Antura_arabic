@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
@@ -64,7 +64,8 @@ namespace Antura.Teacher
             var info_list = new List<I>();
 
             // Build info instances for the given data
-            foreach (var data in data_list) {
+            foreach (var data in data_list)
+            {
                 var info = new I();
                 info.data = data;
                 info_list.Add(info);
@@ -72,14 +73,18 @@ namespace Antura.Teacher
 
             // Find available scores
             string query = string.Format("SELECT * FROM " + typeof(MiniGameScoreData).Name);
-            List<MiniGameScoreData> scoredata_list = dbManager.Query<MiniGameScoreData>(query);
-            for (int i = 0; i < info_list.Count; i++) {
+            var scoredata_list = dbManager.Query<MiniGameScoreData>(query);
+            for (int i = 0; i < info_list.Count; i++)
+            {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.MiniGameCode == info.data.Code);
-                if (scoredata != null) {
+                if (scoredata != null)
+                {
                     info.score = scoredata.GetScore();
                     info.unlocked = true;
-                } else {
+                }
+                else
+                {
                     info.score = 0; // 0 until unlocked
                     info.unlocked = false;
                 }
@@ -95,23 +100,28 @@ namespace Antura.Teacher
             var info_list = new List<I>();
 
             // Build info instances for the given data
-            foreach (var data in data_list) {
+            foreach (var data in data_list)
+            {
                 var info = new I();
                 info.data = data;
                 info_list.Add(info);
             }
 
             // Find available scores
-            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '" + (int) dataType +
+            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '" + (int)dataType +
                                          "' ORDER BY ElementId ");
-            List<JourneyScoreData> scoredata_list = dbManager.Query<JourneyScoreData>(query);
-            for (int i = 0; i < info_list.Count; i++) {
+            var scoredata_list = dbManager.Query<JourneyScoreData>(query);
+            for (int i = 0; i < info_list.Count; i++)
+            {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
-                if (scoredata != null) {
+                if (scoredata != null)
+                {
                     info.score = scoredata.GetScore();
                     info.unlocked = true;
-                } else {
+                }
+                else
+                {
                     info.score = 0; // 0 until unlocked
                     info.unlocked = false;
                 }
@@ -127,7 +137,8 @@ namespace Antura.Teacher
             var info_list = new List<I>();
 
             // Build info instances for the given data
-            foreach (var data in data_list) {
+            foreach (var data in data_list)
+            {
                 var info = new I();
                 info.data = data;
                 info_list.Add(info);
@@ -135,15 +146,19 @@ namespace Antura.Teacher
 
             // Find available scores
             string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" +
-                                         (int) dataType + "' ORDER BY ElementId ");
-            List<VocabularyScoreData> scoredata_list = dbManager.Query<VocabularyScoreData>(query);
-            for (int i = 0; i < info_list.Count; i++) {
+                                         (int)dataType + "' ORDER BY ElementId ");
+            var scoredata_list = dbManager.Query<VocabularyScoreData>(query);
+            for (int i = 0; i < info_list.Count; i++)
+            {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
-                if (scoredata != null) {
+                if (scoredata != null)
+                {
                     info.score = scoredata.Score;
                     info.unlocked = scoredata.Unlocked;
-                } else {
+                }
+                else
+                {
                     info.score = 0; // 0 until unlocked
                     info.unlocked = false;
                 }
@@ -175,9 +190,10 @@ namespace Antura.Teacher
             where T : IVocabularyData where IT : DataInfo<T>
         {
             string query = "select * from \"" + typeof(LogVocabularyScoreData).Name + "\"" + " where VocabularyDataType = '" +
-                           (int) dataType + "' " + " order by Timestamp limit 1";
-            List<LogVocabularyScoreData> list = AppManager.I.DB.Query<LogVocabularyScoreData>(query);
-            if (list.Count > 0 && list[0] != null) {
+                           (int)dataType + "' " + " order by Timestamp limit 1";
+            var list = AppManager.I.DB.Query<LogVocabularyScoreData>(query);
+            if (list.Count > 0 && list[0] != null)
+            {
                 return allInfos.Find(x => x.data.GetId() == list[0].ElementId);
             }
             return null;
@@ -193,9 +209,9 @@ namespace Antura.Teacher
             int fromTimestamp = GenericHelper.GetRelativeTimestampFromNow(-nLastDays);
             string query = string.Format(
                 "SELECT * FROM  " + typeof(LogMiniGameScoreData).Name + " WHERE MiniGameCode = '{0}' AND Timestamp < {1}",
-                (int) minigameCode, fromTimestamp);
-            List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
-            List<float> scores = list.ConvertAll(x => x.Score);
+                (int)minigameCode, fromTimestamp);
+            var list = dbManager.FindLogPlayDataByQuery(query);
+            var scores = list.ConvertAll(x => x.Score);
             return scores;
         }
 
@@ -203,58 +219,56 @@ namespace Antura.Teacher
         {
             string query =
                 string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '{0}'  ORDER BY ElementId",
-                   (int)  JourneyDataType.PlaySession);
-            List<JourneyScoreData> list = dbManager.Query<JourneyScoreData>(query);
+                   (int)JourneyDataType.PlaySession);
+            var list = dbManager.Query<JourneyScoreData>(query);
             return list;
         }
 
         public List<JourneyScoreData> GetCurrentScoreForPlaySessionsOfStage(int stage)
         {
             // First, get all data given a stage
-            List<PlaySessionData> eligiblePlaySessionData_list = this.dbManager.FindPlaySessionData(x => x.Stage == stage);
-            List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
+            var eligiblePlaySessionData_list = this.dbManager.FindPlaySessionData(x => x.Stage == stage);
+            var eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType = '{0}'", (int)JourneyDataType.PlaySession);
-            List<JourneyScoreData> all_score_list = dbManager.Query<JourneyScoreData>(query);
+            var all_score_list = dbManager.Query<JourneyScoreData>(query);
 
             // At last, filter by the given stage
-            List<JourneyScoreData> filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
+            var filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
             return filtered_score_list;
         }
 
         public List<JourneyScoreData> GetCurrentScoreForPlaySessionsOfLearningBlock(int stage, int learningBlock)
         {
             // First, get all data given a stage
-            List<PlaySessionData> eligiblePlaySessionData_list =
-                this.dbManager.FindPlaySessionData(x =>
-                    x.Stage == stage && x.LearningBlock == learningBlock); // TODO: make this readily available!
-            List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
+            // TODO: make this readily available!
+            var eligiblePlaySessionData_list = dbManager.FindPlaySessionData(x => x.Stage == stage && x.LearningBlock == learningBlock);
+            var eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType = '{0}'",
                 JourneyDataType.PlaySession);
-            List<JourneyScoreData> all_score_list = dbManager.Query<JourneyScoreData>(query);
+            var all_score_list = dbManager.Query<JourneyScoreData>(query);
 
             // At last, filter
-            List<JourneyScoreData> filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
+            var filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
             return filtered_score_list;
         }
 
         public List<JourneyScoreData> GetCurrentScoreForLearningBlocksOfStage(int stage)
         {
             // First, get all data given a stage
-            List<LearningBlockData> eligibleLearningBlockData_list = this.dbManager.FindLearningBlockData(x => x.Stage == stage);
-            List<string> eligibleLearningBlockData_id_list = eligibleLearningBlockData_list.ConvertAll(x => x.Id);
+            var eligibleLearningBlockData_list = this.dbManager.FindLearningBlockData(x => x.Stage == stage);
+            var eligibleLearningBlockData_id_list = eligibleLearningBlockData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType= '{0}'",
                 JourneyDataType.LearningBlock);
-            List<JourneyScoreData> all_score_list = dbManager.Query<JourneyScoreData>(query);
+            var all_score_list = dbManager.Query<JourneyScoreData>(query);
 
             // At last, filter by the given stage
-            List<JourneyScoreData> filtered_score_list =
-                all_score_list.FindAll(x => eligibleLearningBlockData_id_list.Contains(x.ElementId));
+            var filtered_score_list = all_score_list.FindAll(x => eligibleLearningBlockData_id_list.Contains(x.ElementId));
             return filtered_score_list;
         }
 
@@ -273,7 +287,8 @@ namespace Antura.Teacher
         {
             var average = 0f;
 
-            foreach (var item in _scoreList) {
+            foreach (var item in _scoreList)
+            {
                 average += item.GetScore();
             }
 
@@ -288,8 +303,10 @@ namespace Antura.Teacher
             if (!hasFinishedTheGame) return false;
 
             var allMiniGameInfo = GetAllMiniGameInfo();
-            foreach (var miniGameInfo in allMiniGameInfo) {
-                if (miniGameInfo.score != AppConstants.MaximumMinigameScore) {
+            foreach (var miniGameInfo in allMiniGameInfo)
+            {
+                if (System.Math.Abs(miniGameInfo.score - AppConstants.MaxMiniGameScore) > AppConstants.EPSILON)
+                {
                     return false;
                 }
             }
@@ -312,7 +329,7 @@ namespace Antura.Teacher
             {
                 if (playSessionInfo.data.GetJourneyPosition().IsMinor(maxJP))
                 {
-                    if (playSessionInfo.score < AppConstants.MaximumMinigameScore)
+                    if (playSessionInfo.score < AppConstants.MaxMiniGameScore)
                     {
                         return false;
                     }

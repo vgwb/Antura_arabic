@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.Minigames;
 using Antura.UI;
 using System.Collections.Generic;
@@ -203,7 +203,7 @@ namespace Antura.Debugging
                 var newRow = Instantiate(PrefabRow);
                 newRow.transform.SetParent(Container.transform, false);
 
-                newRow.GetComponent<DebugMiniGameRow>().Title.text = mainMiniGame.id;
+                newRow.GetComponent<DebugMiniGameRow>().Title.text = mainMiniGame.MainId;
 
                 foreach (var gameVariation in mainMiniGame.variations) {
                     Debug.Assert(difficultiesForTesting.ContainsKey(gameVariation.data.Code),

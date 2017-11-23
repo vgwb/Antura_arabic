@@ -1,4 +1,4 @@
-# Minigame Hide And Seek
+# MiniGame: Hide And Seek
 
 ## Testing procedure
 Total tests: 1

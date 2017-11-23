@@ -9,7 +9,6 @@ using Antura.Profile;
 using Antura.Rewards;
 using Antura.Teacher;
 using Antura.UI;
-using PlayerProfile = Antura.Profile.PlayerProfile;
 
 // refactor: standardize random use across the codebase
 using RND = UnityEngine.Random;
@@ -25,7 +24,7 @@ namespace Antura.Database.Management
         [HideInInspector]
         public DatabaseManager dbManager;
         private TeacherAI teacherAI;
-        private Profile.PlayerProfile playerProfile;
+        private PlayerProfile playerProfile;
 
         public Text OutputText;
         public TextRender OutputTextArabic;
@@ -40,9 +39,8 @@ namespace Antura.Database.Management
 
             dbManager = new DatabaseManager();
             var vocabularyHelper = new VocabularyHelper(dbManager);
-            var journeyHelper = new JourneyHelper(dbManager);
             scoreHelper = new ScoreHelper(dbManager);
-            teacherAI = new TeacherAI(dbManager, vocabularyHelper, journeyHelper, scoreHelper);
+            teacherAI = new TeacherAI(dbManager, vocabularyHelper, scoreHelper);
 
             // Load the first profile
             LoadProfile(DEBUG_PLAYER_UUID);
@@ -242,7 +240,8 @@ namespace Antura.Database.Management
 
         public void TestLettersData()
         {
-            foreach (var l in dbManager.StaticDatabase.GetLetterTable().GetValuesTyped()) {
+            foreach (var l in dbManager.StaticDatabase.GetLetterTable().GetValuesTyped())
+            {
                 if (l.Initial_Unicode == l.Isolated_Unicode)
                     Debug.LogError("Letter " + l + " has same initial and isolated unicodes");
 
@@ -253,12 +252,14 @@ namespace Antura.Database.Management
                     Debug.LogError("Letter " + l + " has same final and isolated unicodes");
             }
 
-            foreach (var w in dbManager.StaticDatabase.GetWordTable().GetValuesTyped()) {
+            foreach (var w in dbManager.StaticDatabase.GetWordTable().GetValuesTyped())
+            {
                 Helpers.ArabicAlphabetHelper.AnalyzeData(dbManager, w, false, false);
             }
 
 
-            foreach (var w in dbManager.StaticDatabase.GetPhraseTable().GetValuesTyped()) {
+            foreach (var w in dbManager.StaticDatabase.GetPhraseTable().GetValuesTyped())
+            {
                 Helpers.ArabicAlphabetHelper.AnalyzeData(dbManager, w, false, false);
             }
 
@@ -329,7 +330,8 @@ namespace Antura.Database.Management
 
             newData.VocabularyDataType = RandomHelper.GetRandomEnum<VocabularyDataType>();
 
-            switch (newData.VocabularyDataType) {
+            switch (newData.VocabularyDataType)
+            {
                 case VocabularyDataType.Letter:
                     newData.ElementId = RandomHelper.GetRandom(dbManager.GetAllLetterData()).GetId();
                     break;
@@ -385,7 +387,8 @@ namespace Antura.Database.Management
         {
             VocabularyDataType vocabularyDataType = RandomHelper.GetRandomEnum<VocabularyDataType>();
             string rndId = "";
-            switch (vocabularyDataType) {
+            switch (vocabularyDataType)
+            {
                 case VocabularyDataType.Letter:
                     rndId = RandomHelper.GetRandom(dbManager.GetAllLetterData()).GetId();
                     break;
@@ -413,7 +416,8 @@ namespace Antura.Database.Management
         {
             JourneyDataType journeyDataType = RandomHelper.GetRandomEnum<JourneyDataType>();
             string rndId = "";
-            switch (journeyDataType) {
+            switch (journeyDataType)
+            {
                 case JourneyDataType.PlaySession:
                     rndId = RandomHelper.GetRandom(dbManager.GetAllPlaySessionData()).GetId();
                     break;
@@ -493,7 +497,8 @@ namespace Antura.Database.Management
             List<object> list = this.dbManager.FindCustomDataByQuery(resultMapping, query);
 
             string output = "Test values N: " + list.Count + "\n";
-            foreach (var obj in list) {
+            foreach (var obj in list)
+            {
                 output += ("Test value: " + (obj as TestQueryResult).MoodValue) + "\n";
             }
             PrintOutput(output);
@@ -509,7 +514,8 @@ namespace Antura.Database.Management
             List<object> list = this.dbManager.FindCustomDataByQuery(resultMapping, query);
 
             string output = "Test values N: " + list.Count + "\n";
-            foreach (var obj in list) {
+            foreach (var obj in list)
+            {
                 output += ("Test value: " + (obj as TestQueryResult).MoodValue) + "\n";
             }
             PrintOutput(output);
@@ -586,7 +592,8 @@ namespace Antura.Database.Management
         {
             var minigameCode = RandomHelper.GetRandomEnum<MiniGameCode>();
 
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 10; i++)
+            {
                 var score = RND.Range(0, 4);
                 var data = new LogMiniGameScoreData(0, JourneyPosition.InitialJourneyPosition, minigameCode, score, RND.Range(1, 15f));
                 dbManager.Insert(data);
@@ -605,7 +612,7 @@ namespace Antura.Database.Management
         public void LoadProfile(string playerUuid)
         {
             dbManager.LoadDatabaseForPlayer(playerUuid);
-            playerProfile = new Profile.PlayerProfile();
+            playerProfile = new PlayerProfile();
             playerProfile.SetCurrentJourneyPosition(new JourneyPosition(1, 2, 2));    // test
             teacherAI.SetPlayerProfile(playerProfile);
             PrintOutput("Loading profile " + playerUuid);
@@ -655,7 +662,8 @@ namespace Antura.Database.Management
         public void DumpAllData<T>(List<T> list) where T : IData
         {
             string output = "";
-            foreach (var data in list) {
+            foreach (var data in list)
+            {
                 output += (data.GetId() + ": " + data.ToString()) + "\n";
             }
             PrintOutput(output);
@@ -664,9 +672,12 @@ namespace Antura.Database.Management
         public void DumpDataById(string id, IData data)
         {
             string output = "";
-            if (data != null) {
+            if (data != null)
+            {
                 output += (data.GetId() + ": " + data.ToString());
-            } else {
+            }
+            else
+            {
                 output += "No data with ID " + id;
             }
             PrintOutput(output);

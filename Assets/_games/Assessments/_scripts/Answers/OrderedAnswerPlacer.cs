@@ -59,14 +59,19 @@ namespace Antura.Assessment
 
             int answerCount = 0;
             foreach (var a in allAnswers)
+            {
                 answerCount++;
+            }
 
             float answerGap = placerOptions.AnswerSize + 0.5f;
             var flow = AssessmentOptions.Instance.LocaleTextDirection;
-            while (answerCount > 0) {
+            while (answerCount > 0)
+            {
                 int answersInThisLine = Mathf.FloorToInt(deltaX / answerGap);
                 if (answersInThisLine > answerCount)
+                {
                     answersInThisLine = answerCount;
+                }
 
                 // space occupied by this line
                 float lineSpace = (answersInThisLine - 1) * 0.5f + answersInThisLine * placerOptions.AnswerSize;
@@ -80,7 +85,8 @@ namespace Antura.Assessment
                     direction = 1;
                 }
 
-                for (int i = 0; i < answersInThisLine && answerCount > 0; i++, answerCount--) {
+                for (int i = 0; i < answersInThisLine && answerCount > 0; i++, answerCount--)
+                {
                     startX += direction * (0.5f + placerOptions.AnswerSize);
                     var position = new Vector3(startX, yMin, z);
                     positions.Add(position);
@@ -93,8 +99,9 @@ namespace Antura.Assessment
 
             playbackAnswers = new List<Answer>();
             foreach (var a in allAnswers)
+            {
                 yield return Koroutine.Nested(PlaceAnswer(a, positions));
-
+            }
             yield return Koroutine.Nested(PlayBackCorrectAnswers());
 
             yield return Wait.For(0.65f);
@@ -111,11 +118,16 @@ namespace Antura.Assessment
             go.GetComponent<StillLetterBox>().Poof();
             go.GetComponent<StillLetterBox>().Magnify();
             audioManager.PlayPoofSound();
-            if (answer.IsCorrect()) {
+            if (answer.IsCorrect())
+            {
                 if (playbackAnswers.Count == 0 && AssessmentOptions.Instance.PlayCorrectAnswer)
+                {
                     playbackAnswers.Add(answer);
+                }
                 else if (AssessmentOptions.Instance.PlayAllCorrectAnswers)
+                {
                     playbackAnswers.Add(answer);
+                }
             }
 
             yield return Wait.For(Random.Range(0.07f, 0.13f));
@@ -124,7 +136,8 @@ namespace Antura.Assessment
         private IEnumerator PlayBackCorrectAnswers()
         {
             playbackAnswers.Shuffle();
-            foreach (var a in playbackAnswers) {
+            foreach (var a in playbackAnswers)
+            {
                 yield return Koroutine.Nested(a.PlayLetter());
                 yield return Wait.For(0.3f);
             }
@@ -134,8 +147,9 @@ namespace Antura.Assessment
         private IEnumerator RemoveCoroutine()
         {
             foreach (var a in allAnswers)
+            {
                 yield return Koroutine.Nested(RemoveAnswer(a.gameObject));
-
+            }
             yield return Wait.For(0.65f);
             isAnimating = false;
         }

@@ -1,6 +1,6 @@
+using Antura.Core;
 using Kore.Coroutines;
 using System.Collections;
-using Antura.Core;
 
 namespace Antura.Assessment
 {
@@ -13,7 +13,7 @@ namespace Antura.Assessment
         private AssessmentGame assessmentGame;
         private AssessmentAudioManager dialogueManager;
 
-        public AssessmentResultState( AssessmentGame assessmentGame, AssessmentAudioManager dialogueManager)
+        public AssessmentResultState(AssessmentGame assessmentGame, AssessmentAudioManager dialogueManager)
         {
             this.assessmentGame = assessmentGame;
             this.dialogueManager = dialogueManager;
@@ -26,34 +26,35 @@ namespace Antura.Assessment
 
             var audioManager = assessmentGame.Context.GetAudioManager();
 
-            audioManager.PlayMusic( Music.Relax);
-            audioManager.PlaySound( Sfx.TickAndWin);
+            audioManager.PlayMusic(Music.Relax);
+            audioManager.PlaySound(Sfx.TickAndWin);
             dialogueManager.PlayAssessmentCompleteSound();
 
-            Koroutine.Run( QuitAfterSomeTime( seconds: 2));
+            Koroutine.Run(QuitAfterSomeTime(seconds: 2));
         }
 
         IEnumerator QuitAfterSomeTime(float seconds)
         {
-            yield return Wait.For( seconds);
+            yield return Wait.For(seconds);
             ExitState();
         }
 
         bool exited = false;
         public void ExitState()
         {
-            if (exited == false) {
+            if (exited == false)
+            {
                 AppManager.I.NavigationManager.GoToNextScene();// AppScene.Rewards
                 exited = true;
             }
         }
 
-        public void Update( float delta)
+        public void Update(float delta)
         {
 
         }
 
-        public void UpdatePhysics( float delta)
+        public void UpdatePhysics(float delta)
         {
 
         }

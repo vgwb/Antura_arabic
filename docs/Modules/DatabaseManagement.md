@@ -79,7 +79,7 @@ These are the first db queries supported by current data model
 5. Learning blocks ID or T0+x date of drop out (one player, a group)
 6. Antura Space use duration per play session and per day (one player, a group)
 7. Score evolution per mini game (the rough data that we use to create the 3 stars score) (one player, a group)
-8. The average evolution of score, all minigame (in stars) (one player, a group)
+8. The average evolution of score, all MiniGame (in stars) (one player, a group)
 9. Evaluate correlation between dropout/non play and score variation/new game apparition (a group)
 10. Average assessment tries per learning block (to identify potential more difficult learning blocks) (one player, a group)
 11. Ranking of words associated to failure in mini game (one player, a group)

@@ -1,11 +1,11 @@
-using DG.Tweening;
-using System;
+using Antura.Core;
 using Antura.Helpers;
 using Antura.LivingLetters;
 using Antura.Minigames;
 using Antura.UI;
 using Antura.Utilities;
-using Antura.Core;
+using DG.Tweening;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -56,25 +56,26 @@ namespace Antura.Assessment
         public void SetQuestionGreen()
         {
             answerSprite.enabled = true;
-            answerSprite.Material.DOColor( SpecialGreen, 0.5f);
-            hiddenQuestionSprite.Material.DOFade( 0, 1);
+            answerSprite.Material.DOColor(SpecialGreen, 0.5f);
+            hiddenQuestionSprite.Material.DOFade(0, 1);
             Label.alpha = 0;
-            Label.DOFade( 1, 0.6f);
-            MegaphoneIcon.DOFade( 0, 0.3f);
+            Label.DOFade(1, 0.6f);
+            MegaphoneIcon.DOFade(0, 0.3f);
         }
 
-        public void SetGreenLetter( ILivingLetterData word, ILivingLetterData letter)
+        public void SetGreenLetter(ILivingLetterData word, ILivingLetterData letter)
         {
             var wordInner = word as LL_WordData;
             var letterInner = letter as LL_LetterData;
 
-            var parts = ArabicAlphabetHelper.FindLetter( AppManager.I.DB, wordInner.Data, letterInner.Data);
+            var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, wordInner.Data, letterInner.Data);
 
             var partToRemove = parts[0];
 
             // .. and voil�! Thank you Davide! :)
             Label.text = ArabicTextUtilities.GetWordWithMarkedLetterText(
-                wordInner.Data, partToRemove, SpecialGreen, ArabicTextUtilities.MarkType.SingleLetter);
+                wordInner.Data, partToRemove, SpecialGreen, ArabicTextUtilities.MarkType.SingleLetter
+            );
         }
 
         /// <summary>
@@ -83,11 +84,11 @@ namespace Antura.Assessment
         internal void HideHiddenQuestion()
         {
             Label.alpha = 0;
-            MegaphoneIcon.DOFade( 1, 0);
+            MegaphoneIcon.DOFade(1, 0);
             MegaphoneIcon.enabled = true;
             questionSprite.enabled = false;
             hiddenQuestionSprite.enabled = true;
-            hiddenQuestionSprite.Material.color = new Color( 1, 1, 1, 1);
+            hiddenQuestionSprite.Material.color = new Color(1, 1, 1, 1);
             InstaShrink();
         }
 
@@ -96,7 +97,7 @@ namespace Antura.Assessment
         /// </summary>
         internal void Magnify()
         {
-            TweenScale( 1);
+            TweenScale(1);
         }
 
         internal void InstaShrink()
@@ -114,19 +115,19 @@ namespace Antura.Assessment
             Scale = 1;
         }
 
-        internal void TweenScale( float newScale)
+        internal void TweenScale(float newScale)
         {
             KillTween();
 
-            tween =
-                DOTween.To( () => Scale, x => Scale = x, newScale, 0.4f);
+            tween = DOTween.To(() => Scale, x => Scale = x, newScale, 0.4f);
         }
 
         private void KillTween()
         {
             if (tween != null)
-                tween.Kill( true);
-
+            {
+                tween.Kill(true);
+            }
             tween = null;
         }
 
@@ -144,8 +145,10 @@ namespace Antura.Assessment
         {
             get
             {
-                if (data == null && ! nullOnDemand)
-                    throw new ArgumentNullException( "Null on demand: " + nullOnDemand);
+                if (data == null && !nullOnDemand)
+                {
+                    throw new ArgumentNullException("Null on demand: " + nullOnDemand);
+                }
                 return data;
             }
             private set
@@ -154,9 +157,13 @@ namespace Antura.Assessment
 
                 OnModelChanged();
 
-                if(data!=null)
+                if (data != null)
+                {
                     if (data.Id == "with_article" || data.Id == "without_article")
+                    {
                         Wideness = 2.3f;
+                    }
+                }
             }
         }
 
@@ -172,26 +179,27 @@ namespace Antura.Assessment
             {
                 float widthScale = value * Wideness;
 
-                foreach (NineSlicedSprite sprite in backgroundTransform.GetComponentsInChildren< NineSlicedSprite>(true))
+                foreach (NineSlicedSprite sprite in backgroundTransform.GetComponentsInChildren<NineSlicedSprite>(true))
                 {
                     sprite.Width = sprite.initialWidth * widthScale;
                     sprite.Height = sprite.initialHeight * value;
                 }
 
                 //transform the parent too because border sprites have offset even with 0 scale
-                transform.localScale = new Vector3( value, value, value);
+                transform.localScale = new Vector3(value, value, value);
 
                 //Allow space for diacritics.
-                textTransform.sizeDelta = new Vector2(  startTextScale.x * widthScale, 
-                                                        startTextScale.y * value);
+                textTransform.sizeDelta = new Vector2(startTextScale.x * widthScale, startTextScale.y * value);
 
 
-                drawingTransform.sizeDelta = new Vector2( startTextScale.x * widthScale, startTextScale.y * value);
+                drawingTransform.sizeDelta = new Vector2(startTextScale.x * widthScale, startTextScale.y * value);
                 MegaphoneIcon.transform.localScale =
                     new Vector3(megaphoneScale * value, megaphoneScale * value, 1);
 
-                if(extendedBoxCollider == false)
-                    GetComponent< BoxCollider>().size = textTransform.sizeDelta;
+                if (extendedBoxCollider == false)
+                {
+                    GetComponent<BoxCollider>().size = textTransform.sizeDelta;
+                }
             }
         }
 
@@ -214,10 +222,10 @@ namespace Antura.Assessment
                     Drawing.text = Data.DrawingCharForLivingLetter;
                     Drawing.enabled = true;
 
-                    LL_ImageData data = ( LL_ImageData)Data;
-                    if (data.Data.Category == Database.WordDataCategory.Color)
+                    var imageData = (LL_ImageData)Data;
+                    if (imageData.Data.Category == Database.WordDataCategory.Color)
                     {
-                        Drawing.color = GenericHelper.GetColorFromString( data.Data.Value);
+                        Drawing.color = GenericHelper.GetColorFromString(imageData.Data.Value);
                     }
                     else
                     {
@@ -233,7 +241,7 @@ namespace Antura.Assessment
                     Label.enabled = true;
                     Label.text = Data.TextForLivingLetter;
 
-                    SetWidness( data.DataType);
+                    SetWidness(data.DataType);
                 }
             }
         }
@@ -243,19 +251,19 @@ namespace Antura.Assessment
 
         public void NearbySlot()
         {
-            if(stoppedColor)
+            if (stoppedColor)
             {
                 StopColorTween();
-                colorTween = slotSprite.Material.DOColor( new Color32( 180, 180, 180, 255), 0.3f);
+                colorTween = slotSprite.Material.DOColor(new Color32(180, 180, 180, 255), 0.3f);
                 stoppedColor = false;
             }
         }
 
         private void StopColorTween()
         {
-            if(colorTween != null)
+            if (colorTween != null)
             {
-                colorTween.Kill( false);
+                colorTween.Kill(false);
                 colorTween = null;
             }
         }
@@ -265,14 +273,14 @@ namespace Antura.Assessment
             if (stoppedColor == false)
             {
                 StopColorTween();
-                colorTween = slotSprite.Material.DOColor( new Color32( 255, 255, 255, 255), 0.3f);
+                colorTween = slotSprite.Material.DOColor(new Color32(255, 255, 255, 255), 0.3f);
                 stoppedColor = true;
             }
         }
 
-        private void SetWidness( LivingLetterDataType dataType)
+        private void SetWidness(LivingLetterDataType dataType)
         {
-            Wideness = ElementsSize.Get( dataType);
+            Wideness = ElementsSize.Get(dataType);
         }
 
         private void DisableSlots()
@@ -289,7 +297,7 @@ namespace Antura.Assessment
         /// </summary>
         public float GetHalfWidth()
         {
-            return Wideness * 3.0f /2.0f;
+            return Wideness * 3.0f / 2.0f;
         }
 
         /// <summary>
@@ -304,11 +312,12 @@ namespace Antura.Assessment
         /// Initializes  object with the specified data.
         /// </summary>
         /// <param name="_data">The data.</param>
-        public void Init( ILivingLetterData _data, bool answer)
+        public void Init(ILivingLetterData _data, bool answer)
         {
             if (_data == null)
-                throw new ArgumentNullException( "Cannot init with null data");
-
+            {
+                throw new ArgumentNullException("Cannot init with null data");
+            }
             nullOnDemand = false;
 
             Data = _data;
@@ -320,23 +329,21 @@ namespace Antura.Assessment
         /// Initializes  object with the specified data.
         /// </summary>
         /// <param name="_data">The data.</param>
-        public void InitAsSlot( LivingLetterDataType dataType)
+        public void InitAsSlot(LivingLetterDataType dataType)
         {
             nullOnDemand = true;
             Data = null;
-            SetWidness( dataType);
+            SetWidness(dataType);
             slotSprite.enabled = true;
         }
 
         public void Poof()
         {
-            var rotation = Quaternion.Euler( new Vector3( -90, 0, 0));
-            var puffGo = 
-                GameObject.Instantiate( poofPrefab, transform.position, rotation) 
-                    as ParticleSystem;
+            var rotation = Quaternion.Euler(new Vector3(-90, 0, 0));
+            var puffGo = Instantiate(poofPrefab, transform.position, rotation) as ParticleSystem;
 
-            puffGo.gameObject.AddComponent< AutoDestroy>().duration = 2;
-            puffGo.gameObject.SetActive( true);
+            puffGo.gameObject.AddComponent<AutoDestroy>().duration = 2;
+            puffGo.gameObject.SetActive(true);
         }
 
         void Awake()
@@ -349,8 +356,8 @@ namespace Antura.Assessment
         internal void SetExtendedBoxCollider()
         {
             extendedBoxCollider = true;
-            GetComponent< BoxCollider>().size = new Vector3( 6.8f, 2.6f, 1);
-            GetComponent< BoxCollider>().center = new Vector3( 1.6f, 0, 0);
+            GetComponent<BoxCollider>().size = new Vector3(6.8f, 2.6f, 1);
+            GetComponent<BoxCollider>().center = new Vector3(1.6f, 0, 0);
         }
     }
 }

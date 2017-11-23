@@ -30,8 +30,9 @@ namespace Antura.Assessment
             this.dialogues = dialogues;
 
             for (int i = 0; i < 3; i++)
+            {
                 answersBuckets[i] = new List<ILivingLetterData>();
-
+            }
             ClearCache();
             FillBuckets(questionProvider);
         }
@@ -44,27 +45,36 @@ namespace Antura.Assessment
         private void NumberOfAnswersFromEachBucket()
         {
             for (int i = 0, count = roundElementsForCategory.Length; i < count; ++i)
+            {
                 roundElementsForCategory[i] = 0;
+            }
 
             int picksThisRound = numberOfMaxAnswers;
             int totalAnswers = answersBuckets[0].Count + answersBuckets[1].Count + answersBuckets[2].Count;
 
-            while (picksThisRound > 0 && totalAnswers > 0) {
+            while (picksThisRound > 0 && totalAnswers > 0)
+            {
                 int pickFromBucketN = -1;
 
                 //ok as long as we have 10 or less buckets
                 // try to be fair (but never use infinite loop.)
-                for (int i = 0; i < 1000000 && pickFromBucketN == -1; i++) {
+                for (int i = 0; i < 1000000 && pickFromBucketN == -1; i++)
+                {
                     int temp = UnityEngine.Random.Range(0, 3);
 
                     if (answersBuckets[temp].Count > roundElementsForCategory[temp])
+                    {
                         pickFromBucketN = temp;
+                    }
                 }
 
-                if (pickFromBucketN == -1) {
+                if (pickFromBucketN == -1)
+                {
                     //and use a little bias if computation took to long.
-                    for (int i = 0; i < 3; i++) {
-                        if (answersBuckets[i].Count > roundElementsForCategory[i]) {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (answersBuckets[i].Count > roundElementsForCategory[i])
+                        {
                             pickFromBucketN = i;
                             break;
                         }
@@ -72,8 +82,9 @@ namespace Antura.Assessment
                 }
 
                 if (pickFromBucketN == -1)
+                {
                     throw new InvalidOperationException("buckets empty");
-
+                }
                 picksThisRound--;
                 totalAnswers--;
 
@@ -93,13 +104,16 @@ namespace Antura.Assessment
         {
             int max = numberOfRounds * numberOfMaxAnswers;
 
-            for (int i = 0; i < max; i++) {
+            for (int i = 0; i < max; i++)
+            {
                 var pack = questionProvider.GetNextQuestion();
 
 
                 foreach (var answ in pack.GetCorrectAnswers()) //Arabic has different order!
-                    for (int j = 0; j < categoryProvider.GetCategories(); j++) {
-                        if (categoryProvider.Compare(j, answ)) {
+                    for (int j = 0; j < categoryProvider.GetCategories(); j++)
+                    {
+                        if (categoryProvider.Compare(j, answ))
+                        {
                             answersBuckets[j].Add(pack.GetQuestion());
                         }
                     }
@@ -115,7 +129,9 @@ namespace Antura.Assessment
         public void InitRound()
         {
             if (state != QuestionGeneratorState.Uninitialized && state != QuestionGeneratorState.Completed)
+            {
                 throw new InvalidOperationException("Cannot initialized");
+            }
 
             state = QuestionGeneratorState.Initialized;
             ClearCache();
@@ -177,8 +193,9 @@ namespace Antura.Assessment
         public IQuestion GetNextQuestion()
         {
             if (state != QuestionGeneratorState.Initialized)
+            {
                 throw new InvalidOperationException("Not Initialized");
-
+            }
             state = QuestionGeneratorState.QuestionFeeded;
 
             //____________________________________
@@ -188,10 +205,11 @@ namespace Antura.Assessment
             // Assumption: Here each category have enough elements
             int amount = roundElementsForCategory[currentCategory];
 
-            List<Answer> answers = new List<Answer>();
+            var answers = new List<Answer>();
 
             int correctCount = 0;
-            for (int i = 0; i < amount; i++) {
+            for (int i = 0; i < amount; i++)
+            {
                 var answer = answersBuckets[currentCategory].Pull();
                 var correctAnsw = GenerateCorrectAnswer(answer);
 
@@ -208,8 +226,9 @@ namespace Antura.Assessment
 
             // Generate placeholders
             for (int i = 0; i < numberOfMaxAnswers; i++)
+            {
                 GeneratePlaceHolder(question, AssessmentOptions.Instance.AnswerType);
-
+            }
             currentCategory++;
             return question;
         }

@@ -1,4 +1,4 @@
-# Minigame Fast Crowd
+# MiniGame: Fast Crowd
 
 ## Testing procedure
 Total tests: 5
@@ -60,10 +60,14 @@ Player must find the correct letters in order.
 - 2 stars if...
 - 1 star if...
 ---
-## Developer notes
 
-## Issues
+## Game Design Docs
 
-## Warnings to be fixed
+### Objectives
 
-## Optimization
+**Narrative context**: Living Letters have escaped! Fetch the good Letters and put them in place.
+**Gameplay**: Numerous differents Living Letters are running in the field of view. The player has to catch the right  letters, then drag and drop them to compose words.  In a variation: Living words and Living images are replacing the Living Letters
+**Gameplay skills** #reactivity #precision #Pattern recognition #memory
+
+**Pedagogical**: This game is dedicated to acquisition of new vocabulary, training the spelling and the visual recognition of the new words
+**Literacy skills** #letter-recognition #spelling #word-recognition #association word/image

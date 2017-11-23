@@ -41,11 +41,13 @@ namespace Antura.Core
 
         public PlayerProfileManager PlayerProfileManager;
 
-        public AppSettings AppSettings {
+        public AppSettings AppSettings
+        {
             get { return AppSettingsManager.Settings; }
         }
 
-        public PlayerProfile Player {
+        public PlayerProfile Player
+        {
             get { return PlayerProfileManager.CurrentPlayer; }
             set { PlayerProfileManager.CurrentPlayer = value; }
         }
@@ -64,7 +66,9 @@ namespace Antura.Core
         protected override void Init()
         {
             if (alreadySetup)
+            {
                 return;
+            }
 
             base.Init();
 
@@ -77,7 +81,7 @@ namespace Antura.Core
             VocabularyHelper = new VocabularyHelper(DB);
             JourneyHelper = new JourneyHelper(DB);
             ScoreHelper = new ScoreHelper(DB);
-            Teacher = new TeacherAI(DB, VocabularyHelper, JourneyHelper, ScoreHelper);
+            Teacher = new TeacherAI(DB, VocabularyHelper, ScoreHelper);
             GameLauncher = new MiniGameLauncher(Teacher);
             FirstContactManager = new FirstContactManager();
 
@@ -108,17 +112,23 @@ namespace Antura.Core
         void Update()
         {
             // Exit with Android back button
-            if (Input.GetKeyDown(KeyCode.Escape)) {
-                if (Application.platform == RuntimePlatform.Android) {
-                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
-                        Debug.Log("Application Quit");
-                        Application.Quit();
-                    }, () => { });
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (Application.platform == RuntimePlatform.Android)
+                {
+                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () =>
+                        {
+                            Debug.Log("Application Quit");
+                            Application.Quit();
+                        }, () =>
+                        {
+                        });
                 }
             }
         }
 
         #region Settings
+
         // TODO move into AppSettings Manager
 
         public void ToggleQualitygfx()
@@ -144,13 +154,15 @@ namespace Antura.Core
             IsPaused = pauseStatus;
 
             // app is pausing
-            if (IsPaused) {
+            if (IsPaused)
+            {
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
                 Services.Notifications.AppSuspended();
             }
 
             //app is resuming
-            if (!IsPaused) {
+            if (!IsPaused)
+            {
                 LogManager.I.LogInfo(InfoEvent.AppResume);
                 Services.Notifications.AppResumed();
                 LogManager.I.InitNewSession();
@@ -163,8 +175,8 @@ namespace Antura.Core
         public void OpenSupportForm()
         {
             var parameters = "";
-            parameters += "?entry.346861357=" + WWW.EscapeURL(JsonUtility.ToJson(new DeviceInfo()));
-            parameters += "&entry.1999287882=" + WWW.EscapeURL(JsonUtility.ToJson(Player));
+            parameters += "?entry.346861357=" + WWW.EscapeURL(new DeviceInfo().ToJsonData());
+            parameters += "&entry.1999287882=" + WWW.EscapeURL(Player.ToJsonData());
 
             Application.OpenURL(AppConstants.UrlSupportForm + parameters);
         }
@@ -188,7 +200,8 @@ namespace Antura.Core
         void On_TMPro_Text_Changed(Object obj)
         {
             var tmpText = obj as TMPro.TMP_Text;
-            if (tmpText != null && VocabularyHelper.FixDiacriticPositions(tmpText.textInfo)) {
+            if (tmpText != null && VocabularyHelper.FixDiacriticPositions(tmpText.textInfo))
+            {
                 tmpText.UpdateVertexData();
             }
         }

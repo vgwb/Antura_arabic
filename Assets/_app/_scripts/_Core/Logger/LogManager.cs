@@ -34,7 +34,6 @@ namespace Antura.Core
         public void InitNewSession()
         {
             AppSession = GenericHelper.GetTimestampForNow();
-            //Random.Range(10000000, 99999999).ToString();
         }
 
         #region Time Logging
@@ -72,9 +71,9 @@ namespace Antura.Core
         {
             EndMiniGame();
             LogInfo(InfoEvent.GameEnd,
-                JsonUtility.ToJson(new GameResultInfo() {Game = miniGameCode.ToString(), Result = score.ToString()}));
+                JsonUtility.ToJson(new GameResultInfo() { Game = miniGameCode.ToString(), Result = score.ToString() }));
 
-            float duration = (float) (endMiniGameDateTime - startMiniGameDateTime).TotalSeconds;
+            float duration = (float)(endMiniGameDateTime - startMiniGameDateTime).TotalSeconds;
             //Debug.LogError("DURATION MG: " + duration);
             AppManager.I.Teacher.logAI.LogMiniGameScore(AppSession,
                 AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, score, duration);
@@ -113,7 +112,7 @@ namespace Antura.Core
         {
             EndPlaySession();
 
-            float duration = (float) (endPlaySessionDateTime - startPlaySessionDateTime).TotalSeconds;
+            float duration = (float)(endPlaySessionDateTime - startPlaySessionDateTime).TotalSeconds;
             //Debug.LogError("DURATION PS: " + duration);
             AppManager.I.Teacher.logAI.LogPlaySessionScore(AppSession,
                 AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, score, duration);
@@ -124,6 +123,7 @@ namespace Antura.Core
         /// </summary>
         /// <param name="learningBlock">The learning block.</param>
         /// <param name="score">The score.</param>
+        //TODO check if we need this since it's not implemented
         public void LogLearningBlockScore(int learningBlock, int score)
         {
             AppManager.I.Teacher.logAI.LogLearningBlockScore(learningBlock, score);

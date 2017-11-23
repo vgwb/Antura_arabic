@@ -1,67 +1,20 @@
-# Project references
+this documentation website is dedicated to Teachers, Designers and Developers, maintained by the Antura Core Team directly inside the project repository as an handbook for whatever can't be put inside the Source Code itself.
 
-- **Developer Docs:** [vgwb.github.io/Antura_arabic](https://vgwb.github.io/Antura_arabic)
+- **Developer Book:** [vgwb.github.io/Antura_arabic](https://vgwb.github.io/Antura_arabic)
 - **GitHub project:** [github.com/vgwb/Antura_arabic](https://github.com/vgwb/Antura_arabic)
 - **Public Website:** [www.antura.org](http://www.antura.org)
+
+- [Releases](Releases.md) history of app releases and major changelog
+- [User, Tester and Dev HowTo](HowTo/) several HowTo guides
+- [Game Design](GameDesign/)
+- [Project Architecture and Modules](Modules/) mostly for Developers
+- [MiniGames](Minigames/) Design and Developer docs
+- [API](API/) the automatically generated DoxyGen docs
 - [Credits](Credits.md)
-- [Releases](Releases.md) the history of app releases and major changelog
 
-## User and Tester guides
-
-- [Debug Shortcuts](HowTo/DebugShortcuts.md) cheats and keyboard shortcuts
-- [Export Database](HowTo/ExportPlayerDatabase.md) how to export player databases
-
-## Developer guides
-
-- [Install](HowTo/INSTALL.md) how to install and configure the Unity project
-- [Build](HowTo/Build.md) how to build the app for mobile devices
-- [Collaborator](Guidelines/Collaborator.md) how to collaborate
-- [Developer Guidelines and Tips](Guidelines/DeveloperGuidelines.md) general guidelines for developers that want to contribute to the project
-- [Refactoring Guidelines](Guidelines/RefactoringGuidelines.md)
-- [Export Google Sheet Data](HowTo/ExportGoogleSheetData.md) as JSON files
-- [Arabic Font](HowTo/ArabicFont.md) how to create the arabic Atlas with TextMeshPro
-- [Drawing Font](HowTo/DrawingsFont.md) how to create the drawings font Atlas with TextMeshPro
-
-### Core and Modules
-
-- [Project Structure](Guidelines/ProjectStructure.md) the structure of the Unity3D project.
-- [Application Flow](Modules/ApplicationFlow.md) the complete flow of the application, useful if you want to understand the call flow.
-- [Data Flow](Modules/DataFlow.md) how the learning content data flows from the database, to the teacher system, and finally to minigames.
-- [Logging](Modules/Logging.md) the implementation and use of the Logging System.
-- [Minigames](Modules/Minigames.md) how to create and structure new minigames and how to correctly link them to the core application.
-- [Player Profile](Modules/PlayerProfile.md) how the Player Profile Manager works, a subsystem that allows the use of several profiles on the same device.
-- [Teacher](Modules/Teacher.md) how the Teacher System works. This subsystem is responsible for providing learning content data to the minigames.
-
-### Database
-
-- [Database](Modules/Database.md) the datasets used everywhere.
-- [Database Schemas](Modules/DatabaseSchemas.md) details on db tables and schemas
-- [Database Management](Modules/DatabaseManagement.md)
-
-### MiniGames
-
-- [Assessments](Minigames/Assessments.md)
-- [Balloons](Minigames/Balloons.md)
-- [ColorTickle](Minigames/ColorTickle.md)
-- [DancingDots](Minigames/DancingDots.md)
-- [Egg](Minigames/Egg.md)
-- [FastCrowd](Minigames/FastCrowd.md)
-- [HideAndSeek](Minigames/HideAndSeek.md)
-- [MakeFriends](Minigames/MakeFriends.md)
-- [Maze](Minigames/Maze.md)
-- [MissingLetter](Minigames/MissingLetter.md)
-- [MixedLetters](Minigames/MixedLetters.md)
-- [ReadingGame](Minigames/ReadingGame.md)
-- [Scanner](Minigames/Scanner.md)
-- [SickLetters](Minigames/SickLetters.md)
-- [TakeMeHome](Minigames/TakeMeHome.md)
-- [ThrowBalls](Minigames/ThrowBalls.md)
-- [Tobogan](Minigames/Tobogan.md)
-
-### API
-
-- [DoxyGen docs](API/index.html)
-- [How To regenerate DoxyGen docs](HowTo/APIDocsGeneration.html)
+## Issues and Contacts
+Did you find an issue or error in these docs or have some suggestions?
+please help us improve by [opening a issue](https://github.com/vgwb/Antura_arabic/issues)
 
 ## License
 

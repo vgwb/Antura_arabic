@@ -41,8 +41,7 @@ namespace Antura.Core
         public bool supportsARGB32RenderTexture;
         public bool supportsAlpha8Texture;
 
-        public DeviceInfo()
-        {
+        public DeviceInfo() {
             AppVersion = AppConstants.AppVersion;
             platform = Application.platform.ToString();
             systemLanguage = Application.systemLanguage.ToString();
@@ -75,6 +74,11 @@ namespace Antura.Core
             supportsLocationService = SystemInfo.supportsLocationService;
             supportsARGB32RenderTexture = SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGB32);
             supportsAlpha8Texture = SystemInfo.SupportsTextureFormat(TextureFormat.Alpha8);
+        }
+
+        public string ToJsonData()
+        {
+            return JsonUtility.ToJson(this);
         }
     }
 }

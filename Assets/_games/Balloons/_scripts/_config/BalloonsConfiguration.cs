@@ -1,11 +1,10 @@
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.Balloons
 {
-    public enum BalloonsVariation 
+    public enum BalloonsVariation
     {
         Spelling = MiniGameCode.Balloons_spelling,
         Words = MiniGameCode.Balloons_words,
@@ -28,7 +27,7 @@ namespace Antura.Minigames.Balloons
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (BalloonsVariation) code;
+            Variation = (BalloonsVariation)code;
         }
 
         #endregion
@@ -80,18 +79,18 @@ namespace Antura.Minigames.Balloons
                 case BalloonsVariation.Spelling:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
-                    builder = new LettersInWordQuestionBuilder(nPacks, useAllCorrectLetters:true, nWrong:nWrong, parameters: builderParams);
+                    builder = new LettersInWordQuestionBuilder(nPacks, useAllCorrectLetters: true, nWrong: nWrong, parameters: builderParams);
                     break;
                 case BalloonsVariation.Words:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
-                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true, parameters:builderParams);
+                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
                 case BalloonsVariation.Letter:
-                    builder = new WordsWithLetterQuestionBuilder(nPacks, nPacksPerRound:1, forceUnseparatedLetters:true, nCorrect:nCorrect, nWrong:nWrong);
-                    break;  
+                    builder = new WordsWithLetterQuestionBuilder(nPacks, nPacksPerRound: 1, forceUnseparatedLetters: true, nCorrect: nCorrect, nWrong: nWrong);
+                    break;
                 case BalloonsVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number); 
+                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number);
                     break;
             }
 

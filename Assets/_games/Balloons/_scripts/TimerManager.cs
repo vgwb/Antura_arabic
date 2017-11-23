@@ -51,7 +51,7 @@ namespace Antura.Minigames.Balloons
             isRunning = false;
             if (MinigamesUI.Timer != null)
             {
-                if (forceCompletion) MinigamesUI.Timer.Complete();
+                if (forceCompletion) { MinigamesUI.Timer.Complete(); }
                 else MinigamesUI.Timer.Pause();
             }
             //AudioManager.I.StopSfx(Sfx.DangerClockLong);

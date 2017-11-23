@@ -11,7 +11,7 @@ namespace Antura.Assessment
 
         private Tween tween = null;
 
-        public void WrapBoxAroundWords( IEnumerable< StillLetterBox> letters)
+        public void WrapBoxAroundWords(IEnumerable<StillLetterBox> letters)
         {
             float ymin = 1000;
             float ymax = -1000;
@@ -38,8 +38,8 @@ namespace Antura.Assessment
                     ymax = ymax_local;
             }
 
-            sprite.Width = xmax-xmin+0.8f;
-            sprite.Height = ymax-ymin+0.8f;
+            sprite.Width = xmax - xmin + 0.8f;
+            sprite.Height = ymax - ymin + 0.8f;
             transform.localPosition = new Vector3((xmax + xmin) / 2.0f, (ymax + ymin) / 2.0f, 6.0f);
         }
 
@@ -52,13 +52,13 @@ namespace Antura.Assessment
         public void Show()
         {
             KillTween();
-            tween = sprite.transform.DOScale( Vector3.one, 0.2f);
+            tween = sprite.transform.DOScale(Vector3.one, 0.2f);
         }
 
         public void Hide()
         {
             KillTween();
-            tween = sprite.transform.DOScale( Vector3.zero, 0.2f);
+            tween = sprite.transform.DOScale(Vector3.zero, 0.2f);
         }
 
         void OnDestroy()
@@ -69,8 +69,9 @@ namespace Antura.Assessment
         private void KillTween()
         {
             if (tween != null)
+            {
                 tween.Kill(true);
-
+            }
             tween = null;
         }
     }

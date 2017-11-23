@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 
 namespace Antura.Teacher
@@ -22,7 +22,10 @@ namespace Antura.Teacher
 
         public AlphabetQuestionBuilder(QuestionBuilderParameters parameters = null)
         {
-            if (parameters == null) parameters = new QuestionBuilderParameters();
+            if (parameters == null)
+            {
+                parameters = new QuestionBuilderParameters();
+            }
 
             this.parameters = parameters;
 
@@ -34,7 +37,7 @@ namespace Antura.Teacher
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            List<QuestionPackData> packs = new List<QuestionPackData>();
+            var packs = new List<QuestionPackData>();
             packs.Add(CreateAlphabetQuestionPackData());
             return packs;
         }
@@ -49,7 +52,7 @@ namespace Antura.Teacher
             // Fully ordered alphabet, only 1 pack
             var alphabetLetters = teacher.VocabularyAi.SelectData(
                 () => vocabularyHelper.GetAllLetters(parameters.letterFilters),
-                new SelectionParameters(parameters.correctSeverity, getMaxData:true, useJourney: parameters.useJourneyForCorrect)
+                new SelectionParameters(parameters.correctSeverity, getMaxData: true, useJourney: parameters.useJourneyForCorrect)
                 );
 
             alphabetLetters.Sort((x, y) =>
@@ -58,10 +61,13 @@ namespace Antura.Teacher
                 }
             );
 
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 string debugString = "Letters: " + alphabetLetters.Count;
-                foreach (var l in alphabetLetters) debugString += " " + l;
+                foreach (var l in alphabetLetters)
+                {
+                    debugString += " " + l;
+                }
                 ConfigAI.AppendToTeacherReport(debugString);
             }
 

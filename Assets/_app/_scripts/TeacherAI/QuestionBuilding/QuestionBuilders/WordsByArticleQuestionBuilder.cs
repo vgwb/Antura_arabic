@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 using Antura.Helpers;
 
@@ -26,7 +26,10 @@ namespace Antura.Teacher
 
         public WordsByArticleQuestionBuilder(int nPacks, QuestionBuilderParameters parameters = null)
         {
-            if (parameters == null) parameters = new QuestionBuilderParameters();
+            if (parameters == null)
+            {
+                parameters = new QuestionBuilderParameters();
+            }
 
             this.nPacks = nPacks;
             this.parameters = parameters;
@@ -37,7 +40,7 @@ namespace Antura.Teacher
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            List<QuestionPackData> packs = new List<QuestionPackData>();
+            var packs = new List<QuestionPackData>();
             var teacher = AppManager.I.Teacher;
             var vocabularyHelper = AppManager.I.VocabularyHelper;
 
@@ -49,7 +52,7 @@ namespace Antura.Teacher
 
             var list_choice1 = teacher.VocabularyAi.SelectData(
                 () => vocabularyHelper.GetWordsByArticle(Database.WordDataArticle.Determinative, parameters.wordFilters),
-                new SelectionParameters(parameters.correctSeverity, nPerType, useJourney:parameters.useJourneyForCorrect)
+                new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             var list_choice2 = teacher.VocabularyAi.SelectData(
@@ -82,7 +85,7 @@ namespace Antura.Teacher
             // Shuffle the packs at the end
             packs.Shuffle();
 
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 foreach (var pack in packs)
                 {

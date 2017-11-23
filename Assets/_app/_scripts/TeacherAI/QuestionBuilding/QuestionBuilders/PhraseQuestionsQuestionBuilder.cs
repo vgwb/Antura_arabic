@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 
 namespace Antura.Teacher
@@ -24,10 +24,12 @@ namespace Antura.Teacher
             get { return this.parameters; }
         }
 
-        public PhraseQuestionsQuestionBuilder(int nPacks, int nWrong = 0,
-            QuestionBuilderParameters parameters = null)
+        public PhraseQuestionsQuestionBuilder(int nPacks, int nWrong = 0, QuestionBuilderParameters parameters = null)
         {
-            if (parameters == null) parameters = new QuestionBuilderParameters();
+            if (parameters == null)
+            {
+                parameters = new QuestionBuilderParameters();
+            }
 
             this.nPacks = nPacks;
             this.nWrong = nWrong;
@@ -39,7 +41,7 @@ namespace Antura.Teacher
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             previousPacksIDs.Clear();
-            List<QuestionPackData> packs = new List<QuestionPackData>();
+            var packs = new List<QuestionPackData>();
             for (int pack_i = 0; pack_i < nPacks; pack_i++)
             {
                 packs.Add(CreateSingleQuestionPackData());
@@ -57,7 +59,8 @@ namespace Antura.Teacher
             var usablePhrases = teacher.VocabularyAi.SelectData(
                 () => vocabularyHelper.GetPhrasesByCategory(Database.PhraseDataCategory.Question, parameters.wordFilters, parameters.phraseFilters),
                     new SelectionParameters(parameters.correctSeverity, nToUse, useJourney: parameters.useJourneyForCorrect,
-                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
+                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs)
+            );
             var question = usablePhrases[0];
 
             // Get the linked reply phrase
@@ -71,9 +74,10 @@ namespace Antura.Teacher
                 () => vocabularyHelper.GetPhrasesNotIn(parameters.wordFilters, parameters.phraseFilters, question, reply),
                     new SelectionParameters(parameters.correctSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
                         packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs,
-                        journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage));
+                        journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage)
+            );
 
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nQuestion: " + question;

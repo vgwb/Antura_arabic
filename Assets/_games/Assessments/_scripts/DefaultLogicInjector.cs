@@ -9,22 +9,22 @@ namespace Antura.Assessment
         protected IDragManager dragManager = null;
         protected AssessmentEvents events = null;
 
-        public DefaultLogicInjector( IDragManager dragManager, AssessmentEvents events)
+        public DefaultLogicInjector(IDragManager dragManager, AssessmentEvents events)
         {
             this.dragManager = dragManager;
             this.events = events;
             ResetRound();
         }
 
-        protected List< PlaceholderBehaviour> placeholdersList;
-        protected List< Answer> answersList;
-        protected List< IQuestion> questionsList;
+        protected List<PlaceholderBehaviour> placeholdersList;
+        protected List<Answer> answersList;
+        protected List<IQuestion> questionsList;
 
         public void ResetRound()
         {
-            placeholdersList = new List< PlaceholderBehaviour>();
-            answersList = new List< Answer>();
-            questionsList = new List< IQuestion>();
+            placeholdersList = new List<PlaceholderBehaviour>();
+            answersList = new List<Answer>();
+            questionsList = new List<IQuestion>();
             dragManager.ResetRound();
             AnswerSet.ResetTotalCount();
         }
@@ -43,47 +43,49 @@ namespace Antura.Assessment
         }
 
         // Called many times (for loop in assessment)
-        public void Wire( IQuestion question, Answer[] answers)
+        public void Wire(IQuestion question, Answer[] answers)
         {
-            AnswerSet answerSet = new AnswerSet( answers);
+            AnswerSet answerSet = new AnswerSet(answers);
 
-            WireQuestion( question, answerSet);
-            WirePlaceHolders( question);
-            WireAnswers( answers);
+            WireQuestion(question, answerSet);
+            WirePlaceHolders(question);
+            WireAnswers(answers);
         }
 
-        protected virtual void WireQuestion( IQuestion q, AnswerSet answerSet)
+        protected virtual void WireQuestion(IQuestion q, AnswerSet answerSet)
         {
-            q.SetAnswerSet( answerSet);
-            questionsList.Add( q);
+            q.SetAnswerSet(answerSet);
+            questionsList.Add(q);
         }
 
-        protected virtual void WireAnswers( Answer[] answers)
+        protected virtual void WireAnswers(Answer[] answers)
         {
             if (answers == null || answers.Length == 0)
-                return;
-
-            foreach( var a in answers)
             {
-                var behaviour = a.gameObject.GetComponent< Answer>();
-                answersList.Add( behaviour); // TODO: INVESTIGATE WITHIN DRAG MAANGER
+                return;
+            }
+
+            foreach (var a in answers)
+            {
+                var behaviour = a.gameObject.GetComponent<Answer>();
+                answersList.Add(behaviour); // TODO: INVESTIGATE WITHIN DRAG MAANGER
             }
         }
 
-        protected virtual void WirePlaceHolders( IQuestion question)
+        protected virtual void WirePlaceHolders(IQuestion question)
         {
-            foreach ( var p in question.GetPlaceholders())
+            foreach (var p in question.GetPlaceholders())
             {
-                var behaviour = p.GetComponent< PlaceholderBehaviour>();
+                var behaviour = p.GetComponent<PlaceholderBehaviour>();
                 behaviour.Placeholder = new DragNDropPlaceholder();
-                behaviour.Placeholder.SetQuestion( question);
-                placeholdersList.Add( behaviour);
+                behaviour.Placeholder.SetQuestion(question);
+                placeholdersList.Add(behaviour);
             }
         }
 
         public void CompleteWiring()
         {
-            dragManager.AddElements( placeholdersList, answersList, questionsList);
+            dragManager.AddElements(placeholdersList, answersList, questionsList);
         }
 
         public void EnableDragOnly()
@@ -94,7 +96,7 @@ namespace Antura.Assessment
         public void RemoveDraggables()
         {
             dragManager.RemoveDraggables();
-            
+
         }
 
         public void AnswersAdded()
@@ -104,11 +106,15 @@ namespace Antura.Assessment
 
         public IEnumerator AllAnsweredEvent()
         {
-            if(events.OnAllQuestionsAnsweredPlacer!=null)
-                Koroutine.Run( events.OnAllQuestionsAnsweredPlacer());
+            if (events.OnAllQuestionsAnsweredPlacer != null)
+            {
+                Koroutine.Run(events.OnAllQuestionsAnsweredPlacer());
+            }
 
-            if(events.OnAllQuestionsAnswered != null)
+            if (events.OnAllQuestionsAnswered != null)
+            {
                 return events.OnAllQuestionsAnswered();
+            }
             return events.NoEvent();
         }
 
