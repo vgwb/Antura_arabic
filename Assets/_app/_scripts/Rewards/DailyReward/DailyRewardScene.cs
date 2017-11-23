@@ -134,8 +134,10 @@ namespace Antura.Rewards
                 todayPivot.transform.position = dailyRewardUIs[newRewardUIIndex].transform.position;
                 todayPivot.gameObject.SetActive(true);
             });
-            s.Insert(s.Duration() - 0.15f, dailyRewardUIs[newRewardUIIndex].transform.DOScale(1.2f, 0.35f).SetEase(Ease.OutBack));
+            s.Insert(s.Duration() - 0.15f, dailyRewardUIs[newRewardUIIndex].transform.DOScale(1.25f, 0.35f).SetEase(Ease.OutBack));
             yield return s.WaitForCompletion();
+
+            dailyRewardUIs[newRewardUIIndex].Bounce(true);
 
 //            yield return new WaitForSeconds(1.0f);
 //
