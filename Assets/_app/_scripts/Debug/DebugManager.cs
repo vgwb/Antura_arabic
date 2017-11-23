@@ -89,7 +89,7 @@ namespace Antura.Debugging
                     FirstContactManager.I.ForceAtPhase(FirstContactPhase.Finished);
                 } else
                 {
-                    FirstContactManager.I.PassPhase(FirstContactPhase.Intro);
+                    FirstContactManager.I.PassPhase(FirstContactPhase.Reward_FirstBig);
                     AppManager.I.Player.ResetPlayerProfileCompletion();
                 }
             }

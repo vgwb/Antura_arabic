@@ -79,7 +79,7 @@ namespace Antura.AnturaSpace
 
         private void HandleContextChange(ShopContext shopContext)
         {
-            //Debug.Log("CONTEXT: " + shopContext);
+            Debug.Log("CONTEXT: " + shopContext);
             switch (shopContext)
             {
                 case ShopContext.Purchase:
@@ -110,6 +110,10 @@ namespace Antura.AnturaSpace
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 case ShopContext.Customization:
+                    showPurchasePanelAlwaysAvailableTween.PlayBackwards();
+                    showConfirmationPanelTween.PlayBackwards();
+                    break;
+                case ShopContext.Hidden:
                     showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
                     break;

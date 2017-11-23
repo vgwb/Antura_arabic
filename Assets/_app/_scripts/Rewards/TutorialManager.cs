@@ -18,7 +18,7 @@ namespace Antura.Rewards
             {
                 gameObject.SetActive(false);
                 IsRunning = false;
-                Debug.Log("First contact is not on");
+                Debug.Log("TUTORIAL - First contact is not on");
                 return;
             }
 
@@ -27,11 +27,11 @@ namespace Antura.Rewards
             {
                 gameObject.SetActive(false);
                 IsRunning = false;
-                Debug.Log("DEBUG - tutorial removed");
+                Debug.Log("TUTORIAL - DEBUG disabled");
                 return;
             }
 
-            Debug.Log("Tutorial is starting (phase " + FirstContactManager.I.CurrentPhase + ")");
+            Debug.Log("TUTORIAL - phase " + FirstContactManager.I.CurrentPhase + "");
             IsRunning = true;
 
             InternalHandleStart();

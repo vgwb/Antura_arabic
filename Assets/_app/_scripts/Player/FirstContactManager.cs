@@ -13,6 +13,8 @@ namespace Antura.Profile
     {
         Intro,
 
+        Reward_FirstBig,
+
         Map_Play,
         Map_GoToAnturaSpace,
         Map_GoToMinigames,
@@ -57,12 +59,15 @@ namespace Antura.Profile
         }
 
         // State
-        private FirstContactPhase currentPhase = FirstContactPhase.Intro;
+        private FirstContactPhase currentPhase = FirstContactPhase.Reward_FirstBig;
         private List<FirstContactPhase> phasesSequence;
 
         // Debug
-        private static bool SIMULATE_FIRST_CONTACT = true;
-        private FirstContactPhase SIMULATE_FIRST_CONTACT_PHASE = FirstContactPhase.Finished;
+        private static bool SIMULATE_FIRST_CONTACT = false;
+        private FirstContactPhase SIMULATE_FIRST_CONTACT_PHASE = FirstContactPhase.Reward_FirstBig;
+
+        private static bool FORCE_FIRST_CONTACT = true;
+        private FirstContactPhase FORCED_FIRST_CONTACT_PHASE = FirstContactPhase.AnturaSpace_TouchAntura;
 
         #region Checks
 
@@ -161,12 +166,14 @@ namespace Antura.Profile
         {
             if (!Application.isEditor)
             {
-                SIMULATE_FIRST_CONTACT = false; // Force debug options to FALSE if we're not in the editor
+                // Force debug options to FALSE if we're not in the editor
+                SIMULATE_FIRST_CONTACT = false; 
+                FORCE_FIRST_CONTACT = false;
             }
 
             phasesSequence = new List<FirstContactPhase>
             {
-                FirstContactPhase.Intro,
+                FirstContactPhase.Reward_FirstBig,
 
                 FirstContactPhase.AnturaSpace_TouchAntura,
                 FirstContactPhase.AnturaSpace_Customization,
@@ -181,13 +188,20 @@ namespace Antura.Profile
 
             };
 
-            // Setup filtered transitions
-            SetupFilteredTransitions();
+            //SetupFilteredTransitions();
         }
 
-        private void SetupFilteredTransitions()
+        public void InitialiseForCurrentPlayer()
         {
-          }
+            if (FORCE_FIRST_CONTACT)
+            {
+                ForceAtPhase(FORCED_FIRST_CONTACT_PHASE);
+            }
+        }
+
+        //private void SetupFilteredTransitions()
+        //{
+        //}
 
         /// <summary>
         /// Filter the navigation from a scene to the next based on the first contact requirements
@@ -197,25 +211,46 @@ namespace Antura.Profile
             keepPrevAsBackable = false;
             if (!IsInsideFirstContact()) return toScene;
 
+            // Check whether this transition is completing a tutorial phase
+            if (fromScene == AppScene.Intro && CurrentPhase == FirstContactPhase.Intro) CompleteCurrentPhase();
+
             // TODO: Remove the map!
             filteredTransitionsMap = new Dictionary<SceneTransition, AppScene>();
             switch (CurrentPhase)
             {
-                // Home to Intro instead of Map
+                // Intro starts
+                // Home->Map becomes Home->Intro
                 case FirstContactPhase.Intro:
                     filteredTransitionsMap.Add(new SceneTransition(AppScene.Home, AppScene.Map), AppScene.Intro);
                     break;
 
-                // Rewards to AnturaSpace directly when you earn the first reward
-                case FirstContactPhase.AnturaSpace_Customization:
+                // BigReward awaiting
+                // Home->Map becomes Home->Intro
+                case FirstContactPhase.Reward_FirstBig:
+                    filteredTransitionsMap.Add(new SceneTransition(AppScene.Intro, AppScene.Map), AppScene.Rewards);
+                    break;
+
+                // The BigReward ends. 
+                // We go to AnturaSpace directly
+                case FirstContactPhase.AnturaSpace_TouchAntura:
                     filteredTransitionsMap.Add(new SceneTransition(AppScene.Rewards, AppScene.Map), AppScene.AnturaSpace);
                     break;
 
+                    /*
                 // Map to Rewards directly instead of AnturaSpace when you finish the first map step (TODO)
                 case FirstContactPhase.Map_GoToAnturaSpace:
                     filteredTransitionsMap.Add(new SceneTransition(AppScene.Map, AppScene.AnturaSpace, true), AppScene.Rewards);
                     // TODO: We must force the prev scene stack to hold the Map <-> AnturaSpace transition (should be in, test it!)
+                    break;*/
+
+                    /*
+                // The Intro ends
+                //Rewards to AnturaSpace directly when you earn the first reward
+                // Rewards->Map becomes Rewards->Intro
+                case FirstContactPhase.AnturaSpace_Customization:
+                    filteredTransitionsMap.Add(new SceneTransition(AppScene.Intro, AppScene.Map), AppScene.AnturaSpace);
                     break;
+                    */
             }
 
             // Handle the transition
@@ -231,6 +266,7 @@ namespace Antura.Profile
 
             return toScene;
         }
+
     }
 
 }

@@ -7,6 +7,7 @@ namespace Antura.AnturaSpace
         NewPlacement,
         MovingPlacement,
         SpecialAction,
-        Customization
+        Customization,
+        Hidden
     }
 }

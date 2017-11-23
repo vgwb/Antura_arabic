@@ -31,7 +31,6 @@ namespace Antura.AnturaSpace.UI
         [Header("References")]
         public AnturaSpaceModsButton BtOpenModsPanel;
         public UIButton BtBonesShop;
-        public RectTransform SideActionsContainer;
 
         public UIButton BTRemoveMods;
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
@@ -87,7 +86,7 @@ namespace Antura.AnturaSpace.UI
             I = this;
         }
 
-        void Start()
+        public void Initialise()
         {
             btsCategories = CategoriesContainer.GetComponentsInChildren<AnturaSpaceCategoryButton>(true);
             btsSwatches = SwatchesContainer.GetComponentsInChildren<AnturaSpaceSwatchButton>(true);
@@ -115,7 +114,6 @@ namespace Antura.AnturaSpace.UI
             showCategoriesTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(CategoriesContainer.DOAnchorPosY(150, duration).From().SetEase(Ease.OutBack))
                 .Join(BtBonesShop.RectT.DOAnchorPosY(-830, duration))
-                //.Join(SideActionsContainer.DOAnchorPosY(-830, duration))
                 .OnRewind(() => CategoriesContainer.gameObject.SetActive(false));
             showShopTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(ShopPanelContainer.DOAnchorPosY(-830, duration).From().SetEase(Ease.OutBack))
@@ -566,5 +564,6 @@ namespace Antura.AnturaSpace.UI
         {
             return ScreenToUIPoint(uiCamera.WorldToScreenPoint(pos));
         }
+
     }
 }

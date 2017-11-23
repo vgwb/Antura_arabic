@@ -64,7 +64,7 @@ namespace Antura.AnturaSpace
 
         private void SwitchToContext(ShopContext newContext)
         {
-            //Debug.Log("CONTEXT: " + newContext);
+            Debug.Log("SWITCH TO CONTEXT: " + newContext);
             previousShopContext = shopContext;
             shopContext = newContext;
             if (OnContextChange != null) OnContextChange(shopContext);
@@ -106,6 +106,11 @@ namespace Antura.AnturaSpace
             SwitchToContext(ShopContext.Purchase);
         }
 
+        public void SetContextHidden()
+        {
+            SwitchToContext(ShopContext.Hidden);
+        }
+
         #endregion
 
 
@@ -142,7 +147,7 @@ namespace Antura.AnturaSpace
                 }
             }
 
-            Debug.Log(shopState.ToString());
+            //Debug.Log(shopState.ToString());
 
             // Initialise context
             SetContextClosed();

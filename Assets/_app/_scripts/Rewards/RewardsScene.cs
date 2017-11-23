@@ -58,11 +58,7 @@ namespace Antura.Rewards
 
         IEnumerator StartReward()
         {
-            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Intro))
-            {
-                KeeperManager.I.PlayDialog(Database.LocalizationDataId.Reward_Intro);
-            }
-            else
+            if (!FirstContactManager.I.IsInsideFirstContact())
             {
                 int rnd = Random.Range(1, 3);
                 switch (rnd) {
@@ -77,6 +73,7 @@ namespace Antura.Rewards
                         break;
                 }
             }
+
             // Wait animation ending before show continue button
             yield return new WaitForSeconds(4.4f);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
@@ -97,7 +94,7 @@ namespace Antura.Rewards
         /// <returns></returns>
         public RewardPackUnlockData GetRewardToInstantiate()
         {
-            if (FirstContactManager.I.IsInsideFirstContact())
+            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig))
             {
                 return AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
             }
@@ -124,6 +121,9 @@ namespace Antura.Rewards
 
         public void Continue()
         {
+            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig))
+                FirstContactManager.I.CompleteCurrentPhase();
+
             AppManager.I.NavigationManager.GoToNextScene();
         }
     }

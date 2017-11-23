@@ -38,6 +38,7 @@ namespace Antura.AnturaSpace
 
         public AnturaLocomotion m_oAnturaBehaviour;
         public AnturaSpaceUI UI;
+        public ShopDecorationsManager ShopDecorationsManager;
         public UnityEngine.UI.Button m_oCookieButton;
 
         [SerializeField]
@@ -73,10 +74,12 @@ namespace Antura.AnturaSpace
 
             TutorialUI.SetCamera(m_oCameraUI);
 
-            //setup first state, disable UI    
+            // First, disable all UI
             _mTutorialStates = AnturaSpaceTutorialStates.ANTURA_ANIM;
             UI.ShowBonesButton(false);
-            UI.ShopPanelContainer.gameObject.SetActive(false);
+            Debug.LogError("A");
+            ShopDecorationsManager.SetContextHidden();
+            Debug.LogError("B");
             m_oCustomizationButton.gameObject.SetActive(false);
 
             AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro, null);

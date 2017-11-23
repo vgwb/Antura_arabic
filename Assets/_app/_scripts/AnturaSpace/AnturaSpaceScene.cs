@@ -103,7 +103,9 @@ namespace Antura.AnturaSpace
 
             CurrentState = Idle;
 
-            TutorialManager tutorialManager = gameObject.AddComponent<AnturaSpaceTutorialManager>();
+            UI.Initialise();
+
+            TutorialManager tutorialManager = gameObject.GetComponentInChildren<AnturaSpaceTutorialManager>();
             tutorialManager.HandleStart();
         }
 
