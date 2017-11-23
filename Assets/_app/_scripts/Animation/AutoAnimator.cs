@@ -64,7 +64,7 @@ namespace Antura.Animation
                     break;
                 case AnimationType.BounceLoop:
                     animTween = animTween.Append(
-                        transform.DOScale(transform.localScale * To, Duration).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine)
+                        transform.DOScale(transform.localScale * To, Duration).SetLoops(int.MaxValue, LoopType.Yoyo).SetEase(Ease.InOutSine)
                     );
                     break;
             }
