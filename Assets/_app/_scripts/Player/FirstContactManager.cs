@@ -63,16 +63,19 @@ namespace Antura.Profile
         private List<FirstContactPhase> phasesSequence;
 
         // Debug
+        public static bool DISABLE_FIRST_CONTACT = true;
+
         private static bool SIMULATE_FIRST_CONTACT = false;
         private FirstContactPhase SIMULATE_FIRST_CONTACT_PHASE = FirstContactPhase.Reward_FirstBig;
 
-        private static bool FORCE_FIRST_CONTACT = true;
-        private FirstContactPhase FORCED_FIRST_CONTACT_PHASE = FirstContactPhase.AnturaSpace_Customization;
+        private static bool FORCE_FIRST_CONTACT = false;
+        private FirstContactPhase FORCED_FIRST_CONTACT_PHASE = FirstContactPhase.Intro;
 
         #region Checks
 
         public bool IsInsideFirstContact()
         {
+            if (DISABLE_FIRST_CONTACT) return false;
             return CurrentPhase < FirstContactPhase.Finished || SIMULATE_FIRST_CONTACT;
         }
 
@@ -182,13 +185,11 @@ namespace Antura.Profile
                 FirstContactPhase.Map_Play,
                 FirstContactPhase.Map_GoToAnturaSpace,
 
-                // TODO: the scene should handle MULTIPLE tutorials in sequence, disjointed (check after each tutorial ends!)
                 FirstContactPhase.AnturaSpace_Shop,
                 FirstContactPhase.AnturaSpace_Photo,
 
             };
 
-            //SetupFilteredTransitions();
         }
 
         public void InitialiseForCurrentPlayer()
@@ -199,9 +200,6 @@ namespace Antura.Profile
             }
         }
 
-        //private void SetupFilteredTransitions()
-        //{
-        //}
 
         /// <summary>
         /// Filter the navigation from a scene to the next based on the first contact requirements

@@ -48,7 +48,6 @@ namespace Antura.AnturaSpace
             TutorialUI.SetCamera(m_oCameraUI);
 
             // First, disable all UI
-            //_currentTutorialStep = AnturaSpaceTutorialStep.ANTURA_ANIM;
             UI.ShowBonesButton(false);
             ShopDecorationsManager.SetContextHidden();
             m_oCustomizationButton.gameObject.SetActive(false);
