@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 22252684}
   - component: {fileID: 11410628}
   - component: {fileID: 11426508}
+  - component: {fileID: 114592148747267984}
   m_Layer: 5
   m_Name: ButtonRetry
   m_TagString: Untagged
@@ -4917,6 +4918,22 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114592148747267984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd212253e00547129d7438ae4ef94a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimType: 1
+  To: 1.1
+  Duration: 0.4
+  ScaleInOnEnable: 1
+  ScaleInDuration: 0.3
 --- !u!114 &114598552248544412
 MonoBehaviour:
   m_ObjectHideFlags: 1

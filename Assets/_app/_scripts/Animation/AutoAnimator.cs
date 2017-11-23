@@ -9,14 +9,15 @@ namespace Antura.Animation
     {
         public enum AnimationType
         {
-            RotateZ
+            RotateZ,
+            BounceLoop
         }
 
         #region Serialized
 
         public AnimationType AnimType;
         public float To;
-        public float Duration;
+        public float Duration = 0.35f;
         public bool ScaleInOnEnable;
         public float ScaleInDuration = 0.3f;
 
@@ -59,6 +60,11 @@ namespace Antura.Animation
                 case AnimationType.RotateZ:
                     animTween = animTween.Join(
                         transform.DORotate(new Vector3(0, 0, To), Duration, RotateMode.FastBeyond360).SetLoops(int.MaxValue).SetEase(Ease.Linear)
+                    );
+                    break;
+                case AnimationType.BounceLoop:
+                    animTween = animTween.Append(
+                        transform.DOScale(transform.localScale * To, Duration).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine)
                     );
                     break;
             }
