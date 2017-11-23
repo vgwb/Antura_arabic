@@ -5,6 +5,7 @@ using Antura.Core;
 using Antura.Database;
 using Antura.Keeper;
 using Antura.UI;
+using DG.Tweening;
 using UnityEngine.UI;
 
 namespace Antura.Rewards
@@ -23,6 +24,8 @@ namespace Antura.Rewards
         public AnturaAnimationController AnturaAnimController;
         public Button AnturaSpaceBtton;
 
+        Tween btAnturaTween;
+
         protected override void Start()
         {
             base.Start();
@@ -30,13 +33,13 @@ namespace Antura.Rewards
             Debug.Log("RewardsManager playsession: " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
             AnturaAnimController.State = AnturaAnimation;
+            AnturaSpaceBtton.gameObject.SetActive(false);
             ShowReward();
+        }
 
-            if (!AppManager.I.Player.IsFirstContact()) {
-                AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
-            } else {
-                AnturaSpaceBtton.gameObject.SetActive(false);
-            }
+        void OnDestroy()
+        {
+            btAnturaTween.Kill();
         }
 
         public void ShowReward()
@@ -65,6 +68,11 @@ namespace Antura.Rewards
             // Wait animation ending before show continue button
             yield return new WaitForSeconds(4.4f);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
+            if (!AppManager.I.Player.IsFirstContact()) {
+                AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
+                AnturaSpaceBtton.gameObject.SetActive(true);
+                btAnturaTween = AnturaSpaceBtton.transform.DOScale(0.1f, 0.4f).From().SetEase(Ease.OutBack);
+            }
             yield return null;
         }
 
