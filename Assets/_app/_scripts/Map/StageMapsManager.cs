@@ -5,6 +5,7 @@ using Antura.Core;
 using Antura.Database;
 using Antura.Keeper;
 using Antura.Minigames;
+using Antura.Profile;
 using Antura.Tutorial;
 using Antura.UI;
 using DG.Tweening;
@@ -67,7 +68,7 @@ namespace Antura.Map
 
         #region Tutorial
 
-        private static int firstContactSimulationStep;
+        private static int firstContactSimulationStep;  // TODO: remove this and use the FirstContactManager instead
         private GameObject tutorialUiGo;
 
         #endregion
@@ -208,7 +209,7 @@ namespace Antura.Map
             playerPin.LookAtNextPin(false);
 
             /* FIRST CONTACT FEATURE */
-            if (AppManager.I.Player.IsFirstContact() || SimulateFirstContact) {
+            if (FirstContactManager.I.IsInFirstContact() || SimulateFirstContact) {
                 FirstContactBehaviour();
                 mapStageIndicator.gameObject.SetActive(false);
             }
@@ -410,10 +411,10 @@ namespace Antura.Map
             if (SimulateFirstContact) firstContactSimulationStep++;
             var isFirstStep = SimulateFirstContact
                 ? firstContactSimulationStep == 1
-                : AppManager.I.Player.IsFirstContact(1);
+                : AppManager.I.Player.IsAtFirstContactPhase(1);
             var isSecondStep = SimulateFirstContact
                 ? firstContactSimulationStep == 2
-                : AppManager.I.Player.IsFirstContact(2);
+                : AppManager.I.Player.IsAtFirstContactPhase(2);
 
             if (isFirstStep) {
                 DeactivateUI();
@@ -422,11 +423,14 @@ namespace Antura.Map
                     KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_AnturaSpace, true, true, ActivateAnturaButton);
                 });
 
-                AppManager.I.Player.FirstContactPassed();
+                // TODO: advance in the FirstContactManager
+                AppManager.I.Player.SetFirstContactPassed();
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
             } else if (isSecondStep) {
                 ActivateUI();
-                AppManager.I.Player.FirstContactPassed(2);
+
+                // TODO: advance in the FirstContactManager
+                AppManager.I.Player.SetFirstContactPassed(2);
 
                 KeeperManager.I.PlayDialog(LocalizationDataId.Map_First, true, true, () => {
                     KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_Map1);

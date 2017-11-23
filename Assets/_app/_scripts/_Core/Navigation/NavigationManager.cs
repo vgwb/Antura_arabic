@@ -127,11 +127,7 @@ namespace Antura.Core
                 Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToNextScene");
             switch (NavData.CurrentScene) {
                 case AppScene.Home:
-                    if (NavData.CurrentPlayer.IsFirstContact()) {
-                        GoToScene(AppScene.Intro);
-                    } else {
-                        GoToScene(AppScene.Map);
-                    }
+                    GoToScene(AppScene.Map);
                     break;
                 case AppScene.PlayerCreation:
                     GoToScene(AppScene.Intro);
@@ -160,11 +156,7 @@ namespace Antura.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
-                    if (NavData.CurrentPlayer.IsFirstContact()) {
-                        GoToScene(AppScene.AnturaSpace);
-                    } else {
-                        GoToScene(AppScene.Map);
-                    }
+                    GoToScene(AppScene.Map);
                     break;
                 case AppScene.PlaySessionResult:
                     GoToScene(AppScene.Map);
@@ -179,7 +171,7 @@ namespace Antura.Core
 
         private bool CheckDailySceneTrigger()
         {
-            if (AppManager.I.Player.IsFirstContact()) {
+            if (FirstContactManager.I.IsInFirstContact()) {
                 LogManager.I.LogInfo(InfoEvent.DailyRewardReceived, "first contact");
                 return false;
             }
@@ -234,22 +226,10 @@ namespace Antura.Core
 
         private void GoToScene(AppScene newScene, Database.MiniGameData minigameData = null)
         {
+            newScene = FirstContactManager.I.FilterNavigation(GetCurrentScene(), newScene);
+
             // Additional checks for specific scenes
             switch (newScene) {
-                case AppScene.Rewards:
-                    // Already rewarded this playsession?
-                    if (RewardSystemManager.RewardAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition)) {
-                        // Security Check (issue #475): if the reward for the current PS has already been unlocked 
-                        // we must be sure that the player is not on the most advanced PS, otherwise he/she would be stuck
-                        // so we Increment MaxJourneyPosition to let him/her progress
-                        if (NavData.CurrentPlayer.CurrentJourneyPosition.Equals(NavData.CurrentPlayer.MaxJourneyPosition)) {
-                            // wrong MaxJourneyPosition...
-                            AppManager.I.Player.AdvanceMaxJourneyPosition();
-                        }
-                        GoToScene(AppScene.Map);
-                        return;
-                    }
-                    break;
                 case AppScene.Map:
                     // When coming back to the map, we need to check whether a new daily reward is needed
                     if (CheckDailySceneTrigger()) {
@@ -263,7 +243,7 @@ namespace Antura.Core
             UpdatePrevSceneStack(newScene);
             NavData.CurrentScene = newScene;
 
-            // check to have closed any possibile Keeper Dialog
+            // check to have closed any possible Keeper Dialog
             KeeperManager.I.ResetKeeper();
 
             GoToSceneByName(AppSceneHelper.GetSceneName(newScene, minigameData));
@@ -329,9 +309,9 @@ namespace Antura.Core
             CustomGoTo(AppScene.Book);
         }
 
-        public void GoToPlayerCreation()
+        public void GoToPlayerCreation(bool debugMode = false)
         {
-            CustomGoTo(AppScene.PlayerCreation);
+            CustomGoTo(AppScene.PlayerCreation, debugMode);
         }
 
         public void GoToReservedArea(bool debugMode = false)
@@ -339,23 +319,9 @@ namespace Antura.Core
             CustomGoTo(AppScene.ReservedArea, debugMode);
         }
 
-        public void GoToAnturaSpace()
+        public void GoToAnturaSpace(bool debugMode = false)
         {
-            switch (NavData.CurrentScene) {
-                case AppScene.Map:
-                    // First contact: we go to the Rewards scene instead
-                    if (NavData.CurrentPlayer.IsFirstContact()) {
-                        // We force the prev scene stack to hold the Map <-> AnturaSpace transition
-                        UpdatePrevSceneStack(AppScene.AnturaSpace);
-                        CustomGoTo(AppScene.Rewards);
-                    } else
-                        CustomGoTo(AppScene.AnturaSpace);
-                    break;
-
-                default:
-                    CustomGoTo(AppScene.AnturaSpace);
-                    break;
-            }
+            CustomGoTo(AppScene.AnturaSpace, debugMode);
         }
 
         /// <summary>
@@ -585,20 +551,42 @@ namespace Antura.Core
             }
 
             // From one game to the next
-            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
-                // We finished the whole game: no reward, go directly to the end scene instead
-                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition()) {
-                    if (!AppManager.I.Player.HasFinalBeenShown()) {
+            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
+            {
+                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition())
+                {
+                    // We finished the whole game: no reward, go directly to the end scene instead
+                    if (!AppManager.I.Player.HasFinalBeenShown())
+                    {
                         AppManager.I.Player.SetGameCompleted();
                         AppManager.I.Player.SetFinalShown();
                         GoToScene(AppScene.Ending);
-                    } else {
+                    }
+                    else {
                         GoToScene(AppScene.Map);
                     }
-                } else {
-                    GoToScene(AppScene.Rewards);
+                } else
+                {
+                    // We finished a non-end game assessment
+                    if (RewardSystemManager.RewardAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition))
+                    {
+                        // Security Check (issue #475): if the reward for the current PS has already been unlocked 
+                        // we must be sure that the player is not on the most advanced PS, otherwise he/she would be stuck
+                        // so we Increment MaxJourneyPosition to let him/her progress
+                        if (NavData.CurrentPlayer.CurrentJourneyPosition.Equals(NavData.CurrentPlayer.MaxJourneyPosition))
+                        {
+                            // wrong MaxJourneyPosition...
+                            AppManager.I.Player.AdvanceMaxJourneyPosition();
+                        }
+                        GoToScene(AppScene.Map);
+                    }
+                    else
+                    {
+                        GoToScene(AppScene.Rewards);
+                    }
                 }
-            } else {
+            } else
+            {
                 // Not an assessment. Do we have any more?
                 if (NavData.SetNextMinigame()) {
                     // Go to the next minigame.

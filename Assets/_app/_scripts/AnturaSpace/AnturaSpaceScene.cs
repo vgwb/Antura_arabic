@@ -6,6 +6,7 @@ using Antura.Minigames;
 using Antura.UI;
 using System.Collections.Generic;
 using System.Linq;
+using Antura.Profile;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -99,7 +100,9 @@ namespace Antura.AnturaSpace
 
             GlobalUI.ShowPauseMenu(false);
 
-            if (!AppManager.I.Player.IsFirstContact()) {
+            // TODO: UI Change based on FirstContact
+            if (!FirstContactManager.I.IsInFirstContact())
+            {
                 ShowBackButton();
             }
 

@@ -83,11 +83,14 @@ namespace Antura.Debugging
         ///   <c>true</c> if [first contact passed]; otherwise, <c>false</c>.
         /// </value>
         public bool FirstContactPassed {
-            get { return !AppManager.I.Player.IsFirstContact(); }
+            get { return !FirstContactManager.I.IsInFirstContact(); }
             set {
                 if (value) {
-                    AppManager.I.Player.FirstContactPassed(2);
-                } else {
+                    // TODO: use firstContactManager
+                    AppManager.I.Player.SetFirstContactPassed(2);
+                } else
+                {
+                    // TODO: use firstContactManager
                     AppManager.I.Player.ResetPlayerProfileCompletion();
                 }
             }

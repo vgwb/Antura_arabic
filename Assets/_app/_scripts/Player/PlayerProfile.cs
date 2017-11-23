@@ -499,10 +499,10 @@ namespace Antura.Profile
         /// <returns>
         ///   <c>true</c> if [is first contact]; otherwise, <c>false</c>.
         /// </returns>
-        public bool IsFirstContact()
+        /*public bool IsFirstContact()
         {
-            return (ProfileCompletion < ProfileCompletionState.FirstContact2);
-        }
+            return ProfileCompletion < ProfileCompletionState.FirstContact2;
+        }*/
 
         /// <summary>
         /// Determines whether [is first contact] whit [the specified step] (1 or 2).
@@ -511,23 +511,19 @@ namespace Antura.Profile
         /// <returns>
         ///   <c>true</c> if [is first contact] [the specified step]; otherwise, <c>false</c>.
         /// </returns>
-        public bool IsFirstContact(int _step)
+        public bool IsAtFirstContactPhase(int _step)
         {
             if (_step < (int)ProfileCompletionState.FirstContact1) return true;
             if (_step >= (int)ProfileCompletionState.FirstContact2) return false;
 
-            if ((int)ProfileCompletion == _step - 1) {
-                return true;
-            } else {
-                return false;
-            }
+            return (int)ProfileCompletion == _step - 1;
         }
 
         /// <summary>
         /// Set firsts contact flag as passed for step specified.
         /// </summary>
         /// <param name="_step">The step (1 (default) or 2).</param>
-        public void FirstContactPassed(int _step = 1)
+        public void SetFirstContactPassed(int _step = 1)
         {
             switch (_step) {
                 case 1:
@@ -546,30 +542,6 @@ namespace Antura.Profile
         public void ResetPlayerProfileCompletion()
         {
             ProfileCompletion = ProfileCompletionState.New;
-            Save();
-        }
-
-        #endregion
-
-        #region BookVisited (ProfileCompletion = 3)                
-
-        /// <summary>
-        /// Determines whether [is first time book].
-        /// </summary>
-        /// <returns>
-        ///   <c>true</c> if [is first time book]; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsBookVisited()
-        {
-            return (ProfileCompletion < ProfileCompletionState.BookVisited);
-        }
-
-        /// <summary>
-        /// Firsts the time book passed.
-        /// </summary>
-        public void SetBookVisited()
-        {
-            ProfileCompletion = ProfileCompletionState.BookVisited;
             Save();
         }
 

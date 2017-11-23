@@ -6,6 +6,7 @@ using Antura.Tutorial;
 using Antura.UI;
 using UnityEngine;
 using System.Collections;
+using Antura.Profile;
 
 namespace Antura.AnturaSpace
 {
@@ -79,7 +80,8 @@ namespace Antura.AnturaSpace
             }
 
             //if this isn't the first contact disable yourself and return
-            if (AppManager.I.Player.IsFirstContact() == false) {
+            if (!FirstContactManager.I.IsInFirstContact())
+            {
                 gameObject.SetActive(false);
                 IsRunning = false;
                 return;

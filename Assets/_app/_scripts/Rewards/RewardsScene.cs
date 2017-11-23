@@ -4,6 +4,7 @@ using Antura.Dog;
 using Antura.Core;
 using Antura.Database;
 using Antura.Keeper;
+using Antura.Profile;
 using Antura.UI;
 using UnityEngine.UI;
 
@@ -32,9 +33,12 @@ namespace Antura.Rewards
             AnturaAnimController.State = AnturaAnimation;
             ShowReward();
 
-            if (!AppManager.I.Player.IsFirstContact()) {
+            if (!FirstContactManager.I.IsInFirstContact())
+            {
                 AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
-            } else {
+            }
+            else
+            {
                 AnturaSpaceBtton.gameObject.SetActive(false);
             }
         }
@@ -46,9 +50,12 @@ namespace Antura.Rewards
 
         IEnumerator StartReward()
         {
-            if (AppManager.I.Player.IsFirstContact()) {
+            if (FirstContactManager.I.IsInFirstContact())
+            {
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Reward_Intro);
-            } else {
+            }
+            else
+            {
                 int rnd = Random.Range(1, 3);
                 switch (rnd) {
                     case 1:
@@ -82,9 +89,12 @@ namespace Antura.Rewards
         /// <returns></returns>
         public RewardPackUnlockData GetRewardToInstantiate()
         {
-            if (AppManager.I.Player.IsFirstContact()) {
+            if (FirstContactManager.I.IsInFirstContact())
+            {
                 return AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
-            } else {
+            }
+            else
+            {
                 RewardPackUnlockData newRewardToInstantiate = RewardSystemManager.GetNextRewardPack(true)[0];
                 AppManager.I.Player.AddRewardUnlocked(newRewardToInstantiate);
                 AppManager.I.Player.AdvanceMaxJourneyPosition();

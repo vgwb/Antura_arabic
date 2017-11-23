@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Antura.Audio;
 using Antura.Core;
+using Antura.Profile;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -36,7 +37,7 @@ namespace Antura.Map
         {
             StartFloatingAnimation();
 
-            if (!AppManager.I.Player.IsFirstContact()) {
+            if (!FirstContactManager.I.IsInFirstContact()) {
                 CheckMovementButtonsEnabling();
             }
         }
