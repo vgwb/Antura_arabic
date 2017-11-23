@@ -8,7 +8,7 @@ namespace Antura.Rewards
     /// </summary>
     public abstract class TutorialManager : MonoBehaviour
     {
-        public static bool VERBOSE = false;
+        public static bool VERBOSE = true;
 
         public bool IsRunning { get; protected set; }
 

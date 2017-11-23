@@ -326,7 +326,6 @@ namespace Antura.AnturaSpace
             TutorialUI.Clear(false);
 
             _mScene.ShowBackButton();
-            UI.ShopPanelContainer.gameObject.SetActive(true);
 
             AudioManager.I.StopDialogue(false);
 

@@ -196,10 +196,10 @@ namespace Antura.Core
         /// </summary>
         public void GoBack()
         {
-            /*Debug.LogError("HITTING BACK FROM " + NavData.CurrentScene);
+           Debug.LogError("HITTING BACK FROM " + NavData.CurrentScene);
             for (int i= 0; i<NavData.PrevSceneStack.Count; i++)
                 Debug.LogError(i + ": " + NavData.PrevSceneStack.ToArray()[i]);
-            */
+            
 
             if (NavData.PrevSceneStack.Count > 0) {
                 var prevScene = NavData.PrevSceneStack.Pop();

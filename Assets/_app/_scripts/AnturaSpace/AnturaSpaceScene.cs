@@ -136,6 +136,7 @@ namespace Antura.AnturaSpace
 
         public void ShowBackButton()
         {
+            Debug.Log("SHO BACK BUTTON");
             GlobalUI.ShowBackButton(true, OnExit);
         }
         public void HideBackButton()
@@ -145,7 +146,7 @@ namespace Antura.AnturaSpace
 
         void OnExit()
         {
-            AppManager.I.NavigationManager.GoBack();
+            AppManager.I.NavigationManager.GoToNextScene();
         }
 
         void OnEnterCustomization()

@@ -31,23 +31,6 @@ namespace Antura.Profile
         Finished
     }
 
-    // What do we need for the first contact
-    // - linear progression VS phases unlocked
-    // - phases are SEPARATED, like a FSM, each scene will check for the current phase and register to those it is concerned with!
-    // - the flow of the first contact is instead defined by a list of phases in order. Each phase will start when the previous is finished.
-    //   - NOTE: this makes the flow LINEAR!  
-
-    // - allow some parts to be unlocked with LBs
-    // - move the player to AnturaSpace when you unlock the first reward
-    // - tutorials also unlock
-    // - reward 1 tutorial: 
-    // - anturaspace 3 tutorials: customization, shop, photo
-    // - map 2 tutorials: map, gotoAnturaSpace, gotoBook, gotoProfile, gotoMinigames
-    // - map triggers on specific LB/PS to start the new 'phase'
-
-    // TODO: define triggers that enable or not the tutorial!!!
-        // - example: trigger after a specific PS (or when we increase MaxPS)
-
     /// <summary>
     /// Manages the flow of First Contact (i.e. the tutorial) throughout the application
     /// </summary>
@@ -63,13 +46,13 @@ namespace Antura.Profile
         private List<FirstContactPhase> phasesSequence;
 
         // Debug
-        public static bool DISABLE_FIRST_CONTACT = false;
+        public static bool DISABLE_FIRST_CONTACT = true;
 
         private static bool SIMULATE_FIRST_CONTACT = false;
         private FirstContactPhase SIMULATE_FIRST_CONTACT_PHASE = FirstContactPhase.Reward_FirstBig;
 
-        private static bool FORCE_FIRST_CONTACT = true;
-        private FirstContactPhase FORCED_FIRST_CONTACT_PHASE = FirstContactPhase.AnturaSpace_TouchAntura;
+        private static bool FORCE_FIRST_CONTACT = false;
+        private FirstContactPhase FORCED_FIRST_CONTACT_PHASE = FirstContactPhase.Map_Play;
 
         private Dictionary<SceneTransition, AppScene> filteredTransitionsMap = new Dictionary<SceneTransition, AppScene>();
 
@@ -180,7 +163,7 @@ namespace Antura.Profile
             if (fromScene == AppScene.Intro && CurrentPhase == FirstContactPhase.Intro) CompleteCurrentPhase();
             if (fromScene == AppScene.Map && toScene == AppScene.AnturaSpace && CurrentPhase == FirstContactPhase.Map_GoToAnturaSpace) CompleteCurrentPhase();
 
-            // TODO: Remove the map!
+            // TODO: Remove the dictionary!
             filteredTransitionsMap = new Dictionary<SceneTransition, AppScene>();
             switch (CurrentPhase)
             {
@@ -225,7 +208,7 @@ namespace Antura.Profile
             {
                 if (filteredTransition.Equals(currentTransition))
                 {
-                    keepPrevAsBackable = filteredTransition.keepAsBackable;
+                    //keepPrevAsBackable = filteredTransition.keepAsBackable;
                     return filteredTransitionsMap[filteredTransition];
                 }
             }
@@ -237,13 +220,13 @@ namespace Antura.Profile
         {
             public AppScene fromScene;
             public AppScene toScene;
-            public bool keepAsBackable;
+           // public bool keepAsBackable;
 
             public SceneTransition(AppScene fromScene, AppScene toScene, bool keepAsBackable = false)
             {
                 this.fromScene = fromScene;
                 this.toScene = toScene;
-                this.keepAsBackable = keepAsBackable;
+                //this.keepAsBackable = keepAsBackable;
             }
 
 

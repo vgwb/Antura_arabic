@@ -1,9 +1,11 @@
 ﻿using System.Collections;
+using Antura.Core;
 using Antura.Database;
 using Antura.Keeper;
 using Antura.Profile;
 using Antura.Rewards;
 using Antura.Tutorial;
+using Antura.UI;
 using UnityEngine;
 
 namespace Antura.Map
@@ -20,6 +22,22 @@ namespace Antura.Map
             // TODO: at the end, re-call this to check if we still have new tutorials for this scene
             switch (FirstContactManager.I.CurrentPhase)
             {
+                case FirstContactPhase.Map_Play:
+                    _stageMapsManager.ActivateUI();
+                    _stageMapsManager.mapStageIndicator.gameObject.SetActive(false);
+
+                    KeeperManager.I.PlayDialog(LocalizationDataId.Map_First, true, true, () => {
+                        KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_Map1);
+                    });
+
+                    //tuto anim on the play button
+                    StartCoroutine(Tutorial_PlayButtonCO());
+
+                    // TODO: on PlayButton clicked, pass this phase!
+                    //FirstContactManager.I.PassPhase(FirstContactPhase.Map_Play);
+                    _stageMapsManager.playButton.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(CompleteTutorialPhase);
+                    break;
+
                 case FirstContactPhase.Map_GoToAnturaSpace:
                     _stageMapsManager.DeactivateUI();
                     _stageMapsManager.mapStageIndicator.gameObject.SetActive(false);
@@ -28,42 +46,31 @@ namespace Antura.Map
                         KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_AnturaSpace, true, true, () =>
                         {
                             _stageMapsManager.anturaSpaceButton.SetActive(true);
-                            StartCoroutine(CO_Tutorial());
+                            StartCoroutine(Tutorial_GoToAnturaSpaceCO());
                         });
                     });
 
-                    FirstContactManager.I.PassPhase(FirstContactPhase.Map_GoToAnturaSpace);
+                    // TODO: on AnturaSpaceButton clicked, pass this phase!
+                    _stageMapsManager.anturaSpaceButton.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(CompleteTutorialPhase);
+                    //FirstContactManager.I.PassPhase(FirstContactPhase.Map_GoToAnturaSpace);
                     break;
 
-                case FirstContactPhase.Map_Play:
-                    _stageMapsManager.ActivateUI();
-                    _stageMapsManager.mapStageIndicator.gameObject.SetActive(false);
 
-                    FirstContactManager.I.PassPhase(FirstContactPhase.Map_Play);
+                case FirstContactPhase.Map_GoToBook:
 
-                    KeeperManager.I.PlayDialog(LocalizationDataId.Map_First, true, true, () => {
-                        KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_Map1);
-                    });
-
-                    //tuto anim on the play button
-                    StartCoroutine(CO_Tutorial_PlayButton());
+                    // TODO: wait for a specific PS to be unlocked before triggering this!
+                    if (!AppManager.I.Player.MaxJourneyPosition.IsMinorOrEqual(new JourneyPosition(1,2,2)))
+                    {
+                        // TODO: trigger the tutorial here!
+                    }
                     break;
             }
         }
 
-        private IEnumerator CO_Tutorial()
-        {
-            TutorialUI.SetCamera(_stageMapsManager.UICamera);
-            var anturaBtPos = _stageMapsManager.anturaSpaceButton.transform.position;
-            anturaBtPos.z -= 1;
-            while (true)
-            {
-                TutorialUI.Click(_stageMapsManager.anturaSpaceButton.transform.position);
-                yield return new WaitForSeconds(0.85f);
-            }
-        }
 
-        private IEnumerator CO_Tutorial_PlayButton()
+        #region Play
+
+        private IEnumerator Tutorial_PlayButtonCO()
         {
             TutorialUI.SetCamera(_stageMapsManager.UICamera);
             var pos = _stageMapsManager.playButton.transform.position;
@@ -75,6 +82,23 @@ namespace Antura.Map
             }
         }
 
+        #endregion
+
+        #region Go To AnturaSpace
+
+        private IEnumerator Tutorial_GoToAnturaSpaceCO()
+        {
+            TutorialUI.SetCamera(_stageMapsManager.UICamera);
+            var anturaBtPos = _stageMapsManager.anturaSpaceButton.transform.position;
+            anturaBtPos.z -= 1;
+            while (true)
+            {
+                TutorialUI.Click(_stageMapsManager.anturaSpaceButton.transform.position);
+                yield return new WaitForSeconds(0.85f);
+            }
+        }
+
+        #endregion
         private void HideTutorial()
         {
             tutorialUiGo = GameObject.Find("[TutorialUI]");

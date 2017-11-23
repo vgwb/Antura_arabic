@@ -383,15 +383,11 @@ namespace Antura.Map
 
         #endregion
 
-        #region First Contact Session        
-
         // TODO: check if something called this
         /*private void PlayDialogStages(LocalizationDataId data)
         {
             KeeperManager.I.PlayDialog(data);
         }*/
-
-        #endregion
 
         #region Stage Navigation
 
