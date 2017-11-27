@@ -32,8 +32,10 @@ namespace Antura.Intro
 
         public void GetNearLetters(List<IntroStrollingLetter> output, Vector3 position, float radius)
         {
-            for (int i = 0, count = letters.Count; i < count; ++i) {
-                if (Vector3.Distance(letters[i].transform.position, position) < radius) {
+            for (int i = 0, count = letters.Count; i < count; ++i)
+            {
+                if (Vector3.Distance(letters[i].transform.position, position) < radius)
+                {
                     output.Add(letters[i]);
                 }
             }
@@ -44,7 +46,9 @@ namespace Antura.Intro
             //toAdd.Clear();
 
             foreach (var l in letters)
+            {
                 toDestroy.Enqueue(l);
+            }
 
             letters.Clear();
             letterGOs.Clear();
@@ -65,7 +69,8 @@ namespace Antura.Intro
 
             LLController.gameObject.AddComponent<Rigidbody>().isKinematic = true;
 
-            foreach (var collider in LLController.gameObject.GetComponentsInChildren<Collider>()) {
+            foreach (var collider in LLController.gameObject.GetComponentsInChildren<Collider>())
+            {
                 collider.isTrigger = true;
             }
 
@@ -87,14 +92,17 @@ namespace Antura.Intro
 
             livingLetter.onDropped += (result) =>
             {
-                if (result) {
+                if (result)
+                {
                     letters.Remove(livingLetter);
                     letterGOs.Remove(livingLetter.gameObject);
                     toDestroy.Enqueue(livingLetter);
                 }
 
                 if (onDropped != null)
+                {
                     onDropped(LLController.Data, result);
+                }
             };
 
             return LLController;
@@ -102,8 +110,10 @@ namespace Antura.Intro
 
         void Update()
         {
-            if (StartSpawning) {
-                if (letters.Count < MaxConcurrentLetters) {
+            if (StartSpawning)
+            {
+                if (letters.Count < MaxConcurrentLetters)
+                {
                     SpawnLetter();
                 }
             }

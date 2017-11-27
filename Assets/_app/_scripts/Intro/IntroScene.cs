@@ -53,7 +53,8 @@ namespace Antura.Intro
             m_CameraStartPosition = m_CameraEndPosition + cameraOffset;
             autoMoveObjects = environment.GetComponentsInChildren<AutoMove>();
 
-            foreach (var mazeCharacter in m_MazeCharacters) {
+            foreach (var mazeCharacter in m_MazeCharacters)
+            {
                 mazeCharacter.transform.position += new Vector3(0, 10f, 0);
                 mazeCharacter.m_Velocity = m_MazeCharactesVelocity;
             }
@@ -73,7 +74,8 @@ namespace Antura.Intro
         {
             Debugging.DebugManager.OnSkipCurrentScene -= SkipScene;
 
-            if (countDown != null) {
+            if (countDown != null)
+            {
                 countDown.onTimesUp -= CountDown_onTimesUp;
             }
             Debug.Log("OnDisable() Intro scene");
@@ -96,15 +98,20 @@ namespace Antura.Intro
             for (int i = 0; i < autoMoveObjects.Length; ++i)
                 autoMoveObjects[i].SetTime(t);
 
-            if (m_Start) {
+            if (m_Start)
+            {
                 m_Start = false;
                 Debug.Log("Start Introduction");
-                foreach (var mazeCharacter in m_MazeCharacters) {
+                foreach (var mazeCharacter in m_MazeCharacters)
+                {
                     mazeCharacter.SetDestination();
                 }
                 StartCoroutine(DoIntroduction());
-            } else {
-                if (m_End) {
+            }
+            else
+            {
+                if (m_End)
+                {
                     countDown.Update(Time.deltaTime);
                 }
             }
@@ -123,8 +130,10 @@ namespace Antura.Intro
         IEnumerator DoIntroduction()
         {
             bool completed = false;
-            System.Func<bool> CheckIfCompleted = () => {
-                if (completed) {
+            System.Func<bool> CheckIfCompleted = () =>
+            {
+                if (completed)
+                {
                     // Reset it
                     completed = false;
                     return true;

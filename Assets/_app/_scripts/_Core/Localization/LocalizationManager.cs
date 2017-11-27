@@ -29,8 +29,10 @@ namespace Antura.Core
 
         private static PlayerGender CurrentPlayerGender
         {
-            get {
-                if (AppManager.I.Player == null) {
+            get
+            {
+                if (AppManager.I.Player == null)
+                {
                     return PlayerGender.M;
                 }
                 return AppManager.I.Player.Gender;
@@ -50,7 +52,8 @@ namespace Antura.Core
         public static Database.LocalizationData GetWordCategoryData(Database.WordDataCategory cat)
         {
             Database.LocalizationDataId loc = Database.LocalizationDataId.UI_None;
-            switch (cat) {
+            switch (cat)
+            {
                 case Database.WordDataCategory.Adjectives:
                     loc = Database.LocalizationDataId.UI_WordCat_Adjectives;
                     break;
@@ -151,7 +154,8 @@ namespace Antura.Core
         public static Database.LocalizationData GetPhraseCategoryData(Database.PhraseDataCategory cat)
         {
             Database.LocalizationDataId loc = Database.LocalizationDataId.UI_None;
-            switch (cat) {
+            switch (cat)
+            {
                 case Database.PhraseDataCategory.Question:
                     loc = Database.LocalizationDataId.UI_Phrases_Questions;
                     break;

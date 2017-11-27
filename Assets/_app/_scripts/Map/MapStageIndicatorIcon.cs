@@ -18,7 +18,7 @@ namespace Antura.Map
         private int _assignedStage;
         public int AssignedStage
         {
-            get {  return _assignedStage; }
+            get { return _assignedStage; }
             set
             {
                 _assignedStage = value;
@@ -28,7 +28,8 @@ namespace Antura.Map
 
         public void Select(bool doSelect)
         {
-            if (!initialized) {
+            if (!initialized)
+            {
                 initialized = true;
                 defColor = ColorizedImage.color;
             }

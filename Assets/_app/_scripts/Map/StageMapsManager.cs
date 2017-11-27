@@ -65,7 +65,7 @@ namespace Antura.Map
 
         #region Properties
 
-        private int PreviousPlayerStage   
+        private int PreviousPlayerStage
         {
             get { return PreviousJourneyPosition.Stage; }
         }
@@ -92,14 +92,16 @@ namespace Antura.Map
             }
         }
 
-        private int MaxUnlockedStage {
+        private int MaxUnlockedStage
+        {
             get
             {
                 return AppManager.I.Player.MaxJourneyPosition.Stage;
             }
         }
 
-        private int FinalStage {
+        private int FinalStage
+        {
             get { return AppManager.I.JourneyHelper.GetFinalJourneyPosition().Stage; }
         }
 
@@ -108,15 +110,18 @@ namespace Antura.Map
             return stageMaps[Stage - 1];
         }
 
-        public bool IsAtFirstStage {
+        public bool IsAtFirstStage
+        {
             get { return shownStage == 1; }
         }
 
-        private bool IsAtMaxUnlockedStage {
+        private bool IsAtMaxUnlockedStage
+        {
             get { return shownStage == MaxUnlockedStage; }
         }
 
-        public bool IsAtFinalStage {
+        public bool IsAtFinalStage
+        {
             get { return shownStage == FinalStage; }
         }
 
@@ -168,7 +173,8 @@ namespace Antura.Map
             targetCurrentJourneyPosition = CurrentJourneyPosition;
 
             // Setup stage availability
-            for (int stage_i = 1; stage_i <= stageMaps.Length; stage_i++) {
+            for (int stage_i = 1; stage_i <= stageMaps.Length; stage_i++)
+            {
                 bool isStageUnlocked = stage_i <= MaxUnlockedStage;
                 bool isWholeStageUnlocked = stage_i < MaxUnlockedStage;
                 StageMap(stage_i).Initialise(isStageUnlocked, isWholeStageUnlocked);
@@ -191,13 +197,14 @@ namespace Antura.Map
             //playerPin.onMoveStart += HidePlayPanel;
             //playerPin.onMoveStart += CheckCurrentStageForPlayerReset;
             //playerPin.onMoveEnd += ShowPlayPanel;
-            playerPin.ForceToJourneyPosition(PreviousJourneyPosition, justVisuals:true);
+            playerPin.ForceToJourneyPosition(PreviousJourneyPosition, justVisuals: true);
             playerPin.LookAtNextPin(false);
 
             UpdateStageButtonsUI();
 
             var isGameCompleted = AppManager.I.Player.HasFinalBeenShown();
-            if (!isGameCompleted && WillPlayAssessmentNext()) {
+            if (!isGameCompleted && WillPlayAssessmentNext())
+            {
                 PlayRandomAssessmentDialog();
             }
 
@@ -471,11 +478,11 @@ namespace Antura.Map
             inTransition = true;
             //Debug.Log("Switch from " + fromStage + " to " + toStage);
 
-           // HidePlayPanel();
+            // HidePlayPanel();
 
             // Change stage reference
             StageMap(toStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
-            
+
             // Update Player Stage too, if needed
             /*if (MovePlayerWithStageChange)
             {
@@ -619,7 +626,8 @@ namespace Antura.Map
                 {
                     leftStageButton.SetActive(false);
                 }
-                else {
+                else
+                {
                     rightStageButton.SetActive(true);
                     leftStageButton.SetActive(true);
                 }
