@@ -1,11 +1,10 @@
 using Antura.LivingLetters;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.DancingDots
 {
 
-    public enum DancingDotsVariation 
+    public enum DancingDotsVariation
     {
         Default = MiniGameCode.DancingDots
     }
@@ -23,7 +22,7 @@ namespace Antura.Minigames.DancingDots
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (DancingDotsVariation) code;
+            Variation = (DancingDotsVariation)code;
         }
 
         #endregion
@@ -46,10 +45,10 @@ namespace Antura.Minigames.DancingDots
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-			Context = new MinigamesGameContext(MiniGameCode.DancingDots, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.DancingDots, System.DateTime.Now.Ticks.ToString());
 
             Variation = DancingDotsVariation.Default;
-			Questions = new DancingDotsQuestionProvider();
+            Questions = new DancingDotsQuestionProvider();
             TutorialEnabled = true;
         }
 
@@ -78,7 +77,7 @@ namespace Antura.Minigames.DancingDots
             builderParams.wordFilters.excludeDiacritics = false;
             builderParams.wordFilters.excludeLetterVariations = true;
             builderParams.letterFilters.excludeDiphthongs = true;
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters:builderParams);
+            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
             return builder;
         }
@@ -92,4 +91,4 @@ namespace Antura.Minigames.DancingDots
 
     }
 
- }
+}

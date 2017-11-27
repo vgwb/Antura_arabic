@@ -1,6 +1,5 @@
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.Tobogan
@@ -23,12 +22,12 @@ namespace Antura.Minigames.Tobogan
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (ToboganVariation) code;
+            Variation = (ToboganVariation)code;
         }
 
         public int GetDiscreteDifficulty(int maximum)
         {
-            int d = (int) Difficulty * (maximum + 1);
+            int d = (int)Difficulty * (maximum + 1);
 
             if (d > maximum)
                 return maximum;
@@ -55,7 +54,7 @@ namespace Antura.Minigames.Tobogan
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
             //Questions = new SunMoonQuestionProvider();
-            
+
             //Variation = ToboganVariation.SunMoon;
             Variation = ToboganVariation.LetterInAWord;
 
@@ -64,7 +63,8 @@ namespace Antura.Minigames.Tobogan
             TutorialEnabled = true;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;

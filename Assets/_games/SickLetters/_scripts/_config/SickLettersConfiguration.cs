@@ -1,10 +1,9 @@
 using Antura.LivingLetters;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.SickLetters
 {
-    public enum SickLettersVariation 
+    public enum SickLettersVariation
     {
         Default = MiniGameCode.SickLetters,
     }
@@ -21,7 +20,7 @@ namespace Antura.Minigames.SickLetters
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (SickLettersVariation) code;
+            Variation = (SickLettersVariation)code;
         }
 
         /////////////////
@@ -50,7 +49,8 @@ namespace Antura.Minigames.SickLetters
             ConfigAI.VerboseTeacher = true;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 20;
@@ -58,8 +58,8 @@ namespace Antura.Minigames.SickLetters
             int nWrong = 0;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters:builderParams);
-            
+            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+
             return builder;
         }
 

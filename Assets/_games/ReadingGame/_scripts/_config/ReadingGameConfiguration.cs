@@ -1,10 +1,9 @@
 using Antura.LivingLetters;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.ReadingGame
 {
-    public enum ReadingGameVariation 
+    public enum ReadingGameVariation
     {
         ReadAndAnswer = MiniGameCode.ReadingGame,
         AlphabetSong = MiniGameCode.AlphabetSong_alphabet,
@@ -23,12 +22,12 @@ namespace Antura.Minigames.ReadingGame
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (ReadingGameVariation) code;
+            Variation = (ReadingGameVariation)code;
         }
 
         public int GetDiscreteDifficulty(int maximum)
         {
-            int d = (int) Difficulty * (maximum + 1);
+            int d = (int)Difficulty * (maximum + 1);
 
             if (d > maximum)
                 return maximum;
@@ -62,7 +61,8 @@ namespace Antura.Minigames.ReadingGame
             TutorialEnabled = true;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
@@ -78,7 +78,7 @@ namespace Antura.Minigames.ReadingGame
                     builderParams.phraseFilters.requireAnswersOrWords = true;
                     builder = new WordsInPhraseQuestionBuilder(nPacks: 10, nCorrect: 1, nWrong: 6, usePhraseAnswersIfFound: true, parameters: builderParams);
                     break;
-            } 
+            }
             return builder;
         }
 

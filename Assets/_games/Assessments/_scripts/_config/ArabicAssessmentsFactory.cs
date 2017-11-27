@@ -1,7 +1,6 @@
 using Antura.Core;
 using Antura.Database;
 using Antura.LivingLetters;
-using UnityEngine;
 
 namespace Antura.Assessment
 {

@@ -1,5 +1,4 @@
 ﻿using Antura.Core;
-using UnityEngine;
 
 namespace Antura.Map
 {

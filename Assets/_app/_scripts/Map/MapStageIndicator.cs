@@ -23,18 +23,24 @@ namespace Antura.Map
         public void Init(int currStage, int totStages)
         {
             // Create correct number of stages
-            if (icons.Count == 0) {
+            if (icons.Count == 0)
+            {
                 icons.Add(Icon);
             }
             int len = icons.Count;
-            if (len < totStages) {
-                for (int i = len; i < totStages; ++i) {
+            if (len < totStages)
+            {
+                for (int i = len; i < totStages; ++i)
+                {
                     MapStageIndicatorIcon ico = Instantiate(Icon);
                     ico.transform.SetParent(Icon.transform.parent, false);
                     icons.Add(ico);
                 }
-            } else if (len > totStages) {
-                for (int i = len - 1; i > totStages - 1; --i) {
+            }
+            else if (len > totStages)
+            {
+                for (int i = len - 1; i > totStages - 1; --i)
+                {
                     MapStageIndicatorIcon ico = icons[i];
                     icons.RemoveAt(i);
                     Destroy(ico.gameObject);
@@ -50,7 +56,8 @@ namespace Antura.Map
 
             // Set current stage
             len = icons.Count;
-            for (int i = 0; i < len; ++i) {
+            for (int i = 0; i < len; ++i)
+            {
                 icons[i].Select(i == len - currStage - 1);
             }
         }

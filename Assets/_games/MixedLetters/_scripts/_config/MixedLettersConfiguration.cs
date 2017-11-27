@@ -1,11 +1,10 @@
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.MixedLetters
 {
-    public enum MixedLettersVariation 
+    public enum MixedLettersVariation
     {
         Alphabet = MiniGameCode.MixedLetters_alphabet,
         Spelling = MiniGameCode.MixedLetters_spelling
@@ -51,7 +50,8 @@ namespace Antura.Minigames.MixedLetters
             TutorialEnabled = true;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;

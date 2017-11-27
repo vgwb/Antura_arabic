@@ -1,5 +1,4 @@
 using Antura.LivingLetters;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.Egg
@@ -22,7 +21,7 @@ namespace Antura.Minigames.Egg
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (EggVariation) code;
+            Variation = (EggVariation)code;
         }
 
         /////////////////

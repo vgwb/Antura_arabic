@@ -1,5 +1,4 @@
 using Antura.LivingLetters;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.ThrowBalls
@@ -33,8 +32,10 @@ namespace Antura.Minigames.ThrowBalls
         /////////////////
         // Singleton Pattern
         static ThrowBallsConfiguration instance;
-        public static ThrowBallsConfiguration Instance {
-            get {
+        public static ThrowBallsConfiguration Instance
+        {
+            get
+            {
                 if (instance == null)
                     instance = new ThrowBallsConfiguration();
                 return instance;
@@ -42,7 +43,8 @@ namespace Antura.Minigames.ThrowBalls
         }
         /////////////////
 
-        private ThrowBallsConfiguration() {
+        private ThrowBallsConfiguration()
+        {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new ThrowBallsQuestionProvider();
@@ -53,15 +55,18 @@ namespace Antura.Minigames.ThrowBalls
         }
 
         #region external configuration call
-        public static void SetConfiguration(float _difficulty, int _variation) {
-            instance = new ThrowBallsConfiguration() {
+        public static void SetConfiguration(float _difficulty, int _variation)
+        {
+            instance = new ThrowBallsConfiguration()
+            {
                 Difficulty = _difficulty,
                 Variation = (ThrowBallsVariation)_variation,
             };
         }
         #endregion
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
@@ -75,10 +80,10 @@ namespace Antura.Minigames.ThrowBalls
                     break;
                 case ThrowBallsVariation.Words:
                     builderParams.wordFilters.requireDrawings = true;
-                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true, parameters: builderParams);
+                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.LettersInWord:
-                    builder = new LettersInWordQuestionBuilder(nPacks, maximumWordLength:7, nWrong:nWrong, useAllCorrectLetters:true, parameters: builderParams);
+                    builder = new LettersInWordQuestionBuilder(nPacks, maximumWordLength: 7, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
                     break;
             }
 

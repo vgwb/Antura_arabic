@@ -1,9 +1,8 @@
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
-using Antura.Minigames;
 using Antura.Teacher;
 
-namespace Antura.Minigames.Scanner 
+namespace Antura.Minigames.Scanner
 {
     public enum ScannerVariation
     {
@@ -11,21 +10,21 @@ namespace Antura.Minigames.Scanner
         MultipleWords = MiniGameCode.Scanner_phrase
     }
 
-    public class ScannerConfiguration : IGameConfiguration 
-	{
+    public class ScannerConfiguration : IGameConfiguration
+    {
         // Game configuration
-		public IGameContext Context { get; set; }
-		public IQuestionProvider Questions { get; set; }
+        public IGameContext Context { get; set; }
+        public IQuestionProvider Questions { get; set; }
 
         #region Game configurations
 
-	    public float Difficulty { get; set; }
-	    public bool TutorialEnabled { get; set; }
-	    public ScannerVariation Variation { get; set; }
+        public float Difficulty { get; set; }
+        public bool TutorialEnabled { get; set; }
+        public ScannerVariation Variation { get; set; }
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (ScannerVariation) code;
+            Variation = (ScannerVariation)code;
         }
 
         #endregion
@@ -34,10 +33,10 @@ namespace Antura.Minigames.Scanner
         /////////////////
         // Singleton Pattern
         static ScannerConfiguration instance;
-        public static ScannerConfiguration Instance 
-		{
-            get 
-			{
+        public static ScannerConfiguration Instance
+        {
+            get
+            {
                 if (instance == null)
                     instance = new ScannerConfiguration();
                 return instance;
@@ -45,68 +44,71 @@ namespace Antura.Minigames.Scanner
         }
         /////////////////
 
-        private ScannerConfiguration() 
-		{
+        private ScannerConfiguration()
+        {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
 
-			Difficulty = 0.13f;
-			Variation = ScannerVariation.OneWord;
+            Difficulty = 0.13f;
+            Variation = ScannerVariation.OneWord;
 
             Questions = new SampleQuestionProvider();
             Context = new MinigamesGameContext(MiniGameCode.Scanner, System.DateTime.Now.Ticks.ToString());
-		    TutorialEnabled = true;
-		}
+            TutorialEnabled = true;
+        }
 
         #region external configuration call
-        public static void SetConfiguration(float _difficulty, int _variation) {
-            instance = new ScannerConfiguration() {
+        public static void SetConfiguration(float _difficulty, int _variation)
+        {
+            instance = new ScannerConfiguration()
+            {
                 Difficulty = _difficulty,
-				Variation = (ScannerVariation) _variation
+                Variation = (ScannerVariation)_variation
             };
         }
         #endregion
 
-		
-		public int nCorrect = 1;
 
-        public IQuestionBuilder SetupBuilder() {
+        public int nCorrect = 1;
+
+        public IQuestionBuilder SetupBuilder()
+        {
 
             IQuestionBuilder builder = null;
 
 
-			int nPacks = 7; // One Extra for tutorial
-			nCorrect = 1;
-			int nWrong = 4;
+            int nPacks = 7; // One Extra for tutorial
+            nCorrect = 1;
+            int nWrong = 4;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.wordFilters.excludeColorWords = true;
             builderParams.wordFilters.requireDrawings = true;
 
-			switch (Variation)
-			{
-			case ScannerVariation.OneWord:
-				nCorrect = 1;
-				nWrong = 4;
-				break;
-			case ScannerVariation.MultipleWords:
-				if (Difficulty < 0.5f)
-				{
-					nCorrect = 3;
-				}
-				else
-				{
-					nCorrect = 5;
-				}
-				nWrong = 0;
-				break;
-			}
+            switch (Variation)
+            {
+                case ScannerVariation.OneWord:
+                    nCorrect = 1;
+                    nWrong = 4;
+                    break;
+                case ScannerVariation.MultipleWords:
+                    if (Difficulty < 0.5f)
+                    {
+                        nCorrect = 3;
+                    }
+                    else
+                    {
+                        nCorrect = 5;
+                    }
+                    nWrong = 0;
+                    break;
+            }
 
-			builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters:builderParams);
+            builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
 
-			if (builder == null)
-				throw new System.Exception("No question builder defined for variation " + Variation.ToString());
+            if (builder == null)
+                throw new System.Exception("No question builder defined for variation " + Variation.ToString());
 
 
             return builder;

@@ -34,7 +34,8 @@ namespace Antura.Map
 
         void Update()
         {
-            if (targetPin != null) {
+            if (targetPin != null)
+            {
                 // Follow pin
                 var pinOnScreen = cam.WorldToScreenPoint(targetPin.transform.position);
                 float resolutionRatio = Screen.height / canvasScaler.referenceResolution.y;
@@ -57,9 +58,7 @@ namespace Antura.Map
         public void SetPin(Pin pin)
         {
             targetPin = pin;
-            var lbData =
-                AppManager.I.DB.FindLearningBlockData(
-                    x => x.Stage == pin.journeyPosition.Stage && x.LearningBlock == pin.journeyPosition.LearningBlock)[0];
+            var lbData = AppManager.I.DB.FindLearningBlockData(x => x.Stage == pin.journeyPosition.Stage && x.LearningBlock == pin.journeyPosition.LearningBlock)[0];
 
             //playBtn.gameObject.SetActive(!pin.isLocked);
             //lockedBtn.gameObject.SetActive(pin.isLocked);

@@ -1,5 +1,4 @@
 using Antura.LivingLetters;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.MakeFriends
@@ -29,9 +28,8 @@ namespace Antura.Minigames.MakeFriends
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (MakeFriendsVariation) code;
+            Variation = (MakeFriendsVariation)code;
         }
-
 
         public const float EASY_THRESHOLD = 0f;
         public const float MEDIUM_THRESHOLD = 0.3f;
@@ -39,10 +37,13 @@ namespace Antura.Minigames.MakeFriends
 
         public MakeFriendsDifficulty DifficultyChoice
         {
-            get {
+            get
+            {
                 // GameManager Override
-                if (MakeFriendsGame.Instance.overrideDifficulty) {
-                    switch (MakeFriendsGame.Instance.difficultySetting) {
+                if (MakeFriendsGame.Instance.overrideDifficulty)
+                {
+                    switch (MakeFriendsGame.Instance.difficultySetting)
+                    {
                         case MakeFriendsDifficulty.EASY:
                             Difficulty = EASY_THRESHOLD;
                             break;
@@ -79,11 +80,16 @@ namespace Antura.Minigames.MakeFriends
 #endif
                 // Get Variation based on Difficulty
                 MakeFriendsDifficulty variation;
-                if (Difficulty < MEDIUM_THRESHOLD) {
+                if (Difficulty < MEDIUM_THRESHOLD)
+                {
                     variation = MakeFriendsDifficulty.EASY;
-                } else if (Difficulty < HARD_THRESHOLD) {
+                }
+                else if (Difficulty < HARD_THRESHOLD)
+                {
                     variation = MakeFriendsDifficulty.MEDIUM;
-                } else {
+                }
+                else
+                {
                     variation = MakeFriendsDifficulty.HARD;
                 }
 
@@ -95,8 +101,10 @@ namespace Antura.Minigames.MakeFriends
         // Singleton Pattern
         static MakeFriendsConfiguration instance;
 
-        public static MakeFriendsConfiguration Instance {
-            get {
+        public static MakeFriendsConfiguration Instance
+        {
+            get
+            {
                 if (instance == null)
                     instance = new MakeFriendsConfiguration();
                 return instance;

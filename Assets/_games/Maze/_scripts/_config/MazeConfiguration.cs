@@ -6,7 +6,7 @@ using Antura.Teacher;
 namespace Antura.Minigames.Maze
 {
     public enum MazeVariation
-    { 
+    {
         Default = MiniGameCode.Maze
     }
 
@@ -25,7 +25,7 @@ namespace Antura.Minigames.Maze
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (MazeVariation) code;
+            Variation = (MazeVariation)code;
         }
 
         #endregion
@@ -33,8 +33,10 @@ namespace Antura.Minigames.Maze
         /////////////////
         // Singleton Pattern
         static MazeConfiguration instance;
-        public static MazeConfiguration Instance {
-            get {
+        public static MazeConfiguration Instance
+        {
+            get
+            {
                 if (instance == null)
                     instance = new MazeConfiguration();
                 return instance;
@@ -42,7 +44,8 @@ namespace Antura.Minigames.Maze
         }
         /////////////////
 
-        private MazeConfiguration() {
+        private MazeConfiguration()
+        {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
 
@@ -56,22 +59,25 @@ namespace Antura.Minigames.Maze
         }
 
         #region external configuration call
-        public static void SetConfiguration(float _difficulty, int _variation) {
-            instance = new MazeConfiguration() {
+        public static void SetConfiguration(float _difficulty, int _variation)
+        {
+            instance = new MazeConfiguration()
+            {
                 Difficulty = _difficulty,
                 Variation = (MazeVariation)_variation,
             };
         }
         #endregion
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
             builderParams.wordFilters.excludeDiacritics = true;
             builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.AllButAlefHamza;
-            builder = new RandomLettersQuestionBuilder(7,1, parameters: builderParams);
+            builder = new RandomLettersQuestionBuilder(7, 1, parameters: builderParams);
 
             return builder;
         }

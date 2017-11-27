@@ -31,9 +31,12 @@ namespace Antura.Intro
         {
             float distance = Vector3.Distance(transform.position, tremblingCenter.position);
 
-            if (distance > minDistance && distance < maxDistance) {
+            if (distance > minDistance && distance < maxDistance)
+            {
                 tremblingAmount = 1f - ((distance - minDistance) / (maxDistance - minDistance));
-            } else {
+            }
+            else
+            {
                 tremblingAmount = 0f;
             }
 
@@ -41,7 +44,8 @@ namespace Antura.Intro
             Vector3 noise = new Vector3(
                 tremblingAmountX * Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * tremblingSpeedX, 2 * Mathf.PI)),
                 tremblingAmountY * Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * tremblingSpeedY, 2 * Mathf.PI)),
-                tremblingAmountZ * Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * tremblingSpeedZ, 2 * Mathf.PI)));
+                tremblingAmountZ * Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * tremblingSpeedZ, 2 * Mathf.PI))
+            );
 
             tremblingOffset = Vector3.Lerp(tremblingOffset, noise, 40.0f * Time.deltaTime);
 
