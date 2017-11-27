@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.LivingLetters;
 using UnityEngine;
 
@@ -52,7 +52,7 @@ namespace Antura.Minigames.FastCrowd
                 // Add drop areas
                 if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
                     dropContainer.AddDropNumber(correctAnswer, i+1);
-                else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
+                else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word)
                     dropContainer.AddDropData(correctAnswer, true);
                 else
                     dropContainer.AddDropData(correctAnswer, false);

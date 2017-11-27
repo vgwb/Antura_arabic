@@ -6,8 +6,8 @@ namespace Antura.Minigames.Tobogan
 {
     public enum ToboganVariation
     {
-        LetterInAWord = MiniGameCode.Tobogan_letters,
-        SunMoon = MiniGameCode.Tobogan_words
+        LetterInAWord = MiniGameCode.Tobogan_letter,
+        SunMoon = MiniGameCode.Tobogan_sunmoon
     }
 
     public class ToboganConfiguration : IGameConfiguration
@@ -58,7 +58,7 @@ namespace Antura.Minigames.Tobogan
             //Variation = ToboganVariation.SunMoon;
             Variation = ToboganVariation.LetterInAWord;
 
-            Context = new MinigamesGameContext(MiniGameCode.Tobogan_letters, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.Tobogan_letter, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.0f;
             TutorialEnabled = true;
         }

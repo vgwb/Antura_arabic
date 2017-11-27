@@ -7,7 +7,7 @@ namespace Antura.Minigames.MixedLetters
     public enum MixedLettersVariation
     {
         Alphabet = MiniGameCode.MixedLetters_alphabet,
-        Spelling = MiniGameCode.MixedLetters_spelling
+        Spelling = MiniGameCode.MixedLetters_letterinword
     }
 
     public class MixedLettersConfiguration : IGameConfiguration

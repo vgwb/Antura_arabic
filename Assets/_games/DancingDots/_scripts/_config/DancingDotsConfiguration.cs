@@ -6,7 +6,8 @@ namespace Antura.Minigames.DancingDots
 
     public enum DancingDotsVariation
     {
-        Default = MiniGameCode.DancingDots
+        Letter = MiniGameCode.DancingDots_letter,
+        LetterForm = MiniGameCode.DancingDots_letterform
     }
 
     public class DancingDotsConfiguration : IGameConfiguration
@@ -35,7 +36,9 @@ namespace Antura.Minigames.DancingDots
             get
             {
                 if (instance == null)
+                {
                     instance = new DancingDotsConfiguration();
+                }
                 return instance;
             }
         }
@@ -45,9 +48,9 @@ namespace Antura.Minigames.DancingDots
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new MinigamesGameContext(MiniGameCode.DancingDots, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.DancingDots_letter, System.DateTime.Now.Ticks.ToString());
 
-            Variation = DancingDotsVariation.Default;
+            Variation = DancingDotsVariation.Letter;
             Questions = new DancingDotsQuestionProvider();
             TutorialEnabled = true;
         }
@@ -72,13 +75,22 @@ namespace Antura.Minigames.DancingDots
             int nWrong = 0;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.AllButMain;
-            builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
-            builderParams.wordFilters.excludeDiacritics = false;
-            builderParams.wordFilters.excludeLetterVariations = true;
-            builderParams.letterFilters.excludeDiphthongs = true;
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
+            switch (Variation)
+            {
+                case DancingDotsVariation.Letter:
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.AllButMain;
+                    builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
+                    builderParams.wordFilters.excludeDiacritics = false;
+                    builderParams.wordFilters.excludeLetterVariations = true;
+                    builderParams.letterFilters.excludeDiphthongs = true;
+                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+                    break;
+                case DancingDotsVariation.LetterForm:
+                    // TODO
+                    throw new System.Exception("DancingDotsVariation.LetterForm to be done");
+                    break;
+            }
             return builder;
         }
 

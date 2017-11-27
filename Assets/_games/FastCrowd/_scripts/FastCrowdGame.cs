@@ -42,7 +42,7 @@ namespace Antura.Minigames.FastCrowd
             {
                 switch (FastCrowdConfiguration.Instance.Variation)
                 {
-                    case FastCrowdVariation.Words:
+                    case FastCrowdVariation.Word:
                         return 8;
                     case FastCrowdVariation.Alphabet:
                         return (int)(CurrentChallenge.Count * 0.333f);
@@ -138,7 +138,7 @@ namespace Antura.Minigames.FastCrowd
             TutorialState = new FastCrowdTutorialState(this);
 
             QuestionManager.wordComposer.gameObject.SetActive(
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling ||
+                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord ||
                 FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter
                 );
 
@@ -148,7 +148,7 @@ namespace Antura.Minigames.FastCrowd
 
         public bool ShowChallengePopupWidget(bool showAsGoodAnswer, Action callback)
         {
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord)
             {
                 var popupWidget = Context.GetPopupWidget();
                 popupWidget.Show();

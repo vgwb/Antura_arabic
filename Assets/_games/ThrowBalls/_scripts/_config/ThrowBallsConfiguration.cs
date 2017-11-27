@@ -5,9 +5,10 @@ namespace Antura.Minigames.ThrowBalls
 {
     public enum ThrowBallsVariation
     {
-        Letters = MiniGameCode.ThrowBalls_letters,
-        Words = MiniGameCode.ThrowBalls_words,
-        LettersInWord = MiniGameCode.ThrowBalls_letterinword
+        Letter = MiniGameCode.ThrowBalls_letter,
+        LetterForm = MiniGameCode.ThrowBalls_letterform,
+        Word = MiniGameCode.ThrowBalls_word,
+        LetterInWord = MiniGameCode.ThrowBalls_letterinword
     }
 
     public class ThrowBallsConfiguration : IGameConfiguration
@@ -37,7 +38,9 @@ namespace Antura.Minigames.ThrowBalls
             get
             {
                 if (instance == null)
+                {
                     instance = new ThrowBallsConfiguration();
+                }
                 return instance;
             }
         }
@@ -48,8 +51,8 @@ namespace Antura.Minigames.ThrowBalls
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new ThrowBallsQuestionProvider();
-            Variation = ThrowBallsVariation.Letters;
-            Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_letters, System.DateTime.Now.Ticks.ToString());
+            Variation = ThrowBallsVariation.Letter;
+            Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_letter, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.7f;
             TutorialEnabled = true;
         }
@@ -75,14 +78,18 @@ namespace Antura.Minigames.ThrowBalls
             var builderParams = new Teacher.QuestionBuilderParameters();
             switch (Variation)
             {
-                case ThrowBallsVariation.Letters:
+                case ThrowBallsVariation.Letter:
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
-                case ThrowBallsVariation.Words:
+                case ThrowBallsVariation.LetterForm:
+                    // TODO
+                    throw new System.Exception("ThrowBallsVariation.LetterForm to be done");
+                    break;
+                case ThrowBallsVariation.Word:
                     builderParams.wordFilters.requireDrawings = true;
                     builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
-                case ThrowBallsVariation.LettersInWord:
+                case ThrowBallsVariation.LetterInWord:
                     builder = new LettersInWordQuestionBuilder(nPacks, maximumWordLength: 7, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
                     break;
             }

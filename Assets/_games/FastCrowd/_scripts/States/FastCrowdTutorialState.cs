@@ -45,11 +45,11 @@ namespace Antura.Minigames.FastCrowd
             {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Tuto, () => { StartTutorial(); });
             }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord)
             {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Tuto, () => { StartTutorial(); });
             }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word)
             {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_words_Tuto, () => { StartTutorial(); });
             }
@@ -91,7 +91,7 @@ namespace Antura.Minigames.FastCrowd
                 if (answerCounter <= 0 &&
                     (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet ||
                     FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting ||
-                    FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
+                    FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word)
                     )
                 {
                     game.SetCurrentState(game.QuestionState);

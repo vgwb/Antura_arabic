@@ -7,7 +7,7 @@ namespace Antura.Minigames.Balloons
     public enum BalloonsVariation
     {
         Spelling = MiniGameCode.Balloons_spelling,
-        Words = MiniGameCode.Balloons_words,
+        Words = MiniGameCode.Balloons_word,
         Letter = MiniGameCode.Balloons_letter,
         Counting = MiniGameCode.Balloons_counting
     }
