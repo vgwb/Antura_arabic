@@ -13,7 +13,7 @@ namespace Antura.Rewards
     {
         public Color unlockedColor = Color.green;
 
-        public Sprite bonesSprite;
+        public Sprite bonesSprite, usedBonesSprite;
         public Sprite test1Sprite;
         public Sprite test2Sprite;
 
@@ -28,6 +28,7 @@ namespace Antura.Rewards
 
         //Color lockedColor;
         Tween unlockTween;
+        Tween bounceTween;
 
         void Awake()
         {
@@ -46,6 +47,7 @@ namespace Antura.Rewards
         void OnDestroy()
         {
             unlockTween.Kill();
+            bounceTween.Kill();
         }
 
         public void SetReward(DailyRewardManager.DailyReward reward)
@@ -77,6 +79,24 @@ namespace Antura.Rewards
             amountTextUI.text = amount.ToString();
         }
 
+        public void Bounce(bool doBounce)
+        {
+            if (!doBounce)
+            {
+                if (bounceTween != null) bounceTween.Rewind();
+            }
+            else
+            {
+                if (bounceTween == null)
+                {
+                    bounceTween = this.transform.DOScale(this.transform.localScale * 0.9f, 0.4f)
+                        .SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo)
+                        .SetAutoKill(false);
+                }
+                bounceTween.Restart();
+            }
+        }
+
         public void SetLocked()
         {
             unlockTween.Rewind();
@@ -95,6 +115,8 @@ namespace Antura.Rewards
         public void SetUnlocked(bool animate = false)
         {
             bgImg.color = unlockedColor;
+            imageUI.sprite = usedBonesSprite;
+            Bounce(false);
             if (!animate)
             {
                 bgImg.SetAlpha(1);

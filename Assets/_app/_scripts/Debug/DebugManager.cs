@@ -1,4 +1,4 @@
-using Antura.Core;
+﻿using Antura.Core;
 using Antura.Database;
 using Antura.Minigames;
 using Antura.Profile;
@@ -77,17 +77,19 @@ namespace Antura.Debugging
         #endregion
 
         /// <summary>
-        /// Gets or sets a value indicating whether [first contact passed].
+        /// Gets or sets a value indicating whether [first contact completed].
         /// </summary>
         /// <value>
-        ///   <c>true</c> if [first contact passed]; otherwise, <c>false</c>.
+        ///   <c>true</c> if [first contact completed]; otherwise, <c>false</c>.
         /// </value>
-        public bool FirstContactPassed {
-            get { return !AppManager.I.Player.IsFirstContact(); }
+        public bool FirstContactCompleted {
+            get { return !FirstContactManager.I.IsInsideFirstContact(); }
             set {
                 if (value) {
-                    AppManager.I.Player.FirstContactPassed(2);
-                } else {
+                    FirstContactManager.I.ForceAtPhase(FirstContactPhase.Finished);
+                } else
+                {
+                    FirstContactManager.I.PassPhase(FirstContactPhase.Reward_FirstBig);
                     AppManager.I.Player.ResetPlayerProfileCompletion();
                 }
             }
@@ -241,7 +243,7 @@ namespace Antura.Debugging
             newPos.PlaySession = 2;
             if (newPos != null) {
                 AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
-                FirstContactPassed = true;
+                FirstContactCompleted = true;
             }
             GoToMap();
         }

@@ -6,6 +6,8 @@ using Antura.Minigames;
 using Antura.UI;
 using System.Collections.Generic;
 using System.Linq;
+using Antura.Profile;
+using Antura.Rewards;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -21,7 +23,7 @@ namespace Antura.AnturaSpace
         public AnturaLocomotion Antura;
 
         public AnturaSpaceUI UI;
-        public AnturaSpaceTutorial Tutorial;
+        public ShopActionsManager ShopActionsManager;
 
         public Transform SceneCenter;
         public Pedestal RotatingBase;
@@ -98,12 +100,15 @@ namespace Antura.AnturaSpace
             base.Start();
 
             GlobalUI.ShowPauseMenu(false);
-
-            if (!AppManager.I.Player.IsFirstContact()) {
-                ShowBackButton();
-            }
+            ShowBackButton();
 
             CurrentState = Idle;
+
+            ShopActionsManager.Initialise();
+            UI.Initialise();
+
+            TutorialManager tutorialManager = gameObject.GetComponentInChildren<AnturaSpaceTutorialManager>();
+            tutorialManager.HandleStart();
         }
 
         public void Update()
@@ -131,12 +136,17 @@ namespace Antura.AnturaSpace
 
         public void ShowBackButton()
         {
+            Debug.Log("SHO BACK BUTTON");
             GlobalUI.ShowBackButton(true, OnExit);
+        }
+        public void HideBackButton()
+        {
+            GlobalUI.ShowBackButton(false);
         }
 
         void OnExit()
         {
-            AppManager.I.NavigationManager.GoBack();
+            AppManager.I.NavigationManager.GoToNextScene();
         }
 
         void OnEnterCustomization()

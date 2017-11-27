@@ -34,6 +34,7 @@ namespace Antura.Core
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
         public ServicesManager Services;
+        public FirstContactManager FirstContactManager;
 
         [HideInInspector]
         public NavigationManager NavigationManager;
@@ -82,6 +83,7 @@ namespace Antura.Core
             ScoreHelper = new ScoreHelper(DB);
             Teacher = new TeacherAI(DB, VocabularyHelper, ScoreHelper);
             GameLauncher = new MiniGameLauncher(Teacher);
+            FirstContactManager = new FirstContactManager();
 
             NavigationManager = gameObject.AddComponent<NavigationManager>();
             NavigationManager.Init();

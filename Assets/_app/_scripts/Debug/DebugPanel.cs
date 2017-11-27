@@ -147,9 +147,9 @@ namespace Antura.Debugging
             Close();
         }
 
-        public bool FirstContactPassed {
-            get { return DebugManager.I.FirstContactPassed; }
-            set { DebugManager.I.FirstContactPassed = value; }
+        public bool FirstContactCompleted {
+            get { return DebugManager.I.FirstContactCompleted; }
+            set { DebugManager.I.FirstContactCompleted = value; }
         }
 
         #endregion

@@ -31,12 +31,12 @@ namespace Antura.AnturaSpace.UI
         [Header("References")]
         public AnturaSpaceModsButton BtOpenModsPanel;
         public UIButton BtBonesShop;
-        public RectTransform SideActionsContainer;
 
         public UIButton BTRemoveMods;
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
         public AnturaSpaceItemButton BtItemMain;
         public RectTransform ShopPanelContainer;
+        public ShopPanelUI ShopPanelUI;
         public TMPro.TextMeshProUGUI bonesNumber;
 
 
@@ -87,12 +87,13 @@ namespace Antura.AnturaSpace.UI
             I = this;
         }
 
-        void Start()
+        public void Initialise()
         {
             btsCategories = CategoriesContainer.GetComponentsInChildren<AnturaSpaceCategoryButton>(true);
             btsSwatches = SwatchesContainer.GetComponentsInChildren<AnturaSpaceSwatchButton>(true);
             SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
             BtOpenModsPanel.SetAsNew(AppManager.I.Player.ThereIsSomeNewReward());
+            
 
             // Create items
             rewardsContainers = new List<Transform>();
@@ -115,10 +116,9 @@ namespace Antura.AnturaSpace.UI
             showCategoriesTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(CategoriesContainer.DOAnchorPosY(150, duration).From().SetEase(Ease.OutBack))
                 .Join(BtBonesShop.RectT.DOAnchorPosY(-830, duration))
-                //.Join(SideActionsContainer.DOAnchorPosY(-830, duration))
                 .OnRewind(() => CategoriesContainer.gameObject.SetActive(false));
             showShopTween = DOTween.Sequence().SetAutoKill(false).Pause()
-                .Append(ShopPanelContainer.DOAnchorPosY(-830, duration).From().SetEase(Ease.OutBack))
+                .Append(ShopPanelContainer.DOAnchorPosY(-830, duration).From().SetEase(Ease.OutQuad))
                 .Join(BtOpenModsPanel.RectT.DOAnchorPosY(150, duration))
                 .OnRewind(() => ShopPanelContainer.gameObject.SetActive(false));
             showItemsTween = ItemsContainer.DOAnchorPosX(-350, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
@@ -153,6 +153,8 @@ namespace Antura.AnturaSpace.UI
                 var b = bt;
                 b.Bt.onClick.AddListener(() => OnClickSwatch(b));
             }
+
+            ShopPanelUI.Initialise();
         }
 
         void OnDestroy()
@@ -566,5 +568,6 @@ namespace Antura.AnturaSpace.UI
         {
             return ScreenToUIPoint(uiCamera.WorldToScreenPoint(pos));
         }
+
     }
 }
