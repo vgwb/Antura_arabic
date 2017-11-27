@@ -5,7 +5,7 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.MissingLetter
 {
-    public enum MissingLetterVariation 
+    public enum MissingLetterVariation
     {
         MissingLetter = MiniGameCode.MissingLetter,
         MissingWord = MiniGameCode.MissingLetter_phrases,
@@ -24,7 +24,7 @@ namespace Antura.Minigames.MissingLetter
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (MissingLetterVariation) code;
+            Variation = (MissingLetterVariation)code;
         }
 
         /////////////////
@@ -54,7 +54,8 @@ namespace Antura.Minigames.MissingLetter
             TutorialEnabled = true;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
@@ -68,7 +69,7 @@ namespace Antura.Minigames.MissingLetter
                 case MissingLetterVariation.MissingForm:
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builderParams.letterFilters.excludeDiphthongs = true;
-                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters:true, parameters: builderParams);
+                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters: true, parameters: builderParams);
                     break;
 
                 case MissingLetterVariation.MissingLetter:

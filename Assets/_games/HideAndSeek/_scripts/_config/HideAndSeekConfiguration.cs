@@ -1,6 +1,5 @@
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.HideAndSeek
@@ -22,24 +21,24 @@ namespace Antura.Minigames.HideAndSeek
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (HideAndSeekVariation) code;
+            Variation = (HideAndSeekVariation)code;
         }
 
         /////////////////
         // Singleton Pattern
         static HideAndSeekConfiguration instance;
-		public static HideAndSeekConfiguration Instance
+        public static HideAndSeekConfiguration Instance
         {
             get
             {
                 if (instance == null)
-					instance = new HideAndSeekConfiguration();
+                    instance = new HideAndSeekConfiguration();
                 return instance;
             }
         }
         /////////////////
 
-		private HideAndSeekConfiguration()
+        private HideAndSeekConfiguration()
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
@@ -49,7 +48,8 @@ namespace Antura.Minigames.HideAndSeek
             TutorialEnabled = true;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;

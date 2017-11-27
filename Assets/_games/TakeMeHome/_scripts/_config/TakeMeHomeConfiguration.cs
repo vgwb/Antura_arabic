@@ -1,27 +1,26 @@
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.TakeMeHome
 {
-    public enum TakeMeHomeVariation 
+    public enum TakeMeHomeVariation
     {
         Default = MiniGameCode.TakeMeHome,
     }
 
     public class TakeMeHomeConfiguration : IGameConfiguration
-	{
-		// Game configuration
-		public IGameContext Context { get; set; }
+    {
+        // Game configuration
+        public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
 
         public ILivingLetterDataProvider Letters { get; set; }
 
         #region Game configurations
 
-	    public float Difficulty { get; set; }
-	    public bool TutorialEnabled { get; set; }
+        public float Difficulty { get; set; }
+        public bool TutorialEnabled { get; set; }
         public TakeMeHomeVariation Variation { get; set; }
 
         public void SetMiniGameCode(MiniGameCode code)
@@ -34,36 +33,39 @@ namespace Antura.Minigames.TakeMeHome
         /////////////////
         // Singleton Pattern
         static TakeMeHomeConfiguration instance;
-		public static TakeMeHomeConfiguration Instance
-		{
-			get
-			{
-				if (instance == null)
-					instance = new TakeMeHomeConfiguration();
-				return instance;
-			}
-		}
-		/////////////////
+        public static TakeMeHomeConfiguration Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new TakeMeHomeConfiguration();
+                return instance;
+            }
+        }
+        /////////////////
 
-		private TakeMeHomeConfiguration()
-		{
-			// Default values
-			Context = new MinigamesGameContext(MiniGameCode.TakeMeHome, System.DateTime.Now.Ticks.ToString());
-			Letters = new TakeMeHomeLettersProvider();
+        private TakeMeHomeConfiguration()
+        {
+            // Default values
+            Context = new MinigamesGameContext(MiniGameCode.TakeMeHome, System.DateTime.Now.Ticks.ToString());
+            Letters = new TakeMeHomeLettersProvider();
             Questions = new SampleQuestionProvider();
             Difficulty = 0;
-		    TutorialEnabled = true;
-		}
+            TutorialEnabled = true;
+        }
 
-		#region external configuration call
-		public static void SetConfiguration(float _difficulty, int _variation) {
-			instance = new TakeMeHomeConfiguration() {
-				Difficulty = _difficulty
-			};
-		}
+        #region external configuration call
+        public static void SetConfiguration(float _difficulty, int _variation)
+        {
+            instance = new TakeMeHomeConfiguration()
+            {
+                Difficulty = _difficulty
+            };
+        }
         #endregion
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
@@ -71,7 +73,7 @@ namespace Antura.Minigames.TakeMeHome
             builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
             builderParams.wordFilters.excludeDiacritics = true;
             builderParams.wordFilters.excludeLetterVariations = true;
-            builder = new RandomLettersQuestionBuilder(1,7, parameters: builderParams);
+            builder = new RandomLettersQuestionBuilder(1, 7, parameters: builderParams);
 
             return builder;
         }

@@ -1,5 +1,4 @@
 using Antura.LivingLetters;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.ColorTickle
@@ -24,7 +23,6 @@ namespace Antura.Minigames.ColorTickle
             Variation = (ColorTickleVariation)code;
         }
 
-        /////////////////
         // Singleton Pattern
         static ColorTickleConfiguration instance;
         public static ColorTickleConfiguration Instance
@@ -36,7 +34,6 @@ namespace Antura.Minigames.ColorTickle
                 return instance;
             }
         }
-        /////////////////
 
         private ColorTickleConfiguration()
         {
@@ -48,7 +45,8 @@ namespace Antura.Minigames.ColorTickle
             Variation = ColorTickleVariation.Default;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
@@ -70,7 +68,5 @@ namespace Antura.Minigames.ColorTickle
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
         }
-
-
     }
 }

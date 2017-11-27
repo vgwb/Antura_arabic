@@ -1,6 +1,5 @@
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.FastCrowd
@@ -28,7 +27,7 @@ namespace Antura.Minigames.FastCrowd
 
         public void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (FastCrowdVariation) code;
+            Variation = (FastCrowdVariation)code;
         }
 
         #endregion
@@ -70,8 +69,10 @@ namespace Antura.Minigames.FastCrowd
         }
 
         #region external configuration call
-        public static void SetConfiguration(float _difficulty, int _variation) {
-            instance = new FastCrowdConfiguration() {
+        public static void SetConfiguration(float _difficulty, int _variation)
+        {
+            instance = new FastCrowdConfiguration()
+            {
                 Difficulty = _difficulty,
                 Variation = (FastCrowdVariation)_variation,
             };
@@ -96,12 +97,12 @@ namespace Antura.Minigames.FastCrowd
                     builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number, builderParams, true);
                     break;
                 case FastCrowdVariation.Letter:
-                    builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
+                    builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true);
                     break;
                 case FastCrowdVariation.Spelling:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
-                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong:nWrong, useAllCorrectLetters:true, parameters: builderParams);
+                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
                     break;
                 case FastCrowdVariation.Words:
                     builderParams.wordFilters.excludeColorWords = true;

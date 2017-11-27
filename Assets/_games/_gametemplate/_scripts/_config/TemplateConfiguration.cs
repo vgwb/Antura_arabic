@@ -32,9 +32,12 @@ namespace Antura.Minigames.Template
         // Singleton Pattern
         static TemplateConfiguration instance;
 
-        public static TemplateConfiguration Instance {
-            get {
-                if (instance == null) {
+        public static TemplateConfiguration Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
                     instance = new TemplateConfiguration();
                 }
                 return instance;
