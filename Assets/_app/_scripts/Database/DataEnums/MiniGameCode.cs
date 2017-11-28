@@ -4,7 +4,7 @@
     /// Enumerator specifying a minigame (or minigame variation) that is supported by the core application. 
     /// </summary>
     // TODO refactor: this enum depends on the specific implemented minigames and should be grouped with them 
-    // last is 38 and 114
+    // last is 38 and 115
     public enum MiniGameCode
     {
         Invalid = 0,
@@ -46,6 +46,7 @@
         Tobogan_letter = 29,
         Tobogan_sunmoon = 30,
 
+        Assessment_Letter = 115, // NEW
         Assessment_LetterForm = 100,
         Assessment_WordsWithLetter = 101,
         Assessment_MatchLettersToWord = 102,

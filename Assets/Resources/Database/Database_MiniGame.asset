@@ -30,10 +30,10 @@ MonoBehaviour:
     - _Title_En: Diacritic Song
       _Title_Ar: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
       _Code: 33
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: AlphabetSong
-      _Variation: letters
+      _Variation: letter
       _Badge: letters
       _Scene: game_ReadingGame
       _AffectedPlaySkills:
@@ -212,7 +212,7 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: Balloons
-      _Variation: letters
+      _Variation: letter
       _Badge: letters
       _Scene: game_Balloons
       _AffectedPlaySkills:
@@ -243,7 +243,7 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: Balloons
-      _Variation: images
+      _Variation: word
       _Badge: images
       _Scene: game_Balloons
       _AffectedPlaySkills:
@@ -259,7 +259,7 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: ColorTickle
-      _Variation: letters
+      _Variation: letter
       _Badge: letters
       _Scene: game_ColorTickle
       _AffectedPlaySkills:
@@ -271,7 +271,7 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: DancingDots
-      _Variation: letters
+      _Variation: letter
       _Badge: letters
       _Scene: game_DancingDots
       _AffectedPlaySkills:
@@ -281,13 +281,23 @@ MonoBehaviour:
         Weight: 0.2
       - Skill: 2
         Weight: 0.2
+    - _Title_En: 
+      _Title_Ar: 
+      _Code: 36
+      _Available: 1
+      _Type: 1
+      _Main: DancingDots
+      _Variation: letterform
+      _Badge: letters
+      _Scene: 
+      _AffectedPlaySkills: []
     - _Title_En: 'The Egg: Letters!'
       _Title_Ar: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
       _Code: 11
       _Available: 1
       _Type: 1
       _Main: Egg
-      _Variation: letters
+      _Variation: letter
       _Badge: alphabet
       _Scene: game_Egg
       _AffectedPlaySkills:
@@ -295,6 +305,16 @@ MonoBehaviour:
         Weight: 0.8
       - Skill: 1
         Weight: 0.2
+    - _Title_En: 
+      _Title_Ar: 
+      _Code: 37
+      _Available: 1
+      _Type: 1
+      _Main: Egg
+      _Variation: letterform
+      _Badge: letters
+      _Scene: 
+      _AffectedPlaySkills: []
     - _Title_En: 'The Egg: Sequence!'
       _Title_Ar: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _Code: 34
@@ -314,7 +334,7 @@ MonoBehaviour:
     - _Title_En: Alphabet Crowd!
       _Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
       _Code: 12
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: FastCrowd
       _Variation: alphabet
@@ -341,12 +361,22 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: FastCrowd
-      _Variation: letters
+      _Variation: letter
       _Badge: letters
       _Scene: game_FastCrowd
       _AffectedPlaySkills:
       - Skill: 5
         Weight: 1
+    - _Title_En: 
+      _Title_Ar: 
+      _Code: 38
+      _Available: 1
+      _Type: 1
+      _Main: FastCrowd
+      _Variation: letterform
+      _Badge: letters
+      _Scene: 
+      _AffectedPlaySkills: []
     - _Title_En: 'Letter Crowd: Form a Word!'
       _Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641:
         \u062A\u0643\u0648\u064A\u0646\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
@@ -354,7 +384,7 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: FastCrowd
-      _Variation: spelling
+      _Variation: letterinword
       _Badge: spelling
       _Scene: game_FastCrowd
       _AffectedPlaySkills:
@@ -366,7 +396,7 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: FastCrowd
-      _Variation: images
+      _Variation: word
       _Badge: images
       _Scene: game_FastCrowd
       _AffectedPlaySkills:
@@ -380,7 +410,7 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: HideSeek
-      _Variation: letters
+      _Variation: letterform
       _Badge: letters
       _Scene: game_HideAndSeek
       _AffectedPlaySkills:
@@ -396,7 +426,7 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: MakeFriends
-      _Variation: words
+      _Variation: word
       _Badge: words
       _Scene: game_MakeFriends
       _AffectedPlaySkills:
@@ -410,7 +440,7 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: Maze
-      _Variation: letters
+      _Variation: letter
       _Badge: letters
       _Scene: game_Maze
       _AffectedPlaySkills:
@@ -419,10 +449,10 @@ MonoBehaviour:
     - _Title_En: Missing Letter!
       _Title_Ar: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
       _Code: 19
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: MissingLetter
-      _Variation: letters
+      _Variation: letter
       _Badge: letters
       _Scene: game_MissingLetter
       _AffectedPlaySkills:
@@ -433,10 +463,10 @@ MonoBehaviour:
     - _Title_En: Missing Word!
       _Title_Ar: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F\u0629!"
       _Code: 20
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: MissingLetter
-      _Variation: words
+      _Variation: word
       _Badge: words
       _Scene: game_MissingLetter
       _AffectedPlaySkills:
@@ -457,7 +487,7 @@ MonoBehaviour:
     - _Title_En: Letter Salad!
       _Title_Ar: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _Code: 21
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: MixedLetters
       _Variation: alphabet
@@ -489,10 +519,10 @@ MonoBehaviour:
     - _Title_En: Reading Discovery!
       _Title_Ar: "\u0627\u0642\u0631\u0623 \u0648\u0627\u0633\u062A\u0643\u0634\u0641!"
       _Code: 24
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: ReadingGame
-      _Variation: words
+      _Variation: word
       _Badge: words
       _Scene: game_ReadingGame
       _AffectedPlaySkills:
@@ -503,10 +533,10 @@ MonoBehaviour:
     - _Title_En: Word Scanner!
       _Title_Ar: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _Code: 25
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: Scanner
-      _Variation: images
+      _Variation: word
       _Badge: images
       _Scene: game_Scanner
       _AffectedPlaySkills:
@@ -519,10 +549,10 @@ MonoBehaviour:
     - _Title_En: 'Word Scanner: Sequence!'
       _Title_Ar: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0639\u0650\u0628\u0627\u0631\u0627\u062A!"
       _Code: 26
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: Scanner
-      _Variation: words
+      _Variation: phrase
       _Badge: words
       _Scene: game_Scanner
       _AffectedPlaySkills:
@@ -538,7 +568,7 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: SickLetters
-      _Variation: letters
+      _Variation: letter
       _Badge: letters
       _Scene: game_SickLetters
       _AffectedPlaySkills:
@@ -551,10 +581,10 @@ MonoBehaviour:
     - _Title_En: Take Me Home!
       _Title_Ar: "\u062E\u0630\u0646\u064A \u0625\u0644\u0649 \u0627\u0644\u0628\u064A\u062A!"
       _Code: 31
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: TakeMeHome
-      _Variation: letters
+      _Variation: letter
       _Badge: letters
       _Scene: game_TakeMeHome
       _AffectedPlaySkills:
@@ -567,7 +597,7 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: ThrowBalls
-      _Variation: spelling
+      _Variation: letterinword
       _Badge: spelling
       _Scene: game_ThrowBalls
       _AffectedPlaySkills:
@@ -586,13 +616,23 @@ MonoBehaviour:
       _Type: 1
       _Main: ThrowBalls
       _Variation: letters
-      _Badge: letters
+      _Badge: letter
       _Scene: game_ThrowBalls
       _AffectedPlaySkills:
       - Skill: 5
         Weight: 0.4
       - Skill: 2
         Weight: 0.6
+    - _Title_En: 'Slingshot: Letters Forms!'
+      _Title_Ar: 
+      _Code: 15
+      _Available: 1
+      _Type: 1
+      _Main: ThrowBalls
+      _Variation: letterform
+      _Badge: letter
+      _Scene: 
+      _AffectedPlaySkills: []
     - _Title_En: 'Slingshot: Words!'
       _Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
@@ -601,7 +641,7 @@ MonoBehaviour:
       _Type: 1
       _Main: ThrowBalls
       _Variation: words
-      _Badge: words
+      _Badge: word
       _Scene: game_ThrowBalls
       _AffectedPlaySkills:
       - Skill: 4
@@ -613,11 +653,11 @@ MonoBehaviour:
     - _Title_En: The Tower!
       _Title_Ar: "\u0628\u0631\u062C\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _Code: 29
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: Tobogan
       _Variation: letters
-      _Badge: letters
+      _Badge: letter
       _Scene: game_Tobogan
       _AffectedPlaySkills:
       - Skill: 4
@@ -628,7 +668,7 @@ MonoBehaviour:
       _Title_Ar: "\u0623\u0628\u0631\u0627\u062C\u064F \u0627\u0644\u0634\u0645\u0633\u0650
         \u0648 \u0627\u0644\u0642\u0645\u0631!"
       _Code: 30
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: Tobogan
       _Variation: sunmoon
