@@ -1,5 +1,6 @@
 ﻿using System;
 using Antura.Core;
+using Antura.Database;
 using UnityEngine;
 
 namespace Antura.LivingLetters
@@ -25,9 +26,10 @@ namespace Antura.LivingLetters
         }
 
         // @note: this should be the only constructor for LL_LetterData
-        public LL_LetterData(Database.LetterData _data)
+        public LL_LetterData(LetterData _data)
         {
             Data = _data;
+            if (_data.ForcedLetterForm != LetterForm.None) Form = _data.ForcedLetterForm;
         }
 
         // TODO: remove this constructor, the MiniGame should not force the Form!
