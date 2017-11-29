@@ -40,18 +40,19 @@ namespace Antura.Tutorial
 
         internal void SetSize(TutorialUI.MarkSize _size)
         {
-            switch (_size) {
+            switch (_size)
+            {
                 case TutorialUI.MarkSize.Normal:
                     setImgSize = Vector3.one;
-                    if (awakeDone) Img.transform.localScale = setImgSize;
+                    if (awakeDone) { Img.transform.localScale = setImgSize; }
                     break;
                 case TutorialUI.MarkSize.Big:
                     setImgSize = Vector3.one * 1.5f;
-                    if (awakeDone) Img.transform.localScale = setImgSize;
+                    if (awakeDone) { Img.transform.localScale = setImgSize; }
                     break;
                 case TutorialUI.MarkSize.Huge:
                     setImgSize = Vector3.one * 2;
-                    if (awakeDone) Img.transform.localScale = setImgSize;
+                    if (awakeDone) { Img.transform.localScale = setImgSize; }
                     break;
             }
         }

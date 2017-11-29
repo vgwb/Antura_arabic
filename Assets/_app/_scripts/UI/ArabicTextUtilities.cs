@@ -30,11 +30,17 @@ namespace Antura.UI
             string endText = (letterToMark.toCharacterIndex >= text.Length - 1 ? "" : text.Substring(letterToMark.toCharacterIndex + 1));
 
             if (type == MarkType.SingleLetter)
+            {
                 return startText + tagStart + letterText + tagEnd + endText;
+            }
             else if (type == MarkType.FromStartToLetter)
+            {
                 return tagStart + startText + letterText + tagEnd + endText;
+            }
             else
+            {
                 return startText + tagStart + letterText + endText + tagEnd;
+            }
         }
 
         /// <summary>
@@ -53,7 +59,8 @@ namespace Antura.UI
 
             float halfDuration = cycleDuration * 0.5f;
 
-            while (numCompletedCycles < numCycles) {
+            while (numCompletedCycles < numCycles)
+            {
                 float interpolant = timeElapsed < halfDuration
                     ? timeElapsed / halfDuration
                     : 1 - ((timeElapsed - halfDuration) / halfDuration);
@@ -62,24 +69,28 @@ namespace Antura.UI
 
                 string resultOfThisFrame = "";
 
-                if (markPrecedingLetters) {
+                if (markPrecedingLetters)
+                {
                     resultOfThisFrame += markTagStart;
                 }
                 resultOfThisFrame += text.Substring(0, indexToFlash);
-                if (markPrecedingLetters) {
+                if (markPrecedingLetters)
+                {
                     resultOfThisFrame += markTagEnd;
                 }
                 resultOfThisFrame += flashTagStart;
                 resultOfThisFrame += text.Substring(indexToFlash, 1);
                 resultOfThisFrame += flashTagEnd;
-                if (indexToFlash + 1 < text.Length) {
+                if (indexToFlash + 1 < text.Length)
+                {
                     resultOfThisFrame += text.Substring(indexToFlash + 1);
                 }
 
                 callback(resultOfThisFrame);
 
                 timeElapsed += Time.fixedDeltaTime;
-                if (timeElapsed >= cycleDuration) {
+                if (timeElapsed >= cycleDuration)
+                {
                     numCompletedCycles++;
                     timeElapsed = 0f;
                 }
