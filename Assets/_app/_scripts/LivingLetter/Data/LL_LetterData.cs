@@ -33,8 +33,8 @@ namespace Antura.LivingLetters
         }
 
         // TODO: remove this constructor, the MiniGame should not force the Form!
-        public LL_LetterData(string _id) :
-            this(AppManager.I.DB.GetLetterDataById(_id)) /// TODO refactor: inject the value, no reference to the DB
+        public LL_LetterData(string _id) : this(AppManager.I.DB.GetLetterDataById(_id))
+        /// TODO refactor: inject the value, no reference to the DB
         {
         }
 
@@ -72,7 +72,9 @@ namespace Antura.LivingLetters
         {
             LL_LetterData other = data as LL_LetterData;
             if (other == null)
+            {
                 return false;
+            }
 
             return other.Data.Id == Data.Id && other.Form == Form;
         }

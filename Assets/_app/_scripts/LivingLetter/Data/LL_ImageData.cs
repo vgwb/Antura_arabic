@@ -64,7 +64,9 @@ namespace Antura.LivingLetters
         {
             LL_ImageData other = data as LL_ImageData;
             if (other == null)
+            {
                 return false;
+            }
 
             return other.Data.Id == Data.Id;
         }
