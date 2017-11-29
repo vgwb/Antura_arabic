@@ -263,9 +263,18 @@ namespace Antura.Database
         [SerializeField] private float _Complexity;
 
 
+        /// <summary>
+        /// If set, this LetterData should be represented using the forced form.
+        /// </summary>
+        public LetterForm ForcedLetterForm = LetterForm.None;
+
+
         public override string ToString()
         {
-            return Id + ": " + Isolated;
+            string s = "(" + Isolated + ")";
+            if (ForcedLetterForm != LetterForm.None) s += " F-" + ForcedLetterForm;
+            s += " " + Id;
+            return s;
         }
 
         public float GetIntrinsicDifficulty()
@@ -413,6 +422,11 @@ namespace Antura.Database
 
             if (Final_Unicode != "")
                 yield return LetterForm.Final;
+        }
+
+        public LetterData Clone()
+        {
+            return (LetterData)MemberwiseClone();
         }
     }
 }

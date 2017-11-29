@@ -82,8 +82,7 @@ namespace Antura.Minigames.ThrowBalls
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.LetterForm:
-                    // TODO
-                    throw new System.Exception("ThrowBallsVariation.LetterForm to be done");
+                    builder = new RandomLetterVariationsQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.Word:
                     builderParams.wordFilters.requireDrawings = true;

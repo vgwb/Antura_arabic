@@ -24,20 +24,24 @@ namespace Antura.LivingLetters
             set { Data = AppManager.I.DB.GetLetterDataById(value); }
         }
 
-        public LL_LetterData(string _id) :
-            this(AppManager.I.DB.GetLetterDataById(_id)) /// TODO refactor: inject the value, no reference to the DB
-        {
-        }
-
+        // @note: this should be the only constructor for LL_LetterData
         public LL_LetterData(Database.LetterData _data)
         {
             Data = _data;
         }
 
+        // TODO: remove this constructor, the MiniGame should not force the Form!
+        public LL_LetterData(string _id) :
+            this(AppManager.I.DB.GetLetterDataById(_id)) /// TODO refactor: inject the value, no reference to the DB
+        {
+        }
+
+        // TODO: remove this constructor, the MiniGame should not force the Form!
         public LL_LetterData(string _id, Database.LetterForm form) : this(AppManager.I.DB.GetLetterDataById(_id), form)
         {
         }
 
+        // TODO: remove this constructor, the MiniGame should not force the Form!
         public LL_LetterData(Database.LetterData _data, Database.LetterForm form)
         {
             Data = _data;

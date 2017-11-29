@@ -326,43 +326,68 @@ namespace Antura.Database
         {
             if (filters.requireDiacritics && !data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
 
-            switch (filters.excludeDiacritics) {
+            if (!FilterByDiacritics(filters.excludeDiacritics, data)) return false;
+            if (!FilterByLetterVariations(filters.excludeLetterVariations, data)) return false;
+            if (!FilterByDipthongs(filters.excludeDiphthongs, data)) return false;
+
+            // always skip symbols
+            if (data.IsOfKindCategory(LetterKindCategory.Symbol)) {
+                return false;
+            }
+            return true;
+        }
+
+
+        public bool FilterByDiacritics(LetterFilters.ExcludeDiacritics excludeDiacritics, LetterData data)
+        {
+            switch (excludeDiacritics)
+            {
                 case LetterFilters.ExcludeDiacritics.All:
-                    if (data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) {
+                    if (data.IsOfKindCategory(LetterKindCategory.DiacriticCombo))
+                    {
                         return false;
                     }
                     break;
                 case LetterFilters.ExcludeDiacritics.AllButMain:
                     var symbol = GetSymbolOf(data.Id);
                     if (symbol != null && data.IsOfKindCategory(LetterKindCategory.DiacriticCombo) &&
-                        symbol.Tag != "MainDiacritic") {
+                        symbol.Tag != "MainDiacritic")
+                    {
                         return false;
                     }
                     break;
                 default:
                     break;
             }
+            return true;
+        }
 
-            switch (filters.excludeLetterVariations) {
+        public bool FilterByLetterVariations(LetterFilters.ExcludeLetterVariations excludeLetterVariations, LetterData data)
+        {
+            switch (excludeLetterVariations)
+            {
                 case LetterFilters.ExcludeLetterVariations.All:
-                    if (data.IsOfKindCategory(LetterKindCategory.LetterVariation)) {
+                    if (data.IsOfKindCategory(LetterKindCategory.LetterVariation))
+                    {
                         return false;
                     }
                     break;
                 case LetterFilters.ExcludeLetterVariations.AllButAlefHamza:
-                    if (data.IsOfKindCategory(LetterKindCategory.LetterVariation) && data.Tag != "AlefHamzaVariation") {
+                    if (data.IsOfKindCategory(LetterKindCategory.LetterVariation) && data.Tag != "AlefHamzaVariation")
+                    {
                         return false;
                     }
                     break;
                 default:
                     break;
             }
+            return true;
+        }
 
-            if (filters.excludeDiphthongs && data.Kind == LetterDataKind.Diphthong) {
-                return false;
-            }
-            // always skip symbols
-            if (data.IsOfKindCategory(LetterKindCategory.Symbol)) {
+        public bool FilterByDipthongs(bool excludeDiphthongs, LetterData data)
+        {
+            if (excludeDiphthongs && data.Kind == LetterDataKind.Diphthong)
+            {
                 return false;
             }
             return true;

@@ -137,6 +137,9 @@ namespace Antura.Minigames.ThrowBalls
                 case ThrowBallsVariation.Letter:
                     audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Title, OnTitleVoiceOverDone);
                     break;
+                case ThrowBallsVariation.LetterForm:
+                    audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Title, OnTitleVoiceOverDone);
+                    break;
                 case ThrowBallsVariation.Word:
                     audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_words_Title, OnTitleVoiceOverDone);
                     break;
@@ -192,6 +195,9 @@ namespace Antura.Minigames.ThrowBalls
 
             switch (ThrowBallsConfiguration.Instance.Variation) {
                 case ThrowBallsVariation.Letter:
+                    game.StartCoroutine(StartNewRound());
+                    break;
+                case ThrowBallsVariation.LetterForm:
                     game.StartCoroutine(StartNewRound());
                     break;
                 case ThrowBallsVariation.Word:
@@ -281,6 +287,9 @@ namespace Antura.Minigames.ThrowBalls
                     case ThrowBallsVariation.Letter:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
                         break;
+                    case ThrowBallsVariation.LetterForm:
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
+                        break;
                     case ThrowBallsVariation.Word:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_words_Tuto);
                         break;
@@ -355,6 +364,9 @@ namespace Antura.Minigames.ThrowBalls
             if (IsTutorialRound()) {
                 switch (ThrowBallsConfiguration.Instance.Variation) {
                     case ThrowBallsVariation.Letter:
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
+                        break;
+                    case ThrowBallsVariation.LetterForm:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
                         break;
                     case ThrowBallsVariation.Word:
