@@ -199,8 +199,26 @@ namespace Antura.Map
 
         #region Highlight
 
+        bool interactionEnabled = true;
+        public void EnableInteraction(bool choice)
+        {
+            interactionEnabled = choice;
+            if (!interactionEnabled)
+                mainDot.SetAsNothing();
+            else 
+                mainDot.Highlight(true);    // re-highlight the selected pin
+        }
+
+        public bool IsInteractionEnabled {  get { return interactionEnabled; } }
+
         public void Select(bool choice)
         {
+            if (!interactionEnabled)
+            {
+                mainDot.SetAsNothing();
+                return;
+            }
+
             // 3D buttons (DEPRECATED)
             //lockedButtonGO.SetActive(choice && isLocked);
             //playButtonGO.SetActive(choice && !isLocked);

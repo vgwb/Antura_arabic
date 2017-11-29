@@ -1,4 +1,6 @@
-﻿namespace Antura.Core
+﻿using System;
+
+namespace Antura.Core
 {
     /// <summary>
     /// Represents the position of the player in the learning journey.
@@ -127,6 +129,11 @@
         public bool IsMinorOrEqual(JourneyPosition other)
         {
             return IsMinor(other) || Equals(other);
+        }
+
+        public bool IsGreaterOrEqual(JourneyPosition other)
+        {
+            return !IsMinor(other);
         }
 
         public bool IsAssessment()

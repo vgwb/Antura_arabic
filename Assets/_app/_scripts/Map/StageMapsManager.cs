@@ -323,8 +323,12 @@ namespace Antura.Map
             mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
         }
 
+        public Pin SelectedPin {  get { return selectedPin;  } }
+
         public void SelectPin(Pin pin)
         {
+            if (!pin.IsInteractionEnabled) return;
+
             if (selectedPin == pin)
             {
                 // Already selected: PLAY directly (if not locked)
@@ -602,7 +606,7 @@ namespace Antura.Map
 
         #endregion
 
-        #region UI Activation
+        #region Stage Indicator UI
 
         private void UpdateStageIndicatorUI(int stage)
         {
@@ -634,6 +638,11 @@ namespace Antura.Map
             }
         }
 
+        #endregion
+
+        #region UI Activation
+
+        /*
         private void ShowPlayButton()
         {
             playButton.SetActive(true);
@@ -656,36 +665,73 @@ namespace Antura.Map
             playButtonsPanel.gameObject.SetActive(false);
             playInfoPanel.gameObject.SetActive(false);
         }
+        */
 
-        public void DeactivateUI()
+        public void DeactivateAllUI()
         {
-            playButtonsPanel.gameObject.SetActive(false);
-            playInfoPanel.gameObject.SetActive(false);
-            learningBookButton.SetActive(false);
-            minigamesBookButton.SetActive(false);
-            profileBookButton.SetActive(false);
-            anturaSpaceButton.SetActive(false);
-            GlobalUI.ShowPauseMenu(false);
+            SetStageUIActivation(false);
+            SetLearningBookUIActivation(false);
+            SetMinigamesBookUIActivation(false);
+            SetProfileBookUIActivation(false);
+            SetAnturaSpaceUIActivation(false);
+            SetGlobalUIActivation(false);
+            SetPlayUIActivation(false);
         }
 
-        public void ActivateUI()
+        public void ActivateAllUI()
         {
-            //playButtonsPanel.gameObject.SetActive(true);
-            playInfoPanel.gameObject.SetActive(true);
-            navigationIconsPanel.SetActive(true);
-            learningBookButton.SetActive(true);
-            minigamesBookButton.SetActive(true);
-            profileBookButton.SetActive(true);
-            anturaSpaceButton.SetActive(true);
-            GlobalUI.ShowPauseMenu(true);
+            SetStageUIActivation(true);
+            SetLearningBookUIActivation(true);
+            SetMinigamesBookUIActivation(true);
+            SetProfileBookUIActivation(true);
+            SetAnturaSpaceUIActivation(true);
+            SetGlobalUIActivation(true);
+            SetPlayUIActivation(true);
         }
+
+        public void SetPlayUIActivation(bool choice)
+        {
+            if (selectedPin) selectedPin.EnableInteraction(choice);
+            playButtonsPanel.gameObject.SetActive(choice);
+            playInfoPanel.gameObject.SetActive(choice);
+        }
+
+        public void SetStageUIActivation(bool choice)
+        {
+            mapStageIndicator.gameObject.SetActive(choice);
+        }
+
+        public void SetLearningBookUIActivation(bool choice)
+        {
+            learningBookButton.gameObject.SetActive(choice);
+        }
+
+        public void SetProfileBookUIActivation(bool choice)
+        {
+            profileBookButton.gameObject.SetActive(choice);
+        }
+
+        public void SetMinigamesBookUIActivation(bool choice)
+        {
+            minigamesBookButton.gameObject.SetActive(choice);
+        }
+
+        public void SetAnturaSpaceUIActivation(bool choice)
+        {
+            anturaSpaceButton.gameObject.SetActive(choice);
+        }
+
+        public void SetGlobalUIActivation(bool choice)
+        {
+            GlobalUI.ShowPauseMenu(choice);
+        }
+
+        #endregion
 
         public void HandleLockedButton()
         {
             AudioManager.I.PlaySound(Sfx.KO);
         }
-
-        #endregion
 
         #region Static Utilities
 

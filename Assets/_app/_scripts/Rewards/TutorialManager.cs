@@ -18,11 +18,11 @@ namespace Antura.Rewards
             {
                 gameObject.SetActive(false);
                 IsRunning = false;
-                if (VERBOSE) Debug.Log("TUTORIAL - First contact is off");
+                if (VERBOSE) Debug.Log("TutorialManager - First contact is off");
                 return;
             }
 
-            if (VERBOSE) Debug.Log("TUTORIAL - phase " + FirstContactManager.I.CurrentPhase + "");
+            if (VERBOSE) Debug.Log("TutorialManager - phase " + FirstContactManager.I.CurrentPhase + "");
             IsRunning = true;
 
             InternalHandleStart();
