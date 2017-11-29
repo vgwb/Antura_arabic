@@ -61,7 +61,7 @@ namespace Antura.Profile
             if (!Application.isEditor)
             {
                 // Force debug options to FALSE if we're not in the editor
-                SIMULATE_FIRST_CONTACT = false; 
+                SIMULATE_FIRST_CONTACT = false;
                 FORCE_FIRST_CONTACT = false;
             }
 
@@ -215,42 +215,5 @@ namespace Antura.Profile
 
             return toScene;
         }
-
-        public struct SceneTransition
-        {
-            public AppScene fromScene;
-            public AppScene toScene;
-           // public bool keepAsBackable;
-
-            public SceneTransition(AppScene fromScene, AppScene toScene, bool keepAsBackable = false)
-            {
-                this.fromScene = fromScene;
-                this.toScene = toScene;
-                //this.keepAsBackable = keepAsBackable;
-            }
-
-
-            public bool Equals(SceneTransition other)
-            {
-                return fromScene == other.fromScene && toScene == other.toScene;
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (ReferenceEquals(null, obj)) return false;
-                return obj is SceneTransition && Equals((SceneTransition)obj);
-            }
-
-            public override int GetHashCode()
-            {
-                unchecked
-                {
-                    return ((int)fromScene * 397) ^ (int)toScene;
-                }
-            }
-
-        }
-
     }
-
 }
