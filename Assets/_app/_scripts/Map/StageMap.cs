@@ -118,8 +118,8 @@ namespace Antura.Map
             }
         }
 
-        [DeMethodButton("Randomize Pins")]
-        public void RandomizePins()
+        [DeMethodButton("Distribuite Pins")]
+        public void DistribuitePins()
         {
             // Randomize the position of the pins
             var pins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
@@ -426,7 +426,7 @@ namespace Antura.Map
         public void Hide()
         {
             gameObject.SetActive(false);
-            if (hasAppeared) FlushAppear(AppManager.I.Player.MaxJourneyPosition);
+            if (hasAppeared) { FlushAppear(AppManager.I.Player.MaxJourneyPosition); }
         }
 
         #endregion
