@@ -173,7 +173,11 @@ MonoBehaviour:
       - MiniGameCode: 38
         Weight: 1
       _NumberOfRoundsPerMinigame: 0
-      _Letters: []
+      _Letters:
+      - noon_shaddah
+      - theh_sukun
+      - yeh_shaddah
+      - yeh_sukun
       _Words:
       - house
       - girl
@@ -186,7 +190,6 @@ MonoBehaviour:
       - she_took_a_look
       - two_girls
       - he_planted
-      - prophet
       - she_proves
       - he_proves
       - you_prove
