@@ -1723,7 +1723,7 @@
     {
       "Id": "my_daughter",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Noun",
       "Category": "FamilyMember",
       "Complexity": "",
@@ -1743,7 +1743,7 @@
     {
       "Id": "my_house",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Noun",
       "Category": "Thing",
       "Complexity": "",
@@ -1763,7 +1763,7 @@
     {
       "Id": "coffee_bean",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Noun",
       "Category": "Food",
       "Complexity": "",
@@ -1783,7 +1783,7 @@
     {
       "Id": "he_took_a_look",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Verb",
       "Category": "",
       "Complexity": "",
@@ -1803,7 +1803,7 @@
     {
       "Id": "she_took_a_look",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Verb",
       "Category": "",
       "Complexity": "",
@@ -1823,7 +1823,7 @@
     {
       "Id": "two_girls",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Noun",
       "Category": "",
       "Complexity": "",
@@ -1843,7 +1843,7 @@
     {
       "Id": "he_planted",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Verb",
       "Category": "",
       "Complexity": "",
@@ -1863,7 +1863,7 @@
     {
       "Id": "prophet",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Noun",
       "Category": "",
       "Complexity": "",
@@ -1883,7 +1883,7 @@
     {
       "Id": "she_proves",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Verb",
       "Category": "",
       "Complexity": "",
@@ -1903,7 +1903,7 @@
     {
       "Id": "he_proves",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Verb",
       "Category": "",
       "Complexity": "",
@@ -1923,7 +1923,7 @@
     {
       "Id": "you_prove",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Verb",
       "Category": "",
       "Complexity": "",
@@ -1943,7 +1943,7 @@
     {
       "Id": "we_prove",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Verb",
       "Category": "",
       "Complexity": "",
@@ -1963,7 +1963,7 @@
     {
       "Id": "boys",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Noun",
       "Category": "",
       "Complexity": "",
@@ -1983,7 +1983,7 @@
     {
       "Id": "vegetarian",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Adjective",
       "Category": "",
       "Complexity": "",
@@ -2003,7 +2003,7 @@
     {
       "Id": "vegetarians",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Adjective",
       "Category": "",
       "Complexity": "",
@@ -2023,7 +2023,7 @@
     {
       "Id": "son",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Noun",
       "Category": "",
       "Complexity": "",
@@ -2043,7 +2043,7 @@
     {
       "Id": "adoption",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Noun",
       "Category": "",
       "Complexity": "",
@@ -2063,7 +2063,7 @@
     {
       "Id": "pleat",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Noun",
       "Category": "",
       "Complexity": "",
@@ -2083,7 +2083,7 @@
     {
       "Id": "he_praises",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Verb",
       "Category": "",
       "Complexity": "",
@@ -2103,7 +2103,7 @@
     {
       "Id": "she_praises",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Verb",
       "Category": "",
       "Complexity": "",
@@ -2123,7 +2123,7 @@
     {
       "Id": "we_praise",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Verb",
       "Category": "",
       "Complexity": "",
@@ -2143,7 +2143,7 @@
     {
       "Id": "you_praise",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Verb",
       "Category": "",
       "Complexity": "",
@@ -2163,7 +2163,7 @@
     {
       "Id": "he_plants",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Verb",
       "Category": "",
       "Complexity": "",
@@ -2183,7 +2183,7 @@
     {
       "Id": "between",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Preposition",
       "Category": "",
       "Complexity": "",
@@ -2203,7 +2203,7 @@
     {
       "Id": "between_me",
       "added": "\"2017-11-26T23:00:00.000Z\"",
-      "Active": "",
+      "Active": "1",
       "Kind": "Preposition",
       "Category": "",
       "Complexity": "",

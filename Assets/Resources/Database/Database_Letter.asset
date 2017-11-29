@@ -27,12 +27,12 @@ MonoBehaviour:
       _Sound: aa
       _SoundZone: D
       _Isolated: "\u0627"
-      _Initial: 
-      _Medial: 
+      _Initial: "\u0627"
+      _Medial: "\uFE8E"
       _Final: "\uFE8E"
       _Isolated_Unicode: 0627
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: 0627
+      _Medial_Unicode: 0627
       _Final_Unicode: FE8E
       _Symbol_Unicode: 
       _InitialFix: 
@@ -241,8 +241,8 @@ MonoBehaviour:
       _Medial: 
       _Final: "\uFEAA"
       _Isolated_Unicode: 062F
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: 062F
+      _Medial_Unicode: 062F
       _Final_Unicode: FEAA
       _Symbol_Unicode: 
       _InitialFix: 
@@ -271,8 +271,8 @@ MonoBehaviour:
       _Medial: 
       _Final: "\uFEAC"
       _Isolated_Unicode: 0630
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: 0630
+      _Medial_Unicode: 0630
       _Final_Unicode: FEAC
       _Symbol_Unicode: 
       _InitialFix: 
@@ -301,8 +301,8 @@ MonoBehaviour:
       _Medial: 
       _Final: "\uFEAE"
       _Isolated_Unicode: 0631
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: 0631
+      _Medial_Unicode: 0631
       _Final_Unicode: FEAE
       _Symbol_Unicode: 
       _InitialFix: 
@@ -331,8 +331,8 @@ MonoBehaviour:
       _Medial: 
       _Final: "\uFEB0"
       _Isolated_Unicode: 0632
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: 0632
+      _Medial_Unicode: 0632
       _Final_Unicode: FEB0
       _Symbol_Unicode: 
       _InitialFix: 
@@ -811,8 +811,8 @@ MonoBehaviour:
       _Medial: 
       _Final: "\uFEEE"
       _Isolated_Unicode: 0648
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: 0648
+      _Medial_Unicode: 0648
       _Final_Unicode: FEEE
       _Symbol_Unicode: 
       _InitialFix: 
@@ -1529,10 +1529,10 @@ MonoBehaviour:
       _Isolated: "\u0627\u064B"
       _Initial: 
       _Medial: 
-      _Final: 
+      _Final: "\uFE84\u064E"
       _Isolated_Unicode: 0627
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: 0627
+      _Medial_Unicode: 0627
       _Final_Unicode: FE8E
       _Symbol_Unicode: 064B
       _InitialFix: 
@@ -1561,8 +1561,8 @@ MonoBehaviour:
       _Medial: 
       _Final: "\uFE84\u064E"
       _Isolated_Unicode: 0623
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: 0623
+      _Medial_Unicode: 0623
       _Final_Unicode: FE84
       _Symbol_Unicode: 064E
       _InitialFix: 
@@ -2341,8 +2341,8 @@ MonoBehaviour:
       _Medial: 
       _Final: 
       _Isolated_Unicode: 0644
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: FEDF
+      _Medial_Unicode: FEE0
       _Final_Unicode: FEDE
       _Symbol_Unicode: 064C
       _InitialFix: 
@@ -2431,8 +2431,8 @@ MonoBehaviour:
       _Medial: 
       _Final: 
       _Isolated_Unicode: 0644
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: FEDF
+      _Medial_Unicode: FEE0
       _Final_Unicode: FEDE
       _Symbol_Unicode: 064D
       _InitialFix: 
@@ -2611,8 +2611,8 @@ MonoBehaviour:
       _Medial: 
       _Final: 
       _Isolated_Unicode: 0646
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: FEE7
+      _Medial_Unicode: FEE8
       _Final_Unicode: FEE6
       _Symbol_Unicode: 064D
       _InitialFix: 
@@ -2645,6 +2645,36 @@ MonoBehaviour:
       _Medial_Unicode: FEE8
       _Final_Unicode: FEE6
       _Symbol_Unicode: 0652
+      _InitialFix: 
+      _FinalFix: 1
+      _MedialFix: 1
+      _Old_Isolated: 
+      _Old_Initial: 
+      _Old_Medial: 
+      _Old_Final: 
+      _Complexity: 1
+    - _Id: noon_shaddah
+      _Active: 1
+      _Number: 0
+      _Title: noon_shaddah
+      _Kind: 5
+      _BaseLetter: noon
+      _Symbol: shaddah
+      _Type: 0
+      _Tag: 
+      _Notes: 
+      _SunMoon: 0
+      _Sound: 
+      _SoundZone: 
+      _Isolated: "\u0646\u0652"
+      _Initial: 
+      _Medial: 
+      _Final: 
+      _Isolated_Unicode: 0646
+      _Initial_Unicode: FEE7
+      _Medial_Unicode: FEE8
+      _Final_Unicode: FEE6
+      _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
