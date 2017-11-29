@@ -42,7 +42,9 @@ namespace Antura.Minigames.Tobogan
             get
             {
                 if (instance == null)
+                {
                     instance = new ToboganConfiguration();
+                }
                 return instance;
             }
         }
@@ -84,8 +86,9 @@ namespace Antura.Minigames.Tobogan
             }
 
             if (builder == null)
+            {
                 throw new System.Exception("No question builder defined for variation " + Variation.ToString());
-
+            }
             return builder;
         }
 

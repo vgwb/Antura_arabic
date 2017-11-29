@@ -41,7 +41,9 @@ namespace Antura.Minigames.Balloons
             get
             {
                 if (instance == null)
+                {
                     instance = new BalloonsConfiguration();
+                }
                 return instance;
             }
         }
