@@ -596,7 +596,8 @@ namespace Antura.Profile
                 IsDemoUser = this.IsDemoUser,
                 HasFinishedTheGame = this.HasFinishedTheGame,
                 HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars,
-                HasMaxStarsInCurrentPlaySessions = this.HasMaxStarsInCurrentPlaySessions
+                HasMaxStarsInCurrentPlaySessions = this.HasMaxStarsInCurrentPlaySessions,
+                MaxJourneyPosition = this.MaxJourneyPosition
             };
             return returnIconData;
         }

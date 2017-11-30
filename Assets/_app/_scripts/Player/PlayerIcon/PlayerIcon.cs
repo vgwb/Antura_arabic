@@ -25,14 +25,13 @@ namespace Antura.Profile
         public GameObject HighlightImage;
         public Image HatImage;
         public Image IconImage;
+        public TextRender LevelLabel;
         public string Uuid { get; private set; }
 
         public UIButton UIButton
         {
-            get
-            {
-                if (fooUIButton == null)
-                {
+            get {
+                if (fooUIButton == null) {
                     fooUIButton = this.GetComponent<UIButton>();
                 }
                 return fooUIButton;
@@ -47,8 +46,7 @@ namespace Antura.Profile
         {
             if (!AutoInit) { return; }
 
-            if (AppManager.I.PlayerProfileManager.CurrentPlayer != null)
-            {
+            if (AppManager.I.PlayerProfileManager.CurrentPlayer != null) {
                 Init(AppManager.I.PlayerProfileManager.CurrentPlayer.GetPlayerIconData());
             }
         }
@@ -66,7 +64,7 @@ namespace Antura.Profile
                 : playerIconData.HasFinishedTheGame
                     ? EndgameState.Finished
                     : EndgameState.Unfinished;
-            SetAppearance(playerIconData.Gender, playerIconData.AvatarId, playerIconData.Tint, playerIconData.IsDemoUser, endgameState, playerIconData.HasMaxStarsInCurrentPlaySessions);
+            SetAppearance(playerIconData, endgameState);
         }
 
         [DeMethodButton("DEBUG: Select", mode = DeButtonMode.PlayModeOnly)]
@@ -83,23 +81,21 @@ namespace Antura.Profile
 
         #endregion
 
-        void SetAppearance(PlayerGender gender, int avatarId, PlayerTint tint, bool isDemoUser, EndgameState endgameState, bool hasMaxStarsInCurrentPlaySessions)
+        void SetAppearance(PlayerIconData playerIconData, EndgameState endgameState)
         {
-            if (gender == PlayerGender.None)
-            {
+            if (playerIconData.Gender == PlayerGender.None) {
                 Debug.LogWarning("Player gender set to NONE");
             }
-            Color color = isDemoUser ? new Color(0.4117647f, 0.9254903f, 1f, 1f) : PlayerTintConverter.ToColor(tint);
+            Color color = playerIconData.IsDemoUser ? new Color(0.4117647f, 0.9254903f, 1f, 1f) : PlayerTintConverter.ToColor(playerIconData.Tint);
             UIButton.Ico = IconImage;   // forced icon
             UIButton.ChangeDefaultColors(color, color.SetAlpha(0.5f));
-            UIButton.Ico.sprite = isDemoUser
+            UIButton.Ico.sprite = playerIconData.IsDemoUser
                 ? Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + "god")
-                : Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + (gender == PlayerGender.None ? "M" : gender.ToString()) +
-                                         avatarId);
+                : Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + (playerIconData.Gender == PlayerGender.None ? "M" : playerIconData.Gender.ToString()) +
+                                         playerIconData.AvatarId);
             HatImage.gameObject.SetActive(endgameState != EndgameState.Unfinished);
 
-            switch (endgameState)
-            {
+            switch (endgameState) {
                 case EndgameState.Finished:
                     HatImage.sprite = EndgameHat;
                     break;
@@ -107,9 +103,9 @@ namespace Antura.Profile
                     HatImage.sprite = EndgameHatWStars;
                     break;
             }
-
+            LevelLabel.text = playerIconData.MaxJourneyPosition.Stage.ToString() + "-" + playerIconData.MaxJourneyPosition.LearningBlock.ToString();
             // Debug.Log("hasMaxStarsInCurrentPlaySessions: " + hasMaxStarsInCurrentPlaySessions);
-            HighlightImage.SetActive(hasMaxStarsInCurrentPlaySessions);
+            HighlightImage.SetActive(playerIconData.HasMaxStarsInCurrentPlaySessions);
         }
 
         [DeMethodButton("DEBUG: Randomize Appearance", mode = DeButtonMode.PlayModeOnly)]
@@ -119,13 +115,17 @@ namespace Antura.Profile
             float rnd1 = UnityEngine.Random.value;
             float rnd2 = UnityEngine.Random.value;
             float rnd3 = UnityEngine.Random.value;
-            SetAppearance(
-                rnd0 <= 0.5f ? PlayerGender.F : PlayerGender.M,
-                UnityEngine.Random.Range(1, 5),
-                (PlayerTint)UnityEngine.Random.Range(1, 8),
-                rnd1 <= 0.2f,
-                rnd2 < 0.33f ? EndgameState.Unfinished : rnd2 < 0.66f ? EndgameState.Finished : EndgameState.FinishedWAllStars,
-                rnd3 <= 0.5f
+            var rndPlayerIconData = new PlayerIconData(Uuid = "",
+                                                       UnityEngine.Random.Range(1, 5),
+                                                       rnd0 <= 0.5f ? PlayerGender.F : PlayerGender.M,
+                                                       (PlayerTint)UnityEngine.Random.Range(1, 8),
+                                                      rnd1 <= 0.2f,
+                                                      rnd3 <= 0.5f,
+                                                      rnd3 <= 0.5f,
+                                                      rnd3 <= 0.5f,
+                                                       new JourneyPosition(UnityEngine.Random.Range(1, 6), UnityEngine.Random.Range(1, 15), 1));
+            SetAppearance(rndPlayerIconData,
+                rnd2 < 0.33f ? EndgameState.Unfinished : rnd2 < 0.66f ? EndgameState.Finished : EndgameState.FinishedWAllStars
             );
         }
     }

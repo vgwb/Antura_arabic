@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Antura.Core;
+using Antura.Database;
+using System;
 
 namespace Antura.Profile
 {
@@ -16,9 +18,10 @@ namespace Antura.Profile
         public bool HasFinishedTheGame;
         public bool HasFinishedTheGameWithAllStars;
         public bool HasMaxStarsInCurrentPlaySessions;
+        public JourneyPosition MaxJourneyPosition;
 
         public PlayerIconData(string _Uuid, int _AvatarId, PlayerGender _Gender, PlayerTint _Tint, bool _IsDemoUser,
-            bool _HasFinishedTheGame, bool _HasFinishedTheGameWithAllStars, bool _HasMaxStarsInCurrentPlaySessions)
+            bool _HasFinishedTheGame, bool _HasFinishedTheGameWithAllStars, bool _HasMaxStarsInCurrentPlaySessions, JourneyPosition _MaxJourneyPosition)
         {
             Uuid = _Uuid;
             AvatarId = _AvatarId;
@@ -28,6 +31,7 @@ namespace Antura.Profile
             HasFinishedTheGame = _HasFinishedTheGame;
             HasFinishedTheGameWithAllStars = _HasFinishedTheGameWithAllStars;
             HasMaxStarsInCurrentPlaySessions = _HasMaxStarsInCurrentPlaySessions;
+            MaxJourneyPosition = _MaxJourneyPosition;
         }
     }
 }
