@@ -35,7 +35,8 @@ namespace Antura.Profile
     /// </summary>
     public class FirstContactManager
     {
-        public static FirstContactManager I {
+        public static FirstContactManager I
+        {
             get { return AppManager.I.FirstContactManager; }
         }
 
@@ -89,18 +90,23 @@ namespace Antura.Profile
             }
         }
 
+        public void UnlockAllForDemoUser()
+        {
+            currentPhase = FirstContactPhase.Finished;
+        }
+
 
         #region Checks
 
         public bool IsInsideFirstContact()
         {
-            if (DISABLE_FIRST_CONTACT) return false;
+            if (DISABLE_FIRST_CONTACT) { return false; }
             return CurrentPhase < FirstContactPhase.Finished || SIMULATE_FIRST_CONTACT;
         }
 
         public bool HasPassedPhase(FirstContactPhase _phase)
         {
-            if (!phasesSequence.Contains(_phase)) return true; // not in the sequence, hence passed
+            if (!phasesSequence.Contains(_phase)) { return true; } // not in the sequence, hence passed
             return phasesSequence.IndexOf(_phase) < phasesSequence.IndexOf(CurrentPhase);
         }
 
@@ -109,9 +115,12 @@ namespace Antura.Profile
             return CurrentPhase == _phase;
         }
 
-        public FirstContactPhase CurrentPhase {
+        public FirstContactPhase CurrentPhase
+        {
             get {
-                if (SIMULATE_FIRST_CONTACT) return SIMULATE_FIRST_CONTACT_PHASE;
+                if (SIMULATE_FIRST_CONTACT) {
+                    return SIMULATE_FIRST_CONTACT_PHASE;
+                }
                 return currentPhase;
             }
         }
@@ -123,9 +132,9 @@ namespace Antura.Profile
         public void CompleteCurrentPhase()
         {
             // Advance in the sequence
-            if (VERBOSE) Debug.Log("FirstContact - phase " + currentPhase + " completed!");
+            if (VERBOSE) { Debug.Log("FirstContact - phase " + currentPhase + " completed!"); }
             currentPhase = phasesSequence[phasesSequence.IndexOf(currentPhase) + 1];
-            if (VERBOSE) Debug.Log("FirstContact - phase " + currentPhase + " starting...");
+            if (VERBOSE) { Debug.Log("FirstContact - phase " + currentPhase + " starting..."); }
         }
 
         public void PassPhase(FirstContactPhase passedPhase)
@@ -223,12 +232,12 @@ namespace Antura.Profile
 
         private void FilterTransitionOn(FirstContactPhase phase, bool condition, ref AppScene toScene, AppScene newScene)
         {
-            if (CurrentPhase == phase && condition) toScene = newScene;
+            if (CurrentPhase == phase && condition) { toScene = newScene; }
         }
 
         private void TransitionCompletePhaseOn(FirstContactPhase phase, bool condition)
         {
-            if (CurrentPhase == phase && condition) CompleteCurrentPhase();
+            if (CurrentPhase == phase && condition) { CompleteCurrentPhase(); }
         }
 
         /* public struct SceneTransition

@@ -228,7 +228,9 @@ namespace Antura.Core
         {
             bool keepPrevAsBackable = false;
             AppScene filteredNewScene = FirstContactManager.I.FilterNavigation(GetCurrentScene(), wantedNewScene, out keepPrevAsBackable);
-            if (keepPrevAsBackable) UpdatePrevSceneStack(wantedNewScene);
+            if (keepPrevAsBackable) {
+                UpdatePrevSceneStack(wantedNewScene);
+            }
 
             if (!FirstContactManager.I.IsInsideFirstContact()) {
                 // Additional general checks when entering specific scenes

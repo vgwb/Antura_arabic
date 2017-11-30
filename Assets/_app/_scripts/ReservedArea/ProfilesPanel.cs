@@ -150,7 +150,9 @@ namespace Antura.ReservedArea
             AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
             AppManager.I.Player.CheckGameFinished(); // force check
             AppManager.I.Player.CheckStarsState(); // force check
-            Rewards.RewardSystemManager.UnlockAllRewards();
+            AppManager.I.FirstContactManager.UnlockAllForDemoUser();
+            // TODO COMMENTED because bugged in current curriculum
+            // Rewards.RewardSystemManager.UnlockAllRewards();
 
             ResetAll();
             activateWaitingScreen(false);
