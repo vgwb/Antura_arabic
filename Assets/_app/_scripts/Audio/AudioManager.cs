@@ -38,11 +38,12 @@ namespace Antura.Audio
 
             set {
                 if (musicEnabled == value) {
+                    // Debug.Log("AudioManager MusicEnabled A");
                     return;
                 }
 
-                musicEnabled = value;
-
+                musicEnabled = previousMusicEnabled = value;
+                // Debug.Log("AudioManager MusicEnabled B to " + musicEnabled);
                 if (musicEnabled && (currentMusic != Music.Silence)) {
                     if (musicGroup != null) {
                         musicGroup.Resume();
@@ -59,7 +60,7 @@ namespace Antura.Audio
                             }
                             hasToReset = true;
                         }
-                        Cont:
+                    Cont:
                         if (hasToReset) {
                             if (currentMusic == Music.Custom) {
                                 musicGroup.Play(customMusic, 1, 1, true);
@@ -170,10 +171,12 @@ namespace Antura.Audio
         public void ToggleMusic()
         {
             MusicEnabled = !musicEnabled;
+            AppManager.I.AppSettingsManager.SaveMusicSetting(MusicEnabled);
         }
 
         public void PlayMusic(Music newMusic)
         {
+            // Debug.Log("PlayMusic " + newMusic);
             if (currentMusic != newMusic) {
                 currentMusic = newMusic;
                 musicGroup.Stop();

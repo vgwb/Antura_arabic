@@ -18,7 +18,8 @@ namespace Antura.Profile
         /// <summary>
         /// The player that is currently playing.
         /// </summary>
-        public PlayerProfile CurrentPlayer {
+        public PlayerProfile CurrentPlayer
+        {
             get { return _currentPlayer; }
             set {
                 if (_currentPlayer != value) {
@@ -150,7 +151,6 @@ namespace Antura.Profile
             }
             AppManager.I.AppSettingsManager.SaveSettings();
         }
-
         #endregion
 
         #region Player Profile Creation

@@ -1,3 +1,4 @@
+using Antura.Audio;
 using UnityEngine;
 
 namespace Antura.Core
@@ -32,6 +33,9 @@ namespace Antura.Core
             } else {
                 Settings = new AppSettings();
             }
+
+            AudioManager.I.MusicEnabled = Settings.MusicOn;
+            // Debug.Log("Setting music to " + Settings.MusicOn);
             return _settings;
         }
 
@@ -43,6 +47,7 @@ namespace Antura.Core
             var serializedObjs = JsonUtility.ToJson(Settings);
             PlayerPrefs.SetString(SETTINGS_PREFS_KEY, serializedObjs);
             PlayerPrefs.Save();
+            //Debug.Log("AppSettingsManager SaveSettings()");
         }
 
         /// <summary>
@@ -52,5 +57,13 @@ namespace Antura.Core
         {
             PlayerPrefs.DeleteAll();
         }
+
+        #region external API to save single settings
+        public void SaveMusicSetting(bool musicOn)
+        {
+            Settings.MusicOn = musicOn;
+            SaveSettings();
+        }
+        #endregion
     }
 }
