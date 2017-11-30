@@ -23,7 +23,7 @@
         {
             None,
             All,
-            AllButMain 
+            AllButMain
         }
 
         public LetterFilters(

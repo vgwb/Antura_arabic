@@ -66,8 +66,7 @@ namespace Antura.LivingLetters
         public bool Equals(ILivingLetterData data)
         {
             LL_WordData other = data as LL_WordData;
-            if (other == null)
-            {
+            if (other == null) {
                 return false;
             }
 

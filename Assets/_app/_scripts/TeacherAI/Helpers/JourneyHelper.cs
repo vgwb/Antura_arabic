@@ -47,22 +47,17 @@ namespace Antura.Teacher
 
             var allPlaySessions = dbManager.GetAllPlaySessionData();
             int next_id = -1;
-            for (int ps_i = 0; ps_i < allPlaySessions.Count; ps_i++)
-            {
-                if (allPlaySessions[ps_i].Id == id)
-                {
+            for (int ps_i = 0; ps_i < allPlaySessions.Count; ps_i++) {
+                if (allPlaySessions[ps_i].Id == id) {
                     next_id = ps_i + 1;
                     break;
                 }
             }
 
             // Check for the last session
-            if (next_id == allPlaySessions.Count)
-            {
+            if (next_id == allPlaySessions.Count) {
                 return null;
-            }
-            else
-            {
+            } else {
                 return PlaySessionIdToJourneyPosition(allPlaySessions[next_id].Id);
             }
         }
@@ -89,17 +84,12 @@ namespace Antura.Teacher
             var finalPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
             int NBasePlaySession = 2;
 
-            for (int s = 1; s <= finalPos.Stage; s++)
-            {
-                for (int lb = 1; lb <= finalPos.LearningBlock; lb++)
-                {
-                    for (int ps = 1; ps <= NBasePlaySession; ps++)
-                    {
+            for (int s = 1; s <= finalPos.Stage; s++) {
+                for (int lb = 1; lb <= finalPos.LearningBlock; lb++) {
+                    for (int ps = 1; ps <= NBasePlaySession; ps++) {
                         var jp = new JourneyPosition(s, lb, ps);
-                        if (AppManager.I.DB.HasPlaySessionDataById(jp.Id))
-                        {
-                            if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(jp, minigameCode))
-                            {
+                        if (AppManager.I.DB.HasPlaySessionDataById(jp.Id)) {
+                            if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(jp, minigameCode)) {
                                 return new JourneyPosition(s, lb, ps);
                             }
                         }
@@ -107,10 +97,8 @@ namespace Antura.Teacher
                     int assessmentCode = AssessmentPlaySessionIndex;
                     var jp_assessment = new JourneyPosition(s, lb, assessmentCode);
 
-                    if (AppManager.I.DB.HasPlaySessionDataById(jp_assessment.Id))
-                    {
-                        if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(jp_assessment, minigameCode))
-                        {
+                    if (AppManager.I.DB.HasPlaySessionDataById(jp_assessment.Id)) {
+                        if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(jp_assessment, minigameCode)) {
                             return new JourneyPosition(s, lb, assessmentCode);
                         }
                     }
@@ -130,8 +118,7 @@ namespace Antura.Teacher
             var learningBlockInfo_list = new List<LearningBlockInfo>();
             var learningBlockData_list = FindLearningBlockDataOfStage(targetStage);
 
-            foreach (var learningBlockData in learningBlockData_list)
-            {
+            foreach (var learningBlockData in learningBlockData_list) {
                 var LB_info = new LearningBlockInfo();
                 LB_info.data = learningBlockData;
                 LB_info.score = 0; // 0 if not found otherwise in the next step
@@ -140,8 +127,7 @@ namespace Antura.Teacher
 
             // Find all previous scores
             var scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
-            for (int i = 0; i < learningBlockInfo_list.Count; i++)
-            {
+            for (int i = 0; i < learningBlockInfo_list.Count; i++) {
                 var LB_info = learningBlockInfo_list[i];
                 var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.LearningBlock && x.ElementId == LB_info.data.Id);
                 LB_info.score = scoreData.GetScore();
@@ -162,8 +148,7 @@ namespace Antura.Teacher
             // @todo: probably move this to ScoreHelper
             var playSessionInfo_list = new List<PlaySessionInfo>();
             var playSessionData_list = FindPlaySessionDataOfStageAndLearningBlock(targetStage, targetLearningBlock);
-            foreach (var playSessionData in playSessionData_list)
-            {
+            foreach (var playSessionData in playSessionData_list) {
                 var PS_info = new PlaySessionInfo();
                 PS_info.data = playSessionData;
                 PS_info.score = 0; // 0 if not found otherwise in the next step
@@ -172,8 +157,7 @@ namespace Antura.Teacher
 
             // Find all previous scores
             var scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
-            for (int i = 0; i < playSessionInfo_list.Count; i++)
-            {
+            for (int i = 0; i < playSessionInfo_list.Count; i++) {
                 var PS_info = playSessionInfo_list[i];
                 var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.PlaySession && x.ElementId == PS_info.data.Id);
                 PS_info.score = scoreData.GetScore();

@@ -30,24 +30,29 @@ namespace Antura.Core
 
         public bool IsLoadingMinigame { get; private set; }
 
-        public bool IsTransitioningScenes {
+        public bool IsTransitioningScenes
+        {
             get { return SceneTransitionManager.IsTransitioning; }
         }
 
-        public int NumberOfLoadedScenes {
+        public int NumberOfLoadedScenes
+        {
             get { return SceneTransitionManager.NumberOfLoadedScenes; }
         }
 
-        public bool IsInFirstLoadedScene {
+        public bool IsInFirstLoadedScene
+        {
             get { return NumberOfLoadedScenes <= 1; }
         }
 
-        public Action OnSceneStartTransition {
+        public Action OnSceneStartTransition
+        {
             get { return SceneTransitionManager.OnSceneStartTransition; }
             set { SceneTransitionManager.OnSceneStartTransition = value; }
         }
 
-        public Action OnSceneEndTransition {
+        public Action OnSceneEndTransition
+        {
             get { return SceneTransitionManager.OnSceneEndTransition; }
             set { SceneTransitionManager.OnSceneEndTransition = value; }
         }
@@ -196,10 +201,10 @@ namespace Antura.Core
         /// </summary>
         public void GoBack()
         {
-           Debug.LogError("HITTING BACK FROM " + NavData.CurrentScene);
-            for (int i= 0; i<NavData.PrevSceneStack.Count; i++)
+            Debug.LogError("HITTING BACK FROM " + NavData.CurrentScene);
+            for (int i = 0; i < NavData.PrevSceneStack.Count; i++)
                 Debug.LogError(i + ": " + NavData.PrevSceneStack.ToArray()[i]);
-            
+
 
             if (NavData.PrevSceneStack.Count > 0) {
                 var prevScene = NavData.PrevSceneStack.Pop();
@@ -225,15 +230,12 @@ namespace Antura.Core
             AppScene filteredNewScene = FirstContactManager.I.FilterNavigation(GetCurrentScene(), wantedNewScene, out keepPrevAsBackable);
             if (keepPrevAsBackable) UpdatePrevSceneStack(wantedNewScene);
 
-            if (!FirstContactManager.I.IsInsideFirstContact())
-            {
+            if (!FirstContactManager.I.IsInsideFirstContact()) {
                 // Additional general checks when entering specific scenes
-                switch (filteredNewScene)
-                {
+                switch (filteredNewScene) {
                     case AppScene.Map:
                         // When coming back to the map, we need to check whether a new daily reward is needed
-                        if (CheckDailySceneTrigger())
-                        {
+                        if (CheckDailySceneTrigger()) {
                             GoToScene(AppScene.Mood);
                             return;
                         }
@@ -488,11 +490,13 @@ namespace Antura.Core
 
         #region Minigame Launching
 
-        public MiniGameData CurrentMiniGameData {
+        public MiniGameData CurrentMiniGameData
+        {
             get { return NavData.CurrentMiniGameData; }
         }
 
-        public List<MiniGameData> CurrentPlaySessionMiniGames {
+        public List<MiniGameData> CurrentPlaySessionMiniGames
+        {
             get { return NavData.CurrentPlaySessionMiniGames; }
         }
 
@@ -530,8 +534,7 @@ namespace Antura.Core
 
         private void GoToFirstGameOfPlaySession()
         {
-            if (TEST_SKIP_GAMES)
-            {
+            if (TEST_SKIP_GAMES) {
                 LogManager.I.EndMiniGame();
                 GoToScene(AppScene.PlaySessionResult);
                 return;
@@ -553,42 +556,32 @@ namespace Antura.Core
             }
 
             // From one game to the next
-            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
-            {
-                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition())
-                {
+            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
+                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition()) {
                     // We finished the whole game: no reward, go directly to the end scene instead
-                    if (!AppManager.I.Player.HasFinalBeenShown())
-                    {
+                    if (!AppManager.I.Player.HasFinalBeenShown()) {
                         AppManager.I.Player.SetGameCompleted();
                         AppManager.I.Player.SetFinalShown();
                         GoToScene(AppScene.Ending);
-                    }
-                    else {
+                    } else {
                         GoToScene(AppScene.Map);
                     }
-                } else
-                {
+                } else {
                     // We finished a non-end game assessment
-                    if (RewardSystemManager.RewardAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition))
-                    {
+                    if (RewardSystemManager.RewardAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                         // Security Check (issue #475): if the reward for the current PS has already been unlocked 
                         // we must be sure that the player is not on the most advanced PS, otherwise he/she would be stuck
                         // so we Increment MaxJourneyPosition to let him/her progress
-                        if (NavData.CurrentPlayer.CurrentJourneyPosition.Equals(NavData.CurrentPlayer.MaxJourneyPosition))
-                        {
+                        if (NavData.CurrentPlayer.CurrentJourneyPosition.Equals(NavData.CurrentPlayer.MaxJourneyPosition)) {
                             // wrong MaxJourneyPosition...
                             AppManager.I.Player.AdvanceMaxJourneyPosition();
                         }
                         GoToScene(AppScene.Map);
-                    }
-                    else
-                    {
+                    } else {
                         GoToScene(AppScene.Rewards);
                     }
                 }
-            } else
-            {
+            } else {
                 // Not an assessment. Do we have any more?
                 if (NavData.SetNextMinigame()) {
                     // Go to the next minigame.

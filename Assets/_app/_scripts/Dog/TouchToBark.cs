@@ -9,9 +9,9 @@ namespace Antura.Dog
 
         public void OnMouseDown()
         {
-            if (animationTimer > 0)
+            if (animationTimer > 0) {
                 return;
-
+            }
             var rnd = Random.value;
 
             if (rnd < 0.3f) {
@@ -22,8 +22,9 @@ namespace Antura.Dog
             } else if (rnd < 0.7f) {
                 GetComponent<AnturaAnimationController>().State = AnturaAnimationStates.sheeping;
                 animationTimer = 2;
-            } else
+            } else {
                 GetComponent<AnturaAnimationController>().DoShout(() => { AudioManager.I.PlaySound(Sfx.DogBarking); });
+            }
         }
 
         public void Update()

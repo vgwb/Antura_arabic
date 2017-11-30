@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using Antura.Database;
+using ArabicSupport;
 using System;
 using System.Collections.Generic;
-using Antura.Database;
-using ArabicSupport;
+using UnityEngine;
 
 namespace Antura.Helpers
 {
@@ -12,13 +12,12 @@ namespace Antura.Helpers
     {
         public struct ArabicStringPart
         {
-            public Database.LetterData letter;
+            public LetterData letter;
             public int fromCharacterIndex;
             public int toCharacterIndex;
-            public Database.LetterForm letterForm;
+            public LetterForm letterForm;
 
-            public ArabicStringPart(Database.LetterData letter, int fromCharacterIndex, int toCharacterIndex,
-                Database.LetterForm letterForm)
+            public ArabicStringPart(LetterData letter, int fromCharacterIndex, int toCharacterIndex, LetterForm letterForm)
             {
                 this.letter = letter;
                 this.fromCharacterIndex = fromCharacterIndex;
@@ -51,7 +50,7 @@ namespace Antura.Helpers
             }
         }
 
-        static List<Database.LetterData> allLetterData;
+        static List<LetterData> allLetterData;
         static Dictionary<string, UnicodeLookUpEntry> unicodeLookUpCache = new Dictionary<string, UnicodeLookUpEntry>();
 
         static Dictionary<DiacriticComboLookUpEntry, LetterData> diacriticComboLookUpCache =
@@ -80,7 +79,7 @@ namespace Antura.Helpers
             }
 
             int unicode = int.Parse(hexCode, System.Globalization.NumberStyles.HexNumber);
-            var character = (char) unicode;
+            var character = (char)unicode;
             return character.ToString();
         }
 
@@ -99,7 +98,7 @@ namespace Antura.Helpers
         /// Return a string of a word without a character. Warning: the word is already reversed and fixed for rendering.
         /// This is mandatory since PrepareArabicStringForDisplay should be called before adding removedLetterChar.
         /// </summary>
-        public static string GetWordWithMissingLetterText(Database.WordData arabicWord, ArabicStringPart partToRemove,
+        public static string GetWordWithMissingLetterText(WordData arabicWord, ArabicStringPart partToRemove,
             string removedLetterChar = "_")
         {
             string text = ProcessArabicString(arabicWord.Arabic);
@@ -115,10 +114,9 @@ namespace Antura.Helpers
         /// Find all the occurrences of "letterToFind" in "arabicWord"
         /// </summary>
         /// <returns>the list of occurrences</returns>
-        public static List<ArabicStringPart> FindLetter(DatabaseManager database, Database.WordData arabicWord,
-            Database.LetterData letterToFind)
+        public static List<ArabicStringPart> FindLetter(DatabaseManager database, WordData arabicWord, LetterData letterToFind)
         {
-            List<ArabicStringPart> result = new List<ArabicStringPart>();
+            var result = new List<ArabicStringPart>();
 
             var parts = AnalyzeData(database, arabicWord, false, letterToFind.Kind != LetterDataKind.LetterVariation);
 
@@ -170,7 +168,7 @@ namespace Antura.Helpers
             bool separateDiacritics = false, bool separateVariations = true)
         {
             if (allLetterData == null) {
-                allLetterData = new List<Database.LetterData>(staticDatabase.GetLetterTable().GetValuesTyped());
+                allLetterData = new List<LetterData>(staticDatabase.GetLetterTable().GetValuesTyped());
 
                 for (int l = 0; l < allLetterData.Count; ++l) {
                     var data = allLetterData[l];
@@ -230,8 +228,8 @@ namespace Antura.Helpers
                 }
 
                 // Find the letter, and check its form
-                Database.LetterForm letterForm = Database.LetterForm.None;
-                Database.LetterData letterData = null;
+                LetterForm letterForm = LetterForm.None;
+                LetterData letterData = null;
 
                 UnicodeLookUpEntry entry;
                 if (unicodeLookUpCache.TryGetValue(unicodeString, out entry)) {
@@ -240,15 +238,15 @@ namespace Antura.Helpers
                 }
 
                 if (letterData != null) {
-                    if (letterData.Kind == Database.LetterDataKind.DiacriticCombo && separateDiacritics) {
+                    if (letterData.Kind == LetterDataKind.DiacriticCombo && separateDiacritics) {
                         // It's a diacritic combo
                         // Separate Letter and Diacritic
                         result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.BaseLetter),
                             stringIndex, stringIndex, letterForm));
                         result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.Symbol),
                             stringIndex, stringIndex, letterForm));
-                    } else if (letterData.Kind == Database.LetterDataKind.Symbol &&
-                               letterData.Type == Database.LetterDataType.DiacriticSymbol && !separateDiacritics) {
+                    } else if (letterData.Kind == LetterDataKind.Symbol &&
+                               letterData.Type == LetterDataType.DiacriticSymbol && !separateDiacritics) {
                         // It's a diacritic
                         // Merge Letter and Diacritic
 
@@ -258,8 +256,7 @@ namespace Antura.Helpers
 
                         LetterData diacriticLetterData = null;
 
-                        diacriticComboLookUpCache.TryGetValue(new DiacriticComboLookUpEntry(symbolId, baseLetterId),
-                            out diacriticLetterData);
+                        diacriticComboLookUpCache.TryGetValue(new DiacriticComboLookUpEntry(symbolId, baseLetterId), out diacriticLetterData);
 
                         if (diacriticLetterData == null) {
                             Debug.LogError("Cannot find a single character for " + baseLetterId + " + " + symbolId +
@@ -270,7 +267,7 @@ namespace Antura.Helpers
                             ++previous.toCharacterIndex;
                             result[result.Count - 1] = previous;
                         }
-                    } else if (letterData.Kind == Database.LetterDataKind.LetterVariation && separateVariations &&
+                    } else if (letterData.Kind == LetterDataKind.LetterVariation && separateVariations &&
                                letterData.BaseLetter == "lam") {
                         // it's a lam-alef combo
                         // Separate Lam and Alef
@@ -279,7 +276,7 @@ namespace Antura.Helpers
 
                         var secondPart = staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.Symbol);
 
-                        if (secondPart.Kind == Database.LetterDataKind.DiacriticCombo && separateDiacritics) {
+                        if (secondPart.Kind == LetterDataKind.DiacriticCombo && separateDiacritics) {
                             // It's a diacritic combo
                             // Separate Letter and Diacritic
                             result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), secondPart.BaseLetter),

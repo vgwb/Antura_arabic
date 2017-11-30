@@ -340,19 +340,16 @@ namespace Antura.Database
 
         public bool FilterByDiacritics(LetterFilters.ExcludeDiacritics excludeDiacritics, LetterData data)
         {
-            switch (excludeDiacritics)
-            {
+            switch (excludeDiacritics) {
                 case LetterFilters.ExcludeDiacritics.All:
-                    if (data.IsOfKindCategory(LetterKindCategory.DiacriticCombo))
-                    {
+                    if (data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) {
                         return false;
                     }
                     break;
                 case LetterFilters.ExcludeDiacritics.AllButMain:
                     var symbol = GetSymbolOf(data.Id);
                     if (symbol != null && data.IsOfKindCategory(LetterKindCategory.DiacriticCombo) &&
-                        symbol.Tag != "MainDiacritic")
-                    {
+                        symbol.Tag != "MainDiacritic") {
                         return false;
                     }
                     break;
@@ -364,17 +361,14 @@ namespace Antura.Database
 
         public bool FilterByLetterVariations(LetterFilters.ExcludeLetterVariations excludeLetterVariations, LetterData data)
         {
-            switch (excludeLetterVariations)
-            {
+            switch (excludeLetterVariations) {
                 case LetterFilters.ExcludeLetterVariations.All:
-                    if (data.IsOfKindCategory(LetterKindCategory.LetterVariation))
-                    {
+                    if (data.IsOfKindCategory(LetterKindCategory.LetterVariation)) {
                         return false;
                     }
                     break;
                 case LetterFilters.ExcludeLetterVariations.AllButAlefHamza:
-                    if (data.IsOfKindCategory(LetterKindCategory.LetterVariation) && data.Tag != "AlefHamzaVariation")
-                    {
+                    if (data.IsOfKindCategory(LetterKindCategory.LetterVariation) && data.Tag != "AlefHamzaVariation") {
                         return false;
                     }
                     break;
@@ -386,8 +380,7 @@ namespace Antura.Database
 
         public bool FilterByDipthongs(bool excludeDiphthongs, LetterData data)
         {
-            if (excludeDiphthongs && data.Kind == LetterDataKind.Diphthong)
-            {
+            if (excludeDiphthongs && data.Kind == LetterDataKind.Diphthong) {
                 return false;
             }
             return true;
@@ -620,7 +613,7 @@ namespace Antura.Database
             if (word.Drawing != "") {
                 int result = 0;
                 if (int.TryParse(word.Drawing, NumberStyles.HexNumber, CultureInfo.CurrentCulture, out result)) {
-                    return ((char) result).ToString();
+                    return ((char)result).ToString();
                 }
                 return "";
             }
@@ -674,7 +667,7 @@ namespace Antura.Database
 
         public List<WordData> GetWordsWithLetter(WordFilters filters, string okLetter)
         {
-            return GetWordsByLetters(filters, new string[] {okLetter}, null);
+            return GetWordsByLetters(filters, new string[] { okLetter }, null);
         }
 
         public List<WordData> GetWordsWithLetters(WordFilters filters, params string[] okLetters)
@@ -684,7 +677,7 @@ namespace Antura.Database
 
         public List<WordData> GetWordsWithoutLetter(WordFilters filters, string tabooLetter)
         {
-            return GetWordsByLetters(filters, null, new string[] {tabooLetter});
+            return GetWordsByLetters(filters, null, new string[] { tabooLetter });
         }
 
         public List<WordData> GetWordsWithoutLetters(WordFilters filters, params string[] tabooLetters)

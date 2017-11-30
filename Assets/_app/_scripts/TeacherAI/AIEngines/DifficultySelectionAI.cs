@@ -42,13 +42,10 @@ namespace Antura.Teacher
             float playerPerformance;
             string query = string.Format("SELECT * FROM " + typeof(MiniGameScoreData).Name + " WHERE MiniGameCode = '{0}'", (int)miniGameCode);
             var minigame_scoreData_list = dbManager.Query<MiniGameScoreData>(query);
-            if (minigame_scoreData_list.Count == 0)
-            {
+            if (minigame_scoreData_list.Count == 0) {
                 playerPerformance = ConfigAI.StartingDifficultyForNewMiniGame;
                 //Debug.Log("No previous scores");
-            }
-            else
-            {
+            } else {
                 // We use a custom logic to define the difficulty:
                 // - start from performance = 0
                 // - get last N scores for the minigame
@@ -63,15 +60,13 @@ namespace Antura.Teacher
                 //Debug.Log("Found " + (scores.Count) + " previous scores");
 
                 // Diminish to create the weights [-1, 0, 1, 2]
-                for (var i = 0; i < scores.Count; i++)
-                {
+                for (var i = 0; i < scores.Count; i++) {
                     scores[i] -= 1;
                 }
 
                 // Compute the performance for these minigames starting from zero and adding values
                 playerPerformance = 0f;
-                for (var i = 0; i < scores.Count; i++)
-                {
+                for (var i = 0; i < scores.Count; i++) {
                     playerPerformance += scores[i] * ConfigAI.ScoreStarsToDifficultyContribution;
                     //Debug.LogWarning("Score " + i + " was " + (scores[i] + 1) + " contrib: " + scores[i] * scorePointsContribution + " current " + playerPerformance);
                 }
@@ -84,8 +79,7 @@ namespace Antura.Teacher
             float totalDifficulty = weightedAgeDifficulty + weightedPerformanceDifficulty;
 
             // Debug log
-            if (ConfigAI.VerboseDifficultySelection)
-            {
+            if (ConfigAI.VerboseDifficultySelection) {
                 var debugString = ConfigAI.FormatTeacherReportHeader("Selected Difficulty : " + totalDifficulty);
                 debugString += "\n From Age (C " + ageWeightContribution + "): " + ageDifficulty + " w(" + weightedAgeDifficulty + ")";
                 debugString += "\n From Performance (C " + performanceWeightContribution + "): " + performanceDifficulty + " w(" + weightedPerformanceDifficulty + ")";
