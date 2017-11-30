@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using UnityEngine;
 
 namespace Antura.Core
 {
@@ -120,6 +121,18 @@ namespace Antura.Core
         public static string GetJoinedDatabaseFilename()
         {
             return "Antura_Joined_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
+        }
+
+        public static bool IsDesktopPlatform()
+        {
+            return (Application.platform == RuntimePlatform.WindowsPlayer ||
+                    Application.platform == RuntimePlatform.OSXPlayer);
+        }
+
+        public static bool IsMobilePlatform()
+        {
+            return (Application.platform == RuntimePlatform.Android ||
+                    Application.platform == RuntimePlatform.IPhonePlayer);
         }
     }
 }
