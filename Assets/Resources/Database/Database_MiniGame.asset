@@ -212,7 +212,7 @@ MonoBehaviour:
       _Available: 1
       _Type: 1
       _Main: Balloons
-      _Variation: letter
+      _Variation: letterinword
       _Badge: letters
       _Scene: game_Balloons
       _AffectedPlaySkills:
@@ -224,7 +224,7 @@ MonoBehaviour:
       _Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064F \u0648\u0627\u0644\u0643\u0644\u0645\u0629\u064F
         \u0627\u0644\u062E\u0641\u064A\u0629!"
       _Code: 3
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: Balloons
       _Variation: spelling
@@ -268,7 +268,7 @@ MonoBehaviour:
     - _Title_En: Dancing Star!
       _Title_Ar: "\u0646\u062C\u0648\u0645\u064F \u0627\u0644\u0631\u0642\u0635!"
       _Code: 10
-      _Available: 1
+      _Available: 0
       _Type: 1
       _Main: DancingDots
       _Variation: letter
@@ -367,7 +367,7 @@ MonoBehaviour:
       _AffectedPlaySkills:
       - Skill: 5
         Weight: 1
-    - _Title_En: FastCrowd LetterFOrm (NEW)
+    - _Title_En: FastCrowd LetterForm (NEW)
       _Title_Ar: 
       _Code: 38
       _Available: 1
@@ -460,6 +460,16 @@ MonoBehaviour:
         Weight: 0.6
       - Skill: 4
         Weight: 0.4
+    - _Title_En: Missing Letter Forms! (NEW)
+      _Title_Ar: 
+      _Code: 39
+      _Available: 1
+      _Type: 1
+      _Main: MissingLetter
+      _Variation: letterform
+      _Badge: letters
+      _Scene: game_MissingLetter
+      _AffectedPlaySkills: []
     - _Title_En: Missing Word!
       _Title_Ar: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F\u0629!"
       _Code: 20

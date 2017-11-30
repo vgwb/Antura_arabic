@@ -166,8 +166,10 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 1
-      _NumberOfMinigames: 2
+      _NumberOfMinigames: 3
       _Minigames:
+      - MiniGameCode: 35
+        Weight: 3
       - MiniGameCode: 36
         Weight: 2
       - MiniGameCode: 38

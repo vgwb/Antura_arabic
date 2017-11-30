@@ -6,9 +6,10 @@ namespace Antura.Minigames.MissingLetter
 {
     public enum MissingLetterVariation
     {
-        MissingLetter = MiniGameCode.MissingLetter_letter,
-        MissingWord = MiniGameCode.MissingLetter_phrase,
-        MissingForm = MiniGameCode.MissingLetter_letterinword
+        Letter = MiniGameCode.MissingLetter_letter,
+        Phrase = MiniGameCode.MissingLetter_phrase,
+        LetterForm = MiniGameCode.MissingLetter_letterform,
+        LetterInWord = MiniGameCode.MissingLetter_letterinword
     }
 
     public class MissingLetterConfiguration : IGameConfiguration
@@ -33,8 +34,7 @@ namespace Antura.Minigames.MissingLetter
         {
             get
             {
-                if (instance == null)
-                {
+                if (instance == null) {
                     instance = new MissingLetterConfiguration();
                 }
                 return instance;
@@ -51,7 +51,7 @@ namespace Antura.Minigames.MissingLetter
 
             Difficulty = 0.5f;
             //Variation = MissingLetterVariation.MissingLetter;
-            Variation = MissingLetterVariation.MissingForm;
+            Variation = MissingLetterVariation.LetterInWord;
             TutorialEnabled = true;
         }
 
@@ -65,19 +65,23 @@ namespace Antura.Minigames.MissingLetter
 
             var builderParams = new Teacher.QuestionBuilderParameters();
 
-            switch (Variation)
-            {
-                case MissingLetterVariation.MissingForm:
+            switch (Variation) {
+                case MissingLetterVariation.LetterInWord:
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builderParams.letterFilters.excludeDiphthongs = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters: true, parameters: builderParams);
                     break;
 
-                case MissingLetterVariation.MissingLetter:
+                case MissingLetterVariation.LetterForm:
+                    // TODO
+                    throw new System.Exception("MissingLetterVariation.MissingLetterForm to be done");
+                    break;
+
+                case MissingLetterVariation.Letter:
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters: true, parameters: builderParams);
                     break;
 
-                case MissingLetterVariation.MissingWord:
+                case MissingLetterVariation.Phrase:
                     builderParams.phraseFilters.requireWords = true;
                     builderParams.phraseFilters.requireAtLeastTwoWords = true;
                     builder = new WordsInPhraseQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);

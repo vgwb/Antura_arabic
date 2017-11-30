@@ -1,4 +1,4 @@
-﻿using Antura.Audio;
+using Antura.Audio;
 using Antura.Core;
 using Antura.Helpers;
 using Antura.LivingLetters;
@@ -38,7 +38,7 @@ namespace Antura.Minigames.MissingLetter
             m_oGame.m_oLetterPrefab.GetComponent<LetterBehaviour>().mfDistanceBetweenLetters = m_oGame.m_fDistanceBetweenLetters;
 
             int qstPoolSize = 3;
-            qstPoolSize *= (MissingLetterConfiguration.Instance.Variation != MissingLetterVariation.MissingWord) ? 1 : m_oGame.m_iMaxSentenceSize;
+            qstPoolSize *= (MissingLetterConfiguration.Instance.Variation != MissingLetterVariation.Phrase) ? 1 : m_oGame.m_iMaxSentenceSize;
 
             m_oGame.m_oLetterPrefab.GetComponent<LetterBehaviour>().SetPositions(m_v3QstPos + Vector3.right * m_oGame.m_sQuestionOffset.fINOffset, m_v3QstPos, m_v3QstPos + Vector3.right * m_oGame.m_sQuestionOffset.fOUTOffset);
             m_oQuestionPool = new GameObjectPool(m_oGame.m_oLetterPrefab, qstPoolSize, false);
@@ -67,7 +67,7 @@ namespace Antura.Minigames.MissingLetter
             m_oGame.SetInIdle(false);
             ExitCurrentScene();
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingWord) {
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.Phrase) {
                 NextSentenceQuestion();
             } else {
                 NextWordQuestion();
@@ -166,7 +166,7 @@ namespace Antura.Minigames.MissingLetter
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
             corrAnsBheaviour.Reset();
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm) {
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.LetterInWord) {
                 var form = m_oRemovedLetter.letterForm;
                 LL_LetterData formAnswer = new LL_LetterData(_correctAnswer.Id);
                 formAnswer.Form = form;
@@ -212,7 +212,7 @@ namespace Antura.Minigames.MissingLetter
                 m_aoCurrentAnswerScene.Add(_wrongAnswerObject);
             }
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm)
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.LetterInWord)
                 m_aoCurrentAnswerScene.Sort((a, b) => {
                     var first = (LL_LetterData)a.GetComponent<LetterBehaviour>().LetterData;
                     var second = (LL_LetterData)b.GetComponent<LetterBehaviour>().LetterData;
@@ -348,7 +348,7 @@ namespace Antura.Minigames.MissingLetter
             Color32 markColor = result ? new Color32(0x4C, 0xAF, 0x50, 0xFF) : new Color32(0xDD, 0x2C, 0x00, 0xFF);
             string color = result ? "#4CAF50" : "#DD2C00";
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingWord) {
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.Phrase) {
                 letterView.Label.text = "<color=" + color + ">" + letterView.Label.text + "</color>";
             } else {
                 LL_WordData word = (LL_WordData)m_oCurrQuestionPack.GetQuestion();

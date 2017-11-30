@@ -12,11 +12,11 @@ namespace Antura.Minigames.MissingLetter
 
         public void EnterState()
         {
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.Letter)
             {
                 AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_Title);
             }
-            else if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm)
+            else if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.LetterInWord)
             {
                 AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_forms_Title);
             }

@@ -93,7 +93,7 @@ namespace Antura.Minigames.MissingLetter
             m_iRoundsLimit = 10;
             m_iNumberOfPossibleAnswers = Mathf.RoundToInt(Mathf.Lerp(2, 6, _diff));
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingWord)
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.Phrase)
                 m_fGameTime = Mathf.Lerp(120, 80, _diff);
             else
                 m_fGameTime = Mathf.Lerp(90, 60, _diff);

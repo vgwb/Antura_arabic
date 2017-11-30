@@ -219,7 +219,7 @@ namespace Antura.Minigames.Balloons
                 case BalloonsVariation.Spelling:
                     title = LocalizationDataId.Balloons_spelling_Title;
                     break;
-                case BalloonsVariation.Letter:
+                case BalloonsVariation.LetterInWord:
                     title = LocalizationDataId.Balloons_letter_Title;
                     break;
                 case BalloonsVariation.Words:
@@ -243,7 +243,7 @@ namespace Antura.Minigames.Balloons
                 case BalloonsVariation.Spelling:
                     tutorial = LocalizationDataId.Balloons_spelling_Tuto;
                     break;
-                case BalloonsVariation.Letter:
+                case BalloonsVariation.LetterInWord:
                     tutorial = LocalizationDataId.Balloons_letter_Tuto;
                     break;
                 case BalloonsVariation.Words:
@@ -267,7 +267,7 @@ namespace Antura.Minigames.Balloons
                 case BalloonsVariation.Spelling:
                     intro = LocalizationDataId.Balloons_spelling_Intro;
                     break;
-                case BalloonsVariation.Letter:
+                case BalloonsVariation.LetterInWord:
                     intro = LocalizationDataId.Balloons_letter_Intro;
                     break;
                 case BalloonsVariation.Words:
@@ -427,7 +427,7 @@ namespace Antura.Minigames.Balloons
                         StartCoroutine(StartNewRound_Coroutine());
                         break;
 
-                    case BalloonsVariation.Letter:
+                    case BalloonsVariation.LetterInWord:
                         var letterToKeepData = question as LL_LetterData;
                         var letterToKeep = letterToKeepData.TextForLivingLetter;
 
@@ -519,7 +519,7 @@ namespace Antura.Minigames.Balloons
                     uiCanvas.gameObject.SetActive(true);
                     break;
 
-                case BalloonsVariation.Letter:
+                case BalloonsVariation.LetterInWord:
                     //Popup.Show();
                     //Popup.SetButtonCallback(OnRoundStartPressed);
                     //Popup.SetLetterData(question);
@@ -621,7 +621,7 @@ namespace Antura.Minigames.Balloons
                     }
                     break;
 
-                case BalloonsVariation.Letter:
+                case BalloonsVariation.LetterInWord:
                     timer.DisplayTime();
                     CreateFloatingLetters_Letter(currentRound);
                     if (isTutorialRound)
@@ -1214,7 +1214,7 @@ namespace Antura.Minigames.Balloons
                     }
                     break;
 
-                case BalloonsVariation.Letter:
+                case BalloonsVariation.LetterInWord:
                 case BalloonsVariation.Words:
                     if (!requiredBalloonsExist)
                     {

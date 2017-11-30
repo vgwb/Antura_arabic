@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Linq;
 using Antura.LivingLetters;
@@ -295,7 +295,7 @@ namespace Antura.Minigames.Balloons
             if (Letter.isRequired)
             {
                 BalloonsGame.instance.OnPoppedRequiredBalloon(Letter.associatedPromptIndex);
-                if (BalloonsConfiguration.Instance.Variation == BalloonsVariation.Letter)
+                if (BalloonsConfiguration.Instance.Variation == BalloonsVariation.LetterInWord)
                 {
                     Letter.FlashLetterInWord(((LL_LetterData)BalloonsGame.instance.question).Data, Color.red);
                 }

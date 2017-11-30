@@ -8,7 +8,7 @@ namespace Antura.Minigames.Balloons
     {
         Spelling = MiniGameCode.Balloons_spelling,
         Words = MiniGameCode.Balloons_word,
-        Letter = MiniGameCode.Balloons_letter,
+        LetterInWord = MiniGameCode.Balloons_letterinword,
         Counting = MiniGameCode.Balloons_counting
     }
 
@@ -40,8 +40,7 @@ namespace Antura.Minigames.Balloons
         {
             get
             {
-                if (instance == null)
-                {
+                if (instance == null) {
                     instance = new BalloonsConfiguration();
                 }
                 return instance;
@@ -76,8 +75,7 @@ namespace Antura.Minigames.Balloons
 
             var builderParams = new Teacher.QuestionBuilderParameters();
 
-            switch (Variation)
-            {
+            switch (Variation) {
                 case BalloonsVariation.Spelling:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
@@ -88,7 +86,7 @@ namespace Antura.Minigames.Balloons
                     builderParams.wordFilters.requireDrawings = true;
                     builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
-                case BalloonsVariation.Letter:
+                case BalloonsVariation.LetterInWord:
                     builder = new WordsWithLetterQuestionBuilder(nPacks, nPacksPerRound: 1, forceUnseparatedLetters: true, nCorrect: nCorrect, nWrong: nWrong);
                     break;
                 case BalloonsVariation.Counting:
