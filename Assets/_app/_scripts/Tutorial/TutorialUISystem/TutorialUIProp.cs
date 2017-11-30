@@ -65,8 +65,8 @@ namespace Antura.Tutorial
 
         public void Hide(bool _immediate = false)
         {
-            if (_immediate) ShowTween.Rewind();
-            else ShowTween.PlayBackwards();
+            if (_immediate) { ShowTween.Rewind(); }
+            else { ShowTween.PlayBackwards(); }
         }
 
         #endregion

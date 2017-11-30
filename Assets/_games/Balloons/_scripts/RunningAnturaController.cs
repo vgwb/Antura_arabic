@@ -23,6 +23,7 @@ namespace Antura.Minigames.Balloons
                 transform.rotation = Quaternion.Euler(0f, 90f, 0f);
                 gameObject.SetActive(false);
             }
+
             if (transform.position.x < startingPosition1.x)
             {
                 transform.position = startingPosition1;

@@ -5,7 +5,7 @@ namespace Antura.Minigames.SickLetters
 {
     public enum SickLettersVariation
     {
-        Default = MiniGameCode.SickLetters,
+        Default = MiniGameCode.SickLetters_letter,
     }
 
     public class SickLettersConfiguration : IGameConfiguration
@@ -41,7 +41,7 @@ namespace Antura.Minigames.SickLetters
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new MinigamesGameContext(MiniGameCode.SickLetters, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.SickLetters_letter, System.DateTime.Now.Ticks.ToString());
             Questions = new SickLettersQuestionProvider();
             TutorialEnabled = true;
             //SickLettersQuestions = new SickLettersQuestionProvider();

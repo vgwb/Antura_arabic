@@ -1,5 +1,6 @@
 ﻿using System;
 using Antura.Core;
+using Antura.Database;
 using UnityEngine;
 
 namespace Antura.LivingLetters
@@ -24,20 +25,25 @@ namespace Antura.LivingLetters
             set { Data = AppManager.I.DB.GetLetterDataById(value); }
         }
 
-        public LL_LetterData(string _id) :
-            this(AppManager.I.DB.GetLetterDataById(_id)) /// TODO refactor: inject the value, no reference to the DB
-        {
-        }
-
-        public LL_LetterData(Database.LetterData _data)
+        // @note: this should be the only constructor for LL_LetterData
+        public LL_LetterData(LetterData _data)
         {
             Data = _data;
+            if (_data.ForcedLetterForm != LetterForm.None) Form = _data.ForcedLetterForm;
         }
 
+        // TODO: remove this constructor, the MiniGame should not force the Form!
+        public LL_LetterData(string _id) : this(AppManager.I.DB.GetLetterDataById(_id))
+        /// TODO refactor: inject the value, no reference to the DB
+        {
+        }
+
+        // TODO: remove this constructor, the MiniGame should not force the Form!
         public LL_LetterData(string _id, Database.LetterForm form) : this(AppManager.I.DB.GetLetterDataById(_id), form)
         {
         }
 
+        // TODO: remove this constructor, the MiniGame should not force the Form!
         public LL_LetterData(Database.LetterData _data, Database.LetterForm form)
         {
             Data = _data;
@@ -65,8 +71,9 @@ namespace Antura.LivingLetters
         public bool Equals(ILivingLetterData data)
         {
             LL_LetterData other = data as LL_LetterData;
-            if (other == null)
+            if (other == null) {
                 return false;
+            }
 
             return other.Data.Id == Data.Id && other.Form == Form;
         }

@@ -44,7 +44,7 @@ namespace Antura.Teacher
         public List<string> filteringIds;
         public bool sortDataByDifficulty;
 
-        public SelectionParameters(SelectionSeverity severity, int nRequired = 0, bool getMaxData = false, bool useJourney = true, JourneyFilter journeyFilter = JourneyFilter.CurrentJourney, PackListHistory packListHistory = PackListHistory.NoFilter, List < string> filteringIds = null, bool sortDataByDifficulty = false)
+        public SelectionParameters(SelectionSeverity severity, int nRequired = 0, bool getMaxData = false, bool useJourney = true, JourneyFilter journeyFilter = JourneyFilter.CurrentJourney, PackListHistory packListHistory = PackListHistory.NoFilter, List<string> filteringIds = null, bool sortDataByDifficulty = false)
         {
             this.nRequired = nRequired;
             this.getMaxData = getMaxData;
@@ -69,7 +69,7 @@ namespace Antura.Teacher
         public SelectionSeverity correctSeverity;
         public SelectionSeverity wrongSeverity;
         public bool sortPacksByDifficulty;
-        
+
         // data-based params
         public LetterFilters letterFilters;
         public WordFilters wordFilters;
@@ -89,6 +89,4 @@ namespace Antura.Teacher
             this.sortPacksByDifficulty = true;
         }
     }
-
-
 }

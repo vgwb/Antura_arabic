@@ -15,6 +15,7 @@ namespace Antura.Teacher.Test
         Empty,
 
         RandomLetters,
+        RandomLetterForms,
         Alphabet,
         LettersBySunMoon,
         LettersByType,
@@ -454,6 +455,9 @@ namespace Antura.Teacher.Test
             {
                 case QuestionBuilderType.RandomLetters:
                     builder = new RandomLettersQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, firstCorrectIsQuestion: true, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.RandomLetterForms:
+                    builder = new RandomLetterVariationsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, parameters: builderParams);
                     break;
                 case QuestionBuilderType.Alphabet:
                     builder = new AlphabetQuestionBuilder(parameters: builderParams);

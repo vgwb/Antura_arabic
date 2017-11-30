@@ -69,7 +69,7 @@ namespace Antura.Helpers
         public static T GetRandomEnum<T>()
         {
             var A = Enum.GetValues(typeof(T));
-            var V = (T) A.GetValue(UnityEngine.Random.Range(0, A.Length));
+            var V = (T)A.GetValue(UnityEngine.Random.Range(0, A.Length));
             return V;
         }
 

@@ -86,7 +86,7 @@ namespace Antura.Minigames.FastCrowd
 
         void OnQuestionCompleted()
         {
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling ||
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord ||
                   FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
             {
                 // In spelling and letter, increment score only when the full question is completed
@@ -94,7 +94,7 @@ namespace Antura.Minigames.FastCrowd
                     game.IncrementScore();
             }
 
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord)
             {
                 var question = game.CurrentQuestion;
 
@@ -109,7 +109,7 @@ namespace Antura.Minigames.FastCrowd
         {
             game.Context.GetCheckmarkWidget().Show(result);
 
-            if ((FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Spelling &&
+            if ((FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.LetterInWord &&
                 FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Letter)
                 )
             {

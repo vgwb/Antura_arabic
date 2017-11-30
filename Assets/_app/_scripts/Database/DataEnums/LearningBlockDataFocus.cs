@@ -8,5 +8,6 @@ namespace Antura.Database
         Sounds = 3,
         Words = 4,
         Phrases = 5,
+        Phonems = 6
     }
 }

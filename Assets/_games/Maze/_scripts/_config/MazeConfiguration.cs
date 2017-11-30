@@ -7,7 +7,7 @@ namespace Antura.Minigames.Maze
 {
     public enum MazeVariation
     {
-        Default = MiniGameCode.Maze
+        Default = MiniGameCode.Maze_letter
     }
 
     public class MazeConfiguration : IGameConfiguration
@@ -53,7 +53,7 @@ namespace Antura.Minigames.Maze
             Letters = new MazeLetterProvider();
             Variation = MazeVariation.Default;
 
-            Context = new MinigamesGameContext(MiniGameCode.Maze, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.Maze_letter, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
             TutorialEnabled = false;
         }

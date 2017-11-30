@@ -27,8 +27,7 @@ namespace Antura.Teacher
             PlaySessionData playSessionData = dbManager.GetPlaySessionDataById(playSessionId);
 
             List<MiniGameData> selectedMiniGameData = null;
-            switch (playSessionData.Order)
-            {
+            switch (playSessionData.Order) {
                 case PlaySessionDataOrder.Sequence:
                     selectedMiniGameData = PerformSelection_Sequence(playSessionData, numberToSelect);
                     break;
@@ -46,38 +45,30 @@ namespace Antura.Teacher
             // ... also, use the weights to determine insertion order (used to determine the sequential order)
             var ordered_minigamecodes = new SortedDictionary<float, MiniGameCode>();
             int fakeNumber = 1000;
-            foreach (var minigameInPlaySession in playSessionData.Minigames)
-            {
-                if (ordered_minigamecodes.ContainsKey(minigameInPlaySession.Weight))
-                {
+            foreach (var minigameInPlaySession in playSessionData.Minigames) {
+                if (ordered_minigamecodes.ContainsKey(minigameInPlaySession.Weight)) {
                     ordered_minigamecodes[fakeNumber] = minigameInPlaySession.MiniGameCode;
                     fakeNumber++;
-                }
-                else
-                {
+                } else {
                     ordered_minigamecodes[minigameInPlaySession.Weight] = minigameInPlaySession.MiniGameCode;
                 }
             }
 
             // Get, in order, each minigame data, filter by availability (from the static DB)
             var minigame_data_list = new List<MiniGameData>();
-            foreach (var orderedPair in ordered_minigamecodes)
-            {
+            foreach (var orderedPair in ordered_minigamecodes) {
                 var data = dbManager.GetMiniGameDataByCode(orderedPair.Value);
-                if (data.Available)
-                {
+                if (data.Available) {
                     minigame_data_list.Add(data);
                 }
             }
 
             // Number checks
             int actualNumberToSelect = UnityEngine.Mathf.Min(numberToSelect, minigame_data_list.Count);
-            if (minigame_data_list.Count == 0)
-            {
+            if (minigame_data_list.Count == 0) {
                 throw new System.Exception("Cannot find even a single minigame for play session " + playSessionData.Id);
             }
-            if (numberToSelect > minigame_data_list.Count)
-            {
+            if (numberToSelect > minigame_data_list.Count) {
                 UnityEngine.Debug.LogWarning("Could not select the requested number of " + numberToSelect + " minigames for play session " + playSessionData.Id + " (only " + minigame_data_list.Count + " are available)");
             }
 
@@ -93,8 +84,7 @@ namespace Antura.Teacher
             var minigame_id_list = new List<string>();
             var playsession_weights_dict = new Dictionary<MiniGameCode, float>();
 
-            foreach (var minigameInPlaySession in playSessionData.Minigames)
-            {
+            foreach (var minigameInPlaySession in playSessionData.Minigames) {
                 minigame_id_list.Add(minigameInPlaySession.MiniGameCode.ToString());
                 playsession_weights_dict[minigameInPlaySession.MiniGameCode] = minigameInPlaySession.Weight;
             }
@@ -116,13 +106,11 @@ namespace Antura.Teacher
 
             string debugString = ConfigAI.FormatTeacherReportHeader("Minigame Selection");
 
-            foreach (var minigame_data in minigame_data_list)
-            {
+            foreach (var minigame_data in minigame_data_list) {
                 float cumulativeWeight = 0;
                 var minigame_scoredata = minigame_score_list.Find(x => x.MiniGameCode == minigame_data.Code);
                 int daysSinceLastScore = 0;
-                if (minigame_scoredata != null)
-                {
+                if (minigame_scoredata != null) {
                     var timespanFromLastScoreToNow = GenericHelper.GetTimeSpanBetween(minigame_scoredata.UpdateTimestamp, GenericHelper.GetTimestampForNow());
                     daysSinceLastScore = timespanFromLastScoreToNow.Days;
                 }
@@ -134,8 +122,7 @@ namespace Antura.Teacher
                 debugString += " PSw: " + playSessionWeight * ConfigAI.MiniGame_PlaySession_Weight + "(" + playSessionWeight + ")";
 
                 // Some minigames are required to appear (weight 100+)
-                if (playsession_weights_dict[minigame_data.Code] >= 100)
-                {
+                if (playsession_weights_dict[minigame_data.Code] >= 100) {
                     required_minigames.Add(minigame_data);
                     debugString += " REQUIRED!\n";
                     continue;
@@ -152,8 +139,7 @@ namespace Antura.Teacher
                 weights_list.Add(cumulativeWeight);
                 debugString += " TOTw: " + cumulativeWeight + "\n";
             }
-            if (ConfigAI.VerboseMinigameSelection)
-            {
+            if (ConfigAI.VerboseMinigameSelection) {
                 ConfigAI.AppendToTeacherReport(debugString);
             }
 
@@ -162,18 +148,15 @@ namespace Antura.Teacher
 
             // Remove the required ones
             actualNumberToSelect -= required_minigames.Count;
-            foreach (var requiredMinigame in required_minigames)
-            {
+            foreach (var requiredMinigame in required_minigames) {
                 minigame_data_list.Remove(requiredMinigame);
             }
 
-            if (actualNumberToSelect > 0 && minigame_data_list.Count == 0)
-            {
+            if (actualNumberToSelect > 0 && minigame_data_list.Count == 0) {
                 throw new System.Exception("Cannot find even a single minigame for play session " + playSessionData.Id);
             }
 
-            if (actualNumberToSelect > minigame_data_list.Count)
-            {
+            if (actualNumberToSelect > minigame_data_list.Count) {
                 UnityEngine.Debug.LogWarning("Could not select the requested number of " + numberToSelect + " minigames for play session " + playSessionData.Id + " (only " + minigame_data_list.Count + " are available)");
             }
 

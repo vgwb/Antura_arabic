@@ -6,7 +6,7 @@ namespace Antura.Minigames.Scanner
 {
     public enum ScannerVariation
     {
-        OneWord = MiniGameCode.Scanner,
+        OneWord = MiniGameCode.Scanner_word,
         MultipleWords = MiniGameCode.Scanner_phrase
     }
 
@@ -53,7 +53,7 @@ namespace Antura.Minigames.Scanner
             Variation = ScannerVariation.OneWord;
 
             Questions = new SampleQuestionProvider();
-            Context = new MinigamesGameContext(MiniGameCode.Scanner, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.Scanner_word, System.DateTime.Now.Ticks.ToString());
             TutorialEnabled = true;
         }
 

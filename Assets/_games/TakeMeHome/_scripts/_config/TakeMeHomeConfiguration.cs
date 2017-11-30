@@ -6,7 +6,7 @@ namespace Antura.Minigames.TakeMeHome
 {
     public enum TakeMeHomeVariation
     {
-        Default = MiniGameCode.TakeMeHome,
+        Default = MiniGameCode.TakeMeHome_letter,
     }
 
     public class TakeMeHomeConfiguration : IGameConfiguration
@@ -47,7 +47,7 @@ namespace Antura.Minigames.TakeMeHome
         private TakeMeHomeConfiguration()
         {
             // Default values
-            Context = new MinigamesGameContext(MiniGameCode.TakeMeHome, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.TakeMeHome_letter, System.DateTime.Now.Ticks.ToString());
             Letters = new TakeMeHomeLettersProvider();
             Questions = new SampleQuestionProvider();
             Difficulty = 0;

@@ -61,18 +61,14 @@ namespace Antura.Debugging
 
         void Awake()
         {
-            if (I != null)
-            {
+            if (I != null) {
                 Destroy(gameObject);
-            }
-            else
-            {
+            } else {
                 I = this;
                 DontDestroyOnLoad(gameObject);
             }
 
-            if (Panel.activeSelf)
-            {
+            if (Panel.activeSelf) {
                 Panel.SetActive(false);
             }
         }
@@ -84,8 +80,7 @@ namespace Antura.Debugging
         public void OnClickOpen()
         {
             clickCounter++;
-            if (clickCounter >= 3)
-            {
+            if (clickCounter >= 3) {
                 Open();
             }
         }
@@ -193,8 +188,7 @@ namespace Antura.Debugging
 
         private void BuildUI()
         {
-            if (AppManager.I.Player != null)
-            {
+            if (AppManager.I.Player != null) {
                 InputStage.text = AppManager.I.Player.CurrentJourneyPosition.Stage.ToString();
                 InputLearningBlock.text = AppManager.I.Player.CurrentJourneyPosition.LearningBlock.ToString();
                 InputPlaySession.text = AppManager.I.Player.CurrentJourneyPosition.PlaySession.ToString();
@@ -210,21 +204,18 @@ namespace Antura.Debugging
 
             EmptyContainer(Container);
 
-            foreach (var mainMiniGame in mainMiniGamesList)
-            {
+            foreach (var mainMiniGame in mainMiniGamesList) {
                 var newRow = Instantiate(PrefabRow);
                 newRow.transform.SetParent(Container.transform, false);
 
                 newRow.GetComponent<DebugMiniGameRow>().Title.text = mainMiniGame.MainId;
 
-                foreach (var gameVariation in mainMiniGame.variations)
-                {
+                foreach (var gameVariation in mainMiniGame.variations) {
                     Debug.Assert(difficultiesForTesting.ContainsKey(gameVariation.data.Code),
                         "No difficulty for testing setup for game variation " + gameVariation.data.Code);
                     var difficulties = difficultiesForTesting[gameVariation.data.Code];
 
-                    foreach (var difficulty in difficulties)
-                    {
+                    foreach (var difficulty in difficulties) {
                         var btnGO = Instantiate(PrefabMiniGameButton);
                         btnGO.transform.SetParent(newRow.transform, false);
                         bool gamePlayed;
@@ -259,27 +250,19 @@ namespace Antura.Debugging
             var debugJP = new JourneyPosition(int.Parse(InputStage.text), int.Parse(InputLearningBlock.text),
                 int.Parse(InputPlaySession.text));
 
-            if (!DebugManager.I.SafeLaunch || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(debugJP, minigameCode))
-            {
+            if (!DebugManager.I.SafeLaunch || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(debugJP, minigameCode)) {
                 LaunchMiniGameAtJourneyPosition(minigameCode, difficulty, debugJP);
-            }
-            else
-            {
-                if (DebugManager.I.SafeLaunch)
-                {
+            } else {
+                if (DebugManager.I.SafeLaunch) {
                     JourneyPosition minJP = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
-                    if (minJP == null)
-                    {
+                    if (minJP == null) {
                         Debug.LogWarningFormat(
                             "Minigame {0} could not be selected for any PlaySession. Please check the PlaySession data table.",
                             minigameCode);
-                    }
-                    else
-                    {
+                    } else {
                         Debug.LogErrorFormat("Minigame {0} cannot be selected PS {1}. Minimum PS is: {2}", minigameCode, debugJP, minJP);
 
-                        if (AutoCorrectJourneyPos)
-                        {
+                        if (AutoCorrectJourneyPos) {
                             LaunchMiniGameAtJourneyPosition(minigameCode, difficulty, minJP);
                         }
                     }
@@ -318,8 +301,7 @@ namespace Antura.Debugging
 
         private void EmptyContainer(GameObject container)
         {
-            foreach (Transform t in container.transform)
-            {
+            foreach (Transform t in container.transform) {
                 Destroy(t.gameObject);
             }
         }

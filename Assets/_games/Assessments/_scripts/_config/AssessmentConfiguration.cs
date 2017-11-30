@@ -443,6 +443,7 @@ namespace Antura.Assessment
         {
             switch (Variation)
             {
+                case AssessmentVariation.Letter:
                 case AssessmentVariation.LetterForm:
                     return Setup_LetterForm_LearnRules();
 

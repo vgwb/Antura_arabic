@@ -5,9 +5,9 @@ namespace Antura.Minigames.ReadingGame
 {
     public enum ReadingGameVariation
     {
-        ReadAndAnswer = MiniGameCode.ReadingGame,
+        ReadAndAnswer = MiniGameCode.ReadingGame_word,
         AlphabetSong = MiniGameCode.AlphabetSong_alphabet,
-        DiacriticSong = MiniGameCode.AlphabetSong_letters,
+        DiacriticSong = MiniGameCode.AlphabetSong_letter,
     }
 
     public class ReadingGameConfiguration : IGameConfiguration
@@ -30,7 +30,9 @@ namespace Antura.Minigames.ReadingGame
             int d = (int)Difficulty * (maximum + 1);
 
             if (d > maximum)
+            {
                 return maximum;
+            }
             return d;
         }
 
@@ -42,7 +44,9 @@ namespace Antura.Minigames.ReadingGame
             get
             {
                 if (instance == null)
+                {
                     instance = new ReadingGameConfiguration();
+                }
                 return instance;
             }
         }
@@ -56,7 +60,7 @@ namespace Antura.Minigames.ReadingGame
             Variation = ReadingGameVariation.ReadAndAnswer;
             //Variation = ReadingGameVariation.AlphabetSong;
 
-            Context = new MinigamesGameContext(MiniGameCode.ReadingGame, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.ReadingGame_word, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.0f;
             TutorialEnabled = true;
         }

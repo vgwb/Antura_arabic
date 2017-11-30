@@ -53,12 +53,9 @@ namespace Antura.Book
             AudioManager.I.PlayDialogue("Book_Intro");
 
             HideAllPanels();
-            if (OverridenOpeningArea != BookArea.None)
-            {
+            if (OverridenOpeningArea != BookArea.None) {
                 OpenArea(OverridenOpeningArea);
-            }
-            else
-            {
+            } else {
                 OpenArea(OpeningArea);
             }
 

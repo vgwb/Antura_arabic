@@ -28,7 +28,7 @@ namespace Antura.Minigames.Egg
             game.eggController.Reset();
 
             if (firstQuestion) {
-                if (EggConfiguration.Instance.Variation == EggVariation.Single)
+                if (EggConfiguration.Instance.Variation == EggVariation.Letter)
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_letters_Title);
                 else
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_sequence_Title);

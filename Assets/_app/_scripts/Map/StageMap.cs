@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Core;
+using Antura.Helpers;
 using DG.DeExtensions;
 using UnityEngine;
 using DG.DeInspektor.Attributes;
@@ -54,7 +55,10 @@ namespace Antura.Map
 
         public Vector3 CurrentPlayerPosVector
         {
-            get { return mapLocations[CurrentPinIndex].Position; }
+            get
+            {
+                return mapLocations[CurrentPinIndex].Position;
+            }
         }
 
         public JourneyPosition CurrentPlayerPosJourneyPosition
@@ -114,8 +118,8 @@ namespace Antura.Map
             }
         }
 
-        [DeMethodButton("Randomize Pins")]
-        public void RandomizePins()
+        [DeMethodButton("Distribuite Pins")]
+        public void DistribuitePins()
         {
             // Randomize the position of the pins
             var pins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
@@ -166,12 +170,15 @@ namespace Antura.Map
                 Debug.LogError("Stage " + stageNumber + " has only " + playPins.Count + " pins but needs " + allPlaySessionStates.Count);
                 return;
             }
-            /*
             else if (allPlaySessionStates.Count < playPins.Count)
             {
-                Debug.LogError("Stage " + stageNumber + " has " + playPins.Count + " pins but needs only " + allPlaySessionStates.Count);
-                return;
-            }*/
+                Debug.LogWarning("Stage " + stageNumber + " has " + playPins.Count + " pins but needs only " + allPlaySessionStates.Count + ". We destroy the rest");
+                for (int i = allPlaySessionStates.Count; i < playPins.Count; i++)
+                {
+                    Destroy(playPins[i].gameObject);
+                }
+                playPins = playPins.GetRange(0, allPlaySessionStates.Count);
+            }
 
             int playerPosIndexCount = 0;
             JourneyPosition assignedJourneyPosition = new JourneyPosition(stageNumber, 1, 1);
@@ -419,7 +426,7 @@ namespace Antura.Map
         public void Hide()
         {
             gameObject.SetActive(false);
-            if (hasAppeared) FlushAppear(AppManager.I.Player.MaxJourneyPosition);
+            if (hasAppeared) { FlushAppear(AppManager.I.Player.MaxJourneyPosition); }
         }
 
         #endregion

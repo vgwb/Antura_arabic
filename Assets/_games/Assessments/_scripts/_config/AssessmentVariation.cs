@@ -1,8 +1,9 @@
 namespace Antura.Assessment
 {
-    public enum AssessmentVariation 
+    public enum AssessmentVariation
     {
         Unsetted = MiniGameCode.Invalid,
+        Letter = MiniGameCode.Assessment_Letter,
         LetterForm = MiniGameCode.Assessment_LetterForm,
         MatchLettersToWord = MiniGameCode.Assessment_MatchLettersToWord,
         WordsWithLetter = MiniGameCode.Assessment_WordsWithLetter,

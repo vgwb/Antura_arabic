@@ -7,7 +7,7 @@ namespace Antura.Minigames.ColorTickle
     {
         public enum ColorTickleVariation
         {
-            Default = MiniGameCode.ColorTickle,
+            Default = MiniGameCode.ColorTickle_letter,
         }
 
         // Game configuration
@@ -39,7 +39,7 @@ namespace Antura.Minigames.ColorTickle
         {
             // Default values
             Questions = new ColorTickleLetterProvider();
-            Context = new MinigamesGameContext(MiniGameCode.ColorTickle, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.ColorTickle_letter, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
             TutorialEnabled = true;
             Variation = ColorTickleVariation.Default;

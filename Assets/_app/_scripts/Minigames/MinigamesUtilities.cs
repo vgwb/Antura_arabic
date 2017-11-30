@@ -129,71 +129,10 @@ namespace Antura.Minigames
         public static Dictionary<MiniGameCode, float[]> GetMiniGameDifficultiesForTesting()
         {
             var difficultiesForTest = new Dictionary<MiniGameCode, float[]>();
-            difficultiesForTest.Add(MiniGameCode.Assessment_CompleteWord, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_CompleteWord_Form, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_LetterForm, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_MatchLettersToWord, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_MatchLettersToWord_Form, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_OrderLettersOfWord, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_MatchWordToImage, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_QuestionAndReply, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_SelectPronouncedWord, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_SunMoonLetter, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_SingularDualPlural, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_VowelOrConsonant, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_SunMoonWord, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_WordArticle, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Assessment_WordsWithLetter, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.AlphabetSong_alphabet, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.AlphabetSong_letters, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.ReadingGame, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.Balloons_counting, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Balloons_letter, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Balloons_spelling, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Balloons_words, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.ColorTickle, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.DancingDots, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.Egg_letters, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Egg_sequence, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.HideSeek, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.FastCrowd_alphabet, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.FastCrowd_counting, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.FastCrowd_letter, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.FastCrowd_spelling, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.FastCrowd_words, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.Scanner, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Scanner_phrase, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.MixedLetters_alphabet, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.MixedLetters_spelling, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.MakeFriends, new[] { 0.0f, 1.0f });
-
-            difficultiesForTest.Add(MiniGameCode.Maze, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.MissingLetter, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.MissingLetter_forms, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.MissingLetter_phrases, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.Tobogan_letters, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.Tobogan_words, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.TakeMeHome, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.SickLetters, new[] { 0.0f });
-
-            difficultiesForTest.Add(MiniGameCode.ThrowBalls_letterinword, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.ThrowBalls_letters, new[] { 0.0f });
-            difficultiesForTest.Add(MiniGameCode.ThrowBalls_words, new[] { 0.0f });
-
+            foreach (MiniGameCode gamecode in Enum.GetValues(typeof(MiniGameCode)))
+            {
+                difficultiesForTest.Add(gamecode, new[] { 0.0f });
+            }
             return difficultiesForTest;
         }
     }

@@ -1,15 +1,14 @@
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.MissingLetter
 {
     public enum MissingLetterVariation
     {
-        MissingLetter = MiniGameCode.MissingLetter,
-        MissingWord = MiniGameCode.MissingLetter_phrases,
-        MissingForm = MiniGameCode.MissingLetter_forms
+        MissingLetter = MiniGameCode.MissingLetter_letter,
+        MissingWord = MiniGameCode.MissingLetter_phrase,
+        MissingForm = MiniGameCode.MissingLetter_letterinword
     }
 
     public class MissingLetterConfiguration : IGameConfiguration
@@ -35,7 +34,9 @@ namespace Antura.Minigames.MissingLetter
             get
             {
                 if (instance == null)
+                {
                     instance = new MissingLetterConfiguration();
+                }
                 return instance;
             }
         }
@@ -46,7 +47,7 @@ namespace Antura.Minigames.MissingLetter
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
-            Context = new MinigamesGameContext(MiniGameCode.MissingLetter, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.MissingLetter_letter, System.DateTime.Now.Ticks.ToString());
 
             Difficulty = 0.5f;
             //Variation = MissingLetterVariation.MissingLetter;

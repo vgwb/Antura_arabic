@@ -27,9 +27,12 @@ namespace Antura.Profile
         public Image IconImage;
         public string Uuid { get; private set; }
 
-        public UIButton UIButton {
-            get {
-                if (fooUIButton == null) {
+        public UIButton UIButton
+        {
+            get
+            {
+                if (fooUIButton == null)
+                {
                     fooUIButton = this.GetComponent<UIButton>();
                 }
                 return fooUIButton;
@@ -42,9 +45,10 @@ namespace Antura.Profile
 
         void Start()
         {
-            if (!AutoInit) return;
+            if (!AutoInit) { return; }
 
-            if (AppManager.I.PlayerProfileManager.CurrentPlayer != null) {
+            if (AppManager.I.PlayerProfileManager.CurrentPlayer != null)
+            {
                 Init(AppManager.I.PlayerProfileManager.CurrentPlayer.GetPlayerIconData());
             }
         }
@@ -81,7 +85,8 @@ namespace Antura.Profile
 
         void SetAppearance(PlayerGender gender, int avatarId, PlayerTint tint, bool isDemoUser, EndgameState endgameState, bool hasMaxStarsInCurrentPlaySessions)
         {
-            if (gender == PlayerGender.None) {
+            if (gender == PlayerGender.None)
+            {
                 Debug.LogWarning("Player gender set to NONE");
             }
             Color color = isDemoUser ? new Color(0.4117647f, 0.9254903f, 1f, 1f) : PlayerTintConverter.ToColor(tint);
@@ -93,7 +98,8 @@ namespace Antura.Profile
                                          avatarId);
             HatImage.gameObject.SetActive(endgameState != EndgameState.Unfinished);
 
-            switch (endgameState) {
+            switch (endgameState)
+            {
                 case EndgameState.Finished:
                     HatImage.sprite = EndgameHat;
                     break;

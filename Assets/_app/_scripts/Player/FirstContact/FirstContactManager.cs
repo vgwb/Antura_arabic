@@ -35,8 +35,7 @@ namespace Antura.Profile
     /// </summary>
     public class FirstContactManager
     {
-        public static FirstContactManager I
-        {
+        public static FirstContactManager I {
             get { return AppManager.I.FirstContactManager; }
         }
 
@@ -57,10 +56,9 @@ namespace Antura.Profile
 
         public FirstContactManager()
         {
-            if (!Application.isEditor)
-            {
+            if (!Application.isEditor) {
                 // Force debug options to FALSE if we're not in the editor
-                SIMULATE_FIRST_CONTACT = false; 
+                SIMULATE_FIRST_CONTACT = false;
                 FORCE_FIRST_CONTACT = false;
             }
 
@@ -86,8 +84,7 @@ namespace Antura.Profile
 
         public void InitialiseForCurrentPlayer()
         {
-            if (FORCE_FIRST_CONTACT)
-            {
+            if (FORCE_FIRST_CONTACT) {
                 ForceAtPhase(FORCED_FIRST_CONTACT_PHASE);
             }
         }
@@ -112,10 +109,8 @@ namespace Antura.Profile
             return CurrentPhase == _phase;
         }
 
-        public FirstContactPhase CurrentPhase
-        {
-            get
-            {
+        public FirstContactPhase CurrentPhase {
+            get {
                 if (SIMULATE_FIRST_CONTACT) return SIMULATE_FIRST_CONTACT_PHASE;
                 return currentPhase;
             }
@@ -236,41 +231,41 @@ namespace Antura.Profile
             if (CurrentPhase == phase && condition) CompleteCurrentPhase();
         }
 
-       /* public struct SceneTransition
-        {
-            public AppScene fromScene;
-            public AppScene toScene;
-           // public bool keepAsBackable;
+        /* public struct SceneTransition
+         {
+             public AppScene fromScene;
+             public AppScene toScene;
+            // public bool keepAsBackable;
 
-            public SceneTransition(AppScene fromScene, AppScene toScene, bool keepAsBackable = false)
-            {
-                this.fromScene = fromScene;
-                this.toScene = toScene;
-                //this.keepAsBackable = keepAsBackable;
-            }
+             public SceneTransition(AppScene fromScene, AppScene toScene, bool keepAsBackable = false)
+             {
+                 this.fromScene = fromScene;
+                 this.toScene = toScene;
+                 //this.keepAsBackable = keepAsBackable;
+             }
 
 
-            public bool Equals(SceneTransition other)
-            {
-                return fromScene == other.fromScene && toScene == other.toScene;
-            }
+             public bool Equals(SceneTransition other)
+             {
+                 return fromScene == other.fromScene && toScene == other.toScene;
+             }
 
-            public override bool Equals(object obj)
-            {
-                if (ReferenceEquals(null, obj)) return false;
-                return obj is SceneTransition && Equals((SceneTransition)obj);
-            }
+             public override bool Equals(object obj)
+             {
+                 if (ReferenceEquals(null, obj)) return false;
+                 return obj is SceneTransition && Equals((SceneTransition)obj);
+             }
 
-            public override int GetHashCode()
-            {
-                unchecked
-                {
-                    return ((int)fromScene * 397) ^ (int)toScene;
-                }
-            }
+             public override int GetHashCode()
+             {
+                 unchecked
+                 {
+                     return ((int)fromScene * 397) ^ (int)toScene;
+                 }
+             }
 
-        }
-        */
+         }
+         */
     }
 
 }

@@ -876,6 +876,8 @@ namespace Antura.Minigames.Balloons
             }
         }
 
+        public static bool INVERTED_BALLOONS_LETTER = true;
+
         private void CreateFloatingLetters_Letter(int numberOfExtraWords)
         {
             numberOfExtraWords = numberOfExtraWords > 0 ? numberOfExtraWords : 1;
@@ -963,10 +965,11 @@ namespace Antura.Minigames.Balloons
                     {
                         Debug.LogError("Error getting valid word (correct answer) for balloon!");
                     }
-                    letter.isRequired = true;
+                    letter.isRequired = !INVERTED_BALLOONS_LETTER ? true : false;
                     letter.associatedPromptIndex = -1;
                     letter.Init(word);
-                    Debug.Log("Create word balloon with: " + letter.LLPrefab.Data.TextForLivingLetter);
+                    //Debug.Log("Create word balloon with: " + letter.LLPrefab.Data.TextForLivingLetter);
+                    Debug.Log("Create word balloon with: " + (letter.LLPrefab.Data as LL_WordData).Data.ToString());
                 }
                 else
                 {
@@ -983,8 +986,10 @@ namespace Antura.Minigames.Balloons
                     {
                         Debug.LogError("Error getting valid random word (wrong answer) for balloon!");
                     }
+                    letter.isRequired = !INVERTED_BALLOONS_LETTER ? false : true;
                     letter.Init(randomWord);
-                    Debug.Log("Create random balloon with: " + letter.LLPrefab.Data.TextForLivingLetter);
+                    //Debug.Log("Create random balloon with: " + letter.LLPrefab.Data.TextForLivingLetter);
+                    Debug.Log("Create random balloon with: " + (letter.LLPrefab.Data as LL_WordData).Data.ToString());
                 }
 
                 floatingLetters.Add(floatingLetter);
@@ -1076,7 +1081,8 @@ namespace Antura.Minigames.Balloons
                 letter.isRequired = false;
                 letter.associatedPromptIndex = -1;
                 letter.Init(word);
-                Debug.Log("Create word balloon with: " + letter.LLPrefab.Data.TextForLivingLetter);
+                //Debug.Log("Create word balloon with: " + letter.LLPrefab.Data.ToString());
+                Debug.Log("Create word balloon with: " + (letter.LLPrefab.Data as LL_WordData).Data.ToString());
 
                 //floatingLetter.Disable();
                 floatingLetters.Add(floatingLetter);

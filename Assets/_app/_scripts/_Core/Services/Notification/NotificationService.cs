@@ -64,7 +64,8 @@ namespace Antura.Core.Services.Notification
         /// <param name="smallIcon">List of build-in small icons: notification_icon_bell (default), notification_icon_clock, notification_icon_heart, notification_icon_message, notification_icon_nut, notification_icon_star, notification_icon_warning.</param>
         public int ScheduleSimple(TimeSpan delay, string title, string message, Color smallIconColor, NotificationIcon smallIcon = 0)
         {
-            return pluginBridge.ScheduleNotification(new NotificationParams {
+            return pluginBridge.ScheduleNotification(new NotificationParams
+            {
                 Id = new System.Random().Next(),
                 Delay = delay,
                 Title = title,
@@ -85,7 +86,8 @@ namespace Antura.Core.Services.Notification
         /// <param name="smallIcon">List of build-in small icons: notification_icon_bell (default), notification_icon_clock, notification_icon_heart, notification_icon_message, notification_icon_nut, notification_icon_star, notification_icon_warning.</param>
         public int ScheduleSimpleWithAppIcon(TimeSpan delay, string title, string message, Color smallIconColor, NotificationIcon smallIcon = 0)
         {
-            return pluginBridge.ScheduleNotification(new NotificationParams {
+            return pluginBridge.ScheduleNotification(new NotificationParams
+            {
                 Id = new System.Random().Next(),
                 Delay = delay,
                 Title = title,

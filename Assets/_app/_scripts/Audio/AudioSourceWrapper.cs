@@ -16,9 +16,11 @@ namespace Antura.Audio
 
         public bool IsPlaying
         {
-            get {
-                if (source == null || source.audioSource == null)
+            get
+            {
+                if (source == null || source.audioSource == null) {
                     return false;
+                }
 
                 return source.isPlaying;
             }
@@ -30,11 +32,13 @@ namespace Antura.Audio
         {
             get { return loop; }
 
-            set {
+            set
+            {
                 loop = value;
 
-                if (source != null)
+                if (source != null) {
                     source.loop = value;
+                }
             }
         }
 
@@ -44,11 +48,13 @@ namespace Antura.Audio
         {
             get { return pitch; }
 
-            set {
+            set
+            {
                 pitch = value;
 
-                if (source != null)
+                if (source != null) {
                     source.pitch = value;
+                }
             }
         }
 
@@ -58,11 +64,13 @@ namespace Antura.Audio
         {
             get { return volume; }
 
-            set {
+            set
+            {
                 volume = value;
 
-                if (source != null)
+                if (source != null) {
                     source.volume = value;
+                }
             }
         }
 
@@ -75,15 +83,19 @@ namespace Antura.Audio
 
         public float Position
         {
-            get {
-                if (source == null || source.audioSource == null)
+            get
+            {
+                if (source == null || source.audioSource == null) {
                     return 0;
+                }
 
                 return source.time;
             }
-            set {
-                if (source != null)
+            set
+            {
+                if (source != null) {
                     source.time = value;
+                }
             }
         }
 

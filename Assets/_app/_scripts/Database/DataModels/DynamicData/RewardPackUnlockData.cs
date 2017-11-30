@@ -121,17 +121,23 @@ namespace Antura.Database
         public Reward GetReward()
         {
             if (Type != RewardTypes.reward)
+            {
                 return null;
+            }
             return RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemId);
         }
 
         public string GetRewardCategory()
         {
             if (Type != RewardTypes.reward)
+            {
                 return string.Empty;
+            }
             Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemId);
             if (reward != null)
+            {
                 return reward.Category;
+            }
             return string.Empty;
         }
 

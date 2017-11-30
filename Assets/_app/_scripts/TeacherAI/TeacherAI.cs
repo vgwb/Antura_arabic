@@ -84,8 +84,7 @@ namespace Antura.Teacher
             var currentPlaySessionId = playerProfile.CurrentJourneyPosition.Id;
             var playSessionData = dbManager.GetPlaySessionDataById(currentPlaySessionId);
             int nMinigamesToSelect = playSessionData.NumberOfMinigames;
-            if (nMinigamesToSelect == 0)
-            {
+            if (nMinigamesToSelect == 0) {
                 // Force at least one minigame (needed for assessment, since we always need one)
                 nMinigamesToSelect = 1;
             }
@@ -102,12 +101,10 @@ namespace Antura.Teacher
         {
             List<MiniGameData> newPlaySessionMiniGames = selectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
 
-            if (ConfigAI.VerboseTeacher)
-            {
+            if (ConfigAI.VerboseTeacher) {
                 var debugString = "";
                 debugString += ConfigAI.FormatTeacherReportHeader("Minigames Selected");
-                foreach (var minigame in newPlaySessionMiniGames)
-                {
+                foreach (var minigame in newPlaySessionMiniGames) {
                     debugString += "\n" + minigame.Code;
                 }
                 Debug.Log(debugString);
@@ -129,13 +126,10 @@ namespace Antura.Teacher
         private void buildMinimumMiniGameJourneyPositions()
         {
             var allPsData = dbManager.GetAllPlaySessionData();
-            foreach (var mgcode in GenericHelper.SortEnums<MiniGameCode>())
-            {
+            foreach (var mgcode in GenericHelper.SortEnums<MiniGameCode>()) {
                 minMiniGameJourneyPositions[mgcode] = null;
-                foreach (var psData in allPsData)
-                {
-                    if (CanMiniGameBePlayedAtPlaySession(psData, mgcode))
-                    {
+                foreach (var psData in allPsData) {
+                    if (CanMiniGameBePlayedAtPlaySession(psData, mgcode)) {
                         minMiniGameJourneyPositions[mgcode] = psData.GetJourneyPosition();
                         //Debug.Log(mgcode + " min at " + psData.GetJourneyPosition());
                         break;
@@ -156,11 +150,9 @@ namespace Antura.Teacher
 
         public bool CanMiniGameBePlayedAtPlaySession(PlaySessionData psData, MiniGameCode code)
         {
-            if (psData != null)
-            {
+            if (psData != null) {
                 var mgIndex = psData.Minigames.ToList().FindIndex(x => x.MiniGameCode == code);
-                if (mgIndex >= 0)
-                {
+                if (mgIndex >= 0) {
                     return true;
                 }
             }
@@ -173,8 +165,7 @@ namespace Antura.Teacher
         /// </summary>
         public bool CanMiniGameBePlayedAfterMinPlaySession(JourneyPosition jp, MiniGameCode code)
         {
-            if (minMiniGameJourneyPositions[code] == null)
-            {
+            if (minMiniGameJourneyPositions[code] == null) {
                 return false;
             }
             return minMiniGameJourneyPositions[code].IsMinor(jp)
@@ -295,8 +286,7 @@ namespace Antura.Teacher
         {
             if (filters == null) { filters = new LetterFilters(); }
 
-            if (useMaxJourneyData)
-            {
+            if (useMaxJourneyData) {
                 VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
             }
 
@@ -307,8 +297,7 @@ namespace Antura.Teacher
             );
 
             var output_list = new List<LL_LetterData>();
-            foreach (var letterData in availableLetters)
-            {
+            foreach (var letterData in availableLetters) {
                 output_list.Add(BuildLetterData_LL(letterData));
             }
             /*if (ConfigAI.verboseTeacher)
@@ -325,14 +314,10 @@ namespace Antura.Teacher
 
             List<LetterData> availableLetters = null;
 
-            if (AppManager.I.Player == null)
-            {
+            if (AppManager.I.Player == null) {
                 availableLetters = vocabularyHelper.GetAllLetters(filters);
-            }
-            else
-            {
-                if (useMaxJourneyData)
-                {
+            } else {
+                if (useMaxJourneyData) {
                     VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
                 }
 
@@ -343,8 +328,7 @@ namespace Antura.Teacher
                 );
             }
 
-            if (giveWarningOnFake)
-            {
+            if (giveWarningOnFake) {
                 Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
                 giveWarningOnFake = false;
             }
@@ -363,13 +347,11 @@ namespace Antura.Teacher
         {
             if (filters == null) { filters = new WordFilters(); }
 
-            if (useMaxJourneyData)
-            {
+            if (useMaxJourneyData) {
                 VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
             }
 
-            if (giveWarningOnFake)
-            {
+            if (giveWarningOnFake) {
                 Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
                 giveWarningOnFake = false;
             }

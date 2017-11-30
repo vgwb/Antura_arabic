@@ -64,8 +64,7 @@ namespace Antura.Teacher
             var info_list = new List<I>();
 
             // Build info instances for the given data
-            foreach (var data in data_list)
-            {
+            foreach (var data in data_list) {
                 var info = new I();
                 info.data = data;
                 info_list.Add(info);
@@ -74,17 +73,13 @@ namespace Antura.Teacher
             // Find available scores
             string query = string.Format("SELECT * FROM " + typeof(MiniGameScoreData).Name);
             var scoredata_list = dbManager.Query<MiniGameScoreData>(query);
-            for (int i = 0; i < info_list.Count; i++)
-            {
+            for (int i = 0; i < info_list.Count; i++) {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.MiniGameCode == info.data.Code);
-                if (scoredata != null)
-                {
+                if (scoredata != null) {
                     info.score = scoredata.GetScore();
                     info.unlocked = true;
-                }
-                else
-                {
+                } else {
                     info.score = 0; // 0 until unlocked
                     info.unlocked = false;
                 }
@@ -100,8 +95,7 @@ namespace Antura.Teacher
             var info_list = new List<I>();
 
             // Build info instances for the given data
-            foreach (var data in data_list)
-            {
+            foreach (var data in data_list) {
                 var info = new I();
                 info.data = data;
                 info_list.Add(info);
@@ -111,17 +105,13 @@ namespace Antura.Teacher
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '" + (int)dataType +
                                          "' ORDER BY ElementId ");
             var scoredata_list = dbManager.Query<JourneyScoreData>(query);
-            for (int i = 0; i < info_list.Count; i++)
-            {
+            for (int i = 0; i < info_list.Count; i++) {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
-                if (scoredata != null)
-                {
+                if (scoredata != null) {
                     info.score = scoredata.GetScore();
                     info.unlocked = true;
-                }
-                else
-                {
+                } else {
                     info.score = 0; // 0 until unlocked
                     info.unlocked = false;
                 }
@@ -137,8 +127,7 @@ namespace Antura.Teacher
             var info_list = new List<I>();
 
             // Build info instances for the given data
-            foreach (var data in data_list)
-            {
+            foreach (var data in data_list) {
                 var info = new I();
                 info.data = data;
                 info_list.Add(info);
@@ -148,17 +137,13 @@ namespace Antura.Teacher
             string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" +
                                          (int)dataType + "' ORDER BY ElementId ");
             var scoredata_list = dbManager.Query<VocabularyScoreData>(query);
-            for (int i = 0; i < info_list.Count; i++)
-            {
+            for (int i = 0; i < info_list.Count; i++) {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
-                if (scoredata != null)
-                {
+                if (scoredata != null) {
                     info.score = scoredata.Score;
                     info.unlocked = scoredata.Unlocked;
-                }
-                else
-                {
+                } else {
                     info.score = 0; // 0 until unlocked
                     info.unlocked = false;
                 }
@@ -192,8 +177,7 @@ namespace Antura.Teacher
             string query = "select * from \"" + typeof(LogVocabularyScoreData).Name + "\"" + " where VocabularyDataType = '" +
                            (int)dataType + "' " + " order by Timestamp limit 1";
             var list = AppManager.I.DB.Query<LogVocabularyScoreData>(query);
-            if (list.Count > 0 && list[0] != null)
-            {
+            if (list.Count > 0 && list[0] != null) {
                 return allInfos.Find(x => x.data.GetId() == list[0].ElementId);
             }
             return null;
@@ -287,8 +271,7 @@ namespace Antura.Teacher
         {
             var average = 0f;
 
-            foreach (var item in _scoreList)
-            {
+            foreach (var item in _scoreList) {
                 average += item.GetScore();
             }
 
@@ -303,10 +286,8 @@ namespace Antura.Teacher
             if (!hasFinishedTheGame) return false;
 
             var allMiniGameInfo = GetAllMiniGameInfo();
-            foreach (var miniGameInfo in allMiniGameInfo)
-            {
-                if (System.Math.Abs(miniGameInfo.score - AppConstants.MaxMiniGameScore) > AppConstants.EPSILON)
-                {
+            foreach (var miniGameInfo in allMiniGameInfo) {
+                if (System.Math.Abs(miniGameInfo.score - AppConstants.MaxMiniGameScore) > AppConstants.EPSILON) {
                     return false;
                 }
             }
@@ -316,8 +297,7 @@ namespace Antura.Teacher
         public bool HasEarnedMaxStarsInCurrentPlaySessions()
         {
             // If we finished the game, just check all stars
-            if (AppManager.I.Player.HasFinishedTheGame)
-            {
+            if (AppManager.I.Player.HasFinishedTheGame) {
                 return AppManager.I.Player.HasFinishedTheGameWithAllStars;
             }
 
@@ -325,12 +305,9 @@ namespace Antura.Teacher
             // We however ignore the max reached (still to be played!)
             var maxJP = AppManager.I.Player.MaxJourneyPosition;
             var allPlaySessionInfo = GetAllPlaySessionInfo();
-            foreach (var playSessionInfo in allPlaySessionInfo)
-            {
-                if (playSessionInfo.data.GetJourneyPosition().IsMinor(maxJP))
-                {
-                    if (playSessionInfo.score < AppConstants.MaxMiniGameScore)
-                    {
+            foreach (var playSessionInfo in allPlaySessionInfo) {
+                if (playSessionInfo.data.GetJourneyPosition().IsMinor(maxJP)) {
+                    if (playSessionInfo.score < AppConstants.MaxMiniGameScore) {
                         return false;
                     }
                 }

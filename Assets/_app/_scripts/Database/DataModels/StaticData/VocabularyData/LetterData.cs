@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Antura.LivingLetters;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Antura.LivingLetters;
 using SQLite;
 using UnityEngine;
 
@@ -44,112 +44,128 @@ namespace Antura.Database
             get { return _Id; }
             set { _Id = value; }
         }
-        [SerializeField] private string _Id;
+        [SerializeField]
+        private string _Id;
 
         public bool Active
         {
             get { return _Active; }
             set { _Active = value; }
         }
-        [SerializeField] private bool _Active;
+        [SerializeField]
+        private bool _Active;
 
         public int Number
         {
             get { return _Number; }
             set { _Number = value; }
         }
-        [SerializeField] private int _Number;
+        [SerializeField]
+        private int _Number;
 
         public string Title
         {
             get { return _Title; }
             set { _Title = value; }
         }
-        [SerializeField] private string _Title;
+        [SerializeField]
+        private string _Title;
 
         public LetterDataKind Kind
         {
             get { return _Kind; }
             set { _Kind = value; }
         }
-        [SerializeField] private LetterDataKind _Kind;
+        [SerializeField]
+        private LetterDataKind _Kind;
 
         public string BaseLetter
         {
             get { return _BaseLetter; }
             set { _BaseLetter = value; }
         }
-        [SerializeField] private string _BaseLetter;
+        [SerializeField]
+        private string _BaseLetter;
 
         public string Symbol
         {
             get { return _Symbol; }
             set { _Symbol = value; }
         }
-        [SerializeField] private string _Symbol;
+        [SerializeField]
+        private string _Symbol;
 
         public LetterDataType Type
         {
             get { return _Type; }
             set { _Type = value; }
         }
-        [SerializeField] private LetterDataType _Type;
+        [SerializeField]
+        private LetterDataType _Type;
 
         public string Tag
         {
             get { return _Tag; }
             set { _Tag = value; }
         }
-        [SerializeField] private string _Tag;
+        [SerializeField]
+        private string _Tag;
 
         public string Notes
         {
             get { return _Notes; }
             set { _Notes = value; }
         }
-        [SerializeField] private string _Notes;
+        [SerializeField]
+        private string _Notes;
 
         public LetterDataSunMoon SunMoon
         {
             get { return _SunMoon; }
             set { _SunMoon = value; }
         }
-        [SerializeField] private LetterDataSunMoon _SunMoon;
+        [SerializeField]
+        private LetterDataSunMoon _SunMoon;
 
         public string Sound
         {
             get { return _Sound; }
             set { _Sound = value; }
         }
-        [SerializeField] private string _Sound;
+        [SerializeField]
+        private string _Sound;
 
         public string SoundZone
         {
             get { return _SoundZone; }
             set { _SoundZone = value; }
         }
-        [SerializeField] private string _SoundZone;
+        [SerializeField]
+        private string _SoundZone;
 
         public string Isolated
         {
             get { return _Isolated; }
             set { _Isolated = value; }
         }
-        [SerializeField] private string _Isolated;
+        [SerializeField]
+        private string _Isolated;
 
         public string Initial
         {
             get { return _Initial; }
             set { _Initial = value; }
         }
-        [SerializeField] private string _Initial;
+        [SerializeField]
+        private string _Initial;
 
         public string Medial
         {
             get { return _Medial; }
             set { _Medial = value; }
         }
-        [SerializeField] private string _Medial;
+        [SerializeField]
+        private string _Medial;
 
         public string Final
         {
@@ -157,7 +173,8 @@ namespace Antura.Database
             set { _Final = value; }
         }
 
-        [SerializeField] private string _Final;
+        [SerializeField]
+        private string _Final;
 
         public string Isolated_Unicode
         {
@@ -165,7 +182,8 @@ namespace Antura.Database
             set { _Isolated_Unicode = value; }
         }
 
-        [SerializeField] private string _Isolated_Unicode;
+        [SerializeField]
+        private string _Isolated_Unicode;
 
         public string Initial_Unicode
         {
@@ -173,7 +191,8 @@ namespace Antura.Database
             set { _Initial_Unicode = value; }
         }
 
-        [SerializeField] private string _Initial_Unicode;
+        [SerializeField]
+        private string _Initial_Unicode;
 
         public string Medial_Unicode
         {
@@ -181,7 +200,8 @@ namespace Antura.Database
             set { _Medial_Unicode = value; }
         }
 
-        [SerializeField] private string _Medial_Unicode;
+        [SerializeField]
+        private string _Medial_Unicode;
 
         public string Final_Unicode
         {
@@ -189,7 +209,8 @@ namespace Antura.Database
             set { _Final_Unicode = value; }
         }
 
-        [SerializeField] private string _Final_Unicode;
+        [SerializeField]
+        private string _Final_Unicode;
 
         public string Symbol_Unicode
         {
@@ -197,7 +218,8 @@ namespace Antura.Database
             set { _Symbol_Unicode = value; }
         }
 
-        [SerializeField] private string _Symbol_Unicode;
+        [SerializeField]
+        private string _Symbol_Unicode;
 
         public string InitialFix
         {
@@ -205,7 +227,8 @@ namespace Antura.Database
             set { _InitialFix = value; }
         }
 
-        [SerializeField] private string _InitialFix;
+        [SerializeField]
+        private string _InitialFix;
 
         public string FinalFix
         {
@@ -213,7 +236,8 @@ namespace Antura.Database
             set { _FinalFix = value; }
         }
 
-        [SerializeField] private string _FinalFix;
+        [SerializeField]
+        private string _FinalFix;
 
         public string MedialFix
         {
@@ -221,7 +245,8 @@ namespace Antura.Database
             set { _MedialFix = value; }
         }
 
-        [SerializeField] private string _MedialFix;
+        [SerializeField]
+        private string _MedialFix;
 
         public string Old_Isolated
         {
@@ -229,7 +254,8 @@ namespace Antura.Database
             set { _Old_Isolated = value; }
         }
 
-        [SerializeField] private string _Old_Isolated;
+        [SerializeField]
+        private string _Old_Isolated;
 
         public string Old_Initial
         {
@@ -237,7 +263,8 @@ namespace Antura.Database
             set { _Old_Initial = value; }
         }
 
-        [SerializeField] private string _Old_Initial;
+        [SerializeField]
+        private string _Old_Initial;
 
         public string Old_Medial
         {
@@ -245,7 +272,8 @@ namespace Antura.Database
             set { _Old_Medial = value; }
         }
 
-        [SerializeField] private string _Old_Medial;
+        [SerializeField]
+        private string _Old_Medial;
 
         public string Old_Final
         {
@@ -253,19 +281,31 @@ namespace Antura.Database
             set { _Old_Final = value; }
         }
 
-        [SerializeField] private string _Old_Final;
+        [SerializeField]
+        private string _Old_Final;
 
         public float Complexity
         {
             get { return _Complexity; }
             set { _Complexity = value; }
         }
-        [SerializeField] private float _Complexity;
+        [SerializeField]
+        private float _Complexity;
+
+
+        /// <summary>
+        /// If set, this LetterData should be represented using the forced form.
+        /// </summary>
+        // TODO ignore in editor and maybe do not serialize
+        public LetterForm ForcedLetterForm = LetterForm.None;
 
 
         public override string ToString()
         {
-            return Id + ": " + Isolated;
+            string s = "(" + Isolated + ")";
+            if (ForcedLetterForm != LetterForm.None) s += " F-" + ForcedLetterForm;
+            s += " " + Id;
+            return s;
         }
 
         public float GetIntrinsicDifficulty()
@@ -372,12 +412,12 @@ namespace Antura.Database
                 if (Type == LetterDataType.DiacriticSymbol) output = "\u0640";
 
                 var unicode = int.Parse(hexunicode, NumberStyles.HexNumber);
-                output += ((char) unicode).ToString();
+                output += ((char)unicode).ToString();
 
                 if (Symbol_Unicode != "")
                 {
                     var unicode_added = int.Parse(Symbol_Unicode, NumberStyles.HexNumber);
-                    output += ((char) unicode_added).ToString();
+                    output += ((char)unicode_added).ToString();
                 }
             }
             return output;
@@ -387,15 +427,17 @@ namespace Antura.Database
         public string GetCharFixedForDisplay(LetterForm form = LetterForm.Isolated)
         {
             if (GetUnicode(form, false) == "")
+            {
                 return "";
+            }
 
             var output = GetChar(form);
 
             if (form == LetterForm.Final && FinalFix != "" || form == LetterForm.Medial && MedialFix != "")
-                output = "\u0640" + output;
+            { output = "\u0640" + output; }
 
             if (form == LetterForm.Initial && InitialFix != "" || form == LetterForm.Medial && InitialFix != "")
-                output = output + "\u0640";
+            { output = output + "\u0640"; }
 
             return output;
         }
@@ -403,16 +445,29 @@ namespace Antura.Database
         public IEnumerable<LetterForm> GetAvailableForms()
         {
             if (Isolated_Unicode != "")
+            {
                 yield return LetterForm.Isolated;
+            }
 
             if (Initial_Unicode != "")
+            {
                 yield return LetterForm.Initial;
+            }
 
             if (Medial_Unicode != "")
+            {
                 yield return LetterForm.Medial;
+            }
 
             if (Final_Unicode != "")
+            {
                 yield return LetterForm.Final;
+            }
+        }
+
+        public LetterData Clone()
+        {
+            return (LetterData)MemberwiseClone();
         }
     }
 }

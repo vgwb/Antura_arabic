@@ -153,5 +153,4 @@ namespace Antura.Database
             return Skill.ToString() + ":" + Weight;
         }
     }
-
 }

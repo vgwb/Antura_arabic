@@ -197,7 +197,7 @@ namespace Antura.Book
         int GetTotalVocabularyDataUnlocked(VocabularyDataType dataType)
         {
             if (AppManager.I.Player.IsDemoUser) return GetTotalVocabularyData(dataType);
-            string query = "select * from " + typeof(VocabularyScoreData).Name + " where VocabularyDataType='" + (int) dataType + "'";
+            string query = "select * from " + typeof(VocabularyScoreData).Name + " where VocabularyDataType='" + (int)dataType + "'";
             var list = AppManager.I.DB.Query<VocabularyScoreData>(query);
             return list.Count(data => data.Unlocked);
         }

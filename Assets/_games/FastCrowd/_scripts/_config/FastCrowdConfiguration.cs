@@ -6,9 +6,10 @@ namespace Antura.Minigames.FastCrowd
 {
     public enum FastCrowdVariation
     {
-        Spelling = MiniGameCode.FastCrowd_spelling,
-        Words = MiniGameCode.FastCrowd_words,
+        LetterInWord = MiniGameCode.FastCrowd_letterinword,
+        Word = MiniGameCode.FastCrowd_word,
         Letter = MiniGameCode.FastCrowd_letter,
+        LetterForm = MiniGameCode.FastCrowd_letterform,
         Counting = MiniGameCode.FastCrowd_counting,
         Alphabet = MiniGameCode.FastCrowd_alphabet
     }
@@ -41,7 +42,9 @@ namespace Antura.Minigames.FastCrowd
             get
             {
                 if (instance == null)
+                {
                     instance = new FastCrowdConfiguration();
+                }
                 return instance;
             }
         }
@@ -55,7 +58,7 @@ namespace Antura.Minigames.FastCrowd
             Questions = new SampleQuestionProvider();
             //Variation = FastCrowdVariation.Letter;
             //Variation = FastCrowdVariation.Alphabet;
-            Variation = FastCrowdVariation.Spelling;
+            Variation = FastCrowdVariation.LetterInWord;
 
             //Questions = new SampleQuestionWithWordsProvider();
             //Variation = FastCrowdVariation.Counting;
@@ -64,7 +67,7 @@ namespace Antura.Minigames.FastCrowd
             //Variation = FastCrowdVariation.Words;
             TutorialEnabled = true;
 
-            Context = new MinigamesGameContext(MiniGameCode.FastCrowd_spelling, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.FastCrowd_letterinword, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 
@@ -99,12 +102,17 @@ namespace Antura.Minigames.FastCrowd
                 case FastCrowdVariation.Letter:
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true);
                     break;
-                case FastCrowdVariation.Spelling:
+                case FastCrowdVariation.LetterForm:
+                    // TODO
+                    throw new System.Exception("FastCrowdVariation.LetterForm to be done");
+                    builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true);
+                    break;
+                case FastCrowdVariation.LetterInWord:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
                     break;
-                case FastCrowdVariation.Words:
+                case FastCrowdVariation.Word:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
                     builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);

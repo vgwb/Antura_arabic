@@ -305,14 +305,12 @@ namespace Antura.Minigames.Balloons
             {
                 BalloonsGame.instance.OnPoppedNonRequiredBalloon();
             }
-
             else
             {
                 if (Letter.letterData.Id != BalloonsGame.instance.correctAnswers.ToList()[BalloonsGame.instance.countingIndex].Id)
                 {
                     BalloonsGame.instance.OnPoppedRequiredBalloon(-1);
                 }
-
                 else
                 {
                     BalloonsGame.instance.OnPoppedNonRequiredBalloon();

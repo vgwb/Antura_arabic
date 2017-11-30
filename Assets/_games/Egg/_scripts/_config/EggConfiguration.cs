@@ -5,7 +5,8 @@ namespace Antura.Minigames.Egg
 {
     public enum EggVariation
     {
-        Single = MiniGameCode.Egg_letters,
+        Letter = MiniGameCode.Egg_letter,
+        LetterForm = MiniGameCode.Egg_letterform,
         Sequence = MiniGameCode.Egg_sequence
     }
 
@@ -32,7 +33,9 @@ namespace Antura.Minigames.Egg
             get
             {
                 if (instance == null)
+                {
                     instance = new EggConfiguration();
+                }
                 return instance;
             }
         }
@@ -42,15 +45,18 @@ namespace Antura.Minigames.Egg
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new MinigamesGameContext(MiniGameCode.Egg_letters, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.Egg_letter, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.1f;
-            Variation = EggVariation.Single;
+            Variation = EggVariation.Letter;
 
             if (Variation == EggVariation.Sequence)
+            {
                 Questions = new SampleEggSequenceQuestionProvider();
+            }
             else
+            {
                 Questions = new SampleEggSingleQuestionProvider();
-
+            }
             TutorialEnabled = true;
         }
 

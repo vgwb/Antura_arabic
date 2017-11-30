@@ -1,9 +1,9 @@
-﻿using System;
-using Antura.Audio;
+﻿using Antura.Audio;
 using Antura.Scenes;
 using Antura.UI;
 using DG.DeExtensions;
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 namespace Antura.Profile
@@ -46,10 +46,14 @@ namespace Antura.Profile
 
         #endregion
 
-        bool allAvatarCategoriesSelected {
-            get {
-                foreach (var cat in Categories) {
-                    if (cat.SelectedIndex < 0) {
+        bool allAvatarCategoriesSelected
+        {
+            get
+            {
+                foreach (var cat in Categories)
+                {
+                    if (cat.SelectedIndex < 0)
+                    {
                         return false;
                     }
                 }
@@ -73,7 +77,8 @@ namespace Antura.Profile
         {
             selectionStepOffsetY = StartupOffsetY / (Categories.Length - 1f);
             CategoriesContainer.SetAnchoredPosY(StartupOffsetY);
-            for (var i = 0; i < Categories.Length; ++i) {
+            for (var i = 0; i < Categories.Length; ++i)
+            {
                 Categories[i].gameObject.SetActive(i == 0);
             }
             BtContinue.gameObject.SetActive(false);
@@ -81,7 +86,8 @@ namespace Antura.Profile
 
             // Listeners
             BtContinue.Bt.onClick.AddListener(OnContinue);
-            foreach (PlayerCreationUICategory cat in Categories) {
+            foreach (PlayerCreationUICategory cat in Categories)
+            {
                 cat.OnSelect += OnSelectCategory;
                 cat.OnDeselectAll += OnDeselectAllInCategory;
             }
@@ -94,7 +100,8 @@ namespace Antura.Profile
         void OnDestroy()
         {
             BtContinue.Bt.onClick.RemoveAllListeners();
-            foreach (PlayerCreationUICategory cat in Categories) {
+            foreach (PlayerCreationUICategory cat in Categories)
+            {
                 cat.OnSelect -= OnSelectCategory;
                 cat.OnDeselectAll -= OnDeselectAllInCategory;
             }
@@ -109,18 +116,22 @@ namespace Antura.Profile
 
         void SwitchState(UIState toState)
         {
-            if (State == toState) return;
+            if (State == toState) { return; }
 
             State = toState;
             PlayerCreationUICategory avatarCat = Categories[CategoryIndex.Avatar];
-            switch (toState) {
+            switch (toState)
+            {
                 case UIState.AgeSelection:
-                    for (var i = 0; i < avatarCat.UIButtons.Length; i++) {
+                    for (var i = 0; i < avatarCat.UIButtons.Length; i++)
+                    {
                         avatarCat.UIButtons[i].gameObject.SetActive(i == avatarCat.SelectedIndex);
                         if (i == avatarCat.SelectedIndex) avatarCat.UIButtons[i].transform.localScale = Vector3.one * 1.65f;
                     }
-                    foreach (var cat in Categories) {
-                        if (cat != avatarCat) {
+                    foreach (var cat in Categories)
+                    {
+                        if (cat != avatarCat)
+                        {
                             cat.gameObject.SetActive(false);
                         }
                     }
@@ -131,11 +142,14 @@ namespace Antura.Profile
                     break;
                 case UIState.AvatarCreation:
                     AgeCategory.gameObject.SetActive(false);
-                    foreach (UIButton catBt in avatarCat.UIButtons) {
+                    foreach (UIButton catBt in avatarCat.UIButtons)
+                    {
                         catBt.gameObject.SetActive(true);
                     }
-                    foreach (PlayerCreationUICategory cat in Categories) {
-                        if (cat != avatarCat) {
+                    foreach (PlayerCreationUICategory cat in Categories)
+                    {
+                        if (cat != avatarCat)
+                        {
                             cat.gameObject.SetActive(true);
                         }
                     }
@@ -147,7 +161,8 @@ namespace Antura.Profile
         void playAudioDescription(int SelectedIndex)
         {
             Debug.Log("SelectedIndex: " + SelectedIndex);
-            switch (SelectedIndex) {
+            switch (SelectedIndex)
+            {
                 case 0:
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.Profile_Gender);
                     break;
@@ -172,10 +187,12 @@ namespace Antura.Profile
 
         void AvatarCreation_StepBackwards(int toStep)
         {
-            if (stepTween != null) stepTween.Complete();
-            for (var i = toStep + 1; i < selectionStep + 1; ++i) {
+            if (stepTween != null) { stepTween.Complete(); }
+            for (var i = toStep + 1; i < selectionStep + 1; ++i)
+            {
                 PlayerCreationUICategory cat = Categories[i];
-                if (i == CategoryIndex.Color) {
+                if (i == CategoryIndex.Color)
+                {
                     // Reset avatars colors
                     Categories[CategoryIndex.Avatar].ResetColor();
                 }
@@ -208,13 +225,17 @@ namespace Antura.Profile
 
         void OnSelectCategory(PlayerCreationUICategory category, UIButton uiButton)
         {
-            switch (State) {
+            switch (State)
+            {
                 case UIState.AvatarCreation:
                     int catIndex = Array.IndexOf(Categories, category);
-                    if (selectionStep < Categories.Length - 1 && catIndex == selectionStep) {
+                    if (selectionStep < Categories.Length - 1 && catIndex == selectionStep)
+                    {
                         AvatarCreation_NextStep();
                     }
-                    switch (catIndex) {
+
+                    switch (catIndex)
+                    {
                         case CategoryIndex.Gender:
                             AvatarCreation_SetGender();
                             break;
@@ -222,14 +243,17 @@ namespace Antura.Profile
                             Categories[CategoryIndex.Avatar].SetColor(uiButton.DefaultColor);
                             break;
                     }
-                    if (allAvatarCategoriesSelected) {
+
+                    if (allAvatarCategoriesSelected)
+                    {
                         BtContinue.gameObject.SetActive(true);
                         BtContinue.Pulse();
                         AudioManager.I.PlayDialogue(Database.LocalizationDataId.Action_PressPlay);
                     }
                     break;
                 case UIState.AgeSelection:
-                    switch (category.CategoryType) {
+                    switch (category.CategoryType)
+                    {
                         case CategoryType.Age:
                             BtContinue.gameObject.SetActive(true);
                             BtContinue.Pulse();
@@ -248,12 +272,16 @@ namespace Antura.Profile
         {
             BtContinue.StopPulsing();
             BtContinue.gameObject.SetActive(false);
-            switch (State) {
+            switch (State)
+            {
                 case UIState.AvatarCreation:
                     var catIndex = Array.IndexOf(Categories, category);
-                    if (catIndex < selectionStep) {
+                    if (catIndex < selectionStep)
+                    {
                         AvatarCreation_StepBackwards(catIndex);
-                    } else if (catIndex == CategoryIndex.Color) {
+                    }
+                    else if (catIndex == CategoryIndex.Color)
+                    {
                         Categories[CategoryIndex.Avatar].ResetColor();
                     }
                     break;
@@ -262,7 +290,8 @@ namespace Antura.Profile
 
         void OnContinue()
         {
-            switch (State) {
+            switch (State)
+            {
                 case UIState.AvatarCreation:
                     SwitchState(UIState.AgeSelection);
                     break;

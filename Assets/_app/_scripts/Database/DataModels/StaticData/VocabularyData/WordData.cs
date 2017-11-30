@@ -22,70 +22,80 @@ namespace Antura.Database
             get { return _Id; }
             set { _Id = value; }
         }
-        [SerializeField] private string _Id;
+        [SerializeField]
+        private string _Id;
 
         public bool Active
         {
             get { return _Active; }
             set { _Active = value; }
         }
-        [SerializeField] private bool _Active;
+        [SerializeField]
+        private bool _Active;
 
         public WordDataKind Kind
         {
             get { return _Kind; }
             set { _Kind = value; }
         }
-        [SerializeField] private WordDataKind _Kind;
+        [SerializeField]
+        private WordDataKind _Kind;
 
         public WordDataCategory Category
         {
             get { return _Category; }
             set { _Category = value; }
         }
-        [SerializeField] private WordDataCategory _Category;
+        [SerializeField]
+        private WordDataCategory _Category;
 
         public WordDataForm Form
         {
             get { return _Form; }
             set { _Form = value; }
         }
-        [SerializeField] private WordDataForm _Form;
+        [SerializeField]
+        private WordDataForm _Form;
 
         public WordDataArticle Article
         {
             get { return _Article; }
             set { _Article = value; }
         }
-        [SerializeField] private WordDataArticle _Article;
+        [SerializeField]
+        private WordDataArticle _Article;
 
         public VocabularyDataGender Gender
         {
             get { return _Gender; }
             set { _Gender = value; }
         }
-        [SerializeField] private VocabularyDataGender _Gender;
+        [SerializeField]
+        private VocabularyDataGender _Gender;
 
         public string LinkedWord
         {
             get { return _LinkedWord; }
             set { _LinkedWord = value; }
         }
-        [SerializeField] private string _LinkedWord;
+        [SerializeField]
+        private string _LinkedWord;
 
         public string Arabic
         {
             get { return _Arabic; }
             set { _Arabic = value; }
         }
-        [SerializeField] private string _Arabic;
+        [SerializeField]
+        private string _Arabic;
 
         public string Value
         {
             get { return _Value; }
             set { _Value = value; }
         }
-        [SerializeField] private string _Value;
+        [SerializeField]
+        private string _Value;
 
         [Ignore]
         public string[] Letters
@@ -106,7 +116,8 @@ namespace Antura.Database
             get { return _Drawing; }
             set { _Drawing = value; }
         }
-        [SerializeField] private string _Drawing;
+        [SerializeField]
+        private string _Drawing;
 
         public float Complexity
         {
@@ -149,11 +160,4 @@ namespace Antura.Database
         }
 
     }
-
-    /*[Serializable]
-    public struct LetterSymbol
-    {
-        public string LetterId;
-        public string SymbolId;
-    }*/
 }
