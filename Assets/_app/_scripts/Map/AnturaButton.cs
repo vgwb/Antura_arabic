@@ -1,4 +1,4 @@
-﻿using Antura.AnturaSpace.UI;
+using Antura.AnturaSpace.UI;
 using Antura.Core;
 using Antura.Profile;
 using Antura.UI;
@@ -11,7 +11,7 @@ namespace Antura.Map
         void Start()
         {
             GameObject icoNew = GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
-            icoNew.SetActive(!FirstContactManager.I.IsInsideFirstContact() && AppManager.I.Player.ThereIsSomeNewReward());
+            icoNew.SetActive(!FirstContactManager.I.IsNotCompleted() && AppManager.I.Player.ThereIsSomeNewReward());
         }
     }
 }

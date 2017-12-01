@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Antura.Audio;
 using Antura.Core;
 using Antura.Profile;
@@ -38,7 +38,7 @@ namespace Antura.Map
             StartFloatingAnimation();
 
             // TODO: treat with the TUTORIAL
-            if (!FirstContactManager.I.IsInsideFirstContact()) {
+            if (!FirstContactManager.I.IsNotCompleted()) {
                 CheckMovementButtonsEnabling();
             }
         }

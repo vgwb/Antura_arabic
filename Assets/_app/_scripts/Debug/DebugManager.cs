@@ -70,8 +70,7 @@ namespace Antura.Debugging
         public bool IgnoreJourneyData
         {
             get { return _ignoreJourneyData; }
-            set
-            {
+            set {
                 _ignoreJourneyData = value;
                 Teacher.ConfigAI.ForceJourneyIgnore = _ignoreJourneyData;
             }
@@ -87,14 +86,12 @@ namespace Antura.Debugging
         /// </value>
         public bool FirstContactCompleted
         {
-            get { return !FirstContactManager.I.IsInsideFirstContact(); }
-            set
-            {
+            get { return !FirstContactManager.I.IsNotCompleted(); }
+            set {
                 if (value) {
-                    FirstContactManager.I.ForceAtPhase(FirstContactPhase.Finished);
+                    FirstContactManager.I.ForceToCompleted();
                 } else {
-                    FirstContactManager.I.PassPhase(FirstContactPhase.Reward_FirstBig);
-                    AppManager.I.Player.ResetPlayerProfileCompletion();
+                    FirstContactManager.I.ForceToStart();
                 }
             }
         }

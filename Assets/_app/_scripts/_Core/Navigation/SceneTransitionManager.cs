@@ -1,7 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using Antura.UI;
+using System;
 using System.Collections;
-using Antura.UI;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Antura.Core

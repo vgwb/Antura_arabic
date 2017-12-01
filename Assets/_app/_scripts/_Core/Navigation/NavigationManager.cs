@@ -128,8 +128,9 @@ namespace Antura.Core
         /// </summary>
         public void GoToNextScene()
         {
-            if (AppConstants.DebugLogEnabled)
+            if (AppConstants.DebugLogEnabled) {
                 Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToNextScene");
+            }
             switch (NavData.CurrentScene) {
                 case AppScene.Home:
                     GoToScene(AppScene.Map);
@@ -232,7 +233,7 @@ namespace Antura.Core
                 UpdatePrevSceneStack(wantedNewScene);
             }
 
-            if (!FirstContactManager.I.IsInsideFirstContact()) {
+            if (!FirstContactManager.I.IsNotCompleted()) {
                 // Additional general checks when entering specific scenes
                 switch (filteredNewScene) {
                     case AppScene.Map:
@@ -252,7 +253,7 @@ namespace Antura.Core
             // check to have closed any possible Keeper Dialog
             KeeperManager.I.ResetKeeper();
 
-            GoToSceneByName(AppSceneHelper.GetSceneName(filteredNewScene, minigameData));
+            GoToSceneByName(SceneHelper.GetSceneName(filteredNewScene, minigameData));
         }
 
         private void GoToSceneByName(string sceneName)
@@ -370,7 +371,7 @@ namespace Antura.Core
         /// <summary>
         /// Special GoTo for minigames.
         /// </summary>
-        public void GotoMinigameScene()
+        public void GoToMiniGameScene()
         {
             bool canTravel;
 
@@ -418,8 +419,9 @@ namespace Antura.Core
         /// <param name="_stars">The stars.</param>
         public void EndMinigame(int _stars)
         {
-            if (NavData.CurrentMiniGameData == null)
+            if (NavData.CurrentMiniGameData == null) {
                 return;
+            }
             var res = new EndsessionResultData(_stars, NavData.CurrentMiniGameData.GetIconResourcePath(),
                 NavData.CurrentMiniGameData.GetBadgeIconResourcePath());
             EndSessionResults.Add(res);

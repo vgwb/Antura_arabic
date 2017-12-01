@@ -78,7 +78,7 @@ namespace Antura.Minigames
             //AudioManager.I.PlayDialogue(_gameCode.ToString()+"_Title");
 
             // Launch the game
-            AppManager.I.NavigationManager.GotoMinigameScene();
+            AppManager.I.NavigationManager.GoToMiniGameScene();
         }
 
         /// <summary>

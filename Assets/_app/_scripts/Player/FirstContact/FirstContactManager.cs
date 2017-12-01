@@ -90,15 +90,9 @@ namespace Antura.Profile
             }
         }
 
-        public void UnlockAllForDemoUser()
-        {
-            currentPhase = FirstContactPhase.Finished;
-        }
-
-
         #region Checks
 
-        public bool IsInsideFirstContact()
+        public bool IsNotCompleted()
         {
             if (DISABLE_FIRST_CONTACT) { return false; }
             return CurrentPhase < FirstContactPhase.Finished || SIMULATE_FIRST_CONTACT;
@@ -153,6 +147,17 @@ namespace Antura.Profile
             if (VERBOSE) Debug.Log("FirstContact - FORCING phase " + forcedPhase);
         }
 
+        public void ForceToCompleted()
+        {
+            ForceAtPhase(FirstContactPhase.Finished);
+        }
+
+        public void ForceToStart()
+        {
+            PassPhase(FirstContactPhase.Reward_FirstBig);
+            AppManager.I.Player.ResetPlayerProfileCompletion();
+        }
+
         #endregion
 
 
@@ -162,7 +167,7 @@ namespace Antura.Profile
         public AppScene FilterNavigation(AppScene fromScene, AppScene toScene, out bool keepPrevAsBackable)
         {
             keepPrevAsBackable = false;
-            if (!IsInsideFirstContact()) return toScene;
+            if (!IsNotCompleted()) return toScene;
 
             // Check whether this transition is completing a phase
             TransitionCompletePhaseOn(FirstContactPhase.Intro, fromScene == AppScene.Intro);

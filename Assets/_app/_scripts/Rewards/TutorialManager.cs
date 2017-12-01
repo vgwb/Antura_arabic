@@ -1,4 +1,4 @@
-﻿using Antura.Profile;
+using Antura.Profile;
 using UnityEngine;
 
 namespace Antura.Rewards
@@ -14,7 +14,7 @@ namespace Antura.Rewards
 
         public void HandleStart()
         {
-            if (!FirstContactManager.I.IsInsideFirstContact())
+            if (!FirstContactManager.I.IsNotCompleted())
             {
                 gameObject.SetActive(false);
                 IsRunning = false;

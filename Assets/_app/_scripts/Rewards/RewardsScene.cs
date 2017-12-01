@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using Antura.Dog;
 using Antura.Core;
@@ -56,7 +56,7 @@ namespace Antura.Rewards
 
         IEnumerator StartReward()
         {
-            if (!FirstContactManager.I.IsInsideFirstContact())
+            if (!FirstContactManager.I.IsNotCompleted())
             {
                 int rnd = Random.Range(1, 3);
                 switch (rnd) {
@@ -75,7 +75,7 @@ namespace Antura.Rewards
             // Wait animation ending before show continue button
             yield return new WaitForSeconds(4.4f);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
-            if (!FirstContactManager.I.IsInsideFirstContact()){ 
+            if (!FirstContactManager.I.IsNotCompleted()){ 
                 AnturaSpaceBtton.gameObject.SetActive(true);
                 btAnturaTween = AnturaSpaceBtton.transform.DOScale(0.1f, 0.4f).From().SetEase(Ease.OutBack);
             }
