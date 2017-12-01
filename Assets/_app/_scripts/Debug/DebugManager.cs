@@ -86,10 +86,10 @@ namespace Antura.Debugging
         /// </value>
         public bool FirstContactCompleted
         {
-            get { return !FirstContactManager.I.IsNotFinished(); }
+            get { return FirstContactManager.I.IsFinished(); }
             set {
                 if (value) {
-                    FirstContactManager.I.ForceToCompleted();
+                    FirstContactManager.I.ForceToFinished();
                 } else {
                     FirstContactManager.I.ForceToStart();
                 }

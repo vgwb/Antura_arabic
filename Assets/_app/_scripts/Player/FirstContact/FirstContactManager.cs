@@ -92,6 +92,11 @@ namespace Antura.Profile
 
         #region Checks
 
+        public bool IsFinished()
+        {
+            return !IsNotFinished();
+        }
+
         public bool IsNotFinished()
         {
             if (DISABLE_FIRST_CONTACT) { return false; }
@@ -147,7 +152,7 @@ namespace Antura.Profile
             if (VERBOSE) Debug.Log("FirstContact - FORCING phase " + forcedPhase);
         }
 
-        public void ForceToCompleted()
+        public void ForceToFinished()
         {
             ForceAtPhase(FirstContactPhase.Finished);
         }
@@ -167,7 +172,7 @@ namespace Antura.Profile
         public AppScene FilterNavigation(AppScene fromScene, AppScene toScene, out bool keepPrevAsBackable)
         {
             keepPrevAsBackable = false;
-            if (!IsNotFinished()) return toScene;
+            if (IsFinished()) return toScene;
 
             // Check whether this transition is completing a phase
             TransitionCompletePhaseOn(FirstContactPhase.Intro, fromScene == AppScene.Intro);

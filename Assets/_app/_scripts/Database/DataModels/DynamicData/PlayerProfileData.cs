@@ -152,6 +152,11 @@ namespace Antura.Database
         /// </summary>
         public int CurrentPlaySession { get; set; }
 
+        /// <summary>
+        /// Current first contact phase
+        /// </summary>
+        public FirstContactPhase CurrentFirstContactPhase { get; set; }
+
         #endregion
 
         #region Rewards
@@ -194,7 +199,8 @@ namespace Antura.Database
                 ProfileCompletionState profileCompletion,
                 string currentAnturaCustomization,
                 int comboPlayDays,
-                AnturaSpace.ShopState currentShopState
+                AnturaSpace.ShopState currentShopState,
+                FirstContactPhase currentFirstContactPhase
                 )
         {
             Id = UNIQUE_ID;  // Only one record
@@ -215,6 +221,7 @@ namespace Antura.Database
             Timestamp = GenericHelper.GetTimestampForNow();
             CurrentAnturaCustomization = currentAnturaCustomization;
             AdditionalData = JsonUtility.ToJson(new PlayerProfileAdditionalData(_HasMaxStarsInCurrentPlaySessions, comboPlayDays, currentShopState.ToJson()));
+            CurrentFirstContactPhase = currentFirstContactPhase;
         }
 
         public bool HasFinishedTheGameWithAllStars()

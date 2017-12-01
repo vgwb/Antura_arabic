@@ -226,24 +226,32 @@ namespace Antura.Core
 
         #region Direct navigation (private)
 
-        private void GoToScene(AppScene wantedNewScene, MiniGameData minigameData = null)
+        private void GoToScene(AppScene wantedNewScene, MiniGameData minigameData = null, bool debugMode = false)
         {
-            bool keepPrevAsBackable = false;
-            AppScene filteredNewScene = FirstContactManager.I.FilterNavigation(GetCurrentScene(), wantedNewScene, out keepPrevAsBackable);
-            if (keepPrevAsBackable) {
-                UpdatePrevSceneStack(wantedNewScene);
-            }
+            AppScene filteredNewScene = wantedNewScene;
+            if (!debugMode)
+            {
+                bool keepPrevAsBackable = false;
+                filteredNewScene = FirstContactManager.I.FilterNavigation(GetCurrentScene(), wantedNewScene, out keepPrevAsBackable);
+                if (keepPrevAsBackable)
+                {
+                    UpdatePrevSceneStack(wantedNewScene);
+                }
 
-            if (!FirstContactManager.I.IsNotFinished()) {
-                // Additional general checks when entering specific scenes
-                switch (filteredNewScene) {
-                    case AppScene.Map:
-                        // When coming back to the map, we need to check whether a new daily reward is needed
-                        if (CheckDailySceneTrigger()) {
-                            GoToScene(AppScene.Mood);
-                            return;
-                        }
-                        break;
+                if (FirstContactManager.I.IsFinished())
+                {
+                    // Additional general checks when entering specific scenes
+                    switch (filteredNewScene)
+                    {
+                        case AppScene.Map:
+                            // When coming back to the map, we need to check whether a new daily reward is needed
+                            if (CheckDailySceneTrigger())
+                            {
+                                GoToScene(AppScene.Mood);
+                                return;
+                            }
+                            break;
+                    }
                 }
             }
 
@@ -358,7 +366,7 @@ namespace Antura.Core
         {
             if (debugMode || HasCustomTransitionTo(targetScene)) {
                 Debug.LogFormat(" ---- NAV MANAGER ({0}) scene {1} to {2} ---- ", "CustomGoTo", NavData.CurrentScene, targetScene);
-                GoToScene(targetScene);
+                GoToScene(targetScene, debugMode:debugMode);
             } else {
                 throw new Exception("Cannot go to " + targetScene + " from " + NavData.CurrentScene);
             }

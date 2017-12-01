@@ -49,6 +49,12 @@ namespace Antura.Profile
             private set { previousJourneyPosition = value; }
         }
 
+        #region First Contact State
+
+        public FirstContactPhase CurrentFirstContactPhase = FirstContactPhase.Intro;
+
+        #endregion
+
         #region Bones/coins
 
         public int GetTotalNumberOfBones()
@@ -557,6 +563,7 @@ namespace Antura.Profile
             HasMaxStarsInCurrentPlaySessions = _data.GetAdditionalData().HasMaxStarsInCurrentPlaySessions;
             ConsecutivePlayDays = _data.GetAdditionalData().ConsecutivePlayDays;
             CurrentShopState = AnturaSpace.ShopState.CreateFromJson(_data.GetAdditionalData().CurrentShopStateJSON);
+            CurrentFirstContactPhase = _data.CurrentFirstContactPhase;
 
             SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
@@ -578,7 +585,8 @@ namespace Antura.Profile
         {
             PlayerProfileData newProfileData = new PlayerProfileData(
                     Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars, HasMaxStarsInCurrentPlaySessions,
-                    Age, TotalNumberOfBones, ProfileCompletion, this.CurrentAnturaCustomizations.GetJsonListOfIds(), ConsecutivePlayDays, CurrentShopState
+                    Age, TotalNumberOfBones, ProfileCompletion, this.CurrentAnturaCustomizations.GetJsonListOfIds(), ConsecutivePlayDays, CurrentShopState,
+                    CurrentFirstContactPhase
             );
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
