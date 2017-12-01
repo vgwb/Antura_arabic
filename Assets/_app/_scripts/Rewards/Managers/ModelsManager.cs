@@ -19,20 +19,18 @@ namespace Antura.Rewards
         {
             CleanTranformChildren(_parent);
             GameObject returnObject = MountModel(_id, _parent, _type);
-            //Reward actualReward = RewardSystemManager.GetRewardById(_id);
             SwitchMaterial(returnObject, _materialPair);
             return returnObject;
         }
 
         public static MaterialPair SwitchMaterial(GameObject _gameObject, MaterialPair _materialPair)
         {
-            if (_materialPair.Material1 == null || _materialPair.Material2 == null)
-                return _materialPair;
+            if (_materialPair.Material1 == null || _materialPair.Material2 == null) { return _materialPair; }
             foreach (var color in _gameObject.GetComponentsInChildren<MeshRenderer>()) {
                 if (color.name == "color_1") {
-                    color.materials = new Material[] {_materialPair.Material1};
+                    color.materials = new Material[] { _materialPair.Material1 };
                 } else if (color.name == "color_2") {
-                    color.materials = new Material[] {_materialPair.Material2};
+                    color.materials = new Material[] { _materialPair.Material2 };
                 }
             }
             return _materialPair;
