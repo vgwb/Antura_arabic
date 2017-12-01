@@ -172,7 +172,6 @@ namespace Antura.Database
             get { return _Final; }
             set { _Final = value; }
         }
-
         [SerializeField]
         private string _Final;
 
@@ -181,7 +180,6 @@ namespace Antura.Database
             get { return _Isolated_Unicode; }
             set { _Isolated_Unicode = value; }
         }
-
         [SerializeField]
         private string _Isolated_Unicode;
 
@@ -190,7 +188,6 @@ namespace Antura.Database
             get { return _Initial_Unicode; }
             set { _Initial_Unicode = value; }
         }
-
         [SerializeField]
         private string _Initial_Unicode;
 
@@ -199,7 +196,6 @@ namespace Antura.Database
             get { return _Medial_Unicode; }
             set { _Medial_Unicode = value; }
         }
-
         [SerializeField]
         private string _Medial_Unicode;
 
@@ -208,7 +204,6 @@ namespace Antura.Database
             get { return _Final_Unicode; }
             set { _Final_Unicode = value; }
         }
-
         [SerializeField]
         private string _Final_Unicode;
 
@@ -217,7 +212,6 @@ namespace Antura.Database
             get { return _Symbol_Unicode; }
             set { _Symbol_Unicode = value; }
         }
-
         [SerializeField]
         private string _Symbol_Unicode;
 
@@ -235,7 +229,6 @@ namespace Antura.Database
             get { return _FinalFix; }
             set { _FinalFix = value; }
         }
-
         [SerializeField]
         private string _FinalFix;
 
@@ -244,45 +237,8 @@ namespace Antura.Database
             get { return _MedialFix; }
             set { _MedialFix = value; }
         }
-
         [SerializeField]
         private string _MedialFix;
-
-        public string Old_Isolated
-        {
-            get { return _Old_Isolated; }
-            set { _Old_Isolated = value; }
-        }
-
-        [SerializeField]
-        private string _Old_Isolated;
-
-        public string Old_Initial
-        {
-            get { return _Old_Initial; }
-            set { _Old_Initial = value; }
-        }
-
-        [SerializeField]
-        private string _Old_Initial;
-
-        public string Old_Medial
-        {
-            get { return _Old_Medial; }
-            set { _Old_Medial = value; }
-        }
-
-        [SerializeField]
-        private string _Old_Medial;
-
-        public string Old_Final
-        {
-            get { return _Old_Final; }
-            set { _Old_Final = value; }
-        }
-
-        [SerializeField]
-        private string _Old_Final;
 
         public float Complexity
         {
@@ -322,8 +278,7 @@ namespace Antura.Database
         public bool IsOfKindCategory(LetterKindCategory category)
         {
             var isIt = false;
-            switch (category)
-            {
+            switch (category) {
                 case LetterKindCategory.Base:
                     isIt = IsBaseLetter();
                     break;
@@ -383,13 +338,11 @@ namespace Antura.Database
 
         public string GetUnicode(LetterForm form = LetterForm.Isolated, bool fallback = true)
         {
-            switch (Kind)
-            {
+            switch (Kind) {
                 case LetterDataKind.Symbol:
                     return Isolated_Unicode;
                 default:
-                    switch (form)
-                    {
+                    switch (form) {
                         case LetterForm.Initial:
                             return Initial_Unicode != "" ? Initial_Unicode : (fallback ? Isolated_Unicode : "");
                         case LetterForm.Medial:
@@ -406,16 +359,16 @@ namespace Antura.Database
         {
             var output = "";
             var hexunicode = GetUnicode(form);
-            if (hexunicode != "")
-            {
+            if (hexunicode != "") {
                 // add the "-" to diacritic symbols to indentify better if it's over or below hte mid line
-                if (Type == LetterDataType.DiacriticSymbol) output = "\u0640";
+                if (Type == LetterDataType.DiacriticSymbol) {
+                    output = "\u0640";
+                }
 
                 var unicode = int.Parse(hexunicode, NumberStyles.HexNumber);
                 output += ((char)unicode).ToString();
 
-                if (Symbol_Unicode != "")
-                {
+                if (Symbol_Unicode != "") {
                     var unicode_added = int.Parse(Symbol_Unicode, NumberStyles.HexNumber);
                     output += ((char)unicode_added).ToString();
                 }
@@ -426,41 +379,38 @@ namespace Antura.Database
         // this just adds a "-" before medial and final single letters! if needed
         public string GetCharFixedForDisplay(LetterForm form = LetterForm.Isolated)
         {
-            if (GetUnicode(form, false) == "")
-            {
+            if (GetUnicode(form, false) == "") {
                 return "";
             }
 
             var output = GetChar(form);
 
-            if (form == LetterForm.Final && FinalFix != "" || form == LetterForm.Medial && MedialFix != "")
-            { output = "\u0640" + output; }
+            if (form == LetterForm.Final && FinalFix != "" || form == LetterForm.Medial && MedialFix != "") {
+                output = "\u0640" + output;
+            }
 
-            if (form == LetterForm.Initial && InitialFix != "" || form == LetterForm.Medial && InitialFix != "")
-            { output = output + "\u0640"; }
+            if (form == LetterForm.Initial && InitialFix != "" || form == LetterForm.Medial && InitialFix != "") {
+                output = output + "\u0640";
+            }
 
             return output;
         }
 
         public IEnumerable<LetterForm> GetAvailableForms()
         {
-            if (Isolated_Unicode != "")
-            {
+            if (Isolated_Unicode != "") {
                 yield return LetterForm.Isolated;
             }
 
-            if (Initial_Unicode != "")
-            {
+            if (Initial_Unicode != "") {
                 yield return LetterForm.Initial;
             }
 
-            if (Medial_Unicode != "")
-            {
+            if (Medial_Unicode != "") {
                 yield return LetterForm.Medial;
             }
 
-            if (Final_Unicode != "")
-            {
+            if (Final_Unicode != "") {
                 yield return LetterForm.Final;
             }
         }
