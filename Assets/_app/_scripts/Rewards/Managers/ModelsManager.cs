@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using UnityEngine;
 
 namespace Antura.Rewards

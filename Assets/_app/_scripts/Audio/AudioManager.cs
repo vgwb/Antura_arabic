@@ -224,7 +224,7 @@ namespace Antura.Audio
             return source;
         }
 
-        public void StopSounds()
+        public void StopAllSfx()
         {
             sfxGroup.Stop();
         }

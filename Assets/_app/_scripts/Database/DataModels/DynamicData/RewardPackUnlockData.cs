@@ -1,6 +1,7 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.Helpers;
 using Antura.Rewards;
+using Antura.Tutorial;
 using SQLite;
 
 namespace Antura.Database
@@ -120,8 +121,7 @@ namespace Antura.Database
 
         public Reward GetReward()
         {
-            if (Type != RewardTypes.reward)
-            {
+            if (Type != RewardTypes.reward) {
                 return null;
             }
             return RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemId);
@@ -129,13 +129,11 @@ namespace Antura.Database
 
         public string GetRewardCategory()
         {
-            if (Type != RewardTypes.reward)
-            {
+            if (Type != RewardTypes.reward) {
                 return string.Empty;
             }
             Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemId);
-            if (reward != null)
-            {
+            if (reward != null) {
                 return reward.Category;
             }
             return string.Empty;

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Antura.Audio;
 using Antura.UI;
 using DG.Tweening;
@@ -47,8 +47,7 @@ namespace Antura.Rewards
             showTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(this.GetComponent<Image>().DOFade(0, 0.35f).From().SetEase(Ease.Linear))
                 .Join(ContentRT.DOAnchorPosY(-960, 0.35f).From().SetEase(Ease.OutBack))
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     this.gameObject.SetActive(false);
                     bgTween.Rewind();
                 })

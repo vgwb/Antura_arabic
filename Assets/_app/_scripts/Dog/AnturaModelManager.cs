@@ -1,7 +1,8 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.Database;
 using Antura.Profile;
 using Antura.Rewards;
+using Antura.Tutorial;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -91,7 +92,8 @@ namespace Antura.Dog
         {
             AnturaCustomization returnCustomization = new AnturaCustomization();
             foreach (LoadedModel loadedModel in LoadedModels) {
-                RewardPackUnlockData pack = new RewardPackUnlockData() {
+                RewardPackUnlockData pack = new RewardPackUnlockData()
+                {
                     ItemId = loadedModel.Reward.ItemId,
                     ColorId = loadedModel.Reward.ColorId,
                     Type = RewardTypes.reward

@@ -6,7 +6,7 @@ using Antura.Database;
 using Antura.Keeper;
 using Antura.Minigames;
 using Antura.Profile;
-using Antura.Rewards;
+using Antura.Tutorial;
 using Antura.UI;
 using DG.Tweening;
 using UnityEngine;

@@ -1,15 +1,14 @@
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using Antura.Core;
 using Antura.Helpers;
 using Antura.UI;
 using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Antura.Rewards
 {
-
     /// <summary>
     /// every day some rewards
     /// </summary>

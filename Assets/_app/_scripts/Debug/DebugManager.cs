@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.Database;
 using Antura.Minigames;
 using Antura.Profile;

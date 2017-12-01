@@ -7,7 +7,7 @@ using Antura.UI;
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Profile;
-using Antura.Rewards;
+using Antura.Tutorial;
 using UnityEngine;
 
 namespace Antura.AnturaSpace

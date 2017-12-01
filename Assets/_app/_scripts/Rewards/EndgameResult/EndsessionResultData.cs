@@ -1,4 +1,4 @@
-﻿namespace Antura.Rewards
+namespace Antura.Rewards
 {
     /// <summary>
     /// Data related to a minigame played during a play session.

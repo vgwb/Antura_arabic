@@ -13,7 +13,7 @@ namespace Antura.Minigames
 
         IAudioSource PlaySound(Sfx sfx);
         IAudioSource PlaySound(AudioClip clip);
-        void StopSounds();
+        void StopAllSfx();
 
         /// <summary>
         /// Play sound for letter or word,

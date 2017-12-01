@@ -1,4 +1,4 @@
-﻿using Antura.Audio;
+using Antura.Audio;
 using Antura.Core;
 using Antura.Extensions;
 using Antura.Helpers;

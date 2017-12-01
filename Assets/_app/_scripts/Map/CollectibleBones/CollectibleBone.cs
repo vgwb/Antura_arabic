@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using UnityEngine;
 
-namespace Antura.Rewards.Collectible
+namespace Antura.Tutorial.Collectible
 {
     
     public class CollectibleBone : MonoBehaviour

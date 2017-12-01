@@ -1,4 +1,4 @@
-﻿using Antura.Rewards;
+using Antura.Rewards;
 using Antura.UI;
 using UnityEngine;
 using UnityEngine.UI;

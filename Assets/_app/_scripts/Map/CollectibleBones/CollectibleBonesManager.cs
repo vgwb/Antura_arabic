@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.Helpers;
 using Antura.UI;
 using System.Collections;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Antura.Rewards.Collectible
+namespace Antura.Tutorial.Collectible
 {
     public class CollectibleBonesManager : MonoBehaviour
     {

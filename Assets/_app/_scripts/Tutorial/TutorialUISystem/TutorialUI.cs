@@ -44,8 +44,7 @@ namespace Antura.Tutorial
         void Awake()
         {
             I = this;
-            if (Cam == null)
-            {
+            if (Cam == null) {
                 Cam = Camera.main;
                 CamT = Cam.transform;
                 var tutorialMask = 1 << LayerMask.NameToLayer("TutorialUI");
@@ -71,9 +70,9 @@ namespace Antura.Tutorial
         {
             if (I == null) { return; }
 
-            if (_destroy) { Destroy(I.gameObject); }
-            else
-            {
+            if (_destroy) {
+                Destroy(I.gameObject);
+            } else {
                 DOTween.Kill(TweenId);
                 I.Finger.Hide(true);
                 I.Pools.DespawnAll();
@@ -85,8 +84,7 @@ namespace Antura.Tutorial
             Init();
 
             var tutorialMask = 1 << LayerMask.NameToLayer("TutorialUI");
-            if (I.Cam != null)
-            {
+            if (I.Cam != null) {
                 I.Cam.cullingMask = I.Cam.cullingMask & ~tutorialMask;
             }
 
@@ -195,13 +193,10 @@ namespace Antura.Tutorial
 
             TutorialUILineGroup lr = null;
             TutorialUITrailGroup tr = null;
-            if (_persistent)
-            {
+            if (_persistent) {
                 lr = Pools.SpawnLineGroup(this.transform, startPos, _overlayed);
                 currMovingTarget = lr.transform;
-            }
-            else
-            {
+            } else {
                 tr = Pools.SpawnTrailGroup(this.transform, startPos, _overlayed);
                 currMovingTarget = tr.transform;
             }
@@ -213,27 +208,20 @@ namespace Antura.Tutorial
             TweenParams parms = TweenParams.Params.SetSpeedBased().SetEase(Ease.OutSine).SetId(TweenId);
 
             Tween mainTween = currMovingTarget.DOPath(_path, actualDrawSpeed, _pathType).SetAs(parms);
-            if (_persistent)
-            {
+            if (_persistent) {
                 mainTween.OnUpdate(() => lr.AddPosition(lr.transform.position));
-                mainTween.OnStepComplete(() =>
-                {
+                mainTween.OnStepComplete(() => {
                     if (hasFinger && lr.transform == currMovingTarget) { Finger.Hide(); }
                 });
-            }
-            else
-            {
-                mainTween.OnStepComplete(() =>
-                {
+            } else {
+                mainTween.OnStepComplete(() => {
                     if (hasFinger && tr.transform == currMovingTarget) { Finger.Hide(); }
                 });
             }
 
-            if (hasArrow)
-            {
+            if (hasArrow) {
                 Tween t = arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f).SetAs(parms);
-                if (!_persistent)
-                {
+                if (!_persistent) {
                     t.OnComplete(() => { DOVirtual.DelayedCall(Mathf.Max(tr.Time - 0.2f, 0), () => arrow.Hide(), false).SetId(TweenId); });
                 }
             }
@@ -247,8 +235,7 @@ namespace Antura.Tutorial
 
         public static float GetCameraBasedScaleMultiplier(Vector3 _position)
         {
-            if (I.Cam.orthographic)
-            {
+            if (I.Cam.orthographic) {
                 return I.Cam.orthographicSize / 5.0f;
             }
             return (Vector3.Distance(_position, I.CamT.position) / 20) * (I.Cam.fieldOfView / 45f);

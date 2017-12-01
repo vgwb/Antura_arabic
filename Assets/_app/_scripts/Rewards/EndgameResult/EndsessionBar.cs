@@ -1,4 +1,4 @@
-﻿using Antura.Audio;
+using Antura.Audio;
 using DG.Tweening;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ namespace Antura.Rewards
         public Tween ShowTween;
 
         Vector2 barSizeDelta;
-        float[] achievementsPercent = new[] {0.333f, 0.666f, 1};
+        float[] achievementsPercent = new[] { 0.333f, 0.666f, 1 };
         float singleMinigameStarPercent;
         int totMinigameStarsGained;
         Tween barTween, shakeTween;

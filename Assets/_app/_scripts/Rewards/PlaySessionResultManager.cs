@@ -1,5 +1,5 @@
-﻿using System.Linq;
 using Antura.Core;
+using System.Linq;
 using UnityEngine;
 
 namespace Antura.Rewards
@@ -39,7 +39,7 @@ namespace Antura.Rewards
             LogManager.I.LogPlaySessionScore(AppManager.I.JourneyHelper.GetCurrentPlaySessionData().Id, earnedStars);
 
 
-            if (NavigationManager.TEST_SKIP_GAMES) earnedStars = 3;
+            if (NavigationManager.TEST_SKIP_GAMES) { earnedStars = 3; }
 
             AppManager.I.Teacher.logAI.UnlockVocabularyDataForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
             // save max progression (internal check if necessary)

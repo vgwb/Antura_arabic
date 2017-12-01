@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Antura.Rewards
@@ -22,15 +22,11 @@ namespace Antura.Rewards
 
         public IEnumerable<DailyReward> GetRewards(int startIndex, int stopIndex)
         {
-            for (var index = startIndex; index < stopIndex; index++)
-            {
-                if (index >= rewards.Count)
-                {
+            for (var index = startIndex; index < stopIndex; index++) {
+                if (index >= rewards.Count) {
                     // Fallback to the last one
                     yield return rewards.Last();
-                }
-                else
-                {
+                } else {
                     yield return rewards[index];
                 }
             }
@@ -49,7 +45,7 @@ namespace Antura.Rewards
                 new DailyReward(DailyRewardType.Bones, 10),
                 new DailyReward(DailyRewardType.Bones, 20),
                 new DailyReward(DailyRewardType.Test1, 1),
-                new DailyReward(DailyRewardType.Test2, 2),      
+                new DailyReward(DailyRewardType.Test2, 2),
                 new DailyReward(DailyRewardType.Bones, 30),
                 new DailyReward(DailyRewardType.Bones, 50),     // last one is forever
             };

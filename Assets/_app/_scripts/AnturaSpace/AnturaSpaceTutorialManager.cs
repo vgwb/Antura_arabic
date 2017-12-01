@@ -1,13 +1,12 @@
-﻿using Antura.AnturaSpace.UI;
+using Antura.AnturaSpace.UI;
+using Antura.Audio;
 using Antura.Core;
 using Antura.Dog;
-using Antura.Audio;
+using Antura.Profile;
 using Antura.Tutorial;
 using Antura.UI;
 using UnityEngine;
 using System.Collections;
-using Antura.Profile;
-using Antura.Rewards;
 
 namespace Antura.AnturaSpace
 {
@@ -16,7 +15,7 @@ namespace Antura.AnturaSpace
     /// </summary>
     public class AnturaSpaceTutorialManager : TutorialManager
     {
-      
+
         #region EXPOSED MEMBERS
 
         private AnturaSpaceScene _mScene;
@@ -50,9 +49,8 @@ namespace Antura.AnturaSpace
             m_oCustomizationButton.gameObject.SetActive(false);
 
             // Define what tutorial phase to play
-            switch (FirstContactManager.I.CurrentPhase)
-            {
-                 case FirstContactPhase.AnturaSpace_TouchAntura:
+            switch (FirstContactManager.I.CurrentPhase) {
+                case FirstContactPhase.AnturaSpace_TouchAntura:
                     AdvanceTutorialTouchAntura();
                     break;
 
@@ -71,7 +69,7 @@ namespace Antura.AnturaSpace
                     AdvanceTutorialExit();
                     break;
             }
-            
+
         }
 
         void Update()
@@ -127,8 +125,7 @@ namespace Antura.AnturaSpace
         private void AdvanceTutorialCustomization()
         {
             Debug.Log("CURRENT IS " + _currentCustomizationStep);
-            switch (_currentCustomizationStep)
-            {
+            switch (_currentCustomizationStep) {
                 case CustomizationTutorialStep.START:
                     _currentCustomizationStep = CustomizationTutorialStep.OPEN_CUSTOMIZE;
                     TutorialUI.Clear(false);
@@ -159,8 +156,7 @@ namespace Antura.AnturaSpace
                     StartCoroutine(WaitAndSpawnCO(
                         () => {
                             m_oCategoryButton = _mScene.UI.GetNewCategoryButton();
-                            if (m_oCategoryButton == null)
-                            {
+                            if (m_oCategoryButton == null) {
                                 AdvanceTutorialCustomization();
                                 return;
                             }
@@ -177,11 +173,9 @@ namespace Antura.AnturaSpace
                     TutorialUI.Clear(false);
 
                     //Unregister from category button
-                    if (m_oCategoryButton != null)
-                    {
+                    if (m_oCategoryButton != null) {
                         m_oCategoryButton.Bt.onClick.RemoveListener(AdvanceTutorialCustomization);
-                    }
-                    else {
+                    } else {
                         AdvanceTutorialCustomization();
                         break;
                     }
@@ -191,8 +185,7 @@ namespace Antura.AnturaSpace
                             // Register on item button
                             m_oItemButton = _mScene.UI.GetNewItemButton();
 
-                            if (m_oItemButton == null)
-                            {
+                            if (m_oItemButton == null) {
                                 AdvanceTutorialCustomization();
                                 return;
                             }
@@ -212,8 +205,7 @@ namespace Antura.AnturaSpace
                     _mScene.UI.SetTutorialMode(false);
 
                     //Unregister from Item button
-                    if (m_oItemButton != null)
-                    {
+                    if (m_oItemButton != null) {
                         m_oItemButton.Bt.onClick.RemoveListener(AdvanceTutorialCustomization);
                     }
 
@@ -258,8 +250,7 @@ namespace Antura.AnturaSpace
         private ShopTutorialStep _currentShopStep = ShopTutorialStep.START;
         private void AdvanceTutorialShop()
         {
-            switch (_currentShopStep)
-            {
+            switch (_currentShopStep) {
                 case ShopTutorialStep.START:
                     _currentShopStep = ShopTutorialStep.COOKIE_BUTTON;
 

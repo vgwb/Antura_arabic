@@ -29,8 +29,9 @@ namespace Antura.Test
             InitUI();
 
             foreach (var l in AppManager.I.DB.StaticDatabase.GetLetterTable().GetValuesTyped()) {
-                if (AudioManager.I.GetAudioClip(l) == null)
+                if (AudioManager.I.GetAudioClip(l) == null) {
                     Debug.LogError("Cannot find audio file: " + l);
+                }
             }
         }
 
@@ -98,7 +99,8 @@ namespace Antura.Test
 
         #region music
 
-        public GameObject PanelMusic1 {
+        public GameObject PanelMusic1
+        {
             get { return PanelMusic; }
             set { PanelMusic = value; }
         }
@@ -169,7 +171,7 @@ namespace Antura.Test
         public void StopAll()
         {
             AudioManager.I.StopMusic();
-            AudioManager.I.StopSounds();
+            AudioManager.I.StopAllSfx();
             AudioManager.I.StopDialogue(true);
             AudioManager.I.StopLettersWordsPhrases();
         }

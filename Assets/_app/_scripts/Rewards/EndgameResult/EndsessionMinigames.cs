@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Audio;
 using DG.Tweening;
 using UnityEngine;

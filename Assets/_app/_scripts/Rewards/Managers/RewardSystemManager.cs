@@ -2,6 +2,7 @@ using Antura.Dog;
 using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
+using Antura.Tutorial;
 using System;
 using System.Collections.Generic;
 using System.Linq;

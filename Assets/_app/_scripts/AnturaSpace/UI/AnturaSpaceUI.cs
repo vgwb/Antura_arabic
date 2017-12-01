@@ -1,12 +1,13 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.Dog;
 using Antura.Extensions;
 using Antura.Helpers;
 using Antura.Rewards;
+using Antura.Tutorial;
 using Antura.UI;
-using System;
 using DG.DeInspektor.Attributes;
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,7 +71,8 @@ namespace Antura.AnturaSpace.UI
 
         int bonesCount = -1;
 
-        public int BonesCount {
+        public int BonesCount
+        {
             get { return bonesCount; }
             set {
                 if (value == bonesCount) {
@@ -93,7 +95,7 @@ namespace Antura.AnturaSpace.UI
             btsSwatches = SwatchesContainer.GetComponentsInChildren<AnturaSpaceSwatchButton>(true);
             SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
             BtOpenModsPanel.SetAsNew(AppManager.I.Player.ThereIsSomeNewReward());
-            
+
 
             // Create items
             rewardsContainers = new List<Transform>();
@@ -185,14 +187,11 @@ namespace Antura.AnturaSpace.UI
 
         public void ToggleShopPanel()
         {
-            if (ShopDecorationsManager.I.ShopContext == ShopContext.Closed)
-            {
+            if (ShopDecorationsManager.I.ShopContext == ShopContext.Closed) {
                 ShopPanelContainer.gameObject.SetActive(true);
                 ShopDecorationsManager.I.SetContextPurchase();
                 showShopTween.PlayForward();
-            }
-            else
-            {
+            } else {
                 ShopDecorationsManager.I.SetContextClosed();
                 showShopTween.PlayBackwards();
             }
@@ -203,8 +202,7 @@ namespace Antura.AnturaSpace.UI
             if (IsModsPanelOpen && isTutorialMode) return;
 
             IsModsPanelOpen = !IsModsPanelOpen;
-            if (IsModsPanelOpen)
-            {
+            if (IsModsPanelOpen) {
                 BtOpenModsPanel.SetAsNew(false);
                 CategoriesContainer.gameObject.SetActive(true);
                 showCategoriesTween.PlayForward();
@@ -215,9 +213,7 @@ namespace Antura.AnturaSpace.UI
                 if (onEnterCustomization != null) {
                     onEnterCustomization();
                 }
-            }
-            else
-            {
+            } else {
                 BtOpenModsPanel.SetAsNew(AppManager.I.Player.ThereIsSomeNewReward());
                 SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
                 showCategoriesTween.PlayBackwards();
@@ -505,8 +501,7 @@ namespace Antura.AnturaSpace.UI
                 ToggleModsPanel();
             } else if (_bt == BTRemoveMods) {
                 SelectReward(null);
-            } else if (_bt == BtBonesShop)
-            {
+            } else if (_bt == BtBonesShop) {
                 ToggleShopPanel();
             }
         }

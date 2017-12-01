@@ -1,4 +1,4 @@
-﻿using Antura.Rewards;
+using Antura.Rewards;
 using Antura.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +19,8 @@ namespace Antura.AnturaSpace.UI
         [System.NonSerialized]
         public RewardItem Data;
 
-        public bool IsNew {
+        public bool IsNew
+        {
             get { return isNew && !isNewForceHidden; }
         }
 

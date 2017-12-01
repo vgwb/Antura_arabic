@@ -1,10 +1,9 @@
-﻿using System;
-using System.Globalization;
 using Antura.UI;
 using DG.DeExtensions;
 using DG.Tweening;
-using UnityEngine;
+using System;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Antura.Rewards
@@ -58,8 +57,7 @@ namespace Antura.Rewards
 
         private void SetRewardType(DailyRewardType rewardType)
         {
-            switch (rewardType)
-            {
+            switch (rewardType) {
                 case DailyRewardType.Bones:
                     imageUI.sprite = bonesSprite;
                     break;
@@ -81,14 +79,10 @@ namespace Antura.Rewards
 
         public void Bounce(bool doBounce)
         {
-            if (!doBounce)
-            {
+            if (!doBounce) {
                 if (bounceTween != null) bounceTween.Rewind();
-            }
-            else
-            {
-                if (bounceTween == null)
-                {
+            } else {
+                if (bounceTween == null) {
                     bounceTween = this.transform.DOScale(this.transform.localScale * 0.9f, 0.4f)
                         .SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo)
                         .SetAutoKill(false);
@@ -117,14 +111,11 @@ namespace Antura.Rewards
             bgImg.color = unlockedColor;
             imageUI.sprite = usedBonesSprite;
             Bounce(false);
-            if (!animate)
-            {
+            if (!animate) {
                 bgImg.SetAlpha(1);
                 imageUI.SetAlpha(1);
                 unlockUI.gameObject.SetActive(true);
-            }
-            else
-            {
+            } else {
                 unlockTween.Restart();
             }
         }

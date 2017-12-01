@@ -1,12 +1,13 @@
-using UnityEngine;
-using System.Collections;
 using Antura.Dog;
 using Antura.Core;
 using Antura.Database;
 using Antura.Keeper;
 using Antura.Profile;
+using Antura.Tutorial;
 using Antura.UI;
 using DG.Tweening;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Antura.Rewards
@@ -42,8 +43,8 @@ namespace Antura.Rewards
 
             var tutorialManager = gameObject.GetComponentInChildren<RewardsTutorialManager>();
             tutorialManager.HandleStart();
-		}
-		
+        }
+
         void OnDestroy()
         {
             btAnturaTween.Kill();
@@ -56,8 +57,7 @@ namespace Antura.Rewards
 
         IEnumerator StartReward()
         {
-            if (FirstContactManager.I.IsFinished())
-            {
+            if (FirstContactManager.I.IsFinished()) {
                 int rnd = Random.Range(1, 3);
                 switch (rnd) {
                     case 1:
@@ -75,7 +75,7 @@ namespace Antura.Rewards
             // Wait animation ending before show continue button
             yield return new WaitForSeconds(4.4f);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
-            if (FirstContactManager.I.IsFinished()){ 
+            if (FirstContactManager.I.IsFinished()) {
                 AnturaSpaceBtton.gameObject.SetActive(true);
                 btAnturaTween = AnturaSpaceBtton.transform.DOScale(0.1f, 0.4f).From().SetEase(Ease.OutBack);
             }
@@ -96,12 +96,9 @@ namespace Antura.Rewards
         /// <returns></returns>
         public RewardPackUnlockData GetRewardToInstantiate()
         {
-            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig))
-            {
+            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig)) {
                 return AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
-            }
-            else
-            {
+            } else {
                 RewardPackUnlockData newRewardToInstantiate = RewardSystemManager.GetNextRewardPack(true)[0];
                 AppManager.I.Player.AddRewardUnlocked(newRewardToInstantiate);
                 AppManager.I.Player.AdvanceMaxJourneyPosition();

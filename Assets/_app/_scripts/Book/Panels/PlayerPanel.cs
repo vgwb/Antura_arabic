@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Antura.Database;
 using Antura.Helpers;
 using Antura.Rewards;
 using Antura.Core;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Antura.Book
 {

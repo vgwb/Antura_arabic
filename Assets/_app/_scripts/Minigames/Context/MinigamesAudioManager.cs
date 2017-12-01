@@ -26,10 +26,11 @@ namespace Antura.Minigames
 
         public void PlayDialogue(Database.LocalizationDataId text, System.Action callback = null)
         {
-            if (callback == null)
+            if (callback == null) {
                 AudioManager.I.PlayDialogue(text.ToString());
-            else
+            } else {
                 AudioManager.I.PlayDialogue(text.ToString(), callback);
+            }
         }
 
         public void PlayMusic(Music music)
@@ -47,12 +48,12 @@ namespace Antura.Minigames
             return AudioManager.I.PlaySound(sfx);
         }
 
-        public void StopSounds()
+        public void StopAllSfx()
         {
-            AudioManager.I.StopSounds();
+            AudioManager.I.StopAllSfx();
         }
 
-        public UnityEngine.AudioClip GetAudioClip(Sfx sfx)
+        public AudioClip GetAudioClip(Sfx sfx)
         {
             return AudioManager.I.GetAudioClip(sfx);
         }

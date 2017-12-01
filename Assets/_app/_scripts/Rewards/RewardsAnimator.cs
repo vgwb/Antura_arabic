@@ -1,8 +1,8 @@
-using UnityEngine;
-using System.Collections;
 using Antura.Audio;
 using Antura.Minigames;
 using DG.Tweening;
+using System.Collections;
+using UnityEngine;
 
 namespace Antura.Rewards
 {
@@ -14,7 +14,6 @@ namespace Antura.Rewards
     {
         [Header("Settings")]
         public float Pedestal360Duration = 15f;
-
         public float Godrays360Duration = 15f;
 
         [Header("References")]
@@ -60,8 +59,7 @@ namespace Antura.Rewards
                     .Append(LockClosed.DOShakePosition(0.8f, 40f, 16, 90, false, false))
                     .Join(LockClosed.DOShakeRotation(0.8f, new Vector3(0, 0, 70f), 16, 90, false))
                     .Join(LockClosed.DOPunchScale(Vector3.one * 0.8f, 0.4f, 20))
-                    .AppendCallback(() =>
-                    {
+                    .AppendCallback(() => {
                         LockClosed.gameObject.SetActive(false);
                         LockOpen.gameObject.SetActive(true);
                         if (alarmClockSound != null) {
@@ -93,8 +91,7 @@ namespace Antura.Rewards
                     .Append(LockClosed.DOShakePosition(0.8f, 40f, 16, 90, false, false))
                     .Join(LockClosed.DOShakeRotation(0.8f, new Vector3(0, 0, 70f), 16, 90, false))
                     .Join(LockClosed.DOPunchScale(Vector3.one * 0.8f, 0.4f, 20))
-                    .AppendCallback(() =>
-                    {
+                    .AppendCallback(() => {
                         LockClosed.gameObject.SetActive(false);
                         LockOpen.gameObject.SetActive(true);
                         if (alarmClockSound != null) {

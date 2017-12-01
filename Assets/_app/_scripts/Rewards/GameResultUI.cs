@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
 using Antura.UI;
-using Antura.Core;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Antura.Rewards

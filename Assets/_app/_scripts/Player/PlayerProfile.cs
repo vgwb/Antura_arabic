@@ -1,7 +1,8 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.Database;
 using Antura.Dog;
 using Antura.Rewards;
+using Antura.Tutorial;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,10 +1,9 @@
-﻿using System.Collections;
 using Antura.Core;
 using Antura.Database;
 using Antura.Keeper;
 using Antura.Profile;
-using Antura.Rewards;
 using Antura.Tutorial;
+using System.Collections;
 using UnityEngine;
 
 namespace Antura.Map
@@ -22,8 +21,7 @@ namespace Antura.Map
             _stageMapsManager.DeactivateAllUI();
 
             // TODO: at the end, re-call this to check if we still have new tutorials for this scene
-            switch (FirstContactManager.I.CurrentPhase)
-            {
+            switch (FirstContactManager.I.CurrentPhase) {
                 case FirstContactPhase.Map_Play:
 
                     _stageMapsManager.SetPlayUIActivation(true);
@@ -32,7 +30,7 @@ namespace Antura.Map
                         KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_Map1);
                     });
 
-                    StartCoroutine(TutorialHintClickCO( _stageMapsManager.SelectedPin.transform));
+                    StartCoroutine(TutorialHintClickCO(_stageMapsManager.SelectedPin.transform));
 
                     // @note: this phase is completed not on Play, but when we come back after the results
                     //FirstContactManager.I.PassPhase(FirstContactPhase.Map_Play);
@@ -42,11 +40,9 @@ namespace Antura.Map
                 case FirstContactPhase.Map_GoToAnturaSpace:
 
                     // Wait for a specific PS to be unlocked before triggering this!
-                    if (HasReachedJourneyPosition(1, 2, 1))
-                    {
+                    if (HasReachedJourneyPosition(1, 2, 1)) {
 
-                        KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_AnturaSpace, true, true, () =>
-                        {
+                        KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_AnturaSpace, true, true, () => {
                             _stageMapsManager.SetAnturaSpaceUIActivation(true);
                             StartCoroutine(TutorialHintClickCO(_stageMapsManager.anturaSpaceButton.transform));
                         });
@@ -56,9 +52,7 @@ namespace Antura.Map
                         // @note: this phase is completed on transition to AnturaSpace
                         // _stageMapsManager.anturaSpaceButton.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(CompleteTutorialPhase);
                         //FirstContactManager.I.PassPhase(FirstContactPhase.Map_GoToAnturaSpace);
-                    }
-                    else
-                    {
+                    } else {
                         // Let him play
                         _stageMapsManager.SetPlayUIActivation(true);
                     }
@@ -71,13 +65,10 @@ namespace Antura.Map
                     _stageMapsManager.SetAnturaSpaceUIActivation(true);
 
                     // Wait for a specific PS to be unlocked before triggering this!
-                    if (HasReachedJourneyPosition(1, 3, 1))
-                    {
+                    if (HasReachedJourneyPosition(1, 3, 1)) {
                         _stageMapsManager.SetLearningBookUIActivation(true);
                         StartCoroutine(TutorialHintClickCO(_stageMapsManager.learningBookButton.transform));
-                    }
-                    else
-                    {
+                    } else {
                         // Let the player play
                         _stageMapsManager.SetPlayUIActivation(true);
                     }
@@ -90,13 +81,10 @@ namespace Antura.Map
                     _stageMapsManager.SetLearningBookUIActivation(true);
 
                     // Wait for a specific PS to be unlocked before triggering this!
-                    if (HasReachedJourneyPosition(1, 4, 1))
-                    {
+                    if (HasReachedJourneyPosition(1, 4, 1)) {
                         _stageMapsManager.SetMinigamesBookUIActivation(true);
                         StartCoroutine(TutorialHintClickCO(_stageMapsManager.minigamesBookButton.transform));
-                    }
-                    else
-                    {
+                    } else {
                         _stageMapsManager.SetPlayUIActivation(true);
                     }
                     break;
@@ -114,8 +102,7 @@ namespace Antura.Map
             TutorialUI.SetCamera(_stageMapsManager.UICamera);
             var pos = targetTr.position;
             pos.y += 2;
-            while (true)
-            {
+            while (true) {
                 TutorialUI.Click(pos);
                 yield return new WaitForSeconds(0.85f);
             }

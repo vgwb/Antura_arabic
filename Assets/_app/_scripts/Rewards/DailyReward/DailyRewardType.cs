@@ -1,4 +1,4 @@
-﻿namespace Antura.Rewards
+namespace Antura.Rewards
 {
     public enum DailyRewardType
     {

@@ -1,4 +1,4 @@
-﻿using Antura.Audio;
+using Antura.Audio;
 using Antura.CameraControl;
 using Antura.Core.Services;
 using Antura.Database;
@@ -65,8 +65,7 @@ namespace Antura.Core
         /// </summary>
         protected override void Init()
         {
-            if (alreadySetup)
-            {
+            if (alreadySetup) {
                 return;
             }
 
@@ -112,17 +111,13 @@ namespace Antura.Core
         void Update()
         {
             // Exit with Android back button
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (Application.platform == RuntimePlatform.Android)
-                {
-                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () =>
-                        {
-                            Debug.Log("Application Quit");
-                            Application.Quit();
-                        }, () =>
-                        {
-                        });
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                if (Application.platform == RuntimePlatform.Android) {
+                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
+                        Debug.Log("Application Quit");
+                        Application.Quit();
+                    }, () => {
+                    });
                 }
             }
         }
@@ -154,15 +149,13 @@ namespace Antura.Core
             IsPaused = pauseStatus;
 
             // app is pausing
-            if (IsPaused)
-            {
+            if (IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
                 Services.Notifications.AppSuspended();
             }
 
             //app is resuming
-            if (!IsPaused)
-            {
+            if (!IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppResume);
                 Services.Notifications.AppResumed();
                 LogManager.I.InitNewSession();
@@ -200,8 +193,7 @@ namespace Antura.Core
         void On_TMPro_Text_Changed(Object obj)
         {
             var tmpText = obj as TMPro.TMP_Text;
-            if (tmpText != null && VocabularyHelper.FixDiacriticPositions(tmpText.textInfo))
-            {
+            if (tmpText != null && VocabularyHelper.FixDiacriticPositions(tmpText.textInfo)) {
                 tmpText.UpdateVertexData();
             }
         }

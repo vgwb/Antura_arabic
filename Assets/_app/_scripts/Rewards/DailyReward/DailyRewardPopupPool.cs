@@ -1,5 +1,3 @@
-﻿
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +10,8 @@ namespace Antura.Rewards
     {
         #region Serialized
 
-        [SerializeField] DailyRewardPopup popup;
+        [SerializeField]
+        DailyRewardPopup popup;
 
         #endregion
 
@@ -47,8 +46,7 @@ namespace Antura.Rewards
             if (tot == 0) return res;
 
             res.Add(popup);
-            while (res.Count < tot)
-            {
+            while (res.Count < tot) {
                 DailyRewardPopup p = Instantiate(popup, popup.transform.parent, false);
                 res.Add(p);
             }
