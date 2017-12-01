@@ -14,7 +14,7 @@ namespace Antura.Rewards
 
         public void HandleStart()
         {
-            if (!FirstContactManager.I.IsNotCompleted())
+            if (!FirstContactManager.I.IsNotFinished())
             {
                 gameObject.SetActive(false);
                 IsRunning = false;

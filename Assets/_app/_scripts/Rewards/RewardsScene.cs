@@ -56,7 +56,7 @@ namespace Antura.Rewards
 
         IEnumerator StartReward()
         {
-            if (!FirstContactManager.I.IsNotCompleted())
+            if (!FirstContactManager.I.IsNotFinished())
             {
                 int rnd = Random.Range(1, 3);
                 switch (rnd) {
@@ -75,7 +75,7 @@ namespace Antura.Rewards
             // Wait animation ending before show continue button
             yield return new WaitForSeconds(4.4f);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
-            if (!FirstContactManager.I.IsNotCompleted()){ 
+            if (!FirstContactManager.I.IsNotFinished()){ 
                 AnturaSpaceBtton.gameObject.SetActive(true);
                 btAnturaTween = AnturaSpaceBtton.transform.DOScale(0.1f, 0.4f).From().SetEase(Ease.OutBack);
             }
