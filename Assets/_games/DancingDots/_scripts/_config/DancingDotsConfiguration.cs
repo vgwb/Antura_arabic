@@ -33,10 +33,8 @@ namespace Antura.Minigames.DancingDots
         static DancingDotsConfiguration instance;
         public static DancingDotsConfiguration Instance
         {
-            get
-            {
-                if (instance == null)
-                {
+            get {
+                if (instance == null) {
                     instance = new DancingDotsConfiguration();
                 }
                 return instance;
@@ -76,8 +74,7 @@ namespace Antura.Minigames.DancingDots
 
             var builderParams = new Teacher.QuestionBuilderParameters();
 
-            switch (Variation)
-            {
+            switch (Variation) {
                 case DancingDotsVariation.Letter:
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.AllButMain;
                     builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
@@ -87,8 +84,13 @@ namespace Antura.Minigames.DancingDots
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 case DancingDotsVariation.LetterForm:
-                    // TODO
-                    throw new System.Exception("DancingDotsVariation.LetterForm to be done");
+                    // TODO CHECK NEW MINIGAME VARIATION
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.AllButMain;
+                    builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
+                    builderParams.wordFilters.excludeDiacritics = false;
+                    builderParams.wordFilters.excludeLetterVariations = true;
+                    builderParams.letterFilters.excludeDiphthongs = true;
+                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
             }
             return builder;

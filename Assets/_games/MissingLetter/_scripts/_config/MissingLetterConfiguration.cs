@@ -32,8 +32,7 @@ namespace Antura.Minigames.MissingLetter
         static MissingLetterConfiguration instance;
         public static MissingLetterConfiguration Instance
         {
-            get
-            {
+            get {
                 if (instance == null) {
                     instance = new MissingLetterConfiguration();
                 }
@@ -72,12 +71,12 @@ namespace Antura.Minigames.MissingLetter
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters: true, parameters: builderParams);
                     break;
 
-                case MissingLetterVariation.LetterForm:
-                    // TODO
-                    throw new System.Exception("MissingLetterVariation.MissingLetterForm to be done");
+                case MissingLetterVariation.Letter:
+                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters: true, parameters: builderParams);
                     break;
 
-                case MissingLetterVariation.Letter:
+                case MissingLetterVariation.LetterForm:
+                    // TODO CHECK NEW MINIGAME VARIATION
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters: true, parameters: builderParams);
                     break;
 

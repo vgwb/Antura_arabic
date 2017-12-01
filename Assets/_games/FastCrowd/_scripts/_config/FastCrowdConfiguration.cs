@@ -39,10 +39,8 @@ namespace Antura.Minigames.FastCrowd
         static FastCrowdConfiguration instance;
         public static FastCrowdConfiguration Instance
         {
-            get
-            {
-                if (instance == null)
-                {
+            get {
+                if (instance == null) {
                     instance = new FastCrowdConfiguration();
                 }
                 return instance;
@@ -91,8 +89,7 @@ namespace Antura.Minigames.FastCrowd
 
             var builderParams = new Teacher.QuestionBuilderParameters();
 
-            switch (Variation)
-            {
+            switch (Variation) {
                 case FastCrowdVariation.Alphabet:
                     builder = new AlphabetQuestionBuilder();
                     break;
@@ -103,8 +100,7 @@ namespace Antura.Minigames.FastCrowd
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true);
                     break;
                 case FastCrowdVariation.LetterForm:
-                    // TODO
-                    throw new System.Exception("FastCrowdVariation.LetterForm to be done");
+                    // TODO CHECK NEW MINIGAME VARIATION
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true);
                     break;
                 case FastCrowdVariation.LetterInWord:
