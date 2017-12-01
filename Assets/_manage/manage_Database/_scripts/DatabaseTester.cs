@@ -634,7 +634,7 @@ namespace Antura.Database.Management
         {
             dbManager.UpdatePlayerProfileData(
                 new PlayerProfileData(DEBUG_PLAYER_UUID, 1, PlayerGender.M, PlayerTint.Blue, false, false, false, false,
-                                      5, 8, 0, "", 0, new AnturaSpace.ShopState()
+                                      5, 8, 0, "", 0, new AnturaSpace.ShopState(), FirstContactPhase.Finished
                                      )
             );
             var playerProfileData = dbManager.GetPlayerProfileData();
