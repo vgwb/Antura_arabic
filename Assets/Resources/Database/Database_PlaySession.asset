@@ -177,8 +177,25 @@ MonoBehaviour:
       _NumberOfRoundsPerMinigame: 0
       _Letters:
       - noon_shaddah
-      - theh_sukun
       - yeh_shaddah
+      - beh_fathah
+      - beh_dammah
+      - beh_kasrah
+      - beh_sukun
+      - teh_fathah
+      - teh_dammah
+      - teh_kasrah
+      - theh_fathah
+      - theh_dammah
+      - theh_kasrah
+      - theh_sukun
+      - noon_fathah
+      - noon_dammah
+      - noon_kasrah
+      - noon_sukun
+      - yeh_fathah
+      - yeh_dammah
+      - yeh_kasrah
       - yeh_sukun
       _Words:
       - house

@@ -1560,7 +1560,7 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0628\u064E\u064A\u0652\u0652\u062A\u064A"
+      _Arabic: "\u0628\u064E\u064A\u0652\u062A\u064A"
       _Value: 
       _Letters:
       - beh_fathah
@@ -1693,7 +1693,7 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u062A\u064E\u062B\u0652\u0652\u0628\u064E\u062A\u064A\u0646\u064E"
+      _Arabic: "\u062A\u064E\u062B\u0652\u0628\u064E\u062A\u064A\u0646\u064E"
       _Value: 
       _Letters:
       - teh_fathah
@@ -1829,7 +1829,7 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u064A\u064E\u062B\u0652\u0652\u0646\u064A"
+      _Arabic: "\u064A\u064E\u062B\u0652\u0646\u064A"
       _Value: 
       _Letters:
       - yeh_fathah
@@ -1863,7 +1863,7 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0646\u064E\u062B\u0652\u0652\u0646\u064A"
+      _Arabic: "\u0646\u064E\u062B\u0652\u0646\u064A"
       _Value: 
       _Letters:
       - noon_fathah

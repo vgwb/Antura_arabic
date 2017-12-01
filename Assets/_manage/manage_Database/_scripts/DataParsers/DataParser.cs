@@ -17,25 +17,18 @@ namespace Antura.Database.Management
             table.Clear();  // we re-generate the whole table
 
             var rootDict = Json.Deserialize(json) as Dictionary<string, object>;
-            foreach (var rootPair in rootDict)
-            {
+            foreach (var rootPair in rootDict) {
                 var list = rootPair.Value as List<object>;
-                foreach (var row in list)
-                {
+                foreach (var row in list) {
                     var dict = row as Dictionary<string, object>;
-
                     var data = CreateData(dict, db);
-
-                    if (data == null)
-                    {
+                    if (data == null) {
                         continue;
                     }
 
                     var value = table.GetValue(data.GetId());
-                    if (value != null)
-                    {
-                        if (!CanHaveSameKeyMultipleTimes)
-                        {
+                    if (value != null) {
+                        if (!CanHaveSameKeyMultipleTimes) {
                             LogValidation(data, "found multiple ID.");
                         }
                         continue;
@@ -49,15 +42,14 @@ namespace Antura.Database.Management
             FinalValidation(table, db);
         }
 
-        protected virtual bool CanHaveSameKeyMultipleTimes {
+        protected virtual bool CanHaveSameKeyMultipleTimes
+        {
             get {
                 return false;
             }
         }
 
-
         protected abstract D CreateData(Dictionary<string, object> dict, DatabaseObject db);
-
         protected virtual void FinalValidation(Dtable table, DatabaseObject db) { }
 
         protected T ParseEnum<T>(D data, object enum_object)
@@ -130,8 +122,9 @@ namespace Antura.Database.Management
         protected float ToFloat(object _input)
         {
             // Force empty to 0
-            if ((string)_input == "")
+            if ((string)_input == "") {
                 return 0f;
+            }
 
             float target_float = 0f;
             if (!float.TryParse((string)_input, out target_float)) {
@@ -141,7 +134,7 @@ namespace Antura.Database.Management
         }
         #endregion
 
-        #region  Enums
+        #region Enums
 
         public void RegenerateEnums(string json)
         {
@@ -164,7 +157,5 @@ namespace Antura.Database.Management
         }
 
         #endregion
-
     }
-
 }

@@ -71,6 +71,16 @@ MonoBehaviour:
       _Badge: 
       _Scene: game_Assessment
       _AffectedPlaySkills: []
+    - _Title_En: Letter
+      _Title_Ar: 
+      _Code: 115
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: LetterForm
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
     - _Title_En: Letters & Words
       _Title_Ar: 
       _Code: 102
@@ -282,7 +292,7 @@ MonoBehaviour:
       - Skill: 2
         Weight: 0.2
     - _Title_En: Dancing Dots LetterForm (NEW)
-      _Title_Ar: 
+      _Title_Ar: "\u0646\u062C\u0648\u0645\u064F \u0627\u0644\u0631\u0642\u0635!"
       _Code: 36
       _Available: 1
       _Type: 1
@@ -306,7 +316,7 @@ MonoBehaviour:
       - Skill: 1
         Weight: 0.2
     - _Title_En: Egg LetterForm (NEW)
-      _Title_Ar: 
+      _Title_Ar: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
       _Code: 37
       _Available: 1
       _Type: 1
@@ -368,7 +378,7 @@ MonoBehaviour:
       - Skill: 5
         Weight: 1
     - _Title_En: FastCrowd LetterForm (NEW)
-      _Title_Ar: 
+      _Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _Code: 38
       _Available: 1
       _Type: 1
@@ -461,7 +471,7 @@ MonoBehaviour:
       - Skill: 4
         Weight: 0.4
     - _Title_En: Missing Letter Forms! (NEW)
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
       _Code: 39
       _Available: 1
       _Type: 1
@@ -470,20 +480,6 @@ MonoBehaviour:
       _Badge: letters
       _Scene: game_MissingLetter
       _AffectedPlaySkills: []
-    - _Title_En: Missing Word!
-      _Title_Ar: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F\u0629!"
-      _Code: 20
-      _Available: 0
-      _Type: 1
-      _Main: MissingLetter
-      _Variation: word
-      _Badge: words
-      _Scene: game_MissingLetter
-      _AffectedPlaySkills:
-      - Skill: 6
-        Weight: 0.6
-      - Skill: 4
-        Weight: 0.4
     - _Title_En: Missing Form!
       _Title_Ar: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
       _Code: 35
@@ -492,6 +488,20 @@ MonoBehaviour:
       _Main: MissingLetter
       _Variation: forms
       _Badge: alphabet
+      _Scene: game_MissingLetter
+      _AffectedPlaySkills:
+      - Skill: 6
+        Weight: 0.6
+      - Skill: 4
+        Weight: 0.4
+    - _Title_En: Missing Word!
+      _Title_Ar: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F\u0629!"
+      _Code: 20
+      _Available: 0
+      _Type: 1
+      _Main: MissingLetter
+      _Variation: word
+      _Badge: words
       _Scene: game_MissingLetter
       _AffectedPlaySkills: []
     - _Title_En: Letter Salad!
@@ -540,22 +550,6 @@ MonoBehaviour:
         Weight: 0.2
       - Skill: 5
         Weight: 0.8
-    - _Title_En: Word Scanner!
-      _Title_Ar: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
-      _Code: 25
-      _Available: 0
-      _Type: 1
-      _Main: Scanner
-      _Variation: word
-      _Badge: images
-      _Scene: game_Scanner
-      _AffectedPlaySkills:
-      - Skill: 4
-        Weight: 0.2
-      - Skill: 5
-        Weight: 0.6
-      - Skill: 1
-        Weight: 0.2
     - _Title_En: 'Word Scanner: Sequence!'
       _Title_Ar: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0639\u0650\u0628\u0627\u0631\u0627\u062A!"
       _Code: 26
@@ -564,6 +558,22 @@ MonoBehaviour:
       _Main: Scanner
       _Variation: phrase
       _Badge: words
+      _Scene: game_Scanner
+      _AffectedPlaySkills:
+      - Skill: 4
+        Weight: 0.2
+      - Skill: 5
+        Weight: 0.6
+      - Skill: 1
+        Weight: 0.2
+    - _Title_En: Word Scanner!
+      _Title_Ar: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      _Code: 25
+      _Available: 0
+      _Type: 1
+      _Main: Scanner
+      _Variation: word
+      _Badge: images
       _Scene: game_Scanner
       _AffectedPlaySkills:
       - Skill: 4
@@ -600,23 +610,6 @@ MonoBehaviour:
       _AffectedPlaySkills:
       - Skill: 6
         Weight: 1
-    - _Title_En: 'Slingshot: Form a Word!'
-      _Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
-        \u0627\u0644\u062D\u0631\u0648\u0641!"
-      _Code: 32
-      _Available: 1
-      _Type: 1
-      _Main: ThrowBalls
-      _Variation: letterinword
-      _Badge: spelling
-      _Scene: game_ThrowBalls
-      _AffectedPlaySkills:
-      - Skill: 4
-        Weight: 0.2
-      - Skill: 5
-        Weight: 0.3
-      - Skill: 2
-        Weight: 0.5
     - _Title_En: 'Slingshot: Letters!'
       _Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u062D\u0631\u0648\u0641\u0650 \u0644\u062A\u0643\u0648\u064A\u0646
@@ -629,18 +622,37 @@ MonoBehaviour:
       _Badge: letter
       _Scene: game_ThrowBalls
       _AffectedPlaySkills:
+      - Skill: 4
+        Weight: 0.2
       - Skill: 5
-        Weight: 0.4
+        Weight: 0.3
       - Skill: 2
-        Weight: 0.6
+        Weight: 0.5
     - _Title_En: 'Slingshot: Letters Forms! (NEW)'
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
+        \u0627\u0644\u062D\u0631\u0648\u0641\u0650 \u0644\u062A\u0643\u0648\u064A\u0646
+        \u0627\u0644\u0643\u0644\u0645\u0629!"
       _Code: 15
       _Available: 1
       _Type: 1
       _Main: ThrowBalls
       _Variation: letterform
       _Badge: letter
+      _Scene: game_ThrowBalls
+      _AffectedPlaySkills:
+      - Skill: 5
+        Weight: 0.4
+      - Skill: 2
+        Weight: 0.6
+    - _Title_En: 'Slingshot: Form a Word!'
+      _Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
+        \u0627\u0644\u062D\u0631\u0648\u0641!"
+      _Code: 32
+      _Available: 1
+      _Type: 1
+      _Main: ThrowBalls
+      _Variation: letterinword
+      _Badge: spelling
       _Scene: game_ThrowBalls
       _AffectedPlaySkills: []
     - _Title_En: 'Slingshot: Words!'
