@@ -7,14 +7,11 @@ using Antura.UI;
 using DG.Tweening;
 using UnityEngine.UI;
 
-
 namespace Antura.Rewards
 {
 
-
     /// <summary>
-    /// Manages the Rewards scene.
-    /// Accessed after a learning block is completed.
+    /// every day some rewards
     /// </summary>
     public class DailyRewardScene : SceneBase
     {
@@ -26,8 +23,10 @@ namespace Antura.Rewards
         public GameObject todayPivot;
         public GameObject yesterdayTextGo;
         public Button claimButton;
-        [SerializeField] DailyRewardPopupPool popupPool;
-        [SerializeField] RectTransform fromPopupPivot, toPopupPivot;
+        [SerializeField]
+        private DailyRewardPopupPool popupPool;
+        [SerializeField]
+        private RectTransform fromPopupPivot, toPopupPivot;
 
         private DailyRewardManager dailyRewardManager;
         private List<DailyRewardUI> dailyRewardUIs;
@@ -44,8 +43,7 @@ namespace Antura.Rewards
             GlobalUI.ShowPauseMenu(false);
 
             // Cleanup UI
-            foreach (Transform childTr in dailyRewardUIPivot.transform)
-            {
+            foreach (Transform childTr in dailyRewardUIPivot.transform) {
                 Destroy(childTr.gameObject);
             }
 
@@ -55,8 +53,7 @@ namespace Antura.Rewards
             Debug.Assert(nCurrentConsecutiveDaysOfPlaying >= 1, "Should not access this scene with 0 consecutive days");
             nCurrentConsecutiveDaysOfPlaying = Mathf.Max(nCurrentConsecutiveDaysOfPlaying, 1);
 
-            if (useForcedConsecutiveDays)
-            {
+            if (useForcedConsecutiveDays) {
                 nCurrentConsecutiveDaysOfPlaying = forcedConsecutiveDays;
                 Debug.LogError("FORCING CONSECUTIVE DAYS: " + nCurrentConsecutiveDaysOfPlaying);
             }
@@ -86,8 +83,7 @@ namespace Antura.Rewards
             int dayCounter = 0;
             dayCounter += newRewardOffset;
 
-            foreach (var reward in dailyRewardManager.GetRewards(newRewardOffset, newRewardOffset + nRewardsToShowToday))
-            {
+            foreach (var reward in dailyRewardManager.GetRewards(newRewardOffset, newRewardOffset + nRewardsToShowToday)) {
                 dayCounter++;
                 var dailyRewardUIGo = Instantiate(dailyRewardUIPrefab);
                 dailyRewardUIGo.transform.SetParent(dailyRewardUIPivot);
@@ -102,8 +98,7 @@ namespace Antura.Rewards
             }
 
             // Unlock the previous rewards
-            for (int combo_i = 0; combo_i < newRewardUIIndex; combo_i++)
-            {
+            for (int combo_i = 0; combo_i < newRewardUIIndex; combo_i++) {
                 dailyRewardUIs[combo_i].SetUnlocked();
             }
             // Prepare the next one
@@ -125,11 +120,14 @@ namespace Antura.Rewards
         {
             // Start to the left
             float targetX = dailyRewardUIPivot.transform.localPosition.x;
-            if (withTranslation)
+            if (withTranslation) {
                 dailyRewardUIPivot.transform.localPosition += Vector3.left * 200;
+            }
 
             Sequence s = DOTween.Sequence().AppendInterval(1f);
-            if (withTranslation) s.Append(dailyRewardUIPivot.DOLocalMoveX(targetX, 1f).SetEase(Ease.InOutSine));
+            if (withTranslation) {
+                s.Append(dailyRewardUIPivot.DOLocalMoveX(targetX, 1f).SetEase(Ease.InOutSine));
+            }
             s.AppendCallback(() => {
                 todayPivot.transform.position = dailyRewardUIs[newRewardUIIndex].transform.position;
                 todayPivot.gameObject.SetActive(true);
@@ -139,20 +137,20 @@ namespace Antura.Rewards
 
             dailyRewardUIs[newRewardUIIndex].Bounce(true);
 
-//            yield return new WaitForSeconds(1.0f);
-//
-//            //  Translate to the middle
-//            if (withTranslation)
-//                dailyRewardUIPivot.DOLocalMoveX(0, 1f).SetEase(Ease.InOutSine);
-//
-//            dailyRewardUIs[newRewardUIIndex].transform.DOScale(1.3f, 1f).SetEase(Ease.OutBack);
-//
-//            yield return new WaitForSeconds(1.0f);
+            //            yield return new WaitForSeconds(1.0f);
+            //
+            //            //  Translate to the middle
+            //            if (withTranslation)
+            //                dailyRewardUIPivot.DOLocalMoveX(0, 1f).SetEase(Ease.InOutSine);
+            //
+            //            dailyRewardUIs[newRewardUIIndex].transform.DOScale(1.3f, 1f).SetEase(Ease.OutBack);
+            //
+            //            yield return new WaitForSeconds(1.0f);
 
             // Show the TODAY on the new one
-//            todayPivot.transform.position = dailyRewardUIs[newRewardUIIndex].transform.position;
+            //            todayPivot.transform.position = dailyRewardUIs[newRewardUIIndex].transform.position;
 
-//            yield return new WaitForSeconds(1.0f);
+            //            yield return new WaitForSeconds(1.0f);
 
             // Show the bones counter
             bonesCounter.Show();
@@ -165,19 +163,16 @@ namespace Antura.Rewards
         IEnumerator WaitForClaimCO()
         {
             float waitTime = 0.0f;
-            while (true)
-            {
+            while (true) {
                 waitTime += Time.deltaTime;
 
-                if (Input.GetMouseButtonDown(0))
-                {
+                if (Input.GetMouseButtonDown(0)) {
                     UnlockNewReward();
                 }
 
                 yield return null;
 
-                if (waitTime > 1.0f)
-                {
+                if (waitTime > 1.0f) {
                     waitTime -= 1.0f;
                     Tutorial.TutorialUI.Click(dailyRewardUIs[newRewardUIIndex].transform.position);
                 }
@@ -199,21 +194,20 @@ namespace Antura.Rewards
             int nNewBones = dailyRewardManager.GetReward(newRewardContentIndex).amount;
             List<DailyRewardPopup> popups = popupPool.Spawn(nNewBones);
             Vector2 toP = UIHelper.SwitchToRectTransform(toPopupPivot, popupPool.GetComponent<RectTransform>());
-            for (int bone_i = 0; bone_i < nNewBones; bone_i++)
-            {
+            for (int bone_i = 0; bone_i < nNewBones; bone_i++) {
                 bonesCounter.IncreaseByOne();
                 popups[bone_i].PopFromTo(fromPopupPivot.anchoredPosition, toP);
                 yield return new WaitForSeconds(0.1f);
             }
             AppManager.I.Player.AddBones(nNewBones);
 
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(1.5f);
 
             // Log
             LogManager.I.LogInfo(InfoEvent.DailyRewardReceived);
 
             // Continue after a little while
-            Invoke("Continue", 2.0f);
+            Invoke("Continue", 1.5f);
         }
 
         private void Continue()
