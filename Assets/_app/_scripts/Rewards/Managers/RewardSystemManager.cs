@@ -39,6 +39,7 @@ namespace Antura.Rewards
         /// <returns></returns>
         public static RewardConfig GetConfig()
         {
+            if (config == null) return null;
             if (config.Rewards == null)
             {
                 LoadFromConfig();

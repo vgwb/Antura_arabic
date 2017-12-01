@@ -3,6 +3,7 @@ using Antura.Core;
 using Antura.Database;
 using Antura.Rewards;
 using UnityEngine;
+using System;
 
 namespace Antura.Profile
 {
@@ -203,7 +204,13 @@ namespace Antura.Profile
         /// <param name="_playerProfile">The player profile.</param>
         public void SavePlayerProfile(PlayerProfile _playerProfile)
         {
-            AppManager.I.DB.UpdatePlayerProfileData(_playerProfile.ToData());
+            try { 
+                AppManager.I.DB.UpdatePlayerProfileData(_playerProfile.ToData());
+            }
+            catch(Exception e)
+            {
+                Debug.LogError(e);
+            }
         }
 
         #endregion
