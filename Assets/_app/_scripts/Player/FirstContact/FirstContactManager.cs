@@ -47,8 +47,6 @@ namespace Antura.Profile
         // Debug
         public static bool VERBOSE = true;
 
-        public static bool DISABLE_FIRST_CONTACT = false;
-
         private static bool SIMULATE_FIRST_CONTACT = false;
         private FirstContactPhase SIMULATE_FIRST_CONTACT_PHASE = FirstContactPhase.Reward_FirstBig;
 
@@ -99,7 +97,7 @@ namespace Antura.Profile
 
         public bool IsNotFinished()
         {
-            if (DISABLE_FIRST_CONTACT) { return false; }
+            if (AppConstants.DisableFirstContact) { return false; }
             return CurrentPhase < FirstContactPhase.Finished || SIMULATE_FIRST_CONTACT;
         }
 

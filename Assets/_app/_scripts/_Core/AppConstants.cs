@@ -42,6 +42,9 @@ namespace Antura.Core
         /// </summary>
         public static bool DebugLogDbInserts = false;
 
+        // disable first contact tutorials
+        public static bool DisableFirstContact = false;
+
         #endregion
 
         #region Application Constants
