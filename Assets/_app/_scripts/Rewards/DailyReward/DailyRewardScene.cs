@@ -15,7 +15,7 @@ namespace Antura.Rewards
     /// </summary>
     public class DailyRewardScene : SceneBase
     {
-        private static int MAX_REWARDS_TO_SHOW = 5;
+        private const int MAX_REWARDS_TO_SHOW = 5;
 
         public GameObject dailyRewardUIPrefab;
         public Transform dailyRewardUIPivot;
