@@ -154,7 +154,7 @@ namespace Antura.Profile
 
         public void ForceToStart()
         {
-            PassPhase(FirstContactPhase.Reward_FirstBig);
+            ForceAtPhase(FirstContactPhase.Intro);
             AppManager.I.Player.ResetPlayerProfileCompletion();
         }
 
@@ -179,58 +179,9 @@ namespace Antura.Profile
             TransitionCompletePhaseOn(FirstContactPhase.Map_GoToProfile, fromScene == AppScene.Map && toScene == AppScene.Book);
 
             // Check whether this transition needs to be filtered
-            FilterTransitionOn(FirstContactPhase.Intro, fromScene == AppScene.Home, ref toScene, AppScene.Intro);
+            FilterTransitionOn(FirstContactPhase.Intro, fromScene == AppScene.Home && toScene == AppScene.Map, ref toScene, AppScene.Intro);
             FilterTransitionOn(FirstContactPhase.Reward_FirstBig, fromScene == AppScene.Intro, ref toScene, AppScene.Rewards);
             FilterTransitionOn(FirstContactPhase.AnturaSpace_TouchAntura, fromScene == AppScene.Rewards, ref toScene, AppScene.AnturaSpace);
-
-            //filteredTransitionsMap = new Dictionary<SceneTransition, AppScene>();
-            /*switch (CurrentPhase)
-            {
-                // Intro starts
-                // Home->Map becomes Home->Intro
-                //case FirstContactPhase.Intro:
-                //    filteredTransitionsMap.Add(new SceneTransition(AppScene.Home, AppScene.Map), AppScene.Intro);
-                //    break;
-
-                // BigReward awaiting
-                // Home->Map becomes Home->Intro
-                //case FirstContactPhase.Reward_FirstBig:
-                //  filteredTransitionsMap.Add(new SceneTransition(AppScene.Intro, AppScene.Map), AppScene.Rewards);
-                //break;
-
-                // The BigReward ends. 
-                // We go to AnturaSpace directly
-                //case FirstContactPhase.AnturaSpace_TouchAntura:
-                // filteredTransitionsMap.Add(new SceneTransition(AppScene.Rewards, AppScene.Map), AppScene.AnturaSpace);
-                //break;
-
-                /*
-            // Map to Rewards directly instead of AnturaSpace when you finish the first map step (TODO)
-            case FirstContactPhase.Map_GoToAnturaSpace:
-                filteredTransitionsMap.Add(new SceneTransition(AppScene.Map, AppScene.AnturaSpace, true), AppScene.Rewards);
-                // TODO: We must force the prev scene stack to hold the Map <-> AnturaSpace transition (should be in, test it!)
-                break;*/
-
-            /*
-        // The Intro ends
-        //Rewards to AnturaSpace directly when you earn the first reward
-        // Rewards->Map becomes Rewards->Intro
-        case FirstContactPhase.AnturaSpace_Customization:
-            filteredTransitionsMap.Add(new SceneTransition(AppScene.Intro, AppScene.Map), AppScene.AnturaSpace);
-            break;
-            */
-            //}
-
-            // Handle the transition
-            /*var currentTransition = new SceneTransition(fromScene, toScene);
-            foreach (var filteredTransition in filteredTransitionsMap.Keys)
-            {
-                if (filteredTransition.Equals(currentTransition))
-                {
-                    //keepPrevAsBackable = filteredTransition.keepAsBackable;
-                    return filteredTransitionsMap[filteredTransition];
-                }
-            }*/
 
             return toScene;
         }
@@ -245,41 +196,6 @@ namespace Antura.Profile
             if (CurrentPhase == phase && condition) { CompleteCurrentPhase(); }
         }
 
-        /* public struct SceneTransition
-         {
-             public AppScene fromScene;
-             public AppScene toScene;
-            // public bool keepAsBackable;
-
-             public SceneTransition(AppScene fromScene, AppScene toScene, bool keepAsBackable = false)
-             {
-                 this.fromScene = fromScene;
-                 this.toScene = toScene;
-                 //this.keepAsBackable = keepAsBackable;
-             }
-
-
-             public bool Equals(SceneTransition other)
-             {
-                 return fromScene == other.fromScene && toScene == other.toScene;
-             }
-
-             public override bool Equals(object obj)
-             {
-                 if (ReferenceEquals(null, obj)) return false;
-                 return obj is SceneTransition && Equals((SceneTransition)obj);
-             }
-
-             public override int GetHashCode()
-             {
-                 unchecked
-                 {
-                     return ((int)fromScene * 397) ^ (int)toScene;
-                 }
-             }
-
-         }
-         */
     }
 
 }
