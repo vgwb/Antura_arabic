@@ -73,6 +73,11 @@ namespace Antura.Scenes
             }
         }
 
+        public void OnBtnQuit()
+        {
+            AppManager.I.QuitApplication();
+        }
+
         public void OnOpenReservedArea()
         {
             AudioManager.I.PlaySound(Sfx.UIButtonClick);

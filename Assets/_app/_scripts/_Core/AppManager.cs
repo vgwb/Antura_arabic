@@ -113,13 +113,18 @@ namespace Antura.Core
             // Exit with Android back button
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 if (Application.platform == RuntimePlatform.Android) {
-                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
-                        Debug.Log("Application Quit");
-                        Application.Quit();
-                    }, () => {
-                    });
+                    QuitApplication();
                 }
             }
+        }
+
+        public void QuitApplication()
+        {
+            GlobalUI.ShowPrompt(LocalizationDataId.UI_AreYouSure, () => {
+                Debug.Log("Application Quit");
+                Application.Quit();
+            }, () => {
+            });
         }
 
         #region Settings
