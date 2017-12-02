@@ -23,10 +23,12 @@ namespace Antura.Assessment
         {
             AssessmentOptions.Reset();
 
-            switch (AssessmentConfiguration.Instance.Variation)
-            {
+            switch (AssessmentConfiguration.Instance.Variation) {
                 case AssessmentVariation.MatchLettersToWord:
                     return ArabicAssessmentsFactory.CreateMatchLettersWordAssessment(context);
+
+                case AssessmentVariation.Letter:
+                    return ArabicAssessmentsFactory.CreateLetterAssessment(context);
 
                 case AssessmentVariation.LetterForm:
                     return ArabicAssessmentsFactory.CreateLetterFormAssessment(context);

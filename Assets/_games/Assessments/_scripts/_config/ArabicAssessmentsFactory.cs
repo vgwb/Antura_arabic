@@ -390,6 +390,36 @@ namespace Antura.Assessment
             return CreateAssessment(context);
         }
 
+        public static Assessment CreateLetterAssessment(AssessmentContext context)
+        {
+            // TODO new MiniGame variation (these are copied from LetterForm)
+            context.GameDescription = LocalizationDataId.Assessment_Select_Letter_Listen;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold identify the letter
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = true;
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = true;
+
+            Init(context);
+            placerOptions.QuestionWideness = ElementsSize.Get(LivingLetterDataType.Letter);
+            placerOptions.AnswerWideness = ElementsSize.Get(LivingLetterDataType.Letter);
+
+            CreateManagers(context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
+            context.QuestionGenerator = new DefaultQuestionGenerator(context.Configuration.Questions,
+                                                                        context.AudioManager,
+                                                                        context.Events);
+            context.QuestionPlacer = new DefaultQuestionPlacer(null, context.AudioManager, placerOptions);
+
+            return CreateAssessment(context);
+        }
+
         public static Assessment CreateLetterFormAssessment(AssessmentContext context)
         {
             context.GameDescription = LocalizationDataId.Assessment_Select_Letter_Listen;
@@ -532,30 +562,21 @@ namespace Antura.Assessment
                 LogicInjectorType logicInjector,
                 AnswerPlacerType answerPlacer)
         {
-            if (dragManager == DragManagerType.Default)
-            {
+            if (dragManager == DragManagerType.Default) {
                 context.DragManager = new DefaultDragManager(context.AudioManager, context.AnswerChecker);
-            }
-            else
-            {
+            } else {
                 context.DragManager = new SortingDragManager(context.AudioManager, context.CheckMarkWidget);
             }
 
-            if (logicInjector == LogicInjectorType.Default)
-            {
+            if (logicInjector == LogicInjectorType.Default) {
                 context.LogicInjector = new DefaultLogicInjector(context.DragManager, context.Events);
-            }
-            else
-            {
+            } else {
                 context.LogicInjector = new SortingLogicInjector(context.DragManager, context.Events);
             }
 
-            if (answerPlacer == AnswerPlacerType.Line)
-            {
+            if (answerPlacer == AnswerPlacerType.Line) {
                 context.AnswerPlacer = new LineAnswerPlacer(context.AudioManager, 3);
-            }
-            else
-            {
+            } else {
                 context.AnswerPlacer = new OrderedAnswerPlacer(context.AudioManager, placerOptions);
             }
         }
