@@ -1,4 +1,3 @@
-using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.ColorTickle
@@ -16,7 +15,7 @@ namespace Antura.Minigames.ColorTickle
         [SerializeField]
         private int m_Rounds = 3;
         [SerializeField]
-        private int m_MaxLives = 3;        
+        private int m_MaxLives = 3;
         [SerializeField]
         private GameObject m_oWinParticle;
         [SerializeField]

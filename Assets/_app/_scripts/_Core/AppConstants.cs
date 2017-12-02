@@ -14,7 +14,7 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.1.0_2017-12-01";
+        public const string AppVersion = "1.1.0_2017-12-02";
 
         #region Debug Options
 

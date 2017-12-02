@@ -63,5 +63,5 @@ EditorBuildSettings:
     path: Assets/_games/TakeMeHome/game_TakeMeHome.unity
   - enabled: 1
     path: Assets/_games/ThrowBalls/game_ThrowBalls.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/_games/Tobogan/game_Tobogan.unity

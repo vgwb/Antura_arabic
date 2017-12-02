@@ -1,7 +1,5 @@
 using Antura.LivingLetters;
-using Antura.Minigames;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Antura.Minigames.ColorTickle
 {
@@ -12,11 +10,11 @@ namespace Antura.Minigames.ColorTickle
         ColorTickleGame game;
         GameObject m_CurrentLetter;
 
-		int m_MaxLives;
+        int m_MaxLives;
         int m_Lives;
         int m_Rounds;
         int m_iRoundsSuccessfull;
-        
+
         float m_PercentageLetterColored;
 
         ColorsUIManager m_ColorsUIManager;
@@ -45,20 +43,20 @@ namespace Antura.Minigames.ColorTickle
         public void EnterState()
         {
             m_Rounds = game.rounds;
-			m_MaxLives = game.lives; //max number of lives is already setted in the game according to difficulty
+            m_MaxLives = game.lives; //max number of lives is already setted in the game according to difficulty
             m_iRoundsSuccessfull = 0;
 
-			//Init ColorCanvas and PercentageLetterColoredButton
-			InitGameUI();
+            //Init ColorCanvas and PercentageLetterColoredButton
+            InitGameUI();
 
-			ResetState ();
+            ResetState();
 
             game.anturaController.OnStateChanged += AnturaInteractions;
 
             //Init the first letter
             tickled = false;
             m_CurrentLetter = game.myLetters[m_Rounds - 1];
-			m_CurrentLetter.gameObject.SetActive (true);         
+            m_CurrentLetter.gameObject.SetActive(true);
             InitLetter();
 
             ResetLaunchTimer(true);
@@ -71,27 +69,25 @@ namespace Antura.Minigames.ColorTickle
         void ResetLaunchTimer(bool firstTime)
         {
             float difficultyFactor = 1 - ColorTickleConfiguration.Instance.Difficulty;
-            tryAnturaTimer = Mathf.Lerp(4, 15, difficultyFactor) + Random.value*4;
+            tryAnturaTimer = Mathf.Lerp(4, 15, difficultyFactor) + Random.value * 4;
 
-            if (firstTime)
+            if (firstTime) {
                 tryAnturaTimer *= 0.5f;
+            }
         }
 
         public void Update(float delta)
         {
             tryAnturaTimer -= delta;
 
-            if (m_Rounds <= 0)
-            {               
+            if (m_Rounds <= 0) {
                 game.SetCurrentState(game.ResultState);
-            }
-            else
-            {
+            } else {
                 bool stillWaitForInput = !(m_HitStateLLController != null && m_HitStateLLController.hitState == eHitState.HIT_LETTEROUTSIDE) && (m_TMPTextColoringLetter != null && m_TMPTextColoringLetter.IsTouching);
 
                 CalcPercentageLetterColored();
 
-                if(m_bLLVanishing) //if the LL is about to vanish
+                if (m_bLLVanishing) //if the LL is about to vanish
                 {
                     m_fDisappearTimeProgress += Time.deltaTime;
 
@@ -102,8 +98,7 @@ namespace Antura.Minigames.ColorTickle
                         game.Context.GetAudioManager().PlaySound(Sfx.Poof);
 
                         //stop win particle
-                        foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true))
-                        {
+                        foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true)) {
                             particles.Stop();
                         }
                         game.winParticle.SetActive(false);
@@ -116,8 +111,7 @@ namespace Antura.Minigames.ColorTickle
 
                         m_CurrentLetter.SetActive(false);
                         var controller = m_CurrentLetter.GetComponent<HitStateLLController>();
-                        if (controller != null)
-                        {
+                        if (controller != null) {
                             controller.OnTouchedOutside -= OnTickled;
                             controller.OnTouchedShape -= TryEnableAntura;
                         }
@@ -134,9 +128,8 @@ namespace Antura.Minigames.ColorTickle
                             InitLetter();
                         }
                     }
-                }
-                else if ((m_PercentageLetterColored >= 100 && !stillWaitForInput) || m_Lives <=0) //else check for letter completed
-                {
+                } else if ((m_PercentageLetterColored >= 100 && !stillWaitForInput) || m_Lives <= 0) //else check for letter completed
+                  {
                     game.anturaController.ForceAnturaToGoBack();//we completed the letter, antura turn back
                     m_bLLVanishing = true; //LL is about to disappear
 
@@ -148,8 +141,7 @@ namespace Antura.Minigames.ColorTickle
                     m_SurfaceColoringLetter.Reset();//reset to clean surface of LL (maybe make a function to clean it rather than reinitialize it)
 
                     //LL does win or lose animation 
-                    if(m_PercentageLetterColored >= 100)
-                    {
+                    if (m_PercentageLetterColored >= 100) {
                         m_iRoundsSuccessfull += 1;
                         game.score = m_iRoundsSuccessfull;
                         game.gameUI.SetStarsScore(game.score);
@@ -161,14 +153,11 @@ namespace Antura.Minigames.ColorTickle
 
                         //play win particle
                         game.winParticle.SetActive(true);
-                        foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true))
-                        {
+                        foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true)) {
                             particles.Play();
                         }
 
-                    }
-                    else if (m_Lives <= 0)
-                    {
+                    } else if (m_Lives <= 0) {
                         /*m_LetterObjectView.DoDancingLose(); //this just set trigger for lose on dancing animation
                         m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);*/
                         m_LetterObjectView.DoAngry();
@@ -176,9 +165,7 @@ namespace Antura.Minigames.ColorTickle
                         game.Context.GetAudioManager().PlaySound(Sfx.LetterAngry);
                         game.Context.GetAudioManager().PlaySound(Sfx.Lose);
                     }
-                }
-                else if (tickled)
-                {
+                } else if (tickled) {
                     tickled = false;
                     if (m_CurrentLetter != null)
                         m_CurrentLetter.GetComponent<HitStateLLController>().TicklesLetter();
@@ -194,32 +181,33 @@ namespace Antura.Minigames.ColorTickle
 
         #region PRIVATE FUNCTIONS
 
-		private void ResetState(){		
-			m_Lives = m_MaxLives;
+        private void ResetState()
+        {
+            m_Lives = m_MaxLives;
             game.gameUI.SetLives(m_MaxLives);
             m_PercentageLetterColored = 0;
         }
 
-		private void InitGameUI()
-		{
+        private void InitGameUI()
+        {
             game.gameUI = game.Context.GetOverlayWidget();
             game.gameUI.Initialize(true, false, true);
             game.gameUI.SetMaxLives(game.lives);
-            game.gameUI.SetStarsThresholds(1,3,5);
+            game.gameUI.SetStarsThresholds(1, 3, 5);
             game.gameUI.SetStarsScore(0);
 
             game.colorsCanvas.gameObject.SetActive(true);
             m_ColorsUIManager = game.colorsCanvas.GetComponentInChildren<ColorsUIManager>();
             m_ColorsUIManager.SetBrushColor += SetBrushColor;
-		}
+        }
 
         void OnTickled()
         {
             tickled = true;
         }
 
-		private void InitLetter()
-		{
+        private void InitLetter()
+        {
             m_LetterObjectView = m_CurrentLetter.GetComponent<LivingLetterController>();
 
             m_TMPTextColoringLetter = m_CurrentLetter.GetComponent<TMPTextColoring>();
@@ -270,20 +258,19 @@ namespace Antura.Minigames.ColorTickle
         private void LoseLife()
         {
             //--TODO maybe this can be better if the LL controller handles all the LL states rather than just the hits
-            if(game.anturaController.anturaState!=AnturaContollerState.BARKING) //if the life loss wasn't caused inside Antura disruption
+            if (game.anturaController.anturaState != AnturaContollerState.BARKING) //if the life loss wasn't caused inside Antura disruption
             {
                 game.anturaController.ForceAnturaToGoBack();//we tickled the letter, antura turn back
-            }
-            else //if it was we need also to overwrite the LL tickling animation
-            {
+            } else //if it was we need also to overwrite the LL tickling animation
+              {
                 m_LetterObjectView.SetState(LLAnimationStates.LL_walking); //keep running in fear instead of tickling
             }
             //--
 
             m_Lives--;
-            
+
             game.gameUI.SetLives(m_Lives);
-       
+
         }
 
 
@@ -291,18 +278,15 @@ namespace Antura.Minigames.ColorTickle
         {
             float percentageRequiredToWin = m_TMPTextColoringLetter.percentageRequiredToWin;
             m_PercentageLetterColored = ((m_TMPTextColoringLetter.GetRachedCoverage() * 100.0f) / percentageRequiredToWin) * 100.0f;
-            if (m_PercentageLetterColored > 100.0f)
-            {
+            if (m_PercentageLetterColored > 100.0f) {
                 m_PercentageLetterColored = 100.0f;
             }
         }
 
         private void TryEnableAntura()
-        { 
-            if (tryAnturaTimer < 0)
-            { 
-                if (ColorTickleConfiguration.Instance.Difficulty >= 0.2f)
-                {
+        {
+            if (tryAnturaTimer < 0) {
+                if (ColorTickleConfiguration.Instance.Difficulty >= 0.2f) {
                     game.anturaController.LaunchAnturaDisruption();
                 }
 
@@ -311,7 +295,7 @@ namespace Antura.Minigames.ColorTickle
         }
 
         private void AnturaReachedLetter()
-        {  
+        {
             m_LetterObjectView.SetState(LLAnimationStates.LL_walking);
             m_LetterObjectView.HasFear = true;
             m_LetterObjectView.SetWalkingSpeed(1);
@@ -332,19 +316,18 @@ namespace Antura.Minigames.ColorTickle
         /// needed interactions.
         /// </summary>
         /// <param name="eState">Current state for Antura</param>
-        private void AnturaInteractions( AnturaContollerState eState)
+        private void AnturaInteractions(AnturaContollerState eState)
         {
             if (eState == AnturaContollerState.BARKING) //Antura scared the LL
             {
                 AnturaReachedLetter();
-            }
-            else if (eState == AnturaContollerState.COMINGBACK) //Antura is returning to his place
-            {
-                if(m_LetterObjectView.GetState()!=LLAnimationStates.LL_tickling) //if the LL is tickling antura didn't reach it (fix)
+            } else if (eState == AnturaContollerState.COMINGBACK) //Antura is returning to his place
+              {
+                if (m_LetterObjectView.GetState() != LLAnimationStates.LL_tickling) //if the LL is tickling antura didn't reach it (fix)
                 {
                     AnturaGoingAway();
                 }
-                
+
             }
         }
 

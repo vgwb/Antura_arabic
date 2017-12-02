@@ -27,10 +27,10 @@ namespace Antura.Minigames.ColorTickle
         static ColorTickleConfiguration instance;
         public static ColorTickleConfiguration Instance
         {
-            get
-            {
-                if (instance == null)
+            get {
+                if (instance == null) {
                     instance = new ColorTickleConfiguration();
+                }
                 return instance;
             }
         }
