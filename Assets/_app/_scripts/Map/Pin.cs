@@ -1,8 +1,8 @@
 ﻿using Antura.Core;
 using Antura.UI;
-using System.Collections.Generic;
 using DG.DeExtensions;
 using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Antura.Map
@@ -75,18 +75,12 @@ namespace Antura.Map
             pinV1.gameObject.SetActive(false);
             pinV2.gameObject.SetActive(false);
             pinAssessment.gameObject.SetActive(false);
-            if (journeyPosition.IsAssessment())
-            {
+            if (journeyPosition.IsAssessment()) {
                 currentPinMesh = pinAssessment;
-            }
-            else
-            {
-                if (journeyPosition.LearningBlock % 2 == 0)
-                {
+            } else {
+                if (journeyPosition.LearningBlock % 2 == 0) {
                     currentPinMesh = pinV1;
-                }
-                else
-                {
+                } else {
                     currentPinMesh = pinV2;
                 }
             }
@@ -109,16 +103,16 @@ namespace Antura.Map
         {
             appeared = false;
             startPinPosition = currentPinMesh.transform.position;
-            if (rope != null) { startRopeScale = rope.meshRenderer.transform.localScale; }
+            if (rope != null) {
+                startRopeScale = rope.meshRenderer.transform.localScale;
+            }
 
             currentPinMesh.transform.position = startPinPosition + Vector3.up * 60;
             mainDot.transform.SetLocalScale(6f);
-            if (rope != null)
-            {
+            if (rope != null) {
                 rope.meshRenderer.transform.SetLocalScale(0);
             }
-            foreach (var dot in dots)
-            {
+            foreach (var dot in dots) {
                 dot.Disappear();
             }
 
@@ -152,7 +146,7 @@ namespace Antura.Map
             shadowTr.transform.localScale = Vector3.one * 12.5f;
             playSessionFeedback.gameObject.SetActive(true);
 
-            if (rope != null) rope.meshRenderer.transform.localScale = startRopeScale;
+            if (rope != null) { rope.meshRenderer.transform.localScale = startRopeScale; }
         }
 
         #endregion
@@ -181,16 +175,14 @@ namespace Antura.Map
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
-            {
+            if (other.gameObject.CompareTag("Player")) {
                 currentPinMesh.SetActive(false);
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
-            {
+            if (other.gameObject.CompareTag("Player")) {
                 currentPinMesh.SetActive(true);
             }
         }
@@ -203,18 +195,18 @@ namespace Antura.Map
         public void EnableInteraction(bool choice)
         {
             interactionEnabled = choice;
-            if (!interactionEnabled)
+            if (!interactionEnabled) {
                 mainDot.SetAsNothing();
-            else 
+            } else {
                 mainDot.Highlight(true);    // re-highlight the selected pin
+            }
         }
 
-        public bool IsInteractionEnabled {  get { return interactionEnabled; } }
+        public bool IsInteractionEnabled { get { return interactionEnabled; } }
 
         public void Select(bool choice)
         {
-            if (!interactionEnabled)
-            {
+            if (!interactionEnabled) {
                 mainDot.SetAsNothing();
                 return;
             }
@@ -224,24 +216,17 @@ namespace Antura.Map
             //playButtonGO.SetActive(choice && !isLocked);
 
             mainDot.Highlight(choice);
-            if (choice)
-            {
-                if (isLocked)
-                {
+            if (choice) {
+                if (isLocked) {
                     mainDot.SetAsLock();
-                }
-                else
-                {
+                } else {
                     mainDot.SetAsPlay();
                 }
-            }
-            else
-            {
+            } else {
                 mainDot.SetAsNothing();
             }
 
-            if (!isLocked)
-            {
+            if (!isLocked) {
                 playSessionFeedback.Highlight(choice);
             }
         }
@@ -256,6 +241,5 @@ namespace Antura.Map
         }
 
         #endregion
-
     }
 }
