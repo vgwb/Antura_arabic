@@ -1,6 +1,6 @@
-﻿using System;
-using Antura.Dog;
+﻿using Antura.Dog;
 using Antura.Helpers;
+using System;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -17,7 +17,7 @@ namespace Antura.AnturaSpace
         const float WALK_SPEED = 5.0f;
         const float RUN_SPEED = 15.0f;
 
-        public event System.Action onTouched;
+        public event Action onTouched;
 
         [NonSerialized]
         public AnturaAnimationController AnimationController;
@@ -25,13 +25,15 @@ namespace Antura.AnturaSpace
         Vector3 lastVelocity;
         Vector3 lastPosition;
 
-        public bool HasReachedTarget {
+        public bool HasReachedTarget
+        {
             get { return !isSliping && IsNearTargetPosition && IsNearTargetRotation; }
         }
 
         bool wasNearPosition;
 
-        public bool IsNearTargetPosition {
+        public bool IsNearTargetPosition
+        {
             get {
                 if (target == null) {
                     return true;
@@ -44,7 +46,8 @@ namespace Antura.AnturaSpace
             }
         }
 
-        bool IsNearTargetRotation {
+        bool IsNearTargetRotation
+        {
             get {
                 if (target == null || !rotateAsTarget) {
                     return true;
@@ -55,21 +58,25 @@ namespace Antura.AnturaSpace
             }
         }
 
-        public bool IsSliping {
+        public bool IsSliping
+        {
             get { return isSliping; }
         }
 
-        public bool IsSleeping {
+        public bool IsSleeping
+        {
             get { return AnimationController.State == AnturaAnimationStates.sleeping; }
         }
 
-        public bool IsJumping {
+        public bool IsJumping
+        {
             get { return AnimationController.IsJumping || AnimationController.IsAnimationActuallyJumping; }
         }
 
         public bool Excited;
 
-        public float PlanarDistanceFromTarget {
+        public float PlanarDistanceFromTarget
+        {
             get {
                 if (target == null) {
                     return 0;
@@ -82,7 +89,8 @@ namespace Antura.AnturaSpace
             }
         }
 
-        public float DistanceFromTarget {
+        public float DistanceFromTarget
+        {
             get {
                 if (target == null) {
                     return 0;
@@ -94,7 +102,8 @@ namespace Antura.AnturaSpace
             }
         }
 
-        public float TargetHeight {
+        public float TargetHeight
+        {
             get {
                 if (target == null) {
                     return 0;

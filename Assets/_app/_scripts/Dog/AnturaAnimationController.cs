@@ -212,8 +212,7 @@ namespace Antura.Dog
         public void OnSlipStarted()
         {
 #if UNITY_EDITOR
-            if (state != AnturaAnimationStates.walking)
-                Debug.LogError("You should call on slip started/ended only in walking state");
+            if (state != AnturaAnimationStates.walking) { Debug.LogError("You should call on slip started/ended only in walking state"); }
 #endif
             animator.SetBool("slipping", true);
         }

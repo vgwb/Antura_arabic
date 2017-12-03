@@ -29,8 +29,7 @@ namespace Antura.Map
             // @note: we do not show the JourneyPos text now
             journeyPosTextUI.gameObject.SetActive(false);
 
-            if (journeyPosition.IsAssessment())
-            {
+            if (journeyPosition.IsAssessment()) {
                 starsPivotGO.SetActive(false);
             }
         }
@@ -41,18 +40,14 @@ namespace Antura.Map
             if (playSessionState != null && playSessionState.scoreData != null)
                 score = (int)playSessionState.scoreData.GetScore();
 
-            if (journeyPosition.IsAssessment())
-            {
+            if (journeyPosition.IsAssessment()) {
                 //Debug.Log( playSessionState.psData.Id + " SCORE: " + score);
                 // Show surprise if this is a not yet completed assessment
                 surpriseGO.SetActive(score == 0);
-            }
-            else
-            {
+            } else {
                 surpriseGO.SetActive(false);
 
-                for (int i = 0; i < stars.Length; i++)
-                {
+                for (int i = 0; i < stars.Length; i++) {
                     stars[i].SetObtained(score >= i + 1);
                 }
             }
@@ -67,12 +62,9 @@ namespace Antura.Map
 
         public void Highlight(bool choice)
         {
-            if (choice)
-            {
+            if (choice) {
                 ShowHighlightedInfo();
-            }
-            else
-            {
+            } else {
                 ShowUnhighlightedInfo();
             }
         }
@@ -80,8 +72,7 @@ namespace Antura.Map
         public void HideAllInfo()
         {
             //journeyPosTextUI.gameObject.SetActive(false);
-            foreach (var playSessionStateStar in stars)
-            {
+            foreach (var playSessionStateStar in stars) {
                 playSessionStateStar.gameObject.SetActive(false);
             }
         }
@@ -89,8 +80,7 @@ namespace Antura.Map
         public void ShowHighlightedInfo()
         {
             //journeyPosTextUI.gameObject.SetActive(false);
-            foreach (var playSessionStateStar in stars)
-            {
+            foreach (var playSessionStateStar in stars) {
                 playSessionStateStar.gameObject.SetActive(true);
             }
         }
@@ -98,13 +88,11 @@ namespace Antura.Map
         public void ShowUnhighlightedInfo()
         {
             //journeyPosTextUI.gameObject.SetActive(true);
-            foreach (var playSessionStateStar in stars)
-            {
+            foreach (var playSessionStateStar in stars) {
                 playSessionStateStar.gameObject.SetActive(true);
             }
         }
 
         #endregion
-
     }
 }

@@ -1,5 +1,4 @@
-﻿using Antura.Core;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace Antura.Map
@@ -54,7 +53,7 @@ namespace Antura.Map
 
         public void Appear(float delay, float duration)
         {
-            if (Appeared) return;
+            if (Appeared) { return; }
             Appeared = true;
             transform.DOScale(Vector3.one * 1.5f, duration)
                 .SetEase(Ease.OutElastic)
@@ -63,7 +62,7 @@ namespace Antura.Map
 
         public void FlushAppear()
         {
-            if (Appeared) return;
+            if (Appeared) { return; }
             Appeared = true;
             transform.localScale = Vector3.one * 1.5f;
         }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Antura.Tutorial.Collectible
+namespace Antura.Collectible
 {
     public class CollectibleBoneSpawnPivot : MonoBehaviour
     {

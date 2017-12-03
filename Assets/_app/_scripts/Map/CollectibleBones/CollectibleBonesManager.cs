@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Antura.Tutorial.Collectible
+namespace Antura.Collectible
 {
     public class CollectibleBonesManager : MonoBehaviour
     {
@@ -42,11 +42,11 @@ namespace Antura.Tutorial.Collectible
             bone.transform.position = pivot.transform.position;
             bone.transform.eulerAngles = pivot.transform.eulerAngles;
             bone.Initialise(duration);
-            bone.OnPickUp += HandlePickupBone;
+            bone.OnPickUpBone += HandlePickUpBone;
         }
 
         private bool _isHandlingBone = false;
-        void HandlePickupBone()
+        void HandlePickUpBone()
         {
             if (_isHandlingBone) {
                 StopAllCoroutines();

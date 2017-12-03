@@ -7,7 +7,7 @@ namespace Antura.Map
         public PlaySessionData psData;
         public JourneyScoreData scoreData;
 
-        public PlaySessionState(Database.PlaySessionData _psData, JourneyScoreData _scoreData)
+        public PlaySessionState(PlaySessionData _psData, JourneyScoreData _scoreData)
         {
             this.psData = _psData;
             this.scoreData = _scoreData;

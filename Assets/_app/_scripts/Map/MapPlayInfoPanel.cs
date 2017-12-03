@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Antura.Core;
+﻿using Antura.Core;
 using Antura.UI;
-using DG.DeInspektor.Attributes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,8 +31,7 @@ namespace Antura.Map
 
         void Update()
         {
-            if (targetPin != null)
-            {
+            if (targetPin != null) {
                 // Follow pin
                 var pinOnScreen = cam.WorldToScreenPoint(targetPin.transform.position);
                 float resolutionRatio = Screen.height / canvasScaler.referenceResolution.y;

@@ -3,11 +3,10 @@ using Antura.Audio;
 using Antura.Core;
 using Antura.FSM;
 using Antura.Minigames;
+using Antura.Tutorial;
 using Antura.UI;
 using System.Collections.Generic;
 using System.Linq;
-using Antura.Profile;
-using Antura.Tutorial;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -30,11 +29,11 @@ namespace Antura.AnturaSpace
         public Transform AttentionPosition;
         public GameObject PoofPrefab;
 
-        public ThrowableObject NextObjectToCatch {
-            get
-            {
+        public ThrowableObject NextObjectToCatch
+        {
+            get {
                 var nextObject = spawnedObjects.FirstOrDefault(x => x.Catchable);
-                if (nextObject == null) return null;
+                if (nextObject == null) { return null; }
                 return nextObject;
             }
         }
@@ -49,12 +48,14 @@ namespace Antura.AnturaSpace
 
         private StateMachineManager stateManager = new StateMachineManager();
 
-        public AnturaState CurrentState {
+        public AnturaState CurrentState
+        {
             get { return (AnturaState)stateManager.CurrentState; }
             set { stateManager.CurrentState = value; }
         }
 
-        public bool HasPlayerBones {
+        public bool HasPlayerBones
+        {
             get {
                 return AppManager.I.Player.GetTotalNumberOfBones() > 0;
             }
@@ -166,7 +167,7 @@ namespace Antura.AnturaSpace
             CurrentState = Idle;
         }
 
-        
+
         #region Throwable actions
 
         public Transform DraggedTransform { get; private set; }
@@ -180,11 +181,9 @@ namespace Antura.AnturaSpace
 
         public ThrowableObject ThrowObject(ThrowableObject ObjectPrefab)
         {
-            if (DraggedTransform != null)
-                return null;
+            if (DraggedTransform != null) { return null; }
 
-            if (CanSpawnMoreObjects)
-            {
+            if (CanSpawnMoreObjects) {
                 AudioManager.I.PlaySound(Sfx.ThrowObj);
 
                 var throwableObject = SpawnNewObject(ObjectPrefab);
@@ -196,11 +195,9 @@ namespace Antura.AnturaSpace
 
         public ThrowableObject DragObject(ThrowableObject ObjectPrefab)
         {
-            if (DraggedTransform != null)
-                return null;
+            if (DraggedTransform != null) { return null; }
 
-            if (CanSpawnMoreObjects)
-            {
+            if (CanSpawnMoreObjects) {
                 ShopDecorationsManager.I.SetContextNewPlacement();
                 var throwableObject = SpawnNewObject(ObjectPrefab);
                 DraggedTransform = throwableObject.transform;
@@ -223,14 +220,12 @@ namespace Antura.AnturaSpace
 
         public void EatObject(ThrowableObject throwableObject)
         {
-            if (spawnedObjects.Remove(throwableObject))
-            {
+            if (spawnedObjects.Remove(throwableObject)) {
                 AudioManager.I.PlaySound(Sfx.EggMove);
                 var poof = Instantiate(PoofPrefab).transform;
                 poof.position = throwableObject.transform.position;
 
-                foreach (var ps in poof.GetComponentsInChildren<ParticleSystem>())
-                {
+                foreach (var ps in poof.GetComponentsInChildren<ParticleSystem>()) {
                     var main = ps.main;
                     main.scalingMode = ParticleSystemScalingMode.Hierarchy;
                 }
@@ -239,8 +234,7 @@ namespace Antura.AnturaSpace
                 poof.gameObject.AddComponent<AutoDestroy>().duration = 2;
                 AudioManager.I.PlaySound(Sfx.Poof);
                 AnturaHappiness += 0.2f;
-                if (AnturaHappiness > 1)
-                {
+                if (AnturaHappiness > 1) {
                     AnturaHappiness = 1;
                 }
 
@@ -250,13 +244,11 @@ namespace Antura.AnturaSpace
 
         public void HitObject(ThrowableObject throwableObject)
         {
-            if (spawnedObjects.Remove(throwableObject))
-            {
+            if (spawnedObjects.Remove(throwableObject)) {
                 AudioManager.I.PlaySound(Sfx.EggMove);
 
                 AnturaHappiness += 0.2f;
-                if (AnturaHappiness > 1)
-                {
+                if (AnturaHappiness > 1) {
                     AnturaHappiness = 1;
                 }
 

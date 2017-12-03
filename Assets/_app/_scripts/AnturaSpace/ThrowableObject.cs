@@ -1,7 +1,7 @@
-using System;
-using System.Collections.Generic;
 using Antura.Audio;
 using Antura.Minigames;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -186,11 +186,9 @@ namespace Antura.AnturaSpace
             }
 
 
-            if (!Edible)
-            {
+            if (!Edible) {
                 lifetime += Time.deltaTime;
-                if (lifetime > MaxLifetime)
-                {
+                if (lifetime > MaxLifetime) {
                     Destroy(gameObject);
                 }
             }
@@ -208,7 +206,7 @@ namespace Antura.AnturaSpace
                 poofSound = null;
             }
 
-            if (OnDeath != null) OnDeath();
+            if (OnDeath != null) { OnDeath(); }
             CancelInvoke();
         }
 
@@ -263,7 +261,7 @@ namespace Antura.AnturaSpace
             //apply stored forces
             ApplyDragForces();
 
-            if (OnRelease != null) OnRelease();
+            if (OnRelease != null) { OnRelease(); }
         }
 
         /// <summary>

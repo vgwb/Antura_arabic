@@ -1,5 +1,4 @@
 ﻿using Antura.Audio;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,18 +15,13 @@ namespace Antura.Map
         void Update()
         {
             // Touch movement controls
-            if (Input.GetMouseButtonUp(0) 
-                && !IsTouchingSomething()
-              && !mapCameraController.IsFollowingFinger)
-            {
+            if (Input.GetMouseButtonUp(0) && !IsTouchingSomething() && !mapCameraController.IsFollowingFinger) {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 RaycastHit hit;
                 int layerMask = 1 << 15;
-                if (Physics.Raycast(ray, out hit, 500, layerMask))
-                {
-                    if (hit.collider.CompareTag("Pin"))
-                    {
+                if (Physics.Raycast(ray, out hit, 500, layerMask)) {
+                    if (hit.collider.CompareTag("Pin")) {
                         AudioManager.I.PlaySound(Sfx.UIButtonClick);
 
                         var pin = hit.collider.transform.gameObject.GetComponent<Pin>();
@@ -40,10 +34,9 @@ namespace Antura.Map
         private bool IsTouchingSomething()
         {
             // Mouse is -1, the rest are fingers
-            for (int touchId = -1; touchId < Input.touchCount; touchId++)
-            {
+            for (int touchId = -1; touchId < Input.touchCount; touchId++) {
                 bool isTouching = EventSystem.current.IsPointerOverGameObject(touchId);
-                if (isTouching) return true;
+                if (isTouching) { return true; }
             }
             return false;
         }

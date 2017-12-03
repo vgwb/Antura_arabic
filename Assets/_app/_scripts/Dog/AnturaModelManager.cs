@@ -2,7 +2,6 @@ using Antura.Core;
 using Antura.Database;
 using Antura.Profile;
 using Antura.Rewards;
-using Antura.Tutorial;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -112,8 +111,7 @@ namespace Antura.Dog
 
         public GameObject LoadRewardPackOnAntura(RewardPackUnlockData rewardPackUnlockData)
         {
-            if (rewardPackUnlockData == null)
-                return null;
+            if (rewardPackUnlockData == null) { return null; }
             switch (rewardPackUnlockData.Type) {
                 case RewardTypes.reward:
                     return LoadRewardOnAntura(rewardPackUnlockData);

@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-namespace Antura.Tutorial.Collectible
+namespace Antura.Collectible
 {
-    
+
     public class CollectibleBone : MonoBehaviour
     {
         private bool _collected;
-        public Action OnPickUp;
+        public Action OnPickUpBone;
 
         public void Initialise(float duration)
         {
@@ -18,11 +18,11 @@ namespace Antura.Tutorial.Collectible
 
         public void OnMouseDown()
         {
-            if (_collected) return;
+            if (_collected) { return; }
 
             _collected = true;
 
-            if (OnPickUp != null) OnPickUp.Invoke();
+            if (OnPickUpBone != null) { OnPickUpBone.Invoke(); }
 
             DestroyObject();
         }

@@ -1,10 +1,8 @@
-using System.Collections;
-using Antura.Audio;
 using Antura.Core;
 using Antura.Profile;
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Antura.Map
 {
@@ -86,13 +84,12 @@ namespace Antura.Map
 
         public void MoveToJourneyPosition(JourneyPosition journeyPosition, StageMap stageMap)
         {
-            MoveToPin(StageMapsManager.GetPosIndexFromJourneyPosition(stageMap, journeyPosition), stageMap.stageNumber); 
+            MoveToPin(StageMapsManager.GetPosIndexFromJourneyPosition(stageMap, journeyPosition), stageMap.stageNumber);
         }
 
         public void MoveToPin(int pinIndex, int stageNumber)
         {
-            if (CanMoveTo(pinIndex, stageNumber))
-            {
+            if (CanMoveTo(pinIndex, stageNumber)) {
                 if (stageMapsManager.FollowPlayerWhenMoving) stageMapsManager.mapCamera.SetAutoFollowTransformCurrentMap(transform);
                 AnimateToPin(pinIndex);
             }
@@ -135,12 +132,10 @@ namespace Antura.Map
 
         public void StopAnimation(bool stopWhereItIs = true)
         {
-            if (animateToPinCO != null && isAnimating)
-            {
+            if (animateToPinCO != null && isAnimating) {
                 StopCoroutine(animateToPinCO);
                 animateToPinCO = null;
-                if (stopWhereItIs)
-                {
+                if (stopWhereItIs) {
                     UpdatePlayerJourneyPosition(currentStageMap.CurrentPlayerPosJourneyPosition);
                 }
             }
@@ -149,7 +144,7 @@ namespace Antura.Map
         IEnumerator AnimateToPinCO(int targetIndex)
         {
             isAnimating = true;
-            if (onMoveStart != null) onMoveStart();
+            if (onMoveStart != null) { onMoveStart(); }
             CheckMovementButtonsEnabling();
             int tmpCurrentIndex = currentStageMap.CurrentPinIndex;
             UpdatePlayerJourneyPosition(currentStageMap.mapLocations[targetIndex].JourneyPos);
@@ -158,15 +153,11 @@ namespace Antura.Map
             // Different stage: we will teleport antura
             int newStageIndex = stageMapsManager.CurrentShownStageMap.stageNumber;
             int oldStageIndex = currentStageMap.stageNumber;
-            if (newStageIndex != oldStageIndex)
-            {
+            if (newStageIndex != oldStageIndex) {
                 currentStageMap = stageMapsManager.CurrentShownStageMap;
-                if (newStageIndex > oldStageIndex)
-                {
+                if (newStageIndex > oldStageIndex) {
                     tmpCurrentIndex = 0;
-                }
-                else
-                {
+                } else {
                     tmpCurrentIndex = currentStageMap.MaxUnlockedPinIndex;
                 }
                 //Debug.Log("MOVING TO NEW STAGE AT INDEX " + tmpCurrentIndex + " STAGE " + currentStageMap.stageNumber);
@@ -177,8 +168,7 @@ namespace Antura.Map
 
             // Antura too far: teleport him
             const int teleportDistance = 4;
-            if (Mathf.Abs(targetIndex - tmpCurrentIndex) >= teleportDistance)
-            {
+            if (Mathf.Abs(targetIndex - tmpCurrentIndex) >= teleportDistance) {
                 //Debug.Log("TELEPORTING because distance is " + Mathf.Abs(targetIndex - tmpCurrentIndex) + " from " + tmpCurrentIndex + " to " + targetIndex);
                 bool isAdvancing = targetIndex > tmpCurrentIndex;
                 int teleportIndex = targetIndex + (isAdvancing ? -teleportDistance : teleportDistance);
@@ -189,13 +179,11 @@ namespace Antura.Map
             }
 
             //Debug.Log("Starting movement from " + tmpCurrentIndex + " to " + targetIndex);
-            do
-            {
+            do {
                 //Debug.Log("inner target is " + targetIndex + " tmp is " + tmpCurrentIndex);
-                float speed = Mathf.Clamp(50*Mathf.Abs(targetIndex - tmpCurrentIndex), 50,  100);
+                float speed = Mathf.Clamp(50 * Mathf.Abs(targetIndex - tmpCurrentIndex), 50, 100);
                 bool isAdvancing = targetIndex >= tmpCurrentIndex;
-                if (tmpCurrentIndex != targetIndex)
-                {
+                if (tmpCurrentIndex != targetIndex) {
                     tmpCurrentIndex += isAdvancing ? 1 : -1;
                 }
                 LookAtPin(!isAdvancing, true);
@@ -210,7 +198,7 @@ namespace Antura.Map
 
             CheckMovementButtonsEnabling();
             isAnimating = false;
-            if (onMoveEnd != null) onMoveEnd();
+            if (onMoveEnd != null) { onMoveEnd(); }
         }
 
         void ForceToPin(int newIndex, bool justVisuals = false)
@@ -219,7 +207,7 @@ namespace Antura.Map
             currentStageMap.ForceCurrentPinIndex(newIndex);
             ForceToCO(currentStageMap.CurrentPlayerPosVector);
 
-            if (!justVisuals) UpdatePlayerJourneyPosition(currentStageMap.CurrentPlayerPosJourneyPosition);
+            if (!justVisuals) { UpdatePlayerJourneyPosition(currentStageMap.CurrentPlayerPosJourneyPosition); }
             CheckMovementButtonsEnabling();
         }
 
@@ -251,19 +239,19 @@ namespace Antura.Map
 
             // Target rotation 
             int fromPinIndex = CurrentPinIndex;
-            int toPinIndex = lookAtPrevious ? CurrentPinIndex -1 : CurrentPinIndex + 1;
+            int toPinIndex = lookAtPrevious ? CurrentPinIndex - 1 : CurrentPinIndex + 1;
 
             var fromPin = currentStageMap.PinForIndex(fromPinIndex);
             var toPin = currentStageMap.PinForIndex(toPinIndex);
-            var lookingFromTr = fromPin != null? fromPin.transform : toPin.transform;
+            var lookingFromTr = fromPin != null ? fromPin.transform : toPin.transform;
             var lookingToTr = toPin != null ? toPin.transform : fromPin.transform;
 
             Quaternion toRotation;
-            if (lookingToTr == lookingFromTr) 
+            if (lookingToTr == lookingFromTr) {
                 toRotation = Quaternion.LookRotation(lookingFromTr.transform.position + Vector3.left);
-            else 
+            } else {
                 toRotation = Quaternion.LookRotation(lookingToTr.transform.position - lookingFromTr.transform.position, Vector3.up);
-            
+            }
             //Debug.Log("Look at pin " + toPinIndex + " from pin " + fromPinIndex + "\nPREV? " + lookAtPrevious + " from " + fromPin + " To " + toPin);
             //Debug.Log("Current " + transform.rotation + " To " + toRotation);
 
@@ -292,21 +280,19 @@ namespace Antura.Map
 
         private void ForceToCO(Vector3 position)
         {
-            if (moveTween != null)
-            {
+            if (moveTween != null) {
                 moveTween.Kill();
             }
             transform.position = position;
         }
 
-    #endregion
+        #endregion
 
-    #region UI
+        #region UI
 
         public void CheckMovementButtonsEnabling()
         {
-            if (!stageMapsManager.ShowMovementButtons)
-            {
+            if (!stageMapsManager.ShowMovementButtons) {
                 moveRightButton.SetActive(false);
                 moveLeftButton.SetActive(false);
                 return;
