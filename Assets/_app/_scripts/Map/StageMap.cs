@@ -135,7 +135,7 @@ namespace Antura.Map
 
             // sets and scale the floor plane
             mapFloor.transform.localPosition = new Vector3(-(start_x - end_x) / 2 + start_x, 0, 0);
-            mapFloor.transform.localScale = new Vector3((start_x - end_x) + 60, 70, 1);
+            mapFloor.transform.localScale = new Vector3((start_x - end_x) + 120, 70, 1);
             EditorUtility.SetDirty(mapFloor.gameObject);
         }
 #endif
