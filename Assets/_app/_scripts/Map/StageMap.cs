@@ -29,6 +29,7 @@ namespace Antura.Map
 
         [Header("References")]
         public Transform dotsPivot;
+        public Transform mapFloor;
         public GameObject dotPrefab;
         public GameObject ropePrefab;
 
@@ -101,7 +102,7 @@ namespace Antura.Map
 
         public List<IMapLocation> mapLocations = new List<IMapLocation>();
 
-        #region Editor Setup
+        #region Editor Utilities
 #if UNITY_EDITOR
         [DeMethodButton("Rename Pins")]
         public void RenamePins()
@@ -117,34 +118,25 @@ namespace Antura.Map
         [DeMethodButton("Distribuite Pins")]
         public void DistribuitePins()
         {
-            // Randomize the position of the pins
             var pins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
             var start_x = cameraPivotStart.localPosition.x;
             var end_x = cameraPivotEnd.localPosition.x;
             var total_pins = pins.Count;
             var delta_x = Mathf.Abs((end_x - start_x) / (total_pins - 1));
 
-            for (var index = 0; index < pins.Count; index++) {
+            for (var index = 0; index < total_pins; index++) {
                 var pin = pins[index];
-
-                //float pinZ = index > 0 ? (pins[index - 1].transform.localPosition.z + Random.Range(-20, 20)) : Random.Range(-30, 10);
-                //pinZ = Mathf.Clamp(pinZ, -30, 10);
-                pin.transform.localPosition = new Vector3(index * (-delta_x), pin.transform.localPosition.y, pin.transform.localPosition.z);
-
+                pin.transform.localPosition = new Vector3(index * -delta_x + start_x, pin.transform.localPosition.y, pin.transform.localPosition.z);
                 EditorUtility.SetDirty(pin.gameObject);
             }
+            // set the dotsPivot to the first Pin
+            dotsPivot.transform.localPosition = new Vector3(start_x, pins[0].transform.localPosition.y, pins[0].transform.localPosition.z);
+            EditorUtility.SetDirty(dotsPivot.gameObject);
 
-            // Set the second pin of a LB dependant on the previous and next one
-            for (var index = 0; index < pins.Count; index++) {
-                var pin = pins[index];
-                if (index % 3 == 1) {
-                    pin.transform.position = Vector3.Lerp(
-                        pins[index - 1].transform.position,
-                        pins[index + 1].transform.position, 0.5f);
-                }
-                EditorUtility.SetDirty(pin.gameObject);
-            }
-
+            // sets and scale the floor plane
+            mapFloor.transform.localPosition = new Vector3(-(start_x - end_x) / 2 + start_x, 0, 0);
+            mapFloor.transform.localScale = new Vector3((start_x - end_x) + 60, 70, 1);
+            EditorUtility.SetDirty(mapFloor.gameObject);
         }
 #endif
         #endregion
