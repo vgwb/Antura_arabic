@@ -168,6 +168,12 @@
             Returns the 2D angle between two vectors
             </summary>
         </member>
+        <member name="M:DG.Tweening.Core.Utils.Vector3AreApproximatelyEqual(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            Uses approximate equality on each axis instead of Unity's Vector3 equality,
+            because the latter fails (in some cases) when assigning a Vector3 to a transform.position and then checking it.
+            </summary>
+        </member>
         <member name="T:DG.Tweening.Color2">
             <summary>
             Struct that stores two colors (used for LineRenderer tweens)
@@ -365,6 +371,13 @@
             IMPORTANT: this will cause an error on UWP platform, so don't use it there 
             BEWARE: this is a slightly expensive operation so use it with care
             </summary>
+        </member>
+        <member name="M:DG.Tweening.DOTween.ManualUpdate(System.Single,System.Single)">
+            <summary>
+            Updates all tweens that are set to <see cref="F:DG.Tweening.UpdateType.Manual"/>.
+            </summary>
+            <param name="deltaTime">Manual deltaTime</param>
+            <param name="unscaledDeltaTime">Unscaled delta time (used with tweens set as timeScaleIndependent)</param>
         </member>
         <member name="M:DG.Tweening.DOTween.To(DG.Tweening.Core.DOGetter{System.Single},DG.Tweening.Core.DOSetter{System.Single},System.Single,System.Single)">
             <summary>Tweens a property or field to the given value using default plugins</summary>
@@ -662,12 +675,16 @@
         <member name="M:DG.Tweening.DOTween.RestartAll(System.Boolean)">
             <summary>Restarts all tweens, then returns the number of actual tweens restarted</summary>
         </member>
-        <member name="M:DG.Tweening.DOTween.Restart(System.Object,System.Boolean)">
+        <member name="M:DG.Tweening.DOTween.Restart(System.Object,System.Boolean,System.Single)">
             <summary>Restarts all tweens with the given ID or target, then returns the number of actual tweens restarted</summary>
+            <param name="includeDelay">If TRUE includes the eventual tweens delays, otherwise skips them</param>
+            <param name="changeDelayTo">If >= 0 changes the startup delay of all involved tweens to this value, otherwise doesn't touch it</param>
         </member>
-        <member name="M:DG.Tweening.DOTween.Restart(System.Object,System.Object,System.Boolean)">
+        <member name="M:DG.Tweening.DOTween.Restart(System.Object,System.Object,System.Boolean,System.Single)">
             <summary>Restarts all tweens with the given target and the given ID, and returns the number of actual tweens played
             (meaning the tweens that were not already playing or complete)</summary>
+            <param name="includeDelay">If TRUE includes the eventual tweens delays, otherwise skips them</param>
+            <param name="changeDelayTo">If >= 0 changes the startup delay of all involved tweens to this value, otherwise doesn't touch it</param>
         </member>
         <member name="M:DG.Tweening.DOTween.RewindAll(System.Boolean)">
             <summary>Rewinds and pauses all tweens, then returns the number of actual tweens rewinded
@@ -1020,9 +1037,10 @@
         <member name="M:DG.Tweening.TweenExtensions.PlayForward(DG.Tweening.Tween)">
             <summary>Sets the tween in a forward direction and plays it</summary>
         </member>
-        <member name="M:DG.Tweening.TweenExtensions.Restart(DG.Tweening.Tween,System.Boolean)">
+        <member name="M:DG.Tweening.TweenExtensions.Restart(DG.Tweening.Tween,System.Boolean,System.Single)">
             <summary>Restarts the tween from the beginning</summary>
             <param name="includeDelay">If TRUE includes the eventual tween delay, otherwise skips it</param>
+            <param name="changeDelayTo">If >= 0 changes the startup delay to this value, otherwise doesn't touch it</param>
         </member>
         <member name="M:DG.Tweening.TweenExtensions.Rewind(DG.Tweening.Tween,System.Boolean)">
             <summary>Rewinds and pauses the tween</summary>
@@ -1700,6 +1718,11 @@
             Defaults to 10, but a value of 5 is usually enough if you don't have dramatic long curves between waypoints</param>
             <param name="gizmoColor">The color of the path (shown when gizmos are active in the Play panel and the tween is running)</param>
         </member>
+        <member name="M:DG.Tweening.ShortcutExtensions.DOTimeScale(DG.Tweening.Tween,System.Single,System.Single)">
+            <summary>Tweens a Tween's timeScale to the given value.
+            Also stores the Tween as the tween's target so it can be used for filtered operations</summary>
+            <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
+        </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOBlendableColor(UnityEngine.Light,UnityEngine.Color,System.Single)">
             <summary>Tweens a Light's color to the given value,
             in a way that allows other DOBlendableColor tweens to work together on the same target,
@@ -2151,43 +2174,43 @@
             <param name="isIndependentUpdate">If TRUE the tween will ignore Unity's Time.timeScale</param>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.OnStart``1(``0,DG.Tweening.TweenCallback)">
-            <summary>Sets the onStart callback for the tween.
+            <summary>Sets the <code>onStart</code> callback for the tween, clearing any previous <code>onStart</code> callback that was set.
             Called the first time the tween is set in a playing state, after any eventual delay</summary>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.OnPlay``1(``0,DG.Tweening.TweenCallback)">
-            <summary>Sets the onPlay callback for the tween.
+            <summary>Sets the <code>onPlay</code> callback for the tween, clearing any previous <code>onPlay</code> callback that was set.
             Called when the tween is set in a playing state, after any eventual delay.
             Also called each time the tween resumes playing from a paused state</summary>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.OnPause``1(``0,DG.Tweening.TweenCallback)">
-            <summary>Sets the onPlay callback for the tween.
+            <summary>Sets the <code>onPause</code> callback for the tween, clearing any previous <code>onPause</code> callback that was set.
             Called when the tween state changes from playing to paused.
             If the tween has autoKill set to FALSE, this is called also when the tween reaches completion.</summary>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.OnRewind``1(``0,DG.Tweening.TweenCallback)">
-            <summary>Sets the onRewind callback for the tween.
+            <summary>Sets the <code>onRewind</code> callback for the tween, clearing any previous <code>onRewind</code> callback that was set.
             Called when the tween is rewinded,
             either by calling <code>Rewind</code> or by reaching the start position while playing backwards.
             Rewinding a tween that is already rewinded will not fire this callback</summary>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.OnUpdate``1(``0,DG.Tweening.TweenCallback)">
-            <summary>Sets the onUpdate callback for the tween.
+            <summary>Sets the <code>onUpdate</code> callback for the tween, clearing any previous <code>onUpdate</code> callback that was set.
             Called each time the tween updates</summary>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.OnStepComplete``1(``0,DG.Tweening.TweenCallback)">
-            <summary>Sets the onStepComplete callback for the tween.
+            <summary>Sets the <code>onStepComplete</code> callback for the tween, clearing any previous <code>onStepComplete</code> callback that was set.
             Called the moment the tween completes one loop cycle, even when going backwards</summary>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.OnComplete``1(``0,DG.Tweening.TweenCallback)">
-            <summary>Sets the onComplete callback for the tween.
+            <summary>Sets the <code>onComplete</code> callback for the tween, clearing any previous <code>onComplete</code> callback that was set.
             Called the moment the tween reaches its final forward position, loops included</summary>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.OnKill``1(``0,DG.Tweening.TweenCallback)">
-            <summary>Sets the onKill callback for the tween.
+            <summary>Sets the <code>onKill</code> callback for the tween, clearing any previous <code>onKill</code> callback that was set.
             Called the moment the tween is killed</summary>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.OnWaypointChange``1(``0,DG.Tweening.TweenCallback{System.Int32})">
-            <summary>Sets the onWaypointChange callback for the tween.
+            <summary>Sets the <code>onWaypointChange</code> callback for the tween, clearing any previous <code>onWaypointChange</code> callback that was set.
             Called when a path tween's current waypoint changes</summary>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.SetAs``1(``0,DG.Tweening.Tween)">
@@ -2498,6 +2521,9 @@
         </member>
         <member name="F:DG.Tweening.UpdateType.Fixed">
             <summary>Updates using FixedUpdate calls</summary>
+        </member>
+        <member name="F:DG.Tweening.UpdateType.Manual">
+            <summary>Updates using manual update calls</summary>
         </member>
     </members>
 </doc>
