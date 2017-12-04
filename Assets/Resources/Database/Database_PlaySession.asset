@@ -44,7 +44,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -80,7 +80,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -116,7 +116,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -152,7 +152,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -237,7 +237,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -273,7 +273,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -309,7 +309,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -626,7 +626,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -662,7 +662,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -698,7 +698,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -734,7 +734,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -768,7 +768,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -804,7 +804,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -840,7 +840,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1166,7 +1166,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1202,7 +1202,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1238,7 +1238,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1274,7 +1274,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1308,7 +1308,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1344,7 +1344,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1380,7 +1380,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1706,7 +1706,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1742,7 +1742,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1778,7 +1778,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1814,7 +1814,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1848,7 +1848,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1884,7 +1884,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -1920,7 +1920,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2250,7 +2250,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2286,7 +2286,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2322,7 +2322,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2358,7 +2358,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2392,7 +2392,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2428,7 +2428,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2464,7 +2464,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2796,7 +2796,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2832,7 +2832,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2868,7 +2868,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2904,7 +2904,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 115
+      - MiniGameCode: 100
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2938,7 +2938,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -2974,7 +2974,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []
@@ -3010,7 +3010,7 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 0
       _Minigames:
-      - MiniGameCode: 100
+      - MiniGameCode: 115
         Weight: 1
       _NumberOfRoundsPerMinigame: 5
       _Letters: []

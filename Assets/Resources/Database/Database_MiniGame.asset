@@ -63,7 +63,7 @@ MonoBehaviour:
       _AffectedPlaySkills: []
     - _Title_En: Letter Forms
       _Title_Ar: 
-      _Code: 100
+      _Code: 115
       _Available: 1
       _Type: 2
       _Main: Assessment
@@ -73,7 +73,7 @@ MonoBehaviour:
       _AffectedPlaySkills: []
     - _Title_En: Letter
       _Title_Ar: 
-      _Code: 115
+      _Code: 100
       _Available: 1
       _Type: 2
       _Main: Assessment

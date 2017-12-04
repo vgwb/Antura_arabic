@@ -392,7 +392,6 @@ namespace Antura.Assessment
 
         public static Assessment CreateLetterAssessment(AssessmentContext context)
         {
-            // TODO new MiniGame variation (these are copied from LetterForm)
             context.GameDescription = LocalizationDataId.Assessment_Select_Letter_Listen;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold identify the letter
@@ -422,6 +421,7 @@ namespace Antura.Assessment
 
         public static Assessment CreateLetterFormAssessment(AssessmentContext context)
         {
+            // TODO new MiniGame variation (these are copied from LetterForm)
             context.GameDescription = LocalizationDataId.Assessment_Select_Letter_Listen;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold identify the letter
