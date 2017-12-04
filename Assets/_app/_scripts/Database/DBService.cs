@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using Antura.Core;
 using SQLite;
 using System;
 using System.Collections;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq.Expressions;
-using Antura.Core;
+using UnityEngine;
 
 namespace Antura.Database
 {
@@ -17,6 +17,8 @@ namespace Antura.Database
     /// </summary>
     public class DBService
     {
+        SQLiteConnection _connection;
+
         #region Paths
 
         public static string GetDatabaseFilePath(string fileName, string dirName)
@@ -98,7 +100,6 @@ namespace Antura.Database
 
         #endregion
 
-        SQLiteConnection _connection;
 
         private DBService(bool createIfNotFound, string dbPath)
         {
@@ -108,8 +109,7 @@ namespace Antura.Database
             // Try to open an existing DB connection, or create a new DB if it does not exist already
             try {
                 _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
-            }
-            catch {
+            } catch {
                 if (createIfNotFound) {
                     _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
                     RegenerateDatabase();
@@ -118,8 +118,7 @@ namespace Antura.Database
                 }
             }
 
-            if (_connection != null)
-            {
+            if (_connection != null) {
                 // Check that the DB version is correct, otherwise recreate the tables
                 GenerateTable<DatabaseInfoData>(true, false); // Makes sure that the database info data table exists
                 var info = _connection.Find<DatabaseInfoData>(1);
@@ -378,7 +377,6 @@ namespace Antura.Database
         {
             [PrimaryKey]
             public int Value { get; set; }
-
             public string Name { get; set; }
 
             public EnumContainerData()
@@ -387,9 +385,7 @@ namespace Antura.Database
 
             public void Set(T enumValue)
             {
-                if (!typeof(T).IsEnum) {
-                    throw new ArgumentException("T must be an enumerated type");
-                }
+                if (!typeof(T).IsEnum) { throw new ArgumentException("T must be an enumerated type"); }
 
                 Name = enumValue.ToString(CultureInfo.InvariantCulture);
                 Value = Convert.ToInt32(enumValue);

@@ -1,10 +1,9 @@
-﻿using UnityEngine;
+﻿using Antura.Core;
+using Antura.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Antura.Core;
-using Antura.Helpers;
-using Antura.Teacher;
+using UnityEngine;
 
 namespace Antura.Database
 {
@@ -288,7 +287,7 @@ namespace Antura.Database
         // @note: new generic-only data getter, should be used instead of all the above ones
         public List<T> GetAllData<T>(DbTables table) where T : IData
         {
-            return staticDb.GetAll<T>((SerializableDataTable<T>) staticDb.GetTable(table));
+            return staticDb.GetAll<T>((SerializableDataTable<T>)staticDb.GetTable(table));
         }
 
         #endregion
@@ -349,7 +348,7 @@ namespace Antura.Database
             if (locData != null) {
                 return locData;
             }
-            return new LocalizationData {Id = id, Arabic = ("MISSING " + id), English = ("MISSING " + id), AudioFile = ""};
+            return new LocalizationData { Id = id, Arabic = ("MISSING " + id), English = ("MISSING " + id), AudioFile = "" };
         }
 
         public List<LocalizationData> GetAllLocalizationData()
@@ -519,7 +518,7 @@ namespace Antura.Database
         public bool ExportJoinedDatabase(out string errorString)
         {
             // Load all the databases we can find and get the player UUIDs
-            List<string> allUUIDs = new List<string>();
+            var allUUIDs = new List<string>();
             var filePaths = GetImportFilePaths();
             if (filePaths != null) {
                 foreach (var filePath in filePaths) {
@@ -599,8 +598,8 @@ namespace Antura.Database
         {
             foreach (Type dynamicDataType in dynamicDataTypes) {
                 string query = "SELECT * FROM " + dynamicDataType.Name;
-                List<object> objectList = exportDbService.Query(dynamicDataType, query);
-                List<IData> iDataList = objectList.ConvertAll(x => (IData) x);
+                var objectList = exportDbService.Query(dynamicDataType, query);
+                var iDataList = objectList.ConvertAll(x => (IData)x);
 
                 foreach (var element in iDataList) {
                     if (element is IDataEditable) {
@@ -649,8 +648,7 @@ namespace Antura.Database
                 dbService.InsertAll(StaticDatabase.GetPhraseTable().GetValuesTyped());
                 dbService.InsertAll(StaticDatabase.GetLocalizationTable().GetValuesTyped());
                 dbService.InsertAll(StaticDatabase.GetRewardTable().GetValuesTyped());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Debug.LogError(e);
             }
         }
