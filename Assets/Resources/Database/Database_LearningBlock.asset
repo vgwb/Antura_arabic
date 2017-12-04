@@ -154,7 +154,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Discover the letters
+      _Title_En: Let's discover the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 2.2
@@ -163,7 +163,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: discover letter
+      _Title_En: Let's discover the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 2.3
@@ -172,7 +172,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize letter
+      _Title_En: Let's find the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 2.4
@@ -181,7 +181,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read letter
+      _Title_En: Let's read the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 2.5
@@ -190,7 +190,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: discover phonems
+      _Title_En: Let's discover the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 2.6
@@ -199,7 +199,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize phonems
+      _Title_En: Let's find the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 2.7
@@ -208,7 +208,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize phonems
+      _Title_En: Let's find the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 2.8
@@ -217,7 +217,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read phonems
+      _Title_En: Let's read the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 2.9
@@ -226,7 +226,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read phonems
+      _Title_En: Let's read the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 2.10
@@ -235,7 +235,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 2.11
@@ -244,7 +244,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 2.12
@@ -253,7 +253,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 2.13
@@ -262,7 +262,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 2.14
@@ -271,7 +271,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 2.15
@@ -280,7 +280,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 3.1
@@ -289,7 +289,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Discover the letters
+      _Title_En: Let's discover the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 3.2
@@ -298,7 +298,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: discover letter
+      _Title_En: Let's discover the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 3.3
@@ -307,7 +307,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize letter
+      _Title_En: Let's find the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 3.4
@@ -316,7 +316,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read letter
+      _Title_En: Let's find the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 3.5
@@ -325,7 +325,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: discover phonems
+      _Title_En: Let's discover the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 3.6
@@ -334,7 +334,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize phonems
+      _Title_En: Let's find the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 3.7
@@ -343,7 +343,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize phonems
+      _Title_En: Let's find the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 3.8
@@ -352,7 +352,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read phonems
+      _Title_En: Let's read the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 3.9
@@ -361,7 +361,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read phonems
+      _Title_En: Let's read the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 3.10
@@ -370,7 +370,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 3.11
@@ -379,7 +379,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 3.12
@@ -388,7 +388,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 3.13
@@ -397,7 +397,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 3.14
@@ -406,7 +406,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 3.15
@@ -415,7 +415,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 4.1
@@ -424,7 +424,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Discover the letters
+      _Title_En: Let's discover the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 4.2
@@ -433,7 +433,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: discover letter
+      _Title_En: Let's discover the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 4.3
@@ -442,7 +442,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize letter
+      _Title_En: Let's find the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 4.4
@@ -451,7 +451,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read letter
+      _Title_En: Let's read the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 4.5
@@ -460,7 +460,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: discover phonems
+      _Title_En: Let's discover the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 4.6
@@ -469,7 +469,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize phonems
+      _Title_En: Let's find the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 4.7
@@ -478,7 +478,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize phonems
+      _Title_En: Let's find the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 4.8
@@ -487,7 +487,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read phonems
+      _Title_En: Let's read the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 4.9
@@ -496,7 +496,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read phonems
+      _Title_En: Let's read the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 4.10
@@ -505,7 +505,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 4.11
@@ -514,7 +514,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 4.12
@@ -523,7 +523,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 4.13
@@ -532,7 +532,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 4.14
@@ -541,7 +541,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 4.15
@@ -550,7 +550,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 5.1
@@ -559,7 +559,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Discover the letters
+      _Title_En: Let's discover the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 5.2
@@ -568,7 +568,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: discover letter
+      _Title_En: Let's discover the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 5.3
@@ -577,7 +577,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize letter
+      _Title_En: Let's find the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 5.4
@@ -586,7 +586,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read letter
+      _Title_En: Let's read the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 5.5
@@ -595,7 +595,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: discover phonems
+      _Title_En: Let's discover the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 5.6
@@ -604,7 +604,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize phonems
+      _Title_En: Let's find the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 5.7
@@ -613,7 +613,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize phonems
+      _Title_En: Let's find the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 5.8
@@ -622,7 +622,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read phonems
+      _Title_En: Let's read the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 5.9
@@ -631,7 +631,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read phonems
+      _Title_En: Let's read the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 5.10
@@ -640,7 +640,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 5.11
@@ -649,7 +649,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 5.12
@@ -658,7 +658,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 5.13
@@ -667,7 +667,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 5.14
@@ -676,7 +676,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 5.15
@@ -685,7 +685,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 6.1
@@ -694,7 +694,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Discover the letters
+      _Title_En: Let's discover the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 6.2
@@ -703,7 +703,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: discover letter
+      _Title_En: Let's discover the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 6.3
@@ -712,7 +712,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize letter
+      _Title_En: Let's find the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 6.4
@@ -721,7 +721,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read letter
+      _Title_En: Let's read the letters
       _Title_Ar: 
       _Focus: 1
     - _Id: 6.5
@@ -730,7 +730,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: discover phonems
+      _Title_En: Let's discover the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 6.6
@@ -739,7 +739,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize phonems
+      _Title_En: Let's find the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 6.7
@@ -748,7 +748,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: recognize phonems
+      _Title_En: Let's fnd the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 6.8
@@ -757,7 +757,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read phonems
+      _Title_En: Let's read the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 6.9
@@ -766,7 +766,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read phonems
+      _Title_En: Let's read the phonems
       _Title_Ar: 
       _Focus: 6
     - _Id: 6.10
@@ -775,7 +775,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 6.11
@@ -784,7 +784,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 6.12
@@ -793,7 +793,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 6.13
@@ -802,7 +802,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 6.14
@@ -811,7 +811,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read a word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4
     - _Id: 6.15
@@ -820,6 +820,6 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: read word
+      _Title_En: Let's read some words
       _Title_Ar: 
       _Focus: 4

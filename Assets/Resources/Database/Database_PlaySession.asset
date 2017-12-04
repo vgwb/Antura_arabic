@@ -755,7 +755,22 @@ MonoBehaviour:
       - MiniGameCode: 38
         Weight: 1
       _NumberOfRoundsPerMinigame: 0
-      _Letters: []
+      _Letters:
+      - jeem_fathah
+      - jeem_dammah
+      - jeem_kasrah
+      - jeem_shaddah
+      - jeem_sukun
+      - hah_fathah
+      - hah_dammah
+      - hah_kasrah
+      - hah_shaddah
+      - hah_sukun
+      - khah_fathah
+      - khah_dammah
+      - khah_kasrah
+      - khah_shaddah
+      - khah_sukun
       _Words: []
       _Words_previous: []
       _Phrases: []
@@ -1295,7 +1310,35 @@ MonoBehaviour:
       - MiniGameCode: 38
         Weight: 1
       _NumberOfRoundsPerMinigame: 0
-      _Letters: []
+      _Letters:
+      - alef_fathah
+      - alef_dammah
+      - alef_kasrah
+      - dal_fathah
+      - dal_dammah
+      - dal_kasrah
+      - dal_shaddah
+      - dal_sukun
+      - thal_fathah
+      - thal_dammah
+      - thal_kasrah
+      - thal_shaddah
+      - thal_sukun
+      - reh_fathah
+      - reh_dammah
+      - reh_kasrah
+      - reh_shaddah
+      - reh_sukun
+      - zain_fathah
+      - zain_dammah
+      - zain_kasrah
+      - zain_shaddah
+      - zain_sukun
+      - waw_fathah
+      - waw_dammah
+      - waw_kasrah
+      - waw_shaddah
+      - waw_sukun
       _Words: []
       _Words_previous: []
       _Phrases: []
@@ -1835,7 +1878,37 @@ MonoBehaviour:
       - MiniGameCode: 38
         Weight: 1
       _NumberOfRoundsPerMinigame: 0
-      _Letters: []
+      _Letters:
+      - seen_fathah
+      - seen_dammah
+      - seen_kasrah
+      - seen_shaddah
+      - seen_sukun
+      - sheen_fathah
+      - sheen_dammah
+      - sheen_kasrah
+      - sheen_shaddah
+      - sheen_sukun
+      - sad_fathah
+      - sad_dammah
+      - sad_kasrah
+      - sad_shaddah
+      - sad_sukun
+      - dad_fathah
+      - dad_dammah
+      - dad_kasrah
+      - dad_shaddah
+      - dad_sukun
+      - tah_fathah
+      - tah_dammah
+      - tah_kasrah
+      - tah_shaddah
+      - tah_sukun
+      - zah_fathah
+      - zah_dammah
+      - zah_kasrah
+      - zah_shaddah
+      - zah_sukun
       _Words: []
       _Words_previous: []
       _Phrases: []
@@ -2379,7 +2452,23 @@ MonoBehaviour:
       - MiniGameCode: 38
         Weight: 1
       _NumberOfRoundsPerMinigame: 0
-      _Letters: []
+      _Letters:
+      - feh_fathah
+      - feh_dammah
+      - feh_kasrah
+      - feh_shaddah
+      - feh_sukun
+      - qaf_fathah
+      - qaf_dammah
+      - qaf_kasrah
+      - qaf_shaddah
+      - qaf_sukun
+      - hamza_fathah
+      - hamza_dammah
+      - hamza_kasrah
+      - teh_marbuta_fathah
+      - teh_marbuta_dammah
+      - teh_marbuta_kasrah
       _Words: []
       _Words_previous: []
       _Phrases: []
@@ -2520,14 +2609,14 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 16
         Weight: 1
-      - MiniGameCode: 17
-        Weight: 5
       - MiniGameCode: 34
         Weight: 4
       - MiniGameCode: 36
         Weight: 3
       - MiniGameCode: 38
         Weight: 2
+      - MiniGameCode: 39
+        Weight: 5
       _NumberOfRoundsPerMinigame: 0
       _Letters: []
       _Words: []
@@ -2925,7 +3014,37 @@ MonoBehaviour:
       - MiniGameCode: 38
         Weight: 1
       _NumberOfRoundsPerMinigame: 0
-      _Letters: []
+      _Letters:
+      - ain_fathah
+      - ain_dammah
+      - ain_kasrah
+      - ain_shaddah
+      - ain_sukun
+      - ghain_fathah
+      - ghain_dammah
+      - ghain_kasrah
+      - ghain_shaddah
+      - ghain_sukun
+      - meem_fathah
+      - meem_dammah
+      - meem_kasrah
+      - meem_shaddah
+      - meem_sukun
+      - kaf_fathah
+      - kaf_dammah
+      - kaf_kasrah
+      - kaf_shaddah
+      - kaf_sukun
+      - lam_fathah
+      - lam_dammah
+      - lam_kasrah
+      - lam_shaddah
+      - lam_sukun
+      - heh_fathah
+      - heh_dammah
+      - heh_kasrah
+      - heh_shaddah
+      - heh_sukun
       _Words: []
       _Words_previous: []
       _Phrases: []
@@ -3066,14 +3185,14 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 16
         Weight: 1
-      - MiniGameCode: 17
-        Weight: 5
       - MiniGameCode: 34
         Weight: 4
       - MiniGameCode: 36
         Weight: 3
       - MiniGameCode: 38
         Weight: 2
+      - MiniGameCode: 39
+        Weight: 5
       _NumberOfRoundsPerMinigame: 0
       _Letters: []
       _Words: []

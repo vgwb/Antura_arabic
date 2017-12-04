@@ -21,11 +21,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0623\u062E\u062A\u064A"
+      _Arabic: "\u0623\u064F\u062E\u0652\u062A\u064A"
       _Value: 
       _Letters:
-      - alef_hamza_hi
-      - khah
+      - alef_hamza_hi_dammah
+      - khah_sukun
       - teh
       - yeh
       _Drawing: 
@@ -38,10 +38,10 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u062E\u064A"
+      _Arabic: "\u0623\u064E\u062E\u064A"
       _Value: 
       _Letters:
-      - alef_hamza_hi
+      - alef_hamza_hi_fathah
       - khah
       - yeh
       _Drawing: 
@@ -54,10 +54,10 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u0646\u0627"
+      _Arabic: "\u0623\u064E\u0646\u0627"
       _Value: 
       _Letters:
-      - alef_hamza_hi
+      - alef_hamza_hi_fathah
       - noon
       - alef
       _Drawing: 
@@ -70,12 +70,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0623\u0646\u062A"
+      _Arabic: "\u0623\u064E\u0646\u0652\u062A\u064E"
       _Value: 
       _Letters:
-      - alef_hamza_hi
-      - noon
-      - teh
+      - alef_hamza_hi_fathah
+      - noon_sukun
+      - teh_fathah
       _Drawing: 
       _Complexity: 0.3
     - _Id: to
@@ -102,11 +102,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0625\u0646\u0647\u0627"
+      _Arabic: "\u0625\u0646\u064E\u0647\u0627"
       _Value: 
       _Letters:
       - alef_hamza_low
-      - noon
+      - noon_fathah
       - heh
       - alef
       _Drawing: 
@@ -119,12 +119,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0627\u0633\u0645\u0643"
+      _Arabic: "\u0627\u0650\u0633\u0652\u0645\u064F\u0643"
       _Value: 
       _Letters:
-      - alef
-      - seen
-      - meem
+      - alef_kasrah
+      - seen_sukun
+      - meem_dammah
       - kaf
       _Drawing: 
       _Complexity: 0.6
@@ -136,11 +136,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0627\u0633\u0645\u064A"
+      _Arabic: "\u0627\u0650\u0633\u0652\u0645\u064A"
       _Value: 
       _Letters:
-      - alef
-      - seen
+      - alef_kasrah
+      - seen_sukun
       - meem
       - yeh
       _Drawing: 
@@ -153,14 +153,14 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: color_green
-      _Arabic: "\u0627\u0644\u0623\u062E\u0636\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0623\u062E\u0652\u0636\u064E\u0631"
       _Value: green
       _Letters:
-      - alef
+      - alef_fathah
       - lam
       - alef_hamza_hi
-      - khah
-      - dad
+      - khah_sukun
+      - dad_fathah
       - reh
       _Drawing: 100
       _Complexity: 1
@@ -172,16 +172,16 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: parrot
-      _Arabic: "\u0627\u0644\u0628\u0628\u063A\u0627\u0621"
+      _Arabic: "\u0627\u064E\u0644\u0628\u064E\u0628\u064E\u063A\u0627\u0621"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - beh
-      - beh
+      - beh_fathah
+      - beh_fathah
       - ghain
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: E2
       _Complexity: 1
     - _Id: the_color_orange
@@ -192,14 +192,14 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: color_orange
-      _Arabic: "\u0627\u0644\u0628\u0631\u062A\u0642\u0627\u0644\u064A"
+      _Arabic: "\u0627\u064E\u0644\u0628\u064F\u0631\u0652\u062A\u064F\u0642\u0627\u0644\u064A"
       _Value: orange
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - beh
-      - reh
-      - teh
+      - beh_dammah
+      - reh_sukun
+      - teh_dammah
       - qaf
       - alef
       - lam
@@ -214,13 +214,13 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u0628\u0631\u062F"
+      _Arabic: "\u0627\u064E\u0644\u0628\u064E\u0631\u0652\u062F"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - beh
-      - reh
+      - beh_fathah
+      - reh_sukun
       - dal
       _Drawing: 
       _Complexity: 0.3
@@ -232,13 +232,13 @@ MonoBehaviour:
       _Article: 1
       _Gender: 1
       _LinkedWord: girl
-      _Arabic: "\u0627\u0644\u0628\u0646\u062A"
+      _Arabic: "\u0627\u064E\u0644\u0628\u0650\u0646\u0652\u062A"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - beh
-      - noon
+      - beh_kasrah
+      - noon_sukun
       - teh
       _Drawing: C0
       _Complexity: 0.3
@@ -250,15 +250,15 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: color_purple
-      _Arabic: "\u0627\u0644\u0628\u0646\u0641\u0633\u062C\u064A"
+      _Arabic: "\u0627\u064E\u0644\u0628\u064E\u0646\u064E\u0641\u0652\u0633\u064E\u062C\u064A"
       _Value: purple
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - beh
-      - noon
-      - feh
-      - seen
+      - beh_fathah
+      - noon_fathah
+      - feh_sukun
+      - seen_fathah
       - jeem
       - yeh
       _Drawing: 100
@@ -271,12 +271,12 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: color_brown
-      _Arabic: "\u0627\u0644\u0628\u0646\u064A"
+      _Arabic: "\u0627\u064E\u0644\u0628\u064F\u0646\u064A"
       _Value: brown
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - beh
+      - beh_dammah
       - noon
       - yeh
       _Drawing: 100
@@ -297,7 +297,7 @@ MonoBehaviour:
       - beh
       - waw
       - zah
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: CD
       _Complexity: 0.6
     - _Id: the_house
@@ -308,12 +308,12 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: house
-      _Arabic: "\u0627\u0644\u0628\u064A\u062A"
+      _Arabic: "\u0627\u064E\u0644\u0628\u064E\u064A\u062A"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - beh
+      - beh_fathah
       - yeh
       - teh
       _Drawing: C8
@@ -326,12 +326,12 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: apple
-      _Arabic: "\u0627\u0644\u062A\u0641\u0627\u062D"
+      _Arabic: "\u0627\u064E\u0644\u062A\u064F\u0641\u0627\u062D"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - teh
+      - teh_dammah
       - feh
       - alef
       - hah
@@ -345,16 +345,15 @@ MonoBehaviour:
       _Article: 1
       _Gender: 1
       _LinkedWord: fridge
-      _Arabic: "\u0627\u0644\u062B\u0644\u0627\u062C\u0629"
+      _Arabic: "\u0627\u064E\u062B\u064E\u0644\u0627\u062C\u0629"
       _Value: 
       _Letters:
-      - alef
-      - lam
-      - theh
+      - alef_fathah
+      - theh_fathah
       - lam
       - alef
       - jeem
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 7A
       _Complexity: 1
     - _Id: the_mountain
@@ -365,13 +364,13 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: mountain
-      _Arabic: "\u0627\u0644\u062C\u0628\u0644"
+      _Arabic: "\u0627\u064E\u0644\u062C\u064E\u0628\u064E\u0644"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - jeem
-      - beh
+      - jeem_fathah
+      - beh_fathah
       - lam
       _Drawing: D2
       _Complexity: 0.3
@@ -383,16 +382,16 @@ MonoBehaviour:
       _Article: 1
       _Gender: 1
       _LinkedWord: cupboard
-      _Arabic: "\u0627\u0644\u062E\u0632\u0627\u0646\u0629"
+      _Arabic: "\u0627\u064E\u0644\u062E\u064E\u0632\u0627\u0646\u0629"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - khah
+      - khah_fathah
       - zain
       - alef
       - noon
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: C1
       _Complexity: 1
     - _Id: the_well-being
@@ -403,12 +402,12 @@ MonoBehaviour:
       _Article: 1
       _Gender: 0
       _LinkedWord: well-being
-      _Arabic: "\u0627\u0644\u062E\u064A\u0631"
+      _Arabic: "\u0627\u064E\u0644\u062E\u064E\u064A\u0631"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - khah
+      - khah_fathah
       - yeh
       - reh
       _Drawing: 
@@ -421,12 +420,12 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: shop
-      _Arabic: "\u0627\u0644\u062F\u0643\u0627\u0646"
+      _Arabic: "\u0627\u064E\u0644\u062F\u064F\u0643\u0627\u0646"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - dal
+      - dal_dammah
       - kaf
       - alef
       - noon
@@ -440,15 +439,15 @@ MonoBehaviour:
       _Article: 1
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u0633\u0627\u0639\u0629"
+      _Arabic: "\u0627\u064E\u0644\u0633\u0627\u0639\u064E\u0629"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
       - seen
       - alef
-      - ain
-      - teh_marbuta
+      - ain_fathah
+      - teh_marbuta_fathah
       _Drawing: 
       _Complexity: 0.6
     - _Id: the_winter
@@ -459,15 +458,15 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: winter
-      _Arabic: "\u0627\u0644\u0634\u062A\u0627\u0621"
+      _Arabic: "\u0627\u064E\u0644\u0634\u0650\u062A\u0627\u0621"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - sheen
+      - sheen_kasrah
       - teh
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: BF
       _Complexity: 0.6
     - _Id: the_month
@@ -478,13 +477,13 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: month
-      _Arabic: "\u0627\u0644\u0634\u0647\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0634\u064E\u0647\u064E\u0631"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - sheen
-      - heh
+      - sheen_fathah
+      - heh_fathah
       - reh
       _Drawing: 2265
       _Complexity: 0.3
@@ -496,12 +495,12 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: boy
-      _Arabic: "\u0627\u0644\u0635\u0628\u064A"
+      _Arabic: "\u0627\u064E\u0644\u0635\u064E\u0628\u064A"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - sad
+      - sad_fathah
       - beh
       - yeh
       _Drawing: 51
@@ -514,12 +513,12 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: doctor
-      _Arabic: "\u0627\u0644\u0637\u0628\u064A\u0628"
+      _Arabic: "\u0627\u064E\u0644\u0637\u064E\u0628\u064A\u0628"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - tah
+      - tah_fathah
       - beh
       - yeh
       - beh
@@ -533,16 +532,16 @@ MonoBehaviour:
       _Article: 1
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u0639\u0627\u0634\u0631\u0629"
+      _Arabic: "\u0627\u064E\u0644\u0639\u0627\u0634\u0650\u0631\u0629"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
       - ain
       - alef
-      - sheen
+      - sheen_kasrah
       - reh
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 
       _Complexity: 1
     - _Id: the_bird
@@ -553,14 +552,14 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: bird
-      _Arabic: "\u0627\u0644\u0639\u0635\u0641\u0648\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0639\u064E\u0635\u0652\u0641\u064F\u0648\u0631"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - ain
-      - sad
-      - feh
+      - ain_fathah
+      - sad_sukun
+      - feh_dammah
       - waw
       - reh
       _Drawing: 4D
@@ -573,12 +572,12 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: juice
-      _Arabic: "\u0627\u0644\u0639\u0635\u064A\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0639\u064E\u0635\u064A\u0631"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - ain
+      - ain_fathah
       - sad
       - yeh
       - reh
@@ -592,15 +591,15 @@ MonoBehaviour:
       _Article: 1
       _Gender: 1
       _LinkedWord: forest
-      _Arabic: "\u0627\u0644\u063A\u0627\u0628\u0629"
+      _Arabic: "\u0627\u064E\u0644\u063A\u064E\u0627\u0628\u064E\u0629"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - ghain
+      - ghain_fathah
       - alef
-      - beh
-      - teh_marbuta
+      - beh_fathah
+      - teh_marbuta_fathah
       _Drawing: 79
       _Complexity: 0.6
     - _Id: the_deer
@@ -611,12 +610,12 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: deer
-      _Arabic: "\u0627\u0644\u063A\u0632\u0627\u0644"
+      _Arabic: "\u0627\u064E\u0644\u063A\u064E\u0632\u0627\u0644"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - ghain
+      - ghain_fathah
       - zain
       - alef
       - lam
@@ -630,13 +629,13 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: oven
-      _Arabic: "\u0627\u0644\u0641\u0631\u0646"
+      _Arabic: "\u0627\u064E\u0644\u0641\u064F\u0631\u0652\u0646"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - feh
-      - reh
+      - feh_dammah
+      - reh_sukun
       - noon
       _Drawing: A7
       _Complexity: 0.3
@@ -648,13 +647,13 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: chair
-      _Arabic: "\u0627\u0644\u0643\u0631\u0633\u064A"
+      _Arabic: "\u0627\u064E\u0644\u0643\u064F\u0631\u0652\u0633\u064A"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - kaf
-      - reh
+      - kaf_dammah
+      - reh_sukun
       - seen
       - yeh
       _Drawing: 5A
@@ -667,15 +666,15 @@ MonoBehaviour:
       _Article: 1
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u0644\u0642\u0627\u0621"
+      _Arabic: "\u0627\u064E\u0644\u0644\u0650\u0642\u0627\u0621"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - lam
+      - lam_kasrah
       - qaf
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: 
       _Complexity: 0.6
     - _Id: the_station
@@ -686,15 +685,15 @@ MonoBehaviour:
       _Article: 1
       _Gender: 1
       _LinkedWord: station
-      _Arabic: "\u0627\u0644\u0645\u062D\u0637\u0629"
+      _Arabic: "\u0627\u064E\u0644\u0645\u064E\u062D\u064E\u0637\u064E\u0629"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - meem
-      - hah
-      - tah
-      - teh_marbuta
+      - meem_fathah
+      - hah_fathah
+      - tah_fathah
+      - teh_marbuta_fathah
       _Drawing: 2197
       _Complexity: 1
     - _Id: the_hospital
@@ -705,17 +704,17 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: hospital
-      _Arabic: "\u0627\u0644\u0645\u0633\u062A\u0634\u0641\u0649"
+      _Arabic: "\u0627\u064E\u0644\u0645\u064F\u0633\u0652\u062A\u064E\u0634\u0652\u0641\u064E\u0629"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - meem
-      - seen
-      - teh
-      - sheen
-      - feh
-      - alef_maqsura
+      - meem_dammah
+      - seen_sukun
+      - teh_fathah
+      - sheen_sukun
+      - feh_fathah
+      - teh_marbuta_fathah
       _Drawing: CB
       _Complexity: 1
     - _Id: the_restaurant
@@ -726,14 +725,14 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: restaurant
-      _Arabic: "\u0627\u0644\u0645\u0637\u0639\u0645"
+      _Arabic: "\u0627\u064E\u0644\u0645\u064E\u0637\u0652\u0639\u064E\u0645"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - meem
-      - tah
-      - ain
+      - meem_fathah
+      - tah_sukun
+      - ain_fathah
       - meem
       _Drawing: 26
       _Complexity: 1
@@ -745,14 +744,14 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: teacher
-      _Arabic: "\u0627\u0644\u0645\u0639\u0644\u0645"
+      _Arabic: "\u0627\u064E\u0644\u0645\u064F\u0639\u064E\u0644\u0650\u0645"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - meem
-      - ain
-      - lam
+      - meem_dammah
+      - ain_fathah
+      - lam_kasrah
       - meem
       _Drawing: F6
       _Complexity: 0.6
@@ -764,14 +763,14 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: club
-      _Arabic: "\u0627\u0644\u0645\u0646\u062A\u062F\u0649"
+      _Arabic: "\u0627\u064E\u0644\u0645\u064F\u0646\u0652\u062A\u064E\u062F\u0649"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - meem
-      - noon
-      - teh
+      - meem_dammah
+      - noon_sukun
+      - teh_fathah
       - dal
       - alef_maqsura
       _Drawing: 102
@@ -784,13 +783,13 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: carpenter
-      _Arabic: "\u0627\u0644\u0646\u062C\u0627\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u062C\u064E\u0627\u0631"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - noon
-      - jeem
+      - noon_fathah
+      - jeem_fathah
       - alef
       - reh
       _Drawing: 57
@@ -803,13 +802,13 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: tiger
-      _Arabic: "\u0627\u0644\u0646\u0645\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u0645\u0652\u0631"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - noon
-      - meem
+      - noon_fathah
+      - meem_sukun
       - reh
       _Drawing: F5
       _Complexity: 0.3
@@ -821,13 +820,13 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: river
-      _Arabic: "\u0627\u0644\u0646\u0647\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u0647\u064E\u0631"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - noon
-      - heh
+      - noon_fathah
+      - heh_fathah
       - reh
       _Drawing: EA
       _Complexity: 0.6
@@ -839,12 +838,12 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u0646\u0648\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0646\u064F\u0648\u0631"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - noon
+      - noon_dammah
       - waw
       - reh
       _Drawing: 
@@ -857,12 +856,12 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: flower
-      _Arabic: "\u0627\u0644\u0648\u0631\u062F"
+      _Arabic: "\u0627\u064E\u0644\u0648\u064E\u0631\u062F"
       _Value: 
       _Letters:
-      - alef
+      - alef_fathah
       - lam
-      - waw
+      - waw_fathah
       - reh
       - dal
       _Drawing: 77
@@ -875,11 +874,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0628\u062E\u064A\u0631"
+      _Arabic: "\u0628\u0650\u062E\u064E\u064A\u0631"
       _Value: 
       _Letters:
-      - beh
-      - khah
+      - beh_kasrah
+      - khah_fathah
       - yeh
       - reh
       _Drawing: 
@@ -892,11 +891,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0628\u062E\u064A\u0631"
+      _Arabic: "\u0628\u0650\u062E\u064E\u064A\u0631"
       _Value: 
       _Letters:
-      - beh
-      - khah
+      - beh_kasrah
+      - khah_fathah
       - yeh
       - reh
       _Drawing: 
@@ -909,14 +908,14 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u062A\u062D\u062A\u0627\u062C"
+      _Arabic: "\u062A\u064E\u062D\u0652\u062A\u0627\u062C\u064F"
       _Value: 
       _Letters:
-      - teh
-      - hah
+      - teh_fathah
+      - hah_sukun
       - teh
       - alef
-      - jeem
+      - jeem_dammah
       _Drawing: 
       _Complexity: 1
     - _Id: remain
@@ -927,13 +926,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u062A\u0635\u0628\u062D"
+      _Arabic: "\u062A\u064E\u0635\u0652\u0628\u064E\u062D\u064F"
       _Value: 
       _Letters:
-      - teh
-      - sad
-      - beh
-      - hah
+      - teh_fathah
+      - sad_sukun
+      - beh_fathah
+      - hah_dammah
       _Drawing: 
       _Complexity: 0.6
     - _Id: ready
@@ -944,12 +943,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u062C\u0627\u0647\u0632"
+      _Arabic: "\u062C\u064E\u0627\u0647\u0650\u0632"
       _Value: 
       _Letters:
-      - jeem
+      - jeem_fathah
       - alef
-      - heh
+      - heh_kasrah
       - zain
       _Drawing: 
       _Complexity: 0.6
@@ -961,10 +960,10 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u062C\u062F\u064A"
+      _Arabic: "\u062C\u064E\u062F\u064A"
       _Value: 
       _Letters:
-      - jeem
+      - jeem_fathah
       - dal
       - yeh
       _Drawing: 
@@ -977,10 +976,10 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u062C\u0632\u064A\u0644\u0627\u064B"
+      _Arabic: "\u062C\u064E\u0632\u064A\u0644\u0627\u064B"
       _Value: 
       _Letters:
-      - jeem
+      - jeem_fathah
       - zain
       - yeh
       - lam
@@ -995,12 +994,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u062C\u0644\u0633\u062A"
+      _Arabic: "\u062C\u064E\u0644\u064E\u0633\u064E\u062A"
       _Value: 
       _Letters:
-      - jeem
-      - lam
-      - seen
+      - jeem_fathah
+      - lam_fathah
+      - seen_fathah
       - teh
       _Drawing: 
       _Complexity: 0.6
@@ -1012,12 +1011,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u062D\u0627\u0644\u0643"
+      _Arabic: "\u062D\u0627\u0644\u064F\u0643"
       _Value: 
       _Letters:
       - hah
       - alef
-      - lam
+      - lam_dammah
       - kaf
       _Drawing: 
       _Complexity: 0.6
@@ -1029,14 +1028,14 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u062D\u0632\u064A\u0646\u0629"
+      _Arabic: "\u062D\u064E\u0632\u064A\u0646\u064E\u0629"
       _Value: 
       _Letters:
-      - hah
+      - hah_fathah
       - zain
       - yeh
-      - noon
-      - teh_marbuta
+      - noon_fathah
+      - teh_marbuta_fathah
       _Drawing: 
       _Complexity: 0.6
     - _Id: my_aunt_mother
@@ -1047,12 +1046,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u062E\u0627\u0644\u062A\u064A"
+      _Arabic: "\u062E\u064E\u0627\u0644\u064E\u062A\u064A"
       _Value: 
       _Letters:
-      - khah
+      - khah_fathah
       - alef
-      - lam
+      - lam_fathah
       - teh
       - yeh
       _Drawing: 
@@ -1082,10 +1081,10 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u062E\u064A\u0631"
+      _Arabic: "\u062E\u064E\u064A\u0631"
       _Value: 
       _Letters:
-      - khah
+      - khah_fathah
       - yeh
       - reh
       _Drawing: 
@@ -1098,12 +1097,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0630\u0647\u0628\u062A"
+      _Arabic: "\u0630\u064E\u0647\u064E\u0628\u064E\u062A"
       _Value: 
       _Letters:
-      - thal
-      - heh
-      - beh
+      - thal_fathah
+      - heh_fathah
+      - beh_fathah
       - teh
       _Drawing: 
       _Complexity: 0.6
@@ -1115,12 +1114,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0631\u0628\u062D\u062A"
+      _Arabic: "\u0631\u064E\u0628\u064E\u062D\u064E\u062A"
       _Value: 
       _Letters:
-      - reh
-      - beh
-      - hah
+      - reh_fathah
+      - beh_fathah
+      - hah_fathah
       - teh
       _Drawing: 
       _Complexity: 0.6
@@ -1138,7 +1137,7 @@ MonoBehaviour:
       - reh
       - jeem
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: 
       _Complexity: 0.6
     - _Id: samer
@@ -1166,11 +1165,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0633\u0647\u0644\u0627\u064B"
+      _Arabic: "\u0633\u064E\u0647\u0652\u0644\u0627\u064B"
       _Value: 
       _Letters:
-      - seen
-      - heh
+      - seen_fathah
+      - heh_sukun
       - lam
       - alef_fathah_tanwin
       _Drawing: 
@@ -1183,12 +1182,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0634\u0631\u0628\u062A"
+      _Arabic: "\u0634\u064E\u0631\u064E\u0628\u064E\u062A"
       _Value: 
       _Letters:
-      - sheen
-      - reh
-      - beh
+      - sheen_fathah
+      - reh_fathah
+      - beh_fathah
       - teh
       _Drawing: 
       _Complexity: 0.3
@@ -1200,11 +1199,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0635\u0628\u0627\u062D\u0627\u064B"
+      _Arabic: "\u0635\u064E\u0628\u064E\u0627\u062D\u0627\u064B"
       _Value: 
       _Letters:
-      - sad
-      - beh
+      - sad_fathah
+      - beh_fathah
       - alef
       - hah
       - alef_fathah_tanwin
@@ -1218,10 +1217,10 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0639\u0644\u0649"
+      _Arabic: "\u0639\u064E\u0644\u0649"
       _Value: 
       _Letters:
-      - ain
+      - ain_fathah
       - lam
       - alef_maqsura
       _Drawing: 
@@ -1234,11 +1233,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0639\u0645\u062A\u064A"
+      _Arabic: "\u0639\u064E\u0645\u0652\u062A\u064A"
       _Value: 
       _Letters:
-      - ain
-      - meem
+      - ain_fathah
+      - meem_sukun
       - teh
       - yeh
       _Drawing: 
@@ -1251,10 +1250,10 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0639\u0645\u064A"
+      _Arabic: "\u0639\u064E\u0645\u064A"
       _Value: 
       _Letters:
-      - ain
+      - ain_fathah
       - meem
       - yeh
       _Drawing: 
@@ -1298,10 +1297,10 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0643\u0645"
+      _Arabic: "\u0643\u064E\u0645"
       _Value: 
       _Letters:
-      - kaf
+      - kaf_fathah
       - meem
       _Drawing: 
       _Complexity: 0.3
@@ -1313,12 +1312,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0643\u064A\u0641"
+      _Arabic: "\u0643\u064E\u064A\u0652\u0641\u064E"
       _Value: 
       _Letters:
-      - kaf
-      - yeh
-      - feh
+      - kaf_fathah
+      - yeh_sukun
+      - feh_fathah
       _Drawing: 
       _Complexity: 0.3
     - _Id: go_v2
@@ -1329,13 +1328,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0644\u0646\u0630\u0647\u0628"
+      _Arabic: "\u0644\u0650\u0646\u064E\u0630\u0652\u0647\u064E\u0628"
       _Value: 
       _Letters:
-      - lam
-      - noon
-      - thal
-      - heh
+      - lam_kasrah
+      - noon_fathah
+      - thal_sukun
+      - heh_fathah
       - beh
       _Drawing: 
       _Complexity: 1
@@ -1362,11 +1361,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0645\u0628\u0631\u0648\u0643"
+      _Arabic: "\u0645\u064E\u0628\u0652\u0631\u0648\u0643"
       _Value: 
       _Letters:
-      - meem
-      - beh
+      - meem_fathah
+      - beh_sukun
       - reh
       - waw
       - kaf
@@ -1380,15 +1379,15 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0645\u0633\u0627\u0639\u062F\u0629"
+      _Arabic: "\u0645\u064F\u0633\u0627\u0639\u064E\u062F\u064E\u0629"
       _Value: 
       _Letters:
-      - meem
+      - meem_dammah
       - seen
       - alef
-      - ain
-      - dal
-      - teh_marbuta
+      - ain_fathah
+      - dal_fathah
+      - teh_marbuta_fathah
       _Drawing: 
       _Complexity: 1
     - _Id: from
@@ -1399,11 +1398,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0645\u0646"
+      _Arabic: "\u0645\u0650\u0646\u0652"
       _Value: 
       _Letters:
-      - meem
-      - noon
+      - meem_kasrah
+      - noon_sukun
       _Drawing: 
       _Complexity: 0.3
     - _Id: go
@@ -1414,13 +1413,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0646\u0630\u0647\u0628"
+      _Arabic: "\u0646\u064E\u0630\u0652\u0647\u064E\u0628\u064F"
       _Value: 
       _Letters:
-      - noon
-      - thal
-      - heh
-      - beh
+      - noon_fathah
+      - thal_sukun
+      - heh_fathah
+      - beh_dammah
       _Drawing: 
       _Complexity: 0.6
     - _Id: yes
@@ -1431,11 +1430,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0646\u0639\u0645"
+      _Arabic: "\u0646\u064E\u0639\u064E\u0645"
       _Value: 
       _Letters:
-      - noon
-      - ain
+      - noon_fathah
+      - ain_fathah
       - meem
       _Drawing: 
       _Complexity: 0.3
@@ -1447,10 +1446,10 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0647\u0644"
+      _Arabic: "\u0647\u064E\u0644"
       _Value: 
       _Letters:
-      - heh
+      - heh_fathah
       - lam
       _Drawing: 
       _Complexity: 0.6
@@ -1477,10 +1476,10 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0647\u0648"
+      _Arabic: "\u0647\u064F\u0648"
       _Value: 
       _Letters:
-      - heh
+      - heh_dammah
       - waw
       _Drawing: 
       _Complexity: 0.3
@@ -1492,10 +1491,10 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0647\u064A\u0627"
+      _Arabic: "\u0647\u064E\u064A\u0627"
       _Value: 
       _Letters:
-      - heh
+      - heh_fathah
       - yeh
       - alef
       _Drawing: 
@@ -1508,11 +1507,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0648\u062C\u0647\u064A"
+      _Arabic: "\u0648\u064E\u062C\u0652\u0647\u064A"
       _Value: 
       _Letters:
-      - waw
-      - jeem
+      - waw_fathah
+      - jeem_sukun
       - heh
       - yeh
       _Drawing: 
@@ -1525,11 +1524,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0648\u062F\u0627\u0639\u0627\u064B"
+      _Arabic: "\u0648\u064E\u062F\u064E\u0627\u0639\u0627\u064B"
       _Value: 
       _Letters:
-      - waw
-      - dal
+      - waw_fathah
+      - dal_fathah
       - alef
       - ain
       - alef_fathah_tanwin
@@ -1543,11 +1542,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0628\u0650\u0646\u062A\u064A"
+      _Arabic: "\u0628\u0650\u0646\u0652\u062A\u064A"
       _Value: 
       _Letters:
       - beh_kasrah
-      - noon
+      - noon_sukun
       - teh
       - yeh
       _Drawing: 
@@ -2012,13 +2011,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u0628\u064A\u0636"
+      _Arabic: "\u0623\u0628\u0652\u064A\u064E\u0636\u0652"
       _Value: white
       _Letters:
       - alef_hamza_hi
-      - beh
-      - yeh
-      - dad
+      - beh_sukun
+      - yeh_fathah
+      - dad_sukun
       _Drawing: 100
       _Complexity: 0.6
     - _Id: furniture
@@ -2046,13 +2045,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u062D\u0645\u0631"
+      _Arabic: "\u0623\u062D\u0652\u0645\u064E\u0631\u0652"
       _Value: red
       _Letters:
       - alef_hamza_hi
-      - hah
-      - meem
-      - reh
+      - hah_sukun
+      - meem_fathah
+      - reh_sukun
       _Drawing: 100
       _Complexity: 0.6
     - _Id: brother
@@ -2078,11 +2077,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0623\u062E\u062A"
+      _Arabic: "\u0623\u064F\u062E\u0652\u062A"
       _Value: 
       _Letters:
-      - alef_hamza_hi
-      - khah
+      - alef_hamza_hi_dammah
+      - khah_sukun
       - teh
       _Drawing: EE
       _Complexity: 0.3
@@ -2094,13 +2093,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u062E\u0636\u0631"
+      _Arabic: "\u0623\u062E\u0652\u0636\u064E\u0631\u0652"
       _Value: green
       _Letters:
       - alef_hamza_hi
-      - khah
-      - dad
-      - reh
+      - khah_sukun
+      - dad_fathah
+      - reh_sukun
       _Drawing: 100
       _Complexity: 1
     - _Id: ear
@@ -2111,11 +2110,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u0630\u0646"
+      _Arabic: "\u0623\u064F\u0630\u064F\u0646"
       _Value: 
       _Letters:
-      - alef_hamza_hi
-      - thal
+      - alef_hamza_hi_dammah
+      - thal_dammah
       - noon
       _Drawing: 6E
       _Complexity: 0.6
@@ -2127,14 +2126,14 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0623\u0631\u0628\u0639\u0629"
+      _Arabic: "\u0623\u0631\u0652\u0628\u064E\u0639\u064E\u0629"
       _Value: 4
       _Letters:
       - alef_hamza_hi
-      - reh
-      - beh
-      - ain
-      - teh_marbuta
+      - reh_sukun
+      - beh_fathah
+      - ain_fathah
+      - teh_marbuta_fathah
       _Drawing: 266D
       _Complexity: 0.6
     - _Id: number_14
@@ -2145,17 +2144,17 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0623\u0631\u0628\u0639\u0629 \u0639\u0634\u0631"
+      _Arabic: "\u0623\u0631\u0652\u0628\u064E\u0639\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 14
       _Letters:
       - alef_hamza_hi
-      - reh
-      - beh
-      - ain
-      - teh_marbuta
-      - ain
-      - sheen
-      - reh
+      - reh_sukun
+      - beh_fathah
+      - ain_fathah
+      - teh_marbuta_fathah
+      - ain_fathah
+      - sheen_fathah
+      - reh_sukun
       _Drawing: 10F
       _Complexity: 1
     - _Id: ground
@@ -2166,11 +2165,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u0631\u0636"
+      _Arabic: "\u0623\u0631\u0652\u0636"
       _Value: 
       _Letters:
       - alef_hamza_hi
-      - reh
+      - reh_sukun
       - dad
       _Drawing: 37
       _Complexity: 0.6
@@ -2182,13 +2181,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u0632\u0631\u0642"
+      _Arabic: "\u0623\u0632\u0652\u0631\u064E\u0642\u0652"
       _Value: blue
       _Letters:
       - alef_hamza_hi
-      - zain
-      - reh
-      - qaf
+      - zain_sukun
+      - reh_fathah
+      - qaf_sukun
       _Drawing: 100
       _Complexity: 0.6
     - _Id: lion
@@ -2199,11 +2198,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u0633\u062F"
+      _Arabic: "\u0623\u0633\u064E\u062F"
       _Value: 
       _Letters:
       - alef_hamza_hi
-      - seen
+      - seen_fathah
       - dal
       _Drawing: D1
       _Complexity: 0.6
@@ -2215,12 +2214,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u0633\u062F\u0627\u0646"
+      _Arabic: "\u0623\u0633\u064E\u062F\u064E\u0627\u0646"
       _Value: 
       _Letters:
       - alef_hamza_hi
-      - seen
-      - dal
+      - seen_fathah
+      - dal_fathah
       - alef
       - noon
       _Drawing: 2039
@@ -2233,13 +2232,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u0633\u0648\u062F"
+      _Arabic: "\u0623\u0633\u0652\u0648\u064E\u062F\u0652"
       _Value: black
       _Letters:
       - alef_hamza_hi
-      - seen
-      - waw
-      - dal
+      - seen_sukun
+      - waw_fathah
+      - dal_sukun
       _Drawing: 100
       _Complexity: 0.6
     - _Id: lion_plural
@@ -2250,12 +2249,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0623\u0633\u0648\u062F\u064C"
+      _Arabic: "\u0623\u0633\u0652\u0648\u064E\u062F\u064C"
       _Value: 
       _Letters:
       - alef_hamza_hi
-      - seen
-      - waw
+      - seen_sukun
+      - waw_fathah
       - dal_dammah_tanwin
       _Drawing: 203A
       _Complexity: 1
@@ -2267,13 +2266,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u0635\u0641\u0631"
+      _Arabic: "\u0623\u0635\u0652\u0641\u064E\u0631\u0652"
       _Value: yellow
       _Letters:
       - alef_hamza_hi
-      - sad
-      - feh
-      - reh
+      - sad_sukun
+      - feh_fathah
+      - reh_sukun
       _Drawing: 100
       _Complexity: 0.6
     - _Id: food
@@ -2284,12 +2283,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u0643\u0644"
+      _Arabic: "\u0623\u0643\u064E\u0644\u0652"
       _Value: 
       _Letters:
       - alef_hamza_hi
-      - kaf
-      - lam
+      - kaf_fathah
+      - lam_sukun
       _Drawing: 5D
       _Complexity: 0.6
     - _Id: ate
@@ -2316,11 +2315,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0623\u0646\u0641"
+      _Arabic: "\u0623\u0646\u0652\u0641"
       _Value: 
       _Letters:
       - alef_hamza_hi
-      - noon
+      - noon_sukun
       - feh
       _Drawing: DB
       _Complexity: 0.3
@@ -2332,11 +2331,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0623\u0646\u0647\u0627\u0631"
+      _Arabic: "\u0623\u0646\u0652\u0647\u0627\u0631"
       _Value: 
       _Letters:
       - alef_hamza_hi
-      - noon
+      - noon_sukun
       - heh
       - alef
       - reh
@@ -2350,11 +2349,11 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0623\u0647\u0644\u0627\u064B"
+      _Arabic: "\u0623\u0647\u0652\u0644\u0627\u064B"
       _Value: 
       _Letters:
       - alef_hamza_hi
-      - heh
+      - heh_sukun
       - lam
       - alef_fathah_tanwin
       _Drawing: 
@@ -2402,13 +2401,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0625\u0628\u0631\u0629"
+      _Arabic: "\u0625\u0628\u0652\u0631\u064E\u0629"
       _Value: 
       _Letters:
       - alef_hamza_low
-      - beh
-      - reh
-      - teh_marbuta
+      - beh_sukun
+      - reh_fathah
+      - teh_marbuta_fathah
       _Drawing: DE
       _Complexity: 0.6
     - _Id: pear
@@ -2436,12 +2435,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0625\u0635\u0628\u0639"
+      _Arabic: "\u0625\u0635\u0652\u0628\u064E\u0639"
       _Value: 
       _Letters:
       - alef_hamza_low
-      - sad
-      - beh
+      - sad_sukun
+      - beh_fathah
       - ain
       _Drawing: 75
       _Complexity: 1
@@ -2453,12 +2452,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0627\u062B\u0646\u0627\u0646"
+      _Arabic: "\u0627\u0650\u062B\u0652\u0646\u064E\u0627\u0646"
       _Value: 2
       _Letters:
-      - alef
-      - theh
-      - noon
+      - alef_kasrah
+      - theh_sukun
+      - noon_fathah
       - alef
       - noon
       _Drawing: 266B
@@ -2471,16 +2470,16 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0627\u062B\u0646\u064A \u0639\u0634\u0631"
+      _Arabic: "\u0627\u0650\u062B\u0652\u0646\u064E\u0649 \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 12
       _Letters:
-      - alef
-      - theh
-      - noon
-      - yeh
-      - ain
-      - sheen
-      - reh
+      - alef_kasrah
+      - theh_sukun
+      - noon_fathah
+      - alef_maqsura
+      - ain_fathah
+      - sheen_fathah
+      - reh_sukun
       _Drawing: 14A
       _Complexity: 1
     - _Id: number_11
@@ -2491,15 +2490,15 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0627\u062D\u062F \u0639\u0634\u0631"
+      _Arabic: "\u0627\u064E\u062D\u064E\u062F\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 11
       _Letters:
-      - alef
-      - hah
-      - dal
-      - ain
-      - sheen
-      - reh
+      - alef_fathah
+      - hah_fathah
+      - dal_fathah
+      - ain_fathah
+      - sheen_fathah
+      - reh_sukun
       _Drawing: 136
       _Complexity: 1
     - _Id: al
@@ -2570,7 +2569,7 @@ MonoBehaviour:
       - beh
       - ain
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: 3C
       _Complexity: 1
     - _Id: number_o01
@@ -2628,7 +2627,7 @@ MonoBehaviour:
       - alef
       - reh
       - hah
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 
       _Complexity: 0.6
     - _Id: the_bus
@@ -2781,7 +2780,7 @@ MonoBehaviour:
       - alef
       - theh
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: 3E
       _Complexity: 1
     - _Id: the_snow
@@ -2836,7 +2835,7 @@ MonoBehaviour:
       - jeem
       - meem
       - ain
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 2212
       _Complexity: 1
     - _Id: the_beautiful
@@ -2896,7 +2895,7 @@ MonoBehaviour:
       - hah
       - thal
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: 23
       _Complexity: 1
     - _Id: the_sad
@@ -3265,7 +3264,7 @@ MonoBehaviour:
       - lam
       - dad
       - waw
-      - hamza
+      - hamza_fathah
       _Drawing: B7
       _Complexity: 0.6
     - _Id: the_table
@@ -3285,7 +3284,7 @@ MonoBehaviour:
       - alef
       - waw
       - lam
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: F3
       _Complexity: 1
     - _Id: the_back
@@ -3397,7 +3396,7 @@ MonoBehaviour:
       - ghain
       - reh
       - feh
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 3A
       _Complexity: 0.6
     - _Id: the_bed
@@ -3472,7 +3471,7 @@ MonoBehaviour:
       - qaf
       - beh
       - ain
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: C9
       _Complexity: 0.6
     - _Id: the_moon
@@ -3546,7 +3545,7 @@ MonoBehaviour:
       - lam
       - kaf
       - reh
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: A3
       _Complexity: 0.3
     - _Id: the_lazy
@@ -3681,7 +3680,7 @@ MonoBehaviour:
       - alef
       - feh
       - thal
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 177
       _Complexity: 1
     - _Id: the_active
@@ -3736,7 +3735,7 @@ MonoBehaviour:
       - meem
       - reh
       - alef_hamza_hi
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 22
       _Complexity: 1
     - _Id: door
@@ -3820,7 +3819,7 @@ MonoBehaviour:
       - beh
       - ghain
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: E2
       _Complexity: 0.6
     - _Id: color_orange
@@ -3989,7 +3988,7 @@ MonoBehaviour:
       - beh
       - tah
       - yeh
-      - hamza
+      - hamza_fathah
       _Drawing: 
       _Complexity: 1
     - _Id: watermelon
@@ -4057,7 +4056,7 @@ MonoBehaviour:
       - dal
       - waw
       - reh
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: FE
       _Complexity: 0.6
     - _Id: trousers
@@ -4127,7 +4126,7 @@ MonoBehaviour:
       - beh
       - waw
       - zah
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: CD
       _Complexity: 1
     - _Id: house
@@ -4176,7 +4175,7 @@ MonoBehaviour:
       - teh
       - seen
       - ain
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 12A
       _Complexity: 0.3
     - _Id: number_19
@@ -4193,7 +4192,7 @@ MonoBehaviour:
       - teh
       - seen
       - ain
-      - teh_marbuta
+      - teh_marbuta_fathah
       - ain
       - sheen
       - reh
@@ -4345,7 +4344,7 @@ MonoBehaviour:
       - alef
       - noon
       - yeh
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 2193
       _Complexity: 0.6
     - _Id: number_03
@@ -4363,7 +4362,7 @@ MonoBehaviour:
       - lam
       - alef
       - theh
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 266C
       _Complexity: 0.6
     - _Id: number_13
@@ -4381,7 +4380,7 @@ MonoBehaviour:
       - lam
       - alef
       - theh
-      - teh_marbuta
+      - teh_marbuta_fathah
       - ain
       - sheen
       - reh
@@ -4402,7 +4401,7 @@ MonoBehaviour:
       - lam
       - alef
       - jeem
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 7A
       _Complexity: 1
     - _Id: snow
@@ -4437,7 +4436,7 @@ MonoBehaviour:
       - alef
       - noon
       - yeh
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 122
       _Complexity: 0.6
     - _Id: number_18
@@ -4456,7 +4455,7 @@ MonoBehaviour:
       - alef
       - noon
       - yeh
-      - teh_marbuta
+      - teh_marbuta_fathah
       - ain
       - sheen
       - reh
@@ -4573,7 +4572,7 @@ MonoBehaviour:
       _Letters:
       - jeem
       - dal
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 35
       _Complexity: 0.3
     - _Id: carrot
@@ -4703,7 +4702,7 @@ MonoBehaviour:
       - hah
       - thal
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: 112
       _Complexity: 0.6
     - _Id: consonant
@@ -4742,7 +4741,7 @@ MonoBehaviour:
       - feh
       - ain
       - lam
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 
       _Complexity: 1
     - _Id: month_june
@@ -4813,7 +4812,7 @@ MonoBehaviour:
       - feh
       - yeh
       - dal
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 33
       _Complexity: 1
     - _Id: field
@@ -4910,7 +4909,7 @@ MonoBehaviour:
       - khah
       - alef
       - lam
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 3B
       _Complexity: 0.3
     - _Id: bread
@@ -4961,7 +4960,7 @@ MonoBehaviour:
       - zain
       - alef
       - noon
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: C1
       _Complexity: 1
     - _Id: vegetables
@@ -4994,7 +4993,7 @@ MonoBehaviour:
       - khah
       - meem
       - seen
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 266E
       _Complexity: 0.6
     - _Id: number_15
@@ -5011,7 +5010,7 @@ MonoBehaviour:
       - khah
       - meem
       - seen
-      - teh_marbuta
+      - teh_marbuta_fathah
       - ain
       - sheen
       - reh
@@ -5149,7 +5148,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - dal
       - alef
-      - teh_marbuta
+      - teh_marbuta_fathah
       - alef
       - lam
       - teh
@@ -5419,7 +5418,7 @@ MonoBehaviour:
       - seen
       - alef
       - ain
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 38
       _Complexity: 0.6
     - _Id: number_07
@@ -5436,7 +5435,7 @@ MonoBehaviour:
       - seen
       - beh
       - ain
-      - teh_marbuta_dammah_tanwin
+      - teh_marbuta_fathah
       _Drawing: 10E
       _Complexity: 0.6
     - _Id: number_17
@@ -5453,7 +5452,7 @@ MonoBehaviour:
       - seen
       - beh
       - ain
-      - teh_marbuta
+      - teh_marbuta_fathah
       - ain
       - sheen
       - reh
@@ -5472,7 +5471,7 @@ MonoBehaviour:
       _Letters:
       - seen
       - teh
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 266F
       _Complexity: 0.3
     - _Id: number_16
@@ -5488,7 +5487,7 @@ MonoBehaviour:
       _Letters:
       - seen
       - teh
-      - teh_marbuta
+      - teh_marbuta_fathah
       - ain
       - sheen
       - reh
@@ -5558,7 +5557,7 @@ MonoBehaviour:
       - seen
       - meem
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: 2026
       _Complexity: 0.6
     - _Id: tooth
@@ -5639,7 +5638,7 @@ MonoBehaviour:
       - sheen
       - teh
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: BF
       _Complexity: 0.6
     - _Id: brave
@@ -5998,7 +5997,7 @@ MonoBehaviour:
       _Letters:
       - dad
       - waw
-      - hamza
+      - hamza_fathah
       _Drawing: B7
       _Complexity: 0.6
     - _Id: flew
@@ -6032,7 +6031,7 @@ MonoBehaviour:
       - alef
       - waw
       - lam
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: F3
       _Complexity: 1
     - _Id: of_course
@@ -6234,7 +6233,7 @@ MonoBehaviour:
       - ain
       - sheen
       - reh
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 12E
       _Complexity: 0.3
     - _Id: number_20
@@ -6371,7 +6370,7 @@ MonoBehaviour:
       - lam
       - meem
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: 2199
       _Complexity: 1
     - _Id: uncle_father
@@ -6419,7 +6418,7 @@ MonoBehaviour:
       _Letters:
       - ain
       - meem
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: A1
       _Complexity: 0.3
     - _Id: grapes
@@ -6468,7 +6467,7 @@ MonoBehaviour:
       - ghain
       - alef
       - beh
-      - teh_marbuta_dammah_tanwin
+      - teh_marbuta_fathah
       _Drawing: 79
       _Complexity: 0.6
     - _Id: tomorrow
@@ -6501,7 +6500,7 @@ MonoBehaviour:
       - ghain
       - reh
       - feh
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 3A
       _Complexity: 0.6
     - _Id: deer
@@ -6536,7 +6535,7 @@ MonoBehaviour:
       - seen
       - alef
       - lam
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 175
       _Complexity: 0.6
     - _Id: anger
@@ -6569,7 +6568,7 @@ MonoBehaviour:
       - ghain
       - yeh
       - meem
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 65
       _Complexity: 1
     - _Id: mouse
@@ -6747,7 +6746,7 @@ MonoBehaviour:
       - qaf
       - beh
       - ain
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: C9
       _Complexity: 0.6
     - _Id: foot
@@ -6829,7 +6828,7 @@ MonoBehaviour:
       - kaf
       - alef_maddah
       - beh
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: BB
       _Complexity: 1
     - _Id: month_december
@@ -6958,7 +6957,7 @@ MonoBehaviour:
       _Letters:
       - kaf
       - reh
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: A3
       _Complexity: 0.3
     - _Id: basketball
@@ -6974,12 +6973,12 @@ MonoBehaviour:
       _Letters:
       - kaf
       - reh
-      - teh_marbuta
+      - teh_marbuta_fathah
       - alef
       - lam
       - seen
       - lam
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 48
       _Complexity: 1
     - _Id: football
@@ -6995,7 +6994,7 @@ MonoBehaviour:
       _Letters:
       - kaf
       - reh
-      - teh_marbuta
+      - teh_marbuta_fathah
       - alef
       - lam
       - qaf
@@ -7250,7 +7249,7 @@ MonoBehaviour:
       _Letters:
       - meem
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: 2019
       _Complexity: 0.6
     - _Id: rainy
@@ -7335,7 +7334,7 @@ MonoBehaviour:
       - meem
       - hah
       - tah
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 2197
       _Complexity: 0.6
     - _Id: school
@@ -7353,7 +7352,7 @@ MonoBehaviour:
       - dal
       - reh
       - seen
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 2196
       _Complexity: 1
     - _Id: toilet
@@ -7406,7 +7405,7 @@ MonoBehaviour:
       - meem
       - seen
       - alef
-      - hamza
+      - hamza_fathah
       _Drawing: 7D
       _Complexity: 0.6
     - _Id: hospital
@@ -7543,7 +7542,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - dal
       - alef
-      - teh_marbuta
+      - teh_marbuta_fathah
       - alef
       - lam
       - teh
@@ -7736,7 +7735,7 @@ MonoBehaviour:
       - alef
       - feh
       - thal
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 177
       _Complexity: 0.6
     - _Id: carpenter
@@ -7803,7 +7802,7 @@ MonoBehaviour:
       - noon
       - seen
       - meem
-      - teh_marbuta
+      - teh_marbuta_fathah
       _Drawing: 54
       _Complexity: 0.6
     - _Id: active
