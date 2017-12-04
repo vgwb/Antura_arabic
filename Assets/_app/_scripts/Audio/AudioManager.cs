@@ -1,11 +1,11 @@
-using UnityEngine;
-using System.Collections.Generic;
 using Antura.Core;
 using Antura.Database;
+using Antura.Helpers;
 using Antura.Minigames;
 using Antura.Profile;
 using DG.DeAudio;
-using Antura.Helpers;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Antura.Audio
 {
@@ -18,19 +18,19 @@ namespace Antura.Audio
 
         public bool IsAppPaused { get; private set; }
 
-        List<AudioSourceWrapper> playingAudio = new List<AudioSourceWrapper>();
+        private List<AudioSourceWrapper> playingAudio = new List<AudioSourceWrapper>();
 
-        DeAudioGroup musicGroup;
-        DeAudioGroup wordsLettersPhrasesGroup;
-        DeAudioGroup keeperGroup;
-        DeAudioGroup sfxGroup;
+        private DeAudioGroup musicGroup;
+        private DeAudioGroup wordsLettersPhrasesGroup;
+        private DeAudioGroup keeperGroup;
+        private DeAudioGroup sfxGroup;
 
-        Dictionary<IAudioSource, System.Action> dialogueEndedCallbacks = new Dictionary<IAudioSource, System.Action>();
+        private Dictionary<IAudioSource, System.Action> dialogueEndedCallbacks = new Dictionary<IAudioSource, System.Action>();
 
-        bool previousMusicEnabled = true;
-        bool musicEnabled = true;
-        AudioClip customMusic;
-        Music currentMusic;
+        private bool previousMusicEnabled = true;
+        private bool musicEnabled = true;
+        private AudioClip customMusic;
+        private Music currentMusic;
 
         public bool MusicEnabled
         {
@@ -77,18 +77,18 @@ namespace Antura.Audio
             }
         }
 
-        Dictionary<string, AudioClip> audioCache = new Dictionary<string, AudioClip>();
+        private Dictionary<string, AudioClip> audioCache = new Dictionary<string, AudioClip>();
 
         #region Serialized Configuration
 
         [SerializeField, HideInInspector]
-        List<SfxConfiguration> sfxConfs = new List<SfxConfiguration>();
+        private List<SfxConfiguration> sfxConfs = new List<SfxConfiguration>();
 
         [SerializeField, HideInInspector]
-        List<MusicConfiguration> musicConfs = new List<MusicConfiguration>();
+        private List<MusicConfiguration> musicConfs = new List<MusicConfiguration>();
 
-        Dictionary<Sfx, SfxConfiguration> sfxConfigurationMap = new Dictionary<Sfx, SfxConfiguration>();
-        Dictionary<Music, MusicConfiguration> musicConfigurationMap = new Dictionary<Music, MusicConfiguration>();
+        private Dictionary<Sfx, SfxConfiguration> sfxConfigurationMap = new Dictionary<Sfx, SfxConfiguration>();
+        private Dictionary<Music, MusicConfiguration> musicConfigurationMap = new Dictionary<Music, MusicConfiguration>();
 
         public void ClearConfiguration()
         {
@@ -154,6 +154,10 @@ namespace Antura.Audio
             musicEnabled = true;
         }
 
+        /// <summary>
+        /// called from AppManager
+        /// </summary>
+        /// <param name="pauseStatus">If set to <c>true</c> pause status.</param>
         public void OnAppPause(bool pauseStatus)
         {
             if (pauseStatus) {
@@ -213,7 +217,6 @@ namespace Antura.Audio
         {
             AudioClip clip = GetAudioClip(sfx);
             var source = new AudioSourceWrapper(sfxGroup.Play(clip), sfxGroup, this);
-
             var conf = GetConfiguration(sfx);
 
             if (conf != null) {
@@ -279,12 +282,12 @@ namespace Antura.Audio
             return PlayDialogue(LocalizationManager.GetLocalizationData(localizationData_id));
         }
 
-        public IAudioSource PlayDialogue(Database.LocalizationDataId id)
+        public IAudioSource PlayDialogue(LocalizationDataId id)
         {
             return PlayDialogue(LocalizationManager.GetLocalizationData(id));
         }
 
-        public IAudioSource PlayDialogue(Database.LocalizationData data, bool clearPreviousCallback = false)
+        public IAudioSource PlayDialogue(LocalizationData data, bool clearPreviousCallback = false)
         {
             Debug.Log("PlayDialogue " + data.Id);
 
@@ -304,12 +307,12 @@ namespace Antura.Audio
             return PlayDialogue(LocalizationManager.GetLocalizationData(localizationData_id), callback);
         }
 
-        public IAudioSource PlayDialogue(Database.LocalizationDataId id, System.Action callback, bool clearPreviousCallback = false)
+        public IAudioSource PlayDialogue(LocalizationDataId id, System.Action callback, bool clearPreviousCallback = false)
         {
             return PlayDialogue(LocalizationManager.GetLocalizationData(id), callback, clearPreviousCallback);
         }
 
-        public IAudioSource PlayDialogue(Database.LocalizationData data, System.Action callback, bool clearPreviousCallback = false)
+        public IAudioSource PlayDialogue(LocalizationData data, System.Action callback, bool clearPreviousCallback = false)
         {
             if (clearPreviousCallback) {
                 dialogueEndedCallbacks.Clear();
@@ -457,8 +460,7 @@ namespace Antura.Audio
 
         #endregion
 
-        List<KeyValuePair<AudioSourceWrapper, System.Action>> pendingCallbacks = new List<KeyValuePair<AudioSourceWrapper, System.Action>>()
-            ;
+        List<KeyValuePair<AudioSourceWrapper, System.Action>> pendingCallbacks = new List<KeyValuePair<AudioSourceWrapper, System.Action>>();
 
         public void Update()
         {

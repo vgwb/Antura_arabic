@@ -52,6 +52,10 @@ namespace Antura.Database
             buildDiacriticCombos2Fix();
         }
 
+        /// <summary>
+        /// these are manually configured positions of diacritic symbols relative to the main letter
+        /// since TextMesh Pro can't manage these automatically and some letters are too tall, with the symbol overlapping 
+        /// </summary>
         void buildDiacriticCombos2Fix()
         {
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("0627", "064B"), new Vector2(0, 70));
@@ -260,9 +264,7 @@ namespace Antura.Database
         public Vector2 FindDiacriticCombo2Fix(string Unicode1, string Unicode2)
         {
             Vector2 newDelta = new Vector2(0, 0);
-
             DiacriticCombos2Fix.TryGetValue(new DiacriticComboEntry(Unicode1, Unicode2), out newDelta);
-
             return newDelta;
         }
 
@@ -324,11 +326,10 @@ namespace Antura.Database
 
         private bool CheckFilters(LetterFilters filters, LetterData data)
         {
-            if (filters.requireDiacritics && !data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
-
-            if (!FilterByDiacritics(filters.excludeDiacritics, data)) return false;
-            if (!FilterByLetterVariations(filters.excludeLetterVariations, data)) return false;
-            if (!FilterByDipthongs(filters.excludeDiphthongs, data)) return false;
+            if (filters.requireDiacritics && !data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) { return false; }
+            if (!FilterByDiacritics(filters.excludeDiacritics, data)) { return false; }
+            if (!FilterByLetterVariations(filters.excludeLetterVariations, data)) { return false; }
+            if (!FilterByDipthongs(filters.excludeDiphthongs, data)) { return false; }
 
             // always skip symbols
             if (data.IsOfKindCategory(LetterKindCategory.Symbol)) {
@@ -488,7 +489,7 @@ namespace Antura.Database
         public List<LetterData> GetLettersInWord(WordData wordData)
         {
             List<string> letter_ids_list = GetLetterIdsInWordData(wordData);
-            List<LetterData> list = new List<LetterData>();
+            var list = new List<LetterData>();
             foreach (var letter_id in letter_ids_list) {
                 list.Add(dbManager.GetLetterDataById(letter_id));
             }
@@ -513,7 +514,7 @@ namespace Antura.Database
                 var tabooWordDataLetterIds = GetLetterIdsInWordData(tabooWordData);
                 letter_ids_list.UnionWith(tabooWordDataLetterIds);
             }
-            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsOfKindCategory(category));
+            var list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsOfKindCategory(category));
             return list;
         }
 
@@ -521,7 +522,7 @@ namespace Antura.Database
         {
             WordData wordData = dbManager.GetWordDataById(wordId);
             var letter_ids_list = GetLetterIdsInWordData(wordData);
-            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsOfKindCategory(category));
+            var list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsOfKindCategory(category));
             return list;
         }
 
@@ -529,10 +530,10 @@ namespace Antura.Database
         {
             Dictionary<LetterData, int> countDict = new Dictionary<LetterData, int>();
             foreach (var word in words) {
-                HashSet<LetterData> nonRepeatingLettersOfWord = new HashSet<LetterData>();
+                var nonRepeatingLettersOfWord = new HashSet<LetterData>();
 
                 var letters = GetLettersInWord(word);
-                foreach (var letter in letters) nonRepeatingLettersOfWord.Add(letter);
+                foreach (var letter in letters) { nonRepeatingLettersOfWord.Add(letter); }
 
                 foreach (var letter in nonRepeatingLettersOfWord) {
                     if (!countDict.ContainsKey(letter)) countDict[letter] = 0;
@@ -693,39 +694,38 @@ namespace Antura.Database
             var okLetters = new HashSet<string>(okLettersArray);
             var tabooLetters = new HashSet<string>(tabooLettersArray);
 
-            List<WordData> list = dbManager.FindWordData(x =>
-                {
-                    if (!CheckFilters(filters, x)) return false;
+            List<WordData> list = dbManager.FindWordData(x => {
+                if (!CheckFilters(filters, x)) { return false; }
 
-                    var letter_ids = GetLetterIdsInWordData(x);
+                var letter_ids = GetLetterIdsInWordData(x);
 
-                    if (tabooLetters.Count > 0) {
-                        foreach (var letter_id in letter_ids) {
-                            if (tabooLetters.Contains(letter_id)) {
-                                return false;
-                            }
+                if (tabooLetters.Count > 0) {
+                    foreach (var letter_id in letter_ids) {
+                        if (tabooLetters.Contains(letter_id)) {
+                            return false;
                         }
                     }
+                }
 
-                    if (okLetters.Count > 0) {
-                        bool hasAllOkLetters = true;
-                        foreach (var okLetter in okLetters) {
-                            bool hasThisLetter = false;
-                            foreach (var letter_id in letter_ids) {
-                                if (letter_id == okLetter) {
-                                    hasThisLetter = true;
-                                    break;
-                                }
-                            }
-                            if (!hasThisLetter) {
-                                hasAllOkLetters = false;
+                if (okLetters.Count > 0) {
+                    bool hasAllOkLetters = true;
+                    foreach (var okLetter in okLetters) {
+                        bool hasThisLetter = false;
+                        foreach (var letter_id in letter_ids) {
+                            if (letter_id == okLetter) {
+                                hasThisLetter = true;
                                 break;
                             }
                         }
-                        if (!hasAllOkLetters) return false;
+                        if (!hasThisLetter) {
+                            hasAllOkLetters = false;
+                            break;
+                        }
                     }
-                    return true;
+                    if (!hasAllOkLetters) return false;
                 }
+                return true;
+            }
             );
 
             return list;
@@ -786,18 +786,17 @@ namespace Antura.Database
         /// <param name="wordFilters">Word filters.</param>
         public List<WordData> GetWordsInPhrase(string phraseId, WordFilters wordFilters = null)
         {
-            if (wordFilters == null) wordFilters = new WordFilters();
-            PhraseData data = dbManager.GetPhraseDataById(phraseId);
-            return GetWordsInPhrase(data, wordFilters);
+            if (wordFilters == null) { wordFilters = new WordFilters(); }
+            var phraseData = dbManager.GetPhraseDataById(phraseId);
+            return GetWordsInPhrase(phraseData, wordFilters);
         }
 
         public List<WordData> GetWordsInPhrase(PhraseData phraseData, WordFilters wordFilters)
         {
             var words_ids_list = new List<string>(phraseData.Words);
-            List<WordData> inputList = dbManager.FindWordData(x => words_ids_list.Contains(x.Id) && CheckFilters(wordFilters, x));
-            List<WordData> orderedOutputList = new List<WordData>();
-            words_ids_list.ForEach(id =>
-            {
+            var inputList = dbManager.FindWordData(x => words_ids_list.Contains(x.Id) && CheckFilters(wordFilters, x));
+            var orderedOutputList = new List<WordData>();
+            words_ids_list.ForEach(id => {
                 var word = inputList.Find(x => x.Id.Equals(id));
                 if (word != null) {
                     orderedOutputList.Add(word);
@@ -809,7 +808,7 @@ namespace Antura.Database
         public List<WordData> GetAnswersToPhrase(PhraseData phraseData, WordFilters wordFilters)
         {
             var words_ids_list = new List<string>(phraseData.Answers);
-            List<WordData> list = dbManager.FindWordData(x => words_ids_list.Contains(x.Id) && CheckFilters(wordFilters, x));
+            var list = dbManager.FindWordData(x => words_ids_list.Contains(x.Id) && CheckFilters(wordFilters, x));
             return list;
         }
 
@@ -867,7 +866,7 @@ namespace Antura.Database
 
         public PhraseData GetLinkedPhraseOf(PhraseData data)
         {
-            if (data.Linked == "") return null;
+            if (data.Linked == "") { return null; }
             return dbManager.FindPhraseData(x => x.Id == data.Linked)[0];
         }
 
@@ -877,33 +876,32 @@ namespace Antura.Database
 
         public List<PhraseData> GetPhrasesWithWords(params string[] okWordsArray)
         {
-            if (okWordsArray == null) okWordsArray = new string[] { };
+            if (okWordsArray == null) { okWordsArray = new string[] { }; }
 
             var okWords = new HashSet<string>(okWordsArray);
 
-            List<PhraseData> list = dbManager.FindPhraseData(x =>
-                {
-                    if (okWords.Count > 0) {
-                        bool hasAllOkWords = true;
-                        foreach (var okWord in okWords) {
-                            bool hasThisWord = false;
-                            foreach (var word_id in x.Words) {
-                                if (word_id == okWord) {
-                                    hasThisWord = true;
-                                    break;
-                                }
-                            }
-                            if (!hasThisWord) {
-                                hasAllOkWords = false;
+            var phrasesList = dbManager.FindPhraseData(x => {
+                if (okWords.Count > 0) {
+                    bool hasAllOkWords = true;
+                    foreach (var okWord in okWords) {
+                        bool hasThisWord = false;
+                        foreach (var word_id in x.Words) {
+                            if (word_id == okWord) {
+                                hasThisWord = true;
                                 break;
                             }
                         }
-                        if (!hasAllOkWords) return false;
+                        if (!hasThisWord) {
+                            hasAllOkWords = false;
+                            break;
+                        }
                     }
-                    return true;
+                    if (!hasAllOkWords) { return false; }
                 }
+                return true;
+            }
             );
-            return list;
+            return phrasesList;
         }
 
         #endregion
