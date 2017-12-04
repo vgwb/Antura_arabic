@@ -81,11 +81,13 @@ namespace Antura.Profile
 
         }
 
-        public void InitialiseForCurrentPlayer()
+        public void InitialiseForCurrentPlayer(FirstContactPhase startPhase)
         {
-            if (FORCE_FIRST_CONTACT) {
+            if (FORCE_FIRST_CONTACT)
+            {
                 ForceAtPhase(FORCED_FIRST_CONTACT_PHASE);
             }
+            currentPhase = startPhase;
         }
 
         #region Checks
@@ -137,6 +139,7 @@ namespace Antura.Profile
         public void PassPhase(FirstContactPhase passedPhase)
         {
             currentPhase = passedPhase + 1;
+            AppManager.I.Player.CurrentFirstContactPhase = currentPhase;
             AppManager.I.Player.Save();
 
             if (VERBOSE) Debug.Log("FirstContact - phase " + passedPhase + " completed!");
@@ -145,6 +148,7 @@ namespace Antura.Profile
         public void ForceAtPhase(FirstContactPhase forcedPhase)
         {
             currentPhase = forcedPhase;
+            AppManager.I.Player.CurrentFirstContactPhase = currentPhase;
             AppManager.I.Player.Save();
 
             if (VERBOSE) Debug.Log("FirstContact - FORCING phase " + forcedPhase);
