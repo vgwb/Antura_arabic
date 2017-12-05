@@ -115,8 +115,20 @@ namespace Antura.Map
             }
         }
 
-        [DeMethodButton("Distribuite Pins")]
-        public void DistribuitePins()
+        [DeMethodButton("Update Path")]
+        public void UpdatePath()
+        {
+            DistribuitePins(false);
+        }
+
+        [DeMethodButton("Generate Path")]
+        public void GeneratePath()
+        {
+            DistribuitePins(true);
+        }
+
+
+        private void DistribuitePins(bool zToo)
         {
             var pins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
             var start_x = cameraPivotStart.localPosition.x;
@@ -126,9 +138,23 @@ namespace Antura.Map
 
             for (var index = 0; index < total_pins; index++) {
                 var pin = pins[index];
-                pin.transform.localPosition = new Vector3(index * -delta_x + start_x, pin.transform.localPosition.y, pin.transform.localPosition.z);
+
+                float pinZ = pin.transform.localPosition.z;
+                if (zToo)
+                {
+                    // Distribute pins on Z following a random walk flow
+                    const int MAX_Z = 10;
+                    const int MIN_Z = -30;
+                    const int Z_RND_RANGE = 20;
+                    pinZ = index > 0 ? (pins[index - 1].transform.localPosition.z + Random.Range(-Z_RND_RANGE, Z_RND_RANGE)) : Random.Range(MIN_Z, MAX_Z);
+                    if (pinZ > MAX_Z) pinZ -= 2 * (pinZ - MAX_Z);
+                    if (pinZ < MIN_Z) pinZ -= 2 * (pinZ - MIN_Z);
+                }
+
+                pin.transform.localPosition = new Vector3(index * -delta_x + start_x, pin.transform.localPosition.y, pinZ);
                 EditorUtility.SetDirty(pin.gameObject);
             }
+
             // set the dotsPivot to the first Pin
             dotsPivot.transform.localPosition = new Vector3(start_x, pins[0].transform.localPosition.y, pins[0].transform.localPosition.z);
             EditorUtility.SetDirty(dotsPivot.gameObject);
