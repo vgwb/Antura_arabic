@@ -443,11 +443,10 @@ namespace Antura.Database
             return (LetterData)MemberwiseClone();
         }
 
-        // @note: EqualityStrictness if tied to the first letter used, so we should always use matching letters when comparing
-        public bool IsSameLetterAs(LetterData other)
+        public bool IsSameLetterAs(LetterData other,  LetterEqualityStrictness strictness)
         {
             bool isEqual = false;
-            switch (EqualityStrictness)
+            switch (strictness)
             {
                 case LetterEqualityStrictness.LetterOnly:
                     isEqual = other.Id == Id;
@@ -461,6 +460,7 @@ namespace Antura.Database
             }
             return isEqual;
         }
+
 
         private bool FormsLookTheSame(LetterForm form1, LetterForm form2)
         {

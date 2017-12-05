@@ -117,12 +117,8 @@ namespace Antura.Teacher
                 basesForVariations.Add(baseLetter);
                 foreach (var baseForVariation in basesForVariations)
                 {
-                    var availableForms = new List<LetterForm>(baseForVariation.GetAvailableForms()).ConvertAll(f =>
-                    {
-                        var l = baseForVariation.Clone();
-                        l.ForcedLetterForm = f;
-                        return l;
-                    });
+                    var availableForms = vocabularyHelper.GetLettersWithForcedForms(baseForVariation);
+
                     letterPool.AddRange(availableForms);
                 }
             }

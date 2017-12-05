@@ -464,6 +464,16 @@ namespace Antura.Database
             return dbManager.FindLetterData(x => x.BaseLetter == baseData.Id);
         }
 
+        public List<LetterData> GetLettersWithForcedForms(LetterData baseForVariation)
+        {
+            return new List<LetterForm>(baseForVariation.GetAvailableForms()).ConvertAll(f =>
+            {
+                var l = baseForVariation.Clone();
+                l.ForcedLetterForm = f;
+                return l;
+            });
+        }
+
         #endregion
 
         #region Word -> Letter
@@ -905,5 +915,6 @@ namespace Antura.Database
         }
 
         #endregion
+
     }
 }

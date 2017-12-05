@@ -75,7 +75,8 @@ namespace Antura.LivingLetters
                 return false;
             }
 
-            return Data.IsSameLetterAs(other.Data);
+            // @note: EqualityStrictness if tied to the first letter used, so we should always use matching letters when comparing
+            return Data.IsSameLetterAs(other.Data, Data.EqualityStrictness);
         }
 
         #endregion
