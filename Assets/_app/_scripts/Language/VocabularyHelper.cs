@@ -624,6 +624,29 @@ namespace Antura.Database
             return false;
         }
 
+        public int WordContainsLetterTimes(WordData selectedWord, LetterData containedLetter)
+        {
+            var wordLetters = AppManager.I.VocabularyHelper.GetLettersInWord(selectedWord);
+            int count = 0;
+            foreach (var letter in wordLetters)
+                if (letter == containedLetter)
+                    count++;
+            return count;
+        }
+
+        public bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
+        {
+            //if (containedLetter.Id == "lam_alef") Debug.Log("Looking for lam-alef in " + selectedWord);
+            foreach (var l in ArabicAlphabetHelper.FindLetter(AppManager.I.DB, selectedWord, containedLetter))
+            {
+                //if (l.letter.Id == "lam_alef") Debug.Log("Lam alef form " + l.letterForm + " in word " + selectedWord);
+                if (l.letterForm == selectedForm)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         /// <summary>
         /// tranformsf the hex string of the glyph into the corresponding char
