@@ -261,6 +261,7 @@ namespace Antura.Database
             //}
         }
 
+
         public Vector2 FindDiacriticCombo2Fix(string Unicode1, string Unicode2)
         {
             Vector2 newDelta = new Vector2(0, 0);
@@ -472,6 +473,18 @@ namespace Antura.Database
                 l.ForcedLetterForm = f;
                 return l;
             });
+        }
+
+        public LetterData ForceEqualityStrictness(LetterData data, LetterEqualityStrictness letterEqualityStrictness)
+        {
+            var clone = data.Clone();
+            clone.EqualityStrictness = letterEqualityStrictness;
+            return clone;
+        }
+
+        public List<LetterData> ForceEqualityStrictness(List<LetterData> dataList, LetterEqualityStrictness letterEqualityStrictness)
+        {
+            return dataList.ConvertAll(data => ForceEqualityStrictness(data, letterEqualityStrictness));
         }
 
         #endregion
