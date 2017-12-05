@@ -73,7 +73,7 @@ namespace Antura.Teacher
                 () => vocabularyHelper.GetLettersNotIn(parameters.letterFilters, correctLetters.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
                      packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs,
-                        journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage)
+                        journeyFilter: SelectionParameters.JourneyFilter.CurrentJourney)
                 );
 
             var question = firstCorrectIsQuestion ? correctLetters[0] : null;

@@ -99,7 +99,7 @@ namespace Antura.Teacher
                   () => vocabularyHelper.GetWordsNotIn(parameters.wordFilters, relatedWords.ToArray()),
                         new SelectionParameters(parameters.correctSeverity, nWrong, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs,
-                        journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage)
+                        journeyFilter: SelectionParameters.JourneyFilter.CurrentJourney)
             );
 
             if (ConfigAI.VerboseQuestionPacks)

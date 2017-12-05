@@ -125,7 +125,7 @@ namespace Antura.Teacher
                 () => FindWrongLetters(wordQuestion, wordLetters),
                     new SelectionParameters(
                         parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
-                        journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage));
+                        journeyFilter: SelectionParameters.JourneyFilter.CurrentJourney));
                 currentRoundIDs_letters.AddRange(wrongLetters.ConvertAll(w => w.Id));
             }
 

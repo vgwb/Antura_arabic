@@ -74,7 +74,7 @@ namespace Antura.Teacher
                 () => vocabularyHelper.GetPhrasesNotIn(parameters.wordFilters, parameters.phraseFilters, question, reply),
                     new SelectionParameters(parameters.correctSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
                         packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs,
-                        journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage)
+                        journeyFilter: SelectionParameters.JourneyFilter.CurrentJourney)
             );
 
             if (ConfigAI.VerboseQuestionPacks)
