@@ -9,10 +9,9 @@ namespace Antura.Teacher
     /// <summary>
     /// Selects letter forms inside words
     /// * Question: Word
-    /// * Correct answers: Letter contained in the word (set by minigame: correct form)
-    /// * Wrong answers: (set by minigame: wrong forms)
+    /// * Correct answers: Letter contained in the word with the correct form
+    /// * Wrong answers: Letter contained in the word with the wrong form
     /// * Different packs: same Letter will be in all packs, but with different forms
-    /// @note: the use of forms (correct/uncorrect check) is performed by the minigame itself
     /// </summary>
     public class LetterFormsInWordsQuestionBuilder : IQuestionBuilder
     {
@@ -94,21 +93,32 @@ namespace Antura.Teacher
             return packs;
         }
 
-        private QuestionPackData CreateSingleQuestionPackData(LetterData letter, LetterForm form)
+        private QuestionPackData CreateSingleQuestionPackData(LetterData letter, LetterForm correctForm)
         {
             var teacher = AppManager.I.Teacher;
 
             // Find a word with the letter in that form
             var usableWords = teacher.VocabularyAi.SelectData(
-                () => FindEligibleWords(maximumWordLength, letter, form),
+                () => FindEligibleWords(maximumWordLength, letter, correctForm),
                     new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words)
             );
             var question = usableWords[0];
 
-            // Place the correct letter
+            // Place the correct letter and form
             var correctAnswers = new List<LetterData>();
-            correctAnswers.Add(letter);
+            var letterWithForm = AppManager.I.VocabularyHelper.ConvertToLetterWithForcedForm(letter, correctForm);
+            correctAnswers.Add(letterWithForm);
+
+            // Place the other forms as wrong forms
+            var wrongAnswers = new List<LetterData>();
+            foreach (var wrongForm in letter.GetAvailableForms())
+            {
+                if (wrongForm == correctForm) continue;
+                letterWithForm = AppManager.I.VocabularyHelper.ConvertToLetterWithForcedForm(letter, wrongForm);
+                correctAnswers.Add(letterWithForm);
+                wrongAnswers.Add(letterWithForm);
+            }
 
             if (ConfigAI.VerboseQuestionPacks)
             {
@@ -119,7 +129,7 @@ namespace Antura.Teacher
                 ConfigAI.AppendToTeacherReport(debugString);
             }
 
-            return QuestionPackData.Create(question, correctAnswers, new List<LetterData>());
+            return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }
 
         List<LetterData> lettersWithManyForms = new List<LetterData>();
@@ -148,7 +158,7 @@ namespace Antura.Teacher
                     {
                         foreach (var wordData in allWords)
                         {
-                            if (WordIsFine(wordData, letterData, form, maxWordLength))
+                            if (WordIsEligible(wordData, letterData, form, maxWordLength))
                             {
                                 nFormsAppearing++;
                                 availableForms.Add(form);
@@ -182,7 +192,7 @@ namespace Antura.Teacher
             {
                 foreach (var word in vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters))
                 {
-                    if (!WordIsFine(word, containedLetter, form, maxWordLength)) continue;
+                    if (!WordIsEligible(word, containedLetter, form, maxWordLength)) continue;
                     eligibleWords.Add(word);
                     //Debug.Log("Letter: " + containedLetter + " form: " + form + " Word: " + word);
                 }
@@ -194,7 +204,7 @@ namespace Antura.Teacher
             return eligibleWords;
         }
 
-        private bool WordIsFine(WordData word, LetterData containedLetter, LetterForm form, int maxWordLength)
+        private bool WordIsEligible(WordData word, LetterData containedLetter, LetterForm form, int maxWordLength)
         {
             // Check max length
             if (word.Letters.Length > maxWordLength)
@@ -203,42 +213,18 @@ namespace Antura.Teacher
             }
 
             // Check that it contains the letter only once
-            if (WordContainsLetterTimes(word, containedLetter) > 1)
+            if (AppManager.I.VocabularyHelper.WordContainsLetterTimes(word, containedLetter) > 1)
             {
                 return false;
             }
 
             // Check that it contains a letter in the correct form
-            if (!WordContainsLetterWithForm(word, containedLetter, form))
+            if (!AppManager.I.VocabularyHelper.WordContainsLetterWithForm(word, containedLetter, form))
             {
                 return false;
             }
 
             return true;
-        }
-
-        private int WordContainsLetterTimes(WordData selectedWord, LetterData containedLetter)
-        {
-            var wordLetters = AppManager.I.VocabularyHelper.GetLettersInWord(selectedWord);
-            int count = 0;
-            foreach (var letter in wordLetters)
-                if (letter == containedLetter)
-                    count++;
-            return count;
-        }
-
-        private bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
-        {
-            //if (containedLetter.Id == "lam_alef") Debug.Log("Looking for lam-alef in " + selectedWord);
-            foreach (var l in ArabicAlphabetHelper.FindLetter(AppManager.I.DB, selectedWord, containedLetter))
-            {
-                //if (l.letter.Id == "lam_alef") Debug.Log("Lam alef form " + l.letterForm + " in word " + selectedWord);
-                if (l.letterForm == selectedForm)
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
     }

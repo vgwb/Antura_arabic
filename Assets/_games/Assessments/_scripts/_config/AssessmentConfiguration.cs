@@ -154,6 +154,7 @@ namespace Antura.Assessment
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.sortPacksByDifficulty = false;
 
+            // TODO: handle forms using the returned letters instead
             return new LetterFormsInWordsQuestionBuilder(
                 nPacksPerRound: SimultaneosQuestions,
                 nRounds: NumberOfRounds,
@@ -168,6 +169,7 @@ namespace Antura.Assessment
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.sortPacksByDifficulty = false;
 
+            // TODO: handle forms using the returned letters instead
             return new LetterFormsInWordsQuestionBuilder(
                 nPacksPerRound: SimultaneosQuestions,
                 nRounds: NumberOfRounds,

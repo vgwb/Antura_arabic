@@ -124,7 +124,7 @@ namespace Antura.Teacher
                     basesForForms.Add(baseLetter);
                     foreach (var baseForForm in basesForForms)
                     {
-                        var availableForms = vocabularyHelper.GetLettersWithForcedForms(baseForForm);
+                        var availableForms = vocabularyHelper.ConvertToLettersWithForcedForms(baseForForm);
                         letterPool.AddRange(availableForms);
                     }
                 }

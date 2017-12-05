@@ -465,7 +465,7 @@ namespace Antura.Database
             return dbManager.FindLetterData(x => x.BaseLetter == baseData.Id);
         }
 
-        public List<LetterData> GetLettersWithForcedForms(LetterData baseForVariation)
+        public List<LetterData> ConvertToLettersWithForcedForms(LetterData baseForVariation)
         {
             return new List<LetterForm>(baseForVariation.GetAvailableForms()).ConvertAll(f =>
             {
@@ -473,6 +473,13 @@ namespace Antura.Database
                 l.ForcedLetterForm = f;
                 return l;
             });
+        }
+
+        public LetterData ConvertToLetterWithForcedForm(LetterData baseForVariation, LetterForm form)
+        {
+            var l = baseForVariation.Clone();
+            l.ForcedLetterForm = form;
+            return l;
         }
 
         public LetterData ForceEqualityStrictness(LetterData data, LetterEqualityStrictness letterEqualityStrictness)
