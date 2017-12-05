@@ -273,7 +273,7 @@ namespace Antura.Minigames.Balloons
                         foundLetterIndices.Add(charPosition);
                     }
 
-                    charPosition += splitLetters[index].letter.GetChar().Length;
+                    charPosition += splitLetters[index].letter.GetStringForDisplay().Length;
                 }
 
                 if (foundLetterIndices.Count != 0)
@@ -302,17 +302,17 @@ namespace Antura.Minigames.Balloons
 
                         for (int i = 0; i < foundLetterIndices.Count; i++)
                         {
-                            int startIdx = i == 0 ? 0 : foundLetterIndices[i - 1] + letterToFlash.GetChar().Length;
+                            int startIdx = i == 0 ? 0 : foundLetterIndices[i - 1] + letterToFlash.GetStringForDisplay().Length;
                             int endIdx = foundLetterIndices[i] - 1;
 
                             composedString += preparedText.Substring(startIdx, endIdx - startIdx + 1);
 
                             composedString += tagStart;
-                            composedString += preparedText.Substring(foundLetterIndices[i], letterToFlash.GetChar().Length);
+                            composedString += preparedText.Substring(foundLetterIndices[i], letterToFlash.GetStringForDisplay().Length);
                             composedString += tagEnd;
                         }
 
-                        composedString += preparedText.Substring(foundLetterIndices[foundLetterIndices.Count - 1] + letterToFlash.GetChar().Length);
+                        composedString += preparedText.Substring(foundLetterIndices[foundLetterIndices.Count - 1] + letterToFlash.GetStringForDisplay().Length);
 
                         letterObjectView.Label.SetText(composedString);
 

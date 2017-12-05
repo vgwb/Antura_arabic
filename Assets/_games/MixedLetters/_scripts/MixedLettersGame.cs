@@ -297,7 +297,7 @@ namespace Antura.Minigames.MixedLetters
 
                 for (int i = 0; i < PromptLettersInOrder.Count; i++)
                 {
-                    victimLLWord += ((LL_LetterData)PromptLettersInOrder[i]).Data.GetChar();
+                    victimLLWord += ((LL_LetterData)PromptLettersInOrder[i]).Data.GetStringForDisplay();
 
                     if (i != PromptLettersInOrder.Count - 1)
                     {

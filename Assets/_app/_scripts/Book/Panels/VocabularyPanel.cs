@@ -221,10 +221,10 @@ namespace Antura.Book
 
             ArabicText.text = "";
 
-            var isolatedChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Isolated);
-            var InitialChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Initial);
-            var MedialChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Medial);
-            var FinalChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Final);
+            var isolatedChar = currentLetter.data.GetStringForDisplay(LetterForm.Isolated);
+            var InitialChar = currentLetter.data.GetStringForDisplay(LetterForm.Initial);
+            var MedialChar = currentLetter.data.GetStringForDisplay(LetterForm.Medial);
+            var FinalChar = currentLetter.data.GetStringForDisplay(LetterForm.Final);
 
             LetterTextIsolated.SetTextUnfiltered(isolatedChar);
             LetterTextInitial.SetTextUnfiltered(InitialChar);
@@ -307,7 +307,7 @@ namespace Antura.Book
             output += "\n";
             var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, currentWord.data);
             foreach (var letter in splittedLetters) {
-                output += letter.letter.GetChar() + " ";
+                output += letter.letter.GetStringForDisplay() + " ";
             }
 
             ArabicText.text = output;

@@ -54,7 +54,7 @@ namespace Antura.LivingLetters
 
         public string TextForLivingLetter
         {
-            get { return Data.GetCharFixedForDisplay(Form); }
+            get { return Data.GetStringForDisplay(Form); }
         }
 
         public string DrawingCharForLivingLetter

@@ -36,7 +36,7 @@ namespace Antura.Book
                 LockIcon.enabled = true;
             }
 
-            Title.text = info.data.GetChar();
+            Title.text = info.data.GetStringForDisplay();
             SubTitle.text = info.data.Id;
 
             hightlight(_selected);

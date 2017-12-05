@@ -355,36 +355,32 @@ namespace Antura.Database
             }
         }
 
-        public string GetChar(LetterForm form = LetterForm.Isolated)
+        public string GetStringForDisplay(LetterForm form = LetterForm.Isolated)
         {
-            var output = "";
-            var hexunicode = GetUnicode(form);
-            if (hexunicode != "") {
-                // add the "-" to diacritic symbols to indentify better if it's over or below hte mid line
-                if (Type == LetterDataType.DiacriticSymbol) {
-                    output = "\u0640";
-                }
-
-                var unicode = int.Parse(hexunicode, NumberStyles.HexNumber);
-                output += ((char)unicode).ToString();
-
-                if (Symbol_Unicode != "") {
-                    var unicode_added = int.Parse(Symbol_Unicode, NumberStyles.HexNumber);
-                    output += ((char)unicode_added).ToString();
-                }
-            }
-            return output;
-        }
-
-        // this just adds a "-" before medial and final single letters! if needed
-        public string GetCharFixedForDisplay(LetterForm form = LetterForm.Isolated)
-        {
-            if (GetUnicode(form, false) == "") {
+            // Get the string for the specific form, without fallback
+            var hexunicode = GetUnicode(form, fallback: false);
+            if (hexunicode  == "") {
                 return "";
             }
 
-            var output = GetChar(form);
+            var output = "";
 
+            // add the "-" to diacritic symbols to indentify better if it's over or below hte mid line
+            if (Type == LetterDataType.DiacriticSymbol)
+            {
+                output = "\u0640";
+            }
+
+            var unicode = int.Parse(hexunicode, NumberStyles.HexNumber);
+            output += ((char)unicode).ToString();
+
+            if (Symbol_Unicode != "")
+            {
+                var unicode_added = int.Parse(Symbol_Unicode, NumberStyles.HexNumber);
+                output += ((char)unicode_added).ToString();
+            }
+
+            // add a "-" before medial and final single letters where needed
             if (form == LetterForm.Final && FinalFix != "" || form == LetterForm.Medial && MedialFix != "") {
                 output = "\u0640" + output;
             }

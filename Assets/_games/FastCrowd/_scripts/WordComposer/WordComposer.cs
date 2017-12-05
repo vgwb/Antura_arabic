@@ -34,10 +34,10 @@ namespace Antura.Minigames.FastCrowd
 
                 if (splitMode)
                 {
-                    word += (splitMode && i > 0 ? " " : "") + letter.Data.GetCharFixedForDisplay(letter.Form);
+                    word += (splitMode && i > 0 ? " " : "") + letter.Data.GetStringForDisplay(letter.Form);
                 }
                 else
-                    word += letter.Data.GetChar();
+                    word += letter.Data.GetStringForDisplay();
             }
             
             WordLabel.SetText(word, !splitMode);
