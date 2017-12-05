@@ -61,6 +61,7 @@ namespace Antura.Teacher
             this.firstCorrectIsQuestion = firstCorrectIsQuestion;
             this.parameters = parameters;
             this.letterVariationFilters = letterVariationFilters;
+            this.letterEqualityStrictness = letterEqualityStrictness;
 
             // Forced filters, we need only base letters as the basis here
             this.parameters.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
