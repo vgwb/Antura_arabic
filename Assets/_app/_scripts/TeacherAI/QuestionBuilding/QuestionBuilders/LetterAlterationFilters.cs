@@ -2,33 +2,33 @@ namespace Antura.Teacher
 {
     public class LetterAlterationFilters
     {
-        public static LetterAlterationFilters FormsOfSingleLetter = new LetterAlterationFilters()
+        public static readonly LetterAlterationFilters FormsOfSingleLetter = new LetterAlterationFilters()
         {
             includeForms = true
         };
-        public static LetterAlterationFilters MultipleLetters = new LetterAlterationFilters()
+        public static readonly LetterAlterationFilters MultipleLetters = new LetterAlterationFilters()
         {
             differentBaseLetters = true
         };
-        public static LetterAlterationFilters AlterationsOfSingleLetter = new LetterAlterationFilters()
+        public static readonly LetterAlterationFilters AlterationsOfSingleLetter = new LetterAlterationFilters()
         {
             ExcludeDiacritics = LetterFilters.ExcludeDiacritics.None,
             ExcludeLetterVariations = LetterFilters.ExcludeLetterVariations.None,
             excludeDipthongs = false
         };
-        public static LetterAlterationFilters FormsOfMultipleLetters = new LetterAlterationFilters()
+        public static readonly LetterAlterationFilters FormsOfMultipleLetters = new LetterAlterationFilters()
         {
             differentBaseLetters = true,
             includeForms = true
         };
-        public static LetterAlterationFilters AlterationsOfMultipleLetters = new LetterAlterationFilters()
+        public static readonly LetterAlterationFilters AlterationsOfMultipleLetters = new LetterAlterationFilters()
         {
             differentBaseLetters = true,
             ExcludeDiacritics = LetterFilters.ExcludeDiacritics.None,
             ExcludeLetterVariations = LetterFilters.ExcludeLetterVariations.None,
             excludeDipthongs = false
         };
-        public static LetterAlterationFilters FormsAndAlterationsOfMultipleLetters = new LetterAlterationFilters()
+        public static readonly LetterAlterationFilters FormsAndAlterationsOfMultipleLetters = new LetterAlterationFilters()
         {
             differentBaseLetters = true,
             includeForms = true,

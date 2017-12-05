@@ -2,7 +2,6 @@ using Antura.Audio;
 using Antura.Core;
 using Antura.Helpers;
 using Antura.LivingLetters;
-using Antura.Minigames;
 using Antura.Tutorial;
 using Antura.UI;
 using Random = UnityEngine.Random;
@@ -59,7 +58,8 @@ namespace Antura.Minigames.ThrowBalls
 
         private List<LL_LetterData> flashedLettersInLiWVariation;
 
-        private int NumLettersInCurrentRound {
+        private int NumLettersInCurrentRound
+        {
             get {
                 if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.LetterInWord) {
                     return currentLettersForLettersInWord.Count;

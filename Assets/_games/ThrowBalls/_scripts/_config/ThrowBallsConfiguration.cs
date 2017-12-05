@@ -36,10 +36,8 @@ namespace Antura.Minigames.ThrowBalls
         static ThrowBallsConfiguration instance;
         public static ThrowBallsConfiguration Instance
         {
-            get
-            {
-                if (instance == null)
-                {
+            get {
+                if (instance == null) {
                     instance = new ThrowBallsConfiguration();
                 }
                 return instance;
@@ -77,14 +75,14 @@ namespace Antura.Minigames.ThrowBalls
             int nWrong = 4;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
-            switch (Variation)
-            {
+            switch (Variation) {
                 case ThrowBallsVariation.Letter:
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.LetterForm:
                     var letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
-                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, letterAlterationFilters:letterAlterationFilters = , parameters: builderParams);
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, letterAlterationFilters:letterAlterationFilters, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.Word:
                     builderParams.wordFilters.requireDrawings = true;

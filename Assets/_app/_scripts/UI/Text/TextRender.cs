@@ -67,7 +67,21 @@ namespace Antura.UI
             updateText();
         }
 
-        public void SetText(string _text, bool arabic = false)
+        /// <summary>
+        /// the main method to set the text of this field. doesn't change any setting
+        /// </summary>
+        /// <param name="_text">Text.</param>
+        public void SetText(string _text)
+        {
+            text = _text;
+        }
+
+        /// <summary>
+        /// here we can force the arabic setup of this text field (in case needs to be changed by code)
+        /// </summary>
+        /// <param name="_text">Text.</param>
+        /// <param name="arabic">forces the arabic parsing ON/OFF</param>
+        public void SetText(string _text, bool arabic)
         {
             isArabic = arabic;
             text = _text;

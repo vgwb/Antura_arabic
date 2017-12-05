@@ -19,63 +19,78 @@ namespace Antura.Database
             get { return _Id; }
             set { _Id = value; }
         }
-        [SerializeField] private string _Id;
+        [SerializeField]
+        private string _Id;
 
         public int Stage
         {
             get { return _Stage; }
             set { _Stage = value; }
         }
-        [SerializeField] private int _Stage;
+        [SerializeField]
+        private int _Stage;
 
         public int LearningBlock
         {
             get { return _LearningBlock; }
             set { _LearningBlock = value; }
         }
-        [SerializeField] private int _LearningBlock;
+        [SerializeField]
+        private int _LearningBlock;
 
         public int NumberOfPlaySessions
         {
             get { return _NumberOfPlaySessions; }
             set { _NumberOfPlaySessions = value; }
         }
-        [SerializeField] private int _NumberOfPlaySessions;
+        [SerializeField]
+        private int _NumberOfPlaySessions;
 
         public string Description_En
         {
             get { return _Description_En; }
             set { _Description_En = value; }
         }
-        [SerializeField] private string _Description_En;
+        [SerializeField]
+        private string _Description_En;
 
         public string Description_Ar
         {
             get { return _Description_Ar; }
             set { _Description_Ar = value; }
         }
-        [SerializeField] private string _Description_Ar;
+        [SerializeField]
+        private string _Description_Ar;
 
         public string Title_En
         {
             get { return _Title_En; }
             set { _Title_En = value; }
         }
-        [SerializeField] private string _Title_En;
+        [SerializeField]
+        private string _Title_En;
 
         public string Title_Ar
         {
-            get { return _Title_Ar; }
+            get {
+                if (_Title_Ar != "") {
+                    return _Title_Ar;
+                } else {
+                    return "TODO عنوان الاختبار المراد كتابته";
+                }
+            }
             set { _Title_Ar = value; }
         }
-        [SerializeField] private string _Title_Ar;
+        [SerializeField]
+        private string _Title_Ar;
 
         public LearningBlockDataFocus Focus
         {
             get { return _Focus; }
             set { _Focus = value; }
         }
-        [SerializeField] private LearningBlockDataFocus _Focus;
+        [SerializeField]
+        private LearningBlockDataFocus _Focus;
 
         //public string Reward;
         //public string AssessmentData;
