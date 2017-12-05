@@ -1,3 +1,4 @@
+using Antura.Database;
 using Antura.LivingLetters;
 using Antura.Teacher;
 
@@ -82,14 +83,8 @@ namespace Antura.Minigames.ThrowBalls
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.LetterForm:
-                    var letterVariationFilters = new LetterVariationFilters
-                    {
-                        excludeDipthongs = true,
-                        excludeForms = false,
-                        ExcludeDiacritics = LetterFilters.ExcludeDiacritics.All,
-                        ExcludeLetterVariations = LetterFilters.ExcludeLetterVariations.All
-                    };
-                    builder = new RandomLetterVariationsQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, letterVariationFilters:letterVariationFilters, parameters: builderParams);
+                    var letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, letterAlterationFilters:letterAlterationFilters = , parameters: builderParams);
                     break;
                 case ThrowBallsVariation.Word:
                     builderParams.wordFilters.requireDrawings = true;

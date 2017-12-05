@@ -6913,11 +6913,11 @@ MonoBehaviour:
   numberOfSimulations: 1
   yieldEverySimulations: 20
   ignoreJourneyPlaySessionSelection: 1
-  currentJourneyStage: 2
-  currentJourneyLB: 2
-  isAssessment: 1
+  currentJourneyStage: 1
+  currentJourneyLB: 1
+  isAssessment: 0
   testWholeJourneyAtButtonClick: 0
-  nPacks: 6
+  nPacks: 1
   nPacksPerRound: 1
   sortPacksByDifficulty: 0
   nCorrectAnswers: 1
@@ -6940,6 +6940,7 @@ MonoBehaviour:
   historywrong_in: {fileID: 2099540120}
   journeybase_in: {fileID: 2114280724}
   journeywrong_in: {fileID: 1531751752}
+  lettersVariationChoice: 0
 --- !u!4 &1322033635
 Transform:
   m_ObjectHideFlags: 0

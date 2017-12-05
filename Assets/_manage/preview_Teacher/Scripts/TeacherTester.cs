@@ -447,6 +447,8 @@ namespace Antura.Teacher.Test
 
         #region  QuestionBuilder Simulation
 
+        public int lettersVariationChoice = 0;
+
         private void SimulateQuestionBuilder(QuestionBuilderType builderType)
         {
             var builderParams = SetupBuilderParameters();
@@ -457,7 +459,31 @@ namespace Antura.Teacher.Test
                     builder = new RandomLettersQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
                 case QuestionBuilderType.RandomLetterForms:
-                    builder = new RandomLetterVariationsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, parameters: builderParams);
+                    LetterAlterationFilters letterAlterationFilters = null;
+
+                    switch (lettersVariationChoice)
+                    {
+                        case 0:
+                            letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
+                            break;
+                        case 1:
+                            letterAlterationFilters = LetterAlterationFilters.FormsOfMultipleLetters;
+                            break;
+                        case 2:
+                            letterAlterationFilters = LetterAlterationFilters.MultipleLetters;
+                            break;
+                        case 3:
+                            letterAlterationFilters = LetterAlterationFilters.AlterationsOfSingleLetter;
+                            break;
+                        case 4:
+                            letterAlterationFilters = LetterAlterationFilters.AlterationsOfMultipleLetters;
+                            break;
+                        case 5:
+                            letterAlterationFilters = LetterAlterationFilters.FormsAndAlterationsOfMultipleLetters;
+                            break;
+                    }
+
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, firstCorrectIsQuestion: true, letterAlterationFilters: letterAlterationFilters, parameters: builderParams);
                     break;
                 case QuestionBuilderType.Alphabet:
                     builder = new AlphabetQuestionBuilder(parameters: builderParams);
