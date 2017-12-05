@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using DG.DeInspektor.Attributes;
-using Antura.UI;
 using UnityEngine;
-using UnityEngine.UI;
-using Antura.Assessment;
 using System.Linq;
 using Antura.Audio;
 using Antura.Database;
 using Antura.Core;
-using Antura.Helpers;
+using Antura.Extensions;
 
 namespace Antura.Teacher.Test
 {
@@ -87,8 +83,9 @@ namespace Antura.Teacher.Test
                 data => AudioManager.I.GetAudioClip(data) == null ? "NO" : "ok");
         }
 
+        // Find all letters that have no words in the same PS, or words that have no letters in the same PS
         [DeMethodButton("Data matching in PS")]
-        public void DoCheckWordsByPS()
+        public void DoCheckLettersAndWordsWithoutMatchingsInPS()
         {
             string final_s = "Word & Letters matching in PS";
 
@@ -137,6 +134,47 @@ namespace Antura.Teacher.Test
             Debug.Log(final_s);
         }
 
+        // Find all words that have letters that do not appear in the journey
+        [DeMethodButton("Words with undiscovered letters in PS")]
+        public void DoCheckWordsWithUndiscoveredLettersInPS()
+        {
+            string final_s = "Words with undiscovered letters in PS:";
+
+            List<WordData> observedWords = new List<WordData>();
+
+            foreach (var playSessionData in _playSessionDatas)
+            {
+                // Get all letters & words in this PS
+                var contents = AppManager.I.Teacher.VocabularyAi.GetContentsUpToJourneyPosition(playSessionData.GetJourneyPosition());
+                var journeyLetters = contents.GetHashSet<LetterData>();
+                var journeyWords = contents.GetHashSet<WordData>();
+
+                // Check whether there are words with letters that are not in the PS
+                bool somethingWrong = false;
+                string ps_s = "\n\nPS " + playSessionData.GetJourneyPosition();
+                foreach (var word in journeyWords)
+                {
+                    if (observedWords.Contains(word)) continue;
+
+                    var lettersInWord = _vocabularyHelper.GetLettersInWord(word);
+                    foreach (var letterInWord in lettersInWord)
+                    {
+                        if (!journeyLetters.Contains(letterInWord))
+                        {
+                            ps_s += "\n" + word.Id + " has undiscovered letter " + letterInWord.Id + "!";
+                            somethingWrong = true;
+                        }
+                    }
+                    observedWords.Add(word);
+                }
+                if (somethingWrong)
+                    final_s += ps_s;
+            }
+
+            Debug.Log(final_s);
+        }
+
+        // Check number of letters, words, and phrases in each PS
         [DeMethodButton("Data frequency in PS")]
         public void DoCheckDataFrequencyByPS()
         {
@@ -152,14 +190,13 @@ namespace Antura.Teacher.Test
 
             foreach (var playSessionData in _playSessionDatas)
             {
-                // Get the letters & words in this PS
+                // Get the data in this PS
                 var contents = AppManager.I.Teacher.VocabularyAi.GetContentsUpToJourneyPosition(playSessionData.GetJourneyPosition());
                 var letters = contents.GetHashSet<LetterData>();
                 var words = contents.GetHashSet<WordData>();
                 var phrases = contents.GetHashSet<PhraseData>();
 
-                // Check whether there are words with letters that are not in the PS
-                //string ps_s = "\n\nPS " + playSessionData.GetJourneyPosition();
+                // Count the data entries
                 foreach (var d in words)
                     observedWords[d]++;
                 foreach (var d in letters)
@@ -180,8 +217,9 @@ namespace Antura.Teacher.Test
             Debug.Log(final_s);
         }
 
-        [DeMethodButton("Letters and words")]
-        public void DoLettersAndWords()
+        // Print letters and words with these letters
+        [DeMethodButton("Print Letters and words")]
+        public void DoPrintLettersAndWords()
         {
             DoStatsList("Letters & words", _letterDatas,
                 data => true,

@@ -541,9 +541,8 @@ namespace Antura.Database
             return list;
         }
 
-        public List<LetterData> GetLettersNotInWord(string wordId, LetterKindCategory category = LetterKindCategory.Real)
+        public List<LetterData> GetLettersNotInWord(WordData wordData, LetterKindCategory category = LetterKindCategory.Real)
         {
-            WordData wordData = dbManager.GetWordDataById(wordId);
             var letter_ids_list = GetLetterIdsInWordData(wordData);
             var list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsOfKindCategory(category));
             return list;
