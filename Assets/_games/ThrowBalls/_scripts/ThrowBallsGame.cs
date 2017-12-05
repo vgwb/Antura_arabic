@@ -1,4 +1,3 @@
-using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.ThrowBalls
@@ -16,8 +15,7 @@ namespace Antura.Minigames.ThrowBalls
         private ThrowBallsDifficulty _difficulty;
         public ThrowBallsDifficulty Difficulty
         {
-            get
-            {
+            get {
                 return _difficulty;
             }
         }
@@ -29,20 +27,15 @@ namespace Antura.Minigames.ThrowBalls
 
         public GameObject ball;
         public BallController ballController;
-
         public GameObject letterWithPropsPrefab;
-
         public GameObject poofPrefab;
         public GameObject cratePoofPrefab;
-
         public GameObject environment;
 
         protected override void OnInitialize(IGameContext context)
         {
             instance = this;
-
             SetDifficulty();
-
             GameState = new GameState(this);
         }
 
@@ -60,28 +53,15 @@ namespace Antura.Minigames.ThrowBalls
         {
             float difficultyAsAFloat = ThrowBallsConfiguration.Instance.Difficulty;
 
-            if (difficultyAsAFloat < 0.2f)
-            {
+            if (difficultyAsAFloat < 0.2f) {
                 _difficulty = ThrowBallsDifficulty.VeryEasy;
-            }
-
-            else if (difficultyAsAFloat < 0.4f)
-            {
+            } else if (difficultyAsAFloat < 0.4f) {
                 _difficulty = ThrowBallsDifficulty.Easy;
-            }
-
-            else if (difficultyAsAFloat < 0.6f)
-            {
+            } else if (difficultyAsAFloat < 0.6f) {
                 _difficulty = ThrowBallsDifficulty.Normal;
-            }
-
-            else if (difficultyAsAFloat < 0.8f)
-            {
+            } else if (difficultyAsAFloat < 0.8f) {
                 _difficulty = ThrowBallsDifficulty.Hard;
-            }
-
-            else
-            {
+            } else {
                 _difficulty = ThrowBallsDifficulty.VeryHard;
             }
         }
