@@ -14,7 +14,7 @@ namespace Antura.UI
         void Awake()
         {
             gridLayoutGroup = GetComponent<GridLayoutGroup>();
-            switch (AppConstants.TextDirection)
+            switch (AppConfig.TextDirection)
             {
                 case TextDirection.LeftToRight:
                     switch (gridLayoutGroup.startCorner)

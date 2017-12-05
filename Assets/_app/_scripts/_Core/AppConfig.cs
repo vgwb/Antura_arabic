@@ -8,13 +8,12 @@ namespace Antura.Core
     /// Container for application-wide static constants.
     /// </summary>
     // TODO refactor: enforce code convention
-    // TODO refactor: reorganize all constants (some are statics, others are consts)
-    public static class AppConstants
+    public static class AppConfig
     {
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.1.0_2017-12-04";
+        public const string AppVersion = "1.1.0_2017-12-05";
 
         #region Debug Options
 

@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.Helpers;
 using System;
 using System.Collections.Generic;
@@ -538,14 +538,14 @@ namespace Antura.Database
             }
 
             // Create the joined DB
-            var joinedDbService = DBService.OpenFromFileName(true, AppConstants.GetJoinedDatabaseFilename(), AppConstants.DbJoinedFolder);
+            var joinedDbService = DBService.OpenFromFileName(true, AppConfig.GetJoinedDatabaseFilename(), AppConfig.DbJoinedFolder);
             InjectStaticData(joinedDbService);
             InjectEnums(joinedDbService);
 
             // Export and inject all the DBs
             foreach (var uuid in allUUIDs) {
                 // Export
-                var exportDbService = DBService.ExportAndOpenFromPlayerUUID(uuid, dirName: AppConstants.DbImportFolder);
+                var exportDbService = DBService.ExportAndOpenFromPlayerUUID(uuid, dirName: AppConfig.DbImportFolder);
                 InjectUUID(uuid, exportDbService);
 
                 // Inject
@@ -561,7 +561,7 @@ namespace Antura.Database
 
         public string[] GetImportFilePaths()
         {
-            var importDirectory = DBService.GetDatabaseDirectoryPath(AppConstants.DbImportFolder);
+            var importDirectory = DBService.GetDatabaseDirectoryPath(AppConfig.DbImportFolder);
             if (Directory.Exists(importDirectory)) {
                 string[] filePaths = Directory.GetFiles(importDirectory);
                 return filePaths;
@@ -578,7 +578,7 @@ namespace Antura.Database
 
             // Copy the file
             string fileName = Path.GetFileName(importFilePath);
-            string newFilePath = DBService.GetDatabaseFilePath(fileName, AppConstants.DbPlayersFolder);
+            string newFilePath = DBService.GetDatabaseFilePath(fileName, AppConfig.DbPlayersFolder);
             /* @note: we overwrite it
                 if (File.Exists(newFilePath)) {
                 Debug.LogError("Database already exists. Cannot import: " + importFilePath);

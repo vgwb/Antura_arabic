@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Antura.Core
 {
@@ -42,7 +42,7 @@ namespace Antura.Core
         public bool supportsAlpha8Texture;
 
         public DeviceInfo() {
-            AppVersion = AppConstants.AppVersion;
+            AppVersion = AppConfig.AppVersion;
             platform = Application.platform.ToString();
             systemLanguage = Application.systemLanguage.ToString();
             internetReachability = Application.internetReachability.ToString();

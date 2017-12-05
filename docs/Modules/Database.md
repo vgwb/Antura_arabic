@@ -50,7 +50,7 @@ The data is divided in several categories:
 
 - **Player Profile Data** holds the player's information and current preferences.
 
-See the [Loggin](Logging.md) document for further details on logging.
+See the [Logging](Logging.md) document for further details on logging.
 
 ### SQLite
 
@@ -58,13 +58,14 @@ The database is implemented in SQLite.
 The SQLite database is loaded and connected to whenever a player profile is selected, and generated if non-existing.
 All communication with the SQLite database is performed through a **Antura.Db.DBService** instance, managed by the **DatabaseManager**.
 The structure of the SQLite database can be generated a runtime and this is controlled through the `DBService.GenerateTable(bool create, bool drop)`, which can be updated to reflect any changes in the DB scheme.
-Note that any change to the database scheme must also prompt a sequential update of **AppConstants.DbSchemeVersion** for versioning to function correctly.
+Note that any change to the database scheme must also prompt a sequential update of **AppConfig.DbSchemeVersion** for versioning to function correctly.
 
 ## Profile API
 
 The logging database supports multiple profiles.
 A profile can be selected using `Antura.Db.DatabaseManager.LoadDynamicDbForPlayerProfile(int profileId)`, which loads (or creates if it does not exists) a database for logging data of the chosen player.
 Player profiles are also supported with:
+
 - New profile creation (through `CreateProfile()`)
 - Profile deletion (through `DropProfile()`)
 
@@ -76,6 +77,7 @@ To read learning or logging data, a single entry point is used throughout the ap
 The Database Manager provides several methods for each data type represented in the learning and logging data.
 
 To access learning data, the following methods can be used:
+
 - `GetAllXXXData`, which returns a list o all data of the chosen type.
 - `GetXXXDataById`, which returns a single data structure of the chosen type given its Id.
 - `FindXXXData`, which require a predicate as a parameter to filter the database. The methods returns the list of filtered data of the chosen type.
@@ -88,6 +90,7 @@ To access logging data, the following methods can be used:
 ## Writing API
 
 To write to the database, the Database Manager provides the following methods:
+
 - `Insert<T>()` to insert new data in the database (used by the logging system)
 - `UpdateVocabularyScoreData()` to overwrite the current vocabulary score data for a given element.
 - `UpdateJourneyScoreData()` to overwrite the current journey score data for a given element.

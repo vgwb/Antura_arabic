@@ -31,7 +31,7 @@ Each type follows a specific path in the logging system.
 ## Mood logging
 
 Mood logging is performed in the Mood scene.
-The scene obtains from the player an integer value between *AppConstants.minMoodValue* and *AppConstants.maxMoodValue*.
+The scene obtains from the player an integer value between *AppConfig.minMoodValue* and *AppConfig.maxMoodValue*.
 This value is then passed to *LogAI.LogMood(int mood)*, which inserts it as a new *LogMoodData* instance inside the database, with a timestamp.
 
 ## Info logging

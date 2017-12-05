@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Antura.Audio;
@@ -314,7 +314,7 @@ namespace Antura.GamesSelector
         IEnumerator CO_EndCoroutine()
         {
             yield return new WaitForSeconds(EndDelay);
-            if (AppConstants.DebugLogEnabled)
+            if (AppConfig.DebugLogEnabled)
             {
                 Debug.Log("<b>GamesSelector</b> > Complete");
             }

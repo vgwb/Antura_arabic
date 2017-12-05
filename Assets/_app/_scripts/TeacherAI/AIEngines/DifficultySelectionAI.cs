@@ -35,7 +35,7 @@ namespace Antura.Teacher
 
             // Age
             var playerAge = playerProfile.Age;
-            float ageDifficulty = Mathf.Clamp01(Mathf.InverseLerp(AppConstants.MinPlayerAge, AppConstants.MaxPlayerAge, playerAge));
+            float ageDifficulty = Mathf.Clamp01(Mathf.InverseLerp(AppConfig.MinPlayerAge, AppConfig.MaxPlayerAge, playerAge));
             float weightedAgeDifficulty = ageDifficulty * ageWeightContribution / totalWeight;
 
             // Performance

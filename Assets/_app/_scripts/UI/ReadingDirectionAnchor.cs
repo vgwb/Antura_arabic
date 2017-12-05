@@ -13,7 +13,7 @@ namespace Antura.UI
         {
             var rectTransform = GetComponent<RectTransform>();
 
-            switch (AppConstants.TextDirection)
+            switch (AppConfig.TextDirection)
             {
                 case TextDirection.LeftToRight:
                     // Default

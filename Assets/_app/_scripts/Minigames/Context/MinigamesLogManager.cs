@@ -42,7 +42,7 @@ namespace Antura.Minigames
         /// <param name="_isPositiveResult"></param>
         public void OnAnswered(ILivingLetterData _data, bool _isPositiveResult)
         {
-            if (AppConstants.DebugLogDbInserts) {
+            if (AppConfig.DebugLogDbInserts) {
                 Debug.Log("pre-log OnAnswer " + _data.Id + " " + _isPositiveResult);
             }
             ILivingLetterAnswerData newILivingLetterAnswerData = new ILivingLetterAnswerData();

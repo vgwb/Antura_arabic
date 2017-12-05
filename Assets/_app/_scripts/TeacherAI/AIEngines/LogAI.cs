@@ -57,7 +57,7 @@ namespace Antura.Teacher
         public void LogMood(int appSession, int mood)
         {
             // TODO refactor: this should have a session like the rest of the logging methods
-            float realMood = Mathf.InverseLerp(AppConstants.MinMoodValue, AppConstants.MaxMoodValue, mood);
+            float realMood = Mathf.InverseLerp(AppConfig.MinMoodValue, AppConfig.MaxMoodValue, mood);
             var data = new LogMoodData(appSession, realMood);
             db.Insert(data);
         }
@@ -293,7 +293,7 @@ namespace Antura.Teacher
 
         public void LogMiniGameScore(int appSession, JourneyPosition pos, MiniGameCode miniGameCode, int score, float playTime)
         {
-            if (AppConstants.DebugLogEnabled) { Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score); }
+            if (AppConfig.DebugLogEnabled) { Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score); }
 
             // Log for history
             var data = new LogMiniGameScoreData(appSession, pos, miniGameCode, score, playTime);
@@ -310,7 +310,7 @@ namespace Antura.Teacher
             // We also log play skills related to that minigame, as read from MiniGameData
             var minigameData = db.GetMiniGameDataByCode(miniGameCode);
             var results = new List<PlayResultParameters>();
-            float normalizedScore = Mathf.InverseLerp(AppConstants.MinMiniGameScore, AppConstants.MaxMiniGameScore, score);
+            float normalizedScore = Mathf.InverseLerp(AppConfig.MinMiniGameScore, AppConfig.MaxMiniGameScore, score);
             foreach (var weightedPlaySkill in minigameData.AffectedPlaySkills) {
                 results.Add(new PlayResultParameters(PlayEvent.Skill, weightedPlaySkill.Skill, normalizedScore));
             }
@@ -351,7 +351,7 @@ namespace Antura.Teacher
 
         public void LogPlaySessionScore(int appSession, JourneyPosition pos, int score, float playTime)
         {
-            if (AppConstants.DebugLogEnabled) { Debug.Log("LogPlaySessionScore " + pos.Id + " / " + score); }
+            if (AppConfig.DebugLogEnabled) { Debug.Log("LogPlaySessionScore " + pos.Id + " / " + score); }
 
             // Log for history
             var data = new LogPlaySessionScoreData(appSession, pos, score, playTime);

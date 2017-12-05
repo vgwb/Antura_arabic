@@ -287,7 +287,7 @@ namespace Antura.Teacher
 
             var allMiniGameInfo = GetAllMiniGameInfo();
             foreach (var miniGameInfo in allMiniGameInfo) {
-                if (System.Math.Abs(miniGameInfo.score - AppConstants.MaxMiniGameScore) > AppConstants.EPSILON) {
+                if (System.Math.Abs(miniGameInfo.score - AppConfig.MaxMiniGameScore) > AppConfig.EPSILON) {
                     return false;
                 }
             }
@@ -307,7 +307,7 @@ namespace Antura.Teacher
             var allPlaySessionInfo = GetAllPlaySessionInfo();
             foreach (var playSessionInfo in allPlaySessionInfo) {
                 if (playSessionInfo.data.GetJourneyPosition().IsMinor(maxJP)) {
-                    if (playSessionInfo.score < AppConstants.MaxMiniGameScore) {
+                    if (playSessionInfo.score < AppConfig.MaxMiniGameScore) {
                         return false;
                     }
                 }

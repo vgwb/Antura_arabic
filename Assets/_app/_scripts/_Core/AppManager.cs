@@ -98,11 +98,11 @@ namespace Antura.Core
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
             // Debugger setup
-            Debug.logger.logEnabled = AppConstants.DebugLogEnabled;
+            Debug.logger.logEnabled = AppConfig.DebugLogEnabled;
             gameObject.AddComponent<Debugging.DebugManager>();
 
             // Update settings
-            AppSettings.ApplicationVersion = AppConstants.AppVersion;
+            AppSettings.ApplicationVersion = AppConfig.AppVersion;
             AppSettingsManager.SaveSettings();
         }
 
@@ -176,7 +176,7 @@ namespace Antura.Core
             parameters += "?entry.346861357=" + WWW.EscapeURL(new DeviceInfo().ToJsonData());
             parameters += "&entry.1999287882=" + WWW.EscapeURL(Player.ToJsonData());
 
-            Application.OpenURL(AppConstants.UrlSupportForm + parameters);
+            Application.OpenURL(AppConfig.UrlSupportForm + parameters);
         }
 
         #region TMPro hack

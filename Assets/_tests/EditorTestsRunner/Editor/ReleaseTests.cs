@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,27 +15,27 @@ namespace Antura.Tests.Release
         [Test]
         public void CheckAppConstants()
         {
-            if (AppConstants.DebugLogEnabled) {
+            if (AppConfig.DebugLogEnabled) {
                 UnityEngine.Debug.Log("DebugLogEnabled should be FALSE");
                 Assert.Fail();
             }
 
-            if (AppConstants.UnityAnalyticsEnabled == false) {
+            if (AppConfig.UnityAnalyticsEnabled == false) {
                 UnityEngine.Debug.Log("UnityAnalyticsEnabled should be TRUE");
                 Assert.Fail();
             }
 
-            if (AppConstants.DebugPanelEnabledAtStartup) {
+            if (AppConfig.DebugPanelEnabledAtStartup) {
                 UnityEngine.Debug.Log("DebugPanelEnabledAtStartup should be FALSE");
                 Assert.Fail();
             }
 
-            if (AppConstants.DebugLogDbInserts) {
+            if (AppConfig.DebugLogDbInserts) {
                 UnityEngine.Debug.Log("DebugLogDbInserts should be FALSE");
                 Assert.Fail();
             }
 
-            if (AppConstants.DisableFirstContact) {
+            if (AppConfig.DisableFirstContact) {
                 UnityEngine.Debug.Log("DisableFirstContact should be FALSE");
                 Assert.Fail();
             }

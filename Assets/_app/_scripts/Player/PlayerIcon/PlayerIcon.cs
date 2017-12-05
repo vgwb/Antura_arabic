@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.UI;
 using DG.DeExtensions;
 using DG.DeInspektor.Attributes;
@@ -90,8 +90,8 @@ namespace Antura.Profile
             UIButton.Ico = IconImage;   // forced icon
             UIButton.ChangeDefaultColors(color, color.SetAlpha(0.5f));
             UIButton.Ico.sprite = playerIconData.IsDemoUser
-                ? Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + "god")
-                : Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + (playerIconData.Gender == PlayerGender.None ? "M" : playerIconData.Gender.ToString()) +
+                ? Resources.Load<Sprite>(AppConfig.AvatarsResourcesDir + "god")
+                : Resources.Load<Sprite>(AppConfig.AvatarsResourcesDir + (playerIconData.Gender == PlayerGender.None ? "M" : playerIconData.Gender.ToString()) +
                                          playerIconData.AvatarId);
             HatImage.gameObject.SetActive(endgameState != EndgameState.Unfinished);
 

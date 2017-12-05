@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using UnityEngine;
 
 namespace Antura.Utilities
@@ -12,7 +12,7 @@ namespace Antura.Utilities
         void Start()
         {
             if (!Application.isEditor) {
-                if (MobileOnly && !AppConstants.IsMobilePlatform()) {
+                if (MobileOnly && !AppConfig.IsMobilePlatform()) {
                     gameObject.SetActive(false);
                 }
 
@@ -20,7 +20,7 @@ namespace Antura.Utilities
                     gameObject.SetActive(false);
                 }
 
-                if (DesktopOnly && !AppConstants.IsDesktopPlatform()) {
+                if (DesktopOnly && !AppConfig.IsDesktopPlatform()) {
                     gameObject.SetActive(false);
                 }
             }

@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using UnityEngine;
 using TMPro;
 
@@ -11,7 +11,7 @@ namespace Antura.UI
     {
         void Start()
         {
-            gameObject.GetComponent<TextMeshProUGUI>().text = "v " + AppConstants.AppVersion;
+            gameObject.GetComponent<TextMeshProUGUI>().text = "v " + AppConfig.AppVersion;
         }
     }
 }

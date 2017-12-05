@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using SQLite;
 using System;
 using System.Collections;
@@ -35,7 +35,7 @@ namespace Antura.Database
 
         #region Factory Methods
 
-        public static DBService OpenFromFileName(bool createIfNotFound, string fileName, string dirName = AppConstants.DbPlayersFolder)
+        public static DBService OpenFromFileName(bool createIfNotFound, string fileName, string dirName = AppConfig.DbPlayersFolder)
         {
             var dirPath = GetDatabaseDirectoryPath(dirName);
             if (!Directory.Exists(dirPath)) {
@@ -52,10 +52,10 @@ namespace Antura.Database
         }
 
         public static DBService OpenFromPlayerUUID(bool createIfNotFound, string playerUuid, string fileName = "",
-            string dirName = AppConstants.DbPlayersFolder)
+            string dirName = AppConfig.DbPlayersFolder)
         {
             if (fileName == "") {
-                fileName = AppConstants.GetPlayerDatabaseFilename(playerUuid);
+                fileName = AppConfig.GetPlayerDatabaseFilename(playerUuid);
             }
             var dirPath = GetDatabaseDirectoryPath(dirName);
             if (!Directory.Exists(dirPath)) {
@@ -67,14 +67,14 @@ namespace Antura.Database
         }
 
         public static DBService ExportAndOpenFromPlayerUUID(string playerUuid, string fileName = "",
-            string dirName = AppConstants.DbPlayersFolder)
+            string dirName = AppConfig.DbPlayersFolder)
         {
             if (fileName == "") {
-                fileName = AppConstants.GetPlayerDatabaseFilename(playerUuid);
+                fileName = AppConfig.GetPlayerDatabaseFilename(playerUuid);
             }
             ExportFromPlayerUUID(playerUuid, fileName, dirName);
-            return OpenFromPlayerUUID(false, playerUuid, AppConstants.GetPlayerDatabaseFilenameForExport(playerUuid),
-                AppConstants.DbExportFolder);
+            return OpenFromPlayerUUID(false, playerUuid, AppConfig.GetPlayerDatabaseFilenameForExport(playerUuid),
+                AppConfig.DbExportFolder);
         }
 
         public static void ExportFromPlayerUUID(string playerUuid, string fileName, string dirName)
@@ -86,13 +86,13 @@ namespace Antura.Database
                 return;
             }
 
-            var dirNameExport = AppConstants.DbExportFolder;
+            var dirNameExport = AppConfig.DbExportFolder;
             var dirPathExport = GetDatabaseDirectoryPath(dirNameExport);
             if (!Directory.Exists(dirPathExport)) {
                 Directory.CreateDirectory(dirPathExport);
             }
 
-            var dbNameExport = AppConstants.GetPlayerDatabaseFilenameForExport(playerUuid);
+            var dbNameExport = AppConfig.GetPlayerDatabaseFilenameForExport(playerUuid);
             var dbPathExport = GetDatabaseFilePath(dbNameExport, dirNameExport);
 
             File.Copy(dbPath, dbPathExport);
@@ -122,9 +122,9 @@ namespace Antura.Database
                 // Check that the DB version is correct, otherwise recreate the tables
                 GenerateTable<DatabaseInfoData>(true, false); // Makes sure that the database info data table exists
                 var info = _connection.Find<DatabaseInfoData>(1);
-                if (info == null || info.DynamicDbVersion != AppConstants.DynamicDbSchemeVersion) {
+                if (info == null || info.DynamicDbVersion != AppConfig.DynamicDbSchemeVersion) {
                     var lastVersion = info != null ? info.DynamicDbVersion : "NONE";
-                    Debug.LogWarning("SQL DB outdated. Updating it (from " + lastVersion + " to " + AppConstants.DynamicDbSchemeVersion + ") Path: " + dbPath);
+                    Debug.LogWarning("SQL DB outdated. Updating it (from " + lastVersion + " to " + AppConfig.DynamicDbSchemeVersion + ") Path: " + dbPath);
                     MigrateDatabase();
                 }
                 //Debug.Log("Database ready at path " + dbPath + "   Version: " + (info != null ? info.DynamicDbVersion : "NONE"));
@@ -137,14 +137,14 @@ namespace Antura.Database
         {
             RecreateAllTables();
 
-            _connection.Insert(new DatabaseInfoData(AppConstants.DynamicDbSchemeVersion, AppConstants.StaticDbSchemeVersion));
+            _connection.Insert(new DatabaseInfoData(AppConfig.DynamicDbSchemeVersion, AppConfig.StaticDbSchemeVersion));
         }
 
         private void MigrateDatabase()
         {
             MigrateAllTables();
 
-            _connection.InsertOrReplace(new DatabaseInfoData(AppConstants.DynamicDbSchemeVersion, AppConstants.StaticDbSchemeVersion));
+            _connection.InsertOrReplace(new DatabaseInfoData(AppConfig.DynamicDbSchemeVersion, AppConfig.StaticDbSchemeVersion));
         }
 
         public void GenerateTables(bool create, bool drop)
@@ -213,7 +213,7 @@ namespace Antura.Database
 
         public void Insert<T>(T data) where T : IData, new()
         {
-            if (AppConstants.DebugLogDbInserts) {
+            if (AppConfig.DebugLogDbInserts) {
                 Debug.Log("DB Insert: " + data);
             }
             _connection.Insert(data);
@@ -221,7 +221,7 @@ namespace Antura.Database
 
         public void InsertOrReplace<T>(T data) where T : IData, new()
         {
-            if (AppConstants.DebugLogDbInserts) {
+            if (AppConfig.DebugLogDbInserts) {
                 Debug.Log("DB Insert: " + data);
             }
             _connection.InsertOrReplace(data);
@@ -229,7 +229,7 @@ namespace Antura.Database
 
         public void InsertAll<T>(IEnumerable<T> objects) where T : IData, new()
         {
-            if (AppConstants.DebugLogDbInserts) {
+            if (AppConfig.DebugLogDbInserts) {
                 foreach (var obj in objects) {
                     Debug.Log("DB Insert: " + obj);
                 }
@@ -239,7 +239,7 @@ namespace Antura.Database
 
         public void InsertAllObjects(IEnumerable objects)
         {
-            if (AppConstants.DebugLogDbInserts) {
+            if (AppConfig.DebugLogDbInserts) {
                 foreach (var obj in objects) {
                     Debug.Log("DB Insert: " + obj);
                 }
@@ -249,7 +249,7 @@ namespace Antura.Database
 
         public void InsertOrReplaceAll<T>(IEnumerable<T> objects) where T : IData, new()
         {
-            if (AppConstants.DebugLogDbInserts) {
+            if (AppConfig.DebugLogDbInserts) {
                 foreach (var obj in objects) {
                     Debug.Log("DB Insert: " + obj);
                 }

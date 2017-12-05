@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,7 +30,7 @@ namespace Antura.UI
 
         public void SetAvatar(int _avatarIndex)
         {
-            AvatarImg.sprite = Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + _avatarIndex);
+            AvatarImg.sprite = Resources.Load<Sprite>(AppConfig.AvatarsResourcesDir + _avatarIndex);
         }
 
         public void SetInteractivity(bool _interactive)

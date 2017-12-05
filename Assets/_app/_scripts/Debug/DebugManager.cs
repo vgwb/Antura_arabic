@@ -103,7 +103,7 @@ namespace Antura.Debugging
         {
             I = this;
 
-            if (AppConstants.DebugPanelEnabledAtStartup) {
+            if (AppConfig.DebugPanelEnabledAtStartup) {
                 EnableDebugPanel();
             }
         }

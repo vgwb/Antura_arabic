@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.IO;
 using Antura.Core;
@@ -20,36 +20,36 @@ namespace Antura.Scenes
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true);
 
-            SupportText.text = AppConstants.AppVersion;
+            SupportText.text = AppConfig.AppVersion;
         }
 
         #region Buttons
 
         public void OnOpenUrlWebsite()
         {
-            Application.OpenURL(AppConstants.UrlWebsite);
+            Application.OpenURL(AppConfig.UrlWebsite);
         }
 
         public void OnOpenUrlPrivacy()
         {
-            Application.OpenURL(AppConstants.UrlPrivacy);
+            Application.OpenURL(AppConfig.UrlPrivacy);
         }
 
         public void OnOpenCommunityTelegram()
         {
-            Application.OpenURL(AppConstants.UrlCommunityTelegram);
+            Application.OpenURL(AppConfig.UrlCommunityTelegram);
         }
 
         public void OnOpenCommunityFacebook()
         {
-            Application.OpenURL(AppConstants.UrlCommunityFacebook);
+            Application.OpenURL(AppConfig.UrlCommunityFacebook);
         }
 
         public void OnOpenInstallInstructions()
         {
             GlobalUI.ShowPrompt("",
                 "Opening a PDF with the Install instructions.\nIf the document doesn't open, please install a PDF viewer app and retry!");
-            OpenPDF(AppConstants.PdfAndroidInstall);
+            OpenPDF(AppConfig.PdfAndroidInstall);
         }
 
         private int clickCounter = 0;
@@ -77,10 +77,10 @@ namespace Antura.Scenes
         {
             Debug.Log("On DEVICE it will open the app page on the proper store");
             if (Application.platform == RuntimePlatform.IPhonePlayer) {
-                Application.OpenURL(AppConstants.UrlStoreiOSApple);
+                Application.OpenURL(AppConfig.UrlStoreiOSApple);
                 // IOSNativeUtility.RedirectToAppStoreRatingPage();
             } else if (Application.platform == RuntimePlatform.Android) {
-                Application.OpenURL(AppConstants.UrlStoreAndroidGoogle);
+                Application.OpenURL(AppConfig.UrlStoreAndroidGoogle);
                 // AndroidNativeUtility.OpenAppRatingPage("");
             }
             //GlobalUI.ShowPrompt("", "Rate app");
@@ -129,7 +129,7 @@ namespace Antura.Scenes
         {
             string errorString = "";
             if (AppManager.I.DB.ExportJoinedDatabase(out errorString)) {
-                string dbPath = DBService.GetDatabaseFilePath(AppConstants.GetJoinedDatabaseFilename(), AppConstants.DbJoinedFolder);
+                string dbPath = DBService.GetDatabaseFilePath(AppConfig.GetJoinedDatabaseFilename(), AppConfig.DbJoinedFolder);
                 GlobalUI.ShowPrompt("", "The joined DB is here:\n" + dbPath);
             } else {
                 GlobalUI.ShowPrompt("", "Could not export the joined database.\n");

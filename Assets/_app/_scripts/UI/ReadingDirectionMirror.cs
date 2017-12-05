@@ -13,7 +13,7 @@ namespace Antura.UI
         {
             foreach (Transform childTr in transform)
             {
-                switch (AppConstants.TextDirection)
+                switch (AppConfig.TextDirection)
                 {
                     case TextDirection.LeftToRight:
                         // Default

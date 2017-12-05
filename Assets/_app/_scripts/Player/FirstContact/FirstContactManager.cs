@@ -99,7 +99,7 @@ namespace Antura.Profile
 
         public bool IsNotFinished()
         {
-            if (AppConstants.DisableFirstContact) { return false; }
+            if (AppConfig.DisableFirstContact) { return false; }
             return CurrentPhase < FirstContactPhase.Finished || SIMULATE_FIRST_CONTACT;
         }
 

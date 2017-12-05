@@ -45,7 +45,7 @@ namespace Antura.Minigames
                 AppManager.I.NavigationManager.InitNewPlaySession(miniGameData);
             }
 
-            if (AppConstants.DebugLogEnabled) Debug.Log("StartGame " + _gameCode.ToString());
+            if (AppConfig.DebugLogEnabled) Debug.Log("StartGame " + _gameCode.ToString());
 
             // Assign the configuration for the given minigame
             var minigameSession = System.DateTime.Now.Ticks.ToString();
@@ -67,7 +67,7 @@ namespace Antura.Minigames
             currentGameConfig.Questions = new LivingLetters.SequentialQuestionPackProvider(questionPacks);
 
             // Communicate to LogManager the start of a new single minigame play session.
-            if (AppConstants.DebugLogDbInserts) Debug.Log("InitGameplayLogSession " + _gameCode.ToString());
+            if (AppConfig.DebugLogDbInserts) Debug.Log("InitGameplayLogSession " + _gameCode.ToString());
             LogManager.I.LogInfo(InfoEvent.GameStart, "{\"minigame\":\"" + _gameCode.ToString() + "\"}");
             LogManager.I.StartMiniGame();
 

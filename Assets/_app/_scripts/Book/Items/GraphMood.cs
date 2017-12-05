@@ -15,7 +15,7 @@ namespace Antura.Book
             int nMoods = 10;
             var latestMoods = AppManager.I.Teacher.GetLastMoodData(nMoods);
             float[] moodValues = latestMoods.ConvertAll(x => x.MoodValue).ToArray();
-            Graph.SetValues(nMoods, AppConstants.MaxMoodValue, moodValues);
+            Graph.SetValues(nMoods, AppConfig.MaxMoodValue, moodValues);
         }
     }
 }
