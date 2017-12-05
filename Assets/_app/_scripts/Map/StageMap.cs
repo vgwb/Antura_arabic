@@ -5,9 +5,10 @@ using Antura.Core;
 using DG.DeExtensions;
 using DG.DeInspektor.Attributes;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEditor.SceneManagement;
 #endif
 
 namespace Antura.Map
@@ -127,7 +128,6 @@ namespace Antura.Map
             DistribuitePins(true);
         }
 
-
         private void DistribuitePins(bool zToo)
         {
             var pins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
@@ -139,12 +139,14 @@ namespace Antura.Map
             for (var index = 0; index < total_pins; index++) {
                 var pin = pins[index];
 
+                Undo.RecordObject(pin.gameObject, "Changed pin " + index);
+
                 float pinZ = pin.transform.localPosition.z;
                 if (zToo)
                 {
                     // Distribute pins on Z following a random walk flow
-                    const int MAX_Z = 10;
-                    const int MIN_Z = -30;
+                    const int MAX_Z = 30;
+                    const int MIN_Z = -20;
                     const int Z_RND_RANGE = 20;
                     pinZ = index > 0 ? (pins[index - 1].transform.localPosition.z + Random.Range(-Z_RND_RANGE, Z_RND_RANGE)) : Random.Range(MIN_Z, MAX_Z);
                     if (pinZ > MAX_Z) pinZ -= 2 * (pinZ - MAX_Z);
@@ -152,17 +154,19 @@ namespace Antura.Map
                 }
 
                 pin.transform.localPosition = new Vector3(index * -delta_x + start_x, pin.transform.localPosition.y, pinZ);
-                EditorUtility.SetDirty(pin.gameObject);
+                
             }
 
             // set the dotsPivot to the first Pin
+            Undo.RecordObject(dotsPivot.gameObject, "Changed dotsPivot");
             dotsPivot.transform.localPosition = new Vector3(start_x, pins[0].transform.localPosition.y, pins[0].transform.localPosition.z);
-            EditorUtility.SetDirty(dotsPivot.gameObject);
 
             // sets and scale the floor plane
+            Undo.RecordObject(mapFloor.gameObject, "Changed mapFloor");
             mapFloor.transform.localPosition = new Vector3(-(start_x - end_x) / 2 + start_x, 0, 0);
             mapFloor.transform.localScale = new Vector3((start_x - end_x) + 120, 70, 1);
-            EditorUtility.SetDirty(mapFloor.gameObject);
+
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         }
 #endif
         #endregion
