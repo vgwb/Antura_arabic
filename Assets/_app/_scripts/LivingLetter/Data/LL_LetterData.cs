@@ -11,8 +11,8 @@ namespace Antura.LivingLetters
     // TODO refactor: rename to better indicate that this is a view
     public class LL_LetterData : ILivingLetterData
     {
-        public Database.LetterData Data;
-        public Database.LetterForm Form = Database.LetterForm.Isolated; // TODO refactor: this is tied to the Arabic language
+        public LetterData Data;
+        public LetterForm Form = LetterForm.Isolated; // TODO refactor: this is tied to the Arabic language
 
         public LivingLetterDataType DataType
         {
@@ -75,7 +75,7 @@ namespace Antura.LivingLetters
                 return false;
             }
 
-            return other.Data.Id == Data.Id && other.Form == Form;
+            return Data.IsSameLetterAs(other.Data);
         }
 
         #endregion

@@ -28,6 +28,17 @@ namespace Antura.Database
     }
 
     /// <summary>
+    /// Enumerator that defines how to treat equality for letters.
+    /// </summary>
+    public enum LetterEqualityStrictness
+    {
+        LetterOnly,         // the same letter, regardless of the form
+        WithVisualForm,     // the same letter with the same form, or with different forms but with the same visual appearance
+        WithActualForm      // the same letter with the same form
+    }
+
+
+    /// <summary>
     ///     Data defining a Letter.
     ///     This is one of the fundamental dictionary (i.e. learning content) elements.
     ///     <seealso cref="PhraseData" />
@@ -249,11 +260,27 @@ namespace Antura.Database
         private float _Complexity;
 
 
+        #region Letter Forms Handling (temporary data)
+
         /// <summary>
         /// If set, this LetterData should be represented using the forced form.
         /// </summary>
-        // TODO ignore in editor and maybe do not serialize
         public LetterForm ForcedLetterForm = LetterForm.None;
+        public LetterForm Form
+        {
+            get
+            {
+                if (ForcedLetterForm != LetterForm.None) return ForcedLetterForm;
+                return LetterForm.Isolated;
+            }
+        }
+
+        /// <summary>
+        /// Logic to use for equality comparisons
+        /// </summary>
+        public LetterEqualityStrictness EqualityStrictness = LetterEqualityStrictness.WithActualForm;
+
+        #endregion
 
 
         public override string ToString()
@@ -414,6 +441,30 @@ namespace Antura.Database
         public LetterData Clone()
         {
             return (LetterData)MemberwiseClone();
+        }
+
+        // @note: EqualityStrictness if tied to the first letter used, so we should always use matching letters when comparing
+        public bool IsSameLetterAs(LetterData other)
+        {
+            bool isEqual = false;
+            switch (EqualityStrictness)
+            {
+                case LetterEqualityStrictness.LetterOnly:
+                    isEqual = other.Id == Id;
+                    break;
+                case LetterEqualityStrictness.WithActualForm:
+                    isEqual = other.Id == Id && Form == other.Form;
+                    break;
+                case LetterEqualityStrictness.WithVisualForm:
+                    isEqual = other.Id == Id && FormsLookTheSame(Form, other.Form);
+                    break;
+            }
+            return isEqual;
+        }
+
+        private bool FormsLookTheSame(LetterForm form1, LetterForm form2)
+        {
+            return GetStringForDisplay(form1) == GetStringForDisplay(form2);
         }
     }
 }
