@@ -13,7 +13,7 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.1.0_2017-12-05";
+        public const string AppVersion = "1.1.0beta (564)";
 
         #region Debug Options
 
@@ -58,7 +58,7 @@ namespace Antura.Core
         /// Version of the MySQL Database Scheme.
         /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
         /// </summary>
-        public const string DynamicDbSchemeVersion = "1.0.0";
+        public const string DynamicDbSchemeVersion = "1.1.0beta564";
 
         // public URLs
         public const string UrlWebsite = "http://www.antura.org";
