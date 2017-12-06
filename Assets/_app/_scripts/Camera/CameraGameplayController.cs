@@ -35,6 +35,5 @@ namespace Antura.CameraControl
             //gameObject.GetComponent<ColorCorrectionCurves>().enabled = status;
         }
 
-
     }
 }
