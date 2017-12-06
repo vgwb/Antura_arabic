@@ -226,7 +226,7 @@ namespace Antura.Minigames.Maze
             go.transform.Rotate(new Vector3(90, 0, 0));
             LineRenderer line = go.AddComponent<LineRenderer>();
             //line.material = new Material (Shader.Find ("Particles/Additive"));
-            line.numPositions = 0;
+            line.positionCount = 0;
             line.startWidth = 0.6f;
             line.endWidth = 0.6f;
             //line.SetColors (Color.green, Color.green);
@@ -359,7 +359,7 @@ namespace Antura.Minigames.Maze
                 //remove last line
                 if (lines.Count > 0)
                 {
-                    lines[lines.Count - 1].numPositions = 0;
+                    lines[lines.Count - 1].positionCount = 0;
                     lines.RemoveAt(lines.Count - 1);
                 }
 
@@ -438,7 +438,7 @@ namespace Antura.Minigames.Maze
         void removeLines()
         {
             foreach (LineRenderer line in lines)
-                line.numPositions = 0;
+                line.positionCount = 0;
             lines = new List<LineRenderer>();
             pointsList.RemoveRange(0, pointsList.Count);
 
@@ -602,7 +602,7 @@ namespace Antura.Minigames.Maze
             {
                 //mousePos.z = -0.1071415f;
                 pointsList.Add(mousePos);
-                lines[lines.Count - 1].numPositions = pointsList.Count;
+                lines[lines.Count - 1].positionCount = pointsList.Count;
                 lines[lines.Count - 1].SetPosition(pointsList.Count - 1, (Vector3)pointsList[pointsList.Count - 1]);
             }
         }
