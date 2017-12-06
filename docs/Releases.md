@@ -2,11 +2,13 @@
 
 ## 1.1.0 next
 
+- new Pedagogical Curriculum
 - Daily Rewards
 - Antura Space Shop and Antura interactions
 - new Map
 - local notifications
 - repeat minigame
+- upgraded to Unity 5.6
 
 ## 1.0.7 - 5 sept 2017 (not public)
 

@@ -15,7 +15,7 @@ please check the [collaborator docs](https://vgwb.github.io/Antura_arabic/Guidel
 
 ## Technology
 
-This repository is a Unity 5.5.4 project ([download it here](https://unity3d.com/get-unity/download/archive))
+This repository is a Unity 5.6.x project ([download it here](https://unity3d.com/get-unity/download/archive))
 
 ## Licensing
 
