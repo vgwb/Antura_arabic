@@ -30,8 +30,7 @@ namespace Antura.CameraEffects
 
         void Update()
         {
-            if (UpdateTexture())
-                GetComponent<Camera>().targetTexture = output;
+            if (UpdateTexture()) { GetComponent<Camera>().targetTexture = output; }
         }
     }
 }
