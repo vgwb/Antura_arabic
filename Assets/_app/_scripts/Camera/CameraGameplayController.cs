@@ -1,8 +1,5 @@
-﻿using Antura.Audio;
+﻿using Antura.Core;
 using UnityEngine;
-using DG.Tweening;
-using Antura.Core;
-using UnityStandardAssets.ImageEffects;
 
 namespace Antura.CameraControl
 {
@@ -29,11 +26,12 @@ namespace Antura.CameraControl
 
         public void EnableFX(bool status)
         {
+            FxEnabled = status;
             // Debug.Log("CameraGameplayController EnableFX " + status);
-            if (gameObject.GetComponent<VignetteAndChromaticAberration>() != null) {
-                FxEnabled = status;
-                gameObject.GetComponent<VignetteAndChromaticAberration>().enabled = status;
-            }
+            //if (gameObject.GetComponent<VignetteAndChromaticAberration>() != null) {
+            //    FxEnabled = status;
+            //    gameObject.GetComponent<VignetteAndChromaticAberration>().enabled = status;
+            //}
             //gameObject.GetComponent<ColorCorrectionCurves>().enabled = status;
         }
 

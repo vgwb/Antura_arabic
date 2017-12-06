@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Antura.Minigames
+namespace Antura.CameraEffects
 {
     /// <summary>
     /// Controls the fog in a scene.

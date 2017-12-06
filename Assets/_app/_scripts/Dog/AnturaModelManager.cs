@@ -91,8 +91,7 @@ namespace Antura.Dog
         {
             AnturaCustomization returnCustomization = new AnturaCustomization();
             foreach (LoadedModel loadedModel in LoadedModels) {
-                RewardPackUnlockData pack = new RewardPackUnlockData()
-                {
+                RewardPackUnlockData pack = new RewardPackUnlockData() {
                     ItemId = loadedModel.Reward.ItemId,
                     ColorId = loadedModel.Reward.ColorId,
                     Type = RewardTypes.reward
@@ -123,10 +122,10 @@ namespace Antura.Dog
                     SkinnedMesh.sharedMaterials = mats;
                     LoadedTileTexture = rewardPackUnlockData;
                     // Sup mesh for texture
-                    foreach (var renderer in SkinnedMeshsTextureOnly) {
-                        var materials = renderer.sharedMaterials;
+                    foreach (var _renderer in SkinnedMeshsTextureOnly) {
+                        var materials = _renderer.sharedMaterials;
                         materials[0] = newMaterial;
-                        renderer.sharedMaterials = materials;
+                        _renderer.sharedMaterials = materials;
                     }
                     break;
                 case RewardTypes.decal:
@@ -137,10 +136,10 @@ namespace Antura.Dog
                     decalMats[1] = newDecalMaterial;
                     SkinnedMesh.sharedMaterials = decalMats;
                     // Sup mesh for texture
-                    foreach (SkinnedMeshRenderer renderer in SkinnedMeshsTextureOnly) {
-                        Material[] materials = renderer.sharedMaterials;
+                    foreach (SkinnedMeshRenderer _renderer in SkinnedMeshsTextureOnly) {
+                        Material[] materials = _renderer.sharedMaterials;
                         materials[1] = newDecalMaterial;
-                        renderer.sharedMaterials = materials;
+                        _renderer.sharedMaterials = materials;
                     }
                     LoadedDecal = rewardPackUnlockData;
                     break;
@@ -188,7 +187,7 @@ namespace Antura.Dog
         /// <summary>
         /// Loads the reward on model.
         /// </summary>
-        /// <param name="_id">The identifier.</param>
+        /// <param name="rewardPackUnlockData">The identifier.</param>
         /// <returns></returns>
         public GameObject LoadRewardOnAntura(RewardPackUnlockData rewardPackUnlockData)
         {
@@ -226,8 +225,6 @@ namespace Antura.Dog
                 case "dog_L_ear04":
                     rewardModel = ModelsManager.MountModel(reward.ID, Dog_L_ear04);
                     break;
-                default:
-                    break;
             }
 
             // Set materials
@@ -245,12 +242,12 @@ namespace Antura.Dog
         /// <summary>
         /// The category list
         /// </summary>
-        List<string> categoryList = new List<string>();
+        private List<string> categoryList = new List<string>();
 
         /// <summary>
         /// Charges the category list.
         /// </summary>
-        void chargeCategoryList()
+        private void chargeCategoryList()
         {
             foreach (var reward in RewardSystemManager.GetConfig().Rewards) {
                 if (!categoryList.Contains(reward.Category)) {

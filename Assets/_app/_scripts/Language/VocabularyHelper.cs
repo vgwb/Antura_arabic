@@ -355,8 +355,6 @@ namespace Antura.Database
                         return false;
                     }
                     break;
-                default:
-                    break;
             }
             return true;
         }
@@ -373,8 +371,6 @@ namespace Antura.Database
                     if (data.IsOfKindCategory(LetterKindCategory.LetterVariation) && data.Tag != "AlefHamzaVariation") {
                         return false;
                     }
-                    break;
-                default:
                     break;
             }
             return true;
@@ -467,8 +463,7 @@ namespace Antura.Database
 
         public List<LetterData> ConvertToLettersWithForcedForms(LetterData baseForVariation)
         {
-            return new List<LetterForm>(baseForVariation.GetAvailableForms()).ConvertAll(f =>
-            {
+            return new List<LetterForm>(baseForVariation.GetAvailableForms()).ConvertAll(f => {
                 var l = baseForVariation.Clone();
                 l.ForcedLetterForm = f;
                 return l;
@@ -644,11 +639,9 @@ namespace Antura.Database
         public bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
         {
             //if (containedLetter.Id == "lam_alef") Debug.Log("Looking for lam-alef in " + selectedWord);
-            foreach (var l in ArabicAlphabetHelper.FindLetter(AppManager.I.DB, selectedWord, containedLetter))
-            {
+            foreach (var l in ArabicAlphabetHelper.FindLetter(AppManager.I.DB, selectedWord, containedLetter)) {
                 //if (l.letter.Id == "lam_alef") Debug.Log("Lam alef form " + l.letterForm + " in word " + selectedWord);
-                if (l.letterForm == selectedForm)
-                {
+                if (l.letterForm == selectedForm) {
                     return true;
                 }
             }

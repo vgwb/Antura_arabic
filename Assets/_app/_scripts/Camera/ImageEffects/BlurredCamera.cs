@@ -23,22 +23,24 @@ namespace Antura.CameraEffects
 
             blurMaterial = CheckShaderAndCreateMaterial(blurShader, blurMaterial);
 
-            if (!isSupported)
+            if (!isSupported) {
                 ReportAutoDisable();
+            }
             return isSupported;
         }
 
         void OnDisable()
         {
-            if (blurMaterial)
+            if (blurMaterial) {
                 DestroyImmediate(blurMaterial);
+            }
         }
 
         void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
-            if (normalTextureOutput != null)
+            if (normalTextureOutput != null) {
                 Graphics.Blit(source, normalTextureOutput);
-
+            }
             if (CheckResources() == false) {
                 Graphics.Blit(source, destination);
                 return;

@@ -52,7 +52,7 @@ namespace Antura.Core
         /// Version of the Static Database Scheme.
         /// v1.0.7 - added ArabicFemale to LocalizationData
         /// </summary>
-        public const string StaticDbSchemeVersion = "1.0.7";
+        public const string StaticDbSchemeVersion = "1.1.0beta564";
 
         /// <summary>
         /// Version of the MySQL Database Scheme.
@@ -136,5 +136,6 @@ namespace Antura.Core
             return (Application.platform == RuntimePlatform.Android ||
                     Application.platform == RuntimePlatform.IPhonePlayer);
         }
+
     }
 }

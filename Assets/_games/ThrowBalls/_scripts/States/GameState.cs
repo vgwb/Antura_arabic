@@ -206,8 +206,6 @@ namespace Antura.Minigames.ThrowBalls
                 case ThrowBallsVariation.LetterInWord:
                     game.StartCoroutine(StartNewRound_LettersInWord());
                     break;
-                default:
-                    break;
             }
         }
 
@@ -295,8 +293,6 @@ namespace Antura.Minigames.ThrowBalls
                         break;
                     case ThrowBallsVariation.LetterInWord:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letterinword_Tuto);
-                        break;
-                    default:
                         break;
                 }
 

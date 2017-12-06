@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Antura.Minigames
+namespace Antura.CameraControl
 {
     /// <summary>
     /// Applies an offset to a transform based on the current aspect ratio.
@@ -27,7 +27,7 @@ namespace Antura.Minigames
 
         void UpdateOffset()
         {
-            var ratio = Screen.width / (float) Screen.height;
+            var ratio = Screen.width / (float)Screen.height;
 
             // 4 / 3 = 1.3333
             // 16 / 9 = 1.7777
