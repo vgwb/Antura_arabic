@@ -278,7 +278,7 @@ namespace Antura.Database
         /// <summary>
         /// Logic to use for equality comparisons
         /// </summary>
-        public LetterEqualityStrictness EqualityStrictness = LetterEqualityStrictness.WithActualForm;
+        //public LetterEqualityStrictness EqualityStrictness = LetterEqualityStrictness.WithActualForm;
 
         #endregion
 
@@ -449,13 +449,13 @@ namespace Antura.Database
             switch (strictness)
             {
                 case LetterEqualityStrictness.LetterOnly:
-                    isEqual = other.Id == Id;
+                    isEqual = string.Equals(_Id, other._Id);
                     break;
                 case LetterEqualityStrictness.WithActualForm:
-                    isEqual = other.Id == Id && Form == other.Form;
+                    isEqual = string.Equals(_Id, other._Id) && Form == other.Form;
                     break;
                 case LetterEqualityStrictness.WithVisualForm:
-                    isEqual = other.Id == Id && FormsLookTheSame(Form, other.Form);
+                    isEqual = string.Equals(_Id, other._Id) && FormsLookTheSame(Form, other.Form);
                     break;
             }
             return isEqual;
@@ -466,5 +466,75 @@ namespace Antura.Database
         {
             return GetStringForDisplay(form1) == GetStringForDisplay(form2);
         }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as LetterData;
+            if (other == null) return false;
+            return Equals(other);
+        }
+
+        private bool Equals(LetterData other)
+        {
+            // We choose the stricter of the two letters
+            /*var strictness = EqualityStrictness != LetterEqualityStrictness.LetterOnly
+                ? this.EqualityStrictness
+                : other.EqualityStrictness;*/
+            return IsSameLetterAs(other, LetterEqualityStrictness.LetterOnly);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (Id != null ? Id.GetHashCode() : 0);
+                /*switch (EqualityStrictness)
+                {
+                    case LetterEqualityStrictness.LetterOnly:
+                        break;
+                    case LetterEqualityStrictness.WithActualForm:
+                        hashCode = (hashCode * 397) ^ Form.GetHashCode();
+                        break;
+                    case LetterEqualityStrictness.WithVisualForm:
+                        hashCode = (hashCode * 397) ^ GetStringForDisplay().GetHashCode();
+                        break;
+                }*/
+                return hashCode;
+            }
+        }
+
     }
+
+    /*
+    public class LetterDataComparer : IEqualityComparer<LetterData>
+    {
+        private LetterEqualityStrictness strictness;
+
+        public LetterDataComparer(LetterEqualityStrictness strictness)
+        {
+            this.strictness = strictness;
+        }
+
+        public bool Equals(LetterData x, LetterData y)
+        {
+            return x.IsSameLetterAs(y, strictness);
+        }
+
+        public int GetHashCode(LetterData obj)
+        {
+            var hashCode = (obj.Id != null ? obj.Id.GetHashCode() : 0);
+            switch (obj.EqualityStrictness)
+            {
+                case LetterEqualityStrictness.LetterOnly:
+                    break;
+                case LetterEqualityStrictness.WithActualForm:
+                    hashCode = (hashCode * 397) ^ obj.Form.GetHashCode();
+                    break;
+                case LetterEqualityStrictness.WithVisualForm:
+                    hashCode = (hashCode * 397) ^ obj.GetStringForDisplay().GetHashCode();
+                    break;
+            }
+            return hashCode;
+        }
+    }*/
 }

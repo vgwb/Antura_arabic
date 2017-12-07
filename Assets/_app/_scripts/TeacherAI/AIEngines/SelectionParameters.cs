@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Antura.Database;
 
 namespace Antura.Teacher
 {
@@ -71,6 +72,7 @@ namespace Antura.Teacher
         public bool sortPacksByDifficulty;
 
         // data-based params
+        public LetterEqualityStrictness letterEqualityStrictness;
         public LetterFilters letterFilters;
         public WordFilters wordFilters;
         public PhraseFilters phraseFilters;
@@ -83,6 +85,7 @@ namespace Antura.Teacher
             this.useJourneyForWrong = false;
             this.correctSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             this.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
+            this.letterEqualityStrictness = LetterEqualityStrictness.LetterOnly;
             this.letterFilters = new LetterFilters();
             this.wordFilters = new WordFilters();
             this.phraseFilters = new PhraseFilters();

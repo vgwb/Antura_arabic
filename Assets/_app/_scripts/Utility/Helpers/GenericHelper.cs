@@ -199,6 +199,12 @@ namespace Antura.Helpers
                    "}";
         }
 
+        public static string ToDebugStringNewline<T>(this IEnumerable<T> list)
+        {
+            return "{" + string.Join(",", list.ToList().ConvertAll(x => (x == null ? "NONE" : x.ToString()) + "\n").ToArray()) +
+                   "}";
+        }
+
         public static string ToDebugString<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)
         {
             return "{" + string.Join(",", dictionary.Select(kv => kv.Key + "=" + kv.Value).ToArray()) + "}";

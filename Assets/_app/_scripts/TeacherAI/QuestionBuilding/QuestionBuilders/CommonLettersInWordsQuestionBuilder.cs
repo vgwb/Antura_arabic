@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Antura.Core;
+using Antura.Database;
 using Antura.Helpers;
 
 namespace Antura.Teacher
@@ -21,6 +22,7 @@ namespace Antura.Teacher
         private int nMaxCommonLetters;
         private int nWrong;
         private int nWords;
+        private LetterEqualityStrictness letterEqualityStrictness;
         private QuestionBuilderParameters parameters;
 
         public QuestionBuilderParameters Parameters
@@ -29,6 +31,7 @@ namespace Antura.Teacher
         }
 
         public CommonLettersInWordQuestionBuilder(int nPacks, int nMinCommonLetters = 1, int nMaxCommonLetters = 1, int nWrong = 0, int nWords = 1,
+            LetterEqualityStrictness letterEqualityStrictness = LetterEqualityStrictness.LetterOnly,
             QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
@@ -37,6 +40,7 @@ namespace Antura.Teacher
             this.nMaxCommonLetters = nMaxCommonLetters;
             this.nWrong = nWrong;
             this.nWords = nWords;
+            this.letterEqualityStrictness = letterEqualityStrictness;
             this.parameters = parameters;
         }
 
@@ -75,7 +79,7 @@ namespace Antura.Teacher
             while (nAttempts > 0 && !found)
             {
                 var wordsToUse = usableWords.RandomSelect(nWords);
-                var commonLetters = vocabularyHelper.GetCommonLettersInWords(wordsToUse.ToArray());
+                var commonLetters = vocabularyHelper.GetCommonLettersInWords(letterEqualityStrictness, wordsToUse.ToArray());
                 //UnityEngine.Debug.Log("Trying letters: " + commonLetters.Count);
                 if (commonLetters.Count < nMinCommonLetters || commonLetters.Count > nMaxCommonLetters)
                 {

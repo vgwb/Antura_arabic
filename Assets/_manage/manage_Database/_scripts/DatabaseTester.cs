@@ -29,6 +29,7 @@ namespace Antura.Database.Management
         public Text OutputText;
         public TextRender OutputTextArabic;
 
+        private VocabularyHelper vocabularyHelper;
         private ScoreHelper scoreHelper;
 
         public static string DEBUG_PLAYER_UUID = "TEST";
@@ -38,7 +39,7 @@ namespace Antura.Database.Management
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
 
             dbManager = new DatabaseManager();
-            var vocabularyHelper = new VocabularyHelper(dbManager);
+            vocabularyHelper = new VocabularyHelper(dbManager);
             scoreHelper = new ScoreHelper(dbManager);
             teacherAI = new TeacherAI(dbManager, vocabularyHelper, scoreHelper);
 
@@ -282,6 +283,24 @@ namespace Antura.Database.Management
 
             //LL_WordData newWordData = new LL_WordData(AppManager.I.DB.GetWordDataById("wolf"));
             */
+
+        }
+
+        public void TestVocabularyHelper()
+        {
+            var allWords = vocabularyHelper.GetAllWords(new WordFilters());
+            var testWord = allWords[2];
+            Debug.Log("N words: " + allWords.Count);
+            Debug.Log("TEST Word: " + testWord);
+            var lettersInWord = vocabularyHelper.GetLettersInWord(testWord);
+            Debug.Log("Letters in that word: " + lettersInWord.ToDebugString());
+
+            var testLetter = lettersInWord[0];
+            var wordsWithLetters = vocabularyHelper.GetWordsWithLetter(new WordFilters(), testLetter, LetterEqualityStrictness.LetterOnly);
+            Debug.Log("Words with unstrict letter " + testLetter + ": \n" + wordsWithLetters.ToDebugStringNewline());
+
+            wordsWithLetters = vocabularyHelper.GetWordsWithLetter(new WordFilters(), testLetter, LetterEqualityStrictness.WithActualForm);
+            Debug.Log("Words with strict letter " + testLetter + ": \n" + wordsWithLetters.ToDebugStringNewline());
 
         }
 

@@ -46,8 +46,8 @@ namespace Antura.Teacher.Test
             int threshold = 3;
 
             DoStatsList("Frequency of letters in words", _letterDatas,
-                data => _vocabularyHelper.GetWordsWithLetter(_wordFilters, data.Id).Count < threshold,
-                data => _vocabularyHelper.GetWordsWithLetter(_wordFilters, data.Id).Count.ToString());
+                data => _vocabularyHelper.GetWordsWithLetter(_wordFilters, data, LetterEqualityStrictness.WithActualForm).Count < threshold,
+                data => _vocabularyHelper.GetWordsWithLetter(_wordFilters, data, LetterEqualityStrictness.WithActualForm).Count.ToString());
         }
         
 
@@ -98,9 +98,9 @@ namespace Antura.Teacher.Test
                 // Get the letters & words in this PS
                 var contents = AppManager.I.Teacher.VocabularyAi.GetContentsUpToJourneyPosition(playSessionData.GetJourneyPosition());
                 var letters = contents.GetHashSet<LetterData>();
-                var letterIds = letters.ToList().ConvertAll(x => x.Id);
+                //var letterIds = letters.ToList().ConvertAll(x => x.Id);
                 var words = contents.GetHashSet<WordData>();
-                var wordIds = words.ToList().ConvertAll(x => x.Id);
+                //var wordIds = words.ToList().ConvertAll(x => x.Id);
 
                 // Check whether there are words with letters that are not in the PS
                 bool somethingWrong = false;
@@ -109,7 +109,7 @@ namespace Antura.Teacher.Test
                 {
                     if (observedWords.Contains(word)) continue;
 
-                    if (!_vocabularyHelper.WordContainsAnyLetter(word, letterIds))
+                    if (!_vocabularyHelper.WordContainsAnyLetter(word, letters))
                     {
                         observedWords.Add(word);
                         ps_s += "\n" + word.Id + " has no matching letters!";
@@ -120,7 +120,7 @@ namespace Antura.Teacher.Test
                 {
                     if (observedLetters.Contains(letter)) continue;
 
-                    if (!_vocabularyHelper.AnyWordContainsLetter(letter, wordIds))
+                    if (!_vocabularyHelper.AnyWordContainsLetter(letter, words))
                     {
                         observedLetters.Add(letter);
                         ps_s += "\n" + letter.Id + " has no matching words!";
@@ -226,7 +226,7 @@ namespace Antura.Teacher.Test
                 data =>
                 {
                     string s = "";
-                    var words = _vocabularyHelper.GetWordsWithLetter(_wordFilters, data.Id);
+                    var words = _vocabularyHelper.GetWordsWithLetter(_wordFilters, data, LetterEqualityStrictness.LetterOnly);
                     foreach (var word in words)
                     {
                         s += word.Id +", ";

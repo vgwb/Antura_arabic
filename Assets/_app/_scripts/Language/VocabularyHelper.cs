@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Antura.Helpers;
 using Antura.Teacher;
 using Antura.Core;
@@ -29,7 +30,10 @@ namespace Antura.Database
         // HACK: this is needed for some games where LamAlef behaves differently
         public bool ForceUnseparatedLetters { get; set; }
 
-        public List<string> ProblematicWordIds = new List<string>()
+        // @note: these words are problematic as they contain letters that are not available in the journey position they are played at
+        // TODO: remove this! Should be handled by the curriculum
+        public List<string> ProblematicWordIds = new List<string>();
+        /*
         {
             "won",
             "went",
@@ -42,7 +46,7 @@ namespace Antura.Database
             "released",
             "carried",
             "understood"
-        };
+        };*/
 
         public Dictionary<DiacriticComboEntry, Vector2> DiacriticCombos2Fix = new Dictionary<DiacriticComboEntry, Vector2>();
 
@@ -485,7 +489,7 @@ namespace Antura.Database
         public LetterData ForceEqualityStrictness(LetterData data, LetterEqualityStrictness letterEqualityStrictness)
         {
             var clone = data.Clone();
-            clone.EqualityStrictness = letterEqualityStrictness;
+            //clone.EqualityStrictness = letterEqualityStrictness;
             return clone;
         }
 
@@ -498,13 +502,16 @@ namespace Antura.Database
 
         #region Word -> Letter
 
-        private Dictionary<string, List<string>> unseparatedWordsToLetterCache = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<LetterData>> unseparatedWordsToLetterCache = new Dictionary<string, List<LetterData>>();
+        private Dictionary<string, List<LetterData>> separatedWordsToLetterCache = new Dictionary<string, List<LetterData>>();
 
-        private List<string> GetLetterIdsInWordData(WordData wordData)
+        /*private List<string> GetLetterIdsInWordData(WordData wordData)
         {
             List<string> letter_ids_list = null;
-            if (ForceUnseparatedLetters) {
-                if (!unseparatedWordsToLetterCache.ContainsKey(wordData.Id)) {
+            if (ForceUnseparatedLetters)
+            {
+                if (!unseparatedWordsToLetterCache.ContainsKey(wordData.Id))
+                {
                     var parts = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB.StaticDatabase, wordData, separateVariations: false);
                     letter_ids_list = parts.ConvertAll(p => p.letter.Id);
                     unseparatedWordsToLetterCache[wordData.Id] = letter_ids_list;
@@ -514,23 +521,29 @@ namespace Antura.Database
                 letter_ids_list = new List<string>(wordData.Letters);
             }
             return letter_ids_list;
-        }
-
-        public List<LetterData> GetLettersInWord(WordData wordData)
-        {
-            List<string> letter_ids_list = GetLetterIdsInWordData(wordData);
-            var list = new List<LetterData>();
-            foreach (var letter_id in letter_ids_list) {
-                list.Add(dbManager.GetLetterDataById(letter_id));
-            }
-            return list;
-        }
+        }*/
 
         public List<LetterData> GetLettersInWord(string wordId)
         {
             WordData wordData = dbManager.GetWordDataById(wordId);
             return GetLettersInWord(wordData);
         }
+        public List<LetterData> GetLettersInWord(WordData wordData)
+        {
+            // @note: this will always retrieve all letters with their forms, the strictness will then define whether that has any consequence or not
+            List<LetterData> letters = null;
+            var dictCache = ForceUnseparatedLetters ? unseparatedWordsToLetterCache : separatedWordsToLetterCache;
+            bool separateVariations = !ForceUnseparatedLetters;
+            if (!dictCache.ContainsKey(wordData.Id))
+            {
+                var parts = ArabicAlphabetHelper.AnalyzeData(dbManager.StaticDatabase, wordData, separateVariations: separateVariations);
+                letters = parts.ConvertAll(x => ConvertToLetterWithForcedForm(x.letter, x.letterForm));
+                dictCache[wordData.Id] = letters;
+            }
+            letters = dictCache[wordData.Id];
+            return letters;
+        }
+
 
         public List<LetterData> GetLettersNotInWords(params WordData[] tabooArray)
         {
@@ -539,30 +552,35 @@ namespace Antura.Database
 
         public List<LetterData> GetLettersNotInWords(LetterKindCategory category = LetterKindCategory.Real, params WordData[] tabooArray)
         {
-            var letter_ids_list = new HashSet<string>();
+            var lettersInWords = new HashSet<LetterData>();
             foreach (var tabooWordData in tabooArray) {
-                var tabooWordDataLetterIds = GetLetterIdsInWordData(tabooWordData);
-                letter_ids_list.UnionWith(tabooWordDataLetterIds);
+                var tabooWordDataLetters = GetLettersInWord(tabooWordData);
+                lettersInWords.UnionWith(tabooWordDataLetters);
             }
-            var list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsOfKindCategory(category));
-            return list;
+            var lettersNotInWords = dbManager.FindLetterData(x => !lettersInWords.Contains(x) && x.IsOfKindCategory(category));
+            return lettersNotInWords;
         }
 
         public List<LetterData> GetLettersNotInWord(WordData wordData, LetterKindCategory category = LetterKindCategory.Real)
         {
-            var letter_ids_list = GetLetterIdsInWordData(wordData);
-            var list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsOfKindCategory(category));
-            return list;
+            var lettersInWord = GetLettersInWord(wordData);
+            var lettersNotInWord = dbManager.FindLetterData(x => !lettersInWord.Contains(x) && x.IsOfKindCategory(category));
+            return lettersNotInWord;
         }
 
-        public List<LetterData> GetCommonLettersInWords(params WordData[] words)
+        public List<LetterData> GetCommonLettersInWords(LetterEqualityStrictness letterEqualityStrictness, params WordData[] words)
         {
+            // TODO: use letterEqualityStrictness!
             Dictionary<LetterData, int> countDict = new Dictionary<LetterData, int>();
-            foreach (var word in words) {
+            foreach (var word in words)
+            {
                 var nonRepeatingLettersOfWord = new HashSet<LetterData>();
 
                 var letters = GetLettersInWord(word);
-                foreach (var letter in letters) { nonRepeatingLettersOfWord.Add(letter); }
+                foreach (var letter in letters)
+                {
+                    nonRepeatingLettersOfWord.Add(letter);
+                }
 
                 foreach (var letter in nonRepeatingLettersOfWord) {
                     if (!countDict.ContainsKey(letter)) countDict[letter] = 0;
@@ -631,20 +649,21 @@ namespace Antura.Database
             return false;
         }
 
-        public int WordContainsLetterTimes(WordData selectedWord, LetterData containedLetter)
+        public int WordContainsLetterTimes(WordData selectedWord, LetterData containedLetter, LetterEqualityStrictness letterEqualityStrictness = LetterEqualityStrictness.LetterOnly)
         {
-            var wordLetters = AppManager.I.VocabularyHelper.GetLettersInWord(selectedWord);
+            var wordLetters = GetLettersInWord(selectedWord);
             int count = 0;
             foreach (var letter in wordLetters)
-                if (letter == containedLetter)
+                if (letter.IsSameLetterAs(containedLetter, letterEqualityStrictness))
                     count++;
             return count;
         }
 
         public bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
         {
+            // TODO: use the basic GetWordsInLetter now
             //if (containedLetter.Id == "lam_alef") Debug.Log("Looking for lam-alef in " + selectedWord);
-            foreach (var l in ArabicAlphabetHelper.FindLetter(AppManager.I.DB, selectedWord, containedLetter))
+            foreach (var l in ArabicAlphabetHelper.FindLetter(dbManager, selectedWord, containedLetter))
             {
                 //if (l.letter.Id == "lam_alef") Debug.Log("Lam alef form " + l.letterForm + " in word " + selectedWord);
                 if (l.letterForm == selectedForm)
@@ -682,15 +701,15 @@ namespace Antura.Database
             return dbManager.FindWordData(x => CheckFilters(filters, x));
         }
 
-        private List<WordData> GetWordsNotIn(WordFilters filters, List<string> tabooList)
+        private List<WordData> GetWordsNotIn(WordFilters filters, List<WordData> tabooWords)
         {
-            return dbManager.FindWordData(x => !tabooList.Contains(x.Id) && CheckFilters(filters, x));
+            return dbManager.FindWordData(word => !tabooWords.Contains(word) && CheckFilters(filters, word));
         }
 
-        public List<WordData> GetWordsNotIn(WordFilters filters, params WordData[] tabooArray)
+        public List<WordData> GetWordsNotIn(WordFilters filters, params WordData[] tabooWords)
         {
-            var tabooList = new List<WordData>(tabooArray);
-            return GetWordsNotIn(filters, tabooList.ConvertAll(x => x.Id));
+            var tabooList = new List<WordData>(tabooWords);
+            return GetWordsNotIn(filters, tabooList);
         }
 
         public List<WordData> GetWordsByCategory(WordDataCategory choice, WordFilters filters)
@@ -718,42 +737,42 @@ namespace Antura.Database
 
         #region Letter -> Word
 
-        public List<WordData> GetWordsWithLetter(WordFilters filters, string okLetter)
+        public List<WordData> GetWordsWithLetter(WordFilters filters, LetterData okLetter, LetterEqualityStrictness letterEqualityStrictness = LetterEqualityStrictness.LetterOnly)
         {
-            return GetWordsByLetters(filters, new string[] { okLetter }, null);
+            return GetWordsByLetters(filters, new[] { okLetter }, null, letterEqualityStrictness);
         }
 
-        public List<WordData> GetWordsWithLetters(WordFilters filters, params string[] okLetters)
+        public List<WordData> GetWordsWithLetters(WordFilters filters, LetterEqualityStrictness letterEqualityStrictness = LetterEqualityStrictness.LetterOnly, params LetterData[] okLetters)
         {
-            return GetWordsByLetters(filters, okLetters, null);
+            return GetWordsByLetters(filters, okLetters, null, letterEqualityStrictness);
         }
 
-        public List<WordData> GetWordsWithoutLetter(WordFilters filters, string tabooLetter)
+        public List<WordData> GetWordsWithoutLetter(WordFilters filters, LetterData tabooLetter, LetterEqualityStrictness letterEqualityStrictness = LetterEqualityStrictness.LetterOnly)
         {
-            return GetWordsByLetters(filters, null, new string[] { tabooLetter });
+            return GetWordsByLetters(filters, null, new[] { tabooLetter }, letterEqualityStrictness);
         }
 
-        public List<WordData> GetWordsWithoutLetters(WordFilters filters, params string[] tabooLetters)
+        public List<WordData> GetWordsWithoutLetters(WordFilters filters, LetterEqualityStrictness letterEqualityStrictness = LetterEqualityStrictness.LetterOnly, params LetterData[] tabooLetters)
         {
-            return GetWordsByLetters(filters, null, tabooLetters);
+            return GetWordsByLetters(filters, null, tabooLetters, letterEqualityStrictness);
         }
 
-        public List<WordData> GetWordsByLetters(WordFilters filters, string[] okLettersArray, string[] tabooLettersArray)
+        private List<WordData> GetWordsByLetters(WordFilters filters, LetterData[] okLettersArray, LetterData[] tabooLettersArray, LetterEqualityStrictness letterEqualityStrictness = LetterEqualityStrictness.LetterOnly)
         {
-            if (okLettersArray == null) okLettersArray = new string[] { };
-            if (tabooLettersArray == null) tabooLettersArray = new string[] { };
+            if (okLettersArray == null) okLettersArray = new LetterData[] { };
+            if (tabooLettersArray == null) tabooLettersArray = new LetterData[] { };
 
-            var okLetters = new HashSet<string>(okLettersArray);
-            var tabooLetters = new HashSet<string>(tabooLettersArray);
+            var okLetters = new HashSet<LetterData>(okLettersArray);
+            var tabooLetters = new HashSet<LetterData>(tabooLettersArray);
 
-            List<WordData> list = dbManager.FindWordData(x => {
-                if (!CheckFilters(filters, x)) { return false; }
+            List<WordData> wordsByLetters = dbManager.FindWordData(word => {
+                if (!CheckFilters(filters, word)) { return false; }
 
-                var letter_ids = GetLetterIdsInWordData(x);
+                var lettersInWord = GetLettersInWord(word);
 
                 if (tabooLetters.Count > 0) {
-                    foreach (var letter_id in letter_ids) {
-                        if (tabooLetters.Contains(letter_id)) {
+                    foreach (var letter in lettersInWord) {
+                        if (tabooLetters.Contains(letter)) {
                             return false;
                         }
                     }
@@ -763,8 +782,9 @@ namespace Antura.Database
                     bool hasAllOkLetters = true;
                     foreach (var okLetter in okLetters) {
                         bool hasThisLetter = false;
-                        foreach (var letter_id in letter_ids) {
-                            if (letter_id == okLetter) {
+                        foreach (var letter in lettersInWord) {
+                            if (letter.IsSameLetterAs(okLetter, letterEqualityStrictness))
+                            {
                                 hasThisLetter = true;
                                 break;
                             }
@@ -779,36 +799,13 @@ namespace Antura.Database
                 return true;
             }
             );
-
-            return list;
+            return wordsByLetters;
         }
 
-        public bool WordContainsAnyLetter(WordData word, List<string> letter_ids)
-        {
-            var containedLetters = GetLettersInWord(word).ConvertAll(x => x.Id);
-            foreach (var letter_id in letter_ids) {
-                if (containedLetters.Contains(letter_id)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool WordHasAllLettersInCommonWith(WordData word, List<string> word_ids)
+        public bool WordContainsAnyLetter(WordData word, IEnumerable<LetterData> letters)
         {
             var containedLetters = GetLettersInWord(word);
-            foreach (var letter in containedLetters) {
-                if (!LetterContainedInAnyWord(letter, word_ids)) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        public bool LetterContainedInAnyWord(LetterData letter, List<string> word_ids)
-        {
-            foreach (var word_id in word_ids) {
-                var containedLetters = GetLettersInWord(word_id);
+            foreach (var letter in letters) {
                 if (containedLetters.Contains(letter)) {
                     return true;
                 }
@@ -816,10 +813,32 @@ namespace Antura.Database
             return false;
         }
 
-        public bool AnyWordContainsLetter(LetterData letter, List<string> word_ids)
+        public bool WordHasAllLettersInCommonWith(WordData word, List<WordData> words)
         {
-            foreach (var word_id in word_ids) {
-                if (GetLettersInWord(word_id).Contains(letter)) {
+            var lettersInWord = GetLettersInWord(word);
+            foreach (var letter in lettersInWord) {
+                if (!IsLetterContainedInAnyWord(letter, words)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool IsLetterContainedInAnyWord(LetterData letter, List<WordData> words)
+        {
+            foreach (var word in words) {
+                var containedLetters = GetLettersInWord(word);
+                if (containedLetters.Contains(letter)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool AnyWordContainsLetter(LetterData letter, IEnumerable<WordData> words)
+        {
+            foreach (var word in words) {
+                if (GetLettersInWord(word).Contains(letter)) {
                     return true;
                 }
             }
