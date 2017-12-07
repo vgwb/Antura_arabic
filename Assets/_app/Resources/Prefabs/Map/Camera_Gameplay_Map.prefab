@@ -78,6 +78,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 0
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -118,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b151e2819eb4545be24feb4b358c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPin: {fileID: 0}
   stageMapsManager: {fileID: 0}
+  mapCameraController: {fileID: 0}
 --- !u!114 &114622299285948232
 MonoBehaviour:
   m_ObjectHideFlags: 1

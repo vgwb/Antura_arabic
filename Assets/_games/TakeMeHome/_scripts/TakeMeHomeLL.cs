@@ -347,7 +347,7 @@ public class TakeMeHomeLL : MonoBehaviour {
             isResetting = true;
             transform.DOScale(0.1f, 0.1f);
 
-            Vector3 targetPosition = collidedTubes[collidedTubes.Count-1].transform.FindChild("Cube").position; ;// lastTube.transform.FindChild("Cube").position;
+            Vector3 targetPosition = collidedTubes[collidedTubes.Count-1].transform.Find("Cube").position; ;// lastTube.transform.FindChild("Cube").position;
             collidedTubes[collidedTubes.Count - 1].deactivate(this);
           
 

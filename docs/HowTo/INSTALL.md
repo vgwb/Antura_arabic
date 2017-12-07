@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Unity latest 5.5.x, Mac or Windows computer (it works on Unity 5.6 and 2017, but for some glitches in a couple of shaders and the need to update TextMeshPro to the relative versions)
+- Unity latest 5.6.x, Mac or Windows computer (it works on Unity 5.6 and 2017, but for some glitches in a couple of shaders and the need to update TextMeshPro to the relative versions)
 
 ## Optional
 
@@ -11,7 +11,7 @@
 
 ## Fetch the Project
 
-1. Get Unity latest 5.5.x stable (Win or Mac) from <https://unity3d.com/get-unity/download/archive>
+1. Get Unity latest 5.6.x stable (Win or Mac) from <https://unity3d.com/get-unity/download/archive>
 2. Download the project. There are two ways:
     A) the **simple** is to download the zipped package (from Clone or Download green button)
     B) the **advanced** is to use a Git client to track the changes and update the project as it gets developed:

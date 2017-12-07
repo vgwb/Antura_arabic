@@ -68,7 +68,7 @@ namespace Antura.Tutorial
             wps.Clear();
             foreach (LineRenderer lr in Lines)
             {
-                lr.numPositions = 0;
+                lr.positionCount = 0;
                 lr.SetPositions(new Vector3[0]);
             }
         }
@@ -82,7 +82,7 @@ namespace Antura.Tutorial
             int count = wps.Count;
             foreach (LineRenderer lr in Lines)
             {
-                lr.numPositions = count;
+                lr.positionCount = count;
                 lr.SetPositions(wpsArray);
             }
         }

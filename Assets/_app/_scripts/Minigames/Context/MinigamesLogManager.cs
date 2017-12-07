@@ -1,10 +1,9 @@
-using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
 using Antura.Core;
 using Antura.LivingLetters;
 using Antura.Teacher;
-using Antura.Database;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace Antura.Minigames
 {
@@ -157,25 +156,16 @@ namespace Antura.Minigames
                 }
                 resultsData = resultsDict[l._data.Id];
 
-                if (l._isPositiveResult)
+                if (l._isPositiveResult) {
                     resultsData.nCorrect++;
-                else
+                } else {
                     resultsData.nWrong++;
+                }
             }
 
             var resultsList = resultsDict.Values.ToList();
             LogManager.I.LogLearn(sessionName, miniGameCode, resultsList);
         }
-
-        #endregion
-
-        #region Journey Scores
-
-        #endregion
-
-        #region Mood
-
-        // direct into API
 
         #endregion
 

@@ -115,8 +115,7 @@ namespace Antura.Rewards
                     foreach (var item in rewards.FindAll(r => r.Category == _categoryRewardId)) {
                         if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetRewardCategory() == _categoryRewardId)
                             .Exists(ur => ur.ItemId == item.ID)) {
-                            returnList.Add(new RewardItem()
-                            {
+                            returnList.Add(new RewardItem() {
                                 ID = item.ID,
                                 IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
                                 IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures.Exists(f => f.ItemId == item.ID)
@@ -137,8 +136,7 @@ namespace Antura.Rewards
                     foreach (var item in GetConfig().RewardsTile) {
                         if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.texture)
                             .Exists(ur => ur.ItemId == item.ID)) {
-                            returnList.Add(new RewardItem()
-                            {
+                            returnList.Add(new RewardItem() {
                                 ID = item.ID,
                                 IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
                                 IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemId == item.ID
@@ -161,8 +159,7 @@ namespace Antura.Rewards
                     foreach (var item in GetConfig().RewardsDecal) {
                         if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.decal)
                             .Exists(ur => ur.ItemId == item.ID)) {
-                            returnList.Add(new RewardItem()
-                            {
+                            returnList.Add(new RewardItem() {
                                 ID = item.ID,
                                 IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
                                 IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture.ItemId == item.ID
@@ -685,8 +682,6 @@ namespace Antura.Rewards
                     } while (alreadyUnlocked);
                     rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
                     break;
-                default:
-                    break;
             }
             return rp;
         }
@@ -745,8 +740,6 @@ namespace Antura.Rewards
                     rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, "Antura_decalmap01", "color1", _rewardType,
                         new JourneyPosition(0, 0, 0));
                     rp.IsNew = false; // Because is automatically selected
-                    break;
-                default:
                     break;
             }
             return rp;

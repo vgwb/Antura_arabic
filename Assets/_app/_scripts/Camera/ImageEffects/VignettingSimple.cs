@@ -4,7 +4,6 @@ namespace Antura.CameraEffects
 {
     [ExecuteInEditMode]
     [RequireComponent(typeof(Camera))]
-    [AddComponentMenu("Image Effects/Simple Vignette and Chromatic Aberration")]
     public class VignettingSimple : MonoBehaviour
     {
         public float fadeOut = 0;
@@ -27,11 +26,9 @@ namespace Antura.CameraEffects
             fadeOut = 0;
         }
 
-
         void OnPostRender()
         {
-            if (vignetteMaterial == null)
-                return;
+            if (vignetteMaterial == null) { return; }
 
             fadeOut = Mathf.Clamp01(fadeOut);
 

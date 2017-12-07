@@ -1,6 +1,4 @@
 using UnityEngine;
-using System;
-using Antura.Minigames;
 
 namespace Antura.Minigames.ThrowBalls
 {
@@ -70,8 +68,7 @@ namespace Antura.Minigames.ThrowBalls
 
         public void CancelDragging()
         {
-            if (IsDragging())
-            {
+            if (IsDragging()) {
                 SetState(State.Anchored);
             }
         }
@@ -83,24 +80,21 @@ namespace Antura.Minigames.ThrowBalls
 
         public void OnBallTugged()
         {
-            if (!IsLaunched())
-            {
+            if (!IsLaunched()) {
                 SetState(State.Dragging);
             }
         }
 
         public void OnCollisionEnter(Collision collision)
         {
-            if (state != State.Chased)
-            {
+            if (state != State.Chased) {
                 audioManager.PlaySound(Sfx.BallHit);
             }
         }
 
         public void OnCollisionExit(Collision collision)
         {
-            if (collision.gameObject.tag == "Bush")
-            {
+            if (collision.gameObject.tag == "Bush") {
                 stateTime += 2f;
             }
         }
@@ -153,13 +147,11 @@ namespace Antura.Minigames.ThrowBalls
         {
             this.state = state;
 
-            if (state != State.Idle || state != State.Chased)
-            {
+            if (state != State.Idle || state != State.Chased) {
                 Physics.IgnoreLayerCollision(10, 12);
             }
 
-            switch (state)
-            {
+            switch (state) {
                 case State.Anchored:
                     rigidBody.isKinematic = false;
                     sphereCollider.enabled = true;
@@ -191,8 +183,7 @@ namespace Antura.Minigames.ThrowBalls
                 case State.Idle:
                     rigidBody.isKinematic = false;
 
-                    if (!GameState.instance.IsTutorialRound())
-                    {
+                    if (!GameState.instance.IsTutorialRound()) {
                         AnturaController.instance.Enable();
                         AnturaController.instance.Reset();
                         AnturaController.instance.EnterScene();
@@ -204,8 +195,6 @@ namespace Antura.Minigames.ThrowBalls
                 case State.Chased:
                     trailRenderer.enabled = false;
                     Physics.IgnoreLayerCollision(10, 12, false);
-                    break;
-                default:
                     break;
             }
 
@@ -229,16 +218,14 @@ namespace Antura.Minigames.ThrowBalls
 
         public void OnIntercepted()
         {
-            if (state != State.Intercepted)
-            {
+            if (state != State.Intercepted) {
                 SetState(State.Intercepted);
             }
         }
 
         public void OnRebounded()
         {
-            if (state != State.Rebounding)
-            {
+            if (state != State.Rebounding) {
                 SetState(State.Rebounding);
 
                 Vector3 initialVelocity = new Vector3();
@@ -253,57 +240,35 @@ namespace Antura.Minigames.ThrowBalls
 
         void FixedUpdate()
         {
-            if (state == State.Launched)
-            {
+            if (state == State.Launched) {
                 rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
 
-                if (transform.position.y < -9 || stateTime > BALL_RESPAWN_TIME)
-                {
-                    if (ThrowBallsGame.instance.GameState.isRoundOngoing)
-                    {
+                if (transform.position.y < -9 || stateTime > BALL_RESPAWN_TIME) {
+                    if (ThrowBallsGame.instance.GameState.isRoundOngoing) {
                         GameState.instance.OnBallLost();
                         Reset();
-                    }
-                    
-                    else
-                    {
+                    } else {
                         Disable();
                     }
                 }
-            }
-
-            else if (state == State.Rebounding)
-            {
-                if (transform.position.z + rigidBody.velocity.z * Time.fixedDeltaTime <= REBOUND_DESTINATION.z)
-                {
+            } else if (state == State.Rebounding) {
+                if (transform.position.z + rigidBody.velocity.z * Time.fixedDeltaTime <= REBOUND_DESTINATION.z) {
                     transform.position = REBOUND_DESTINATION;
                     UIController.instance.OnScreenCracked();
                     SetState(State.Hanging);
                 }
-            }
-
-            else if (state == State.Anchored)
-            {
-                if (stateTime >= TIME_TO_IDLE)
-                {
+            } else if (state == State.Anchored) {
+                if (stateTime >= TIME_TO_IDLE) {
                     SetState(State.Idle);
                 }
-            }
-
-            else if (state == State.Hanging)
-            {
-                if (stateTime >= SCREEN_HANG_TIME)
-                {
+            } else if (state == State.Hanging) {
+                if (stateTime >= SCREEN_HANG_TIME) {
                     SetState(State.Dropping);
                 }
-            }
-
-            else if (state == State.Dropping)
-            {
+            } else if (state == State.Dropping) {
                 rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
 
-                if (stateTime >= DROP_TIME)
-                {
+                if (stateTime >= DROP_TIME) {
                     GameState.instance.OnBallLost();
                     Reset();
                 }

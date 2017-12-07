@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 Shader "TextMeshPro/Distance Field" {
 
 Properties {
@@ -159,7 +161,7 @@ SubShader {
 			float4 vert = input.position;
 			vert.x += _VertexOffsetX;
 			vert.y += _VertexOffsetY;
-			float4 vPosition = mul(UNITY_MATRIX_MVP, vert);
+			float4 vPosition = UnityObjectToClipPos(vert);
 
 			float2 pixelSize = vPosition.w;
 			pixelSize /= float2(_ScaleX, _ScaleY) * abs(mul((float2x2)UNITY_MATRIX_P, _ScreenParams.xy));
@@ -280,9 +282,17 @@ SubShader {
 			faceColor.rgb += glowColor.rgb * glowColor.a;
 		#endif
 
-		// Alternative implementation to UnityGet2DClipping with support for softness.
-		half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * input.mask.zw);
-		faceColor *= m.x * m.y;
+		// #if !MASK_OFF
+		#if UNITY_VERSION < 530
+			// Unity 5.2 2D Rect Mask Support
+			if (_UseClipRect)
+				faceColor *= UnityGet2DClipping(input.mask.xy, _ClipRect);
+		#else
+			// Alternative implementation to UnityGet2DClipping with support for softness.
+			half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * input.mask.zw);
+			faceColor *= m.x * m.y;
+		#endif
+		//#endif
 
   		return faceColor * input.color.a;
 		}

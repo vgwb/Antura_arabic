@@ -22,10 +22,9 @@ namespace Antura.GamesSelector
         void Start()
         {
             // Fill with data
-            JourneyPosition journeyPos = AppManager.I.Player.CurrentJourneyPosition;
-            PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.Id);
-            LearningBlockData learningBlock =
-                AppManager.I.DB.GetLearningBlockDataById(playSessionData.Stage + "." + playSessionData.LearningBlock.ToString());
+            var journeyPos = AppManager.I.Player.CurrentJourneyPosition;
+            var playSession = AppManager.I.DB.GetPlaySessionDataById(journeyPos.Id);
+            var learningBlock = AppManager.I.DB.GetLearningBlockDataById(playSession.Stage + "." + playSession.LearningBlock.ToString());
             TitleCode.text = journeyPos.ToString();
             TitleArabic.text = learningBlock.Title_Ar;
             TitleEnglish.text = learningBlock.Title_En;

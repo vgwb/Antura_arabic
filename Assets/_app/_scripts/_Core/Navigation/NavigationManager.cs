@@ -170,8 +170,6 @@ namespace Antura.Core
                 case AppScene.Ending:
                     GoToScene(AppScene.Map);
                     break;
-                default:
-                    break;
             }
         }
 

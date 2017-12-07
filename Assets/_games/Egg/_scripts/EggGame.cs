@@ -1,4 +1,3 @@
-using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.Egg
@@ -22,8 +21,7 @@ namespace Antura.Minigames.Egg
 
         public int CurrentStars
         {
-            get
-            {
+            get {
                 if (correctStages == 0)
                     return 0;
 
@@ -48,12 +46,13 @@ namespace Antura.Minigames.Egg
 
         public bool ShowTutorial
         {
-            get
-            {
+            get {
                 if (tutorialFlag) {
                     tutorialFlag = false;
                     return true;
-                } else return false;
+                } else {
+                    return false;
+                }
             }
         }
 

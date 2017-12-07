@@ -85,7 +85,7 @@ namespace Antura.Minigames.Maze
                     foreach (Transform fruit in child.transform)
                         fruit.gameObject.AddComponent<BoxCollider>();
 
-                    Transform tutorialWaypointsForPath = transform.FindChild("TutorialWaypoints" + child.name.Substring(5));
+                    Transform tutorialWaypointsForPath = transform.Find("TutorialWaypoints" + child.name.Substring(5));
                     tutorialWaypoints.Add(tutorialWaypointsForPath == null ? child.gameObject : tutorialWaypointsForPath.gameObject);
                     
                 }

@@ -50,6 +50,11 @@ SubShader{
 
 		#include "UnityCG.cginc"
 
+
+	#if UNITY_VERSION < 530
+		bool _UseClipRect;
+	#endif
+
 		struct appdata_t {
 			float4 vertex		: POSITION;
 			fixed4 color		: COLOR;
@@ -93,7 +98,7 @@ SubShader{
 
 			vert.xy += (vert.w * 0.5) / _ScreenParams.xy;
 
-			float4 vPosition = UnityPixelSnap(mul(UNITY_MATRIX_MVP, vert));
+			float4 vPosition = UnityPixelSnap(UnityObjectToClipPos(vert));
 
 			fixed4 faceColor = i.color;
 			faceColor *= _FaceColor;
@@ -120,9 +125,18 @@ SubShader{
 			fixed4 c = tex2D(_MainTex, i.texcoord0);
 			c = fixed4 (tex2D(_FaceTex, i.texcoord1).rgb * i.color.rgb, i.color.a * c.a);
 
-			// Alternative implementation to UnityGet2DClipping with support for softness.
-			half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(i.mask.xy)) * i.mask.zw);
-			c *= m.x * m.y;
+			#if UNITY_VERSION < 530
+				if (_UseClipRect)
+				{
+					// Alternative implementation to UnityGet2DClipping with support for softness.
+					half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(i.mask.xy)) * i.mask.zw);
+					c *= m.x * m.y;
+				}
+			#else
+				// Alternative implementation to UnityGet2DClipping with support for softness.
+				half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(i.mask.xy)) * i.mask.zw);
+				c *= m.x * m.y;
+			#endif
 
 			return c;
 		}

@@ -18,8 +18,9 @@ namespace Antura.CameraEffects
                 return null;
             }
 
-            if (s.isSupported && m2Create && m2Create.shader == s)
+            if (s.isSupported && m2Create && m2Create.shader == s) {
                 return m2Create;
+            }
 
             if (!s.isSupported) {
                 NotSupported();
@@ -28,9 +29,11 @@ namespace Antura.CameraEffects
             } else {
                 m2Create = new Material(s);
                 m2Create.hideFlags = HideFlags.DontSave;
-                if (m2Create)
+                if (m2Create) {
                     return m2Create;
-                else return null;
+                } else {
+                    return null;
+                }
             }
         }
 
@@ -41,17 +44,20 @@ namespace Antura.CameraEffects
                 return null;
             }
 
-            if (m2Create && (m2Create.shader == s) && (s.isSupported))
+            if (m2Create && (m2Create.shader == s) && (s.isSupported)) {
                 return m2Create;
+            }
 
             if (!s.isSupported) {
                 return null;
             } else {
                 m2Create = new Material(s);
                 m2Create.hideFlags = HideFlags.DontSave;
-                if (m2Create)
+                if (m2Create) {
                     return m2Create;
-                else return null;
+                } else {
+                    return null;
+                }
             }
         }
 
@@ -92,16 +98,18 @@ namespace Antura.CameraEffects
                 return false;
             }
 
-            if (needDepth)
+            if (needDepth) {
                 GetComponent<Camera>().depthTextureMode |= DepthTextureMode.Depth;
+            }
 
             return true;
         }
 
         protected bool CheckSupport(bool needDepth, bool needHdr)
         {
-            if (!CheckSupport(needDepth))
+            if (!CheckSupport(needDepth)) {
                 return false;
+            }
 
             if (needHdr && !supportHDRTextures) {
                 NotSupported();

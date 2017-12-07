@@ -139,7 +139,7 @@ namespace Antura.Minigames.DancingDots
 
             AudioManager.I.PlayMusic(Music.MainTheme);
             //AudioManager.I.transform.FindChild("Music").gameObject.AddComponent<AudioProcessor>();
-            AudioManager.I.transform.FindChild("Music").gameObject.AddComponent<DancingDotsBeatDetection>();
+            AudioManager.I.transform.Find("Music").gameObject.AddComponent<DancingDotsBeatDetection>();
 
             //disco = GameObject.Find("Quads").GetComponent<DancingDotsQuadManager>();
             //StartCoroutine(beat());
