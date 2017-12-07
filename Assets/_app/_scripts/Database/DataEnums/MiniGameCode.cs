@@ -29,7 +29,7 @@
         HideSeek_letterform = 16,
         MakeFriends_letterform = 17,
         Maze_letter = 18,
-        MissingLetter_letter = 19, // DISABLED
+        //MissingLetter_letter = 19, // DISABLED
         MissingLetter_letterform = 39, // NEW
         MissingLetter_phrase = 20, // DISABLED
         MissingLetter_letterinword = 35,

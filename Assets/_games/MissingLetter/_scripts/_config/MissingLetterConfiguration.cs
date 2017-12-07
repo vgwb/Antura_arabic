@@ -45,7 +45,7 @@ namespace Antura.Minigames.MissingLetter
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
-            Context = new MinigamesGameContext(MiniGameCode.MissingLetter_letter, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.MissingLetter_letterinword, System.DateTime.Now.Ticks.ToString());
 
             Difficulty = 0.5f;
             //Variation = MissingLetterVariation.MissingLetter;

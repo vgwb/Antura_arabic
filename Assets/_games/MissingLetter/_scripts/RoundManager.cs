@@ -6,6 +6,7 @@ using Antura.UI;
 using System.Linq;
 using System.Collections.Generic;
 using System;
+using Antura.Database;
 using UnityEngine;
 
 namespace Antura.Minigames.MissingLetter
@@ -147,6 +148,9 @@ namespace Antura.Minigames.MissingLetter
             var _wrongAnswers = m_oCurrQuestionPack.GetWrongAnswers().ToList();
             var _correctAnswer = m_oCurrQuestionPack.GetCorrectAnswers().ToList().GetRandom() as LL_LetterData;
 
+            Debug.Log("WRONG: " + m_oCurrQuestionPack.GetWrongAnswers().ToList().ConvertAll(x => (x as LL_LetterData).Data).ToDebugStringNewline());
+            Debug.Log("CORRECT: " + m_oCurrQuestionPack.GetCorrectAnswers().ToList().ConvertAll(x => (x as LL_LetterData).Data).ToDebugStringNewline());
+
             GameObject oQuestion = m_oQuestionPool.GetElement();
 
             LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
@@ -166,8 +170,8 @@ namespace Antura.Minigames.MissingLetter
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
             corrAnsBheaviour.Reset();
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.LetterInWord) {
-                var form = m_oRemovedLetter.letterForm;
+            /*if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.LetterInWord) {
+                *var form = m_oRemovedLetter.letterForm;
                 LL_LetterData formAnswer = new LL_LetterData(_correctAnswer.Id);
                 formAnswer.Form = form;
                 _correctAnswer = formAnswer;
@@ -180,6 +184,8 @@ namespace Antura.Minigames.MissingLetter
                         _wrongAnswers.Insert(0, new LL_LetterData(_correctAnswer.Id, f));
             } else
                 corrAnsBheaviour.LetterData = _correctAnswer;
+            */
+            corrAnsBheaviour.LetterData = _correctAnswer;
 
             corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
             corrAnsBheaviour.onLetterClick += OnAnswerClicked;
@@ -405,7 +411,11 @@ namespace Antura.Minigames.MissingLetter
 
         private bool isCorrectAnswer(ILivingLetterData data)
         {
-            return m_oCurrentCorrectAnswer.Equals(data);
+            // TODO: place this into the configuration, like in FastCrowd!
+            return DataMatchingHelper.IsDataMatching(
+                (data as LL_LetterData),
+                (m_oCurrentCorrectAnswer as LL_LetterData), LetterEqualityStrictness.WithVisualForm);
+            //return m_oCurrentCorrectAnswer.Equals(data);
         }
 
         //call after clicked answer animation

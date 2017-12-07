@@ -116,7 +116,6 @@ namespace Antura.Teacher
             {
                 if (wrongForm == correctForm) continue;
                 letterWithForm = AppManager.I.VocabularyHelper.ConvertToLetterWithForcedForm(letter, wrongForm);
-                correctAnswers.Add(letterWithForm);
                 wrongAnswers.Add(letterWithForm);
             }
 
