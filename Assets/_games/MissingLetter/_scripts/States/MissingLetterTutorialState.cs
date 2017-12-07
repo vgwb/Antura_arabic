@@ -46,7 +46,7 @@ namespace Antura.Minigames.MissingLetter
         {
             m_fDelayTime -= delta;
             if (m_fDelayTime < 0 && !m_bSuggested) {
-                if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.Letter ||
+                if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.LetterForm ||
                     MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.LetterInWord) {
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_Tuto);
                 } else {

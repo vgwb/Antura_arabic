@@ -6,7 +6,6 @@ namespace Antura.Minigames.MissingLetter
 {
     public enum MissingLetterVariation
     {
-        Letter = MiniGameCode.MissingLetter_letter,
         Phrase = MiniGameCode.MissingLetter_phrase,
         LetterForm = MiniGameCode.MissingLetter_letterform,
         LetterInWord = MiniGameCode.MissingLetter_letterinword
@@ -68,10 +67,6 @@ namespace Antura.Minigames.MissingLetter
                 case MissingLetterVariation.LetterInWord:
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builderParams.letterFilters.excludeDiphthongs = true;
-                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters: true, parameters: builderParams);
-                    break;
-
-                case MissingLetterVariation.Letter:
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters: true, parameters: builderParams);
                     break;
 
