@@ -19,11 +19,12 @@ namespace Antura.Minigames.FastCrowd
             nextState = false;
             playIntro = false;
 
+            // TODO: make this more robust to variations
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet) {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_alphabet_Title, () => { playIntro = true; });
             } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting) {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_counting_Title, () => { playIntro = true; });
-            } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter) {
+            } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName) {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Title, () => { playIntro = true; });
             } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord) {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Title, () => { playIntro = true; });
@@ -48,11 +49,12 @@ namespace Antura.Minigames.FastCrowd
             if (playIntro) {
                 playIntro = false;
 
+                // TODO: make this more robust to variations
                 if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet) {
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_alphabet_Intro, () => { nextState = true; });
                 } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting) {
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_counting_Intro, () => { nextState = true; });
-                } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter) {
+                } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName) {
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Intro, () => { nextState = true; });
                 } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord) {
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Intro, () => { nextState = true; });

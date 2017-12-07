@@ -33,6 +33,7 @@ namespace Antura.Minigames.FastCrowd
 
             tutorialStarted = false;
 
+            // TODO: make this more robust to variations
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet)
             {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_alphabet_Tuto, () => { StartTutorial(); });
@@ -41,7 +42,7 @@ namespace Antura.Minigames.FastCrowd
             {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_counting_Tuto, () => { StartTutorial(); });
             }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName)
             {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Tuto, () => { StartTutorial(); });
             }

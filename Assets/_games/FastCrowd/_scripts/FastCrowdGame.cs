@@ -137,12 +137,13 @@ namespace Antura.Minigames.FastCrowd
             EndState = new FastCrowdEndState(this);
             TutorialState = new FastCrowdTutorialState(this);
 
+            // TODO: make this more robust to variations
             QuestionManager.wordComposer.gameObject.SetActive(
                 FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord ||
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter
+                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName
                 );
 
-            QuestionManager.wordComposer.splitMode = FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter;
+            QuestionManager.wordComposer.splitMode = FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName;
         }
 
 

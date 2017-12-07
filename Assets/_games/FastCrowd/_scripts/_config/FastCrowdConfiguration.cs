@@ -8,7 +8,7 @@ namespace Antura.Minigames.FastCrowd
     {
         LetterInWord = MiniGameCode.FastCrowd_letterinword,
         Word = MiniGameCode.FastCrowd_word,
-        Letter = MiniGameCode.FastCrowd_letter,
+        LetterName = MiniGameCode.FastCrowd_letter,
         LetterForm = MiniGameCode.FastCrowd_letterform,
         Counting = MiniGameCode.FastCrowd_counting,
         Alphabet = MiniGameCode.FastCrowd_alphabet
@@ -96,12 +96,13 @@ namespace Antura.Minigames.FastCrowd
                 case FastCrowdVariation.Counting:
                     builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number, builderParams, true);
                     break;
-                case FastCrowdVariation.Letter:
+                case FastCrowdVariation.LetterName:
+                    // TODO: this is currently a LetterForm, should not!
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true);
                     break;
                 case FastCrowdVariation.LetterForm:
-                    // TODO CHECK NEW MINIGAME VARIATION
-                    builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true);
+                    var letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true, letterAlterationFilters: letterAlterationFilters);
                     break;
                 case FastCrowdVariation.LetterInWord:
                     builderParams.wordFilters.excludeColorWords = true;

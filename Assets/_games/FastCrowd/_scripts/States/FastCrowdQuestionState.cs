@@ -31,7 +31,10 @@ namespace Antura.Minigames.FastCrowd
                 return;
             }
 
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
+            // TODO: make this more robust to variations
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName
+                || FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterForm
+                )
             {
                 LL_LetterData isolated = new LL_LetterData(question.GetQuestion().Id);
                 isolated.Form = Database.LetterForm.Isolated;
