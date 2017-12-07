@@ -301,6 +301,18 @@ namespace Antura.Helpers
 
         #region Diacritic Fix
 
+        private struct DiacriticComboEntry
+        {
+            public string Unicode1;
+            public string Unicode2;
+
+            public DiacriticComboEntry(string _unicode1, string _unicode2)
+            {
+                Unicode1 = _unicode1;
+                Unicode2 = _unicode2;
+            }
+        }
+
         private static Dictionary<DiacriticComboEntry, Vector2> DiacriticCombos2Fix = null;
 
         /// <summary>

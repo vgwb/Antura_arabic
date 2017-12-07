@@ -8,17 +8,6 @@ using Antura.Core;
 
 namespace Antura.Database
 {
-    public struct DiacriticComboEntry
-    {
-        public string Unicode1;
-        public string Unicode2;
-
-        public DiacriticComboEntry(string _unicode1, string _unicode2)
-        {
-            Unicode1 = _unicode1;
-            Unicode2 = _unicode2;
-        }
-    }
 
     /// <summary>
     /// Provides helpers to get correct letter/word/phrase data according to the teacher's logic and based on the player's progression
