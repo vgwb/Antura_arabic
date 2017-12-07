@@ -4573,7 +4573,7 @@ MonoBehaviour:
       _Symbol_Unicode: 
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: thal_dammah

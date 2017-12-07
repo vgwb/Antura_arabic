@@ -62,7 +62,7 @@ namespace Antura.Minigames.MissingLetter
             int nCorrect = 1;
             int nWrong = 5;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
+            var builderParams = new QuestionBuilderParameters();
 
             switch (Variation) {
                 case MissingLetterVariation.LetterInWord:
@@ -76,8 +76,7 @@ namespace Antura.Minigames.MissingLetter
                     break;
 
                 case MissingLetterVariation.LetterForm:
-                    // TODO CHECK NEW MINIGAME VARIATION
-                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters: true, parameters: builderParams);
+                    builder = new LetterFormsInWordsQuestionBuilder(1, 1, parameters: builderParams);
                     break;
 
                 case MissingLetterVariation.Phrase:

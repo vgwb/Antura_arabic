@@ -124,8 +124,11 @@ namespace Antura.Minigames.FastCrowd
         {
             var currentData = area.GetActiveData();
 
-            if (currentData != null) {
-                bool matching = GetComponent<LivingLetterController>().Data.Equals(currentData);
+            if (currentData != null)
+            {
+                var myData = GetComponent<LivingLetterController>().Data;
+
+                bool matching = FastCrowdConfiguration.Instance.IsDataMatching(currentData, myData);
 
                 if (onDropped != null)
                     onDropped(matching);

@@ -1,3 +1,4 @@
+using Antura.Database;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
@@ -87,7 +88,7 @@ namespace Antura.Minigames.FastCrowd
             int nCorrect = 4;
             int nWrong = 4;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
+            var builderParams = new QuestionBuilderParameters();
 
             switch (Variation) {
                 case FastCrowdVariation.Alphabet:
@@ -101,8 +102,9 @@ namespace Antura.Minigames.FastCrowd
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true);
                     break;
                 case FastCrowdVariation.LetterForm:
+                    // @note: we pass 4 as nCorrect, so we get all the four forms of a single letter, which will be shown one after the other
                     var letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
-                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true, letterAlterationFilters: letterAlterationFilters);
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 4, nWrong, firstCorrectIsQuestion: true, letterAlterationFilters: letterAlterationFilters);
                     break;
                 case FastCrowdVariation.LetterInWord:
                     builderParams.wordFilters.excludeColorWords = true;
@@ -124,6 +126,21 @@ namespace Antura.Minigames.FastCrowd
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
+        }
+
+        public bool IsDataMatching(ILivingLetterData data1, ILivingLetterData data2)
+        {
+            LetterEqualityStrictness strictness;
+            switch (Variation)
+            {
+                case FastCrowdVariation.LetterForm:
+                    strictness = LetterEqualityStrictness.WithVisualForm;
+                    break;
+                default:
+                    strictness = LetterEqualityStrictness.LetterOnly;
+                    break;
+            }
+            return DataMatchingHelper.IsDataMatching(data1, data2, strictness);
         }
 
         #endregion

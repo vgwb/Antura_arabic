@@ -464,6 +464,8 @@ namespace Antura.Database
 
         private bool FormsLookTheSame(LetterForm form1, LetterForm form2)
         {
+            //Debug.Log("form1: " + GetStringForDisplay(form1));
+            //Debug.Log("form2: " + GetStringForDisplay(form2));
             return GetStringForDisplay(form1) == GetStringForDisplay(form2);
         }
 

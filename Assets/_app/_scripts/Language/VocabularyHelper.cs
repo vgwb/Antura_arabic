@@ -1,10 +1,8 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Antura.Helpers;
 using Antura.Teacher;
-using Antura.Core;
 
 namespace Antura.Database
 {
@@ -255,6 +253,7 @@ namespace Antura.Database
 
         public List<LetterData> GetLettersNotInWords(LetterKindCategory category = LetterKindCategory.Real, params WordData[] tabooArray)
         {
+            // TODO: make sure that all uses of LetterData work with strict or non-strict!
             var lettersInWords = new HashSet<LetterData>();
             foreach (var tabooWordData in tabooArray) {
                 var tabooWordDataLetters = GetLettersInWord(tabooWordData);

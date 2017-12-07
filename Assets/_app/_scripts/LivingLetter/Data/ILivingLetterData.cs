@@ -30,5 +30,6 @@ namespace Antura.LivingLetters
         string Id { get; set; }
 
         bool Equals(ILivingLetterData data);
+
     }
 }

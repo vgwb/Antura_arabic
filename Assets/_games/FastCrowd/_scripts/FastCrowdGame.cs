@@ -140,10 +140,13 @@ namespace Antura.Minigames.FastCrowd
             // TODO: make this more robust to variations
             QuestionManager.wordComposer.gameObject.SetActive(
                 FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord ||
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName
+                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName ||
+                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterForm
                 );
 
-            QuestionManager.wordComposer.splitMode = FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName;
+            QuestionManager.wordComposer.splitMode =
+                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName
+                || FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterForm;
         }
 
 

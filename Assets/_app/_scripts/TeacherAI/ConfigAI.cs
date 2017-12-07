@@ -10,7 +10,7 @@ namespace Antura.Teacher
     public static class ConfigAI
     {
         // Reporting
-        public static bool VerboseTeacher = false;
+        public static bool VerboseTeacher = true;
         // these depends on main VerboseTeacher bool
         public static bool VerboseMinigameSelection = true;
         public static bool VerboseDifficultySelection = true;
