@@ -659,19 +659,13 @@ namespace Antura.Database
             return count;
         }
 
-        public bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
+        public bool WordContainsLetter(WordData selectedWord, LetterData containedLetter, LetterEqualityStrictness letterEqualityStrictness = LetterEqualityStrictness.LetterOnly)
         {
-            // TODO: use the basic GetWordsInLetter now
             //if (containedLetter.Id == "lam_alef") Debug.Log("Looking for lam-alef in " + selectedWord);
-            foreach (var l in ArabicAlphabetHelper.FindLetter(dbManager, selectedWord, containedLetter))
-            {
-                //if (l.letter.Id == "lam_alef") Debug.Log("Lam alef form " + l.letterForm + " in word " + selectedWord);
-                if (l.letterForm == selectedForm)
-                {
-                    return true;
-                }
-            }
-            return false;
+            //foreach (var l in ArabicAlphabetHelper.FindLetter(dbManager, selectedWord, containedLetter))
+            //if (l.letter.Id == "lam_alef") Debug.Log("Lam alef form " + l.letterForm + " in word " + selectedWord);
+            var lettersInWord = GetLettersInWord(selectedWord);
+            return lettersInWord.Any(x => x.IsSameLetterAs(containedLetter, letterEqualityStrictness));
         }
 
         /// <summary>

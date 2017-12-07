@@ -219,7 +219,8 @@ namespace Antura.Teacher
             }
 
             // Check that it contains a letter in the correct form
-            if (!AppManager.I.VocabularyHelper.WordContainsLetterWithForm(word, containedLetter, form))
+            var letterWithForm = AppManager.I.VocabularyHelper.ConvertToLetterWithForcedForm(containedLetter, form);
+            if (!AppManager.I.VocabularyHelper.WordContainsLetter(word, letterWithForm, LetterEqualityStrictness.WithActualForm))
             {
                 return false;
             }
