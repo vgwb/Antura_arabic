@@ -41,6 +41,7 @@ namespace Antura.Database
         {
             dbManager = _dbManager;
         }
+
         #region Letter Utilities
 
         private bool CheckFilters(LetterFilters filters, LetterData data)
@@ -198,18 +199,6 @@ namespace Antura.Database
             var l = baseForVariation.Clone();
             l.ForcedLetterForm = form;
             return l;
-        }
-
-        public LetterData ForceEqualityStrictness(LetterData data, LetterEqualityStrictness letterEqualityStrictness)
-        {
-            var clone = data.Clone();
-            //clone.EqualityStrictness = letterEqualityStrictness;
-            return clone;
-        }
-
-        public List<LetterData> ForceEqualityStrictness(List<LetterData> dataList, LetterEqualityStrictness letterEqualityStrictness)
-        {
-            return dataList.ConvertAll(data => ForceEqualityStrictness(data, letterEqualityStrictness));
         }
 
         #endregion

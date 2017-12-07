@@ -10,7 +10,7 @@ namespace Antura.Teacher
         {
             differentBaseLetters = true
         };
-        public static readonly LetterAlterationFilters AlterationsOfSingleLetter = new LetterAlterationFilters()
+        public static readonly LetterAlterationFilters PhonemesOfSingleLetter = new LetterAlterationFilters()
         {
             ExcludeDiacritics = LetterFilters.ExcludeDiacritics.None,
             ExcludeLetterVariations = LetterFilters.ExcludeLetterVariations.None,
@@ -21,14 +21,14 @@ namespace Antura.Teacher
             differentBaseLetters = true,
             includeForms = true
         };
-        public static readonly LetterAlterationFilters AlterationsOfMultipleLetters = new LetterAlterationFilters()
+        public static readonly LetterAlterationFilters PhonemesOfMultipleLetters = new LetterAlterationFilters()
         {
             differentBaseLetters = true,
             ExcludeDiacritics = LetterFilters.ExcludeDiacritics.None,
             ExcludeLetterVariations = LetterFilters.ExcludeLetterVariations.None,
             excludeDipthongs = false
         };
-        public static readonly LetterAlterationFilters FormsAndAlterationsOfMultipleLetters = new LetterAlterationFilters()
+        public static readonly LetterAlterationFilters FormsAndPhonemesOfMultipleLetters = new LetterAlterationFilters()
         {
             differentBaseLetters = true,
             includeForms = true,

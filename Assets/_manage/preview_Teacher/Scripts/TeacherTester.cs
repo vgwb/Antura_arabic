@@ -473,13 +473,13 @@ namespace Antura.Teacher.Test
                             letterAlterationFilters = LetterAlterationFilters.MultipleLetters;
                             break;
                         case 3:
-                            letterAlterationFilters = LetterAlterationFilters.AlterationsOfSingleLetter;
+                            letterAlterationFilters = LetterAlterationFilters.PhonemesOfSingleLetter;
                             break;
                         case 4:
-                            letterAlterationFilters = LetterAlterationFilters.AlterationsOfMultipleLetters;
+                            letterAlterationFilters = LetterAlterationFilters.PhonemesOfMultipleLetters;
                             break;
                         case 5:
-                            letterAlterationFilters = LetterAlterationFilters.FormsAndAlterationsOfMultipleLetters;
+                            letterAlterationFilters = LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters;
                             break;
                     }
 
