@@ -2,6 +2,7 @@ using Antura.Audio;
 using Antura.CameraControl;
 using Antura.Core.Services;
 using Antura.Database;
+using Antura.Helpers;
 using Antura.Keeper;
 using Antura.Minigames;
 using Antura.Profile;
@@ -198,7 +199,7 @@ namespace Antura.Core
         void On_TMPro_Text_Changed(Object obj)
         {
             var tmpText = obj as TMPro.TMP_Text;
-            if (tmpText != null && VocabularyHelper.FixDiacriticPositions(tmpText.textInfo)) {
+            if (tmpText != null && ArabicAlphabetHelper.FixDiacriticPositions(tmpText.textInfo)) {
                 tmpText.UpdateVertexData();
             }
         }
