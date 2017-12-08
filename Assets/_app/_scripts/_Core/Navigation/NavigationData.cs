@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Antura.Database;
+﻿using Antura.Database;
 using Antura.Profile;
+using System.Collections.Generic;
 
 namespace Antura.Core
 {
@@ -23,7 +23,7 @@ namespace Antura.Core
 
         public void Setup()
         {
-            CurrentScene = NavigationManager.INITIAL_SCENE;
+            CurrentScene = SceneHelper.GetCurrentAppScene();
             PrevSceneStack = new Stack<AppScene>();
         }
 
@@ -50,8 +50,8 @@ namespace Antura.Core
         public MiniGameData CurrentMiniGameData
         {
             get {
-                if (CurrentPlaySessionMiniGames == null) return null;
-                if (CurrentPlaySessionMiniGames.Count == 0) return null;
+                if (CurrentPlaySessionMiniGames == null) { return null; }
+                if (CurrentPlaySessionMiniGames.Count == 0) { return null; }
                 return CurrentPlaySessionMiniGames[CurrentMiniGameIndexInPlaySession];
             }
         }

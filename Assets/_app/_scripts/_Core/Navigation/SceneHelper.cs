@@ -1,4 +1,5 @@
 ﻿using Antura.Database;
+using UnityEngine.SceneManagement;
 
 namespace Antura.Core
 {
@@ -40,6 +41,40 @@ namespace Antura.Core
                     return "";
             }
         }
-    }
 
+        public static AppScene GetCurrentAppScene()
+        {
+            var currentScene = SceneManager.GetActiveScene().name;
+            switch (currentScene) {
+                case "_Start":
+                    return AppScene.Home;
+                case "app_AnturaSpace":
+                    return AppScene.AnturaSpace;
+                case "app_Book":
+                    return AppScene.Book;
+                case "app_Map":
+                    return AppScene.Map;
+                case "app_Mood":
+                    return AppScene.Mood;
+                case "app_GamesSelector":
+                    return AppScene.GameSelector;
+                case "app_Intro":
+                    return AppScene.Intro;
+                case "app_PlayerCreation":
+                    return AppScene.PlayerCreation;
+                case "app_PlaySessionResult":
+                    return AppScene.PlaySessionResult;
+                case "app_Rewards":
+                    return AppScene.Rewards;
+                case "app_ReservedArea":
+                    return AppScene.ReservedArea;
+                case "app_Ending":
+                    return AppScene.Ending;
+                case "app_DailyReward":
+                    return AppScene.DailyReward;
+                default:
+                    return AppScene.MiniGame;
+            }
+        }
+    }
 }
