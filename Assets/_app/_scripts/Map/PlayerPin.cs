@@ -1,5 +1,4 @@
 using Antura.Core;
-using Antura.Profile;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
@@ -16,11 +15,6 @@ namespace Antura.Map
         public StageMapsManager stageMapsManager;
         public StageMap currentStageMap;
 
-        // DEPRECATED
-        [Header("UIButtons")]
-        public GameObject moveRightButton;
-        public GameObject moveLeftButton;
-
         // Animation
         private Tween moveTween, rotateTween;
         private bool isAnimating = false;
@@ -34,11 +28,6 @@ namespace Antura.Map
         void Start()
         {
             StartFloatingAnimation();
-
-            // TODO: treat with the TUTORIAL
-            if (FirstContactManager.I.IsFinished()) {
-                CheckMovementButtonsEnabling();
-            }
         }
 
         void OnDestroy()
@@ -145,7 +134,6 @@ namespace Antura.Map
         {
             isAnimating = true;
             if (onMoveStart != null) { onMoveStart(); }
-            CheckMovementButtonsEnabling();
             int tmpCurrentIndex = currentStageMap.CurrentPinIndex;
             UpdatePlayerJourneyPosition(currentStageMap.mapLocations[targetIndex].JourneyPos);
             //Debug.Log("ANIMATING FROM " + tmpCurrentIndex + " TO " + targetIndex);
@@ -196,7 +184,6 @@ namespace Antura.Map
 
             //Debug.Log("Current index is now: " + tmpCurrentIndex);
 
-            CheckMovementButtonsEnabling();
             isAnimating = false;
             if (onMoveEnd != null) { onMoveEnd(); }
         }
@@ -208,7 +195,6 @@ namespace Antura.Map
             ForceToCO(currentStageMap.CurrentPlayerPosVector);
 
             if (!justVisuals) { UpdatePlayerJourneyPosition(currentStageMap.CurrentPlayerPosJourneyPosition); }
-            CheckMovementButtonsEnabling();
         }
 
         private void UpdatePlayerJourneyPosition(JourneyPosition journeyPos)
@@ -284,35 +270,6 @@ namespace Antura.Map
                 moveTween.Kill();
             }
             transform.position = position;
-        }
-
-        #endregion
-
-        #region UI
-
-        public void CheckMovementButtonsEnabling()
-        {
-            if (!stageMapsManager.ShowMovementButtons) {
-                moveRightButton.SetActive(false);
-                moveLeftButton.SetActive(false);
-                return;
-            }
-            //Debug.Log("Enabling buttons for " + CurrentPinIndex);
-            if (CurrentPinIndex == 0) {
-                if (currentStageMap.MaxUnlockedPinIndex == 0) {
-                    moveRightButton.SetActive(false);
-                    moveLeftButton.SetActive(false);
-                } else {
-                    moveRightButton.SetActive(false);
-                    moveLeftButton.SetActive(true);
-                }
-            } else if (CurrentPinIndex == currentStageMap.MaxUnlockedPinIndex) {
-                moveRightButton.SetActive(true);
-                moveLeftButton.SetActive(false);
-            } else {
-                moveRightButton.SetActive(true);
-                moveLeftButton.SetActive(true);
-            }
         }
 
         #endregion

@@ -38,11 +38,6 @@ namespace Antura.Map
         public MapPlayInfoPanel playInfoPanel;
         public MapPlayButtonsPanel playButtonsPanel;
 
-        // DEPRECATED
-        public GameObject nextPlaySessionButton;
-        // DEPRECATED
-        public GameObject beforePlaySessionButton;
-
         public GameObject playButton;
 
         // Additional UI for navigation
@@ -189,8 +184,6 @@ namespace Antura.Map
             //playerPin.onMoveEnd += ShowPlayPanel;
             playerPin.ForceToJourneyPosition(PreviousJourneyPosition, justVisuals: true);
             playerPin.LookAtNextPin(false);
-
-            UpdateStageButtonsUI();
 
             var isGameCompleted = AppManager.I.Player.HasFinalBeenShown();
             if (!isGameCompleted && WillPlayAssessmentNext()) {
@@ -422,13 +415,7 @@ namespace Antura.Map
 
         private void UpdateButtonsForStage(int stage)
         {
-            UpdateStageButtonsUI();
-
             bool playable = IsStagePlayable(stage);
-            //playButton.SetActive(playable);
-
-            nextPlaySessionButton.SetActive(ShowMovementButtons && playable);
-            beforePlaySessionButton.SetActive(ShowMovementButtons && playable);
         }
 
         /*private void CheckCurrentStageForPlayerReset()
@@ -572,23 +559,6 @@ namespace Antura.Map
         private void UpdateStageIndicatorUI(int stage)
         {
             mapStageIndicator.Init(stage - 1, FinalStage);
-        }
-
-        private void UpdateStageButtonsUI()
-        {
-            if (!ShowStageButtons) {
-                rightStageButton.SetActive(false);
-                leftStageButton.SetActive(false);
-            } else {
-                if (IsAtFirstStage) {
-                    rightStageButton.SetActive(false);
-                } else if (IsAtFinalStage) {
-                    leftStageButton.SetActive(false);
-                } else {
-                    rightStageButton.SetActive(true);
-                    leftStageButton.SetActive(true);
-                }
-            }
         }
 
         #endregion
