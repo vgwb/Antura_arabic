@@ -1,11 +1,11 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using Antura.Audio;
+﻿using Antura.Audio;
 using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
 using Antura.UI;
-using Antura.Utilities;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace Antura.Book
 {
@@ -64,15 +64,15 @@ namespace Antura.Book
 
         public TextRender ScoreText;
 
-        VocabularyChapter currentChapter = VocabularyChapter.None;
-        GameObject btnGO;
-        string currentCategory;
-        LocalizationData CategoryData;
-        WordDataCategory currentWordCategory;
-        PhraseDataCategory currentPhraseCategory;
-        LetterInfo currentLetter;
-        WordInfo currentWord;
-        PhraseInfo currentPhrase;
+        private VocabularyChapter currentChapter = VocabularyChapter.None;
+        private GameObject btnGO;
+        private string currentCategory;
+        private LocalizationData CategoryData;
+        private WordDataCategory currentWordCategory;
+        private PhraseDataCategory currentPhraseCategory;
+        private LetterInfo currentLetter;
+        private WordInfo currentWord;
+        private PhraseInfo currentPhrase;
 
         void Start()
         {
@@ -137,6 +137,7 @@ namespace Antura.Book
                     break;
                 default:
                     list = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
+                    //list = unorderdlist.OrderBy(x => x.Number);
                     break;
             }
             emptyListContainers();

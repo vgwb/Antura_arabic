@@ -13,7 +13,7 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.1.0beta (564)";
+        public const string AppVersion = "1.1.0beta (565)";
 
         #region Debug Options
 
@@ -41,8 +41,9 @@ namespace Antura.Core
         /// </summary>
         public static bool DebugLogDbInserts = false;
 
-        // disable first contact tutorials
+        // for Test configuration
         public static bool DisableFirstContact = true;
+        //public static bool DisableMinigameTutorials = true;
 
         #endregion
 
