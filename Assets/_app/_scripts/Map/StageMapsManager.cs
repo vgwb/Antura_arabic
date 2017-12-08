@@ -173,8 +173,6 @@ namespace Antura.Map
                 //StageMap(stage_i).Hide();
             }
 
-            // Disable 2D play buttons
-            playButtonsPanel.gameObject.SetActive(false);
         }
 
         private void Start()
@@ -646,9 +644,10 @@ namespace Antura.Map
 
         public void SetPlayUIActivation(bool choice)
         {
-            if (selectedPin) selectedPin.EnableInteraction(choice);
-            playButtonsPanel.gameObject.SetActive(choice);
-            playInfoPanel.gameObject.SetActive(choice);
+            if (selectedPin) { selectedPin.EnableInteraction(choice); }
+            // TEST disable all panels 
+            //playButtonsPanel.gameObject.SetActive(choice);
+            //playInfoPanel.gameObject.SetActive(choice);
         }
 
         public void SetStageUIActivation(bool choice)
