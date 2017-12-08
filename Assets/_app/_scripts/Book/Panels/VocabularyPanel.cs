@@ -231,10 +231,6 @@ namespace Antura.Book
             LetterTextMedial.SetTextUnfiltered(MedialChar);
             LetterTextFinal.SetTextUnfiltered(FinalChar);
 
-            LetterTextInitial.gameObject.SetActive(InitialChar != isolatedChar);
-            LetterTextMedial.gameObject.SetActive(MedialChar != isolatedChar);
-            LetterTextFinal.gameObject.SetActive(FinalChar != isolatedChar);
-
             ScoreText.text = "Score: " + currentLetter.score;
         }
 
