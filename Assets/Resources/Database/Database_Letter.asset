@@ -1030,8 +1030,8 @@ MonoBehaviour:
       _Medial: 
       _Final: "\uFE84"
       _Isolated_Unicode: 0623
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: 0623
+      _Medial_Unicode: FE84
       _Final_Unicode: FE84
       _Symbol_Unicode: 
       _InitialFix: 
@@ -1057,8 +1057,8 @@ MonoBehaviour:
       _Medial: 
       _Final: 
       _Isolated_Unicode: 0623
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: 0623
+      _Medial_Unicode: FE84
       _Final_Unicode: FE84
       _Symbol_Unicode: 064F
       _InitialFix: 
@@ -1085,7 +1085,7 @@ MonoBehaviour:
       _Final: "\uFE84\u064E"
       _Isolated_Unicode: 0623
       _Initial_Unicode: 0623
-      _Medial_Unicode: 0623
+      _Medial_Unicode: FE84
       _Final_Unicode: FE84
       _Symbol_Unicode: 064E
       _InitialFix: 
@@ -1111,8 +1111,8 @@ MonoBehaviour:
       _Medial: 
       _Final: "\uFE88"
       _Isolated_Unicode: 0625
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: 0625
+      _Medial_Unicode: FE88
       _Final_Unicode: FE88
       _Symbol_Unicode: 
       _InitialFix: 
@@ -1138,8 +1138,8 @@ MonoBehaviour:
       _Medial: 
       _Final: 
       _Isolated_Unicode: 0625
-      _Initial_Unicode: 
-      _Medial_Unicode: 
+      _Initial_Unicode: 0625
+      _Medial_Unicode: FE88
       _Final_Unicode: FE88
       _Symbol_Unicode: 0650
       _InitialFix: 
