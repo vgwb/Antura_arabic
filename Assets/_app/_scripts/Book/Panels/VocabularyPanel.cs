@@ -4,7 +4,6 @@ using Antura.Database;
 using Antura.Helpers;
 using Antura.UI;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Antura.Book
@@ -126,25 +125,25 @@ namespace Antura.Book
             Submenu.SetActive(true);
 
             currentCategory = _category;
-            List<LetterData> list;
+            List<LetterData> letters;
             switch (currentCategory) {
                 case "combinations":
-                    list = AppManager.I.DB.FindLetterData((x) =>
+                    letters = AppManager.I.DB.FindLetterData((x) =>
                         (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation));
                     break;
                 case "symbols":
-                    list = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
+                    letters = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
                     break;
                 default:
-                    list = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
-                    //list = unorderdlist.OrderBy(x => x.Number);
+                    letters = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
                     break;
             }
             emptyListContainers();
 
             List<LetterInfo> info_list = AppManager.I.ScoreHelper.GetAllLetterInfo();
+            info_list.Sort((x, y) => x.data.Number.CompareTo(y.data.Number));
             foreach (var info_item in info_list) {
-                if (list.Contains(info_item.data)) {
+                if (letters.Contains(info_item.data)) {
                     btnGO = Instantiate(LetterItemPrefab);
                     btnGO.transform.SetParent(ElementsContainer.transform, false);
                     btnGO.GetComponent<ItemLetter>().Init(this, info_item, false);
