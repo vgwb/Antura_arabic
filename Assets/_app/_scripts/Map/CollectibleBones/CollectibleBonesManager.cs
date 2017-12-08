@@ -25,7 +25,7 @@ namespace Antura.Collectible
             InvokeRepeating("SpawnNewBone", delay, delay);
         }
 
-        void SpawnNewBone()
+        private void SpawnNewBone()
         {
             if (spawnPivots.Count == 0) {
                 // No more spawn pivots left
@@ -46,7 +46,7 @@ namespace Antura.Collectible
         }
 
         private bool _isHandlingBone = false;
-        void HandlePickUpBone()
+        private void HandlePickUpBone()
         {
             if (_isHandlingBone) {
                 StopAllCoroutines();
@@ -56,7 +56,7 @@ namespace Antura.Collectible
             StartCoroutine(HandlePickupBoneCO());
         }
 
-        IEnumerator HandlePickupBoneCO()
+        private IEnumerator HandlePickupBoneCO()
         {
             _isHandlingBone = true;
             bonesCounter.Show();

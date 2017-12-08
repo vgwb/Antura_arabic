@@ -12,6 +12,10 @@ namespace Antura.UI
     /// </summary>
     public class BonesCounter : MonoBehaviour
     {
+        [Header("Setup")]
+        public bool AutoSetup;
+
+        [Header("References")]
         public TextMeshProUGUI TfCount;
         public RectTransform BoneImg;
 
@@ -32,7 +36,12 @@ namespace Antura.UI
 
         void Start()
         {
-            Setup();
+            if (AutoSetup) {
+                Show(true);
+            } else {
+                // this should be called.. left here for rtetrocompatibility
+                Setup();
+            }
         }
 
         void Setup()

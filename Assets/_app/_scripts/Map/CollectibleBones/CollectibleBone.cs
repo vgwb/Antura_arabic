@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Antura.Collectible
 {
-
     public class CollectibleBone : MonoBehaviour
     {
         private bool _collected;
@@ -18,11 +17,15 @@ namespace Antura.Collectible
 
         public void OnMouseDown()
         {
-            if (_collected) { return; }
+            if (_collected) {
+                return;
+            }
 
             _collected = true;
 
-            if (OnPickUpBone != null) { OnPickUpBone.Invoke(); }
+            if (OnPickUpBone != null) {
+                OnPickUpBone.Invoke();
+            }
 
             DestroyObject();
         }
@@ -32,5 +35,4 @@ namespace Antura.Collectible
             Destroy(gameObject);
         }
     }
-
 }
