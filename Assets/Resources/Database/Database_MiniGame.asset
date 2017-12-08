@@ -458,7 +458,7 @@ MonoBehaviour:
         Weight: 1
     - _Title_En: Missing Letter!
       _Title_Ar: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
-      _Code: 19
+      _Code: 0
       _Available: 0
       _Type: 1
       _Main: MissingLetter
