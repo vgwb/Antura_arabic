@@ -20,3 +20,5 @@ please help us improve by [opening a issue](https://github.com/vgwb/Antura_arabi
 
 Antura is licensed under the BSD 2-clause "Simplified" License and the Creative Commons Attribution 4.0 International.
 Copyright [TH Köln / Cologne Game Lab](http://www.colognegamelab.de/), [Video Games Without Borders](http://vgwb.org) & [Wixel Studios](www.wixelstudios.com)
+
+![antura_gametitle](images/antura_gametitle.jpg)
