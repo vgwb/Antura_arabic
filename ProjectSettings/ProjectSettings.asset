@@ -223,7 +223,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 1
   androidSplashScreen: {fileID: 2800000, guid: 48ded48e33d45e74e82e2c1be2c37955, type: 3}
-  AndroidKeystoreName: /Users/krur/Documents/Projects/VGWB.Antura/_docs/Android_Keystore/antura.keystore
+  AndroidKeystoreName: /Users/krur/Documents/Projects/VGWB.Antura/_antura_production/Android_Keystore/antura.keystore
   AndroidKeyaliasName: antura
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
