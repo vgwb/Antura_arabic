@@ -10743,6 +10743,7 @@ GameObject:
   - component: {fileID: 1998642005}
   - component: {fileID: 1998642013}
   - component: {fileID: 1998642006}
+  - component: {fileID: 1998642014}
   m_Layer: 0
   m_Name: Camera_Gameplay
   m_TagString: MainCamera
@@ -10879,6 +10880,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundColorSet: {fileID: 11400000, guid: 5cf93738384933c43ac0ed46b088f1d5, type: 2}
   testWorld: 0
+--- !u!114 &1998642014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1998642004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066929f51bc1f4044a1b0f3e3f74eacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeOut: 0
+  intensity: 2.5
+  color: {r: 0, g: 0, b: 0, a: 1}
+  vignetteShader: {fileID: 4800000, guid: 022619c425ba9954fa18d4e5299f1f6c, type: 3}
 --- !u!1 &2021524495
 GameObject:
   m_ObjectHideFlags: 0
