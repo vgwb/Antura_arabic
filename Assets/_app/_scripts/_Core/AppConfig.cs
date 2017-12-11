@@ -129,7 +129,8 @@ namespace Antura.Core
         public static bool IsDesktopPlatform()
         {
             return (Application.platform == RuntimePlatform.WindowsPlayer ||
-                    Application.platform == RuntimePlatform.OSXPlayer);
+                    Application.platform == RuntimePlatform.OSXPlayer ||
+                    Application.platform == RuntimePlatform.LinuxPlayer);
         }
 
         public static bool IsMobilePlatform()
