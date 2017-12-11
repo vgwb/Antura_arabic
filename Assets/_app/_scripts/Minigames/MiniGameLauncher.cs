@@ -13,6 +13,11 @@ namespace Antura.Minigames
     {
         private QuestionPacksGenerator questionPacksGenerator;
         private TeacherAI teacher;
+        private IGameConfiguration currentGameConfig;
+        public IGameConfiguration GetCurrentMiniGameConfig()
+        {
+            return currentGameConfig;
+        }
 
         public MiniGameLauncher(TeacherAI _teacher)
         {
@@ -47,7 +52,7 @@ namespace Antura.Minigames
 
             // Assign the configuration for the given minigame
             var minigameSession = System.DateTime.Now.Ticks.ToString();
-            var currentGameConfig = ConfigureMiniGameScene(_gameCode, minigameSession);
+            currentGameConfig = ConfigureMiniGameScene(_gameCode, minigameSession);
             currentGameConfig.Difficulty = _launchConfiguration.Difficulty;
             currentGameConfig.TutorialEnabled = _launchConfiguration.TutorialEnabled;
 
@@ -76,6 +81,14 @@ namespace Antura.Minigames
 
             // Launch the game
             AppManager.I.NavigationManager.GoToMiniGameScene();
+        }
+
+        public string GetCurrentMiniGameConfigSummary()
+        {
+            var output = "";
+            output += "Difficulty: " + currentGameConfig.Difficulty;
+            // TODO MICHELE: ADD here any currentGameConfig useful ingo for testers
+            return output;
         }
 
         /// <summary>

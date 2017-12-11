@@ -127,6 +127,7 @@ namespace Antura.Debugging
                     if (OnSkipCurrentScene != null) OnSkipCurrentScene();
                 }
 
+                // END MINIGAMES
                 if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0)) {
                     ForceCurrentMinigameEnd(0);
                 }

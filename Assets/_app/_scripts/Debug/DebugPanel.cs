@@ -241,14 +241,14 @@ namespace Antura.Debugging
 
         private void DisplayInfoText()
         {
-            InfoText.text = "Current JP: ";
+            InfoText.text = "";
 
             if (AppManager.I.Player != null) {
-                InfoText.text += AppManager.I.Player.CurrentJourneyPosition.ToString();
+                InfoText.text += "Current JP: " + AppManager.I.Player.CurrentJourneyPosition + "\n";
             }
-            InfoText.text += "\n";
             if (AppManager.I.NavigationManager.CurrentMiniGameData != null) {
-                InfoText.text += "Current MiniGame: " + AppManager.I.NavigationManager.CurrentMiniGameData.Code;
+                InfoText.text += "Current MiniGame: " + AppManager.I.NavigationManager.CurrentMiniGameData.Code + "\n";
+                InfoText.text += AppManager.I.GameLauncher.GetCurrentMiniGameConfigSummary();
             }
 
         }

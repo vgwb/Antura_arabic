@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Antura.LivingLetters;
 
 namespace Antura.Teacher
 {
