@@ -234,6 +234,16 @@ namespace Antura.Book
             ScoreText.text = "Score: " + currentLetter.score;
         }
 
+        public void OnBtnPlayLetterName()
+        {
+            AudioManager.I.PlayLetter(currentLetter.data, true, LetterDataSoundType.Name);
+        }
+
+        public void OnBtnPlayLetterPhoneme()
+        {
+            AudioManager.I.PlayLetter(currentLetter.data, true, LetterDataSoundType.Phoneme);
+        }
+
         #endregion
 
         #region Words
