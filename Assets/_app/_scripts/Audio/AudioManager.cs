@@ -21,7 +21,7 @@ namespace Antura.Audio
         private List<AudioSourceWrapper> playingAudio = new List<AudioSourceWrapper>();
 
         private DeAudioGroup musicGroup;
-        private DeAudioGroup wordsLettersPhrasesGroup;
+        private DeAudioGroup vocabularyGroup;
         private DeAudioGroup keeperGroup;
         private DeAudioGroup sfxGroup;
 
@@ -148,7 +148,7 @@ namespace Antura.Audio
 
             sfxGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.FX);
             musicGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Music);
-            wordsLettersPhrasesGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom0);
+            vocabularyGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom0);
             keeperGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom1);
 
             musicEnabled = true;
@@ -236,14 +236,21 @@ namespace Antura.Audio
 
         #region Letters, Words and Phrases
 
-        public IAudioSource PlayLetter(LetterData data, bool exclusive = true)
+        /// <summary>
+        /// default values play Letter Phoneme
+        /// </summary>
+        /// <returns>The letter AudioClip</returns>
+        /// <param name="data">Letter Data</param>
+        /// <param name="exclusive">stops other letters?</param>
+        /// <param name="soundType">Phoneme or Name?</param>
+        public IAudioSource PlayLetter(LetterData data, bool exclusive = true, LetterDataSoundType soundType = LetterDataSoundType.Phoneme)
         {
             if (exclusive) {
                 StopLettersWordsPhrases();
             }
 
-            AudioClip clip = GetAudioClip(data);
-            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), wordsLettersPhrasesGroup, this);
+            AudioClip clip = GetAudioClip(data, soundType);
+            return new AudioSourceWrapper(vocabularyGroup.Play(clip), vocabularyGroup, this);
         }
 
         public IAudioSource PlayWord(WordData data, bool exclusive = true)
@@ -253,7 +260,7 @@ namespace Antura.Audio
             }
 
             AudioClip clip = GetAudioClip(data);
-            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), wordsLettersPhrasesGroup, this);
+            return new AudioSourceWrapper(vocabularyGroup.Play(clip), vocabularyGroup, this);
         }
 
         public IAudioSource PlayPhrase(PhraseData data, bool exclusive = true)
@@ -263,13 +270,13 @@ namespace Antura.Audio
             }
 
             AudioClip clip = GetAudioClip(data);
-            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), wordsLettersPhrasesGroup, this);
+            return new AudioSourceWrapper(vocabularyGroup.Play(clip), vocabularyGroup, this);
         }
 
         public void StopLettersWordsPhrases()
         {
-            if (wordsLettersPhrasesGroup != null) {
-                wordsLettersPhrasesGroup.Stop();
+            if (vocabularyGroup != null) {
+                vocabularyGroup.Stop();
             }
         }
 
@@ -368,60 +375,56 @@ namespace Antura.Audio
             return res;
         }
 
-        public AudioClip GetAudioClip(LetterData data)
+        public AudioClip GetAudioClip(LetterData data, LetterDataSoundType soundType = LetterDataSoundType.Phoneme)
         {
-            var res = GetCachedResource("AudioArabic/Letters/" + data.Id);
+            AudioClip res;
+            if (soundType == LetterDataSoundType.Phoneme) {
+                res = GetCachedResource("AudioArabic/Letters/" + data.Id);
+            } else {
+                res = GetCachedResource("AudioArabic/Letters/" + data.Id + "_name");
+            }
 
             if (res == null) {
                 Debug.Log("Warning: cannot find audio clip for " + data);
             }
-
             return res;
         }
 
         public AudioClip GetAudioClip(WordData data)
         {
             var res = GetCachedResource("AudioArabic/Words/" + data.Id);
-
             if (res == null) {
                 Debug.Log("Warning: cannot find audio clip for " + data);
             }
-
             return res;
         }
 
         public AudioClip GetAudioClip(PhraseData data)
         {
             var res = GetCachedResource("AudioArabic/Phrases/" + data.Id);
-
             if (res == null) {
                 Debug.Log("Warning: cannot find audio clip for " + data);
             }
-
             return res;
         }
 
         public AudioClip GetAudioClip(Sfx sfx)
         {
             SfxConfiguration conf = GetSfxConfiguration(sfx);
-
             if (conf == null || conf.clips == null || conf.clips.Count == 0) {
                 Debug.Log("No Audio clips configured for: " + sfx);
                 return null;
             }
-
             return conf.clips.GetRandom();
         }
 
         public SfxConfiguration GetConfiguration(Sfx sfx)
         {
             SfxConfiguration conf = GetSfxConfiguration(sfx);
-
             if (conf == null || conf.clips == null || conf.clips.Count == 0) {
                 Debug.Log("No Audio clips configured for: " + sfx);
                 return null;
             }
-
             return conf;
         }
 
