@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using Antura.Core;
+using DG.DeExtensions;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Antura.Core;
-using DG.DeExtensions;
-using DG.DeInspektor.Attributes;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 #if UNITY_EDITOR
+using DG.DeInspektor.Attributes;
+using UnityEngine.SceneManagement;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 #endif
@@ -20,7 +21,6 @@ namespace Antura.Map
     public class StageMap : MonoBehaviour
     {
         [Header("Stage")]
-        // Stage number assigned to this map
         public int stageNumber;
 
         [Header("Settings")]

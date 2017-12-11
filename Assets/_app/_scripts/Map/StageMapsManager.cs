@@ -1,4 +1,3 @@
-using System.Collections;
 using Antura.Audio;
 using Antura.CameraEffects;
 using Antura.Core;
@@ -6,6 +5,7 @@ using Antura.Database;
 using Antura.Keeper;
 using Antura.UI;
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 namespace Antura.Map
@@ -32,9 +32,6 @@ namespace Antura.Map
 
         public Camera UICamera;
         public MapStageIndicator mapStageIndicator;
-        public GameObject leftStageButton;
-        public GameObject rightStageButton;
-
         public MapPlayInfoPanel playInfoPanel;
         public MapPlayButtonsPanel playButtonsPanel;
 
