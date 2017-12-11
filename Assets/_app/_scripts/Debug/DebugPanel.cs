@@ -2,6 +2,7 @@ using Antura.Core;
 using Antura.Minigames;
 using Antura.UI;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,8 @@ namespace Antura.Debugging
         public GameObject Container;
         public GameObject PrefabRow;
         public GameObject PrefabMiniGameButton;
+
+        public TextMeshProUGUI InfoText;
 
         public InputField InputStage;
         public InputField InputLearningBlock;
@@ -194,6 +197,8 @@ namespace Antura.Debugging
                 InputPlaySession.text = AppManager.I.Player.CurrentJourneyPosition.PlaySession.ToString();
             }
 
+            DisplayInfoText();
+
             TutorialEnabledToggle.isOn = TutorialEnabled;
             AutoCorrectJourneyPosToggle.isOn = AutoCorrectJourneyPos;
             VerboseTeacherToggle.isOn = VerboseTeacher;
@@ -232,6 +237,20 @@ namespace Antura.Debugging
 
             ProfilePanel.SetActive(advancedSettingsEnabled);
             NavigationPanel.SetActive(advancedSettingsEnabled);
+        }
+
+        private void DisplayInfoText()
+        {
+            InfoText.text = "Current JP: ";
+
+            if (AppManager.I.Player != null) {
+                InfoText.text += AppManager.I.Player.CurrentJourneyPosition.ToString();
+            }
+            InfoText.text += "\n";
+            if (AppManager.I.NavigationManager.CurrentMiniGameData != null) {
+                InfoText.text += "Current MiniGame: " + AppManager.I.NavigationManager.CurrentMiniGameData.Code;
+            }
+
         }
 
         #endregion
