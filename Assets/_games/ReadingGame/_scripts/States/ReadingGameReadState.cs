@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Antura.Minigames;
 using Antura.Tutorial;
 using UnityEngine;
@@ -111,6 +111,7 @@ namespace Antura.Minigames.ReadingGame
             game.barSet.active = false;
             game.barSet.Clear();
             game.blurredText.SetActive(false);
+            game.hiddenText.Clear();
         }
 
         public void Update(float delta)

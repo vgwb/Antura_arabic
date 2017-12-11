@@ -49,9 +49,7 @@ namespace Antura.CameraEffects
             int rtW = textureSize;
             int rtH = textureSize >> 1;
 
-            float widthMod = 1;
-
-            blurMaterial.SetVector("_Parameter", new Vector4(blurSize * widthMod, -blurSize * widthMod, 0.0f, 0.0f));
+            blurMaterial.SetVector("_Parameter", new Vector4(blurSize, -blurSize, 0.0f, 0.0f));
             source.filterMode = FilterMode.Bilinear;
 
             // downsample
@@ -63,7 +61,7 @@ namespace Antura.CameraEffects
             for (int i = 0; i < blurIterations; i++) {
                 float iterationOffs = (i * 1.0f);
                 blurMaterial.SetVector("_Parameter",
-                    new Vector4(blurSize * widthMod + iterationOffs, -blurSize * widthMod - iterationOffs, 0.0f, 0.0f));
+                    new Vector4(blurSize + iterationOffs, -blurSize - iterationOffs, 0.0f, 0.0f));
 
                 // vertical blur
                 RenderTexture rt2 = RenderTexture.GetTemporary(rtW, rtH, 0, source.format);

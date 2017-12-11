@@ -39,6 +39,12 @@ namespace Antura.Minigames.ReadingGame
             get { return ((ReadingGameGame) ReadingGameGame.I).blurredTextMaterial; }
         }
 
+        public void Clear()
+        {
+            if (textCamera != null)
+                textCamera.Render();
+        }
+
         private void UpdateTarget()
         {
             hasElements = true;
@@ -129,23 +135,27 @@ namespace Antura.Minigames.ReadingGame
 
             if (textRenderTexture != null)
             {
+                magnifyingGlassMaterial.SetTexture("_BackTex", null);
+                textCamera.GetComponent<BlurredCamera>().normalTextureOutput = null;
                 textRenderTexture.Release();
+                DestroyImmediate(textRenderTexture);
                 textRenderTexture = null;
             }
 
             textRenderTexture = new RenderTexture(width, height, 16);
-            textRenderTexture.hideFlags = HideFlags.HideAndDontSave;
 
             magnifyingGlassMaterial.SetTexture("_BackTex", textRenderTexture);
 
             if (blurredTextRenderTexture != null)
             {
+                blurredTextMaterial.SetTexture("_MainTex", null);
+                textCamera.targetTexture = null;
                 blurredTextRenderTexture.Release();
+                DestroyImmediate(blurredTextRenderTexture);
                 blurredTextRenderTexture = null;
             }
 
             blurredTextRenderTexture = new RenderTexture(width, height, 16);
-            blurredTextRenderTexture.hideFlags = HideFlags.HideAndDontSave;
 
             blurredTextMaterial.SetTexture("_MainTex", blurredTextRenderTexture);
 
@@ -195,13 +205,19 @@ namespace Antura.Minigames.ReadingGame
         {
             if (textRenderTexture != null)
             {
+                magnifyingGlassMaterial.SetTexture("_BackTex", null);
+                textCamera.GetComponent<BlurredCamera>().normalTextureOutput = null;
                 textRenderTexture.Release();
+                DestroyImmediate(textRenderTexture);
                 textRenderTexture = null;
             }
 
             if (blurredTextRenderTexture != null)
             {
+                blurredTextMaterial.SetTexture("_MainTex", null);
+                textCamera.targetTexture = null;
                 blurredTextRenderTexture.Release();
+                DestroyImmediate(blurredTextRenderTexture);
                 blurredTextRenderTexture = null;
             }
         }
