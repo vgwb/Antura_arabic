@@ -268,8 +268,7 @@ namespace Antura.Database
         public LetterForm ForcedLetterForm = LetterForm.None;
         public LetterForm Form
         {
-            get
-            {
+            get {
                 if (ForcedLetterForm != LetterForm.None) return ForcedLetterForm;
                 return LetterForm.Isolated;
             }
@@ -386,23 +385,21 @@ namespace Antura.Database
         {
             // Get the string for the specific form, without fallback
             var hexunicode = GetUnicode(form, fallback: false);
-            if (hexunicode  == "") {
+            if (hexunicode == "") {
                 return "";
             }
 
             var output = "";
 
             // add the "-" to diacritic symbols to indentify better if it's over or below hte mid line
-            if (Type == LetterDataType.DiacriticSymbol)
-            {
+            if (Type == LetterDataType.DiacriticSymbol) {
                 output = "\u0640";
             }
 
             var unicode = int.Parse(hexunicode, NumberStyles.HexNumber);
             output += ((char)unicode).ToString();
 
-            if (Symbol_Unicode != "")
-            {
+            if (Symbol_Unicode != "") {
                 var unicode_added = int.Parse(Symbol_Unicode, NumberStyles.HexNumber);
                 output += ((char)unicode_added).ToString();
             }
@@ -443,11 +440,10 @@ namespace Antura.Database
             return (LetterData)MemberwiseClone();
         }
 
-        public bool IsSameLetterAs(LetterData other,  LetterEqualityStrictness strictness)
+        public bool IsSameLetterAs(LetterData other, LetterEqualityStrictness strictness)
         {
             bool isEqual = false;
-            switch (strictness)
-            {
+            switch (strictness) {
                 case LetterEqualityStrictness.LetterOnly:
                     isEqual = string.Equals(_Id, other._Id);
                     break;
@@ -472,7 +468,7 @@ namespace Antura.Database
         public override bool Equals(object obj)
         {
             var other = obj as LetterData;
-            if (other == null) return false;
+            if (other == null) { return false; }
             return Equals(other);
         }
 
@@ -487,8 +483,7 @@ namespace Antura.Database
 
         public override int GetHashCode()
         {
-            unchecked
-            {
+            unchecked {
                 var hashCode = (Id != null ? Id.GetHashCode() : 0);
                 /*switch (EqualityStrictness)
                 {
@@ -504,7 +499,6 @@ namespace Antura.Database
                 return hashCode;
             }
         }
-
     }
 
     /*

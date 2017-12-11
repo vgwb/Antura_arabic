@@ -68,7 +68,7 @@ AudioMixerGroupController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Voice Letters
+  m_Name: Voice Vocabulary
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 4cfa49c61b80544408fa66d4db43e0ee
   m_Children: []

@@ -381,7 +381,7 @@ namespace Antura.Audio
             if (soundType == LetterDataSoundType.Phoneme) {
                 res = GetCachedResource("AudioArabic/Letters/" + data.Id);
             } else {
-                res = GetCachedResource("AudioArabic/Letters/" + data.Id + "_name");
+                res = GetCachedResource("AudioArabic/Letters/" + data.Id + "__lettername");
             }
 
             if (res == null) {
