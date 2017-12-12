@@ -3,6 +3,10 @@ using Antura.Teacher;
 using System;
 using System.Reflection;
 using UnityEngine;
+using System.Collections.Generic;
+using Antura.Database;
+using Antura.Helpers;
+using Antura.LivingLetters;
 
 namespace Antura.Minigames
 {
@@ -13,7 +17,13 @@ namespace Antura.Minigames
     {
         private QuestionPacksGenerator questionPacksGenerator;
         private TeacherAI teacher;
+
+        // Last used data
         private IGameConfiguration currentGameConfig;
+        private IQuestionBuilder currentQuestionBuilder;
+        private List<IQuestionPack> currentQuestionPacks;
+
+
         public IGameConfiguration GetCurrentMiniGameConfig()
         {
             return currentGameConfig;
@@ -64,9 +74,9 @@ namespace Antura.Minigames
             }
 
             // Retrieve the packs for the current minigame configuration
-            var questionBuilder = currentGameConfig.SetupBuilder();
-            var questionPacks = questionPacksGenerator.GenerateQuestionPacks(questionBuilder);
-            currentGameConfig.Questions = new LivingLetters.SequentialQuestionPackProvider(questionPacks);
+            currentQuestionBuilder = currentGameConfig.SetupBuilder();
+            currentQuestionPacks = questionPacksGenerator.GenerateQuestionPacks(currentQuestionBuilder);
+            currentGameConfig.Questions = new SequentialQuestionPackProvider(currentQuestionPacks);
 
             // Communicate to LogManager the start of a new single minigame play session.
             if (AppConfig.DebugLogDbInserts) { Debug.Log("InitGameplayLogSession " + _gameCode.ToString()); }
@@ -87,7 +97,15 @@ namespace Antura.Minigames
         {
             var output = "";
             output += "Difficulty: " + currentGameConfig.Difficulty;
-            // TODO MICHELE: ADD here any currentGameConfig useful ingo for testers
+
+            // Question Builder
+            output += "\nQuestion builder: " + currentQuestionBuilder.GetType().Name;
+
+            // LB Focus
+            var contents = AppManager.I.Teacher.VocabularyAi.GetContentsAtLearningBlock(AppManager.I.Player.CurrentJourneyPosition);
+            var focusLetters = contents.GetHashSet<LetterData>();
+            output += "\nFocus letters: " + focusLetters.ToDebugString();
+
             return output;
         }
 
