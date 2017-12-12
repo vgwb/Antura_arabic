@@ -26,7 +26,7 @@ namespace Antura.Minigames.FastCrowd
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_counting_Title, () => { playIntro = true; });
             } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName) {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Title, () => { playIntro = true; });
-            } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord) {
+            } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.BuildWord) {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Title, () => { playIntro = true; });
             } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word) {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_words_Title, () => { playIntro = true; });
@@ -56,7 +56,7 @@ namespace Antura.Minigames.FastCrowd
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_counting_Intro, () => { nextState = true; });
                 } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName) {
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Intro, () => { nextState = true; });
-                } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord) {
+                } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.BuildWord) {
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Intro, () => { nextState = true; });
                 } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word) {
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_words_Intro, () => { nextState = true; });

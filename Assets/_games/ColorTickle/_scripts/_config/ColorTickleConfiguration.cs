@@ -5,7 +5,7 @@ namespace Antura.Minigames.ColorTickle
 {
     public enum ColorTickleVariation
     {
-        Default = MiniGameCode.ColorTickle_letter,
+        LetterName = MiniGameCode.ColorTickle_lettername,
     }
 
     public class ColorTickleConfiguration : AbstractGameConfiguration
@@ -33,10 +33,10 @@ namespace Antura.Minigames.ColorTickle
         {
             // Default values
             Questions = new ColorTickleLetterProvider();
-            Context = new MinigamesGameContext(MiniGameCode.ColorTickle_letter, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.ColorTickle_lettername, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
             TutorialEnabled = true;
-            Variation = ColorTickleVariation.Default;
+            Variation = ColorTickleVariation.LetterName;
         }
 
         public override IQuestionBuilder SetupBuilder()
@@ -46,7 +46,7 @@ namespace Antura.Minigames.ColorTickle
             int nPacks = 10;
             int nCorrect = 1;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
+            var builderParams = new QuestionBuilderParameters();
             builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
             builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.AllButAlefHamza;
             builderParams.letterFilters.excludeDiphthongs = true;

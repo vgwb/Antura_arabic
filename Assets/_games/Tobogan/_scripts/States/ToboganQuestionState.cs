@@ -20,7 +20,7 @@ namespace Antura.Minigames.Tobogan
             nextState = false;
             playIntro = false;
 
-            if (ToboganConfiguration.Instance.Variation == ToboganVariation.LetterInAWord)
+            if (ToboganConfiguration.Instance.Variation == ToboganVariation.LetterInWord)
             {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Tobogan_letters_Title, delegate ()
                 {
@@ -59,7 +59,7 @@ namespace Antura.Minigames.Tobogan
             {
                 playIntro = false;
 
-                if (ToboganConfiguration.Instance.Variation == ToboganVariation.LetterInAWord)
+                if (ToboganConfiguration.Instance.Variation == ToboganVariation.LetterInWord)
                 {
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Tobogan_letters_Intro, delegate ()
                     {

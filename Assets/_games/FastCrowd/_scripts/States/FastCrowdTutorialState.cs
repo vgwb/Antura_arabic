@@ -46,7 +46,7 @@ namespace Antura.Minigames.FastCrowd
             {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Tuto, () => { StartTutorial(); });
             }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord)
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.BuildWord)
             {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Tuto, () => { StartTutorial(); });
             }

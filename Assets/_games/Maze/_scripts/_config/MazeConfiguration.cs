@@ -6,7 +6,7 @@ namespace Antura.Minigames.Maze
 {
     public enum MazeVariation
     {
-        Default = MiniGameCode.Maze_letter
+        LetterName = MiniGameCode.Maze_lettername
     }
 
     public class MazeConfiguration : AbstractGameConfiguration
@@ -34,9 +34,9 @@ namespace Antura.Minigames.Maze
         {
             // Default values
             Questions = new SampleQuestionProvider();
-            Variation = MazeVariation.Default;
+            Variation = MazeVariation.LetterName;
 
-            Context = new MinigamesGameContext(MiniGameCode.Maze_letter, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.Maze_lettername, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
             TutorialEnabled = false;
         }

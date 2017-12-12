@@ -1,12 +1,11 @@
-using Antura.LivingLetters;
 using Antura.Teacher;
 
 namespace Antura.Minigames.DancingDots
 {
     public enum DancingDotsVariation
     {
-        Letter = MiniGameCode.DancingDots_letter,
-        LetterForm = MiniGameCode.DancingDots_letterform
+        LetterName = MiniGameCode.DancingDots_lettername,
+        LetterAny = MiniGameCode.DancingDots_letterany
     }
 
     public class DancingDotsConfiguration : AbstractGameConfiguration
@@ -33,8 +32,8 @@ namespace Antura.Minigames.DancingDots
         private DancingDotsConfiguration()
         {
             // Default values
-            Context = new MinigamesGameContext(MiniGameCode.DancingDots_letter, System.DateTime.Now.Ticks.ToString());
-            Variation = DancingDotsVariation.Letter;
+            Context = new MinigamesGameContext(MiniGameCode.DancingDots_lettername, System.DateTime.Now.Ticks.ToString());
+            Variation = DancingDotsVariation.LetterName;
             Questions = new DancingDotsQuestionProvider();
             TutorialEnabled = true;
         }
@@ -50,7 +49,7 @@ namespace Antura.Minigames.DancingDots
             var builderParams = new QuestionBuilderParameters();
 
             switch (Variation) {
-                case DancingDotsVariation.Letter:
+                case DancingDotsVariation.LetterName:
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.AllButMain;
                     builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
                     builderParams.wordFilters.excludeDiacritics = false;
@@ -58,7 +57,7 @@ namespace Antura.Minigames.DancingDots
                     builderParams.letterFilters.excludeDiphthongs = true;
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
-                case DancingDotsVariation.LetterForm:
+                case DancingDotsVariation.LetterAny:
                     // TODO CHECK NEW MINIGAME VARIATION
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.AllButMain;
                     builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;

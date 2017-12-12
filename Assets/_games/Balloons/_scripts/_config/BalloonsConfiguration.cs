@@ -51,7 +51,7 @@ namespace Antura.Minigames.Balloons
             int nCorrect = 3;
             int nWrong = 8;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
+            var builderParams = new QuestionBuilderParameters();
 
             switch (Variation) {
                 case BalloonsVariation.Spelling:

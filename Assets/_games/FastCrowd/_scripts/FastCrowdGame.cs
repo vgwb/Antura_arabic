@@ -139,7 +139,7 @@ namespace Antura.Minigames.FastCrowd
 
             // TODO: make this more robust to variations
             QuestionManager.wordComposer.gameObject.SetActive(
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord ||
+                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.BuildWord ||
                 FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName ||
                 FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterForm
                 );
@@ -152,7 +152,7 @@ namespace Antura.Minigames.FastCrowd
 
         public bool ShowChallengePopupWidget(bool showAsGoodAnswer, Action callback)
         {
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord)
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.BuildWord)
             {
                 var popupWidget = Context.GetPopupWidget();
                 popupWidget.Show();

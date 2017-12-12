@@ -5,7 +5,7 @@ namespace Antura.Minigames.Tobogan
 {
     public enum ToboganVariation
     {
-        LetterInAWord = MiniGameCode.Tobogan_letter,
+        LetterInWord = MiniGameCode.Tobogan_letterinword,
         SunMoon = MiniGameCode.Tobogan_sunmoon
     }
 
@@ -40,9 +40,9 @@ namespace Antura.Minigames.Tobogan
             //Questions = new SunMoonQuestionProvider();
 
             //Variation = ToboganVariation.SunMoon;
-            Variation = ToboganVariation.LetterInAWord;
+            Variation = ToboganVariation.LetterInWord;
 
-            Context = new MinigamesGameContext(MiniGameCode.Tobogan_letter, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.Tobogan_letterinword, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.0f;
             TutorialEnabled = true;
         }
@@ -58,7 +58,7 @@ namespace Antura.Minigames.Tobogan
             var builderParams = new QuestionBuilderParameters();
             switch (Variation)
             {
-                case ToboganVariation.LetterInAWord:
+                case ToboganVariation.LetterInWord:
                     builderParams.wordFilters.excludeLetterVariations = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
                     break;

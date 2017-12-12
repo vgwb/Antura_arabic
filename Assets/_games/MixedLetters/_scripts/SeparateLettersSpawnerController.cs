@@ -239,7 +239,7 @@ namespace Antura.Minigames.MixedLetters
             VictimLLController.instance.DoHooray();
             VictimLLController.instance.ShowVictoryRays();
 
-            if (MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.Spelling)
+            if (MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.BuildWord)
             {
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(VictimLLController.instance.letterObjectView.Data);
             }

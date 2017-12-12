@@ -1,4 +1,3 @@
-using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
 
@@ -6,7 +5,7 @@ namespace Antura.Minigames.HideAndSeek
 {
     public enum HideAndSeekVariation
     {
-        Default = MiniGameCode.HideSeek_letterform
+        LetterPhoneme = MiniGameCode.HideSeek_letterphoneme
     }
 
     public class HideAndSeekConfiguration : AbstractGameConfiguration
@@ -33,7 +32,7 @@ namespace Antura.Minigames.HideAndSeek
         private HideAndSeekConfiguration()
         {
             // Default values
-            Context = new MinigamesGameContext(MiniGameCode.HideSeek_letterform, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.HideSeek_letterphoneme, System.DateTime.Now.Ticks.ToString());
             Questions = new SampleQuestionProvider();
             Difficulty = 0.5f;
             TutorialEnabled = true;

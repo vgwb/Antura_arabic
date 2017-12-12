@@ -4,10 +4,10 @@ namespace Antura.Minigames.ThrowBalls
 {
     public enum ThrowBallsVariation
     {
-        Letter = MiniGameCode.ThrowBalls_letter,
-        LetterForm = MiniGameCode.ThrowBalls_letterform,
+        LetterName = MiniGameCode.ThrowBalls_lettername,
+        LetterAny = MiniGameCode.ThrowBalls_letterany,
         Word = MiniGameCode.ThrowBalls_word,
-        LetterInWord = MiniGameCode.ThrowBalls_letterinword
+        BuildWord = MiniGameCode.ThrowBalls_buildword
     }
 
     public class ThrowBallsConfiguration : AbstractGameConfiguration
@@ -34,10 +34,9 @@ namespace Antura.Minigames.ThrowBalls
         private ThrowBallsConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new ThrowBallsQuestionProvider();
-            Variation = ThrowBallsVariation.Letter;
-            Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_letter, System.DateTime.Now.Ticks.ToString());
+            Variation = ThrowBallsVariation.LetterName;
+            Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_lettername, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.7f;
             TutorialEnabled = true;
         }
@@ -51,11 +50,11 @@ namespace Antura.Minigames.ThrowBalls
 
             var builderParams = new QuestionBuilderParameters();
             switch (Variation) {
-                case ThrowBallsVariation.Letter:
+                case ThrowBallsVariation.LetterName:
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
-                case ThrowBallsVariation.LetterForm:
+                case ThrowBallsVariation.LetterAny:
                     var letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
                     builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, letterAlterationFilters:letterAlterationFilters, parameters: builderParams);
                     break;
@@ -63,7 +62,7 @@ namespace Antura.Minigames.ThrowBalls
                     builderParams.wordFilters.requireDrawings = true;
                     builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
-                case ThrowBallsVariation.LetterInWord:
+                case ThrowBallsVariation.BuildWord:
                     builder = new LettersInWordQuestionBuilder(nPacks, maximumWordLength: 7, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
                     break;
             }

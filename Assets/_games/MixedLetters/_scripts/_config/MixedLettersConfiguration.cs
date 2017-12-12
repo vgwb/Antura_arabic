@@ -7,7 +7,7 @@ namespace Antura.Minigames.MixedLetters
     public enum MixedLettersVariation
     {
         Alphabet = MiniGameCode.MixedLetters_alphabet,
-        Spelling = MiniGameCode.MixedLetters_letterinword
+        BuildWord = MiniGameCode.MixedLetters_buildword
     }
 
     public class MixedLettersConfiguration : AbstractGameConfiguration
@@ -54,7 +54,7 @@ namespace Antura.Minigames.MixedLetters
                     builderParams.useJourneyForCorrect = false; // Force no journey, or the minigame will block
                     builder = new AlphabetQuestionBuilder(parameters: builderParams);
                     break;
-                case MixedLettersVariation.Spelling:
+                case MixedLettersVariation.BuildWord:
                     builder = new LettersInWordQuestionBuilder(nPacks, maximumWordLength: 6, useAllCorrectLetters: true, parameters: builderParams);
                     break;
             }

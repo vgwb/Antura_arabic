@@ -18,7 +18,7 @@ namespace Antura.Minigames.MixedLetters
             this.game = game;
             audioManager = game.Context.GetAudioManager();
 
-            isSpelling = MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.Spelling;
+            isSpelling = MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.BuildWord;
         }
 
         public void EnterState()

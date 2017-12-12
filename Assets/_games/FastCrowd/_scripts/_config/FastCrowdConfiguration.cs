@@ -8,7 +8,7 @@ namespace Antura.Minigames.FastCrowd
 {
     public enum FastCrowdVariation
     {
-        LetterInWord = MiniGameCode.FastCrowd_letterinword,
+        BuildWord = MiniGameCode.FastCrowd_buildword,
         Word = MiniGameCode.FastCrowd_word,
         LetterName = MiniGameCode.FastCrowd_lettername,
         LetterForm = MiniGameCode.FastCrowd_letterform,
@@ -43,7 +43,7 @@ namespace Antura.Minigames.FastCrowd
             Questions = new SampleQuestionProvider();
             //Variation = FastCrowdVariation.Letter;
             //Variation = FastCrowdVariation.Alphabet;
-            Variation = FastCrowdVariation.LetterInWord;
+            Variation = FastCrowdVariation.BuildWord;
 
             //Questions = new SampleQuestionWithWordsProvider();
             //Variation = FastCrowdVariation.Counting;
@@ -52,7 +52,7 @@ namespace Antura.Minigames.FastCrowd
             //Variation = FastCrowdVariation.Words;
             TutorialEnabled = true;
 
-            Context = new MinigamesGameContext(MiniGameCode.FastCrowd_letterinword, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.FastCrowd_buildword, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 
@@ -82,7 +82,7 @@ namespace Antura.Minigames.FastCrowd
                     var letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
                     builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 4, nWrong, firstCorrectIsQuestion: true, letterAlterationFilters: letterAlterationFilters);
                     break;
-                case FastCrowdVariation.LetterInWord:
+                case FastCrowdVariation.BuildWord:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
@@ -112,7 +112,7 @@ namespace Antura.Minigames.FastCrowd
                 case FastCrowdVariation.LetterForm:
                     strictness = LetterEqualityStrictness.WithVisualForm;
                     break;
-                case FastCrowdVariation.LetterInWord:
+                case FastCrowdVariation.BuildWord:
                 case FastCrowdVariation.Word:
                 case FastCrowdVariation.LetterName:
                 case FastCrowdVariation.Counting:
@@ -133,7 +133,7 @@ namespace Antura.Minigames.FastCrowd
                 case FastCrowdVariation.LetterForm:
                     soundType = LetterDataSoundType.Name;
                     break;
-                case FastCrowdVariation.LetterInWord:
+                case FastCrowdVariation.BuildWord:
                 case FastCrowdVariation.Word:
                 case FastCrowdVariation.LetterName:
                 case FastCrowdVariation.Counting:

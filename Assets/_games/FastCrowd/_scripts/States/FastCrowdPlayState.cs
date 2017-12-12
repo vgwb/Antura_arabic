@@ -87,7 +87,7 @@ namespace Antura.Minigames.FastCrowd
         void OnQuestionCompleted()
         {
             // TODO: make this more robust to variations
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord ||
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.BuildWord ||
                   FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName ||
                  FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterForm 
                   )
@@ -97,7 +97,7 @@ namespace Antura.Minigames.FastCrowd
                     game.IncrementScore();
             }
 
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord)
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.BuildWord)
             {
                 var question = game.CurrentQuestion;
 
@@ -113,7 +113,7 @@ namespace Antura.Minigames.FastCrowd
             game.Context.GetCheckmarkWidget().Show(result);
 
             // TODO: make this more robust to variations
-            if ((FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.LetterInWord &&
+            if ((FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.BuildWord &&
                 FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.LetterName &&
                 FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.LetterForm
                 )

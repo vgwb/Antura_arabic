@@ -1,8 +1,8 @@
-using Antura.LivingLetters;
 using Antura.Teacher;
 
 namespace Antura.Minigames.ReadingGame
 {
+    // TODO: to be standardized
     public enum ReadingGameVariation
     {
         ReadAndAnswer = MiniGameCode.ReadingGame_word,

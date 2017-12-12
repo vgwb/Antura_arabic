@@ -12,7 +12,7 @@ namespace Antura.Minigames.MakeFriends
 
     public enum MakeFriendsVariation
     {
-        LetterForm = MiniGameCode.MakeFriends_letterform
+        LetterInWords = MiniGameCode.MakeFriends_letterinwords
     }
 
     public class MakeFriendsConfiguration : AbstractGameConfiguration
@@ -41,7 +41,7 @@ namespace Antura.Minigames.MakeFriends
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new MakeFriendsQuestionProvider();
-            Context = new MinigamesGameContext(MiniGameCode.MakeFriends_letterform, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.MakeFriends_letterinwords, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0f;
             TutorialEnabled = true;
         }
