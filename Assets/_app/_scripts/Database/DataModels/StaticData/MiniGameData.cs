@@ -40,13 +40,13 @@ namespace Antura.Database
         [SerializeField]
         private MiniGameCode _Code;
 
-        public bool Available
+        public bool Active
         {
-            get { return _Available; }
-            set { _Available = value; }
+            get { return _Active; }
+            set { _Active = value; }
         }
         [SerializeField]
-        private bool _Available;
+        private bool _Active;
 
         /// <summary>
         /// a Minigame can be a normal game or an assessment
@@ -117,7 +117,7 @@ namespace Antura.Database
 
         public override string ToString()
         {
-            return string.Format("[Minigame: id={0}, type={4}, available={1},  title_en={2}, title_ar={3}]", GetId(), Available, Title_En, Title_Ar, Type.ToString());
+            return string.Format("[Minigame: id={0}, type={4}, available={1},  title_en={2}, title_ar={3}]", GetId(), Active, Title_En, Title_Ar, Type.ToString());
         }
 
         public string GetTitleSoundFilename()

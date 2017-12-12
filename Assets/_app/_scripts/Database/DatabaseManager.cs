@@ -252,7 +252,7 @@ namespace Antura.Database
 
         public List<MiniGameData> GetActiveMinigames()
         {
-            return FindMiniGameData((x) => (x.Available && x.Type == MiniGameDataType.MiniGame));
+            return FindMiniGameData((x) => (x.Active && x.Type == MiniGameDataType.MiniGame));
         }
 
         public List<MiniGameData> GetAllMiniGameData()
