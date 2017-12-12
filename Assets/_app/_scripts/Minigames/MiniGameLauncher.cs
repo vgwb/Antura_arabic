@@ -87,7 +87,9 @@ namespace Antura.Minigames
         {
             var output = "";
             output += "Difficulty: " + currentGameConfig.Difficulty;
-            // TODO MICHELE: ADD here any currentGameConfig useful ingo for testers
+            // TODO MICHELE:
+            // current QuestionBuilderCOnfig (jsut title)
+            // current "focus" (letters/words we are aiming in current LB)
             return output;
         }
 
