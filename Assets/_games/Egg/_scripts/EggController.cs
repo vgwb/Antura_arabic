@@ -300,7 +300,7 @@ namespace Antura.Minigames.Egg
                 {
                     ILivingLetterData letterData = lLDAudioQuestion[0];
 
-                    audioSource = audioManager.PlayLetterData(letterData, false);
+                    audioSource = audioManager.PlayVocabularyData(letterData, false);
 
                     lLDAudioQuestion.RemoveAt(0);
                 }

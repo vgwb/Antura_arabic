@@ -415,7 +415,7 @@ namespace Antura.Minigames.ThrowBalls
 
         private void SayQuestion()
         {
-            game.Context.GetAudioManager().PlayLetterData(question);
+            game.Context.GetAudioManager().PlayVocabularyData(question);
         }
 
         private void ShowTutorialUI()

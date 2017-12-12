@@ -318,7 +318,7 @@ namespace Antura.Minigames.MixedLetters
         {
             if (MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.Spelling)
             {
-                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(question);
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(question);
 
                 if (onQuestionOver != null)
                 {
@@ -338,7 +338,7 @@ namespace Antura.Minigames.MixedLetters
 
             foreach (ILivingLetterData letterData in PromptLettersInOrder)
             {
-                audioManager.PlayLetterData(letterData);
+                audioManager.PlayVocabularyData(letterData);
 
                 yield return new WaitForSeconds(0.75f);
             }

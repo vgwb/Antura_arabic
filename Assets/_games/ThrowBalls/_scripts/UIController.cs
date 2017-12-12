@@ -52,7 +52,7 @@ namespace Antura.Minigames.ThrowBalls
         {
             if (livingLetterData != null && ThrowBallsGame.instance.GameState.isRoundOngoing)
             {
-                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(livingLetterData, true);
+                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(livingLetterData, true);
                 WobbleLetterHint();
             }
         }

@@ -117,7 +117,7 @@ namespace Antura.Assessment
         /// <param name="data">Sound to play</param>
         public void PlayLetterData(ILivingLetterData data)
         {
-            AssessmentConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
+            AssessmentConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(data, true);
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Antura.Assessment
         /// <param name="data">Sound to play</param>
         public IEnumerator PlayLetterDataCoroutine(ILivingLetterData data)
         {
-            var audioSource = AssessmentConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
+            var audioSource = AssessmentConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(data, true);
 
             while (audioSource.IsPlaying)
             {

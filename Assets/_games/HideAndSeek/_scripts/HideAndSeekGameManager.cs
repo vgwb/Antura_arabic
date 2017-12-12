@@ -100,7 +100,7 @@ namespace Antura.Minigames.HideAndSeek
 
         public void RepeatAudio()
         {
-            game.Context.GetAudioManager().PlayLetterData(GetCorrectAnswer());
+            game.Context.GetAudioManager().PlayVocabularyData(GetCorrectAnswer());
         }
 
 
@@ -303,7 +303,7 @@ namespace Antura.Minigames.HideAndSeek
             var winInitialDelay = 0.5f;
             yield return new WaitForSeconds(winInitialDelay);
 
-            game.Context.GetAudioManager().PlayLetterData(GetCorrectAnswer());
+            game.Context.GetAudioManager().PlayVocabularyData(GetCorrectAnswer());
             game.PlayState.gameTime.Start();
 
             buttonRepeater.SetActive(true);

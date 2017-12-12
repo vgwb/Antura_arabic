@@ -147,7 +147,7 @@ namespace Antura.Minigames.MakeFriends
         {
             if (wordData != null && wordData.Id != null)
             {
-                MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(wordData, true);
+                MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(wordData, true);
             }
             //if (container != null)
             //{

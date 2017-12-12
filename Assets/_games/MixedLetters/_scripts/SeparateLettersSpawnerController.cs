@@ -107,7 +107,7 @@ namespace Antura.Minigames.MixedLetters
                 throwLetterToTheRight = !throwLetterToTheRight;
 
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.ThrowObj);
-                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterToSpawn);
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterToSpawn);
 
                 yield return new WaitForSeconds(0.75f);
             }
@@ -241,7 +241,7 @@ namespace Antura.Minigames.MixedLetters
 
             if (MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.Spelling)
             {
-                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(VictimLLController.instance.letterObjectView.Data);
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(VictimLLController.instance.letterObjectView.Data);
             }
 
             yield return new WaitForSeconds(WIN_ANIMATION_BIG_LL_TWIRL_DELAY);

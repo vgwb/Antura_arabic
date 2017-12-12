@@ -28,6 +28,8 @@ namespace Antura.Minigames
             AppManager.I.Player.SetCurrentJourneyPosition(Stage, LearningBlock, PlaySession);
             var config = new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, TutorialEnabled);
             AppManager.I.GameLauncher.LaunchGame(MiniGameCode, config, true);
+
+
         }
     }
 }

@@ -528,7 +528,7 @@ namespace Antura.Minigames.Balloons
                     break;
 
                 case BalloonsVariation.Counting:
-                    //AudioManager.PlayLetterData(correctAnswers.Last());
+                    //AudioManager.PlayVocabularyData(correctAnswers.Last());
                     //Popup.Show();
                     //Popup.SetButtonCallback(OnRoundStartPressed);
                     //Popup.SetLetterData(question);
@@ -1374,7 +1374,7 @@ namespace Antura.Minigames.Balloons
                 //yield return new WaitForSeconds(winSpeakWordDelay);
                 if (question != null)
                 {
-                    AudioManager.PlayLetterData(question);
+                    AudioManager.PlayVocabularyData(question);
                 }
 
                 var resumePlayingDelay = 1.5f;
@@ -1446,11 +1446,11 @@ namespace Antura.Minigames.Balloons
         {
             if (ActiveGameVariation == BalloonsVariation.Counting)
             {
-                BalloonsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(correctAnswers[countingIndex]);
+                BalloonsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(correctAnswers[countingIndex]);
             }
             else
             {
-                BalloonsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(question);
+                BalloonsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(question);
             }
         }
 

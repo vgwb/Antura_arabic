@@ -53,7 +53,7 @@ namespace Antura.Minigames.DancingDots
 		{
 			if (letterData != null)
             {
-                DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
+                DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterData);
 			}
 		}
 
@@ -164,7 +164,7 @@ namespace Antura.Minigames.DancingDots
 		{
 			if (letterData != null && !game.isTutRound)
             {
-                DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
+                DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterData);
 			}
 		}
 

@@ -174,7 +174,7 @@ namespace Antura.Minigames.Balloons
         {
             if (letterData != null && letterData.Id != null)
             {
-                BalloonsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
+                BalloonsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterData);
             }
         }
 
