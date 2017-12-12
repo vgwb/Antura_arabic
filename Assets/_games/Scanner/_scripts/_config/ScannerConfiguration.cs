@@ -12,7 +12,7 @@ namespace Antura.Minigames.Scanner
 
     public class ScannerConfiguration : AbstractGameConfiguration
     {
-        public ScannerVariation Variation { get; set; }
+        public ScannerVariation Variation { get; private set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {

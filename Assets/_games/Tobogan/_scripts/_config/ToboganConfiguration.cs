@@ -12,7 +12,7 @@ namespace Antura.Minigames.Tobogan
 
     public class ToboganConfiguration : AbstractGameConfiguration
     {
-        public ToboganVariation Variation { get; set; }
+        public ToboganVariation Variation { get; private set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {

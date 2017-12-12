@@ -11,7 +11,7 @@ namespace Antura.Minigames.HideAndSeek
 
     public class HideAndSeekConfiguration : AbstractGameConfiguration
     {
-        public HideAndSeekVariation Variation { get; set; }
+        private HideAndSeekVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {

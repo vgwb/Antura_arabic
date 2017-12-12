@@ -15,7 +15,7 @@ namespace Antura.Minigames.Template
     /// </summary>
     public class TemplateConfiguration : AbstractGameConfiguration
     {
-        public TemplateVariation Variation { get; set; }
+        private TemplateVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {

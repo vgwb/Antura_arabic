@@ -12,7 +12,7 @@ namespace Antura.Minigames.ReadingGame
 
     public class ReadingGameConfiguration : AbstractGameConfiguration
     {
-        public ReadingGameVariation Variation { get; set; }
+        public ReadingGameVariation Variation { get; private set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {

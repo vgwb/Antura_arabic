@@ -11,7 +11,7 @@ namespace Antura.Minigames.DancingDots
 
     public class DancingDotsConfiguration : AbstractGameConfiguration
     {
-        public DancingDotsVariation Variation { get; set; }
+        private DancingDotsVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {

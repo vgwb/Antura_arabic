@@ -137,18 +137,9 @@ namespace Antura.Minigames.FastCrowd
             EndState = new FastCrowdEndState(this);
             TutorialState = new FastCrowdTutorialState(this);
 
-            // TODO: make this more robust to variations
-            QuestionManager.wordComposer.gameObject.SetActive(
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.BuildWord ||
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName ||
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterForm
-                );
-
-            QuestionManager.wordComposer.splitMode =
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName
-                || FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterForm;
+            QuestionManager.wordComposer.gameObject.SetActive(FastCrowdConfiguration.Instance.NeedsWordComposer);
+            QuestionManager.wordComposer.splitMode = FastCrowdConfiguration.Instance.WordComposerInSplitMode;
         }
-
 
         public bool ShowChallengePopupWidget(bool showAsGoodAnswer, Action callback)
         {

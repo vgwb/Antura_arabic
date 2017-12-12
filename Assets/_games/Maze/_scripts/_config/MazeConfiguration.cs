@@ -12,7 +12,7 @@ namespace Antura.Minigames.Maze
 
     public class MazeConfiguration : AbstractGameConfiguration
     {
-        public MazeVariation Variation { get; set; }
+        private MazeVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {

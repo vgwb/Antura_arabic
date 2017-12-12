@@ -1,4 +1,5 @@
 using Antura.Audio;
+using Antura.Database;
 using Antura.Minigames;
 
 namespace Antura.Minigames.MissingLetter
@@ -12,14 +13,8 @@ namespace Antura.Minigames.MissingLetter
 
         public void EnterState()
         {
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.LetterInWord)
-            {
-                AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_forms_Title);
-            }
-            else
-            {
-                AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_phrases_Title);
-            }
+            AudioManager.I.PlayDialogue(MissingLetterConfiguration.Instance.TitleLocalizationId);
+           
         }
 
         public void ExitState()

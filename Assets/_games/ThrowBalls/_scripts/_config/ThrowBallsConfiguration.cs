@@ -1,4 +1,5 @@
 using System;
+using Antura.Database;
 using Antura.Teacher;
 
 namespace Antura.Minigames.ThrowBalls
@@ -13,7 +14,7 @@ namespace Antura.Minigames.ThrowBalls
 
     public class ThrowBallsConfiguration : AbstractGameConfiguration
     {
-        public ThrowBallsVariation Variation { get; set; }
+        public ThrowBallsVariation Variation { get; private set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -80,5 +81,24 @@ namespace Antura.Minigames.ThrowBalls
             return rules;
         }
 
+        public override LocalizationDataId TitleLocalizationId
+        {
+            get
+            {
+                switch (Instance.Variation)
+                {
+                    case ThrowBallsVariation.LetterName:
+                        return LocalizationDataId.ThrowBalls_letters_Title;
+                    case ThrowBallsVariation.LetterAny:
+                        return LocalizationDataId.ThrowBalls_letters_Title; // TODO: get the correct title here
+                    case ThrowBallsVariation.Word:
+                        return LocalizationDataId.ThrowBalls_words_Title; 
+                    case ThrowBallsVariation.BuildWord:
+                        return LocalizationDataId.ThrowBalls_letterinword_Title;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
     }
 }

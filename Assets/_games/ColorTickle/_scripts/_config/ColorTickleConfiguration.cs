@@ -11,7 +11,7 @@ namespace Antura.Minigames.ColorTickle
 
     public class ColorTickleConfiguration : AbstractGameConfiguration
     {
-        public ColorTickleVariation Variation { get; set; }
+        private ColorTickleVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {

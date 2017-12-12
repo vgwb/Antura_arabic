@@ -11,7 +11,7 @@ namespace Antura.Minigames.SickLetters
 
     public class SickLettersConfiguration : AbstractGameConfiguration
     {
-        public SickLettersVariation Variation { get; set; }
+        private SickLettersVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {

@@ -13,7 +13,7 @@ namespace Antura.Minigames.MixedLetters
 
     public class MixedLettersConfiguration : AbstractGameConfiguration
     {
-        public MixedLettersVariation Variation { get; set; }
+        public MixedLettersVariation Variation { get; private set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {

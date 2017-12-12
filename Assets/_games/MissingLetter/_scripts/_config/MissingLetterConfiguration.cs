@@ -1,4 +1,5 @@
 using System;
+using Antura.Database;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
@@ -14,7 +15,7 @@ namespace Antura.Minigames.MissingLetter
 
     public class MissingLetterConfiguration : AbstractGameConfiguration
     {
-        public MissingLetterVariation Variation { get; set; }
+        public MissingLetterVariation Variation { get; private set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -85,5 +86,22 @@ namespace Antura.Minigames.MissingLetter
             return rules;
         }
 
+        public override LocalizationDataId TitleLocalizationId
+        {
+            get
+            {
+                switch (Variation)
+                {
+                    case MissingLetterVariation.Phrase:
+                        return LocalizationDataId.MissingLetter_phrases_Title;
+                    case MissingLetterVariation.LetterForm:
+                        return LocalizationDataId.MissingLetter_forms_Title;
+                    case MissingLetterVariation.LetterInWord:
+                        return LocalizationDataId.MissingLetter_forms_Title;    // TODO: we need the correct title!
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
     }
 }
