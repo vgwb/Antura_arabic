@@ -27,9 +27,9 @@
         FastCrowd_buildword = 1,
         FastCrowd_word = 4,
         HideSeek_letterphoneme = 16,
-        MakeFriends_letterinwords = 17,
+        MakeFriends_letterinword = 17,
         Maze_lettername = 18,
-        //MissingLetter_letter = 19, // DISABLED
+        MissingLetter_letter = 19, // DISABLED
         MissingLetter_letterform = 39, // NEW
         MissingLetter_phrase = 20, // DISABLED
         MissingLetter_letterinword = 35,
