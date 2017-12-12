@@ -1,3 +1,4 @@
+using System;
 using Antura.Teacher;
 
 namespace Antura.Minigames.DancingDots
@@ -66,6 +67,8 @@ namespace Antura.Minigames.DancingDots
                     builderParams.letterFilters.excludeDiphthongs = true;
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             return builder;
         }

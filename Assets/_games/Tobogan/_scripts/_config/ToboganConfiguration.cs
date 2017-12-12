@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
 
@@ -35,7 +36,6 @@ namespace Antura.Minigames.Tobogan
         private ToboganConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
             //Questions = new SunMoonQuestionProvider();
 
@@ -65,12 +65,10 @@ namespace Antura.Minigames.Tobogan
                 case ToboganVariation.SunMoon:
                     builder = new WordsBySunMoonQuestionBuilder(nPacks, parameters: builderParams);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
-            if (builder == null)
-            {
-                throw new System.Exception("No question builder defined for variation " + Variation.ToString());
-            }
             return builder;
         }
 
@@ -79,15 +77,6 @@ namespace Antura.Minigames.Tobogan
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
-        }
-
-        public int GetDiscreteDifficulty(int maximum)
-        {
-            int d = (int)Difficulty * (maximum + 1);
-
-            if (d > maximum)
-                return maximum;
-            return d;
         }
 
     }

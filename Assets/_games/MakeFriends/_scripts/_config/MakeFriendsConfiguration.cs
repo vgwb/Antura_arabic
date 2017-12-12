@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters;
 using Antura.Teacher;
 
@@ -57,7 +58,14 @@ namespace Antura.Minigames.MakeFriends
             int nWords = 2;
 
             var builderParams = new QuestionBuilderParameters();
-            builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams);
+            switch (Variation)
+            {
+                case MakeFriendsVariation.LetterInWords:
+                    builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             return builder;
         }

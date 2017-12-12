@@ -143,6 +143,8 @@ namespace Antura.Assessment
                 case AssessmentVariation.MatchLettersToWord_Form:
                     return Setup_MatchLettersToWord_Form_Builder();
 
+                case AssessmentVariation.Unsetted:
+                case AssessmentVariation.VowelOrConsonant:
                 default:
                     throw new NotImplementedException("NotImplemented Yet!");
             }

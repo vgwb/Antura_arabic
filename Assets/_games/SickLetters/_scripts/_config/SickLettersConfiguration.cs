@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters;
 using Antura.Teacher;
 
@@ -49,7 +50,15 @@ namespace Antura.Minigames.SickLetters
             int nWrong = 0;
 
             var builderParams = new QuestionBuilderParameters();
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+
+            switch (Variation)
+            {
+                case SickLettersVariation.LetterName:
+                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             return builder;
         }

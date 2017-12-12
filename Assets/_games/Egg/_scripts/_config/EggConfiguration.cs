@@ -13,7 +13,7 @@ namespace Antura.Minigames.Egg
 
     public class EggConfiguration : AbstractGameConfiguration
     {
-        public EggVariation Variation { get; set; }
+        private EggVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {

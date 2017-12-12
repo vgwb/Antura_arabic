@@ -1,3 +1,4 @@
+using System;
 using Antura.Teacher;
 
 namespace Antura.Minigames.ThrowBalls
@@ -36,7 +37,7 @@ namespace Antura.Minigames.ThrowBalls
             // Default values
             Questions = new ThrowBallsQuestionProvider();
             Variation = ThrowBallsVariation.LetterName;
-            Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_lettername, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_lettername, DateTime.Now.Ticks.ToString());
             Difficulty = 0.7f;
             TutorialEnabled = true;
         }
@@ -65,6 +66,8 @@ namespace Antura.Minigames.ThrowBalls
                 case ThrowBallsVariation.BuildWord:
                     builder = new LettersInWordQuestionBuilder(nPacks, maximumWordLength: 7, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             return builder;

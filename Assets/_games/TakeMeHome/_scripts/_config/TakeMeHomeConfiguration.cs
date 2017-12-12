@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
@@ -11,7 +12,7 @@ namespace Antura.Minigames.TakeMeHome
 
     public class TakeMeHomeConfiguration : AbstractGameConfiguration
     {
-        public TakeMeHomeVariation Variation { get; set; }
+        private TakeMeHomeVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -44,11 +45,19 @@ namespace Antura.Minigames.TakeMeHome
             IQuestionBuilder builder = null;
 
             var builderParams = new QuestionBuilderParameters();
-            builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
-            builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
-            builderParams.wordFilters.excludeDiacritics = true;
-            builderParams.wordFilters.excludeLetterVariations = true;
-            builder = new RandomLettersQuestionBuilder(1, 7, parameters: builderParams);
+
+            switch (Variation)
+            {
+                case TakeMeHomeVariation.LetterName:
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
+                    builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
+                    builderParams.wordFilters.excludeDiacritics = true;
+                    builderParams.wordFilters.excludeLetterVariations = true;
+                    builder = new RandomLettersQuestionBuilder(1, 7, parameters: builderParams);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             return builder;
         }

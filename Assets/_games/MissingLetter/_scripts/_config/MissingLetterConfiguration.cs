@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
@@ -71,6 +72,8 @@ namespace Antura.Minigames.MissingLetter
                     builderParams.phraseFilters.requireAtLeastTwoWords = true;
                     builder = new WordsInPhraseQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             return builder;
         }

@@ -92,6 +92,8 @@ namespace Antura.Minigames.FastCrowd
                     builderParams.wordFilters.requireDrawings = true;
                     builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             return builder;
