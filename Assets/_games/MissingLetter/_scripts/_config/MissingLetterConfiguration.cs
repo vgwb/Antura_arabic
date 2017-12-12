@@ -1,6 +1,5 @@
 using System;
 using Antura.Database;
-using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
 
@@ -59,13 +58,17 @@ namespace Antura.Minigames.MissingLetter
 
             switch (Variation) {
                 case MissingLetterVariation.LetterInWord:
+                    // Find a letter with the given form inside the word (no diacritics)
+                    // wrong answers are other letters in different forms
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builderParams.letterFilters.excludeDiphthongs = true;
-                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters: true, parameters: builderParams);
+                    builder = new LetterAlterationsInWordsQuestionBuilder(nPacks, 1, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters);
                     break;
 
                 case MissingLetterVariation.LetterForm:
-                    builder = new LetterFormsInWordsQuestionBuilder(1, 1, parameters: builderParams);
+                    // Find the correct form of the letter in the given word
+                    // wrong answers are the other forms of the same letter
+                    builder = new LetterAlterationsInWordsQuestionBuilder(1, 1, parameters: builderParams, letterAlterationFilters:LetterAlterationFilters.FormsOfSingleLetter);
                     break;
 
                 case MissingLetterVariation.Phrase:

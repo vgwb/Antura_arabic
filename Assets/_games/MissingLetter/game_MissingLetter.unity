@@ -10085,17 +10085,17 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1213377332}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MiniGameCode: 19
+  MiniGameCode: 35
   Stage: 1
-  LearningBlock: 1
+  LearningBlock: 14
   PlaySession: 1
-  Difficulty: 0.5
-  TutorialEnabled: 1
+  Difficulty: 1
+  TutorialEnabled: 0
   NumberOfRounds: 1
 --- !u!1001 &1231839436
 Prefab:

@@ -182,7 +182,7 @@ namespace Antura.Database
             return dbManager.FindLetterData(x => x.BaseLetter == baseData.Id);
         }
 
-        public List<LetterData> ConvertToLettersWithForcedForms(LetterData baseForVariation)
+        public List<LetterData> ConvertToLettersWithAvailableForcedForms(LetterData baseForVariation)
         {
             return new List<LetterForm>(baseForVariation.GetAvailableForms()).ConvertAll(f =>
             {
@@ -197,6 +197,56 @@ namespace Antura.Database
             var l = baseForVariation.Clone();
             l.ForcedLetterForm = form;
             return l;
+        }
+
+        public List<LetterData> GetAllLetterAlterations(List<LetterData> baseLetters, LetterAlterationFilters letterAlterationFilters)
+        {
+            List<LetterData> letterPool = new List<LetterData>();
+
+            // Filter: only 1 base or multiple bases?
+            if (!letterAlterationFilters.differentBaseLetters)
+            {
+                var chosenLetter = baseLetters.RandomSelectOne();
+                baseLetters.Clear();
+                baseLetters.Add(chosenLetter);
+            }
+
+            //Debug.Log("N base letters: " + baseLetters.Count);
+            // Get all alterations for the given bases
+            foreach (var baseLetter in baseLetters)
+            {
+                // Check all alterations of this base letter
+                var letterAlterations = GetLettersWithBase(baseLetter.GetId());
+                List<LetterData> availableVariations = new List<LetterData>();
+                foreach (var letterData in letterAlterations)
+                {
+                    if (!FilterByDiacritics(letterAlterationFilters.ExcludeDiacritics, letterData)) continue;
+                    if (!FilterByLetterVariations(letterAlterationFilters.ExcludeLetterVariations, letterData)) continue;
+                    if (!FilterByDipthongs(letterAlterationFilters.excludeDipthongs, letterData)) continue;
+                    availableVariations.Add(letterData);
+                }
+                //Debug.Log("N availableVariations  " + availableVariations.Count + "  for " + baseLetter.GetId());
+
+                if (letterAlterationFilters.includeForms)
+                {
+                    // Add forms too to the variations, if needed
+                    List<LetterData> basesForForms = new List<LetterData>(availableVariations);
+                    basesForForms.Add(baseLetter);
+                    foreach (var baseForForm in basesForForms)
+                    {
+                        var availableForms = ConvertToLettersWithAvailableForcedForms(baseForForm);
+                        letterPool.AddRange(availableForms);
+                    }
+                }
+                else
+                {
+                    // Add just the isolated versions
+                    letterPool.Add(baseLetter);
+                    letterPool.AddRange(availableVariations);
+                }
+            }
+
+            return letterPool;
         }
 
         #endregion
@@ -224,11 +274,11 @@ namespace Antura.Database
             return letter_ids_list;
         }*/
 
-        public List<LetterData> GetLettersInWord(string wordId)
+        /*public List<LetterData> GetLettersInWord(string wordId)
         {
             WordData wordData = dbManager.GetWordDataById(wordId);
             return GetLettersInWord(wordData);
-        }
+        }*/
         public List<LetterData> GetLettersInWord(WordData wordData)
         {
             // @note: this will always retrieve all letters with their forms, the strictness will then define whether that has any consequence or not

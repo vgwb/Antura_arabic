@@ -38,8 +38,6 @@ namespace Antura.Teacher
         };
 
 
-        public bool addBaseLetterToo = false;
-
         // Can add different letters as bases?
         public bool differentBaseLetters;
 
@@ -51,14 +49,14 @@ namespace Antura.Teacher
         // Can add forms?
         public bool includeForms;
 
-        public LetterAlterationFilters() : this(false, false, LetterFilters.ExcludeDiacritics.All, LetterFilters.ExcludeLetterVariations.All, true, false)
+        public LetterAlterationFilters() : this(false, LetterFilters.ExcludeDiacritics.All, LetterFilters.ExcludeLetterVariations.All, true, false)
         {
             
         }
 
-        public LetterAlterationFilters(bool addBaseLetterToo, bool differentBaseLetters, LetterFilters.ExcludeDiacritics excludeDiacritics, LetterFilters.ExcludeLetterVariations excludeLetterVariations, bool excludeDipthongs, bool includeForms)
+        public LetterAlterationFilters(bool differentBaseLetters, LetterFilters.ExcludeDiacritics excludeDiacritics, LetterFilters.ExcludeLetterVariations excludeLetterVariations, bool excludeDipthongs, bool includeForms)
         {
-            this.addBaseLetterToo = addBaseLetterToo;
+            //this.addBaseLetterToo = addBaseLetterToo;
             this.differentBaseLetters = differentBaseLetters;
             ExcludeDiacritics = excludeDiacritics;
             ExcludeLetterVariations = excludeLetterVariations;

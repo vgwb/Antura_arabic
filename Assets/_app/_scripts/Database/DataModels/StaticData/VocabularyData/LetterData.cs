@@ -500,37 +500,4 @@ namespace Antura.Database
             }
         }
     }
-
-    /*
-    public class LetterDataComparer : IEqualityComparer<LetterData>
-    {
-        private LetterEqualityStrictness strictness;
-
-        public LetterDataComparer(LetterEqualityStrictness strictness)
-        {
-            this.strictness = strictness;
-        }
-
-        public bool Equals(LetterData x, LetterData y)
-        {
-            return x.IsSameLetterAs(y, strictness);
-        }
-
-        public int GetHashCode(LetterData obj)
-        {
-            var hashCode = (obj.Id != null ? obj.Id.GetHashCode() : 0);
-            switch (obj.EqualityStrictness)
-            {
-                case LetterEqualityStrictness.LetterOnly:
-                    break;
-                case LetterEqualityStrictness.WithActualForm:
-                    hashCode = (hashCode * 397) ^ obj.Form.GetHashCode();
-                    break;
-                case LetterEqualityStrictness.WithVisualForm:
-                    hashCode = (hashCode * 397) ^ obj.GetStringForDisplay().GetHashCode();
-                    break;
-            }
-            return hashCode;
-        }
-    }*/
 }
