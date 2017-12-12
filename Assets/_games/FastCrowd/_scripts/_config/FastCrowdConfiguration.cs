@@ -10,7 +10,7 @@ namespace Antura.Minigames.FastCrowd
     {
         LetterInWord = MiniGameCode.FastCrowd_letterinword,
         Word = MiniGameCode.FastCrowd_word,
-        LetterName = MiniGameCode.FastCrowd_letter,
+        LetterName = MiniGameCode.FastCrowd_lettername,
         LetterForm = MiniGameCode.FastCrowd_letterform,
         Counting = MiniGameCode.FastCrowd_counting,
         Alphabet = MiniGameCode.FastCrowd_alphabet
@@ -144,7 +144,7 @@ namespace Antura.Minigames.FastCrowd
             return DataMatchingHelper.IsDataMatching(data1, data2, strictness);
         }
 
-        public LetterDataSoundType GetVariationSoundType()
+        public LetterDataSoundType GetVocabularySoundType()
         {
             LetterDataSoundType soundType = LetterDataSoundType.Phoneme;
             switch (Variation)

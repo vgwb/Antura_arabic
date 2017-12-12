@@ -22,7 +22,7 @@
         Egg_sequence = 34,
         FastCrowd_alphabet = 12, // DISABLED
         FastCrowd_counting = 13,
-        FastCrowd_letter = 14,
+        FastCrowd_lettername = 14,
         FastCrowd_letterform = 38, // NEW
         FastCrowd_letterinword = 1,
         FastCrowd_word = 4,
