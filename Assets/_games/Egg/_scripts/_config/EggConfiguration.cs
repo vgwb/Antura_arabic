@@ -1,3 +1,5 @@
+using System;
+using Antura.Database;
 using Antura.LivingLetters;
 using Antura.Teacher;
 
@@ -39,6 +41,7 @@ namespace Antura.Minigames.Egg
                 return instance;
             }
         }
+
         /////////////////
 
         private EggConfiguration()
@@ -80,7 +83,7 @@ namespace Antura.Minigames.Egg
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 case EggVariation.LetterForm:
-                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.FormsOfSingleLetter);
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, 3, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.PhonemesOfMultipleLetters);
                     break;
             } 
 
@@ -93,5 +96,54 @@ namespace Antura.Minigames.Egg
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
         }
+
+        #region Variation checks
+
+        public LocalizationDataId TitleLocalizationId
+        {
+            get
+            {
+                switch (Variation)
+                {
+                    case EggVariation.Letter:
+                    case EggVariation.LetterForm:
+                        return LocalizationDataId.Egg_letters_Title;
+                    case EggVariation.Sequence:
+                        return LocalizationDataId.Egg_sequence_Title;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        public bool IsSingleVariation()
+        {
+            switch (Variation)
+            {
+                case EggVariation.Letter:
+                case EggVariation.LetterForm:
+                    return true;
+                case EggVariation.Sequence:
+                    return false;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public bool IsSequence()
+        {
+            switch (Variation)
+            {
+                case EggVariation.Letter:
+                case EggVariation.LetterForm:
+                    return false;
+                case EggVariation.Sequence:
+                    return true;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        #endregion
+
     }
 }

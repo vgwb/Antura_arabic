@@ -88,7 +88,7 @@ namespace Antura.Minigames.Egg
             currentStage = 0;
             correctStages = 0;
 
-            bool isSingleVariation = EggConfiguration.Instance.Variation == EggVariation.Letter;
+            bool isSingleVariation = EggConfiguration.Instance.IsSingleVariation();
 
             eggController.Initialize(letterObjectPrefab, shadowPrefab, eggBox.GetEggLocalPositions(), eggBox.GetLocalLettersMaxPositions(),
                 EggConfiguration.Instance.Context.GetAudioManager());
