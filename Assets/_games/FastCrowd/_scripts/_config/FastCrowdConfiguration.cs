@@ -1,3 +1,4 @@
+using System;
 using Antura.Database;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
@@ -143,6 +144,21 @@ namespace Antura.Minigames.FastCrowd
             return DataMatchingHelper.IsDataMatching(data1, data2, strictness);
         }
 
+        public LetterDataSoundType GetVariationSoundType()
+        {
+            LetterDataSoundType soundType = LetterDataSoundType.Phoneme;
+            switch (Variation)
+            {
+                case FastCrowdVariation.LetterForm:
+                    soundType = LetterDataSoundType.Name;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            return soundType;
+        }
+
         #endregion
+
     }
 }

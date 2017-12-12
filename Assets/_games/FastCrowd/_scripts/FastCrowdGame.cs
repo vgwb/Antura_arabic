@@ -169,7 +169,7 @@ namespace Antura.Minigames.FastCrowd
 
                 var question = CurrentQuestion.GetQuestion();
                 popupWidget.SetLetterData(question);
-                Context.GetAudioManager().PlayVocabularyData(question);
+                Context.GetAudioManager().PlayVocabularyData(question, soundType: FastCrowdConfiguration.Instance.GetVariationSoundType());
                 return true;
             }
             return false;
