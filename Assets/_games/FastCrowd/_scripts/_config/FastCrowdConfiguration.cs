@@ -16,27 +16,15 @@ namespace Antura.Minigames.FastCrowd
         Alphabet = MiniGameCode.FastCrowd_alphabet
     }
 
-    public class FastCrowdConfiguration : IGameConfiguration
+    public class FastCrowdConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
-
-        #region Game configurations
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
         public FastCrowdVariation Variation { get; set; }
 
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (FastCrowdVariation)code;
         }
 
-        #endregion
-
-
-        /////////////////
         // Singleton Pattern
         static FastCrowdConfiguration instance;
         public static FastCrowdConfiguration Instance
@@ -48,13 +36,10 @@ namespace Antura.Minigames.FastCrowd
                 return instance;
             }
         }
-        /////////////////
 
         private FastCrowdConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-
             Questions = new SampleQuestionProvider();
             //Variation = FastCrowdVariation.Letter;
             //Variation = FastCrowdVariation.Alphabet;
@@ -71,17 +56,7 @@ namespace Antura.Minigames.FastCrowd
             Difficulty = 0.5f;
         }
 
-        #region external configuration call
-        public static void SetConfiguration(float _difficulty, int _variation)
-        {
-            instance = new FastCrowdConfiguration()
-            {
-                Difficulty = _difficulty,
-                Variation = (FastCrowdVariation)_variation,
-            };
-        }
-
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
@@ -122,14 +97,14 @@ namespace Antura.Minigames.FastCrowd
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
         }
 
-        public bool IsDataMatching(ILivingLetterData data1, ILivingLetterData data2)
+        public override bool IsDataMatching(ILivingLetterData data1, ILivingLetterData data2)
         {
             LetterEqualityStrictness strictness;
             switch (Variation)
@@ -137,28 +112,39 @@ namespace Antura.Minigames.FastCrowd
                 case FastCrowdVariation.LetterForm:
                     strictness = LetterEqualityStrictness.WithVisualForm;
                     break;
-                default:
+                case FastCrowdVariation.LetterInWord:
+                case FastCrowdVariation.Word:
+                case FastCrowdVariation.LetterName:
+                case FastCrowdVariation.Counting:
+                case FastCrowdVariation.Alphabet:
                     strictness = LetterEqualityStrictness.LetterOnly;
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             return DataMatchingHelper.IsDataMatching(data1, data2, strictness);
         }
 
-        public LetterDataSoundType GetVocabularySoundType()
+        public override LetterDataSoundType GetVocabularySoundType()
         {
-            LetterDataSoundType soundType = LetterDataSoundType.Phoneme;
+            LetterDataSoundType soundType;
             switch (Variation)
             {
                 case FastCrowdVariation.LetterForm:
                     soundType = LetterDataSoundType.Name;
+                    break;
+                case FastCrowdVariation.LetterInWord:
+                case FastCrowdVariation.Word:
+                case FastCrowdVariation.LetterName:
+                case FastCrowdVariation.Counting:
+                case FastCrowdVariation.Alphabet:
+                    soundType = LetterDataSoundType.Phoneme;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
             return soundType;
         }
-
-        #endregion
 
     }
 }

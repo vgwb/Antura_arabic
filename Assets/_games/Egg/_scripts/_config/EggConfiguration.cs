@@ -1,33 +1,25 @@
 using System;
 using Antura.Database;
-using Antura.LivingLetters;
 using Antura.Teacher;
 
 namespace Antura.Minigames.Egg
 {
     public enum EggVariation
     {
-        Letter = MiniGameCode.Egg_letter,
-        LetterForm = MiniGameCode.Egg_letterform,
+        LetterName = MiniGameCode.Egg_lettername,
+        LetterPhoneme = MiniGameCode.Egg_letterphoneme,
         Sequence = MiniGameCode.Egg_sequence
     }
 
-    public class EggConfiguration : IGameConfiguration
+    public class EggConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
         public EggVariation Variation { get; set; }
 
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (EggVariation)code;
         }
 
-        /////////////////
         // Singleton Pattern
         static EggConfiguration instance;
         public static EggConfiguration Instance
@@ -42,15 +34,12 @@ namespace Antura.Minigames.Egg
             }
         }
 
-        /////////////////
-
         private EggConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new MinigamesGameContext(MiniGameCode.Egg_letter, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.Egg_lettername, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.1f;
-            Variation = EggVariation.Letter;
+            Variation = EggVariation.LetterName;
 
             if (Variation == EggVariation.Sequence)
             {
@@ -63,7 +52,7 @@ namespace Antura.Minigames.Egg
             TutorialEnabled = true;
         }
 
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
@@ -76,21 +65,23 @@ namespace Antura.Minigames.Egg
 
             switch (Variation)
             {
-                case EggVariation.Letter:
+                case EggVariation.LetterName:
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 case EggVariation.Sequence:
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
-                case EggVariation.LetterForm:
+                case EggVariation.LetterPhoneme:
                     builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, 3, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.PhonemesOfMultipleLetters);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             } 
 
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
@@ -99,14 +90,14 @@ namespace Antura.Minigames.Egg
 
         #region Variation checks
 
-        public LocalizationDataId TitleLocalizationId
+        public override LocalizationDataId TitleLocalizationId
         {
             get
             {
                 switch (Variation)
                 {
-                    case EggVariation.Letter:
-                    case EggVariation.LetterForm:
+                    case EggVariation.LetterName:
+                    case EggVariation.LetterPhoneme:
                         return LocalizationDataId.Egg_letters_Title;
                     case EggVariation.Sequence:
                         return LocalizationDataId.Egg_sequence_Title;
@@ -120,8 +111,8 @@ namespace Antura.Minigames.Egg
         {
             switch (Variation)
             {
-                case EggVariation.Letter:
-                case EggVariation.LetterForm:
+                case EggVariation.LetterName:
+                case EggVariation.LetterPhoneme:
                     return true;
                 case EggVariation.Sequence:
                     return false;
@@ -134,8 +125,8 @@ namespace Antura.Minigames.Egg
         {
             switch (Variation)
             {
-                case EggVariation.Letter:
-                case EggVariation.LetterForm:
+                case EggVariation.LetterName:
+                case EggVariation.LetterPhoneme:
                     return false;
                 case EggVariation.Sequence:
                     return true;

@@ -3,22 +3,16 @@ using Antura.Teacher;
 
 namespace Antura.Minigames.ColorTickle
 {
-    public class ColorTickleConfiguration : IGameConfiguration
+    public enum ColorTickleVariation
     {
-        public enum ColorTickleVariation
-        {
-            Default = MiniGameCode.ColorTickle_letter,
-        }
+        Default = MiniGameCode.ColorTickle_letter,
+    }
 
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
+    public class ColorTickleConfiguration : AbstractGameConfiguration
+    {
         public ColorTickleVariation Variation { get; set; }
 
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (ColorTickleVariation)code;
         }
@@ -45,7 +39,7 @@ namespace Antura.Minigames.ColorTickle
             Variation = ColorTickleVariation.Default;
         }
 
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
@@ -62,7 +56,7 @@ namespace Antura.Minigames.ColorTickle
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;

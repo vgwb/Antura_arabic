@@ -17,8 +17,8 @@
         ColorTickle_letter = 9,
         DancingDots_letter = 10, // DISABLED
         DancingDots_letterform = 36,  // NEW
-        Egg_letter = 11,
-        Egg_letterform = 37, // NEW
+        Egg_lettername = 11,
+        Egg_letterphoneme = 37, // NEW
         Egg_sequence = 34,
         FastCrowd_alphabet = 12, // DISABLED
         FastCrowd_counting = 13,
@@ -38,8 +38,8 @@
         ReadingGame_word = 24, // DISABLED
         Scanner_word = 25, // DISABLED
         Scanner_phrase = 26, // DISABLED
-        SickLetters_letter = 23,
-        TakeMeHome_letter = 31, // DISABLED
+        SickLetters_lettername = 23,
+        TakeMeHome_lettername = 31, // DISABLED
         ThrowBalls_letter = 27,
         ThrowBalls_letterform = 15, // NEW
         ThrowBalls_letterinword = 32,

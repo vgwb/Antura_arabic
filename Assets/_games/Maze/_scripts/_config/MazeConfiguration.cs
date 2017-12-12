@@ -1,6 +1,5 @@
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
-using Antura.Minigames;
 using Antura.Teacher;
 
 namespace Antura.Minigames.Maze
@@ -10,27 +9,15 @@ namespace Antura.Minigames.Maze
         Default = MiniGameCode.Maze_letter
     }
 
-    public class MazeConfiguration : IGameConfiguration
+    public class MazeConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
-        public ILivingLetterDataProvider Letters { get; set; }
-
-        #region Game configurations
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
         public MazeVariation Variation { get; set; }
 
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (MazeVariation)code;
         }
 
-        #endregion
-
-        /////////////////
         // Singleton Pattern
         static MazeConfiguration instance;
         public static MazeConfiguration Instance
@@ -42,15 +29,11 @@ namespace Antura.Minigames.Maze
                 return instance;
             }
         }
-        /////////////////
 
         private MazeConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-
             Questions = new SampleQuestionProvider();
-            Letters = new MazeLetterProvider();
             Variation = MazeVariation.Default;
 
             Context = new MinigamesGameContext(MiniGameCode.Maze_letter, System.DateTime.Now.Ticks.ToString());
@@ -58,22 +41,11 @@ namespace Antura.Minigames.Maze
             TutorialEnabled = false;
         }
 
-        #region external configuration call
-        public static void SetConfiguration(float _difficulty, int _variation)
-        {
-            instance = new MazeConfiguration()
-            {
-                Difficulty = _difficulty,
-                Variation = (MazeVariation)_variation,
-            };
-        }
-        #endregion
-
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
+            var builderParams = new QuestionBuilderParameters();
             builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
             builderParams.wordFilters.excludeDiacritics = true;
             builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.AllButAlefHamza;
@@ -82,7 +54,7 @@ namespace Antura.Minigames.Maze
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;

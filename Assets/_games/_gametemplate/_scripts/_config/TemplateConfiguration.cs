@@ -5,33 +5,24 @@ namespace Antura.Minigames.Template
 {
     public enum TemplateVariation
     {
-        Default = 0
+        Example = 0
     }
 
     /// <summary>
     /// Template configuration for a minigame.
     /// Use this as a starting point.
     /// </summary>
-    public class TemplateConfiguration : IGameConfiguration
+    public class TemplateConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-
-        public IQuestionProvider Questions { get; set; }
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
         public TemplateVariation Variation { get; set; }
 
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (TemplateVariation)code;
         }
 
-        /////////////////
         // Singleton Pattern
         static TemplateConfiguration instance;
-
         public static TemplateConfiguration Instance
         {
             get
@@ -43,7 +34,6 @@ namespace Antura.Minigames.Template
                 return instance;
             }
         }
-        /////////////////
 
         private TemplateConfiguration()
         {
@@ -53,14 +43,14 @@ namespace Antura.Minigames.Template
             Difficulty = 0.5f;
         }
 
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
             // CONFIGURE HERE WHAT BUILDER THE MINIGAME IS EXPECTING
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;

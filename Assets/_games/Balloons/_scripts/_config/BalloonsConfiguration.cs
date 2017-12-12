@@ -1,4 +1,3 @@
-using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
 
@@ -12,30 +11,17 @@ namespace Antura.Minigames.Balloons
         Counting = MiniGameCode.Balloons_counting
     }
 
-    public class BalloonsConfiguration : IGameConfiguration
+    public class BalloonsConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-
-        public IQuestionProvider Questions { get; set; }
-
-        #region Game configurations
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
         public BalloonsVariation Variation { get; set; }
 
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (BalloonsVariation)code;
         }
 
-        #endregion
-
-        /////////////////
         // Singleton Pattern
         static BalloonsConfiguration instance;
-
         public static BalloonsConfiguration Instance
         {
             get
@@ -47,25 +33,17 @@ namespace Antura.Minigames.Balloons
             }
         }
 
-        /////////////////
-
         private BalloonsConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-
             Questions = new SampleQuestionProvider();
-
             Variation = BalloonsVariation.Spelling;
             TutorialEnabled = true;
-
             Context = new MinigamesGameContext(MiniGameCode.Balloons_spelling, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 
-        #region external configuration call
-
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
@@ -97,14 +75,12 @@ namespace Antura.Minigames.Balloons
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
         }
 
-
-        #endregion
     }
 }

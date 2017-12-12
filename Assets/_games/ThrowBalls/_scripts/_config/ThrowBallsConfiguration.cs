@@ -1,5 +1,3 @@
-using Antura.Database;
-using Antura.LivingLetters;
 using Antura.Teacher;
 
 namespace Antura.Minigames.ThrowBalls
@@ -12,26 +10,15 @@ namespace Antura.Minigames.ThrowBalls
         LetterInWord = MiniGameCode.ThrowBalls_letterinword
     }
 
-    public class ThrowBallsConfiguration : IGameConfiguration
+    public class ThrowBallsConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
-
-        #region Game configurations
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
         public ThrowBallsVariation Variation { get; set; }
 
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (ThrowBallsVariation)code;
         }
 
-        #endregion
-
-        /////////////////
         // Singleton Pattern
         static ThrowBallsConfiguration instance;
         public static ThrowBallsConfiguration Instance
@@ -43,7 +30,6 @@ namespace Antura.Minigames.ThrowBalls
                 return instance;
             }
         }
-        /////////////////
 
         private ThrowBallsConfiguration()
         {
@@ -56,25 +42,14 @@ namespace Antura.Minigames.ThrowBalls
             TutorialEnabled = true;
         }
 
-        #region external configuration call
-        public static void SetConfiguration(float _difficulty, int _variation)
-        {
-            instance = new ThrowBallsConfiguration()
-            {
-                Difficulty = _difficulty,
-                Variation = (ThrowBallsVariation)_variation,
-            };
-        }
-        #endregion
-
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
             int nWrong = 4;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
+            var builderParams = new QuestionBuilderParameters();
             switch (Variation) {
                 case ThrowBallsVariation.Letter:
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
@@ -96,7 +71,7 @@ namespace Antura.Minigames.ThrowBalls
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
