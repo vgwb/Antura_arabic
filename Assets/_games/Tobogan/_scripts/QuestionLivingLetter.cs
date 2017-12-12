@@ -233,7 +233,7 @@ namespace Antura.Minigames.Tobogan
                 var data = letter.Data;
 
                 if (playWhenDragged)
-                    ToboganConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
+                    ToboganConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(data, true);
 
                 Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
                 Vector3 world = tubesCamera.ScreenToWorldPoint(mousePosition);

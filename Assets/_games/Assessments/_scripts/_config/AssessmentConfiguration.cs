@@ -3,6 +3,7 @@ using Antura.LivingLetters;
 using Antura.Minigames;
 using Antura.Teacher;
 using System;
+using Antura.Database;
 using UnityEngine;
 
 namespace Antura.Assessment
@@ -446,11 +447,12 @@ namespace Antura.Assessment
             builderParams.useJourneyForWrong = false;
             builderParams.sortPacksByDifficulty = false;
 
-            return new RandomLettersQuestionBuilder(
+            return new RandomLetterAlterationsQuestionBuilder(
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers
                 1,                              // CorrectAnswers
                 4,                              // WrongAnswers
                 firstCorrectIsQuestion: true,
+                letterAlterationFilters: LetterAlterationFilters.FormsOfSingleLetter,
                 parameters: builderParams);
         }
 

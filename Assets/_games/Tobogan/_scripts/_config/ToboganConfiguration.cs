@@ -1,4 +1,3 @@
-using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
 
@@ -6,35 +5,19 @@ namespace Antura.Minigames.Tobogan
 {
     public enum ToboganVariation
     {
-        LetterInAWord = MiniGameCode.Tobogan_letter,
+        LetterInWord = MiniGameCode.Tobogan_letterinword,
         SunMoon = MiniGameCode.Tobogan_sunmoon
     }
 
-    public class ToboganConfiguration : IGameConfiguration
+    public class ToboganConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
         public ToboganVariation Variation { get; set; }
 
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (ToboganVariation)code;
         }
 
-        public int GetDiscreteDifficulty(int maximum)
-        {
-            int d = (int)Difficulty * (maximum + 1);
-
-            if (d > maximum)
-                return maximum;
-            return d;
-        }
-
-        /////////////////
         // Singleton Pattern
         static ToboganConfiguration instance;
         public static ToboganConfiguration Instance
@@ -48,7 +31,6 @@ namespace Antura.Minigames.Tobogan
                 return instance;
             }
         }
-        /////////////////
 
         private ToboganConfiguration()
         {
@@ -58,14 +40,14 @@ namespace Antura.Minigames.Tobogan
             //Questions = new SunMoonQuestionProvider();
 
             //Variation = ToboganVariation.SunMoon;
-            Variation = ToboganVariation.LetterInAWord;
+            Variation = ToboganVariation.LetterInWord;
 
-            Context = new MinigamesGameContext(MiniGameCode.Tobogan_letter, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.Tobogan_letterinword, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.0f;
             TutorialEnabled = true;
         }
 
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
@@ -73,10 +55,10 @@ namespace Antura.Minigames.Tobogan
             int nCorrect = 1;
             int nWrong = 5;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
+            var builderParams = new QuestionBuilderParameters();
             switch (Variation)
             {
-                case ToboganVariation.LetterInAWord:
+                case ToboganVariation.LetterInWord:
                     builderParams.wordFilters.excludeLetterVariations = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
                     break;
@@ -92,11 +74,20 @@ namespace Antura.Minigames.Tobogan
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
+        }
+
+        public int GetDiscreteDifficulty(int maximum)
+        {
+            int d = (int)Difficulty * (maximum + 1);
+
+            if (d > maximum)
+                return maximum;
+            return d;
         }
 
     }

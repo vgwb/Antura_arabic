@@ -12,28 +12,69 @@ namespace Antura.Minigames.MakeFriends
 
     public enum MakeFriendsVariation
     {
-        Default = MiniGameCode.MakeFriends_letterform
+        LetterInWords = MiniGameCode.MakeFriends_letterinword
     }
 
-    public class MakeFriendsConfiguration : IGameConfiguration
+    public class MakeFriendsConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
-
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
         public MakeFriendsVariation Variation { get; set; }
 
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (MakeFriendsVariation)code;
         }
 
-        public const float EASY_THRESHOLD = 0f;
-        public const float MEDIUM_THRESHOLD = 0.3f;
-        public const float HARD_THRESHOLD = 0.7f;
+        // Singleton Pattern
+        static MakeFriendsConfiguration instance;
+        public static MakeFriendsConfiguration Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new MakeFriendsConfiguration();
+                return instance;
+            }
+        }
+
+        private MakeFriendsConfiguration()
+        {
+            // Default values
+            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
+            Questions = new MakeFriendsQuestionProvider();
+            Context = new MinigamesGameContext(MiniGameCode.MakeFriends_letterinword, System.DateTime.Now.Ticks.ToString());
+            Difficulty = 0f;
+            TutorialEnabled = true;
+        }
+
+        public override IQuestionBuilder SetupBuilder()
+        {
+            IQuestionBuilder builder = null;
+
+            int nPacks = 10;
+            int nMinCommonLetters = 1;
+            int nMaxCommonLetters = 1;
+            int nWrong = 5;
+            int nWords = 2;
+
+            var builderParams = new QuestionBuilderParameters();
+            builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams);
+
+            return builder;
+        }
+
+        public override MiniGameLearnRules SetupLearnRules()
+        {
+            var rules = new MiniGameLearnRules();
+            // example: a.minigameVoteSkewOffset = 1f;
+            return rules;
+        }
+
+
+        #region Difficulty Choice
+
+        private const float EASY_THRESHOLD = 0f;
+        private const float MEDIUM_THRESHOLD = 0.3f;
+        private const float HARD_THRESHOLD = 0.7f;
 
         public MakeFriendsDifficulty DifficultyChoice
         {
@@ -97,55 +138,6 @@ namespace Antura.Minigames.MakeFriends
             }
         }
 
-        /////////////////
-        // Singleton Pattern
-        static MakeFriendsConfiguration instance;
-
-        public static MakeFriendsConfiguration Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = new MakeFriendsConfiguration();
-                return instance;
-            }
-        }
-
-        /////////////////
-
-        private MakeFriendsConfiguration()
-        {
-            // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Questions = new MakeFriendsQuestionProvider();
-            Context = new MinigamesGameContext(MiniGameCode.MakeFriends_letterform, System.DateTime.Now.Ticks.ToString());
-            Difficulty = 0f;
-            TutorialEnabled = true;
-        }
-
-        public IQuestionBuilder SetupBuilder()
-        {
-            IQuestionBuilder builder = null;
-
-            int nPacks = 10;
-            int nMinCommonLetters = 1;
-            int nMaxCommonLetters = 1;
-            int nWrong = 5;
-            int nWords = 2;
-
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams);
-
-            return builder;
-        }
-
-        public MiniGameLearnRules SetupLearnRules()
-        {
-            var rules = new MiniGameLearnRules();
-            // example: a.minigameVoteSkewOffset = 1f;
-            return rules;
-        }
-
-
+        #endregion
     }
 }

@@ -884,7 +884,7 @@ namespace Antura.Minigames.Maze
                     break;
                 case LLState.Braked:
                     if (stateTime > DELAY_TO_PRONOUNCE_LETTER && !pronouncedLetter) {
-                        letterPronounciation = MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(MazeGame.instance.currentLL);
+                        letterPronounciation = MazeConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(MazeGame.instance.currentLL);
                         pronouncedLetter = true;
                     } else if (pronouncedLetter && !letterPronounciation.IsPlaying) {
                         if (!markedEndTimeOfLetterPronounciation) {

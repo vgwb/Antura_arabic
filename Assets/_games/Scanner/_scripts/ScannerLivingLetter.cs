@@ -99,9 +99,9 @@ namespace Antura.Minigames.Scanner
             if (Input.GetKey(KeyCode.E) && LLController.Data != null)
             {
                 if(wordSound == null)
-                    wordSound = game.Context.GetAudioManager().PlayLetterData(LLController.Data, true);
+                    wordSound = game.Context.GetAudioManager().PlayVocabularyData(LLController.Data, true);
                 if (!wordSound.IsPlaying)
-                    wordSound = game.Context.GetAudioManager().PlayLetterData(LLController.Data, true);
+                    wordSound = game.Context.GetAudioManager().PlayVocabularyData(LLController.Data, true);
 
                 wordSound.Position = 0;
             }

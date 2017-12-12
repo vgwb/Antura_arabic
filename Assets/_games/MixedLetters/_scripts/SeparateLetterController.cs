@@ -96,7 +96,7 @@ namespace Antura.Minigames.MixedLetters
                         droppedZone = null;
                     }
 
-                    MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData, true);
+                    MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterData, true);
                 }
             }
         }

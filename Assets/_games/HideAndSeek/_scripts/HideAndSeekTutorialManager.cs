@@ -83,7 +83,7 @@ namespace Antura.Minigames.HideAndSeek
             var winInitialDelay = 1f;
             yield return new WaitForSeconds(winInitialDelay);
 
-            game.Context.GetAudioManager().PlayLetterData(GetCorrectAnswer());
+            game.Context.GetAudioManager().PlayVocabularyData(GetCorrectAnswer());
 
             buttonRepeater.SetActive(true);
 
@@ -209,7 +209,7 @@ namespace Antura.Minigames.HideAndSeek
 
         public void RepeatAudio()
         {
-            game.Context.GetAudioManager().PlayLetterData(GetCorrectAnswer());
+            game.Context.GetAudioManager().PlayVocabularyData(GetCorrectAnswer());
         }
 
         public GameObject[] ArrayTrees;

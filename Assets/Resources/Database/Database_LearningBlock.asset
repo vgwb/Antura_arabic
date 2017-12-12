@@ -20,7 +20,7 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641"
       _Focus: 1
     - _Id: 1.2
       _Stage: 1
@@ -29,7 +29,8 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0645\u0631\u0629 \u062B\u0627\u0646\u064A\u0629"
       _Focus: 1
     - _Id: 1.3
       _Stage: 1
@@ -155,7 +156,7 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641"
       _Focus: 1
     - _Id: 2.2
       _Stage: 2
@@ -164,7 +165,8 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0645\u0631\u0629 \u062B\u0627\u0646\u064A\u0629"
       _Focus: 1
     - _Id: 2.3
       _Stage: 2
@@ -290,7 +292,7 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641"
       _Focus: 1
     - _Id: 3.2
       _Stage: 3
@@ -299,7 +301,8 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0645\u0631\u0629 \u062B\u0627\u0646\u064A\u0629"
       _Focus: 1
     - _Id: 3.3
       _Stage: 3
@@ -425,7 +428,7 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641"
       _Focus: 1
     - _Id: 4.2
       _Stage: 4
@@ -434,7 +437,8 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0645\u0631\u0629 \u062B\u0627\u0646\u064A\u0629"
       _Focus: 1
     - _Id: 4.3
       _Stage: 4
@@ -560,7 +564,7 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641"
       _Focus: 1
     - _Id: 5.2
       _Stage: 5
@@ -569,7 +573,8 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0645\u0631\u0629 \u062B\u0627\u0646\u064A\u0629"
       _Focus: 1
     - _Id: 5.3
       _Stage: 5
@@ -695,7 +700,7 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641"
       _Focus: 1
     - _Id: 6.2
       _Stage: 6
@@ -704,7 +709,8 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0645\u0631\u0629 \u062B\u0627\u0646\u064A\u0629"
       _Focus: 1
     - _Id: 6.3
       _Stage: 6

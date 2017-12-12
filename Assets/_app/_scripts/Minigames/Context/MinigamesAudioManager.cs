@@ -1,4 +1,5 @@
 using Antura.Audio;
+using Antura.Database;
 using Antura.LivingLetters;
 using UnityEngine;
 
@@ -12,10 +13,11 @@ namespace Antura.Minigames
             set { AudioManager.I.MusicEnabled = value; }
         }
 
-        public IAudioSource PlayLetterData(ILivingLetterData data, bool exclusive = true)
+        public IAudioSource PlayVocabularyData(ILivingLetterData data, bool exclusive = true, LetterDataSoundType soundType = LetterDataSoundType.Phoneme)
         {
-            if (data.DataType == LivingLetterDataType.Letter) {
-                return AudioManager.I.PlayLetter(new LL_LetterData(data.Id).Data, exclusive);
+            if (data.DataType == LivingLetterDataType.Letter)
+            {
+                return AudioManager.I.PlayLetter(new LL_LetterData(data.Id).Data, exclusive, soundType);
             } else if (data.DataType == LivingLetterDataType.Word || data.DataType == LivingLetterDataType.Image) {
                 return AudioManager.I.PlayWord(new LL_WordData(data.Id).Data, exclusive);
             } else if (data.DataType == LivingLetterDataType.Phrase) {

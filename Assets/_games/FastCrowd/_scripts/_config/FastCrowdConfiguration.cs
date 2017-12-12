@@ -1,3 +1,4 @@
+using System;
 using Antura.Database;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
@@ -7,35 +8,23 @@ namespace Antura.Minigames.FastCrowd
 {
     public enum FastCrowdVariation
     {
-        LetterInWord = MiniGameCode.FastCrowd_letterinword,
+        BuildWord = MiniGameCode.FastCrowd_buildword,
         Word = MiniGameCode.FastCrowd_word,
-        LetterName = MiniGameCode.FastCrowd_letter,
+        LetterName = MiniGameCode.FastCrowd_lettername,
         LetterForm = MiniGameCode.FastCrowd_letterform,
         Counting = MiniGameCode.FastCrowd_counting,
         Alphabet = MiniGameCode.FastCrowd_alphabet
     }
 
-    public class FastCrowdConfiguration : IGameConfiguration
+    public class FastCrowdConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
-
-        #region Game configurations
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
         public FastCrowdVariation Variation { get; set; }
 
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (FastCrowdVariation)code;
         }
 
-        #endregion
-
-
-        /////////////////
         // Singleton Pattern
         static FastCrowdConfiguration instance;
         public static FastCrowdConfiguration Instance
@@ -47,17 +36,14 @@ namespace Antura.Minigames.FastCrowd
                 return instance;
             }
         }
-        /////////////////
 
         private FastCrowdConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-
             Questions = new SampleQuestionProvider();
             //Variation = FastCrowdVariation.Letter;
             //Variation = FastCrowdVariation.Alphabet;
-            Variation = FastCrowdVariation.LetterInWord;
+            Variation = FastCrowdVariation.BuildWord;
 
             //Questions = new SampleQuestionWithWordsProvider();
             //Variation = FastCrowdVariation.Counting;
@@ -66,21 +52,11 @@ namespace Antura.Minigames.FastCrowd
             //Variation = FastCrowdVariation.Words;
             TutorialEnabled = true;
 
-            Context = new MinigamesGameContext(MiniGameCode.FastCrowd_letterinword, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.FastCrowd_buildword, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 
-        #region external configuration call
-        public static void SetConfiguration(float _difficulty, int _variation)
-        {
-            instance = new FastCrowdConfiguration()
-            {
-                Difficulty = _difficulty,
-                Variation = (FastCrowdVariation)_variation,
-            };
-        }
-
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
@@ -106,7 +82,7 @@ namespace Antura.Minigames.FastCrowd
                     var letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
                     builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 4, nWrong, firstCorrectIsQuestion: true, letterAlterationFilters: letterAlterationFilters);
                     break;
-                case FastCrowdVariation.LetterInWord:
+                case FastCrowdVariation.BuildWord:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
@@ -121,14 +97,14 @@ namespace Antura.Minigames.FastCrowd
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
         }
 
-        public bool IsDataMatching(ILivingLetterData data1, ILivingLetterData data2)
+        public override bool IsDataMatching(ILivingLetterData data1, ILivingLetterData data2)
         {
             LetterEqualityStrictness strictness;
             switch (Variation)
@@ -136,13 +112,39 @@ namespace Antura.Minigames.FastCrowd
                 case FastCrowdVariation.LetterForm:
                     strictness = LetterEqualityStrictness.WithVisualForm;
                     break;
-                default:
+                case FastCrowdVariation.BuildWord:
+                case FastCrowdVariation.Word:
+                case FastCrowdVariation.LetterName:
+                case FastCrowdVariation.Counting:
+                case FastCrowdVariation.Alphabet:
                     strictness = LetterEqualityStrictness.LetterOnly;
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             return DataMatchingHelper.IsDataMatching(data1, data2, strictness);
         }
 
-        #endregion
+        public override LetterDataSoundType GetVocabularySoundType()
+        {
+            LetterDataSoundType soundType;
+            switch (Variation)
+            {
+                case FastCrowdVariation.LetterForm:
+                    soundType = LetterDataSoundType.Name;
+                    break;
+                case FastCrowdVariation.BuildWord:
+                case FastCrowdVariation.Word:
+                case FastCrowdVariation.LetterName:
+                case FastCrowdVariation.Counting:
+                case FastCrowdVariation.Alphabet:
+                    soundType = LetterDataSoundType.Phoneme;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            return soundType;
+        }
+
     }
 }

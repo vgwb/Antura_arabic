@@ -322,7 +322,7 @@ namespace Antura.Minigames.ThrowBalls
         void OnMouseDown()
         {
             if (GameState.instance.isRoundOngoing) {
-                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData, true);
+                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterData, true);
             }
         }
 

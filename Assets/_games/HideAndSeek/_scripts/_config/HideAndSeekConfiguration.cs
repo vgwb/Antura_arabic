@@ -1,4 +1,3 @@
-using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
 
@@ -6,25 +5,18 @@ namespace Antura.Minigames.HideAndSeek
 {
     public enum HideAndSeekVariation
     {
-        Default = MiniGameCode.HideSeek_letterform
+        LetterPhoneme = MiniGameCode.HideSeek_letterphoneme
     }
 
-    public class HideAndSeekConfiguration : IGameConfiguration
+    public class HideAndSeekConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
         public HideAndSeekVariation Variation { get; set; }
 
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (HideAndSeekVariation)code;
         }
 
-        /////////////////
         // Singleton Pattern
         static HideAndSeekConfiguration instance;
         public static HideAndSeekConfiguration Instance
@@ -36,19 +28,17 @@ namespace Antura.Minigames.HideAndSeek
                 return instance;
             }
         }
-        /////////////////
 
         private HideAndSeekConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new MinigamesGameContext(MiniGameCode.HideSeek_letterform, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.HideSeek_letterphoneme, System.DateTime.Now.Ticks.ToString());
             Questions = new SampleQuestionProvider();
             Difficulty = 0.5f;
             TutorialEnabled = true;
         }
 
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
@@ -62,7 +52,7 @@ namespace Antura.Minigames.HideAndSeek
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;

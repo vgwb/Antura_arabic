@@ -172,7 +172,7 @@ namespace Antura.Map
             // Show the current stage
             TeleportCameraToShownStage(shownStage);
             UpdateStageIndicatorUI(shownStage);
-            UpdateButtonsForStage(shownStage);
+            //UpdateButtonsForStage(shownStage);
 
             // Position the player
             playerPin.gameObject.SetActive(true);
@@ -410,10 +410,10 @@ namespace Antura.Map
             SwitchFromToStage(fromStage, toStage, animateCamera);
         }
 
-        private void UpdateButtonsForStage(int stage)
+        /*private void UpdateButtonsForStage(int stage)
         {
             bool playable = IsStagePlayable(stage);
-        }
+        }*/
 
         /*private void CheckCurrentStageForPlayerReset()
         {
@@ -465,7 +465,7 @@ namespace Antura.Map
 
             // Show the new stage
             UpdateStageIndicatorUI(toStage);
-            UpdateButtonsForStage(toStage);
+            //UpdateButtonsForStage(toStage);
 
             /*
             if (MovePlayerWithStageChange) {

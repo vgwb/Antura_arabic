@@ -1,3 +1,4 @@
+using Antura.Database;
 using Antura.LivingLetters;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace Antura.Minigames
         /// Play sound for letter or word,
         /// if stopAllLetters is true, it will stop any previous letter sound.
         /// </summary>
-        IAudioSource PlayLetterData(ILivingLetterData id, bool stopAllLetters = true);
+        IAudioSource PlayVocabularyData(ILivingLetterData id, bool stopAllLetters = true, LetterDataSoundType soundType = LetterDataSoundType.Phoneme);
 
         IAudioSource PlayMusic(AudioClip clip);
         //TODO: IAudioSource PlayMusic(Music music);

@@ -506,7 +506,7 @@ namespace Antura.Minigames.Maze
             {
 
                 if (!isTutorialMode)
-                    MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(ld);
+                    MazeConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(ld);
 
 
 
@@ -533,7 +533,7 @@ namespace Antura.Minigames.Maze
                         {
                             MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Tuto, () =>
                             {
-                                MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(currentLL);
+                                MazeConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(currentLL);
                             });
                             currentCharacter.initialPosition = currentCharacter.transform.position;
                             currentCharacter.initialRotation = currentCharacter.transform.rotation;

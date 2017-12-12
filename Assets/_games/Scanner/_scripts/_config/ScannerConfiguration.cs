@@ -1,4 +1,4 @@
-using Antura.LivingLetters;
+using System;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
 
@@ -10,27 +10,15 @@ namespace Antura.Minigames.Scanner
         MultipleWords = MiniGameCode.Scanner_phrase
     }
 
-    public class ScannerConfiguration : IGameConfiguration
+    public class ScannerConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
-
-        #region Game configurations
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
         public ScannerVariation Variation { get; set; }
 
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (ScannerVariation)code;
         }
 
-        #endregion
-        //		public LetterBehaviour.BehaviourSettings BehaviourSettings { get; set; }
-
-        /////////////////
         // Singleton Pattern
         static ScannerConfiguration instance;
         public static ScannerConfiguration Instance
@@ -42,13 +30,10 @@ namespace Antura.Minigames.Scanner
                 return instance;
             }
         }
-        /////////////////
 
         private ScannerConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-
             Difficulty = 0.13f;
             Variation = ScannerVariation.OneWord;
 
@@ -57,25 +42,11 @@ namespace Antura.Minigames.Scanner
             TutorialEnabled = true;
         }
 
-        #region external configuration call
-        public static void SetConfiguration(float _difficulty, int _variation)
-        {
-            instance = new ScannerConfiguration()
-            {
-                Difficulty = _difficulty,
-                Variation = (ScannerVariation)_variation
-            };
-        }
-        #endregion
-
-
         public int nCorrect = 1;
 
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
-
             IQuestionBuilder builder = null;
-
 
             int nPacks = 7; // One Extra for tutorial
             nCorrect = 1;
@@ -102,19 +73,16 @@ namespace Antura.Minigames.Scanner
                     }
                     nWrong = 0;
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
-
-            if (builder == null)
-                throw new System.Exception("No question builder defined for variation " + Variation.ToString());
-
-
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
