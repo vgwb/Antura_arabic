@@ -68,10 +68,21 @@ namespace Antura.Minigames.Egg
             int nCorrect = 6;
             int nWrong = 7;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.correctSeverity = Teacher.SelectionSeverity.AsManyAsPossible;
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctSeverity = SelectionSeverity.AsManyAsPossible;
 
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+            switch (Variation)
+            {
+                case EggVariation.Letter:
+                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+                    break;
+                case EggVariation.Sequence:
+                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+                    break;
+                case EggVariation.LetterForm:
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.FormsOfSingleLetter);
+                    break;
+            } 
 
             return builder;
         }
