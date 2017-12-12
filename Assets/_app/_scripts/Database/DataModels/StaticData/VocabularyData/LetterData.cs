@@ -381,6 +381,24 @@ namespace Antura.Database
             }
         }
 
+        public string GetAudioFilename(LetterDataSoundType soundType = LetterDataSoundType.Phoneme)
+        {
+            // Debug.Log("GetAudioFilename " + Id + " " + Kind + " " + Type);
+            switch (soundType) {
+                case LetterDataSoundType.Phoneme:
+                    // arabic special case: the phoneme of a simple letter is the letterbase_sukun sound!!!!!
+                    if (Kind == LetterDataKind.Letter) {
+                        return Id + "_sukun";
+                    } else {
+                        return Id;
+                    }
+                case LetterDataSoundType.Name:
+                    return Id + "__lettername";
+                default:
+                    return "";
+            }
+        }
+
         public string GetStringForDisplay(LetterForm form = LetterForm.Isolated)
         {
             // Get the string for the specific form, without fallback
@@ -481,6 +499,7 @@ namespace Antura.Database
             return IsSameLetterAs(other, LetterEqualityStrictness.LetterOnly);
         }
 
+        // TODO docs: can u explain the needs of this HashCode and why Unchecked?
         public override int GetHashCode()
         {
             unchecked {

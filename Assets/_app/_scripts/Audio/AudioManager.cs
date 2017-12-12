@@ -378,14 +378,11 @@ namespace Antura.Audio
         public AudioClip GetAudioClip(LetterData data, LetterDataSoundType soundType = LetterDataSoundType.Phoneme)
         {
             AudioClip res;
-            if (soundType == LetterDataSoundType.Phoneme) {
-                res = GetCachedResource("AudioArabic/Letters/" + data.Id);
-            } else {
-                res = GetCachedResource("AudioArabic/Letters/" + data.Id + "__lettername");
-            }
+            var audiofile = data.GetAudioFilename(soundType);
+            res = GetCachedResource("AudioArabic/Letters/" + audiofile);
 
             if (res == null) {
-                Debug.Log("Warning: cannot find audio clip for " + data);
+                Debug.Log("Warning: cannot find audio clip for letter:" + data + " filename:" + audiofile);
             }
             return res;
         }
