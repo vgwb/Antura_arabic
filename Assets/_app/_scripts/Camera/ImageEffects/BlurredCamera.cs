@@ -39,6 +39,7 @@ namespace Antura.CameraEffects
         void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
             if (normalTextureOutput != null) {
+                normalTextureOutput.DiscardContents();
                 Graphics.Blit(source, normalTextureOutput);
             }
             if (CheckResources() == false) {
