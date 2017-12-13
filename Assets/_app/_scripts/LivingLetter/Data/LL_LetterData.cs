@@ -32,22 +32,9 @@ namespace Antura.LivingLetters
             if (_data.ForcedLetterForm != LetterForm.None) Form = _data.ForcedLetterForm;
         }
 
-        // TODO: remove this constructor, the MiniGame should not force the Form!
         public LL_LetterData(string _id) : this(AppManager.I.DB.GetLetterDataById(_id))
         /// TODO refactor: inject the value, no reference to the DB
         {
-        }
-
-        // TODO: remove this constructor, the MiniGame should not force the Form!
-        public LL_LetterData(string _id, Database.LetterForm form) : this(AppManager.I.DB.GetLetterDataById(_id), form)
-        {
-        }
-
-        // TODO: remove this constructor, the MiniGame should not force the Form!
-        public LL_LetterData(Database.LetterData _data, Database.LetterForm form)
-        {
-            Data = _data;
-            Form = form;
         }
 
         #region API
@@ -80,7 +67,7 @@ namespace Antura.LivingLetters
 
         public override string ToString()
         {
-            return "LL-" + Data.ToString();
+            return "LL-" + Data;
         }
 
         #endregion

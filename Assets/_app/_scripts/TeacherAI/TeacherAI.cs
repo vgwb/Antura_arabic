@@ -374,7 +374,7 @@ namespace Antura.Teacher
 
         private LL_LetterData BuildLetterData_LL(LetterData data)
         {
-            return new LL_LetterData(data.GetId());
+            return new LL_LetterData(data);
         }
 
         private List<ILivingLetterData> BuildLetterData_LL_Set(List<LetterData> data_list)
