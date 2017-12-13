@@ -134,19 +134,19 @@ namespace Antura.Minigames.FastCrowd
             switch (AreaState) {
                 case State.enabled:
                     GetComponent<Collider>().enabled = true;
-                    GetComponent<MeshRenderer>().materials[0].SetColor("_EmissionColor", Color.yellow);
+                    GetComponent<MeshRenderer>().materials[0].color = Color.yellow;
                     break;
                 case State.disabled:
                     GetComponent<Collider>().enabled = false;
-                    GetComponent<MeshRenderer>().materials[0].SetColor("_EmissionColor", Color.gray);
+                    GetComponent<MeshRenderer>().materials[0].color = Color.gray;
                     break;
                 case State.matching:
                     // Matching preview right
-                    GetComponent<MeshRenderer>().materials[0].SetColor("_EmissionColor", Color.green);
+                    GetComponent<MeshRenderer>().materials[0].color = Color.green;
                     break;
                 case State.matching_wrong:
                     // Matching preview wrong
-                    GetComponent<MeshRenderer>().materials[0].SetColor("_EmissionColor", new Color(248, 0, 0));
+                    GetComponent<MeshRenderer>().materials[0].color = new Color(248, 0, 0);
                     break;
             }
         }
