@@ -6,6 +6,11 @@ namespace Antura.Teacher
         {
             includeForms = true
         };
+        public static readonly LetterAlterationFilters VisualFormsOfSingleLetter = new LetterAlterationFilters()
+        {
+            includeForms = true,
+            visuallyDifferentForms = true
+        };
         public static readonly LetterAlterationFilters MultipleLetters = new LetterAlterationFilters()
         {
             differentBaseLetters = true
@@ -58,6 +63,7 @@ namespace Antura.Teacher
         // Can add forms?
         public bool includeForms;
         public bool oneFormPerLetter;    // If true, letters will appear only in one form
+        public bool visuallyDifferentForms;    // If true, forms that appear the same won't be selected as different options
 
         public LetterAlterationFilters() : this(false, LetterFilters.ExcludeDiacritics.All, LetterFilters.ExcludeLetterVariations.All, true, false)
         {

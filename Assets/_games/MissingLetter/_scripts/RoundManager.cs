@@ -170,21 +170,6 @@ namespace Antura.Minigames.MissingLetter
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
             corrAnsBheaviour.Reset();
 
-            /*if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.LetterInWord) {
-                *var form = m_oRemovedLetter.letterForm;
-                LL_LetterData formAnswer = new LL_LetterData(_correctAnswer.Id);
-                formAnswer.Form = form;
-                _correctAnswer = formAnswer;
-                corrAnsBheaviour.LetterData = formAnswer;
-
-                _wrongAnswers.Clear();
-
-                foreach (var f in formAnswer.Data.GetAvailableForms())
-                    if (form != f)
-                        _wrongAnswers.Insert(0, new LL_LetterData(_correctAnswer.Id, f));
-            } else
-                corrAnsBheaviour.LetterData = _correctAnswer;
-            */
             corrAnsBheaviour.LetterData = _correctAnswer;
 
             corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;

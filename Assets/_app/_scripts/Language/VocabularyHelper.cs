@@ -257,8 +257,16 @@ namespace Antura.Database
                         }
                         else
                         {
-                            // Add all of them
-                            letterPool.AddRange(availableForms);
+                            // Add all the (different) forms 
+                            var visualFormComparer = new StrictLetterDataComparer(LetterEqualityStrictness.WithVisualForm);
+                            foreach (var availableForm in availableForms)
+                            {
+                                if (letterAlterationFilters.visuallyDifferentForms && letterPool.Contains(availableForm, visualFormComparer))
+                                {
+                                    continue;
+                                }
+                                letterPool.Add(availableForm);
+                            }
                         }
                     }
                 }

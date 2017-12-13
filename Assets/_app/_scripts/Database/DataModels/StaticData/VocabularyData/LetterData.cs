@@ -492,31 +492,15 @@ namespace Antura.Database
 
         private bool Equals(LetterData other)
         {
-            // We choose the stricter of the two letters
-            /*var strictness = EqualityStrictness != LetterEqualityStrictness.LetterOnly
-                ? this.EqualityStrictness
-                : other.EqualityStrictness;*/
+            // By default, LetterData uses LetterOnly when comparing (even in collections!)
             return IsSameLetterAs(other, LetterEqualityStrictness.LetterOnly);
         }
 
-        // TODO docs: can u explain the needs of this HashCode and why Unchecked?
         public override int GetHashCode()
         {
-            unchecked {
-                var hashCode = (Id != null ? Id.GetHashCode() : 0);
-                /*switch (EqualityStrictness)
-                {
-                    case LetterEqualityStrictness.LetterOnly:
-                        break;
-                    case LetterEqualityStrictness.WithActualForm:
-                        hashCode = (hashCode * 397) ^ Form.GetHashCode();
-                        break;
-                    case LetterEqualityStrictness.WithVisualForm:
-                        hashCode = (hashCode * 397) ^ GetStringForDisplay().GetHashCode();
-                        break;
-                }*/
-                return hashCode;
-            }
+            // By default, LetterData uses LetterOnly when comparing (even in collections!)
+            var hashCode = (Id != null ? Id.GetHashCode() : 0);
+            return hashCode;
         }
     }
 }

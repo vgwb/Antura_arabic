@@ -67,8 +67,8 @@ namespace Antura.Minigames.MissingLetter
 
                 case MissingLetterVariation.LetterForm:
                     // Find the correct form of the letter in the given word
-                    // wrong answers are the other forms of the same letter
-                    builder = new LetterAlterationsInWordsQuestionBuilder(1, 1, parameters: builderParams, letterAlterationFilters:LetterAlterationFilters.FormsOfSingleLetter);
+                    // wrong answers are the other forms of the same letter (not the same visually, tho)
+                    builder = new LetterAlterationsInWordsQuestionBuilder(nPacks, 1, parameters: builderParams, letterAlterationFilters:LetterAlterationFilters.VisualFormsOfSingleLetter);
                     break;
 
                 case MissingLetterVariation.Phrase:

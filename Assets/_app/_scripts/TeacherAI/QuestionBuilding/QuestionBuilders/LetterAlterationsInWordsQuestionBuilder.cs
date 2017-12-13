@@ -111,7 +111,18 @@ namespace Antura.Teacher
             // Place some alterations in the wrong list
             var alterationsPool = AppManager.I.VocabularyHelper.GetAllLetterAlterations(baseLetters, letterAlterationFilters);
             var wrongAnswers = new List<LetterData>();
-            alterationsPool.Remove(correctAlteration);
+            //Debug.Log("N Alterations before remove correct: " + alterationsPool.Count + " " + alterationsPool.ToDebugString());
+
+            // Remove the correct alteration (making sure to get the actual form)
+            for (int i = 0; i < alterationsPool.Count; i++)
+            {
+                if (alterationsPool[i].IsSameLetterAs(correctAlteration, LetterEqualityStrictness.WithActualForm))
+                {
+                    alterationsPool.RemoveAt(i);
+                }
+            }
+
+            //Debug.Log("N Alterations after remove correct: " + alterationsPool.Count + " " + alterationsPool.ToDebugString());
             wrongAnswers.AddRange(alterationsPool.RandomSelect(nWrongs));
 
             if (ConfigAI.VerboseQuestionPacks)
