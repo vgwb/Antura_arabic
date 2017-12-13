@@ -117,7 +117,10 @@ namespace Antura.Assessment
         /// <param name="data">Sound to play</param>
         public void PlayLetterData(ILivingLetterData data)
         {
-            AssessmentConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(data, true);
+            AssessmentConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(
+                data, true,
+                soundType: AssessmentConfiguration.Instance.GetVocabularySoundType()
+            );
         }
 
         /// <summary>
@@ -126,10 +129,12 @@ namespace Antura.Assessment
         /// <param name="data">Sound to play</param>
         public IEnumerator PlayLetterDataCoroutine(ILivingLetterData data)
         {
-            var audioSource = AssessmentConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(data, true);
+            var audioSource = AssessmentConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(
+                data, true,
+                soundType: AssessmentConfiguration.Instance.GetVocabularySoundType()
+            );
 
-            while (audioSource.IsPlaying)
-            {
+            while (audioSource.IsPlaying) {
                 yield return null;
             }
         }
@@ -145,30 +150,25 @@ namespace Antura.Assessment
             var audioTicket = ticket.LockHighPriority();
             bool playing = false;
 
-            if (ticket.IsHighPriorityTicketValid(audioTicket))
-            {
+            if (ticket.IsHighPriorityTicketValid(audioTicket)) {
                 // Can Play Audio
                 playing = true;
 
-                if (showSubtitles)
-                {
+                if (showSubtitles) {
                     widget.DisplaySentence(ID, 2.2f, showWalkieTalkie);
                 }
 
-                if (showWalkieTalkie && showSubtitles)
-                { // give time for walkietalkie sound
+                if (showWalkieTalkie && showSubtitles) { // give time for walkietalkie sound
                     yield return Wait.For(0.2f);
                 }
 
                 audioManager.PlayDialogue(ID, () => { playing = false; });
 
-                while (playing)
-                {
+                while (playing) {
                     yield return null;
                 }
 
-                if (showSubtitles)
-                {
+                if (showSubtitles) {
                     widget.Clear();
                 }
 

@@ -1,31 +1,26 @@
 using Antura.LivingLetters;
-using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.ColorTickle
 {
     public class TutorialGameState : FSM.IState
     {
-        #region PRIVATE MEMBERS
+        private ColorTickleGame game;
+        private GameObject m_TutorialLetter;
 
-        ColorTickleGame game;
-        GameObject m_TutorialLetter;
-
-        float m_PercentageLetterColored;
+        private float m_PercentageLetterColored;
 
         // LL components
-        LivingLetterController m_LetterObjectView;
-        TMPTextColoring m_TMPTextColoringLetter;
-        SurfaceColoring m_SurfaceColoringLetter;
-        ColorTickle_LLController m_LLController;
-        HitStateLLController m_HitStateLLController;
+        private LivingLetterController m_LetterObjectView;
+        private TMPTextColoring m_TMPTextColoringLetter;
+        private SurfaceColoring m_SurfaceColoringLetter;
+        private ColorTickle_LLController m_LLController;
+        private HitStateLLController m_HitStateLLController;
 
         // LL vanishing vars
-        bool m_bLLVanishing = false;
-        float m_fTimeToDisappear = 3f;
-        float m_fDisappearTimeProgress = 0;
-
-        #endregion
+        private bool m_bLLVanishing = false;
+        private float m_fTimeToDisappear = 3f;
+        private float m_fDisappearTimeProgress = 0;
 
         public TutorialGameState(ColorTickleGame game)
         {
@@ -52,18 +47,15 @@ namespace Antura.Minigames.ColorTickle
 
             CalcPercentageLetterColored();
 
-            if (m_bLLVanishing) //if the LL is about to vanish
-            {
+            if (m_bLLVanishing) {
                 m_fDisappearTimeProgress += Time.deltaTime;
 
-                if (m_fDisappearTimeProgress >= m_fTimeToDisappear)//after the given time is reached
-                {
+                if (m_fDisappearTimeProgress >= m_fTimeToDisappear) {
                     m_LetterObjectView.Poof(); //LL vanishes
                     game.Context.GetAudioManager().PlaySound(Sfx.Poof);
 
                     //stop win particle
-                    foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true))
-                    {
+                    foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true)) {
                         particles.Stop();
                     }
                     game.winParticle.SetActive(false);
@@ -78,10 +70,8 @@ namespace Antura.Minigames.ColorTickle
 
                     game.SetCurrentState(game.PlayState);
                 }
-            }
-            else if (m_PercentageLetterColored >= 100 && !stillWaitForInput) //else check for letter completed
-            {
-				game.tutorialUIManager.StartTutorial = false;
+            } else if (m_PercentageLetterColored >= 100 && !stillWaitForInput) {
+                game.tutorialUIManager.StartTutorial = false;
 
                 game.anturaController.ForceAnturaToGoBack();//we completed the letter, antura turn back
 
@@ -90,7 +80,10 @@ namespace Antura.Minigames.ColorTickle
                 //disable color components to avoid input in this phase (or ignore input using touch manager?)
                 DisableLetterComponents();
 
-                game.Context.GetAudioManager().PlayVocabularyData(m_LetterObjectView.Data);//play letter pronounce again
+                game.Context.GetAudioManager().PlayVocabularyData(
+                    m_LetterObjectView.Data,
+                    soundType: ColorTickleConfiguration.Instance.GetVocabularySoundType()
+                );//play letter pronounce again
 
                 m_SurfaceColoringLetter.Reset();//reset to clean surface of LL (maybe make a function to clean it rather than reinitialize it)
 
@@ -100,23 +93,18 @@ namespace Antura.Minigames.ColorTickle
 
                 //play win particle
                 game.winParticle.SetActive(true);
-                foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true))
-                {
+                foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true)) {
                     particles.Play();
                 }
-        
+
             }
         }
-        
-
 
         public void UpdatePhysics(float delta)
         {
         }
 
         #region PRIVATE FUNCTIONS
-
-
         private void InitTutorialLetter()
         {
             m_LetterObjectView = m_TutorialLetter.GetComponent<LivingLetterController>();
@@ -137,17 +125,17 @@ namespace Antura.Minigames.ColorTickle
 
             //m_LLController.OnDestinationReached += EnableTutorialAnimation;
 
-            m_LLController.OnDestinationReached += delegate()
-            //play intro dialogue
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ColorTickle_Intro, delegate()
-                //play tutorial dialogue on intro finish
-                {
-                    
-                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ColorTickle_Tuto); //for now this is broken, COLORTICKLE_TUTO is repeated like a loop
+            m_LLController.OnDestinationReached += delegate () {
+                //play intro dialogue
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ColorTickle_Intro, delegate () {
+                    //play tutorial dialogue on intro finish
+
+                    //for now this is broken, COLORTICKLE_TUTO is repeated like a loop
                     // HACK stop audio and replay music
                     //game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ColorTickle_Tuto, delegate() { game.Context.GetAudioManager().StopMusic(); game.Context.GetAudioManager().PlayMusic(game.backgroundMusic); });
-                    
+
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ColorTickle_Tuto);
+
                     EnableLetterComponents();
                     EnableTutorialAnimation();
                 });
@@ -183,8 +171,9 @@ namespace Antura.Minigames.ColorTickle
 
         private void LoseLife()
         {
-            if (m_HitStateLLController != null)
+            if (m_HitStateLLController != null) {
                 m_HitStateLLController.TicklesLetter();
+            }
             game.tutorialUIManager.StartTutorial = false;
         }
 
@@ -209,12 +198,11 @@ namespace Antura.Minigames.ColorTickle
 
         private void AnturaInteractions(AnturaContollerState eState)
         {
-            if (eState == AnturaContollerState.BARKING) //Antura scared the LL
-            {
+            if (eState == AnturaContollerState.BARKING) {
+                //Antura scared the LL
                 AnturaReachedLetter();
-            }
-            else if (eState == AnturaContollerState.COMINGBACK) //Antura is returning to his place
-            {
+            } else if (eState == AnturaContollerState.COMINGBACK) {
+                //Antura is returning to his place
                 AnturaGoingAway();
             }
         }
@@ -223,9 +211,6 @@ namespace Antura.Minigames.ColorTickle
         {
             game.tutorialUIManager.StartTutorial = true;
         }
-
         #endregion
     }
-
 }
-

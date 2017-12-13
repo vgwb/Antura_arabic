@@ -1,6 +1,6 @@
-using System;
-using Antura.LivingLetters;
+using Antura.Database;
 using Antura.Teacher;
+using System;
 
 namespace Antura.Minigames.ColorTickle
 {
@@ -48,8 +48,7 @@ namespace Antura.Minigames.ColorTickle
             int nCorrect = 1;
 
             var builderParams = new QuestionBuilderParameters();
-            switch (Variation)
-            {
+            switch (Variation) {
                 case ColorTickleVariation.LetterName:
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.AllButAlefHamza;
@@ -69,6 +68,19 @@ namespace Antura.Minigames.ColorTickle
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
+        }
+
+        public override LetterDataSoundType GetVocabularySoundType()
+        {
+            LetterDataSoundType soundType;
+            switch (Variation) {
+                case ColorTickleVariation.LetterName:
+                    soundType = LetterDataSoundType.Name;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            return soundType;
         }
     }
 }

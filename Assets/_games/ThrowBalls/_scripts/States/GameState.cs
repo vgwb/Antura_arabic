@@ -402,7 +402,7 @@ namespace Antura.Minigames.ThrowBalls
 
         private void SayQuestion()
         {
-            game.Context.GetAudioManager().PlayVocabularyData(question);
+            game.Context.GetAudioManager().PlayVocabularyData(question, soundType: ThrowBallsConfiguration.Instance.GetVocabularySoundType());
         }
 
         private void ShowTutorialUI()
