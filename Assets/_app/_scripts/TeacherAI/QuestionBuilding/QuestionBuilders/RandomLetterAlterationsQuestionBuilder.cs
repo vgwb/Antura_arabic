@@ -107,14 +107,7 @@ namespace Antura.Teacher
                 ConfigAI.AppendToTeacherReport(debugString);
             }
 
-            // TODO: re-handle strictness with the builder's parameters approach
-
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
-        }
-
-        public bool CompareLetters(LetterData letter1, LetterData letter2)
-        {
-            return letter1.IsSameLetterAs(letter2, parameters.letterEqualityStrictness);
         }
 
     }

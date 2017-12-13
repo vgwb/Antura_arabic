@@ -44,7 +44,6 @@ namespace Antura.Database
     ///     <seealso cref="PhraseData" />
     ///     <seealso cref="WordData" />
     /// </summary>
-    // TODO refactor: this requires heavy refactoring!
     // TODO refactor: we could make this general in respect to the language
     [Serializable]
     public class LetterData : IVocabularyData, IConvertibleToLivingLetterData
@@ -274,13 +273,7 @@ namespace Antura.Database
             }
         }
 
-        /// <summary>
-        /// Logic to use for equality comparisons
-        /// </summary>
-        //public LetterEqualityStrictness EqualityStrictness = LetterEqualityStrictness.WithActualForm;
-
         #endregion
-
 
         public override string ToString()
         {
