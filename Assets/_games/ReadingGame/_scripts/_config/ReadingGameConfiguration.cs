@@ -6,8 +6,8 @@ namespace Antura.Minigames.ReadingGame
     public enum ReadingGameVariation
     {
         ReadAndAnswer = MiniGameCode.ReadingGame_word,
-        AlphabetSong = MiniGameCode.AlphabetSong_alphabet,
-        DiacriticSong = MiniGameCode.AlphabetSong_letter,
+        Alphabet = MiniGameCode.Song_alphabet,
+        DiacriticSong = MiniGameCode.Song_letter,
     }
 
     public class ReadingGameConfiguration : AbstractGameConfiguration
@@ -52,7 +52,7 @@ namespace Antura.Minigames.ReadingGame
             var builderParams = new QuestionBuilderParameters();
             switch (Variation)
             {
-                case ReadingGameVariation.AlphabetSong:
+                case ReadingGameVariation.Alphabet:
                 case ReadingGameVariation.DiacriticSong:
                     builder = new EmptyQuestionBuilder();
                     break;

@@ -23,7 +23,7 @@ namespace Antura.Minigames.ReadingGame
             {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ReadingGame_Title, () => { introCompleted = true; });
             }
-            else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
+            else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.Alphabet)
             {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.AlphabetSong_alphabet_Title, () => { introCompleted = true; });
             }
