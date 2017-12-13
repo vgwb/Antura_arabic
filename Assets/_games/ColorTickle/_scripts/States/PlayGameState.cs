@@ -136,7 +136,10 @@ namespace Antura.Minigames.ColorTickle
                     //disable color components to avoid input in this phase (or ignore input using touch manager?)
                     DisableLetterComponents();
 
-                    ColorTickleConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(m_LetterObjectView.Data);//play letter pronounce again
+                    ColorTickleConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(
+                        m_LetterObjectView.Data,
+                        soundType: ColorTickleConfiguration.Instance.GetVocabularySoundType()
+                    );//play letter pronounce again
 
                     m_SurfaceColoringLetter.Reset();//reset to clean surface of LL (maybe make a function to clean it rather than reinitialize it)
 
@@ -219,7 +222,12 @@ namespace Antura.Minigames.ColorTickle
             m_HitStateLLController = m_CurrentLetter.GetComponent<HitStateLLController>();
             m_HitStateLLController.OnTouchedOutside += OnTickled;
 
-            m_LLController.OnDestinationReached += delegate () { game.Context.GetAudioManager().PlayVocabularyData(m_LetterObjectView.Data); };//play audio on destination
+            m_LLController.OnDestinationReached += delegate () {
+                game.Context.GetAudioManager().PlayVocabularyData(
+                    m_LetterObjectView.Data,
+                    soundType: ColorTickleConfiguration.Instance.GetVocabularySoundType()
+                );
+            };//play audio on destination
 
 
             m_HitStateLLController.OnTouchedShape += TryEnableAntura;
