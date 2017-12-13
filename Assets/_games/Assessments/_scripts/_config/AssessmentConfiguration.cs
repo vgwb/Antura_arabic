@@ -562,5 +562,19 @@ namespace Antura.Assessment
             return new MiniGameLearnRules();
         }
 
+        public LetterDataSoundType GetVocabularySoundType()
+        {
+            LetterDataSoundType soundType;
+            switch (Variation) {
+                case AssessmentVariation.Letter:
+                    soundType = LetterDataSoundType.Name;
+                    break;
+                default:
+                    soundType = LetterDataSoundType.Phoneme;
+                    break;
+            }
+            return soundType;
+        }
+
     }
 }
