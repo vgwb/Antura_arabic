@@ -75,17 +75,16 @@ namespace Antura.Minigames.FastCrowd
                     builder = new AlphabetQuestionBuilder();
                     break;
                 case FastCrowdVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number, builderParams, true);
+                    builder = new OrderedWordsQuestionBuilder(WordDataCategory.Number, builderParams, true);
                     break;
                 case FastCrowdVariation.LetterName:
-                    // TODO: this is currently a LetterForm, should not!
-                    builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true);
+                    // Only base letters
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
+                    builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, parameters: builderParams);
                     break;
                 case FastCrowdVariation.LetterForm:
                     // @note: we pass 4 as nCorrect, so we get all the four forms of a single letter, which will be shown one after the other
-                    var letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
-                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 4, nWrong,
-                        letterAlterationFilters: letterAlterationFilters);
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 4, nWrong, letterAlterationFilters: LetterAlterationFilters.FormsOfSingleLetter);
                     break;
                 case FastCrowdVariation.BuildWord:
                     builderParams.wordFilters.excludeColorWords = true;
