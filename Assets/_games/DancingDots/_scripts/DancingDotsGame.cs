@@ -190,14 +190,16 @@ namespace Antura.Minigames.DancingDots
 
         private void SetLevel(Level level)
         {
+            // Hide all dots
             foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.gameObject.SetActive(false);
             foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.gameObject.SetActive(false);
             foreach (GameObject go in diacritics) go.SetActive(false);
             isCorrectDiacritic = true;
+            isCorrectDot = true;
 
-            foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
-            isCorrectDot = false;
-
+            // HACK: removed dots gameplay
+            //foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
+            //isCorrectDot = false;
 
             switch (level) {
                 case Level.Level1: // Dots alone with visual aid
@@ -207,8 +209,7 @@ namespace Antura.Minigames.DancingDots
 
                 case Level.Level2: // Diacritics alone with visual aid
                     gameDuration = 110;
-
-                    StartCoroutine(RemoveHintDot());
+                    //StartCoroutine(RemoveHintDot());  // HACK: removed hint removal!
                     break;
 
                 case Level.Level3: // Dots and diacritics with visual aid
@@ -283,7 +284,6 @@ namespace Antura.Minigames.DancingDots
                 currentLevel = (Level)Mathf.Clamp((int)Mathf.Floor(pedagogicalLevel * numberOfLevels), 0, numberOfLevels - 1);
             }
 
-
             // HACK: FORCED LEVEL TO GET ONLY DIACRITICS
             pedagogicalLevel = 0.0f;
             currentLevel = Level.Level2;
@@ -295,7 +295,8 @@ namespace Antura.Minigames.DancingDots
 
             dancingDotsLL.Reset();
 
-            tutorial.doTutorial();
+            // TODO: re-add
+            //tutorial.doTutorial();
 
         }
 
@@ -307,6 +308,9 @@ namespace Antura.Minigames.DancingDots
         }
 
 
+        /// <summary>
+        /// Remove the hint for a dot
+        /// </summary>
         IEnumerator RemoveHintDot()
         {
             yield return new WaitForSeconds(hintDotDuration);
@@ -324,6 +328,9 @@ namespace Antura.Minigames.DancingDots
             }
         }
 
+        /// <summary>
+        /// Remove the hint for a diacritic
+        /// </summary>
         IEnumerator RemoveHintDiacritic()
         {
             if (letterDiacritic != DiacriticEnum.None) {
@@ -352,9 +359,6 @@ namespace Antura.Minigames.DancingDots
                     go.GetComponent<DancingDotsDiacriticPosition>().Hide();
                 }
 
-                Debug.Log(activeDiacritic.diacritic);
-
-
                 //            int random = UnityEngine.Random.Range(0, diacritics.Length);
                 //            activeDiacritic = diacritics[random].GetComponent<DancingDotsDiacriticPosition>();
 
@@ -369,10 +373,13 @@ namespace Antura.Minigames.DancingDots
                 activeDiacritic.CheckPosition();
 
                 // Level checked in SetDiacritic instead of SetLevel due to frame delay
+                // HACK: removed hint removal
+                activeDiacritic.Show();
+                /*
                 if (currentLevel != Level.Level5 && currentLevel != Level.Level6) {
                     activeDiacritic.Show();
                     StartCoroutine(RemoveHintDiacritic());
-                }
+                }*/
             }
         }
 

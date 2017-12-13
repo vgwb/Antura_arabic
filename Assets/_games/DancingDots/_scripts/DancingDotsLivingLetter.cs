@@ -1,4 +1,5 @@
-﻿using Antura.LivingLetters;
+﻿using Antura.Core;
+using Antura.LivingLetters;
 using UnityEngine;
 using TMPro;
 
@@ -59,7 +60,7 @@ namespace Antura.Minigames.DancingDots
 
 		void GetDiacritic()
 		{
-			Debug.Log("DD Get Diacritics");
+			//Debug.Log("DD Get Diacritics");
 			char FATHA1 = (char) 1611;
 			char FATHA2 = (char) 1614;
 			char DAMAH = (char) 1615;
@@ -88,9 +89,10 @@ namespace Antura.Minigames.DancingDots
 			else
 			{
 				game.letterDiacritic = DiacriticEnum.None;
-			}
+            }
+            //Debug.Log("DD found diacritic: " + game.letterDiacritic);
 
-			StartCoroutine(game.SetupDiacritic());
+            StartCoroutine(game.SetupDiacritic());
 
 			string output = "";
 			foreach (char c in game.currentLetter)
@@ -110,6 +112,8 @@ namespace Antura.Minigames.DancingDots
 			game.currentLetter = letterData.TextForLivingLetter;
 
 			GetDiacritic();
+
+            /* HACK: removed DOTS handling
 
 			string lettersWithOneDot = "ج خ غ ف ض ب ن ز ذ ظ";
 			string lettersWithTwoDots = "ة ق ي ت";
@@ -131,16 +135,18 @@ namespace Antura.Minigames.DancingDots
 			{
                 game.dotsCount = 0;
 			}
+            */
+		    game.dotsCount = 0; // HACK: forced dots count
 					
 			hintText.text = game.currentLetter;
 			ShowText(hintText, game.dotHintAlpha);
 			dotlessText.text = game.currentLetter;
 			fullText.text = game.currentLetter;
-			fullTextGO.SetActive(false);
 
-		}
+            //fullTextGO.SetActive(false); // HACK: forced full letter appearing
+        }
 
-		public void HideText(TextMeshPro tmp)
+        public void HideText(TextMeshPro tmp)
 		{
 			tmp.color = game.SetAlpha(tmp.color,0);
 		}

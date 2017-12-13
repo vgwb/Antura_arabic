@@ -51,21 +51,12 @@ namespace Antura.Minigames.DancingDots
 
             switch (Variation) {
                 case DancingDotsVariation.LetterName:
-                    // @note: this variation does not really make sense here
-                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.AllButMain;
-                    builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
-                    builderParams.wordFilters.excludeDiacritics = false;
-                    builderParams.wordFilters.excludeLetterVariations = true;
-                    builderParams.letterFilters.excludeDiphthongs = true;
-                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
-                    break;
+                    throw new NotImplementedException("This variation has been removed!");
                 case DancingDotsVariation.LetterAny:
-                    // @note: this variation uses the same builder as the above one, as the difference is handled by the game
+                    // This variation selects the main diacritics only
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.AllButMain;
                     builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
-                    builderParams.wordFilters.excludeDiacritics = false;
-                    builderParams.wordFilters.excludeLetterVariations = true;
-                    builderParams.letterFilters.excludeDiphthongs = true;
+                    builderParams.letterFilters.requireDiacritics = true;
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 default:
