@@ -54,6 +54,9 @@ namespace Antura.Minigames.SickLetters
             switch (Variation)
             {
                 case SickLettersVariation.LetterName:
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
+                    builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
+                    builderParams.letterFilters.excludeDiphthongs = true;
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 default:
