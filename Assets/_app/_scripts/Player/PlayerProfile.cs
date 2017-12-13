@@ -268,7 +268,7 @@ namespace Antura.Profile
             }
             private set {
                 _currentAnturaCustomizations = value;
-                SaveCustomization();
+                SaveAnturaCustomization();
             }
         }
 
@@ -485,7 +485,7 @@ namespace Antura.Profile
         /// Saves the customization on db.
         /// </summary>
         /// <param name="_anturaCustomization">The antura customization. If null save only on db.</param>
-        public void SaveCustomization(AnturaCustomization _anturaCustomization = null)
+        public void SaveAnturaCustomization(AnturaCustomization _anturaCustomization = null)
         {
             if (_anturaCustomization != null) {
                 CurrentAnturaCustomizations = _anturaCustomization;
