@@ -51,7 +51,8 @@ namespace Antura.Minigames.HideAndSeek
             switch (Variation)
             {
                 case HideAndSeekVariation.LetterPhoneme:
-                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+                    var letterAlterationFilters = LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters_OneForm;
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, nCorrect, nWrong: nWrong, letterAlterationFilters: letterAlterationFilters, parameters: builderParams);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
