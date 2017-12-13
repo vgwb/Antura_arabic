@@ -32,11 +32,6 @@ namespace Antura.LivingLetters
             if (_data.ForcedLetterForm != LetterForm.None) Form = _data.ForcedLetterForm;
         }
 
-        public LL_LetterData(string _id) : this(AppManager.I.DB.GetLetterDataById(_id))
-        /// TODO refactor: inject the value, no reference to the DB
-        {
-        }
-
         #region API
 
         public string TextForLivingLetter

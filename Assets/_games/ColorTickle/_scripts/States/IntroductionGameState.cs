@@ -87,7 +87,7 @@ namespace Antura.Minigames.ColorTickle
 
         void BuildTutorialLetter()
         {
-            LL_LetterData LLdata = new LL_LetterData(AppManager.I.DB.GetLetterDataById("alif"));
+            LL_LetterData LLdata = new LL_LetterData(AppManager.I.DB.GetLetterDataById("alef"));
             game.tutorialLetter = Object.Instantiate(game.letterPrefab);
             game.tutorialLetter.SetActive(true);
             // HACK fix for the automatic reset of the color after update at Unity 5.4.2
