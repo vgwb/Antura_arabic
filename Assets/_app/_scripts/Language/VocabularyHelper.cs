@@ -121,15 +121,18 @@ namespace Antura.Database
             return dbManager.FindLetterData(x => CheckFilters(filters, x));
         }
 
-        private List<LetterData> GetLettersNotIn(List<string> tabooList, LetterFilters filters)
+        public List<LetterData> GetAllLettersAndForms(LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => !tabooList.Contains(x.Id) && CheckFilters(filters, x));
+            var baseLetters = dbManager.FindLetterData(x => CheckFilters(filters, x));
+            var lettersWithForms = ExtractLettersWithForms(baseLetters);
+            return lettersWithForms;
         }
 
-        public List<LetterData> GetLettersNotIn(LetterFilters filters, params LetterData[] tabooArray)
+        public List<LetterData> GetLettersNotIn(LetterEqualityStrictness equalityStrictness, LetterFilters filters, params LetterData[] tabooArray)
         {
-            var tabooList = new List<LetterData>(tabooArray);
-            return GetLettersNotIn(tabooList.ConvertAll(x => x.Id), filters);
+            var comparer = new StrictLetterDataComparer(equalityStrictness);
+            var lettersWithForms = GetAllLettersAndForms(filters);
+            return lettersWithForms.Where(x => !tabooArray.Contains(x, comparer)).ToList();
         }
 
         public List<LetterData> GetLettersByKind(LetterDataKind choice)
@@ -182,7 +185,18 @@ namespace Antura.Database
             return dbManager.FindLetterData(x => x.BaseLetter == baseData.Id);
         }
 
-        public List<LetterData> ConvertToLettersWithAvailableForcedForms(LetterData baseForVariation)
+
+        public List<LetterData> ExtractLettersWithForms(IEnumerable<LetterData> letters)
+        {
+            List<LetterData> lettersWithForms = new List<LetterData>();
+            foreach (var letter in letters)
+            {
+                lettersWithForms.AddRange(ExtractLettersWithForms(letter));
+            }
+            return lettersWithForms;
+        }
+
+        public List<LetterData> ExtractLettersWithForms(LetterData baseForVariation)
         {
             return new List<LetterForm>(baseForVariation.GetAvailableForms()).ConvertAll(f =>
             {
@@ -234,7 +248,7 @@ namespace Antura.Database
                     // Place forms only inside the pool, if needed
                     foreach (var baseForForm in basesForForms)
                     {
-                        var availableForms = ConvertToLettersWithAvailableForcedForms(baseForForm);
+                        var availableForms = ExtractLettersWithForms(baseForForm);
 
                         if (letterAlterationFilters.oneFormPerLetter)
                         {
@@ -265,29 +279,6 @@ namespace Antura.Database
         private Dictionary<string, List<LetterData>> unseparatedWordsToLetterCache = new Dictionary<string, List<LetterData>>();
         private Dictionary<string, List<LetterData>> separatedWordsToLetterCache = new Dictionary<string, List<LetterData>>();
 
-        /*private List<string> GetLetterIdsInWordData(WordData wordData)
-        {
-            List<string> letter_ids_list = null;
-            if (ForceUnseparatedLetters)
-            {
-                if (!unseparatedWordsToLetterCache.ContainsKey(wordData.Id))
-                {
-                    var parts = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB.StaticDatabase, wordData, separateVariations: false);
-                    letter_ids_list = parts.ConvertAll(p => p.letter.Id);
-                    unseparatedWordsToLetterCache[wordData.Id] = letter_ids_list;
-                }
-                letter_ids_list = unseparatedWordsToLetterCache[wordData.Id];
-            } else {
-                letter_ids_list = new List<string>(wordData.Letters);
-            }
-            return letter_ids_list;
-        }*/
-
-        /*public List<LetterData> GetLettersInWord(string wordId)
-        {
-            WordData wordData = dbManager.GetWordDataById(wordId);
-            return GetLettersInWord(wordData);
-        }*/
         public List<LetterData> GetLettersInWord(WordData wordData)
         {
             // @note: this will always retrieve all letters with their forms, the strictness will then define whether that has any consequence or not
@@ -331,8 +322,7 @@ namespace Antura.Database
 
         public List<LetterData> GetCommonLettersInWords(LetterEqualityStrictness letterEqualityStrictness, params WordData[] words)
         {
-            // TODO: use letterEqualityStrictness!
-            Dictionary<LetterData, int> countDict = new Dictionary<LetterData, int>();
+            Dictionary<LetterData, int> countDict = new Dictionary<LetterData, int>(new StrictLetterDataComparer(letterEqualityStrictness));
             foreach (var word in words)
             {
                 var nonRepeatingLettersOfWord = new HashSet<LetterData>();

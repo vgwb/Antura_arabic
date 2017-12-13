@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Antura.Core;
+using Antura.Database;
 
 namespace Antura.Teacher
 {
@@ -70,7 +71,7 @@ namespace Antura.Teacher
                 );
 
             var wrongLetters = teacher.VocabularyAi.SelectData(
-                () => vocabularyHelper.GetLettersNotIn(parameters.letterFilters, correctLetters.ToArray()),
+                () => vocabularyHelper.GetLettersNotIn(LetterEqualityStrictness.LetterOnly, parameters.letterFilters, correctLetters.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
                      packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs,
                         journeyFilter: SelectionParameters.JourneyFilter.CurrentJourney)

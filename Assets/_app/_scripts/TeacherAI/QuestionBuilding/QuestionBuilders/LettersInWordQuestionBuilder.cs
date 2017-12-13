@@ -201,7 +201,7 @@ namespace Antura.Teacher
         public List<LetterData> FindWrongLetters(WordData selectedWord, List<LetterData> wordLetters)
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
-            var noWordLetters = vocabularyHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray());
+            var noWordLetters = vocabularyHelper.GetLettersNotIn(LetterEqualityStrictness.LetterOnly, parameters.letterFilters, wordLetters.ToArray());
             var eligibleLetters = new List<LetterData>();
             var badWords = new List<WordData>(currentRound_words);
             badWords.Remove(selectedWord);

@@ -10,6 +10,7 @@ namespace Antura.Teacher
     /// * Question: Words with letters in common
     /// * Correct answers: letters in common
     /// * Wrong answers: letters not in common
+    /// @note: this now uses Strictness to define whether the common letters must have the same form or not
     /// </summary>
     public class CommonLettersInWordQuestionBuilder : IQuestionBuilder
     {
@@ -70,7 +71,7 @@ namespace Antura.Teacher
             // instead, I should just count common letters, and then select these letters that appear more than nWords*nPacks times
 
             // Get all words
-            var usableWords = teacher.VocabularyAi.SelectData(
+            var allWords = teacher.VocabularyAi.SelectData(
                 () => vocabularyHelper.GetAllWords(parameters.wordFilters),
                     new SelectionParameters(parameters.correctSeverity, getMaxData: true, useJourney: parameters.useJourneyForCorrect));
 
@@ -78,16 +79,17 @@ namespace Antura.Teacher
             bool found = false;
             while (nAttempts > 0 && !found)
             {
-                var wordsToUse = usableWords.RandomSelect(nWords);
+                var wordsToUse = allWords.RandomSelect(nWords);
                 var commonLetters = vocabularyHelper.GetCommonLettersInWords(letterEqualityStrictness, wordsToUse.ToArray());
-                //UnityEngine.Debug.Log("Trying letters: " + commonLetters.Count);
+                //UnityEngine.Debug.Log("Common letters for words " + wordsToUse.ToDebugString() + " are " + commonLetters.ToDebugString());
                 if (commonLetters.Count < nMinCommonLetters || commonLetters.Count > nMaxCommonLetters)
                 {
                     nAttempts--;
                     continue;
                 }
 
-                var nonCommonLetters = vocabularyHelper.GetLettersNotIn(parameters.letterFilters, commonLetters.ToArray()).RandomSelect(nWrong);
+                var nonCommonLetters = vocabularyHelper.GetLettersNotIn(letterEqualityStrictness, parameters.letterFilters, commonLetters.ToArray()).RandomSelect(nWrong);
+                UnityEngine.Debug.Log("Common letters: " + commonLetters.ToDebugString() + " non-common: " + nonCommonLetters.ToDebugString());
 
                 // Debug
                 if (ConfigAI.VerboseQuestionPacks)
