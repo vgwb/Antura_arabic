@@ -716,7 +716,7 @@ namespace Antura.Rewards
             // Add all 3 rewards
             //_player.AddRewardUnlockedAll();
             // Save actual customization
-            _player.SaveCustomization();
+            _player.SaveAnturaCustomization();
         }
 
         /// <summary>
