@@ -35,7 +35,7 @@ namespace Antura.Database
 
         #region Factory Methods
 
-        public static DBService OpenFromFileName(bool createIfNotFound, string fileName, string dirName = AppConfig.DbPlayersFolder)
+        public static DBService OpenFromDirectoryAndFilename(bool createIfNotFound, string fileName, string dirName = AppConfig.DbPlayersFolder)
         {
             var dirPath = GetDatabaseDirectoryPath(dirName);
             if (!Directory.Exists(dirPath)) {
@@ -66,7 +66,7 @@ namespace Antura.Database
             return new DBService(createIfNotFound, dbPath);
         }
 
-        public static DBService ExportAndOpenFromPlayerUUID(string playerUuid, string fileName = "",
+        public static DBService ExportFromPlayerUUIDAndReopen(string playerUuid, string fileName = "",
             string dirName = AppConfig.DbPlayersFolder)
         {
             if (fileName == "") {

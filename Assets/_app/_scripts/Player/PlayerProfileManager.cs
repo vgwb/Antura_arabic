@@ -277,7 +277,7 @@ namespace Antura.Profile
             string[] importFilePaths = AppManager.I.DB.GetImportFilePaths();
             foreach (var filePath in importFilePaths) {
                 // Check whether that is a DB and load it
-                if (filePath.Contains(".sqlite3")) {
+                if (AppManager.I.DB.IsValidDatabasePath(filePath)) {
                     ImportPlayerProfile(filePath);
                 }
             }
