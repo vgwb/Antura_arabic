@@ -7,7 +7,7 @@ namespace Antura.Minigames.ReadingGame
     {
         ReadAndAnswer = MiniGameCode.ReadingGame_word,
         Alphabet = MiniGameCode.Song_alphabet,
-        DiacriticSong = MiniGameCode.Song_letter,
+        DiacriticSong = MiniGameCode.Song_diacritics,
     }
 
     public class ReadingGameConfiguration : AbstractGameConfiguration

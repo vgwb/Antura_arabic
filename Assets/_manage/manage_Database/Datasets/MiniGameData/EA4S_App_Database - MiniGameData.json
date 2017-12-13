@@ -1,10 +1,10 @@
 {
   "MiniGameData": [
     {
-      "Id": "AlphabetSong_alphabet",
+      "Id": "Song_alphabet",
       "Type": "MiniGame",
       "Status": "active",
-      "Main": "AlphabetSong",
+      "Main": "Song",
       "Variation": "alphabet",
       "Badge": "alphabet",
       "Description": "",
@@ -27,11 +27,11 @@
       "Comprehension": ""
     },
     {
-      "Id": "AlphabetSong_letter",
+      "Id": "Song_diacritics",
       "Type": "MiniGame",
       "Status": "standby",
-      "Main": "AlphabetSong",
-      "Variation": "letter",
+      "Main": "Song",
+      "Variation": "diacritics",
       "Badge": "letters",
       "Description": "",
       "Team": "VGWB",
