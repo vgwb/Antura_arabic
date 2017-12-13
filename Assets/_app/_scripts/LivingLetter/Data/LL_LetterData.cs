@@ -75,8 +75,12 @@ namespace Antura.LivingLetters
                 return false;
             }
 
-            // @note: EqualityStrictness if tied to the first letter used, so we should always use matching letters when comparing
-            return Data.IsSameLetterAs(other.Data, LetterEqualityStrictness.LetterOnly);// Data.EqualityStrictness);
+            return Data.IsSameLetterAs(other.Data, LetterEqualityStrictness.LetterOnly);
+        }
+
+        public override string ToString()
+        {
+            return "LL-" + Data.ToString();
         }
 
         #endregion
