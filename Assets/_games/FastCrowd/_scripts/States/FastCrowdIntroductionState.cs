@@ -35,7 +35,7 @@ namespace Antura.Minigames.FastCrowd
 
             if (playIntro) {
                 playIntro = false;
-                game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.IntroLocalizationId, () => { playIntro = true; });
+                game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.IntroLocalizationId, () => { nextState = true; });
 
             }
         }
