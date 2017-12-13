@@ -76,6 +76,10 @@ namespace Antura.Minigames.Scanner
             {
                 LLs = game.LLCount;
             }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
+            }
 
             Debug.Log("[Scanner] LLs: " + LLs);
 

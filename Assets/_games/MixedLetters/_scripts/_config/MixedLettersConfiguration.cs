@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
@@ -12,7 +13,7 @@ namespace Antura.Minigames.MixedLetters
 
     public class MixedLettersConfiguration : AbstractGameConfiguration
     {
-        public MixedLettersVariation Variation { get; set; }
+        public MixedLettersVariation Variation { get; private set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -36,7 +37,7 @@ namespace Antura.Minigames.MixedLetters
             // Default values
             Questions = new SampleQuestionProvider();
             Variation = MixedLettersVariation.Alphabet;
-            Context = new MinigamesGameContext(MiniGameCode.MixedLetters_alphabet, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.MixedLetters_alphabet, DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
             TutorialEnabled = true;
         }
@@ -57,6 +58,8 @@ namespace Antura.Minigames.MixedLetters
                 case MixedLettersVariation.BuildWord:
                     builder = new LettersInWordQuestionBuilder(nPacks, maximumWordLength: 6, useAllCorrectLetters: true, parameters: builderParams);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             return builder;

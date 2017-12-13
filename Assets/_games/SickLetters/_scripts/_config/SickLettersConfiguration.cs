@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters;
 using Antura.Teacher;
 
@@ -10,7 +11,7 @@ namespace Antura.Minigames.SickLetters
 
     public class SickLettersConfiguration : AbstractGameConfiguration
     {
-        public SickLettersVariation Variation { get; set; }
+        private SickLettersVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -49,7 +50,18 @@ namespace Antura.Minigames.SickLetters
             int nWrong = 0;
 
             var builderParams = new QuestionBuilderParameters();
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+
+            switch (Variation)
+            {
+                case SickLettersVariation.LetterName:
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
+                    builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
+                    builderParams.letterFilters.excludeDiphthongs = true;
+                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             return builder;
         }

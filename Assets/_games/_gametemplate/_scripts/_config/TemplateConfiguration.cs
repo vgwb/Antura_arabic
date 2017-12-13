@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters;
 using Antura.Teacher;
 
@@ -14,7 +15,7 @@ namespace Antura.Minigames.Template
     /// </summary>
     public class TemplateConfiguration : AbstractGameConfiguration
     {
-        public TemplateVariation Variation { get; set; }
+        private TemplateVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -46,7 +47,16 @@ namespace Antura.Minigames.Template
         public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
-            // CONFIGURE HERE WHAT BUILDER THE MINIGAME IS EXPECTING
+
+            // CONFIGURE HERE WHAT BUILDER THE MINIGAME IS EXPECTING BASED ON ITS VARIATION
+            switch (Variation)
+            {
+                case TemplateVariation.Example:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
             return builder;
         }
 

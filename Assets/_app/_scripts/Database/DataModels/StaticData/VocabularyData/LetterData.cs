@@ -381,6 +381,24 @@ namespace Antura.Database
             }
         }
 
+        public string GetAudioFilename(LetterDataSoundType soundType = LetterDataSoundType.Phoneme)
+        {
+            // Debug.Log("GetAudioFilename " + Id + " " + Kind + " " + Type);
+            switch (soundType) {
+                case LetterDataSoundType.Phoneme:
+                    // arabic special case: the phoneme of a simple letter is the letterbase_sukun sound!!!!!
+                    if (Kind == LetterDataKind.Letter) {
+                        return Id + "_sukun";
+                    } else {
+                        return Id;
+                    }
+                case LetterDataSoundType.Name:
+                    return Id + "__lettername";
+                default:
+                    return "";
+            }
+        }
+
         public string GetStringForDisplay(LetterForm form = LetterForm.Isolated)
         {
             // Get the string for the specific form, without fallback
@@ -474,63 +492,15 @@ namespace Antura.Database
 
         private bool Equals(LetterData other)
         {
-            // We choose the stricter of the two letters
-            /*var strictness = EqualityStrictness != LetterEqualityStrictness.LetterOnly
-                ? this.EqualityStrictness
-                : other.EqualityStrictness;*/
+            // By default, LetterData uses LetterOnly when comparing (even in collections!)
             return IsSameLetterAs(other, LetterEqualityStrictness.LetterOnly);
         }
 
         public override int GetHashCode()
         {
-            unchecked {
-                var hashCode = (Id != null ? Id.GetHashCode() : 0);
-                /*switch (EqualityStrictness)
-                {
-                    case LetterEqualityStrictness.LetterOnly:
-                        break;
-                    case LetterEqualityStrictness.WithActualForm:
-                        hashCode = (hashCode * 397) ^ Form.GetHashCode();
-                        break;
-                    case LetterEqualityStrictness.WithVisualForm:
-                        hashCode = (hashCode * 397) ^ GetStringForDisplay().GetHashCode();
-                        break;
-                }*/
-                return hashCode;
-            }
-        }
-    }
-
-    /*
-    public class LetterDataComparer : IEqualityComparer<LetterData>
-    {
-        private LetterEqualityStrictness strictness;
-
-        public LetterDataComparer(LetterEqualityStrictness strictness)
-        {
-            this.strictness = strictness;
-        }
-
-        public bool Equals(LetterData x, LetterData y)
-        {
-            return x.IsSameLetterAs(y, strictness);
-        }
-
-        public int GetHashCode(LetterData obj)
-        {
-            var hashCode = (obj.Id != null ? obj.Id.GetHashCode() : 0);
-            switch (obj.EqualityStrictness)
-            {
-                case LetterEqualityStrictness.LetterOnly:
-                    break;
-                case LetterEqualityStrictness.WithActualForm:
-                    hashCode = (hashCode * 397) ^ obj.Form.GetHashCode();
-                    break;
-                case LetterEqualityStrictness.WithVisualForm:
-                    hashCode = (hashCode * 397) ^ obj.GetStringForDisplay().GetHashCode();
-                    break;
-            }
+            // By default, LetterData uses LetterOnly when comparing (even in collections!)
+            var hashCode = (Id != null ? Id.GetHashCode() : 0);
             return hashCode;
         }
-    }*/
+    }
 }

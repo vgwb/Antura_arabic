@@ -125,10 +125,10 @@ namespace Antura.Scenes
         /// <summary>
         /// exports all databases found in 
         /// </summary>
-        public void OnExportJoinedDatabase()
+        public void OnExportDatabasesJoined()
         {
             string errorString = "";
-            if (AppManager.I.DB.ExportJoinedDatabase(out errorString)) {
+            if (AppManager.I.DB.ExportPlayersJoinedDb(out errorString)) {
                 string dbPath = DBService.GetDatabaseFilePath(AppConfig.GetJoinedDatabaseFilename(), AppConfig.DbJoinedFolder);
                 GlobalUI.ShowPrompt("", "The joined DB is here:\n" + dbPath);
             } else {

@@ -1,4 +1,5 @@
-using Antura.LivingLetters;
+using System;
+using Antura.Database;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
 
@@ -13,7 +14,7 @@ namespace Antura.Minigames.MissingLetter
 
     public class MissingLetterConfiguration : AbstractGameConfiguration
     {
-        public MissingLetterVariation Variation { get; set; }
+        public MissingLetterVariation Variation { get; private set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -57,13 +58,17 @@ namespace Antura.Minigames.MissingLetter
 
             switch (Variation) {
                 case MissingLetterVariation.LetterInWord:
+                    // Find a letter with the given form inside the word (no diacritics)
+                    // wrong answers are other letters in different forms
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builderParams.letterFilters.excludeDiphthongs = true;
-                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters: true, parameters: builderParams);
+                    builder = new LetterAlterationsInWordsQuestionBuilder(nPacks, 1, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters);
                     break;
 
                 case MissingLetterVariation.LetterForm:
-                    builder = new LetterFormsInWordsQuestionBuilder(1, 1, parameters: builderParams);
+                    // Find the correct form of the letter in the given word
+                    // wrong answers are the other forms of the same letter (not the same visually, tho)
+                    builder = new LetterAlterationsInWordsQuestionBuilder(nPacks, 1, parameters: builderParams, letterAlterationFilters:LetterAlterationFilters.VisualFormsOfSingleLetter);
                     break;
 
                 case MissingLetterVariation.Phrase:
@@ -71,6 +76,8 @@ namespace Antura.Minigames.MissingLetter
                     builderParams.phraseFilters.requireAtLeastTwoWords = true;
                     builder = new WordsInPhraseQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             return builder;
         }
@@ -82,5 +89,22 @@ namespace Antura.Minigames.MissingLetter
             return rules;
         }
 
+        public override LocalizationDataId TitleLocalizationId
+        {
+            get
+            {
+                switch (Variation)
+                {
+                    case MissingLetterVariation.Phrase:
+                        return LocalizationDataId.MissingLetter_phrases_Title;
+                    case MissingLetterVariation.LetterForm:
+                        return LocalizationDataId.MissingLetter_forms_Title;
+                    case MissingLetterVariation.LetterInWord:
+                        return LocalizationDataId.MissingLetter_forms_Title;    // TODO: we need the correct title!
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
     }
 }

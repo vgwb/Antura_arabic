@@ -86,11 +86,7 @@ namespace Antura.Minigames.FastCrowd
 
         void OnQuestionCompleted()
         {
-            // TODO: make this more robust to variations
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.BuildWord ||
-                  FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName ||
-                 FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterForm 
-                  )
+            if (FastCrowdConfiguration.Instance.NeedsFullQuestionCompleted)
             {
                 // In spelling and letter, increment score only when the full question is completed
                 for (int i = 0; i < game.CurrentChallenge.Count; ++i)
@@ -112,12 +108,7 @@ namespace Antura.Minigames.FastCrowd
         {
             game.Context.GetCheckmarkWidget().Show(result);
 
-            // TODO: make this more robust to variations
-            if ((FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.BuildWord &&
-                FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.LetterName &&
-                FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.LetterForm
-                )
-                )
+            if (FastCrowdConfiguration.Instance.NeedsFullQuestionCompleted)
             {
                 if (result)
                 {

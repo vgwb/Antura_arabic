@@ -523,7 +523,7 @@
     {
       "Id": "Balloons_spelling",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "Balloons",
       "Variation": "spelling",
       "Badge": "spelling",
@@ -601,7 +601,7 @@
     {
       "Id": "DancingDots_lettername",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "DancingDots",
       "Variation": "lettername",
       "Badge": "letters",
@@ -731,7 +731,7 @@
     {
       "Id": "FastCrowd_alphabet",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "FastCrowd",
       "Variation": "alphabet",
       "Badge": "alphabet",
@@ -965,7 +965,7 @@
     {
       "Id": "MissingLetter_letter",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "MissingLetter",
       "Variation": "letter",
       "Badge": "letters",
@@ -1043,7 +1043,7 @@
     {
       "Id": "MissingLetter_phrase",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "MissingLetter",
       "Variation": "word",
       "Badge": "words",
@@ -1069,7 +1069,7 @@
     {
       "Id": "MixedLetters_alphabet",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "MixedLetters",
       "Variation": "alphabet",
       "Badge": "alphabet",
@@ -1121,7 +1121,7 @@
     {
       "Id": "ReadingGame_word",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "ReadingGame",
       "Variation": "word",
       "Badge": "words",
@@ -1147,7 +1147,7 @@
     {
       "Id": "Scanner_phrase",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "Scanner",
       "Variation": "phrase",
       "Badge": "words",
@@ -1173,7 +1173,7 @@
     {
       "Id": "Scanner_word",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "Scanner",
       "Variation": "word",
       "Badge": "images",
@@ -1225,7 +1225,7 @@
     {
       "Id": "TakeMeHome_lettername",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "TakeMeHome",
       "Variation": "lettername",
       "Badge": "letters",
@@ -1355,7 +1355,7 @@
     {
       "Id": "Tobogan_letterinword",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "Tobogan",
       "Variation": "letterinword",
       "Badge": "letter",
@@ -1381,7 +1381,7 @@
     {
       "Id": "Tobogan_sunmoon",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "Tobogan",
       "Variation": "sunmoon",
       "Badge": "sunmoon",

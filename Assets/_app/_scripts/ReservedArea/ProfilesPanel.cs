@@ -102,7 +102,7 @@ namespace Antura.ReservedArea
 
         public void OnExportSelectPlayerProfile()
         {
-            if (AppManager.I.DB.ExportDatabaseOfPlayer(SelectedPlayerId)) {
+            if (AppManager.I.DB.ExportPlayerDb(SelectedPlayerId)) {
                 string dbPath;
                 if (Application.platform == RuntimePlatform.IPhonePlayer) {
                     dbPath = string.Format(@"{0}/{1}", AppConfig.DbExportFolder,

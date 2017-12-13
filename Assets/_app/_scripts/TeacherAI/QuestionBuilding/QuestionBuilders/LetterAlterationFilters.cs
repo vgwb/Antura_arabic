@@ -6,6 +6,11 @@ namespace Antura.Teacher
         {
             includeForms = true
         };
+        public static readonly LetterAlterationFilters VisualFormsOfSingleLetter = new LetterAlterationFilters()
+        {
+            includeForms = true,
+            visuallyDifferentForms = true
+        };
         public static readonly LetterAlterationFilters MultipleLetters = new LetterAlterationFilters()
         {
             differentBaseLetters = true
@@ -36,9 +41,16 @@ namespace Antura.Teacher
             ExcludeLetterVariations = LetterFilters.ExcludeLetterVariations.None,
             excludeDipthongs = false,
         };
+        public static readonly LetterAlterationFilters FormsAndPhonemesOfMultipleLetters_OneForm = new LetterAlterationFilters()
+        {
+            differentBaseLetters = true,
+            includeForms = true,
+            oneFormPerLetter = true,
+            ExcludeDiacritics = LetterFilters.ExcludeDiacritics.None,
+            ExcludeLetterVariations = LetterFilters.ExcludeLetterVariations.None,
+            excludeDipthongs = false,
+        };
 
-
-        public bool addBaseLetterToo = false;
 
         // Can add different letters as bases?
         public bool differentBaseLetters;
@@ -50,15 +62,17 @@ namespace Antura.Teacher
 
         // Can add forms?
         public bool includeForms;
+        public bool oneFormPerLetter;    // If true, letters will appear only in one form
+        public bool visuallyDifferentForms;    // If true, forms that appear the same won't be selected as different options
 
-        public LetterAlterationFilters() : this(false, false, LetterFilters.ExcludeDiacritics.All, LetterFilters.ExcludeLetterVariations.All, true, false)
+        public LetterAlterationFilters() : this(false, LetterFilters.ExcludeDiacritics.All, LetterFilters.ExcludeLetterVariations.All, true, false)
         {
             
         }
 
-        public LetterAlterationFilters(bool addBaseLetterToo, bool differentBaseLetters, LetterFilters.ExcludeDiacritics excludeDiacritics, LetterFilters.ExcludeLetterVariations excludeLetterVariations, bool excludeDipthongs, bool includeForms)
+        public LetterAlterationFilters(bool differentBaseLetters, LetterFilters.ExcludeDiacritics excludeDiacritics, LetterFilters.ExcludeLetterVariations excludeLetterVariations, bool excludeDipthongs, bool includeForms)
         {
-            this.addBaseLetterToo = addBaseLetterToo;
+            //this.addBaseLetterToo = addBaseLetterToo;
             this.differentBaseLetters = differentBaseLetters;
             ExcludeDiacritics = excludeDiacritics;
             ExcludeLetterVariations = excludeLetterVariations;

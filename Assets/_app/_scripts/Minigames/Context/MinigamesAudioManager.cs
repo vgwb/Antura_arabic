@@ -15,13 +15,15 @@ namespace Antura.Minigames
 
         public IAudioSource PlayVocabularyData(ILivingLetterData data, bool exclusive = true, LetterDataSoundType soundType = LetterDataSoundType.Phoneme)
         {
-            if (data.DataType == LivingLetterDataType.Letter)
+            if (data.DataType == LivingLetterDataType.Letter) {
+                return AudioManager.I.PlayLetter((data as LL_LetterData).Data, exclusive, soundType);
+            } else if (data.DataType == LivingLetterDataType.Word)
             {
-                return AudioManager.I.PlayLetter(new LL_LetterData(data.Id).Data, exclusive, soundType);
-            } else if (data.DataType == LivingLetterDataType.Word || data.DataType == LivingLetterDataType.Image) {
-                return AudioManager.I.PlayWord(new LL_WordData(data.Id).Data, exclusive);
+                return AudioManager.I.PlayWord((data as LL_WordData).Data, exclusive);
+            } else if (data.DataType == LivingLetterDataType.Image) {
+                return AudioManager.I.PlayWord((data as LL_ImageData).Data, exclusive);
             } else if (data.DataType == LivingLetterDataType.Phrase) {
-                return AudioManager.I.PlayPhrase(new LL_PhraseData(data.Id).Data, exclusive);
+                return AudioManager.I.PlayPhrase((data as LL_PhraseData).Data, exclusive);
             }
             return null;
         }
@@ -52,7 +54,7 @@ namespace Antura.Minigames
 
         public void StopAllSfx()
         {
-            AudioManager.I.StopAllSfx();
+            AudioManager.I.StopSfxGroup();
         }
 
         public AudioClip GetAudioClip(Sfx sfx)
@@ -63,7 +65,7 @@ namespace Antura.Minigames
         public void Reset()
         {
             StopMusic();
-            AudioManager.I.StopLettersWordsPhrases();
+            AudioManager.I.StopVocabularyGroup();
             AudioManager.I.ClearCache();
             AudioManager.I.StopDialogue(true);
         }

@@ -72,5 +72,11 @@ namespace Antura.LivingLetters
 
             return other.Data.Id == Data.Id;
         }
+
+        public override string ToString()
+        {
+            return "LL-" + Data.ToString();
+        }
+
     }
 }

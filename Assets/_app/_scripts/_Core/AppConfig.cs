@@ -79,10 +79,11 @@ namespace Antura.Core
         public const string PdfAndroidInstall = "AndroidInstallHelp.pdf";
 
         // the directories of exported / imported databases
+        public const string DbFileExtension = ".sqlite3";
         public const string DbPlayersFolder = "players";
-        public const string DbExportFolder = "export";
-        public const string DbImportFolder = "import";
-        public const string DbJoinedFolder = "joined";
+        public const string DbExportFolder = "db_export";
+        public const string DbImportFolder = "db_import";
+        public const string DbJoinedFolder = "db_export_joined";
 
         // Range and Constrain values
         public const float MinPlayerAge = 4;
@@ -108,22 +109,22 @@ namespace Antura.Core
 
         public static string GetPlayerUUIDFromDatabaseFilename(string fileName)
         {
-            return fileName.Split('/').Last().Split('\\').Last().Replace("Antura_Player_", "").Replace(".sqlite3", "");
+            return fileName.Split('/').Last().Split('\\').Last().Replace("Antura_Player_", "").Replace(DbFileExtension, "");
         }
 
         public static string GetPlayerDatabaseFilename(string playerUuid)
         {
-            return "Antura_Player_" + playerUuid + ".sqlite3";
+            return "Antura_Player_" + playerUuid + DbFileExtension;
         }
 
         public static string GetPlayerDatabaseFilenameForExport(string playerUuid)
         {
-            return "export_Antura_Player_" + playerUuid + "_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
+            return "export_Antura_Player_" + playerUuid + "_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + DbFileExtension;
         }
 
         public static string GetJoinedDatabaseFilename()
         {
-            return "Antura_Joined_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
+            return "Antura_Joined_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + DbFileExtension;
         }
 
         public static bool IsDesktopPlatform()

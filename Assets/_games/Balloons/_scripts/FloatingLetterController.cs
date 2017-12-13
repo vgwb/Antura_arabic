@@ -300,8 +300,7 @@ namespace Antura.Minigames.Balloons
                     Letter.FlashLetterInWord(((LL_LetterData)BalloonsGame.instance.question).Data, Color.red);
                 }
             }
-
-            else if (BalloonsGame.instance.ActiveGameVariation != BalloonsVariation.Counting)
+            else if (BalloonsConfiguration.Instance.Variation != BalloonsVariation.Counting)
             {
                 BalloonsGame.instance.OnPoppedNonRequiredBalloon();
             }

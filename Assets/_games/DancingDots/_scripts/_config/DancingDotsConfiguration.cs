@@ -1,3 +1,4 @@
+using System;
 using Antura.Teacher;
 
 namespace Antura.Minigames.DancingDots
@@ -10,7 +11,7 @@ namespace Antura.Minigames.DancingDots
 
     public class DancingDotsConfiguration : AbstractGameConfiguration
     {
-        public DancingDotsVariation Variation { get; set; }
+        private DancingDotsVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -32,7 +33,7 @@ namespace Antura.Minigames.DancingDots
         private DancingDotsConfiguration()
         {
             // Default values
-            Context = new MinigamesGameContext(MiniGameCode.DancingDots_lettername, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.DancingDots_lettername, DateTime.Now.Ticks.ToString());
             Variation = DancingDotsVariation.LetterName;
             Questions = new DancingDotsQuestionProvider();
             TutorialEnabled = true;
@@ -50,6 +51,7 @@ namespace Antura.Minigames.DancingDots
 
             switch (Variation) {
                 case DancingDotsVariation.LetterName:
+                    // @note: this variation does not really make sense here
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.AllButMain;
                     builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
                     builderParams.wordFilters.excludeDiacritics = false;
@@ -58,7 +60,7 @@ namespace Antura.Minigames.DancingDots
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 case DancingDotsVariation.LetterAny:
-                    // TODO CHECK NEW MINIGAME VARIATION
+                    // @note: this variation uses the same builder as the above one, as the difference is handled by the game
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.AllButMain;
                     builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
                     builderParams.wordFilters.excludeDiacritics = false;
@@ -66,6 +68,8 @@ namespace Antura.Minigames.DancingDots
                     builderParams.letterFilters.excludeDiphthongs = true;
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             return builder;
         }

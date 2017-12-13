@@ -22,7 +22,7 @@ namespace Antura.Audio
 
         private DeAudioGroup musicGroup;
         private DeAudioGroup vocabularyGroup;
-        private DeAudioGroup keeperGroup;
+        private DeAudioGroup dialogueGroup;
         private DeAudioGroup sfxGroup;
 
         private Dictionary<IAudioSource, System.Action> dialogueEndedCallbacks = new Dictionary<IAudioSource, System.Action>();
@@ -149,7 +149,7 @@ namespace Antura.Audio
             sfxGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.FX);
             musicGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Music);
             vocabularyGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom0);
-            keeperGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom1);
+            dialogueGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom1);
 
             musicEnabled = true;
         }
@@ -227,7 +227,7 @@ namespace Antura.Audio
             return source;
         }
 
-        public void StopAllSfx()
+        public void StopSfxGroup()
         {
             sfxGroup.Stop();
         }
@@ -246,7 +246,7 @@ namespace Antura.Audio
         public IAudioSource PlayLetter(LetterData data, bool exclusive = true, LetterDataSoundType soundType = LetterDataSoundType.Phoneme)
         {
             if (exclusive) {
-                StopLettersWordsPhrases();
+                StopVocabularyGroup();
             }
 
             AudioClip clip = GetAudioClip(data, soundType);
@@ -256,7 +256,7 @@ namespace Antura.Audio
         public IAudioSource PlayWord(WordData data, bool exclusive = true)
         {
             if (exclusive) {
-                StopLettersWordsPhrases();
+                StopVocabularyGroup();
             }
 
             AudioClip clip = GetAudioClip(data);
@@ -266,14 +266,14 @@ namespace Antura.Audio
         public IAudioSource PlayPhrase(PhraseData data, bool exclusive = true)
         {
             if (exclusive) {
-                StopLettersWordsPhrases();
+                StopVocabularyGroup();
             }
 
             AudioClip clip = GetAudioClip(data);
             return new AudioSourceWrapper(vocabularyGroup.Play(clip), vocabularyGroup, this);
         }
 
-        public void StopLettersWordsPhrases()
+        public void StopVocabularyGroup()
         {
             if (vocabularyGroup != null) {
                 vocabularyGroup.Stop();
@@ -304,7 +304,7 @@ namespace Antura.Audio
 
             if (!string.IsNullOrEmpty(LocalizationManager.GetLocalizedAudioFileName(data.Id))) {
                 AudioClip clip = GetAudioClip(data);
-                return new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
+                return new AudioSourceWrapper(dialogueGroup.Play(clip), dialogueGroup, this);
             }
             return null;
         }
@@ -327,7 +327,7 @@ namespace Antura.Audio
 
             if (!string.IsNullOrEmpty(LocalizationManager.GetLocalizedAudioFileName(data.Id))) {
                 AudioClip clip = GetAudioClip(data);
-                var wrapper = new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
+                var wrapper = new AudioSourceWrapper(dialogueGroup.Play(clip), dialogueGroup, this);
                 if (callback != null) {
                     dialogueEndedCallbacks[wrapper] = callback;
                 }
@@ -346,7 +346,7 @@ namespace Antura.Audio
                 dialogueEndedCallbacks.Clear();
             }
 
-            keeperGroup.Stop();
+            dialogueGroup.Stop();
         }
 
         private PlayerGender GetPlayerGender()
@@ -378,14 +378,11 @@ namespace Antura.Audio
         public AudioClip GetAudioClip(LetterData data, LetterDataSoundType soundType = LetterDataSoundType.Phoneme)
         {
             AudioClip res;
-            if (soundType == LetterDataSoundType.Phoneme) {
-                res = GetCachedResource("AudioArabic/Letters/" + data.Id);
-            } else {
-                res = GetCachedResource("AudioArabic/Letters/" + data.Id + "__lettername");
-            }
+            var audiofile = data.GetAudioFilename(soundType);
+            res = GetCachedResource("AudioArabic/Letters/" + audiofile);
 
             if (res == null) {
-                Debug.Log("Warning: cannot find audio clip for " + data);
+                Debug.Log("Warning: cannot find audio clip for letter:" + data + " filename:" + audiofile);
             }
             return res;
         }
@@ -474,7 +471,7 @@ namespace Antura.Audio
                     playingAudio.RemoveAt(i--);
 
                     System.Action callback;
-                    if (source.Group == keeperGroup && dialogueEndedCallbacks.TryGetValue(source, out callback)) {
+                    if (source.Group == dialogueGroup && dialogueEndedCallbacks.TryGetValue(source, out callback)) {
                         pendingCallbacks.Add(new KeyValuePair<AudioSourceWrapper, System.Action>(source, callback));
                     }
                 }

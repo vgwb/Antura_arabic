@@ -12,7 +12,7 @@ namespace Antura.Minigames.Scanner
 
     public class ScannerConfiguration : AbstractGameConfiguration
     {
-        public ScannerVariation Variation { get; set; }
+        public ScannerVariation Variation { get; private set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -52,7 +52,7 @@ namespace Antura.Minigames.Scanner
             nCorrect = 1;
             int nWrong = 4;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
+            var builderParams = new QuestionBuilderParameters();
             builderParams.wordFilters.excludeColorWords = true;
             builderParams.wordFilters.requireDrawings = true;
 
@@ -61,6 +61,7 @@ namespace Antura.Minigames.Scanner
                 case ScannerVariation.OneWord:
                     nCorrect = 1;
                     nWrong = 4;
+                    builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 case ScannerVariation.MultipleWords:
                     if (Difficulty < 0.5f)
@@ -72,12 +73,11 @@ namespace Antura.Minigames.Scanner
                         nCorrect = 5;
                     }
                     nWrong = 0;
+                    builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
             return builder;
         }

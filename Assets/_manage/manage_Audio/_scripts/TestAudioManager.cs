@@ -171,9 +171,9 @@ namespace Antura.Test
         public void StopAll()
         {
             AudioManager.I.StopMusic();
-            AudioManager.I.StopAllSfx();
+            AudioManager.I.StopSfxGroup();
             AudioManager.I.StopDialogue(true);
-            AudioManager.I.StopLettersWordsPhrases();
+            AudioManager.I.StopVocabularyGroup();
         }
     }
 }

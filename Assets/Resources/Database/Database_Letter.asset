@@ -1495,7 +1495,7 @@ MonoBehaviour:
       _Symbol_Unicode: 064F
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: dal_dammah_tanwin
@@ -1522,7 +1522,7 @@ MonoBehaviour:
       _Symbol_Unicode: 064C
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: dal_fathah
@@ -1549,7 +1549,7 @@ MonoBehaviour:
       _Symbol_Unicode: 064E
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: dal_kasrah
@@ -1576,7 +1576,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0650
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: dal_shaddah
@@ -1603,7 +1603,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: dal_sukun
@@ -1630,7 +1630,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0652
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: dammah
@@ -3682,7 +3682,7 @@ MonoBehaviour:
       _Symbol_Unicode: 064F
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: reh_dammah_tanwin
@@ -3709,7 +3709,7 @@ MonoBehaviour:
       _Symbol_Unicode: 064C
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: reh_fathah
@@ -3736,7 +3736,7 @@ MonoBehaviour:
       _Symbol_Unicode: 064E
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: reh_kasrah
@@ -3763,7 +3763,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0650
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: reh_shaddah
@@ -3790,7 +3790,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: reh_sukun
@@ -3817,7 +3817,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0652
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: sad_dammah
@@ -4735,7 +4735,7 @@ MonoBehaviour:
       _Symbol_Unicode: 064F
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: thal_fathah
@@ -4762,7 +4762,7 @@ MonoBehaviour:
       _Symbol_Unicode: 064E
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: thal_kasrah
@@ -4789,7 +4789,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0650
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: thal_shaddah
@@ -4816,7 +4816,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: thal_sukun
@@ -4843,7 +4843,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0652
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: theh_dammah
@@ -4978,7 +4978,7 @@ MonoBehaviour:
       _Symbol_Unicode: 064F
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: waw_diph
@@ -5005,7 +5005,7 @@ MonoBehaviour:
       _Symbol_Unicode: 
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: waw_fathah
@@ -5032,7 +5032,7 @@ MonoBehaviour:
       _Symbol_Unicode: 064E
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: waw_hamza
@@ -5059,7 +5059,7 @@ MonoBehaviour:
       _Symbol_Unicode: 
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: waw_kasrah
@@ -5086,7 +5086,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0650
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: waw_shaddah
@@ -5113,7 +5113,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: waw_sukun
@@ -5140,7 +5140,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0652
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: yeh_dammah
@@ -5328,7 +5328,7 @@ MonoBehaviour:
       _Final_Unicode: FEF2
       _Symbol_Unicode: 0651
       _InitialFix: 
-      _FinalFix: 1
+      _FinalFix: 
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
@@ -5355,7 +5355,7 @@ MonoBehaviour:
       _Final_Unicode: FEF2
       _Symbol_Unicode: 0652
       _InitialFix: 
-      _FinalFix: 1
+      _FinalFix: 
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
@@ -5518,7 +5518,7 @@ MonoBehaviour:
       _Symbol_Unicode: 064F
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: zain_fathah
@@ -5545,7 +5545,7 @@ MonoBehaviour:
       _Symbol_Unicode: 064E
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: zain_kasrah
@@ -5572,7 +5572,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0650
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: zain_shaddah
@@ -5599,7 +5599,7 @@ MonoBehaviour:
       _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: zain_sukun
@@ -5626,6 +5626,6 @@ MonoBehaviour:
       _Symbol_Unicode: 0652
       _InitialFix: 
       _FinalFix: 1
-      _MedialFix: 
+      _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0

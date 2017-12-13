@@ -133,22 +133,7 @@ namespace Antura.Minigames.ThrowBalls
 
             ThrowBallsGame.instance.letterWithPropsPrefab.SetActive(false);
 
-            switch (ThrowBallsConfiguration.Instance.Variation) {
-                case ThrowBallsVariation.LetterName:
-                    audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Title, OnTitleVoiceOverDone);
-                    break;
-                case ThrowBallsVariation.LetterAny:
-                    audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Title, OnTitleVoiceOverDone);
-                    break;
-                case ThrowBallsVariation.Word:
-                    audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_words_Title, OnTitleVoiceOverDone);
-                    break;
-                case ThrowBallsVariation.BuildWord:
-                    audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letterinword_Title, OnTitleVoiceOverDone);
-                    break;
-                default:
-                    break;
-            }
+            audioManager.PlayDialogue(ThrowBallsConfiguration.Instance.TitleLocalizationId, OnTitleVoiceOverDone);
 
             AudioManager.I.PlayMusic(Music.Theme10);
 
@@ -294,6 +279,8 @@ namespace Antura.Minigames.ThrowBalls
                     case ThrowBallsVariation.BuildWord:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letterinword_Tuto);
                         break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
 
                 inputManager.Enabled = true;
@@ -372,7 +359,7 @@ namespace Antura.Minigames.ThrowBalls
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letterinword_Tuto);
                         break;
                     default:
-                        break;
+                        throw new ArgumentOutOfRangeException();
                 }
 
                 inputManager.Enabled = true;

@@ -60,7 +60,7 @@ namespace Antura.Minigames.ReadingGame
             game.blurredText.SetActive(true);
             //game.circleBox.SetActive(false);
 
-            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.Alphabet)
             {
                 game.barSet.PlaySong(game.Context.GetAudioManager().PlaySound(game.alphabetSongAudio), OnSongEnded);
             }

@@ -63,7 +63,7 @@ namespace Antura.Minigames.ReadingGame
                 }
                 else
                 {
-                    var introDialogue = ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong ?
+                    var introDialogue = ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.Alphabet ?
                         Database.LocalizationDataId.AlphabetSong_alphabet_Intro : Database.LocalizationDataId.AlphabetSong_letters_Intro;
 
                     game.Context.GetAudioManager().PlayDialogue(introDialogue, () =>

@@ -143,6 +143,8 @@ namespace Antura.Assessment
                 case AssessmentVariation.MatchLettersToWord_Form:
                     return Setup_MatchLettersToWord_Form_Builder();
 
+                case AssessmentVariation.Unsetted:
+                case AssessmentVariation.VowelOrConsonant:
                 default:
                     throw new NotImplementedException("NotImplemented Yet!");
             }
@@ -451,7 +453,6 @@ namespace Antura.Assessment
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers
                 1,                              // CorrectAnswers
                 4,                              // WrongAnswers
-                firstCorrectIsQuestion: true,
                 letterAlterationFilters: LetterAlterationFilters.FormsOfSingleLetter,
                 parameters: builderParams);
         }

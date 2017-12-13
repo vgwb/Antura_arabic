@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters;
 using Antura.Teacher;
 
@@ -10,7 +11,7 @@ namespace Antura.Minigames.ColorTickle
 
     public class ColorTickleConfiguration : AbstractGameConfiguration
     {
-        public ColorTickleVariation Variation { get; set; }
+        private ColorTickleVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -47,11 +48,18 @@ namespace Antura.Minigames.ColorTickle
             int nCorrect = 1;
 
             var builderParams = new QuestionBuilderParameters();
-            builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
-            builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.AllButAlefHamza;
-            builderParams.letterFilters.excludeDiphthongs = true;
-            builderParams.wordFilters.excludeDiacritics = true;
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, parameters: builderParams);
+            switch (Variation)
+            {
+                case ColorTickleVariation.LetterName:
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
+                    builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.AllButAlefHamza;
+                    builderParams.letterFilters.excludeDiphthongs = true;
+                    builderParams.wordFilters.excludeDiacritics = true;
+                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, parameters: builderParams);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             return builder;
         }

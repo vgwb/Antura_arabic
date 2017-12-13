@@ -8,8 +8,8 @@
     public enum MiniGameCode
     {
         Invalid = 0,
-        AlphabetSong_alphabet = 5,
-        AlphabetSong_letter = 33, // DISABLED
+        Song_alphabet = 5,
+        Song_letter = 33, // DISABLED
         Balloons_counting = 6,
         Balloons_letterinword = 7,
         Balloons_spelling = 3, // DISABLED

@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters;
 using Antura.Teacher;
 
@@ -17,7 +18,7 @@ namespace Antura.Minigames.MakeFriends
 
     public class MakeFriendsConfiguration : AbstractGameConfiguration
     {
-        public MakeFriendsVariation Variation { get; set; }
+        private MakeFriendsVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -39,7 +40,6 @@ namespace Antura.Minigames.MakeFriends
         private MakeFriendsConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new MakeFriendsQuestionProvider();
             Context = new MinigamesGameContext(MiniGameCode.MakeFriends_letterinword, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0f;
@@ -57,7 +57,14 @@ namespace Antura.Minigames.MakeFriends
             int nWords = 2;
 
             var builderParams = new QuestionBuilderParameters();
-            builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams);
+            switch (Variation)
+            {
+                case MakeFriendsVariation.LetterInWords:
+                    builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             return builder;
         }

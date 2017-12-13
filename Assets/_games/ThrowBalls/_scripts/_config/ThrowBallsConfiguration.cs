@@ -1,3 +1,5 @@
+using System;
+using Antura.Database;
 using Antura.Teacher;
 
 namespace Antura.Minigames.ThrowBalls
@@ -12,7 +14,7 @@ namespace Antura.Minigames.ThrowBalls
 
     public class ThrowBallsConfiguration : AbstractGameConfiguration
     {
-        public ThrowBallsVariation Variation { get; set; }
+        public ThrowBallsVariation Variation { get; private set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -36,7 +38,7 @@ namespace Antura.Minigames.ThrowBalls
             // Default values
             Questions = new ThrowBallsQuestionProvider();
             Variation = ThrowBallsVariation.LetterName;
-            Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_lettername, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_lettername, DateTime.Now.Ticks.ToString());
             Difficulty = 0.7f;
             TutorialEnabled = true;
         }
@@ -55,8 +57,8 @@ namespace Antura.Minigames.ThrowBalls
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.LetterAny:
-                    var letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
-                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, letterAlterationFilters:letterAlterationFilters, parameters: builderParams);
+                    var letterAlterationFilters = LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters;
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, nWrong: nWrong, letterAlterationFilters:letterAlterationFilters, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.Word:
                     builderParams.wordFilters.requireDrawings = true;
@@ -65,6 +67,8 @@ namespace Antura.Minigames.ThrowBalls
                 case ThrowBallsVariation.BuildWord:
                     builder = new LettersInWordQuestionBuilder(nPacks, maximumWordLength: 7, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             return builder;
@@ -77,5 +81,24 @@ namespace Antura.Minigames.ThrowBalls
             return rules;
         }
 
+        public override LocalizationDataId TitleLocalizationId
+        {
+            get
+            {
+                switch (Instance.Variation)
+                {
+                    case ThrowBallsVariation.LetterName:
+                        return LocalizationDataId.ThrowBalls_letters_Title;
+                    case ThrowBallsVariation.LetterAny:
+                        return LocalizationDataId.ThrowBalls_letters_Title; // TODO: get the correct title here
+                    case ThrowBallsVariation.Word:
+                        return LocalizationDataId.ThrowBalls_words_Title; 
+                    case ThrowBallsVariation.BuildWord:
+                        return LocalizationDataId.ThrowBalls_letterinword_Title;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
 
@@ -10,7 +11,7 @@ namespace Antura.Minigames.HideAndSeek
 
     public class HideAndSeekConfiguration : AbstractGameConfiguration
     {
-        public HideAndSeekVariation Variation { get; set; }
+        private HideAndSeekVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -46,8 +47,16 @@ namespace Antura.Minigames.HideAndSeek
             int nCorrect = 1;
             int nWrong = 6;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+            var builderParams = new QuestionBuilderParameters();
+            switch (Variation)
+            {
+                case HideAndSeekVariation.LetterPhoneme:
+                    var letterAlterationFilters = LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters_OneForm;
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, nCorrect, nWrong: nWrong, letterAlterationFilters: letterAlterationFilters, parameters: builderParams);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             return builder;
         }

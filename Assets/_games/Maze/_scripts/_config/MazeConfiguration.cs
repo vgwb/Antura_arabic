@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
@@ -11,7 +12,7 @@ namespace Antura.Minigames.Maze
 
     public class MazeConfiguration : AbstractGameConfiguration
     {
-        public MazeVariation Variation { get; set; }
+        private MazeVariation Variation { get; set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
@@ -46,10 +47,17 @@ namespace Antura.Minigames.Maze
             IQuestionBuilder builder = null;
 
             var builderParams = new QuestionBuilderParameters();
-            builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
-            builderParams.wordFilters.excludeDiacritics = true;
-            builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.AllButAlefHamza;
-            builder = new RandomLettersQuestionBuilder(7, 1, parameters: builderParams);
+            switch (Variation)
+            {
+                case MazeVariation.LetterName:
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
+                    builderParams.wordFilters.excludeDiacritics = true;
+                    builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.AllButAlefHamza;
+                    builder = new RandomLettersQuestionBuilder(7, 1, parameters: builderParams);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             return builder;
         }

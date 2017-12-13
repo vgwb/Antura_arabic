@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Helpers;
 
 namespace Antura.Database.Management
@@ -20,7 +20,7 @@ namespace Antura.Database.Management
             data.Title_En = ToString(dict["Title_En"]);
             data.Title_Ar = ToString(dict["Title_Ar"]);
             data.Scene = ToString(dict["Scene"]);
-            data.Available = ToString(dict["Status"]) == "active";
+            data.Active = ToString(dict["Status"]) == "active";
             data.AffectedPlaySkills = CustomParsePlaySkills(data, dict);
 
             return data;
