@@ -1,7 +1,7 @@
-using System;
-using Antura.LivingLetters;
+using Antura.Database;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
+using System;
 
 namespace Antura.Minigames.Maze
 {
@@ -23,10 +23,10 @@ namespace Antura.Minigames.Maze
         static MazeConfiguration instance;
         public static MazeConfiguration Instance
         {
-            get
-            {
-                if (instance == null)
+            get {
+                if (instance == null) {
                     instance = new MazeConfiguration();
+                }
                 return instance;
             }
         }
@@ -47,8 +47,7 @@ namespace Antura.Minigames.Maze
             IQuestionBuilder builder = null;
 
             var builderParams = new QuestionBuilderParameters();
-            switch (Variation)
-            {
+            switch (Variation) {
                 case MazeVariation.LetterName:
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builderParams.wordFilters.excludeDiacritics = true;
@@ -69,5 +68,17 @@ namespace Antura.Minigames.Maze
             return rules;
         }
 
+        public override LetterDataSoundType GetVocabularySoundType()
+        {
+            LetterDataSoundType soundType;
+            switch (Variation) {
+                case MazeVariation.LetterName:
+                    soundType = LetterDataSoundType.Name;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            return soundType;
+        }
     }
 }

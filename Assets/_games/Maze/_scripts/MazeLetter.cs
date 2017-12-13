@@ -20,35 +20,29 @@ namespace Antura.Minigames.Maze
 
         void Update()
         {
-            if (MazeGame.instance.gameEnded)
-            {
+            if (MazeGame.instance.gameEnded) {
                 return;
             }
 
-            if (mazeCharacter.characterIsMoving)
-            {
+            if (mazeCharacter.characterIsMoving) {
                 anturaSeconds = 0;
                 return;
             }
 
             //should we replay tutorial?
-            if (!isDrawing)
-            {
+            if (!isDrawing) {
                 if (!MazeGame.instance.currentCharacter || MazeGame.instance.currentCharacter.isFleeing || MazeGame.instance.currentCharacter.isAppearing)
                     return;
 
-                if (!MazeGame.instance.isTutorialMode && MazeGame.instance.currentTutorial && MazeGame.instance.currentTutorial.isShownOnce && MazeGame.instance.isShowingAntura == false)
-                {
+                if (!MazeGame.instance.isTutorialMode && MazeGame.instance.currentTutorial && MazeGame.instance.currentTutorial.isShownOnce && MazeGame.instance.isShowingAntura == false) {
                     anturaSeconds += Time.deltaTime;
 
-                    if (anturaSeconds >= 8f && !didAnturaBark)
-                    {
+                    if (anturaSeconds >= 8f && !didAnturaBark) {
                         MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
                         didAnturaBark = true;
                     }
 
-                    if (anturaSeconds >= 10)
-                    {
+                    if (anturaSeconds >= 10) {
                         anturaSeconds = 0;
                         MazeGame.instance.onIdleTime();
                     }
@@ -57,31 +51,26 @@ namespace Antura.Minigames.Maze
 
                 if (MazeGame.instance.currentTutorial != null &&
                     MazeGame.instance.currentTutorial.isStopped == false &&
-                    MazeGame.instance.currentTutorial.isShownOnce == true)
-                {
+                    MazeGame.instance.currentTutorial.isShownOnce == true) {
 
                     idleSeconds += Time.deltaTime;
 
-                    if (idleSeconds >= 5)
-                    {
+                    if (idleSeconds >= 5) {
                         idleSeconds = 0;
                         MazeGame.instance.currentTutorial.showCurrentTutorial();
                     }
                 }
             }
 
-            if (isDrawing)
-            {
+            if (isDrawing) {
                 anturaSeconds = 0;
-
                 mazeCharacter.calculateMovementAndRotation();
             }
         }
 
         public void OnPointerDown()
         {
-            if (mazeCharacter.characterIsMoving || !mazeCharacter.canMouseBeDown() || mazeCharacter.finishedRound)
-            {
+            if (mazeCharacter.characterIsMoving || !mazeCharacter.canMouseBeDown() || mazeCharacter.finishedRound) {
                 return;
             }
 
@@ -101,8 +90,7 @@ namespace Antura.Minigames.Maze
 
         public void OnPointerUp()
         {
-            if (CanLaunchRocket())
-            {
+            if (CanLaunchRocket()) {
                 MazeGame.instance.drawingTool.SetActive(false);
                 LaunchRocket();
             }
@@ -110,8 +98,7 @@ namespace Antura.Minigames.Maze
 
         public void OnPointerOverTrackBounds(Vector3 pointOfImpact)
         {
-            if (CanLaunchRocket())
-            {
+            if (CanLaunchRocket()) {
                 mazeCharacter.loseState = MazeCharacter.LoseState.OutOfBounds;
 
                 MazeGame.instance.ColorCurrentLinesAsIncorrect();
@@ -119,8 +106,7 @@ namespace Antura.Minigames.Maze
                 Tutorial.TutorialUI.MarkNo(pointOfImpact);
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
 
-                if (!MazeGame.instance.isTutorialMode)
-                {
+                if (!MazeGame.instance.isTutorialMode) {
                     MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
                 }
 
@@ -139,23 +125,21 @@ namespace Antura.Minigames.Maze
             mazeCharacter.toggleVisibility(true);
             mazeCharacter.initMovement();
 
-            
+
 
             MazeGame.instance.timer.StopTimer();
         }
 
         public void NotifyFruitGotMouseOver(MazeArrow fruit)
         {
-            if (isDrawing && fruit.gameObject != mazeCharacter._fruits[0])
-            {
+            if (isDrawing && fruit.gameObject != mazeCharacter._fruits[0]) {
                 fruit.HighlightAsReached();
             }
         }
 
         public void NotifyDrawnLetterWrongly()
         {
-            if (CanLaunchRocket())
-            {
+            if (CanLaunchRocket()) {
                 LaunchRocket();
             }
         }
