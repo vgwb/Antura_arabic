@@ -282,7 +282,7 @@ namespace Antura.Profile
         /// <value>
         /// The rewards unlocked.
         /// </value>
-        public List<RewardPackUnlockData> RewardsUnlocked
+        public List<RewardPackUnlockData> RewardsUnlocked   // list of all the rewards that have been already unlocked
         {
             get {
                 if (_rewardsUnlocked == null) {
@@ -523,7 +523,7 @@ namespace Antura.Profile
         public void SetGameCompleted()
         {
             ProfileCompletion = ProfileCompletionState.GameCompleted;
-            AppManager.I.StartCoroutine(RewardSystemManager.UnlockExtraRewards());
+            AppManager.I.StartCoroutine(RewardSystemManager.UnlockAllMissingRewards());
             CheckGameFinished();
             Save();
         }

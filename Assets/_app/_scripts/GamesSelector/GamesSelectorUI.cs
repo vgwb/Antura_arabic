@@ -41,7 +41,7 @@ namespace Antura.GamesSelector
                 // First time playing this session: 0 stars
                 SetStars(0);
             } else {
-                int unlockedRewards = RewardSystemManager.GetUnlockedRewardForPlaysession(AppManager.I.Player.CurrentJourneyPosition);
+                int unlockedRewards = RewardSystemManager.GetNumberOfUnlockedRewardsAtJP(AppManager.I.Player.CurrentJourneyPosition);
                 SetStars(unlockedRewards + 1);
             }
         }

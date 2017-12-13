@@ -26,7 +26,7 @@ namespace Antura.Rewards
         #region Configurations
 
         /// <summary>
-        /// The configuration
+        /// The configuration (i.e. what rewards are available and where they should be unlocked)
         /// </summary>
         static RewardConfig config;
 
@@ -69,7 +69,8 @@ namespace Antura.Rewards
             }
         }
 
-        public static RewardPackUnlockData CurrentReward = new RewardPackUnlockData();
+        // used during customization
+        public static RewardPackUnlockData CurrentSelectedReward = new RewardPackUnlockData();
 
         /// <summary>
         /// Init
@@ -95,6 +96,7 @@ namespace Antura.Rewards
 
         #region UI Interactions
 
+        // OK
         /// <summary>
         /// Gets the reward items by rewardType (always 9 items, if not presente item in the return list is null).
         /// </summary>
@@ -190,8 +192,9 @@ namespace Antura.Rewards
             return returnList;
         }
 
+        // OK
         /// <summary>
-        /// Selects the reward item.
+        /// Selects the reward item (in the UI)
         /// </summary>
         /// <param name="_rewardItemId">The reward item identifier.</param>
         /// <returns></returns>
@@ -216,7 +219,7 @@ namespace Antura.Rewards
                         }
                     }
                     // set current reward in modification
-                    CurrentReward = new RewardPackUnlockData() { ItemId = _rewardItemId, Type = RewardTypes.reward };
+                    CurrentSelectedReward = new RewardPackUnlockData() { ItemId = _rewardItemId, Type = RewardTypes.reward };
                     break;
                 case RewardTypes.texture:
                     foreach (RewardColor color in GetConfig().RewardsTileColor) {
@@ -231,7 +234,7 @@ namespace Antura.Rewards
                         }
                     }
                     // set current reward in modification
-                    CurrentReward = new RewardPackUnlockData() { ItemId = _rewardItemId, Type = RewardTypes.texture };
+                    CurrentSelectedReward = new RewardPackUnlockData() { ItemId = _rewardItemId, Type = RewardTypes.texture };
                     break;
                 case RewardTypes.decal:
                     foreach (RewardColor color in GetConfig().RewardsDecalColor) {
@@ -251,7 +254,7 @@ namespace Antura.Rewards
                     //    returnList.Add(rci);
                     //}
                     // set current reward in modification
-                    CurrentReward = new RewardPackUnlockData() { ItemId = _rewardItemId, Type = RewardTypes.decal };
+                    CurrentSelectedReward = new RewardPackUnlockData() { ItemId = _rewardItemId, Type = RewardTypes.decal };
                     break;
                 default:
                     Debug.LogWarningFormat("Reward typology requested {0} not found", _rewardType);
@@ -294,6 +297,7 @@ namespace Antura.Rewards
             return returnList;
         }
 
+        // OK
         /// <summary>
         /// Selects the reward color item.
         /// </summary>
@@ -301,19 +305,19 @@ namespace Antura.Rewards
         /// <param name="_rewardType">Type of the reward.</param>
         public static void SelectRewardColorItem(string _rewardColorItemId, RewardTypes _rewardType)
         {
-            CurrentReward.ColorId = _rewardColorItemId;
+            CurrentSelectedReward.ColorId = _rewardColorItemId;
             if (OnRewardChanged != null)
-                OnRewardChanged(CurrentReward);
+                OnRewardChanged(CurrentSelectedReward);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="_categoryRewardId"></param>
-        public static void DeselectAllRewardItemsForCategory(string _categoryRewardId = "")
+        /*public static void DeselectAllRewardItemsForCategory(string _categoryRewardId = "")
         {
             AnturaModelManager.I.ClearLoadedRewardInCategory(_categoryRewardId);
-        }
+        }*/
 
         /// <summary>
         /// TODO: public or private?
@@ -321,12 +325,12 @@ namespace Antura.Rewards
         /// </summary>
         /// <param name="_rewardItemId">The reward item identifier.</param>
         /// <returns></returns>
-        static List<RewardColorItem> GetRewardColorsById(string _rewardItemId, RewardTypes _rewardType)
+        /*static List<RewardColorItem> GetRewardColorsById(string _rewardItemId, RewardTypes _rewardType)
         {
             List<RewardColorItem> returnList = new List<RewardColorItem>();
             // TODO: logic
             return returnList;
-        }
+        }*/
 
         #endregion
 
@@ -350,13 +354,13 @@ namespace Antura.Rewards
         /// <param name="_color1"></param>
         /// <param name="_color2"></param>
         /// <returns></returns>
-        [Obsolete("...", true)]
+        /*[Obsolete("...", true)]
         public static MaterialPair GetMaterialPairFromRewardAndColor(string _rewardId, string _color1, string _color2)
         {
             Reward reward = GetRewardById(_rewardId);
             MaterialPair mp = new MaterialPair(_color1, reward.Material1, _color2, reward.Material2);
             return mp;
-        }
+        }*/
 
         /// <summary>
         /// Gets the material pair for standard reward.
@@ -380,17 +384,18 @@ namespace Antura.Rewards
         /// </summary>
         /// <param name="journeyPosition">The playsession identifier (format 1.4.2).</param>
         /// <returns></returns>
-        public static int GetUnlockedRewardForPlaysession(JourneyPosition journeyPosition)
+        public static int GetNumberOfUnlockedRewardsAtJP(JourneyPosition journeyPosition)
         {
             int rCount = AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetJourneyPosition().Equals(journeyPosition)).Count;
-            return rCount > 2 ? 2 : rCount;
+            return rCount > 2 ? 2 : rCount; // max 2 becasue the results screen does not allow for more
         }
 
         #endregion
 
         #region Helpers
 
-        public static IEnumerator UnlockExtraRewards()
+        // this unlocks ALL rewards that have not been unlocked yet
+        public static IEnumerator UnlockAllMissingRewards()
         {
             JourneyPosition extraRewardJourney = new JourneyPosition(100, 100, 100);
             List<RewardPackUnlockData> alreadyUnlocked = AppManager.I.Player.RewardsUnlocked;
@@ -485,7 +490,7 @@ namespace Antura.Rewards
             Debug.LogFormat("Bulk unlocking rewards result: rewards: {0} | texture: {1} | decal: {2} | other: {3}", RewardCount,
                 TextureCount, DecalCount, OtherCount);
 
-            AppManager.I.StartCoroutine(RewardSystemManager.UnlockExtraRewards());
+            AppManager.I.StartCoroutine(RewardSystemManager.UnlockAllMissingRewards());
             Debug.LogFormat("Unlock also all extra rewards!");
             Init();
         }
@@ -567,11 +572,13 @@ namespace Antura.Rewards
             // not _forceToReturnReward check if reward is already unlocked for this playsession and if true return empty list
             if (RewardAlreadyUnlocked(journeyPosition) && !_forceToReturnReward)
                 return returnList;
+
             // What kind of reward it is?
             PlaySessionRewardUnlock unlock = GetConfig().PlaySessionRewardsUnlock.Find(r => r.PlaySession == journeyPosition.Id);
             if (unlock == null) {
                 Debug.LogErrorFormat("Unable to find reward type for this playsession {0}", journeyPosition);
             }
+
             // -- check kind
             if (unlock.RewardColor != string.Empty) {
                 // Get reward color for reward item already unlocked
@@ -597,6 +604,7 @@ namespace Antura.Rewards
             return returnList;
         }
 
+        // OK
         /// <summary>
         /// Gets the next reward pack. Contains all logic to create new reward.
         /// </summary>
@@ -604,6 +612,8 @@ namespace Antura.Rewards
         /// <returns></returns>
         public static RewardPackUnlockData GetRewardPack(JourneyPosition journeyPosition, RewardTypes _rewardType, bool _random)
         {
+            // NDM: _random is actually "does not have it already" and will select colors if false
+
             /// TODOs:
             /// - Filter without already unlocked items
             /// - Automatic select reward type by situation
@@ -616,8 +626,10 @@ namespace Antura.Rewards
                 case RewardTypes.reward:
                     int countAvoidInfiniteLoop = 300;
                     // If not random take id from list of already unlocked rewards of this type
+                    if (_random)
+                    {
+                        // HERE: NEW MODEL + COLOR
 
-                    if (_random) {
                         // Need to create new reward and first color pair
                         bool duplicated = false;
                         do {
@@ -641,6 +653,8 @@ namespace Antura.Rewards
                         } while (duplicated && countAvoidInfiniteLoop > 0);
                         //} while (duplicated && AppManager.I.Player.RewardForTypeAvailableYet(_rewardType) || countAvoidInfiniteLoop < 1) ;
                     } else {
+                        // HERE: OLD MODEL + COLOR
+
                         // need only to create new color pair for one of already unlocked reward
                         color = null;
                         var alreadyUnlockeds = AppManager.I.Player.RewardsUnlocked.Where(r => r.Type == RewardTypes.reward).ToList();
@@ -667,7 +681,9 @@ namespace Antura.Rewards
                     rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
                     break;
                 case RewardTypes.texture:
-                    do {
+                    // HERE: NEW TEXTURE + COLOR
+                    do
+                    {
                         itemId = GetConfig().RewardsTile.GetRandomAlternative().ID;
                         color = GetConfig().RewardsTileColor.GetRandomAlternative();
                         alreadyUnlocked = RewardAlreadyUnlocked(itemId, color.ID, _rewardType);
@@ -675,7 +691,9 @@ namespace Antura.Rewards
                     rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
                     break;
                 case RewardTypes.decal:
-                    do {
+                    // HERE: NEW DECAL + COLOR
+                    do
+                    {
                         itemId = GetConfig().RewardsDecal.GetRandomAlternative().ID;
                         color = GetConfig().RewardsDecalColor.GetRandomAlternative();
                         alreadyUnlocked = RewardAlreadyUnlocked(itemId, color.ID, _rewardType);
@@ -686,6 +704,7 @@ namespace Antura.Rewards
             return rp;
         }
 
+        // OK
         /// <summary>
         /// Unlocks the first set of rewards for current player.
         /// </summary>
@@ -700,15 +719,15 @@ namespace Antura.Rewards
             _player = AppManager.I.Player;
 
             _player.ResetRewardsUnlockedData();
-            _player.AddRewardUnlocked(GetFirstAnturaReward(RewardTypes.reward));
+            _player.AddRewardUnlocked(GetFirstAnturaReward(RewardTypes.reward));    // 1 model
             // decal
-            RewardPackUnlockData defaultDecal = GetFirstAnturaReward(RewardTypes.decal);
+            RewardPackUnlockData defaultDecal = GetFirstAnturaReward(RewardTypes.decal);    // 1 decal
             _player.AddRewardUnlocked(defaultDecal);
             // force to to wear decal
             _player.CurrentAnturaCustomizations.DecalTexture = defaultDecal;
             _player.CurrentAnturaCustomizations.DecalTextureId = defaultDecal.GetIdAccordingToDBRules();
             // texture
-            RewardPackUnlockData defaultTexture = GetFirstAnturaReward(RewardTypes.texture);
+            RewardPackUnlockData defaultTexture = GetFirstAnturaReward(RewardTypes.texture);    // 1 texture
             _player.AddRewardUnlocked(defaultTexture);
             // force to to wear texture
             _player.CurrentAnturaCustomizations.TileTexture = defaultTexture;
@@ -719,6 +738,7 @@ namespace Antura.Rewards
             _player.SaveAnturaCustomization();
         }
 
+        // OK
         /// <summary>
         /// Gets the first antura reward.
         /// </summary>
@@ -726,6 +746,7 @@ namespace Antura.Rewards
         /// <returns></returns>
         public static RewardPackUnlockData GetFirstAnturaReward(RewardTypes _rewardType)
         {
+            // this returns the DEFAULT rewards for one of the three types
             RewardPackUnlockData rp = new RewardPackUnlockData();
             switch (_rewardType) {
                 case RewardTypes.reward:
@@ -768,13 +789,23 @@ namespace Antura.Rewards
     [Serializable]
     public class RewardConfig
     {
-        public List<Reward> Rewards;
-        public List<RewardColor> RewardsColorPairs;
-        public List<RewardDecal> RewardsDecal;
-        public List<RewardColor> RewardsDecalColor;
-        public List<RewardTile> RewardsTile;
-        public List<RewardColor> RewardsTileColor;
-        public List<PlaySessionRewardUnlock> PlaySessionRewardsUnlock;
+        // A Reward is made of 1 of each of the following PARTS
+        // the combinations of 2 of these is a REWARD
+
+        // These are all the different models
+        public List<Reward> Rewards;                    // model
+        public List<RewardColor> RewardsColorPairs;     // model color
+
+        // decals are just a different type of Reward (so they should be MERGED)
+        public List<RewardDecal> RewardsDecal;          // decal
+        public List<RewardColor> RewardsDecalColor;     // decal color
+
+        // textures are just a different type of Reward (so they should be MERGED)
+        public List<RewardTile> RewardsTile;            // tiled texture
+        public List<RewardColor> RewardsTileColor;      // tiled texture color
+
+
+        public List<PlaySessionRewardUnlock> PlaySessionRewardsUnlock;  // unlocks at which PS?
 
         public RewardConfig GetClone()
         {
@@ -782,6 +813,7 @@ namespace Antura.Rewards
         }
     }
 
+    // details when a reward is unlocked
     [Serializable]
     public class PlaySessionRewardUnlock
     {
@@ -793,7 +825,7 @@ namespace Antura.Rewards
     }
 
     [Serializable]
-    public class Reward
+    public class Reward // model
     {
         public string ID;
         public string RewardName;
@@ -805,7 +837,7 @@ namespace Antura.Rewards
     }
 
     [Serializable]
-    public class RewardColor
+    public class RewardColor // model/decal/texture color
     {
         public string ID;
         public string Color1Name;
@@ -815,13 +847,13 @@ namespace Antura.Rewards
     }
 
     [Serializable]
-    public class RewardDecal
+    public class RewardDecal // decal
     {
         public string ID;
     }
 
     [Serializable]
-    public class RewardTile
+    public class RewardTile // tiled texture
     {
         public string ID;
     }
@@ -884,7 +916,7 @@ namespace Antura.Rewards
     /// <summary>
     /// Structure focused to comunicate about items from e to UI.
     /// </summary>
-    public class RewardItem
+    public class RewardItem  // reward model for customization & UI
     {
         public string ID;
         public bool IsSelected;
@@ -895,7 +927,7 @@ namespace Antura.Rewards
     /// Structure focused to comunicate about colors from e to UI.
     /// </summary>
     /// <seealso cref="RewardColor" />
-    public class RewardColorItem : RewardColor
+    public class RewardColorItem : RewardColor  // reward color for customization & UI
     {
         public bool IsSelected;
         public bool IsNew = true;
