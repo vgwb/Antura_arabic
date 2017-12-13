@@ -58,7 +58,7 @@ namespace Antura.Minigames.ThrowBalls
                     break;
                 case ThrowBallsVariation.LetterAny:
                     var letterAlterationFilters = LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters;
-                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, nWrong: nWrong, letterAlterationFilters:letterAlterationFilters, parameters: builderParams);
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, nWrong: nWrong, letterAlterationFilters: letterAlterationFilters, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.Word:
                     builderParams.wordFilters.requireDrawings = true;
@@ -83,22 +83,34 @@ namespace Antura.Minigames.ThrowBalls
 
         public override LocalizationDataId TitleLocalizationId
         {
-            get
-            {
-                switch (Instance.Variation)
-                {
+            get {
+                switch (Instance.Variation) {
                     case ThrowBallsVariation.LetterName:
                         return LocalizationDataId.ThrowBalls_letters_Title;
                     case ThrowBallsVariation.LetterAny:
                         return LocalizationDataId.ThrowBalls_letters_Title; // TODO: get the correct title here
                     case ThrowBallsVariation.Word:
-                        return LocalizationDataId.ThrowBalls_words_Title; 
+                        return LocalizationDataId.ThrowBalls_words_Title;
                     case ThrowBallsVariation.BuildWord:
                         return LocalizationDataId.ThrowBalls_letterinword_Title;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
             }
+        }
+
+        public override LetterDataSoundType GetVocabularySoundType()
+        {
+            LetterDataSoundType soundType;
+            switch (Variation) {
+                case ThrowBallsVariation.LetterName:
+                    soundType = LetterDataSoundType.Name;
+                    break;
+                default:
+                    soundType = LetterDataSoundType.Phoneme;
+                    break;
+            }
+            return soundType;
         }
     }
 }
