@@ -58,7 +58,7 @@ namespace Antura.Minigames.ThrowBalls
                     break;
                 case ThrowBallsVariation.LetterAny:
                     var letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
-                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, letterAlterationFilters:letterAlterationFilters, parameters: builderParams);
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, nWrong: nWrong, letterAlterationFilters:letterAlterationFilters, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.Word:
                     builderParams.wordFilters.requireDrawings = true;

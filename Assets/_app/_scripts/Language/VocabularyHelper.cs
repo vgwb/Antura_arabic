@@ -227,22 +227,31 @@ namespace Antura.Database
                 }
                 //Debug.Log("N availableVariations  " + availableVariations.Count + "  for " + baseLetter.GetId());
 
+                List<LetterData> basesForForms = new List<LetterData>(availableVariations);
+                basesForForms.Add(baseLetter);
                 if (letterAlterationFilters.includeForms)
                 {
-                    // Add forms too to the variations, if needed
-                    List<LetterData> basesForForms = new List<LetterData>(availableVariations);
-                    basesForForms.Add(baseLetter);
+                    // Place forms only inside the pool, if needed
                     foreach (var baseForForm in basesForForms)
                     {
                         var availableForms = ConvertToLettersWithAvailableForcedForms(baseForForm);
-                        letterPool.AddRange(availableForms);
+
+                        if (letterAlterationFilters.oneFormPerLetter)
+                        {
+                            // If we are using forms and only one form per letter must appear, add just one at random
+                            letterPool.Add(availableForms.RandomSelectOne());
+                        }
+                        else
+                        {
+                            // Add all of them
+                            letterPool.AddRange(availableForms);
+                        }
                     }
                 }
                 else
                 {
-                    // Add just the isolated versions
-                    letterPool.Add(baseLetter);
-                    letterPool.AddRange(availableVariations);
+                    // Place just the isolated versions
+                    letterPool.AddRange(basesForForms);
                 }
             }
 

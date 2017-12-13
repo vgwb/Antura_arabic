@@ -453,7 +453,6 @@ namespace Antura.Assessment
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers
                 1,                              // CorrectAnswers
                 4,                              // WrongAnswers
-                firstCorrectIsQuestion: true,
                 letterAlterationFilters: LetterAlterationFilters.FormsOfSingleLetter,
                 parameters: builderParams);
         }

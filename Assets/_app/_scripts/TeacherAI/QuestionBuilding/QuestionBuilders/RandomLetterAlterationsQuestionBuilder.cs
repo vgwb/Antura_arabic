@@ -21,7 +21,6 @@ namespace Antura.Teacher
         private int nPacks;
         private int nCorrect;
         private int nWrong;
-        private bool firstCorrectIsQuestion;
         private QuestionBuilderParameters parameters;
         private LetterAlterationFilters letterAlterationFilters;
 
@@ -31,7 +30,6 @@ namespace Antura.Teacher
         }
        
         public RandomLetterAlterationsQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
-            bool firstCorrectIsQuestion = false,
             LetterAlterationFilters letterAlterationFilters = null,
             QuestionBuilderParameters parameters = null
             )
@@ -46,7 +44,6 @@ namespace Antura.Teacher
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
-            this.firstCorrectIsQuestion = firstCorrectIsQuestion;
             this.parameters = parameters;
             this.letterAlterationFilters = letterAlterationFilters;
 
@@ -97,8 +94,7 @@ namespace Antura.Teacher
                 wrongAnswers.Remove(data);
             wrongAnswers = wrongAnswers.RandomSelect(Mathf.Min(nWrong,wrongAnswers.Count));
 
-            var question = baseLetters[0];
-            if (firstCorrectIsQuestion) question = correctAnswers[0];
+            var question = correctAnswers[0];
 
             if (ConfigAI.VerboseQuestionPacks)
             {

@@ -36,6 +36,15 @@ namespace Antura.Teacher
             ExcludeLetterVariations = LetterFilters.ExcludeLetterVariations.None,
             excludeDipthongs = false,
         };
+        public static readonly LetterAlterationFilters FormsAndPhonemesOfMultipleLetters_OneForm = new LetterAlterationFilters()
+        {
+            differentBaseLetters = true,
+            includeForms = true,
+            oneFormPerLetter = true,
+            ExcludeDiacritics = LetterFilters.ExcludeDiacritics.None,
+            ExcludeLetterVariations = LetterFilters.ExcludeLetterVariations.None,
+            excludeDipthongs = false,
+        };
 
 
         // Can add different letters as bases?
@@ -48,6 +57,7 @@ namespace Antura.Teacher
 
         // Can add forms?
         public bool includeForms;
+        public bool oneFormPerLetter;    // If true, letters will appear only in one form
 
         public LetterAlterationFilters() : this(false, LetterFilters.ExcludeDiacritics.All, LetterFilters.ExcludeLetterVariations.All, true, false)
         {

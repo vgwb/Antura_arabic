@@ -283,6 +283,11 @@ namespace Antura.Minigames.DancingDots
                 currentLevel = (Level)Mathf.Clamp((int)Mathf.Floor(pedagogicalLevel * numberOfLevels), 0, numberOfLevels - 1);
             }
 
+
+            // HACK: FORCED LEVEL TO GET ONLY DIACRITICS
+            pedagogicalLevel = 0.0f;
+            currentLevel = Level.Level2;
+
             Debug.Log("[Dancing Dots] pedagogicalLevel: " + pedagogicalLevel + " Game Level: " + currentLevel);
             SetLevel(currentLevel);
 
@@ -306,7 +311,7 @@ namespace Antura.Minigames.DancingDots
         {
             yield return new WaitForSeconds(hintDotDuration);
             if (!isCorrectDot) {
-                // find dot postion
+                // find dot postions
                 Vector3 poofPosition = Vector3.zero;
                 foreach (DancingDotsDropZone dz in dropZones) {
                     if (dz.letters.Contains(currentLetter)) {

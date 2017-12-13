@@ -72,7 +72,7 @@ namespace Antura.Minigames.Egg
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 case EggVariation.LetterPhoneme:
-                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, 3, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.PhonemesOfMultipleLetters);
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, 3, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters_OneForm);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
