@@ -89,7 +89,7 @@ namespace Antura.Teacher
                 }
 
                 var nonCommonLetters = vocabularyHelper.GetLettersNotIn(letterEqualityStrictness, parameters.letterFilters, commonLetters.ToArray()).RandomSelect(nWrong);
-                UnityEngine.Debug.Log("Common letters: " + commonLetters.ToDebugString() + " non-common: " + nonCommonLetters.ToDebugString());
+                //UnityEngine.Debug.Log("Common letters: " + commonLetters.ToDebugString() + " non-common: " + nonCommonLetters.ToDebugString());
 
                 // Debug
                 if (ConfigAI.VerboseQuestionPacks)
