@@ -1,4 +1,4 @@
-using Antura.Core;
+﻿using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
 using Antura.Minigames;
@@ -178,29 +178,32 @@ namespace Antura.Audio
             AppManager.I.AppSettingsManager.SaveMusicSetting(MusicEnabled);
         }
 
-        public void PlayMusic(Music newMusic)
+        public IAudioSource PlayMusic(Music newMusic)
         {
             // Debug.Log("PlayMusic " + newMusic);
             if (currentMusic != newMusic) {
                 currentMusic = newMusic;
                 musicGroup.Stop();
-
+                customMusic = null;
                 var musicClip = GetAudioClip(currentMusic);
 
                 if (currentMusic == Music.Silence || musicClip == null) {
                     StopMusic();
                 } else {
                     if (musicEnabled) {
-                        musicGroup.Play(musicClip, 1, 1, true);
+                        var source = musicGroup.Play(musicClip, 1, 1, true);
+                        return new AudioSourceWrapper(source, musicGroup, this);
                     } else {
                         musicGroup.Stop();
                     }
                 }
             }
+            return null;
         }
 
         public void StopMusic()
         {
+            customMusic = null;
             currentMusic = Music.Silence;
             musicGroup.Stop();
         }
@@ -220,7 +223,7 @@ namespace Antura.Audio
             var conf = GetConfiguration(sfx);
 
             if (conf != null) {
-                source.Pitch = 1 + ((Random.value - 0.5f) * conf.randomPitchOffset) * 2;
+                source.Pitch = 1 + ((UnityEngine.Random.value - 0.5f) * conf.randomPitchOffset) * 2;
                 source.Volume = conf.volume;
             }
 

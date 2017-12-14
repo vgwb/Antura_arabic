@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -137,11 +137,11 @@ namespace Antura.Minigames.DancingDots
             base.Start();
             tutorial = GetComponent<DancingDotsTutorial>();
 
-            AudioManager.I.PlayMusic(Music.MainTheme);
+            var source = AudioManager.I.PlayMusic(Music.MainTheme);
             //AudioManager.I.transform.FindChild("Music").gameObject.AddComponent<AudioProcessor>();
-            AudioManager.I.transform.Find("Music").gameObject.AddComponent<DancingDotsBeatDetection>();
-
-            //disco = GameObject.Find("Quads").GetComponent<DancingDotsQuadManager>();
+            var beatDetection = gameObject.AddComponent<DancingDotsBeatDetection>();
+            beatDetection.Initialize(source as AudioSourceWrapper);
+            
             //StartCoroutine(beat());
 
             questionsManager = new DancingDotsQuestionsManager();
