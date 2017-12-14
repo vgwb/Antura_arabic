@@ -416,6 +416,9 @@ namespace Antura.Database
         UI_Unlocked_Letters = 411,
         UI_Unlocked_Words = 412,
         UI_Unlocked_Phrases = 413,
-        UI_Notification_24h = 414
+        UI_Notification_24h = 414,
+        UI_Today = 415,
+        UI_Yesterday = 416,
+        UI_Tomorrow = 417
     }
 }

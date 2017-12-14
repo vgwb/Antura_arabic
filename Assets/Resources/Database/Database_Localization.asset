@@ -4466,3 +4466,30 @@ MonoBehaviour:
         \u0644\u062A\u0644\u0639\u0628"
       _ArabicFemale: 
       _AudioFile: 
+    - _Id: UI_Today
+      _Character: UI
+      _Area: DailyRewards
+      _When: 
+      _Context: 
+      _English: Today
+      _Arabic: "\u0627\u0644\u064A\u0648\u0645"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Yesterday
+      _Character: UI
+      _Area: DailyRewards
+      _When: 
+      _Context: 
+      _English: Yesterday
+      _Arabic: "\u0641\u064A \u0627\u0644\u0627\u0645\u0633"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Tomorrow
+      _Character: UI
+      _Area: DailyRewards
+      _When: 
+      _Context: 
+      _English: Tomorrow
+      _Arabic: "\u063A\u062F\u0627"
+      _ArabicFemale: 
+      _AudioFile: 
