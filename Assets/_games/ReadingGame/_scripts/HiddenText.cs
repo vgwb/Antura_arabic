@@ -142,7 +142,7 @@ namespace Antura.Minigames.ReadingGame
                 textRenderTexture = null;
             }
 
-            textRenderTexture = new RenderTexture(width, height, 16);
+            textRenderTexture = new RenderTexture(width, height, 0);
 
             magnifyingGlassMaterial.SetTexture("_BackTex", textRenderTexture);
 
@@ -155,7 +155,7 @@ namespace Antura.Minigames.ReadingGame
                 blurredTextRenderTexture = null;
             }
 
-            blurredTextRenderTexture = new RenderTexture(width, height, 16);
+            blurredTextRenderTexture = new RenderTexture(width, height, 0);
 
             blurredTextMaterial.SetTexture("_MainTex", blurredTextRenderTexture);
 
