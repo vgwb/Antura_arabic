@@ -140,5 +140,28 @@ namespace Antura.Core
                     Application.platform == RuntimePlatform.IPhonePlayer);
         }
 
+        public static bool IsMobileTablet()
+        {
+            if (IsMobilePlatform()) {
+                return (DeviceDiagonalSizeInInches() > 6.5f);
+            }
+            return false;
+        }
+
+        public static bool IsMobileSMartphone()
+        {
+            if (IsMobilePlatform()) {
+                return (DeviceDiagonalSizeInInches() <= 6.5f);
+            }
+            return false;
+        }
+
+        private static float DeviceDiagonalSizeInInches()
+        {
+            float screenWidth = Screen.width / Screen.dpi;
+            float screenHeight = Screen.height / Screen.dpi;
+            float diagonalInches = Mathf.Sqrt(Mathf.Pow(screenWidth, 2) + Mathf.Pow(screenHeight, 2));
+            return diagonalInches;
+        }
     }
 }
