@@ -18,8 +18,7 @@ namespace Antura.Minigames
 
         public virtual LocalizationDataId TitleLocalizationId
         {
-            get
-            {
+            get {
                 return LocalizationDataId.None;
             }
         }
@@ -38,7 +37,5 @@ namespace Antura.Minigames
         {
             return LetterDataSoundType.Phoneme;
         }
-
-
     }
 }

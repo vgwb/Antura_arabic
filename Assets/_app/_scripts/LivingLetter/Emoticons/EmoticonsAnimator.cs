@@ -45,7 +45,6 @@ namespace Antura.LivingLetters
 
             emoticonsController = Object.Instantiate(emoticonsPrefab).GetComponent<EmoticonsController>();
             emoticonsController.transform.SetParent(parent.transform);
-
             emoticonsController.transform.localPosition = new Vector3(0f, 3f);
 
             parent.transform.localScale = new Vector3(3f, 3f, 3f);
@@ -55,8 +54,9 @@ namespace Antura.LivingLetters
 
         void Update()
         {
-            if (!initialized)
+            if (!initialized) {
                 return;
+            }
 
             if (!emoticonsClosed && autoClose) {
                 emoticonsCloseTimer -= Time.deltaTime;
@@ -168,7 +168,7 @@ namespace Antura.LivingLetters
         {
             foreach (var item in _meshRenderer) {
                 var m = item.gameObject.GetComponent<MeshRenderer>();
-                m.materials = new Material[] {_material};
+                m.materials = new Material[] { _material };
             }
         }
 
@@ -176,7 +176,7 @@ namespace Antura.LivingLetters
         {
             foreach (var item in _meshRenderer) {
                 var m = item.gameObject.GetComponent<SkinnedMeshRenderer>();
-                m.materials = new Material[] {_material};
+                m.materials = new Material[] { _material };
             }
         }
     }

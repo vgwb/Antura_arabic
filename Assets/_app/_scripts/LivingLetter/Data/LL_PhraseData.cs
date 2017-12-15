@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System;
-using Antura.Helpers;
+﻿using Antura.Helpers;
 using Antura.Core;
 
 namespace Antura.LivingLetters
@@ -48,15 +46,6 @@ namespace Antura.LivingLetters
         }
 
         public string DrawingCharForLivingLetter
-        {
-            get { return null; }
-        }
-
-        /// <summary>
-        /// Return draw of word.
-        /// </summary>
-        [Obsolete("Use DrawingCharForLivingLetter instead of this.")]
-        public Sprite DrawForLivingLetter
         {
             get { return null; }
         }

@@ -1,12 +1,12 @@
 using Antura.Core;
-using Antura.Teacher;
-using System;
-using System.Reflection;
-using UnityEngine;
-using System.Collections.Generic;
 using Antura.Database;
 using Antura.Helpers;
 using Antura.LivingLetters;
+using Antura.Teacher;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using UnityEngine;
 
 namespace Antura.Minigames
 {
@@ -22,7 +22,6 @@ namespace Antura.Minigames
         private IGameConfiguration currentGameConfig;
         private IQuestionBuilder currentQuestionBuilder;
         private List<IQuestionPack> currentQuestionPacks;
-
 
         public IGameConfiguration GetCurrentMiniGameConfig()
         {
@@ -58,7 +57,7 @@ namespace Antura.Minigames
                 AppManager.I.NavigationManager.InitNewPlaySession(miniGameData);
             }
 
-            if (AppConfig.DebugLogEnabled) Debug.Log("StartGame " + _gameCode.ToString());
+            if (AppConfig.DebugLogEnabled) { Debug.Log("StartGame " + _gameCode.ToString()); }
 
             // Assign the configuration for the given minigame
             var minigameSession = System.DateTime.Now.Ticks.ToString();
@@ -97,8 +96,6 @@ namespace Antura.Minigames
         {
             var output = "";
             output += "Difficulty: " + currentGameConfig.Difficulty;
-
-            // Question Builder
             output += "\nQuestion builder: " + currentQuestionBuilder.GetType().Name;
 
             // LB Focus
@@ -115,7 +112,6 @@ namespace Antura.Minigames
         public IGameConfiguration ConfigureMiniGameScene(MiniGameCode code, string sessionName)
         {
             var miniGameData = AppManager.I.DB.GetMiniGameDataByCode(code);
-
             var defaultContext = new MinigamesGameContext(code, sessionName);
 
             // We use reflection to get the correct configuration class given a minigame code

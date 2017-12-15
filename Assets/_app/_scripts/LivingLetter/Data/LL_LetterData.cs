@@ -1,7 +1,5 @@
-﻿using System;
-using Antura.Core;
+﻿using Antura.Core;
 using Antura.Database;
-using UnityEngine;
 
 namespace Antura.LivingLetters
 {
@@ -40,12 +38,6 @@ namespace Antura.LivingLetters
         }
 
         public string DrawingCharForLivingLetter
-        {
-            get { return null; }
-        }
-
-        [Obsolete("Use DrawingCharForLivingLetter instead of this.")]
-        public Sprite DrawForLivingLetter
         {
             get { return null; }
         }

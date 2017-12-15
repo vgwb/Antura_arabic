@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Antura.LivingLetters
+﻿namespace Antura.LivingLetters
 {
     /// <summary>
     /// Common interface for data that can appear on a LivingLetter object.
@@ -14,9 +12,6 @@ namespace Antura.LivingLetters
         /// Text to display on the living letter
         /// </summary>
         string TextForLivingLetter { get; }
-
-        [System.Obsolete("Use DrawingCharForLivingLetter instead of this.")]
-        Sprite DrawForLivingLetter { get; }
 
         /// <summary>
         /// Character to display on the living letter (using a custom font)

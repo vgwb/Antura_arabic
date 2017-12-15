@@ -2,7 +2,6 @@
 
 namespace Antura.LivingLetters
 {
-    // TODO refactor: group these behaviours in a folder
     public class AlternativeEventBehaviour : StateMachineBehaviour
     {
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
