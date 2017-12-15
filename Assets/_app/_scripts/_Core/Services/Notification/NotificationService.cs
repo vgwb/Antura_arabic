@@ -40,6 +40,7 @@ namespace Antura.Core.Services.Notification
 
         private void PrepareNextLocalNotification()
         {
+            DeleteAllLocalNotifications();
             Debug.Log("Next Local Notifications prepared");
             var arabicString = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Notification_24h);
             ScheduleSimpleWithAppIcon(
