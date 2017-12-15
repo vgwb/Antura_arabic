@@ -1,7 +1,6 @@
 # releases
 
-## 1.1.0 next
-
+## 1.1.0 next (jan 2018)
 - new Pedagogical Curriculum
 - Daily Rewards
 - Antura Space Shop and Antura interactions
@@ -9,6 +8,12 @@
 - local notifications
 - repeat minigame
 - upgraded to Unity 5.6
+
+### 1.1.0beta build 570
+- all audio and music has changed from load in memory to streaming: please test if you hear something odd
+- some optimization to the map and song games: please test and report (the map is still slow, we know)
+- test low spec ios device (like ipad mini 1) and play long trying to crash it :wink:
+- daily rewards: arabic strings for the texts
 
 ## 1.0.7 - 5 sept 2017 (not public)
 
