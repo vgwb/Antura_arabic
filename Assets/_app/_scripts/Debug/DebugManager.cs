@@ -43,7 +43,6 @@ namespace Antura.Debugging
 
         public float Difficulty = 0.5f;
         public int NumberOfRounds = 1;
-        public bool TutorialEnabled = false;
 
         #endregion
 
@@ -190,9 +189,9 @@ namespace Antura.Debugging
             Difficulty = difficulty;
 
             Debug.Log("LaunchMiniGame " + miniGameCodeSelected + " PS: " + AppManager.I.Player.CurrentJourneyPosition + " Diff: " +
-                      Difficulty + " Tutorial: " + TutorialEnabled);
+                      Difficulty + " Tutorial: " + AppConfig.MinigameTutorialsEnabled);
             AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected,
-                new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, tutorialEnabled: TutorialEnabled), forceNewPlaySession: true);
+                                                 new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, tutorialEnabled: AppConfig.MinigameTutorialsEnabled), forceNewPlaySession: true);
         }
 
         public void ResetAll()

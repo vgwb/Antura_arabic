@@ -32,8 +32,8 @@ namespace Antura.Debugging
 
         public bool TutorialEnabled
         {
-            get { return DebugManager.I.TutorialEnabled; }
-            set { DebugManager.I.TutorialEnabled = value; }
+            get { return AppConfig.MinigameTutorialsEnabled; }
+            set { AppConfig.MinigameTutorialsEnabled = value; }
         }
 
         public bool VerboseTeacher
