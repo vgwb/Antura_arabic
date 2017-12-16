@@ -21,8 +21,9 @@ namespace Antura.Assessment
         public void EnableDragOnly()
         {
             dragOnly = true;
-            foreach (var a in answers)
+            foreach (var a in answers) {
                 a.Enable();
+            }
         }
 
         List<PlaceholderBehaviour> placeholders = null;
@@ -44,8 +45,7 @@ namespace Antura.Assessment
         {
             var list = new List<DroppableBehaviour>();
 
-            foreach (var a in answers)
-            {
+            foreach (var a in answers) {
                 var droppable = a.gameObject.AddComponent<DroppableBehaviour>();
                 droppable.SetDragManager(this);
                 list.Add(droppable);
@@ -56,8 +56,7 @@ namespace Antura.Assessment
 
         public bool AllAnswered()
         {
-            if (!checker.IsAnimating() && checker.AreAllAnswered(placeholders))
-            {
+            if (!checker.IsAnimating() && checker.AreAllAnswered(placeholders)) {
                 checker.Check(placeholders, questions, this);
             }
 
@@ -80,8 +79,7 @@ namespace Antura.Assessment
         // ALL NEEDED EVENTS ARE HERE
         public void StartDragging(IDroppable droppable)
         {
-            if (this.droppable != null)
-            {
+            if (this.droppable != null) {
                 return;
             }
 
@@ -103,8 +101,7 @@ namespace Antura.Assessment
             int count = answers.Count;
             int i = 0;
 
-            foreach (var answer in answers)
-            {
+            foreach (var answer in answers) {
                 answer.SetZ(ZMin + (i++) * (ZMax - ZMin) / count);
             }
         }
@@ -112,8 +109,7 @@ namespace Antura.Assessment
         void RemoveFromUpdateAndPlaceholders(IDroppable droppa)
         {
             RemoveFromUpdate();
-            if (placeholders.Remove(droppa.GetLinkedPlaceholder()) == false)
-            {
+            if (placeholders.Remove(droppa.GetLinkedPlaceholder()) == false) {
                 throw new InvalidOperationException("Cannote remove the droppable");
             }
         }
@@ -126,16 +122,13 @@ namespace Antura.Assessment
 
         public void StopDragging(IDroppable droppable)
         {
-            foreach (var p in placeholders)
-            {
+            foreach (var p in placeholders) {
                 p.gameObject.GetComponent<StillLetterBox>().FarSlot();
             }
-            if (this.droppable == droppable && droppable != null)
-            {
+            if (this.droppable == droppable && droppable != null) {
                 audioManager.PlayUIPopup();
 
-                if (dragOnly == false)
-                {
+                if (dragOnly == false) {
                     CheckCollidedWithPlaceholder(droppable);
                 }
                 RemoveFromUpdate();
@@ -145,8 +138,7 @@ namespace Antura.Assessment
         private void CheckCollidedWithPlaceholder(IDroppable droppable)
         {
             foreach (var p in placeholders)
-                if (NearEnoughToDrop(p.transform))
-                {
+                if (NearEnoughToDrop(p.transform)) {
                     droppable.Detach(false);
                     droppable.LinkToPlaceholder(p);
                     var set = p.Placeholder.GetQuestion().GetAnswerSet();
@@ -160,8 +152,7 @@ namespace Antura.Assessment
 
         bool NearEnoughToDrop(Transform zone)
         {
-            if (droppable == null)
-            {
+            if (droppable == null) {
                 return false;
             }
 
@@ -173,8 +164,7 @@ namespace Antura.Assessment
 
         public void Update(float deltaTime)
         {
-            if (droppable != null)
-            {
+            if (droppable != null) {
                 var currentDroppable = (DroppableBehaviour)droppable;
 
                 var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -182,12 +172,9 @@ namespace Antura.Assessment
                 droppable.GetTransform().localPosition = pos;
 
                 foreach (var p in placeholders)
-                    if (NearEnoughToDrop(p.transform))
-                    {
+                    if (NearEnoughToDrop(p.transform)) {
                         p.gameObject.GetComponent<StillLetterBox>().NearbySlot();
-                    }
-                    else
-                    {
+                    } else {
                         p.gameObject.GetComponent<StillLetterBox>().FarSlot();
                     }
             }
@@ -195,21 +182,22 @@ namespace Antura.Assessment
 
         public void DisableInput()
         {
-            foreach (var a in answers)
+            foreach (var a in answers) {
                 a.Disable();
+            }
         }
 
         public void EnableInput()
         {
-            foreach (var a in answers)
+            foreach (var a in answers) {
                 a.Enable();
+            }
         }
 
         public void RemoveDraggables()
         {
             dragOnly = true;
-            if (droppable != null)
-            {
+            if (droppable != null) {
                 droppable.StopDrag();
                 droppable = null;
             }

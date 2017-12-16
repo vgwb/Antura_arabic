@@ -10,8 +10,7 @@ namespace Antura.Assessment
 
         public WaitCoroutine(IEnumerator enumerator)
         {
-            if (enumerator == null)
-            {
+            if (enumerator == null) {
                 throw new ArgumentNullException();
             }
             Koroutine.Run(ParallelCoroutine(enumerator));

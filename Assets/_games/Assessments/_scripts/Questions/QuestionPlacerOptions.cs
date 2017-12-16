@@ -29,8 +29,7 @@ namespace Antura.Assessment
         static QuestionPlacerOptions instance;
         public static QuestionPlacerOptions Instance
         {
-            get
-            {
+            get {
                 return instance;
             }
         }
@@ -39,8 +38,7 @@ namespace Antura.Assessment
         {
             instance = this;
             mainCamera = Camera.main;
-            if (mainCamera.orthographic == false)
-            {
+            if (mainCamera.orthographic == false) {
                 Debug.LogWarning("main Camera is not the orthographic one");
             }
         }

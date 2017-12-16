@@ -1,6 +1,6 @@
+using Antura.Utilities;
 using DG.Tweening;
 using System.Collections.Generic;
-using Antura.Utilities;
 using UnityEngine;
 
 namespace Antura.Assessment

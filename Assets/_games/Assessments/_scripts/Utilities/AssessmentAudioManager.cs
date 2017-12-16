@@ -61,7 +61,8 @@ namespace Antura.Assessment
             return Speak(Localization.Random(
                                         LocalizationDataId.Assessment_Complete_1,
                                         LocalizationDataId.Assessment_Complete_2,
-                                        LocalizationDataId.Assessment_Complete_3));
+                                        LocalizationDataId.Assessment_Complete_3)
+                        );
         }
 
         public IYieldable PlayAnswerWrong()
@@ -69,7 +70,8 @@ namespace Antura.Assessment
             return Speak(Localization.Random(
                                         LocalizationDataId.Assessment_Wrong_1,
                                         LocalizationDataId.Assessment_Wrong_2,
-                                        LocalizationDataId.Assessment_Wrong_3));
+                                        LocalizationDataId.Assessment_Wrong_3)
+                        );
         }
 
         public IYieldable PlayGameDescription()

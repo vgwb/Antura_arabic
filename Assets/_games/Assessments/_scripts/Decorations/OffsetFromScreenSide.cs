@@ -4,7 +4,6 @@ namespace Antura.Assessment
 {
     public class OffsetFromScreenSide : MonoBehaviour
     {
-
         public float minX;
         public float maxX;
 
@@ -15,7 +14,7 @@ namespace Antura.Assessment
             float currentRatio = Screen.width / (float)Screen.height;
             float t = (currentRatio - minRatio) / (maxRatio - minRatio);
             Vector3 pos = transform.localPosition;
-            pos.x = Mathf.Lerp( minX, maxX, t);
+            pos.x = Mathf.Lerp(minX, maxX, t);
             transform.localPosition = pos;
         }
     }

@@ -36,9 +36,9 @@ namespace Antura.Assessment
         {
             this.dialogues = dialogues;
 
-            if (qst == null)
+            if (qst == null) {
                 throw new ArgumentException("Null questions");
-
+            }
             if (question == null) {
                 question = qst;
             } else {
@@ -53,16 +53,18 @@ namespace Antura.Assessment
 
         void OnMouseDown()
         {
-            if (AssessmentOptions.Instance.PronunceQuestionWhenClicked)
+            if (AssessmentOptions.Instance.PronunceQuestionWhenClicked) {
                 ReadMeSound();
+            }
         }
 
         public IQuestionDecoration questionAnswered;
 
         internal void OnQuestionAnswered()
         {
-            if (AssessmentOptions.Instance.QuestionAnsweredPlaySound)
+            if (AssessmentOptions.Instance.QuestionAnsweredPlaySound) {
                 ReadMeSound();
+            }
 
             if (AssessmentOptions.Instance.QuestionAnsweredFlip) {
                 TurnFaceUp();

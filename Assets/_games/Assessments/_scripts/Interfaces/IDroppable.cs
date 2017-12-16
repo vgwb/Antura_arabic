@@ -18,13 +18,13 @@ namespace Antura.Assessment
         /// <summary>
         /// Link to dragManager
         /// </summary>
-        void SetDragManager( IDragManager dragManager);
+        void SetDragManager(IDragManager dragManager);
 
-        void StartDrag( Action<IDroppable> onDestroyed);
+        void StartDrag(Action<IDroppable> onDestroyed);
 
         void StopDrag();
 
-        void LinkToPlaceholder( PlaceholderBehaviour behaviour);
+        void LinkToPlaceholder(PlaceholderBehaviour behaviour);
 
         PlaceholderBehaviour GetLinkedPlaceholder();
 

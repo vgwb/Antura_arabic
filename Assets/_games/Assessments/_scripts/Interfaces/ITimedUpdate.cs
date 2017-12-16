@@ -6,6 +6,6 @@ namespace Antura.Assessment
     public interface ITimedUpdate
     {
         //returns true when updating is over.
-        void Update( float deltaTime);
+        void Update(float deltaTime);
     }
 }

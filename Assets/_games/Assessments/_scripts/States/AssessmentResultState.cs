@@ -42,8 +42,7 @@ namespace Antura.Assessment
         bool exited = false;
         public void ExitState()
         {
-            if (exited == false)
-            {
+            if (exited == false) {
                 AppManager.I.NavigationManager.GoToNextScene();// AppScene.Rewards
                 exited = true;
             }

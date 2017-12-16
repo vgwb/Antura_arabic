@@ -19,16 +19,14 @@ namespace Antura.Assessment
 
         public GameObject gameObject
         {
-            get
-            {
+            get {
                 return gameObj;
             }
         }
 
         public QuestionBehaviour QuestionBehaviour
         {
-            get
-            {
+            get {
                 return gameObj.GetComponent<QuestionBehaviour>();
             }
         }

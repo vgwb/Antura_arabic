@@ -1,5 +1,3 @@
-using Antura.Minigames;
-
 namespace Antura.Assessment
 {
     public class AssessmentIntroState : FSM.IState
@@ -41,8 +39,7 @@ namespace Antura.Assessment
         public void Update(float delta)
         {
             timer -= delta;
-            if (timer <= 0)
-            {
+            if (timer <= 0) {
                 SetNextState();
             }
         }
