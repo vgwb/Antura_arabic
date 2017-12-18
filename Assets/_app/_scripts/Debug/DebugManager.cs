@@ -266,12 +266,12 @@ namespace Antura.Debugging
 
         public void UnlockFirstReward()
         {
-            RewardSystemManager.UnlockFirstSetOfRewards();
+            AppManager.I.RewardSystemManager.UnlockFirstSetOfRewards();
         }
 
         public void UnlockNextPlaySessionRewards()
         {
-            foreach (RewardPackUnlockData pack in RewardSystemManager.GetNextRewardPack()) {
+            foreach (RewardPackUnlockData pack in AppManager.I.RewardSystemManager.GetNextRewardPack()) {
                 AppManager.I.Player.AddRewardUnlocked(pack);
                 Debug.LogFormat("Pack added: {0}", pack.ToString());
             }
@@ -284,7 +284,7 @@ namespace Antura.Debugging
 
         public void UnlockAllRewards()
         {
-            RewardSystemManager.UnlockAllRewards();
+            AppManager.I.RewardSystemManager.UnlockAllRewards();
         }
 
         #endregion

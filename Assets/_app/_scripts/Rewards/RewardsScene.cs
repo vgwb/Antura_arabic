@@ -99,7 +99,7 @@ namespace Antura.Rewards
             if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig)) {
                 return AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
             } else {
-                RewardPackUnlockData newRewardToInstantiate = RewardSystemManager.GetNextRewardPack(true)[0];
+                RewardPackUnlockData newRewardToInstantiate = AppManager.I.RewardSystemManager.GetNextRewardPack(true)[0];
                 AppManager.I.Player.AddRewardUnlocked(newRewardToInstantiate);
                 AppManager.I.Player.AdvanceMaxJourneyPosition();
                 return newRewardToInstantiate;

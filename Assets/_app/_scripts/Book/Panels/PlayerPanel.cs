@@ -48,8 +48,8 @@ namespace Antura.Book
             InfoTable.AddRow(LocalizationDataId.UI_Stars, totalStars.ToString());
 
             // unlocked / total REWARDS
-            var totalRewards = RewardSystemManager.GetTotalRewardsCount();
-            var totalRewardsUnlocked = RewardSystemManager.GetUnlockedRewardsCount();
+            var totalRewards = AppManager.I.RewardSystemManager.GetTotalRewardsCount();
+            var totalRewardsUnlocked = AppManager.I.RewardSystemManager.GetUnlockedRewardsCount();
             //InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
             InfoTable.AddSliderRow(LocalizationDataId.UI_Antura_Rewards, totalRewards, totalRewardsUnlocked);
 

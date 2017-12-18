@@ -36,6 +36,7 @@ namespace Antura.Core
         public LogManager LogManager;
         public ServicesManager Services;
         public FirstContactManager FirstContactManager;
+        public RewardSystemManager RewardSystemManager;
 
         [HideInInspector]
         public NavigationManager NavigationManager;
@@ -95,7 +96,9 @@ namespace Antura.Core
 
             gameObject.AddComponent<KeeperManager>();
 
+            RewardSystemManager = new RewardSystemManager();
             RewardSystemManager.Init();
+
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
             // Debugger setup

@@ -2,6 +2,7 @@ using Antura.Audio;
 using Antura.Minigames;
 using DG.Tweening;
 using System.Collections;
+using Antura.Core;
 using UnityEngine;
 
 namespace Antura.Rewards
@@ -47,7 +48,7 @@ namespace Antura.Rewards
             rewardsSceneController = GetComponent<RewardsScene>();
             rewardsSceneController.ClearLoadedRewardsOnAntura();
             rewardPackUnlockData = rewardsSceneController.GetRewardToInstantiate();
-            rotationAngleView = RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPackUnlockData.GetRewardCategory());
+            rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPackUnlockData.GetRewardCategory());
             newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPackUnlockData);
 
             if (newRewardInstantiatedGO) {
@@ -162,8 +163,8 @@ namespace Antura.Rewards
         {
             rewardPackUnlockData = _rewardPackUnlockData;
             if (rewardPackUnlockData.Type == RewardTypes.reward) {
-                Reward r = rewardPackUnlockData.GetReward();
-                rotationAngleView = RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(r.Category);
+                RewardProp r = rewardPackUnlockData.GetReward();
+                rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(r.Category);
             }
         }
 

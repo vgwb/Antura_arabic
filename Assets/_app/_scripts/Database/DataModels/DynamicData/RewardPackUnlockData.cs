@@ -116,15 +116,15 @@ namespace Antura.Database
 
         public MaterialPair GetMaterialPair()
         {
-            return RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(ItemId, ColorId);
+            return AppManager.I.RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(ItemId, ColorId);
         }
 
-        public Reward GetReward()
+        public RewardProp GetReward()
         {
             if (Type != RewardTypes.reward) {
                 return null;
             }
-            return RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemId);
+            return AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Find(r => r.ID == ItemId);
         }
 
         public string GetRewardCategory()
@@ -132,7 +132,7 @@ namespace Antura.Database
             if (Type != RewardTypes.reward) {
                 return string.Empty;
             }
-            Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemId);
+            RewardProp reward = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Find(r => r.ID == ItemId);
             if (reward != null) {
                 return reward.Category;
             }

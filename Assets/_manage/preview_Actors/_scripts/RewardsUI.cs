@@ -3,6 +3,7 @@ using Antura.Rewards;
 using Antura.Tutorial;
 using DG.Tweening;
 using System.Collections.Generic;
+using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +24,7 @@ namespace Antura
         /// <summary>
         /// The actual reward enabled for material modification.
         /// </summary>
-        private Reward actualReward;
+        private RewardProp actualReward;
 
         private GameObject actualRewardGO;
 
@@ -64,14 +65,14 @@ namespace Antura
         void LoadRewarsList(string _position = "")
         {
             ClearList();
-            List<Reward> rewards;
+            List<RewardProp> rewards;
             if (_position != "") {
-                rewards = RewardSystemManager.GetConfig().Rewards.FindAll(r => r.BoneAttach == _position);
+                rewards = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.FindAll(r => r.BoneAttach == _position);
             } else {
-                rewards = RewardSystemManager.GetConfig().Rewards;
+                rewards = AppManager.I.RewardSystemManager.ItemsConfig.PropBases;
             }
 
-            foreach (Reward reward in rewards) {
+            foreach (RewardProp reward in rewards) {
                 Button b = Instantiate<Button>(ElementPrefab.GetComponent<Button>());
                 b.transform.SetParent(ElementContainer.transform);
                 b.GetComponentInChildren<Text>().text = reward.RewardName;

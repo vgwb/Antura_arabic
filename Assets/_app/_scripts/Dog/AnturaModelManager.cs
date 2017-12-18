@@ -191,7 +191,7 @@ namespace Antura.Dog
         /// <returns></returns>
         public GameObject LoadRewardOnAntura(RewardPackUnlockData rewardPackUnlockData)
         {
-            Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == rewardPackUnlockData.ItemId);
+            RewardProp reward = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Find(r => r.ID == rewardPackUnlockData.ItemId);
             if (reward == null) {
                 Debug.LogFormat("Reward {0} not found!", rewardPackUnlockData.ItemId);
                 return null;
@@ -249,7 +249,7 @@ namespace Antura.Dog
         /// </summary>
         private void chargeCategoryList()
         {
-            foreach (var reward in RewardSystemManager.GetConfig().Rewards) {
+            foreach (var reward in AppManager.I.RewardSystemManager.ItemsConfig.PropBases) {
                 if (!categoryList.Contains(reward.Category)) {
                     categoryList.Add(reward.Category);
                 }

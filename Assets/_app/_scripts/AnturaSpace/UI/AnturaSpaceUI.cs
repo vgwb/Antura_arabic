@@ -351,7 +351,7 @@ namespace Antura.AnturaSpace.UI
                 return;
             }
 
-            currSwatchesDatas = RewardSystemManager.SelectRewardItem(_rewardData.ID, currRewardType);
+            currSwatchesDatas = AppManager.I.RewardSystemManager.SelectRewardItem(_rewardData.ID, currRewardType);
             if (currSwatchesDatas.Count == 0) {
                 Debug.Log("No color swatches for the selected reward!");
                 return;
@@ -398,7 +398,7 @@ namespace Antura.AnturaSpace.UI
                 item.Toggle(item.Data == _colorData);
             }
             if (_colorData != null) {
-                RewardSystemManager.SelectRewardColorItem(_colorData.ID, currRewardType);
+                AppManager.I.RewardSystemManager.SelectRewardColorItem(_colorData.ID, currRewardType);
             } else {
                 Debug.Log("SelectSwatch > _colorData is NULL!");
             }
@@ -409,12 +409,12 @@ namespace Antura.AnturaSpace.UI
             bool useImages = currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture ||
                              currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
             if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
-                currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, rewardsContainers, "EAR_L");
+                currRewardDatas = AppManager.I.RewardSystemManager.GetRewardItemsByRewardType(currRewardType, rewardsContainers, "EAR_L");
                 List<Transform> altRewardContainers = new List<Transform>(rewardsContainers);
                 altRewardContainers.RemoveRange(0, currRewardDatas.Count);
-                currRewardDatas.AddRange(RewardSystemManager.GetRewardItemsByRewardType(currRewardType, altRewardContainers, "EAR_R"));
+                currRewardDatas.AddRange(AppManager.I.RewardSystemManager.GetRewardItemsByRewardType(currRewardType, altRewardContainers, "EAR_R"));
             } else {
-                currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType,
+                currRewardDatas = AppManager.I.RewardSystemManager.GetRewardItemsByRewardType(currRewardType,
                     useImages ? rewardsImagesContainers : rewardsContainers, currCategory.ToString());
             }
         }
@@ -523,7 +523,7 @@ namespace Antura.AnturaSpace.UI
             if (isTutorialMode && GetNewItemButton() != _bt) return;
 
             SelectReward(_bt.Data);
-            Reward reward = RewardSystemManager.GetRewardById(_bt.Data.ID);
+            RewardProp reward = AppManager.I.RewardSystemManager.GetPropRewardById(_bt.Data.ID);
             if (reward != null && onRewardSelectedInCustomization != null) {
                 onRewardSelectedInCustomization(reward.ID);
             }

@@ -317,7 +317,7 @@ namespace Antura.Profile
         /// </summary>
         /// <param name="_rewardType">Type of the reward.</param>
         /// <returns></returns>
-        public int GetNotYetUnlockedRewardCountForType(RewardTypes _rewardType)
+        /*public int GetNotYetUnlockedRewardCountForType(RewardTypes _rewardType)
         {
             int counter = 0;
             //foreach (PlaySessionRewardUnlock plsRew in RewardSystemManager.GetConfig().PlaySessionRewardsUnlock) {
@@ -346,29 +346,29 @@ namespace Antura.Profile
             //}
             switch (_rewardType) {
                 case RewardTypes.reward:
-                    counter = RewardSystemManager.GetConfig().Rewards.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
+                    counter = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
                     break;
                 case RewardTypes.texture:
-                    counter = RewardSystemManager.GetConfig().RewardsTile.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
+                    counter = AppManager.I.RewardSystemManager.ItemsConfig.TextureBases.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
                     break;
                 case RewardTypes.decal:
-                    counter = RewardSystemManager.GetConfig().RewardsDecal.Count -
+                    counter = AppManager.I.RewardSystemManager.ItemsConfig.DecalBases.Count -
                     RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
                     break;
             }
 
             return counter;
-        }
+        }*/
 
         /// <summary>
         /// Return true if rewards for this type available.
         /// </summary>
         /// <param name="_rewardType">Type of the reward.</param>
         /// <returns></returns>
-        public bool RewardForTypeAvailableYet(RewardTypes _rewardType)
+        /*public bool RewardForTypeAvailableYet(RewardTypes _rewardType)
         {
             return GetNotYetUnlockedRewardCountForType(_rewardType) <= 0 ? false : true;
-        }
+        }*/
 
         /// <summary>
         /// Used to store antura custumization data in json and load it at runtime.
@@ -523,7 +523,7 @@ namespace Antura.Profile
         public void SetGameCompleted()
         {
             ProfileCompletion = ProfileCompletionState.GameCompleted;
-            AppManager.I.StartCoroutine(RewardSystemManager.UnlockAllMissingRewards());
+            AppManager.I.StartCoroutine(AppManager.I.RewardSystemManager.UnlockAllMissingRewards());
             CheckGameFinished();
             Save();
         }

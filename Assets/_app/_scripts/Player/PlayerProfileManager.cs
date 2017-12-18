@@ -184,7 +184,7 @@ namespace Antura.Profile
             // Set player profile as current player
             AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile;
             // Create new Antura skin
-            RewardSystemManager.UnlockFirstSetOfRewards();
+            AppManager.I.RewardSystemManager.UnlockFirstSetOfRewards();
 
             // Call Event Profile creation
             if (OnNewProfileCreated != null) {
