@@ -351,7 +351,7 @@ namespace Antura.AnturaSpace.UI
                 return;
             }
 
-            currSwatchesDatas = AppManager.I.RewardSystemManager.SelectRewardItem(_rewardData.ID, _currRewardBaseType);
+            currSwatchesDatas = AppManager.I.RewardSystemManager.SelectRewardBase(_rewardData.ID, _currRewardBaseType);
             if (currSwatchesDatas.Count == 0) {
                 Debug.Log("No color swatches for the selected reward!");
                 return;
@@ -425,15 +425,15 @@ namespace Antura.AnturaSpace.UI
                 bool isNew;
                 switch (btCat.Category) {
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears:
-                        isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_L")
-                                || AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
+                        isNew = AppManager.I.RewardSystemManager.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_L")
+                                || AppManager.I.RewardSystemManager.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
                         break;
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
-                        isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category));
+                        isNew = AppManager.I.RewardSystemManager.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category));
                         break;
                     default:
-                        isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category),
+                        isNew = AppManager.I.RewardSystemManager.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category),
                             btCat.Category.ToString());
                         break;
                 }

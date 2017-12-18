@@ -99,6 +99,23 @@ namespace Antura.Rewards
           get {return ""; }  // TODO: get from rewardBase
         }
 
+        // TODO:
+        /*
+        public string GetRewardCategory(RewardPack rewardPack)
+        {
+            /*if (BaseType != RewardBaseType.Prop) {
+                return string.Empty;
+            }*/
+        /*   RewardProp reward = ItemsConfig.PropBases.Find(r => r.ID == rewardPack.BaseId);
+           if (reward != null)
+           {
+               return reward.Category;
+           }
+           return string.Empty;
+       }*/
+
+
+
         public string UniqueId
         {
             get { return BaseId + "_" + ColorId; }

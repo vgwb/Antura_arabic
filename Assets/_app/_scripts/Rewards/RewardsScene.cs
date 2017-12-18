@@ -7,6 +7,7 @@ using Antura.Tutorial;
 using Antura.UI;
 using DG.Tweening;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -94,14 +95,17 @@ namespace Antura.Rewards
         /// Gets the reward to instantiate.
         /// </summary>
         /// <returns></returns>
-        public RewardPackUnlockData GetRewardToInstantiate()
+        public RewardPack GetRewardPackToInstantiate()
         {
-            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig)) {
-                return AppManager.I.Player.UnlockedRewardsData.Find(r => r.BaseType == RewardBaseType.Prop);
-            } else {
-                RewardPackUnlockData newRewardToInstantiate = AppManager.I.RewardSystemManager.GenerateRewardPacksForJourneyPosition(true)[0];
-                AppManager.I.Player.AddRewardUnlocked(newRewardToInstantiate);
-                AppManager.I.Player.AdvanceMaxJourneyPosition();
+            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig))
+            {
+                return AppManager.I.RewardSystemManager.GetUnlockedRewardPacks(RewardBaseType.Prop).FirstOrDefault();
+            }
+            else
+            {
+                var newRewardToInstantiate =  AppManager.I.RewardSystemManager.GenerateRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition)[0];
+                AppManager.I.RewardSystemManager.UnlockPack(newRewardToInstantiate, AppManager.I.Player.CurrentJourneyPosition);
+                AppManager.I.Player.AdvanceMaxJourneyPosition();    // TODO: move this out of here!
                 return newRewardToInstantiate;
             }
         }
@@ -111,7 +115,7 @@ namespace Antura.Rewards
         /// </summary>
         /// <param name="_rewardToInstantiate">The reward to instantiate.</param>
         /// <returns></returns>
-        public GameObject InstantiateReward(RewardPackUnlockData _rewardToInstantiate)
+        public GameObject InstantiateReward(RewardPack _rewardToInstantiate)
         {
             return AnturaModelManager.I.LoadRewardPackOnAntura(_rewardToInstantiate);
         }

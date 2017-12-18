@@ -276,14 +276,14 @@ namespace Antura.Profile
 
         private List<RewardPackUnlockData> _rewardPackUnlockDataList = new List<RewardPackUnlockData>();
 
-        public List<RewardPackUnlockData> RewardPackUnlockDataList   
+        /*public List<RewardPackUnlockData> RewardPackUnlockDataList   
         {
             get {
                 return _rewardPackUnlockDataList;
             }
 
             private set { _rewardPackUnlockDataList = value; }
-        }
+        }*/
 
 
         /// <summary>
@@ -298,13 +298,13 @@ namespace Antura.Profile
         /// Loads the rewards unlocked from database.
         /// </summary>
         /// <returns></returns>
-        public void LoadRewardPackUnlockData()
+        public void LoadRewardPackUnlockDataList()
         {
             _rewardPackUnlockDataList = AppManager.I.DB.GetAllRewardPackUnlockData();
             AppManager.I.RewardSystemManager.InjectRewardsUnlockData(_rewardPackUnlockDataList);
         }
 
-        public void SaveRewardPackUnlockData()
+        public void SaveRewardPackUnlockDataList()
         {
             AppManager.I.DB.UpdateRewardPackUnlockDataAll(_rewardPackUnlockDataList);
         }
