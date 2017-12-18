@@ -164,8 +164,7 @@ namespace Antura.Rewards
             this.rewardPack = rewardPack;
             if (rewardPack.BaseType == RewardBaseType.Prop)
             {
-                var prop = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Find(r => r.ID == rewardPack.BaseId);
-                rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(prop.Category);
+                rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPack.Category);
             }
         }
 

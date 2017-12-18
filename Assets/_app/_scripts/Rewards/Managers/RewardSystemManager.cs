@@ -47,18 +47,6 @@ namespace Antura.Rewards
         RewardsUnlocksConfig unlocksConfig;
 
         /// <summary>
-        /// GetConfig if not already loaded load it from disk.
-        /// </summary>
-        /// <returns></returns>
-        public RewardsItemsConfig ItemsConfig
-        {
-            get
-            {
-                return itemsConfig;
-            }
-        }
-
-        /// <summary>
         /// Loads the reward system configurations
         /// </summary>
         private void LoadConfigs()
@@ -69,21 +57,21 @@ namespace Antura.Rewards
             TextAsset unlocksConfigData = Resources.Load(ANTURA_REWARDS_UNLOCKS_CONFIG_PATH) as TextAsset;
             unlocksConfig = JsonUtility.FromJson<RewardsUnlocksConfig>(unlocksConfigData.text);
 
-            BuildAllPacks();
+            BuildAllPacks(itemsConfig);
         }
 
-        void BuildAllPacks()
+        void BuildAllPacks(RewardsItemsConfig itemsConfig)
         {
             rewardPacksDict.Clear();
-            rewardPacksDict[RewardBaseType.Prop] = BuildPacks(RewardBaseType.Prop);
-            rewardPacksDict[RewardBaseType.Decal] = BuildPacks(RewardBaseType.Decal);
-            rewardPacksDict[RewardBaseType.Texture] = BuildPacks(RewardBaseType.Texture);
+            rewardPacksDict[RewardBaseType.Prop] = BuildPacks(itemsConfig, RewardBaseType.Prop);
+            rewardPacksDict[RewardBaseType.Decal] = BuildPacks(itemsConfig, RewardBaseType.Decal);
+            rewardPacksDict[RewardBaseType.Texture] = BuildPacks(itemsConfig, RewardBaseType.Texture);
         }
 
-        private List<RewardPack> BuildPacks(RewardBaseType baseType)
+        private List<RewardPack> BuildPacks(RewardsItemsConfig itemsConfig, RewardBaseType baseType)
         {
-            var bases = ItemsConfig.GetBasesForType(baseType);
-            var colors = ItemsConfig.GetColorsForType(baseType);
+            var bases = itemsConfig.GetBasesForType(baseType);
+            var colors = itemsConfig.GetColorsForType(baseType);
             List<RewardPack> rewardPacks = new List<RewardPack>();
             foreach (var b in bases)
             {
@@ -98,10 +86,14 @@ namespace Antura.Rewards
             return rewardPacks;
         }
 
+        public IEnumerable<RewardBase> GetBasesOfType(RewardBaseType baseType)
+        {
+            return itemsConfig.GetBasesForType(baseType);
+        }
 
         #region Reward Packs
 
-        private Dictionary<RewardBaseType, List< RewardPack>> rewardPacksDict = new Dictionary<RewardBaseType, List<RewardPack>>();
+        private Dictionary<RewardBaseType, List<RewardPack>> rewardPacksDict = new Dictionary<RewardBaseType, List<RewardPack>>();
 
         public RewardPack GetRewardPackByUniqueId(string uniqueId)
         {
@@ -142,12 +134,11 @@ namespace Antura.Rewards
         /// <summary>
         /// Gets a PROP by its string identifier.
         /// </summary>
-        /// <param name="_rewardId">The reward identifier.</param>
+        /// <param name="_baseId">The reward identifier.</param>
         /// <returns></returns>
-        public RewardProp GetPropRewardById(string _rewardId)
+        public RewardPack GetPropRewardById(string _baseId)
         {
-            RewardProp reward = ItemsConfig.PropBases.Find(r => r.ID == _rewardId);
-            return reward;
+            return GetRewardPacksOfType(RewardBaseType.Prop).FirstOrDefault(x => x.BaseId == _baseId); 
         }
 
         /// <summary>
@@ -173,8 +164,8 @@ namespace Antura.Rewards
         /// <returns></returns>
         public MaterialPair GetMaterialPairForPack(RewardPack pack)
         {
-            RewardProp prop = ItemsConfig.PropBases.Find(c => c.ID == pack.BaseId);
-            RewardColor color = ItemsConfig.PropColors.Find(c => c.ID == pack.ColorId);
+            RewardProp prop = pack.RewardBase as RewardProp;
+            RewardColor color = pack.RewardColor;
             if (color == null || prop == null)
             {
                 return new MaterialPair();
@@ -343,7 +334,7 @@ namespace Antura.Rewards
             //     return newlyUnlockedPacks;
 
             // What kind of reward is it?
-            RewardUnlocksAtJourneyPosition unlocksAtJP = ItemsConfig.PlaySessionRewardsUnlock.Find(r => r.JourneyPositionID == journeyPosition.Id);
+            RewardUnlocksAtJourneyPosition unlocksAtJP = unlocksConfig.PlaySessionRewardsUnlock.Find(r => r.JourneyPositionID == journeyPosition.Id);
             if (unlocksAtJP == null)
             {
                 Debug.LogErrorFormat("Unable to find reward type for this playsession {0}", journeyPosition);
@@ -396,7 +387,7 @@ namespace Antura.Rewards
         List<RewardBase> GetLockedRewardBases(RewardBaseType baseType)
         {
             var unlockedBases = GetUnlockedRewardBases(baseType);
-            var allBases = itemsConfig.GetBasesForType(baseType);
+            var allBases = GetBasesOfType(baseType);
             List<RewardBase> lockedBases = new List<RewardBase>();
 
             foreach (var rewardBase in allBases)
@@ -411,7 +402,7 @@ namespace Antura.Rewards
         {
             var packsOfBase = rewardPacksDict[baseType];
             var unlockedPacksOfBase = packsOfBase.Where(IsRewardPackAlreadyUnlocked);
-            var allBases = itemsConfig.GetBasesForType(baseType);
+            var allBases = GetBasesOfType(baseType);
 
             HashSet<RewardBase> unlockedBases = new HashSet<RewardBase>();
             foreach (var rewardPack in unlockedPacksOfBase)
@@ -432,15 +423,13 @@ namespace Antura.Rewards
             NewColor
         }
 
-        // OK
         /// <summary>
-        /// Gets the next reward pack. Contains all logic to create new reward.
+        /// Gets a new available reward pack. Contains all logic to create new reward.
         /// </summary>
         /// <param name="baseType">Type of the reward.</param>
-        /// <returns></returns>
         private RewardPack GetNewRewardPack(RewardBaseType baseType, UnlockType unlockType)
         {
-            RewardPack newUnlockedPack = null;
+            RewardPack newRewardPack = null;
 
             switch (unlockType)
             {
@@ -448,40 +437,50 @@ namespace Antura.Rewards
                 {
                     // We force a NEW base
                     var lockedBases = GetLockedRewardBases(baseType);
+                    if (lockedBases.Count == 0)
+                        throw new NullReferenceException(
+                            "We do not have enough rewards to get a new base of type " + baseType);
+
                     var newBase = lockedBases.RandomSelectOne();
                     var lockedPacks = GetLockedRewardPacks(baseType);
                     var lockedPacksOfNewBase = lockedPacks.Where(x => x.BaseId == newBase.ID).ToList();
-                    newUnlockedPack = lockedPacksOfNewBase.RandomSelectOne();
+                    newRewardPack = lockedPacksOfNewBase.RandomSelectOne();
                 }
                     break;
                 case UnlockType.NewColor:
                 {
                     // We force an OLD base
-                    var unlockedBases = GetLockedRewardBases(baseType);
-                    var oldBase = unlockedBases.RandomSelectOne();
-                    // TODO: select only those that have colors to be unlocked!
+                    var unlockedBases = GetUnlockedRewardBases(baseType);
+                    var unlockedBasesWithColorsLeft = unlockedBases.Where(b => GetLockedRewardPacks(baseType).Count(p => p.BaseId == b.ID) > 0).ToList();
+
+                    if (unlockedBasesWithColorsLeft.Count == 0)
+                        throw new NullReferenceException(
+                            "We do not have unlocked bases that still have colors to be unlocked for base type " + baseType);
+
+                    var oldBase = unlockedBasesWithColorsLeft.RandomSelectOne();
                     var lockedPacks = GetLockedRewardPacks(baseType);
                     var lockedPacksOfOldBase = lockedPacks.Where(x => x.BaseId == oldBase.ID).ToList();
                     if (lockedPacksOfOldBase.Count == 0)
                         throw new NullReferenceException(
                             "We do not have enough rewards to get a new color for an old base of type " + baseType);
-                    newUnlockedPack = lockedPacksOfOldBase.RandomSelectOne();
+
+                    newRewardPack = lockedPacksOfOldBase.RandomSelectOne();
                 }
                     break;
                 case UnlockType.Any:
                 {
                     // We get any reward pack
                     var lockedPacks = GetLockedRewardPacks(baseType);
+
                     if (lockedPacks.Count == 0)
                         throw new NullReferenceException(
                             "We do not have enough rewards left of type " + baseType);
-                    newUnlockedPack = lockedPacks.RandomSelectOne();
+
+                    newRewardPack = lockedPacks.RandomSelectOne();
                 }
                     break;
-
             }
-
-            return newUnlockedPack;
+            return newRewardPack;
         }
 
 
@@ -524,12 +523,8 @@ namespace Antura.Rewards
             _player.CurrentAnturaCustomizations.TexturePack = texturePack;
             _player.CurrentAnturaCustomizations.TexturePackId = texturePack.UniqueId;
 
-            // TODO:
+            // Save initial packs and customization
             _player.SaveRewardPackUnlockDataList();
-
-            // Add all 3 rewards
-            //_player.AddRewardUnlockedAll();
-            // Save actual customization
             _player.SaveAnturaCustomization();
         }
 
@@ -575,13 +570,14 @@ namespace Antura.Rewards
         /// <param name="_parentsTransForModels">The parents trans for models.</param>
         /// <param name="_category">The category reward identifier.</param>
         /// <returns></returns>
-        public List<RewardItem> GetRewardItemsByRewardType(RewardBaseType baseType, List<Transform> _parentsTransForModels,
+        public List<RewardBaseItem> GetRewardItemsByRewardType(RewardBaseType baseType, List<Transform> _parentsTransForModels,
             string _category = "")
         {
-            List<RewardItem> returnList = new List<RewardItem>();
+            List<RewardBaseItem> returnList = new List<RewardBaseItem>();
 
             /// TODO: logic
             /// - Load returnList by type and category checking unlocked and if exist active one
+            /*
             switch (baseType) {
                 case RewardBaseType.Prop:
                     // Filter from unlocked elements (only items with this category and only one for itemID)
@@ -662,7 +658,7 @@ namespace Antura.Rewards
                     Debug.LogWarningFormat("Reward typology requested {0} not found", baseType);
                     break;
             }
-
+            */
             //// add empty results
             //int emptyItemsCount = _parentsTransForModels.Count - returnList.Count;
             //for (int i = 0; i < emptyItemsCount; i++) {

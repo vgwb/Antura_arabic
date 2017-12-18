@@ -42,7 +42,6 @@ namespace Antura.Dog
         void Awake()
         {
             I = this;
-            LoadCategoryList();
         }
 
         void Start()
@@ -232,29 +231,6 @@ namespace Antura.Dog
             // Save on LoadedModel List
             LoadedModels.Add(new LoadedModel() { RewardPack = rewardPack, GO = rewardModel });
             return rewardModel;
-        }
-
-        #endregion
-
-        #region Rewards standard (Antura fornitures)
-
-        /// <summary>
-        /// The category list
-        /// </summary>
-        private List<string> categoryList = new List<string>();
-
-        /// <summary>
-        /// Charges the category list.
-        /// </summary>
-        private void LoadCategoryList()
-        {
-            foreach (var reward in AppManager.I.RewardSystemManager.ItemsConfig.PropBases)
-            {
-                if (!categoryList.Contains(reward.Category))
-                {
-                    categoryList.Add(reward.Category);
-                }
-            }
         }
 
         #endregion
