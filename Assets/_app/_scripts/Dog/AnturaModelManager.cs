@@ -251,7 +251,8 @@ namespace Antura.Dog
         private void RewardSystemManager_OnRewardItemChanged(RewardPack rewardPack)
         {
             LoadRewardPackOnAntura(rewardPack);
-            rewardPack.unlockData.IsNew = false;
+            rewardPack.SetNew(false);
+
             // TODO: Save Packs
             //AppManager.I.Player.SetRewardPackUnlockedToNotNew(rewardPack.UniqueId);
             SaveAnturaCustomization();

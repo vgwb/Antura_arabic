@@ -85,7 +85,6 @@ namespace Antura.Database
         }
 
         #region Rewards API
-        
 
         public JourneyPosition GetJourneyPosition()
         {
@@ -98,6 +97,7 @@ namespace Antura.Database
             LearningBlock = jp.LearningBlock;
             PlaySession = jp.PlaySession;
         }
+
         #endregion
 
         #region Database API

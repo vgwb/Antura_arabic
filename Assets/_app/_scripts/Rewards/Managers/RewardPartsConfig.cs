@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Antura.Core;
 using Antura.Database;
 
 namespace Antura.Rewards
@@ -94,12 +95,13 @@ namespace Antura.Rewards
 
         public RewardColor RewardColor;
         public string ColorId{  get { return RewardColor.ID; } }
-
+        
         public RewardPack(RewardBaseType baseType, RewardBase rewardBase, RewardColor rewardColor)
         {
             this.BaseType = baseType;
             this.RewardBase = rewardBase;
             this.RewardColor = rewardColor;
+            this.unlockData = null; // Null = locked
         }
 
         public string Category
@@ -117,6 +119,15 @@ namespace Antura.Rewards
             get { return BaseId + "_" + ColorId; }
         }
 
+        #region State
+
+        private RewardPackUnlockData unlockData;
+
+        public void SetUnlockData(RewardPackUnlockData data)
+        {
+            this.unlockData = data;
+        }
+
         public bool IsLocked
         {
             get
@@ -130,7 +141,24 @@ namespace Antura.Rewards
             get { return !IsLocked; }
         }
 
-        public RewardPackUnlockData unlockData;
+        public bool IsNew
+        {
+            get { return unlockData.IsNew; }
+        }
+
+        public bool UnlockedAtJourneyPosition(JourneyPosition jp)
+        {
+            if (IsLocked) return false;
+            return jp.Equals(unlockData.GetJourneyPosition());
+        }
+
+        public void SetNew(bool b)
+        {
+            unlockData.IsNew = b;
+        }
+
+        #endregion
+
 
         public override string ToString()
         {

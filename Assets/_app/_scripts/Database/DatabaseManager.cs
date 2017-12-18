@@ -483,6 +483,11 @@ namespace Antura.Database
 
         public List<RewardPackUnlockData> GetAllRewardPackUnlockData()
         {
+            Debug.Log("DB getting data list: " + GetAllDynamicData<RewardPackUnlockData>().Count);
+            foreach (var rewardPackUnlockData in GetAllDynamicData<RewardPackUnlockData>())
+            {
+                Debug.Log("LOAD PACK: " + rewardPackUnlockData.ToString());
+            }
             return GetAllDynamicData<RewardPackUnlockData>();
         }
 
@@ -493,6 +498,11 @@ namespace Antura.Database
 
         public void UpdateRewardPackUnlockDataAll(List<RewardPackUnlockData> updatedDataList)
         {
+            Debug.Log("DB updating data list: " + updatedDataList.Count);
+            foreach (var rewardPackUnlockData in updatedDataList)
+            {
+                Debug.Log("INSERT PACK: " + rewardPackUnlockData.ToString());
+            }
             dynamicDb.InsertOrReplaceAll(updatedDataList);
         }
 

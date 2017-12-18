@@ -282,6 +282,7 @@ namespace Antura.Profile
         public void ResetRewardPackUnlockData()
         {
             _rewardPackUnlockDataList.Clear();
+            AppManager.I.DB.DeleteAll<RewardPackUnlockData>();
         }
 
         /// <summary>
@@ -299,68 +300,74 @@ namespace Antura.Profile
             AppManager.I.DB.UpdateRewardPackUnlockDataAll(_rewardPackUnlockDataList);
         }
 
+        public void RegisterUnlockData(RewardPackUnlockData unlockData)
+        {
+            if (!_rewardPackUnlockDataList.Contains(unlockData))
+                _rewardPackUnlockDataList.Add(unlockData);
+        }
+
         /// <summary>
-            /// Gets the not yet unlocked rewards list.
-            /// </summary>
-            /// <param name="_rewardType">Type of the reward.</param>
-            /// <returns></returns>
-            /*public int GetNotYetUnlockedRewardCountForType(RewardTypes _rewardType)
-            {
-                int counter = 0;
-                //foreach (PlaySessionRewardUnlock plsRew in RewardSystemManager.GetConfig().PlaySessionRewardsUnlock) {
-                //    // Check if PlaySessionRewardUnlock contain requested type.
-                //    switch (_rewardType) {
-                //        case RewardTypes.reward:
-                //            if (plsRew.Reward == "")
-                //                continue;
-                //            break;
-                //        case RewardTypes.texture:
-                //            if (plsRew.Texture == "")
-                //                continue;
-                //            break;
-                //        case RewardTypes.decal:
-                //            if (plsRew.Decal == "")
-                //                continue;
-                //            break;
-                //        default:
-                //            continue;
-                //            break;
-                //    }
+        /// Gets the not yet unlocked rewards list.
+        /// </summary>
+        /// <param name="_rewardType">Type of the reward.</param>
+        /// <returns></returns>
+        /*public int GetNotYetUnlockedRewardCountForType(RewardTypes _rewardType)
+        {
+            int counter = 0;
+            //foreach (PlaySessionRewardUnlock plsRew in RewardSystemManager.GetConfig().PlaySessionRewardsUnlock) {
+            //    // Check if PlaySessionRewardUnlock contain requested type.
+            //    switch (_rewardType) {
+            //        case RewardTypes.reward:
+            //            if (plsRew.Reward == "")
+            //                continue;
+            //            break;
+            //        case RewardTypes.texture:
+            //            if (plsRew.Texture == "")
+            //                continue;
+            //            break;
+            //        case RewardTypes.decal:
+            //            if (plsRew.Decal == "")
+            //                continue;
+            //            break;
+            //        default:
+            //            continue;
+            //            break;
+            //    }
 
-                //    RewardPackUnlockData unlockedRewardData = RewardsUnlocked.Find(r => r.Type == _rewardType && r.JourneyPosition == plsRew.PlaySession);
-                //    if (unlockedRewardData == null)
-                //        counter++;
-                //}
-                switch (_rewardType) {
-                    case RewardTypes.reward:
-                        counter = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
-                        break;
-                    case RewardTypes.texture:
-                        counter = AppManager.I.RewardSystemManager.ItemsConfig.TextureBases.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
-                        break;
-                    case RewardTypes.decal:
-                        counter = AppManager.I.RewardSystemManager.ItemsConfig.DecalBases.Count -
-                        RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
-                        break;
-                }
+            //    RewardPackUnlockData unlockedRewardData = RewardsUnlocked.Find(r => r.Type == _rewardType && r.JourneyPosition == plsRew.PlaySession);
+            //    if (unlockedRewardData == null)
+            //        counter++;
+            //}
+            switch (_rewardType) {
+                case RewardTypes.reward:
+                    counter = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
+                    break;
+                case RewardTypes.texture:
+                    counter = AppManager.I.RewardSystemManager.ItemsConfig.TextureBases.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
+                    break;
+                case RewardTypes.decal:
+                    counter = AppManager.I.RewardSystemManager.ItemsConfig.DecalBases.Count -
+                    RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
+                    break;
+            }
 
-                return counter;
-            }*/
+            return counter;
+        }*/
 
-            /// <summary>
-            /// Return true if rewards for this type available.
-            /// </summary>
-            /// <param name="_rewardType">Type of the reward.</param>
-            /// <returns></returns>
-            /*public bool RewardForTypeAvailableYet(RewardTypes _rewardType)
-            {
-                return GetNotYetUnlockedRewardCountForType(_rewardType) <= 0 ? false : true;
-            }*/
+        /// <summary>
+        /// Return true if rewards for this type available.
+        /// </summary>
+        /// <param name="_rewardType">Type of the reward.</param>
+        /// <returns></returns>
+        /*public bool RewardForTypeAvailableYet(RewardTypes _rewardType)
+        {
+            return GetNotYetUnlockedRewardCountForType(_rewardType) <= 0 ? false : true;
+        }*/
 
-            /// <summary>
-            /// Used to store antura custumization data in json and load it at runtime.
-            /// </summary>
-            string jsonAnturaCustomizationData = string.Empty;
+        /// <summary>
+        /// Used to store antura custumization data in json and load it at runtime.
+        /// </summary>
+        string jsonAnturaCustomizationData = string.Empty;
 
         #endregion
 
