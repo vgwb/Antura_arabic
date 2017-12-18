@@ -401,7 +401,7 @@ namespace Antura.Rewards
             //if (JourneyPositionRewardsAlreadyUnlocked(journeyPosition) && !_forceToReturnReward)
             //     return newlyUnlockedPacks;
 
-            // What kind of reward is it?
+            // What rewards are unlocked at this JP?
             JourneyPositionRewardUnlock unlocksAtJP = unlocksConfig.JourneyPositionsUnlocks.Find(r => r.JourneyPositionID == journeyPosition.Id);
             if (unlocksAtJP == null)
             {
