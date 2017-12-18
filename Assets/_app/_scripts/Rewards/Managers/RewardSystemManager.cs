@@ -173,15 +173,15 @@ namespace Antura.Rewards
         /// <param name="_rewardId">The reward identifier.</param>
         /// <param name="_colorId">The color identifier.</param>
         /// <returns></returns>
-        public MaterialPair GetMaterialPairFromRewardIdAndColorId(string _rewardId, string _colorId)
+        public MaterialPair GetMaterialPairForPack(RewardPack pack)
         {
-            RewardProp reward = GetPropRewardById(_rewardId);
-            RewardColor color = ItemsConfig.PropColors.Find(c => c.ID == _colorId);
-            if (color == null || reward == null)
+            RewardProp prop = ItemsConfig.PropBases.Find(c => c.ID == pack.baseId);
+            RewardColor color = ItemsConfig.PropColors.Find(c => c.ID == pack.colorId);
+            if (color == null || prop == null)
             {
                 return new MaterialPair();
             }
-            MaterialPair mp = new MaterialPair(color.Color1Name, reward.Material1, color.Color2Name, reward.Material2);
+            MaterialPair mp = new MaterialPair(color.Color1Name, prop.Material1, color.Color2Name, prop.Material2);
             return mp;
         }
 
@@ -234,140 +234,37 @@ namespace Antura.Rewards
             UnlockPacks(GetLockedRewardPacks(RewardBaseType.Texture), extraRewardJP);
             // TODO: save in the profile too
             yield return null;
-
-            /*
-            List<RewardPackUnlockData> alreadyUnlocked = AppManager.I.Player.UnlockedRewardsData;
-            for (int i = 0; i < ItemsConfig.PropBases.Count; i++)
-            {
-                for (int y = 0; y < ItemsConfig.PropColors.Count; y++)
-                {
-                    if (!alreadyUnlocked.Exists(ur =>
-                        ur.ItemId == ItemsConfig.PropBases[i].ID && ur.ColorId == ItemsConfig.PropColors[y].ID))
-                    {
-                        AppManager.I.Player.AddRewardUnlocked(
-                            new RewardPackUnlockData(
-                                AppManager.I.LogManager.AppSession,
-                                ItemsConfig.PropBases[i].ID,
-                                ItemsConfig.PropColors[y].ID, RewardBaseType.Prop, extraRewardJourney));
-                        yield return null;
-                    }
-                }
-            }
-            for (int i = 0; i < ItemsConfig.DecalBases.Count; i++)
-            {
-                for (int y = 0; y < ItemsConfig.DecalColors.Count; y++)
-                {
-                    if (!alreadyUnlocked.Exists(ur =>
-                        ur.ItemId == ItemsConfig.DecalBases[i].ID && ur.ColorId == ItemsConfig.DecalColors[y].ID))
-                    {
-                        AppManager.I.Player.AddRewardUnlocked(
-                            new RewardPackUnlockData(
-                                AppManager.I.LogManager.AppSession,
-                                ItemsConfig.DecalBases[i].ID,
-                                ItemsConfig.DecalColors[y].ID, RewardBaseType.Decal, extraRewardJourney));
-                        yield return null;
-                    }
-                }
-            }
-            for (int i = 0; i < ItemsConfig.TextureBases.Count; i++)
-            {
-                for (int y = 0; y < ItemsConfig.TextureColors.Count; y++)
-                {
-                    if (!alreadyUnlocked.Exists(ur =>
-                        ur.ItemId == ItemsConfig.TextureBases[i].ID && ur.ColorId == ItemsConfig.TextureColors[y].ID))
-                    {
-                        AppManager.I.Player.AddRewardUnlocked(
-                            new RewardPackUnlockData(
-                                AppManager.I.LogManager.AppSession,
-                                ItemsConfig.TextureBases[i].ID,
-                                ItemsConfig.TextureColors[y].ID, RewardBaseType.Texture, extraRewardJourney));
-                        yield return null;
-                    }
-                }
-            }
-            yield return null;*/
         }
 
         /// <summary>
-        /// Unlocks all rewards.
+        /// Unlocks all rewards in the game.
         /// </summary>
         public void UnlockAllRewards()
         {
-            int RewardCount = 0;
-            int TextureCount = 0;
-            int DecalCount = 0;
-            int OtherCount = 0;
-            var actualCurrentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
-
             for (int i = 0; i < allPlaySessionInfos.Count; i++)
             {
-                // Check if already unlocked reward for this playSession.
-                JourneyPosition journeyPosition = allPlaySessionInfos[i].data.GetJourneyPosition();
-                if (IsRewardAlreadyUnlocked(journeyPosition)) { continue; }
-                List<RewardPackUnlockData> newUnlocked = new List<RewardPackUnlockData>();
-                AppManager.I.Player.SetCurrentJourneyPosition(
-                    AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
-                foreach (RewardPackUnlockData pack in UnlockNewRewardPacks())
-                {
-                    pack.IsLocked = false;
-                    //AppManager.I.Player.AddRewardUnlockedAll(pack);
-
-                    newUnlocked.Add(pack);
-
-                    switch (pack.BaseType)
-                    {
-                        case RewardBaseType.Prop:
-                            RewardCount++;
-                            break;
-                        case RewardBaseType.Texture:
-                            TextureCount++;
-                            break;
-                        case RewardBaseType.Decal:
-                            DecalCount++;
-                            break;
-                        default:
-                            OtherCount++;
-                            break;
-                    }
-                    Debug.LogFormat("Unlocked reward for playsession {0} : {1}", journeyPosition, pack);
-                }
-                AppManager.I.Player.AddRewardUnlockedRange(newUnlocked);
+                var jp = AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id);
+                var packs = UnlockRewardPacksForJourneyPosition(jp);
+                Debug.LogFormat("Unlocked rewards for playsession {0} : {1}", jp, packs.Count);
             }
 
-
-            AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
-            Debug.LogFormat("Bulk unlocking rewards result: rewards: {0} | texture: {1} | decal: {2} | other: {3}", RewardCount,
-                TextureCount, DecalCount, OtherCount);
-
+            Debug.LogFormat("Unlocking also all extra rewards!");
             AppManager.I.StartCoroutine(UnlockAllMissingRewards());
-            Debug.LogFormat("Unlock also all extra rewards!");
-            Init();
         }
-
 
         public bool IsRewardPackAlreadyUnlocked(RewardPack pack)
         {
-            // TODO: can make this more performant if we place the RewardPackUnlockData into the RewardPack itself!
             return !pack.unlockData.IsLocked;
-                //AppManager.I.Player.UnlockedRewardsData.Exists(r => r.Id == pack.UniqueId);
         }
 
-
         /// <summary>
-        /// Return true if Reward for this JourneyPosition is already unlocked.
+        /// Return true if all rewards for this JourneyPosition are already unlocked.
         /// </summary>
         /// <param name="_journeyPosition">The journey position.</param>
-        /// <returns></returns>
-        public bool IsRewardAlreadyUnlocked(JourneyPosition journeyPosition)
+        public bool JourneyPositionRewardsAlreadyUnlocked(JourneyPosition journeyPosition)
         {
-            List<RewardPackUnlockData> unlocked = AppManager.I.Player.UnlockedRewardsData;
-            RewardPackUnlockData rewardPackUnlockData = unlocked.Find(r => r.GetJourneyPosition().Equals(journeyPosition));
-            if (rewardPackUnlockData != null)
-            {
-                return true;
-            }
-            return false;
+            return GetAllRewardPacks().Any(p => p.unlockData.GetJourneyPosition().Equals(journeyPosition));
         }
 
         /// <summary>
@@ -382,19 +279,31 @@ namespace Antura.Rewards
             return AppManager.I.Player.UnlockedRewardsData.Find(r => r.ItemId == _itemId && r.ColorId == _colorId && r.BaseType == baseType) != null;
         }*/
 
+
+        public List<RewardPack> UnlockRewardPacksForJourneyPosition(JourneyPosition journeyPosition)
+        {
+            var packs = GenerateRewardPacksForJourneyPosition(journeyPosition);
+            UnlockPacks(packs, journeyPosition);
+            return packs;
+        }
+
+        public IEnumerable<RewardPack> GetRewardPacksUnlockedInJourneyPosition(JourneyPosition journeyPosition)
+        {
+            return GetAllRewardPacks().Where(x => x.unlockData.GetJourneyPosition().Equals(journeyPosition));
+        }
+
         /// <summary>
         /// Return list of right rewards for actual playsession if not already.
         /// </summary>
         /// <returns></returns>
-        public List<RewardPack> UnlockNewRewardPacks(bool _forceToReturnReward = false)
+        public List<RewardPack> GenerateRewardPacksForJourneyPosition(JourneyPosition journeyPosition)
         {
             var newlyUnlockedPacks = new List<RewardPack>();
-            var journeyPosition = AppManager.I.Player.CurrentJourneyPosition;
 
-            // TODO: HANDLE THIS
+            // TODO: HANDLE THIS DIFFERENTLY
             // not _forceToReturnReward check if reward is already unlocked for this playsession and if true return empty list
-            if (IsRewardAlreadyUnlocked(journeyPosition) && !_forceToReturnReward)
-                return newlyUnlockedPacks;
+            //if (JourneyPositionRewardsAlreadyUnlocked(journeyPosition) && !_forceToReturnReward)
+            //     return newlyUnlockedPacks;
 
             // What kind of reward it is?
             RewardUnlocksAtJourneyPosition unlocksAtJP = ItemsConfig.PlaySessionRewardsUnlock.Find(r => r.JourneyPositionID == journeyPosition.Id);
@@ -416,6 +325,8 @@ namespace Antura.Rewards
 
             if (unlocksAtJP.NewDecal > 0)
                 newlyUnlockedPacks.Add(GetNewRewardPack(RewardBaseType.Decal, UnlockType.Any));
+
+            //UnlockPacks(newlyUnlockedPacks, journeyPosition);
 
             ////////////////////////////////////////////////////
             return newlyUnlockedPacks;

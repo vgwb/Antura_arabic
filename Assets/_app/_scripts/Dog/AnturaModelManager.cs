@@ -61,9 +61,9 @@ namespace Antura.Dog
             public GameObject GO;
         }
 
-        List<LoadedModel> LoadedModels = new List<LoadedModel>();
-        RewardPackUnlockData LoadedTileTexture = new RewardPackUnlockData();
-        RewardPackUnlockData LoadedDecal = new RewardPackUnlockData();
+        private List<LoadedModel> LoadedModels = new List<LoadedModel>();
+        private RewardPack LoadedTexturePack = null;
+        private RewardPack LoadedDecalPack = null;
 
         #region API
 
@@ -73,14 +73,15 @@ namespace Antura.Dog
         /// <param name="_anturaCustomization">The antura customization.</param>
         public void LoadAnturaCustomization(AnturaCustomization _anturaCustomization)
         {
-            ClearLoadedRewards();
-            foreach (var forniture in _anturaCustomization.PropPacks) {
-                LoadRewardPackOnAntura(forniture);
-                ModelsManager.SwitchMaterial(LoadRewardPackOnAntura(forniture), forniture.GetMaterialPair());
+            ClearLoadedRewardPacks();
+            foreach (var propPack in _anturaCustomization.PropPacks)
+            {
+                LoadRewardPackOnAntura(propPack);
+                var matPair = AppManager.I.RewardSystemManager.GetMaterialPairForPack(propPack);
+                ModelsManager.SwitchMaterial(LoadRewardPackOnAntura(propPack), matPair);
             }
             LoadRewardPackOnAntura(_anturaCustomization.TexturePack);
             LoadRewardPackOnAntura(_anturaCustomization.DecalPack);
-            /// - decal
         }
 
         /// <summary>
@@ -90,37 +91,33 @@ namespace Antura.Dog
         public AnturaCustomization SaveAnturaCustomization()
         {
             AnturaCustomization returnCustomization = new AnturaCustomization();
-            foreach (LoadedModel loadedModel in LoadedModels) {
-                RewardPackUnlockData pack = new RewardPackUnlockData() {
-                    ItemId = loadedModel.RewardPack.ItemId,
-                    ColorId = loadedModel.RewardPack.ColorId,
-                    BaseType = RewardBaseType.Prop
-                };
-                returnCustomization.PropPacks.Add(pack);
-                returnCustomization.PropPacksIds.Add(pack.GetIdAccordingToDBRules());
+            foreach (LoadedModel loadedModel in LoadedModels)
+            {
+                returnCustomization.PropPacks.Add(loadedModel.RewardPack);
+                returnCustomization.PropPacksIds.Add(loadedModel.RewardPack.UniqueId);
             }
-            returnCustomization.TexturePack = LoadedTileTexture;
-            returnCustomization.TexturePackId = LoadedTileTexture.GetIdAccordingToDBRules();
-            returnCustomization.DecalPack = LoadedDecal;
-            returnCustomization.DecalPackId = LoadedDecal.GetIdAccordingToDBRules();
+            returnCustomization.TexturePack = LoadedTexturePack;
+            returnCustomization.TexturePackId = LoadedTexturePack.UniqueId;
+            returnCustomization.DecalPack = LoadedDecalPack;
+            returnCustomization.DecalPackId = LoadedDecalPack.UniqueId;
             AppManager.I.Player.SaveAnturaCustomization(returnCustomization);
             return returnCustomization;
         }
 
 
-        public GameObject LoadRewardPackOnAntura(RewardPackUnlockData rewardPackUnlockData)
+        public GameObject LoadRewardPackOnAntura(RewardPack rewardPack)
         {
-            if (rewardPackUnlockData == null) { return null; }
-            switch (rewardPackUnlockData.BaseType) {
+            if (rewardPack == null) { return null; }
+            switch (rewardPack.baseType) {
                 case RewardBaseType.Prop:
-                    return LoadRewardOnAntura(rewardPackUnlockData);
+                    return LoadRewardOnAntura(rewardPack);
                 case RewardBaseType.Texture:
-                    var newMaterial = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemId, rewardPackUnlockData.ColorId);
+                    var newMaterial = MaterialManager.LoadTextureMaterial(rewardPack.baseId, rewardPack.colorId);
                     // Main mesh
                     var mats = SkinnedMesh.sharedMaterials;
                     mats[0] = newMaterial;
                     SkinnedMesh.sharedMaterials = mats;
-                    LoadedTileTexture = rewardPackUnlockData;
+                    LoadedTexturePack = rewardPack;
                     // Sup mesh for texture
                     foreach (var _renderer in SkinnedMeshsTextureOnly) {
                         var materials = _renderer.sharedMaterials;
@@ -141,7 +138,7 @@ namespace Antura.Dog
                         materials[1] = newDecalMaterial;
                         _renderer.sharedMaterials = materials;
                     }
-                    LoadedDecal = rewardPackUnlockData;
+                    LoadedDecalPack = rewardPackUnlockData;
                     break;
                 default:
                     Debug.LogWarningFormat("Reward Type {0} not found!", rewardPackUnlockData.BaseType);
@@ -150,7 +147,7 @@ namespace Antura.Dog
             return null;
         }
 
-        public void ClearLoadedRewards()
+        public void ClearLoadedRewardPacks()
         {
             foreach (var item in LoadedModels) {
                 Destroy(item.GO);
@@ -179,7 +176,7 @@ namespace Antura.Dog
         /// <returns></returns>
         public GameObject SetRewardMaterialColors(GameObject _gameObject, RewardPack rewardPack)
         {
-            var matPair =  AppManager.I.RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(rewardPack.baseId, rewardPack.colorId);
+            var matPair =  AppManager.I.RewardSystemManager.GetMaterialPairForPack(rewardPack);
             ModelsManager.SwitchMaterial(_gameObject, matPair);
             //actualRewardsForCategoryColor.Add()
             return _gameObject;
@@ -230,7 +227,7 @@ namespace Antura.Dog
             }
 
             // Set materials
-            var matPair = AppManager.I.RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(rewardPack.baseId, rewardPack.colorId);
+            var matPair = AppManager.I.RewardSystemManager.GetMaterialPairForPack(rewardPack);
             ModelsManager.SwitchMaterial(rewardModel, matPair);
 
             // Save on LoadedModel List

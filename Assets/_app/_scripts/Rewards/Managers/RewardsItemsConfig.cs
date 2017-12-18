@@ -97,5 +97,10 @@ namespace Antura.Rewards
         }
 
         public RewardPackUnlockData unlockData;
+
+        public override string ToString()
+        {
+            return UniqueId;
+        }
     }
 }

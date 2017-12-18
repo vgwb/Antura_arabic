@@ -87,7 +87,7 @@ namespace Antura.Rewards
         public void ClearLoadedRewardsOnAntura()
         {
             // Clean and Charge antura reward.
-            AnturaModelManager.I.ClearLoadedRewards();
+            AnturaModelManager.I.ClearLoadedRewardPacks();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Antura.Rewards
             if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig)) {
                 return AppManager.I.Player.UnlockedRewardsData.Find(r => r.BaseType == RewardBaseType.Prop);
             } else {
-                RewardPackUnlockData newRewardToInstantiate = AppManager.I.RewardSystemManager.UnlockNewRewardPacks(true)[0];
+                RewardPackUnlockData newRewardToInstantiate = AppManager.I.RewardSystemManager.GenerateRewardPacksForJourneyPosition(true)[0];
                 AppManager.I.Player.AddRewardUnlocked(newRewardToInstantiate);
                 AppManager.I.Player.AdvanceMaxJourneyPosition();
                 return newRewardToInstantiate;

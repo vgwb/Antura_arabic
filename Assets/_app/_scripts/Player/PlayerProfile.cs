@@ -451,6 +451,7 @@ namespace Antura.Profile
         /// <param name="rewardPackUnlockData">The reward pack.</param>
         public void AddRewardUnlocked(RewardPackUnlockData rewardPackUnlockData)
         {
+            // DEPRECATE THIS!!!
             AppManager.I.Player.UnlockedRewardsData.Add(rewardPackUnlockData);
             AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackUnlockData);
         }

@@ -1,5 +1,6 @@
 using Antura.Core;
 using System.Linq;
+using Antura.Helpers;
 using UnityEngine;
 
 namespace Antura.Rewards
@@ -14,26 +15,33 @@ namespace Antura.Rewards
         {
             base.Start();
 
-            // Calculate items to unlock count
-            var itemsToUnlock = AppManager.I.NavigationManager.CalculateUnlockItemCount();
+            // Compute numbers we need to unlock
+            var nItemsToUnlock = AppManager.I.NavigationManager.CalculateUnlockItemCount();
             var earnedStars = AppManager.I.NavigationManager.CalculateStarsCount();
 
-            var oldRewards = AppManager.I.Player.UnlockedRewardsData
-                .Where(ru => ru.GetJourneyPosition().Equals(AppManager.I.Player.CurrentJourneyPosition)).ToList();
-            var itemAlreadyUnlocked = oldRewards.Count;
-            for (var i = 0; i < itemsToUnlock - itemAlreadyUnlocked; i++) {
-                // if necessary add one new random reward unlocked
-                var newRewardToUnlock = AppManager.I.RewardSystemManager.UnlockNewRewardPacks(true)[0];
-                oldRewards.Add(newRewardToUnlock);
-                AppManager.I.Player.AddRewardUnlocked(newRewardToUnlock);
+            var rewardsAlreadyUnlocked = AppManager.I.RewardSystemManager.GetRewardPacksUnlockedInJourneyPosition(AppManager.I.Player.CurrentJourneyPosition).ToList();
+            var nItemsAlreadyUnlocked = rewardsAlreadyUnlocked.Count();
+
+            // TODO: fix this, is it needed?
+            for (var i = 0; i < nItemsToUnlock - nItemsAlreadyUnlocked; i++)
+            {
+                // if necessary, add one new random reward unlocked for that JP
+                var newRewardToUnlock =
+                    AppManager.I.RewardSystemManager.GenerateRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition).RandomSelectOne();
+                rewardsAlreadyUnlocked.Add(newRewardToUnlock);
+               // AppManager.I.Player.AddRewardUnlocked(newRewardToUnlock);
             }
 
             // Show UI result and unlock transform parent where show unlocked items
-            var objs = GameResultUI.ShowEndsessionResult(AppManager.I.NavigationManager.UseEndSessionResults(), itemAlreadyUnlocked);
+            var objs = GameResultUI.ShowEndsessionResult(AppManager.I.NavigationManager.UseEndSessionResults(), nItemsAlreadyUnlocked);
 
-            for (var i = 0; i < objs.Length - oldRewards.Count; i++) {
+            // TODO: fix this, is it needed?
+            for (var i = 0; i < objs.Length - rewardsAlreadyUnlocked.Count; i++)
+            {
                 // if necessary add one new random reward not to be unlocked!
-                oldRewards.Add(AppManager.I.RewardSystemManager.UnlockNewRewardPacks(true)[0]);
+                var newRewardToUnlock =
+                  AppManager.I.RewardSystemManager.GenerateRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition).RandomSelectOne();
+                rewardsAlreadyUnlocked.Add(newRewardToUnlock);
             }
 
             LogManager.I.LogPlaySessionScore(AppManager.I.JourneyHelper.GetCurrentPlaySessionData().Id, earnedStars);
@@ -49,9 +57,9 @@ namespace Antura.Rewards
             }
 
             // for any rewards mount them model on parent transform object (objs)
-            for (int i = 0; i < oldRewards.Count && i < objs.Length; i++) {
-                var matPair = AppManager.I.RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(oldRewards[i].baseId, oldRewards[i].colorId);
-                    ModelsManager.MountModel(oldRewards[i],
+            for (int i = 0; i < rewardsAlreadyUnlocked.Count && i < objs.Length; i++) {
+                var matPair = AppManager.I.RewardSystemManager.GetMaterialPairForPack(rewardsAlreadyUnlocked[i]);
+                    ModelsManager.MountModel(rewardsAlreadyUnlocked[i].baseId,
                     objs[i].transform,
                     matPair
                 );

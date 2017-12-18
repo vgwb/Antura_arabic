@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Antura.Dog
 {
     /// <summary>
-    /// 
+    /// Saved data that defines how Antura is currently customized
     /// </summary>
     [Serializable]
     public class AnturaCustomization
