@@ -24,7 +24,6 @@ namespace Antura.Rewards
         #region Events
 
         public delegate void RewardSystemEventHandler(RewardPack rewardPack);
-
         public static event RewardSystemEventHandler OnRewardChanged;
         public static event RewardSystemEventHandler OnNewRewardUnlocked;
 
@@ -73,6 +72,33 @@ namespace Antura.Rewards
             BuildAllPacks();
         }
 
+        void BuildAllPacks()
+        {
+            rewardPacksDict.Clear();
+            rewardPacksDict[RewardBaseType.Prop] = BuildPacks(RewardBaseType.Prop);
+            rewardPacksDict[RewardBaseType.Decal] = BuildPacks(RewardBaseType.Decal);
+            rewardPacksDict[RewardBaseType.Texture] = BuildPacks(RewardBaseType.Texture);
+        }
+
+        private List<RewardPack> BuildPacks(RewardBaseType baseType)
+        {
+            var bases = ItemsConfig.GetBasesForType(baseType);
+            var colors = ItemsConfig.GetColorsForType(baseType);
+            List<RewardPack> rewardPacks = new List<RewardPack>();
+            foreach (var b in bases)
+            {
+                foreach (var c in colors)
+                {
+                    RewardPack pack = new RewardPack(baseType, b, c);
+                    pack.unlockData = null; // We start with an EMPTY pack
+                    // new RewardPackUnlockData(0, pack.UniqueId, null); // empty RPUD
+                    rewardPacks.Add(pack);
+                }
+            }
+            return rewardPacks;
+        }
+
+
         #region Reward Packs
 
         private Dictionary<RewardBaseType, List< RewardPack>> rewardPacksDict = new Dictionary<RewardBaseType, List<RewardPack>>();
@@ -101,32 +127,6 @@ namespace Antura.Rewards
             foreach (var rewardPack in rewardPacksDict[RewardBaseType.Texture])
                 yield return rewardPack;
         }
-
-        void BuildAllPacks()
-        {
-            rewardPacksDict.Clear();
-            rewardPacksDict[RewardBaseType.Prop] = BuildPacks(RewardBaseType.Prop);
-            rewardPacksDict[RewardBaseType.Decal] = BuildPacks(RewardBaseType.Decal);
-            rewardPacksDict[RewardBaseType.Texture] = BuildPacks(RewardBaseType.Texture);
-        }
-
-        private List<RewardPack> BuildPacks(RewardBaseType baseType)
-        {
-            var bases = ItemsConfig.GetBasesForType(baseType);
-            var colors = ItemsConfig.GetColorsForType(baseType);
-            List<RewardPack> rewardPacks = new List<RewardPack>();
-            foreach (var b in bases)
-            {
-                foreach (var c in colors)
-                {
-                    RewardPack pack = new RewardPack() { BaseId = b.ID, ColorId = c.ID, baseType = baseType};
-                    // TODO: also augment with UnlockData
-                    rewardPacks.Add(pack);
-                }
-            }
-            return rewardPacks;
-        }
-
 
         #endregion
 
@@ -222,7 +222,7 @@ namespace Antura.Rewards
 
         public bool RewardCategoryContainsNewElements(RewardBaseType baseType, string _rewardCategory = "")
         {
-            return GetAllRewardPacks().Any(r => r.baseType == baseType && r.Category == _rewardCategory && r.unlockData.IsNew);
+            return GetAllRewardPacks().Any(r => r.BaseType == baseType && r.Category == _rewardCategory && r.unlockData.IsNew);
         }
 
 
@@ -299,7 +299,7 @@ namespace Antura.Rewards
         /// Return true if all rewards for this JourneyPosition are already unlocked.
         /// </summary>
         /// <param name="_journeyPosition">The journey position.</param>
-        public bool JourneyPositionRewardsAlreadyUnlocked(JourneyPosition journeyPosition)
+        public bool AreJourneyPositionRewardsAlreadyUnlocked(JourneyPosition journeyPosition)
         {
             return GetAllRewardPacks().Any(p => p.unlockData.GetJourneyPosition().Equals(journeyPosition));
         }
@@ -342,7 +342,7 @@ namespace Antura.Rewards
             //if (JourneyPositionRewardsAlreadyUnlocked(journeyPosition) && !_forceToReturnReward)
             //     return newlyUnlockedPacks;
 
-            // What kind of reward it is?
+            // What kind of reward is it?
             RewardUnlocksAtJourneyPosition unlocksAtJP = ItemsConfig.PlaySessionRewardsUnlock.Find(r => r.JourneyPositionID == journeyPosition.Id);
             if (unlocksAtJP == null)
             {
@@ -352,7 +352,7 @@ namespace Antura.Rewards
             // Check numbers and base types
             for (int i = 0; i < unlocksAtJP.NewPropBase; i++)
                 newlyUnlockedPacks.Add(GetNewRewardPack(RewardBaseType.Prop, UnlockType.NewBase));
-            //if (OnNewRewardUnlocked != null)  OnNewRewardUnlocked(newItemReward);
+            //TODO: if (OnNewRewardUnlocked != null)  OnNewRewardUnlocked(newItemReward);
 
             for (int i = 0; i < unlocksAtJP.NewPropColor; i++)
                 newlyUnlockedPacks.Add(GetNewRewardPack(RewardBaseType.Prop, UnlockType.NewColor));
@@ -481,7 +481,6 @@ namespace Antura.Rewards
 
             }
 
-            //var rpud = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, newUnlockedPack.UniqueId, journeyPosition);
             return newUnlockedPack;
         }
 
@@ -565,7 +564,8 @@ namespace Antura.Rewards
         #region Customization (i.e. UI, selection, view)
 
         // used during customization
-        private RewardPack CurrentSelectedReward = new RewardPack();
+        // TODO: instead of creating a new reward pack, get just the correct ID and move that around
+        private RewardPack CurrentSelectedReward = null;
 
         // TODO:
         /// <summary>
@@ -804,7 +804,8 @@ namespace Antura.Rewards
         /// <param name="rewardBaseType">Type of the reward.</param>
         public void SelectRewardColorItem(string _rewardColorItemId)
         {
-            CurrentSelectedReward.ColorId = _rewardColorItemId;
+            // TODO: 
+            // CurrentSelectedReward.ColorId = _rewardColorItemId;
             if (OnRewardChanged != null)
                 OnRewardChanged(CurrentSelectedReward);
         }

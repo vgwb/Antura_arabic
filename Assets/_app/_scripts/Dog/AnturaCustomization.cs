@@ -18,11 +18,11 @@ namespace Antura.Dog
         public List<string> PropPacksIds = new List<string>();
 
         [NonSerialized]
-        public RewardPack TexturePack = new RewardPack();
+        public RewardPack TexturePack = null;
         public string TexturePackId = null;
 
         [NonSerialized]
-        public RewardPack DecalPack = new RewardPack();
+        public RewardPack DecalPack =  null;
         public string DecalPackId = null;
 
         /// <summary>

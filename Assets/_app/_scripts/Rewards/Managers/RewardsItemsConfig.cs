@@ -87,34 +87,30 @@ namespace Antura.Rewards
     [Serializable]
     public class RewardPack
     {
-        public string BaseId;
-        public string ColorId;
-        public RewardBaseType baseType;
+        public RewardBaseType BaseType;
 
-        private RewardBase rewardBase;
-        private RewardColor rewardColor;
+        public RewardBase RewardBase;
+        public string BaseId {  get { return RewardBase.ID; } }
+
+        public RewardColor RewardColor;
+        public string ColorId{  get { return RewardColor.ID; } }
+
+        public RewardPack(RewardBaseType baseType, RewardBase rewardBase, RewardColor rewardColor)
+        {
+            this.BaseType = baseType;
+            this.RewardBase = rewardBase;
+            this.RewardColor = rewardColor;
+        }
 
         public string Category
         {
-          get {return ""; }  // TODO: get from rewardBase
+            get
+            {
+                var prop = RewardBase as RewardProp;
+                if (prop != null) return prop.Category;
+                return "";
+            } 
         }
-
-        // TODO:
-        /*
-        public string GetRewardCategory(RewardPack rewardPack)
-        {
-            /*if (BaseType != RewardBaseType.Prop) {
-                return string.Empty;
-            }*/
-        /*   RewardProp reward = ItemsConfig.PropBases.Find(r => r.ID == rewardPack.BaseId);
-           if (reward != null)
-           {
-               return reward.Category;
-           }
-           return string.Empty;
-       }*/
-
-
 
         public string UniqueId
         {

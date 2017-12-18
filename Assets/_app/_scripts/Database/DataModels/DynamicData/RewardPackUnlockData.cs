@@ -75,7 +75,6 @@ namespace Antura.Database
         {
             AppSession = appSession;
             Id = packId;
-            //Id = GetIdAccordingToDBRules();
             Stage = journeyPosition.Stage;
             LearningBlock = journeyPosition.LearningBlock;
             PlaySession = journeyPosition.PlaySession;

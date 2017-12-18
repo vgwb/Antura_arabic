@@ -42,7 +42,7 @@ namespace Antura.Dog
         void Awake()
         {
             I = this;
-            ChargeCategoryList();
+            LoadCategoryList();
         }
 
         void Start()
@@ -108,9 +108,9 @@ namespace Antura.Dog
         public GameObject LoadRewardPackOnAntura(RewardPack rewardPack)
         {
             if (rewardPack == null) { return null; }
-            switch (rewardPack.baseType) {
+            switch (rewardPack.BaseType) {
                 case RewardBaseType.Prop:
-                    return LoadRewardOnAntura(rewardPack);
+                    return LoadRewardPropOnAntura(rewardPack);
                 case RewardBaseType.Texture:
                     var newMaterial = MaterialManager.LoadTextureMaterial(rewardPack.BaseId, rewardPack.ColorId);
                     // Main mesh
@@ -140,7 +140,7 @@ namespace Antura.Dog
                     LoadedDecalPack = rewardPack;
                     break;
                 default:
-                    Debug.LogWarningFormat("Reward Type {0} not found!", rewardPack.baseType);
+                    Debug.LogWarningFormat("Reward Type {0} not found!", rewardPack.BaseType);
                     break;
             }
             return null;
@@ -186,15 +186,15 @@ namespace Antura.Dog
         /// </summary>
         /// <param name="rewardPackUnlockData">The identifier.</param>
         /// <returns></returns>
-        public GameObject LoadRewardOnAntura(RewardPack rewardPack)
+        public GameObject LoadRewardPropOnAntura(RewardPack rewardPack)
         {
-            RewardProp prop = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Find(r => r.ID == rewardPack.BaseId);
+            RewardProp prop = rewardPack.RewardBase as RewardProp;
             if (prop == null) {
                 Debug.LogFormat("Prop {0} not found!", rewardPack.BaseId);
                 return null;
             }
 
-            // Check if already loaded reward of this category
+            // Check if we already loaded a reward of this category
             LoadedModel loadedModel = LoadedModels.Find(lm => lm.RewardPack.Category == prop.Category);
             if (loadedModel != null) {
                 Destroy(loadedModel.GO);
@@ -246,10 +246,12 @@ namespace Antura.Dog
         /// <summary>
         /// Charges the category list.
         /// </summary>
-        private void ChargeCategoryList()
+        private void LoadCategoryList()
         {
-            foreach (var reward in AppManager.I.RewardSystemManager.ItemsConfig.PropBases) {
-                if (!categoryList.Contains(reward.Category)) {
+            foreach (var reward in AppManager.I.RewardSystemManager.ItemsConfig.PropBases)
+            {
+                if (!categoryList.Contains(reward.Category))
+                {
                     categoryList.Add(reward.Category);
                 }
             }
