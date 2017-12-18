@@ -465,7 +465,7 @@ namespace Antura.Profile
         public void SetGameCompleted()
         {
             ProfileCompletion = ProfileCompletionState.GameCompleted;
-            AppManager.I.StartCoroutine(AppManager.I.RewardSystemManager.UnlockAllMissingRewards());
+            AppManager.I.RewardSystemManager.UnlockAllMissingRewardPacks();
             CheckGameFinished();
             Save();
         }

@@ -279,7 +279,7 @@ namespace Antura.Debugging
 
         public void UnlockAllRewards()
         {
-            AppManager.I.RewardSystemManager.UnlockAllRewards();
+            AppManager.I.RewardSystemManager.UnlockAllRewardPacks();
         }
 
         #endregion

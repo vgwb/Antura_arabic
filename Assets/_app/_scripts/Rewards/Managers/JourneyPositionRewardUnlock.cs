@@ -3,7 +3,7 @@ using System;
 namespace Antura.Rewards
 {
     [Serializable]
-    public class RewardUnlocksAtJourneyPosition
+    public class JourneyPositionRewardUnlock
     {
         // JP at which the following data is unlocked
         public string JourneyPositionID;

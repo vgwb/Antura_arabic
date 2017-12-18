@@ -10,7 +10,7 @@ namespace Antura.Rewards
     [Serializable]
     public class RewardsUnlocksConfig
     {
-        public List<RewardUnlocksAtJourneyPosition> PlaySessionRewardsUnlock; 
+        public List<JourneyPositionRewardUnlock> JourneyPositionsUnlocks; 
     }
 
 
@@ -115,6 +115,19 @@ namespace Antura.Rewards
         public string UniqueId
         {
             get { return BaseId + "_" + ColorId; }
+        }
+
+        public bool IsLocked
+        {
+            get
+            {
+                if (unlockData == null) return true;
+                return unlockData.IsLocked;
+            }
+        }
+        public bool IsUnlocked
+        {
+            get { return !IsLocked; }
         }
 
         public RewardPackUnlockData unlockData;

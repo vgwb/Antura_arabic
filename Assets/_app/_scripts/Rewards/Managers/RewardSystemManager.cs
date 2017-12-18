@@ -19,6 +19,8 @@ namespace Antura.Rewards
 
     public class RewardSystemManager
     {
+        private const bool VERBOSE = true;
+
         private const string ANTURA_REWARDS_PARTS_CONFIG_PATH = "Configs/AnturaRewardsPartsConfig";
         private const string ANTURA_REWARDS_UNLOCKS_CONFIG_PATH = "Configs/AnturaRewardsUnlocksConfig";
         //public const string COLOR_PAIRS_CONFIG_PATH = "Configs/" + "ColorPairs";
@@ -61,10 +63,21 @@ namespace Antura.Rewards
             TextAsset partsConfigData = Resources.Load(ANTURA_REWARDS_PARTS_CONFIG_PATH) as TextAsset;
             partsConfig = JsonUtility.FromJson<RewardPartsConfig>(partsConfigData.text);
 
+            BuildAllPacks(partsConfig);
+
             TextAsset unlocksConfigData = Resources.Load(ANTURA_REWARDS_UNLOCKS_CONFIG_PATH) as TextAsset;
             unlocksConfig = JsonUtility.FromJson<RewardsUnlocksConfig>(unlocksConfigData.text);
 
-            BuildAllPacks(partsConfig);
+            if (VERBOSE)
+            {
+                string s = "Unlock data:";
+                foreach (var jpUnlock in unlocksConfig.JourneyPositionsUnlocks)
+                {
+                    s += "\n" + jpUnlock.JourneyPositionID + ": " + jpUnlock.NewPropBase + "," + jpUnlock.NewPropColor +
+                         "," + jpUnlock.NewDecal + "," + jpUnlock.NewTexture;
+                }
+                Debug.Log(s);
+            }
         }
 
         void BuildAllPacks(RewardPartsConfig partsConfig)
@@ -74,11 +87,12 @@ namespace Antura.Rewards
             rewardPacksDict[RewardBaseType.Texture] = BuildPacks(partsConfig, RewardBaseType.Texture);
             rewardPacksDict[RewardBaseType.Decal] = BuildPacks(partsConfig, RewardBaseType.Decal);
 
-            Debug.Log("Total packs built: " 
-                + "\n " + RewardBaseType.Prop + ": " +  + rewardPacksDict[RewardBaseType.Prop].Count
-                + "\n " + RewardBaseType.Texture + ": " + +rewardPacksDict[RewardBaseType.Texture].Count
-                + "\n " + RewardBaseType.Decal + ": " + +rewardPacksDict[RewardBaseType.Decal].Count
-                );
+            if (VERBOSE)
+                Debug.Log("Total packs built: " 
+                    + "\n " + RewardBaseType.Prop + ": " +  + rewardPacksDict[RewardBaseType.Prop].Count
+                    + "\n " + RewardBaseType.Texture + ": " + +rewardPacksDict[RewardBaseType.Texture].Count
+                    + "\n " + RewardBaseType.Decal + ": " + +rewardPacksDict[RewardBaseType.Decal].Count
+                    );
         }
 
         private List<RewardPack> BuildPacks(RewardPartsConfig partsConfig, RewardBaseType baseType)
@@ -86,7 +100,8 @@ namespace Antura.Rewards
             var bases = partsConfig.GetBasesForType(baseType);
             var colors = partsConfig.GetColorsForType(baseType);
 
-            Debug.Log("Building packs for " + baseType
+            if (VERBOSE)
+                Debug.Log("Building packs for " + baseType
                 + "\n Bases: " + bases.Count() + " Colors: " + colors.Count());
 
             List<RewardPack> rewardPacks = new List<RewardPack>();
@@ -208,7 +223,7 @@ namespace Antura.Rewards
                 var id = unlockData.Id;
                 var pack = GetRewardPackByUniqueId(id);
                 if (pack == null)
-                    Debug.LogError("Cannot find pack with id " + id);
+                    Debug.LogError("Cannot find pack with id " + id + ": RewardPackUnlockData out of sync?");
                 else
                     pack.unlockData = unlockData;
             }
@@ -244,12 +259,6 @@ namespace Antura.Rewards
         public bool RewardCategoryContainsNewElements(RewardBaseType baseType, string _rewardCategory = "")
         {
             return GetAllRewardPacks().Any(r => r.BaseType == baseType && r.Category == _rewardCategory && r.unlockData.IsNew);
-        }
-
-
-        public bool IsRewardPackAlreadyUnlocked(RewardPack pack)
-        {
-            return !pack.unlockData.IsLocked;
         }
 
         /// <summary>
@@ -305,27 +314,35 @@ namespace Antura.Rewards
 
         public void UnlockPack(RewardPack pack, JourneyPosition jp)
         {
+            if (pack.unlockData != null)
+                throw new Exception("Pack " + pack + " is already unlocked! Cannot unlock again");
+
+            if (pack.unlockData == null)
+                pack.unlockData = new RewardPackUnlockData(LogManager.I.AppSession, pack.UniqueId, jp);
             pack.unlockData.SetJourneyPosition(jp);
             pack.unlockData.IsLocked = false;
+            pack.unlockData.IsNew = true;
             // TODO: save it too? (trigger it after this where we call this for optimization)
+
+            if (VERBOSE) Debug.Log("Unlocked pack " + pack);
         }
 
         // this unlocks ALL rewards that have not been unlocked yet
-        public IEnumerator UnlockAllMissingRewards()
+        public void UnlockAllMissingRewardPacks()
         {
             JourneyPosition extraRewardJP = new JourneyPosition(100, 100, 100);
 
             UnlockPacks(GetLockedRewardPacks(RewardBaseType.Prop), extraRewardJP);
             UnlockPacks(GetLockedRewardPacks(RewardBaseType.Decal), extraRewardJP);
             UnlockPacks(GetLockedRewardPacks(RewardBaseType.Texture), extraRewardJP);
-            // TODO: save in the profile too
-            yield return null;
+
+            SaveRewardsUnlockDataChanges();
         }
 
         /// <summary>
         /// Unlocks all rewards in the game.
         /// </summary>
-        public void UnlockAllRewards()
+        public void UnlockAllRewardPacks()
         {
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++)
@@ -336,7 +353,9 @@ namespace Antura.Rewards
             }
 
             Debug.LogFormat("Unlocking also all extra rewards!");
-            AppManager.I.StartCoroutine(UnlockAllMissingRewards());
+            UnlockAllMissingRewardPacks();
+
+            SaveRewardsUnlockDataChanges();
         }
 
         public List<RewardPack> UnlockRewardPacksForJourneyPosition(JourneyPosition journeyPosition)
@@ -362,10 +381,10 @@ namespace Antura.Rewards
             //     return newlyUnlockedPacks;
 
             // What kind of reward is it?
-            RewardUnlocksAtJourneyPosition unlocksAtJP = unlocksConfig.PlaySessionRewardsUnlock.Find(r => r.JourneyPositionID == journeyPosition.Id);
+            JourneyPositionRewardUnlock unlocksAtJP = unlocksConfig.JourneyPositionsUnlocks.Find(r => r.JourneyPositionID == journeyPosition.Id);
             if (unlocksAtJP == null)
             {
-                Debug.LogErrorFormat("Unable to find reward type for this playsession {0}", journeyPosition);
+                Debug.LogErrorFormat("Unable to find reward unlocks for JourneyPositions {0}", journeyPosition);
             }
 
             // Check numbers and base types
@@ -390,25 +409,25 @@ namespace Antura.Rewards
 
         public List<RewardPack> GetUnlockedRewardPacks()
         {
-            var unlockedPacks = GetAllRewardPacks().Where(IsRewardPackAlreadyUnlocked);
+            var unlockedPacks = GetAllRewardPacks().Where(p => p.IsUnlocked);
             return unlockedPacks.ToList();
         }
         public List<RewardPack> GetUnlockedRewardPacks(RewardBaseType baseType)
         {
             var packsOfBase = rewardPacksDict[baseType];
-            var unlockedPacks = packsOfBase.Where(IsRewardPackAlreadyUnlocked);
+            var unlockedPacks = packsOfBase.Where(p => p.IsUnlocked);
             return unlockedPacks.ToList();
         }
 
         public List<RewardPack> GetLockedRewardPacks()
         {
-            var lockedPacks = GetAllRewardPacks().Where(x => !IsRewardPackAlreadyUnlocked(x));
+            var lockedPacks = GetAllRewardPacks().Where(p => p.IsLocked);
             return lockedPacks.ToList();
         }
         public List<RewardPack> GetLockedRewardPacks(RewardBaseType baseType)
         {
             var packsOfBase = rewardPacksDict[baseType];
-            var lockedPacks = packsOfBase.Where(x => !IsRewardPackAlreadyUnlocked(x));
+            var lockedPacks = packsOfBase.Where(p => p.IsLocked);
             return lockedPacks.ToList();
         }
 
@@ -429,7 +448,7 @@ namespace Antura.Rewards
         List<RewardBase> GetUnlockedRewardBases(RewardBaseType baseType)
         {
             var packsOfBase = rewardPacksDict[baseType];
-            var unlockedPacksOfBase = packsOfBase.Where(IsRewardPackAlreadyUnlocked);
+            var unlockedPacksOfBase = packsOfBase.Where(p => p.IsUnlocked);
             var allBases = GetBasesOfType(baseType);
 
             HashSet<RewardBase> unlockedBases = new HashSet<RewardBase>();
