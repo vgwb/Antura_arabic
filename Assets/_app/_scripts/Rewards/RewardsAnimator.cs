@@ -47,8 +47,8 @@ namespace Antura.Rewards
             // Reward 
             rewardsSceneController = GetComponent<RewardsScene>();
             rewardsSceneController.ClearLoadedRewardsOnAntura();
-            rewardPack = rewardsSceneController.GetRewardToInstantiate();
-            rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPack.GetRewardCategory());
+            rewardPack = rewardsSceneController.GetRewardPackToInstantiate();
+            rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPack.Category);
             newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPack);
 
             if (newRewardInstantiatedGO) {
