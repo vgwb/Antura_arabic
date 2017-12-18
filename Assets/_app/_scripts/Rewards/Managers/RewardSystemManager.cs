@@ -79,7 +79,12 @@ namespace Antura.Rewards
 
         private Dictionary<RewardBaseType, List< RewardPack>> rewardPacksDict = new Dictionary<RewardBaseType, List<RewardPack>>();
 
-        public RewardPack GetRewardPack(string baseId, string colorId)
+        public RewardPack GetRewardPackByUniqueId(string uniqueId)
+        {
+            return GetAllRewardPacks().FirstOrDefault(p => p.UniqueId == uniqueId);
+        }
+
+        public RewardPack GetRewardPackByPartsIds(string baseId, string colorId)
         {
             return GetAllRewardPacks().FirstOrDefault(p => p.baseId == baseId && p.colorId == colorId);
         }
@@ -576,11 +581,11 @@ namespace Antura.Rewards
                     rp = GetNewRewardPack(baseType, UnlockType.NewBase);
                     break;
                 case RewardBaseType.Texture:
-                    rp = GetRewardPack("Antura_wool_tilemat","color1");
+                    rp = GetRewardPackByPartsIds("Antura_wool_tilemat","color1");
                     //rp.IsNew = false; // Because is automatically selected
                     break;
                 case RewardBaseType.Decal:
-                    rp = GetRewardPack("Antura_decalmap01", "color1");
+                    rp = GetRewardPackByPartsIds("Antura_decalmap01", "color1");
                     //rp.IsNew = false; // Because is automatically selected
                     break;
             }
@@ -594,27 +599,44 @@ namespace Antura.Rewards
         // used during customization
         private RewardPackUnlockData CurrentSelectedReward = new RewardPackUnlockData();
 
-        // OK
+        public string GetRewardCategory(RewardPack rewardPack)
+        {
+            /*if (BaseType != RewardBaseType.Prop) {
+                return string.Empty;
+            }*/
+            RewardProp reward = ItemsConfig.PropBases.Find(r => r.ID == rewardPack.baseId);
+            if (reward != null)
+            {
+                return reward.Category;
+            }
+            return string.Empty;
+        }
+
+        // TODO:
         /// <summary>
         /// Gets the reward items by rewardType (always 9 items, if not presente item in the return list is null).
         /// </summary>
-        /// <param name="rewardBaseType">Type of the reward.</param>
+        /// <param name="baseType">Type of the reward.</param>
         /// <param name="_parentsTransForModels">The parents trans for models.</param>
         /// <param name="_categoryRewardId">The category reward identifier.</param>
         /// <returns></returns>
-        public List<RewardItem> GetRewardItemsByRewardType(RewardBaseType rewardBaseType, List<Transform> _parentsTransForModels,
+        public List<RewardItem> GetRewardItemsByRewardType(RewardBaseType baseType, List<Transform> _parentsTransForModels,
             string _categoryRewardId = "")
         {
             List<RewardItem> returnList = new List<RewardItem>();
             /// TODO: logic
             /// - Load returnList by type and category checking unlocked and if exist active one
-            switch (rewardBaseType) {
+            switch (baseType) {
                 case RewardBaseType.Prop:
                     // Filter from unlocked elements (only items with this category and only one for itemID)
                     List<RewardProp> rewards = ItemsConfig.GetClone().PropBases;
-                    foreach (var item in rewards.FindAll(r => r.Category == _categoryRewardId)) {
-                        if (AppManager.I.Player.UnlockedRewardsData.FindAll(ur => ur.GetRewardCategory() == _categoryRewardId)
-                            .Exists(ur => ur.ItemId == item.ID)) {
+                    foreach (var item in rewards.FindAll(r => r.Category == _categoryRewardId))
+                    {
+                        //var rewardPack = GetRewardPackByUniqueId(r.ItemId);
+                        var unlockedPacks = GetUnlockedRewardPacks(baseType);
+
+                        if (unlockedPacks.FindAll(pack => GetRewardCategory(pack) == _categoryRewardId)
+                            .Exists(pack => pack.UniqueId == item.ID)) {
                             returnList.Add(new RewardItem() {
                                 ID = item.ID,
                                 IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
@@ -678,7 +700,7 @@ namespace Antura.Rewards
                     }
                     break;
                 default:
-                    Debug.LogWarningFormat("Reward typology requested {0} not found", rewardBaseType);
+                    Debug.LogWarningFormat("Reward typology requested {0} not found", baseType);
                     break;
             }
 

@@ -14,19 +14,16 @@ namespace Antura.Dog
     public class AnturaCustomization
     {
         [NonSerialized]
-        public List<RewardPackUnlockData> Fornitures = new List<RewardPackUnlockData>();
-
-        public List<string> FornituresIds = new List<string>();
-
-        [NonSerialized]
-        public RewardPackUnlockData TileTexture = new RewardPackUnlockData();
-
-        public string TileTextureId = null;
+        public List<RewardPack> PropPacks = new List<RewardPack>();
+        public List<string> PropPacksIds = new List<string>();
 
         [NonSerialized]
-        public RewardPackUnlockData DecalTexture = new RewardPackUnlockData();
+        public RewardPack TexturePack = new RewardPack();
+        public string TexturePackId = null;
 
-        public string DecalTextureId = null;
+        [NonSerialized]
+        public RewardPack DecalPack = new RewardPack();
+        public string DecalPackId = null;
 
         /// <summary>
         /// Loads all rewards in "this" object instance from list of reward ids.
@@ -38,37 +35,37 @@ namespace Antura.Dog
                 Debug.Log("No default reward already created. Unable to load customization now");
                 return;
             }
-            List<RewardPackUnlockData> unlocked = AppManager.I.Player.RewardsUnlocked;
+
             AnturaCustomization tmp = JsonUtility.FromJson<AnturaCustomization>(_listOfIdsAsJsonString);
             if (tmp != null) {
-                FornituresIds = tmp.FornituresIds;
-                TileTextureId = tmp.TileTextureId;
-                DecalTextureId = tmp.DecalTextureId;
-            }
-            if (string.IsNullOrEmpty(TileTextureId)) {
-                RewardPackUnlockData defaultTileTexturePack = unlocked.Find(r => r.Type == RewardTypes.texture);
-                TileTextureId = defaultTileTexturePack.GetIdAccordingToDBRules();
-            }
-            if (string.IsNullOrEmpty(DecalTextureId)) {
-                RewardPackUnlockData defaultDecalTexturePack = unlocked.Find(r => r.Type == RewardTypes.decal);
-                DecalTextureId = defaultDecalTexturePack.GetIdAccordingToDBRules();
-            }
-            Fornitures = new List<RewardPackUnlockData>();
-            foreach (string itemId in FornituresIds) {
-                // Load Fornitures for any id from db
-                RewardPackUnlockData pack = unlocked.Find(r => r.Id == itemId);
-                Fornitures.Add(pack);
+                PropPacksIds = tmp.PropPacksIds;
+                TexturePackId = tmp.TexturePackId;
+                DecalPackId = tmp.DecalPackId;
             }
 
-            // Load TileTexture from TileTextureId
-            if (TileTextureId != null) {
-                TileTexture = unlocked.Find(r => r.Id == TileTextureId);
+            var rewardSystem = AppManager.I.RewardSystemManager;
+
+            if (string.IsNullOrEmpty(TexturePackId))
+            {
+                RewardPack defaultTileTexturePack = rewardSystem.GetRewardPacksOfType(RewardBaseType.Texture)[0];
+                TexturePackId = defaultTileTexturePack.UniqueId;
+            }
+            if (string.IsNullOrEmpty(DecalPackId))
+            {
+                RewardPack defaultDecalTexturePack = rewardSystem.GetRewardPacksOfType(RewardBaseType.Decal)[0];
+                DecalPackId = defaultDecalTexturePack.UniqueId;
             }
 
-            // Load DecalTexture from DecalTextureId
-            if (DecalTextureId != null) {
-                DecalTexture = unlocked.Find(r => r.Id == DecalTextureId);
+            // Load correct packs from IDs
+            PropPacks = new List<RewardPack>();
+            foreach (string propPackId in PropPacksIds)
+            {
+                var pack = rewardSystem.GetRewardPackByUniqueId(propPackId);
+                PropPacks.Add(pack);
             }
+
+            TexturePack = rewardSystem.GetRewardPackByUniqueId(TexturePackId);
+            DecalPack = rewardSystem.GetRewardPackByUniqueId(DecalPackId);
         }
 
         /// <summary>

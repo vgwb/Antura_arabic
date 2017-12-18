@@ -27,27 +27,6 @@ namespace Antura.Database
         /// </summary>
         public int AppSession { get; set; }
 
-        /*
-        #region Reward Keys
-
-        /// <summary>
-        /// Part of the keys used to define the complete reward.
-        /// </summary>
-        public string ItemId { get; set; }
-
-        /// <summary>
-        /// Part of the keys used to define the complete reward.
-        /// </summary>
-        public string ColorId { get; set; }
-
-        /// <summary>
-        /// Part of the keys used to define the complete reward.
-        /// </summary>
-        public RewardBaseType BaseType { get; set; }
-
-        #endregion
-        */
-
         /// <summary>
         /// Stage at which the reward data has been unlocked.
         /// </summary>
@@ -107,31 +86,7 @@ namespace Antura.Database
         }
 
         #region Rewards API
-
-        public MaterialPair GetMaterialPair()
-        {
-            return AppManager.I.RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(ItemId, ColorId);
-        }
-
-        public RewardProp GetReward()
-        {
-            /*if (BaseType != RewardBaseType.Prop) {
-                return null;
-            }*/
-            return AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Find(r => r.ID == ItemId);
-        }
-
-        public string GetRewardCategory()
-        {
-            /*if (BaseType != RewardBaseType.Prop) {
-                return string.Empty;
-            }*/
-            RewardProp reward = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Find(r => r.ID == ItemId);
-            if (reward != null) {
-                return reward.Category;
-            }
-            return string.Empty;
-        }
+        
 
         public JourneyPosition GetJourneyPosition()
         {
@@ -160,7 +115,7 @@ namespace Antura.Database
 
         public override string ToString()
         {
-            return string.Format("{0} : {1} [{2}] [{3}]", ItemId, ColorId, BaseType, PlaySession);
+            return string.Format("{0} : [{1}]", Id, PlaySession);
         }
 
         #endregion
