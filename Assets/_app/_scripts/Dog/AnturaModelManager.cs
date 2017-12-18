@@ -42,7 +42,7 @@ namespace Antura.Dog
         void Awake()
         {
             I = this;
-            chargeCategoryList();
+            ChargeCategoryList();
         }
 
         void Start()
@@ -112,7 +112,7 @@ namespace Antura.Dog
                 case RewardBaseType.Prop:
                     return LoadRewardOnAntura(rewardPack);
                 case RewardBaseType.Texture:
-                    var newMaterial = MaterialManager.LoadTextureMaterial(rewardPack.baseId, rewardPack.colorId);
+                    var newMaterial = MaterialManager.LoadTextureMaterial(rewardPack.BaseId, rewardPack.ColorId);
                     // Main mesh
                     var mats = SkinnedMesh.sharedMaterials;
                     mats[0] = newMaterial;
@@ -126,8 +126,7 @@ namespace Antura.Dog
                     }
                     break;
                 case RewardBaseType.Decal:
-                    Material newDecalMaterial =
-                        MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemId, rewardPackUnlockData.ColorId);
+                    Material newDecalMaterial = MaterialManager.LoadTextureMaterial(rewardPack.BaseId, rewardPack.ColorId);
                     // Main mesh
                     Material[] decalMats = SkinnedMesh.sharedMaterials;
                     decalMats[1] = newDecalMaterial;
@@ -138,10 +137,10 @@ namespace Antura.Dog
                         materials[1] = newDecalMaterial;
                         _renderer.sharedMaterials = materials;
                     }
-                    LoadedDecalPack = rewardPackUnlockData;
+                    LoadedDecalPack = rewardPack;
                     break;
                 default:
-                    Debug.LogWarningFormat("Reward Type {0} not found!", rewardPackUnlockData.BaseType);
+                    Debug.LogWarningFormat("Reward Type {0} not found!", rewardPack.baseType);
                     break;
             }
             return null;
@@ -161,7 +160,7 @@ namespace Antura.Dog
         /// <param name="_categoryId">The category identifier.</param>
         public void ClearLoadedRewardInCategory(string _categoryId)
         {
-            LoadedModel lm = LoadedModels.Find(m => m.RewardPack.GetRewardCategory() == _categoryId);
+            LoadedModel lm = LoadedModels.Find(m => m.RewardPack.Category == _categoryId);
             if (lm != null) {
                 Destroy(lm.GO);
                 LoadedModels.Remove(lm);
@@ -189,14 +188,14 @@ namespace Antura.Dog
         /// <returns></returns>
         public GameObject LoadRewardOnAntura(RewardPack rewardPack)
         {
-            RewardProp prop = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Find(r => r.ID == rewardPack.baseId);
+            RewardProp prop = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Find(r => r.ID == rewardPack.BaseId);
             if (prop == null) {
-                Debug.LogFormat("Prop {0} not found!", rewardPack.baseId);
+                Debug.LogFormat("Prop {0} not found!", rewardPack.BaseId);
                 return null;
             }
 
             // Check if already loaded reward of this category
-            LoadedModel loadedModel = LoadedModels.Find(lm => lm.RewardPack.GetRewardCategory() == prop.Category);
+            LoadedModel loadedModel = LoadedModels.Find(lm => lm.RewardPack.Category == prop.Category);
             if (loadedModel != null) {
                 Destroy(loadedModel.GO);
                 LoadedModels.Remove(loadedModel);
@@ -247,7 +246,7 @@ namespace Antura.Dog
         /// <summary>
         /// Charges the category list.
         /// </summary>
-        private void chargeCategoryList()
+        private void ChargeCategoryList()
         {
             foreach (var reward in AppManager.I.RewardSystemManager.ItemsConfig.PropBases) {
                 if (!categoryList.Contains(reward.Category)) {
@@ -271,10 +270,12 @@ namespace Antura.Dog
             LoadAnturaCustomization(AppManager.I.Player.CurrentAnturaCustomizations);
         }
 
-        private void RewardSystemManager_OnRewardItemChanged(RewardPackUnlockData rewardPackUnlockData)
+        private void RewardSystemManager_OnRewardItemChanged(RewardPack rewardPack)
         {
-            LoadRewardPackOnAntura(rewardPackUnlockData);
-            AppManager.I.Player.SetRewardPackUnlockedToNotNew(rewardPackUnlockData.GetIdAccordingToDBRules());
+            LoadRewardPackOnAntura(rewardPack);
+            rewardPack.unlockData.IsNew = false;
+            // TODO: Save Packs
+            //AppManager.I.Player.SetRewardPackUnlockedToNotNew(rewardPack.UniqueId);
             SaveAnturaCustomization();
         }
 

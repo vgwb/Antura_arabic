@@ -87,13 +87,21 @@ namespace Antura.Rewards
     [Serializable]
     public class RewardPack
     {
-        public string baseId;
-        public string colorId;
+        public string BaseId;
+        public string ColorId;
         public RewardBaseType baseType;
+
+        private RewardBase rewardBase;
+        private RewardColor rewardColor;
+
+        public string Category
+        {
+          get {return ""; }  // TODO: get from rewardBase
+        }
 
         public string UniqueId
         {
-            get { return baseId + "_" + colorId; }
+            get { return BaseId + "_" + ColorId; }
         }
 
         public RewardPackUnlockData unlockData;

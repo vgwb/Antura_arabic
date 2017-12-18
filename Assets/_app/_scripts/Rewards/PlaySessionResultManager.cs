@@ -59,7 +59,7 @@ namespace Antura.Rewards
             // for any rewards mount them model on parent transform object (objs)
             for (int i = 0; i < rewardsAlreadyUnlocked.Count && i < objs.Length; i++) {
                 var matPair = AppManager.I.RewardSystemManager.GetMaterialPairForPack(rewardsAlreadyUnlocked[i]);
-                    ModelsManager.MountModel(rewardsAlreadyUnlocked[i].baseId,
+                    ModelsManager.MountModel(rewardsAlreadyUnlocked[i].BaseId,
                     objs[i].transform,
                     matPair
                 );

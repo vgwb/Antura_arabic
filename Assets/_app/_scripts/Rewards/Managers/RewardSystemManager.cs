@@ -24,10 +24,9 @@ namespace Antura.Rewards
 
         #region Events
 
-        public delegate void RewardSystemEventHandler(RewardPackUnlockData rewardPackUnlockData);
+        public delegate void RewardSystemEventHandler(RewardPack rewardPack);
 
         public static event RewardSystemEventHandler OnRewardChanged;
-
         public static event RewardSystemEventHandler OnNewRewardUnlocked;
 
         #endregion
@@ -86,7 +85,7 @@ namespace Antura.Rewards
 
         public RewardPack GetRewardPackByPartsIds(string baseId, string colorId)
         {
-            return GetAllRewardPacks().FirstOrDefault(p => p.baseId == baseId && p.colorId == colorId);
+            return GetAllRewardPacks().FirstOrDefault(p => p.BaseId == baseId && p.ColorId == colorId);
         }
 
         public List<RewardPack> GetRewardPacksOfType(RewardBaseType baseType)
@@ -121,7 +120,7 @@ namespace Antura.Rewards
             {
                 foreach (var c in colors)
                 {
-                    RewardPack pack = new RewardPack() { baseId = b.ID, colorId = c.ID, baseType = baseType};
+                    RewardPack pack = new RewardPack() { BaseId = b.ID, ColorId = c.ID, baseType = baseType};
                     // TODO: also augment with UnlockData
                     rewardPacks.Add(pack);
                 }
@@ -175,8 +174,8 @@ namespace Antura.Rewards
         /// <returns></returns>
         public MaterialPair GetMaterialPairForPack(RewardPack pack)
         {
-            RewardProp prop = ItemsConfig.PropBases.Find(c => c.ID == pack.baseId);
-            RewardColor color = ItemsConfig.PropColors.Find(c => c.ID == pack.colorId);
+            RewardProp prop = ItemsConfig.PropBases.Find(c => c.ID == pack.BaseId);
+            RewardColor color = ItemsConfig.PropColors.Find(c => c.ID == pack.ColorId);
             if (color == null || prop == null)
             {
                 return new MaterialPair();
@@ -368,7 +367,7 @@ namespace Antura.Rewards
             HashSet<RewardBase> unlockedBases = new HashSet<RewardBase>();
             foreach (var rewardPack in unlockedPacksOfBase)
             {
-                var rewardBase = allBases.First(x => x.ID == rewardPack.baseId);
+                var rewardBase = allBases.First(x => x.ID == rewardPack.BaseId);
                 if (rewardBase != null)
                 {
                     unlockedBases.Add(rewardBase);
@@ -402,7 +401,7 @@ namespace Antura.Rewards
                     var lockedBases = GetLockedRewardBases(baseType);
                     var newBase = lockedBases.RandomSelectOne();
                     var lockedPacks = GetLockedRewardPacks(baseType);
-                    var lockedPacksOfNewBase = lockedPacks.Where(x => x.baseId == newBase.ID).ToList();
+                    var lockedPacksOfNewBase = lockedPacks.Where(x => x.BaseId == newBase.ID).ToList();
                     newUnlockedPack = lockedPacksOfNewBase.RandomSelectOne();
                 }
                     break;
@@ -413,7 +412,7 @@ namespace Antura.Rewards
                     var oldBase = unlockedBases.RandomSelectOne();
                     // TODO: select only those that have colors to be unlocked!
                     var lockedPacks = GetLockedRewardPacks(baseType);
-                    var lockedPacksOfOldBase = lockedPacks.Where(x => x.baseId == oldBase.ID).ToList();
+                    var lockedPacksOfOldBase = lockedPacks.Where(x => x.BaseId == oldBase.ID).ToList();
                     if (lockedPacksOfOldBase.Count == 0)
                         throw new NullReferenceException(
                             "We do not have enough rewards to get a new color for an old base of type " + baseType);
@@ -452,24 +451,32 @@ namespace Antura.Rewards
             }
 
             // TODO: add the JP and isNew=false too
+            var zeroJP = new JourneyPosition(0, 0, 0);
 
-            var defaultProp = GetFirstAnturaReward(RewardBaseType.Prop);
+            var propPack = GetFirstAnturaReward(RewardBaseType.Prop);
+            UnlockPack(propPack, zeroJP);
             _player.ResetUnlockedRewardsData();
-            _player.AddRewardUnlocked(defaultProp);    // 1 prop
+            //_player.AddRewardUnlocked(defaultProp);    // 1 prop
 
             // decal
-            RewardPack defaultDecal = GetFirstAnturaReward(RewardBaseType.Decal);    // 1 decal
-            _player.AddRewardUnlocked(defaultDecal);
+            var decalPack = GetFirstAnturaReward(RewardBaseType.Decal);    // 1 decal
+            UnlockPack(decalPack, zeroJP);
+            // _player.AddRewardUnlocked(defaultDecal);
+
             // force to to wear decal
-            _player.CurrentAnturaCustomizations.DecalPack = defaultDecal;
-            _player.CurrentAnturaCustomizations.DecalPackId = defaultDecal.UniqueId;
+            _player.CurrentAnturaCustomizations.DecalPack = decalPack;
+            _player.CurrentAnturaCustomizations.DecalPackId = decalPack.UniqueId;
 
             // texture
-            RewardPack defaultTexture = GetFirstAnturaReward(RewardBaseType.Texture);    // 1 texture
-            _player.AddRewardUnlocked(defaultTexture);
+            var texturePack = GetFirstAnturaReward(RewardBaseType.Texture);    // 1 texture
+            UnlockPack(texturePack, zeroJP);
+            //_player.AddRewardUnlocked(texturePack);
             // force to to wear texture
-            _player.CurrentAnturaCustomizations.TexturePack = defaultTexture;
-            _player.CurrentAnturaCustomizations.TexturePack.Id = defaultTexture.UniqueId;
+            _player.CurrentAnturaCustomizations.TexturePack = texturePack;
+            _player.CurrentAnturaCustomizations.TexturePackId = texturePack.UniqueId;
+
+            // TODO:
+           // _player.SaveUnlockData();
 
             // Add all 3 rewards
             //_player.AddRewardUnlockedAll();
@@ -515,7 +522,7 @@ namespace Antura.Rewards
             /*if (BaseType != RewardBaseType.Prop) {
                 return string.Empty;
             }*/
-            RewardProp reward = ItemsConfig.PropBases.Find(r => r.ID == rewardPack.baseId);
+            RewardProp reward = ItemsConfig.PropBases.Find(r => r.ID == rewardPack.BaseId);
             if (reward != null)
             {
                 return reward.Category;

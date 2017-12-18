@@ -425,7 +425,7 @@ namespace Antura.Profile
             }
         }
 
-        /// <summary>
+        /*/// <summary>
         /// Mark RewardPackUnlockData as not new and update db entry.
         /// </summary>
         public void SetRewardPackUnlockedToNotNew(string _rewardPackId)
@@ -435,7 +435,7 @@ namespace Antura.Profile
                 rewardPackToUpdate.IsNew = false;
             }
             AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackToUpdate);
-        }
+        }*/
 
         /// <summary>
         /// Delete all reward unlocks from the Dynamic DB.
