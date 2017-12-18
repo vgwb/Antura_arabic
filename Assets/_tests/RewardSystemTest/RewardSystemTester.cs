@@ -7,6 +7,33 @@ namespace Antura.Test.Rewards
     public class RewardSystemTester : MonoBehaviour
     {
 
+        [DeMethodButton("Print Unlocks")]
+        void PrintCurrentUnlocks()
+        {
+            string s = ("We unlocked " + AppManager.I.RewardSystemManager.GetUnlockedRewardsCount());
+            foreach (var unlockedRewardPack in AppManager.I.RewardSystemManager.GetUnlockedRewardPacks())
+            {
+                s += ("\n- " + unlockedRewardPack);
+            }
+            Debug.Log(s);
+        }
+
+        [DeMethodButton("Reset Unlocks")]
+        void ResetUnlocks()
+        {
+            AppManager.I.RewardSystemManager.ResetRewardsUnlockData();
+            Debug.Log("Unlocks reset!");
+        }
+
+        [DeMethodButton("Load Unlocks")]
+        void LoadUnlocks()
+        {
+            AppManager.I.Player.LoadRewardPackUnlockDataList();
+            Debug.Log("Unlocks loaded!");
+        }
+
+
+
         [DeMethodButton("Unlock First Set")]
         void UnlockFirstSet()
         {

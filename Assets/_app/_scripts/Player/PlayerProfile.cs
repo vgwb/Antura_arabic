@@ -276,16 +276,6 @@ namespace Antura.Profile
 
         private List<RewardPackUnlockData> _rewardPackUnlockDataList = new List<RewardPackUnlockData>();
 
-        /*public List<RewardPackUnlockData> RewardPackUnlockDataList   
-        {
-            get {
-                return _rewardPackUnlockDataList;
-            }
-
-            private set { _rewardPackUnlockDataList = value; }
-        }*/
-
-
         /// <summary>
         /// Resets the rewards unlocked data.
         /// </summary>

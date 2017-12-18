@@ -237,6 +237,19 @@ namespace Antura.Rewards
             AppManager.I.Player.SaveRewardPackUnlockDataList();
         }
 
+        /// <summary>
+        /// Called to reset the state of unlocked rewards.
+        /// </summary>
+        public void ResetRewardsUnlockData()
+        {
+            AppManager.I.Player.ResetRewardPackUnlockData();
+
+            foreach (var pack in GetAllRewardPacks())
+            {
+                pack.unlockData = null;
+            }
+        }
+
         #endregion
 
         #region Checks
@@ -360,6 +373,11 @@ namespace Antura.Rewards
 
         public List<RewardPack> UnlockRewardPacksForJourneyPosition(JourneyPosition journeyPosition)
         {
+            if (AreJourneyPositionRewardsAlreadyUnlocked(journeyPosition))
+            {
+                Debug.Log("We already unlocked rewards for JP " + journeyPosition);
+                return null;
+            }
             var packs = GenerateRewardPacksForJourneyPosition(journeyPosition);
             UnlockPacks(packs, journeyPosition);
             return packs;
@@ -470,6 +488,8 @@ namespace Antura.Rewards
         /// <param name="baseType">Type of the reward.</param>
         private RewardPack GetNewRewardPack(RewardBaseType baseType, RewardUnlockMethod unlockMethod)
         {
+            // TODO: also force category for RewardBase
+
             RewardPack newRewardPack = null;
 
             switch (unlockMethod)
@@ -538,28 +558,32 @@ namespace Antura.Rewards
                 return;
             }
 
-            // TODO: add the JP and isNew=false too
             var zeroJP = new JourneyPosition(0, 0, 0);
+            if (AreJourneyPositionRewardsAlreadyUnlocked(zeroJP))
+            {
+                Debug.LogError("Already unlocked first set!");
+                return;
+            }
 
-            //_player.ResetUnlockedRewardsData();
-
+            // 1 prop
             var propPack = GetFirstAnturaReward(RewardBaseType.Prop);
             UnlockPack(propPack, zeroJP);
-            //_player.AddRewardUnlocked(defaultProp);    // 1 prop
+            propPack.unlockData.IsNew = false;
 
-            // decal
-            var decalPack = GetFirstAnturaReward(RewardBaseType.Decal);    // 1 decal
+            // 1 decal
+            var decalPack = GetFirstAnturaReward(RewardBaseType.Decal); 
             UnlockPack(decalPack, zeroJP);
-            // _player.AddRewardUnlocked(defaultDecal);
+            propPack.unlockData.IsNew = false;
 
             // force to to wear decal
             _player.CurrentAnturaCustomizations.DecalPack = decalPack;
             _player.CurrentAnturaCustomizations.DecalPackId = decalPack.UniqueId;
 
-            // texture
-            var texturePack = GetFirstAnturaReward(RewardBaseType.Texture);    // 1 texture
+            // 1 texture
+            var texturePack = GetFirstAnturaReward(RewardBaseType.Texture);
             UnlockPack(texturePack, zeroJP);
-            //_player.AddRewardUnlocked(texturePack);
+            propPack.unlockData.IsNew = false;
+
             // force to to wear texture
             _player.CurrentAnturaCustomizations.TexturePack = texturePack;
             _player.CurrentAnturaCustomizations.TexturePackId = texturePack.UniqueId;
@@ -576,7 +600,7 @@ namespace Antura.Rewards
         /// <param name="baseType">Type of the reward.</param>
         private RewardPack GetFirstAnturaReward(RewardBaseType baseType)
         {
-            // this returns the DEFAULT rewards for one of the three types
+            // this returns the first rewards for one of the three types
             RewardPack rp = null;
             switch (baseType)
             {
@@ -585,11 +609,9 @@ namespace Antura.Rewards
                     break;
                 case RewardBaseType.Texture:
                     rp = GetRewardPackByPartsIds("Antura_wool_tilemat","color1");
-                    //rp.IsNew = false; // Because is automatically selected
                     break;
                 case RewardBaseType.Decal:
                     rp = GetRewardPackByPartsIds("Antura_decalmap01", "color1");
-                    //rp.IsNew = false; // Because is automatically selected
                     break;
             }
             return rp;
