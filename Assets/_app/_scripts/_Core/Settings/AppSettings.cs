@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Antura.Profile;
+﻿using Antura.Profile;
+using System.Collections.Generic;
 using UnityEngine.Serialization;
 
 namespace Antura.Core
 {
     /// <summary>
-    /// Defines settings that must be saved locally.
+    /// Defines app settings that must be saved locally.
     /// </summary>
     [System.Serializable]
     public class AppSettings
@@ -20,6 +20,8 @@ namespace Antura.Core
         public bool EnglishSubtitles = true;
 
         public bool MusicOn = true;
+
+        public bool OnlineAnalytics;
 
         // we save the current AppVersion maybe we should compare when installing updated versions
         public string ApplicationVersion;
