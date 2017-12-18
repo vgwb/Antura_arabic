@@ -8,7 +8,7 @@ namespace Antura.Minigames.Egg
     {
         LetterName = MiniGameCode.Egg_lettername,
         LetterPhoneme = MiniGameCode.Egg_letterphoneme,
-        Sequence = MiniGameCode.Egg_sequence
+        BuildWord = MiniGameCode.Egg_buildword
     }
 
     public class EggConfiguration : AbstractGameConfiguration
@@ -41,7 +41,7 @@ namespace Antura.Minigames.Egg
             Difficulty = 0.1f;
             Variation = EggVariation.LetterName;
 
-            if (Variation == EggVariation.Sequence)
+            if (Variation == EggVariation.BuildWord)
             {
                 Questions = new SampleEggSequenceQuestionProvider();
             }
@@ -68,8 +68,9 @@ namespace Antura.Minigames.Egg
                 case EggVariation.LetterName:
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
-                case EggVariation.Sequence:
-                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+                case EggVariation.BuildWord:
+                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong: nWrong, useAllCorrectLetters: true,
+                        parameters: builderParams);
                     break;
                 case EggVariation.LetterPhoneme:
                     builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, 3, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters_OneForm);
@@ -99,7 +100,7 @@ namespace Antura.Minigames.Egg
                     case EggVariation.LetterName:
                     case EggVariation.LetterPhoneme:
                         return LocalizationDataId.Egg_letters_Title;
-                    case EggVariation.Sequence:
+                    case EggVariation.BuildWord:
                         return LocalizationDataId.Egg_sequence_Title;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -114,7 +115,7 @@ namespace Antura.Minigames.Egg
                 case EggVariation.LetterName:
                 case EggVariation.LetterPhoneme:
                     return true;
-                case EggVariation.Sequence:
+                case EggVariation.BuildWord:
                     return false;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -128,7 +129,7 @@ namespace Antura.Minigames.Egg
                 case EggVariation.LetterName:
                 case EggVariation.LetterPhoneme:
                     return false;
-                case EggVariation.Sequence:
+                case EggVariation.BuildWord:
                     return true;
                 default:
                     throw new ArgumentOutOfRangeException();

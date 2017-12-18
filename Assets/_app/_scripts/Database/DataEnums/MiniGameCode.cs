@@ -19,7 +19,7 @@
         DancingDots_letterany = 36,  // NEW
         Egg_lettername = 11,
         Egg_letterphoneme = 37, // NEW
-        Egg_sequence = 34,
+        Egg_buildword = 34,
         FastCrowd_alphabet = 12, // DISABLED
         FastCrowd_counting = 13,
         FastCrowd_lettername = 14,
