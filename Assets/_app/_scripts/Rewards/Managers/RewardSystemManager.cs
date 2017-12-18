@@ -364,7 +364,8 @@ namespace Antura.Rewards
             {
                 var jp = AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id);
                 var packs = UnlockRewardPacksForJourneyPosition(jp);
-                Debug.LogFormat("Unlocked rewards for playsession {0} : {1}", jp, packs.Count);
+                if (packs != null)
+                    Debug.LogFormat("Unlocked rewards for playsession {0} : {1}", jp, packs.Count);
             }
 
             Debug.LogFormat("Unlocking also all extra rewards!");
@@ -405,6 +406,7 @@ namespace Antura.Rewards
             if (unlocksAtJP == null)
             {
                 Debug.LogErrorFormat("Unable to find reward unlocks for JourneyPositions {0}", journeyPosition);
+                return newlyUnlockedPacks;
             }
 
             // Check numbers and base types
