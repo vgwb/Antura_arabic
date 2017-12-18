@@ -18,12 +18,12 @@ namespace Antura.Rewards
             var itemsToUnlock = AppManager.I.NavigationManager.CalculateUnlockItemCount();
             var earnedStars = AppManager.I.NavigationManager.CalculateStarsCount();
 
-            var oldRewards = AppManager.I.Player.RewardsUnlocked
+            var oldRewards = AppManager.I.Player.UnlockedRewardsData
                 .Where(ru => ru.GetJourneyPosition().Equals(AppManager.I.Player.CurrentJourneyPosition)).ToList();
             var itemAlreadyUnlocked = oldRewards.Count;
             for (var i = 0; i < itemsToUnlock - itemAlreadyUnlocked; i++) {
                 // if necessary add one new random reward unlocked
-                var newRewardToUnlock = AppManager.I.RewardSystemManager.GetNextRewardPack(true)[0];
+                var newRewardToUnlock = AppManager.I.RewardSystemManager.UnlockNewRewardPacks(true)[0];
                 oldRewards.Add(newRewardToUnlock);
                 AppManager.I.Player.AddRewardUnlocked(newRewardToUnlock);
             }
@@ -33,7 +33,7 @@ namespace Antura.Rewards
 
             for (var i = 0; i < objs.Length - oldRewards.Count; i++) {
                 // if necessary add one new random reward not to be unlocked!
-                oldRewards.Add(AppManager.I.RewardSystemManager.GetNextRewardPack(true)[0]);
+                oldRewards.Add(AppManager.I.RewardSystemManager.UnlockNewRewardPacks(true)[0]);
             }
 
             LogManager.I.LogPlaySessionScore(AppManager.I.JourneyHelper.GetCurrentPlaySessionData().Id, earnedStars);

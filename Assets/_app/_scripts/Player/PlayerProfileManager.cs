@@ -39,7 +39,7 @@ namespace Antura.Profile
 
                         AppManager.I.FirstContactManager.InitialiseForCurrentPlayer(_currentPlayer.CurrentFirstContactPhase);
 
-                        _currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
+                        _currentPlayer.LoadUnlockedRewardsData(); // refresh list of unlocked rewards
                         _currentPlayer.SetCurrentJourneyPosition(_currentPlayer.MaxJourneyPosition);
                         if (OnProfileChanged != null) {
                             OnProfileChanged();

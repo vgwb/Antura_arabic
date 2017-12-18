@@ -1,7 +1,6 @@
 using Antura.Core;
 using Antura.Helpers;
 using Antura.Rewards;
-using Antura.Tutorial;
 using SQLite;
 
 namespace Antura.Database
@@ -28,6 +27,7 @@ namespace Antura.Database
         /// </summary>
         public int AppSession { get; set; }
 
+        /*
         #region Reward Keys
 
         /// <summary>
@@ -43,9 +43,10 @@ namespace Antura.Database
         /// <summary>
         /// Part of the keys used to define the complete reward.
         /// </summary>
-        public RewardTypes Type { get; set; }
+        public RewardBaseType BaseType { get; set; }
 
         #endregion
+        */
 
         /// <summary>
         /// Stage at which the reward data has been unlocked.
@@ -91,13 +92,11 @@ namespace Antura.Database
         {
         }
 
-        public RewardPackUnlockData(int appSession, string itemId, string colorId, RewardTypes type, JourneyPosition journeyPosition)
+        public RewardPackUnlockData(int appSession, string packId, JourneyPosition journeyPosition)
         {
             AppSession = appSession;
-            ItemId = itemId;
-            ColorId = colorId;
-            Type = type;
-            Id = GetIdAccordingToDBRules();
+            Id = packId;
+            //Id = GetIdAccordingToDBRules();
             Stage = journeyPosition.Stage;
             LearningBlock = journeyPosition.LearningBlock;
             PlaySession = journeyPosition.PlaySession;
@@ -105,11 +104,6 @@ namespace Antura.Database
             IsNew = true;
             IsLocked = true;
             Timestamp = GenericHelper.GetTimestampForNow();
-        }
-
-        public string GetIdAccordingToDBRules()
-        {
-            return ItemId + "." + ColorId + "." + Type;
         }
 
         #region Rewards API
@@ -121,17 +115,17 @@ namespace Antura.Database
 
         public RewardProp GetReward()
         {
-            if (Type != RewardTypes.reward) {
+            /*if (BaseType != RewardBaseType.Prop) {
                 return null;
-            }
+            }*/
             return AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Find(r => r.ID == ItemId);
         }
 
         public string GetRewardCategory()
         {
-            if (Type != RewardTypes.reward) {
+            /*if (BaseType != RewardBaseType.Prop) {
                 return string.Empty;
-            }
+            }*/
             RewardProp reward = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Find(r => r.ID == ItemId);
             if (reward != null) {
                 return reward.Category;
@@ -144,6 +138,12 @@ namespace Antura.Database
             return new JourneyPosition(Stage, LearningBlock, PlaySession);
         }
 
+        public void SetJourneyPosition(JourneyPosition jp)
+        {
+            Stage = jp.Stage;
+            LearningBlock = jp.LearningBlock;
+            PlaySession = jp.PlaySession;
+        }
         #endregion
 
         #region Database API
@@ -160,9 +160,10 @@ namespace Antura.Database
 
         public override string ToString()
         {
-            return string.Format("{0} : {1} [{2}] [{3}]", ItemId, ColorId, Type, PlaySession);
+            return string.Format("{0} : {1} [{2}] [{3}]", ItemId, ColorId, BaseType, PlaySession);
         }
 
         #endregion
+
     }
 }

@@ -640,7 +640,7 @@ namespace Antura.Database
             exportDbService.ExportEnum<PlaySkill>();
             exportDbService.ExportEnum<PlayEvent>();
             exportDbService.ExportEnum<PlaySessionDataOrder>();
-            exportDbService.ExportEnum<RewardDataCategory>();
+            //exportDbService.ExportEnum<RewardDataCategory>();
             exportDbService.ExportEnum<VocabularyDataGender>();
             exportDbService.ExportEnum<VocabularyDataType>();
             exportDbService.ExportEnum<WordDataArticle>();

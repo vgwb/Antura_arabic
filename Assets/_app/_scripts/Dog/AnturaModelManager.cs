@@ -74,12 +74,12 @@ namespace Antura.Dog
         public void LoadAnturaCustomization(AnturaCustomization _anturaCustomization)
         {
             ClearLoadedRewards();
-            foreach (var forniture in _anturaCustomization.Fornitures) {
+            foreach (var forniture in _anturaCustomization.PropPacks) {
                 LoadRewardPackOnAntura(forniture);
                 ModelsManager.SwitchMaterial(LoadRewardPackOnAntura(forniture), forniture.GetMaterialPair());
             }
-            LoadRewardPackOnAntura(_anturaCustomization.TileTexture);
-            LoadRewardPackOnAntura(_anturaCustomization.DecalTexture);
+            LoadRewardPackOnAntura(_anturaCustomization.TexturePacks);
+            LoadRewardPackOnAntura(_anturaCustomization.DecalPacks);
             /// - decal
         }
 
@@ -94,14 +94,14 @@ namespace Antura.Dog
                 RewardPackUnlockData pack = new RewardPackUnlockData() {
                     ItemId = loadedModel.Reward.ItemId,
                     ColorId = loadedModel.Reward.ColorId,
-                    Type = RewardTypes.reward
+                    BaseType = RewardBaseType.Prop
                 };
-                returnCustomization.Fornitures.Add(pack);
+                returnCustomization.PropPacks.Add(pack);
                 returnCustomization.FornituresIds.Add(pack.GetIdAccordingToDBRules());
             }
-            returnCustomization.TileTexture = LoadedTileTexture;
+            returnCustomization.TexturePacks = LoadedTileTexture;
             returnCustomization.TileTextureId = LoadedTileTexture.GetIdAccordingToDBRules();
-            returnCustomization.DecalTexture = LoadedDecal;
+            returnCustomization.DecalPacks = LoadedDecal;
             returnCustomization.DecalTextureId = LoadedDecal.GetIdAccordingToDBRules();
             AppManager.I.Player.SaveAnturaCustomization(returnCustomization);
             return returnCustomization;
@@ -111,10 +111,10 @@ namespace Antura.Dog
         public GameObject LoadRewardPackOnAntura(RewardPackUnlockData rewardPackUnlockData)
         {
             if (rewardPackUnlockData == null) { return null; }
-            switch (rewardPackUnlockData.Type) {
-                case RewardTypes.reward:
+            switch (rewardPackUnlockData.BaseType) {
+                case RewardBaseType.Prop:
                     return LoadRewardOnAntura(rewardPackUnlockData);
-                case RewardTypes.texture:
+                case RewardBaseType.Texture:
                     var newMaterial = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemId, rewardPackUnlockData.ColorId);
                     // Main mesh
                     var mats = SkinnedMesh.sharedMaterials;
@@ -128,7 +128,7 @@ namespace Antura.Dog
                         _renderer.sharedMaterials = materials;
                     }
                     break;
-                case RewardTypes.decal:
+                case RewardBaseType.Decal:
                     Material newDecalMaterial =
                         MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemId, rewardPackUnlockData.ColorId);
                     // Main mesh
@@ -144,7 +144,7 @@ namespace Antura.Dog
                     LoadedDecal = rewardPackUnlockData;
                     break;
                 default:
-                    Debug.LogWarningFormat("Reward Type {0} not found!", rewardPackUnlockData.Type);
+                    Debug.LogWarningFormat("Reward Type {0} not found!", rewardPackUnlockData.BaseType);
                     break;
             }
             return null;

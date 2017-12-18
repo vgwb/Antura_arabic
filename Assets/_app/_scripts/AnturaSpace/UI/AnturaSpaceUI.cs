@@ -61,7 +61,7 @@ namespace Antura.AnturaSpace.UI
         AnturaSpaceSwatchButton[] btsSwatches;
         List<Transform> rewardsContainers;
         List<Transform> rewardsImagesContainers; // Passed with texture and decal reward types
-        RewardTypes currRewardType;
+        RewardBaseType _currRewardBaseType;
         List<RewardItem> currRewardDatas;
         List<RewardColorItem> currSwatchesDatas;
         AnturaSpaceCategoryButton.AnturaSpaceCategory currCategory;
@@ -311,7 +311,7 @@ namespace Antura.AnturaSpace.UI
 
             // Get rewards list
             currCategory = _category;
-            currRewardType = CategoryToRewardType(_category);
+            _currRewardBaseType = CategoryToRewardType(_category);
             bool useImages = _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture ||
                              _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
             foreach (var item in btsItems) {
@@ -351,7 +351,7 @@ namespace Antura.AnturaSpace.UI
                 return;
             }
 
-            currSwatchesDatas = AppManager.I.RewardSystemManager.SelectRewardItem(_rewardData.ID, currRewardType);
+            currSwatchesDatas = AppManager.I.RewardSystemManager.SelectRewardItem(_rewardData.ID, _currRewardBaseType);
             if (currSwatchesDatas.Count == 0) {
                 Debug.Log("No color swatches for the selected reward!");
                 return;
@@ -398,7 +398,7 @@ namespace Antura.AnturaSpace.UI
                 item.Toggle(item.Data == _colorData);
             }
             if (_colorData != null) {
-                AppManager.I.RewardSystemManager.SelectRewardColorItem(_colorData.ID, currRewardType);
+                AppManager.I.RewardSystemManager.SelectRewardColorItem(_colorData.ID, _currRewardBaseType);
             } else {
                 Debug.Log("SelectSwatch > _colorData is NULL!");
             }
@@ -409,12 +409,12 @@ namespace Antura.AnturaSpace.UI
             bool useImages = currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture ||
                              currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
             if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
-                currRewardDatas = AppManager.I.RewardSystemManager.GetRewardItemsByRewardType(currRewardType, rewardsContainers, "EAR_L");
+                currRewardDatas = AppManager.I.RewardSystemManager.GetRewardItemsByRewardType(_currRewardBaseType, rewardsContainers, "EAR_L");
                 List<Transform> altRewardContainers = new List<Transform>(rewardsContainers);
                 altRewardContainers.RemoveRange(0, currRewardDatas.Count);
-                currRewardDatas.AddRange(AppManager.I.RewardSystemManager.GetRewardItemsByRewardType(currRewardType, altRewardContainers, "EAR_R"));
+                currRewardDatas.AddRange(AppManager.I.RewardSystemManager.GetRewardItemsByRewardType(_currRewardBaseType, altRewardContainers, "EAR_R"));
             } else {
-                currRewardDatas = AppManager.I.RewardSystemManager.GetRewardItemsByRewardType(currRewardType,
+                currRewardDatas = AppManager.I.RewardSystemManager.GetRewardItemsByRewardType(_currRewardBaseType,
                     useImages ? rewardsImagesContainers : rewardsContainers, currCategory.ToString());
             }
         }
@@ -479,15 +479,15 @@ namespace Antura.AnturaSpace.UI
 
         #region Helpers
 
-        RewardTypes CategoryToRewardType(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
+        RewardBaseType CategoryToRewardType(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
             switch (_category) {
                 case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
-                    return RewardTypes.texture;
+                    return RewardBaseType.Texture;
                 case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
-                    return RewardTypes.decal;
+                    return RewardBaseType.Decal;
                 default:
-                    return RewardTypes.reward;
+                    return RewardBaseType.Prop;
             }
         }
 

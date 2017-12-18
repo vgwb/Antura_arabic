@@ -162,7 +162,7 @@ namespace Antura.Rewards
         private void RewardSystemManager_OnRewardChanged(Database.RewardPackUnlockData _rewardPackUnlockData)
         {
             rewardPackUnlockData = _rewardPackUnlockData;
-            if (rewardPackUnlockData.Type == RewardTypes.reward) {
+            if (rewardPackUnlockData.BaseType == RewardBaseType.Prop) {
                 RewardProp r = rewardPackUnlockData.GetReward();
                 rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(r.Category);
             }

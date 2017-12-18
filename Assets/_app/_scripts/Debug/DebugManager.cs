@@ -271,7 +271,7 @@ namespace Antura.Debugging
 
         public void UnlockNextPlaySessionRewards()
         {
-            foreach (RewardPackUnlockData pack in AppManager.I.RewardSystemManager.GetNextRewardPack()) {
+            foreach (RewardPackUnlockData pack in AppManager.I.RewardSystemManager.UnlockNewRewardPacks()) {
                 AppManager.I.Player.AddRewardUnlocked(pack);
                 Debug.LogFormat("Pack added: {0}", pack.ToString());
             }

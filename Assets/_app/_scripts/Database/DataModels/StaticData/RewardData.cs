@@ -27,13 +27,13 @@ namespace Antura.Database
         [SerializeField]
         private string _Title;
 
-        public RewardDataCategory Category
+        /*public RewardDataCategory Category
         {
             get { return _Category; }
             set { _Category = value; }
         }
         [SerializeField]
-        private RewardDataCategory _Category;
+        private RewardDataCategory _Category;*/
 
         public int Weight
         {

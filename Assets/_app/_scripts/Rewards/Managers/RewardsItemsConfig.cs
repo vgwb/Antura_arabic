@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Antura.Database;
 
 namespace Antura.Rewards
 {
@@ -9,7 +10,7 @@ namespace Antura.Rewards
     [Serializable]
     public class RewardsUnlocksConfig
     {
-        public List<PlaySessionRewardUnlock> PlaySessionRewardsUnlock; 
+        public List<RewardUnlocksAtJourneyPosition> PlaySessionRewardsUnlock; 
     }
 
 
@@ -34,12 +35,67 @@ namespace Antura.Rewards
         public List<RewardTexture> TextureBases;            // tiled texture
         public List<RewardColor> TextureColors;      // tiled texture color
 
+
+        public IEnumerable<RewardBase> GetBasesForType(RewardBaseType type) 
+        {
+            switch (type)
+            {
+                case RewardBaseType.Prop:
+                    foreach (var b in PropBases) yield return b;
+                    break;
+                case RewardBaseType.Decal:
+                    foreach (var b in DecalBases) yield return b;
+                    break;
+                case RewardBaseType.Texture:
+                    foreach (var b in TextureBases) yield return b;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("type", type, null);
+            }
+        }
+
+        public IEnumerable<RewardColor> GetColorsForType(RewardBaseType type)
+        {
+            switch (type)
+            {
+                case RewardBaseType.Prop:
+                    foreach (var col in PropColors) yield return col;
+                    break;
+                case RewardBaseType.Decal:
+                    foreach (var col in DecalColors) yield return col;
+                    break;
+                case RewardBaseType.Texture:
+                    foreach (var col in TextureColors) yield return col;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("type", type, null);
+            }
+        }
+
         // TODO: separate from the above stuff
-        public List<PlaySessionRewardUnlock> PlaySessionRewardsUnlock;  // unlocks at which PS?
+        public List<RewardUnlocksAtJourneyPosition> PlaySessionRewardsUnlock;  // unlocks at which PS?
 
         public RewardsItemsConfig GetClone()
         {
             return MemberwiseClone() as RewardsItemsConfig;
         }
+    }
+
+    /// <summary>
+    /// A single reward pack (i.e. an effective rewards that can be obtained)
+    /// </summary>
+    [Serializable]
+    public class RewardPack
+    {
+        public string baseId;
+        public string colorId;
+        public RewardBaseType baseType;
+
+        public string UniqueId
+        {
+            get { return baseId + "_" + colorId; }
+        }
+
+        public RewardPackUnlockData unlockData;
     }
 }

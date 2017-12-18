@@ -6,13 +6,13 @@ namespace Antura.Rewards
     /// A single piece of reward.
     /// </summary>
     [Serializable]
-    public class RewardData
+    public class RewardBase
     {
         public string ID;
     }
 
     [Serializable]
-    public class RewardProp : RewardData
+    public class RewardProp : RewardBase
     {
         public string RewardName;
         public string BoneAttach;
@@ -22,12 +22,12 @@ namespace Antura.Rewards
     }
 
     [Serializable]
-    public class RewardDecal : RewardData
+    public class RewardDecal : RewardBase
     {
     }
 
     [Serializable]
-    public class RewardTexture : RewardData 
+    public class RewardTexture : RewardBase 
     {
     }
 }
