@@ -5,6 +5,8 @@ namespace Antura.Rewards
 {
     public static class ModelsManager
     {
+        public const string ANTURA_REWARDS_PREFABS_PATH = "Prefabs/Rewards/";
+
         #region API
 
         public static GameObject MountModel(string _id, Transform _parent, ModelType _type = ModelType.AnturaForniture)
@@ -53,7 +55,7 @@ namespace Antura.Rewards
             string resourceToLoadPath;
             switch (_type) {
                 case ModelType.AnturaForniture:
-                    resourceToLoadPath = RewardSystemManager.ANTURA_REWARDS_PREFABS_PATH;
+                    resourceToLoadPath = ANTURA_REWARDS_PREFABS_PATH;
                     break;
                 default:
                     return null;

@@ -94,7 +94,7 @@ namespace Antura.AnturaSpace.UI
             btsCategories = CategoriesContainer.GetComponentsInChildren<AnturaSpaceCategoryButton>(true);
             btsSwatches = SwatchesContainer.GetComponentsInChildren<AnturaSpaceSwatchButton>(true);
             SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
-            BtOpenModsPanel.SetAsNew(AppManager.I.Player.ThereIsSomeNewReward());
+            BtOpenModsPanel.SetAsNew(AppManager.I.RewardSystemManager.ThereIsSomeNewReward());
 
 
             // Create items
@@ -214,7 +214,7 @@ namespace Antura.AnturaSpace.UI
                     onEnterCustomization();
                 }
             } else {
-                BtOpenModsPanel.SetAsNew(AppManager.I.Player.ThereIsSomeNewReward());
+                BtOpenModsPanel.SetAsNew(AppManager.I.RewardSystemManager.ThereIsSomeNewReward());
                 SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
                 showCategoriesTween.PlayBackwards();
                 showItemsTween.PlayBackwards();
@@ -398,7 +398,7 @@ namespace Antura.AnturaSpace.UI
                 item.Toggle(item.Data == _colorData);
             }
             if (_colorData != null) {
-                AppManager.I.RewardSystemManager.SelectRewardColorItem(_colorData.ID, _currRewardBaseType);
+                AppManager.I.RewardSystemManager.SelectRewardColorItem(_colorData.ID);
             } else {
                 Debug.Log("SelectSwatch > _colorData is NULL!");
             }

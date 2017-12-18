@@ -272,158 +272,107 @@ namespace Antura.Profile
             }
         }
 
-        #region Already unlocked rewards
+        #region Data for unlocked rewards
 
-        private List<RewardPackUnlockData> _unlockedRewardsData;
+        private List<RewardPackUnlockData> _rewardPackUnlockDataList = new List<RewardPackUnlockData>();
 
-        public List<RewardPackUnlockData> UnlockedRewardsData   // list of all the rewards that have been already unlocked
+        public List<RewardPackUnlockData> RewardPackUnlockDataList   
         {
             get {
-                if (_unlockedRewardsData == null) {
-                    _unlockedRewardsData = LoadUnlockedRewardsData();
-                }
-                return _unlockedRewardsData;
+                return _rewardPackUnlockDataList;
             }
 
-            private set { _unlockedRewardsData = value; }
+            private set { _rewardPackUnlockDataList = value; }
         }
 
 
         /// <summary>
         /// Resets the rewards unlocked data.
         /// </summary>
-        public void ResetUnlockedRewardsData()
+        public void ResetRewardPackUnlockData()
         {
-            UnlockedRewardsData = new List<RewardPackUnlockData>();
+            _rewardPackUnlockDataList.Clear();
         }
 
         /// <summary>
         /// Loads the rewards unlocked from database.
         /// </summary>
         /// <returns></returns>
-        public List<RewardPackUnlockData> LoadUnlockedRewardsData()
+        public void LoadRewardPackUnlockData()
         {
-            return AppManager.I.DB.GetAllRewardPackUnlockData();
+            _rewardPackUnlockDataList = AppManager.I.DB.GetAllRewardPackUnlockData();
+            AppManager.I.RewardSystemManager.InjectRewardsUnlockData(_rewardPackUnlockDataList);
+        }
+
+        public void SaveRewardPackUnlockData()
+        {
+            AppManager.I.DB.UpdateRewardPackUnlockDataAll(_rewardPackUnlockDataList);
         }
 
         /// <summary>
-        /// Gets the not yet unlocked rewards list.
-        /// </summary>
-        /// <param name="_rewardType">Type of the reward.</param>
-        /// <returns></returns>
-        /*public int GetNotYetUnlockedRewardCountForType(RewardTypes _rewardType)
-        {
-            int counter = 0;
-            //foreach (PlaySessionRewardUnlock plsRew in RewardSystemManager.GetConfig().PlaySessionRewardsUnlock) {
-            //    // Check if PlaySessionRewardUnlock contain requested type.
-            //    switch (_rewardType) {
-            //        case RewardTypes.reward:
-            //            if (plsRew.Reward == "")
-            //                continue;
-            //            break;
-            //        case RewardTypes.texture:
-            //            if (plsRew.Texture == "")
-            //                continue;
-            //            break;
-            //        case RewardTypes.decal:
-            //            if (plsRew.Decal == "")
-            //                continue;
-            //            break;
-            //        default:
-            //            continue;
-            //            break;
-            //    }
+            /// Gets the not yet unlocked rewards list.
+            /// </summary>
+            /// <param name="_rewardType">Type of the reward.</param>
+            /// <returns></returns>
+            /*public int GetNotYetUnlockedRewardCountForType(RewardTypes _rewardType)
+            {
+                int counter = 0;
+                //foreach (PlaySessionRewardUnlock plsRew in RewardSystemManager.GetConfig().PlaySessionRewardsUnlock) {
+                //    // Check if PlaySessionRewardUnlock contain requested type.
+                //    switch (_rewardType) {
+                //        case RewardTypes.reward:
+                //            if (plsRew.Reward == "")
+                //                continue;
+                //            break;
+                //        case RewardTypes.texture:
+                //            if (plsRew.Texture == "")
+                //                continue;
+                //            break;
+                //        case RewardTypes.decal:
+                //            if (plsRew.Decal == "")
+                //                continue;
+                //            break;
+                //        default:
+                //            continue;
+                //            break;
+                //    }
 
-            //    RewardPackUnlockData unlockedRewardData = RewardsUnlocked.Find(r => r.Type == _rewardType && r.JourneyPosition == plsRew.PlaySession);
-            //    if (unlockedRewardData == null)
-            //        counter++;
-            //}
-            switch (_rewardType) {
-                case RewardTypes.reward:
-                    counter = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
-                    break;
-                case RewardTypes.texture:
-                    counter = AppManager.I.RewardSystemManager.ItemsConfig.TextureBases.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
-                    break;
-                case RewardTypes.decal:
-                    counter = AppManager.I.RewardSystemManager.ItemsConfig.DecalBases.Count -
-                    RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
-                    break;
-            }
+                //    RewardPackUnlockData unlockedRewardData = RewardsUnlocked.Find(r => r.Type == _rewardType && r.JourneyPosition == plsRew.PlaySession);
+                //    if (unlockedRewardData == null)
+                //        counter++;
+                //}
+                switch (_rewardType) {
+                    case RewardTypes.reward:
+                        counter = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
+                        break;
+                    case RewardTypes.texture:
+                        counter = AppManager.I.RewardSystemManager.ItemsConfig.TextureBases.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
+                        break;
+                    case RewardTypes.decal:
+                        counter = AppManager.I.RewardSystemManager.ItemsConfig.DecalBases.Count -
+                        RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
+                        break;
+                }
 
-            return counter;
-        }*/
+                return counter;
+            }*/
 
-        /// <summary>
-        /// Return true if rewards for this type available.
-        /// </summary>
-        /// <param name="_rewardType">Type of the reward.</param>
-        /// <returns></returns>
-        /*public bool RewardForTypeAvailableYet(RewardTypes _rewardType)
-        {
-            return GetNotYetUnlockedRewardCountForType(_rewardType) <= 0 ? false : true;
-        }*/
+            /// <summary>
+            /// Return true if rewards for this type available.
+            /// </summary>
+            /// <param name="_rewardType">Type of the reward.</param>
+            /// <returns></returns>
+            /*public bool RewardForTypeAvailableYet(RewardTypes _rewardType)
+            {
+                return GetNotYetUnlockedRewardCountForType(_rewardType) <= 0 ? false : true;
+            }*/
 
-        /// <summary>
-        /// Used to store antura custumization data in json and load it at runtime.
-        /// </summary>
-        string jsonAnturaCustomizationData = string.Empty;
+            /// <summary>
+            /// Used to store antura custumization data in json and load it at runtime.
+            /// </summary>
+            string jsonAnturaCustomizationData = string.Empty;
 
         #endregion
-
-        #region API
-
-        /// <summary>
-        /// True if there is at least one new reward for this player.
-        /// </summary>
-        /// <returns></returns>
-        public bool ThereIsSomeNewReward()
-        {
-            if (UnlockedRewardsData.Exists(r => r.IsNew == true)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public bool RewardColorIsNew(string _itemId, string _colorId)
-        {
-            if (UnlockedRewardsData.Exists(r => r.ItemId == _itemId && r.ColorId == _colorId && r.IsNew == true)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Return true if Reward is never used by player.
-        /// </summary>
-        /// <returns></returns>
-        public bool RewardItemIsNew(string _itemId)
-        {
-            if (UnlockedRewardsData.Exists(r => r.ItemId == _itemId && r.IsNew == true)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Return true if Reward category container at least one reward never used by player.
-        /// </summary>
-        /// <returns></returns>
-        public bool RewardCategoryContainsNewElements(RewardBaseType rewardBaseType, string _rewardCategory = "")
-        {
-            if (UnlockedRewardsData.Exists(r => r.BaseType == rewardBaseType && r.GetRewardCategory() == _rewardCategory && r.IsNew == true)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
 
         /*/// <summary>
         /// Mark RewardPackUnlockData as not new and update db entry.
@@ -437,24 +386,24 @@ namespace Antura.Profile
             AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackToUpdate);
         }*/
 
-        /// <summary>
-        /// Delete all reward unlocks from the Dynamic DB.
-        /// </summary>
-        private void DeleteAllRewardUnlocks()
-        {
-            AppManager.I.DB.DeleteAll<RewardPackUnlockData>();
-        }
+        /* /// <summary>
+         /// Delete all reward unlocks from the Dynamic DB.
+         /// </summary>
+         private void DeleteAllRewardUnlocks()
+         {
+             AppManager.I.DB.DeleteAll<RewardPackUnlockData>();
+         }
 
-        /// <summary>
-        /// Adds or update the reward unlocked and persist it.
-        /// </summary>
-        /// <param name="rewardPackUnlockData">The reward pack.</param>
-        public void AddRewardUnlocked(RewardPackUnlockData rewardPackUnlockData)
-        {
-            // DEPRECATE THIS!!!
-            AppManager.I.Player.UnlockedRewardsData.Add(rewardPackUnlockData);
-            AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackUnlockData);
-        }
+         /// <summary>
+         /// Adds or update the reward unlocked and persist it.
+         /// </summary>
+         /// <param name="rewardPackUnlockData">The reward pack.</param>
+         public void AddRewardUnlocked(RewardPackUnlockData rewardPackUnlockData)
+         {
+             // DEPRECATE THIS!!!
+             AppManager.I.Player.UnlockedRewardsData.Add(rewardPackUnlockData);
+             AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackUnlockData);
+         }
 
         /// <summary>
         /// Add update to db all 'this' reward unlocked.
@@ -464,16 +413,16 @@ namespace Antura.Profile
             List<RewardPackUnlockData> rewards = new List<RewardPackUnlockData>();
             rewards.Add(_rewardPackUnlockData);
             AppManager.I.DB.UpdateRewardPackUnlockDataAll(rewards);
-        }
+        }*/
 
         /// <summary>
         /// Adds or update a list of unlocked rewards and persist it.
         /// </summary>
-        public void AddRewardUnlockedRange(List<RewardPackUnlockData> rewardPackUnlockDatas)
+        public void AddRewardUnlockedRange()//List<RewardPackUnlockData> rewardPackUnlockDatas)
         {
             //Debug.Log(this.RewardsUnlocked); 
-            AppManager.I.Player.UnlockedRewardsData.AddRange(rewardPackUnlockDatas);
-            AppManager.I.DB.UpdateRewardPackUnlockDataAll(rewardPackUnlockDatas);
+            //AppManager.I.Player.UnlockedRewardsData.AddRange(rewardPackUnlockDatas);
+            AppManager.I.DB.UpdateRewardPackUnlockDataAll(_rewardPackUnlockDataList);
         }
 
         /// <summary>
@@ -490,8 +439,6 @@ namespace Antura.Profile
 
             AppManager.I.LogManager.LogInfo(InfoEvent.AnturaCustomization, CurrentAnturaCustomizations.GetJsonListOfIds());
         }
-
-        #endregion
 
         #endregion
 
