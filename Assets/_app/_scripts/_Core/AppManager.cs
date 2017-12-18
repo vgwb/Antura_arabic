@@ -89,15 +89,15 @@ namespace Antura.Core
             NavigationManager = gameObject.AddComponent<NavigationManager>();
             NavigationManager.Init();
 
+            RewardSystemManager = new RewardSystemManager();
+            RewardSystemManager.Init();
+
             PlayerProfileManager = new PlayerProfileManager();
             PlayerProfileManager.LoadSettings();
 
             Services = new ServicesManager();
 
             gameObject.AddComponent<KeeperManager>();
-
-            RewardSystemManager = new RewardSystemManager();
-            RewardSystemManager.Init();
 
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 

@@ -15,25 +15,25 @@ namespace Antura.Rewards
 
 
     /// <summary>
-    /// Defines all the possible items that can be unlocked.
+    /// Defines all the possible item parts that can be unlocked.
     /// </summary>
     [Serializable]
-    public class RewardsItemsConfig
+    public class RewardPartsConfig
     {
-        // A Reward is made of 1 of each of the following PARTS
-        // the combinations of 2 of these is a REWARD
+        // A reward is made of 1 of each of the following PARTS
+        // the combinations of 2 of these is a Reward Pack
 
         // These are all the different models
-        public List<RewardProp> PropBases;                    // model
-        public List<RewardColor> PropColors;             // model color
+        public List<RewardProp> PropBases;              
+        public List<RewardColor> PropColors;          
 
-        // decals are just a different type of Reward (so they should be MERGED)
+        // decals are just a different type of Reward
         public List<RewardDecal> DecalBases;          // decal
         public List<RewardColor> DecalColors;     // decal color
 
-        // textures are just a different type of Reward (so they should be MERGED)
-        public List<RewardTexture> TextureBases;            // tiled texture
-        public List<RewardColor> TextureColors;      // tiled texture color
+        // textures are just a different type of Reward
+        public List<RewardTexture> TextureBases;       
+        public List<RewardColor> TextureColors;     
 
 
         public IEnumerable<RewardBase> GetBasesForType(RewardBaseType type) 
@@ -75,9 +75,9 @@ namespace Antura.Rewards
         // TODO: separate from the above stuff
         //public List<RewardUnlocksAtJourneyPosition> PlaySessionRewardsUnlock;  // unlocks at which PS?
 
-        public RewardsItemsConfig GetClone()
+        public RewardPartsConfig GetClone()
         {
-            return MemberwiseClone() as RewardsItemsConfig;
+            return MemberwiseClone() as RewardPartsConfig;
         }
     }
 
