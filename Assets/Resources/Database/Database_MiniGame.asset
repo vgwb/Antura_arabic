@@ -325,13 +325,13 @@ MonoBehaviour:
       _Badge: letters
       _Scene: game_Egg
       _AffectedPlaySkills: []
-    - _Title_En: 'The Egg: Sequence!'
+    - _Title_En: 'The Egg: Build Word!'
       _Title_Ar: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _Code: 34
       _Active: 1
       _Type: 1
       _Main: Egg
-      _Variation: sequence
+      _Variation: buildword
       _Badge: letters
       _Scene: game_Egg
       _AffectedPlaySkills:

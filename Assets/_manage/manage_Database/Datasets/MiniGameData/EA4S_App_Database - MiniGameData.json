@@ -703,15 +703,15 @@
       "Comprehension": ""
     },
     {
-      "Id": "Egg_sequence",
+      "Id": "Egg_buildword",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "Egg",
-      "Variation": "sequence",
+      "Variation": "buildword",
       "Badge": "letters",
       "Description": "",
       "Team": "VGWB",
-      "Title_En": "The Egg: Sequence!",
+      "Title_En": "The Egg: Build Word!",
       "Title_Ar": "بيضةُ الحروف!",
       "Intro_En": "",
       "Intro_Ar": "",
