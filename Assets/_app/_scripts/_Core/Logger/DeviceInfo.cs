@@ -41,8 +41,9 @@ namespace Antura.Core
         public bool supportsARGB32RenderTexture;
         public bool supportsAlpha8Texture;
 
-        public DeviceInfo() {
-            AppVersion = AppConfig.AppVersion;
+        public DeviceInfo()
+        {
+            AppVersion = AppConfig.AppVersion.ToString();
             platform = Application.platform.ToString();
             systemLanguage = Application.systemLanguage.ToString();
             internetReachability = Application.internetReachability.ToString();

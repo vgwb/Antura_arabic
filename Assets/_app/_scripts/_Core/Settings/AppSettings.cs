@@ -1,4 +1,5 @@
 ﻿using Antura.Profile;
+using System;
 using System.Collections.Generic;
 using UnityEngine.Serialization;
 
@@ -24,7 +25,7 @@ namespace Antura.Core
         public bool OnlineAnalytics;
 
         // we save the current AppVersion maybe we should compare when installing updated versions
-        public string ApplicationVersion;
+        public Version AppVersion;
 
         // the list of saved players
         public List<PlayerIconData> SavedPlayers = new List<PlayerIconData>();

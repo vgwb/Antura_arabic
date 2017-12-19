@@ -13,7 +13,7 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.1.0beta (571)";
+        public static Version AppVersion = new Version(1, 1, 0, 572);
 
         #region Debug Options
 
@@ -54,13 +54,13 @@ namespace Antura.Core
         /// Version of the Static Database Scheme.
         /// v1.0.7 - added ArabicFemale to LocalizationData
         /// </summary>
-        public const string StaticDbSchemeVersion = "1.1.0beta564";
+        public const string StaticDbSchemeVersion = "1.1.0.572";
 
         /// <summary>
         /// Version of the MySQL Database Scheme.
         /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
         /// </summary>
-        public const string DynamicDbSchemeVersion = "1.1.0beta564";
+        public const string DynamicDbSchemeVersion = "1.1.0.572";
 
         // public URLs
         public const string UrlWebsite = "http://www.antura.org";
@@ -163,6 +163,13 @@ namespace Antura.Core
             float screenHeight = Screen.height / Screen.dpi;
             float diagonalInches = Mathf.Sqrt(Mathf.Pow(screenWidth, 2) + Mathf.Pow(screenHeight, 2));
             return diagonalInches;
+        }
+
+        public static string GetAppVersionString()
+        {
+            string v = string.Format("{0}.{1}.{2} ({3})", AppVersion.Major, AppVersion.Minor, AppVersion.Build, AppVersion.Revision);
+
+            return v;
         }
     }
 }

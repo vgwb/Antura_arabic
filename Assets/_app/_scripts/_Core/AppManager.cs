@@ -103,7 +103,7 @@ namespace Antura.Core
             gameObject.AddComponent<Debugging.DebugManager>();
 
             // Update settings
-            AppSettings.ApplicationVersion = AppConfig.AppVersion;
+            AppSettings.AppVersion = AppConfig.AppVersion;
             AppSettingsManager.SaveSettings();
         }
 

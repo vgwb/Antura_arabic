@@ -20,7 +20,7 @@ namespace Antura.Scenes
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true);
 
-            SupportText.text = AppConfig.AppVersion;
+            SupportText.text = AppConfig.GetAppVersionString();
         }
 
         #region Buttons
