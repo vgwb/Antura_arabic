@@ -142,8 +142,7 @@ namespace Antura.Map
                 Undo.RecordObject(pin.gameObject, "Changed pin " + index);
 
                 float pinZ = pin.transform.localPosition.z;
-                if (zToo)
-                {
+                if (zToo) {
                     // Distribute pins on Z following a random walk flow
                     const int MAX_Z = 30;
                     const int MIN_Z = -20;
@@ -154,7 +153,7 @@ namespace Antura.Map
                 }
 
                 pin.transform.localPosition = new Vector3(index * -delta_x + start_x, pin.transform.localPosition.y, pinZ);
-                
+
             }
 
             // set the dotsPivot to the first Pin
@@ -338,15 +337,16 @@ namespace Antura.Map
             }
 
             // Create the dots
-            for (int dot_i = 1; dot_i <= nDots; dot_i++) {
-                // Create a new dot
-                var dotPos = pBack + dir * dot_i * actualDotsSpan;
-                var dotRot = Quaternion.Euler(90, 0, 0);
-                GameObject dotGo = Instantiate(dotPrefab, dotPos, dotRot);
-                dotGo.transform.SetParent(dotsPivot);
-                var dot = dotGo.GetComponent<Dot>();
-                pinFront.dots.Add(dot);
-            }
+            // TODO disabled for now to check performance on low end devices
+            //for (int dot_i = 1; dot_i <= nDots; dot_i++) {
+            //    // Create a new dot
+            //    var dotPos = pBack + dir * dot_i * actualDotsSpan;
+            //    var dotRot = Quaternion.Euler(90, 0, 0);
+            //    GameObject dotGo = Instantiate(dotPrefab, dotPos, dotRot);
+            //    dotGo.transform.SetParent(dotsPivot);
+            //    var dot = dotGo.GetComponent<Dot>();
+            //    pinFront.dots.Add(dot);
+            //}
         }
 
         private void UnlockPlaySessions()
