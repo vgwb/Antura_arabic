@@ -85,6 +85,7 @@ namespace Antura.Core
             GameLauncher = new MiniGameLauncher(Teacher);
             FirstContactManager = new FirstContactManager();
 
+            // MonoBehaviors
             NavigationManager = gameObject.AddComponent<NavigationManager>();
             NavigationManager.Init();
 
