@@ -88,8 +88,9 @@ namespace Antura.UI
                 if (tween.Elapsed() <= 0) {
                     tween.Pause();
                     OnRewind();
-                } else
+                } else {
                     tween.PlayBackwards();
+                }
             }
         }
 
@@ -112,8 +113,9 @@ namespace Antura.UI
                 MiniGameData mgData = AppManager.I.NavigationManager.CurrentMiniGameData;
                 Icon.sprite = Resources.Load<Sprite>(mgData.GetIconResourcePath());
                 Sprite badgeSprite = Resources.Load<Sprite>(mgData.GetBadgeIconResourcePath());
-                if (badgeSprite == null) Badge.gameObject.SetActive(false);
-                else {
+                if (badgeSprite == null) {
+                    Badge.gameObject.SetActive(false);
+                } else {
                     Badge.gameObject.SetActive(true);
                     BadgeIcon.sprite = badgeSprite;
                 }
@@ -127,16 +129,18 @@ namespace Antura.UI
         {
             IsPlaying = false;
             this.gameObject.SetActive(false);
-            if (onRewindCallback != null)
+            if (onRewindCallback != null) {
                 onRewindCallback();
+            }
         }
 
         void OnComplete()
         {
             Time.timeScale = 1;
             GlobalUI.Clear(false);
-            if (onCompleteCallback != null)
+            if (onCompleteCallback != null) {
                 onCompleteCallback();
+            }
         }
 
         #endregion

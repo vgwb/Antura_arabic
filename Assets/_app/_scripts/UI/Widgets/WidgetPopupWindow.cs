@@ -1,13 +1,13 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System;
-using Antura.Audio;
+﻿using Antura.Audio;
 using Antura.Core;
 using Antura.Database;
 using Antura.LivingLetters;
+using System;
 using TMPro;
 using DG.DeExtensions;
 using DG.Tweening;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Antura.UI
 {
@@ -38,9 +38,9 @@ namespace Antura.UI
         public Sprite gameTimeUpSprite;
         public GameObject[] ActivateTheseOnAwake;
 
-        bool clicked;
-        Action currentCallback;
-        Tween showTween;
+        private bool clicked;
+        private Action currentCallback;
+        private Tween showTween;
 
         void Awake()
         {
@@ -71,8 +71,9 @@ namespace Antura.UI
 
         public void Close(bool _immediate = false)
         {
-            if (IsShown || _immediate)
+            if (IsShown || _immediate) {
                 Show(false, _immediate);
+            }
         }
 
         public void Show(bool _doShow, bool _immediate = false)
@@ -82,15 +83,17 @@ namespace Antura.UI
             IsShown = _doShow;
             if (_doShow) {
                 clicked = false;
-                if (_immediate)
+                if (_immediate) {
                     I.showTween.Complete();
-                else
+                } else {
                     I.showTween.PlayForward();
+                }
             } else {
-                if (_immediate)
+                if (_immediate) {
                     I.showTween.Rewind();
-                else
+                } else {
                     I.showTween.PlayBackwards();
+                }
             }
         }
 
@@ -113,14 +116,14 @@ namespace Antura.UI
             currentCallback = callback;
         }
 
-        public void ShowSentence(Action callback, Database.LocalizationDataId SentenceId)
+        public void ShowSentence(Action callback, LocalizationDataId SentenceId)
         {
             ResetContents();
 
             currentCallback = callback;
             ButtonGO.gameObject.SetActive(callback != null);
 
-            Database.LocalizationData row = LocalizationManager.GetLocalizationData(SentenceId);
+            LocalizationData row = LocalizationManager.GetLocalizationData(SentenceId);
 
             TitleGO.GetComponent<TextRender>().isArabic = true;
             TitleGO.GetComponent<TextRender>().text = row.Arabic;
@@ -130,7 +133,7 @@ namespace Antura.UI
             Show(true);
         }
 
-        public void ShowSentence(Action callback, Database.LocalizationDataId sentenceId, Sprite image2show)
+        public void ShowSentence(Action callback, LocalizationDataId sentenceId, Sprite image2show)
         {
             ResetContents();
 
@@ -150,7 +153,7 @@ namespace Antura.UI
             Show(true);
         }
 
-        public void ShowSentenceWithMark(Action callback, Database.LocalizationDataId sentenceId, bool result, Sprite image2show)
+        public void ShowSentenceWithMark(Action callback, LocalizationDataId sentenceId, bool result, Sprite image2show)
         {
             ResetContents();
 
@@ -188,7 +191,7 @@ namespace Antura.UI
         }
 
 
-        public void ShowSentenceAndWord(Action callback, Database.LocalizationDataId SentenceId, LL_WordData wordData)
+        public void ShowSentenceAndWord(Action callback, LocalizationDataId SentenceId, LL_WordData wordData)
         {
             ResetContents();
 
@@ -204,7 +207,7 @@ namespace Antura.UI
             Show(true);
         }
 
-        public void ShowSentenceAndWordWithMark(Action callback, Database.LocalizationDataId SentenceId, LL_WordData wordData, bool result)
+        public void ShowSentenceAndWordWithMark(Action callback, LocalizationDataId SentenceId, LL_WordData wordData, bool result)
         {
             ResetContents();
 
@@ -248,7 +251,7 @@ namespace Antura.UI
             TitleGO.GetComponent<TextRender>().text = text;
         }
 
-        public void SetMessage(Database.LocalizationDataId SentenceId)
+        public void SetMessage(LocalizationDataId SentenceId)
         {
             MessageTextGO.GetComponent<TextRender>().SetSentence(SentenceId);
         }
@@ -259,7 +262,7 @@ namespace Antura.UI
             MessageTextGO.GetComponent<TextRender>().text = text;
         }
 
-        public void SetTitleSentence(Database.LocalizationDataId SentenceId)
+        public void SetTitleSentence(LocalizationDataId SentenceId)
         {
             TitleGO.GetComponent<TextRender>().SetSentence(SentenceId);
         }
@@ -290,14 +293,16 @@ namespace Antura.UI
         public void OnPressButton()
         {
             //Debug.Log("OnPressButton() " + clicked);
-            if (clicked)
+            if (clicked) {
                 return;
+            }
 
             clicked = true;
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
 
-            if (currentCallback != null)
+            if (currentCallback != null) {
                 currentCallback();
+            }
         }
     }
 }

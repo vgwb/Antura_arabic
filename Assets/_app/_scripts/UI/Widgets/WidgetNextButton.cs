@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Antura.Audio;
+using UnityEngine;
 using System;
-using Antura.Audio;
 
 namespace Antura.UI
 {
@@ -12,7 +12,8 @@ namespace Antura.UI
         public static WidgetNextButton I;
 
         public GameObject WidgetPanel;
-        Action currentCallback;
+
+        private Action currentCallback;
 
         void Awake()
         {
@@ -36,8 +37,9 @@ namespace Antura.UI
         public void OnPressButton()
         {
             Close();
-            if (currentCallback != null)
+            if (currentCallback != null) {
                 currentCallback();
+            }
         }
     }
 }

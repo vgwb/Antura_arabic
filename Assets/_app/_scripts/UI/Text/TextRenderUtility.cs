@@ -1,14 +1,13 @@
 ﻿using Antura.Helpers;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 namespace Antura.UI
 {
     public class TextRenderUtility : MonoBehaviour
     {
-        TMP_Text m_TextComponent;
-        TMP_TextInfo textInfo;
+        private TMP_Text m_TextComponent;
+        private TMP_TextInfo textInfo;
 
         public int yOffset = 10;
 
@@ -40,20 +39,12 @@ namespace Antura.UI
                 }
 
                 if (newYOffset != 0) {
-                    // method 1
-                    //TMP_TextElement updateTextElement = textInfo.characterInfo[charPosition].textElement;
-                    //updateTextElement.yOffset += newYOffset;
-                    //textInfo.characterInfo[charPosition].textElement = updateTextElement;
-
-                    // method 2
-                    //textInfo.characterInfo[charPosition].ascender += newYOffset;
-
-                    // method 3
                     // Cache the vertex data of the text object as the Jitter FX is applied to the original position of the characters.
                     TMP_MeshInfo[] cachedMeshInfo = textInfo.CopyMeshInfoVertexData();
-                    //TMP_CharacterInfo charInfo = textInfo.characterInfo[charPosition];
+
                     // Get the index of the material used by the current character.
                     int materialIndex = textInfo.characterInfo[charPosition].materialReferenceIndex;
+
                     // Get the index of the first vertex used by this text element.
                     int vertexIndex = textInfo.characterInfo[charPosition].vertexIndex;
 
@@ -65,8 +56,6 @@ namespace Antura.UI
                     // Determine the center point of each character.
                     float dy = (sourceVertices[vertexIndex + 2].y - sourceVertices[vertexIndex + 0].y);
                     Vector3 offset = new Vector3(0f, dy, 0f);
-                    //Vector2 charMidBasline = (sourceVertices[vertexIndex + 0] + sourceVertices[vertexIndex + 2]) / 2;
-
 
                     Vector3[] destinationVertices = textInfo.meshInfo[materialIndex].vertices;
 
@@ -75,30 +64,23 @@ namespace Antura.UI
                     destinationVertices[vertexIndex + 2] = sourceVertices[vertexIndex + 2] + offset;
                     destinationVertices[vertexIndex + 3] = sourceVertices[vertexIndex + 3] + offset;
 
-                    // textInfo.meshInfo[materialIndex].mesh.vertices = textInfo.meshInfo[materialIndex].vertices;
-                    //m_TextComponent.UpdateGeometry(textInfo.meshInfo[materialIndex].mesh, charPosition);
-
                     for (int i = 0; i < textInfo.meshInfo.Length; i++) {
                         textInfo.meshInfo[i].mesh.vertices = textInfo.meshInfo[i].vertices;
                         m_TextComponent.UpdateGeometry(textInfo.meshInfo[i].mesh, i);
                     }
 
-                    //m_TextComponent.UpdateVertexData();
-
-                    Debug.Log("DIACRITIC: diacritic pos fixed for " +
-                              ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[1].character) + " by " + newYOffset);
+                    //Debug.Log("DIACRITIC: diacritic pos fixed for " +
+                    //                              ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[1].character) + " by " + newYOffset);
                 }
 
 
-                for (int i = 0; i < characterCount; i++) {
-                    //Debug.Log("CAHR " + characterCount + ": " + TMPro.TMP_TextUtilities.StringToInt(textInfo.characterInfo[characterCount].character.ToString()));
-                    Debug.Log("DIACRITIC: " + i
-                              //+ "index: " + textInfo.characterInfo[i].index
-                              + " char: " + textInfo.characterInfo[i].character.ToString()
-                              + " UNICODE: " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[i].character)
-                    );
-                }
-                //textInfo.characterInfo[1].textElement.yOffset += yOffset;
+                //for (int i = 0; i < characterCount; i++) {
+                //    Debug.Log("DIACRITIC: " + i
+                //              //+ "index: " + textInfo.characterInfo[i].index
+                //              + " char: " + textInfo.characterInfo[i].character.ToString()
+                //              + " UNICODE: " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[i].character)
+                //    );
+                //}
             }
         }
 

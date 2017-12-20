@@ -30,8 +30,9 @@ namespace Antura.UI
 
         void OnDestroy()
         {
-            foreach (MenuButton bt in menuBts)
+            foreach (MenuButton bt in menuBts) {
                 bt.Bt.onClick.RemoveAllListeners();
+            }
         }
 
         void OnClick(MenuButton bt)
