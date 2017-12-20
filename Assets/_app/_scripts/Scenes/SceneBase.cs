@@ -2,7 +2,7 @@
 using Antura.Utilities;
 using UnityEngine;
 
-namespace Antura
+namespace Antura.Core
 {
     public class SceneBase : SingletonMonoBehaviour<SceneBase>
     {

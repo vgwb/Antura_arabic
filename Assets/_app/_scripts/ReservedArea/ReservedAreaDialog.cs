@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Antura.Audio;
 using Antura.Core;
 using Antura.UI;
-using Antura.Database;
 using Antura.Helpers;
 
 namespace Antura.ReservedArea
@@ -17,9 +16,7 @@ namespace Antura.ReservedArea
         public TextRender arabicTextUI;
 
         private int firstButtonClickCounter;
-
         private const int nButtons = 4;
-
         private int firstButtonIndex;
         private int secondButtonIndex;
         private int firstButtonClicksTarget;
@@ -27,13 +24,13 @@ namespace Antura.ReservedArea
         void OnEnable()
         {
             AudioManager.I.PlayDialogue("Parental_Gate");
-
             firstButtonClickCounter = 0;
 
             // Selecting two buttons at random
             var availableIndices = new List<int>();
-            for (var i = 0; i < nButtons; i++)
+            for (var i = 0; i < nButtons; i++) {
                 availableIndices.Add(i);
+            }
             var selectedIndices = availableIndices.RandomSelect(2);
             firstButtonIndex = selectedIndices[0];
             secondButtonIndex = selectedIndices[1];
@@ -44,9 +41,9 @@ namespace Antura.ReservedArea
             firstButtonClicksTarget = Random.Range(min_number, max_number);
 
             // Update text
-            string[] numberWords = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-            string[] colorsWords = {"green", "red", "blue", "yellow"};
-            string[] colorsWordsArabic = {"الأخضر", "الأحمر", "الأزرق", "الأصفر"};
+            string[] numberWords = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+            string[] colorsWords = { "green", "red", "blue", "yellow" };
+            string[] colorsWordsArabic = { "الأخضر", "الأحمر", "الأزرق", "الأصفر" };
             string[] timesWordsArabic =
             {
                 "مرة واحدة",
@@ -76,7 +73,6 @@ namespace Antura.ReservedArea
                 "\n\n" + sectionErrorLoc.English; //"If you make an error, retry by re - accessing this panel");
 
             string numberWordArabic = timesWordsArabic[firstButtonClicksTarget - 1];
-            //string numberWordArabic = AppManager.I.DB.GetWordDataById("number_0" + firstButtonClicksTarget).Arabic;
             string firstColorWordArabic = colorsWordsArabic[firstButtonIndex];
             string secondColorWordArabic = colorsWordsArabic[secondButtonIndex];
 
@@ -85,8 +81,7 @@ namespace Antura.ReservedArea
             arabicIntroduction += LocalizationManager.GetTranslation(sectionIntroLoc.Id) + "\n\n";
             arabicIntroduction += string.Format("لفتح القفل، اضغط الزر {0} {2} مرات، ثم الزر {1} مرة واحدة", firstColorWordArabic,
                 secondColorWordArabic, numberWordArabic);
-            arabicIntroduction +=
-                "\n\n" + LocalizationManager.GetTranslation(sectionErrorLoc.Id); // "\n\n في حال أخطأت، أعد المحاولة باستعمال هذه اللوحة";
+            arabicIntroduction += "\n\n" + LocalizationManager.GetTranslation(sectionErrorLoc.Id);
 
             //Debug.Log(arabicIntroduction);
             arabicTextUI.text = arabicIntroduction;
