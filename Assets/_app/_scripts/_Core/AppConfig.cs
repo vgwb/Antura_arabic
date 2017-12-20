@@ -15,6 +15,18 @@ namespace Antura.Core
         /// </summary>
         public static Version AppVersion = new Version(1, 1, 0, 572);
 
+        /// <summary>
+        /// Version of the Static Database Scheme.
+        /// v1.0.7 - added ArabicFemale to LocalizationData
+        /// </summary>
+        public const string StaticDbSchemeVersion = "1.1.0.572";
+
+        /// <summary>
+        /// Version of the MySQL Database Scheme.
+        /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
+        /// </summary>
+        public const string DynamicDbSchemeVersion = "1.1.0.572";
+
         #region Debug Options
 
         /// <summary>
@@ -49,18 +61,6 @@ namespace Antura.Core
         #endregion
 
         #region Application Constants
-
-        /// <summary>
-        /// Version of the Static Database Scheme.
-        /// v1.0.7 - added ArabicFemale to LocalizationData
-        /// </summary>
-        public const string StaticDbSchemeVersion = "1.1.0.572";
-
-        /// <summary>
-        /// Version of the MySQL Database Scheme.
-        /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
-        /// </summary>
-        public const string DynamicDbSchemeVersion = "1.1.0.572";
 
         // public URLs
         public const string UrlWebsite = "http://www.antura.org";
