@@ -1,6 +1,4 @@
-﻿
-
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace Antura.Animation
@@ -13,17 +11,13 @@ namespace Antura.Animation
             BounceLoop
         }
 
-        #region Serialized
-
         public AnimationType AnimType;
         public float To;
         public float Duration = 0.35f;
         public bool ScaleInOnEnable;
         public float ScaleInDuration = 0.3f;
 
-        #endregion
-
-        Sequence animTween;
+        private Sequence animTween;
 
         #region Unity
 
@@ -55,8 +49,7 @@ namespace Antura.Animation
                     transform.DOScale(0.0001f, ScaleInDuration).From().SetEase(Ease.OutSine)
                 );
             }
-            switch (AnimType)
-            {
+            switch (AnimType) {
                 case AnimationType.RotateZ:
                     animTween = animTween.Join(
                         transform.DORotate(new Vector3(0, 0, To), Duration, RotateMode.FastBeyond360).SetLoops(int.MaxValue).SetEase(Ease.Linear)
