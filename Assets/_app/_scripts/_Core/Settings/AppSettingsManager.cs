@@ -38,7 +38,7 @@ namespace Antura.Core
                 Settings = new AppSettings();
             }
 
-            AudioManager.I.MusicEnabled = Settings.MusicOn;
+            AudioManager.I.MusicEnabled = Settings.MusicEnabled;
             // Debug.Log("Setting music to " + Settings.MusicOn);
             return _settings;
         }
@@ -65,7 +65,7 @@ namespace Antura.Core
         #region external API to save single settings
         public void SaveMusicSetting(bool musicOn)
         {
-            Settings.MusicOn = musicOn;
+            Settings.MusicEnabled = musicOn;
             SaveSettings();
         }
         #endregion
@@ -92,7 +92,7 @@ namespace Antura.Core
 
         public void EnableOnlineAnalytics(bool status)
         {
-            Settings.OnlineAnalytics = status;
+            Settings.OnlineAnalyticsEnabled = status;
             SaveSettings();
         }
 

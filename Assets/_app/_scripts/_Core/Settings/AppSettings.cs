@@ -19,9 +19,9 @@ namespace Antura.Core
         // to enable english subtitles (especially in the Book)
         public bool EnglishSubtitles = true;
 
-        public bool MusicOn = true;
+        public bool MusicEnabled = true;
 
-        public bool OnlineAnalytics;
+        public bool OnlineAnalyticsEnabled;
 
         // we save the current AppVersion maybe we should compare when installing updated versions
         public string AppVersion;

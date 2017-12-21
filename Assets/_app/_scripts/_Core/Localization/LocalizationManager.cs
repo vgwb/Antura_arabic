@@ -1,3 +1,4 @@
+using Antura.Database;
 using Antura.Profile;
 
 namespace Antura.Core
@@ -7,7 +8,7 @@ namespace Antura.Core
     /// </summary>
     public class LocalizationManager
     {
-        public static string GetTranslation(Database.LocalizationDataId id)
+        public static string GetTranslation(LocalizationDataId id)
         {
             return GetLocalizationData(id).GetLocalizedText(CurrentPlayerGender);
         }
@@ -29,8 +30,7 @@ namespace Antura.Core
 
         private static PlayerGender CurrentPlayerGender
         {
-            get
-            {
+            get {
                 if (AppManager.I.Player == null) {
                     return PlayerGender.M;
                 }
@@ -38,138 +38,138 @@ namespace Antura.Core
             }
         }
 
-        public static Database.LocalizationData GetLocalizationData(Database.LocalizationDataId id)
+        public static LocalizationData GetLocalizationData(LocalizationDataId id)
         {
             return AppManager.I.DB.GetLocalizationDataById(id.ToString());
         }
 
-        public static Database.LocalizationData GetLocalizationData(string id)
+        public static LocalizationData GetLocalizationData(string id)
         {
             return AppManager.I.DB.GetLocalizationDataById(id);
         }
 
-        public static Database.LocalizationData GetWordCategoryData(Database.WordDataCategory cat)
+        public static LocalizationData GetWordCategoryData(WordDataCategory cat)
         {
-            Database.LocalizationDataId loc = Database.LocalizationDataId.UI_None;
+            LocalizationDataId loc = LocalizationDataId.UI_None;
             switch (cat) {
-                case Database.WordDataCategory.Adjectives:
-                    loc = Database.LocalizationDataId.UI_WordCat_Adjectives;
+                case WordDataCategory.Adjectives:
+                    loc = LocalizationDataId.UI_WordCat_Adjectives;
                     break;
-                case Database.WordDataCategory.Animal:
-                    loc = Database.LocalizationDataId.UI_Animals;
+                case WordDataCategory.Animal:
+                    loc = LocalizationDataId.UI_Animals;
                     break;
-                case Database.WordDataCategory.BodyPart:
-                    loc = Database.LocalizationDataId.UI_BodyParts;
+                case WordDataCategory.BodyPart:
+                    loc = LocalizationDataId.UI_BodyParts;
                     break;
-                case Database.WordDataCategory.Clothes:
-                    loc = Database.LocalizationDataId.UI_Clothes;
+                case WordDataCategory.Clothes:
+                    loc = LocalizationDataId.UI_Clothes;
                     break;
-                case Database.WordDataCategory.Color:
-                    loc = Database.LocalizationDataId.UI_Colors;
+                case WordDataCategory.Color:
+                    loc = LocalizationDataId.UI_Colors;
                     break;
-                case Database.WordDataCategory.Conjunctions:
-                    loc = Database.LocalizationDataId.UI_Conjunctions;
+                case WordDataCategory.Conjunctions:
+                    loc = LocalizationDataId.UI_Conjunctions;
                     break;
-                case Database.WordDataCategory.Direction:
-                    loc = Database.LocalizationDataId.UI_Directions;
+                case WordDataCategory.Direction:
+                    loc = LocalizationDataId.UI_Directions;
                     break;
-                case Database.WordDataCategory.Expressions:
-                    loc = Database.LocalizationDataId.UI_WordCat_Expressions;
+                case WordDataCategory.Expressions:
+                    loc = LocalizationDataId.UI_WordCat_Expressions;
                     break;
-                case Database.WordDataCategory.FamilyMember:
-                    loc = Database.LocalizationDataId.UI_FamilyMembers;
+                case WordDataCategory.FamilyMember:
+                    loc = LocalizationDataId.UI_FamilyMembers;
                     break;
-                case Database.WordDataCategory.Feeling:
-                    loc = Database.LocalizationDataId.UI_Feelings;
+                case WordDataCategory.Feeling:
+                    loc = LocalizationDataId.UI_Feelings;
                     break;
-                case Database.WordDataCategory.Food:
-                    loc = Database.LocalizationDataId.UI_Food;
+                case WordDataCategory.Food:
+                    loc = LocalizationDataId.UI_Food;
                     break;
-                case Database.WordDataCategory.Furniture:
-                    loc = Database.LocalizationDataId.UI_Furniture;
+                case WordDataCategory.Furniture:
+                    loc = LocalizationDataId.UI_Furniture;
                     break;
-                case Database.WordDataCategory.General:
-                    loc = Database.LocalizationDataId.UI_General;
+                case WordDataCategory.General:
+                    loc = LocalizationDataId.UI_General;
                     break;
-                case Database.WordDataCategory.Greetings:
-                    loc = Database.LocalizationDataId.UI_WordCat_Greetings;
+                case WordDataCategory.Greetings:
+                    loc = LocalizationDataId.UI_WordCat_Greetings;
                     break;
-                case Database.WordDataCategory.Verbs:
-                    loc = Database.LocalizationDataId.UI_WordCat_Verbs;
+                case WordDataCategory.Verbs:
+                    loc = LocalizationDataId.UI_WordCat_Verbs;
                     break;
-                case Database.WordDataCategory.Job:
-                    loc = Database.LocalizationDataId.UI_Jobs;
+                case WordDataCategory.Job:
+                    loc = LocalizationDataId.UI_Jobs;
                     break;
-                case Database.WordDataCategory.Names:
-                    loc = Database.LocalizationDataId.UI_WordCat_Names;
+                case WordDataCategory.Names:
+                    loc = LocalizationDataId.UI_WordCat_Names;
                     break;
-                case Database.WordDataCategory.Nature:
-                    loc = Database.LocalizationDataId.UI_Nature;
+                case WordDataCategory.Nature:
+                    loc = LocalizationDataId.UI_Nature;
                     break;
-                case Database.WordDataCategory.Number:
-                    loc = Database.LocalizationDataId.UI_Numbers;
+                case WordDataCategory.Number:
+                    loc = LocalizationDataId.UI_Numbers;
                     break;
-                case Database.WordDataCategory.NumberOrdinal:
-                    loc = Database.LocalizationDataId.UI_NumbersOrdinal;
+                case WordDataCategory.NumberOrdinal:
+                    loc = LocalizationDataId.UI_NumbersOrdinal;
                     break;
-                case Database.WordDataCategory.People:
-                    loc = Database.LocalizationDataId.UI_People;
+                case WordDataCategory.People:
+                    loc = LocalizationDataId.UI_People;
                     break;
-                case Database.WordDataCategory.Place:
-                    loc = Database.LocalizationDataId.UI_Places;
+                case WordDataCategory.Place:
+                    loc = LocalizationDataId.UI_Places;
                     break;
-                case Database.WordDataCategory.Position:
-                    loc = Database.LocalizationDataId.UI_Positions;
+                case WordDataCategory.Position:
+                    loc = LocalizationDataId.UI_Positions;
                     break;
-                case Database.WordDataCategory.Question:
-                    loc = Database.LocalizationDataId.UI_Phrases_Questions;
+                case WordDataCategory.Question:
+                    loc = LocalizationDataId.UI_Phrases_Questions;
                     break;
-                case Database.WordDataCategory.Shape:
-                    loc = Database.LocalizationDataId.UI_Shapes;
+                case WordDataCategory.Shape:
+                    loc = LocalizationDataId.UI_Shapes;
                     break;
-                case Database.WordDataCategory.Size:
-                    loc = Database.LocalizationDataId.UI_Size;
+                case WordDataCategory.Size:
+                    loc = LocalizationDataId.UI_Size;
                     break;
-                case Database.WordDataCategory.Sport:
-                    loc = Database.LocalizationDataId.UI_Sports;
+                case WordDataCategory.Sport:
+                    loc = LocalizationDataId.UI_Sports;
                     break;
-                case Database.WordDataCategory.Thing:
-                    loc = Database.LocalizationDataId.UI_Things;
+                case WordDataCategory.Thing:
+                    loc = LocalizationDataId.UI_Things;
                     break;
-                case Database.WordDataCategory.Time:
-                    loc = Database.LocalizationDataId.UI_Time;
+                case WordDataCategory.Time:
+                    loc = LocalizationDataId.UI_Time;
                     break;
-                case Database.WordDataCategory.Vehicle:
-                    loc = Database.LocalizationDataId.UI_Vehicles;
+                case WordDataCategory.Vehicle:
+                    loc = LocalizationDataId.UI_Vehicles;
                     break;
-                case Database.WordDataCategory.Weather:
-                    loc = Database.LocalizationDataId.UI_WordCat_Weather;
+                case WordDataCategory.Weather:
+                    loc = LocalizationDataId.UI_WordCat_Weather;
                     break;
             }
             return GetLocalizationData(loc);
         }
 
-        public static Database.LocalizationData GetPhraseCategoryData(Database.PhraseDataCategory cat)
+        public static LocalizationData GetPhraseCategoryData(PhraseDataCategory cat)
         {
-            Database.LocalizationDataId loc = Database.LocalizationDataId.UI_None;
+            LocalizationDataId loc = LocalizationDataId.UI_None;
             switch (cat) {
-                case Database.PhraseDataCategory.Question:
-                    loc = Database.LocalizationDataId.UI_Phrases_Questions;
+                case PhraseDataCategory.Question:
+                    loc = LocalizationDataId.UI_Phrases_Questions;
                     break;
-                case Database.PhraseDataCategory.Reply:
-                    loc = Database.LocalizationDataId.UI_Phrases_Replies;
+                case PhraseDataCategory.Reply:
+                    loc = LocalizationDataId.UI_Phrases_Replies;
                     break;
-                case Database.PhraseDataCategory.Greetings:
-                    loc = Database.LocalizationDataId.UI_Phrases_Greetings;
+                case PhraseDataCategory.Greetings:
+                    loc = LocalizationDataId.UI_Phrases_Greetings;
                     break;
-                case Database.PhraseDataCategory.Year:
-                    loc = Database.LocalizationDataId.UI_Phrases_Years;
+                case PhraseDataCategory.Year:
+                    loc = LocalizationDataId.UI_Phrases_Years;
                     break;
-                case Database.PhraseDataCategory.Sentence:
-                    loc = Database.LocalizationDataId.UI_Phrases_Sentences;
+                case PhraseDataCategory.Sentence:
+                    loc = LocalizationDataId.UI_Phrases_Sentences;
                     break;
-                case Database.PhraseDataCategory.Expression:
-                    loc = Database.LocalizationDataId.UI_Phrases_Expressions;
+                case PhraseDataCategory.Expression:
+                    loc = LocalizationDataId.UI_Phrases_Expressions;
                     break;
             }
             return GetLocalizationData(loc);

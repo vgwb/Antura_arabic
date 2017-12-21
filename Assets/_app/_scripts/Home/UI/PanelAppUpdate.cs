@@ -13,9 +13,13 @@ namespace Antura.Core
 
         void Start()
         {
+
+            var titleText = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Attention);
+            var panelText = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_AlertFinalRelease);
+
             if (AppManager.I.AppSettingsManager.AppVersionPrevious <= new Version(1, 0, 0, 0)) {
-                EnglishText.text = "<b>THANK YOU!</b>\r\n\nThanks for downloading the final release of Antura and the letters for helping us playing the beta version. \n\nUnfortunately all player profiles that were created with the previous version are no longer compatible with the game and must be deleted. ";
-                ArabicText.text = "";
+                EnglishText.text = "<b>" + titleText.English + "</b>\n\n" + panelText.English;
+                ArabicText.text = "<b>" + titleText.Arabic + "<b/>\n\n" + panelText.Arabic;
 
                 AppManager.I.PlayerProfileManager.DeleteAllPlayers();
             } else {
@@ -27,12 +31,16 @@ namespace Antura.Core
         public void OnBtnContinue()
         {
             gameObject.SetActive(false);
-            OnlineAnalyticsRequest();
+            if (!AppManager.I.AppSettings.OnlineAnalyticsEnabled) {
+                OnlineAnalyticsRequest();
+            } else {
+                Close();
+            }
         }
 
         public void OnlineAnalyticsRequest()
         {
-            GlobalUI.ShowPrompt(LocalizationDataId.UI_AreYouSure, () => {
+            GlobalUI.ShowPrompt(LocalizationDataId.UI_PromptOnlineAnalytics, () => {
                 AppManager.I.AppSettingsManager.EnableOnlineAnalytics(true);
                 Close();
             }, () => {

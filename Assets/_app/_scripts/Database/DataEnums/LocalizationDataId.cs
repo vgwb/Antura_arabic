@@ -419,6 +419,9 @@ namespace Antura.Database
         UI_Notification_24h = 414,
         UI_Today = 415,
         UI_Yesterday = 416,
-        UI_Tomorrow = 417
+        UI_Tomorrow = 417,
+        UI_AlertFinalRelease = 418,
+        UI_PromptOnlineAnalytics = 419,
+        UI_Attention = 420
     }
 }

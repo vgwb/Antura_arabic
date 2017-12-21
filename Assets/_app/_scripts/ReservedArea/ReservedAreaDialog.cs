@@ -1,9 +1,11 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using Antura.Audio;
+﻿using Antura.Audio;
 using Antura.Core;
+using Antura.Database;
 using Antura.UI;
 using Antura.Helpers;
+using System.Collections.Generic;
+using UnityEngine;
+
 
 namespace Antura.ReservedArea
 {
@@ -61,9 +63,9 @@ namespace Antura.ReservedArea
             string firstColorWord = colorsWords[firstButtonIndex];
             string secondColorWord = colorsWords[secondButtonIndex];
 
-            var titleLoc = LocalizationManager.GetLocalizationData("ReservedArea_Title");
-            var sectionIntroLoc = LocalizationManager.GetLocalizationData("ReservedArea_SectionDescription_Intro");
-            var sectionErrorLoc = LocalizationManager.GetLocalizationData("ReservedArea_SectionDescription_Error");
+            var titleLoc = LocalizationManager.GetLocalizationData(LocalizationDataId.ReservedArea_Title);
+            var sectionIntroLoc = LocalizationManager.GetLocalizationData(LocalizationDataId.ReservedArea_SectionDescription_Intro);
+            var sectionErrorLoc = LocalizationManager.GetLocalizationData(LocalizationDataId.ReservedArea_SectionDescription_Error);
 
             englishTextUI.text =
                 "<b>" + titleLoc.English + "</b>" +
