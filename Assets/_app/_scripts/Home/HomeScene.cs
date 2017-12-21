@@ -1,6 +1,7 @@
-﻿using Antura.Dog;
-using Antura.Audio;
+﻿using Antura.Audio;
 using Antura.Core;
+using Antura.Database;
+using Antura.Dog;
 using Antura.LivingLetters;
 using Antura.UI;
 using UnityEngine;
@@ -24,6 +25,8 @@ namespace Antura.Scenes
         public GameObject DialogReservedArea;
         public GameObject ProfileSelectorUI;
 
+        public GameObject PanelFirstCheck;
+
         protected override void Start()
         {
             base.Start();
@@ -35,6 +38,11 @@ namespace Antura.Scenes
 
             // after 2 seconds (after the game title audio) invite palyer to create a profile
             Invoke("TutorCreateProfile", 2.3f);
+
+            if (AppManager.I.AppSettingsManager.IsAppJustUpdated) {
+                AppManager.I.AppSettingsManager.AppFirstCheckDone();
+                PanelFirstCheck.SetActive(true);
+            }
         }
 
         void TutorCreateProfile()

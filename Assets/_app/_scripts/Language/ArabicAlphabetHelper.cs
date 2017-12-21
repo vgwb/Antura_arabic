@@ -28,8 +28,8 @@ namespace Antura.Helpers
 
         struct UnicodeLookUpEntry
         {
-            public Database.LetterData data;
-            public Database.LetterForm form;
+            public LetterData data;
+            public LetterForm form;
 
             public UnicodeLookUpEntry(Database.LetterData data, Database.LetterForm form)
             {
@@ -528,7 +528,7 @@ namespace Antura.Helpers
 
         private static Vector2 FindDiacriticCombo2Fix(string Unicode1, string Unicode2)
         {
-            if (DiacriticCombos2Fix == null) BuildDiacriticCombos2Fix();
+            if (DiacriticCombos2Fix == null) { BuildDiacriticCombos2Fix(); }
 
             Vector2 newDelta = new Vector2(0, 0);
             DiacriticCombos2Fix.TryGetValue(new DiacriticComboEntry(Unicode1, Unicode2), out newDelta);
@@ -540,14 +540,13 @@ namespace Antura.Helpers
         /// </summary>
         /// <returns><c>true</c>, if diacritic positions was adjusted, <c>false</c> otherwise.</returns>
         /// <param name="textInfo">Text info.</param>
-        public static bool FixDiacriticPositions(TMPro.TMP_TextInfo textInfo)
+        public static bool FixTMProDiacriticPositions(TMPro.TMP_TextInfo textInfo)
         {
             //Debug.Log("FixDiacriticPositions " + textInfo.characterCount);
             int characterCount = textInfo.characterCount;
             bool changed = false;
 
-            if (characterCount > 1)
-            {
+            if (characterCount > 1) {
                 // output unicodes for DiacriticCombos2Fix
                 //string combo = "";
                 //for (int i = 0; i < characterCount; i++) {
@@ -556,15 +555,13 @@ namespace Antura.Helpers
                 //Debug.Log("DiacriticCombos2Fix.Add(new DiacriticComboEntry(" + combo + " 0, 0));");
 
                 Vector2 modificationDelta = new Vector2(0, 0);
-                for (int charPosition = 0; charPosition < characterCount - 1; charPosition++)
-                {
+                for (int charPosition = 0; charPosition < characterCount - 1; charPosition++) {
                     modificationDelta = FindDiacriticCombo2Fix(
-                        ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character),
-                        ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
+                        GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character),
+                        GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
                     );
 
-                    if (modificationDelta.sqrMagnitude > 0f)
-                    {
+                    if (modificationDelta.sqrMagnitude > 0f) {
                         changed = true;
                         int materialIndex = textInfo.characterInfo[charPosition + 1].materialReferenceIndex;
                         int vertexIndex = textInfo.characterInfo[charPosition + 1].vertexIndex;

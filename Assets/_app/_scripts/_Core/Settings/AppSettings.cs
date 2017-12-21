@@ -1,14 +1,13 @@
 ﻿using Antura.Profile;
 using System;
 using System.Collections.Generic;
-using UnityEngine.Serialization;
 
 namespace Antura.Core
 {
     /// <summary>
     /// Defines app settings that must be saved locally.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class AppSettings
     {
         // not used anymore.. but could be useful in the future
@@ -25,9 +24,14 @@ namespace Antura.Core
         public bool OnlineAnalytics;
 
         // we save the current AppVersion maybe we should compare when installing updated versions
-        public Version AppVersion;
+        public string AppVersion;
 
         // the list of saved players
         public List<PlayerIconData> SavedPlayers = new List<PlayerIconData>();
+
+        public void SetAppVersion(Version _version)
+        {
+            AppVersion = _version.ToString();
+        }
     }
 }

@@ -1,4 +1,5 @@
 using Antura.Audio;
+using System;
 using UnityEngine;
 
 namespace Antura.Core
@@ -21,6 +22,8 @@ namespace Antura.Core
                 }
             }
         }
+
+        public bool IsAppJustUpdated;
 
         /// <summary>
         /// Loads the settings. Creates new settings if none are found.
@@ -65,5 +68,23 @@ namespace Antura.Core
             SaveSettings();
         }
         #endregion
+
+        public void UpdateAppVersion()
+        {
+            if (Settings.AppVersion == "") {
+                IsAppJustUpdated = true;
+            } else {
+                var previousVersion = new System.Version(Settings.AppVersion);
+                IsAppJustUpdated = AppConfig.AppVersion > previousVersion;
+            }
+            Debug.Log("isAppJustUpdated " + IsAppJustUpdated + " previous: " + Settings.AppVersion + " current: " + AppConfig.AppVersion);
+            Settings.SetAppVersion(AppConfig.AppVersion);
+            SaveSettings();
+        }
+
+        public void AppFirstCheckDone()
+        {
+            IsAppJustUpdated = false;
+        }
     }
 }
