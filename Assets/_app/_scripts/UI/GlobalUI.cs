@@ -1,7 +1,7 @@
-﻿using System;
-using Antura.Core;
-using UnityEngine;
+﻿using Antura.Core;
 using DG.DeInspektor.Attributes;
+using System;
+using UnityEngine;
 
 namespace Antura.UI
 {
@@ -30,11 +30,10 @@ namespace Antura.UI
 
         public static void Init()
         {
-            if (I != null) return;
+            if (I != null) { return; }
 
             I = Instantiate(Resources.Load<GlobalUI>(ResourceId));
             I.gameObject.name = "[GlobalUI]";
-            //            DontDestroyOnLoad(go);
         }
 
         void Awake()
@@ -64,7 +63,7 @@ namespace Antura.UI
 
         void OnDestroy()
         {
-            if (I == this) I = null;
+            if (I == this) { I = null; }
             BackButton.Bt.onClick.RemoveAllListeners();
         }
 

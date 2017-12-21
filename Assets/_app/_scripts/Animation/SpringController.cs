@@ -1,5 +1,4 @@
-﻿using Antura.Helpers;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +19,7 @@ public class SpringController : MonoBehaviour
     public float Elasticity = 400.0f;
     public float Friction = 1.5f;
 
-    float velocity = 0;
+    private float velocity = 0;
 
     void Start()
     {

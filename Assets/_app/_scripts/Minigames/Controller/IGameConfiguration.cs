@@ -55,5 +55,6 @@ namespace Antura.Minigames
         /// Should this MiniGame perform the tutorial when starting?
         /// </summary>
         bool TutorialEnabled { get; set; }
+
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using Antura.Audio;
 using Antura.CameraEffects;
 using Antura.Core;
@@ -6,6 +5,7 @@ using Antura.Database;
 using Antura.Keeper;
 using Antura.UI;
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 namespace Antura.Map
@@ -32,9 +32,6 @@ namespace Antura.Map
 
         public Camera UICamera;
         public MapStageIndicator mapStageIndicator;
-        public GameObject leftStageButton;
-        public GameObject rightStageButton;
-
         public MapPlayInfoPanel playInfoPanel;
         public MapPlayButtonsPanel playButtonsPanel;
 
@@ -175,7 +172,7 @@ namespace Antura.Map
             // Show the current stage
             TeleportCameraToShownStage(shownStage);
             UpdateStageIndicatorUI(shownStage);
-            UpdateButtonsForStage(shownStage);
+            //UpdateButtonsForStage(shownStage);
 
             // Position the player
             playerPin.gameObject.SetActive(true);
@@ -413,10 +410,10 @@ namespace Antura.Map
             SwitchFromToStage(fromStage, toStage, animateCamera);
         }
 
-        private void UpdateButtonsForStage(int stage)
+        /*private void UpdateButtonsForStage(int stage)
         {
             bool playable = IsStagePlayable(stage);
-        }
+        }*/
 
         /*private void CheckCurrentStageForPlayerReset()
         {
@@ -468,7 +465,7 @@ namespace Antura.Map
 
             // Show the new stage
             UpdateStageIndicatorUI(toStage);
-            UpdateButtonsForStage(toStage);
+            //UpdateButtonsForStage(toStage);
 
             /*
             if (MovePlayerWithStageChange) {

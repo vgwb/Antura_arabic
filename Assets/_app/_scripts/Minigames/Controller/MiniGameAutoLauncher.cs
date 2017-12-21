@@ -16,8 +16,8 @@ namespace Antura.Minigames
         public int LearningBlock = 1;
         public int PlaySession = 1;
 
-        public float Difficulty = 0.5f;
-        public bool TutorialEnabled = true;
+        public float Difficulty = 0;
+        public bool TutorialEnabled = false;
         public int NumberOfRounds = 1;
 
         void Start()
@@ -28,6 +28,8 @@ namespace Antura.Minigames
             AppManager.I.Player.SetCurrentJourneyPosition(Stage, LearningBlock, PlaySession);
             var config = new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, TutorialEnabled);
             AppManager.I.GameLauncher.LaunchGame(MiniGameCode, config, true);
+
+
         }
     }
 }

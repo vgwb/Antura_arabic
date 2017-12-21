@@ -1,10 +1,10 @@
 {
   "MiniGameData": [
     {
-      "Id": "AlphabetSong_alphabet",
+      "Id": "Song_alphabet",
       "Type": "MiniGame",
       "Status": "active",
-      "Main": "AlphabetSong",
+      "Main": "Song",
       "Variation": "alphabet",
       "Badge": "alphabet",
       "Description": "",
@@ -27,11 +27,11 @@
       "Comprehension": ""
     },
     {
-      "Id": "AlphabetSong_letter",
+      "Id": "Song_diacritics",
       "Type": "MiniGame",
       "Status": "standby",
-      "Main": "AlphabetSong",
-      "Variation": "letter",
+      "Main": "Song",
+      "Variation": "diacritics",
       "Badge": "letters",
       "Description": "",
       "Team": "VGWB",
@@ -523,7 +523,7 @@
     {
       "Id": "Balloons_spelling",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "Balloons",
       "Variation": "spelling",
       "Badge": "spelling",
@@ -573,11 +573,11 @@
       "Comprehension": "X"
     },
     {
-      "Id": "ColorTickle_letter",
+      "Id": "ColorTickle_lettername",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "ColorTickle",
-      "Variation": "letter",
+      "Variation": "lettername",
       "Badge": "letters",
       "Description": "",
       "Team": "Students",
@@ -599,11 +599,11 @@
       "Comprehension": ""
     },
     {
-      "Id": "DancingDots_letter",
+      "Id": "DancingDots_lettername",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "DancingDots",
-      "Variation": "letter",
+      "Variation": "lettername",
       "Badge": "letters",
       "Description": "",
       "Team": "Wixel",
@@ -625,11 +625,11 @@
       "Comprehension": "X"
     },
     {
-      "Id": "DancingDots_letterform",
+      "Id": "DancingDots_letterany",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "DancingDots",
-      "Variation": "letterform",
+      "Variation": "letterany",
       "Badge": "letters",
       "Description": "",
       "Team": "",
@@ -651,11 +651,11 @@
       "Comprehension": ""
     },
     {
-      "Id": "Egg_letter",
+      "Id": "Egg_lettername",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "Egg",
-      "Variation": "letter",
+      "Variation": "lettername",
       "Badge": "alphabet",
       "Description": "",
       "Team": "VGWB",
@@ -677,11 +677,11 @@
       "Comprehension": ""
     },
     {
-      "Id": "Egg_letterform",
+      "Id": "Egg_letterphoneme",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "Egg",
-      "Variation": "letterform",
+      "Variation": "letterphoneme",
       "Badge": "letters",
       "Description": "",
       "Team": "",
@@ -703,15 +703,15 @@
       "Comprehension": ""
     },
     {
-      "Id": "Egg_sequence",
+      "Id": "Egg_buildword",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "Egg",
-      "Variation": "sequence",
+      "Variation": "buildword",
       "Badge": "letters",
       "Description": "",
       "Team": "VGWB",
-      "Title_En": "The Egg: Sequence!",
+      "Title_En": "The Egg: Build Word!",
       "Title_Ar": "بيضةُ الحروف!",
       "Intro_En": "",
       "Intro_Ar": "",
@@ -731,7 +731,7 @@
     {
       "Id": "FastCrowd_alphabet",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "FastCrowd",
       "Variation": "alphabet",
       "Badge": "alphabet",
@@ -781,11 +781,11 @@
       "Comprehension": ""
     },
     {
-      "Id": "FastCrowd_letter",
+      "Id": "FastCrowd_lettername",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "FastCrowd",
-      "Variation": "letter",
+      "Variation": "lettername",
       "Badge": "letters",
       "Description": "",
       "Team": "VGWB",
@@ -833,11 +833,11 @@
       "Comprehension": ""
     },
     {
-      "Id": "FastCrowd_letterinword",
+      "Id": "FastCrowd_buildword",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "FastCrowd",
-      "Variation": "letterinword",
+      "Variation": "buildword",
       "Badge": "spelling",
       "Description": "",
       "Team": "VGWB",
@@ -885,11 +885,11 @@
       "Comprehension": "X"
     },
     {
-      "Id": "HideSeek_letterform",
+      "Id": "HideSeek_letterphoneme",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "HideSeek",
-      "Variation": "letterform",
+      "Variation": "letterphoneme",
       "Badge": "letters",
       "Description": "",
       "Team": "Students",
@@ -911,11 +911,11 @@
       "Comprehension": "X"
     },
     {
-      "Id": "MakeFriends_letterform",
+      "Id": "MakeFriends_letterinword",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "MakeFriends",
-      "Variation": "word",
+      "Variation": "letterinword",
       "Badge": "words",
       "Description": "",
       "Team": "Wixel",
@@ -937,11 +937,11 @@
       "Comprehension": "X"
     },
     {
-      "Id": "Maze_letter",
+      "Id": "Maze_lettername",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "Maze",
-      "Variation": "letter",
+      "Variation": "lettername",
       "Badge": "letters",
       "Description": "",
       "Team": "Wixel",
@@ -965,7 +965,7 @@
     {
       "Id": "MissingLetter_letter",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "MissingLetter",
       "Variation": "letter",
       "Badge": "letters",
@@ -1043,7 +1043,7 @@
     {
       "Id": "MissingLetter_phrase",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "MissingLetter",
       "Variation": "word",
       "Badge": "words",
@@ -1069,7 +1069,7 @@
     {
       "Id": "MixedLetters_alphabet",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "MixedLetters",
       "Variation": "alphabet",
       "Badge": "alphabet",
@@ -1093,11 +1093,11 @@
       "Comprehension": ""
     },
     {
-      "Id": "MixedLetters_letterinword",
+      "Id": "MixedLetters_buildword",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "MixedLetters",
-      "Variation": "spelling",
+      "Variation": "buildword",
       "Badge": "spelling",
       "Description": "",
       "Team": "Wixel",
@@ -1121,7 +1121,7 @@
     {
       "Id": "ReadingGame_word",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "ReadingGame",
       "Variation": "word",
       "Badge": "words",
@@ -1147,7 +1147,7 @@
     {
       "Id": "Scanner_phrase",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "Scanner",
       "Variation": "phrase",
       "Badge": "words",
@@ -1173,7 +1173,7 @@
     {
       "Id": "Scanner_word",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "Scanner",
       "Variation": "word",
       "Badge": "images",
@@ -1197,11 +1197,11 @@
       "Comprehension": "X"
     },
     {
-      "Id": "SickLetters_letter",
+      "Id": "SickLetters_lettername",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "SickLetters",
-      "Variation": "letter",
+      "Variation": "lettername",
       "Badge": "letters",
       "Description": "",
       "Team": "Wixel",
@@ -1223,11 +1223,11 @@
       "Comprehension": "X"
     },
     {
-      "Id": "TakeMeHome_letter",
+      "Id": "TakeMeHome_lettername",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "TakeMeHome",
-      "Variation": "letter",
+      "Variation": "lettername",
       "Badge": "letters",
       "Description": "",
       "Team": "Wixel",
@@ -1249,11 +1249,11 @@
       "Comprehension": ""
     },
     {
-      "Id": "ThrowBalls_letter",
+      "Id": "ThrowBalls_lettername",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "ThrowBalls",
-      "Variation": "letters",
+      "Variation": "lettername",
       "Badge": "letter",
       "Description": "",
       "Team": "Wixel",
@@ -1275,11 +1275,11 @@
       "Comprehension": ""
     },
     {
-      "Id": "ThrowBalls_letterform",
+      "Id": "ThrowBalls_letterany",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "ThrowBalls",
-      "Variation": "letterform",
+      "Variation": "letterany",
       "Badge": "letter",
       "Description": "",
       "Team": "",
@@ -1301,11 +1301,11 @@
       "Comprehension": ""
     },
     {
-      "Id": "ThrowBalls_letterinword",
+      "Id": "ThrowBalls_buildword",
       "Type": "MiniGame",
       "Status": "active",
       "Main": "ThrowBalls",
-      "Variation": "letterinword",
+      "Variation": "buildword",
       "Badge": "spelling",
       "Description": "",
       "Team": "Wixel",
@@ -1353,11 +1353,11 @@
       "Comprehension": "X"
     },
     {
-      "Id": "Tobogan_letter",
+      "Id": "Tobogan_letterinword",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "Tobogan",
-      "Variation": "letters",
+      "Variation": "letterinword",
       "Badge": "letter",
       "Description": "",
       "Team": "VGWB",
@@ -1381,7 +1381,7 @@
     {
       "Id": "Tobogan_sunmoon",
       "Type": "MiniGame",
-      "Status": "standby",
+      "Status": "disabled",
       "Main": "Tobogan",
       "Variation": "sunmoon",
       "Badge": "sunmoon",

@@ -1,6 +1,6 @@
-﻿using System;
-using Antura.Audio;
+﻿using Antura.Audio;
 using Antura.Core;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.DeExtensions;
@@ -35,8 +35,7 @@ namespace Antura.UI
             showTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .Append(this.GetComponent<Image>().DOFade(0, 0.35f).From())
                 .Join(Content.DOScale(0.0001f, 0.35f).From().SetEase(Ease.OutBack))
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     this.gameObject.SetActive(false);
                     OnClose();
                 });
@@ -62,8 +61,7 @@ namespace Antura.UI
         {
             var localizationData = LocalizationManager.GetLocalizationData(id);
             AudioManager.I.PlayDialogue(localizationData);
-            Show(LocalizationManager.GetTranslation(id),
-                localizationData.English, _onYes, _onNo);
+            Show(LocalizationManager.GetTranslation(id), localizationData.English, _onYes, _onNo);
         }
 
         public void Show(string _messageAr, Action _onYes, Action _onNo)

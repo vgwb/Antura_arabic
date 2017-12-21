@@ -10,7 +10,7 @@ namespace Antura.Assessment
         private Updater updater;
         private IDragManager dragManager;
 
-        public AssessmentGameState( IDragManager dragManager, Assessment assessment, 
+        public AssessmentGameState(IDragManager dragManager, Assessment assessment,
                                     AssessmentResultState resultState, AssessmentGame game)
         {
             this.assessment = assessment;
@@ -22,13 +22,13 @@ namespace Antura.Assessment
         public void EnterState()
         {
             updater = Updater.Instance;
-            updater.AddTimedUpdate( dragManager);
-            assessment.StartGameSession( SetNextState);
+            updater.AddTimedUpdate(dragManager);
+            assessment.StartGameSession(SetNextState);
         }
 
         public void SetNextState()
         {
-            assessmentGame.SetCurrentState( resultState);
+            assessmentGame.SetCurrentState(resultState);
         }
 
         public void ExitState()
@@ -37,12 +37,12 @@ namespace Antura.Assessment
             updater = null;
         }
 
-        public void Update( float delta)
+        public void Update(float delta)
         {
-            updater.UpdateDelta( delta);
+            updater.UpdateDelta(delta);
         }
 
-        public void UpdatePhysics( float delta)
+        public void UpdatePhysics(float delta)
         {
 
         }

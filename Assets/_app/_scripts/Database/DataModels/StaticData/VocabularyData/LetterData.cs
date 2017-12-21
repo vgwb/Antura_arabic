@@ -44,7 +44,6 @@ namespace Antura.Database
     ///     <seealso cref="PhraseData" />
     ///     <seealso cref="WordData" />
     /// </summary>
-    // TODO refactor: this requires heavy refactoring!
     // TODO refactor: we could make this general in respect to the language
     [Serializable]
     public class LetterData : IVocabularyData, IConvertibleToLivingLetterData
@@ -268,20 +267,13 @@ namespace Antura.Database
         public LetterForm ForcedLetterForm = LetterForm.None;
         public LetterForm Form
         {
-            get
-            {
+            get {
                 if (ForcedLetterForm != LetterForm.None) return ForcedLetterForm;
                 return LetterForm.Isolated;
             }
         }
 
-        /// <summary>
-        /// Logic to use for equality comparisons
-        /// </summary>
-        //public LetterEqualityStrictness EqualityStrictness = LetterEqualityStrictness.WithActualForm;
-
         #endregion
-
 
         public override string ToString()
         {
@@ -382,27 +374,43 @@ namespace Antura.Database
             }
         }
 
+        public string GetAudioFilename(LetterDataSoundType soundType = LetterDataSoundType.Phoneme)
+        {
+            // Debug.Log("GetAudioFilename " + Id + " " + Kind + " " + Type);
+            switch (soundType) {
+                case LetterDataSoundType.Phoneme:
+                    // arabic special case: the phoneme of a simple letter is the letterbase_sukun sound!!!!!
+                    if (Kind == LetterDataKind.Letter) {
+                        return Id + "_sukun";
+                    } else {
+                        return Id;
+                    }
+                case LetterDataSoundType.Name:
+                    return Id + "__lettername";
+                default:
+                    return "";
+            }
+        }
+
         public string GetStringForDisplay(LetterForm form = LetterForm.Isolated)
         {
             // Get the string for the specific form, without fallback
             var hexunicode = GetUnicode(form, fallback: false);
-            if (hexunicode  == "") {
+            if (hexunicode == "") {
                 return "";
             }
 
             var output = "";
 
             // add the "-" to diacritic symbols to indentify better if it's over or below hte mid line
-            if (Type == LetterDataType.DiacriticSymbol)
-            {
+            if (Type == LetterDataType.DiacriticSymbol) {
                 output = "\u0640";
             }
 
             var unicode = int.Parse(hexunicode, NumberStyles.HexNumber);
             output += ((char)unicode).ToString();
 
-            if (Symbol_Unicode != "")
-            {
+            if (Symbol_Unicode != "") {
                 var unicode_added = int.Parse(Symbol_Unicode, NumberStyles.HexNumber);
                 output += ((char)unicode_added).ToString();
             }
@@ -443,11 +451,10 @@ namespace Antura.Database
             return (LetterData)MemberwiseClone();
         }
 
-        public bool IsSameLetterAs(LetterData other,  LetterEqualityStrictness strictness)
+        public bool IsSameLetterAs(LetterData other, LetterEqualityStrictness strictness)
         {
             bool isEqual = false;
-            switch (strictness)
-            {
+            switch (strictness) {
                 case LetterEqualityStrictness.LetterOnly:
                     isEqual = string.Equals(_Id, other._Id);
                     break;
@@ -472,71 +479,21 @@ namespace Antura.Database
         public override bool Equals(object obj)
         {
             var other = obj as LetterData;
-            if (other == null) return false;
+            if (other == null) { return false; }
             return Equals(other);
         }
 
         private bool Equals(LetterData other)
         {
-            // We choose the stricter of the two letters
-            /*var strictness = EqualityStrictness != LetterEqualityStrictness.LetterOnly
-                ? this.EqualityStrictness
-                : other.EqualityStrictness;*/
+            // By default, LetterData uses LetterOnly when comparing (even in collections!)
             return IsSameLetterAs(other, LetterEqualityStrictness.LetterOnly);
         }
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                var hashCode = (Id != null ? Id.GetHashCode() : 0);
-                /*switch (EqualityStrictness)
-                {
-                    case LetterEqualityStrictness.LetterOnly:
-                        break;
-                    case LetterEqualityStrictness.WithActualForm:
-                        hashCode = (hashCode * 397) ^ Form.GetHashCode();
-                        break;
-                    case LetterEqualityStrictness.WithVisualForm:
-                        hashCode = (hashCode * 397) ^ GetStringForDisplay().GetHashCode();
-                        break;
-                }*/
-                return hashCode;
-            }
-        }
-
-    }
-
-    /*
-    public class LetterDataComparer : IEqualityComparer<LetterData>
-    {
-        private LetterEqualityStrictness strictness;
-
-        public LetterDataComparer(LetterEqualityStrictness strictness)
-        {
-            this.strictness = strictness;
-        }
-
-        public bool Equals(LetterData x, LetterData y)
-        {
-            return x.IsSameLetterAs(y, strictness);
-        }
-
-        public int GetHashCode(LetterData obj)
-        {
-            var hashCode = (obj.Id != null ? obj.Id.GetHashCode() : 0);
-            switch (obj.EqualityStrictness)
-            {
-                case LetterEqualityStrictness.LetterOnly:
-                    break;
-                case LetterEqualityStrictness.WithActualForm:
-                    hashCode = (hashCode * 397) ^ obj.Form.GetHashCode();
-                    break;
-                case LetterEqualityStrictness.WithVisualForm:
-                    hashCode = (hashCode * 397) ^ obj.GetStringForDisplay().GetHashCode();
-                    break;
-            }
+            // By default, LetterData uses LetterOnly when comparing (even in collections!)
+            var hashCode = (Id != null ? Id.GetHashCode() : 0);
             return hashCode;
         }
-    }*/
+    }
 }

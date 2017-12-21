@@ -1,75 +1,60 @@
-﻿using UnityEngine;
+﻿using Antura.Tutorial;
+using UnityEngine;
 using System.Collections.Generic;
-using Antura.Tutorial;
 
 namespace Antura.Minigames.Maze
 {
-
     public class HandTutorial : MonoBehaviour
     {
-
         public float handSpeed = 2.0f;
 
         //support mutliple paths:
         public List<GameObject> pathsToFollow;
         public List<GameObject> linesToShow;
         public List<GameObject> visibleArrows;
-        //public List<GameObject> numbersToShow;
 
         private List<Vector3> wayPoints = new List<Vector3>();
-
         private int currentPath = 0;
-        //private int currentWayPoint = 0;
 
 
-        //private bool isMovingOnPath = false;
         public bool isStopped = false;
-
         private Vector3 startingPosition;
-
         public bool isShownOnce = false;
-        // Use this for initialization
+
         void Start()
         {
 
             startingPosition = new Vector3(-1, -1, -1);
 
             //hide the path
-            foreach (GameObject visibleArrow in visibleArrows)
+            foreach (GameObject visibleArrow in visibleArrows) {
                 visibleArrow.SetActive(false);
+            }
 
-            foreach (GameObject lineToShow in linesToShow)
+            foreach (GameObject lineToShow in linesToShow) {
                 lineToShow.SetActive(false);
-
-            /*foreach(GameObject numberToShow in numbersToShow)
-				numberToShow.SetActive(false);*/
+            }
 
             gameObject.SetActive(false);
-
             isShownOnce = false;
         }
 
-        // Update is called once per frame
         void Update()
         {
-
-
         }
 
         public void showCurrentTutorial()
         {
-            if (startingPosition.x != -1 && startingPosition.y != -1 && startingPosition.z != -1)
+            if (startingPosition.x != -1 && startingPosition.y != -1 && startingPosition.z != -1) {
                 gameObject.transform.position = startingPosition;
+            }
             gameObject.SetActive(true);
-            //isMovingOnPath = true;
             setWayPoints();
-
         }
 
         public void stopCurrentTutorial()
         {
             TutorialUI.Clear(false);
-
             wayPoints.Clear();
             gameObject.SetActive(false);
 
@@ -78,9 +63,8 @@ namespace Antura.Minigames.Maze
             isStopped = true;
         }
 
-        void setWayPoints()
+        private void setWayPoints()
         {
-
             gameObject.SetActive(true);
 
             wayPoints = new List<Vector3>();
@@ -89,8 +73,7 @@ namespace Antura.Minigames.Maze
             //numbersToShow [currentPath].SetActive (true);
             linesToShow[currentPath].SetActive(true);
 
-            foreach (Transform child in pathsToFollow[currentPath].transform)
-            {
+            foreach (Transform child in pathsToFollow[currentPath].transform) {
                 wayPoints.Add(child.transform.position);
             }
 
@@ -99,10 +82,9 @@ namespace Antura.Minigames.Maze
             //currentWayPoint = 0;
             isShownOnce = true;
             MazeGame.instance.timer.StartTimer();
-            if (wayPoints.Count == 1)
+            if (wayPoints.Count == 1) {
                 TutorialUI.ClickRepeat(wayPoints[0]);
-            else
-            {
+            } else {
                 TutorialUI.DrawLine(wayPoints.ToArray(), TutorialUI.DrawLineMode.FingerAndArrow, false, true);
             }
 
@@ -113,15 +95,13 @@ namespace Antura.Minigames.Maze
             return currentPath == pathsToFollow.Count - 1;
         }
 
-
         public void moveToNextPath()
         {
-            if (currentPath < pathsToFollow.Count - 1)
-            {
+            if (currentPath < pathsToFollow.Count - 1) {
                 isStopped = false;
 
                 HideCheckpointsAndLineOfCurrentPath();
-                
+
                 currentPath++;
                 setWayPoints();
             }
@@ -136,28 +116,22 @@ namespace Antura.Minigames.Maze
 
         public void HideAllCheckpointsAndLines()
         {
-            foreach (var path in pathsToFollow)
-            {
+            foreach (var path in pathsToFollow) {
                 path.SetActive(false);
             }
 
-            foreach (var arrow in visibleArrows)
-            {
+            foreach (var arrow in visibleArrows) {
                 arrow.SetActive(false);
             }
 
-            foreach (var line in linesToShow)
-            {
+            foreach (var line in linesToShow) {
                 line.SetActive(false);
             }
         }
 
         public bool isCurrentTutorialDone()
         {
-            return true; //!isMovingOnPath;
+            return true;
         }
-
-
     }
-
 }

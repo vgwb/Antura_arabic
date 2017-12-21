@@ -21,7 +21,6 @@ namespace Antura.Teacher
         private int nPacks;
         private int nCorrect;
         private int nWrong;
-        private bool firstCorrectIsQuestion;
         private QuestionBuilderParameters parameters;
         private LetterAlterationFilters letterAlterationFilters;
 
@@ -31,7 +30,6 @@ namespace Antura.Teacher
         }
        
         public RandomLetterAlterationsQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
-            bool firstCorrectIsQuestion = false,
             LetterAlterationFilters letterAlterationFilters = null,
             QuestionBuilderParameters parameters = null
             )
@@ -46,7 +44,6 @@ namespace Antura.Teacher
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
-            this.firstCorrectIsQuestion = firstCorrectIsQuestion;
             this.parameters = parameters;
             this.letterAlterationFilters = letterAlterationFilters;
 
@@ -88,59 +85,16 @@ namespace Antura.Teacher
             var baseLetters = chosenLetters;
 
             // Then, find all the different variations and add them to a pool
-            var letterPool = new List<LetterData>();
+            var letterPool = vocabularyHelper.GetAllLetterAlterations(baseLetters, letterAlterationFilters);
 
-            // Filter: only 1 base or multiples
-            if (!letterAlterationFilters.differentBaseLetters)
-            {
-                var chosenLetter = baseLetters.RandomSelectOne();
-                baseLetters.Clear();
-                baseLetters.Add(chosenLetter);
-            }
-
-            //Debug.Log("N base letters: " + baseLetters.Count);
-            // Get all alterations for the given bases
-            foreach (var baseLetter in baseLetters)
-            {
-                // Check all alterations of this base letter
-                var letterAlterations = vocabularyHelper.GetLettersWithBase(baseLetter.GetId());
-                List<LetterData> availableVariations = new List<LetterData>();
-                foreach (var letterData in letterAlterations)
-                {
-                    if (!vocabularyHelper.FilterByDiacritics(letterAlterationFilters.ExcludeDiacritics, letterData)) continue;
-                    if (!vocabularyHelper.FilterByLetterVariations(letterAlterationFilters.ExcludeLetterVariations, letterData)) continue;
-                    if (!vocabularyHelper.FilterByDipthongs(letterAlterationFilters.excludeDipthongs, letterData)) continue;
-                    availableVariations.Add(letterData);
-                }
-                //Debug.Log("N availableVariations  " + availableVariations.Count + "  for " + baseLetter.GetId());
-
-                if (letterAlterationFilters.includeForms)
-                {
-                    // Add forms too to the variations, if needed
-                    List<LetterData> basesForForms = new List<LetterData>(availableVariations);
-                    basesForForms.Add(baseLetter);
-                    foreach (var baseForForm in basesForForms)
-                    {
-                        var availableForms = vocabularyHelper.ConvertToLettersWithForcedForms(baseForForm);
-                        letterPool.AddRange(availableForms);
-                    }
-                }
-                else
-                {
-                    // Add just the isolated versions
-                    letterPool.Add(baseLetter);
-                    letterPool.AddRange(availableVariations);
-                }
-            }
-
+            // Choose randomly from that pool
             var correctAnswers = letterPool.RandomSelect(nCorrect);
             var wrongAnswers = letterPool;
             foreach (LetterData data in correctAnswers)
                 wrongAnswers.Remove(data);
             wrongAnswers = wrongAnswers.RandomSelect(Mathf.Min(nWrong,wrongAnswers.Count));
 
-            var question = baseLetters[0];
-            if (firstCorrectIsQuestion) question = correctAnswers[0];
+            var question = correctAnswers[0];
 
             if (ConfigAI.VerboseQuestionPacks)
             {
@@ -153,14 +107,7 @@ namespace Antura.Teacher
                 ConfigAI.AppendToTeacherReport(debugString);
             }
 
-            // TODO: re-handle strictness with the builder's parameters approach
-
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
-        }
-
-        public bool CompareLetters(LetterData letter1, LetterData letter2)
-        {
-            return letter1.IsSameLetterAs(letter2, parameters.letterEqualityStrictness);
         }
 
     }

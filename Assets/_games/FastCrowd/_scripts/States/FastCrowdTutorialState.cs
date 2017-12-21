@@ -34,30 +34,8 @@ namespace Antura.Minigames.FastCrowd
             tutorialStarted = false;
 
             // TODO: make this more robust to variations
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet)
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_alphabet_Tuto, () => { StartTutorial(); });
-            }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_counting_Tuto, () => { StartTutorial(); });
-            }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName)
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Tuto, () => { StartTutorial(); });
-            }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord)
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Tuto, () => { StartTutorial(); });
-            }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word)
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_words_Tuto, () => { StartTutorial(); });
-            }
-            else
-            {
-                StartTutorial();
-            }
+            game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.TutorialLocalizationId, () => { StartTutorial(); });
+
         }
 
         public void ExitState()

@@ -1,11 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Antura.Helpers
 {
     public static class UIHelper
     {
-        #region Public Methods
 
         /// <summary>
         /// Converts the anchoredPosition of the first RectTransform to the second RectTransform,
@@ -22,6 +20,5 @@ namespace Antura.Helpers
             return to.anchoredPosition + localPoint - pivotDerivedOffset;
         }
 
-        #endregion
     }
 }

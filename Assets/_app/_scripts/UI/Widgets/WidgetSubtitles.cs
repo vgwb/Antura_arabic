@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
-using Antura.Core;
-using TMPro;
+﻿using Antura.Core;
 using ArabicSupport;
 using DG.Tweening;
+using System;
+using System.Collections;
+using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Antura.UI
@@ -24,9 +24,10 @@ namespace Antura.UI
         public WalkieTalkie WalkieTalkie;
 
         public static WidgetSubtitles I;
-        System.Action currentCallback;
-        int index;
-        Tween showTween, bgColorTween, textTween;
+
+        private System.Action currentCallback;
+        private int index;
+        private Tween showTween, bgColorTween, textTween;
 
         void Awake()
         {
@@ -39,8 +40,7 @@ namespace Antura.UI
             showTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .Append(this.GetComponent<RectTransform>().DOAnchorPosY(170, 0.3f).From().SetEase(Ease.OutBack))
                 .OnPlay(() => this.gameObject.SetActive(true))
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     TextUI.text = "";
                     this.gameObject.SetActive(false);
                 });
@@ -52,13 +52,12 @@ namespace Antura.UI
 
         void OnDestroy()
         {
-            if (I == this) I = null;
+            if (I == this) { I = null; }
             this.StopAllCoroutines();
             showTween.Kill();
             bgColorTween.Kill();
             textTween.Kill();
         }
-
 
         public void DisplayDebug(string _sentence)
         {
@@ -78,13 +77,6 @@ namespace Antura.UI
             DisplaySentence(data, _duration, _isKeeper, _callback);
         }
 
-        [Obsolete("USE DB.LOCALICATIONDATAID!", false)]
-        public void DisplaySentence(string _sentenceId, float _duration = 2, bool _isKeeper = false, System.Action _callback = null)
-        {
-            if (_callback != null)
-                _callback();
-        }
-
         /// <summary>
         /// Activate view elements if SentenceId != "" and display sentence.
         /// </summary>
@@ -95,8 +87,11 @@ namespace Antura.UI
             this.StopAllCoroutines();
             currentCallback = _callback;
             showTween.PlayForward();
-            if (_isKeeper) bgColorTween.PlayBackwards();
-            else bgColorTween.PlayForward();
+            if (_isKeeper) {
+                bgColorTween.PlayBackwards();
+            } else {
+                bgColorTween.PlayForward();
+            }
             WalkieTalkie.Show(_isKeeper);
             DisplayText(data, _duration);
         }
@@ -111,14 +106,16 @@ namespace Antura.UI
         public void Close(bool _immediate = false)
         {
             this.StopAllCoroutines();
-            if (_immediate) showTween.Rewind();
-            else showTween.PlayBackwards();
+            if (_immediate) {
+                showTween.Rewind();
+            } else {
+                showTween.PlayBackwards();
+            }
             WalkieTalkie.Show(false, _immediate);
         }
 
         void DisplayText(Database.LocalizationData data, float _duration = 3)
         {
-            //            bool isContinue = !string.IsNullOrEmpty(TextUI.text);
             this.StopAllCoroutines();
             textTween.Kill();
             TextUI.text = "";
@@ -129,12 +126,12 @@ namespace Antura.UI
             }
 
             this.gameObject.SetActive(true);
-            if (WalkieTalkie.IsShown) WalkieTalkie.Pulse();
+            if (WalkieTalkie.IsShown) { WalkieTalkie.Pulse(); }
 
             TextUI.text = string.IsNullOrEmpty(localizedText) ? data.Id : ReverseText(ArabicFixer.Fix(localizedText));
             this.StartCoroutine(DisplayTextCoroutine(_duration));
 
-            Debug.Log("DisplayText() " + data + " - " + data.English);
+            //Debug.Log("DisplayText() " + data + " - " + data.English);
         }
 
         void clearAndHide()
@@ -151,14 +148,13 @@ namespace Antura.UI
 
             TextUI.maxVisibleCharacters = TextUI.textInfo.characterCount;
             textTween = DOTween.To(() => TextUI.maxVisibleCharacters, x => TextUI.maxVisibleCharacters = x, 0, _duration)
-                .From().SetUpdate(true).SetEase(Ease.Linear)
-                .OnComplete(() =>
-                {
-                    WalkieTalkie.StopPulse();
-
-                    if (currentCallback != null)
-                        currentCallback();
-                });
+                               .From().SetUpdate(true).SetEase(Ease.Linear)
+                               .OnComplete(() => {
+                                   WalkieTalkie.StopPulse();
+                                   if (currentCallback != null) {
+                                       currentCallback();
+                                   }
+                               });
         }
 
         string ReverseText(string _text)

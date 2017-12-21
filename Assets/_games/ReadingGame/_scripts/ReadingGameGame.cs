@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using Antura.LivingLetters;
 using Antura.Minigames;
@@ -10,6 +10,7 @@ namespace Antura.Minigames.ReadingGame
     {
         public ReadingBarSet barSet;
         public GameObject blurredText;
+        public HiddenText hiddenText;
         public GameObject circleBox;
         public ReadingGameAntura antura;
         public ReadingRadialWidget radialWidget;
@@ -102,7 +103,7 @@ namespace Antura.Minigames.ReadingGame
             {
                 ISongParser parser = new AkrSongParser();
 
-                var textAsset = ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong ? alphabetSongSrt : diacriticSongSrt;
+                var textAsset = ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.Alphabet ? alphabetSongSrt : diacriticSongSrt;
 
                 using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(textAsset.text)))
                 {

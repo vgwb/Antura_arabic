@@ -7133,12 +7133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MiniGameCode: 11
+  MiniGameCode: 34
   Stage: 1
-  LearningBlock: 1
+  LearningBlock: 14
   PlaySession: 1
-  Difficulty: 0.5
-  TutorialEnabled: 1
+  Difficulty: 0
+  TutorialEnabled: 0
   NumberOfRounds: 1
 --- !u!4 &1814291036
 Transform:

@@ -61,7 +61,7 @@ namespace Antura.Minigames.ThrowBalls
         private int NumLettersInCurrentRound
         {
             get {
-                if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.LetterInWord) {
+                if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.BuildWord) {
                     return currentLettersForLettersInWord.Count;
                 } else {
                     return 3;
@@ -83,7 +83,7 @@ namespace Antura.Minigames.ThrowBalls
             currentLettersForLettersInWord = new List<ILivingLetterData>();
 
             // Configure num balls:
-            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.LetterInWord) {
+            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.BuildWord) {
                 MAX_NUM_BALLS = 10;
             } else {
                 var difficulty = game.Difficulty;
@@ -133,22 +133,7 @@ namespace Antura.Minigames.ThrowBalls
 
             ThrowBallsGame.instance.letterWithPropsPrefab.SetActive(false);
 
-            switch (ThrowBallsConfiguration.Instance.Variation) {
-                case ThrowBallsVariation.Letter:
-                    audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Title, OnTitleVoiceOverDone);
-                    break;
-                case ThrowBallsVariation.LetterForm:
-                    audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Title, OnTitleVoiceOverDone);
-                    break;
-                case ThrowBallsVariation.Word:
-                    audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_words_Title, OnTitleVoiceOverDone);
-                    break;
-                case ThrowBallsVariation.LetterInWord:
-                    audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letterinword_Title, OnTitleVoiceOverDone);
-                    break;
-                default:
-                    break;
-            }
+            audioManager.PlayDialogue(ThrowBallsConfiguration.Instance.TitleLocalizationId, OnTitleVoiceOverDone);
 
             AudioManager.I.PlayMusic(Music.Theme10);
 
@@ -194,16 +179,16 @@ namespace Antura.Minigames.ThrowBalls
             yield return new WaitForSeconds(SHOW_BALL_END_DELAY);
 
             switch (ThrowBallsConfiguration.Instance.Variation) {
-                case ThrowBallsVariation.Letter:
+                case ThrowBallsVariation.LetterName:
                     game.StartCoroutine(StartNewRound());
                     break;
-                case ThrowBallsVariation.LetterForm:
+                case ThrowBallsVariation.LetterAny:
                     game.StartCoroutine(StartNewRound());
                     break;
                 case ThrowBallsVariation.Word:
                     game.StartCoroutine(StartNewRound());
                     break;
-                case ThrowBallsVariation.LetterInWord:
+                case ThrowBallsVariation.BuildWord:
                     game.StartCoroutine(StartNewRound_LettersInWord());
                     break;
             }
@@ -282,18 +267,20 @@ namespace Antura.Minigames.ThrowBalls
 
             if (IsTutorialRound()) {
                 switch (ThrowBallsConfiguration.Instance.Variation) {
-                    case ThrowBallsVariation.Letter:
+                    case ThrowBallsVariation.LetterName:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
                         break;
-                    case ThrowBallsVariation.LetterForm:
+                    case ThrowBallsVariation.LetterAny:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
                         break;
                     case ThrowBallsVariation.Word:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_words_Tuto);
                         break;
-                    case ThrowBallsVariation.LetterInWord:
+                    case ThrowBallsVariation.BuildWord:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letterinword_Tuto);
                         break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
 
                 inputManager.Enabled = true;
@@ -359,20 +346,20 @@ namespace Antura.Minigames.ThrowBalls
 
             if (IsTutorialRound()) {
                 switch (ThrowBallsConfiguration.Instance.Variation) {
-                    case ThrowBallsVariation.Letter:
+                    case ThrowBallsVariation.LetterName:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
                         break;
-                    case ThrowBallsVariation.LetterForm:
+                    case ThrowBallsVariation.LetterAny:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
                         break;
                     case ThrowBallsVariation.Word:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_words_Tuto);
                         break;
-                    case ThrowBallsVariation.LetterInWord:
+                    case ThrowBallsVariation.BuildWord:
                         audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letterinword_Tuto);
                         break;
                     default:
-                        break;
+                        throw new ArgumentOutOfRangeException();
                 }
 
                 inputManager.Enabled = true;
@@ -415,7 +402,7 @@ namespace Antura.Minigames.ThrowBalls
 
         private void SayQuestion()
         {
-            game.Context.GetAudioManager().PlayLetterData(question);
+            game.Context.GetAudioManager().PlayVocabularyData(question, soundType: ThrowBallsConfiguration.Instance.GetVocabularySoundType());
         }
 
         private void ShowTutorialUI()
@@ -471,7 +458,7 @@ namespace Antura.Minigames.ThrowBalls
             if (roundNumber > MAX_NUM_ROUNDS) {
                 EndGame();
             } else {
-                if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.LetterInWord) {
+                if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.BuildWord) {
                     game.StartCoroutine(StartNewRound_LettersInWord());
                 } else {
                     game.StartCoroutine(StartNewRound());
@@ -491,7 +478,7 @@ namespace Antura.Minigames.ThrowBalls
 
         public void OnCorrectLetterHit(LetterController correctLetterCntrl)
         {
-            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.LetterInWord) {
+            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.BuildWord) {
                 numLettersRemaining--;
                 var word = ((LL_WordData)question).Data;
 
@@ -595,7 +582,7 @@ namespace Antura.Minigames.ThrowBalls
             correctLetterCntrl.transform.rotation = Quaternion.Euler(-Camera.main.transform.rotation.eulerAngles.x, 180, 0);
             correctLetterCntrl.shadow.SetActive(false);
 
-            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.LetterInWord) {
+            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.BuildWord) {
                 correctLetterCntrl.SetLetter(question);
             }
 

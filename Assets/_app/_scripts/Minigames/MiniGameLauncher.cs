@@ -1,6 +1,10 @@
 using Antura.Core;
+using Antura.Database;
+using Antura.Helpers;
+using Antura.LivingLetters;
 using Antura.Teacher;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
@@ -13,6 +17,16 @@ namespace Antura.Minigames
     {
         private QuestionPacksGenerator questionPacksGenerator;
         private TeacherAI teacher;
+
+        // Last used data
+        private IGameConfiguration currentGameConfig;
+        private IQuestionBuilder currentQuestionBuilder;
+        private List<IQuestionPack> currentQuestionPacks;
+
+        public IGameConfiguration GetCurrentMiniGameConfig()
+        {
+            return currentGameConfig;
+        }
 
         public MiniGameLauncher(TeacherAI _teacher)
         {
@@ -43,11 +57,11 @@ namespace Antura.Minigames
                 AppManager.I.NavigationManager.InitNewPlaySession(miniGameData);
             }
 
-            if (AppConfig.DebugLogEnabled) Debug.Log("StartGame " + _gameCode.ToString());
+            if (AppConfig.DebugLogEnabled) { Debug.Log("StartGame " + _gameCode.ToString()); }
 
             // Assign the configuration for the given minigame
             var minigameSession = System.DateTime.Now.Ticks.ToString();
-            var currentGameConfig = ConfigureMiniGameScene(_gameCode, minigameSession);
+            currentGameConfig = ConfigureMiniGameScene(_gameCode, minigameSession);
             currentGameConfig.Difficulty = _launchConfiguration.Difficulty;
             currentGameConfig.TutorialEnabled = _launchConfiguration.TutorialEnabled;
 
@@ -59,9 +73,9 @@ namespace Antura.Minigames
             }
 
             // Retrieve the packs for the current minigame configuration
-            var questionBuilder = currentGameConfig.SetupBuilder();
-            var questionPacks = questionPacksGenerator.GenerateQuestionPacks(questionBuilder);
-            currentGameConfig.Questions = new LivingLetters.SequentialQuestionPackProvider(questionPacks);
+            currentQuestionBuilder = currentGameConfig.SetupBuilder();
+            currentQuestionPacks = questionPacksGenerator.GenerateQuestionPacks(currentQuestionBuilder);
+            currentGameConfig.Questions = new SequentialQuestionPackProvider(currentQuestionPacks);
 
             // Communicate to LogManager the start of a new single minigame play session.
             if (AppConfig.DebugLogDbInserts) { Debug.Log("InitGameplayLogSession " + _gameCode.ToString()); }
@@ -78,13 +92,26 @@ namespace Antura.Minigames
             AppManager.I.NavigationManager.GoToMiniGameScene();
         }
 
+        public string GetCurrentMiniGameConfigSummary()
+        {
+            var output = "";
+            output += "Difficulty: " + currentGameConfig.Difficulty;
+            output += "\nQuestion builder: " + currentQuestionBuilder.GetType().Name;
+
+            // LB Focus
+            var contents = AppManager.I.Teacher.VocabularyAi.GetContentsAtLearningBlock(AppManager.I.Player.CurrentJourneyPosition);
+            var focusLetters = contents.GetHashSet<LetterData>();
+            output += "\nFocus letters: " + focusLetters.ToDebugString();
+
+            return output;
+        }
+
         /// <summary>
         /// Prepare the configuration for a given minigame.
         /// </summary>
         public IGameConfiguration ConfigureMiniGameScene(MiniGameCode code, string sessionName)
         {
             var miniGameData = AppManager.I.DB.GetMiniGameDataByCode(code);
-
             var defaultContext = new MinigamesGameContext(code, sessionName);
 
             // We use reflection to get the correct configuration class given a minigame code

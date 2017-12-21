@@ -2,6 +2,7 @@ using Antura.Core;
 using Antura.Minigames;
 using Antura.UI;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,8 @@ namespace Antura.Debugging
         public GameObject PrefabRow;
         public GameObject PrefabMiniGameButton;
 
+        public TextMeshProUGUI InfoText;
+
         public InputField InputStage;
         public InputField InputLearningBlock;
         public InputField InputPlaySession;
@@ -29,8 +32,8 @@ namespace Antura.Debugging
 
         public bool TutorialEnabled
         {
-            get { return DebugManager.I.TutorialEnabled; }
-            set { DebugManager.I.TutorialEnabled = value; }
+            get { return AppConfig.MinigameTutorialsEnabled; }
+            set { AppConfig.MinigameTutorialsEnabled = value; }
         }
 
         public bool VerboseTeacher
@@ -194,6 +197,8 @@ namespace Antura.Debugging
                 InputPlaySession.text = AppManager.I.Player.CurrentJourneyPosition.PlaySession.ToString();
             }
 
+            DisplayInfoText();
+
             TutorialEnabledToggle.isOn = TutorialEnabled;
             AutoCorrectJourneyPosToggle.isOn = AutoCorrectJourneyPos;
             VerboseTeacherToggle.isOn = VerboseTeacher;
@@ -232,6 +237,20 @@ namespace Antura.Debugging
 
             ProfilePanel.SetActive(advancedSettingsEnabled);
             NavigationPanel.SetActive(advancedSettingsEnabled);
+        }
+
+        private void DisplayInfoText()
+        {
+            InfoText.text = "";
+
+            if (AppManager.I.Player != null) {
+                InfoText.text += "Current JP: " + AppManager.I.Player.CurrentJourneyPosition + "\n";
+            }
+            if (AppManager.I.NavigationManager.CurrentMiniGameData != null) {
+                InfoText.text += "Current MiniGame: " + AppManager.I.NavigationManager.CurrentMiniGameData.Code + "\n";
+                InfoText.text += AppManager.I.GameLauncher.GetCurrentMiniGameConfigSummary();
+            }
+
         }
 
         #endregion

@@ -3,6 +3,7 @@ using Antura.LivingLetters;
 using Antura.Minigames;
 using Antura.Teacher;
 using System;
+using Antura.Database;
 using UnityEngine;
 
 namespace Antura.Assessment
@@ -142,6 +143,8 @@ namespace Antura.Assessment
                 case AssessmentVariation.MatchLettersToWord_Form:
                     return Setup_MatchLettersToWord_Form_Builder();
 
+                case AssessmentVariation.Unsetted:
+                case AssessmentVariation.VowelOrConsonant:
                 default:
                     throw new NotImplementedException("NotImplemented Yet!");
             }
@@ -446,11 +449,11 @@ namespace Antura.Assessment
             builderParams.useJourneyForWrong = false;
             builderParams.sortPacksByDifficulty = false;
 
-            return new RandomLettersQuestionBuilder(
+            return new RandomLetterAlterationsQuestionBuilder(
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers
                 1,                              // CorrectAnswers
                 4,                              // WrongAnswers
-                firstCorrectIsQuestion: true,
+                letterAlterationFilters: LetterAlterationFilters.FormsOfSingleLetter,
                 parameters: builderParams);
         }
 
@@ -557,6 +560,20 @@ namespace Antura.Assessment
         private MiniGameLearnRules Setup_LetterForm_LearnRules()
         {
             return new MiniGameLearnRules();
+        }
+
+        public LetterDataSoundType GetVocabularySoundType()
+        {
+            LetterDataSoundType soundType;
+            switch (Variation) {
+                case AssessmentVariation.Letter:
+                    soundType = LetterDataSoundType.Name;
+                    break;
+                default:
+                    soundType = LetterDataSoundType.Phoneme;
+                    break;
+            }
+            return soundType;
         }
 
     }

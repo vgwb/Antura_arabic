@@ -137,22 +137,13 @@ namespace Antura.Minigames.FastCrowd
             EndState = new FastCrowdEndState(this);
             TutorialState = new FastCrowdTutorialState(this);
 
-            // TODO: make this more robust to variations
-            QuestionManager.wordComposer.gameObject.SetActive(
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord ||
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName ||
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterForm
-                );
-
-            QuestionManager.wordComposer.splitMode =
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName
-                || FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterForm;
+            QuestionManager.wordComposer.gameObject.SetActive(FastCrowdConfiguration.Instance.NeedsWordComposer);
+            QuestionManager.wordComposer.splitMode = FastCrowdConfiguration.Instance.WordComposerInSplitMode;
         }
-
 
         public bool ShowChallengePopupWidget(bool showAsGoodAnswer, Action callback)
         {
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterInWord)
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.BuildWord)
             {
                 var popupWidget = Context.GetPopupWidget();
                 popupWidget.Show();
@@ -169,7 +160,7 @@ namespace Antura.Minigames.FastCrowd
 
                 var question = CurrentQuestion.GetQuestion();
                 popupWidget.SetLetterData(question);
-                Context.GetAudioManager().PlayLetterData(question);
+                Context.GetAudioManager().PlayVocabularyData(question, soundType: FastCrowdConfiguration.Instance.GetVocabularySoundType());
                 return true;
             }
             return false;

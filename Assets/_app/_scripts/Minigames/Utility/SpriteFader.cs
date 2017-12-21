@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Antura.Minigames
 {
@@ -14,20 +14,18 @@ namespace Antura.Minigames
         private float startAlpha;
         private float currentAlpha;
 
-        private bool overwrittenAlpha = false;
+        bool initialized = false;
 
         void Awake()
         {
+            if (initialized)
+                return;
+
+            initialized = true;
             sprite = GetComponent<SpriteRenderer>();
 
             startAlpha = sprite.color.a;
-            if (overwrittenAlpha) {
-                var old = sprite.color;
-                old.a = currentAlpha;
-                sprite.color = old;
-            } else {
-                currentAlpha = startAlpha;
-            }
+            currentAlpha = startAlpha;
         }
 
         void Update()
@@ -37,14 +35,19 @@ namespace Antura.Minigames
             var distance = target - currentAlpha;
             float delta = fadeSpeed * Time.deltaTime;
 
-            if (target <= 0.001f) {
+            if (target <= 0.001f)
+            {
                 currentAlpha -= delta;
 
-                if (currentAlpha < 0) {
+                if (currentAlpha < 0)
+                {
                     currentAlpha = 0;
                 }
-            } else {
-                if (Mathf.Abs(distance) > 0.05f) {
+            }
+            else
+            {
+                if (Mathf.Abs(distance) > 0.05f)
+                {
                     currentAlpha += Mathf.Sign(distance) * delta;
                 }
             }
@@ -53,7 +56,8 @@ namespace Antura.Minigames
             sprite.color = old;
 
             var enabled = currentAlpha > 0.001f;
-            if (sprite.enabled != enabled) {
+            if (sprite.enabled != enabled)
+            {
                 sprite.enabled = enabled;
             }
         }
@@ -61,7 +65,18 @@ namespace Antura.Minigames
         public void SetAlphaImmediate(float alpha)
         {
             currentAlpha = alpha;
-            overwrittenAlpha = true;
+
+            if (!initialized)
+            {
+                initialized = true;
+                sprite = GetComponent<SpriteRenderer>();
+
+                startAlpha = sprite.color.a;
+            }
+            
+            var old = sprite.color;
+            old.a = currentAlpha;
+            sprite.color = old;
         }
     }
 }

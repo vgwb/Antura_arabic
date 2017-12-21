@@ -64,12 +64,10 @@ namespace Antura.Assessment
         private float timer = 0;
         private void Update()
         {
-            if (timer > 0)
-            {
+            if (timer > 0) {
                 timer -= Time.deltaTime;
             }
-            if (timer <= 0)
-            {
+            if (timer <= 0) {
                 timer = 0;
             }
         }
@@ -80,8 +78,7 @@ namespace Antura.Assessment
 
         IEnumerator EnteringState()
         {
-            while (true)
-            {
+            while (true) {
                 yield return state.EnterState();
 
                 controller.State = AnturaAnimationStates.walking;
@@ -102,8 +99,7 @@ namespace Antura.Assessment
 
         private IEnumerator HappyState()
         {
-            while (true)
-            {
+            while (true) {
                 yield return state.EnterState();
                 controller.State = AnturaAnimationStates.bitingTail;
                 yield return Wait.For(3.0f);
@@ -116,8 +112,7 @@ namespace Antura.Assessment
 
         private IEnumerator AngryState()
         {
-            while (true)
-            {
+            while (true) {
                 yield return state.EnterState();
                 controller.IsAngry = true;
                 controller.DoShout(() => audioManager.AnturaAngrySound());
@@ -131,26 +126,21 @@ namespace Antura.Assessment
 
         IEnumerator IdleState()
         {
-            while (true)
-            {
-                yield return state.EnterState(() =>
-               {
-                   controller.State = AnturaAnimationStates.idle;
-                   controller.IsAngry = false;
-                   controller.State = AnturaAnimationStates.sitting;
-               });
+            while (true) {
+                yield return state.EnterState(() => {
+                    controller.State = AnturaAnimationStates.idle;
+                    controller.IsAngry = false;
+                    controller.State = AnturaAnimationStates.sitting;
+                });
 
-                if (becomeHappy)
-                {
+                if (becomeHappy) {
                     yield return state.Change(Happy);
                 }
 
-                if (becomeAngry)
-                {
+                if (becomeAngry) {
                     yield return state.Change(Angry);
                 }
-                if (becomeExiting)
-                {
+                if (becomeExiting) {
                     yield return state.Change(Exiting);
                 }
             }

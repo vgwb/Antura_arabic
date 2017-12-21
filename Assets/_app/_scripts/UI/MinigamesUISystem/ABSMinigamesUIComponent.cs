@@ -9,7 +9,7 @@ namespace Antura.UI
         public RectTransform RectTransform
         {
             get {
-                if (rt == null) rt = this.GetComponent<RectTransform>();
+                if (rt == null) { rt = this.GetComponent<RectTransform>(); }
                 return rt;
             }
         }

@@ -1,3 +1,4 @@
+using Antura.Audio;
 using Antura.Core;
 using Antura.Helpers;
 using Antura.UI;
@@ -46,7 +47,6 @@ namespace Antura.Rewards
                 Destroy(childTr.gameObject);
             }
 
-            // Setup daily reward manager
             dailyRewardManager = new DailyRewardManager();
             int nCurrentConsecutiveDaysOfPlaying = AppManager.I.Player.ConsecutivePlayDays;
             Debug.Assert(nCurrentConsecutiveDaysOfPlaying >= 1, "Should not access this scene with 0 consecutive days");
@@ -60,7 +60,6 @@ namespace Antura.Rewards
             // Index of the new reward (for the content, not the UI)
             newRewardContentIndex = nCurrentConsecutiveDaysOfPlaying - 1;
 
-            // How many rewards to show
             int nRewardsToShowToday = Mathf.Min(MAX_REWARDS_TO_SHOW, nCurrentConsecutiveDaysOfPlaying + 2);
 
             // 0 days -> nothing!
@@ -134,6 +133,7 @@ namespace Antura.Rewards
             s.Insert(s.Duration() - 0.15f, dailyRewardUIs[newRewardUIIndex].transform.DOScale(1.25f, 0.35f).SetEase(Ease.OutBack));
             yield return s.WaitForCompletion();
 
+            AudioManager.I.PlaySound(Sfx.Win);
             dailyRewardUIs[newRewardUIIndex].Bounce(true);
 
             //            yield return new WaitForSeconds(1.0f);
@@ -149,9 +149,6 @@ namespace Antura.Rewards
             // Show the TODAY on the new one
             //            todayPivot.transform.position = dailyRewardUIs[newRewardUIIndex].transform.position;
 
-            //            yield return new WaitForSeconds(1.0f);
-
-            // Show the bones counter
             bonesCounter.Show();
 
             // Set in CLAIM mode (any click will work)
@@ -200,7 +197,7 @@ namespace Antura.Rewards
             }
             AppManager.I.Player.AddBones(nNewBones);
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1.0f);
 
             // Log
             LogManager.I.LogInfo(InfoEvent.DailyRewardReceived);

@@ -212,7 +212,7 @@ namespace Antura.Minigames.Scanner
                         LL.setColor(Color.white);
 
                     LL = other.transform.parent.GetComponent<ScannerLivingLetter>();
-                    dataAudio = game.Context.GetAudioManager().PlayLetterData(LL.LLController.Data, true);
+                    dataAudio = game.Context.GetAudioManager().PlayVocabularyData(LL.LLController.Data, true);
 
                     LL.setColor(Color.green);
 

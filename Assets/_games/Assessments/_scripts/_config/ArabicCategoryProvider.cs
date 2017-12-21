@@ -97,32 +97,24 @@ namespace Antura.Assessment
         // (otherwise add to attach a different view for certain characters)
         public bool Compare(int currentCategory, ILivingLetterData fromQuestionBuilder)
         {
-            switch (categoryType)
-            {
+            switch (categoryType) {
                 case CategoryType.SunMoon:
-                    if (currentCategory == 0)
-                    {
+                    if (currentCategory == 0) {
                         return fromQuestionBuilder.Equals(sun);
-                    }
-                    else
-                    {
+                    } else {
                         return fromQuestionBuilder.Equals(moon);
                     }
                 case CategoryType.SingularDualPlural:
-                    switch (currentCategory)
-                    {
+                    switch (currentCategory) {
                         case 0: return fromQuestionBuilder.Equals(singular);
                         case 1: return fromQuestionBuilder.Equals(dual);
                         default: return fromQuestionBuilder.Equals(plural);
                     }
 
                 case CategoryType.WithOrWithoutArticle:
-                    if (currentCategory == 0)
-                    {
+                    if (currentCategory == 0) {
                         return fromQuestionBuilder.Equals(article);
-                    }
-                    else
-                    {
+                    } else {
                         return fromQuestionBuilder.Equals(noArticle);
                     }
                 default:
@@ -132,8 +124,7 @@ namespace Antura.Assessment
 
         public int GetCategories()
         {
-            switch (categoryType)
-            {
+            switch (categoryType) {
                 case CategoryType.SunMoon:
                     return 2;
                 case CategoryType.SingularDualPlural:
@@ -153,38 +144,29 @@ namespace Antura.Assessment
         public GameObject SpawnCustomObject(int currentCategory)
         {
 
-            switch (categoryType)
-            {
+            switch (categoryType) {
                 case CategoryType.SunMoon:
-                    if (currentCategory == 0)
-                    {
+                    if (currentCategory == 0) {
                         return QuestionView(sunImage);
-                    }
-                    else
-                    {
+                    } else {
                         return QuestionView(moonImage);
                     }
                 case CategoryType.SingularDualPlural:
-                    switch (currentCategory)
-                    {
+                    switch (currentCategory) {
                         case 0: return QuestionView(number1);
                         case 1: return QuestionView(number2);
                         default: return QuestionView(number3);
                     }
 
                 case CategoryType.WithOrWithoutArticle:
-                    if (currentCategory == 0)
-                    {
+                    if (currentCategory == 0) {
                         return QuestionView(article);
-                    }
-                    else
-                    {
+                    } else {
                         return QuestionView(noArticle);
                     }
                 default:
                     throw new NotImplementedException();
             }
-
         }
     }
 }

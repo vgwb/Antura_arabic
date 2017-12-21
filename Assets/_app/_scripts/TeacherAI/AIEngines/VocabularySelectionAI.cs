@@ -461,6 +461,11 @@ namespace Antura.Teacher
             return progressionContents.GetContentsUpToPlaySession(jp);
         }
 
+        public VocabularyContents GetContentsAtLearningBlock(JourneyPosition jp)
+        {
+            return progressionContents.GetContentsOfLearningBlock(jp);
+        }
+
         public VocabularyContents CurrentJourneyContents { get { return currentJourneyContents; } }
 
         #endregion

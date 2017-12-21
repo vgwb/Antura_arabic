@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters;
 using Antura.Teacher;
 
@@ -5,25 +6,18 @@ namespace Antura.Minigames.SickLetters
 {
     public enum SickLettersVariation
     {
-        Default = MiniGameCode.SickLetters_letter,
+        LetterName = MiniGameCode.SickLetters_lettername,
     }
 
-    public class SickLettersConfiguration : IGameConfiguration
+    public class SickLettersConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
+        private SickLettersVariation Variation { get; set; }
 
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
-        public IQuestionProvider Questions { get; set; }
-        public SickLettersVariation Variation { get; set; }
-
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (SickLettersVariation)code;
         }
 
-        /////////////////
         // Singleton Pattern
         static SickLettersConfiguration instance;
         public static SickLettersConfiguration Instance
@@ -35,13 +29,11 @@ namespace Antura.Minigames.SickLetters
                 return instance;
             }
         }
-        /////////////////
 
         private SickLettersConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new MinigamesGameContext(MiniGameCode.SickLetters_letter, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.SickLetters_lettername, System.DateTime.Now.Ticks.ToString());
             Questions = new SickLettersQuestionProvider();
             TutorialEnabled = true;
             //SickLettersQuestions = new SickLettersQuestionProvider();
@@ -49,7 +41,7 @@ namespace Antura.Minigames.SickLetters
             ConfigAI.VerboseTeacher = true;
         }
 
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
@@ -57,13 +49,24 @@ namespace Antura.Minigames.SickLetters
             int nCorrect = 1;
             int nWrong = 0;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+            var builderParams = new QuestionBuilderParameters();
+
+            switch (Variation)
+            {
+                case SickLettersVariation.LetterName:
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
+                    builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
+                    builderParams.letterFilters.excludeDiphthongs = true;
+                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;

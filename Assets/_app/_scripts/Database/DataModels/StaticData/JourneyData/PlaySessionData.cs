@@ -27,49 +27,56 @@ namespace Antura.Database
             get { return _Id; }
             set { _Id = value; }
         }
-        [SerializeField] private string _Id;
+        [SerializeField]
+        private string _Id;
 
         public int Stage
         {
             get { return _Stage; }
             set { _Stage = value; }
         }
-        [SerializeField] private int _Stage;
+        [SerializeField]
+        private int _Stage;
 
         public int LearningBlock
         {
             get { return _LearningBlock; }
             set { _LearningBlock = value; }
         }
-        [SerializeField] private int _LearningBlock;
+        [SerializeField]
+        private int _LearningBlock;
 
         public int PlaySession
         {
             get { return _PlaySession; }
             set { _PlaySession = value; }
         }
-        [SerializeField] private int _PlaySession;
+        [SerializeField]
+        private int _PlaySession;
 
         public string Type
         {
             get { return _Type; }
             set { _Type = value; }
         }
-        [SerializeField] private string _Type;
+        [SerializeField]
+        private string _Type;
 
         public PlaySessionDataOrder Order
         {
             get { return _Order; }
             set { _Order = value; }
         }
-        [SerializeField] private PlaySessionDataOrder _Order;
+        [SerializeField]
+        private PlaySessionDataOrder _Order;
 
         public int NumberOfMinigames
         {
             get { return _NumberOfMinigames; }
             set { _NumberOfMinigames = value; }
         }
-        [SerializeField] private int _NumberOfMinigames;
+        [SerializeField]
+        private int _NumberOfMinigames;
 
         [Ignore]
         public MiniGameInPlaySession[] Minigames
@@ -90,7 +97,8 @@ namespace Antura.Database
             get { return _NumberOfRoundsPerMinigame; }
             set { _NumberOfRoundsPerMinigame = value; }
         }
-        [SerializeField] private int _NumberOfRoundsPerMinigame;
+        [SerializeField]
+        private int _NumberOfRoundsPerMinigame;
 
 
         [Ignore]
@@ -106,7 +114,7 @@ namespace Antura.Database
             get { return Letters.ToJoinedString(); }
             set { }
         }
-        
+
         [Ignore]
         public string[] Words
         {
@@ -183,7 +191,7 @@ namespace Antura.Database
 
         public JourneyPosition GetJourneyPosition()
         {
-            return new JourneyPosition(Stage,LearningBlock,PlaySession);
+            return new JourneyPosition(Stage, LearningBlock, PlaySession);
         }
     }
 
@@ -192,6 +200,10 @@ namespace Antura.Database
     {
         public MiniGameCode MiniGameCode;
         public int Weight;
+        // TODO maybe pass some info straight from the PlaySession table
+        // public int NumberOfRounds;
+        // public float Difficulty;
+        // public string SpecialParameters;
 
         public override string ToString()
         {

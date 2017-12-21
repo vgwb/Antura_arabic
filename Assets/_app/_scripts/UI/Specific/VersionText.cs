@@ -11,7 +11,7 @@ namespace Antura.UI
     {
         void Start()
         {
-            gameObject.GetComponent<TextMeshProUGUI>().text = "v " + AppConfig.AppVersion;
+            gameObject.GetComponent<TextMeshProUGUI>().text = AppConfig.GetAppVersionString();
         }
     }
 }

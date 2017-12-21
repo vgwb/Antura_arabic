@@ -54,6 +54,7 @@ namespace Antura.Database
         /// </summary>
         public int Timestamp { get; set; }
 
+        public string AppVersion { get; set; }
 
         #region PlayerIconData
 
@@ -204,7 +205,7 @@ namespace Antura.Database
                 )
         {
             Id = UNIQUE_ID;  // Only one record
-
+            AppVersion = AppConfig.AppVersion.ToString();
             Uuid = _Uuid;
             AvatarId = _AvatarId;
             Gender = _Gender;
@@ -303,6 +304,5 @@ namespace Antura.Database
         }
 
         #endregion
-
     }
 }

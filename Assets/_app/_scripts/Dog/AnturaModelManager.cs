@@ -103,7 +103,7 @@ namespace Antura.Dog
             returnCustomization.TileTextureId = LoadedTileTexture.GetIdAccordingToDBRules();
             returnCustomization.DecalTexture = LoadedDecal;
             returnCustomization.DecalTextureId = LoadedDecal.GetIdAccordingToDBRules();
-            AppManager.I.Player.SaveCustomization(returnCustomization);
+            AppManager.I.Player.SaveAnturaCustomization(returnCustomization);
             return returnCustomization;
         }
 

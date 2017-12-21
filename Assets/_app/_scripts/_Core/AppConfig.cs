@@ -13,7 +13,19 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.1.0beta (566)";
+        public static Version AppVersion = new Version(1, 1, 0, 575);
+
+        /// <summary>
+        /// Version of the Static Database Scheme.
+        /// v1.0.7 - added ArabicFemale to LocalizationData
+        /// </summary>
+        public const string StaticDbSchemeVersion = "1.1.0.572";
+
+        /// <summary>
+        /// Version of the MySQL Database Scheme.
+        /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
+        /// </summary>
+        public const string DynamicDbSchemeVersion = "1.1.0.572";
 
         #region Debug Options
 
@@ -43,23 +55,12 @@ namespace Antura.Core
 
         // for Test configuration
         public static bool DisableFirstContact = true;
-        //public static bool DisableMinigameTutorials = true;
+
+        public static bool MinigameTutorialsEnabled = false;
 
         #endregion
 
         #region Application Constants
-
-        /// <summary>
-        /// Version of the Static Database Scheme.
-        /// v1.0.7 - added ArabicFemale to LocalizationData
-        /// </summary>
-        public const string StaticDbSchemeVersion = "1.1.0beta564";
-
-        /// <summary>
-        /// Version of the MySQL Database Scheme.
-        /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
-        /// </summary>
-        public const string DynamicDbSchemeVersion = "1.1.0beta564";
 
         // public URLs
         public const string UrlWebsite = "http://www.antura.org";
@@ -79,10 +80,11 @@ namespace Antura.Core
         public const string PdfAndroidInstall = "AndroidInstallHelp.pdf";
 
         // the directories of exported / imported databases
+        public const string DbFileExtension = ".sqlite3";
         public const string DbPlayersFolder = "players";
-        public const string DbExportFolder = "export";
-        public const string DbImportFolder = "import";
-        public const string DbJoinedFolder = "joined";
+        public const string DbExportFolder = "db_export";
+        public const string DbImportFolder = "db_import";
+        public const string DbJoinedFolder = "db_export_joined";
 
         // Range and Constrain values
         public const float MinPlayerAge = 4;
@@ -108,28 +110,29 @@ namespace Antura.Core
 
         public static string GetPlayerUUIDFromDatabaseFilename(string fileName)
         {
-            return fileName.Split('/').Last().Split('\\').Last().Replace("Antura_Player_", "").Replace(".sqlite3", "");
+            return fileName.Split('/').Last().Split('\\').Last().Replace("Antura_Player_", "").Replace(DbFileExtension, "");
         }
 
         public static string GetPlayerDatabaseFilename(string playerUuid)
         {
-            return "Antura_Player_" + playerUuid + ".sqlite3";
+            return "Antura_Player_" + playerUuid + DbFileExtension;
         }
 
         public static string GetPlayerDatabaseFilenameForExport(string playerUuid)
         {
-            return "export_Antura_Player_" + playerUuid + "_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
+            return "export_Antura_Player_" + playerUuid + "_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + DbFileExtension;
         }
 
         public static string GetJoinedDatabaseFilename()
         {
-            return "Antura_Joined_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
+            return "Antura_Joined_" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + DbFileExtension;
         }
 
         public static bool IsDesktopPlatform()
         {
             return (Application.platform == RuntimePlatform.WindowsPlayer ||
-                    Application.platform == RuntimePlatform.OSXPlayer);
+                    Application.platform == RuntimePlatform.OSXPlayer ||
+                    Application.platform == RuntimePlatform.LinuxPlayer);
         }
 
         public static bool IsMobilePlatform()
@@ -138,5 +141,35 @@ namespace Antura.Core
                     Application.platform == RuntimePlatform.IPhonePlayer);
         }
 
+        public static bool IsMobileTablet()
+        {
+            if (IsMobilePlatform()) {
+                return (DeviceDiagonalSizeInInches() > 6.5f);
+            }
+            return false;
+        }
+
+        public static bool IsMobileSMartphone()
+        {
+            if (IsMobilePlatform()) {
+                return (DeviceDiagonalSizeInInches() <= 6.5f);
+            }
+            return false;
+        }
+
+        private static float DeviceDiagonalSizeInInches()
+        {
+            float screenWidth = Screen.width / Screen.dpi;
+            float screenHeight = Screen.height / Screen.dpi;
+            float diagonalInches = Mathf.Sqrt(Mathf.Pow(screenWidth, 2) + Mathf.Pow(screenHeight, 2));
+            return diagonalInches;
+        }
+
+        public static string GetAppVersionString()
+        {
+            string v = string.Format("{0}.{1}.{2} ({3})", AppVersion.Major, AppVersion.Minor, AppVersion.Build, AppVersion.Revision);
+
+            return v;
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Antura.Database;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
@@ -7,57 +8,45 @@ namespace Antura.Minigames.FastCrowd
 {
     public enum FastCrowdVariation
     {
-        LetterInWord = MiniGameCode.FastCrowd_letterinword,
+        BuildWord = MiniGameCode.FastCrowd_buildword,
         Word = MiniGameCode.FastCrowd_word,
-        LetterName = MiniGameCode.FastCrowd_letter,
+        LetterName = MiniGameCode.FastCrowd_lettername,
         LetterForm = MiniGameCode.FastCrowd_letterform,
         Counting = MiniGameCode.FastCrowd_counting,
         Alphabet = MiniGameCode.FastCrowd_alphabet
     }
 
-    public class FastCrowdConfiguration : IGameConfiguration
+    public class FastCrowdConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
+        public FastCrowdVariation Variation { get; private set; }
 
-        #region Game configurations
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
-        public FastCrowdVariation Variation { get; set; }
-
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (FastCrowdVariation)code;
+            Variation = (FastCrowdVariation) code;
         }
 
-        #endregion
-
-
-        /////////////////
         // Singleton Pattern
         static FastCrowdConfiguration instance;
+
         public static FastCrowdConfiguration Instance
         {
-            get {
-                if (instance == null) {
+            get
+            {
+                if (instance == null)
+                {
                     instance = new FastCrowdConfiguration();
                 }
                 return instance;
             }
         }
-        /////////////////
 
         private FastCrowdConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-
             Questions = new SampleQuestionProvider();
             //Variation = FastCrowdVariation.Letter;
             //Variation = FastCrowdVariation.Alphabet;
-            Variation = FastCrowdVariation.LetterInWord;
+            Variation = FastCrowdVariation.BuildWord;
 
             //Questions = new SampleQuestionWithWordsProvider();
             //Variation = FastCrowdVariation.Counting;
@@ -66,21 +55,11 @@ namespace Antura.Minigames.FastCrowd
             //Variation = FastCrowdVariation.Words;
             TutorialEnabled = true;
 
-            Context = new MinigamesGameContext(MiniGameCode.FastCrowd_letterinword, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.FastCrowd_buildword, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 
-        #region external configuration call
-        public static void SetConfiguration(float _difficulty, int _variation)
-        {
-            instance = new FastCrowdConfiguration()
-            {
-                Difficulty = _difficulty,
-                Variation = (FastCrowdVariation)_variation,
-            };
-        }
-
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
@@ -90,45 +69,49 @@ namespace Antura.Minigames.FastCrowd
 
             var builderParams = new QuestionBuilderParameters();
 
-            switch (Variation) {
+            switch (Variation)
+            {
                 case FastCrowdVariation.Alphabet:
                     builder = new AlphabetQuestionBuilder();
                     break;
                 case FastCrowdVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number, builderParams, true);
+                    builder = new OrderedWordsQuestionBuilder(WordDataCategory.Number, builderParams, true);
                     break;
                 case FastCrowdVariation.LetterName:
-                    // TODO: this is currently a LetterForm, should not!
-                    builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion: true);
+                    // Only base letters
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
+                    builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, parameters: builderParams);
                     break;
                 case FastCrowdVariation.LetterForm:
                     // @note: we pass 4 as nCorrect, so we get all the four forms of a single letter, which will be shown one after the other
-                    var letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
-                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 4, nWrong, firstCorrectIsQuestion: true, letterAlterationFilters: letterAlterationFilters);
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 4, nWrong, letterAlterationFilters: LetterAlterationFilters.FormsOfSingleLetter);
                     break;
-                case FastCrowdVariation.LetterInWord:
+                case FastCrowdVariation.BuildWord:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
-                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
+                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong: nWrong, useAllCorrectLetters: true,
+                        parameters: builderParams);
                     break;
                 case FastCrowdVariation.Word:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
                     builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
         }
 
-        public bool IsDataMatching(ILivingLetterData data1, ILivingLetterData data2)
+        public override bool IsDataMatching(ILivingLetterData data1, ILivingLetterData data2)
         {
             LetterEqualityStrictness strictness;
             switch (Variation)
@@ -136,13 +119,169 @@ namespace Antura.Minigames.FastCrowd
                 case FastCrowdVariation.LetterForm:
                     strictness = LetterEqualityStrictness.WithVisualForm;
                     break;
-                default:
+                case FastCrowdVariation.BuildWord:
+                case FastCrowdVariation.Word:
+                case FastCrowdVariation.LetterName:
+                case FastCrowdVariation.Counting:
+                case FastCrowdVariation.Alphabet:
                     strictness = LetterEqualityStrictness.LetterOnly;
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             return DataMatchingHelper.IsDataMatching(data1, data2, strictness);
         }
 
-        #endregion
+        public override LetterDataSoundType GetVocabularySoundType()
+        {
+            LetterDataSoundType soundType;
+            switch (Variation)
+            {
+                case FastCrowdVariation.LetterForm:
+                    soundType = LetterDataSoundType.Name;
+                    break;
+                case FastCrowdVariation.BuildWord:
+                case FastCrowdVariation.Word:
+                case FastCrowdVariation.LetterName:
+                case FastCrowdVariation.Counting:
+                case FastCrowdVariation.Alphabet:
+                    soundType = LetterDataSoundType.Phoneme;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            return soundType;
+        }
+
+        public override LocalizationDataId TitleLocalizationId
+        {
+            get
+            {
+                switch (Variation)
+                {
+                    case FastCrowdVariation.BuildWord:
+                        return LocalizationDataId.FastCrowd_spelling_Title;
+                    case FastCrowdVariation.Word:
+                        return LocalizationDataId.FastCrowd_words_Title;
+                    case FastCrowdVariation.LetterName:
+                        return LocalizationDataId.FastCrowd_letter_Title;
+                    case FastCrowdVariation.LetterForm:
+                        return LocalizationDataId.FastCrowd_letter_Title;   // TODO: add the correct one here
+                    case FastCrowdVariation.Counting:
+                        return LocalizationDataId.FastCrowd_counting_Title;
+                    case FastCrowdVariation.Alphabet:
+                        return LocalizationDataId.FastCrowd_alphabet_Title;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        public LocalizationDataId IntroLocalizationId
+        {
+            get
+            {
+                switch (Variation)
+                {
+                    case FastCrowdVariation.BuildWord:
+                        return LocalizationDataId.FastCrowd_spelling_Intro;
+                    case FastCrowdVariation.Word:
+                        return LocalizationDataId.FastCrowd_words_Intro;
+                    case FastCrowdVariation.LetterName:
+                        return LocalizationDataId.FastCrowd_letter_Intro;
+                    case FastCrowdVariation.LetterForm:
+                        return LocalizationDataId.FastCrowd_letter_Intro;   // TODO: add the correct one here
+                    case FastCrowdVariation.Counting:
+                        return LocalizationDataId.FastCrowd_counting_Intro;
+                    case FastCrowdVariation.Alphabet:
+                        return LocalizationDataId.FastCrowd_alphabet_Intro;
+                    default:
+                            throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        public bool NeedsWordComposer
+        {
+            get
+            {
+                switch (Variation)
+                {
+                    case FastCrowdVariation.BuildWord:
+                    case FastCrowdVariation.LetterName:
+                    case FastCrowdVariation.LetterForm:
+                        return true;
+                    case FastCrowdVariation.Word:
+                    case FastCrowdVariation.Counting:
+                    case FastCrowdVariation.Alphabet:
+                        return false;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        public bool WordComposerInSplitMode
+        {
+            get {
+                switch (Variation)
+                {
+                    case FastCrowdVariation.LetterForm:
+                    case FastCrowdVariation.LetterName:
+                        return true;
+                    case FastCrowdVariation.BuildWord:
+                    case FastCrowdVariation.Word:
+                    case FastCrowdVariation.Counting:
+                    case FastCrowdVariation.Alphabet:
+                        return false;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        public bool NeedsFullQuestionCompleted
+        {
+            get
+            {
+                switch (Variation)
+                {
+                    case FastCrowdVariation.BuildWord:
+                    case FastCrowdVariation.LetterForm:
+                    case FastCrowdVariation.LetterName:
+                        return true;
+                    case FastCrowdVariation.Word:
+                    case FastCrowdVariation.Counting:
+                    case FastCrowdVariation.Alphabet:
+                        return false;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        public LocalizationDataId TutorialLocalizationId
+        {
+            get
+            {
+                switch (Variation)
+                {
+                    case FastCrowdVariation.BuildWord:
+                        return LocalizationDataId.FastCrowd_spelling_Tuto;
+                    case FastCrowdVariation.Word:
+                        return LocalizationDataId.FastCrowd_words_Tuto;
+                    case FastCrowdVariation.LetterName:
+                        return LocalizationDataId.FastCrowd_letter_Tuto;
+                    case FastCrowdVariation.LetterForm:
+                        return LocalizationDataId.FastCrowd_letter_Tuto;   // TODO: add the correct one here
+                    case FastCrowdVariation.Counting:
+                        return LocalizationDataId.FastCrowd_counting_Tuto;
+                    case FastCrowdVariation.Alphabet:
+                        return LocalizationDataId.FastCrowd_alphabet_Tuto;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
     }
 }

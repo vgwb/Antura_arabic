@@ -252,7 +252,7 @@ namespace Antura.Database
 
         public List<MiniGameData> GetActiveMinigames()
         {
-            return FindMiniGameData((x) => (x.Available && x.Type == MiniGameDataType.MiniGame));
+            return FindMiniGameData((x) => (x.Active && x.Type == MiniGameDataType.MiniGame));
         }
 
         public List<MiniGameData> GetAllMiniGameData()
@@ -500,11 +500,11 @@ namespace Antura.Database
 
         #region Export
 
-        public bool ExportDatabaseOfPlayer(string playerUuid)
+        public bool ExportPlayerDb(string playerUuid)
         {
             // Create a new service for the copied database
             // This will copy the current database
-            var exportDbService = DBService.ExportAndOpenFromPlayerUUID(playerUuid);
+            var exportDbService = DBService.ExportFromPlayerUUIDAndReopen(playerUuid);
 
             InjectUUID(playerUuid, exportDbService);
             InjectStaticData(exportDbService);
@@ -515,7 +515,12 @@ namespace Antura.Database
             return true;
         }
 
-        public bool ExportJoinedDatabase(out string errorString)
+        /// <summary>
+        /// Exports the players joined db reading them from the import directory
+        /// </summary>
+        /// <returns><c>true</c>, if players joined db was exported, <c>false</c> otherwise.</returns>
+        /// <param name="errorString">Error string.</param>
+        public bool ExportPlayersJoinedDb(out string errorString)
         {
             // Load all the databases we can find and get the player UUIDs
             var allUUIDs = new List<string>();
@@ -523,29 +528,32 @@ namespace Antura.Database
             if (filePaths != null) {
                 foreach (var filePath in filePaths) {
                     // Check whether that is a DB and load it
-                    if (filePath.Contains(".sqlite3")) {
+                    if (IsValidDatabasePath(filePath)) {
                         var importDbService = DBService.OpenFromFilePath(false, filePath);
                         var playerProfileData = importDbService.GetPlayerProfileData();
-                        if (playerProfileData == null) continue;    // skip no-player DBs, they are wrong
+                        if (playerProfileData == null) {
+                            // skip no-player DBs, they are wrong
+                            continue;
+                        }
                         allUUIDs.Add(playerProfileData.Uuid);
                         importDbService.CloseConnection();
                     }
                 }
             } else {
-                errorString = "Could not find the import folder.";
+                errorString = "Could not find the import folder: " + AppConfig.DbImportFolder;
                 Debug.LogError(errorString);
                 return false;
             }
 
             // Create the joined DB
-            var joinedDbService = DBService.OpenFromFileName(true, AppConfig.GetJoinedDatabaseFilename(), AppConfig.DbJoinedFolder);
+            var joinedDbService = DBService.OpenFromDirectoryAndFilename(true, AppConfig.GetJoinedDatabaseFilename(), AppConfig.DbJoinedFolder);
             InjectStaticData(joinedDbService);
             InjectEnums(joinedDbService);
 
             // Export and inject all the DBs
             foreach (var uuid in allUUIDs) {
                 // Export
-                var exportDbService = DBService.ExportAndOpenFromPlayerUUID(uuid, dirName: AppConfig.DbImportFolder);
+                var exportDbService = DBService.ExportFromPlayerUUIDAndReopen(uuid, dirName: AppConfig.DbImportFolder);
                 InjectUUID(uuid, exportDbService);
 
                 // Inject
@@ -567,6 +575,12 @@ namespace Antura.Database
                 return filePaths;
             }
             return null;
+        }
+
+        public bool IsValidDatabasePath(string dbpath)
+        {
+            return (dbpath.Contains(AppConfig.DbFileExtension));
+
         }
 
         public PlayerProfileData ImportDynamicDatabase(string importFilePath)

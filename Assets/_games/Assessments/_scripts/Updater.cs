@@ -12,8 +12,7 @@ namespace Antura.Assessment
 
         public void AddTimedUpdate(ITimedUpdate timedUpdate)
         {
-            if (updates == null)
-            {
+            if (updates == null) {
                 updates = new List<ITimedUpdate>();
             }
             updates.Add(timedUpdate);
@@ -21,10 +20,8 @@ namespace Antura.Assessment
 
         public void UpdateDelta(float delta)
         {
-            if (updates != null)
-            {
-                foreach (var u in updates)
-                {
+            if (updates != null) {
+                foreach (var u in updates) {
                     u.Update(delta);
                 }
             }

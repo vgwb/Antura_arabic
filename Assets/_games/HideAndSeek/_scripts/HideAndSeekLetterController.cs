@@ -150,7 +150,7 @@ namespace Antura.Minigames.HideAndSeek
             if (isClickable && onLetterTouched != null)
             {
                 HideAndSeekConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Blip);
-                HideAndSeekConfiguration.Instance.Context.GetAudioManager().PlayLetterData(view.Data);
+                HideAndSeekConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(view.Data);
                 isClickable = false;
                 onLetterTouched(id);
             }

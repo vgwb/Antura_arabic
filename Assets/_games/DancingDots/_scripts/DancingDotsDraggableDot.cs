@@ -114,10 +114,6 @@ namespace Antura.Minigames.DancingDots
 
 		public void Reset()
 		{
-			if (!isDot)
-			{
-				Debug.Log("Diacritic Reset");
-			}
 			transform.position = new Vector3(startX, startY, startZ);
 			isDragging = false;
 			transform.localScale = Vector3.zero;

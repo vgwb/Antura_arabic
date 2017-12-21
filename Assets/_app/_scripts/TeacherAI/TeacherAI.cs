@@ -200,9 +200,8 @@ namespace Antura.Teacher
 
         public bool GetTutorialEnabled(MiniGameCode miniGameCode)
         {
-            // STUB: we always show the tutorial for now
             // TODO: define the logic for when the tutorial should not be shown anymore!
-            return true;
+            return AppConfig.MinigameTutorialsEnabled;
         }
 
         #endregion
@@ -374,7 +373,7 @@ namespace Antura.Teacher
 
         private LL_LetterData BuildLetterData_LL(LetterData data)
         {
-            return new LL_LetterData(data.GetId());
+            return new LL_LetterData(data);
         }
 
         private List<ILivingLetterData> BuildLetterData_LL_Set(List<LetterData> data_list)

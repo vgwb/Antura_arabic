@@ -49,7 +49,7 @@ namespace Antura.Teacher.Test
                 data => _vocabularyHelper.GetWordsWithLetter(_wordFilters, data, LetterEqualityStrictness.WithActualForm).Count < threshold,
                 data => _vocabularyHelper.GetWordsWithLetter(_wordFilters, data, LetterEqualityStrictness.WithActualForm).Count.ToString());
         }
-        
+
 
         [DeMethodButton("Word Length")]
         public void DoWordLength()
@@ -59,12 +59,20 @@ namespace Antura.Teacher.Test
                 data => data.Letters.Length.ToString());
         }
 
-        [DeMethodButton("Letter Audio")]
-        public void DoLetterAudio()
+        [DeMethodButton("Letter Audio PHONEME")]
+        public void DoLetterAudioPhoneme()
         {
-            DoStatsList("Letters with audio", _letterDatas,
-                data => AudioManager.I.GetAudioClip(data) == null,
-                data => AudioManager.I.GetAudioClip(data) == null ? "NO" : "ok");
+            DoStatsList("Letters with audio PHONEME", _letterDatas,
+                        data => AudioManager.I.GetAudioClip(data, LetterDataSoundType.Phoneme) == null,
+                        data => AudioManager.I.GetAudioClip(data, LetterDataSoundType.Phoneme) == null ? "NO" : "ok");
+        }
+
+        [DeMethodButton("Letter Audio NAME")]
+        public void DoLetterAudioName()
+        {
+            DoStatsList("Letters with audio LETTERNAME", _letterDatas,
+                                    data => AudioManager.I.GetAudioClip(data, LetterDataSoundType.Name) == null,
+                                    data => AudioManager.I.GetAudioClip(data, LetterDataSoundType.Name) == null ? "NO" : "ok");
         }
 
         [DeMethodButton("Word Audio")]
@@ -93,8 +101,7 @@ namespace Antura.Teacher.Test
             List<LetterData> observedLetters = new List<LetterData>();
 
             final_s += "\n\n Words without matching letters in their PS:";
-            foreach (var playSessionData in _playSessionDatas)
-            {
+            foreach (var playSessionData in _playSessionDatas) {
                 // Get the letters & words in this PS
                 var contents = AppManager.I.Teacher.VocabularyAi.GetContentsUpToJourneyPosition(playSessionData.GetJourneyPosition());
                 var letters = contents.GetHashSet<LetterData>();
@@ -105,23 +112,19 @@ namespace Antura.Teacher.Test
                 // Check whether there are words with letters that are not in the PS
                 bool somethingWrong = false;
                 string ps_s = "\n\nPS " + playSessionData.GetJourneyPosition();
-                foreach (var word in words)
-                {
+                foreach (var word in words) {
                     if (observedWords.Contains(word)) continue;
 
-                    if (!_vocabularyHelper.WordContainsAnyLetter(word, letters))
-                    {
+                    if (!_vocabularyHelper.WordContainsAnyLetter(word, letters)) {
                         observedWords.Add(word);
                         ps_s += "\n" + word.Id + " has no matching letters!";
                         somethingWrong = true;
                     }
                 }
-                foreach (var letter in letters)
-                {
+                foreach (var letter in letters) {
                     if (observedLetters.Contains(letter)) continue;
 
-                    if (!_vocabularyHelper.AnyWordContainsLetter(letter, words))
-                    {
+                    if (!_vocabularyHelper.AnyWordContainsLetter(letter, words)) {
                         observedLetters.Add(letter);
                         ps_s += "\n" + letter.Id + " has no matching words!";
                         somethingWrong = true;
@@ -142,8 +145,7 @@ namespace Antura.Teacher.Test
 
             List<WordData> observedWords = new List<WordData>();
 
-            foreach (var playSessionData in _playSessionDatas)
-            {
+            foreach (var playSessionData in _playSessionDatas) {
                 // Get all letters & words in this PS
                 var contents = AppManager.I.Teacher.VocabularyAi.GetContentsUpToJourneyPosition(playSessionData.GetJourneyPosition());
                 var journeyLetters = contents.GetHashSet<LetterData>();
@@ -152,15 +154,12 @@ namespace Antura.Teacher.Test
                 // Check whether there are words with letters that are not in the PS
                 bool somethingWrong = false;
                 string ps_s = "\n\nPS " + playSessionData.GetJourneyPosition();
-                foreach (var word in journeyWords)
-                {
+                foreach (var word in journeyWords) {
                     if (observedWords.Contains(word)) continue;
 
                     var lettersInWord = _vocabularyHelper.GetLettersInWord(word);
-                    foreach (var letterInWord in lettersInWord)
-                    {
-                        if (!journeyLetters.Contains(letterInWord))
-                        {
+                    foreach (var letterInWord in lettersInWord) {
+                        if (!journeyLetters.Contains(letterInWord)) {
                             ps_s += "\n" + word.Id + " has undiscovered letter " + letterInWord.Id + "!";
                             somethingWrong = true;
                         }
@@ -184,12 +183,11 @@ namespace Antura.Teacher.Test
             Dictionary<WordData, int> observedWords = new Dictionary<WordData, int>();
             Dictionary<PhraseData, int> observedPhrases = new Dictionary<PhraseData, int>();
 
-            foreach (var d in AppManager.I.DB.GetAllLetterData())  observedLetters[d] = 0;
+            foreach (var d in AppManager.I.DB.GetAllLetterData()) observedLetters[d] = 0;
             foreach (var d in AppManager.I.DB.GetAllWordData()) observedWords[d] = 0;
-            foreach (var d in AppManager.I.DB.GetAllPhraseData())  observedPhrases[d] = 0;
+            foreach (var d in AppManager.I.DB.GetAllPhraseData()) observedPhrases[d] = 0;
 
-            foreach (var playSessionData in _playSessionDatas)
-            {
+            foreach (var playSessionData in _playSessionDatas) {
                 // Get the data in this PS
                 var contents = AppManager.I.Teacher.VocabularyAi.GetContentsUpToJourneyPosition(playSessionData.GetJourneyPosition());
                 var letters = contents.GetHashSet<LetterData>();
@@ -206,7 +204,7 @@ namespace Antura.Teacher.Test
             }
 
             final_s += "\n\n Letters:";
-            foreach (var d in AppManager.I.DB.GetAllLetterData()) if (observedLetters[d] == 0) final_s +=  "\n" + d.Id + ": " +  observedLetters[d];
+            foreach (var d in AppManager.I.DB.GetAllLetterData()) if (observedLetters[d] == 0) final_s += "\n" + d.Id + ": " + observedLetters[d];
 
             final_s += "\n\n Words:";
             foreach (var d in AppManager.I.DB.GetAllWordData()) if (observedWords[d] == 0) final_s += "\n" + d.Id + ": " + observedWords[d];
@@ -223,13 +221,11 @@ namespace Antura.Teacher.Test
         {
             DoStatsList("Letters & words", _letterDatas,
                 data => true,
-                data =>
-                {
+                data => {
                     string s = "";
                     var words = _vocabularyHelper.GetWordsWithLetter(_wordFilters, data, LetterEqualityStrictness.LetterOnly);
-                    foreach (var word in words)
-                    {
-                        s += word.Id +", ";
+                    foreach (var word in words) {
+                        s += word.Id + ", ";
                     }
                     return s;
                 });
@@ -243,29 +239,22 @@ namespace Antura.Teacher.Test
             var problematicEntries = new List<string>();
 
             string data_s = "\n\n";
-            foreach (var data in dataList)
-            {
+            foreach (var data in dataList) {
                 bool isProblematic = problematicCheck(data);
 
                 string entryS = string.Format("{0}: \t{1}", data, valueFunc(data));
-                if (isProblematic)
-                {
+                if (isProblematic) {
                     data_s += "\n" + "<color=red>" + entryS + "</color>";
                     problematicEntries.Add(data.ToString());
-                }
-                else
-                {
+                } else {
                     data_s += "\n" + entryS;
                 }
             }
 
             string final_s = "---- " + title;
-            if (problematicEntries.Count == 0)
-            {
+            if (problematicEntries.Count == 0) {
                 final_s += "\nAll is fine!\n";
-            }
-            else
-            {
+            } else {
                 final_s += "\nProblematic: (" + problematicEntries.Count + ") \n";
                 foreach (var entry in problematicEntries)
                     final_s += "\n" + entry;

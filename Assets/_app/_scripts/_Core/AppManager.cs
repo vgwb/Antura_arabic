@@ -20,12 +20,6 @@ namespace Antura.Core
     /// </summary>
     public class AppManager : SingletonMonoBehaviour<AppManager>
     {
-        protected override void Awake()
-        {
-            base.Awake();
-            DontDestroyOnLoad(this);
-        }
-
         public AppSettingsManager AppSettingsManager;
         public TeacherAI Teacher;
         public VocabularyHelper VocabularyHelper;
@@ -36,11 +30,10 @@ namespace Antura.Core
         public LogManager LogManager;
         public ServicesManager Services;
         public FirstContactManager FirstContactManager;
+        public PlayerProfileManager PlayerProfileManager;
 
         [HideInInspector]
         public NavigationManager NavigationManager;
-
-        public PlayerProfileManager PlayerProfileManager;
 
         public AppSettings AppSettings
         {
@@ -53,6 +46,9 @@ namespace Antura.Core
             set { PlayerProfileManager.CurrentPlayer = value; }
         }
 
+        public bool IsPaused { get; private set; }
+
+
         #region Initialisation
 
         /// <summary>
@@ -61,17 +57,20 @@ namespace Antura.Core
         /// </summary>
         private bool alreadySetup;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            DontDestroyOnLoad(this);
+        }
+
         /// <summary>
-        /// Game entry point.
+        /// first Init, from Awake()
         /// </summary>
         protected override void Init()
         {
             if (alreadySetup) {
                 return;
             }
-
-            base.Init();
-
             alreadySetup = true;
 
             AppSettingsManager = new AppSettingsManager();
@@ -84,16 +83,15 @@ namespace Antura.Core
             Teacher = new TeacherAI(DB, VocabularyHelper, ScoreHelper);
             GameLauncher = new MiniGameLauncher(Teacher);
             FirstContactManager = new FirstContactManager();
+            Services = new ServicesManager();
 
+            // MonoBehaviors
             NavigationManager = gameObject.AddComponent<NavigationManager>();
             NavigationManager.Init();
+            gameObject.AddComponent<KeeperManager>();
 
             PlayerProfileManager = new PlayerProfileManager();
             PlayerProfileManager.LoadSettings();
-
-            Services = new ServicesManager();
-
-            gameObject.AddComponent<KeeperManager>();
 
             RewardSystemManager.Init();
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
@@ -103,10 +101,8 @@ namespace Antura.Core
             gameObject.AddComponent<Debugging.DebugManager>();
 
             // Update settings
-            AppSettings.ApplicationVersion = AppConfig.AppVersion;
-            AppSettingsManager.SaveSettings();
+            AppSettingsManager.UpdateAppVersion();
         }
-
         #endregion
 
         void Update()
@@ -146,10 +142,7 @@ namespace Antura.Core
 
         #endregion
 
-        #region Pause
-
-        public bool IsPaused { get; private set; }
-
+        #region Main App Suspend method
         void OnApplicationPause(bool pauseStatus)
         {
             IsPaused = pauseStatus;
@@ -168,7 +161,6 @@ namespace Antura.Core
             }
             AudioManager.I.OnAppPause(IsPaused);
         }
-
         #endregion
 
         public void OpenSupportForm()
@@ -181,7 +173,6 @@ namespace Antura.Core
         }
 
         #region TMPro hack
-
         /// <summary>
         /// TextMesh Pro hack to manage Diacritic Symbols correct positioning
         /// </summary>
@@ -199,11 +190,10 @@ namespace Antura.Core
         void On_TMPro_Text_Changed(Object obj)
         {
             var tmpText = obj as TMPro.TMP_Text;
-            if (tmpText != null && ArabicAlphabetHelper.FixDiacriticPositions(tmpText.textInfo)) {
+            if (tmpText != null && ArabicAlphabetHelper.FixTMProDiacriticPositions(tmpText.textInfo)) {
                 tmpText.UpdateVertexData();
             }
         }
-
         #endregion
     }
 }

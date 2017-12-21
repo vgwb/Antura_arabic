@@ -53,7 +53,7 @@ namespace Antura.Assessment
         /// <summary>
         /// Set of valid answers, each question has its own valid answers
         /// </summary>
-        void SetAnswerSet( AnswerSet answerSet);
+        void SetAnswerSet(AnswerSet answerSet);
 
         /// <summary>
         /// Reference to the set of answers for this question
@@ -63,13 +63,13 @@ namespace Antura.Assessment
         /// <summary>
         /// Add a placeholder to this question
         /// </summary>
-        void TrackPlaceholder( GameObject gameObject);
+        void TrackPlaceholder(GameObject gameObject);
 
         /// <summary>
         /// Get all tracked placeholders
         /// </summary>
         /// <returns> Enumerable to placeholders set</returns>
-        IEnumerable< GameObject> GetPlaceholders();
+        IEnumerable<GameObject> GetPlaceholders();
 
     }
 }

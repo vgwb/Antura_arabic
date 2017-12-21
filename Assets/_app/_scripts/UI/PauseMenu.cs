@@ -30,20 +30,17 @@ namespace Antura.UI
 
         public bool IsMenuOpen { get; private set; }
         public bool typeSet;
-        Sprite defPauseIconSprite;
 
-        MenuButton[] menuBts;
-
-        //float timeScaleAtMenuOpen = 1;
-        Sequence openMenuTween;
-
-        Tween logoBobTween;
+        private Sprite defPauseIconSprite;
+        private MenuButton[] menuBts;
+        private Sequence openMenuTween;
+        private Tween logoBobTween;
 
         void Awake()
         {
             I = this;
             defPauseIconSprite = BtPause.Bt.image.sprite;
-            if (!Credits.HasAwoken) Credits.gameObject.SetActive(true);
+            if (!Credits.HasAwoken) { Credits.gameObject.SetActive(true); }
         }
 
         void Start()
@@ -56,20 +53,22 @@ namespace Antura.UI
             logoBobTween.OnRewind(() => logoBobTween.SetEase(Ease.OutQuad))
                 .OnStepComplete(() => logoBobTween.SetEase(Ease.InOutQuad));
             logoBobTween.ForceInit();
+
             // Tweens - menu
             CanvasGroup[] cgButtons = new CanvasGroup[menuBts.Length];
-            for (int i = 0; i < menuBts.Length; i++)
+            for (int i = 0; i < menuBts.Length; i++) {
                 cgButtons[i] = menuBts[i].GetComponent<CanvasGroup>();
+            }
             openMenuTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .OnPlay(() => PauseMenuContainer.SetActive(true))
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     PauseMenuContainer.SetActive(false);
                     logoBobTween.Rewind();
                 });
             openMenuTween.Append(MenuBg.DOFade(0, 0.5f).From())
                 .Join(Logo.DOAnchorPosY(750f, 0.4f).From().SetEase(Ease.OutQuad).OnComplete(() => logoBobTween.Play()))
                 .Join(SubButtonsContainer.DORotate(new Vector3(0, 0, 180), 0.4f).From());
+
             const float btDuration = 0.3f;
             for (int i = 0; i < menuBts.Length; ++i) {
                 CanvasGroup cgButton = cgButtons[i];
@@ -80,7 +79,7 @@ namespace Antura.UI
             // Deactivate pause menu
             PauseMenuContainer.SetActive(false);
 
-            if (!typeSet) SetType(PauseMenuType.GameScreen);
+            if (!typeSet) { SetType(PauseMenuType.GameScreen); }
 
             // Listeners
             BtPause.Bt.onClick.AddListener(() => OnClick(BtPause));
@@ -149,7 +148,7 @@ namespace Antura.UI
         /// </summary>
         void OnClick(MenuButton _bt)
         {
-            if (SceneTransitioner.IsPlaying) return;
+            if (SceneTransitioner.IsPlaying) { return; }
 
             if (_bt == BtPause) {
                 OpenMenu(!IsMenuOpen);
@@ -159,8 +158,7 @@ namespace Antura.UI
                     case MenuButtonType.Back: // Exit
                         if (AppManager.I.NavigationManager.NavData.CurrentScene == AppScene.MiniGame) {
                             // Prompt
-                            GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () =>
-                            {
+                            GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
                                 OpenMenu(false);
                                 AppManager.I.NavigationManager.ExitDuringPause();
                             }, () => { });

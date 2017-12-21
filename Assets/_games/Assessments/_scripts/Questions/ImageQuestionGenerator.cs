@@ -196,8 +196,9 @@ namespace Antura.Assessment
         {
             cacheFullWordData = new LL_WordData(data.Id);
 
-            if (AssessmentOptions.Instance.ShowQuestionAsImage)
+            if (AssessmentOptions.Instance.ShowQuestionAsImage) {
                 data = new LL_ImageData(data.Id);
+            }
 
             cacheFullWordDataLL = ItemFactory.Instance.SpawnQuestion(data);
             return new DefaultQuestion(cacheFullWordDataLL, 0, audioManager);
@@ -234,8 +235,7 @@ namespace Antura.Assessment
 
         private Answer GenerateWrongAnswer(ILivingLetterData wrongAnswer)
         {
-            return
-            ItemFactory.Instance.SpawnAnswer(wrongAnswer, false, audioManager);
+            return ItemFactory.Instance.SpawnAnswer(wrongAnswer, false, audioManager);
         }
 
         private void GeneratePlaceHolder(IQuestion question, LivingLetterDataType dataType)
@@ -247,8 +247,7 @@ namespace Antura.Assessment
 
         private Answer GenerateCorrectAnswer(ILivingLetterData correctAnswer)
         {
-            return
-            ItemFactory.Instance.SpawnAnswer(correctAnswer, true, audioManager);
+            return ItemFactory.Instance.SpawnAnswer(correctAnswer, true, audioManager);
         }
     }
 }

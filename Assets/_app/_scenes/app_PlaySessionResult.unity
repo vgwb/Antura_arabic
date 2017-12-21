@@ -1569,7 +1569,7 @@ GameObject:
   - component: {fileID: 434178464}
   - component: {fileID: 434178463}
   m_Layer: 0
-  m_Name: PlaySessionResult Scene Manager
+  m_Name: Scene Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3703,6 +3703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 578a23f05dcda2f4f8b3799a5397d0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AutoSetup: 0
   TfCount: {fileID: 1690576559}
   BoneImg: {fileID: 1285825728}
 --- !u!224 &1604778608

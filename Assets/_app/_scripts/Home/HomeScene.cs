@@ -1,6 +1,7 @@
-﻿using Antura.Dog;
-using Antura.Audio;
+﻿using Antura.Audio;
 using Antura.Core;
+using Antura.Database;
+using Antura.Dog;
 using Antura.LivingLetters;
 using Antura.UI;
 using UnityEngine;
@@ -24,6 +25,8 @@ namespace Antura.Scenes
         public GameObject DialogReservedArea;
         public GameObject ProfileSelectorUI;
 
+        public GameObject PanelFirstCheck;
+
         protected override void Start()
         {
             base.Start();
@@ -35,12 +38,17 @@ namespace Antura.Scenes
 
             // after 2 seconds (after the game title audio) invite palyer to create a profile
             Invoke("TutorCreateProfile", 2.3f);
+
+            if (AppManager.I.AppSettingsManager.IsAppJustUpdated) {
+                AppManager.I.AppSettingsManager.AppFirstCheckDone();
+                OpenFirstCheckPanel();
+            }
         }
 
         void TutorCreateProfile()
         {
             if (AppManager.I.PlayerProfileManager.GetPlayersIconData().Count < 1) {
-                AudioManager.I.PlayDialogue(Database.LocalizationDataId.Action_Createprofile);
+                AudioManager.I.PlayDialogue(LocalizationDataId.Action_Createprofile);
             }
         }
 
@@ -64,12 +72,12 @@ namespace Antura.Scenes
 
         private bool reservedAreaIsOpen = false;
 
-        public void OnClickReservedAreaButton()
+        public void OnBtnReservedArea()
         {
             if (reservedAreaIsOpen) {
-                OnCloseReservedArea();
+                CloseReservedAreaPanel();
             } else {
-                OnOpenReservedArea();
+                OpenReservedAreaPanel();
             }
         }
 
@@ -78,7 +86,7 @@ namespace Antura.Scenes
             AppManager.I.QuitApplication();
         }
 
-        public void OnOpenReservedArea()
+        public void OpenReservedAreaPanel()
         {
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
             // HACK: hide LL And Antura since they cover the Arabic TMpro (incredible but true!)
@@ -91,7 +99,7 @@ namespace Antura.Scenes
             reservedAreaIsOpen = true;
         }
 
-        public void OnCloseReservedArea()
+        public void CloseReservedAreaPanel()
         {
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
             // HACK: show LL And Antura since they cover the Arabic TMpro (incredible but true!)
@@ -104,6 +112,31 @@ namespace Antura.Scenes
             reservedAreaIsOpen = false;
         }
 
+        #endregion
+        #region FIrstCHeckPanel
+        public void OpenFirstCheckPanel()
+        {
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
+            // HACK: hide LL And Antura since they cover the Arabic TMpro (incredible but true!)
+            LLAnimController.gameObject.SetActive(false);
+            AnturaAnimController.gameObject.SetActive(false);
+            ProfileSelectorUI.SetActive(false);
+            GlobalUI.ShowPauseMenu(false);
+
+            PanelFirstCheck.SetActive(true);
+        }
+
+        public void CloseFirstCheckPanel()
+        {
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
+            // HACK: show LL And Antura since they cover the Arabic TMpro (incredible but true!)
+            LLAnimController.gameObject.SetActive(true);
+            AnturaAnimController.gameObject.SetActive(true);
+            ProfileSelectorUI.SetActive(true);
+            GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
+
+            PanelFirstCheck.SetActive(false);
+        }
         #endregion
     }
 }

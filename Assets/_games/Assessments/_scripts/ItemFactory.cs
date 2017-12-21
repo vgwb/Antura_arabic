@@ -97,8 +97,7 @@ namespace Antura.Assessment
         static ItemFactory instance;
         public static ItemFactory Instance
         {
-            get
-            {
+            get {
                 return instance;
             }
         }

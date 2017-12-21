@@ -27,11 +27,9 @@ namespace Antura.Minigames.Egg
             game.CurrentQuestion = new EggChallenge(game.GameDifficulty, onlyLetter);
             game.eggController.Reset();
 
-            if (firstQuestion) {
-                if (EggConfiguration.Instance.Variation == EggVariation.Letter)
-                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_letters_Title);
-                else
-                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_sequence_Title);
+            if (firstQuestion)
+            {
+                game.Context.GetAudioManager().PlayDialogue(EggConfiguration.Instance.TitleLocalizationId);
             }
 
             EggEnter();

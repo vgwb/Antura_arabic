@@ -7,7 +7,7 @@ namespace Antura.Assessment
     /// </summary>
     public interface ILogicInjector
     {
-        void Wire( IQuestion question, Answer[] answers);
+        void Wire(IQuestion question, Answer[] answers);
         void EnableGamePlay();
         void CompleteWiring();
         void ResetRound();

@@ -60,6 +60,8 @@ namespace Antura.Book
         public TextRender LetterTextMedial;
         public TextRender LetterTextFinal;
         public TextRender WordDrawingText;
+        public GameObject BtnPlayLetterName;
+        public GameObject BtnPlayLetterPhoneme;
 
         public TextRender ScoreText;
 
@@ -231,7 +233,20 @@ namespace Antura.Book
             LetterTextMedial.SetTextUnfiltered(MedialChar);
             LetterTextFinal.SetTextUnfiltered(FinalChar);
 
+            BtnPlayLetterName.SetActive(AudioManager.I.GetAudioClip(currentLetter.data, LetterDataSoundType.Name) != null);
+            BtnPlayLetterPhoneme.SetActive(AudioManager.I.GetAudioClip(currentLetter.data, LetterDataSoundType.Phoneme) != null);
+
             ScoreText.text = "Score: " + currentLetter.score;
+        }
+
+        public void OnBtnPlayLetterName()
+        {
+            AudioManager.I.PlayLetter(currentLetter.data, true, LetterDataSoundType.Name);
+        }
+
+        public void OnBtnPlayLetterPhoneme()
+        {
+            AudioManager.I.PlayLetter(currentLetter.data, true, LetterDataSoundType.Phoneme);
         }
 
         #endregion

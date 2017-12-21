@@ -1,3 +1,4 @@
+using System;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
@@ -6,31 +7,18 @@ namespace Antura.Minigames.TakeMeHome
 {
     public enum TakeMeHomeVariation
     {
-        Default = MiniGameCode.TakeMeHome_letter,
+        LetterName = MiniGameCode.TakeMeHome_lettername,
     }
 
-    public class TakeMeHomeConfiguration : IGameConfiguration
+    public class TakeMeHomeConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
+        private TakeMeHomeVariation Variation { get; set; }
 
-        public ILivingLetterDataProvider Letters { get; set; }
-
-        #region Game configurations
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
-        public TakeMeHomeVariation Variation { get; set; }
-
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (TakeMeHomeVariation)code;
         }
 
-        #endregion
-
-        /////////////////
         // Singleton Pattern
         static TakeMeHomeConfiguration instance;
         public static TakeMeHomeConfiguration Instance
@@ -42,43 +30,39 @@ namespace Antura.Minigames.TakeMeHome
                 return instance;
             }
         }
-        /////////////////
 
         private TakeMeHomeConfiguration()
         {
             // Default values
-            Context = new MinigamesGameContext(MiniGameCode.TakeMeHome_letter, System.DateTime.Now.Ticks.ToString());
-            Letters = new TakeMeHomeLettersProvider();
+            Context = new MinigamesGameContext(MiniGameCode.TakeMeHome_lettername, System.DateTime.Now.Ticks.ToString());
             Questions = new SampleQuestionProvider();
             Difficulty = 0;
             TutorialEnabled = true;
         }
 
-        #region external configuration call
-        public static void SetConfiguration(float _difficulty, int _variation)
-        {
-            instance = new TakeMeHomeConfiguration()
-            {
-                Difficulty = _difficulty
-            };
-        }
-        #endregion
-
-        public IQuestionBuilder SetupBuilder()
+        public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
-            builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
-            builderParams.wordFilters.excludeDiacritics = true;
-            builderParams.wordFilters.excludeLetterVariations = true;
-            builder = new RandomLettersQuestionBuilder(1, 7, parameters: builderParams);
+            var builderParams = new QuestionBuilderParameters();
+
+            switch (Variation)
+            {
+                case TakeMeHomeVariation.LetterName:
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
+                    builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
+                    builderParams.wordFilters.excludeDiacritics = true;
+                    builderParams.wordFilters.excludeLetterVariations = true;
+                    builder = new RandomLettersQuestionBuilder(1, 7, parameters: builderParams);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;

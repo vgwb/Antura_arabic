@@ -126,7 +126,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 				if (endTransformToCallback != null) endTransformToCallback();
 
 				//play audio
-				//TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letter.Data, true);
+				//TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letter.Data, true);
 				RotateTo(new Vector3 (0, 180, 0),0.5f);
 				isMoving = false;
 			});
@@ -134,7 +134,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 
         public void sayLetter()
         {
-            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letter.Data, true);
+            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letter.Data, true);
         }
 
 		public void MoveBy(Vector3 position, float duration)
@@ -180,7 +180,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 				var data = letter.Data;
 
-				TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
+				TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(data, true);
 
 				Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
 				Vector3 world = Camera.main.ScreenToWorldPoint(mousePosition);
