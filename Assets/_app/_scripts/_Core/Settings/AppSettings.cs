@@ -33,5 +33,11 @@ namespace Antura.Core
         {
             AppVersion = _version.ToString();
         }
+
+        public void DeletePlayers()
+        {
+            SavedPlayers = new List<PlayerIconData>();
+            LastActivePlayerUUID = "";
+        }
     }
 }

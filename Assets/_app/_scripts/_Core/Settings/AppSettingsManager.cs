@@ -24,6 +24,7 @@ namespace Antura.Core
         }
 
         public bool IsAppJustUpdated;
+        public Version AppVersionPrevious;
 
         /// <summary>
         /// Loads the settings. Creates new settings if none are found.
@@ -71,20 +72,34 @@ namespace Antura.Core
 
         public void UpdateAppVersion()
         {
+            Debug.Log("UpdateAppVersion() " + Settings.AppVersion);
             if (Settings.AppVersion == "") {
                 IsAppJustUpdated = true;
+                AppVersionPrevious = new Version(0, 0, 0, 0);
             } else {
-                var previousVersion = new System.Version(Settings.AppVersion);
-                IsAppJustUpdated = AppConfig.AppVersion > previousVersion;
+                AppVersionPrevious = new Version(Settings.AppVersion);
+                IsAppJustUpdated = AppConfig.AppVersion > AppVersionPrevious;
             }
-            Debug.Log("isAppJustUpdated " + IsAppJustUpdated + " previous: " + Settings.AppVersion + " current: " + AppConfig.AppVersion);
+            Debug.Log("isAppJustUpdated " + IsAppJustUpdated + " previous: " + AppVersionPrevious + " current: " + AppConfig.AppVersion);
             Settings.SetAppVersion(AppConfig.AppVersion);
             SaveSettings();
         }
 
-        public void AppFirstCheckDone()
+        public void AppUpdateCheckDone()
         {
             IsAppJustUpdated = false;
+        }
+
+        public void EnableOnlineAnalytics(bool status)
+        {
+            Settings.OnlineAnalytics = status;
+            SaveSettings();
+        }
+
+        public void DeleteAllPlayers()
+        {
+            Settings.DeletePlayers();
+            SaveSettings();
         }
     }
 }

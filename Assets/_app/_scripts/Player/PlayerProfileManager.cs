@@ -267,6 +267,22 @@ namespace Antura.Profile
             AppManager.I.Player = null;
         }
 
+        /// <summary>
+        /// delete all the players keeping all the other AppSettings intact.
+        /// </summary>
+        public void DeleteAllPlayers()
+        {
+            // Reset all the Databases
+            if (AppManager.I.AppSettings.SavedPlayers != null) {
+                foreach (PlayerIconData pp in AppManager.I.AppSettings.SavedPlayers) {
+                    AppManager.I.DB.LoadDatabaseForPlayer(pp.Uuid);
+                    AppManager.I.DB.DropProfile();
+                }
+            }
+            AppManager.I.DB.UnloadCurrentProfile();
+            AppManager.I.AppSettingsManager.DeleteAllPlayers();
+        }
+
         #endregion
 
         #region Import

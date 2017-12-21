@@ -25,7 +25,7 @@ namespace Antura.Scenes
         public GameObject DialogReservedArea;
         public GameObject ProfileSelectorUI;
 
-        public GameObject PanelFirstCheck;
+        public GameObject PanelAppUpdate;
 
         protected override void Start()
         {
@@ -40,8 +40,8 @@ namespace Antura.Scenes
             Invoke("TutorCreateProfile", 2.3f);
 
             if (AppManager.I.AppSettingsManager.IsAppJustUpdated) {
-                AppManager.I.AppSettingsManager.AppFirstCheckDone();
-                OpenFirstCheckPanel();
+                AppManager.I.AppSettingsManager.AppUpdateCheckDone();
+                OpenAppUpdatePanel();
             }
         }
 
@@ -89,10 +89,6 @@ namespace Antura.Scenes
         public void OpenReservedAreaPanel()
         {
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
-            // HACK: hide LL And Antura since they cover the Arabic TMpro (incredible but true!)
-            LLAnimController.gameObject.SetActive(false);
-            AnturaAnimController.gameObject.SetActive(false);
-
             DialogReservedArea.SetActive(true);
             ProfileSelectorUI.SetActive(false);
             GlobalUI.ShowPauseMenu(false);
@@ -102,40 +98,28 @@ namespace Antura.Scenes
         public void CloseReservedAreaPanel()
         {
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
-            // HACK: show LL And Antura since they cover the Arabic TMpro (incredible but true!)
-            LLAnimController.gameObject.SetActive(true);
-            AnturaAnimController.gameObject.SetActive(true);
-
             DialogReservedArea.SetActive(false);
             ProfileSelectorUI.SetActive(true);
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
             reservedAreaIsOpen = false;
         }
-
         #endregion
-        #region FIrstCHeckPanel
-        public void OpenFirstCheckPanel()
+
+        #region FirstCheckPanel
+        public void OpenAppUpdatePanel()
         {
-            AudioManager.I.PlaySound(Sfx.UIButtonClick);
-            // HACK: hide LL And Antura since they cover the Arabic TMpro (incredible but true!)
-            LLAnimController.gameObject.SetActive(false);
-            AnturaAnimController.gameObject.SetActive(false);
             ProfileSelectorUI.SetActive(false);
             GlobalUI.ShowPauseMenu(false);
 
-            PanelFirstCheck.SetActive(true);
+            PanelAppUpdate.SetActive(true);
         }
 
-        public void CloseFirstCheckPanel()
+        public void CloseAppUpdatePanel()
         {
-            AudioManager.I.PlaySound(Sfx.UIButtonClick);
-            // HACK: show LL And Antura since they cover the Arabic TMpro (incredible but true!)
-            LLAnimController.gameObject.SetActive(true);
-            AnturaAnimController.gameObject.SetActive(true);
             ProfileSelectorUI.SetActive(true);
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
 
-            PanelFirstCheck.SetActive(false);
+            PanelAppUpdate.SetActive(false);
         }
         #endregion
     }

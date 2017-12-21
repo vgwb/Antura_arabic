@@ -158,7 +158,7 @@ Prefab:
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 771.05634
+      value: 711
       objectReference: {fileID: 0}
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
@@ -840,7 +840,7 @@ Prefab:
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1041.0564
+      value: 981
       objectReference: {fileID: 0}
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
@@ -1707,7 +1707,7 @@ Prefab:
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 906.05634
+      value: 846
       objectReference: {fileID: 0}
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
@@ -2171,7 +2171,7 @@ Prefab:
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 366.05634
+      value: 306
       objectReference: {fileID: 0}
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
@@ -5986,7 +5986,7 @@ Prefab:
     - target: {fileID: 114190348829108730, guid: e2ce30749966e4e3eb48b71987ef47c6,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClose
+      value: OnBtnContinue
       objectReference: {fileID: 0}
     - target: {fileID: 114190348829108730, guid: e2ce30749966e4e3eb48b71987ef47c6,
         type: 2}
@@ -6563,7 +6563,7 @@ Prefab:
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 636.05634
+      value: 576
       objectReference: {fileID: 0}
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
@@ -6671,7 +6671,7 @@ MonoBehaviour:
   LLAnimController: {fileID: 1647213318}
   DialogReservedArea: {fileID: 190705671}
   ProfileSelectorUI: {fileID: 2056359169}
-  PanelFirstCheck: {fileID: 1743417233}
+  PanelAppUpdate: {fileID: 1743417233}
 --- !u!4 &1465923915
 Transform:
   m_ObjectHideFlags: 0
@@ -7284,7 +7284,7 @@ GameObject:
   - component: {fileID: 1743417236}
   - component: {fileID: 1743417235}
   m_Layer: 5
-  m_Name: Panel First Check
+  m_Name: Panel App Update
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7321,6 +7321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d03f832e756194373a3b1839c71d293e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnglishText: {fileID: 2043515247}
+  ArabicText: {fileID: 1811684027}
 --- !u!222 &1743417236
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7404,7 +7406,7 @@ GameObject:
   - component: {fileID: 1811684027}
   - component: {fileID: 1811684026}
   m_Layer: 5
-  m_Name: OutputText  arabic
+  m_Name: Text arabic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8131,7 +8133,7 @@ Prefab:
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 501.05634
+      value: 441
       objectReference: {fileID: 0}
     - target: {fileID: 224790713075855304, guid: 8009f54384ee849749d792e6626e7c44,
         type: 2}
@@ -8527,7 +8529,7 @@ GameObject:
   - component: {fileID: 2043515247}
   - component: {fileID: 2043515246}
   m_Layer: 5
-  m_Name: OutputText english
+  m_Name: Text english
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
