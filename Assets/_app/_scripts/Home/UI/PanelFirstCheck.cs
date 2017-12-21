@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Antura.Scenes;
 using UnityEngine;
 
 namespace Antura.Core
@@ -14,6 +13,7 @@ namespace Antura.Core
 
         public void OnClose()
         {
+            (HomeScene.I as HomeScene).CloseFirstCheckPanel();
             gameObject.SetActive(false);
         }
 
