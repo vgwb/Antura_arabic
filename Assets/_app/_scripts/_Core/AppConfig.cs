@@ -56,7 +56,7 @@ namespace Antura.Core
         // for Test configuration
         public static bool DisableFirstContact = true;
 
-        public static bool MinigameTutorialsEnabled = false;
+        public static bool MinigameTutorialsEnabled = true;
 
         #endregion
 
