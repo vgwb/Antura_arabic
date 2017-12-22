@@ -4,9 +4,7 @@ using Antura.Database;
 using Antura.Helpers;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Antura.Rewards
 {
@@ -23,7 +21,6 @@ namespace Antura.Rewards
 
         private const string ANTURA_REWARDS_PARTS_CONFIG_PATH = "Configs/AnturaRewardsPartsConfig";
         private const string ANTURA_REWARDS_UNLOCKS_CONFIG_PATH = "Configs/AnturaRewardsUnlocksConfig";
-        //public const string COLOR_PAIRS_CONFIG_PATH = "Configs/" + "ColorPairs";
 
         /// <summary>
         /// The maximum rewards unlockable for playsession.
@@ -38,7 +35,7 @@ namespace Antura.Rewards
 
         #endregion
 
-        #region Configurations (i.e. WHAT and WHEN we can unlock rewards)
+        #region Rewards Configuration
 
         public void Init()
         {
@@ -60,24 +57,15 @@ namespace Antura.Rewards
         /// </summary>
         private void LoadConfigs()
         {
+            LoadPartsConfig();
+            LoadUnlocksConfig();
+        }
+
+        private void LoadPartsConfig()
+        {
             TextAsset partsConfigData = Resources.Load(ANTURA_REWARDS_PARTS_CONFIG_PATH) as TextAsset;
             partsConfig = JsonUtility.FromJson<RewardPartsConfig>(partsConfigData.text);
-
             BuildAllPacks(partsConfig);
-
-            TextAsset unlocksConfigData = Resources.Load(ANTURA_REWARDS_UNLOCKS_CONFIG_PATH) as TextAsset;
-            unlocksConfig = JsonUtility.FromJson<RewardsUnlocksConfig>(unlocksConfigData.text);
-
-            if (VERBOSE)
-            {
-                string s = "Unlock data:";
-                foreach (var jpUnlock in unlocksConfig.JourneyPositionsUnlocks)
-                {
-                    s += "\n" + jpUnlock.JourneyPositionID + ": " + jpUnlock.NewPropBase + "," + jpUnlock.NewPropColor +
-                         "," + jpUnlock.NewDecal + "," + jpUnlock.NewTexture;
-                }
-                Debug.Log(s);
-            }
         }
 
         void BuildAllPacks(RewardPartsConfig partsConfig)
@@ -116,7 +104,24 @@ namespace Antura.Rewards
             return rewardPacks;
         }
 
-        public IEnumerable<RewardBase> GetBasesOfType(RewardBaseType baseType)
+        private void LoadUnlocksConfig()
+        {
+            TextAsset unlocksConfigData = Resources.Load(ANTURA_REWARDS_UNLOCKS_CONFIG_PATH) as TextAsset;
+            unlocksConfig = JsonUtility.FromJson<RewardsUnlocksConfig>(unlocksConfigData.text);
+
+            if (VERBOSE)
+            {
+                string s = "Unlock data:";
+                foreach (var jpUnlock in unlocksConfig.JourneyPositionsUnlocks)
+                {
+                    s += "\n" + jpUnlock.JourneyPositionID + ": " + jpUnlock.NewPropBase + "," + jpUnlock.NewPropColor +
+                         "," + jpUnlock.NewDecal + "," + jpUnlock.NewTexture;
+                }
+                Debug.Log(s);
+            }
+        }
+
+        public IEnumerable<RewardBase> GetRewardBasesOfType(RewardBaseType baseType)
         {
             return partsConfig.GetBasesForType(baseType);
         }
@@ -154,55 +159,15 @@ namespace Antura.Rewards
         #endregion
 
         /// <summary>
-        /// Gets the total count of all rewards. 
-        /// Any type with any color variation available in game.
-        /// </summary>
-        public int GetTotalRewardsCount()
-        {
-            return GetAllRewardPacks().Count();
-        }
-
-        /// <summary>
         /// Gets a PROP by its string identifier.
         /// </summary>
         /// <param name="_baseId">The reward identifier.</param>
         /// <returns></returns>
+        // TODO: refactor so that RewardPackData has all it needs
+        // TODO: DEPRECATE THIS
         public RewardPack GetPropRewardById(string _baseId)
         {
             return GetRewardPacksOfType(RewardBaseType.Prop).FirstOrDefault(x => x.BaseId == _baseId); 
-        }
-
-        /// <summary>
-        /// Get material pair from Reward id and colors name.
-        /// </summary>
-        /// <param name="_rewardId"></param>
-        /// <param name="_color1"></param>
-        /// <param name="_color2"></param>
-        /// <returns></returns>
-        /*[Obsolete("...", true)]
-        public static MaterialPair GetMaterialPairFromRewardAndColor(string _rewardId, string _color1, string _color2)
-        {
-            Reward reward = GetRewardById(_rewardId);
-            MaterialPair mp = new MaterialPair(_color1, reward.Material1, _color2, reward.Material2);
-            return mp;
-        }*/
-
-        /// <summary>
-        /// Gets the material pair for standard reward.
-        /// </summary>
-        /// <param name="_rewardId">The reward identifier.</param>
-        /// <param name="_colorId">The color identifier.</param>
-        /// <returns></returns>
-        public MaterialPair GetMaterialPairForPack(RewardPack pack)
-        {
-            RewardProp prop = pack.RewardBase as RewardProp;
-            RewardColor color = pack.RewardColor;
-            if (color == null || prop == null)
-            {
-                return new MaterialPair();
-            }
-            MaterialPair mp = new MaterialPair(color.Color1Name, prop.Material1, color.Color2Name, prop.Material2);
-            return mp;
         }
 
         #endregion
@@ -214,6 +179,7 @@ namespace Antura.Rewards
         /// <summary>
         /// Called by the Player Profile to load the state of unlocked rewards.
         /// </summary>
+        // TODO: let this call the PlayerProfile, and not vice-versa
         public void InjectRewardsUnlockData(List<RewardPackUnlockData> unlockDataList)
         {
             Debug.Log("Loading unlock datas: " + unlockDataList.Count);
@@ -253,22 +219,22 @@ namespace Antura.Rewards
 
         #region Checks
 
-        public bool ThereIsSomeNewReward()
+        public bool IsThereSomeNewReward()
         {
             return GetUnlockedRewardPacks().Any(r => r.IsNew);
         }
 
-        public bool RewardColorIsNew(string baseId, string colorId)
+        public bool IsRewardColorNew(string baseId, string colorId)
         {
             return GetUnlockedRewardPacks().Any(r => r.BaseId == baseId && r.ColorId == colorId && r.IsNew);
         }
 
-        public bool RewardItemIsNew(string baseId)
+        public bool IsRewardBaseNew(string baseId)
         {
             return GetUnlockedRewardPacks().Any(r => r.BaseId == baseId && r.IsNew);
         }
 
-        public bool RewardCategoryContainsNewElements(RewardBaseType baseType, string _rewardCategory = "")
+        public bool DoesRewardCategoryContainNewElements(RewardBaseType baseType, string _rewardCategory = "")
         {
             return GetUnlockedRewardPacks().Any(r => r.BaseType == baseType && r.Category == _rewardCategory && r.IsNew);
         }
@@ -282,10 +248,18 @@ namespace Antura.Rewards
             return GetAllRewardPacks().Any(p => p.UnlockedAtJourneyPosition(journeyPosition));
         }
 
-
         #endregion
 
         #region Getters
+
+        /// <summary>
+        /// Gets the total count of all reward packs. 
+        /// Any base with any color variation available in game.
+        /// </summary>
+        public int GetTotalRewardPacksCount()
+        {
+            return GetAllRewardPacks().Count();
+        }
 
         /// <summary>
         /// Gets the unlocked reward count for the current player. 0 if current player is null.
@@ -296,20 +270,28 @@ namespace Antura.Rewards
             return AppManager.I.Player != null ? GetUnlockedRewardPacks().Count : 0;
         }
 
-        /// <summary>
-        /// Gets the unlocked reward for specified playsession.
-        /// </summary>
-        /// <param name="journeyPosition">The playsession identifier (format 1.4.2).</param>
-        /// <returns></returns>
-        public int GetNumberOfUnlockedRewardsAtJP(JourneyPosition journeyPosition)
-        {
-            int rCount = GetRewardPacksUnlockedInJourneyPosition(journeyPosition).Count();
-            return rCount > 2 ? 2 : rCount; // max 2 because the results screen does not allow for more
-        }
 
         public IEnumerable<RewardPack> GetRewardPacksUnlockedInJourneyPosition(JourneyPosition journeyPosition)
         {
             return GetAllRewardPacks().Where(x => x.UnlockedAtJourneyPosition(journeyPosition));
+        }
+
+        /// <summary>
+        /// Gets the material pair for standard reward.
+        /// </summary>
+        /// <param name="_rewardId">The reward identifier.</param>
+        /// <param name="_colorId">The color identifier.</param>
+        /// <returns></returns>
+        public MaterialPair GetMaterialPairForPack(RewardPack pack)
+        {
+            RewardProp prop = pack.RewardBase as RewardProp;
+            RewardColor color = pack.RewardColor;
+            if (color == null || prop == null)
+            {
+                return new MaterialPair();
+            }
+            MaterialPair mp = new MaterialPair(color.Color1Name, prop.Material1, color.Color2Name, prop.Material2);
+            return mp;
         }
 
         #endregion
@@ -456,7 +438,7 @@ namespace Antura.Rewards
         List<RewardBase> GetLockedRewardBases(RewardBaseType baseType)
         {
             var unlockedBases = GetUnlockedRewardBases(baseType);
-            var allBases = GetBasesOfType(baseType);
+            var allBases = GetRewardBasesOfType(baseType);
             List<RewardBase> lockedBases = new List<RewardBase>();
 
             foreach (var rewardBase in allBases)
@@ -471,7 +453,7 @@ namespace Antura.Rewards
         {
             var packsOfBase = rewardPacksDict[baseType];
             var unlockedPacksOfBase = packsOfBase.Where(p => p.IsUnlocked);
-            var allBases = GetBasesOfType(baseType);
+            var allBases = GetRewardBasesOfType(baseType);
 
             HashSet<RewardBase> unlockedBases = new HashSet<RewardBase>();
             foreach (var rewardPack in unlockedPacksOfBase)

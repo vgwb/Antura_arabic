@@ -67,7 +67,7 @@ namespace Antura
         {
             ClearList();
             IEnumerable<RewardBase> rewardBases;
-            var allPropBases = AppManager.I.RewardSystemManager.GetBasesOfType(RewardBaseType.Prop);
+            var allPropBases = AppManager.I.RewardSystemManager.GetRewardBasesOfType(RewardBaseType.Prop);
             if (_position != "") {
                 rewardBases = allPropBases.Where(r => (r as RewardProp).BoneAttach == _position);
             } else {

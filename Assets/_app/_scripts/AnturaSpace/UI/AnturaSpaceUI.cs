@@ -94,7 +94,7 @@ namespace Antura.AnturaSpace.UI
             btsCategories = CategoriesContainer.GetComponentsInChildren<AnturaSpaceCategoryButton>(true);
             btsSwatches = SwatchesContainer.GetComponentsInChildren<AnturaSpaceSwatchButton>(true);
             SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
-            BtOpenModsPanel.SetAsNew(AppManager.I.RewardSystemManager.ThereIsSomeNewReward());
+            BtOpenModsPanel.SetAsNew(AppManager.I.RewardSystemManager.IsThereSomeNewReward());
 
 
             // Create items
@@ -214,7 +214,7 @@ namespace Antura.AnturaSpace.UI
                     onEnterCustomization();
                 }
             } else {
-                BtOpenModsPanel.SetAsNew(AppManager.I.RewardSystemManager.ThereIsSomeNewReward());
+                BtOpenModsPanel.SetAsNew(AppManager.I.RewardSystemManager.IsThereSomeNewReward());
                 SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
                 showCategoriesTween.PlayBackwards();
                 showItemsTween.PlayBackwards();
@@ -425,15 +425,15 @@ namespace Antura.AnturaSpace.UI
                 bool isNew;
                 switch (btCat.Category) {
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears:
-                        isNew = AppManager.I.RewardSystemManager.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_L")
-                                || AppManager.I.RewardSystemManager.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
+                        isNew = AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardType(btCat.Category), "EAR_L")
+                                || AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
                         break;
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
-                        isNew = AppManager.I.RewardSystemManager.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category));
+                        isNew = AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardType(btCat.Category));
                         break;
                     default:
-                        isNew = AppManager.I.RewardSystemManager.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category),
+                        isNew = AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardType(btCat.Category),
                             btCat.Category.ToString());
                         break;
                 }
