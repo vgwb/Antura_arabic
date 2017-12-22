@@ -3023,6 +3023,7 @@ MonoBehaviour:
       - kaf
       - lam
       - heh
+      - alef_maqsura
       _Words: []
       _Words_previous: []
       _Phrases: []
@@ -3195,6 +3196,7 @@ MonoBehaviour:
       - heh_kasrah
       - heh_shaddah
       - heh_sukun
+      - alef_maqsura
       _Words:
       - believed
       - color_red

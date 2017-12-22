@@ -472,13 +472,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0623\u0647\u0652\u0644\u0627\u064B"
+      _Arabic: "\u0623\u0647\u0652\u0644\u0627"
       _Value: 
       _Letters:
       - alef_hamza_hi
       - heh_sukun
       - lam
-      - alef_fathah_tanwin
+      - alef
       _Drawing: 
       _Complexity: 0.3
     - _Id: month_may
@@ -2994,11 +2994,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0628\u064E\u0643\u064E\u06CC"
+      _Arabic: "\u0628\u064E\u0643\u064E\u0649"
       _Value: 
       _Letters:
       - beh_fathah
       - kaf_fathah
+      - alef_maqsura
       _Drawing: 
       _Complexity: 0.6
     - _Id: coffee_bean
@@ -4015,14 +4016,14 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u062C\u064E\u0632\u064A\u0644\u0627\u064B"
+      _Arabic: "\u062C\u064E\u0632\u064A\u0644\u0627"
       _Value: 
       _Letters:
       - jeem_fathah
       - zain
       - yeh
       - lam
-      - alef_fathah_tanwin
+      - alef
       _Drawing: 
       _Complexity: 0.6
     - _Id: sat
@@ -5302,13 +5303,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0633\u064E\u0647\u0652\u0644\u0627\u064B"
+      _Arabic: "\u0633\u064E\u0647\u0652\u0644\u0627"
       _Value: 
       _Letters:
       - seen_fathah
       - heh_sukun
       - lam
-      - alef_fathah_tanwin
+      - alef
       _Drawing: 
       _Complexity: 0.3
     - _Id: market
@@ -7243,12 +7244,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0645\u064F\u062B\u064E\u0646\u06CC"
+      _Arabic: "\u0645\u064F\u062B\u064E\u0646\u0649"
       _Value: 
       _Letters:
       - meem_dammah
       - theh_fathah
       - noon
+      - alef_maqsura
       _Drawing: 
       _Complexity: 0.6
     - _Id: station
@@ -7366,7 +7368,7 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0645\u064F\u0633\u0652\u062A\u064E\u0634\u0652\u0641\u06CC"
+      _Arabic: "\u0645\u064F\u0633\u0652\u062A\u064E\u0634\u0652\u0641\u0649"
       _Value: 
       _Letters:
       - meem_dammah
@@ -7374,6 +7376,7 @@ MonoBehaviour:
       - teh_fathah
       - sheen_sukun
       - feh
+      - alef_maqsura
       _Drawing: CB
       _Complexity: 1
     - _Id: caught
@@ -7640,13 +7643,14 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0645\u064F\u0646\u0652\u062A\u064E\u062F\u06CC"
+      _Arabic: "\u0645\u064F\u0646\u0652\u062A\u064E\u062F\u0649"
       _Value: 
       _Letters:
       - meem_dammah
       - noon_sukun
       - teh_fathah
       - dal
+      - alef_maqsura
       _Drawing: 102
       _Complexity: 1
     - _Id: engineer

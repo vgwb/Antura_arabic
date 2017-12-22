@@ -796,33 +796,6 @@ MonoBehaviour:
       _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: ain_dammah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: ain_dammah_tanwin
-      _Kind: 5
-      _BaseLetter: ain
-      _Symbol: dammah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u0639\u064C"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0639
-      _Initial_Unicode: FECB
-      _Medial_Unicode: FECC
-      _Final_Unicode: FECA
-      _Symbol_Unicode: 064C
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: ain_fathah
       _Active: 1
       _Number: 0
@@ -980,33 +953,6 @@ MonoBehaviour:
       _Medial_Unicode: FE8E
       _Final_Unicode: FE8E
       _Symbol_Unicode: 064E
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: alef_fathah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: alef_fathah_tanwin
-      _Kind: 5
-      _BaseLetter: alef
-      _Symbol: fathah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u0627\u064B"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0627
-      _Initial_Unicode: 0627
-      _Medial_Unicode: FE8E
-      _Final_Unicode: FE8E
-      _Symbol_Unicode: 064B
       _InitialFix: 
       _FinalFix: 
       _MedialFix: 
@@ -1498,33 +1444,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: dal_dammah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: dal_dammah_tanwin
-      _Kind: 5
-      _BaseLetter: dal
-      _Symbol: dammah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u062F\u064C"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 062F
-      _Initial_Unicode: 062F
-      _Medial_Unicode: FEAA
-      _Final_Unicode: FEAA
-      _Symbol_Unicode: 064C
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: dal_fathah
       _Active: 1
       _Number: 0
@@ -1660,33 +1579,6 @@ MonoBehaviour:
       _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: dammah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: dammah tanwin
-      _Kind: 3
-      _BaseLetter: 
-      _Symbol: 
-      _Type: 4
-      _Tag: 
-      _Notes: double dammah
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u064C"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 064C
-      _Initial_Unicode: 
-      _Medial_Unicode: 
-      _Final_Unicode: 
-      _Symbol_Unicode: 
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: fathah
       _Active: 1
       _Number: 0
@@ -1705,33 +1597,6 @@ MonoBehaviour:
       _Medial: 
       _Final: 
       _Isolated_Unicode: 064E
-      _Initial_Unicode: 
-      _Medial_Unicode: 
-      _Final_Unicode: 
-      _Symbol_Unicode: 
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: fathah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: "fat\u1E25ah tanwin"
-      _Kind: 3
-      _BaseLetter: 
-      _Symbol: 
-      _Type: 4
-      _Tag: 
-      _Notes: double fathah
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u064B"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 064B
       _Initial_Unicode: 
       _Medial_Unicode: 
       _Final_Unicode: 
@@ -2281,33 +2146,6 @@ MonoBehaviour:
       _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: heh_dammah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: heh_dammah_tanwin
-      _Kind: 5
-      _BaseLetter: heh
-      _Symbol: dammah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u0647\u064C"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0647
-      _Initial_Unicode: FEEB
-      _Medial_Unicode: FEEC
-      _Final_Unicode: FEEA
-      _Symbol_Unicode: 064C
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: heh_fathah
       _Active: 1
       _Number: 0
@@ -2713,33 +2551,6 @@ MonoBehaviour:
       _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: kasrah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: kasrah tanwin
-      _Kind: 3
-      _BaseLetter: 
-      _Symbol: 
-      _Type: 4
-      _Tag: 
-      _Notes: double kasrah
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u064D"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 064D
-      _Initial_Unicode: 
-      _Medial_Unicode: 
-      _Final_Unicode: 
-      _Symbol_Unicode: 
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: khah_dammah
       _Active: 1
       _Number: 0
@@ -2902,33 +2713,6 @@ MonoBehaviour:
       _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: lam_alef_fathah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: lam_alef_fathah_tanwin
-      _Kind: 5
-      _BaseLetter: lam_alef
-      _Symbol: fathah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\uFEFB\u064B"
-      _Initial: 
-      _Medial: 
-      _Final: "\uFEFC\u064B"
-      _Isolated_Unicode: FEFB
-      _Initial_Unicode: 
-      _Medial_Unicode: 
-      _Final_Unicode: FEFC
-      _Symbol_Unicode: 064B
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: lam_alef_hamza_hi
       _Active: 1
       _Number: 0
@@ -3037,33 +2821,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: lam_dammah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: lam_dammah_tanwin
-      _Kind: 5
-      _BaseLetter: lam
-      _Symbol: dammah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u0644\u064C"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0644
-      _Initial_Unicode: FEDF
-      _Medial_Unicode: FEE0
-      _Final_Unicode: FEDE
-      _Symbol_Unicode: 064C
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: lam_fathah
       _Active: 1
       _Number: 0
@@ -3113,33 +2870,6 @@ MonoBehaviour:
       _Medial_Unicode: FEE0
       _Final_Unicode: FEDE
       _Symbol_Unicode: 0650
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: lam_kasrah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: lam_kasrah_tanwin
-      _Kind: 5
-      _BaseLetter: lam
-      _Symbol: kasrah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u0644\u064D"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0644
-      _Initial_Unicode: FEDF
-      _Medial_Unicode: FEE0
-      _Final_Unicode: FEDE
-      _Symbol_Unicode: 064D
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
@@ -3442,33 +3172,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: noon_kasrah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: noon_kasrah_tanwin
-      _Kind: 5
-      _BaseLetter: noon
-      _Symbol: kasrah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u0646\u064D"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0646
-      _Initial_Unicode: FEE7
-      _Medial_Unicode: FEE8
-      _Final_Unicode: FEE6
-      _Symbol_Unicode: 064D
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: noon_shaddah
       _Active: 1
       _Number: 0
@@ -3680,33 +3383,6 @@ MonoBehaviour:
       _Medial_Unicode: FEAE
       _Final_Unicode: FEAE
       _Symbol_Unicode: 064F
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: reh_dammah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: reh_dammah_tanwin
-      _Kind: 5
-      _BaseLetter: reh
-      _Symbol: dammah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u0631\u064C"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0631
-      _Initial_Unicode: 0631
-      _Medial_Unicode: FEAE
-      _Final_Unicode: FEAE
-      _Symbol_Unicode: 064C
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
@@ -4306,33 +3982,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: tah_dammah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: tah_dammah_tanwin
-      _Kind: 5
-      _BaseLetter: tah
-      _Symbol: dammah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u0637\u064C"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0637
-      _Initial_Unicode: 
-      _Medial_Unicode: 
-      _Final_Unicode: FEC2
-      _Symbol_Unicode: 064C
-      _InitialFix: 1
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: tah_fathah
       _Active: 1
       _Number: 0
@@ -4468,33 +4117,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: teh_dammah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: teh_dammah_tanwin
-      _Kind: 5
-      _BaseLetter: teh
-      _Symbol: dammah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u062A\u064C"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 062A
-      _Initial_Unicode: 
-      _Medial_Unicode: 
-      _Final_Unicode: FE96
-      _Symbol_Unicode: 064C
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: teh_fathah
       _Active: 1
       _Number: 0
@@ -4603,33 +4225,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: teh_marbuta_dammah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: teh_marbuta_dammah_tanwin
-      _Kind: 5
-      _BaseLetter: teh_marbuta
-      _Symbol: dammah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u0629\u064C"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0629
-      _Initial_Unicode: 
-      _Medial_Unicode: 
-      _Final_Unicode: FE94
-      _Symbol_Unicode: 064C
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: teh_marbuta_fathah
       _Active: 1
       _Number: 0
@@ -4652,33 +4247,6 @@ MonoBehaviour:
       _Medial_Unicode: 
       _Final_Unicode: FE94
       _Symbol_Unicode: 064E
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: teh_marbuta_fathah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: teh_marbuta_fathah_tanwin
-      _Kind: 5
-      _BaseLetter: teh_marbuta
-      _Symbol: fathah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u0629\u064B"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0629
-      _Initial_Unicode: 
-      _Medial_Unicode: 
-      _Final_Unicode: FE94
-      _Symbol_Unicode: 064B
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
@@ -5165,33 +4733,6 @@ MonoBehaviour:
       _Medial_Unicode: FEF4
       _Final_Unicode: FEF2
       _Symbol_Unicode: 064F
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: yeh_dammah_tanwin
-      _Active: 1
-      _Number: 0
-      _Title: yeh_dammah_tanwin
-      _Kind: 5
-      _BaseLetter: yeh
-      _Symbol: dammah_tanwin
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _SoundZone: 
-      _Isolated: "\u064A\u0652"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 064A
-      _Initial_Unicode: FEF3
-      _Medial_Unicode: FEF4
-      _Final_Unicode: FEF2
-      _Symbol_Unicode: 064C
       _InitialFix: 
       _FinalFix: 
       _MedialFix: 1
