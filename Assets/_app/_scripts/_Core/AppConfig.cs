@@ -13,13 +13,13 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public static Version AppVersion = new Version(1, 1, 0, 577);
+        public static Version AppVersion = new Version(1, 1, 0, 578);
 
         /// <summary>
         /// Version of the Static Database Scheme.
         /// v1.0.7 - added ArabicFemale to LocalizationData
         /// </summary>
-        public const string StaticDbSchemeVersion = "1.1.0.572";
+        public const string StaticDbSchemeVersion = "1.1.0.578";
 
         /// <summary>
         /// Version of the MySQL Database Scheme.
@@ -45,7 +45,7 @@ namespace Antura.Core
         /// Switches on all Debug.Log calls for performance.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool DebugLogEnabled = true;
+        public static bool DebugLogEnabled = false;
 
         /// <summary>
         /// Logs all MySQL database inserts.
