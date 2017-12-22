@@ -19,12 +19,12 @@ namespace Antura.Rewards
 
     public class RewardSystemManager
     {
-        private const bool VERBOSE = false;
+        private static bool VERBOSE = false;
 
         private const string ANTURA_REWARDS_PARTS_CONFIG_PATH = "Configs/AnturaRewardsPartsConfig";
         private const string ANTURA_REWARDS_UNLOCKS_CONFIG_PATH = "Configs/AnturaRewardsUnlocksConfig";
 
-        private const bool USE_UNLOCK_CONFIG = false;
+        private static bool USE_UNLOCK_CONFIG = false;
 
         #region Events
 
@@ -175,13 +175,13 @@ namespace Antura.Rewards
                 yield return rewardPack;
         }
 
-        public List<RewardPack> GetUnlockedRewardPacks()
+        public List<RewardPack> GetAllUnlockedRewardPacks()
         {
             var unlockedPacks = GetAllRewardPacks().Where(p => p.IsUnlocked);
             return unlockedPacks.ToList();
         }
 
-        public List<RewardPack> GetLockedRewardPacks()
+        public List<RewardPack> GetAllLockedRewardPacks()
         {
             var lockedPacks = GetAllRewardPacks().Where(p => p.IsLocked);
             return lockedPacks.ToList();
@@ -196,14 +196,15 @@ namespace Antura.Rewards
 
         List<RewardBase> GetLockedRewardBases(RewardBaseType baseType)
         {
-            var unlockedBases = GetUnlockedRewardBases(baseType);
             var allBases = GetRewardBasesOfType(baseType);
             List<RewardBase> lockedBases = new List<RewardBase>();
 
             foreach (var rewardBase in allBases)
             {
-                if (!unlockedBases.Contains(rewardBase))
+                if (!IsRewardBaseUnlocked(rewardBase))
+                {
                     lockedBases.Add(rewardBase);
+                }
             }
             return lockedBases;
         }
@@ -226,7 +227,7 @@ namespace Antura.Rewards
 
         private bool IsRewardBaseUnlocked(RewardBase rewardBase)
         {
-            return GetAllRewardPacks().Any(x => x.RewardBase == rewardBase);
+            return GetAllUnlockedRewardPacks().Any(x => x.RewardBase == rewardBase);
         }
 
         #endregion
@@ -282,22 +283,22 @@ namespace Antura.Rewards
 
         public bool IsThereSomeNewReward()
         {
-            return GetUnlockedRewardPacks().Any(r => r.IsNew);
+            return GetAllUnlockedRewardPacks().Any(r => r.IsNew);
         }
 
         private bool IsRewardColorNew(RewardBase rewardBase, RewardColor rewardColor)
         {
-            return GetUnlockedRewardPacks().Any(r => r.BaseId == rewardBase.ID && r.ColorId == rewardColor.ID && r.IsNew);
+            return GetAllUnlockedRewardPacks().Any(r => r.BaseId == rewardBase.ID && r.ColorId == rewardColor.ID && r.IsNew);
         }
 
         private bool IsRewardBaseNew(RewardBase rewardBase)
         {
-            return GetUnlockedRewardPacks().Any(r => r.BaseId == rewardBase.ID && r.IsNew);
+            return GetAllUnlockedRewardPacks().Any(r => r.BaseId == rewardBase.ID && r.IsNew);
         }
 
         public bool DoesRewardCategoryContainNewElements(RewardBaseType baseType, string _rewardCategory = "")
         {
-            return GetUnlockedRewardPacks().Any(r => r.BaseType == baseType && r.Category == _rewardCategory && r.IsNew);
+            return GetAllUnlockedRewardPacks().Any(r => r.BaseType == baseType && r.Category == _rewardCategory && r.IsNew);
         }
 
         /// <summary>
@@ -343,7 +344,7 @@ namespace Antura.Rewards
         /// <returns></returns>
         public int GetUnlockedRewardsCount()
         {
-            return AppManager.I.Player != null ? GetUnlockedRewardPacks().Count : 0;
+            return AppManager.I.Player != null ? GetAllUnlockedRewardPacks().Count : 0;
         }
 
         private IEnumerable<RewardPack> GetRewardPacksAlreadyUnlockedForJourneyPosition(JourneyPosition journeyPosition)
@@ -439,11 +440,10 @@ namespace Antura.Rewards
             {
                 var jp = AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id);
                 var packs = UnlockAllRewardPacksForJourneyPosition(jp, false);
-                if (packs != null)
-                    Debug.LogFormat("Unlocked rewards for playsession {0} : {1}", jp, packs.Count);
+                //if (packs != null) Debug.LogFormat("Unlocked rewards for playsession {0} : {1}", jp, packs.Count);
             }
 
-            Debug.LogFormat("Unlocking also all extra rewards!");
+            //Debug.LogFormat("Unlocking also all extra rewards!");
             UnlockAllMissingExtraPacks(false);
             SaveRewardsUnlockDataChanges();
         }
@@ -576,8 +576,13 @@ namespace Antura.Rewards
                         // We force a NEW base
                         var lockedBases = GetLockedRewardBases(baseType);
 
+                        Debug.Log("locked bases count: " + lockedBases.Count);
+
                         if (allowedCategories != null)
+                        {
+                            Debug.Log("Allowed categories: " + allowedCategories.ToDebugString());
                             lockedBases = lockedBases.Where(x => allowedCategories.Contains((x as RewardProp).Category)).ToList();
+                        }
 
                         if (lockedBases.Count == 0)
                             throw new NullReferenceException(
@@ -665,17 +670,17 @@ namespace Antura.Rewards
                 pack.SetNew(false);
             }
 
-            // force to to wear decal
+            // force to to wear decal and texture
             _player.CurrentAnturaCustomizations.DecalPack = decalPacks[0];
             _player.CurrentAnturaCustomizations.DecalPackId = decalPacks[0].UniqueId;
-
-            // force to to wear texture
             _player.CurrentAnturaCustomizations.TexturePack = texturePacks[0];
             _player.CurrentAnturaCustomizations.TexturePackId = texturePacks[0].UniqueId;
+            _player.SaveAnturaCustomization();
 
             // Save initial packs and customization
-            _player.SaveRewardPackUnlockDataList();
             SaveRewardsUnlockDataChanges();
+
+            Debug.Log("Unlocked first set of rewards!");
         }
 
         /// <summary>

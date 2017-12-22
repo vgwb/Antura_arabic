@@ -31,7 +31,7 @@ namespace Antura.Test.Rewards
         void PrintCurrentUnlocks()
         {
             string s = ("We unlocked " + AppManager.I.RewardSystemManager.GetUnlockedRewardsCount());
-            foreach (var unlockedRewardPack in AppManager.I.RewardSystemManager.GetUnlockedRewardPacks())
+            foreach (var unlockedRewardPack in AppManager.I.RewardSystemManager.GetAllUnlockedRewardPacks())
             {
                 s += ("\n- " + unlockedRewardPack);
             }
@@ -71,8 +71,8 @@ namespace Antura.Test.Rewards
         }
 
         [DeMethodButton("Unlock PS 1.1.100", 2, 1, 1, 100)]
-        [DeMethodButton("Unlock PS 1.2.100", 2, 1, 1, 100)]
-        [DeMethodButton("Unlock PS 1.3.100", 2, 1, 1, 100)]
+        [DeMethodButton("Unlock PS 1.2.100", 2, 1, 2, 100)]
+        [DeMethodButton("Unlock PS 1.3.100", 2, 1, 3, 100)]
         void UnlockJP (int stage, int lb, int ps)
         {
             var jp = new JourneyPosition(stage, lb, ps);
