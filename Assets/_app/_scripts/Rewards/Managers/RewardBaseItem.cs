@@ -1,12 +1,16 @@
 namespace Antura.Rewards
 {
     /// <summary>
-    /// Structure focused to comunicate about items from e to UI.
+    /// Structure focused to communicate about items from e to UI.
     /// </summary>
-    public class RewardBaseItem  // reward model for customization & UI
+    public class RewardBaseItem
     {
-        public string ID;
-        public bool IsSelected;
+        // Data
+        public RewardBase data;
         public bool IsNew;
+
+        // State
+        public bool IsSelected;
+
     }
 }

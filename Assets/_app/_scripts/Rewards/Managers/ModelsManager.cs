@@ -11,6 +11,7 @@ namespace Antura.Rewards
 
         public static GameObject MountModel(string _id, Transform _parent, ModelType _type = ModelType.AnturaForniture)
         {
+            //Debug.Log("Mounting model " + _id + " on " + _parent.name);
             GameObject rewardModel = GetObject(_type, _id);
             rewardModel.transform.SetParent(_parent, false);
             return rewardModel;

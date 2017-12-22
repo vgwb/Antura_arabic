@@ -236,7 +236,7 @@ namespace Antura.Dog
 
         void OnEnable()
         {
-            RewardSystemManager.OnRewardChanged += RewardSystemManager_OnRewardItemChanged;
+            AppManager.I.RewardSystemManager.OnRewardSelectionChanged += RewardSystemManager_OnRewardItemChanged;
             PlayerProfileManager.OnProfileChanged += PlayerProfileManager_OnProfileChanged;
         }
 
@@ -250,14 +250,13 @@ namespace Antura.Dog
             LoadRewardPackOnAntura(rewardPack);
             rewardPack.SetNew(false);
 
-            // TODO: Save Packs
-            //AppManager.I.Player.SetRewardPackUnlockedToNotNew(rewardPack.UniqueId);
+            AppManager.I.RewardSystemManager.SaveRewardsUnlockDataChanges();
             SaveAnturaCustomization();
         }
 
         void OnDisable()
         {
-            RewardSystemManager.OnRewardChanged -= RewardSystemManager_OnRewardItemChanged;
+            AppManager.I.RewardSystemManager.OnRewardSelectionChanged -= RewardSystemManager_OnRewardItemChanged;
             PlayerProfileManager.OnProfileChanged -= PlayerProfileManager_OnProfileChanged;
         }
 

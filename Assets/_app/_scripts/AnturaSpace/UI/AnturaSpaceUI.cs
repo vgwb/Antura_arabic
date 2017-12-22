@@ -62,8 +62,9 @@ namespace Antura.AnturaSpace.UI
         List<Transform> rewardsContainers;
         List<Transform> rewardsImagesContainers; // Passed with texture and decal reward types
         RewardBaseType _currRewardBaseType;
-        List<RewardBaseItem> currRewardDatas;
-        List<RewardColorItem> currSwatchesDatas;
+        RewardBaseItem _currSelectedRewardBaseItem;
+        List<RewardBaseItem> currRewardBaseItems;
+        List<RewardColorItem> currRewardColorItems;
         AnturaSpaceCategoryButton.AnturaSpaceCategory currCategory;
         Tween showCategoriesTween, showShopTween, showItemsTween, showSwatchesTween;
 
@@ -311,7 +312,7 @@ namespace Antura.AnturaSpace.UI
 
             // Get rewards list
             currCategory = _category;
-            _currRewardBaseType = CategoryToRewardType(_category);
+            _currRewardBaseType = CategoryToRewardBaseType(_category);
             bool useImages = _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture ||
                              _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
             foreach (var item in btsItems) {
@@ -351,25 +352,28 @@ namespace Antura.AnturaSpace.UI
                 return;
             }
 
-            currSwatchesDatas = AppManager.I.RewardSystemManager.SelectRewardBase(rewardBaseData.ID, _currRewardBaseType);
-            if (currSwatchesDatas.Count == 0) {
+            _currSelectedRewardBaseItem = rewardBaseData;
+            currRewardColorItems = AppManager.I.RewardSystemManager.GetRewardColorItemsForBase(rewardBaseData.data);
+            if (currRewardColorItems.Count == 0) {
                 Debug.Log("No color swatches for the selected reward!");
                 return;
             }
 
             // Hide non-existent swatches
-            for (int i = currSwatchesDatas.Count - 1; i < btsSwatches.Length; ++i) btsSwatches[i].gameObject.SetActive(false);
+            for (int i = currRewardColorItems.Count - 1; i < btsSwatches.Length; ++i) btsSwatches[i].gameObject.SetActive(false);
             // Setup and show swatches
             RewardColorItem selectedSwatchData = null;
-            for (int i = 0; i < currSwatchesDatas.Count; ++i) {
-                RewardColorItem swatchData = currSwatchesDatas[i];
+            for (int i = 0; i < currRewardColorItems.Count; ++i) {
+                RewardColorItem swatchData = currRewardColorItems[i];
                 AnturaSpaceSwatchButton swatch = btsSwatches[i];
                 swatch.gameObject.SetActive(true);
                 swatch.Data = swatchData;
                 if (swatchData != null) {
                     swatch.SetAsNew(!swatchData.IsSelected && swatchData.IsNew);
                     swatch.Toggle(swatchData.IsSelected);
-                    swatch.SetColors(GenericHelper.HexToColor(swatchData.Color1RGB), GenericHelper.HexToColor(swatchData.Color2RGB));
+                    Color hexColor1 = GenericHelper.HexToColor(swatchData.data.Color1RGB);
+                    Color hexColor2 = swatchData.data.Color2RGB == null ? hexColor1 : GenericHelper.HexToColor(swatchData.data.Color2RGB);
+                    swatch.SetColors(hexColor1, hexColor2);
                     if (swatchData.IsSelected) {
                         selectedSwatchData = swatchData;
                     }
@@ -398,7 +402,7 @@ namespace Antura.AnturaSpace.UI
                 item.Toggle(item.Data == _colorData);
             }
             if (_colorData != null) {
-                AppManager.I.RewardSystemManager.SelectRewardColorItem(_colorData.ID);
+                AppManager.I.RewardSystemManager.SelectRewardColorItem(_currSelectedRewardBaseItem.data, _colorData.data);
             } else {
                 Debug.Log("SelectSwatch > _colorData is NULL!");
             }
@@ -408,13 +412,15 @@ namespace Antura.AnturaSpace.UI
         {
             bool useImages = currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture ||
                              currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
-            if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
-                currRewardDatas = AppManager.I.RewardSystemManager.GetRewardItemsByRewardType(_currRewardBaseType, rewardsContainers, "EAR_L");
+            if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears)
+            {
+                currRewardBaseItems = AppManager.I.RewardSystemManager.GetRewardBaseItems(_currRewardBaseType, rewardsContainers, "EAR_L");
                 List<Transform> altRewardContainers = new List<Transform>(rewardsContainers);
-                altRewardContainers.RemoveRange(0, currRewardDatas.Count);
-                currRewardDatas.AddRange(AppManager.I.RewardSystemManager.GetRewardItemsByRewardType(_currRewardBaseType, altRewardContainers, "EAR_R"));
-            } else {
-                currRewardDatas = AppManager.I.RewardSystemManager.GetRewardItemsByRewardType(_currRewardBaseType,
+                altRewardContainers.RemoveRange(0, currRewardBaseItems.Count);
+                currRewardBaseItems.AddRange(AppManager.I.RewardSystemManager.GetRewardBaseItems(_currRewardBaseType, altRewardContainers, "EAR_R"));
+            } else
+            {
+                currRewardBaseItems = AppManager.I.RewardSystemManager.GetRewardBaseItems(_currRewardBaseType,
                     useImages ? rewardsImagesContainers : rewardsContainers, currCategory.ToString());
             }
         }
@@ -425,15 +431,15 @@ namespace Antura.AnturaSpace.UI
                 bool isNew;
                 switch (btCat.Category) {
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears:
-                        isNew = AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardType(btCat.Category), "EAR_L")
-                                || AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
+                        isNew = AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardBaseType(btCat.Category), "EAR_L")
+                                || AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardBaseType(btCat.Category), "EAR_R");
                         break;
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
-                        isNew = AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardType(btCat.Category));
+                        isNew = AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardBaseType(btCat.Category));
                         break;
                     default:
-                        isNew = AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardType(btCat.Category),
+                        isNew = AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardBaseType(btCat.Category),
                             btCat.Category.ToString());
                         break;
                 }
@@ -447,13 +453,13 @@ namespace Antura.AnturaSpace.UI
             bool useImages = currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture ||
                              currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
             // Hide non-existent items
-            for (int i = currRewardDatas.Count - 1; i < btsItems.Length; ++i) {
+            for (int i = currRewardBaseItems.Count - 1; i < btsItems.Length; ++i) {
                 btsItems[i].gameObject.SetActive(false);
             }
             // Setup and show items
             RewardBaseItem selectedRewardBaseData = null;
-            for (int i = 0; i < currRewardDatas.Count; ++i) {
-                RewardBaseItem rewardBaseData = currRewardDatas[i];
+            for (int i = 0; i < currRewardBaseItems.Count; ++i) {
+                RewardBaseItem rewardBaseData = currRewardBaseItems[i];
                 AnturaSpaceItemButton item = btsItems[i];
                 item.gameObject.SetActive(true);
                 item.Data = rewardBaseData;
@@ -479,7 +485,7 @@ namespace Antura.AnturaSpace.UI
 
         #region Helpers
 
-        RewardBaseType CategoryToRewardType(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
+        RewardBaseType CategoryToRewardBaseType(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
             switch (_category) {
                 case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
@@ -523,15 +529,17 @@ namespace Antura.AnturaSpace.UI
             if (isTutorialMode && GetNewItemButton() != _bt) return;
 
             SelectReward(_bt.Data);
-            RewardPack rewardPack = AppManager.I.RewardSystemManager.GetPropRewardById(_bt.Data.ID);
-            if (rewardPack != null && onRewardSelectedInCustomization != null) {
-                onRewardSelectedInCustomization(rewardPack.BaseId);
+            RewardBase rewardBase = _bt.Data.data; //AppManager.I.RewardSystemManager.GetPropRewardPack(_bt.Data.data.ID);
+            if (rewardBase != null && onRewardSelectedInCustomization != null) {
+                onRewardSelectedInCustomization(rewardBase.ID);
             }
 
-            if (rewardPack != null
-                && (rewardPack.Category == "EAR_R" || rewardPack.Category == "EAR_L")
-                && onRewardCategorySelectedInCustomization != null) {
-                onRewardCategorySelectedInCustomization(rewardPack.Category);
+            RewardProp rewardProp = rewardBase as RewardProp;
+            if (rewardProp != null
+                &&  (rewardProp.Category == "EAR_R" || rewardProp.Category == "EAR_L")
+                && onRewardCategorySelectedInCustomization != null)
+            {
+                onRewardCategorySelectedInCustomization(rewardProp.Category);
             }
         }
 

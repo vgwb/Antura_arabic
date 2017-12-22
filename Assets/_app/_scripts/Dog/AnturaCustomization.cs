@@ -3,6 +3,7 @@ using Antura.Database;
 using Antura.Rewards;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Antura.Dog
@@ -77,6 +78,22 @@ namespace Antura.Dog
         public string GetJsonListOfIds()
         {
             return JsonUtility.ToJson(this);
+        }
+
+        public bool HasBaseEquipped(string baseId)
+        {
+            if (PropPacks.Exists(f => f.BaseId == baseId)) return true;
+            if (DecalPack.BaseId == baseId) return true;
+            if (TexturePack.BaseId == baseId) return true;
+            return false;
+        }
+
+        public RewardPack GetEquippedPack(string baseId)
+        {
+            if (PropPacks.Exists(f => f.BaseId == baseId)) return PropPacks.FirstOrDefault(f => f.BaseId == baseId);
+            if (DecalPack.BaseId == baseId) return DecalPack;
+            if (TexturePack.BaseId == baseId) return TexturePack;
+            return null;
         }
     }
 }
