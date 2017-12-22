@@ -34,7 +34,8 @@ namespace Antura.Rewards
                 // Compute numbers we need to unlock
                 var nTotalRewardPacksToUnlock = AppManager.I.NavigationManager.CalculateRewardPacksUnlockCount();
 
-                var rewardPacksForJourneyPosition = AppManager.I.RewardSystemManager.GetOrGenerateAllRewardPacksForJourneyPosition(jp);
+                var rewardPacksForJourneyPosition =
+                    AppManager.I.RewardSystemManager.GetOrGenerateAllRewardPacksForJourneyPosition(jp);
                 var rewardPacksUnlocked = rewardPacksForJourneyPosition.Where(x => x.IsUnlocked).ToList();
                 var rewardPacksLocked = rewardPacksForJourneyPosition.Where(x => x.IsLocked).ToList();
 
@@ -45,7 +46,9 @@ namespace Antura.Rewards
                 AppManager.I.RewardSystemManager.UnlockPacksSelection(rewardPacksLocked, nNewRewardPacksToUnlock);
 
                 // Show UI result and unlock transform parent where show unlocked items
-                var uiGameObjects = GameResultUI.ShowEndsessionResult(AppManager.I.NavigationManager.UseEndSessionResults(), nRewardPacksAlreadyUnlocked);
+                var uiGameObjects =
+                    GameResultUI.ShowEndsessionResult(AppManager.I.NavigationManager.UseEndSessionResults(),
+                        nRewardPacksAlreadyUnlocked);
 
                 // For any rewards mount them model on parent transform object (objs)
                 for (int i = 0; i < rewardPacksUnlocked.Count() && i < uiGameObjects.Length; i++)
@@ -54,6 +57,10 @@ namespace Antura.Rewards
                     ModelsManager.MountModel(rewardPacksUnlocked[i].BaseId, uiGameObjects[i].transform, matPair);
                 }
 
+            }
+            else
+            {
+                var uiGameObjects = GameResultUI.ShowEndsessionResult(AppManager.I.NavigationManager.UseEndSessionResults(), 1);
             }
 
         }
