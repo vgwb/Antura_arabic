@@ -100,7 +100,7 @@ namespace Antura.Rewards
             if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig))
             {
                 // Get the first propr reward (already unlocked)
-                var firstRewardPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBase(RewardBaseType.Prop).FirstOrDefault();
+                var firstRewardPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBaseType(RewardBaseType.Prop).FirstOrDefault();
                 return firstRewardPack;
             }
             else

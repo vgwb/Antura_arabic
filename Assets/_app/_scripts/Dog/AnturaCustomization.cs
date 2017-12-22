@@ -47,13 +47,13 @@ namespace Antura.Dog
 
             if (string.IsNullOrEmpty(TexturePackId))
             {
-                RewardPack defaultTileTexturePack = rewardSystem.GetAllRewardPacksOfBase(RewardBaseType.Texture)[0];
+                RewardPack defaultTileTexturePack = rewardSystem.GetAllRewardPacksOfBaseType(RewardBaseType.Texture)[0];
                 Debug.Log("Default texture: " + defaultTileTexturePack);
                 TexturePackId = defaultTileTexturePack.UniqueId;
             }
             if (string.IsNullOrEmpty(DecalPackId))
             {
-                RewardPack defaultDecalTexturePack = rewardSystem.GetAllRewardPacksOfBase(RewardBaseType.Decal)[0];
+                RewardPack defaultDecalTexturePack = rewardSystem.GetAllRewardPacksOfBaseType(RewardBaseType.Decal)[0];
                 Debug.Log("Default decal: " + defaultDecalTexturePack);
                 DecalPackId = defaultDecalTexturePack.UniqueId;
             }

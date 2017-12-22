@@ -18,17 +18,12 @@ namespace Antura.Rewards
 
     public class RewardSystemManager
     {
-        private const bool VERBOSE = true;
+        private const bool VERBOSE = false;
 
         private const string ANTURA_REWARDS_PARTS_CONFIG_PATH = "Configs/AnturaRewardsPartsConfig";
         private const string ANTURA_REWARDS_UNLOCKS_CONFIG_PATH = "Configs/AnturaRewardsUnlocksConfig";
 
         private const bool USE_UNLOCK_CONFIG = false;
-
-        /// <summary>
-        /// The maximum rewards unlockable for playsession.
-        /// </summary>
-        // TODO: use this? public const int MaxRewardsUnlockableForPlaysession = 2;
 
         #region Events
 
@@ -143,13 +138,28 @@ namespace Antura.Rewards
             return GetAllRewardPacks().FirstOrDefault(p => p.BaseId == baseId && p.ColorId == colorId);
         }
 
-        public List<RewardPack> GetAllRewardPacksOfBase(RewardBaseType baseType)
+        public List<RewardPack> GetAllRewardPacksOfBaseType(RewardBaseType baseType, bool onePerBase = false)
         {
             if (!rewardPacksDict.ContainsKey(baseType)) throw new ArgumentNullException("Dict not initialised correctly!");
-            return rewardPacksDict[baseType];
+            var allRewardsOfBaseType = rewardPacksDict[baseType];
+
+            if (onePerBase)
+            {
+                List<RewardPack> basePacks = new List<RewardPack>();
+                foreach (var rewardBase in GetRewardBasesOfType(baseType))
+                {
+                    var firstBasePack = allRewardsOfBaseType.First(x => x.RewardBase == rewardBase);
+                    basePacks.Add(firstBasePack);
+                }
+                return basePacks;
+            }
+            else
+            {
+                return allRewardsOfBaseType;
+            }
         }
 
-        public List<RewardPack> GetUnlockedRewardPacksOfBase(RewardBaseType baseType)
+        public List<RewardPack> GetUnlockedRewardPacksOfBaseType(RewardBaseType baseType)
         {
             if (!rewardPacksDict.ContainsKey(baseType)) throw new ArgumentNullException("Dict not initialised correctly!");
             return rewardPacksDict[baseType].Where(x => x.IsUnlocked).ToList();
@@ -228,7 +238,7 @@ namespace Antura.Rewards
         // TODO: DEPRECATE THIS
         public RewardPack GetPropRewardById(string _baseId)
         {
-            return GetAllRewardPacksOfBase(RewardBaseType.Prop).FirstOrDefault(x => x.BaseId == _baseId); 
+            return GetAllRewardPacksOfBaseType(RewardBaseType.Prop).FirstOrDefault(x => x.BaseId == _baseId); 
         }
 
         #endregion
@@ -320,10 +330,22 @@ namespace Antura.Rewards
         /// Gets the total count of all reward packs. 
         /// Any base with any color variation available in game.
         /// </summary>
-        public int GetTotalRewardPacksCount()
+        public int GetTotalRewardPacksCount(bool mergePropColors = false)
         {
-            return GetAllRewardPacks().Count();
+            if (mergePropColors)
+            {
+                int tot = 0;
+                tot += GetAllRewardPacksOfBaseType(RewardBaseType.Decal).Count;
+                tot += GetAllRewardPacksOfBaseType(RewardBaseType.Texture).Count;
+                tot += GetAllRewardPacksOfBaseType(RewardBaseType.Prop, true).Count;
+                return tot;
+            }
+            else
+            {
+                return GetAllRewardPacks().Count();
+            }
         }
+
 
         /// <summary>
         /// Gets the unlocked reward count for the current player. 0 if current player is null.
@@ -532,30 +554,39 @@ namespace Antura.Rewards
         /// Generate a new list of reward packs to be unlocked.
         /// </summary>
         /// <param name="baseType">Type of the reward.</param>
-        private List<RewardPack> GenerateNewRewardPacks(RewardBaseType baseType, RewardUnlockMethod unlockMethod)
+        private List<RewardPack> GenerateNewRewardPacks(RewardBaseType baseType, RewardUnlockMethod unlockMethod, string[] allowedCategories = null)
         {
-            // TODO: also force category for RewardBase
             List<RewardPack> newRewardPacks = new List<RewardPack>();
             switch (unlockMethod)
             {
                 case RewardUnlockMethod.NewBase:
-                {
-                    // We force a NEW base
-                    var lockedBases = GetLockedRewardBases(baseType);
-                    if (lockedBases.Count == 0)
-                        throw new NullReferenceException(
-                            "We do not have enough rewards to get a new base of type " + baseType);
+                    {
+                        // We force a NEW base
+                        var lockedBases = GetLockedRewardBases(baseType);
 
-                    var newBase = lockedBases.RandomSelectOne();
-                    var lockedPacks = GetLockedRewardPacksOfBase(baseType);
-                    var lockedPacksOfNewBase = lockedPacks.Where(x => x.BaseId == newBase.ID).ToList();
-                    newRewardPacks.Add(lockedPacksOfNewBase.RandomSelectOne()); 
-                }
+                        if (allowedCategories != null)
+                            lockedBases = lockedBases.Where(x => allowedCategories.Contains((x as RewardProp).Category)).ToList();
+
+                        if (lockedBases.Count == 0)
+                            throw new NullReferenceException(
+                                "We do not have enough rewards to get a new base of type " + baseType);
+
+                        var newBase = lockedBases.RandomSelectOne();
+                        var lockedPacks = GetLockedRewardPacksOfBase(baseType);
+                        var lockedPacksOfNewBase = lockedPacks.Where(x => x.BaseId == newBase.ID).ToList();
+
+                        // We add one random pack of the new base
+                        newRewardPacks.Add(lockedPacksOfNewBase.RandomSelectOne()); 
+                    }
                     break;
                 case RewardUnlockMethod.NewBaseAndAllColors:
                     {
                         // We force a NEW base
                         var lockedBases = GetLockedRewardBases(baseType);
+
+                        if (allowedCategories != null)
+                            lockedBases = lockedBases.Where(x => allowedCategories.Contains((x as RewardProp).Category)).ToList();
+
                         if (lockedBases.Count == 0)
                             throw new NullReferenceException(
                                 "We do not have enough rewards to get a new base of type " + baseType);
@@ -666,7 +697,10 @@ namespace Antura.Rewards
             switch (baseType)
             {
                 case RewardBaseType.Prop:
-                    list = GenerateNewRewardPacks(baseType, RewardUnlockMethod.NewBaseAndAllColors);
+                    string[] allowedCategories = {
+                        "HEAD", "BACK", "NECK", "JAW"
+                    };
+                    list = GenerateNewRewardPacks(baseType, RewardUnlockMethod.NewBaseAndAllColors, allowedCategories);
                     break;
                 case RewardBaseType.Texture:
                     list.Add(GetRewardPackByPartsIds("Antura_wool_tilemat", "color1"));

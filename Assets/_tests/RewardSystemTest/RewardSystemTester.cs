@@ -15,11 +15,15 @@ namespace Antura.Test.Rewards
         [DeMethodButton("Print Reward Stats")]
         void PrintRewardStats()
         {
-            string s = ("We unlocked " + AppManager.I.RewardSystemManager.GetAllRewardPacks());
-            foreach (var unlockedRewardPack in AppManager.I.RewardSystemManager.GetUnlockedRewardPacks())
-            {
-                s += ("\n- " + unlockedRewardPack);
-            }
+            string s = "";
+            s += "All rewards: " + AppManager.I.RewardSystemManager.GetTotalRewardPacksCount();
+            s += "\n All rewards (1 color props): " + AppManager.I.RewardSystemManager.GetTotalRewardPacksCount(true);
+            s += "\n Decal Packs: " + AppManager.I.RewardSystemManager.GetAllRewardPacksOfBaseType(RewardBaseType.Decal).Count;
+            s += "\n Decal Packs (1 color):  " + AppManager.I.RewardSystemManager.GetAllRewardPacksOfBaseType(RewardBaseType.Decal, true).Count;
+            s += "\n Texture Packs: " + AppManager.I.RewardSystemManager.GetAllRewardPacksOfBaseType(RewardBaseType.Texture).Count;
+            s += "\n Texture Packs (1 color): " + AppManager.I.RewardSystemManager.GetAllRewardPacksOfBaseType(RewardBaseType.Texture, true).Count;
+            s += "\n Prop Packs: " + AppManager.I.RewardSystemManager.GetAllRewardPacksOfBaseType(RewardBaseType.Prop).Count;
+            s += "\n Prop Packs (1 color): " + AppManager.I.RewardSystemManager.GetAllRewardPacksOfBaseType(RewardBaseType.Prop, true).Count;
             Debug.Log(s);
         }
 
@@ -56,8 +60,8 @@ namespace Antura.Test.Rewards
             AppManager.I.RewardSystemManager.UnlockFirstSetOfRewards();
         }
 
-        [DeMethodButton("Unlock 1 for PS 1.1.1", 0, 1, 1, 1, 1)]
-        [DeMethodButton("Unlock 1 for PS 1.1.2", 1, 1, 1, 2, 1)]
+        [DeMethodButton("Unlock 1 for PS 1.1.100", 0, 1, 1, 100, 1)]
+        [DeMethodButton("Unlock 1 for PS 1.2.100", 1, 1, 2, 100, 1)]
         void UnlockJPSelection(int stage, int lb, int ps, int number)
         {
             var jp = new JourneyPosition(stage, lb, ps);
@@ -66,10 +70,9 @@ namespace Antura.Test.Rewards
             AppManager.I.RewardSystemManager.UnlockPacksSelection(lockedPacks, number);
         }
 
-        [DeMethodButton("Unlock PS 1.1.1", 0, 1, 1, 1)]
-        [DeMethodButton("Unlock PS 1.1.2", 1, 1, 1, 2)]
         [DeMethodButton("Unlock PS 1.1.100", 2, 1, 1, 100)]
-        [DeMethodButton("Unlock PS 1.2.1", 3, 1, 2, 1)]
+        [DeMethodButton("Unlock PS 1.2.100", 2, 1, 1, 100)]
+        [DeMethodButton("Unlock PS 1.3.100", 2, 1, 1, 100)]
         void UnlockJP (int stage, int lb, int ps)
         {
             var jp = new JourneyPosition(stage, lb, ps);
@@ -91,9 +94,9 @@ namespace Antura.Test.Rewards
         [DeMethodButton("Load Packs on Antura")]
         void LoadPacksOnAntura()
         {
-            var propPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBase(RewardBaseType.Prop).RandomSelectOne();
-            var texturePack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBase(RewardBaseType.Texture).RandomSelectOne();
-            var decalPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBase(RewardBaseType.Decal).RandomSelectOne();
+            var propPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBaseType(RewardBaseType.Prop).RandomSelectOne();
+            var texturePack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBaseType(RewardBaseType.Texture).RandomSelectOne();
+            var decalPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBaseType(RewardBaseType.Decal).RandomSelectOne();
 
             AnturaModelManager.LoadRewardPackOnAntura(propPack);
             AnturaModelManager.LoadRewardPackOnAntura(texturePack);
