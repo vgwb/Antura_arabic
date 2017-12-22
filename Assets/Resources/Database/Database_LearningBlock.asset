@@ -19,8 +19,9 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Let's discover the letters
-      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641"
+      _Title_En: Discover the first letters!
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0648\u0644 \u062D\u0631\u0648\u0641
+        !"
       _Focus: 1
     - _Id: 1.2
       _Stage: 1
@@ -28,9 +29,9 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Let's discover the letters
-      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641
-        \u0645\u0631\u0629 \u062B\u0627\u0646\u064A\u0629"
+      _Title_En: From ba to ya!
+      _Title_Ar: "\u0645\u0646 \u0627\u0644\u0628\u0627 \u0627\u0644\u06CC \u0627\u0644\u064A\u0627
+        !"
       _Focus: 1
     - _Id: 1.3
       _Stage: 1
@@ -48,7 +49,7 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's read the letters
-      _Title_Ar: 
+      _Title_Ar: "\u0627\u0642\u0631\u0627 \u0627\u0644\u062D\u0631\u0648\u0641"
       _Focus: 1
     - _Id: 1.5
       _Stage: 1
@@ -56,8 +57,9 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Let's discover the phonems
-      _Title_Ar: 
+      _Title_En: Shapes and sounds!
+      _Title_Ar: "\u0627\u0634\u0643\u0627\u0644 \u0648 \u0627\u0635\u0648\u0627\u062A
+        !"
       _Focus: 6
     - _Id: 1.6
       _Stage: 1
@@ -65,8 +67,9 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Let's find the phonems
-      _Title_Ar: 
+      _Title_En: Let's play with shapes!
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0634\u0643\u0627\u0644
+        !"
       _Focus: 6
     - _Id: 1.7
       _Stage: 1
@@ -74,8 +77,9 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Let's find the phonems
-      _Title_Ar: 
+      _Title_En: Let's play with sounds!
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0635\u0648\u062A
+        !"
       _Focus: 6
     - _Id: 1.8
       _Stage: 1
@@ -156,7 +160,7 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641"
+      _Title_Ar: 
       _Focus: 1
     - _Id: 2.2
       _Stage: 2
@@ -165,8 +169,7 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's discover the letters
-      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641
-        \u0645\u0631\u0629 \u062B\u0627\u0646\u064A\u0629"
+      _Title_Ar: 
       _Focus: 1
     - _Id: 2.3
       _Stage: 2
