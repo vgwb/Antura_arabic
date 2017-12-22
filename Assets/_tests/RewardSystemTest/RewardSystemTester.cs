@@ -1,4 +1,7 @@
 ﻿using Antura.Core;
+using Antura.Dog;
+using Antura.Helpers;
+using Antura.Rewards;
 using UnityEngine;
 using DG.DeInspektor.Attributes;
 
@@ -6,6 +9,18 @@ namespace Antura.Test.Rewards
 { 
     public class RewardSystemTester : MonoBehaviour
     {
+        public AnturaModelManager AnturaModelManager;
+
+        [DeMethodButton("Print Reward Stats")]
+        void PrintRewardStats()
+        {
+            string s = ("We unlocked " + AppManager.I.RewardSystemManager.GetAllRewardPacks());
+            foreach (var unlockedRewardPack in AppManager.I.RewardSystemManager.GetUnlockedRewardPacks())
+            {
+                s += ("\n- " + unlockedRewardPack);
+            }
+            Debug.Log(s);
+        }
 
         [DeMethodButton("Print Unlocks")]
         void PrintCurrentUnlocks()
@@ -46,7 +61,7 @@ namespace Antura.Test.Rewards
         [DeMethodButton("Unlock PS 1.2.1", 3, 1, 2, 1)]
         void UnlockJP (int stage, int lb, int ps)
         {
-            AppManager.I.RewardSystemManager.UnlockRewardPacksForJourneyPosition(new JourneyPosition(stage, lb, ps));
+            AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(new JourneyPosition(stage, lb, ps));
         }
 
         [DeMethodButton("Unlock Everything")]
@@ -59,6 +74,18 @@ namespace Antura.Test.Rewards
         void UnlockMissing()
         {
             AppManager.I.RewardSystemManager.UnlockAllMissingRewardPacks();
+        }
+
+        [DeMethodButton("Load Packs on Antura")]
+        void LoadPacksOnAntura()
+        {
+            var propPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBase(RewardBaseType.Prop).RandomSelectOne();
+            var texturePack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBase(RewardBaseType.Texture).RandomSelectOne();
+            var decalPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBase(RewardBaseType.Decal).RandomSelectOne();
+
+            AnturaModelManager.LoadRewardPackOnAntura(propPack);
+            AnturaModelManager.LoadRewardPackOnAntura(texturePack);
+            AnturaModelManager.LoadRewardPackOnAntura(decalPack);
         }
 
     }

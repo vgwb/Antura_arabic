@@ -76,8 +76,7 @@ namespace Antura.Dog
             foreach (var propPack in _anturaCustomization.PropPacks)
             {
                 LoadRewardPackOnAntura(propPack);
-                var matPair = AppManager.I.RewardSystemManager.GetMaterialPairForPack(propPack);
-                ModelsManager.SwitchMaterial(LoadRewardPackOnAntura(propPack), matPair);
+                ModelsManager.SwitchMaterial(LoadRewardPackOnAntura(propPack), propPack.GetMaterialPair());
             }
             LoadRewardPackOnAntura(_anturaCustomization.TexturePack);
             LoadRewardPackOnAntura(_anturaCustomization.DecalPack);
@@ -174,8 +173,7 @@ namespace Antura.Dog
         /// <returns></returns>
         public GameObject SetRewardMaterialColors(GameObject _gameObject, RewardPack rewardPack)
         {
-            var matPair =  AppManager.I.RewardSystemManager.GetMaterialPairForPack(rewardPack);
-            ModelsManager.SwitchMaterial(_gameObject, matPair);
+            ModelsManager.SwitchMaterial(_gameObject, rewardPack.GetMaterialPair());
             //actualRewardsForCategoryColor.Add()
             return _gameObject;
         }
@@ -185,7 +183,7 @@ namespace Antura.Dog
         /// </summary>
         /// <param name="rewardPackUnlockData">The identifier.</param>
         /// <returns></returns>
-        public GameObject LoadRewardPropOnAntura(RewardPack rewardPack)
+        private GameObject LoadRewardPropOnAntura(RewardPack rewardPack)
         {
             RewardProp prop = rewardPack.RewardBase as RewardProp;
             if (prop == null) {
@@ -225,8 +223,7 @@ namespace Antura.Dog
             }
 
             // Set materials
-            var matPair = AppManager.I.RewardSystemManager.GetMaterialPairForPack(rewardPack);
-            ModelsManager.SwitchMaterial(rewardModel, matPair);
+            ModelsManager.SwitchMaterial(rewardModel, rewardPack.GetMaterialPair());
 
             // Save on LoadedModel List
             LoadedModels.Add(new LoadedModel() { RewardPack = rewardPack, GO = rewardModel });

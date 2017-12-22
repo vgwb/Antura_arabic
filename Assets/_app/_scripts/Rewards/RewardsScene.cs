@@ -99,11 +99,11 @@ namespace Antura.Rewards
         {
             if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig))
             {
-                return AppManager.I.RewardSystemManager.GetUnlockedRewardPacks(RewardBaseType.Prop).FirstOrDefault();
+                return AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBase(RewardBaseType.Prop).FirstOrDefault();
             }
             else
             {
-                var newRewardToInstantiate =  AppManager.I.RewardSystemManager.GenerateRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition)[0];
+                var newRewardToInstantiate =  AppManager.I.RewardSystemManager.GetOrGenerateAllRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition)[0];
                 AppManager.I.RewardSystemManager.UnlockPack(newRewardToInstantiate, AppManager.I.Player.CurrentJourneyPosition);
                 AppManager.I.Player.AdvanceMaxJourneyPosition();    // TODO: move this out of here!
                 return newRewardToInstantiate;

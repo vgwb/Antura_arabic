@@ -140,10 +140,16 @@ namespace Antura.Rewards
             return GetAllRewardPacks().FirstOrDefault(p => p.BaseId == baseId && p.ColorId == colorId);
         }
 
-        public List<RewardPack> GetRewardPacksOfType(RewardBaseType baseType)
+        public List<RewardPack> GetAllRewardPacksOfBase(RewardBaseType baseType)
         {
             if (!rewardPacksDict.ContainsKey(baseType)) throw new ArgumentNullException("Dict not initialised correctly!");
             return rewardPacksDict[baseType];
+        }
+
+        public List<RewardPack> GetUnlockedRewardPacksOfBase(RewardBaseType baseType)
+        {
+            if (!rewardPacksDict.ContainsKey(baseType)) throw new ArgumentNullException("Dict not initialised correctly!");
+            return rewardPacksDict[baseType].Where(x => x.IsUnlocked).ToList();
         }
 
         public IEnumerable<RewardPack> GetAllRewardPacks()
@@ -156,6 +162,58 @@ namespace Antura.Rewards
                 yield return rewardPack;
         }
 
+        public List<RewardPack> GetUnlockedRewardPacks()
+        {
+            var unlockedPacks = GetAllRewardPacks().Where(p => p.IsUnlocked);
+            return unlockedPacks.ToList();
+        }
+
+        public List<RewardPack> GetLockedRewardPacks()
+        {
+            var lockedPacks = GetAllRewardPacks().Where(p => p.IsLocked);
+            return lockedPacks.ToList();
+        }
+
+        public List<RewardPack> GetLockedRewardPacksOfBase(RewardBaseType baseType)
+        {
+            var packsOfBase = rewardPacksDict[baseType];
+            var lockedPacks = packsOfBase.Where(p => p.IsLocked);
+            return lockedPacks.ToList();
+        }
+
+        List<RewardBase> GetLockedRewardBases(RewardBaseType baseType)
+        {
+            var unlockedBases = GetUnlockedRewardBases(baseType);
+            var allBases = GetRewardBasesOfType(baseType);
+            List<RewardBase> lockedBases = new List<RewardBase>();
+
+            foreach (var rewardBase in allBases)
+            {
+                if (!unlockedBases.Contains(rewardBase))
+                    lockedBases.Add(rewardBase);
+            }
+            return lockedBases;
+        }
+
+        List<RewardBase> GetUnlockedRewardBases(RewardBaseType baseType)
+        {
+            var packsOfBase = rewardPacksDict[baseType];
+            var unlockedPacksOfBase = packsOfBase.Where(p => p.IsUnlocked);
+            var allBases = GetRewardBasesOfType(baseType);
+
+            HashSet<RewardBase> unlockedBases = new HashSet<RewardBase>();
+            foreach (var rewardPack in unlockedPacksOfBase)
+            {
+                var rewardBase = allBases.First(x => x.ID == rewardPack.BaseId);
+                if (rewardBase != null)
+                {
+                    unlockedBases.Add(rewardBase);
+                }
+            }
+            return unlockedBases.ToList();
+        }
+
+
         #endregion
 
         /// <summary>
@@ -167,7 +225,7 @@ namespace Antura.Rewards
         // TODO: DEPRECATE THIS
         public RewardPack GetPropRewardById(string _baseId)
         {
-            return GetRewardPacksOfType(RewardBaseType.Prop).FirstOrDefault(x => x.BaseId == _baseId); 
+            return GetAllRewardPacksOfBase(RewardBaseType.Prop).FirstOrDefault(x => x.BaseId == _baseId); 
         }
 
         #endregion
@@ -243,9 +301,12 @@ namespace Antura.Rewards
         /// Return true if all rewards for this JourneyPosition are already unlocked.
         /// </summary>
         /// <param name="_journeyPosition">The journey position.</param>
-        public bool AreJourneyPositionRewardsAlreadyUnlocked(JourneyPosition journeyPosition)
+        public bool AreAllJourneyPositionRewardsAlreadyUnlocked(JourneyPosition journeyPosition)
         {
-            return GetAllRewardPacks().Any(p => p.UnlockedAtJourneyPosition(journeyPosition));
+            int nAlreadyUnlocked = GetRewardPacksAlreadyUnlockedForJourneyPosition(journeyPosition).Count();
+            int nForJourneyPosition = GetRewardPacksForJourneyPosition(journeyPosition).Count();
+            //if (nForJourneyPosition == 0) throw new Exception("No rewards were added for JP " + journeyPosition);
+            return nForJourneyPosition > 0 && nAlreadyUnlocked == nForJourneyPosition;
         }
 
         #endregion
@@ -270,33 +331,54 @@ namespace Antura.Rewards
             return AppManager.I.Player != null ? GetUnlockedRewardPacks().Count : 0;
         }
 
-
-        public IEnumerable<RewardPack> GetRewardPacksUnlockedInJourneyPosition(JourneyPosition journeyPosition)
+        public IEnumerable<RewardPack> GetRewardPacksAlreadyUnlockedForJourneyPosition(JourneyPosition journeyPosition)
         {
-            return GetAllRewardPacks().Where(x => x.UnlockedAtJourneyPosition(journeyPosition));
+            return GetAllRewardPacks().Where(x => x.IsFoundAtJourneyPosition(journeyPosition) && x.IsUnlocked);
         }
 
-        /// <summary>
-        /// Gets the material pair for standard reward.
-        /// </summary>
-        /// <param name="_rewardId">The reward identifier.</param>
-        /// <param name="_colorId">The color identifier.</param>
-        /// <returns></returns>
-        public MaterialPair GetMaterialPairForPack(RewardPack pack)
+        public IEnumerable<RewardPack> GetRewardPacksForJourneyPosition(JourneyPosition journeyPosition)
         {
-            RewardProp prop = pack.RewardBase as RewardProp;
-            RewardColor color = pack.RewardColor;
-            if (color == null || prop == null)
-            {
-                return new MaterialPair();
-            }
-            MaterialPair mp = new MaterialPair(color.Color1Name, prop.Material1, color.Color2Name, prop.Material2);
-            return mp;
+            return GetAllRewardPacks().Where(x => x.IsFoundAtJourneyPosition(journeyPosition));
         }
 
         #endregion
 
-        #region Unlocking Commands
+        #region Pack Creation and Unlocking
+
+        public void RegisterLockedPacks(List<RewardPack> packs, JourneyPosition jp)
+        {
+            // Packs are at first added and registered as Locked
+            foreach (var pack in packs)
+            {
+                RegisterLockedPack(pack, jp);
+            }
+        }
+
+        private void RegisterLockedPack(RewardPack pack, JourneyPosition jp)
+        {
+            if (pack.HasUnlockData())
+            {
+                throw new Exception("Pack " + pack + " is already registered! Cannot register again");
+            }
+
+            // Add the unlock data and register it
+            var unlockData = new RewardPackUnlockData(LogManager.I.AppSession, pack.UniqueId, jp);
+            unlockData.IsLocked = true;
+            unlockData.IsNew = true;
+            AppManager.I.Player.RegisterUnlockData(unlockData);
+            pack.SetUnlockData(unlockData);
+
+            // TODO: save it too? (trigger it after this where we call this for optimization)
+
+            if (VERBOSE) Debug.Log("Registered locked pack " + pack);
+        }
+
+        public void UnlockPacks(List<RewardPack> packs, JourneyPosition jp, int nToUnlock)
+        {
+            var unlockedPacks = packs.RandomSelect(nToUnlock, true);
+            UnlockPacks(unlockedPacks, jp);
+            // TODO: SAVE!
+        }
 
         public void UnlockPacks(List<RewardPack> packs, JourneyPosition jp)
         {
@@ -308,11 +390,45 @@ namespace Antura.Rewards
 
         public void UnlockPack(RewardPack pack, JourneyPosition jp)
         {
-            if (pack.IsUnlocked)
-                throw new Exception("Pack " + pack + " is already unlocked! Cannot unlock again");
+            if (pack.HasUnlockData())
+            {
+                if (pack.IsUnlocked)
+                {
+                    throw new Exception("Pack " + pack + " is already unlocked! Cannot unlock again");
+                }
+                else
+                {
+                    pack.SetLocked();
+                    pack.SetNew(true);
+                }
+            }
+            else
+            {
+                // This is a new reward
+                var unlockData = new RewardPackUnlockData(LogManager.I.AppSession, pack.UniqueId, jp);
+                unlockData.IsLocked = false;
+                unlockData.IsNew = true;
+                AppManager.I.Player.RegisterUnlockData(unlockData);
+                pack.SetUnlockData(unlockData);
+            }
 
+            // TODO: save it too? (trigger it after this where we call this for optimization)
+
+            if (VERBOSE) Debug.Log("Unlocked pack " + pack);
+        }
+
+        public void AddLockedPacks(List<RewardPack> packs, JourneyPosition jp)
+        {
+            foreach (var pack in packs)
+            {
+                AddLockedPack(pack, jp);
+            }
+        }
+
+        public void AddLockedPack(RewardPack pack, JourneyPosition jp)
+        {
             var unlockData = new RewardPackUnlockData(LogManager.I.AppSession, pack.UniqueId, jp);
-            unlockData.IsLocked = false;
+            unlockData.IsLocked = true;
             unlockData.IsNew = true;
 
             AppManager.I.Player.RegisterUnlockData(unlockData);
@@ -329,9 +445,9 @@ namespace Antura.Rewards
         {
             JourneyPosition extraRewardJP = new JourneyPosition(100, 100, 100);
 
-            UnlockPacks(GetLockedRewardPacks(RewardBaseType.Prop), extraRewardJP);
-            UnlockPacks(GetLockedRewardPacks(RewardBaseType.Decal), extraRewardJP);
-            UnlockPacks(GetLockedRewardPacks(RewardBaseType.Texture), extraRewardJP);
+            UnlockPacks(GetLockedRewardPacksOfBase(RewardBaseType.Prop), extraRewardJP);
+            UnlockPacks(GetLockedRewardPacksOfBase(RewardBaseType.Decal), extraRewardJP);
+            UnlockPacks(GetLockedRewardPacksOfBase(RewardBaseType.Texture), extraRewardJP);
 
             SaveRewardsUnlockDataChanges();
         }
@@ -345,7 +461,7 @@ namespace Antura.Rewards
             for (int i = 0; i < allPlaySessionInfos.Count; i++)
             {
                 var jp = AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id);
-                var packs = UnlockRewardPacksForJourneyPosition(jp);
+                var packs = UnlockAllRewardPacksForJourneyPosition(jp);
                 if (packs != null)
                     Debug.LogFormat("Unlocked rewards for playsession {0} : {1}", jp, packs.Count);
             }
@@ -356,27 +472,38 @@ namespace Antura.Rewards
             SaveRewardsUnlockDataChanges();
         }
 
-        public List<RewardPack> UnlockRewardPacksForJourneyPosition(JourneyPosition journeyPosition)
+        public List<RewardPack> UnlockAllRewardPacksForJourneyPosition(JourneyPosition journeyPosition)
         {
-            if (AreJourneyPositionRewardsAlreadyUnlocked(journeyPosition))
+            var packs = GetOrGenerateAllRewardPacksForJourneyPosition(journeyPosition);
+
+            if (AreAllJourneyPositionRewardsAlreadyUnlocked(journeyPosition))
             {
-                Debug.LogError("We already unlocked rewards for JP " + journeyPosition);
+                Debug.LogError("We already unlocked all rewards for JP " + journeyPosition);
                 return null;
             }
-            var packs = GenerateRewardPacksForJourneyPosition(journeyPosition);
+
             UnlockPacks(packs, journeyPosition);
             return packs;
         }
 
         #endregion
 
+
         /// <summary>
-        /// Return list of right rewards for actual playsession if not already.
+        /// Generates all Reward Packs for a given journey position
         /// </summary>
         /// <returns></returns>
-        public List<RewardPack> GenerateRewardPacksForJourneyPosition(JourneyPosition journeyPosition)
+        public List<RewardPack> GetOrGenerateAllRewardPacksForJourneyPosition(JourneyPosition journeyPosition)
         {
-            var newlyUnlockedPacks = new List<RewardPack>();
+            // First check whether we already generated them
+            var rewardPacks = GetRewardPacksForJourneyPosition(journeyPosition);
+            if (rewardPacks.Any())
+            {
+                return rewardPacks.ToList();
+            }
+
+            // If not, we need to generate them from scratch
+            var jpPacks = new List<RewardPack>();
 
             // TODO: HANDLE THIS DIFFERENTLY
             // not _forceToReturnReward check if reward is already unlocked for this playsession and if true return empty list
@@ -388,85 +515,29 @@ namespace Antura.Rewards
             if (unlocksAtJP == null)
             {
                 Debug.LogErrorFormat("Unable to find reward unlocks for JourneyPositions {0}", journeyPosition);
-                return newlyUnlockedPacks;
+                return jpPacks;
             }
 
             // Check numbers and base types
             for (int i = 0; i < unlocksAtJP.NewPropBase; i++)
-                newlyUnlockedPacks.Add(GetNewRewardPack(RewardBaseType.Prop, RewardUnlockMethod.NewBase));
+                jpPacks.Add(GetNewRewardPack(RewardBaseType.Prop, RewardUnlockMethod.NewBase));
             //TODO: if (OnNewRewardUnlocked != null)  OnNewRewardUnlocked(newItemReward);
 
             for (int i = 0; i < unlocksAtJP.NewPropColor; i++)
-                newlyUnlockedPacks.Add(GetNewRewardPack(RewardBaseType.Prop, RewardUnlockMethod.NewColor));
+                jpPacks.Add(GetNewRewardPack(RewardBaseType.Prop, RewardUnlockMethod.NewColor));
 
             if (unlocksAtJP.NewTexture > 0)
-                newlyUnlockedPacks.Add(GetNewRewardPack(RewardBaseType.Texture, RewardUnlockMethod.Any));
+                jpPacks.Add(GetNewRewardPack(RewardBaseType.Texture, RewardUnlockMethod.Any));
 
             if (unlocksAtJP.NewDecal > 0)
-                newlyUnlockedPacks.Add(GetNewRewardPack(RewardBaseType.Decal, RewardUnlockMethod.Any));
+                jpPacks.Add(GetNewRewardPack(RewardBaseType.Decal, RewardUnlockMethod.Any));
 
-            //UnlockPacks(newlyUnlockedPacks, journeyPosition);
+            // We register the generated packs as locked
+            RegisterLockedPacks(jpPacks, journeyPosition);
+            // TODO: save them too!
 
-            ////////////////////////////////////////////////////
-            return newlyUnlockedPacks;
+            return jpPacks;
         }
-
-        public List<RewardPack> GetUnlockedRewardPacks()
-        {
-            var unlockedPacks = GetAllRewardPacks().Where(p => p.IsUnlocked);
-            return unlockedPacks.ToList();
-        }
-        public List<RewardPack> GetUnlockedRewardPacks(RewardBaseType baseType)
-        {
-            var packsOfBase = rewardPacksDict[baseType];
-            var unlockedPacks = packsOfBase.Where(p => p.IsUnlocked);
-            return unlockedPacks.ToList();
-        }
-
-        public List<RewardPack> GetLockedRewardPacks()
-        {
-            var lockedPacks = GetAllRewardPacks().Where(p => p.IsLocked);
-            return lockedPacks.ToList();
-        }
-        public List<RewardPack> GetLockedRewardPacks(RewardBaseType baseType)
-        {
-            var packsOfBase = rewardPacksDict[baseType];
-            var lockedPacks = packsOfBase.Where(p => p.IsLocked);
-            return lockedPacks.ToList();
-        }
-
-        List<RewardBase> GetLockedRewardBases(RewardBaseType baseType)
-        {
-            var unlockedBases = GetUnlockedRewardBases(baseType);
-            var allBases = GetRewardBasesOfType(baseType);
-            List<RewardBase> lockedBases = new List<RewardBase>();
-
-            foreach (var rewardBase in allBases)
-            {
-                if (!unlockedBases.Contains(rewardBase))
-                    lockedBases.Add(rewardBase);
-            }
-            return lockedBases;
-        }
-
-        List<RewardBase> GetUnlockedRewardBases(RewardBaseType baseType)
-        {
-            var packsOfBase = rewardPacksDict[baseType];
-            var unlockedPacksOfBase = packsOfBase.Where(p => p.IsUnlocked);
-            var allBases = GetRewardBasesOfType(baseType);
-
-            HashSet<RewardBase> unlockedBases = new HashSet<RewardBase>();
-            foreach (var rewardPack in unlockedPacksOfBase)
-            {
-                var rewardBase = allBases.First(x => x.ID == rewardPack.BaseId);
-                if (rewardBase != null)
-                {
-                    unlockedBases.Add(rewardBase);
-                }
-            }
-            return unlockedBases.ToList();
-        }
-
 
         /// <summary>
         /// Gets a new available reward pack. Contains all logic to create new reward.
@@ -489,7 +560,7 @@ namespace Antura.Rewards
                             "We do not have enough rewards to get a new base of type " + baseType);
 
                     var newBase = lockedBases.RandomSelectOne();
-                    var lockedPacks = GetLockedRewardPacks(baseType);
+                    var lockedPacks = GetLockedRewardPacksOfBase(baseType);
                     var lockedPacksOfNewBase = lockedPacks.Where(x => x.BaseId == newBase.ID).ToList();
                     newRewardPack = lockedPacksOfNewBase.RandomSelectOne();
                 }
@@ -498,14 +569,14 @@ namespace Antura.Rewards
                 {
                     // We force an OLD base
                     var unlockedBases = GetUnlockedRewardBases(baseType);
-                    var unlockedBasesWithColorsLeft = unlockedBases.Where(b => GetLockedRewardPacks(baseType).Count(p => p.BaseId == b.ID) > 0).ToList();
+                    var unlockedBasesWithColorsLeft = unlockedBases.Where(b => GetLockedRewardPacksOfBase(baseType).Count(p => p.BaseId == b.ID) > 0).ToList();
 
                     if (unlockedBasesWithColorsLeft.Count == 0)
                         throw new NullReferenceException(
                             "We do not have unlocked bases that still have colors to be unlocked for base type " + baseType);
 
                     var oldBase = unlockedBasesWithColorsLeft.RandomSelectOne();
-                    var lockedPacks = GetLockedRewardPacks(baseType);
+                    var lockedPacks = GetLockedRewardPacksOfBase(baseType);
                     var lockedPacksOfOldBase = lockedPacks.Where(x => x.BaseId == oldBase.ID).ToList();
                     if (lockedPacksOfOldBase.Count == 0)
                         throw new NullReferenceException(
@@ -517,7 +588,7 @@ namespace Antura.Rewards
                 case RewardUnlockMethod.Any:
                 {
                     // We get any reward pack
-                    var lockedPacks = GetLockedRewardPacks(baseType);
+                    var lockedPacks = GetLockedRewardPacksOfBase(baseType);
 
                     if (lockedPacks.Count == 0)
                         throw new NullReferenceException(
@@ -545,30 +616,33 @@ namespace Antura.Rewards
             }
 
             var zeroJP = new JourneyPosition(0, 0, 0);
-            if (AreJourneyPositionRewardsAlreadyUnlocked(zeroJP))
+
+            if (AreAllJourneyPositionRewardsAlreadyUnlocked(zeroJP))
             {
-                Debug.LogError("Already unlocked first set!");
+                Debug.LogError("We already unlocked the first set of rewards!");
                 return;
             }
 
-            // 1 prop
-            var propPack = GetFirstAnturaReward(RewardBaseType.Prop);
-            UnlockPack(propPack, zeroJP);
-            propPack.SetNew(false);
+          
+            var propPack = GetFirstAnturaReward(RewardBaseType.Prop);   // 1 prop
+            var texturePack = GetFirstAnturaReward(RewardBaseType.Texture);  // 1 texture
+            var decalPack = GetFirstAnturaReward(RewardBaseType.Decal);   // 1 decal
 
-            // 1 decal
-            var decalPack = GetFirstAnturaReward(RewardBaseType.Decal); 
-            UnlockPack(decalPack, zeroJP);
+            List<RewardPack> packsToUnlock = new List<RewardPack>();
+            packsToUnlock.Add(propPack);
+            packsToUnlock.Add(texturePack);
+            packsToUnlock.Add(decalPack);
+
+            UnlockPacks(packsToUnlock, zeroJP);
+
+            // Force as already seen
+            propPack.SetNew(false);
             decalPack.SetNew(false);
+            texturePack.SetNew(false);
 
             // force to to wear decal
             _player.CurrentAnturaCustomizations.DecalPack = decalPack;
             _player.CurrentAnturaCustomizations.DecalPackId = decalPack.UniqueId;
-
-            // 1 texture
-            var texturePack = GetFirstAnturaReward(RewardBaseType.Texture);
-            UnlockPack(texturePack, zeroJP);
-            texturePack.SetNew(false);
 
             // force to to wear texture
             _player.CurrentAnturaCustomizations.TexturePack = texturePack;

@@ -146,9 +146,10 @@ namespace Antura.Rewards
             get { return unlockData.IsNew; }
         }
 
-        public bool UnlockedAtJourneyPosition(JourneyPosition jp)
+        public bool IsFoundAtJourneyPosition(JourneyPosition jp)
         {
-            if (IsLocked) return false;
+            if (unlockData == null) return false;
+            //if (IsLocked) return false;
             return jp.Equals(unlockData.GetJourneyPosition());
         }
 
@@ -157,12 +158,45 @@ namespace Antura.Rewards
             unlockData.IsNew = b;
         }
 
-        #endregion
+        public bool HasUnlockData()
+        {
+            return unlockData != null;
+        }
 
+        public void SetLocked()
+        {
+            unlockData.IsLocked = true;
+        }
+
+        public void SetUnlocked()
+        {
+            unlockData.IsLocked = false;
+        }
+
+        #endregion
 
         public override string ToString()
         {
             return UniqueId;
         }
+
+        #region Visuals
+
+        public MaterialPair GetMaterialPair()
+        {
+            if (!(RewardBase is RewardProp))
+                throw new Exception("Trying to get a material pair for a non-prop pack");
+
+            RewardProp prop = RewardBase as RewardProp;
+            RewardColor color = RewardColor;
+            if (color == null || prop == null)
+            {
+                return new MaterialPair();
+            }
+            MaterialPair mp = new MaterialPair(color.Color1Name, prop.Material1, color.Color2Name, prop.Material2);
+            return mp;
+        }
+
+        #endregion
     }
 }
