@@ -12,7 +12,8 @@ namespace Antura.Rewards
     {
         Any,
         NewBase,
-        NewColor
+        NewColor,
+        NewBaseAndAllColors
     }
 
     public class RewardSystemManager
@@ -21,6 +22,8 @@ namespace Antura.Rewards
 
         private const string ANTURA_REWARDS_PARTS_CONFIG_PATH = "Configs/AnturaRewardsPartsConfig";
         private const string ANTURA_REWARDS_UNLOCKS_CONFIG_PATH = "Configs/AnturaRewardsUnlocksConfig";
+
+        private const bool USE_UNLOCK_CONFIG = false;
 
         /// <summary>
         /// The maximum rewards unlockable for playsession.
@@ -447,6 +450,7 @@ namespace Antura.Rewards
 
         #endregion
 
+        #region Pack Generation
 
         /// <summary>
         /// Generates all Reward Packs for a given journey position
@@ -464,50 +468,74 @@ namespace Antura.Rewards
             // If not, we need to generate them from scratch
             var jpPacks = new List<RewardPack>();
 
-            // TODO: HANDLE THIS DIFFERENTLY
-            // not _forceToReturnReward check if reward is already unlocked for this playsession and if true return empty list
-            //if (JourneyPositionRewardsAlreadyUnlocked(journeyPosition) && !_forceToReturnReward)
-            //     return newlyUnlockedPacks;
+            if (USE_UNLOCK_CONFIG)
+            {
+                GeneratePacksFromUnlockConfig(journeyPosition, jpPacks);
+            }
+            else
+            {
+                GeneratePacksFromUnlockFunction(journeyPosition, jpPacks);
+            }
 
+            // We register the generated packs as locked
+            RegisterLockedPacks(jpPacks, journeyPosition);
+
+            return jpPacks;
+        }
+
+        private void GeneratePacksFromUnlockFunction(JourneyPosition journeyPosition, List<RewardPack> jpPacks)
+        {
+            // Non-assessment PS do not generate any reward
+            if (!journeyPosition.IsAssessment())
+                return;
+
+            // Force to unlock a prop and all its colors at the first JP
+            if (journeyPosition.Equals(new JourneyPosition(1, 1, 100)))
+            {
+                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Prop, RewardUnlockMethod.NewBaseAndAllColors));
+                return;
+            }
+
+            // Else, randomly choose between locked props or textures
+            // TODO!!
+            jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Texture, RewardUnlockMethod.Any));
+        }
+
+        private void GeneratePacksFromUnlockConfig(JourneyPosition journeyPosition, List<RewardPack> jpPacks)
+        {
             // What rewards are unlocked at this JP?
             JourneyPositionRewardUnlock unlocksAtJP = unlocksConfig.JourneyPositionsUnlocks.Find(r => r.JourneyPositionID == journeyPosition.Id);
             if (unlocksAtJP == null)
             {
                 Debug.LogErrorFormat("Unable to find reward unlocks for JourneyPositions {0}", journeyPosition);
-                return jpPacks;
+                return;
             }
 
             // Check numbers and base types
             for (int i = 0; i < unlocksAtJP.NewPropBase; i++)
-                jpPacks.Add(GetNewRewardPack(RewardBaseType.Prop, RewardUnlockMethod.NewBase));
+                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Prop, RewardUnlockMethod.NewBase));
             //TODO: if (OnNewRewardUnlocked != null)  OnNewRewardUnlocked(newItemReward);
 
             for (int i = 0; i < unlocksAtJP.NewPropColor; i++)
-                jpPacks.Add(GetNewRewardPack(RewardBaseType.Prop, RewardUnlockMethod.NewColor));
+                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Prop, RewardUnlockMethod.NewColor));
 
             if (unlocksAtJP.NewTexture > 0)
-                jpPacks.Add(GetNewRewardPack(RewardBaseType.Texture, RewardUnlockMethod.Any));
+                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Texture, RewardUnlockMethod.Any));
 
             if (unlocksAtJP.NewDecal > 0)
-                jpPacks.Add(GetNewRewardPack(RewardBaseType.Decal, RewardUnlockMethod.Any));
-
-            // We register the generated packs as locked
-            RegisterLockedPacks(jpPacks, journeyPosition);
-            // TODO: save them too!
-
-            return jpPacks;
+                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Decal, RewardUnlockMethod.Any));
         }
 
+        #endregion
+
         /// <summary>
-        /// Gets a new available reward pack. Contains all logic to create new reward.
+        /// Generate a new list of reward packs to be unlocked.
         /// </summary>
         /// <param name="baseType">Type of the reward.</param>
-        private RewardPack GetNewRewardPack(RewardBaseType baseType, RewardUnlockMethod unlockMethod)
+        private List<RewardPack> GenerateNewRewardPacks(RewardBaseType baseType, RewardUnlockMethod unlockMethod)
         {
             // TODO: also force category for RewardBase
-
-            RewardPack newRewardPack = null;
-
+            List<RewardPack> newRewardPacks = new List<RewardPack>();
             switch (unlockMethod)
             {
                 case RewardUnlockMethod.NewBase:
@@ -521,8 +549,24 @@ namespace Antura.Rewards
                     var newBase = lockedBases.RandomSelectOne();
                     var lockedPacks = GetLockedRewardPacksOfBase(baseType);
                     var lockedPacksOfNewBase = lockedPacks.Where(x => x.BaseId == newBase.ID).ToList();
-                    newRewardPack = lockedPacksOfNewBase.RandomSelectOne();
+                    newRewardPacks.Add(lockedPacksOfNewBase.RandomSelectOne()); 
                 }
+                    break;
+                case RewardUnlockMethod.NewBaseAndAllColors:
+                    {
+                        // We force a NEW base
+                        var lockedBases = GetLockedRewardBases(baseType);
+                        if (lockedBases.Count == 0)
+                            throw new NullReferenceException(
+                                "We do not have enough rewards to get a new base of type " + baseType);
+
+                        var newBase = lockedBases.RandomSelectOne();
+                        var lockedPacks = GetLockedRewardPacksOfBase(baseType);
+                        var lockedPacksOfNewBase = lockedPacks.Where(x => x.BaseId == newBase.ID).ToList();
+
+                        // We add all locked packs of that base
+                        newRewardPacks.AddRange(lockedPacksOfNewBase);
+                    }
                     break;
                 case RewardUnlockMethod.NewColor:
                 {
@@ -541,7 +585,7 @@ namespace Antura.Rewards
                         throw new NullReferenceException(
                             "We do not have enough rewards to get a new color for an old base of type " + baseType);
 
-                    newRewardPack = lockedPacksOfOldBase.RandomSelectOne();
+                    newRewardPacks.Add(lockedPacksOfOldBase.RandomSelectOne()); 
                 }
                     break;
                 case RewardUnlockMethod.Any:
@@ -553,15 +597,13 @@ namespace Antura.Rewards
                         throw new NullReferenceException(
                             "We do not have enough rewards left of type " + baseType);
 
-                    newRewardPack = lockedPacks.RandomSelectOne();
+                    newRewardPacks.Add(lockedPacks.RandomSelectOne());
                 }
                     break;
             }
-            return newRewardPack;
+            return newRewardPacks;
         }
 
-
-        // OK
         /// <summary>
         /// Unlocks the first set of rewards for current player.
         /// </summary>
@@ -583,58 +625,57 @@ namespace Antura.Rewards
             }
 
           
-            var propPack = GetFirstAnturaReward(RewardBaseType.Prop);   // 1 prop
-            var texturePack = GetFirstAnturaReward(RewardBaseType.Texture);  // 1 texture
-            var decalPack = GetFirstAnturaReward(RewardBaseType.Decal);   // 1 decal
+            var propPacks = GenerateFirstRewards(RewardBaseType.Prop);   // 1 prop and colors
+            var texturePacks = GenerateFirstRewards(RewardBaseType.Texture);  // 1 texture
+            var decalPacks = GenerateFirstRewards(RewardBaseType.Decal);   // 1 decal
 
             List<RewardPack> packs = new List<RewardPack>();
-            packs.Add(propPack);
-            packs.Add(texturePack);
-            packs.Add(decalPack);
+            packs.AddRange(propPacks);
+            packs.AddRange(texturePacks);
+            packs.AddRange(decalPacks);
 
             RegisterLockedPacks(packs, zeroJP, false);
             UnlockPacks(packs);
 
             // Force as already seen
-            propPack.SetNew(false);
-            decalPack.SetNew(false);
-            texturePack.SetNew(false);
+            foreach (var pack in packs)
+            {
+                pack.SetNew(false);
+            }
 
             // force to to wear decal
-            _player.CurrentAnturaCustomizations.DecalPack = decalPack;
-            _player.CurrentAnturaCustomizations.DecalPackId = decalPack.UniqueId;
+            _player.CurrentAnturaCustomizations.DecalPack = decalPacks[0];
+            _player.CurrentAnturaCustomizations.DecalPackId = decalPacks[0].UniqueId;
 
             // force to to wear texture
-            _player.CurrentAnturaCustomizations.TexturePack = texturePack;
-            _player.CurrentAnturaCustomizations.TexturePackId = texturePack.UniqueId;
+            _player.CurrentAnturaCustomizations.TexturePack = texturePacks[0];
+            _player.CurrentAnturaCustomizations.TexturePackId = texturePacks[0].UniqueId;
 
             // Save initial packs and customization
             _player.SaveRewardPackUnlockDataList();
             SaveRewardsUnlockDataChanges();
         }
 
-        // OK
         /// <summary>
-        /// Gets the first antura reward.
+        /// Gets the first RewardPacks that are unlocked when the game starts.
         /// </summary>
-        /// <param name="baseType">Type of the reward.</param>
-        private RewardPack GetFirstAnturaReward(RewardBaseType baseType)
+        /// <param name="baseType">Base type of the rewards to generate.</param>
+        private List<RewardPack> GenerateFirstRewards(RewardBaseType baseType)
         {
-            // this returns the first rewards for one of the three types
-            RewardPack rp = null;
+            List<RewardPack> list = new List<RewardPack>();
             switch (baseType)
             {
                 case RewardBaseType.Prop:
-                    rp = GetNewRewardPack(baseType, RewardUnlockMethod.NewBase);
+                    list = GenerateNewRewardPacks(baseType, RewardUnlockMethod.NewBaseAndAllColors);
                     break;
                 case RewardBaseType.Texture:
-                    rp = GetRewardPackByPartsIds("Antura_wool_tilemat","color1");
+                    list.Add(GetRewardPackByPartsIds("Antura_wool_tilemat", "color1"));
                     break;
                 case RewardBaseType.Decal:
-                    rp = GetRewardPackByPartsIds("Antura_decalmap01", "color1");
+                    list.Add(GetRewardPackByPartsIds("Antura_decalmap01", "color1"));
                     break;
             }
-            return rp;
+            return list;
         }
 
         #endregion
