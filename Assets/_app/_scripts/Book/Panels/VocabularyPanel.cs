@@ -42,6 +42,8 @@ namespace Antura.Book
         [Header("References")]
         public GameObject DetailPanel;
 
+        public GameObject BookLetters;
+        public GameObject BookWords;
         public GameObject Submenu;
         public GameObject SubmenuContainer;
         public GameObject ListPanel;
@@ -99,9 +101,13 @@ namespace Antura.Book
             switch (panel) {
                 case VocabularyChapter.Letters:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Letters);
+                    BookLetters.SetActive(true);
+                    BookWords.SetActive(false);
                     LettersPanel("letters");
                     break;
                 case VocabularyChapter.Words:
+                    BookLetters.SetActive(false);
+                    BookWords.SetActive(true);
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Words);
                     WordsPanel(WordDataCategory.Adjectives);
                     break;
