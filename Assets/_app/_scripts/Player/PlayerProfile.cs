@@ -462,7 +462,7 @@ namespace Antura.Profile
         public void SetGameCompleted()
         {
             ProfileCompletion = ProfileCompletionState.GameCompleted;
-            AppManager.I.RewardSystemManager.UnlockAllMissingRewardPacks();
+            AppManager.I.RewardSystemManager.UnlockAllMissingExtraPacks();
             CheckGameFinished();
             Save();
         }

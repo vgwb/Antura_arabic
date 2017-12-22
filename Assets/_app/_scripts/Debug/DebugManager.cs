@@ -271,7 +271,8 @@ namespace Antura.Debugging
 
         public void UnlockCurrentPlaySessionRewards()
         {
-            foreach (RewardPack unlockedPack in AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition))
+            var unlockedPacks = AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
+            foreach (RewardPack unlockedPack in unlockedPacks)
             {
                 Debug.LogFormat("Pack unlocked: {0}", unlockedPack.ToString());
             }
@@ -279,7 +280,7 @@ namespace Antura.Debugging
 
         public void UnlockAllRewards()
         {
-            AppManager.I.RewardSystemManager.UnlockAllRewardPacks();
+            AppManager.I.RewardSystemManager.UnlockAllPacks();
         }
 
         #endregion

@@ -345,13 +345,14 @@ namespace Antura.Rewards
 
         #region Pack Creation and Unlocking
 
-        public void RegisterLockedPacks(List<RewardPack> packs, JourneyPosition jp)
+        private void RegisterLockedPacks(List<RewardPack> packs, JourneyPosition jp, bool save = true)
         {
             // Packs are at first added and registered as Locked
             foreach (var pack in packs)
             {
                 RegisterLockedPack(pack, jp);
             }
+            if (save) SaveRewardsUnlockDataChanges();
         }
 
         private void RegisterLockedPack(RewardPack pack, JourneyPosition jp)
@@ -368,111 +369,69 @@ namespace Antura.Rewards
             AppManager.I.Player.RegisterUnlockData(unlockData);
             pack.SetUnlockData(unlockData);
 
-            // TODO: save it too? (trigger it after this where we call this for optimization)
-
             if (VERBOSE) Debug.Log("Registered locked pack " + pack);
         }
 
-        public void UnlockPacks(List<RewardPack> packs, JourneyPosition jp, int nToUnlock)
+        public void UnlockPacksSelection(List<RewardPack> packs, int nToUnlock, bool save = true)
         {
-            var unlockedPacks = packs.RandomSelect(nToUnlock, true);
-            UnlockPacks(unlockedPacks, jp);
-            // TODO: SAVE!
+            if (packs.Count == 0) Debug.LogError("No packs to unlock!");
+            var packsSelection = packs.RandomSelect(nToUnlock, true);
+            UnlockPacks(packsSelection, save);
         }
 
-        public void UnlockPacks(List<RewardPack> packs, JourneyPosition jp)
-        {
-            foreach (var pack in packs)
-            {
-                UnlockPack(pack, jp);
-            }
-        }
-
-        public void UnlockPack(RewardPack pack, JourneyPosition jp)
-        {
-            if (pack.HasUnlockData())
-            {
-                if (pack.IsUnlocked)
-                {
-                    throw new Exception("Pack " + pack + " is already unlocked! Cannot unlock again");
-                }
-                else
-                {
-                    pack.SetLocked();
-                    pack.SetNew(true);
-                }
-            }
-            else
-            {
-                // This is a new reward
-                var unlockData = new RewardPackUnlockData(LogManager.I.AppSession, pack.UniqueId, jp);
-                unlockData.IsLocked = false;
-                unlockData.IsNew = true;
-                AppManager.I.Player.RegisterUnlockData(unlockData);
-                pack.SetUnlockData(unlockData);
-            }
-
-            // TODO: save it too? (trigger it after this where we call this for optimization)
-
-            if (VERBOSE) Debug.Log("Unlocked pack " + pack);
-        }
-
-        public void AddLockedPacks(List<RewardPack> packs, JourneyPosition jp)
+        private void UnlockPacks(List<RewardPack> packs, bool save = true)
         {
             foreach (var pack in packs)
             {
-                AddLockedPack(pack, jp);
+                UnlockPack(pack);
             }
+            if (save) SaveRewardsUnlockDataChanges();
         }
 
-        public void AddLockedPack(RewardPack pack, JourneyPosition jp)
+        private void UnlockPack(RewardPack pack)
         {
-            var unlockData = new RewardPackUnlockData(LogManager.I.AppSession, pack.UniqueId, jp);
-            unlockData.IsLocked = true;
-            unlockData.IsNew = true;
-
-            AppManager.I.Player.RegisterUnlockData(unlockData);
-
-            pack.SetUnlockData(unlockData);
-
-            // TODO: save it too? (trigger it after this where we call this for optimization)
-
+            pack.SetUnlocked();
+            pack.SetNew(true);
             if (VERBOSE) Debug.Log("Unlocked pack " + pack);
         }
 
-        // this unlocks ALL rewards that have not been unlocked yet
-        public void UnlockAllMissingRewardPacks()
+        /// <summary>
+        /// Unlocks ALL reward packs that have not been unlocked yet
+        /// </summary>
+        /// <param name="save"></param>
+        public void UnlockAllMissingExtraPacks(bool save = true)
         {
             JourneyPosition extraRewardJP = new JourneyPosition(100, 100, 100);
 
-            UnlockPacks(GetLockedRewardPacksOfBase(RewardBaseType.Prop), extraRewardJP);
-            UnlockPacks(GetLockedRewardPacksOfBase(RewardBaseType.Decal), extraRewardJP);
-            UnlockPacks(GetLockedRewardPacksOfBase(RewardBaseType.Texture), extraRewardJP);
+            var packs = new List<RewardPack>();
+            packs.AddRange(GetLockedRewardPacksOfBase(RewardBaseType.Prop));
+            packs.AddRange(GetLockedRewardPacksOfBase(RewardBaseType.Decal));
+            packs.AddRange(GetLockedRewardPacksOfBase(RewardBaseType.Texture));
 
-            SaveRewardsUnlockDataChanges();
+            RegisterLockedPacks(packs, extraRewardJP, false);
+            UnlockPacks(packs, save);
         }
 
         /// <summary>
         /// Unlocks all rewards in the game.
         /// </summary>
-        public void UnlockAllRewardPacks()
+        public void UnlockAllPacks()
         {
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++)
             {
                 var jp = AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id);
-                var packs = UnlockAllRewardPacksForJourneyPosition(jp);
+                var packs = UnlockAllRewardPacksForJourneyPosition(jp, false);
                 if (packs != null)
                     Debug.LogFormat("Unlocked rewards for playsession {0} : {1}", jp, packs.Count);
             }
 
             Debug.LogFormat("Unlocking also all extra rewards!");
-            UnlockAllMissingRewardPacks();
-
+            UnlockAllMissingExtraPacks(false);
             SaveRewardsUnlockDataChanges();
         }
 
-        public List<RewardPack> UnlockAllRewardPacksForJourneyPosition(JourneyPosition journeyPosition)
+        public List<RewardPack> UnlockAllRewardPacksForJourneyPosition(JourneyPosition journeyPosition, bool save = true)
         {
             var packs = GetOrGenerateAllRewardPacksForJourneyPosition(journeyPosition);
 
@@ -482,7 +441,7 @@ namespace Antura.Rewards
                 return null;
             }
 
-            UnlockPacks(packs, journeyPosition);
+            UnlockPacks(packs, save);
             return packs;
         }
 
@@ -628,12 +587,13 @@ namespace Antura.Rewards
             var texturePack = GetFirstAnturaReward(RewardBaseType.Texture);  // 1 texture
             var decalPack = GetFirstAnturaReward(RewardBaseType.Decal);   // 1 decal
 
-            List<RewardPack> packsToUnlock = new List<RewardPack>();
-            packsToUnlock.Add(propPack);
-            packsToUnlock.Add(texturePack);
-            packsToUnlock.Add(decalPack);
+            List<RewardPack> packs = new List<RewardPack>();
+            packs.Add(propPack);
+            packs.Add(texturePack);
+            packs.Add(decalPack);
 
-            UnlockPacks(packsToUnlock, zeroJP);
+            RegisterLockedPacks(packs, zeroJP, false);
+            UnlockPacks(packs);
 
             // Force as already seen
             propPack.SetNew(false);
@@ -650,7 +610,7 @@ namespace Antura.Rewards
 
             // Save initial packs and customization
             _player.SaveRewardPackUnlockDataList();
-            _player.SaveAnturaCustomization();
+            SaveRewardsUnlockDataChanges();
         }
 
         // OK

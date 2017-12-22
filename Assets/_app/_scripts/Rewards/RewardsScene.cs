@@ -99,14 +99,20 @@ namespace Antura.Rewards
         {
             if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig))
             {
-                return AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBase(RewardBaseType.Prop).FirstOrDefault();
+                // Get the first propr reward (already unlocked)
+                var firstRewardPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBase(RewardBaseType.Prop).FirstOrDefault();
+                return firstRewardPack;
             }
             else
             {
-                var newRewardToInstantiate =  AppManager.I.RewardSystemManager.GetOrGenerateAllRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition)[0];
-                AppManager.I.RewardSystemManager.UnlockPack(newRewardToInstantiate, AppManager.I.Player.CurrentJourneyPosition);
-                AppManager.I.Player.AdvanceMaxJourneyPosition();    // TODO: move this out of here!
-                return newRewardToInstantiate;
+                // Unlock the rewards for this JP (should be one, since this is an Assessment)
+                var newRewardPacks =  AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
+                var newRewardPack = newRewardPacks[0];
+
+                // Also advance the MaxJP
+                AppManager.I.Player.AdvanceMaxJourneyPosition();    // TODO: move this out of here and into the NavigationManager instead
+
+                return newRewardPack;
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using Antura.Core;
+﻿using System.Linq;
+using Antura.Core;
 using Antura.Dog;
 using Antura.Helpers;
 using Antura.Rewards;
@@ -55,25 +56,36 @@ namespace Antura.Test.Rewards
             AppManager.I.RewardSystemManager.UnlockFirstSetOfRewards();
         }
 
+        [DeMethodButton("Unlock 1 for PS 1.1.1", 0, 1, 1, 1, 1)]
+        [DeMethodButton("Unlock 1 for PS 1.1.2", 1, 1, 1, 2, 1)]
+        void UnlockJPSelection(int stage, int lb, int ps, int number)
+        {
+            var jp = new JourneyPosition(stage, lb, ps);
+            var lockedPacks = AppManager.I.RewardSystemManager.GetOrGenerateAllRewardPacksForJourneyPosition(jp).Where(x => x.IsLocked).ToList();
+            if (lockedPacks.Count == 0) Debug.LogError("Already unlocked all packs for JP " + jp);
+            AppManager.I.RewardSystemManager.UnlockPacksSelection(lockedPacks, number);
+        }
+
         [DeMethodButton("Unlock PS 1.1.1", 0, 1, 1, 1)]
         [DeMethodButton("Unlock PS 1.1.2", 1, 1, 1, 2)]
         [DeMethodButton("Unlock PS 1.1.100", 2, 1, 1, 100)]
         [DeMethodButton("Unlock PS 1.2.1", 3, 1, 2, 1)]
         void UnlockJP (int stage, int lb, int ps)
         {
-            AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(new JourneyPosition(stage, lb, ps));
+            var jp = new JourneyPosition(stage, lb, ps);
+            AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(jp);
         }
 
         [DeMethodButton("Unlock Everything")]
         void UnlockEverything()
         {
-            AppManager.I.RewardSystemManager.UnlockAllRewardPacks();
+            AppManager.I.RewardSystemManager.UnlockAllPacks();
         }
 
         [DeMethodButton("Unlock Missing")]
         void UnlockMissing()
         {
-            AppManager.I.RewardSystemManager.UnlockAllMissingRewardPacks();
+            AppManager.I.RewardSystemManager.UnlockAllMissingExtraPacks();
         }
 
         [DeMethodButton("Load Packs on Antura")]

@@ -21,12 +21,13 @@ namespace Antura.Rewards
 
             var rewardPacksForJourneyPosition = AppManager.I.RewardSystemManager.GetOrGenerateAllRewardPacksForJourneyPosition(jp);
             var rewardPacksUnlocked = rewardPacksForJourneyPosition.Where(x => x.IsUnlocked).ToList();
+            var rewardPacksLocked = rewardPacksForJourneyPosition.Where(x => x.IsLocked).ToList();
 
             int nRewardPacksAlreadyUnlocked = rewardPacksUnlocked.Count();
             int nNewRewardPacksToUnlock = nTotalRewardPacksToUnlock - nRewardPacksAlreadyUnlocked;
 
-            // Unlock the new rewards
-            AppManager.I.RewardSystemManager.UnlockPacks(rewardPacksForJourneyPosition, jp, nNewRewardPacksToUnlock);
+            // Unlock the selected set of locked rewards
+            AppManager.I.RewardSystemManager.UnlockPacksSelection(rewardPacksLocked, nNewRewardPacksToUnlock);
 
             // Log various data
             LogManager.I.LogPlaySessionScore(AppManager.I.JourneyHelper.GetCurrentPlaySessionData().Id, nEarnedStars);
