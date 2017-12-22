@@ -11,7 +11,7 @@ namespace Antura.Rewards
 {
     public enum RewardUnlockMethod
     {
-        Any,
+        BaseColorCombo,
         NewBase,
         NewColor,
         NewBaseAndAllColors
@@ -244,7 +244,15 @@ namespace Antura.Rewards
         // TODO: let this call the PlayerProfile, and not vice-versa
         public void InjectRewardsUnlockData(List<RewardPackUnlockData> unlockDataList)
         {
-            Debug.Log("Loading unlock datas: " + unlockDataList.Count);
+            //Debug.Log("Loading unlock datas: " + unlockDataList.Count);
+
+            // First reset all packs
+            foreach (var pack in GetAllRewardPacks())
+            {
+                pack.SetUnlockData(null);
+            }
+
+            // Load the data in
             foreach (var unlockData in unlockDataList)
             {
                 var id = unlockData.Id;
@@ -510,9 +518,29 @@ namespace Antura.Rewards
                 return;
             }
 
-            // Else, randomly choose between locked props or textures
-            // TODO!!
-            jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Texture, RewardUnlockMethod.Any));
+            // Else, randomly choose between locked props, decals, or textures
+            int nDecalsLeft = GetAllRewardPacksOfBaseType(RewardBaseType.Decal).Count(x => x.IsLocked);
+            int nTexturesLeft = GetAllRewardPacksOfBaseType(RewardBaseType.Texture).Count(x => x.IsLocked);
+            int nPropsLeft = GetAllRewardPacksOfBaseType(RewardBaseType.Prop, true).Count(x => x.IsLocked);
+
+            Debug.Log("We have left: " + nDecalsLeft + " decals, " + nTexturesLeft + " textures, " + nPropsLeft +
+                      " props");
+
+            List<RewardBaseType> choices = new List<RewardBaseType>();
+            if (nDecalsLeft > 0) choices.Add(RewardBaseType.Decal);
+            if (nTexturesLeft > 0) choices.Add(RewardBaseType.Texture);
+            if (nPropsLeft > 0) choices.Add(RewardBaseType.Prop);
+
+            RewardBaseType choice = choices.RandomSelectOne();
+
+            if (choice == RewardBaseType.Prop)
+            {
+                jpPacks.AddRange(GenerateNewRewardPacks(choice, RewardUnlockMethod.NewBaseAndAllColors));
+            }
+            else
+            {
+                jpPacks.AddRange(GenerateNewRewardPacks(choice, RewardUnlockMethod.BaseColorCombo));
+            }
         }
 
         private void GeneratePacksFromUnlockConfig(JourneyPosition journeyPosition, List<RewardPack> jpPacks)
@@ -534,10 +562,10 @@ namespace Antura.Rewards
                 jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Prop, RewardUnlockMethod.NewColor));
 
             if (unlocksAtJP.NewTexture > 0)
-                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Texture, RewardUnlockMethod.Any));
+                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Texture, RewardUnlockMethod.BaseColorCombo));
 
             if (unlocksAtJP.NewDecal > 0)
-                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Decal, RewardUnlockMethod.Any));
+                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Decal, RewardUnlockMethod.BaseColorCombo));
         }
 
         #endregion
@@ -574,13 +602,15 @@ namespace Antura.Rewards
                 case RewardUnlockMethod.NewBaseAndAllColors:
                     {
                         // We force a NEW base
+                        //Debug.Log("Tot locked rewards count: " + GetAllLockedRewardPacks().Count());
+
                         var lockedBases = GetLockedRewardBases(baseType);
 
-                        Debug.Log("locked bases count: " + lockedBases.Count);
+                        //Debug.Log("locked bases count: " + lockedBases.Count);
 
                         if (allowedCategories != null)
                         {
-                            Debug.Log("Allowed categories: " + allowedCategories.ToDebugString());
+                            //Debug.Log("Allowed categories: " + allowedCategories.ToDebugString());
                             lockedBases = lockedBases.Where(x => allowedCategories.Contains((x as RewardProp).Category)).ToList();
                         }
 
@@ -616,7 +646,7 @@ namespace Antura.Rewards
                     newRewardPacks.Add(lockedPacksOfOldBase.RandomSelectOne()); 
                 }
                     break;
-                case RewardUnlockMethod.Any:
+                case RewardUnlockMethod.BaseColorCombo:
                 {
                     // We get any reward pack
                     var lockedPacks = GetLockedRewardPacksOfBase(baseType);
@@ -777,8 +807,7 @@ namespace Antura.Rewards
                             string texturePath = "AnturaStuff/Textures_and_Materials/";
                             Texture2D inputTexture = Resources.Load<Texture2D>(texturePath + returnList[i].data.ID);
                             _parentsTransForModels[i].GetComponent<RawImage>().texture = inputTexture;
-
-                            Debug.Log("Returned texture " + inputTexture.name + " for reward " + returnList[i].data.ID);
+                            //Debug.Log("Returned texture " + inputTexture.name + " for reward " + returnList[i].data.ID);
                         }
                     }
                     break;
