@@ -14,7 +14,7 @@ namespace Antura.Database.Management
 
             data.Id = ToString(dict["Id"]);
             data.Title = ToString(dict["Title"]);
-            data.Category = ParseEnum<RewardDataCategory>(data, dict["Category"]);
+            //data.Category = ParseEnum<RewardDataCategory>(data, dict["Category"]);
 
             return data;
         }

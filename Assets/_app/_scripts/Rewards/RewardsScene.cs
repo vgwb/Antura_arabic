@@ -7,6 +7,7 @@ using Antura.Tutorial;
 using Antura.UI;
 using DG.Tweening;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -87,22 +88,31 @@ namespace Antura.Rewards
         public void ClearLoadedRewardsOnAntura()
         {
             // Clean and Charge antura reward.
-            AnturaModelManager.I.ClearLoadedRewards();
+            AnturaModelManager.I.ClearLoadedRewardPacks();
         }
 
         /// <summary>
         /// Gets the reward to instantiate.
         /// </summary>
         /// <returns></returns>
-        public RewardPackUnlockData GetRewardToInstantiate()
+        public RewardPack GetRewardPackToInstantiate()
         {
-            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig)) {
-                return AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
-            } else {
-                RewardPackUnlockData newRewardToInstantiate = RewardSystemManager.GetNextRewardPack(true)[0];
-                AppManager.I.Player.AddRewardUnlocked(newRewardToInstantiate);
-                AppManager.I.Player.AdvanceMaxJourneyPosition();
-                return newRewardToInstantiate;
+            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig))
+            {
+                // Get the first propr reward (already unlocked)
+                var firstRewardPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBaseType(RewardBaseType.Prop).FirstOrDefault();
+                return firstRewardPack;
+            }
+            else
+            {
+                // Unlock the rewards for this JP (should be one, since this is an Assessment)
+                var newRewardPacks =  AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
+                var newRewardPack = newRewardPacks[0];
+
+                // Also advance the MaxJP
+                AppManager.I.Player.AdvanceMaxJourneyPosition();    // TODO: move this out of here and into the NavigationManager instead
+
+                return newRewardPack;
             }
         }
 
@@ -111,7 +121,7 @@ namespace Antura.Rewards
         /// </summary>
         /// <param name="_rewardToInstantiate">The reward to instantiate.</param>
         /// <returns></returns>
-        public GameObject InstantiateReward(RewardPackUnlockData _rewardToInstantiate)
+        public GameObject InstantiateReward(RewardPack _rewardToInstantiate)
         {
             return AnturaModelManager.I.LoadRewardPackOnAntura(_rewardToInstantiate);
         }

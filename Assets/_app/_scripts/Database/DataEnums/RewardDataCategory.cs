@@ -1,15 +1,15 @@
 namespace Antura.Rewards
 {
-    public enum RewardTypes
+    public enum RewardBaseType
     {
-        reward = 1,
-        texture = 2,
-        decal = 3,
+        Prop = 1,
+        Texture = 2,
+        Decal = 3,
     }
 }
 
 // this is not currently used!
-namespace Antura.Database
+/*namespace Antura.Database
 {
     public enum RewardDataCategory
     {
@@ -18,3 +18,4 @@ namespace Antura.Database
         DogAnimation = 3,
     }
 }
+*/

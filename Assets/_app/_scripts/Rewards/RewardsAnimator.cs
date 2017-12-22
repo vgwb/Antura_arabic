@@ -2,6 +2,7 @@ using Antura.Audio;
 using Antura.Minigames;
 using DG.Tweening;
 using System.Collections;
+using Antura.Core;
 using UnityEngine;
 
 namespace Antura.Rewards
@@ -30,7 +31,7 @@ namespace Antura.Rewards
         private Sequence showTween, godraysTween;
         private Tween pedestalTween;
 
-        private Database.RewardPackUnlockData rewardPackUnlockData = null;
+        private RewardPack rewardPack = null;
         private GameObject newRewardInstantiatedGO;
         private RewardsScene rewardsSceneController;
         private float rotationAngleView = 0;
@@ -46,9 +47,9 @@ namespace Antura.Rewards
             // Reward 
             rewardsSceneController = GetComponent<RewardsScene>();
             rewardsSceneController.ClearLoadedRewardsOnAntura();
-            rewardPackUnlockData = rewardsSceneController.GetRewardToInstantiate();
-            rotationAngleView = RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPackUnlockData.GetRewardCategory());
-            newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPackUnlockData);
+            rewardPack = rewardsSceneController.GetRewardPackToInstantiate();
+            rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPack.Category);
+            newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPack);
 
             if (newRewardInstantiatedGO) {
                 newRewardInstantiatedGO.transform.DOScale(0.00001f, 0f).SetEase(Ease.OutBack);
@@ -135,7 +136,7 @@ namespace Antura.Rewards
 
         void InstantiateReward()
         {
-            newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPackUnlockData);
+            newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPack);
         }
 
         void playParticle()
@@ -158,12 +159,12 @@ namespace Antura.Rewards
             RewardSystemManager.OnNewRewardUnlocked += RewardSystemManager_OnRewardChanged;
         }
 
-        private void RewardSystemManager_OnRewardChanged(Database.RewardPackUnlockData _rewardPackUnlockData)
+        private void RewardSystemManager_OnRewardChanged(RewardPack rewardPack)
         {
-            rewardPackUnlockData = _rewardPackUnlockData;
-            if (rewardPackUnlockData.Type == RewardTypes.reward) {
-                Reward r = rewardPackUnlockData.GetReward();
-                rotationAngleView = RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(r.Category);
+            this.rewardPack = rewardPack;
+            if (rewardPack.BaseType == RewardBaseType.Prop)
+            {
+                rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPack.Category);
             }
         }
 

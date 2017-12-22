@@ -265,25 +265,21 @@ namespace Antura.Debugging
 
         public void UnlockFirstReward()
         {
-            RewardSystemManager.UnlockFirstSetOfRewards();
+            AppManager.I.RewardSystemManager.UnlockFirstSetOfRewards();
         }
 
-        public void UnlockNextPlaySessionRewards()
+        public void UnlockCurrentPlaySessionRewards()
         {
-            foreach (RewardPackUnlockData pack in RewardSystemManager.GetNextRewardPack()) {
-                AppManager.I.Player.AddRewardUnlocked(pack);
-                Debug.LogFormat("Pack added: {0}", pack.ToString());
-            }
-            JourneyPosition next = AppManager.I.JourneyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
-            if (next != null) {
-                AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(next.Stage, next.LearningBlock, next.PlaySession));
-                AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(next.Stage, next.LearningBlock, next.PlaySession));
+            var unlockedPacks = AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
+            foreach (RewardPack unlockedPack in unlockedPacks)
+            {
+                Debug.LogFormat("Pack unlocked: {0}", unlockedPack.ToString());
             }
         }
 
         public void UnlockAllRewards()
         {
-            RewardSystemManager.UnlockAllRewards();
+            AppManager.I.RewardSystemManager.UnlockAllPacks();
         }
 
         #endregion

@@ -658,9 +658,9 @@ namespace Antura.Database.Management
         public void TestRewardUnlocks()
         {
             var jp = new JourneyPosition(1, 1, 2);
-            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "aaa", "black", RewardTypes.decal, jp));
-            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "bbb", "black", RewardTypes.decal, jp));
-            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "ccc", "black", RewardTypes.decal, jp));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "aaa_black", jp));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "bbb_black", jp));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "ccc_black", jp));
             var rewardPackUnlockDatas = dbManager.GetAllRewardPackUnlockData();
             DumpAllData(rewardPackUnlockDatas);
         }

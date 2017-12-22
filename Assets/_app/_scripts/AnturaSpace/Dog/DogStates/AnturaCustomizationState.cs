@@ -1,3 +1,4 @@
+using Antura.Core;
 using Antura.Dog;
 using Antura.Rewards;
 using UnityEngine;
@@ -41,7 +42,7 @@ namespace Antura.AnturaSpace
         /// <param name="_category">The category.</param>
         private void AnturaSpaceUI_onRewardCategorySelectedInCustomization(string _category)
         {
-            float rotation = RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(_category);
+            float rotation = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(_category);
             float offSet = rotation == 0 ? 0 : 40;
             controller.RotatingBase.Angle = rotation + offSet;
         }

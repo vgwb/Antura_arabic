@@ -17,7 +17,7 @@ namespace Antura.AnturaSpace.UI
         public Transform RewardContainer;
 
         [System.NonSerialized]
-        public RewardItem Data;
+        public RewardBaseItem Data;
 
         public bool IsNew
         {

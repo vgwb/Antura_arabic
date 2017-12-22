@@ -39,7 +39,7 @@ namespace Antura.Profile
 
                         AppManager.I.FirstContactManager.InitialiseForCurrentPlayer(_currentPlayer.CurrentFirstContactPhase);
 
-                        _currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
+                        _currentPlayer.LoadRewardPackUnlockDataList(); // refresh list of unlocked rewards
                         _currentPlayer.SetCurrentJourneyPosition(_currentPlayer.MaxJourneyPosition);
                         if (OnProfileChanged != null) {
                             OnProfileChanged();
@@ -184,7 +184,7 @@ namespace Antura.Profile
             // Set player profile as current player
             AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile;
             // Create new Antura skin
-            RewardSystemManager.UnlockFirstSetOfRewards();
+            AppManager.I.RewardSystemManager.UnlockFirstSetOfRewards();
 
             // Call Event Profile creation
             if (OnNewProfileCreated != null) {

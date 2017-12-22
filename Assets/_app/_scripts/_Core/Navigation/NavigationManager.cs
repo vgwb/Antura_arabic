@@ -450,17 +450,17 @@ namespace Antura.Core
         /// Calculates the unlock item count in accord to gameplay result information.
         /// </summary>
         /// <returns></returns>
-        public int CalculateUnlockItemCount()
+        public int CalculateRewardPacksUnlockCount()
         {
             // decrement because the number of stars needed to unlock the first reward is 2.
-            return CalculateStarsCount() - 1;
+            return CalculateEarnedStarsCount() - 1;
         }
 
         /// <summary>
         /// Calculates earned stars in accord to gameplay result information.
         /// </summary>
         /// <returns></returns>
-        public int CalculateStarsCount()
+        public int CalculateEarnedStarsCount()
         {
             int totalEarnedStars = 0;
             for (int i = 0; i < EndSessionResults.Count; i++) {
@@ -475,18 +475,6 @@ namespace Antura.Core
                     : Mathf.RoundToInt(starRatio);
             }
             return earnedStarsCount;
-        }
-
-        /// <summary>
-        /// Called to notify end of playsession (pushed continue button on UI).
-        /// </summary>
-        /// <param name="_stars">The star.</param>
-        /// <param name="_bones">The bones.</param>
-        public void EndPlaySession(int _stars, int _bones)
-        {
-            // Logic
-            // log
-            // GoToScene ...
         }
 
         #endregion
@@ -572,7 +560,7 @@ namespace Antura.Core
                     }
                 } else {
                     // We finished a non-end game assessment
-                    if (RewardSystemManager.RewardAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition)) {
+                    if (AppManager.I.RewardSystemManager.AreAllJourneyPositionRewardsAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                         // Security Check (issue #475): if the reward for the current PS has already been unlocked 
                         // we must be sure that the player is not on the most advanced PS, otherwise he/she would be stuck
                         // so we Increment MaxJourneyPosition to let him/her progress

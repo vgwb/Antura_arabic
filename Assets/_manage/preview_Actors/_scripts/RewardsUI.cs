@@ -3,6 +3,8 @@ using Antura.Rewards;
 using Antura.Tutorial;
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Linq;
+using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +25,7 @@ namespace Antura
         /// <summary>
         /// The actual reward enabled for material modification.
         /// </summary>
-        private Reward actualReward;
+        private RewardProp actualReward;
 
         private GameObject actualRewardGO;
 
@@ -61,20 +63,23 @@ namespace Antura
 
         }
 
-        void LoadRewarsList(string _position = "")
+        void LoadRewardsList(string _position = "")
         {
             ClearList();
-            List<Reward> rewards;
+            IEnumerable<RewardBase> rewardBases;
+            var allPropBases = AppManager.I.RewardSystemManager.GetRewardBasesOfType(RewardBaseType.Prop);
             if (_position != "") {
-                rewards = RewardSystemManager.GetConfig().Rewards.FindAll(r => r.BoneAttach == _position);
+                rewardBases = allPropBases.Where(r => (r as RewardProp).BoneAttach == _position);
             } else {
-                rewards = RewardSystemManager.GetConfig().Rewards;
+                rewardBases = allPropBases;
             }
 
-            foreach (Reward reward in rewards) {
+            foreach (RewardBase rewardBase in rewardBases)
+            {
+                RewardProp rewardProp = rewardBase as RewardProp;
                 Button b = Instantiate<Button>(ElementPrefab.GetComponent<Button>());
                 b.transform.SetParent(ElementContainer.transform);
-                b.GetComponentInChildren<Text>().text = reward.RewardName;
+                b.GetComponentInChildren<Text>().text = rewardProp.RewardName;
                 b.onClick.AddListener(delegate { OnClickButton(b.GetComponentInChildren<Text>().text); });
             }
         }
@@ -114,7 +119,7 @@ namespace Antura
         public void SetRewardTypeFilter(string _filterString)
         {
             RewardTypeFilter = _filterString;
-            LoadRewarsList(_filterString);
+            LoadRewardsList(_filterString);
 
             switch (_filterString) {
                 case "dog_head":

@@ -1,3 +1,4 @@
+using System.Linq;
 using Antura.Audio;
 using Antura.Core;
 using Antura.Database;
@@ -41,8 +42,8 @@ namespace Antura.GamesSelector
                 // First time playing this session: 0 stars
                 SetStars(0);
             } else {
-                int unlockedRewards = RewardSystemManager.GetUnlockedRewardForPlaysession(AppManager.I.Player.CurrentJourneyPosition);
-                SetStars(unlockedRewards + 1);
+                int score = (int)AppManager.I.ScoreHelper.GetCurrentScoreForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
+                SetStars(score);
             }
         }
 

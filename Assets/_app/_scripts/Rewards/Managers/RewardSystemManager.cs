@@ -1,288 +1,863 @@
-using Antura.Dog;
+using System;
 using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
-using Antura.Tutorial;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Antura.Rewards
 {
-    public static class RewardSystemManager
+    public enum RewardUnlockMethod
     {
-        public const string ANTURA_REWARDS_CONFIG_PATH = "Configs/" + "AnturaRewardsConfig";
-        public const string COLOR_PAIRS_CONFIG_PATH = "Configs/" + "ColorPairs";
-        public const string ANTURA_REWARDS_PREFABS_PATH = "Prefabs/Rewards/";
+        BaseColorCombo,
+        NewBase,
+        NewColor,
+        NewBaseAndAllColors
+    }
 
-        /// <summary>
-        /// The maximum rewards unlockable for playsession.
-        /// </summary>
-        public const int MaxRewardsUnlockableForPlaysession = 2;
+    public class RewardSystemManager
+    {
+        private static bool VERBOSE = false;
 
-        #region Configurations
+        private const string ANTURA_REWARDS_PARTS_CONFIG_PATH = "Configs/AnturaRewardsPartsConfig";
+        private const string ANTURA_REWARDS_UNLOCKS_CONFIG_PATH = "Configs/AnturaRewardsUnlocksConfig";
 
-        /// <summary>
-        /// The configuration
-        /// </summary>
-        static RewardConfig config;
+        private static bool USE_UNLOCK_CONFIG = false;
 
-        /// <summary>
-        /// GetConfig if not already loaded load it from disk.
-        /// </summary>
-        /// <returns></returns>
-        public static RewardConfig GetConfig()
+        #region Events
+
+        public delegate void RewardSystemEventHandler(RewardPack rewardPack);
+        public static event RewardSystemEventHandler OnNewRewardUnlocked;
+
+        #endregion
+
+        #region Rewards Configuration
+
+        public void Init()
         {
-            if (config == null) { return null; }
-            if (config.Rewards == null) {
-                LoadFromConfig();
+            LoadConfigs();
+        }
+
+        /// <summary>
+        /// The configuration of items that can be unlocked
+        /// </summary>
+        RewardPartsConfig partsConfig;
+
+        /// <summary>
+        /// The configuration of items that can be unlocked
+        /// </summary>
+        RewardsUnlocksConfig unlocksConfig;
+
+        /// <summary>
+        /// Loads the reward system configurations
+        /// </summary>
+        private void LoadConfigs()
+        {
+            LoadPartsConfig();
+            LoadUnlocksConfig();
+        }
+
+        private void LoadPartsConfig()
+        {
+            TextAsset partsConfigData = Resources.Load(ANTURA_REWARDS_PARTS_CONFIG_PATH) as TextAsset;
+            partsConfig = JsonUtility.FromJson<RewardPartsConfig>(partsConfigData.text);
+            BuildAllPacks(partsConfig);
+        }
+
+        void BuildAllPacks(RewardPartsConfig partsConfig)
+        {
+            rewardPacksDict.Clear();
+            rewardPacksDict[RewardBaseType.Prop] = BuildPacks(partsConfig, RewardBaseType.Prop);
+            rewardPacksDict[RewardBaseType.Texture] = BuildPacks(partsConfig, RewardBaseType.Texture);
+            rewardPacksDict[RewardBaseType.Decal] = BuildPacks(partsConfig, RewardBaseType.Decal);
+
+            if (VERBOSE)
+                Debug.Log("Total packs built: " 
+                    + "\n " + RewardBaseType.Prop + ": " +  + rewardPacksDict[RewardBaseType.Prop].Count
+                    + "\n " + RewardBaseType.Texture + ": " + +rewardPacksDict[RewardBaseType.Texture].Count
+                    + "\n " + RewardBaseType.Decal + ": " + +rewardPacksDict[RewardBaseType.Decal].Count
+                    );
+        }
+
+        private List<RewardPack> BuildPacks(RewardPartsConfig partsConfig, RewardBaseType baseType)
+        {
+            var bases = partsConfig.GetBasesForType(baseType);
+            var colors = partsConfig.GetColorsForType(baseType);
+
+            if (VERBOSE)
+                Debug.Log("Building packs for " + baseType
+                + "\n Bases: " + bases.Count() + " Colors: " + colors.Count());
+
+            List<RewardPack> rewardPacks = new List<RewardPack>();
+            foreach (var b in bases)
+            {
+                foreach (var c in colors)
+                {
+                    RewardPack pack = new RewardPack(baseType, b, c);
+                    rewardPacks.Add(pack);
+                }
             }
-            return config.GetClone();
+            return rewardPacks;
         }
 
-        /// <summary>
-        /// Gets the total rewars count. Any type with any color variation available in game.
-        /// </summary>
-        /// <returns></returns>
-        public static int GetTotalRewardsCount()
+        private void LoadUnlocksConfig()
         {
-            int total = 0;
-            total += GetConfig().Rewards.Count * GetConfig().RewardsColorPairs.Count;
-            total += GetConfig().RewardsDecal.Count * GetConfig().RewardsDecalColor.Count;
-            total += GetConfig().RewardsTile.Count * GetConfig().RewardsTileColor.Count;
-            return total;
-        }
+            TextAsset unlocksConfigData = Resources.Load(ANTURA_REWARDS_UNLOCKS_CONFIG_PATH) as TextAsset;
+            unlocksConfig = JsonUtility.FromJson<RewardsUnlocksConfig>(unlocksConfigData.text);
 
-        /// <summary>
-        /// Gets the unlocked reward count for actual player. 0 if acutal player is null.
-        /// </summary>
-        /// <returns></returns>
-        public static int GetUnlockedRewardsCount()
-        {
-            if (AppManager.I.Player != null) {
-                return AppManager.I.Player.RewardsUnlocked.Count;
-            } else {
-                return 0;
+            if (VERBOSE)
+            {
+                string s = "Unlock data:";
+                foreach (var jpUnlock in unlocksConfig.JourneyPositionsUnlocks)
+                {
+                    s += "\n" + jpUnlock.JourneyPositionID + ": " + jpUnlock.NewPropBase + "," + jpUnlock.NewPropColor +
+                         "," + jpUnlock.NewDecal + "," + jpUnlock.NewTexture;
+                }
+                Debug.Log(s);
             }
         }
 
-        public static RewardPackUnlockData CurrentReward = new RewardPackUnlockData();
-
-        /// <summary>
-        /// Init
-        /// </summary>
-        public static void Init()
+        public IEnumerable<RewardBase> GetRewardBasesOfType(RewardBaseType baseType)
         {
-            LoadFromConfig();
+            return partsConfig.GetBasesForType(baseType);
         }
 
-        /// <summary>
-        /// Loads from configuration.
-        /// </summary>
-        static void LoadFromConfig()
+        #region Reward Packs
+
+        private Dictionary<RewardBaseType, List<RewardPack>> rewardPacksDict = new Dictionary<RewardBaseType, List<RewardPack>>();
+
+        public RewardPack GetRewardPackByUniqueId(string uniqueId)
         {
-            TextAsset configData = Resources.Load(ANTURA_REWARDS_CONFIG_PATH) as TextAsset;
-            string configString = configData.text;
-            config = JsonUtility.FromJson<RewardConfig>(configString);
+            return GetAllRewardPacks().FirstOrDefault(p => p.UniqueId == uniqueId);
+        }
+
+        public RewardPack GetRewardPackByPartsIds(string baseId, string colorId)
+        {
+            return GetAllRewardPacks().FirstOrDefault(p => p.BaseId == baseId && p.ColorId == colorId);
+        }
+
+        public List<RewardPack> GetAllRewardPacksOfBaseType(RewardBaseType baseType, bool onePerBase = false)
+        {
+            if (!rewardPacksDict.ContainsKey(baseType)) throw new ArgumentNullException("Dict not initialised correctly!");
+            var allRewardsOfBaseType = rewardPacksDict[baseType];
+
+            if (onePerBase)
+            {
+                List<RewardPack> basePacks = new List<RewardPack>();
+                foreach (var rewardBase in GetRewardBasesOfType(baseType))
+                {
+                    var firstBasePack = allRewardsOfBaseType.First(x => x.RewardBase == rewardBase);
+                    basePacks.Add(firstBasePack);
+                }
+                return basePacks;
+            }
+            else
+            {
+                return allRewardsOfBaseType;
+            }
+        }
+
+        public List<RewardPack> GetUnlockedRewardPacksOfBaseType(RewardBaseType baseType)
+        {
+            if (!rewardPacksDict.ContainsKey(baseType)) throw new ArgumentNullException("Dict not initialised correctly!");
+            return rewardPacksDict[baseType].Where(x => x.IsUnlocked).ToList();
+        }
+
+        public IEnumerable<RewardPack> GetAllRewardPacks()
+        {
+            foreach (var rewardPack in rewardPacksDict[RewardBaseType.Prop])
+                yield return rewardPack;
+            foreach (var rewardPack in rewardPacksDict[RewardBaseType.Decal])
+                yield return rewardPack;
+            foreach (var rewardPack in rewardPacksDict[RewardBaseType.Texture])
+                yield return rewardPack;
+        }
+
+        public List<RewardPack> GetAllUnlockedRewardPacks()
+        {
+            var unlockedPacks = GetAllRewardPacks().Where(p => p.IsUnlocked);
+            return unlockedPacks.ToList();
+        }
+
+        public List<RewardPack> GetAllLockedRewardPacks()
+        {
+            var lockedPacks = GetAllRewardPacks().Where(p => p.IsLocked);
+            return lockedPacks.ToList();
+        }
+
+        public List<RewardPack> GetLockedRewardPacksOfBase(RewardBaseType baseType)
+        {
+            var packsOfBase = rewardPacksDict[baseType];
+            var lockedPacks = packsOfBase.Where(p => p.IsLocked);
+            return lockedPacks.ToList();
+        }
+
+        List<RewardBase> GetLockedRewardBases(RewardBaseType baseType)
+        {
+            var allBases = GetRewardBasesOfType(baseType);
+            List<RewardBase> lockedBases = new List<RewardBase>();
+
+            foreach (var rewardBase in allBases)
+            {
+                if (!IsRewardBaseUnlocked(rewardBase))
+                {
+                    lockedBases.Add(rewardBase);
+                }
+            }
+            return lockedBases;
+        }
+
+        private List<RewardBase> GetUnlockedRewardBases(RewardBaseType baseType)
+        {
+            var allBases = GetRewardBasesOfType(baseType);
+            List<RewardBase> unlockedBases = new List<RewardBase>();
+
+            foreach (var rewardBase in allBases)
+            {
+                if (IsRewardBaseUnlocked(rewardBase))
+                {
+                    unlockedBases.Add(rewardBase);
+                }
+            }
+
+            return unlockedBases.ToList();
+        }
+
+        private bool IsRewardBaseUnlocked(RewardBase rewardBase)
+        {
+            return GetAllUnlockedRewardPacks().Any(x => x.RewardBase == rewardBase);
         }
 
         #endregion
 
-        #region API
+        #endregion
 
-        #region UI Interactions
+        #region Rewards Unlocking
+
+        #region Save / Load
 
         /// <summary>
-        /// Gets the reward items by rewardType (always 9 items, if not presente item in the return list is null).
+        /// Called by the Player Profile to load the state of unlocked rewards.
         /// </summary>
-        /// <param name="_rewardType">Type of the reward.</param>
-        /// <param name="_parentsTransForModels">The parents trans for models.</param>
-        /// <param name="_categoryRewardId">The category reward identifier.</param>
-        /// <returns></returns>
-        public static List<RewardItem> GetRewardItemsByRewardType(RewardTypes _rewardType, List<Transform> _parentsTransForModels,
-            string _categoryRewardId = "")
+        // TODO: let this call the PlayerProfile, and not vice-versa
+        public void InjectRewardsUnlockData(List<RewardPackUnlockData> unlockDataList)
         {
-            List<RewardItem> returnList = new List<RewardItem>();
-            /// TODO: logic
-            /// - Load returnList by type and category checking unlocked and if exist active one
-            switch (_rewardType) {
-                case RewardTypes.reward:
-                    // Filter from unlocked elements (only items with this category and only one for itemID)
-                    List<Reward> rewards = GetConfig().GetClone().Rewards;
-                    foreach (var item in rewards.FindAll(r => r.Category == _categoryRewardId)) {
-                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetRewardCategory() == _categoryRewardId)
-                            .Exists(ur => ur.ItemId == item.ID)) {
-                            returnList.Add(new RewardItem() {
-                                ID = item.ID,
-                                IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
-                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures.Exists(f => f.ItemId == item.ID)
-                            });
-                        } else {
-                            returnList.Add(null);
-                        }
+            //Debug.Log("Loading unlock datas: " + unlockDataList.Count);
+
+            // First reset all packs
+            foreach (var pack in GetAllRewardPacks())
+            {
+                pack.SetUnlockData(null);
+            }
+
+            // Load the data in
+            foreach (var unlockData in unlockDataList)
+            {
+                var id = unlockData.Id;
+                var pack = GetRewardPackByUniqueId(id);
+                if (pack == null)
+                    Debug.LogError("Cannot find pack with id " + id + ": RewardPackUnlockData out of sync?");
+                else
+                    pack.SetUnlockData(unlockData);
+            }
+        }
+
+        /// <summary>
+        /// Called to save the state of unlocked rewards.
+        /// </summary>
+        public void SaveRewardsUnlockDataChanges()
+        {
+            AppManager.I.Player.SaveRewardPackUnlockDataList();
+        }
+
+        /// <summary>
+        /// Called to reset the state of unlocked rewards.
+        /// </summary>
+        public void ResetRewardsUnlockData()
+        {
+            AppManager.I.Player.ResetRewardPackUnlockData();
+
+            foreach (var pack in GetAllRewardPacks())
+            {
+                pack.SetUnlockData(null);
+            }
+        }
+
+        #endregion
+
+        #region Checks
+
+        public bool IsThereSomeNewReward()
+        {
+            return GetAllUnlockedRewardPacks().Any(r => r.IsNew);
+        }
+
+        private bool IsRewardColorNew(RewardBase rewardBase, RewardColor rewardColor)
+        {
+            return GetAllUnlockedRewardPacks().Any(r => r.BaseId == rewardBase.ID && r.ColorId == rewardColor.ID && r.IsNew);
+        }
+
+        private bool IsRewardBaseNew(RewardBase rewardBase)
+        {
+            return GetAllUnlockedRewardPacks().Any(r => r.BaseId == rewardBase.ID && r.IsNew);
+        }
+
+        public bool DoesRewardCategoryContainNewElements(RewardBaseType baseType, string _rewardCategory = "")
+        {
+            return GetAllUnlockedRewardPacks().Any(r => r.BaseType == baseType && r.Category == _rewardCategory && r.IsNew);
+        }
+
+        /// <summary>
+        /// Return true if all rewards for this JourneyPosition are already unlocked.
+        /// </summary>
+        /// <param name="_journeyPosition">The journey position.</param>
+        public bool AreAllJourneyPositionRewardsAlreadyUnlocked(JourneyPosition journeyPosition)
+        {
+            int nAlreadyUnlocked = GetRewardPacksAlreadyUnlockedForJourneyPosition(journeyPosition).Count();
+            int nForJourneyPosition = GetRewardPacksForJourneyPosition(journeyPosition).Count();
+            //if (nForJourneyPosition == 0) throw new Exception("No rewards were added for JP " + journeyPosition);
+            return nForJourneyPosition > 0 && nAlreadyUnlocked == nForJourneyPosition;
+        }
+
+        #endregion
+
+        #region Getters
+
+        /// <summary>
+        /// Gets the total count of all reward packs. 
+        /// Any base with any color variation available in game.
+        /// </summary>
+        public int GetTotalRewardPacksCount(bool mergePropColors = false)
+        {
+            if (mergePropColors)
+            {
+                int tot = 0;
+                tot += GetAllRewardPacksOfBaseType(RewardBaseType.Decal).Count;
+                tot += GetAllRewardPacksOfBaseType(RewardBaseType.Texture).Count;
+                tot += GetAllRewardPacksOfBaseType(RewardBaseType.Prop, true).Count;
+                return tot;
+            }
+            else
+            {
+                return GetAllRewardPacks().Count();
+            }
+        }
+
+
+        /// <summary>
+        /// Gets the unlocked reward count for the current player. 0 if current player is null.
+        /// </summary>
+        /// <returns></returns>
+        public int GetUnlockedRewardsCount()
+        {
+            return AppManager.I.Player != null ? GetAllUnlockedRewardPacks().Count : 0;
+        }
+
+        private IEnumerable<RewardPack> GetRewardPacksAlreadyUnlockedForJourneyPosition(JourneyPosition journeyPosition)
+        {
+            return GetAllRewardPacks().Where(x => x.IsFoundAtJourneyPosition(journeyPosition) && x.IsUnlocked);
+        }
+
+        private IEnumerable<RewardPack> GetRewardPacksForJourneyPosition(JourneyPosition journeyPosition)
+        {
+            return GetAllRewardPacks().Where(x => x.IsFoundAtJourneyPosition(journeyPosition));
+        }
+
+        #endregion
+
+        #region Pack Creation and Unlocking
+
+        private void RegisterLockedPacks(List<RewardPack> packs, JourneyPosition jp, bool save = true)
+        {
+            // Packs are at first added and registered as Locked
+            foreach (var pack in packs)
+            {
+                RegisterLockedPack(pack, jp);
+            }
+            if (save) SaveRewardsUnlockDataChanges();
+        }
+
+        private void RegisterLockedPack(RewardPack pack, JourneyPosition jp)
+        {
+            if (pack.HasUnlockData())
+            {
+                throw new Exception("Pack " + pack + " is already registered! Cannot register again");
+            }
+
+            // Add the unlock data and register it
+            var unlockData = new RewardPackUnlockData(LogManager.I.AppSession, pack.UniqueId, jp)
+            {
+                IsLocked = true,
+                IsNew = true
+            };
+            AppManager.I.Player.RegisterUnlockData(unlockData);
+            pack.SetUnlockData(unlockData);
+
+            if (VERBOSE) Debug.Log("Registered locked pack " + pack);
+        }
+
+        public void UnlockPacksSelection(List<RewardPack> packs, int nToUnlock, bool save = true)
+        {
+            if (packs.Count == 0) Debug.LogError("No packs to unlock!");
+            var packsSelection = packs.RandomSelect(nToUnlock, true);
+            UnlockPacks(packsSelection, save);
+        }
+
+        private void UnlockPacks(List<RewardPack> packs, bool save = true)
+        {
+            foreach (var pack in packs)
+            {
+                UnlockPack(pack);
+            }
+            if (save) SaveRewardsUnlockDataChanges();
+        }
+
+        private void UnlockPack(RewardPack pack)
+        {
+            pack.SetUnlocked();
+            pack.SetNew(true);
+            if (VERBOSE) Debug.Log("Unlocked pack " + pack);
+        }
+
+        /// <summary>
+        /// Unlocks ALL reward packs that have not been unlocked yet
+        /// </summary>
+        /// <param name="save"></param>
+        public void UnlockAllMissingExtraPacks(bool save = true)
+        {
+            JourneyPosition extraRewardJP = new JourneyPosition(100, 100, 100);
+
+            var packs = new List<RewardPack>();
+            packs.AddRange(GetLockedRewardPacksOfBase(RewardBaseType.Prop));
+            packs.AddRange(GetLockedRewardPacksOfBase(RewardBaseType.Decal));
+            packs.AddRange(GetLockedRewardPacksOfBase(RewardBaseType.Texture));
+
+            RegisterLockedPacks(packs, extraRewardJP, false);
+            UnlockPacks(packs, save);
+        }
+
+        /// <summary>
+        /// Unlocks all rewards in the game.
+        /// </summary>
+        public void UnlockAllPacks()
+        {
+            var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
+            for (int i = 0; i < allPlaySessionInfos.Count; i++)
+            {
+                var jp = AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id);
+                var packs = UnlockAllRewardPacksForJourneyPosition(jp, false);
+                //if (packs != null) Debug.LogFormat("Unlocked rewards for playsession {0} : {1}", jp, packs.Count);
+            }
+
+            //Debug.LogFormat("Unlocking also all extra rewards!");
+            UnlockAllMissingExtraPacks(false);
+            SaveRewardsUnlockDataChanges();
+        }
+
+        public List<RewardPack> UnlockAllRewardPacksForJourneyPosition(JourneyPosition journeyPosition, bool save = true)
+        {
+            var packs = GetOrGenerateAllRewardPacksForJourneyPosition(journeyPosition);
+
+            if (AreAllJourneyPositionRewardsAlreadyUnlocked(journeyPosition))
+            {
+                Debug.LogError("We already unlocked all rewards for JP " + journeyPosition);
+                return null;
+            }
+
+            UnlockPacks(packs, save);
+            return packs;
+        }
+
+        #endregion
+
+        #region Pack Generation
+
+        /// <summary>
+        /// Generates all Reward Packs for a given journey position
+        /// </summary>
+        /// <returns></returns>
+        public List<RewardPack> GetOrGenerateAllRewardPacksForJourneyPosition(JourneyPosition journeyPosition)
+        {
+            // First check whether we already generated them
+            var rewardPacks = GetRewardPacksForJourneyPosition(journeyPosition);
+            if (rewardPacks.Any())
+            {
+                return rewardPacks.ToList();
+            }
+
+            // If not, we need to generate them from scratch
+            var jpPacks = new List<RewardPack>();
+
+            if (USE_UNLOCK_CONFIG)
+            {
+                GeneratePacksFromUnlockConfig(journeyPosition, jpPacks);
+            }
+            else
+            {
+                GeneratePacksFromUnlockFunction(journeyPosition, jpPacks);
+            }
+
+            // We register the generated packs as locked
+            RegisterLockedPacks(jpPacks, journeyPosition);
+
+            return jpPacks;
+        }
+
+        private void GeneratePacksFromUnlockFunction(JourneyPosition journeyPosition, List<RewardPack> jpPacks)
+        {
+            // Non-assessment PS do not generate any reward
+            if (!journeyPosition.IsAssessment())
+                return;
+
+            // Force to unlock a prop and all its colors at the first JP
+            if (journeyPosition.Equals(new JourneyPosition(1, 1, 100)))
+            {
+                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Prop, RewardUnlockMethod.NewBaseAndAllColors));
+                return;
+            }
+
+            // Else, randomly choose between locked props, decals, or textures
+            int nDecalsLeft = GetAllRewardPacksOfBaseType(RewardBaseType.Decal).Count(x => x.IsLocked);
+            int nTexturesLeft = GetAllRewardPacksOfBaseType(RewardBaseType.Texture).Count(x => x.IsLocked);
+            int nPropsLeft = GetAllRewardPacksOfBaseType(RewardBaseType.Prop, true).Count(x => x.IsLocked);
+
+            Debug.Log("We have left: " + nDecalsLeft + " decals, " + nTexturesLeft + " textures, " + nPropsLeft +
+                      " props");
+
+            List<RewardBaseType> choices = new List<RewardBaseType>();
+            if (nDecalsLeft > 0) choices.Add(RewardBaseType.Decal);
+            if (nTexturesLeft > 0) choices.Add(RewardBaseType.Texture);
+            if (nPropsLeft > 0) choices.Add(RewardBaseType.Prop);
+
+            RewardBaseType choice = choices.RandomSelectOne();
+
+            if (choice == RewardBaseType.Prop)
+            {
+                jpPacks.AddRange(GenerateNewRewardPacks(choice, RewardUnlockMethod.NewBaseAndAllColors));
+            }
+            else
+            {
+                jpPacks.AddRange(GenerateNewRewardPacks(choice, RewardUnlockMethod.BaseColorCombo));
+            }
+        }
+
+        private void GeneratePacksFromUnlockConfig(JourneyPosition journeyPosition, List<RewardPack> jpPacks)
+        {
+            // What rewards are unlocked at this JP?
+            JourneyPositionRewardUnlock unlocksAtJP = unlocksConfig.JourneyPositionsUnlocks.Find(r => r.JourneyPositionID == journeyPosition.Id);
+            if (unlocksAtJP == null)
+            {
+                Debug.LogErrorFormat("Unable to find reward unlocks for JourneyPositions {0}", journeyPosition);
+                return;
+            }
+
+            // Check numbers and base types
+            for (int i = 0; i < unlocksAtJP.NewPropBase; i++)
+                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Prop, RewardUnlockMethod.NewBase));
+            //TODO: if (OnNewRewardUnlocked != null)  OnNewRewardUnlocked(newItemReward);
+
+            for (int i = 0; i < unlocksAtJP.NewPropColor; i++)
+                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Prop, RewardUnlockMethod.NewColor));
+
+            if (unlocksAtJP.NewTexture > 0)
+                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Texture, RewardUnlockMethod.BaseColorCombo));
+
+            if (unlocksAtJP.NewDecal > 0)
+                jpPacks.AddRange(GenerateNewRewardPacks(RewardBaseType.Decal, RewardUnlockMethod.BaseColorCombo));
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Generate a new list of reward packs to be unlocked.
+        /// </summary>
+        /// <param name="baseType">Type of the reward.</param>
+        private List<RewardPack> GenerateNewRewardPacks(RewardBaseType baseType, RewardUnlockMethod unlockMethod, string[] allowedCategories = null)
+        {
+            List<RewardPack> newRewardPacks = new List<RewardPack>();
+            switch (unlockMethod)
+            {
+                case RewardUnlockMethod.NewBase:
+                    {
+                        // We force a NEW base
+                        var lockedBases = GetLockedRewardBases(baseType);
+
+                        if (allowedCategories != null)
+                            lockedBases = lockedBases.Where(x => allowedCategories.Contains((x as RewardProp).Category)).ToList();
+
+                        if (lockedBases.Count == 0)
+                            throw new NullReferenceException(
+                                "We do not have enough rewards to get a new base of type " + baseType);
+
+                        var newBase = lockedBases.RandomSelectOne();
+                        var lockedPacks = GetLockedRewardPacksOfBase(baseType);
+                        var lockedPacksOfNewBase = lockedPacks.Where(x => x.BaseId == newBase.ID).ToList();
+
+                        // We add one random pack of the new base
+                        newRewardPacks.Add(lockedPacksOfNewBase.RandomSelectOne()); 
                     }
-                    /// - Charge models
+                    break;
+                case RewardUnlockMethod.NewBaseAndAllColors:
+                    {
+                        // We force a NEW base
+                        //Debug.Log("Tot locked rewards count: " + GetAllLockedRewardPacks().Count());
+
+                        var lockedBases = GetLockedRewardBases(baseType);
+
+                        //Debug.Log("locked bases count: " + lockedBases.Count);
+
+                        if (allowedCategories != null)
+                        {
+                            //Debug.Log("Allowed categories: " + allowedCategories.ToDebugString());
+                            lockedBases = lockedBases.Where(x => allowedCategories.Contains((x as RewardProp).Category)).ToList();
+                        }
+
+                        if (lockedBases.Count == 0)
+                            throw new NullReferenceException(
+                                "We do not have enough rewards to get a new base of type " + baseType);
+
+                        var newBase = lockedBases.RandomSelectOne();
+                        var lockedPacks = GetLockedRewardPacksOfBase(baseType);
+                        var lockedPacksOfNewBase = lockedPacks.Where(x => x.BaseId == newBase.ID).ToList();
+
+                        // We add all locked packs of that base
+                        newRewardPacks.AddRange(lockedPacksOfNewBase);
+                    }
+                    break;
+                case RewardUnlockMethod.NewColor:
+                {
+                    // We force an OLD base
+                    var unlockedBases = GetUnlockedRewardBases(baseType);
+                    var unlockedBasesWithColorsLeft = unlockedBases.Where(b => GetLockedRewardPacksOfBase(baseType).Count(p => p.BaseId == b.ID) > 0).ToList();
+
+                    if (unlockedBasesWithColorsLeft.Count == 0)
+                        throw new NullReferenceException(
+                            "We do not have unlocked bases that still have colors to be unlocked for base type " + baseType);
+
+                    var oldBase = unlockedBasesWithColorsLeft.RandomSelectOne();
+                    var lockedPacks = GetLockedRewardPacksOfBase(baseType);
+                    var lockedPacksOfOldBase = lockedPacks.Where(x => x.BaseId == oldBase.ID).ToList();
+                    if (lockedPacksOfOldBase.Count == 0)
+                        throw new NullReferenceException(
+                            "We do not have enough rewards to get a new color for an old base of type " + baseType);
+
+                    newRewardPacks.Add(lockedPacksOfOldBase.RandomSelectOne()); 
+                }
+                    break;
+                case RewardUnlockMethod.BaseColorCombo:
+                {
+                    // We get any reward pack
+                    var lockedPacks = GetLockedRewardPacksOfBase(baseType);
+
+                    if (lockedPacks.Count == 0)
+                        throw new NullReferenceException(
+                            "We do not have enough rewards left of type " + baseType);
+
+                    newRewardPacks.Add(lockedPacks.RandomSelectOne());
+                }
+                    break;
+            }
+            return newRewardPacks;
+        }
+
+        /// <summary>
+        /// Unlocks the first set of rewards for current player.
+        /// </summary>
+        public void UnlockFirstSetOfRewards()
+        {
+            var _player = AppManager.I.Player;
+            if (_player == null)
+            {
+                Debug.LogError("No current player available!");
+                return;
+            }
+
+            var zeroJP = new JourneyPosition(0, 0, 0);
+
+            if (AreAllJourneyPositionRewardsAlreadyUnlocked(zeroJP))
+            {
+                Debug.LogError("We already unlocked the first set of rewards!");
+                return;
+            }
+          
+            var propPacks = GenerateFirstRewards(RewardBaseType.Prop);          // 1 prop and colors
+            var texturePacks = GenerateFirstRewards(RewardBaseType.Texture);    // 1 texture
+            var decalPacks = GenerateFirstRewards(RewardBaseType.Decal);        // 1 decal
+
+            List<RewardPack> packs = new List<RewardPack>();
+            packs.AddRange(propPacks);
+            packs.AddRange(texturePacks);
+            packs.AddRange(decalPacks);
+
+            RegisterLockedPacks(packs, zeroJP, false);
+            UnlockPacks(packs);
+
+            // Force as already seen
+            foreach (var pack in packs)
+            {
+                pack.SetNew(false);
+            }
+
+            // force to to wear decal and texture
+            _player.CurrentAnturaCustomizations.DecalPack = decalPacks[0];
+            _player.CurrentAnturaCustomizations.DecalPackId = decalPacks[0].UniqueId;
+            _player.CurrentAnturaCustomizations.TexturePack = texturePacks[0];
+            _player.CurrentAnturaCustomizations.TexturePackId = texturePacks[0].UniqueId;
+            _player.SaveAnturaCustomization();
+
+            // Save initial packs and customization
+            SaveRewardsUnlockDataChanges();
+
+            Debug.Log("Unlocked first set of rewards!");
+        }
+
+        /// <summary>
+        /// Gets the first RewardPacks that are unlocked when the game starts.
+        /// </summary>
+        /// <param name="baseType">Base type of the rewards to generate.</param>
+        private List<RewardPack> GenerateFirstRewards(RewardBaseType baseType)
+        {
+            List<RewardPack> list = new List<RewardPack>();
+            switch (baseType)
+            {
+                case RewardBaseType.Prop:
+                    string[] allowedCategories = {
+                        "HEAD", "BACK", "NECK", "JAW"
+                    };
+                    list = GenerateNewRewardPacks(baseType, RewardUnlockMethod.NewBaseAndAllColors, allowedCategories);
+                    break;
+                case RewardBaseType.Texture:
+                    list.Add(GetRewardPackByPartsIds("Antura_wool_tilemat", "color1"));
+                    break;
+                case RewardBaseType.Decal:
+                    list.Add(GetRewardPackByPartsIds("Antura_decalmap01", "color1"));
+                    break;
+            }
+            return list;
+        }
+
+        #endregion
+
+        #region Customization (i.e. UI, selection, view)
+
+        /// <summary>
+        /// Gets the reward base items (null if a base is not unlocked)
+        /// </summary>
+        /// <param name="baseType">Base type of the reward.</param>
+        /// <param name="_parentsTransForModels">The parents transform for models.</param>
+        /// <param name="_category">The category reward identifier.</param>
+        public List<RewardBaseItem> GetRewardBaseItems(RewardBaseType baseType, List<Transform> _parentsTransForModels, string _category = "")
+        {
+            List<RewardBaseItem> returnList = new List<RewardBaseItem>();
+
+            // Load the return list with an item for each base, or a NULL if no base has been unlocked
+            var currentAnturaCustomizations = AppManager.I.Player.CurrentAnturaCustomizations;
+            var rewardBases = GetRewardBasesOfType(baseType);
+
+            if (baseType == RewardBaseType.Prop && _category != "")
+                rewardBases = rewardBases.Where(rewardBase => (rewardBase as RewardProp).Category == _category).ToList();
+
+            foreach (var rewardBase in rewardBases)
+            {
+                bool isToBeShown = IsRewardBaseUnlocked(rewardBase);
+                // Debug.Log("Reward prop base "  + rewardBase.ID + " to be shown? " + isToBeShown);
+
+                if (isToBeShown)
+                {
+                    returnList.Add(new RewardBaseItem()
+                    {
+                        data = rewardBase,
+                        IsNew = IsRewardBaseNew(rewardBase),
+                        IsSelected = currentAnturaCustomizations.HasBaseEquipped(rewardBase.ID)
+                    });
+                }
+                else
+                {
+                    returnList.Add(null);
+                }
+            }
+
+
+            // Load models and textures for the buttons
+            switch (baseType) {
+
+                case RewardBaseType.Prop:
                     for (int i = 0; i < returnList.Count; i++) {
                         if (returnList[i] != null) {
-                            ModelsManager.MountModel(returnList[i].ID, _parentsTransForModels[i]);
+                            ModelsManager.MountModel(returnList[i].data.ID, _parentsTransForModels[i]);
                         }
                     }
                     break;
-                case RewardTypes.texture:
-                    // Filter from unlocked elements (only one for itemID)
-                    foreach (var item in GetConfig().RewardsTile) {
-                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.texture)
-                            .Exists(ur => ur.ItemId == item.ID)) {
-                            returnList.Add(new RewardItem() {
-                                ID = item.ID,
-                                IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
-                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemId == item.ID
-                            });
-                        } else {
-                            returnList.Add(null);
-                        }
-                    }
-                    /// - Charge texture
+
+                case RewardBaseType.Texture:
                     for (int i = 0; i < returnList.Count; i++) {
                         if (returnList[i] != null) {
                             string texturePath = "AnturaStuff/Textures_and_Materials/";
-                            Texture2D inputTexture = Resources.Load<Texture2D>(texturePath + returnList[i].ID);
+                            Texture2D inputTexture = Resources.Load<Texture2D>(texturePath + returnList[i].data.ID);
                             _parentsTransForModels[i].GetComponent<RawImage>().texture = inputTexture;
                         }
                     }
                     break;
-                case RewardTypes.decal:
-                    // Filter from unlocked elements (only one for itemID)
-                    foreach (var item in GetConfig().RewardsDecal) {
-                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.decal)
-                            .Exists(ur => ur.ItemId == item.ID)) {
-                            returnList.Add(new RewardItem() {
-                                ID = item.ID,
-                                IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
-                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture.ItemId == item.ID
-                            });
-                        } else {
-                            returnList.Add(null);
-                        }
-                    }
-                    /// - Charge texture
+
+                case RewardBaseType.Decal:
                     for (int i = 0; i < returnList.Count; i++) {
                         if (returnList[i] != null) {
                             string texturePath = "AnturaStuff/Textures_and_Materials/";
-                            Texture2D inputTexture = Resources.Load<Texture2D>(texturePath + returnList[i].ID);
+                            Texture2D inputTexture = Resources.Load<Texture2D>(texturePath + returnList[i].data.ID);
                             _parentsTransForModels[i].GetComponent<RawImage>().texture = inputTexture;
+                            //Debug.Log("Returned texture " + inputTexture.name + " for reward " + returnList[i].data.ID);
                         }
                     }
                     break;
                 default:
-                    Debug.LogWarningFormat("Reward typology requested {0} not found", _rewardType);
+                    Debug.LogWarningFormat("Reward base type requested {0} not found", baseType);
                     break;
             }
 
-            //// add empty results
-            //int emptyItemsCount = _parentsTransForModels.Count - returnList.Count;
-            //for (int i = 0; i < emptyItemsCount; i++) {
-            //    returnList.Add(null);
-            //}
             return returnList;
         }
 
         /// <summary>
-        /// Selects the reward item.
+        /// Gets all the color items for a given base
         /// </summary>
-        /// <param name="_rewardItemId">The reward item identifier.</param>
-        /// <returns></returns>
-        public static List<RewardColorItem> SelectRewardItem(string _rewardItemId, RewardTypes _rewardType)
+        public List<RewardColorItem> GetRewardColorItemsForBase(RewardBase _Base)
         {
             List<RewardColorItem> returnList = new List<RewardColorItem>();
-            /// logic
-            /// - Trigger selected reward event.
-            /// - Load returnList of color for reward checking unlocked and if exist active one
 
+            // Load all colors for the given reward base
+            var packsOfBase = GetAllRewardPacks().Where(x => x.RewardBase == _Base);
+            foreach (var pack in packsOfBase)
+            {
+                bool isToBeShown = pack.IsUnlocked;
+                if (isToBeShown)
+                {
+                    RewardColorItem rci = new RewardColorItem
+                    {
+                        data = pack.RewardColor,
+                        IsNew = pack.IsNew
+                    };
 
-            switch (_rewardType) {
-                case RewardTypes.reward:
-                    foreach (RewardColor color in GetConfig().GetClone().RewardsColorPairs) {
-                        if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
-                            RewardColorItem rci = new RewardColorItem(color);
-                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur =>
-                                ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
-                            returnList.Add(rci);
-                        } else {
-                            returnList.Add(null);
-                        }
-                    }
-                    // set current reward in modification
-                    CurrentReward = new RewardPackUnlockData() { ItemId = _rewardItemId, Type = RewardTypes.reward };
-                    break;
-                case RewardTypes.texture:
-                    foreach (RewardColor color in GetConfig().RewardsTileColor) {
-                        if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
-                            RewardColorItem rci = new RewardColorItem(color);
-                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur =>
-                                ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
-                            rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
-                            returnList.Add(rci);
-                        } else {
-                            returnList.Add(null);
-                        }
-                    }
-                    // set current reward in modification
-                    CurrentReward = new RewardPackUnlockData() { ItemId = _rewardItemId, Type = RewardTypes.texture };
-                    break;
-                case RewardTypes.decal:
-                    foreach (RewardColor color in GetConfig().RewardsDecalColor) {
-                        if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
-                            RewardColorItem rci = new RewardColorItem(color);
-                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur =>
-                                ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
-                            rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
-                            returnList.Add(rci);
-                        } else {
-                            returnList.Add(null);
-                        }
-                    }
-                    //foreach (RewardColor color in config.RewardsDecalColor) {
-                    //    RewardColorItem rci = new RewardColorItem(color);
-                    //    rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
-                    //    returnList.Add(rci);
-                    //}
-                    // set current reward in modification
-                    CurrentReward = new RewardPackUnlockData() { ItemId = _rewardItemId, Type = RewardTypes.decal };
-                    break;
-                default:
-                    Debug.LogWarningFormat("Reward typology requested {0} not found", _rewardType);
-                    break;
+                    returnList.Add(rci);
+                    //Debug.Log("Found color: " + pack.RewardColor.Color1RGB + " and " + pack.RewardColor.Color2RGB);
+                }
+                else
+                {
+                    returnList.Add(null);
+                }
             }
 
-            // Color selection
-            RewardPackUnlockData alreadySelectedReward = null;
-            switch (_rewardType) {
-                case RewardTypes.reward:
-                    List<RewardPackUnlockData> fornitures = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures;
-                    alreadySelectedReward = fornitures.Find(r => r.ItemId == _rewardItemId && r.Type == _rewardType);
-                    break;
-                case RewardTypes.texture:
-                    if (AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemId == _rewardItemId)
-                        alreadySelectedReward = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture;
-                    break;
-                case RewardTypes.decal:
-                    if (AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture.ItemId == _rewardItemId)
-                        alreadySelectedReward = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture;
-                    break;
-                default:
-                    Debug.LogErrorFormat("Reward type {0} not found!", _rewardType);
-                    return returnList;
+            // Selection state
+            RewardPack alreadyEquippedPack = AppManager.I.Player.CurrentAnturaCustomizations.GetEquippedPack(_Base.ID);
+            if (alreadyEquippedPack != null)
+            {
+                // If we already equipped a pack of that base, we use the previous color
+                returnList.Find(item => item != null && item.data == alreadyEquippedPack.RewardColor).IsSelected = true;
             }
-
-            if (alreadySelectedReward != null) {
-                // if previous selected this reward use previous color...
-                returnList.Find(color => color != null && color.ID == alreadySelectedReward.ColorId).IsSelected = true;
-            } else {
-                // ...else selecting first available color
+            else
+            {
+                // Else, we select the first available color
                 foreach (var firstItem in returnList) {
                     if (firstItem != null) {
                         firstItem.IsSelected = true;
@@ -294,231 +869,17 @@ namespace Antura.Rewards
             return returnList;
         }
 
-        /// <summary>
-        /// Selects the reward color item.
-        /// </summary>
-        /// <param name="_rewardColorItemId">The reward color item identifier.</param>
-        /// <param name="_rewardType">Type of the reward.</param>
-        public static void SelectRewardColorItem(string _rewardColorItemId, RewardTypes _rewardType)
-        {
-            CurrentReward.ColorId = _rewardColorItemId;
-            if (OnRewardChanged != null)
-                OnRewardChanged(CurrentReward);
-        }
+
+        public event RewardSystemEventHandler OnRewardSelectionChanged;
 
         /// <summary>
-        /// 
+        /// Selects the actual reward to show on Antura
         /// </summary>
-        /// <param name="_categoryRewardId"></param>
-        public static void DeselectAllRewardItemsForCategory(string _categoryRewardId = "")
+        public void SelectRewardColorItem(RewardBase _rewardBase, RewardColor _rewardColor)
         {
-            AnturaModelManager.I.ClearLoadedRewardInCategory(_categoryRewardId);
-        }
-
-        /// <summary>
-        /// TODO: public or private?
-        /// Gets the reward colors by identifier.
-        /// </summary>
-        /// <param name="_rewardItemId">The reward item identifier.</param>
-        /// <returns></returns>
-        static List<RewardColorItem> GetRewardColorsById(string _rewardItemId, RewardTypes _rewardType)
-        {
-            List<RewardColorItem> returnList = new List<RewardColorItem>();
-            // TODO: logic
-            return returnList;
-        }
-
-        #endregion
-
-        #region General
-
-        /// <summary>
-        /// Gets the reward by identifier.
-        /// </summary>
-        /// <param name="_rewardId">The reward identifier.</param>
-        /// <returns></returns>
-        public static Reward GetRewardById(string _rewardId)
-        {
-            Reward reward = GetConfig().Rewards.Find(r => r.ID == _rewardId);
-            return reward;
-        }
-
-        /// <summary>
-        /// Get material pair from Reward id and colors name.
-        /// </summary>
-        /// <param name="_rewardId"></param>
-        /// <param name="_color1"></param>
-        /// <param name="_color2"></param>
-        /// <returns></returns>
-        [Obsolete("...", true)]
-        public static MaterialPair GetMaterialPairFromRewardAndColor(string _rewardId, string _color1, string _color2)
-        {
-            Reward reward = GetRewardById(_rewardId);
-            MaterialPair mp = new MaterialPair(_color1, reward.Material1, _color2, reward.Material2);
-            return mp;
-        }
-
-        /// <summary>
-        /// Gets the material pair for standard reward.
-        /// </summary>
-        /// <param name="_rewardId">The reward identifier.</param>
-        /// <param name="_colorId">The color identifier.</param>
-        /// <returns></returns>
-        public static MaterialPair GetMaterialPairFromRewardIdAndColorId(string _rewardId, string _colorId)
-        {
-            Reward reward = GetRewardById(_rewardId);
-            RewardColor color = GetConfig().GetClone().RewardsColorPairs.Find(c => c.ID == _colorId);
-            if (color == null || reward == null) {
-                return new MaterialPair();
-            }
-            MaterialPair mp = new MaterialPair(color.Color1Name, reward.Material1, color.Color2Name, reward.Material2);
-            return mp;
-        }
-
-        /// <summary>
-        /// Gets the unlocked reward for specified playsession.
-        /// </summary>
-        /// <param name="journeyPosition">The playsession identifier (format 1.4.2).</param>
-        /// <returns></returns>
-        public static int GetUnlockedRewardForPlaysession(JourneyPosition journeyPosition)
-        {
-            int rCount = AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetJourneyPosition().Equals(journeyPosition)).Count;
-            return rCount > 2 ? 2 : rCount;
-        }
-
-        #endregion
-
-        #region Helpers
-
-        public static IEnumerator UnlockExtraRewards()
-        {
-            JourneyPosition extraRewardJourney = new JourneyPosition(100, 100, 100);
-            List<RewardPackUnlockData> alreadyUnlocked = AppManager.I.Player.RewardsUnlocked;
-            for (int i = 0; i < GetConfig().Rewards.Count; i++) {
-                for (int y = 0; y < GetConfig().RewardsColorPairs.Count; y++) {
-                    if (!alreadyUnlocked.Exists(ur =>
-                        ur.ItemId == GetConfig().Rewards[i].ID && ur.ColorId == GetConfig().RewardsColorPairs[y].ID)) {
-                        AppManager.I.Player.AddRewardUnlocked(
-                            new RewardPackUnlockData(
-                                AppManager.I.LogManager.AppSession,
-                                GetConfig().Rewards[i].ID,
-                                GetConfig().RewardsColorPairs[y].ID, RewardTypes.reward, extraRewardJourney));
-                        yield return null;
-                    }
-                }
-            }
-            for (int i = 0; i < GetConfig().RewardsDecal.Count; i++) {
-                for (int y = 0; y < GetConfig().RewardsDecalColor.Count; y++) {
-                    if (!alreadyUnlocked.Exists(ur =>
-                        ur.ItemId == GetConfig().RewardsDecal[i].ID && ur.ColorId == GetConfig().RewardsDecalColor[y].ID)) {
-                        AppManager.I.Player.AddRewardUnlocked(
-                            new RewardPackUnlockData(
-                                AppManager.I.LogManager.AppSession,
-                                GetConfig().RewardsDecal[i].ID,
-                                GetConfig().RewardsDecalColor[y].ID, RewardTypes.decal, extraRewardJourney));
-                        yield return null;
-                    }
-                }
-            }
-            for (int i = 0; i < GetConfig().RewardsTile.Count; i++) {
-                for (int y = 0; y < GetConfig().RewardsTileColor.Count; y++) {
-                    if (!alreadyUnlocked.Exists(ur =>
-                        ur.ItemId == GetConfig().RewardsTile[i].ID && ur.ColorId == GetConfig().RewardsTileColor[y].ID)) {
-                        AppManager.I.Player.AddRewardUnlocked(
-                            new RewardPackUnlockData(
-                                AppManager.I.LogManager.AppSession,
-                                GetConfig().RewardsTile[i].ID,
-                                GetConfig().RewardsTileColor[y].ID, RewardTypes.texture, extraRewardJourney));
-                        yield return null;
-                    }
-                }
-            }
-            yield return null;
-        }
-
-        /// <summary>
-        /// Unlocks all rewards.
-        /// </summary>
-        public static void UnlockAllRewards()
-        {
-            int RewardCount = 0;
-            int TextureCount = 0;
-            int DecalCount = 0;
-            int OtherCount = 0;
-            var actualCurrentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
-            var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
-
-            for (int i = 0; i < allPlaySessionInfos.Count; i++) {
-                // Check if already unlocked reward for this playSession.
-                JourneyPosition journeyPosition = allPlaySessionInfos[i].data.GetJourneyPosition();
-                if (RewardAlreadyUnlocked(journeyPosition)) { continue; }
-                List<RewardPackUnlockData> newUnlocked = new List<RewardPackUnlockData>();
-                AppManager.I.Player.SetCurrentJourneyPosition(
-                    AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
-                foreach (RewardPackUnlockData pack in GetNextRewardPack()) {
-                    pack.IsLocked = false;
-                    //AppManager.I.Player.AddRewardUnlockedAll(pack);
-
-                    newUnlocked.Add(pack);
-
-                    switch (pack.Type) {
-                        case RewardTypes.reward:
-                            RewardCount++;
-                            break;
-                        case RewardTypes.texture:
-                            TextureCount++;
-                            break;
-                        case RewardTypes.decal:
-                            DecalCount++;
-                            break;
-                        default:
-                            OtherCount++;
-                            break;
-                    }
-                    Debug.LogFormat("Unlocked reward for playsession {0} : {1}", journeyPosition, pack);
-                }
-                AppManager.I.Player.AddRewardUnlockedRange(newUnlocked);
-            }
-
-
-            AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
-            Debug.LogFormat("Bulk unlocking rewards result: rewards: {0} | texture: {1} | decal: {2} | other: {3}", RewardCount,
-                TextureCount, DecalCount, OtherCount);
-
-            AppManager.I.StartCoroutine(RewardSystemManager.UnlockExtraRewards());
-            Debug.LogFormat("Unlock also all extra rewards!");
-            Init();
-        }
-
-        /// <summary>
-        /// Return true if Reward for this JourneyPosition is already unlocked.
-        /// </summary>
-        /// <param name="_journeyPosition">The journey position.</param>
-        /// <returns></returns>
-        public static bool RewardAlreadyUnlocked(JourneyPosition journeyPosition)
-        {
-            List<RewardPackUnlockData> unlocked = AppManager.I.Player.RewardsUnlocked;
-            RewardPackUnlockData rewardPackUnlockData = unlocked.Find(r => r.GetJourneyPosition().Equals(journeyPosition));
-            if (rewardPackUnlockData != null) {
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Rewards the already unlocked.
-        /// </summary>
-        /// <param name="_itemId">The item identifier.</param>
-        /// <param name="_colorId">The color identifier.</param>
-        /// <param name="_type">The type.</param>
-        /// <returns></returns>
-        public static bool RewardAlreadyUnlocked(string _itemId, string _colorId, RewardTypes _type)
-        {
-            if (AppManager.I.Player.RewardsUnlocked.Find(r => r.ItemId == _itemId && r.ColorId == _colorId && r.Type == _type) != null) {
-                return true;
-            } else {
-                return false;
-            }
+            var currentSelectedReward = GetRewardPackByPartsIds(_rewardBase.ID, _rewardColor.ID);
+            if (OnRewardSelectionChanged != null)
+                OnRewardSelectionChanged(currentSelectedReward);
         }
 
         /// <summary>
@@ -526,9 +887,10 @@ namespace Antura.Rewards
         /// </summary>
         /// <param name="_categoryId">The category identifier.</param>
         /// <returns></returns>
-        public static float GetAnturaRotationAngleViewForRewardCategory(string _categoryId)
+        public float GetAnturaRotationAngleViewForRewardCategory(string _categoryId)
         {
-            switch (_categoryId) {
+            switch (_categoryId)
+            {
                 case "HEAD":
                     return 20;
                 case "NOSE":
@@ -551,370 +913,7 @@ namespace Antura.Rewards
         }
 
         #endregion
-
-        #endregion
-
-        #region RewardAI 
-
-        /// <summary>
-        /// Return list of right rewards for actual playsession if not already.
-        /// </summary>
-        /// <returns></returns>
-        public static List<RewardPackUnlockData> GetNextRewardPack(bool _forceToReturnReward = false)
-        {
-            var returnList = new List<RewardPackUnlockData>();
-            var journeyPosition = AppManager.I.Player.CurrentJourneyPosition;
-            // not _forceToReturnReward check if reward is already unlocked for this playsession and if true return empty list
-            if (RewardAlreadyUnlocked(journeyPosition) && !_forceToReturnReward)
-                return returnList;
-            // What kind of reward it is?
-            PlaySessionRewardUnlock unlock = GetConfig().PlaySessionRewardsUnlock.Find(r => r.PlaySession == journeyPosition.Id);
-            if (unlock == null) {
-                Debug.LogErrorFormat("Unable to find reward type for this playsession {0}", journeyPosition);
-            }
-            // -- check kind
-            if (unlock.RewardColor != string.Empty) {
-                // Get reward color for reward item already unlocked
-                for (int i = 0; i < int.Parse(unlock.RewardColor); i++) {
-                    returnList.Add(GetRewardPack(journeyPosition, RewardTypes.reward, false));
-                }
-            } else if (unlock.Reward != string.Empty) {
-                // Get new reward item with random color
-                var newItemReward = GetRewardPack(journeyPosition, RewardTypes.reward, true);
-                if (OnNewRewardUnlocked != null) {
-                    OnNewRewardUnlocked(newItemReward);
-                }
-                returnList.Add(newItemReward);
-            } else if (unlock.Texture != string.Empty) {
-                // Get new texture
-                returnList.Add(GetRewardPack(journeyPosition, RewardTypes.texture, true));
-            } else if (unlock.Decal != string.Empty) {
-                // Get new decal
-                returnList.Add(GetRewardPack(journeyPosition, RewardTypes.decal, true));
-            }
-
-            ////////////////////////////////////////////////////
-            return returnList;
-        }
-
-        /// <summary>
-        /// Gets the next reward pack. Contains all logic to create new reward.
-        /// </summary>
-        /// <param name="_rewardType">Type of the reward.</param>
-        /// <returns></returns>
-        public static RewardPackUnlockData GetRewardPack(JourneyPosition journeyPosition, RewardTypes _rewardType, bool _random)
-        {
-            /// TODOs:
-            /// - Filter without already unlocked items
-            /// - Automatic select reward type by situation
-            var rp = new RewardPackUnlockData();
-            string itemId = string.Empty;
-            RewardColor color = null;
-            bool alreadyUnlocked = false;
-            var alreadyUnlockedRewardOfType = AppManager.I.Player.RewardsUnlocked.FindAll(r => r.Type == _rewardType);
-            switch (_rewardType) {
-                case RewardTypes.reward:
-                    int countAvoidInfiniteLoop = 300;
-                    // If not random take id from list of already unlocked rewards of this type
-
-                    if (_random) {
-                        // Need to create new reward and first color pair
-                        bool duplicated = false;
-                        do {
-                            //int count = AppManager.I.Player.GetNotYetUnlockedRewardCountForType(_rewardType);
-                            List<Reward> availableItems = GetConfig().Rewards;
-                            // Try fix for #421
-                            List<Reward> itemsForRandomSelection = availableItems
-                                .Where(r => !alreadyUnlockedRewardOfType.Exists(ur => ur.ItemId == r.ID)).ToList();
-                            if (itemsForRandomSelection.Count == 0) {
-                                duplicated = true;
-                                continue;
-                            }
-                            // ----------------
-                            itemId = itemsForRandomSelection.GetRandomAlternative().ID;
-                            color = GetConfig().RewardsColorPairs.GetRandomAlternative();
-                            List<RewardPackUnlockData> unlocked = AppManager.I.Player.RewardsUnlocked;
-                            duplicated = unlocked.Find(r => r.ItemId == itemId) != null;
-                            if (duplicated) { Debug.LogFormat("Reward {0} already unlocked! Retry!", itemId); }
-                            countAvoidInfiniteLoop--;
-                            if (countAvoidInfiniteLoop == 0) { Debug.LogFormat("-------------- Reward {0} infinite loop!!!!", itemId); }
-                        } while (duplicated && countAvoidInfiniteLoop > 0);
-                        //} while (duplicated && AppManager.I.Player.RewardForTypeAvailableYet(_rewardType) || countAvoidInfiniteLoop < 1) ;
-                    } else {
-                        // need only to create new color pair for one of already unlocked reward
-                        color = null;
-                        var alreadyUnlockeds = AppManager.I.Player.RewardsUnlocked.Where(r => r.Type == RewardTypes.reward).ToList();
-                        var availableRewardIds = new List<string>();
-                        foreach (var reward in alreadyUnlockeds) {
-                            if (!availableRewardIds.Contains(reward.ItemId)) {
-                                int alreadyUnlockedsCount = alreadyUnlockeds.Where(r => r.ItemId == reward.ItemId).ToList().Count;
-                                if (alreadyUnlockedsCount < RewardSystemManager.GetConfig().RewardsColorPairs.Count) {
-                                    // TODO: quick fix
-                                    availableRewardIds.Add(reward.ItemId);
-                                }
-                            }
-                        }
-                        if (availableRewardIds.Count < 1) {
-                            Debug.LogWarning("No rewards with lockable color variation. Unable to unlock new color variation.");
-                            return null;
-                        }
-                        itemId = availableRewardIds.GetRandomAlternative();
-                        List<RewardColor> availableColors = GetConfig().RewardsColorPairs;
-                        //availableColors.Where(r => !alreadyUnlockeds.Exists(ur => ur.ItemId == itemId && ur.ColorId == r.ID));
-                        color = availableColors.Where(r => !alreadyUnlockeds.Exists(ur => ur.ItemId == itemId && ur.ColorId == r.ID))
-                            .ToList().GetRandomAlternative();
-                    }
-                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
-                    break;
-                case RewardTypes.texture:
-                    do {
-                        itemId = GetConfig().RewardsTile.GetRandomAlternative().ID;
-                        color = GetConfig().RewardsTileColor.GetRandomAlternative();
-                        alreadyUnlocked = RewardAlreadyUnlocked(itemId, color.ID, _rewardType);
-                    } while (alreadyUnlocked);
-                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
-                    break;
-                case RewardTypes.decal:
-                    do {
-                        itemId = GetConfig().RewardsDecal.GetRandomAlternative().ID;
-                        color = GetConfig().RewardsDecalColor.GetRandomAlternative();
-                        alreadyUnlocked = RewardAlreadyUnlocked(itemId, color.ID, _rewardType);
-                    } while (alreadyUnlocked);
-                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
-                    break;
-            }
-            return rp;
-        }
-
-        /// <summary>
-        /// Unlocks the first set of rewards for current player.
-        /// </summary>
-        public static void UnlockFirstSetOfRewards(Profile.PlayerProfile _player = null)
-        {
-            if (_player == null) {
-                if (AppManager.I.Player == null) {
-                    Debug.LogError("No current player available!");
-                    return;
-                }
-            }
-            _player = AppManager.I.Player;
-
-            _player.ResetRewardsUnlockedData();
-            _player.AddRewardUnlocked(GetFirstAnturaReward(RewardTypes.reward));
-            // decal
-            RewardPackUnlockData defaultDecal = GetFirstAnturaReward(RewardTypes.decal);
-            _player.AddRewardUnlocked(defaultDecal);
-            // force to to wear decal
-            _player.CurrentAnturaCustomizations.DecalTexture = defaultDecal;
-            _player.CurrentAnturaCustomizations.DecalTextureId = defaultDecal.GetIdAccordingToDBRules();
-            // texture
-            RewardPackUnlockData defaultTexture = GetFirstAnturaReward(RewardTypes.texture);
-            _player.AddRewardUnlocked(defaultTexture);
-            // force to to wear texture
-            _player.CurrentAnturaCustomizations.TileTexture = defaultTexture;
-            _player.CurrentAnturaCustomizations.TileTexture.Id = defaultTexture.GetIdAccordingToDBRules();
-            // Add all 3 rewards
-            //_player.AddRewardUnlockedAll();
-            // Save actual customization
-            _player.SaveAnturaCustomization();
-        }
-
-        /// <summary>
-        /// Gets the first antura reward.
-        /// </summary>
-        /// <param name="_rewardType">Type of the reward.</param>
-        /// <returns></returns>
-        public static RewardPackUnlockData GetFirstAnturaReward(RewardTypes _rewardType)
-        {
-            RewardPackUnlockData rp = new RewardPackUnlockData();
-            switch (_rewardType) {
-                case RewardTypes.reward:
-                    rp = GetRewardPack(new JourneyPosition(0, 0, 0), _rewardType, true);
-                    break;
-                case RewardTypes.texture:
-                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, "Antura_wool_tilemat", "color1", _rewardType,
-                        new JourneyPosition(0, 0, 0));
-                    rp.IsNew = false; // Because is automatically selected
-                    break;
-                case RewardTypes.decal:
-                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, "Antura_decalmap01", "color1", _rewardType,
-                        new JourneyPosition(0, 0, 0));
-                    rp.IsNew = false; // Because is automatically selected
-                    break;
-            }
-            return rp;
-        }
-
-        #endregion
-
-        #region Events
-
-        public delegate void RewardSystemEventHandler(RewardPackUnlockData rewardPackUnlockData);
-
-        /// <summary>
-        /// Occurs when [on reward item changed].
-        /// </summary>
-        public static event RewardSystemEventHandler OnRewardChanged;
-
-        public static event RewardSystemEventHandler OnNewRewardUnlocked;
-
-        #endregion
+        
     }
 
-    #region rewards data structures
-
-    #region static DB
-
-    [Serializable]
-    public class RewardConfig
-    {
-        public List<Reward> Rewards;
-        public List<RewardColor> RewardsColorPairs;
-        public List<RewardDecal> RewardsDecal;
-        public List<RewardColor> RewardsDecalColor;
-        public List<RewardTile> RewardsTile;
-        public List<RewardColor> RewardsTileColor;
-        public List<PlaySessionRewardUnlock> PlaySessionRewardsUnlock;
-
-        public RewardConfig GetClone()
-        {
-            return MemberwiseClone() as RewardConfig;
-        }
-    }
-
-    [Serializable]
-    public class PlaySessionRewardUnlock
-    {
-        public string PlaySession;
-        public string RewardColor;
-        public string Reward;
-        public string Texture;
-        public string Decal;
-    }
-
-    [Serializable]
-    public class Reward
-    {
-        public string ID;
-        public string RewardName;
-        public string BoneAttach;
-        public string Material1;
-        public string Material2;
-        public string Category;
-        public string RemTongue;
-    }
-
-    [Serializable]
-    public class RewardColor
-    {
-        public string ID;
-        public string Color1Name;
-        public string Color2Name;
-        public string Color1RGB; // "rrggbbaa"
-        public string Color2RGB; // "rrggbbaa"
-    }
-
-    [Serializable]
-    public class RewardDecal
-    {
-        public string ID;
-    }
-
-    [Serializable]
-    public class RewardTile
-    {
-        public string ID;
-    }
-
-    #endregion
-
-    #region Dynamic DB
-
-    /*
-    /// <summary>
-    /// Class structure to identify reward pack used as price in game.
-    /// </summary>
-    [Serializable]
-    public class RewardPackUnlockData
-    {
-        public string ItemId;
-        public string ColorId;
-        public RewardTypes Type;
-        /// <summary>
-        /// The play session id where this reward is assigned.
-        /// </summary>
-        public string JourneyPosition;
-        /// <summary>
-        /// The order of playsession rewards in case of multi reward for same playsession.
-        /// </summary>
-        public int Order = 0;
-        /// <summary>
-        /// True if nevere used by player.
-        /// </summary>
-        public bool IsNew = true;
-
-        public MaterialPair GetMaterialPair() {
-            return RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(ItemId, ColorId);
-        }
-
-        public Reward GetReward() {
-            if (Type != RewardTypes.reward)
-                return null;
-            return RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemId);
-        }
-
-        public string GetRewardCategory() {
-            if (Type != RewardTypes.reward)
-                return string.Empty;
-            Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemId);
-            if (reward != null)
-                return reward.Category;
-            return string.Empty;
-        }
-
-        public override string ToString() {
-            return string.Format("{0} : {1} [{2}] [{3}]", ItemId, ColorId, Type, JourneyPosition);
-        }
-    }*/
-
-    #endregion
-
-    #region reward UI data structures
-
-    /// <summary>
-    /// Structure focused to comunicate about items from e to UI.
-    /// </summary>
-    public class RewardItem
-    {
-        public string ID;
-        public bool IsSelected;
-        public bool IsNew;
-    }
-
-    /// <summary>
-    /// Structure focused to comunicate about colors from e to UI.
-    /// </summary>
-    /// <seealso cref="RewardColor" />
-    public class RewardColorItem : RewardColor
-    {
-        public bool IsSelected;
-        public bool IsNew = true;
-
-        public RewardColorItem()
-        {
-        }
-
-        public RewardColorItem(RewardColor _color)
-        {
-            ID = _color.ID;
-            Color1Name = _color.Color1Name;
-            Color1RGB = _color.Color1RGB;
-            Color2Name = _color.Color2Name;
-            Color2RGB = _color.Color2RGB;
-        }
-    }
-
-    #endregion
-
-    #endregion
 }

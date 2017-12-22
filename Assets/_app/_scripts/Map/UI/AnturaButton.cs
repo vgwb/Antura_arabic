@@ -11,7 +11,7 @@ namespace Antura.Map
         void Start()
         {
             GameObject icoNew = GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
-            icoNew.SetActive(FirstContactManager.I.IsFinished() && AppManager.I.Player.ThereIsSomeNewReward());
+            icoNew.SetActive(FirstContactManager.I.IsFinished() && AppManager.I.RewardSystemManager.IsThereSomeNewReward());
         }
     }
 }
