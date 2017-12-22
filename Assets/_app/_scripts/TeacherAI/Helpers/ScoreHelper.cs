@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
@@ -199,6 +200,14 @@ namespace Antura.Teacher
             return scores;
         }
 
+        public float GetCurrentScoreForJourneyPosition(JourneyPosition jp)
+        {
+            var allPlaySessionInfo = GetAllPlaySessionInfo();
+            var psInfo = allPlaySessionInfo.FirstOrDefault(x => x.data.GetJourneyPosition().Equals(jp));
+            if (psInfo == null) return 0;
+            return psInfo.score;
+        }
+
         public List<JourneyScoreData> GetCurrentScoreForAllPlaySessions()
         {
             string query =
@@ -314,5 +323,6 @@ namespace Antura.Teacher
             }
             return true;
         }
+
     }
 }
