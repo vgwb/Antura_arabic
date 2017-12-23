@@ -53,17 +53,11 @@ namespace Antura.Book
         public UIButton BtnWords;
         public UIButton BtnPhrases;
 
+        public DetailLetterView DetailLetterView;
         public GameObject MoreInfoLetterPanel;
         public GameObject MoreInfoWordPanel;
         public TextRender ArabicText;
-
-        public TextRender LetterTextIsolated;
-        public TextRender LetterTextInitial;
-        public TextRender LetterTextMedial;
-        public TextRender LetterTextFinal;
         public TextRender WordDrawingText;
-        public GameObject BtnPlayLetterName;
-        public GameObject BtnPlayLetterPhoneme;
 
         public TextRender ScoreText;
 
@@ -220,29 +214,7 @@ namespace Antura.Book
             MoreInfoLetterPanel.SetActive(true);
             MoreInfoWordPanel.SetActive(false);
 
-            string positionsString = "";
-            foreach (var p in currentLetter.data.GetAvailableForms()) {
-                positionsString = positionsString + " " + p;
-            }
-            Debug.Log("Detail Letter :" + currentLetter.data.Id + " [" + positionsString + " ]");
-            AudioManager.I.PlayLetter(currentLetter.data);
-
-            ArabicText.text = "";
-
-            var isolatedChar = currentLetter.data.GetStringForDisplay(LetterForm.Isolated);
-            var InitialChar = currentLetter.data.GetStringForDisplay(LetterForm.Initial);
-            var MedialChar = currentLetter.data.GetStringForDisplay(LetterForm.Medial);
-            var FinalChar = currentLetter.data.GetStringForDisplay(LetterForm.Final);
-
-            LetterTextIsolated.SetTextUnfiltered(isolatedChar);
-            LetterTextInitial.SetTextUnfiltered(InitialChar);
-            LetterTextMedial.SetTextUnfiltered(MedialChar);
-            LetterTextFinal.SetTextUnfiltered(FinalChar);
-
-            BtnPlayLetterName.SetActive(AudioManager.I.GetAudioClip(currentLetter.data, LetterDataSoundType.Name) != null);
-            BtnPlayLetterPhoneme.SetActive(AudioManager.I.GetAudioClip(currentLetter.data, LetterDataSoundType.Phoneme) != null);
-
-            ScoreText.text = "Score: " + currentLetter.score;
+            DetailLetterView.Init(currentLetter);
         }
 
         public void OnBtnPlayLetterName()
