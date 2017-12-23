@@ -661,7 +661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 60806490}
   m_Layer: 0
-  m_Name: ShopSystem
+  m_Name: Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1627,7 +1627,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 192050242}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 466473912}
@@ -7162,7 +7162,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 673246023}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1433795666}
@@ -7226,7 +7226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconSprite: {fileID: 21300000, guid: 0255a2d95cef25a40a332064fc91beb3, type: 3}
-  bonesCost: 6
+  bonesCost: 10
   errorLocalizationID: 0
   UnlockableDecorationObject: {fileID: 114364279622633410, guid: cc2c38a7a659a1b4996e0a843f678bd2,
     type: 2}
@@ -8043,7 +8043,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 770054771}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 100, y: 0, z: 0}
+  m_LocalPosition: {x: 100, y: 0, z: 1.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1593818191}
@@ -10506,7 +10506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconSprite: {fileID: 21300000, guid: 5d26e7fcefb42da479b0e2c414bd0f08, type: 3}
-  bonesCost: 6
+  bonesCost: 12
   errorLocalizationID: 0
   UnlockableDecorationObject: {fileID: 114414015946378154, guid: 595d80bfb65c4b54ba7c206727320354,
     type: 2}
@@ -11552,7 +11552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconSprite: {fileID: 21300000, guid: d3025604913e8ea42b196c3f7a411230, type: 3}
-  bonesCost: 6
+  bonesCost: 20
   errorLocalizationID: 0
   UnlockableDecorationObject: {fileID: 114035454883436458, guid: b7755ce8a96e3e241bb95abb8ad624f7,
     type: 2}
@@ -12482,7 +12482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconSprite: {fileID: 21300000, guid: 40e29f17884750747907441251ddd5b4, type: 3}
-  bonesCost: 2
+  bonesCost: 5
   errorLocalizationID: 0
   UnlockableDecorationObject: {fileID: 114414677965537032, guid: 9defca76802b80240a6b79d9626619d1,
     type: 2}
@@ -14549,7 +14549,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1593818190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 2.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1679197327}
@@ -14967,7 +14967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconSprite: {fileID: 21300000, guid: 363039ad7f0d13140b74dca5c5d17c93, type: 3}
-  bonesCost: 10
+  bonesCost: 30
   errorLocalizationID: 0
   UnlockableDecorationObject: {fileID: 114256355765141968, guid: 8b1d8214aade24c4fb4a19056b17a8e2,
     type: 2}
@@ -17006,7 +17006,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1823137589}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 3.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1054762066}
@@ -18002,7 +18002,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c975c9f0bcb1a46a7ff58a2f2af9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addDebugBones: 1
   ShopPanelUi: {fileID: 358700358}
   ShopDecorationsManager: {fileID: 837188164}
 --- !u!1 &1933035822
@@ -23305,7 +23304,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2128666801}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 700066115}
@@ -23374,7 +23373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconSprite: {fileID: 21300000, guid: dbe0b4aee0aeb00438fb420821fe52d0, type: 3}
-  bonesCost: 6
+  bonesCost: 8
   errorLocalizationID: 0
   UnlockableDecorationObject: {fileID: 114544723055203704, guid: dcf2cbcf7f66676489b89fcdf5401c4c,
     type: 2}

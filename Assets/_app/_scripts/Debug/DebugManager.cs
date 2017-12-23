@@ -163,7 +163,7 @@ namespace Antura.Debugging
 
         public void AddBones()
         {
-            AppManager.I.Player.AddBones(10);
+            AppManager.I.Player.AddBones(50);
         }
 
         public void ForceCurrentMinigameEnd(int stars)
@@ -271,8 +271,7 @@ namespace Antura.Debugging
         public void UnlockCurrentPlaySessionRewards()
         {
             var unlockedPacks = AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
-            foreach (RewardPack unlockedPack in unlockedPacks)
-            {
+            foreach (RewardPack unlockedPack in unlockedPacks) {
                 Debug.LogFormat("Pack unlocked: {0}", unlockedPack.ToString());
             }
         }

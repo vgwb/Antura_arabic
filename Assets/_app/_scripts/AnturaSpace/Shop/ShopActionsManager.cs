@@ -5,9 +5,6 @@ namespace Antura.AnturaSpace
 {
     public class ShopActionsManager : MonoBehaviour
     {
-        [Header("Debug")]
-        public bool addDebugBones = false;
-
         public ShopPanelUI ShopPanelUi;
         public ShopDecorationsManager ShopDecorationsManager;
 
@@ -15,10 +12,6 @@ namespace Antura.AnturaSpace
 
         public void Initialise()
         {
-            if (addDebugBones) {
-                AppManager.I.Player.AddBones(50);
-            }
-
             // Setup the decorations manager
             var shopState = AppManager.I.Player.CurrentShopState;
             ShopDecorationsManager.Initialise(shopState);
@@ -26,8 +19,7 @@ namespace Antura.AnturaSpace
 
             // Setup actions
             shopActions = GetComponentsInChildren<ShopAction>();
-            foreach (var shopAction in shopActions)
-            {
+            foreach (var shopAction in shopActions) {
                 shopAction.OnActionCommitted += HandleActionPerformed;
                 shopAction.OnActionRefreshed += HandleActionRefreshed;
             }

@@ -1,11 +1,11 @@
-﻿using Antura.Core;
+﻿using Antura.AnturaSpace.UI;
+using Antura.Core;
 using Antura.Utilities;
 using DG.DeInspektor.Attributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Antura.AnturaSpace.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
@@ -25,6 +25,7 @@ namespace Antura.AnturaSpace
         private ShopState shopState;
         private ShopContext shopContext;
 
+        [Header("Debug")]
         public bool testDecorationFilling = false;
 
         public Action<ShopContext> OnContextChange;
@@ -35,11 +36,11 @@ namespace Antura.AnturaSpace
 
 #if UNITY_EDITOR
         // @note: call this to setup slots after you change them
-        [DeMethodButton("Editor Setup")]
+        [DeMethodButton("Update Slot Indexes")]
         public void EditorSetup()
         {
             foreach (var slotGroup in GetComponentsInChildren<ShopDecorationSlotGroup>()) {
-                slotGroup.EditorSetup();
+                slotGroup.UpdateSlotIndexes();
             }
         }
 #endif
@@ -59,7 +60,7 @@ namespace Antura.AnturaSpace
         public void SetPreviousContext()
         {
             shopContext = previousShopContext;
-            if (OnContextChange != null) OnContextChange(shopContext);
+            if (OnContextChange != null) { OnContextChange(shopContext); }
         }
 
         private void SwitchToContext(ShopContext newContext)
@@ -67,7 +68,7 @@ namespace Antura.AnturaSpace
             //Debug.Log("SWITCH TO CONTEXT: " + newContext);
             previousShopContext = shopContext;
             shopContext = newContext;
-            if (OnContextChange != null) OnContextChange(shopContext);
+            if (OnContextChange != null) { OnContextChange(shopContext); }
         }
 
         public void SetContextCustomization()
@@ -136,7 +137,7 @@ namespace Antura.AnturaSpace
             if (shopState.occupiedSlots != null) {
                 for (int i = 0; i < shopState.occupiedSlots.Length; i++) {
                     var slotState = shopState.occupiedSlots[i];
-                    if (slotState.decorationID == "") continue;
+                    if (slotState.decorationID == "") { continue; }
                     var decorationPrefab = allShopDecorations.Find(x => x.id == slotState.decorationID);
                     var slot = allShopDecorationSlots.FirstOrDefault(x => x.slotType == decorationPrefab.slotType && x.slotIndex == slotState.slotIndex);
                     if (slot != null && decorationPrefab != null) {
@@ -163,14 +164,11 @@ namespace Antura.AnturaSpace
                 }
             }
         }
-
-
         #endregion
-
 
         private ShopDecorationObject SpawnNewDecoration(ShopDecorationObject UnlockableDecorationPrefab)
         {
-            if (!HasSlotsForDecoration(UnlockableDecorationPrefab)) return null;
+            if (!HasSlotsForDecoration(UnlockableDecorationPrefab)) { return null; }
 
             var newDecoration = Instantiate(UnlockableDecorationPrefab);
             newDecoration.transform.localPosition = new Vector3(10000, 0, 0);
@@ -200,26 +198,31 @@ namespace Antura.AnturaSpace
         private void DeleteDecoration(ShopDecorationObject decoToDelete)
         {
             var assignedSlot = allShopDecorationSlots.FirstOrDefault(x => x.HasCurrentlyAssigned(currentDraggedDecoration));
-            if (assignedSlot != null) assignedSlot.Free();
+            if (assignedSlot != null) {
+                assignedSlot.Free();
+            }
             Destroy(decoToDelete.gameObject);
         }
 
         public void StartDragPlacement(ShopDecorationObject decoToDrag, bool isNew)
         {
-            if (isNew) SetContextNewPlacement();
-            else SetContextMovingPlacement();
+            if (isNew) {
+                SetContextNewPlacement();
+            } else {
+                SetContextMovingPlacement();
+            }
 
             currentDraggedSlot = null;
             currentDraggedDecoration = decoToDrag;
             currentDraggedDecoration.FocusHighlight(true);
             dragCoroutine = StartCoroutine(DragPlacementCO());
 
-            if (OnDragStart != null) OnDragStart(decoToDrag);
+            if (OnDragStart != null) { OnDragStart(decoToDrag); }
         }
 
         private void StopDragPlacement()
         {
-            if (OnDragStop != null) OnDragStop();
+            if (OnDragStop != null) { OnDragStop(); }
             currentDraggedDecoration.FocusHighlight(false);
             StopCoroutine(dragCoroutine);
         }
@@ -239,8 +242,7 @@ namespace Antura.AnturaSpace
                     x.IsFreeAndAssignableTo(currentDraggedDecoration) || x.HasCurrentlyAssigned(currentDraggedDecoration));
                 ShopDecorationSlot closestSlot = null;
                 float minDistance = Int32.MaxValue;
-                foreach (var slot in allAssignableSlots)
-                {
+                foreach (var slot in allAssignableSlots) {
                     var mousePos = AnturaSpaceUI.I.ScreenToUIPoint(Input.mousePosition);
                     var slotPos = AnturaSpaceUI.I.WorldToUIPoint(slot.transform.position);
                     float distance = (mousePos - slotPos).sqrMagnitude;
@@ -272,7 +274,6 @@ namespace Antura.AnturaSpace
                 foreach (var slot in allShopDecorationSlots.Where(x => x.IsAssignableTo(currentDraggedDecoration))) {
                     if (slot.HasCurrentlyAssigned(currentDraggedDecoration)) {
                         slot.Highlight(true, ShopDecorationSlot.SlotHighlight.Correct);
-
                     } else if (slot.Assigned) {
                         slot.Highlight(true, ShopDecorationSlot.SlotHighlight.Wrong);
                     } else {
@@ -345,7 +346,8 @@ namespace Antura.AnturaSpace
             for (var index = 0; index < allShopDecorationSlots.Count; index++) {
                 var slot = allShopDecorationSlots[index];
                 //Debug.Log("Check slot: " + slot);
-                shopState.occupiedSlots[index] = new ShopSlotState {
+                shopState.occupiedSlots[index] = new ShopSlotState
+                {
                     slotType = slot.slotType,
                     slotIndex = slot.slotIndex,
                     decorationID = slot.Assigned ? slot.AssignedDecorationObject.id : ""
@@ -363,16 +365,16 @@ namespace Antura.AnturaSpace
         public void ConfirmPurchase()
         {
             currentDraggedSlot.Spawn();
-            if (OnPurchaseComplete != null) OnPurchaseComplete();
+            if (OnPurchaseComplete != null) { OnPurchaseComplete(); }
             SaveState();
             SetContextPurchase();
         }
 
         public void CancelPurchase()
         {
-            if (currentDraggedSlot) currentDraggedSlot.Despawn();
+            if (currentDraggedSlot) { currentDraggedSlot.Despawn(); }
             DeleteDecoration(currentDraggedDecoration);
-            if (OnPurchaseCancelled != null) OnPurchaseCancelled();
+            if (OnPurchaseCancelled != null) { OnPurchaseCancelled(); }
             SetContextPurchase();
         }
 
@@ -396,7 +398,5 @@ namespace Antura.AnturaSpace
             SaveState();
             SetContextPurchase();
         }
-
-
     }
 }

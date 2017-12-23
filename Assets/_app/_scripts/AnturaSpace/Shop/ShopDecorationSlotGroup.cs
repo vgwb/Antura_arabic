@@ -18,7 +18,7 @@ namespace Antura.AnturaSpace
         public ShopDecorationSlot[] slots;
 
 #if UNITY_EDITOR
-        public void EditorSetup()
+        public void UpdateSlotIndexes()
         {
             slots = GetComponentsInChildren<ShopDecorationSlot>();
             int sequentialIndex = 0;
