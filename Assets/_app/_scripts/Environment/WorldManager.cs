@@ -6,6 +6,7 @@
 // (and do not remove from it please!)"
 namespace Antura.Environment
 {
+    // TODO refactor we want Worlds 1..6 (not 0..5)
     public enum WorldID
     {
         Default = -1,

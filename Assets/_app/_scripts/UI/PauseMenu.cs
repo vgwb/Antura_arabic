@@ -173,11 +173,11 @@ namespace Antura.UI
                         BtMusic.Toggle(AudioManager.I.MusicEnabled);
                         break;
                     case MenuButtonType.FxToggle: // FX on/off
-                        AppManager.I.ToggleQualitygfx();
+                        AppManager.I.AppSettingsManager.ToggleQualitygfx();
                         BtFx.Toggle(AppManager.I.AppSettings.HighQualityGfx);
                         break;
                     case MenuButtonType.EnglishToggle:
-                        AppManager.I.ToggleEnglishSubtitles();
+                        AppManager.I.AppSettingsManager.ToggleEnglishSubtitles();
                         BtEnglish.Toggle(AppManager.I.AppSettings.EnglishSubtitles);
                         break;
                     case MenuButtonType.Credits:

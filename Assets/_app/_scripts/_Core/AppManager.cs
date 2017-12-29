@@ -131,24 +131,6 @@ namespace Antura.Core
             });
         }
 
-        #region Settings
-
-        // TODO move into AppSettings Manager
-
-        public void ToggleQualitygfx()
-        {
-            AppSettings.HighQualityGfx = !AppSettings.HighQualityGfx;
-            CameraGameplayController.I.EnableFX(AppSettings.HighQualityGfx);
-        }
-
-        public void ToggleEnglishSubtitles()
-        {
-            AppSettings.EnglishSubtitles = !AppSettings.EnglishSubtitles;
-            AppSettingsManager.SaveSettings();
-        }
-
-        #endregion
-
         #region Main App Suspend method
         void OnApplicationPause(bool pauseStatus)
         {

@@ -101,5 +101,18 @@ namespace Antura.Core
             Settings.DeletePlayers();
             SaveSettings();
         }
+
+        public void ToggleQualitygfx()
+        {
+            Settings.HighQualityGfx = !Settings.HighQualityGfx;
+            SaveSettings();
+            // CameraGameplayController.I.EnableFX(Settings.HighQualityGfx);
+        }
+
+        public void ToggleEnglishSubtitles()
+        {
+            Settings.EnglishSubtitles = !Settings.EnglishSubtitles;
+            SaveSettings();
+        }
     }
 }

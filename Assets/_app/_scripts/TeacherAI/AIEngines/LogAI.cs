@@ -387,14 +387,6 @@ namespace Antura.Teacher
             db.InsertAll(logDataList);
             db.InsertOrReplaceAll(scoreDataList);
         }
-
-        public void LogLearningBlockScore(int learningBlock, int score)
-        {
-            throw new System.Exception("Scoring for Learning Block has not been implemented.");
-            //if (AppConstants.VerboseLogging) Debug.Log("LogLearningBlockScore " + learningBlock + " / " + score);
-            //GetJourneyScoreDataWithMaximum(JourneyDataType.LearningBlock, (learningBlock).ToString(), score);
-        }
-
         #endregion
 
         #region Score Utilities

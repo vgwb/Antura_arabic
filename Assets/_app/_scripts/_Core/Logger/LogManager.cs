@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Antura.Helpers;
 using System.Collections.Generic;
-using Antura.Helpers;
+using UnityEngine;
 
 namespace Antura.Core
 {
@@ -116,17 +116,6 @@ namespace Antura.Core
             //Debug.LogError("DURATION PS: " + duration);
             AppManager.I.Teacher.logAI.LogPlaySessionScore(AppSession,
                 AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, score, duration);
-        }
-
-        /// <summary>
-        /// Logs the learning block score.
-        /// </summary>
-        /// <param name="learningBlock">The learning block.</param>
-        /// <param name="score">The score.</param>
-        //TODO check if we need this since it's not implemented
-        public void LogLearningBlockScore(int learningBlock, int score)
-        {
-            AppManager.I.Teacher.logAI.LogLearningBlockScore(learningBlock, score);
         }
 
         /// <summary>
