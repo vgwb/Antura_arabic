@@ -164,6 +164,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23814737753860716
 MeshRenderer:
@@ -178,7 +179,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 59796638879d6684dadd677b32d83e70, type: 2}
+  - {fileID: 2100000, guid: ffe69fabee1d9ea42b82198d9b2951cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -195,6 +196,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23975066389299276
 MeshRenderer:
@@ -226,6 +228,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33196448762526964
 MeshFilter:
@@ -273,4 +276,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 4
   id: carpet1
-  iconSprite: {fileID: 21300000, guid: 4e21077ce00d3fe42a8f31f974fa0be6, type: 3}
+  iconSprite: {fileID: 21300000, guid: c9925c11320d7468288ac42847577414, type: 3}

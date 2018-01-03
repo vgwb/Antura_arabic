@@ -373,6 +373,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23271039003190578
 MeshRenderer:
@@ -404,6 +405,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23348050442113914
 MeshRenderer:
@@ -435,6 +437,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23508250781312704
 MeshRenderer:
@@ -466,6 +469,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23552750301392296
 MeshRenderer:
@@ -497,6 +501,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23894202165845670
 MeshRenderer:
@@ -528,6 +533,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33116640045647998
 MeshFilter:
@@ -596,4 +602,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 0
   id: mountains
-  iconSprite: {fileID: 21300000, guid: e278fa1ff1c26f44db19342e4fa6e2fc, type: 3}
+  iconSprite: {fileID: 21300000, guid: 8d386f731830d419e9bba62bfa991ca6, type: 3}

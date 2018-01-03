@@ -347,6 +347,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23347806618590918
 MeshRenderer:
@@ -378,6 +379,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23427951297498236
 MeshRenderer:
@@ -409,6 +411,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23570634604692164
 MeshRenderer:
@@ -440,6 +443,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23817438494664130
 MeshRenderer:
@@ -471,6 +475,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23977214306652868
 MeshRenderer:
@@ -502,6 +507,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23989165914451636
 MeshRenderer:
@@ -533,6 +539,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33030522521146534
 MeshFilter:
@@ -622,4 +629,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 3
   id: tree1
-  iconSprite: {fileID: 21300000, guid: 339d1168b9be76444aced80585d68d50, type: 3}
+  iconSprite: {fileID: 21300000, guid: ed2d3e8091d14494e8238b84c2817e1c, type: 3}

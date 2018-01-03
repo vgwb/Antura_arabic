@@ -292,6 +292,10 @@ Prefab:
       value: 
       objectReference: {fileID: 1933888343436626, guid: 4020ebb045f13ff47991ad7231851bdf,
         type: 2}
+    - target: {fileID: 1318506533123434, guid: dcf2cbcf7f66676489b89fcdf5401c4c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcf2cbcf7f66676489b89fcdf5401c4c, type: 2}
   m_IsPrefabParent: 0
@@ -2915,8 +2919,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab59d59fb2866a5489fb5983195dbf7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 21300000, guid: 0255a2d95cef25a40a332064fc91beb3, type: 3}
-  bonesCost: 12
+  iconSprite: {fileID: 21300000, guid: c9925c11320d7468288ac42847577414, type: 3}
+  bonesCost: 20
   errorLocalizationID: 0
   UnlockableDecorationObject: {fileID: 114364279622633410, guid: f0d207c01fe051c4caf6e15424cf37d5,
     type: 2}
@@ -7227,8 +7231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab59d59fb2866a5489fb5983195dbf7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 21300000, guid: 0255a2d95cef25a40a332064fc91beb3, type: 3}
-  bonesCost: 10
+  iconSprite: {fileID: 21300000, guid: e11ae63e297da4150bad119c42923721, type: 3}
+  bonesCost: 20
   errorLocalizationID: 0
   UnlockableDecorationObject: {fileID: 114364279622633410, guid: cc2c38a7a659a1b4996e0a843f678bd2,
     type: 2}
@@ -7419,7 +7423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &712482870
 Transform:
   m_ObjectHideFlags: 0
@@ -10507,8 +10511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab59d59fb2866a5489fb5983195dbf7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 21300000, guid: 5d26e7fcefb42da479b0e2c414bd0f08, type: 3}
-  bonesCost: 12
+  iconSprite: {fileID: 21300000, guid: ed2d3e8091d14494e8238b84c2817e1c, type: 3}
+  bonesCost: 10
   errorLocalizationID: 0
   UnlockableDecorationObject: {fileID: 114414015946378154, guid: 595d80bfb65c4b54ba7c206727320354,
     type: 2}
@@ -10906,7 +10910,7 @@ Prefab:
     - target: {fileID: 224859546621181490, guid: 21d6847d9291cd94f8c9933be8996bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -273
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224859546621181490, guid: 21d6847d9291cd94f8c9933be8996bd0,
         type: 2}
@@ -11060,7 +11064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5c1c738b058c14a89dd98f8aa99613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 21300000, guid: afdfa754b6e434266adb053554b057b0, type: 3}
+  iconSprite: {fileID: 21300000, guid: 89fcdc75669a34837bb5ef6a5e985de9, type: 3}
   bonesCost: 5
   errorLocalizationID: 0
 --- !u!1 &1105772697
@@ -11594,7 +11598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconSprite: {fileID: 21300000, guid: d3025604913e8ea42b196c3f7a411230, type: 3}
-  bonesCost: 20
+  bonesCost: 50
   errorLocalizationID: 0
   UnlockableDecorationObject: {fileID: 114035454883436458, guid: b7755ce8a96e3e241bb95abb8ad624f7,
     type: 2}
@@ -12498,7 +12502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1298358003
 Transform:
   m_ObjectHideFlags: 0
@@ -12648,8 +12652,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24105730728cee14ba46dfe40e94604f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 21300000, guid: 0656bf4d3591c414096112e6ee09a6b1, type: 3}
-  bonesCost: 10
+  iconSprite: {fileID: 21300000, guid: bf643df48648349f6866020979bf5ab9, type: 3}
+  bonesCost: 2
   errorLocalizationID: 0
   throwingObjectPrefabGO: {fileID: 114959570897666474, guid: 3531dcc60c838413fba09c1b6bca0bcd,
     type: 2}
@@ -12856,12 +12860,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114035454883436458, guid: b7755ce8a96e3e241bb95abb8ad624f7,
-        type: 2}
-      propertyPath: slotFeedbackPrefabGo
-      value: 
-      objectReference: {fileID: 1933888343436626, guid: 4020ebb045f13ff47991ad7231851bdf,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7755ce8a96e3e241bb95abb8ad624f7, type: 2}
   m_IsPrefabParent: 0
@@ -15009,7 +15007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconSprite: {fileID: 21300000, guid: 363039ad7f0d13140b74dca5c5d17c93, type: 3}
-  bonesCost: 30
+  bonesCost: 100
   errorLocalizationID: 0
   UnlockableDecorationObject: {fileID: 114256355765141968, guid: 8b1d8214aade24c4fb4a19056b17a8e2,
     type: 2}
@@ -15971,12 +15969,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114414015946378154, guid: 595d80bfb65c4b54ba7c206727320354,
-        type: 2}
-      propertyPath: slotFeedbackPrefabGo
-      value: 
-      objectReference: {fileID: 1933888343436626, guid: 4020ebb045f13ff47991ad7231851bdf,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 595d80bfb65c4b54ba7c206727320354, type: 2}
   m_IsPrefabParent: 0
@@ -22787,12 +22779,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114364279622633410, guid: cc2c38a7a659a1b4996e0a843f678bd2,
-        type: 2}
-      propertyPath: slotFeedbackPrefabGo
-      value: 
-      objectReference: {fileID: 1933888343436626, guid: 4020ebb045f13ff47991ad7231851bdf,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc2c38a7a659a1b4996e0a843f678bd2, type: 2}
   m_IsPrefabParent: 0
@@ -23389,7 +23375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2132322607
 Transform:
   m_ObjectHideFlags: 0
