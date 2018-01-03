@@ -337,16 +337,15 @@ namespace Antura.Map
             }
 
             // Create the dots
-            // TODO disabled for now to check performance on low end devices
-            //for (int dot_i = 1; dot_i <= nDots; dot_i++) {
-            //    // Create a new dot
-            //    var dotPos = pBack + dir * dot_i * actualDotsSpan;
-            //    var dotRot = Quaternion.Euler(90, 0, 0);
-            //    GameObject dotGo = Instantiate(dotPrefab, dotPos, dotRot);
-            //    dotGo.transform.SetParent(dotsPivot);
-            //    var dot = dotGo.GetComponent<Dot>();
-            //    pinFront.dots.Add(dot);
-            //}
+            for (int dot_i = 1; dot_i <= nDots; dot_i++) {
+                // Create a new dot
+                var dotPos = pBack + dir * dot_i * actualDotsSpan;
+                var dotRot = Quaternion.Euler(90, 0, 0);
+                GameObject dotGo = Instantiate(dotPrefab, dotPos, dotRot);
+                dotGo.transform.SetParent(dotsPivot);
+                var dot = dotGo.GetComponent<Dot>();
+                pinFront.dots.Add(dot);
+            }
         }
 
         private void UnlockPlaySessions()
