@@ -17,11 +17,14 @@ namespace Antura.Profile
             FinishedWAllStars
         }
 
+        [Header("Settings")]
         [Tooltip("If TRUE automatically initializes to the current player")]
-        [DeToggleButton]
         public bool AutoInit;
+        public bool HideLevel;
 
-        public Sprite EndgameHat, EndgameHatWStars;
+        [Header("References")]
+        public Sprite EndgameHat;
+        public Sprite EndgameHatWStars;
         public GameObject HighlightImage;
         public Image HatImage;
         public Image IconImage;
@@ -103,7 +106,12 @@ namespace Antura.Profile
                     HatImage.sprite = EndgameHatWStars;
                     break;
             }
-            LevelLabel.text = playerIconData.MaxJourneyPosition.Stage.ToString() + "-" + playerIconData.MaxJourneyPosition.LearningBlock.ToString();
+            if (HideLevel) {
+                LevelLabel.text = "";
+            } else {
+                LevelLabel.text = playerIconData.MaxJourneyPosition.Stage.ToString() + "-" + playerIconData.MaxJourneyPosition.LearningBlock.ToString();
+            }
+
             // Debug.Log("hasMaxStarsInCurrentPlaySessions: " + hasMaxStarsInCurrentPlaySessions);
             HighlightImage.SetActive(playerIconData.HasMaxStarsInCurrentPlaySessions);
         }
