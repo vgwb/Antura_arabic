@@ -1,6 +1,6 @@
-using System;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
+using System;
 
 namespace Antura.Minigames.Scanner
 {
@@ -23,8 +23,7 @@ namespace Antura.Minigames.Scanner
         static ScannerConfiguration instance;
         public static ScannerConfiguration Instance
         {
-            get
-            {
+            get {
                 if (instance == null)
                     instance = new ScannerConfiguration();
                 return instance;
@@ -56,20 +55,16 @@ namespace Antura.Minigames.Scanner
             builderParams.wordFilters.excludeColorWords = true;
             builderParams.wordFilters.requireDrawings = true;
 
-            switch (Variation)
-            {
+            switch (Variation) {
                 case ScannerVariation.OneWord:
                     nCorrect = 1;
                     nWrong = 4;
                     builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 case ScannerVariation.MultipleWords:
-                    if (Difficulty < 0.5f)
-                    {
+                    if (Difficulty < 0.5f) {
                         nCorrect = 3;
-                    }
-                    else
-                    {
+                    } else {
                         nCorrect = 5;
                     }
                     nWrong = 0;

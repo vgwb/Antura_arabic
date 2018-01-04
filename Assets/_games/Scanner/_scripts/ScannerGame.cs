@@ -31,7 +31,8 @@ namespace Antura.Minigames.Scanner
 
         public string currentWord = "";
 
-        [Range(0, 1)] public float pedagogicalLevel = 0;
+        [Range(0, 1)]
+        public float pedagogicalLevel = 0;
 
         public int numberOfRounds = 6;
 
@@ -42,22 +43,27 @@ namespace Antura.Minigames.Scanner
 
         public GameObject LLPrefab;
 
-        [HideInInspector] public List<ScannerLivingLetter> scannerLL;
+        [HideInInspector]
+        public List<ScannerLivingLetter> scannerLL;
 
         public List<ScannerSuitcase> suitcases;
 
-        [HideInInspector] public List<ILivingLetterData> wordData;
+        [HideInInspector]
+        public List<ILivingLetterData> wordData;
 
-        [HideInInspector] public ScannerRoundsManager roundsManager;
+        [HideInInspector]
+        public ScannerRoundsManager roundsManager;
 
-        [HideInInspector] public int LLCount;
+        [HideInInspector]
+        public int LLCount;
 
         public int CurrentScoreRecord;
 
         public Animator trapDoor;
 
         public ScannerTutorial tut;
-        public bool TutorialEnabled {
+        public bool TutorialEnabled
+        {
             get { return GetConfiguration().TutorialEnabled; }
         }
 
@@ -65,9 +71,8 @@ namespace Antura.Minigames.Scanner
 
         public int CurrentStars
         {
-            get
-            {
-                return (int) Mathf.Ceil(roundsManager.numberOfRoundsWon / 2f);
+            get {
+                return (int)Mathf.Ceil(roundsManager.numberOfRoundsWon / 2f);
             }
         }
 
