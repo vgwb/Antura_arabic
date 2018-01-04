@@ -9,6 +9,19 @@
 - repeat minigame
 - upgraded to Unity 5.6
 
+### 1.1.0beta build 579 (4 jan 2018)
+- at startup you could be asked to delete all previous users (we use a new db format)
+- the app asks for permission to share online analytics
+- all curriculum has been updated, could be final
+- MISSING: many words miss the drawing
+- Map has been optimized
+- Shop in the Antura Space is now in Beta (usable)
+- fixed the local notifications (after 24 hours of non play, you get a message)
+- the First Contact intros have been disabled (will be renabled in next build)
+- Book: we started the refactoring
+- all Rewards system has been reworked, please test any oddity
+- fixed many bugs in the minigames
+
 ### 1.1.0beta build 570
 - dialogs and music have changed from load in memory to streaming: please test if you hear something odd
 - some optimization to the map and song games: please test and report (the map is still slow, we know)
