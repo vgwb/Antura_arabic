@@ -101,12 +101,15 @@ namespace Antura.Rewards
 
         public void Hide(bool _immediate)
         {
-            if (!setupDone) return;
+            if (!setupDone) { return; }
 
             this.StopAllCoroutines();
             ContinueScreen.Close(true);
-            if (_immediate) showTween.Rewind();
-            else showTween.PlayBackwards();
+            if (_immediate) {
+                showTween.Rewind();
+            } else {
+                showTween.PlayBackwards();
+            }
         }
 
         #endregion
@@ -123,7 +126,7 @@ namespace Antura.Rewards
                 id++;
             }
 
-            if (numStars > 0) bgTween.Restart();
+            if (numStars > 0) { bgTween.Restart(); }
 
             AudioManager.I.PlaySound(numStars > 0 ? SfxCompleteWithStars : SfxCompleteNoStars);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
