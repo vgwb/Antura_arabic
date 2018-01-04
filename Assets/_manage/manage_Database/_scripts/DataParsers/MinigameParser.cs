@@ -17,8 +17,8 @@ namespace Antura.Database.Management
             data.Variation = ToString(dict["Variation"]);
             data.Badge = ToString(dict["Badge"]);
             data.Type = ParseEnum<MiniGameDataType>(data, dict["Type"]);
-            data.Title_En = ToString(dict["Title_En"]);
-            data.Title_Ar = ToString(dict["Title_Ar"]);
+            //data.Title_En = ToString(dict["Title_En"]);
+            //data.Title_Ar = ToString(dict["Title_Ar"]);
             data.Scene = ToString(dict["Scene"]);
             data.Active = ToString(dict["Status"]) == "active";
             data.AffectedPlaySkills = CustomParsePlaySkills(data, dict);

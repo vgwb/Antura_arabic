@@ -342,7 +342,7 @@ namespace Antura.Database.Management
             newData.Stage = 1;
             newData.LearningBlock = 1;
             newData.PlaySession = 1;
-            newData.MiniGameCode = MiniGameCode.Assessment_LetterForm;
+            newData.MiniGameCode = MiniGameCode.Assessment_LetterAny;
 
             newData.VocabularyDataType = RandomHelper.GetRandomEnum<VocabularyDataType>();
 
@@ -564,7 +564,7 @@ namespace Antura.Database.Management
 
         public void Teacher_FailedAssessmentLetters()
         {
-            var list = teacherAI.GetFailedAssessmentLetters(MiniGameCode.Assessment_LetterForm);
+            var list = teacherAI.GetFailedAssessmentLetters(MiniGameCode.Assessment_LetterAny);
 
             string output = "Failed letters for assessment 'Letters':\n";
             foreach (var data in list) output += data.ToString() + "\n";
@@ -573,7 +573,7 @@ namespace Antura.Database.Management
 
         public void Teacher_FailedAssessmentWords()
         {
-            var list = teacherAI.GetFailedAssessmentWords(MiniGameCode.Assessment_LetterForm);
+            var list = teacherAI.GetFailedAssessmentWords(MiniGameCode.Assessment_LetterAny);
 
             string output = "Failed words for assessment 'Letters':\n";
             foreach (var data in list) output += data.ToString() + "\n";

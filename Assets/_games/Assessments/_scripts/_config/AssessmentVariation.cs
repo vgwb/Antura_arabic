@@ -3,8 +3,8 @@ namespace Antura.Assessment
     public enum AssessmentVariation
     {
         Unsetted = MiniGameCode.Invalid,
-        Letter = MiniGameCode.Assessment_Letter,
-        LetterForm = MiniGameCode.Assessment_LetterForm,
+        LetterName = MiniGameCode.Assessment_LetterName,
+        LetterAny = MiniGameCode.Assessment_LetterAny,
         MatchLettersToWord = MiniGameCode.Assessment_MatchLettersToWord,
         WordsWithLetter = MiniGameCode.Assessment_WordsWithLetter,
         CompleteWord = MiniGameCode.Assessment_CompleteWord,

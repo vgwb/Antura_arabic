@@ -98,10 +98,10 @@ namespace Antura.Assessment
         public IQuestionBuilder SetupBuilder()
         {
             switch (Variation) {
-                case AssessmentVariation.Letter:
+                case AssessmentVariation.LetterName:
                     return Setup_Letter_Builder();
 
-                case AssessmentVariation.LetterForm:
+                case AssessmentVariation.LetterAny:
                     return Setup_LetterForm_Builder();
 
                 case AssessmentVariation.MatchLettersToWord:
@@ -460,8 +460,8 @@ namespace Antura.Assessment
         public MiniGameLearnRules SetupLearnRules()
         {
             switch (Variation) {
-                case AssessmentVariation.Letter:
-                case AssessmentVariation.LetterForm:
+                case AssessmentVariation.LetterName:
+                case AssessmentVariation.LetterAny:
                     return Setup_LetterForm_LearnRules();
 
                 case AssessmentVariation.MatchLettersToWord:
@@ -566,7 +566,7 @@ namespace Antura.Assessment
         {
             LetterDataSoundType soundType;
             switch (Variation) {
-                case AssessmentVariation.Letter:
+                case AssessmentVariation.LetterName:
                     soundType = LetterDataSoundType.Name;
                     break;
                 default:

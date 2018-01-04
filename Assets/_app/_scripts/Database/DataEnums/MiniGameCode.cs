@@ -47,8 +47,8 @@
         Tobogan_letterinword = 29, // DISABLED
         Tobogan_sunmoon = 30, // DISABLED
 
-        Assessment_Letter = 100,
-        Assessment_LetterForm = 115, // NEW
+        Assessment_LetterName = 100,
+        Assessment_LetterAny = 115, // NEW
         Assessment_WordsWithLetter = 101,
         Assessment_MatchLettersToWord = 102,
         Assessment_MatchLettersToWord_Form = 114,

@@ -27,10 +27,10 @@ namespace Antura.Assessment
                 case AssessmentVariation.MatchLettersToWord:
                     return ArabicAssessmentsFactory.CreateMatchLettersWordAssessment(context);
 
-                case AssessmentVariation.Letter:
+                case AssessmentVariation.LetterName:
                     return ArabicAssessmentsFactory.CreateLetterAssessment(context);
 
-                case AssessmentVariation.LetterForm:
+                case AssessmentVariation.LetterAny:
                     return ArabicAssessmentsFactory.CreateLetterFormAssessment(context);
 
                 case AssessmentVariation.WordsWithLetter:
