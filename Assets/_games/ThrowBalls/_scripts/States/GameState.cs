@@ -154,7 +154,7 @@ namespace Antura.Minigames.ThrowBalls
             UnityEngine.Object.Destroy(poof, 10);
             ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
 
-            audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Intro, OnIntroVoiceOverDone);
+            audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_Intro, OnIntroVoiceOverDone);
         }
 
         private void OnIntroVoiceOverDone()
@@ -268,16 +268,16 @@ namespace Antura.Minigames.ThrowBalls
             if (IsTutorialRound()) {
                 switch (ThrowBallsConfiguration.Instance.Variation) {
                     case ThrowBallsVariation.LetterName:
-                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_lettername_Tuto);
                         break;
                     case ThrowBallsVariation.LetterAny:
-                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_lettername_Tuto);
                         break;
                     case ThrowBallsVariation.Word:
-                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_words_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_word_Tuto);
                         break;
                     case ThrowBallsVariation.BuildWord:
-                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letterinword_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_buildword_Tuto);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -347,16 +347,16 @@ namespace Antura.Minigames.ThrowBalls
             if (IsTutorialRound()) {
                 switch (ThrowBallsConfiguration.Instance.Variation) {
                     case ThrowBallsVariation.LetterName:
-                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_lettername_Tuto);
                         break;
                     case ThrowBallsVariation.LetterAny:
-                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_lettername_Tuto);
                         break;
                     case ThrowBallsVariation.Word:
-                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_words_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_word_Tuto);
                         break;
                     case ThrowBallsVariation.BuildWord:
-                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letterinword_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_buildword_Tuto);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

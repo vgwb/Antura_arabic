@@ -59,7 +59,7 @@ MonoBehaviour:
       _Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0628\u062F\u0621!"
       _ArabicFemale: "\u0627\u0636\u063A\u0637\u064A \u0639\u0644\u0649 \u0628\u062F\u0621!"
       _AudioFile: Action_PressPlay
-    - _Id: AlphabetSong_alphabet_Intro
+    - _Id: Song_alphabet_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -69,16 +69,16 @@ MonoBehaviour:
         \u0627\u0644\u0623\u062D\u0631\u0641\u0650 \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628."
       _ArabicFemale: 
       _AudioFile: AlphabetSong_alphabet_Intro
-    - _Id: AlphabetSong_alphabet_Title
+    - _Id: Song_alphabet_Title
       _Character: Keeper
       _Area: minigame
       _When: 
-      _Context: 
+      _Context: Title
       _English: Alphabet Song
       _Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629"
       _ArabicFemale: 
       _AudioFile: AlphabetSong_alphabet_Title
-    - _Id: AlphabetSong_alphabet_Tuto
+    - _Id: Song_alphabet_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -591,13 +591,13 @@ MonoBehaviour:
       _English: Look! All these Words are numbers...
       _Arabic: "\u0627\u0646\u0638\u0631 \u0625\u0644\u0649 \u0643\u0644\u0651\u0650
         \u062A\u0644\u0643 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650 \u0648\u0627\u0644\u0623\u0631\u0642\u0627\u0645."
-      _ArabicFemale: 
+      _ArabicFemale: FEM VERSION AND RECORDING NEEDED
       _AudioFile: Balloons_counting_Intro
     - _Id: Balloons_counting_Title
       _Character: Keeper
       _Area: minigame
       _When: 
-      _Context: 
+      _Context: Title
       _English: Balloons & Numbers!
       _Arabic: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0623\u0631\u0642\u0627\u0645!"
       _ArabicFemale: 
@@ -618,7 +618,7 @@ MonoBehaviour:
         \u0645\u0646 \u0623\u0635\u063A\u0631\u0650 \u0631\u0642\u0645\u064D \u0625\u0644\u0649
         \u0627\u0644\u0623\u0643\u0628\u0631."
       _AudioFile: Balloons_counting_Tuto
-    - _Id: Balloons_letter_Intro
+    - _Id: Balloons_letterinword_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -629,22 +629,22 @@ MonoBehaviour:
         \u0623\u0639\u0644\u0627\u0647."
       _ArabicFemale: 
       _AudioFile: Balloons_letter_Intro
-    - _Id: Balloons_letter_Title
+    - _Id: Balloons_letterinword_Title
       _Character: Keeper
       _Area: minigame
       _When: 
-      _Context: 
+      _Context: Title
       _English: Balloons & the Shared Letter!
       _Arabic: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064F \u0648\u0627\u0644\u062D\u0631\u0641\u064F
         \u0627\u0644\u0645\u0634\u062A\u0631\u0643!"
       _ArabicFemale: 
       _AudioFile: Balloons_letter_Title
-    - _Id: Balloons_letter_Tuto
+    - _Id: Balloons_letterinword_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial
-      _English: Pop the balloons and LEAVE ONLY the right Words
+      _English: Pop the balloons of the right Words
       _Arabic: "\u0627\u0641\u0642\u0639\u0650 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
         \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
@@ -686,7 +686,7 @@ MonoBehaviour:
         \u062A\u0627\u0631\u0643\u0629\u064B \u0641\u0642\u0637 \u0627\u0644\u062D\u0631\u0648\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
       _AudioFile: Balloons_spelling_Tuto
-    - _Id: Balloons_words_Intro
+    - _Id: Balloons_word_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -698,7 +698,7 @@ MonoBehaviour:
         \u0627\u0644\u0648\u062D\u064A\u062F\u0629."
       _ArabicFemale: 
       _AudioFile: Balloons_words_Intro
-    - _Id: Balloons_words_Title
+    - _Id: Balloons_word_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -707,12 +707,12 @@ MonoBehaviour:
       _Arabic: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0635\u0648\u0631!"
       _ArabicFemale: 
       _AudioFile: Balloons_words_Title
-    - _Id: Balloons_words_Tuto
+    - _Id: Balloons_word_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial
-      _English: Pop the balloons and LEAVE ONLY the right Image
+      _English: Pop the balloons of the right Image
       _Arabic: "\u0627\u0641\u0642\u0639\u0650 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
         \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u0635\u0648\u0631\u0629\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
@@ -783,7 +783,7 @@ MonoBehaviour:
       _Arabic: "\u0643\u0644\u0645\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: Book_Words
-    - _Id: ColorTickle_Intro
+    - _Id: ColorTickle_lettername_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -793,7 +793,7 @@ MonoBehaviour:
         \u0644\u0648\u0646\u064E\u0647!"
       _ArabicFemale: 
       _AudioFile: ColorTickle_Intro
-    - _Id: ColorTickle_Title
+    - _Id: ColorTickle_lettername_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -802,7 +802,7 @@ MonoBehaviour:
       _Arabic: "\u062F\u063A\u062F\u063A\u0629\u064F \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
       _ArabicFemale: 
       _AudioFile: ColorTickle_Title
-    - _Id: ColorTickle_Tuto
+    - _Id: ColorTickle_lettername_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -815,7 +815,7 @@ MonoBehaviour:
         \u0627\u0644\u062D\u0631\u0641\u0650 \u062F\u0648\u0646\u064E \u0627\u0644\u062E\u0631\u0648\u062C\u0650
         \u0639\u0646 \u062D\u062F\u0648\u062F\u0650\u0647."
       _AudioFile: ColorTickle_Tuto
-    - _Id: DancingDots_Intro
+    - _Id: DancingDots_letterany_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -832,7 +832,7 @@ MonoBehaviour:
         \u0627\u0644\u0644\u0627\u0632\u0645\u0629\u064E \u0644\u0644\u0631\u0642\u0635!
         \u0633\u0627\u0639\u062F\u064A\u0647!"
       _AudioFile: DancingDots_Intro
-    - _Id: DancingDots_Title
+    - _Id: DancingDots_letterany_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -841,7 +841,7 @@ MonoBehaviour:
       _Arabic: "\u0646\u062C\u0648\u0645\u064F \u0627\u0644\u0631\u0642\u0635!"
       _ArabicFemale: 
       _AudioFile: DancingDots_Title
-    - _Id: DancingDots_Tuto
+    - _Id: DancingDots_letterany_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -869,13 +869,13 @@ MonoBehaviour:
     - _Id: AlphabetSong_letters_Title
       _Character: Keeper
       _Area: minigame
-      _When: At start
+      _When: 
       _Context: Title
       _English: Diacritic Song!
       _Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: AlphabetSong_letters_Title
-    - _Id: Egg_sequence_Intro
+    - _Id: Egg_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -888,16 +888,16 @@ MonoBehaviour:
         \u0634\u064A\u0626\u0627\u064B! \u0633\u0627\u0639\u062F\u064A\u0647\u0627
         \u0644\u062A\u0641\u0642\u0633!"
       _AudioFile: Egg_sequence_Intro
-    - _Id: Egg_sequence_Title
+    - _Id: Egg_buildword_Title
       _Character: Keeper
       _Area: minigame
       _When: 
       _Context: Title
-      _English: The Egg!
+      _English: The Egg and the hiden Word!
       _Arabic: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
       _AudioFile: Egg_sequence_Title
-    - _Id: Egg_letters_Tuto
+    - _Id: Egg_letterphoneme_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -912,7 +912,7 @@ MonoBehaviour:
         \u0627\u0644\u0635\u062D\u064A\u062D\u064E \u0628\u0634\u0643\u0644\u064D
         \u0645\u062A\u0643\u0631\u0631."
       _AudioFile: Egg_letters_Tuto
-    - _Id: Egg_sequence_Tuto
+    - _Id: Egg_buildword_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -930,7 +930,7 @@ MonoBehaviour:
         \u0644\u0643\u064A \u062A\u0643\u0631\u0651\u0650\u0631\u064E \u0645\u0627
         \u0633\u064E\u0645\u0650\u0639\u0652\u062A\u0650\u0647."
       _AudioFile: Egg_Tuto_Sequence
-    - _Id: FastCrowd_alphabet_Intro
+    - _Id: FastCrowd_lettername_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -941,7 +941,7 @@ MonoBehaviour:
         \u0627\u0644\u0635\u062D\u064A\u062D."
       _ArabicFemale: 
       _AudioFile: FastCrowd_alphabet_Intro
-    - _Id: FastCrowd_alphabet_Title
+    - _Id: FastCrowd_lettername_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -950,21 +950,19 @@ MonoBehaviour:
       _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
       _ArabicFemale: 
       _AudioFile: FastCrowd_alphabet_Title
-    - _Id: FastCrowd_alphabet_Tuto
+    - _Id: FastCrowd_lettername_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial
-      _English: Drag the Letters one by one, following the Alphabet order
+      _English: Drag the correct Letters, one by one
       _Arabic: "\u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0623\u062D\u0631\u0641\u064E
-        \u0648\u0627\u062D\u062F\u0627\u064B \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631\u0650
-        \u062D\u0633\u0628\u064E \u062A\u0631\u062A\u064A\u0628\u0650 \u0627\u0644\u062D\u0631\u0648\u0641\u0650
-        \u0627\u0644\u0647\u062C\u0627\u0626\u064A\u0629"
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0627\u064B
+        \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631"
       _ArabicFemale: "\u0627\u0633\u062D\u0628\u064A \u0627\u0644\u0623\u062D\u0631\u0641\u064E
-        \u0648\u0627\u062D\u062F\u0627\u064B \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631\u0650
-        \u062D\u0633\u0628\u064E \u062A\u0631\u062A\u064A\u0628\u0650 \u0627\u0644\u062D\u0631\u0648\u0641\u0650
-        \u0627\u0644\u0647\u062C\u0627\u0626\u064A\u0629."
-      _AudioFile: FastCrowd_alphabet_Tuto
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0627\u064B
+        \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631."
+      _AudioFile: FastCrowd_letter_Tuto
     - _Id: FastCrowd_counting_Intro
       _Character: Keeper
       _Area: minigame
@@ -1001,7 +999,7 @@ MonoBehaviour:
         \u0645\u0646 \u0623\u0635\u063A\u0631\u0650 \u0631\u0642\u0645\u064D \u0625\u0644\u0649
         \u0627\u0644\u0623\u0643\u0628\u0631."
       _AudioFile: FastCrowd_counting_Tuto
-    - _Id: FastCrowd_letter_Intro
+    - _Id: FastCrowd_letterform_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1012,7 +1010,7 @@ MonoBehaviour:
         \u0627\u0644\u0635\u062D\u064A\u062D."
       _ArabicFemale: 
       _AudioFile: FastCrowd_letter_Intro
-    - _Id: FastCrowd_letter_Title
+    - _Id: FastCrowd_letterform_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1021,7 +1019,7 @@ MonoBehaviour:
       _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
       _AudioFile: FastCrowd_letter_Title
-    - _Id: FastCrowd_letter_Tuto
+    - _Id: FastCrowd_letterform_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -1034,7 +1032,7 @@ MonoBehaviour:
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0627\u064B
         \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631."
       _AudioFile: FastCrowd_letter_Tuto
-    - _Id: FastCrowd_spelling_Intro
+    - _Id: FastCrowd_buildword_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1046,7 +1044,7 @@ MonoBehaviour:
         \u0643\u0644\u0645\u0629."
       _ArabicFemale: 
       _AudioFile: FastCrowd_spelling_Intro
-    - _Id: FastCrowd_spelling_Title
+    - _Id: FastCrowd_buildword_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1056,7 +1054,7 @@ MonoBehaviour:
         \u062A\u0643\u0648\u064A\u0646\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _ArabicFemale: 
       _AudioFile: FastCrowd_spelling_Title
-    - _Id: FastCrowd_spelling_Tuto
+    - _Id: FastCrowd_buildword_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -1069,7 +1067,7 @@ MonoBehaviour:
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0627\u064B
         \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631."
       _AudioFile: FastCrowd_spelling_Tuto
-    - _Id: FastCrowd_words_Intro
+    - _Id: FastCrowd_word_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1080,7 +1078,7 @@ MonoBehaviour:
         \u0627\u0644\u0635\u062D\u064A\u062D."
       _ArabicFemale: 
       _AudioFile: FastCrowd_words_Intro
-    - _Id: FastCrowd_words_Title
+    - _Id: FastCrowd_word_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1089,7 +1087,7 @@ MonoBehaviour:
       _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _ArabicFemale: 
       _AudioFile: FastCrowd_words_Title
-    - _Id: FastCrowd_words_Tuto
+    - _Id: FastCrowd_word_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -1111,7 +1109,7 @@ MonoBehaviour:
       _Arabic: "\u0639\u0646\u062A\u0648\u0631\u0629 \u0648\u0627\u0644\u062D\u0631\u0648\u0641"
       _ArabicFemale: 
       _AudioFile: Game_Title
-    - _Id: HideSeek_Intro
+    - _Id: HideSeek_letterphoneme_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1122,7 +1120,7 @@ MonoBehaviour:
       _ArabicFemale: "\u0633\u062A\u062E\u062A\u0628\u064A\u0621\u064F \u0627\u0644\u0623\u062D\u0631\u0641\u064F
         \u0648\u0639\u0644\u064A\u0643\u0650 \u0623\u0646\u0652 \u062A\u062C\u062F\u064A\u0647\u0627!"
       _AudioFile: HideSeek_Intro
-    - _Id: HideSeek_Title
+    - _Id: HideSeek_letterphoneme_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1131,7 +1129,7 @@ MonoBehaviour:
       _Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
       _ArabicFemale: 
       _AudioFile: HideSeek_Title
-    - _Id: HideSeek_Tuto
+    - _Id: HideSeek_letterphoneme_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -1150,7 +1148,7 @@ MonoBehaviour:
     - _Id: HideSeek_Words_Intro
       _Character: Keeper
       _Area: minigame
-      _When: At start
+      _When: 
       _Context: Introduction
       _English: The Words hide and you have to find them!
       _Arabic: "\u0639\u0644\u064A\u0643 \u0623\u0646\u0652 \u062A\u062C\u062F\u064E
@@ -1161,7 +1159,7 @@ MonoBehaviour:
     - _Id: HideSeek_Words_Title
       _Character: Keeper
       _Area: minigame
-      _When: At start
+      _When: 
       _Context: Title
       _English: Hidden Words!
       _Arabic: "\u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
@@ -2277,7 +2275,7 @@ MonoBehaviour:
       _Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0628\u0633\u064A\u0637\u0629"
       _ArabicFemale: 
       _AudioFile: LB_6_15
-    - _Id: MakeFriends_Intro
+    - _Id: MakeFriends_letterinword_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2287,9 +2285,9 @@ MonoBehaviour:
         \u0633\u0627\u0639\u062F\u0652\u0647\u0627 \u0639\u0644\u0649 \u0631\u0624\u064A\u0629\u0650
         \u0627\u0644\u0623\u0645\u0648\u0631\u0650 \u0627\u0644\u0645\u0634\u062A\u0631\u0643\u0629\u0650
         \u0628\u064A\u0646\u0647\u0627."
-      _ArabicFemale: 
+      _ArabicFemale: FEM VERSION AND RECORDING NEEDED
       _AudioFile: MakeFriends_Intro
-    - _Id: MakeFriends_Title
+    - _Id: MakeFriends_letterinword_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2298,7 +2296,7 @@ MonoBehaviour:
       _Arabic: "\u0634\u0631\u0627\u0631\u0629\u064F \u0627\u0644\u0635\u062F\u0627\u0642\u0629!"
       _ArabicFemale: 
       _AudioFile: MakeFriends_Title
-    - _Id: MakeFriends_Tuto
+    - _Id: MakeFriends_letterinword_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -2584,7 +2582,7 @@ MonoBehaviour:
         \u0633\u062A\u0646\u0647\u0650\u064A\u0646 \u0645\u0647\u0645\u062A\u064E\u0643\u0650
         \u0642\u0631\u064A\u0628\u0627\u064B."
       _AudioFile: Map_Welcome_3
-    - _Id: Maze_Intro
+    - _Id: Maze_lettername_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2598,7 +2596,7 @@ MonoBehaviour:
         \u0627\u0644\u0648\u0635\u0648\u0644\u0650 \u0625\u0644\u0649 \u062E\u0637\u0651\u0650
         \u0627\u0644\u0646\u0647\u0627\u064A\u0629."
       _AudioFile: Maze_Intro
-    - _Id: Maze_Title
+    - _Id: Maze_lettername_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2607,7 +2605,7 @@ MonoBehaviour:
       _Arabic: "\u0633\u0628\u0627\u0642\u064F \u0627\u0644\u0635\u0627\u0631\u0648\u062E!"
       _ArabicFemale: 
       _AudioFile: Maze_Title
-    - _Id: Maze_Tuto
+    - _Id: Maze_lettername_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -2675,7 +2673,7 @@ MonoBehaviour:
       _ArabicFemale: "\u0627\u0639\u062B\u0631\u064A \u0639\u0644\u0649 \u0627\u0644\u0643\u0644\u0645\u0629\u0650
         \u0627\u0644\u0646\u0627\u0642\u0635\u0629\u0650 \u0648\u0627\u0644\u0645\u0633\u064A\u0647\u0627."
       _AudioFile: MissingLetter_phrases_Tuto
-    - _Id: MissingLetter_Title
+    - _Id: MissingLetter_letterinword_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2740,7 +2738,7 @@ MonoBehaviour:
         \u0627\u0644\u0623\u062D\u0631\u0641\u0650 \u0628\u0634\u0643\u0644\u064D
         \u0635\u062D\u064A\u062D."
       _AudioFile: MixedLetters_alphabet_Tuto
-    - _Id: MixedLetters_spelling_Intro
+    - _Id: MixedLetters_buildword_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2755,7 +2753,7 @@ MonoBehaviour:
         \u0639\u0644\u0649 \u062A\u0634\u0643\u064A\u0644\u0650 \u0643\u0644\u0645\u0629\u064D
         \u0645\u0646 \u062C\u062F\u064A\u062F!"
       _AudioFile: MixedLetters_spelling_Intro
-    - _Id: MixedLetters_spelling_Title
+    - _Id: MixedLetters_buildword_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2764,7 +2762,7 @@ MonoBehaviour:
       _Arabic: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _ArabicFemale: 
       _AudioFile: MixedLetters_spelling_Title
-    - _Id: MixedLetters_spelling_Tuto
+    - _Id: MixedLetters_buildword_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -3172,7 +3170,7 @@ MonoBehaviour:
       _ArabicFemale: "\u0627\u0644\u0645\u0633\u064A \u0627\u0644\u0641\u0642\u0627\u0639\u0627\u062A\u0650
         \u0644\u062A\u0641\u0642\u0639\u064A\u0647\u0627."
       _AudioFile: SelectGame_Tuto_3
-    - _Id: SickLetters_Intro
+    - _Id: SickLetters_lettername_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -3188,7 +3186,7 @@ MonoBehaviour:
         \u0645\u0646 \u062A\u0644\u0643 \u0627\u0644\u062D\u0631\u0643\u0627\u062A\u0650
         \u0627\u0644\u062E\u0627\u0637\u0626\u0629!"
       _AudioFile: SickLetters_Intro
-    - _Id: SickLetters_Title
+    - _Id: SickLetters_lettername_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -3197,7 +3195,7 @@ MonoBehaviour:
       _Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u0645\u0631\u064A\u0636\u0629!"
       _ArabicFemale: 
       _AudioFile: SickLetters_Title
-    - _Id: SickLetters_Tuto
+    - _Id: SickLetters_lettername_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -3276,25 +3274,25 @@ MonoBehaviour:
     - _Id: ThrowBalls_Extra_Intro
       _Character: Keeper
       _Area: minigame
-      _When: Introduction
-      _Context: One of the letters belongs to the Word.
-      _English: 
+      _When: 
+      _Context: Introduction
+      _English: One of the letters belongs to the Word.
       _Arabic: "\u062C\u062F \u0627\u0644\u062D\u0631\u0641 \u0627\u0644\u0645\u0648\u062C\u0648\u062F
         \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629"
       _ArabicFemale: "\u0627\u0639\u062B\u0631\u064A \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641
         \u0627\u0644\u0645\u0648\u062C\u0648\u062F \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629."
       _AudioFile: ThrowBalls_Extra_Intro
-    - _Id: ThrowBalls_Extra_Title
+    - _Id: ThrowBalls_letterany_Title
       _Character: Keeper
       _Area: minigame
       _When: 
-      _Context: 'SlingShot: Letter in Word!'
-      _English: 
-      _Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0644\u062D\u0631\u0641
-        \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629!"
+      _Context: Title
+      _English: 'SlingShot: Letters Hunt'
+      _Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
+        \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
-      _AudioFile: ThrowBalls_Extra_Title
-    - _Id: ThrowBalls_letterinword_Title
+      _AudioFile: ThrowBalls_letters_Title
+    - _Id: ThrowBalls_buildword_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -3305,7 +3303,7 @@ MonoBehaviour:
         \u0627\u0644\u0643\u0644\u0645\u0629!"
       _ArabicFemale: 
       _AudioFile: ThrowBalls_letterinword_Title
-    - _Id: ThrowBalls_letterinword_Tuto
+    - _Id: ThrowBalls_buildword_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -3325,7 +3323,7 @@ MonoBehaviour:
         \u0639\u0644\u0649 \u0627\u0644\u0623\u062D\u0631\u0641\u0650 \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628
         \u0627\u0644\u0635\u062D\u064A\u062D."
       _AudioFile: ThrowBalls_letterinword_Tuto
-    - _Id: ThrowBalls_letters_Intro
+    - _Id: ThrowBalls_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -3338,17 +3336,17 @@ MonoBehaviour:
         \u0627\u0636\u0631\u0650\u0628\u064A \u0627\u0644\u0623\u0647\u062F\u0627\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629!"
       _AudioFile: ThrowBalls_letters_Intro
-    - _Id: ThrowBalls_letters_Title
+    - _Id: ThrowBalls_lettername_Title
       _Character: Keeper
       _Area: minigame
       _When: 
       _Context: Title
-      _English: 'SlingShot: letters hunt'
+      _English: 'SlingShot: Letters Hunt'
       _Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
       _AudioFile: ThrowBalls_letters_Title
-    - _Id: ThrowBalls_letters_Tuto
+    - _Id: ThrowBalls_lettername_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -3366,7 +3364,7 @@ MonoBehaviour:
         \u0627\u0644\u0645\u0642\u0644\u0627\u0639\u064E \u062B\u0645 \u0635\u064E\u0648\u0651\u0650\u0628\u064A
         \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641\u0650 \u0627\u0644\u0635\u062D\u064A\u062D."
       _AudioFile: ThrowBalls_letters_Tuto
-    - _Id: ThrowBalls_words_Title
+    - _Id: ThrowBalls_word_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -3376,7 +3374,7 @@ MonoBehaviour:
         \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _ArabicFemale: 
       _AudioFile: ThrowBalls_words_Title
-    - _Id: ThrowBalls_words_Tuto
+    - _Id: ThrowBalls_word_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -3462,7 +3460,7 @@ MonoBehaviour:
         \u0641\u064A \"\u0627\u0644\u0634\u0651\u0645\u0633\" \u0623\u0645 \"\u0627\u0644\u0642\u0645\u0631\"\u061F"
       _AudioFile: Tobogan_words_Tuto_Article
     - _Id: Tobogan_words_Tuto_Letter
-      _Character: 
+      _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial (Moon & Sun consonants/words)
@@ -3838,15 +3836,15 @@ MonoBehaviour:
       _Arabic: "\u0627\u0644\u0623\u0639\u062F\u0627\u062F \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
       _ArabicFemale: 
       _AudioFile: 
-    - _Id: Egg_letters_Title
+    - _Id: Egg_letterphoneme_Title
       _Character: Keeper
       _Area: minigame
       _When: 
       _Context: Title
-      _English: The Egg of the Alphabet!
-      _Arabic: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
+      _English: The Egg!
+      _Arabic: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
-      _AudioFile: Egg_letters_Title
+      _AudioFile: Egg_sequence_Title
     - _Id: UI_ReservedArea
       _Character: UI
       _Area: reserved
@@ -3995,7 +3993,7 @@ MonoBehaviour:
       _Context: 
       _English: Select a face
       _Arabic: "\u0627\u062E\u062A\u064E\u0631 \u0648\u062C\u0647\u0627\u064B."
-      _ArabicFemale: 
+      _ArabicFemale: FEM VERSION MISSING (RECORDING OK)
       _AudioFile: Profile_Avatar
     - _Id: Profile_Color
       _Character: Ibtissam
@@ -4004,7 +4002,7 @@ MonoBehaviour:
       _Context: 
       _English: Select a color
       _Arabic: "\u0627\u062E\u062A\u064E\u064E\u0631 \u0644\u0648\u0646\u0627\u064B."
-      _ArabicFemale: 
+      _ArabicFemale: FEM VERSION MISSING (RECORDING OK)
       _AudioFile: Profile_Color
     - _Id: Profile_Age
       _Character: Ibtissam
@@ -4013,7 +4011,7 @@ MonoBehaviour:
       _Context: 
       _English: How old are you?
       _Arabic: "\u0643\u0645 \u0639\u064F\u0645\u0652\u0631\u064F\u0643\u061F"
-      _ArabicFemale: 
+      _ArabicFemale: FEM VERSION MISSING (RECORDING OK)
       _AudioFile: Profile_Age
     - _Id: Profile_Years_4
       _Character: Ibtissam
@@ -4095,7 +4093,7 @@ MonoBehaviour:
       _Context: 
       _English: Are you sure?
       _Arabic: "\u0647\u0644 \u0623\u0646\u062A\u064E \u0645\u062A\u0623\u0643\u062F\u061F"
-      _ArabicFemale: 
+      _ArabicFemale: FEM VERSION MISSING (RECORDING OK)
       _AudioFile: UI_AreYouSure
     - _Id: UI_Yes
       _Character: Ibtissam
@@ -4124,7 +4122,7 @@ MonoBehaviour:
       _Arabic: "\u0627\u0633\u062D\u0628\u0652 \u062C\u0647\u0627\u0632\u064E \u0627\u0644\u0645\u0633\u062D\u0650
         \u0641\u0648\u0642\u064E \u0639\u0646\u062A\u0648\u0631\u0629 \u0644\u062A\u062F\u0641\u0639\u064E\u0647
         \u0628\u0639\u064A\u062F\u0627\u064B."
-      _ArabicFemale: 
+      _ArabicFemale: FEM VERSION MISSING (RECORDING OK)
       _AudioFile: Scanner_Tuto_Antura
     - _Id: Parental_Gate
       _Character: Ibtissam
@@ -4147,7 +4145,7 @@ MonoBehaviour:
       _Arabic: "\u0631\u0627\u0626\u0639! \u062C\u0627\u0626\u0632\u0629\u064F \u0625\u0643\u0645\u0627\u0644\u0650\u0643\u064E
         \u0627\u0644\u0631\u062D\u0644\u0629\u064E \u0647\u064A \u0642\u0648\u0649\u064B
         \u062E\u0627\u0631\u0642\u0629\u064C \u062D\u0642\u064A\u0642\u064A\u0629!"
-      _ArabicFemale: 
+      _ArabicFemale: FEM VERSION MISSING (RECORDING OK)
       _AudioFile: End_Scene_1_1
     - _Id: End_Scene_2
       _Character: Ibtissam
@@ -4156,7 +4154,7 @@ MonoBehaviour:
       _Context: end game
       _English: You are awesome!
       _Arabic: "\u0623\u0646\u062A\u064E \u0631\u0627\u0626\u0639!"
-      _ArabicFemale: 
+      _ArabicFemale: FEM VERSION MISSING (RECORDING OK)
       _AudioFile: End_Scene_2
     - _Id: End_Scene_3_1
       _Character: Ibtissam
@@ -4166,7 +4164,7 @@ MonoBehaviour:
       _English: Now go, leave your mark in the world!
       _Arabic: "\u0627\u0646\u0637\u0644\u0642\u0650 \u0627\u0644\u0622\u0646 \u0648\u0627\u062A\u0631\u0643\u0652
         \u0623\u062B\u0631\u0627\u064B \u0641\u064A \u0627\u0644\u0639\u0627\u0644\u0645!"
-      _ArabicFemale: 
+      _ArabicFemale: FEM VERSION MISSING (RECORDING OK)
       _AudioFile: End_Scene_3_1
     - _Id: UI_Phrases_Questions
       _Character: UI
@@ -4222,7 +4220,7 @@ MonoBehaviour:
       _Arabic: "\u0627\u0644\u062A\u0639\u0628\u064A\u0631\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: 
-    - _Id: MissingLetter_forms_Title
+    - _Id: MissingLetter_letterform_Title
       _Character: Keeper
       _Area: minigame
       _When: 

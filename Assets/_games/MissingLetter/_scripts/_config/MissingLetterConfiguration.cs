@@ -98,9 +98,9 @@ namespace Antura.Minigames.MissingLetter
                     case MissingLetterVariation.Phrase:
                         return LocalizationDataId.MissingLetter_phrases_Title;
                     case MissingLetterVariation.LetterForm:
-                        return LocalizationDataId.MissingLetter_forms_Title;
+                        return LocalizationDataId.MissingLetter_letterform_Title;
                     case MissingLetterVariation.LetterInWord:
-                        return LocalizationDataId.MissingLetter_forms_Title;    // TODO: we need the correct title!
+                        return LocalizationDataId.MissingLetter_letterform_Title;    // TODO: we need the correct title!
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

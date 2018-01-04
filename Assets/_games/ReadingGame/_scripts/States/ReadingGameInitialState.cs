@@ -25,7 +25,7 @@ namespace Antura.Minigames.ReadingGame
             }
             else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.Alphabet)
             {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.AlphabetSong_alphabet_Title, () => { introCompleted = true; });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Song_alphabet_Title, () => { introCompleted = true; });
             }
             else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.DiacriticSong)
             {

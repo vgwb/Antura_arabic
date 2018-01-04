@@ -54,7 +54,7 @@ namespace Antura.Minigames.Egg
         void OnEggEnterComplete()
         {
             if (firstQuestion) {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_sequence_Intro, delegate () { SetAndShowEggButtons(); });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Intro, delegate () { SetAndShowEggButtons(); });
             } else {
                 SetAndShowEggButtons();
             }

@@ -1,7 +1,6 @@
 using Antura.Audio;
 using Antura.LivingLetters;
 using Antura.Tutorial;
-using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.MissingLetter

@@ -86,13 +86,13 @@ namespace Antura.Minigames.ThrowBalls
             get {
                 switch (Instance.Variation) {
                     case ThrowBallsVariation.LetterName:
-                        return LocalizationDataId.ThrowBalls_letters_Title;
+                        return LocalizationDataId.ThrowBalls_lettername_Title;
                     case ThrowBallsVariation.LetterAny:
-                        return LocalizationDataId.ThrowBalls_letters_Title; // TODO: get the correct title here
+                        return LocalizationDataId.ThrowBalls_lettername_Title; // TODO: get the correct title here
                     case ThrowBallsVariation.Word:
-                        return LocalizationDataId.ThrowBalls_words_Title;
+                        return LocalizationDataId.ThrowBalls_word_Title;
                     case ThrowBallsVariation.BuildWord:
-                        return LocalizationDataId.ThrowBalls_letterinword_Title;
+                        return LocalizationDataId.ThrowBalls_buildword_Title;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

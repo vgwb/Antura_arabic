@@ -20,7 +20,7 @@ namespace Antura.Minigames.ColorTickle
 
         public void EnterState()
         {
-            game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ColorTickle_Title);
+            game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ColorTickle_lettername_Title);
 
             game.colorsCanvas.gameObject.SetActive(false);
 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using Antura.Audio;
 using Antura.Database;
@@ -116,7 +116,7 @@ namespace Antura.Minigames.DancingDots
         IEnumerator sayTut(float delay)
         {
             yield return new WaitForSeconds(delay);
-			AudioManager.I.PlayDialogue(LocalizationDataId.DancingDots_Tuto);
+			AudioManager.I.PlayDialogue(LocalizationDataId.DancingDots_letterany_Tuto);
         }
     }
 }

@@ -1,11 +1,9 @@
-using Antura.Minigames;
-
 namespace Antura.Minigames.DancingDots
 {
     public class QuestionGameState : FSM.IState
     {
         DancingDotsGame game;
-        
+
         public QuestionGameState(DancingDotsGame game)
         {
             this.game = game;
@@ -17,7 +15,7 @@ namespace Antura.Minigames.DancingDots
 
         public void ExitState()
         {
-            
+
         }
 
         public void Update(float delta)

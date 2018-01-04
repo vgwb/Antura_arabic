@@ -24,10 +24,8 @@ namespace Antura.Minigames.Egg
         static EggConfiguration instance;
         public static EggConfiguration Instance
         {
-            get
-            {
-                if (instance == null)
-                {
+            get {
+                if (instance == null) {
                     instance = new EggConfiguration();
                 }
                 return instance;
@@ -41,12 +39,9 @@ namespace Antura.Minigames.Egg
             Difficulty = 0.1f;
             Variation = EggVariation.LetterName;
 
-            if (Variation == EggVariation.BuildWord)
-            {
+            if (Variation == EggVariation.BuildWord) {
                 Questions = new SampleEggSequenceQuestionProvider();
-            }
-            else
-            {
+            } else {
                 Questions = new SampleEggSingleQuestionProvider();
             }
             TutorialEnabled = true;
@@ -63,8 +58,7 @@ namespace Antura.Minigames.Egg
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctSeverity = SelectionSeverity.AsManyAsPossible;
 
-            switch (Variation)
-            {
+            switch (Variation) {
                 case EggVariation.LetterName:
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
@@ -77,7 +71,7 @@ namespace Antura.Minigames.Egg
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
-            } 
+            }
 
             return builder;
         }
@@ -93,15 +87,14 @@ namespace Antura.Minigames.Egg
 
         public override LocalizationDataId TitleLocalizationId
         {
-            get
-            {
-                switch (Variation)
-                {
+            get {
+                switch (Variation) {
                     case EggVariation.LetterName:
-                    case EggVariation.LetterPhoneme:
                         return LocalizationDataId.Egg_letters_Title;
+                    case EggVariation.LetterPhoneme:
+                        return LocalizationDataId.Egg_letterphoneme_Title;
                     case EggVariation.BuildWord:
-                        return LocalizationDataId.Egg_sequence_Title;
+                        return LocalizationDataId.Egg_buildword_Title;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -110,8 +103,7 @@ namespace Antura.Minigames.Egg
 
         public bool IsSingleVariation()
         {
-            switch (Variation)
-            {
+            switch (Variation) {
                 case EggVariation.LetterName:
                 case EggVariation.LetterPhoneme:
                     return true;
@@ -124,8 +116,7 @@ namespace Antura.Minigames.Egg
 
         public bool IsSequence()
         {
-            switch (Variation)
-            {
+            switch (Variation) {
                 case EggVariation.LetterName:
                 case EggVariation.LetterPhoneme:
                     return false;

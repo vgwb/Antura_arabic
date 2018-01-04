@@ -23,8 +23,7 @@ namespace Antura.Minigames.MixedLetters
 
         public void EnterState()
         {
-            if (game.TutorialEnabled)
-            {
+            if (game.TutorialEnabled) {
                 game.DisableRepeatPromptButton();
                 game.GenerateNewWord();
 
@@ -37,13 +36,12 @@ namespace Antura.Minigames.MixedLetters
                 VictimLLController.instance.SetPosition(victimLLPosition);
             }
 
-            audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_spelling_Title : Database.LocalizationDataId.MixedLetters_alphabet_Title, OnTitleVoiceOverDone);
+            audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_buildword_Title : Database.LocalizationDataId.MixedLetters_alphabet_Title, OnTitleVoiceOverDone);
         }
 
         private void OnTitleVoiceOverDone()
         {
-            if (!game.TutorialEnabled)
-            {
+            if (!game.TutorialEnabled) {
                 game.SetCurrentState(game.IntroductionState);
                 return;
             }
@@ -97,14 +95,14 @@ namespace Antura.Minigames.MixedLetters
 
         private void OnAnturaExitedScene()
         {
-            audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_spelling_Intro : Database.LocalizationDataId.MixedLetters_alphabet_Intro, OnIntroVoiceOverDone);
+            audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_buildword_Intro : Database.LocalizationDataId.MixedLetters_alphabet_Intro, OnIntroVoiceOverDone);
         }
 
         private void OnIntroVoiceOverDone()
         {
             MixedLettersGame.instance.OnRoundStarted();
             game.EnableRepeatPromptButton();
-            audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_spelling_Tuto : Database.LocalizationDataId.MixedLetters_alphabet_Tuto);
+            audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_buildword_Tuto : Database.LocalizationDataId.MixedLetters_alphabet_Tuto);
         }
 
         public void ExitState()
@@ -114,8 +112,7 @@ namespace Antura.Minigames.MixedLetters
 
         public void Update(float delta)
         {
-            if (game.WasLastRoundWon)
-            {
+            if (game.WasLastRoundWon) {
                 game.SetCurrentState(game.ResultState);
             }
         }

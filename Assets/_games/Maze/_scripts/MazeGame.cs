@@ -151,7 +151,7 @@ namespace Antura.Minigames.Maze
             ConfigureTimer();
 
             //init first letter
-            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Title, () => {
+            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_lettername_Title, () => {
                 initCurrentLetter();
                 if (!isTutorialMode) initUI();
             });
@@ -483,9 +483,9 @@ namespace Antura.Minigames.Maze
         public void showCharacterMovingIn()
         {
             if (isTutorialMode) {
-                MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Intro,
+                MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_lettername_Intro,
                         () => {
-                            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Tuto, () => {
+                            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_lettername_Tuto, () => {
                                 MazeConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(
                                   currentLL,
                                   soundType: MazeConfiguration.Instance.GetVocabularySoundType()
@@ -612,7 +612,6 @@ namespace Antura.Minigames.Maze
             EndGame(numberOfStars, correctLetters);
 
         }
-
 
         public void onTimeUp()
         {

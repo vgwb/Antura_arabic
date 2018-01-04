@@ -160,17 +160,17 @@ namespace Antura.Minigames.FastCrowd
                 switch (Variation)
                 {
                     case FastCrowdVariation.BuildWord:
-                        return LocalizationDataId.FastCrowd_spelling_Title;
+                        return LocalizationDataId.FastCrowd_buildword_Title;
                     case FastCrowdVariation.Word:
-                        return LocalizationDataId.FastCrowd_words_Title;
+                        return LocalizationDataId.FastCrowd_word_Title;
                     case FastCrowdVariation.LetterName:
-                        return LocalizationDataId.FastCrowd_letter_Title;
+                        return LocalizationDataId.FastCrowd_letterform_Title;
                     case FastCrowdVariation.LetterForm:
-                        return LocalizationDataId.FastCrowd_letter_Title;   // TODO: add the correct one here
+                        return LocalizationDataId.FastCrowd_letterform_Title;   // TODO: add the correct one here
                     case FastCrowdVariation.Counting:
                         return LocalizationDataId.FastCrowd_counting_Title;
                     case FastCrowdVariation.Alphabet:
-                        return LocalizationDataId.FastCrowd_alphabet_Title;
+                        return LocalizationDataId.FastCrowd_lettername_Title;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -184,17 +184,17 @@ namespace Antura.Minigames.FastCrowd
                 switch (Variation)
                 {
                     case FastCrowdVariation.BuildWord:
-                        return LocalizationDataId.FastCrowd_spelling_Intro;
+                        return LocalizationDataId.FastCrowd_buildword_Intro;
                     case FastCrowdVariation.Word:
-                        return LocalizationDataId.FastCrowd_words_Intro;
+                        return LocalizationDataId.FastCrowd_word_Intro;
                     case FastCrowdVariation.LetterName:
-                        return LocalizationDataId.FastCrowd_letter_Intro;
+                        return LocalizationDataId.FastCrowd_letterform_Intro;
                     case FastCrowdVariation.LetterForm:
-                        return LocalizationDataId.FastCrowd_letter_Intro;   // TODO: add the correct one here
+                        return LocalizationDataId.FastCrowd_letterform_Intro;   // TODO: add the correct one here
                     case FastCrowdVariation.Counting:
                         return LocalizationDataId.FastCrowd_counting_Intro;
                     case FastCrowdVariation.Alphabet:
-                        return LocalizationDataId.FastCrowd_alphabet_Intro;
+                        return LocalizationDataId.FastCrowd_lettername_Intro;
                     default:
                             throw new ArgumentOutOfRangeException();
                 }
@@ -267,17 +267,17 @@ namespace Antura.Minigames.FastCrowd
                 switch (Variation)
                 {
                     case FastCrowdVariation.BuildWord:
-                        return LocalizationDataId.FastCrowd_spelling_Tuto;
+                        return LocalizationDataId.FastCrowd_buildword_Tuto;
                     case FastCrowdVariation.Word:
-                        return LocalizationDataId.FastCrowd_words_Tuto;
+                        return LocalizationDataId.FastCrowd_word_Tuto;
                     case FastCrowdVariation.LetterName:
-                        return LocalizationDataId.FastCrowd_letter_Tuto;
+                        return LocalizationDataId.FastCrowd_letterform_Tuto;
                     case FastCrowdVariation.LetterForm:
-                        return LocalizationDataId.FastCrowd_letter_Tuto;   // TODO: add the correct one here
+                        return LocalizationDataId.FastCrowd_letterform_Tuto;   // TODO: add the correct one here
                     case FastCrowdVariation.Counting:
                         return LocalizationDataId.FastCrowd_counting_Tuto;
                     case FastCrowdVariation.Alphabet:
-                        return LocalizationDataId.FastCrowd_alphabet_Tuto;
+                        return LocalizationDataId.FastCrowd_lettername_Tuto;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

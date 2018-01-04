@@ -1,6 +1,4 @@
-﻿using Antura.Audio;
-
-namespace Antura.Minigames.HideAndSeek
+﻿namespace Antura.Minigames.HideAndSeek
 {
     public class TutorialGameState : FSM.IState
     {
@@ -13,16 +11,14 @@ namespace Antura.Minigames.HideAndSeek
 
         public void EnterState()
         {
-            //game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
-            AudioManager.I.PlayMusic(Music.Lullaby);
+            game.Context.GetAudioManager().PlayMusic(Music.Lullaby);
             game.TutorialManager.enabled = true;
         }
 
         public void ExitState()
         {
             game.TutorialManager.enabled = false;
-            //game.Context.GetAudioManager().StopMusic();
-            AudioManager.I.StopMusic();
+            game.Context.GetAudioManager().StopMusic();
         }
 
         public void Update(float delta) { }

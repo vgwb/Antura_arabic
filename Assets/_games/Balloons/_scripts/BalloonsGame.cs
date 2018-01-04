@@ -218,10 +218,10 @@ namespace Antura.Minigames.Balloons
                     title = LocalizationDataId.Balloons_spelling_Title;
                     break;
                 case BalloonsVariation.LetterInWord:
-                    title = LocalizationDataId.Balloons_letter_Title;
+                    title = LocalizationDataId.Balloons_letterinword_Title;
                     break;
                 case BalloonsVariation.Words:
-                    title = LocalizationDataId.Balloons_words_Title;
+                    title = LocalizationDataId.Balloons_word_Title;
                     break;
                 case BalloonsVariation.Counting:
                     title = LocalizationDataId.Balloons_counting_Title;
@@ -242,10 +242,10 @@ namespace Antura.Minigames.Balloons
                     tutorial = LocalizationDataId.Balloons_spelling_Tuto;
                     break;
                 case BalloonsVariation.LetterInWord:
-                    tutorial = LocalizationDataId.Balloons_letter_Tuto;
+                    tutorial = LocalizationDataId.Balloons_letterinword_Tuto;
                     break;
                 case BalloonsVariation.Words:
-                    tutorial = LocalizationDataId.Balloons_words_Tuto;
+                    tutorial = LocalizationDataId.Balloons_word_Tuto;
                     break;
                 case BalloonsVariation.Counting:
                     tutorial = LocalizationDataId.Balloons_counting_Tuto;
@@ -266,10 +266,10 @@ namespace Antura.Minigames.Balloons
                     intro = LocalizationDataId.Balloons_spelling_Intro;
                     break;
                 case BalloonsVariation.LetterInWord:
-                    intro = LocalizationDataId.Balloons_letter_Intro;
+                    intro = LocalizationDataId.Balloons_letterinword_Intro;
                     break;
                 case BalloonsVariation.Words:
-                    intro = LocalizationDataId.Balloons_words_Intro;
+                    intro = LocalizationDataId.Balloons_word_Intro;
                     break;
                 case BalloonsVariation.Counting:
                     intro = LocalizationDataId.Balloons_counting_Intro;

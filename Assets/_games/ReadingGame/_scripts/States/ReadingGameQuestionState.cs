@@ -64,7 +64,7 @@ namespace Antura.Minigames.ReadingGame
                 else
                 {
                     var introDialogue = ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.Alphabet ?
-                        Database.LocalizationDataId.AlphabetSong_alphabet_Intro : Database.LocalizationDataId.AlphabetSong_letters_Intro;
+                        Database.LocalizationDataId.Song_alphabet_Intro : Database.LocalizationDataId.AlphabetSong_letters_Intro;
 
                     game.Context.GetAudioManager().PlayDialogue(introDialogue, () =>
                     {
@@ -80,7 +80,7 @@ namespace Antura.Minigames.ReadingGame
                         if (game.TutorialEnabled)
                         {
                             game.Context.GetAudioManager()
-                                .PlayDialogue(Database.LocalizationDataId.AlphabetSong_alphabet_Tuto, () =>
+                                .PlayDialogue(Database.LocalizationDataId.Song_alphabet_Tuto, () =>
                                 {
                                     completed = true;
                                 });

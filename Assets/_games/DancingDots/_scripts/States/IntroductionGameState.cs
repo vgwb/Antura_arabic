@@ -1,5 +1,3 @@
-using Antura.Audio;
-using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.DancingDots
@@ -17,11 +15,9 @@ namespace Antura.Minigames.DancingDots
         public void EnterState()
         {
             this.game.dancingDotsLL.contentGO.SetActive(false);
-            Debug.Log("Intro");
-            AudioManager.I.PlayDialogue("DancingDots_Title");
+            game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.DancingDots_letterany_Title);
             game.dancingDotsLL.letterObjectView.DoTwirl(null);
             game.disableInput = true;
-            //game.StartRound();
         }
 
         public void ExitState()
@@ -32,8 +28,7 @@ namespace Antura.Minigames.DancingDots
         {
             timer -= delta;
 
-            if (timer < 0)
-            {
+            if (timer < 0) {
                 game.SetCurrentState(game.QuestionState);
             }
         }

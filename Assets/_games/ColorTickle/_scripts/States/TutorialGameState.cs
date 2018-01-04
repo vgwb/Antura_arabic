@@ -127,14 +127,14 @@ namespace Antura.Minigames.ColorTickle
 
             m_LLController.OnDestinationReached += delegate () {
                 //play intro dialogue
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ColorTickle_Intro, delegate () {
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ColorTickle_lettername_Intro, delegate () {
                     //play tutorial dialogue on intro finish
 
                     //for now this is broken, COLORTICKLE_TUTO is repeated like a loop
                     // HACK stop audio and replay music
                     //game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ColorTickle_Tuto, delegate() { game.Context.GetAudioManager().StopMusic(); game.Context.GetAudioManager().PlayMusic(game.backgroundMusic); });
 
-                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ColorTickle_Tuto);
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ColorTickle_lettername_Tuto);
 
                     EnableLetterComponents();
                     EnableTutorialAnimation();
