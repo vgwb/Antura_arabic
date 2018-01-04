@@ -25,7 +25,7 @@ namespace Antura.Rewards
 
         [Header("References")]
         public AnturaAnimationController AnturaAnimController;
-        public Button AnturaSpaceBtton;
+        //public Button AnturaSpaceBtton;
 
         private TutorialManager tutorialManager;
         Tween btAnturaTween;
@@ -40,7 +40,7 @@ namespace Antura.Rewards
             //AnturaSpaceBtton.gameObject.SetActive(false);
             ShowReward();
 
-            AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
+            //AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
 
             var tutorialManager = gameObject.GetComponentInChildren<RewardsTutorialManager>();
             tutorialManager.HandleStart();
@@ -76,10 +76,10 @@ namespace Antura.Rewards
             // Wait animation ending before show continue button
             yield return new WaitForSeconds(4.4f);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
-            if (FirstContactManager.I.IsFinished()) {
-                AnturaSpaceBtton.gameObject.SetActive(true);
-                btAnturaTween = AnturaSpaceBtton.transform.DOScale(0.1f, 0.4f).From().SetEase(Ease.OutBack);
-            }
+            //if (FirstContactManager.I.IsFinished()) {
+            //    AnturaSpaceBtton.gameObject.SetActive(true);
+            //    btAnturaTween = AnturaSpaceBtton.transform.DOScale(0.1f, 0.4f).From().SetEase(Ease.OutBack);
+            //}
             yield return null;
         }
 
@@ -97,16 +97,13 @@ namespace Antura.Rewards
         /// <returns></returns>
         public RewardPack GetRewardPackToInstantiate()
         {
-            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig))
-            {
+            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig)) {
                 // Get the first propr reward (already unlocked)
                 var firstRewardPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBaseType(RewardBaseType.Prop).FirstOrDefault();
                 return firstRewardPack;
-            }
-            else
-            {
+            } else {
                 // Unlock the rewards for this JP (should be one, since this is an Assessment)
-                var newRewardPacks =  AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
+                var newRewardPacks = AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
                 var newRewardPack = newRewardPacks[0];
 
                 // Also advance the MaxJP

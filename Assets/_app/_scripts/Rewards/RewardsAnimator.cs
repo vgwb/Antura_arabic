@@ -116,7 +116,7 @@ namespace Antura.Rewards
                     .AppendInterval(0.3f)
                     .AppendCallback(() => { pedestalTween.Play(); });
             }
-            showTween.Insert(showTween.Duration(false) - 1, AnturaButton.DOAnchorPosY(-200, 0.4f).From(true).SetEase(Ease.OutBack));
+            //showTween.Insert(showTween.Duration(false) - 1, AnturaButton.DOAnchorPosY(-200, 0.4f).From(true).SetEase(Ease.OutBack));
 
             godraysTween = DOTween.Sequence().SetLoops(-1, LoopType.Restart)
                 .Append(Godray0.DORotate(new Vector3(0, 0, 360), Godrays360Duration, RotateMode.FastBeyond360).SetRelative()
@@ -162,8 +162,7 @@ namespace Antura.Rewards
         private void RewardSystemManager_OnRewardChanged(RewardPack rewardPack)
         {
             this.rewardPack = rewardPack;
-            if (rewardPack.BaseType == RewardBaseType.Prop)
-            {
+            if (rewardPack.BaseType == RewardBaseType.Prop) {
                 rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPack.Category);
             }
         }

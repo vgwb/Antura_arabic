@@ -14,7 +14,7 @@ namespace Antura.Rewards
 
             switch (FirstContactManager.I.CurrentPhase) {
                 case FirstContactPhase.Reward_FirstBig:
-                    _mScene.AnturaSpaceBtton.gameObject.SetActive(false);
+                    //_mScene.AnturaSpaceBtton.gameObject.SetActive(false);
                     KeeperManager.I.PlayDialog(Database.LocalizationDataId.Reward_Intro);
                     break;
             }
