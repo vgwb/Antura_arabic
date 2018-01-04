@@ -366,7 +366,7 @@ MonoBehaviour:
     - _Title_En: 
       _Title_Ar: 
       _Code: 14
-      _Active: 0
+      _Active: 1
       _Type: 1
       _Main: FastCrowd
       _Variation: lettername

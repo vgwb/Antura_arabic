@@ -603,7 +603,7 @@
     {
       "Id": "FastCrowd_lettername",
       "Type": "MiniGame",
-      "Status": "disabled",
+      "Status": "active",
       "Main": "FastCrowd",
       "Variation": "lettername",
       "Badge": "letters",
