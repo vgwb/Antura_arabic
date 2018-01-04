@@ -265,7 +265,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Let's play with our words!
+      _Title_En: Let's play with the words!
       _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0643\u0644\u0645\u0627\u062A
         !"
       _Focus: 4
@@ -344,7 +344,8 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's read the letters
-      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641"
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641
+        !"
       _Focus: 1
     - _Id: 3.5
       _Stage: 3
@@ -412,7 +413,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Let's play with our words!
+      _Title_En: Let's play with the words!
       _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0643\u0644\u0645\u0627\u062A
         !"
       _Focus: 4
@@ -462,8 +463,9 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: The
-      _Title_Ar: 
+      _Title_En: The beautiful letters!
+      _Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u062C\u0645\u064A\u0644\u0629
+        !"
       _Focus: 1
     - _Id: 4.2
       _Stage: 4
@@ -491,7 +493,8 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's read the letters
-      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641"
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641
+        !"
       _Focus: 1
     - _Id: 4.5
       _Stage: 4
@@ -559,7 +562,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Let's play with our words!
+      _Title_En: Let's play with the words!
       _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0643\u0644\u0645\u0627\u062A
         !"
       _Focus: 4
@@ -629,7 +632,8 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Will we find the letters?
-      _Title_Ar: "\u0633\u0648\u0641 \u0646\u062C\u062F \u0627\u0644\u062D\u0631\u0648\u0641\u061F"
+      _Title_Ar: "\u0633\u0648\u0641 \u0646\u062C\u062F \u0627\u0644\u062D\u0631\u0648\u0641
+        \u061F"
       _Focus: 1
     - _Id: 5.4
       _Stage: 5
@@ -638,7 +642,8 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's read the letters
-      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641"
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641
+        !"
       _Focus: 1
     - _Id: 5.5
       _Stage: 5
@@ -706,7 +711,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Let's play with our words!
+      _Title_En: Let's play with the words!
       _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0643\u0644\u0645\u0627\u062A
         !"
       _Focus: 4
@@ -777,7 +782,8 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Will we find the letters?
-      _Title_Ar: "\u0633\u0648\u0641 \u0646\u062C\u062F \u0627\u0644\u062D\u0631\u0648\u0641\u061F"
+      _Title_Ar: "\u0633\u0648\u0641 \u0646\u062C\u062F \u0627\u0644\u062D\u0631\u0648\u0641
+        \u061F"
       _Focus: 1
     - _Id: 6.4
       _Stage: 6
@@ -786,7 +792,8 @@ MonoBehaviour:
       _Description_En: 
       _Description_Ar: 
       _Title_En: Let's read the letters
-      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641"
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641
+        !"
       _Focus: 1
     - _Id: 6.5
       _Stage: 6
@@ -854,7 +861,7 @@ MonoBehaviour:
       _NumberOfPlaySessions: 2
       _Description_En: 
       _Description_Ar: 
-      _Title_En: Let's play with our words!
+      _Title_En: Let's play with the words!
       _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0643\u0644\u0645\u0627\u062A
         !"
       _Focus: 4
