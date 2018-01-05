@@ -237,6 +237,21 @@ namespace Antura.Audio
 
         #endregion
 
+        #region play various
+        public IAudioSource PlayLearningBlock(string AudioFile, bool clearPreviousCallback = false)
+        {
+            if (clearPreviousCallback) {
+                dialogueEndedCallbacks.Clear();
+            }
+
+            if (!string.IsNullOrEmpty(AudioFile)) {
+                AudioClip clip = GetLearningBlockAudioClip(AudioFile);
+                return new AudioSourceWrapper(dialogueGroup.Play(clip), dialogueGroup, this);
+            }
+            return null;
+        }
+        #endregion
+
         #region Letters, Words and Phrases
 
         /// <summary>
@@ -404,6 +419,15 @@ namespace Antura.Audio
             var res = GetCachedResource("AudioArabic/Phrases/" + data.Id);
             if (res == null) {
                 Debug.Log("Warning: cannot find audio clip for " + data);
+            }
+            return res;
+        }
+
+        public AudioClip GetLearningBlockAudioClip(string AudioFile)
+        {
+            var res = GetCachedResource("AudioArabic/LearningBlocks/" + AudioFile);
+            if (res == null) {
+                Debug.Log("Warning: cannot find audio clip for LearningBlocks" + AudioFile);
             }
             return res;
         }

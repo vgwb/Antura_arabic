@@ -98,7 +98,7 @@ namespace Antura.Book
         {
             currentLearningBlock = _currentLearningBlock;
             DetailPanel.SetActive(true);
-            AudioManager.I.PlayDialogue(currentLearningBlock.data.GetTitleSoundFilename());
+            AudioManager.I.PlayLearningBlock(currentLearningBlock.data.GetTitleSoundFilename());
 
             DetailCodeText.text = currentLearningBlock.data.Id;
             DetailTitleText.text = currentLearningBlock.data.Title_Ar;
