@@ -26,7 +26,7 @@ namespace Antura.Minigames.Egg
 
         private bool smoke = false;
         const float smokeTime = 2f;
-        private loat smokeTimer = 0f;
+        private float smokeTimer = 0f;
 
         private Tween shakeTween;
 
