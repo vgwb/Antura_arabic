@@ -70,8 +70,8 @@ namespace Antura.Rewards
         {
             Init();
             GlobalUI.ShowPauseMenu(false);
-            I.BonesCounter.GetComponent<RectTransform>().anchoredPosition = I.BonesCounterEndsessionPos;
-            I.BonesCounter.Hide();
+            //I.BonesCounter.GetComponent<RectTransform>().anchoredPosition = I.BonesCounterEndsessionPos;
+            //I.BonesCounter.Hide();
             I.EndsessionResultPanel.Show(_sessionData, _alreadyUnlockedRewards, _immediate);
             return I.EndsessionResultPanel.RewardsGos;
         }
@@ -94,7 +94,7 @@ namespace Antura.Rewards
         {
             if (I == null) { return; }
             GlobalUI.ShowPauseMenu(true);
-            I.BonesCounter.Hide();
+            //I.BonesCounter.Hide();
             I.EndsessionResultPanel.Hide(_immediate);
         }
 
