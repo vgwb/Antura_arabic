@@ -1,5 +1,6 @@
 using Antura.Core;
 using System.Linq;
+using Antura.Debugging;
 
 namespace Antura.Rewards
 {
@@ -7,13 +8,15 @@ namespace Antura.Rewards
     /// Manager for the Play Session Result scene.
     /// Accessed when a play session is completed.
     /// </summary>
-    public class PlaySessionResultManager : SceneBase
+    public class PlaySessionResultScene : SceneBase
     {
         private static bool UNLOCK_AT_EACH_PS = false;  // if true, we unlock something at the end of each PS
 
         protected override void Start()
         {
             base.Start();
+
+            DebugManager.OnSkipCurrentScene += HandleSceneSkip;
 
             var jp = AppManager.I.Player.CurrentJourneyPosition;
             var nEarnedStars = AppManager.I.NavigationManager.CalculateEarnedStarsCount();
@@ -63,6 +66,16 @@ namespace Antura.Rewards
                 var uiGameObjects = GameResultUI.ShowEndsessionResult(AppManager.I.NavigationManager.UseEndSessionResults(), 1);
             }
 
+        }
+
+        void OnDestroy()
+        {
+            DebugManager.OnSkipCurrentScene -= HandleSceneSkip;
+        }
+
+        private void HandleSceneSkip()
+        {
+            GameResultUI.I.EndsessionResultPanel.Continue();
         }
     }
 }
