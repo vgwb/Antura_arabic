@@ -1,5 +1,4 @@
 using Antura.LivingLetters;
-using Antura.Minigames;
 using Antura.Tutorial;
 using UnityEngine;
 
@@ -7,34 +6,34 @@ namespace Antura.Minigames.Egg
 {
     public class EggPlayState : FSM.IState
     {
-        EggGame game;
+        private EggGame game;
 
-        int letterOnSequence;
-        bool isSequence;
+        private int letterOnSequence;
+        private bool isSequence;
 
-        int questionProgress;
-        int correctAnswers;
+        private int questionProgress;
+        private int correctAnswers;
 
-        float nextStateTimer;
-        bool toNextState;
+        private float nextStateTimer;
+        private bool toNextState;
 
-        float inputButtonTime = 0.3f;
-        float inputButtonTimer;
-        int inputButtonCount;
-        int inputButtonMax = 4;
-        bool repeatInputHasProgressed;
-        bool enteredRepeatMode;
+        private float inputButtonTime = 0.3f;
+        private float inputButtonTimer;
+        private int inputButtonCount;
+        private int inputButtonMax = 4;
+        private bool repeatInputHasProgressed;
+        private bool enteredRepeatMode;
 
-        IAudioSource positiveAudioSource;
+        private IAudioSource positiveAudioSource;
 
-        bool showTutorial;
-        bool tutorialCorrectActive;
-        int tutorialSequenceIndex;
-        float tutorialCorrectTimer;
+        private bool showTutorial;
+        private bool tutorialCorrectActive;
+        private int tutorialSequenceIndex;
+        private float tutorialCorrectTimer;
 
-        float tutorialDelayTimer;
-        float tutorialDelayTime = 3f;
-        bool tutorialStop;
+        private float tutorialDelayTimer;
+        private float tutorialDelayTime = 3f;
+        private bool tutorialStop;
 
         public EggPlayState(EggGame game)
         {

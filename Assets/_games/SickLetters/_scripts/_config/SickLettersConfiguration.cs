@@ -1,6 +1,5 @@
-using System;
-using Antura.LivingLetters;
 using Antura.Teacher;
+using System;
 
 namespace Antura.Minigames.SickLetters
 {
@@ -22,8 +21,7 @@ namespace Antura.Minigames.SickLetters
         static SickLettersConfiguration instance;
         public static SickLettersConfiguration Instance
         {
-            get
-            {
+            get {
                 if (instance == null)
                     instance = new SickLettersConfiguration();
                 return instance;
@@ -51,8 +49,7 @@ namespace Antura.Minigames.SickLetters
 
             var builderParams = new QuestionBuilderParameters();
 
-            switch (Variation)
-            {
+            switch (Variation) {
                 case SickLettersVariation.LetterName:
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
@@ -72,6 +69,5 @@ namespace Antura.Minigames.SickLetters
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
         }
-
     }
 }

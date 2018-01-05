@@ -1,6 +1,5 @@
-using System;
-using Antura.LivingLetters;
 using Antura.Teacher;
+using System;
 
 namespace Antura.Minigames.MakeFriends
 {
@@ -29,8 +28,7 @@ namespace Antura.Minigames.MakeFriends
         static MakeFriendsConfiguration instance;
         public static MakeFriendsConfiguration Instance
         {
-            get
-            {
+            get {
                 if (instance == null)
                     instance = new MakeFriendsConfiguration();
                 return instance;
@@ -57,8 +55,7 @@ namespace Antura.Minigames.MakeFriends
             int nWords = 2;
 
             var builderParams = new QuestionBuilderParameters();
-            switch (Variation)
-            {
+            switch (Variation) {
                 case MakeFriendsVariation.LetterInWords:
                     builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams);
                     break;
@@ -85,13 +82,10 @@ namespace Antura.Minigames.MakeFriends
 
         public MakeFriendsDifficulty DifficultyChoice
         {
-            get
-            {
+            get {
                 // GameManager Override
-                if (MakeFriendsGame.Instance.overrideDifficulty)
-                {
-                    switch (MakeFriendsGame.Instance.difficultySetting)
-                    {
+                if (MakeFriendsGame.Instance.overrideDifficulty) {
+                    switch (MakeFriendsGame.Instance.difficultySetting) {
                         case MakeFriendsDifficulty.EASY:
                             Difficulty = EASY_THRESHOLD;
                             break;
@@ -106,38 +100,13 @@ namespace Antura.Minigames.MakeFriends
                     }
                 }
 
-                // SRDebugger Override
-#if SRDebuggerEnabled
-                if (SROptions.Current.MakeFriendsUseDifficulty)
-                {
-                    switch (SROptions.Current.MakeFriendsDifficulty)
-                    {
-                        case MakeFriendsVariation.EASY:
-                            Difficulty = EASY_THRESHOLD;
-                            break;
-
-                        case MakeFriendsVariation.MEDIUM:
-                            Difficulty = MEDIUM_THRESHOLD;
-                            break;
-
-                        case MakeFriendsVariation.HARD:
-                            Difficulty = HARD_THRESHOLD;
-                            break;
-                    }
-                }
-#endif
                 // Get Variation based on Difficulty
                 MakeFriendsDifficulty variation;
-                if (Difficulty < MEDIUM_THRESHOLD)
-                {
+                if (Difficulty < MEDIUM_THRESHOLD) {
                     variation = MakeFriendsDifficulty.EASY;
-                }
-                else if (Difficulty < HARD_THRESHOLD)
-                {
+                } else if (Difficulty < HARD_THRESHOLD) {
                     variation = MakeFriendsDifficulty.MEDIUM;
-                }
-                else
-                {
+                } else {
                     variation = MakeFriendsDifficulty.HARD;
                 }
 

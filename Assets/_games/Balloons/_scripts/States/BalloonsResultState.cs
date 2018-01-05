@@ -22,8 +22,7 @@
         {
             timer -= delta;
 
-            if (timer < 0)
-            {
+            if (timer < 0) {
                 game.endGameCanvas.gameObject.SetActive(true);
                 game.EndGame(game.CurrentStars, game.CurrentScore);
             }

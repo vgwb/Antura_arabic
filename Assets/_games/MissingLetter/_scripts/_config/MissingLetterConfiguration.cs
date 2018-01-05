@@ -1,7 +1,7 @@
-using System;
 using Antura.Database;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
+using System;
 
 namespace Antura.Minigames.MissingLetter
 {
@@ -68,7 +68,7 @@ namespace Antura.Minigames.MissingLetter
                 case MissingLetterVariation.LetterForm:
                     // Find the correct form of the letter in the given word
                     // wrong answers are the other forms of the same letter (not the same visually, tho)
-                    builder = new LetterAlterationsInWordsQuestionBuilder(nPacks, 1, parameters: builderParams, letterAlterationFilters:LetterAlterationFilters.VisualFormsOfSingleLetter);
+                    builder = new LetterAlterationsInWordsQuestionBuilder(nPacks, 1, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.VisualFormsOfSingleLetter);
                     break;
 
                 case MissingLetterVariation.Phrase:
@@ -91,10 +91,8 @@ namespace Antura.Minigames.MissingLetter
 
         public override LocalizationDataId TitleLocalizationId
         {
-            get
-            {
-                switch (Variation)
-                {
+            get {
+                switch (Variation) {
                     case MissingLetterVariation.Phrase:
                         return LocalizationDataId.MissingLetter_phrases_Title;
                     case MissingLetterVariation.LetterForm:

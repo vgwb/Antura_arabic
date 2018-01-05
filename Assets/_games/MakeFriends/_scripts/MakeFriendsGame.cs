@@ -1,16 +1,15 @@
-using UnityEngine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Antura.Database;
 using Antura.LivingLetters;
-using Antura.Minigames;
 using Antura.Tutorial;
 using Antura.UI;
 using ArabicSupport;
 using Antura.Core;
 using Antura.Helpers;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace Antura.Minigames.MakeFriends
 {

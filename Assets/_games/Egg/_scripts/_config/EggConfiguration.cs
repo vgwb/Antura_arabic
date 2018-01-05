@@ -1,6 +1,6 @@
-using System;
 using Antura.Database;
 using Antura.Teacher;
+using System;
 
 namespace Antura.Minigames.Egg
 {

@@ -53,12 +53,10 @@ namespace Antura.Minigames.Egg
         public bool RemoveButton(ILivingLetterData letterData)
         {
             bool removed = false;
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
+            for (int i = 0; i < eggButtons.Count; i++) {
                 EggButton eggButton = eggButtons[i];
 
-                if (eggButton.livingLetterData == letterData)
-                {
+                if (eggButton.livingLetterData == letterData) {
                     eggButton.ScaleTo(0f, 0.3f, 0f, delegate () { Destroy(eggButton.gameObject); });
 
                     eggButtons.RemoveAt(i--);
@@ -70,22 +68,20 @@ namespace Antura.Minigames.Egg
 
         public void RemoveButtons(Predicate<ILivingLetterData> predicate)
         {
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
+            for (int i = 0; i < eggButtons.Count; i++) {
                 EggButton eggButton = eggButtons[i];
 
-                if (predicate(eggButton.livingLetterData))
-                {
-                    if (RemoveButton(eggButton.livingLetterData))
+                if (predicate(eggButton.livingLetterData)) {
+                    if (RemoveButton(eggButton.livingLetterData)) {
                         --i;
+                    }
                 }
             }
         }
 
         public void RemoveButtons()
         {
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
+            for (int i = 0; i < eggButtons.Count; i++) {
                 EggButton eggButton = eggButtons[i];
 
                 eggButton.ScaleTo(0f, 0.3f, 0f, delegate () { Destroy(eggButton.gameObject); });
@@ -107,34 +103,29 @@ namespace Antura.Minigames.Egg
 
         public void ShowButtons()
         {
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
+            for (int i = 0; i < eggButtons.Count; i++) {
                 eggButtons[i].gameObject.SetActive(true);
             }
         }
 
         public void HideButtons()
         {
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
+            for (int i = 0; i < eggButtons.Count; i++) {
                 eggButtons[i].gameObject.SetActive(false);
             }
         }
 
         public void SetButtonsOnPressedColor()
         {
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
+            for (int i = 0; i < eggButtons.Count; i++) {
                 eggButtons[i].SetPressed();
             }
         }
 
         public void SetButtonsOnStandardColor(EggButton without = null, bool killTween = true)
         {
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
-                if (eggButtons[i] != without)
-                {
+            for (int i = 0; i < eggButtons.Count; i++) {
+                if (eggButtons[i] != without) {
                     eggButtons[i].SetNormal(killTween);
                 }
             }
@@ -148,13 +139,11 @@ namespace Antura.Minigames.Egg
 
             List<int> buttonsIndex = new List<int>();
 
-            for (int i = 0; i < buttonCount; i++)
-            {
+            for (int i = 0; i < buttonCount; i++) {
                 buttonsIndex.Add(i);
             }
 
-            for (int i = 0; i < buttonsPosition.Length; i++)
-            {
+            for (int i = 0; i < buttonsPosition.Length; i++) {
                 int index = randomGenerator.Next(0, buttonsIndex.Count);
                 int currentIndex = buttonsIndex[index];
                 buttonsIndex.RemoveAt(index);
@@ -166,8 +155,7 @@ namespace Antura.Minigames.Egg
 
         public void SetOnPressedCallback(Action<ILivingLetterData> callback)
         {
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
+            for (int i = 0; i < eggButtons.Count; i++) {
                 eggButtons[i].SetOnPressedCallback(callback);
             }
         }
@@ -181,12 +169,10 @@ namespace Antura.Minigames.Egg
             float delayBetweenButton = 0.1f;
             Action callback;
 
-            for (int i = 0; i < buttons.Count; i++)
-            {
+            for (int i = 0; i < buttons.Count; i++) {
                 callback = null;
 
-                if (i == buttons.Count - 1)
-                {
+                if (i == buttons.Count - 1) {
                     callback = endCallback;
                 }
 
@@ -200,8 +186,7 @@ namespace Antura.Minigames.Egg
         {
             buttonCount = eggButtons.Count;
 
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
+            for (int i = 0; i < eggButtons.Count; i++) {
                 eggButtons[i].transform.localPosition = anturaIn.localPosition;
             }
 
@@ -209,8 +194,7 @@ namespace Antura.Minigames.Egg
 
             List<int> buttonsIndex = new List<int>();
 
-            for (int i = 0; i < buttonCount; i++)
-            {
+            for (int i = 0; i < buttonCount; i++) {
                 buttonsIndex.Add(i);
             }
 
@@ -219,8 +203,7 @@ namespace Antura.Minigames.Egg
             Action onStartCallBack;
             Action onEndCallback;
 
-            for (int i = 0; i < buttonsPosition.Length; i++)
-            {
+            for (int i = 0; i < buttonsPosition.Length; i++) {
                 int index = randomGenerator.Next(0, buttonsIndex.Count);
                 int currentIndex = buttonsIndex[index];
                 buttonsIndex.RemoveAt(index);
@@ -232,15 +215,13 @@ namespace Antura.Minigames.Egg
 
                 fromStartDelay = anturaSpitDelay;
 
-                if (i == 0)
-                {
+                if (i == 0) {
                     fromStartDelay = anturaSpitDelay;
                     onStartCallBack = anturaSpit;
                     jump = false;
                 }
 
-                if (i == buttonsPosition.Length - 1)
-                {
+                if (i == buttonsPosition.Length - 1) {
                     onEndCallback = endCallback;
                 }
 
@@ -267,13 +248,10 @@ namespace Antura.Minigames.Egg
             int upLineLength = 0;
             int downLineLength = 0;
 
-            if (buttonCount <= 4)
-            {
+            if (buttonCount <= 4) {
                 upLineLength = buttonCount;
                 downLineLength = 0;
-            }
-            else
-            {
+            } else {
                 upLineLength = (buttonCount == 5 || buttonCount == 6) ? 3 : 4;
                 downLineLength = (buttonCount % 2) == 0 ? upLineLength : upLineLength - 1;
             }
@@ -281,22 +259,17 @@ namespace Antura.Minigames.Egg
             int lineIndex = 0;
             bool goDown = false;
 
-            for (int i = 0; i < buttonCount; i++)
-            {
-                if (buttonCount <= 4)
-                {
+            for (int i = 0; i < buttonCount; i++) {
+                if (buttonCount <= 4) {
                     currentPosition.y = 0f;
-                }
-                else
-                {
+                } else {
                     currentPosition.y = goDown ? positionDown : positionUp;
                 }
 
                 currentPosition.x = GetHorizontalPositions(eggSizeDelta.x, goDown ? downLineLength : upLineLength)[lineIndex];
 
                 lineIndex++;
-                if (lineIndex >= upLineLength)
-                {
+                if (lineIndex >= upLineLength) {
                     goDown = true;
                     lineIndex = 0;
                 }
@@ -311,18 +284,13 @@ namespace Antura.Minigames.Egg
         {
             float[] horizontalPositions = new float[number];
 
-            if (number == 1)
-            {
+            if (number == 1) {
                 horizontalPositions[0] = 0f;
-            }
-            else
-            {
+            } else {
                 float currentHorizontal = (((size + buttonDistance) * (number - 1)) / 2f);
 
-                for (int i = 0; i < number; i++)
-                {
-                    if (i != 0)
-                    {
+                for (int i = 0; i < number; i++) {
+                    if (i != 0) {
                         currentHorizontal -= size + buttonDistance;
                     }
 
@@ -335,18 +303,14 @@ namespace Antura.Minigames.Egg
 
         public List<EggButton> GetButtons(bool inPositionOrder)
         {
-            if (inPositionOrder)
-            {
+            if (inPositionOrder) {
                 List<EggButton> buttons = new List<EggButton>();
 
-                while (buttons.Count < eggButtons.Count)
-                {
+                while (buttons.Count < eggButtons.Count) {
                     EggButton eB = null;
 
-                    for (int i = 0; i < eggButtons.Count; i++)
-                    {
-                        if (eggButtons[i].positionIndex == buttons.Count)
-                        {
+                    for (int i = 0; i < eggButtons.Count; i++) {
+                        if (eggButtons[i].positionIndex == buttons.Count) {
                             eB = eggButtons[i];
                             break;
                         }
@@ -356,19 +320,15 @@ namespace Antura.Minigames.Egg
                 }
 
                 return buttons;
-            }
-            else
-            {
+            } else {
                 return eggButtons;
             }
         }
 
         public EggButton GetEggButton(ILivingLetterData letterData)
         {
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
-                if (eggButtons[i].livingLetterData == letterData)
-                {
+            for (int i = 0; i < eggButtons.Count; i++) {
+                if (eggButtons[i].livingLetterData == letterData) {
                     return eggButtons[i];
                 }
             }
@@ -378,16 +338,14 @@ namespace Antura.Minigames.Egg
 
         public void EnableButtonsInput()
         {
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
+            for (int i = 0; i < eggButtons.Count; i++) {
                 eggButtons[i].EnableInput();
             }
         }
 
         public void DisableButtonsInput()
         {
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
+            for (int i = 0; i < eggButtons.Count; i++) {
                 eggButtons[i].DisableInput();
             }
         }
@@ -399,15 +357,12 @@ namespace Antura.Minigames.Egg
             Action sCallback = null;
             Action eCallback = null;
 
-            for (int i = 0; i < buttons.Count; i++)
-            {
-                if (i == buttons.Count - 1)
-                {
+            for (int i = 0; i < buttons.Count; i++) {
+                if (i == buttons.Count - 1) {
                     eCallback = endCallback;
                 }
 
-                if (i == 0)
-                {
+                if (i == 0) {
                     sCallback = startCallback;
                 }
 
@@ -417,8 +372,7 @@ namespace Antura.Minigames.Egg
 
         public void StopButtonsAudio()
         {
-            for (int i = 0; i < eggButtons.Count; i++)
-            {
+            for (int i = 0; i < eggButtons.Count; i++) {
                 eggButtons[i].StopButtonAudio();
             }
         }
@@ -427,10 +381,8 @@ namespace Antura.Minigames.Egg
         {
             Color newColor;
 
-            if (availableButtonColors.Count <= 0)
-            {
-                for (int i = 0; i < buttonColors.Length; i++)
-                {
+            if (availableButtonColors.Count <= 0) {
+                for (int i = 0; i < buttonColors.Length; i++) {
                     availableButtonColors.Add(buttonColors[i]);
                 }
             }

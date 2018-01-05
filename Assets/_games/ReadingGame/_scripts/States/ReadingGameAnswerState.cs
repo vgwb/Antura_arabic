@@ -1,10 +1,9 @@
+using Antura.LivingLetters;
+using Antura.Tutorial;
 using DG.DeExtensions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Antura.LivingLetters;
-using Antura.Minigames;
-using Antura.Tutorial;
 using UnityEngine;
 
 namespace Antura.Minigames.ReadingGame
@@ -47,28 +46,26 @@ namespace Antura.Minigames.ReadingGame
 
             choices.AddRange(wrongs);
 
-            for (int i = maxWrongs, count = choices.Count; i < count; ++i)
+            for (int i = maxWrongs, count = choices.Count; i < count; ++i) {
                 choices.RemoveAt(choices.Count - 1);
+            }
 
             choices.Add(correct);
             choices.Shuffle();
 
             float delay = 0;
-            foreach (var c in choices)
-            {
+            foreach (var c in choices) {
                 var button = box.AddButton(c, OnAnswered, delay);
                 delay += 0.2f;
 
-                if (c == correct)
-                {
+                if (c == correct) {
                     correctButton = button;
                 }
             }
 
             box.Active = true;
 
-            if (!TutorialMode)
-            {
+            if (!TutorialMode) {
                 game.radialWidget.Show();
                 game.radialWidget.Reset(ReadTime / MaxTime);
                 game.radialWidget.inFront = true;
@@ -81,16 +78,16 @@ namespace Antura.Minigames.ReadingGame
             game.circleBox.GetComponent<CircleButtonBox>().Clear();
             game.radialWidget.inFront = false;
 
-            if (TutorialMode)
+            if (TutorialMode) {
                 TutorialUI.Clear(true);
+            }
         }
 
         public void Update(float delta)
         {
             rightButtonTimer -= delta;
 
-            if (correctButton != null && TutorialMode && rightButtonTimer < 0 && box.IsReady())
-            {
+            if (correctButton != null && TutorialMode && rightButtonTimer < 0 && box.IsReady()) {
                 rightButtonTimer = 3;
                 var uicamera = game.uiCamera;
                 TutorialUI.SetCamera(uicamera);
@@ -108,15 +105,13 @@ namespace Antura.Minigames.ReadingGame
             bool result = button.Answer == correct;
 
             game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
-            
-            if (!TutorialMode)
-                game.Context.GetLogManager().OnAnswered(correct, result);
 
-            if (button.Answer == correct)
-            {
+            if (!TutorialMode) {
+                game.Context.GetLogManager().OnAnswered(correct, result);
+            }
+            if (button.Answer == correct) {
                 // Assign score
-                if (!TutorialMode)
-                {
+                if (!TutorialMode) {
                     game.AddScore((int)(ReadTime) + 1);
                     game.radialWidget.percentage = 0;
                     game.radialWidget.pulsing = false;
@@ -125,20 +120,15 @@ namespace Antura.Minigames.ReadingGame
                 game.StartCoroutine(DoEndAnimation(true, correctButton));
 
                 game.antura.Mood = ReadingGameAntura.AnturaMood.HAPPY;
-            }
-            else
-            {
-                if (TutorialMode)
-                {
+            } else {
+                if (TutorialMode) {
                     //button.SetColor(UnityEngine.Color.red);
                     if (box.IsReady())
                         TutorialUI.MarkNo(button.transform.position);
-                }
-                else
-                {
-                    if (!TutorialMode)
+                } else {
+                    if (!TutorialMode) {
                         game.radialWidget.PoofAndHide();
-
+                    }
                     game.StartCoroutine(DoEndAnimation(false, correctButton));
 
                     game.antura.animator.DoShout(() => { ReadingGameConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking); });
@@ -149,18 +139,18 @@ namespace Antura.Minigames.ReadingGame
         IEnumerator DoEndAnimation(bool correct, CircleButton correctButton)
         {
             box.Active = false;
-            if (correct)
+            if (correct) {
                 correctButton.SetColor(UnityEngine.Color.green);
-            else
+            } else {
                 correctButton.SetColor(UnityEngine.Color.red);
-
+            }
             yield return new UnityEngine.WaitForSeconds(1.0f);
 
-            if (!correct && game.RemoveLife())
+            if (!correct && game.RemoveLife()) {
                 yield break;
+            }
 
-            game.circleBox.GetComponent<CircleButtonBox>().Clear(() =>
-            {
+            game.circleBox.GetComponent<CircleButtonBox>().Clear(() => {
                 game.SetCurrentState(game.QuestionState);
             }, 0.5f);
         }

@@ -1,5 +1,4 @@
 using Antura.Tutorial;
-using Antura.Minigames;
 
 namespace Antura.Minigames.ReadingGame
 {
@@ -19,14 +18,12 @@ namespace Antura.Minigames.ReadingGame
             game.antura.AllowSitting = true;
             game.isTimesUp = false;
 
-            if (game.CurrentQuestionNumber >= ReadingGameGame.MAX_QUESTIONS)
-            {
+            if (game.CurrentQuestionNumber >= ReadingGameGame.MAX_QUESTIONS) {
                 game.EndGame(game.CurrentStars, game.CurrentScore);
                 return;
             }
 
-            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
-            {
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer) {
                 game.Context.GetOverlayWidget().SetClockDuration(game.TimeToAnswer);
                 game.Context.GetOverlayWidget().SetClockTime(game.TimeToAnswer);
             }
@@ -34,8 +31,7 @@ namespace Antura.Minigames.ReadingGame
             game.blurredText.SetActive(true);
             //game.circleBox.SetActive(false);
 
-            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
-            {
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer) {
                 // Pick a question
                 var pack = ReadingGameConfiguration.Instance.Questions.GetNextQuestion();
                 game.CurrentQuestion = pack;
@@ -43,9 +39,7 @@ namespace Antura.Minigames.ReadingGame
                     game.barSet.SetData(pack.GetQuestion());
                 else
                     game.EndGame(game.CurrentStars, game.CurrentScore);
-            }
-            else
-            {
+            } else {
                 game.barSet.SetShowTargets(ReadingGameConfiguration.Instance.Difficulty < 0.5f);
                 game.barSet.SetShowArrows(ReadingGameConfiguration.Instance.Difficulty < 0.8f);
 
@@ -54,46 +48,34 @@ namespace Antura.Minigames.ReadingGame
 
             game.barSet.active = false;
 
-            if (firstRun)
-            {
-                if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
-                {
+            if (firstRun) {
+                if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer) {
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ReadingGame_Intro, () => { completed = true; });
                     game.ReadState.TutorialMode = true;
-                }
-                else
-                {
+                } else {
                     var introDialogue = ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.Alphabet ?
                         Database.LocalizationDataId.Song_alphabet_Intro : Database.LocalizationDataId.AlphabetSong_letters_Intro;
 
-                    game.Context.GetAudioManager().PlayDialogue(introDialogue, () =>
-                    {
+                    game.Context.GetAudioManager().PlayDialogue(introDialogue, () => {
                         var firstBar = game.barSet.GetNextBar();
                         var handleOffset = firstBar.glass.handleOffset.position - firstBar.glass.transform.position;
 
-                        if (game.TutorialEnabled)
-                        {
+                        if (game.TutorialEnabled) {
                             TutorialUI.DrawLine(firstBar.start.transform.position + handleOffset, firstBar.endCompleted.transform.position + handleOffset, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
                         }
                         game.barSet.SwitchToNextBar();
 
-                        if (game.TutorialEnabled)
-                        {
+                        if (game.TutorialEnabled) {
                             game.Context.GetAudioManager()
-                                .PlayDialogue(Database.LocalizationDataId.Song_alphabet_Tuto, () =>
-                                {
+                                .PlayDialogue(Database.LocalizationDataId.Song_alphabet_Tuto, () => {
                                     completed = true;
                                 });
-                        }
-                        else
-                        {
+                        } else {
                             completed = true;
                         }
                     });
                 }
-            }
-            else
-            {
+            } else {
                 ++game.CurrentQuestionNumber;
                 completed = true;
                 game.ReadState.TutorialMode = false;

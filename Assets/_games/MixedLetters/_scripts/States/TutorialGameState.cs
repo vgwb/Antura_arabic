@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using Antura.Minigames;
 using Random = UnityEngine.Random;
 
 namespace Antura.Minigames.MixedLetters

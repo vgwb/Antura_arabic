@@ -30,23 +30,18 @@
 
         public void Update(float delta)
         {
-            if (takenAction)
-            {
+            if (takenAction) {
                 return;
             }
 
             timer -= delta;
 
-            if (timer < 0)
-            {
+            if (timer < 0) {
                 takenAction = true;
 
-                if (playTutorial)
-                {
+                if (playTutorial) {
                     this.game.PlayTutorial();
-                }
-                else
-                {
+                } else {
                     game.SetCurrentState(game.QuestionState);
                 }
             }

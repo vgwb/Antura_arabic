@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Antura.LivingLetters;
+using UnityEngine;
 using System.Collections.Generic;
-using Antura.LivingLetters;
 
 namespace Antura.Minigames.Egg
 {
@@ -9,10 +9,10 @@ namespace Antura.Minigames.Egg
         public Transform[] leftOutPositions;
         public Transform[] rightOutPositions;
 
-        List<EggRunLetter> runLetters = new List<EggRunLetter>();
+        private List<EggRunLetter> runLetters = new List<EggRunLetter>();
 
-        GameObject letterObjectPrefab;
-        GameObject shadowPrefab;
+        private GameObject letterObjectPrefab;
+        private GameObject shadowPrefab;
 
         public void Initialize(GameObject letterObjectPrefab, GameObject shadowPrefab)
         {
@@ -34,8 +34,7 @@ namespace Antura.Minigames.Egg
 
         public void RemoveAllRunLetters()
         {
-            for (int i = 0; i < runLetters.Count; i++)
-            {
+            for (int i = 0; i < runLetters.Count; i++) {
                 runLetters[i].DestroyRunLetter();
             }
 

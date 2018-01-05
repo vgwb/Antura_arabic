@@ -42,7 +42,7 @@ namespace Antura.Minigames.Egg
 
         public bool stagePositiveResult { get; set; }
 
-        bool tutorialFlag;
+        private bool tutorialFlag;
 
         public bool ShowTutorial
         {
@@ -97,7 +97,7 @@ namespace Antura.Minigames.Egg
             antura.Initialize(anturaPrefab);
         }
 
-        bool overlayWidgetInitialized;
+        private bool overlayWidgetInitialized;
 
         public void InitializeOverlayWidget()
         {

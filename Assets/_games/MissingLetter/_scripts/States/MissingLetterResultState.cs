@@ -23,11 +23,10 @@
 
         public void Update(float delta)
         {
-            if (m_bGoToEndGame)
+            if (m_bGoToEndGame) {
                 m_fTimer -= delta;
-
-            if (m_fTimer < 0)
-            {
+            }
+            if (m_fTimer < 0) {
                 m_oGame.EndGame(m_oGame.m_iCurrentStars, m_oGame.m_iCurrentScore);
             }
 

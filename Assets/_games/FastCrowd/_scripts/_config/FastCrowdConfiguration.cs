@@ -1,8 +1,8 @@
-using System;
 using Antura.Database;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
+using System;
 
 namespace Antura.Minigames.FastCrowd
 {
@@ -22,7 +22,7 @@ namespace Antura.Minigames.FastCrowd
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (FastCrowdVariation) code;
+            Variation = (FastCrowdVariation)code;
         }
 
         // Singleton Pattern
@@ -30,10 +30,8 @@ namespace Antura.Minigames.FastCrowd
 
         public static FastCrowdConfiguration Instance
         {
-            get
-            {
-                if (instance == null)
-                {
+            get {
+                if (instance == null) {
                     instance = new FastCrowdConfiguration();
                 }
                 return instance;
@@ -69,8 +67,7 @@ namespace Antura.Minigames.FastCrowd
 
             var builderParams = new QuestionBuilderParameters();
 
-            switch (Variation)
-            {
+            switch (Variation) {
                 case FastCrowdVariation.Alphabet:
                     builder = new AlphabetQuestionBuilder();
                     break;
@@ -114,8 +111,7 @@ namespace Antura.Minigames.FastCrowd
         public override bool IsDataMatching(ILivingLetterData data1, ILivingLetterData data2)
         {
             LetterEqualityStrictness strictness;
-            switch (Variation)
-            {
+            switch (Variation) {
                 case FastCrowdVariation.LetterForm:
                     strictness = LetterEqualityStrictness.WithVisualForm;
                     break;
@@ -135,8 +131,7 @@ namespace Antura.Minigames.FastCrowd
         public override LetterDataSoundType GetVocabularySoundType()
         {
             LetterDataSoundType soundType;
-            switch (Variation)
-            {
+            switch (Variation) {
                 case FastCrowdVariation.LetterForm:
                     soundType = LetterDataSoundType.Name;
                     break;
@@ -155,10 +150,8 @@ namespace Antura.Minigames.FastCrowd
 
         public override LocalizationDataId TitleLocalizationId
         {
-            get
-            {
-                switch (Variation)
-                {
+            get {
+                switch (Variation) {
                     case FastCrowdVariation.BuildWord:
                         return LocalizationDataId.FastCrowd_buildword_Title;
                     case FastCrowdVariation.Word:
@@ -179,10 +172,8 @@ namespace Antura.Minigames.FastCrowd
 
         public LocalizationDataId IntroLocalizationId
         {
-            get
-            {
-                switch (Variation)
-                {
+            get {
+                switch (Variation) {
                     case FastCrowdVariation.BuildWord:
                         return LocalizationDataId.FastCrowd_buildword_Intro;
                     case FastCrowdVariation.Word:
@@ -196,17 +187,15 @@ namespace Antura.Minigames.FastCrowd
                     case FastCrowdVariation.Alphabet:
                         return LocalizationDataId.FastCrowd_lettername_Intro;
                     default:
-                            throw new ArgumentOutOfRangeException();
+                        throw new ArgumentOutOfRangeException();
                 }
             }
         }
 
         public bool NeedsWordComposer
         {
-            get
-            {
-                switch (Variation)
-                {
+            get {
+                switch (Variation) {
                     case FastCrowdVariation.BuildWord:
                     case FastCrowdVariation.LetterName:
                     case FastCrowdVariation.LetterForm:
@@ -224,8 +213,7 @@ namespace Antura.Minigames.FastCrowd
         public bool WordComposerInSplitMode
         {
             get {
-                switch (Variation)
-                {
+                switch (Variation) {
                     case FastCrowdVariation.LetterForm:
                     case FastCrowdVariation.LetterName:
                         return true;
@@ -242,10 +230,8 @@ namespace Antura.Minigames.FastCrowd
 
         public bool NeedsFullQuestionCompleted
         {
-            get
-            {
-                switch (Variation)
-                {
+            get {
+                switch (Variation) {
                     case FastCrowdVariation.BuildWord:
                     case FastCrowdVariation.LetterForm:
                     case FastCrowdVariation.LetterName:
@@ -262,10 +248,8 @@ namespace Antura.Minigames.FastCrowd
 
         public LocalizationDataId TutorialLocalizationId
         {
-            get
-            {
-                switch (Variation)
-                {
+            get {
+                switch (Variation) {
                     case FastCrowdVariation.BuildWord:
                         return LocalizationDataId.FastCrowd_buildword_Tuto;
                     case FastCrowdVariation.Word:

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Antura.LivingLetters;
+﻿using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Core;
+using System.Collections.Generic;
 
 namespace Antura.Minigames.Egg
 {
@@ -15,15 +15,13 @@ namespace Antura.Minigames.Egg
         {
             ILivingLetterData questionSentence = null;
 
-            List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
-            List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
+            var correctAnswers = new List<ILivingLetterData>();
+            var wrongAnswers = new List<ILivingLetterData>();
 
-            while (correctAnswers.Count < 8)
-            {
+            while (correctAnswers.Count < 8) {
                 var letter = AppManager.I.Teacher.GetRandomTestLetterLL();
 
-                if (!CheckIfContains(correctAnswers, letter))
-                {
+                if (!CheckIfContains(correctAnswers, letter)) {
                     correctAnswers.Add(letter);
                 }
             }
@@ -33,9 +31,11 @@ namespace Antura.Minigames.Egg
 
         static bool CheckIfContains(List<ILivingLetterData> list, ILivingLetterData letter)
         {
-            for (int i = 0, count = list.Count; i < count; ++i)
-                if (list[i].Id == letter.Id)
+            for (int i = 0, count = list.Count; i < count; ++i) {
+                if (list[i].Id == letter.Id) {
                     return true;
+                }
+            }
             return false;
         }
     }

@@ -1,5 +1,3 @@
-using Antura.Minigames;
-
 namespace Antura.Minigames.MakeFriends
 {
     public class MakeFriendsPlayState : FSM.IState

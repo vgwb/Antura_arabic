@@ -1,11 +1,9 @@
-using Antura.Minigames;
-
 namespace Antura.Minigames.SickLetters
 {
     public class QuestionGameState : FSM.IState
     {
         SickLettersGame game;
-        
+
         public QuestionGameState(SickLettersGame game)
         {
             this.game = game;
@@ -14,7 +12,7 @@ namespace Antura.Minigames.SickLetters
         public void EnterState()
         {
             game.SetCurrentState(game.PlayState);
-            
+
             //game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true, null);
         }
 

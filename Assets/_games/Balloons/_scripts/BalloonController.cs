@@ -29,16 +29,12 @@ namespace Antura.Minigames.Balloons
 
         void FixedUpdate()
         {
-            if (adjustMiddleBalloon)
-            {
-                if (adjustProgress < adjustDuration)
-                {
+            if (adjustMiddleBalloon) {
+                if (adjustProgress < adjustDuration) {
                     transform.localPosition = Vector3.Lerp(transform.localPosition, adjustedLocalPosition, adjustProgressPercentage);
                     adjustProgress += Time.deltaTime;
                     adjustProgressPercentage = adjustProgress / adjustDuration;
-                }
-                else
-                {
+                } else {
                     adjustMiddleBalloon = false;
                 }
             }
@@ -52,12 +48,9 @@ namespace Antura.Minigames.Balloons
         void TapAction()
         {
             taps++;
-            if (taps >= parentFloatingLetter.tapsNeeded)
-            {
+            if (taps >= parentFloatingLetter.tapsNeeded) {
                 Pop();
-            }
-            else
-            {
+            } else {
                 animator.SetTrigger("Tap");
             }
         }
