@@ -136,7 +136,7 @@ namespace Antura.Rewards
             AppManager.I.Player.AddBones(numStars);
         }
 
-        void Continue()
+        public void Continue()
         {
             // We acknowledge the end of the minigame. Add stars.
             AppManager.I.NavigationManager.EndMinigame(numStars);

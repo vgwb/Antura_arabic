@@ -1,6 +1,7 @@
 using Antura.Core;
 using Antura.Debugging;
 using Antura.FSM;
+using Antura.Rewards;
 using Antura.UI;
 using Antura.Utilities;
 using UnityEngine;
@@ -162,6 +163,18 @@ namespace Antura.Minigames
             EndGame(value, value);
         }
 
+        void HandleSceneSkip()
+        {
+            if (stateManager.CurrentState != OutcomeState)
+            {
+                EndGame(3, 3);  // max stars
+            }
+            else
+            {
+                EndgameResultPanel.I.Continue();
+            }
+        }
+
         #endregion
 
         #region Update
@@ -207,12 +220,15 @@ namespace Antura.Minigames
         void OnEnable()
         {
             DebugManager.OnForceCurrentMinigameEnd += ForceCurrentMinigameEnd;
+            DebugManager.OnSkipCurrentScene += HandleSceneSkip;
         }
 
         void OnDisable()
         {
             DebugManager.OnForceCurrentMinigameEnd -= ForceCurrentMinigameEnd;
+            DebugManager.OnSkipCurrentScene -= HandleSceneSkip;
         }
+
 
         void OnDestroy()
         {

@@ -171,9 +171,8 @@ namespace Antura.Rewards
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
 
-        void Continue()
+        public void Continue()
         {
-            //GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.MiniGameDone());
             AppManager.I.NavigationManager.GoToNextScene();
         }
 

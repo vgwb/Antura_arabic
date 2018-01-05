@@ -8,6 +8,7 @@ using Antura.UI;
 using DG.Tweening;
 using System.Collections;
 using System.Linq;
+using Antura.Debugging;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,7 +35,7 @@ namespace Antura.Rewards
         {
             base.Start();
             GlobalUI.ShowPauseMenu(false);
-            Debug.Log("RewardsManager playsession: " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
+            //Debug.Log("RewardsManager playsession: " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
             AnturaAnimController.State = AnturaAnimation;
             //AnturaSpaceBtton.gameObject.SetActive(false);
@@ -44,10 +45,19 @@ namespace Antura.Rewards
 
             var tutorialManager = gameObject.GetComponentInChildren<RewardsTutorialManager>();
             tutorialManager.HandleStart();
+
+            DebugManager.OnSkipCurrentScene += HandleSceneSkip;
+        }
+
+        void HandleSceneSkip()
+        {
+            Continue();
         }
 
         void OnDestroy()
         {
+            DebugManager.OnSkipCurrentScene -= HandleSceneSkip;
+
             btAnturaTween.Kill();
         }
 
@@ -58,7 +68,7 @@ namespace Antura.Rewards
 
         IEnumerator StartReward()
         {
-            if (FirstContactManager.I.IsFinished()) {
+            if (FirstContactManager.I.IsSequenceFinished()) {
                 int rnd = Random.Range(1, 3);
                 switch (rnd) {
                     case 1:
@@ -87,7 +97,7 @@ namespace Antura.Rewards
 
         public void ClearLoadedRewardsOnAntura()
         {
-            // Clean and Charge antura reward.
+            // Clean and load antura reward.
             AnturaModelManager.I.ClearLoadedRewardPacks();
         }
 
@@ -97,11 +107,13 @@ namespace Antura.Rewards
         /// <returns></returns>
         public RewardPack GetRewardPackToInstantiate()
         {
-            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig)) {
-                // Get the first propr reward (already unlocked)
+            if (FirstContactManager.I.IsPhaseUnlockedAndNotCompleted(FirstContactPhase.Reward_FirstBig))
+            {
+                // Get the first prop reward (already unlocked)
                 var firstRewardPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBaseType(RewardBaseType.Prop).FirstOrDefault();
                 return firstRewardPack;
-            } else {
+            } else
+            {
                 // Unlock the rewards for this JP (should be one, since this is an Assessment)
                 var newRewardPacks = AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
                 var newRewardPack = newRewardPacks[0];
@@ -127,8 +139,8 @@ namespace Antura.Rewards
 
         public void Continue()
         {
-            if (FirstContactManager.I.IsInPhase(FirstContactPhase.Reward_FirstBig))
-                FirstContactManager.I.CompleteCurrentPhase();
+            if (FirstContactManager.I.IsPhaseUnlockedAndNotCompleted(FirstContactPhase.Reward_FirstBig))
+                FirstContactManager.I.CompleteCurrentPhaseInSequence();
 
             AppManager.I.NavigationManager.GoToNextScene();
         }
