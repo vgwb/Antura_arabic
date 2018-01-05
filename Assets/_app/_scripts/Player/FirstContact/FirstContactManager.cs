@@ -89,7 +89,7 @@ namespace Antura.Profile
         private FirstContactPhase SIMULATE_FIRST_CONTACT_PHASE = FirstContactPhase.AnturaSpace_TouchAntura;
 
         private static bool FORCE_FIRST_CONTACT_START = false;
-        private FirstContactPhase FORCED_FIRST_CONTACT_START_PHASE = FirstContactPhase.AnturaSpace_TouchAntura;
+        private FirstContactPhase FORCED_FIRST_CONTACT_START_PHASE = FirstContactPhase.Finished;
 
         public FirstContactManager()
         {
@@ -126,11 +126,6 @@ namespace Antura.Profile
 
         public void InitialiseForCurrentPlayer(FirstContactState _state)
         {
-            if (FORCE_FIRST_CONTACT_START)
-            {
-                ForceToPhaseInSequence(FORCED_FIRST_CONTACT_START_PHASE);
-            }
-
             this.state = _state;
 
             // Default state
@@ -139,6 +134,11 @@ namespace Antura.Profile
                 state = new FirstContactState();
                 ResetSequence();
                 AppManager.I.Player.FirstContactState = state;
+            }
+
+            if (FORCE_FIRST_CONTACT_START)
+            {
+                ForceToPhaseInSequence(FORCED_FIRST_CONTACT_START_PHASE);
             }
         }
 
@@ -264,7 +264,23 @@ namespace Antura.Profile
         public override string ToString()
         {
             string s = "Next in sequence: " + CurrentPhaseInSequence;
-            s += "\n\n-- Unlock state --\n" + state.ToString();
+
+            s += "\n\n-- Unlock state for sequence --\n";
+            foreach (var phase in phasesSequence)
+            {
+                s += phase + ": " + GetPhaseState(phase) + "\n";
+            }
+
+            s += "\n-- Unlock state for other features --\n";
+            for (int phase_i = 0; phase_i < state.phaseStates.Length; phase_i++)
+            {
+                var phase = (FirstContactPhase) phase_i;
+                if (!phasesSequence.Contains(phase))
+                {
+                    s += phase + ": " + GetPhaseState(phase) + "\n";
+                }
+            }
+
             return s;
         }
 
@@ -310,17 +326,33 @@ namespace Antura.Profile
             FilterTransitionOn(FirstContactPhase.AnturaSpace_TouchAntura, fromScene == AppScene.Home || fromScene == AppScene.Rewards, ref toScene, AppScene.AnturaSpace);
             FilterTransitionOn(FirstContactPhase.AnturaSpace_Shop, fromScene == AppScene.Home || fromScene == AppScene.PlaySessionResult, ref toScene, AppScene.AnturaSpace);
 
+            // Force the game to re-start from the current tutorial phase if needed
+            FilterTransitionOn(FirstContactPhase.Map_GoToProfile, fromScene == AppScene.Home, ref toScene, AppScene.Map);
+            FilterTransitionOn(FirstContactPhase.Map_GoToAnturaSpace, fromScene == AppScene.Home, ref toScene, AppScene.Map);
+            FilterTransitionOn(FirstContactPhase.Map_GoToMinigames, fromScene == AppScene.Home, ref toScene, AppScene.Map);
+            FilterTransitionOn(FirstContactPhase.Map_GoToBook, fromScene == AppScene.Home, ref toScene, AppScene.Map);
+
             return toScene;
         }
 
         private void FilterTransitionOn(FirstContactPhase phase, bool condition, ref AppScene toScene, AppScene newScene)
         {
-            if (CurrentPhaseInSequence == phase && condition) { toScene = newScene; }
+            if (IsPhaseUnlockedAndNotCompleted(phase) && condition) { toScene = newScene; }
         }
 
         private void TransitionCompletePhaseOn(FirstContactPhase phase, bool condition)
         {
-            if (CurrentPhaseInSequence == phase && condition) { CompleteCurrentPhaseInSequence(); }
+            if (IsPhaseUnlockedAndNotCompleted(phase) && condition)
+            {
+                if (phasesSequence.Contains(phase))
+                {
+                    CompleteCurrentPhaseInSequence();
+                }
+                else
+                {
+                    CompletePhase(phase);
+                }
+            }
         }
 
         #endregion

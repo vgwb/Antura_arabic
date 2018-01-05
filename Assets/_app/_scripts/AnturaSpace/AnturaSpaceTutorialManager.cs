@@ -37,11 +37,32 @@ namespace Antura.AnturaSpace
         protected override void InternalHandleStart()
         {
             _mScene = FindObjectOfType<AnturaSpaceScene>();
-            _mScene.HideBackButton();
 
+            // Check whether we are in a phase that this tutorial should handle
+            switch (FirstContactManager.I.CurrentPhaseInSequence)
+            {
+                default:
+                    return;
+                case FirstContactPhase.AnturaSpace_Customization:
+                    case FirstContactPhase.AnturaSpace_Exit:
+                    case FirstContactPhase.AnturaSpace_Photo:
+                    case FirstContactPhase.AnturaSpace_Shop:
+                    case FirstContactPhase.AnturaSpace_TouchAntura:
+                    StopTutorialRunning();
+
+                    // Restore all UI
+                    _mScene.ShowBackButton();
+                    UI.ShowShopButton(true);
+                    ShopDecorationsManager.SetContextClosed();
+                    m_oCustomizationButton.gameObject.SetActive(true);
+                    break;
+            }
+
+            
             TutorialUI.SetCamera(m_oCameraUI);
 
             // First, disable all UI
+            _mScene.HideBackButton();
             UI.ShowShopButton(false);
             ShopDecorationsManager.SetContextHidden();
             m_oCustomizationButton.gameObject.SetActive(false);

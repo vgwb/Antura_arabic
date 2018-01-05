@@ -2314,6 +2314,7 @@ MonoBehaviour:
   Antura: {fileID: 2091012743}
   UI: {fileID: 1668913316}
   ShopActionsManager: {fileID: 1923721548}
+  tutorialManager: {fileID: 1472273670}
   SceneCenter: {fileID: 544084193}
   RotatingBase: {fileID: 1279549900}
   AttentionPosition: {fileID: 1083569782}
@@ -10910,7 +10911,7 @@ Prefab:
     - target: {fileID: 224859546621181490, guid: 21d6847d9291cd94f8c9933be8996bd0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -273
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224859546621181490, guid: 21d6847d9291cd94f8c9933be8996bd0,
         type: 2}

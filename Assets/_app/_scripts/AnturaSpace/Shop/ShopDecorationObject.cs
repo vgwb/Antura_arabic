@@ -12,7 +12,7 @@ namespace Antura.AnturaSpace
 
         public void OnMouseDown()
         {
-            Debug.Log("SHOP CONTEXT: " + ShopDecorationsManager.I.ShopContext);
+            //Debug.Log("SHOP CONTEXT: " + ShopDecorationsManager.I.ShopContext);
             if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase)
             {
                 ShopDecorationsManager.I.StartDragPlacement(this, false);

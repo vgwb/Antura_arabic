@@ -13,22 +13,27 @@ namespace Antura.Tutorial
 
         public void HandleStart()
         {
-            if (FirstContactManager.I.IsSequenceFinished()) {
+            /*if (FirstContactManager.I.IsSequenceFinished()) {
                 gameObject.SetActive(false);
                 IsRunning = false;
                 if (VERBOSE) { Debug.Log("TutorialManager - First contact is off"); }
                 return;
-            }
+            }*/
 
             if (VERBOSE) { Debug.Log("TutorialManager - phase " + FirstContactManager.I.CurrentPhaseInSequence + ""); }
-            IsRunning = true;   // TODO: if we are  not in a correct step, set as false!
+            IsRunning = true;
 
             InternalHandleStart();
         }
 
-        protected void CompleteTutorialPhase()
+        protected void StopTutorialRunning()
         {
             IsRunning = false;
+        }
+
+        protected void CompleteTutorialPhase()
+        {
+            StopTutorialRunning();
             FirstContactManager.I.CompleteCurrentPhaseInSequence();
 
             // Check if we have more

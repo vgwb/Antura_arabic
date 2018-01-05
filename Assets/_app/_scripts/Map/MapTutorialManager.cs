@@ -1,3 +1,4 @@
+using System;
 using Antura.Core;
 using Antura.Database;
 using Antura.Keeper;
@@ -11,7 +12,6 @@ namespace Antura.Map
     public class MapTutorialManager : TutorialManager
     {
         private StageMapsManager _stageMapsManager;
-        public GameObject tutorialUiGo;
 
         protected override void InternalHandleStart()
         {
@@ -20,9 +20,20 @@ namespace Antura.Map
             // All UI is deactivated, for starters
             _stageMapsManager.DeactivateAllUI();
 
-            // TODO: at the end, re-call this to check if we still have new tutorials for this scene
-            switch (FirstContactManager.I.CurrentPhase) {
-                case FirstContactPhase.Map_Play:
+            // Antura Space (auto-unlocked from the start)
+            if (CheckNewUnlockPhaseAt(1, 1, 1, FirstContactPhase.Map_GoToAnturaSpace, LocalizationDataId.Map_Intro_AnturaSpace))
+                return;
+
+            // Profile (auto-unlocked from the start)
+            if (CheckNewUnlockPhaseAt(1, 1, 1, FirstContactPhase.Map_GoToProfile, LocalizationDataId.Map_Intro_AnturaSpace))
+                return;
+
+            // TODO: at the end, call CompleteCurrentPhase, if we need more phases in the same scene
+            // Check for sequential phases
+            bool isPlayingSequentialPhase = false;
+            switch (FirstContactManager.I.CurrentPhaseInSequence)
+            {
+                case FirstContactPhase.Map_PlaySession:
 
                     _stageMapsManager.SetPlayUIActivation(true);
 
@@ -33,62 +44,55 @@ namespace Antura.Map
                     StartCoroutine(TutorialHintClickCO(_stageMapsManager.SelectedPin.transform));
 
                     // @note: this phase is completed not on Play, but when we come back after the results
-                    //FirstContactManager.I.PassPhase(FirstContactPhase.Map_Play);
-                    // _stageMapsManager.playButton.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(CompleteTutorialPhase);
-                    break;
-
-                case FirstContactPhase.Map_GoToAnturaSpace:
-
-                    // Wait for a specific PS to be unlocked before triggering this!
-                    if (HasReachedJourneyPosition(1, 2, 1)) {
-
-                        KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_AnturaSpace, true, true, () => {
-                            _stageMapsManager.SetAnturaSpaceUIActivation(true);
-                            StartCoroutine(TutorialHintClickCO(_stageMapsManager.anturaSpaceButton.transform));
-                        });
-
-                        //KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro, true, true, () =>
-
-                        // @note: this phase is completed on transition to AnturaSpace
-                        // _stageMapsManager.anturaSpaceButton.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(CompleteTutorialPhase);
-                        //FirstContactManager.I.PassPhase(FirstContactPhase.Map_GoToAnturaSpace);
-                    } else {
-                        // Let him play
-                        _stageMapsManager.SetPlayUIActivation(true);
-                    }
-                    break;
-
-
-                case FirstContactPhase.Map_GoToBook:
-
-                    // Older phases are enabled
-                    _stageMapsManager.SetAnturaSpaceUIActivation(true);
-
-                    // Wait for a specific PS to be unlocked before triggering this!
-                    if (HasReachedJourneyPosition(1, 3, 1)) {
-                        _stageMapsManager.SetLearningBookUIActivation(true);
-                        StartCoroutine(TutorialHintClickCO(_stageMapsManager.learningBookButton.transform));
-                    } else {
-                        // Let the player play
-                        _stageMapsManager.SetPlayUIActivation(true);
-                    }
-                    break;
-
-                case FirstContactPhase.Map_GoToMinigames:
-
-                    // Older phases are enabled
-                    _stageMapsManager.SetAnturaSpaceUIActivation(true);
-                    _stageMapsManager.SetLearningBookUIActivation(true);
-
-                    // Wait for a specific PS to be unlocked before triggering this!
-                    if (HasReachedJourneyPosition(1, 4, 1)) {
-                        _stageMapsManager.SetMinigamesBookUIActivation(true);
-                        StartCoroutine(TutorialHintClickCO(_stageMapsManager.minigamesBookButton.transform));
-                    } else {
-                        _stageMapsManager.SetPlayUIActivation(true);
-                    }
+                    // check the FirstContactManager navigation filtering
+                    isPlayingSequentialPhase = true;
                     break;
             }
+            if (isPlayingSequentialPhase) return;
+
+
+            // New features unlocking
+
+            // Book
+            if (CheckNewUnlockPhaseAt(1, 3, 1, FirstContactPhase.Map_GoToBook, LocalizationDataId.Map_Intro_AnturaSpace))
+                return;
+
+            // MiniGames
+            if (CheckNewUnlockPhaseAt(1, 4, 1, FirstContactPhase.Map_GoToMinigames, LocalizationDataId.Map_Intro_AnturaSpace))
+                return;
+
+            // If nothing is being unlocked, let the player play
+            _stageMapsManager.SetPlayUIActivation(true);
+            StopTutorialRunning();
+        }
+
+        private void AutoUnlockAndComplete(FirstContactPhase phase)
+        {
+            if (!FirstContactManager.I.HasCompletedPhase(phase))
+            {
+                FirstContactManager.I.CompletePhase(phase);
+            }
+        }
+
+        private bool CheckNewUnlockPhaseAt(int st, int lb, int ps, FirstContactPhase phase, LocalizationDataId localizationDataId)
+        {
+            if (st == 1 && lb == 1 && ps == 1) AutoUnlockAndComplete(phase);
+            if (!FirstContactManager.I.HasCompletedPhase(phase) && HasReachedJourneyPosition(st, lb, ps))
+            {
+                FirstContactManager.I.UnlockPhase(phase);
+
+                KeeperManager.I.PlayDialog(localizationDataId, true, true, () =>
+                {
+                    _stageMapsManager.SetUIActivationByContactPhase(phase);
+                    StartCoroutine(TutorialHintClickCO(_stageMapsManager.GetGameObjectByContactPhase(phase).transform));
+                });
+                return true;
+            }
+            else if (FirstContactManager.I.HasUnlockedPhase(phase))
+            {
+                _stageMapsManager.SetUIActivationByContactPhase(phase);
+            }
+            return false;
         }
 
         private bool HasReachedJourneyPosition(int st, int lb, int ps)
@@ -96,14 +100,11 @@ namespace Antura.Map
             return AppManager.I.Player.MaxJourneyPosition.IsGreaterOrEqual(new JourneyPosition(st, lb, ps));
         }
 
-
         private IEnumerator TutorialHintClickCO(Transform targetTr)
         {
             TutorialUI.SetCamera(_stageMapsManager.UICamera);
-            var pos = targetTr.position;
-            pos.y += 2;
             while (true) {
-                TutorialUI.Click(pos);
+                TutorialUI.Click(targetTr.position);
                 yield return new WaitForSeconds(0.85f);
             }
         }

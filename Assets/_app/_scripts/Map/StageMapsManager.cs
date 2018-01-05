@@ -6,6 +6,7 @@ using Antura.Keeper;
 using Antura.UI;
 using DG.Tweening;
 using System.Collections;
+using Antura.Profile;
 using UnityEngine;
 
 namespace Antura.Map
@@ -167,6 +168,8 @@ namespace Antura.Map
 
         }
 
+
+        private bool initialMovementNeedsAnimation;
         private void Start()
         {
             // Show the current stage
@@ -187,28 +190,47 @@ namespace Antura.Map
                 PlayRandomAssessmentDialog();
             }
 
-            // Coming from the other stage
-            StartCoroutine(InitialMovementCO());
-
             mapCamera.Initialise(this);
+
+            initialMovementNeedsAnimation = InitialiseMapMovement();
 
             var tutorialManager = gameObject.GetComponentInChildren<MapTutorialManager>();
             tutorialManager.HandleStart();
+
+            if (!tutorialManager.IsRunning)
+            {
+                TriggerInitialMovement();
+            }
+        }
+
+        // TODO: trigger after the tutorial ends?
+        public void TriggerInitialMovement()
+        {
+            StartCoroutine(InitialMovementCO());
+        }
+
+        bool InitialiseMapMovement()
+        {
+            //HidePlayPanel();
+            StageMap(shownStage).FlushAppear(PreviousJourneyPosition);
+            TeleportCameraToShownStage(shownStage);
+
+            bool needsAnimation = !Equals(targetCurrentJourneyPosition, PreviousJourneyPosition);
+            if (!needsAnimation)
+            {
+                //Debug.Log("Already at the correct stage " + shownStage);
+                SelectPin(StageMap(shownStage).PinForJourneyPosition(targetCurrentJourneyPosition));
+                StageMap(shownStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
+                mapCamera.SetManualMovementCurrentMap();
+            }
+            return needsAnimation;
         }
 
         private IEnumerator InitialMovementCO()
         {
-            //HidePlayPanel();
-            StageMap(shownStage).FlushAppear(PreviousJourneyPosition);
-
-            bool needsAnimation = !Equals(targetCurrentJourneyPosition, PreviousJourneyPosition);
             //Debug.Log("TARGET CURRENT: " + targetCurrentJourneyPosition  + " PREV: " + PreviousJourneyPosition);
-            TeleportCameraToShownStage(shownStage);
-            if (!needsAnimation) {
-                //Debug.Log("Already at the correct stage " + shownStage);
-                SelectPin(StageMap(shownStage).PinForJourneyPosition(targetCurrentJourneyPosition));
-                StageMap(shownStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
-            } else {
+            if (initialMovementNeedsAnimation)
+            {
                 yield return new WaitForSeconds(1.0f);
                 StageMap(shownStage).Appear(PreviousJourneyPosition, AppManager.I.Player.MaxJourneyPosition);
 
@@ -615,6 +637,42 @@ namespace Antura.Map
             // TEST disable all panels 
             //playButtonsPanel.gameObject.SetActive(choice);
             //playInfoPanel.gameObject.SetActive(choice);
+        }
+
+
+        public void SetUIActivationByContactPhase(FirstContactPhase phase)
+        {
+            switch (phase)
+            {
+                 case FirstContactPhase.Map_GoToProfile:
+                    SetProfileBookUIActivation(true);
+                    break;
+                case FirstContactPhase.Map_GoToBook:
+                    SetLearningBookUIActivation(true);
+                    break;
+                case FirstContactPhase.Map_GoToMinigames:
+                    SetMinigamesBookUIActivation(true);
+                    break;
+                case FirstContactPhase.Map_GoToAnturaSpace:
+                    SetAnturaSpaceUIActivation(true);
+                    break;
+            }
+        }
+
+        public GameObject GetGameObjectByContactPhase(FirstContactPhase phase)
+        {
+            switch (phase)
+            {
+                case FirstContactPhase.Map_GoToProfile:
+                    return profileBookButton;
+                case FirstContactPhase.Map_GoToBook:
+                    return learningBookButton;
+                case FirstContactPhase.Map_GoToMinigames:
+                    return minigamesBookButton;
+                case FirstContactPhase.Map_GoToAnturaSpace:
+                    return anturaSpaceButton;
+            }
+            return null;
         }
 
         public void SetStageUIActivation(bool choice)

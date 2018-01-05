@@ -54,7 +54,7 @@ namespace Antura.Core
         public static bool DebugLogDbInserts = false;
 
         // for Test configuration
-        public static bool DisableFirstContact = true;
+        public static bool DisableFirstContact = false;
 
         public static bool MinigameTutorialsEnabled = true;
 

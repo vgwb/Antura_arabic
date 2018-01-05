@@ -1,4 +1,5 @@
 ﻿using Antura.Core;
+using Antura.Debugging;
 
 namespace Antura.Map
 {
@@ -11,6 +12,18 @@ namespace Antura.Map
         {
             base.Start();
             //KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro);
+
+            DebugManager.OnSkipCurrentScene += HandleSkipScene;
+        }
+
+        void OnDestroy()
+        {
+            DebugManager.OnSkipCurrentScene -= HandleSkipScene;
+        }
+
+        private void HandleSkipScene()
+        {
+            Play();
         }
 
         public void GoToAnturaSpace()
