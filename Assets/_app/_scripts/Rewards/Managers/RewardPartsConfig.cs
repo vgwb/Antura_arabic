@@ -73,9 +73,6 @@ namespace Antura.Rewards
             }
         }
 
-        // TODO: separate from the above stuff
-        //public List<RewardUnlocksAtJourneyPosition> PlaySessionRewardsUnlock;  // unlocks at which PS?
-
         public RewardPartsConfig GetClone()
         {
             return MemberwiseClone() as RewardPartsConfig;

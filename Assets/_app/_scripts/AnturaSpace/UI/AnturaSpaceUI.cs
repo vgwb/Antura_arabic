@@ -279,7 +279,7 @@ namespace Antura.AnturaSpace.UI
 
         #region Methods
 
-        public void ShowBonesButton(bool show)
+        public void ShowShopButton(bool show)
         {
             BtBonesShop.gameObject.SetActive(show);
         }

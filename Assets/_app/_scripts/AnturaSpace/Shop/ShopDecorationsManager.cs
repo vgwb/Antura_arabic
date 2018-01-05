@@ -25,6 +25,11 @@ namespace Antura.AnturaSpace
         private ShopState shopState;
         private ShopContext shopContext;
 
+        public List<ShopDecorationSlot> GetDecorationSlots()
+        {
+            return allShopDecorationSlots;
+        }
+
         [Header("Debug")]
         public bool testDecorationFilling = false;
 

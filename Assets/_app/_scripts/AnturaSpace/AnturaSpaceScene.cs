@@ -23,6 +23,7 @@ namespace Antura.AnturaSpace
 
         public AnturaSpaceUI UI;
         public ShopActionsManager ShopActionsManager;
+        public TutorialManager tutorialManager;
 
         public Transform SceneCenter;
         public Pedestal RotatingBase;
@@ -152,7 +153,12 @@ namespace Antura.AnturaSpace
         void OnEnterCustomization()
         {
             GlobalUI.ShowBackButton(false);
-            ShowBackButton();
+
+            if (!tutorialManager.IsRunning)
+            {
+                ShowBackButton();
+            }
+
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
             InCustomizationMode = true;
             CurrentState = Customization;
@@ -161,7 +167,12 @@ namespace Antura.AnturaSpace
         void OnExitCustomization()
         {
             GlobalUI.ShowBackButton(false);
-            ShowBackButton();
+
+            if (!tutorialManager.IsRunning)
+            {
+                ShowBackButton();
+            }
+
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
             InCustomizationMode = false;
             CurrentState = Idle;

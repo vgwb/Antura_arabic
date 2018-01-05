@@ -13,15 +13,15 @@ namespace Antura.Tutorial
 
         public void HandleStart()
         {
-            if (FirstContactManager.I.IsFinished()) {
+            if (FirstContactManager.I.IsSequenceFinished()) {
                 gameObject.SetActive(false);
                 IsRunning = false;
                 if (VERBOSE) { Debug.Log("TutorialManager - First contact is off"); }
                 return;
             }
 
-            if (VERBOSE) { Debug.Log("TutorialManager - phase " + FirstContactManager.I.CurrentPhase + ""); }
-            IsRunning = true;
+            if (VERBOSE) { Debug.Log("TutorialManager - phase " + FirstContactManager.I.CurrentPhaseInSequence + ""); }
+            IsRunning = true;   // TODO: if we are  not in a correct step, set as false!
 
             InternalHandleStart();
         }
@@ -29,7 +29,7 @@ namespace Antura.Tutorial
         protected void CompleteTutorialPhase()
         {
             IsRunning = false;
-            FirstContactManager.I.CompleteCurrentPhase();
+            FirstContactManager.I.CompleteCurrentPhaseInSequence();
 
             // Check if we have more
             HandleStart();

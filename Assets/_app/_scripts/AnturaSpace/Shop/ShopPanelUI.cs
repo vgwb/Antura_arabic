@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,11 +28,16 @@ namespace Antura.AnturaSpace
         private List<ShopActionUI> actionUIs;
         Tween scrollShowTween;
 
-
         private Tween showShopPanelTween,
             showDragPanelTween,
             showConfirmationPanelTween,
             showPurchasePanelAlwaysAvailableTween;
+
+
+        public ShopActionUI GetActionUIByName(string actionName)
+        {
+            return actionUIs.FirstOrDefault(x => x.ShopAction.name == actionName);
+        }
 
 
         public void SetActions(ShopAction[] shopActions)

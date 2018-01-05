@@ -12,7 +12,7 @@ namespace Antura.Rewards
         {
             _mScene = FindObjectOfType<RewardsScene>();
 
-            switch (FirstContactManager.I.CurrentPhase) {
+            switch (FirstContactManager.I.CurrentPhaseInSequence) {
                 case FirstContactPhase.Reward_FirstBig:
                     //_mScene.AnturaSpaceBtton.gameObject.SetActive(false);
                     KeeperManager.I.PlayDialog(Database.LocalizationDataId.Reward_Intro);

@@ -18,6 +18,8 @@ namespace Antura.AnturaSpace
 
         private ShopAction shopAction;
 
+        public ShopAction ShopAction {  get { return shopAction; } }
+
         public void SetAction(ShopAction shopAction)
         {
             this.shopAction = shopAction;

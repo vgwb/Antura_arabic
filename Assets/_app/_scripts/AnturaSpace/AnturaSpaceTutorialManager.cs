@@ -1,3 +1,4 @@
+using System;
 using Antura.AnturaSpace.UI;
 using Antura.Audio;
 using Antura.Core;
@@ -7,6 +8,9 @@ using Antura.Tutorial;
 using Antura.UI;
 using UnityEngine;
 using System.Collections;
+using System.Linq;
+using DG.Tweening;
+using UnityEngine.UI;
 
 namespace Antura.AnturaSpace
 {
@@ -15,26 +19,20 @@ namespace Antura.AnturaSpace
     /// </summary>
     public class AnturaSpaceTutorialManager : TutorialManager
     {
-
-        #region EXPOSED MEMBERS
-
+        // References
         private AnturaSpaceScene _mScene;
 
         [SerializeField]
         private Camera m_oCameraUI;
-
         public AnturaLocomotion m_oAnturaBehaviour;
         public AnturaSpaceUI UI;
         public ShopDecorationsManager ShopDecorationsManager;
-        public UnityEngine.UI.Button m_oCookieButton;
+        public Button m_oCookieButton;
 
         [SerializeField]
-        private UnityEngine.UI.Button m_oCustomizationButton;
-
-        AnturaSpaceCategoryButton m_oCategoryButton;
-        AnturaSpaceItemButton m_oItemButton;
-
-        #endregion
+        private Button m_oCustomizationButton;
+        private AnturaSpaceCategoryButton m_oCategoryButton;
+        private AnturaSpaceItemButton m_oItemButton;
 
         protected override void InternalHandleStart()
         {
@@ -44,29 +42,30 @@ namespace Antura.AnturaSpace
             TutorialUI.SetCamera(m_oCameraUI);
 
             // First, disable all UI
-            UI.ShowBonesButton(false);
+            UI.ShowShopButton(false);
             ShopDecorationsManager.SetContextHidden();
             m_oCustomizationButton.gameObject.SetActive(false);
 
             // Define what tutorial phase to play
-            switch (FirstContactManager.I.CurrentPhase) {
+            switch (FirstContactManager.I.CurrentPhaseInSequence) {
                 case FirstContactPhase.AnturaSpace_TouchAntura:
-                    AdvanceTutorialTouchAntura();
+                    StepTutorialTouchAntura();
                     break;
 
                 case FirstContactPhase.AnturaSpace_Customization:
-                    AdvanceTutorialCustomization();
+                    StepTutorialCustomization();
                     break;
 
                 case FirstContactPhase.AnturaSpace_Shop:
-                    AdvanceTutorialShop();
+                    StepTutorialShop();
                     break;
 
                 case FirstContactPhase.AnturaSpace_Photo:
+                    StepTutorialPhoto();
                     break;
 
                 case FirstContactPhase.AnturaSpace_Exit:
-                    AdvanceTutorialExit();
+                    StepTutorialExit();
                     break;
             }
 
@@ -74,18 +73,18 @@ namespace Antura.AnturaSpace
 
         void Update()
         {
-            if (_currentShopStep == ShopTutorialStep.USE_ALL_COOKIES && AppManager.I.Player.GetTotalNumberOfBones() <= 0) {
-                AdvanceTutorialShop();
+            if (_currentShopStep == ShopTutorialStep.DRAG_BONE && AppManager.I.Player.GetTotalNumberOfBones() <= 0) {
+                StepTutorialShop();
             }
         }
 
         #region Touch Antura
 
-        private void AdvanceTutorialTouchAntura()
+        private void StepTutorialTouchAntura()
         {
             // Push the player to touch Antura
 
-            //TutorialUI.Clear(false);
+            TutorialUI.Clear(false);
 
             // Reset antura as sleeping
             _mScene.Antura.transform.position = _mScene.SceneCenter.position;
@@ -122,22 +121,25 @@ namespace Antura.AnturaSpace
         }
 
         private CustomizationTutorialStep _currentCustomizationStep = CustomizationTutorialStep.START;
-        private void AdvanceTutorialCustomization()
+        private void StepTutorialCustomization()
         {
-            Debug.Log("CURRENT IS " + _currentCustomizationStep);
-            switch (_currentCustomizationStep) {
-                case CustomizationTutorialStep.START:
-                    _currentCustomizationStep = CustomizationTutorialStep.OPEN_CUSTOMIZE;
-                    TutorialUI.Clear(false);
+            if (_currentCustomizationStep < CustomizationTutorialStep.FINISH) _currentCustomizationStep += 1;
+
+            Debug.Log("CURRENT STEP IS " + _currentCustomizationStep);
+            TutorialUI.Clear(false);
+
+            switch (_currentCustomizationStep)
+            {
+                case CustomizationTutorialStep.OPEN_CUSTOMIZE:
                     AudioManager.I.StopDialogue(false);
 
                     //dialog get more cookies
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_3, delegate () {
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () {
                         //dialog customize
-                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Custom_1, delegate () {
+                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () {
                             //after the dialog make appear the customization button
                             m_oCustomizationButton.gameObject.SetActive(true);
-                            m_oCustomizationButton.onClick.AddListener(AdvanceTutorialCustomization);
+                            m_oCustomizationButton.onClick.AddListener(StepTutorialCustomization);
 
                             TutorialUI.ClickRepeat(m_oCustomizationButton.transform.position, float.MaxValue, 1);
                         });
@@ -145,74 +147,48 @@ namespace Antura.AnturaSpace
                     break;
 
 
-                case CustomizationTutorialStep.OPEN_CUSTOMIZE:
-                    _currentCustomizationStep = CustomizationTutorialStep.SELECT_CATEGORY;
+                case CustomizationTutorialStep.SELECT_CATEGORY:
 
-                    TutorialUI.Clear(false);
-
-                    m_oCustomizationButton.onClick.RemoveListener(AdvanceTutorialCustomization);
+                    m_oCustomizationButton.onClick.RemoveListener(StepTutorialCustomization);
                     _mScene.UI.SetTutorialMode(true);
 
                     StartCoroutine(WaitAndSpawnCO(
                         () => {
                             m_oCategoryButton = _mScene.UI.GetNewCategoryButton();
-                            if (m_oCategoryButton == null) {
-                                AdvanceTutorialCustomization();
-                                return;
-                            }
-
-                            m_oCategoryButton.Bt.onClick.AddListener(AdvanceTutorialCustomization);
+                            if (m_oCategoryButton == null) throw new Exception("No new category!");
+                            m_oCategoryButton.Bt.onClick.AddListener(StepTutorialCustomization);
 
                             TutorialUI.ClickRepeat(m_oCategoryButton.transform.position, float.MaxValue, 1);
                         }));
                     break;
 
-                case CustomizationTutorialStep.SELECT_CATEGORY:
-                    _currentCustomizationStep = CustomizationTutorialStep.SELECT_ITEM;
+                case CustomizationTutorialStep.SELECT_ITEM:
 
-                    TutorialUI.Clear(false);
-
-                    //Unregister from category button
-                    if (m_oCategoryButton != null) {
-                        m_oCategoryButton.Bt.onClick.RemoveListener(AdvanceTutorialCustomization);
-                    } else {
-                        AdvanceTutorialCustomization();
-                        break;
-                    }
+                    // Unregister from category button
+                    m_oCategoryButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
 
                     StartCoroutine(WaitAndSpawnCO(
                         () => {
                             // Register on item button
                             m_oItemButton = _mScene.UI.GetNewItemButton();
-
-                            if (m_oItemButton == null) {
-                                AdvanceTutorialCustomization();
-                                return;
-                            }
-
-                            m_oItemButton.Bt.onClick.AddListener(AdvanceTutorialCustomization);
+                            if (m_oItemButton == null) throw new Exception("No new item!");
+                            m_oItemButton.Bt.onClick.AddListener(StepTutorialCustomization);
 
                             TutorialUI.ClickRepeat(m_oItemButton.transform.position, float.MaxValue, 1);
                         }));
                     break;
 
-                case CustomizationTutorialStep.SELECT_ITEM:
+                case CustomizationTutorialStep.TOUCH_ANTURA:
 
-                    _currentCustomizationStep = CustomizationTutorialStep.TOUCH_ANTURA;
-
-                    TutorialUI.Clear(false);
-
+                    // Cleanup last step
                     _mScene.UI.SetTutorialMode(false);
+                    m_oItemButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
 
-                    //Unregister from Item button
-                    if (m_oItemButton != null) {
-                        m_oItemButton.Bt.onClick.RemoveListener(AdvanceTutorialCustomization);
-                    }
-
+                    // New step
                     StartCoroutine(WaitAnturaInCenterCO(
                         () => {
                             // Register on Antura touch
-                            m_oAnturaBehaviour.onTouched += AdvanceTutorialCustomization;
+                            m_oAnturaBehaviour.onTouched += StepTutorialCustomization;
 
                             Vector3 clickOffset = m_oAnturaBehaviour.IsSleeping ? Vector3.down * 2 : Vector3.down * 1.5f;
                             TutorialUI.ClickRepeat(
@@ -222,13 +198,10 @@ namespace Antura.AnturaSpace
 
                     break;
 
-                case CustomizationTutorialStep.TOUCH_ANTURA:
+                case CustomizationTutorialStep.FINISH:
 
-                    _currentCustomizationStep = CustomizationTutorialStep.FINISH;
-
-                    TutorialUI.Clear(false);
-
-                    m_oAnturaBehaviour.onTouched -= AdvanceTutorialCustomization;
+                    // Cleanup last step
+                    m_oAnturaBehaviour.onTouched -= StepTutorialCustomization;
 
                     CompleteTutorialPhase();
                     break;
@@ -242,67 +215,149 @@ namespace Antura.AnturaSpace
         private enum ShopTutorialStep
         {
             START,
-            COOKIE_BUTTON,
-            USE_ALL_COOKIES,
+            ENTER_SHOP,
+            DRAG_BONE,
+            PLACE_NEW_DECORATION,
+            CONFIRM_BUY_DECORATION,
+            MOVE_DECORATION,
+            EXIT_SHOP,
             FINISH
         }
 
-        private ShopTutorialStep _currentShopStep = ShopTutorialStep.START;
-        private void AdvanceTutorialShop()
+        private ShopTutorialStep _currentShopStep = ShopTutorialStep.START ;
+        private void StepTutorialShop()
         {
-            switch (_currentShopStep) {
-                case ShopTutorialStep.START:
-                    _currentShopStep = ShopTutorialStep.COOKIE_BUTTON;
+            if (_currentShopStep < ShopTutorialStep.FINISH) _currentShopStep += 1;
 
-                    TutorialUI.Clear(false);
+            //Debug.Log("WE ARE IN STEP " + _currentShopStep);
 
-                    m_oAnturaBehaviour.onTouched -= AdvanceTutorialShop;
+            TutorialUI.Clear(false);
+            AudioManager.I.StopDialogue(false);
 
-                    AudioManager.I.StopDialogue(false);
+            ShopActionUI actionUI;
+            Button yesButton;
 
-                    //dialog Antura
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Touch, delegate () {
-                        //dialog cookies
-                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () {
-                            //after the dialog make appear the cookie button
-                            UI.ShowBonesButton(true);
-                            //the button can call AdvanceTutorial on click
-                            m_oCookieButton.onClick.AddListener(AdvanceTutorialShop);
+            switch (_currentShopStep)
+            {
+                case ShopTutorialStep.ENTER_SHOP:
 
-                            TutorialUI.ClickRepeat(m_oCookieButton.transform.position, float.MaxValue, 1);
+                    // Dialog -> Appear button
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate
+                    {
+                        ShopDecorationsManager.SetContextClosed();
+                        UI.ShowShopButton(true);
 
-                            AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_1, null);
-                        });
+
+                        m_oCookieButton.onClick.AddListener(StepTutorialShop);
+                        TutorialUI.ClickRepeat(m_oCookieButton.transform.position, float.MaxValue, 1);
+
+                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_1, null);
+                    });
+                    break;
+
+                case ShopTutorialStep.DRAG_BONE:
+
+                    // Clean last step
+                    m_oCookieButton.onClick.RemoveListener(StepTutorialShop);
+
+                    // New step
+                    actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Bone");
+                    actionUI.ShopAction.OnActionCommitted += StepTutorialShop;
+
+                    // Dialog (drag cookie)
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_2, () =>
+                    {
+                        StartDrawDragLineFrom(actionUI.transform);
+                    });
+
+                    // TODO: for stop dragging? needed?
+                    //m_bIsDragAnimPlaying = true;
+                    // Register delegate to disable draw line after done
+                    //UnityEngine.EventSystems.EventTrigger.Entry _oEntry = new UnityEngine.EventSystems.EventTrigger.Entry();
+                    // _oEntry.eventID = UnityEngine.EventSystems.EventTriggerType.BeginDrag;
+                    //_oEntry.callback.AddListener((data) => { m_bIsDragAnimPlaying = false; });
+                    //m_oCookieButton.GetComponent<UnityEngine.EventSystems.EventTrigger>().triggers.Add(_oEntry);
+
+                    break;
+                case ShopTutorialStep.PLACE_NEW_DECORATION:
+
+                    // Cleanup last step
+                    StopDrawDragLine();
+                    actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Bone");
+                    actionUI.ShopAction.OnActionCommitted -= StepTutorialShop;
+
+                    // New step
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
+
+                    ShopDecorationsManager.OnPurchaseConfirmationRequested += StepTutorialShop;
+
+                    actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Decoration_Tree1");
+                    //actionButtonUi.buttonUI.Bt.onClick.RemoveListener(StepTutorialShop);
+                    StartDrawDragLineFrom(actionUI.transform);
+
+                    break;
+
+                case ShopTutorialStep.CONFIRM_BUY_DECORATION:
+
+                    // Cleanup last step
+                    StopDrawDragLine();
+                    ShopDecorationsManager.OnPurchaseConfirmationRequested -= StepTutorialShop;
+
+                    // New step
+                    ShopDecorationsManager.OnPurchaseComplete += StepTutorialShop;
+                    // TODO: what if he cancels? ShopDecorationsManager.OnPurchaseCancelled  += StepTutorialShop;
+
+                    yesButton = UI.ShopPanelUI.confirmationYesButton;
+
+                    //yesButton.onClick.AddListener(StepTutorialShop);
+
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, () =>
+                    {
+                        TutorialUI.ClickRepeat(yesButton.transform.position, float.MaxValue, 1);
                     });
 
                     break;
 
-                case ShopTutorialStep.COOKIE_BUTTON:
-                    _currentShopStep = ShopTutorialStep.USE_ALL_COOKIES;
+                case ShopTutorialStep.MOVE_DECORATION:
 
-                    TutorialUI.Clear(false);
+                    // Cleanup last step
+                    ShopDecorationsManager.OnPurchaseComplete -= StepTutorialShop;
 
-                    m_oCookieButton.onClick.RemoveListener(AdvanceTutorialShop);
+                    // New step
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
 
-                    AudioManager.I.StopDialogue(false);
+                    ShopDecorationsManager.OnDragStop += StepTutorialShop;
 
-                    //dialog drag cookies
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_2);
+                    // Slot we assigned
+                    var assignedSlot = ShopDecorationsManager.GetDecorationSlots().FirstOrDefault(x => x.Assigned && x.slotType == ShopDecorationSlotType.Prop);
+                    var unassignedSlot = ShopDecorationsManager.GetDecorationSlots().FirstOrDefault(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Prop);
+                    StartDrawDragLineFromTo(assignedSlot.transform, unassignedSlot.transform);
 
-                    m_bIsDragAnimPlaying = true;
-                    DrawRepeatLineOnCookieButton();
-
-                    //Register delegate to disable draw line after done
-                    UnityEngine.EventSystems.EventTrigger.Entry _oEntry = new UnityEngine.EventSystems.EventTrigger.Entry();
-                    _oEntry.eventID = UnityEngine.EventSystems.EventTriggerType.BeginDrag;
-                    _oEntry.callback.AddListener((data) => { m_bIsDragAnimPlaying = false; });
-
-                    m_oCookieButton.GetComponent<UnityEngine.EventSystems.EventTrigger>().triggers.Add(_oEntry);
                     break;
 
+                case ShopTutorialStep.EXIT_SHOP:
 
-                case ShopTutorialStep.USE_ALL_COOKIES:
-                    _currentShopStep = ShopTutorialStep.FINISH;
+                    // Cleanup last step
+                    ShopDecorationsManager.OnDragStop -= StepTutorialShop;
+                    StopDrawDragLine();
+
+                    yesButton = UI.ShopPanelUI.confirmationYesButton;
+                    yesButton.onClick.RemoveListener(StepTutorialShop);
+
+                    // New step
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
+
+                    m_oCookieButton.onClick.AddListener(StepTutorialShop);
+                    TutorialUI.ClickRepeat(m_oCookieButton.transform.position, float.MaxValue, 1);
+                    break;
+
+                case ShopTutorialStep.FINISH:
+
+                    // New step
+                    // dialog: exit and play
+                    _mScene.ShowBackButton();
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
+
                     CompleteTutorialPhase();
                     break;
             }
@@ -310,9 +365,35 @@ namespace Antura.AnturaSpace
 
         #endregion
 
+        #region
+
+        private enum PhotoTutorialStep
+        {
+            START,
+            CLICK_PHOTO,
+            CONFIRM_PHOTO,
+            FINISH
+        }
+
+        private PhotoTutorialStep _currentPhotoStep = PhotoTutorialStep.START;
+        private void StepTutorialPhoto()
+        {
+            Debug.Log("CURRENT STEP IS " + _currentPhotoStep);
+            switch (_currentPhotoStep)
+            {
+                case PhotoTutorialStep.START:
+                    _currentPhotoStep = PhotoTutorialStep.FINISH;
+
+                    // TODO: implement this
+                    break;
+
+            }
+        }
+        #endregion
+
         #region Exit
 
-        private void AdvanceTutorialExit()
+        private void StepTutorialExit()
         {
             TutorialUI.Clear(false);
 
@@ -348,32 +429,51 @@ namespace Antura.AnturaSpace
             }
         }
 
-        private bool m_bIsDragAnimPlaying = false;
-        private void DrawRepeatLineOnCookieButton()
+
+        private TutorialUIAnimation dragLineAnimation;
+
+        private void StartDrawDragLineFromTo(Transform fromTr, Transform toTr)
         {
             TutorialUI.Clear(false);
 
-            //stop 
-            if (!m_bIsDragAnimPlaying) {
-                return;
-            }
+            Vector3[] path = new Vector3[3];
+            path[0] = fromTr.position;
+            path[2] = toTr.position;
+            path[1] = (path[0] + path[2])/2f + Vector3.up * 4 + Vector3.left * 2;
 
-            Vector3[] _av3Path = new Vector3[3];
-            m_oCookieButton.gameObject.GetComponent<RectTransform>();
-            _av3Path[0] = m_oCookieButton.transform.position;
-            _av3Path[1] = _av3Path[0] + Vector3.up * 4 + Vector3.left * 2;
-            _av3Path[2] = m_oCameraUI.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));
-
-            _av3Path[2].z = _av3Path[1].z;
-
-            TutorialUIAnimation _oDLAnim = TutorialUI.DrawLine(_av3Path, TutorialUI.DrawLineMode.Finger, false, true);
-            _oDLAnim.MainTween.timeScale = 0.8f;
-            _oDLAnim.OnComplete(delegate () {
-                if (_currentCustomizationStep != CustomizationTutorialStep.OPEN_CUSTOMIZE) {
-                    DrawRepeatLineOnCookieButton();
-                }
+            dragLineAnimation = TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.Finger, false, true);
+            dragLineAnimation.MainTween.timeScale = 0.8f;
+            dragLineAnimation.OnComplete(delegate {
+                StartDrawDragLineFromTo(fromTr, toTr);
             });
         }
+
+        private void StartDrawDragLineFrom(Transform fromTr)
+        {
+            TutorialUI.Clear(false);
+
+            Vector3[] path = new Vector3[3];
+            path[0] = fromTr.position;
+            path[1] = path[0] + Vector3.up * 4 + Vector3.left * 2;
+            path[2] = m_oCameraUI.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));
+            path[2].z = path[1].z;
+
+            dragLineAnimation = TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.Finger, false, true);
+            dragLineAnimation.MainTween.timeScale = 0.8f;
+            dragLineAnimation.OnComplete(delegate  {
+                StartDrawDragLineFrom(fromTr) ;
+            });
+        }
+
+        private void StopDrawDragLine()
+        {
+            if (dragLineAnimation != null)
+            {
+                dragLineAnimation.MainTween.Kill();
+                dragLineAnimation = null;
+            }
+        }
+
 
         #endregion
     }
