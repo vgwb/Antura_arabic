@@ -160,7 +160,7 @@ namespace Antura.Profile
 
         void playAudioDescription(int SelectedIndex)
         {
-            Debug.Log("SelectedIndex: " + SelectedIndex);
+            //Debug.Log("SelectedIndex: " + SelectedIndex);
             switch (SelectedIndex)
             {
                 case 0:
