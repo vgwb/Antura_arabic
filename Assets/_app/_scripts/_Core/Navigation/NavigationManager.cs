@@ -232,7 +232,7 @@ namespace Antura.Core
                     UpdatePrevSceneStack(wantedNewScene);
                 }
 
-                if (FirstContactManager.I.IsFinished()) {
+                if (FirstContactManager.I.IsSequenceFinished()) {
                     // Additional general checks when entering specific scenes
                     switch (filteredNewScene) {
                         case AppScene.Map:

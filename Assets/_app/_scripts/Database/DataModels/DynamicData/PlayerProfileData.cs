@@ -154,9 +154,9 @@ namespace Antura.Database
         public int CurrentPlaySession { get; set; }
 
         /// <summary>
-        /// Current first contact phase
+        /// State of the first contact in JSON format
         /// </summary>
-        public FirstContactPhase CurrentFirstContactPhase { get; set; }
+        public string FirstContactStateJSON { get; set; }
 
         #endregion
 
@@ -201,7 +201,7 @@ namespace Antura.Database
                 string currentAnturaCustomization,
                 int comboPlayDays,
                 AnturaSpace.ShopState currentShopState,
-                FirstContactPhase currentFirstContactPhase
+                FirstContactState currentFirstContactState
                 )
         {
             Id = UNIQUE_ID;  // Only one record
@@ -222,7 +222,7 @@ namespace Antura.Database
             Timestamp = GenericHelper.GetTimestampForNow();
             CurrentAnturaCustomization = currentAnturaCustomization;
             AdditionalData = JsonUtility.ToJson(new PlayerProfileAdditionalData(_HasMaxStarsInCurrentPlaySessions, comboPlayDays, currentShopState.ToJson()));
-            CurrentFirstContactPhase = currentFirstContactPhase;
+            FirstContactStateJSON = JsonUtility.ToJson(currentFirstContactState);
         }
 
         public bool HasFinishedTheGameWithAllStars()
@@ -282,7 +282,7 @@ namespace Antura.Database
 
         public override string ToString()
         {
-            return string.Format("ID{0},U{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8}), ProfCompl:{9}, JourneyCompleted:{10}, Score:{11}, CurrentFirstContactPhase:{12}",
+            return string.Format("ID{0},U{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8}), ProfCompl:{9}, JourneyCompleted:{10}, Score:{11}, FirstContactPhaseJSON:{12}",
                 Id,
                 Uuid,
                 Timestamp,
@@ -299,7 +299,7 @@ namespace Antura.Database
                 JourneyCompleted,
                 TotalScore,
 
-                CurrentFirstContactPhase
+                FirstContactStateJSON  
             );
         }
 

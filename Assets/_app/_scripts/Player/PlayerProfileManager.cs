@@ -37,7 +37,7 @@ namespace Antura.Profile
                         LogManager.I.LogInfo(InfoEvent.AppSessionStart, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
                         AppManager.I.NavigationManager.InitPlayerNavigationData(_currentPlayer);
 
-                        AppManager.I.FirstContactManager.InitialiseForCurrentPlayer(_currentPlayer.CurrentFirstContactPhase);
+                        AppManager.I.FirstContactManager.InitialiseForCurrentPlayer(_currentPlayer.FirstContactState);
 
                         _currentPlayer.LoadRewardPackUnlockDataList(); // refresh list of unlocked rewards
                         _currentPlayer.SetCurrentJourneyPosition(_currentPlayer.MaxJourneyPosition);

@@ -52,7 +52,7 @@ namespace Antura.Profile
 
         #region First Contact State
 
-        public FirstContactPhase CurrentFirstContactPhase = FirstContactPhase.Intro;
+        public FirstContactState FirstContactState;
 
         #endregion
 
@@ -503,7 +503,7 @@ namespace Antura.Profile
             HasMaxStarsInCurrentPlaySessions = _data.GetAdditionalData().HasMaxStarsInCurrentPlaySessions;
             ConsecutivePlayDays = _data.GetAdditionalData().ConsecutivePlayDays;
             CurrentShopState = AnturaSpace.ShopState.CreateFromJson(_data.GetAdditionalData().CurrentShopStateJSON);
-            CurrentFirstContactPhase = _data.CurrentFirstContactPhase;
+            FirstContactState = JsonUtility.FromJson<FirstContactState>(_data.FirstContactStateJSON);
 
             SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
@@ -526,7 +526,7 @@ namespace Antura.Profile
             PlayerProfileData newProfileData = new PlayerProfileData(
                     Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars, HasMaxStarsInCurrentPlaySessions,
                     Age, TotalNumberOfBones, ProfileCompletion, this.CurrentAnturaCustomizations.GetJsonListOfIds(), ConsecutivePlayDays, CurrentShopState,
-                    CurrentFirstContactPhase
+                    FirstContactState 
             );
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
