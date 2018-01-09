@@ -309,6 +309,7 @@ namespace Antura.Profile
         {
             keepPrevAsBackable = false;
             if (IsSequenceFinished()) return toScene;
+            if (toScene == AppScene.PlayerCreation || toScene == AppScene.ReservedArea) return toScene;    // These scenes cannot be skipped
 
             // Check whether this transition is completing a phase
             TransitionCompletePhaseOn(FirstContactPhase.Intro, fromScene == AppScene.Intro);
@@ -337,7 +338,10 @@ namespace Antura.Profile
 
         private void FilterTransitionOn(FirstContactPhase phase, bool condition, ref AppScene toScene, AppScene newScene)
         {
-            if (IsPhaseUnlockedAndNotCompleted(phase) && condition) { toScene = newScene; }
+            if (IsPhaseUnlockedAndNotCompleted(phase) && condition)
+            {
+                toScene = newScene;
+            }
         }
 
         private void TransitionCompletePhaseOn(FirstContactPhase phase, bool condition)
