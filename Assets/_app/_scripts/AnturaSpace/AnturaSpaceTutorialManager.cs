@@ -28,6 +28,7 @@ namespace Antura.AnturaSpace
         public AnturaSpaceUI UI;
         public ShopDecorationsManager ShopDecorationsManager;
         public Button m_oCookieButton;
+        public Button m_oPhotoButton;
 
         [SerializeField]
         private Button m_oCustomizationButton;
@@ -38,36 +39,19 @@ namespace Antura.AnturaSpace
         {
             _mScene = FindObjectOfType<AnturaSpaceScene>();
 
-            // Check whether we are in a phase that this tutorial should handle
-            switch (FirstContactManager.I.CurrentPhaseInSequence)
-            {
-                default:
-
-                    StopTutorialRunning();
-
-                    // Restore all UI
-                    _mScene.ShowBackButton();
-                    UI.ShowShopButton(true);
-                    ShopDecorationsManager.SetContextClosed();
-                    m_oCustomizationButton.gameObject.SetActive(true);
-
-                    return;
-                case FirstContactPhase.AnturaSpace_Customization:
-                case FirstContactPhase.AnturaSpace_Exit:
-                case FirstContactPhase.AnturaSpace_Photo:
-                case FirstContactPhase.AnturaSpace_Shop:
-                case FirstContactPhase.AnturaSpace_TouchAntura:
-                    break;
-            }
-
-            
             TutorialUI.SetCamera(m_oCameraUI);
 
-            // First, disable all UI
-            _mScene.HideBackButton();
-            UI.ShowShopButton(false);
-            ShopDecorationsManager.SetContextHidden();
-            m_oCustomizationButton.gameObject.SetActive(false);
+            // Check what we already unlocked and enable / disable UI
+            foreach (var phase in FirstContactManager.I.GetPhasesForScene(AppScene.AnturaSpace))
+            {
+                SetPhaseUIShown(phase, IsPhaseCompleted(phase));
+            }
+
+            // Check whether we are in a phase that this tutorial should handle
+            if (!FirstContactManager.I.IsSceneTutorialAtThisPhase(AppScene.AnturaSpace))
+            {
+                StopTutorialRunning();
+            }
 
             // Define what tutorial phase to play
             switch (FirstContactManager.I.CurrentPhaseInSequence) {
@@ -92,6 +76,40 @@ namespace Antura.AnturaSpace
                     break;
             }
 
+        }
+
+        void SetPhaseUIShown(FirstContactPhase phase, bool choice)
+        {
+            switch (phase)
+            {
+                case FirstContactPhase.AnturaSpace_Shop:
+                    UI.ShowShopButton(choice);
+                    if (choice)
+                    {
+                        ShopDecorationsManager.SetContextClosed();
+                    }
+                    else
+                    {
+                        ShopDecorationsManager.SetContextHidden();
+                    }
+                    break;
+                case FirstContactPhase.AnturaSpace_Customization:
+                    m_oCustomizationButton.gameObject.SetActive(choice);
+                    break;
+                case FirstContactPhase.AnturaSpace_Photo:
+                    m_oPhotoButton.gameObject.SetActive(choice);
+                    break;
+                case FirstContactPhase.AnturaSpace_Exit:
+                    if (choice)
+                    {
+                        _mScene.ShowBackButton();
+                    }
+                    else
+                    {
+                        _mScene.HideBackButton();
+                    }
+                    break;
+            }
         }
 
         void Update()

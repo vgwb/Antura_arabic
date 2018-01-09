@@ -317,10 +317,25 @@ namespace Antura.Profile
 
         #endregion
 
-        #region Navigation Filtering
+        #region Scene / Phase links
 
-        // TODO: let tutorial managers use this
-        public AppScene GetSceneForTutorialOfPhase(FirstContactPhase phase)
+        public bool IsSceneTutorialAtThisPhase(AppScene scene)
+        {
+            return GetSceneForTutorialOfPhase(CurrentPhaseInSequence) == scene;
+        }
+
+        public List<FirstContactPhase> GetPhasesForScene(AppScene scene)
+        {
+            List<FirstContactPhase> correctPhases = new List<FirstContactPhase>();
+            foreach (FirstContactPhase phase in state.EnumeratePhases())
+            {
+                if (GetSceneForTutorialOfPhase(phase) == scene)
+                    correctPhases.Add(phase);
+            }
+            return correctPhases;
+        }
+
+        private AppScene GetSceneForTutorialOfPhase(FirstContactPhase phase)
         {
             switch (phase)
             {
@@ -339,7 +354,7 @@ namespace Antura.Profile
                 case FirstContactPhase.Map_PlaySession:
                     return AppScene.Map;
 
-                 case FirstContactPhase.Intro:
+                case FirstContactPhase.Intro:
                     return AppScene.Intro;
 
                 case FirstContactPhase.Reward_FirstBig:
@@ -347,6 +362,10 @@ namespace Antura.Profile
             }
             return AppScene.Home;
         }
+        #endregion
+
+        #region Navigation Filtering
+
 
         /// <summary>
         /// Filter the navigation from a scene to the next based on the first contact requirements

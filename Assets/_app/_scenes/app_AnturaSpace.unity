@@ -11068,6 +11068,12 @@ MonoBehaviour:
   iconSprite: {fileID: 21300000, guid: 89fcdc75669a34837bb5ef6a5e985de9, type: 3}
   bonesCost: 5
   errorLocalizationID: 0
+--- !u!114 &1104001429 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114470814201373716, guid: 21d6847d9291cd94f8c9933be8996bd0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1104001425}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1105772697
 GameObject:
   m_ObjectHideFlags: 0
@@ -13895,6 +13901,7 @@ MonoBehaviour:
   UI: {fileID: 1668913316}
   ShopDecorationsManager: {fileID: 837188164}
   m_oCookieButton: {fileID: 2079677548}
+  m_oPhotoButton: {fileID: 1104001429}
   m_oCustomizationButton: {fileID: 1965254905}
 --- !u!1 &1493050497
 GameObject:

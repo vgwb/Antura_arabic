@@ -41,5 +41,26 @@ namespace Antura.Tutorial
         }
 
         protected abstract void InternalHandleStart();
+
+
+        #region Phase Unlocking
+
+        public bool IsPhaseUnlocked(FirstContactPhase phase)
+        {
+            return FirstContactManager.I.HasUnlockedPhase(phase);
+        }
+
+        public bool IsPhaseCompleted(FirstContactPhase phase)
+        {
+            return FirstContactManager.I.HasCompletedPhase(phase);
+        }
+
+        public bool IsPhaseToBeCompleted(FirstContactPhase phase, bool unlockingCondition)
+        {
+            bool shouldBeUnlocked = !FirstContactManager.I.HasCompletedPhase(phase) && unlockingCondition;
+            if (shouldBeUnlocked) FirstContactManager.I.UnlockPhase(phase);
+            return shouldBeUnlocked;
+        }
+        #endregion
     }
 }

@@ -77,10 +77,10 @@ namespace Antura.Map
         private bool CheckNewUnlockPhaseAt(int st, int lb, int ps, FirstContactPhase phase, LocalizationDataId localizationDataId)
         {
             if (st == 1 && lb == 1 && ps == 1) AutoUnlockAndComplete(phase);
-            if (!FirstContactManager.I.HasCompletedPhase(phase) && HasReachedJourneyPosition(st, lb, ps))
+            bool unlockCondition = HasReachedJourneyPosition(st, lb, ps);
+            bool isJustUnlocked = IsPhaseToBeCompleted(phase, unlockCondition);
+            if (isJustUnlocked)
             {
-                FirstContactManager.I.UnlockPhase(phase);
-
                 KeeperManager.I.PlayDialog(localizationDataId, true, true, () =>
                 {
                     _stageMapsManager.SetUIActivationByContactPhase(phase);
@@ -88,7 +88,7 @@ namespace Antura.Map
                 });
                 return true;
             }
-            else if (FirstContactManager.I.HasUnlockedPhase(phase))
+            else if (IsPhaseUnlocked(phase))
             {
                 _stageMapsManager.SetUIActivationByContactPhase(phase);
             }
