@@ -1,4 +1,5 @@
 ﻿using Antura.Audio;
+using Antura.Tutorial;
 using Antura.Utilities;
 using UnityEngine;
 
@@ -15,5 +16,12 @@ namespace Antura.Core
                 AudioManager.I.PlayMusic(SceneMusic);
             }
         }
+
+        #region Tutorial Mode
+
+        public bool TutorialMode { get; set; }
+        public TutorialManager tutorialManager;
+
+        #endregion
     }
 }

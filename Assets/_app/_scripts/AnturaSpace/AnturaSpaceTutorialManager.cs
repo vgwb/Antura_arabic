@@ -72,7 +72,7 @@ namespace Antura.AnturaSpace
             // Play bonus tutorial phases
             if (!isPlayingSequentialTutorialPhase)
             {
-                UnlockPhaseIfReachedJourneyPosition(FirstContactPhase.AnturaSpace_Photo, 1, 3, 1);
+                UnlockPhaseIfReachedJourneyPosition(FirstContactPhase.AnturaSpace_Photo);
 
                 bool isPhaseToBeCompleted = IsPhaseToBeCompleted(FirstContactPhase.AnturaSpace_Photo);
                 if (isPhaseToBeCompleted)
@@ -317,12 +317,14 @@ namespace Antura.AnturaSpace
             {
                 case ShopTutorialStep.ENTER_SHOP:
 
+                    AnturaSpaceScene.I.TutorialMode = true;
+                    CurrentTutorialFocus = m_oCookieButton;
+
                     // Dialog -> Appear button
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate
                     {
                         ShopDecorationsManager.SetContextClosed();
                         UI.ShowShopButton(true);
-
 
                         m_oCookieButton.onClick.AddListener(StepTutorialShop);
                         TutorialUI.ClickRepeat(m_oCookieButton.transform.position, float.MaxValue, 1);
@@ -340,6 +342,7 @@ namespace Antura.AnturaSpace
                     actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Bone");
                     //actionUI.ShopAction.OnActionCommitted += StepTutorialShop;
                     _mScene.onEatObject += StepTutorialShop;
+                    CurrentTutorialFocus = actionUI;
 
                     // Dialog (drag bone)
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_2);
@@ -365,7 +368,7 @@ namespace Antura.AnturaSpace
 
                     // Cleanup last step
                     StopDrawDragLine();
-                    actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Bone");
+                    //actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Bone");
                     //actionUI.ShopAction.OnActionCommitted -= StepTutorialShop;
                     _mScene.onEatObject -= StepTutorialShop;
 
@@ -380,6 +383,8 @@ namespace Antura.AnturaSpace
                             .MinBy(x => x.transform.position.x);
                     StartDrawDragLineFromTo(actionUI.transform, leftmostUnassignedSlot.transform);
 
+                    CurrentTutorialFocus = actionUI;
+
                     break;
 
                 case ShopTutorialStep.CONFIRM_BUY_DECORATION:
@@ -393,13 +398,14 @@ namespace Antura.AnturaSpace
                     // TODO: what if he cancels? ShopDecorationsManager.OnPurchaseCancelled  += StepTutorialShop;
 
                     yesButton = UI.ShopPanelUI.confirmationYesButton;
-
                     //yesButton.onClick.AddListener(StepTutorialShop);
 
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, () =>
                     {
                         TutorialUI.ClickRepeat(yesButton.transform.position, float.MaxValue, 1);
                     });
+
+                    CurrentTutorialFocus = yesButton;
 
                     break;
 
@@ -448,6 +454,8 @@ namespace Antura.AnturaSpace
                     _mScene.ShowBackButton();
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
 
+                    AnturaSpaceScene.I.TutorialMode = false;
+                    CurrentTutorialFocus = null;
                     CompleteTutorialPhase();
                     break;
             }
@@ -486,7 +494,6 @@ namespace Antura.AnturaSpace
                         m_oPhotoButton.gameObject.SetActive(true);
                         m_oPhotoButton.onClick.AddListener(StepTutorialPhoto);
                         TutorialUI.ClickRepeat(m_oPhotoButton.transform.position, float.MaxValue, 1);
-                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, null);
                     });
                     break;
 
@@ -496,18 +503,21 @@ namespace Antura.AnturaSpace
                     m_oPhotoButton.onClick.RemoveListener(StepTutorialPhoto);
 
                     // New step
-                    ShopDecorationsManager.OnPurchaseComplete += StepTutorialPhoto;
+                    ShopPhotoManager.I.OnPurchaseCompleted += StepTutorialPhoto;
                     var yesButton = UI.ShopPanelUI.confirmationYesButton;
 
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, () =>
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
+
+                    StartCoroutine(DelayedCallbackCO(() =>
                     {
                         TutorialUI.ClickRepeat(yesButton.transform.position, float.MaxValue, 1);
-                    });
+                    }));
+
                     break;
                 case PhotoTutorialStep.FINISH:
 
                     // Cleanup last step
-                    ShopDecorationsManager.OnPurchaseComplete -= StepTutorialPhoto;
+                    ShopPhotoManager.I.OnPurchaseCompleted -= StepTutorialPhoto;
 
                     // New step
                     // dialog: exit and play

@@ -377,6 +377,8 @@ namespace Antura.AnturaSpace
 
         public void CancelPurchase()
         {
+            if (AnturaSpaceScene.I.TutorialMode) return;
+
             if (currentDraggedSlot) { currentDraggedSlot.Despawn(); }
             DeleteDecoration(currentDraggedDecoration);
             if (OnPurchaseCancelled != null) { OnPurchaseCancelled(); }
@@ -385,6 +387,8 @@ namespace Antura.AnturaSpace
 
         public void ConfirmDeletion()
         {
+            if (AnturaSpaceScene.I.TutorialMode) return;
+
             startDragSlot.Despawn();
             DeleteDecoration(currentDraggedDecoration);
             SaveState();

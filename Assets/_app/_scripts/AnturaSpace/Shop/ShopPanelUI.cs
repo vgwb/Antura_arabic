@@ -28,6 +28,8 @@ namespace Antura.AnturaSpace
         private List<ShopActionUI> actionUIs;
         Tween scrollShowTween;
 
+        private bool tutorialMode;
+
         private Tween showShopPanelTween,
             showDragPanelTween,
             showConfirmationPanelTween,

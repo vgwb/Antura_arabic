@@ -96,8 +96,8 @@ namespace Antura.Profile
         private static bool SIMULATE_FIRST_CONTACT = false;
         private FirstContactPhase SIMULATE_FIRST_CONTACT_PHASE = FirstContactPhase.AnturaSpace_TouchAntura;
 
-        private static bool FORCE_FIRST_CONTACT_START = false;
-        private FirstContactPhase FORCED_FIRST_CONTACT_START_PHASE = FirstContactPhase.Finished;
+        private static bool FORCE_FIRST_CONTACT_START = true;
+        private FirstContactPhase FORCED_FIRST_CONTACT_START_PHASE = FirstContactPhase.AnturaSpace_Shop;
 
         public FirstContactManager()
         {
@@ -333,6 +333,25 @@ namespace Antura.Profile
                     correctPhases.Add(phase);
             }
             return correctPhases;
+        }
+
+        // TODO: scene and phase could be part of some FirstContactData struct
+        public JourneyPosition GetUnlockingJourneyPosition(FirstContactPhase phase)
+        {
+            switch (phase)
+            {
+                case FirstContactPhase.Map_GoToBook:
+                    return new JourneyPosition(1, 3, 1);  
+
+                case FirstContactPhase.Map_GoToMinigames:
+                    return new JourneyPosition(1, 4, 1);
+
+                case FirstContactPhase.AnturaSpace_Shop:
+                    return new JourneyPosition(1, 3, 1);
+
+                default:
+                    return new JourneyPosition(1, 1, 1);    // This means from the start
+            }
         }
 
         private AppScene GetSceneForTutorialOfPhase(FirstContactPhase phase)

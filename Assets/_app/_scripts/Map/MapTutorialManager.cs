@@ -32,11 +32,11 @@ namespace Antura.Map
             // TODO: see AnturaSpaceTutorialManager and copy it for the unlock and skip steps!
 
             // Antura Space (auto-unlocked from the start)
-            if (CheckNewUnlockPhaseAt(1, 1, 1, FirstContactPhase.Map_GoToAnturaSpace, LocalizationDataId.Map_Intro_AnturaSpace))
+            if (CheckNewUnlockPhaseAt(FirstContactPhase.Map_GoToAnturaSpace, LocalizationDataId.Map_Intro_AnturaSpace))
                 return;
 
             // Profile (auto-unlocked from the start)
-            if (CheckNewUnlockPhaseAt(1, 1, 1, FirstContactPhase.Map_GoToProfile, LocalizationDataId.Map_Intro_AnturaSpace))
+            if (CheckNewUnlockPhaseAt(FirstContactPhase.Map_GoToProfile, LocalizationDataId.Map_Intro_AnturaSpace))
                 return;
 
             // TODO: at the end, call CompleteCurrentPhase, if we need more phases in the same scene
@@ -65,11 +65,11 @@ namespace Antura.Map
             // New features unlocking
 
             // Book
-            if (CheckNewUnlockPhaseAt(1, 3, 1, FirstContactPhase.Map_GoToBook, LocalizationDataId.Map_Intro_AnturaSpace))
+            if (CheckNewUnlockPhaseAt(FirstContactPhase.Map_GoToBook, LocalizationDataId.Map_Intro_AnturaSpace))
                 return;
 
             // MiniGames
-            if (CheckNewUnlockPhaseAt(1, 4, 1, FirstContactPhase.Map_GoToMinigames, LocalizationDataId.Map_Intro_AnturaSpace))
+            if (CheckNewUnlockPhaseAt(FirstContactPhase.Map_GoToMinigames, LocalizationDataId.Map_Intro_AnturaSpace))
                 return;
 
             // If nothing is being unlocked, let the player play
@@ -83,10 +83,9 @@ namespace Antura.Map
         }
 
 
-        private bool CheckNewUnlockPhaseAt(int st, int lb, int ps, FirstContactPhase phase, LocalizationDataId localizationDataId)
+        private bool CheckNewUnlockPhaseAt(FirstContactPhase phase, LocalizationDataId localizationDataId)
         {
-            if (st == 1 && lb == 1 && ps == 1) AutoUnlockAndComplete(phase);
-            UnlockPhaseIfReachedJourneyPosition(phase, st, lb, ps);
+            UnlockPhaseIfReachedJourneyPosition(phase);
 
             bool isPhaseToBeCompleted = IsPhaseToBeCompleted(phase);
             if (isPhaseToBeCompleted)

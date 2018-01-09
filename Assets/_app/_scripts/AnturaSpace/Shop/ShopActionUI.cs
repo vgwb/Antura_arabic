@@ -36,6 +36,10 @@ namespace Antura.AnturaSpace
 
         public void OnClick()
         {
+            if (AnturaSpaceScene.I.TutorialMode 
+                && AnturaSpaceScene.I.tutorialManager.CurrentTutorialFocus != this)
+                return;
+
             if (( ShopDecorationsManager.I.ShopContext == ShopContext.Purchase || shopAction.CanPurchaseAnywhere)
                 && shopAction.IsClickButton)
             {
@@ -71,6 +75,10 @@ namespace Antura.AnturaSpace
         {
             // Push the drag action to the scroll rect too
             scrollRect.OnDrag(eventData);
+
+            if (AnturaSpaceScene.I.TutorialMode
+                && AnturaSpaceScene.I.tutorialManager.CurrentTutorialFocus != this)
+                return;
 
             if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase)
             {

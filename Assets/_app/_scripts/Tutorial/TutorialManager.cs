@@ -1,5 +1,6 @@
 using Antura.Core;
 using Antura.Profile;
+using Antura.Teacher;
 using UnityEngine;
 
 namespace Antura.Tutorial
@@ -13,6 +14,7 @@ namespace Antura.Tutorial
         public bool IsRunning { get; protected set; }
 
         protected abstract AppScene CurrentAppScene { get; }
+        public Object CurrentTutorialFocus { get; protected set; }
 
         public void HandleStart()
         {
@@ -96,16 +98,18 @@ namespace Antura.Tutorial
             if (shouldBeUnlocked) FirstContactManager.I.UnlockPhase(phase);
         }
 
-        protected void UnlockPhaseIfReachedJourneyPosition(FirstContactPhase phase, int st, int lb, int ps)
+        protected void UnlockPhaseIfReachedJourneyPosition(FirstContactPhase phase)
         {
-            bool shouldBeUnlocked = !FirstContactManager.I.HasUnlockedPhase(phase) && HasReachedJourneyPosition(st, lb, ps);
+            var journeyPosition = FirstContactManager.I.GetUnlockingJourneyPosition(phase);
+            if (journeyPosition.Equals(JourneyPosition.InitialJourneyPosition)) AutoUnlockAndComplete(phase);
+            bool shouldBeUnlocked = !FirstContactManager.I.HasUnlockedPhase(phase) && HasReachedJourneyPosition(journeyPosition);
             if (shouldBeUnlocked) FirstContactManager.I.UnlockPhase(phase);
         }
 
-        // Check for unlock
-        protected bool HasReachedJourneyPosition(int st, int lb, int ps)
+        // Checks for unlock
+        protected bool HasReachedJourneyPosition(JourneyPosition journeyPosition)
         {
-            return AppManager.I.Player.MaxJourneyPosition.IsGreaterOrEqual(new JourneyPosition(st, lb, ps));
+            return AppManager.I.Player.MaxJourneyPosition.IsGreaterOrEqual(journeyPosition);
         }
 
         #endregion

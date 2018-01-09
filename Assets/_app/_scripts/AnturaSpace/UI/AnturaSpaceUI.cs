@@ -56,7 +56,7 @@ namespace Antura.AnturaSpace.UI
         public bool IsModsPanelOpen { get; private set; }
         //public bool IsShopPanelOpen { get; private set; }
 
-        bool isTutorialMode;
+        bool isTutorialMode; 
         AnturaSpaceCategoryButton[] btsCategories;
         AnturaSpaceItemButton[] btsItems;
         AnturaSpaceSwatchButton[] btsSwatches;

@@ -24,7 +24,6 @@ namespace Antura.AnturaSpace
 
         public AnturaSpaceUI UI;
         public ShopActionsManager ShopActionsManager;
-        public TutorialManager tutorialManager;
 
         public Transform SceneCenter;
         public Pedestal RotatingBase;
