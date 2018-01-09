@@ -160,7 +160,7 @@ namespace Antura.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
-                    GoToScene(AppScene.Map);
+                    GoToScene(AppScene.AnturaSpace);
                     break;
                 case AppScene.PlaySessionResult:
                     GoToScene(AppScene.Map);
