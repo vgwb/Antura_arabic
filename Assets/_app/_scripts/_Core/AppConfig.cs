@@ -25,7 +25,7 @@ namespace Antura.Core
         /// Version of the MySQL Database Scheme.
         /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
         /// </summary>
-        public const string DynamicDbSchemeVersion = "1.1.0.572";
+        public const string DynamicDbSchemeVersion = "1.1.0.581";
 
         #region Debug Options
 
@@ -143,8 +143,7 @@ namespace Antura.Core
 
         public static bool IsMobileTablet()
         {
-            if (IsMobilePlatform())
-            {
+            if (IsMobilePlatform()) {
                 return (DeviceDiagonalSizeInInches() > 6.5f);
             }
             return false;
@@ -152,8 +151,7 @@ namespace Antura.Core
 
         public static bool IsMobileSMartphone()
         {
-            if (IsMobilePlatform())
-            {
+            if (IsMobilePlatform()) {
                 return (DeviceDiagonalSizeInInches() <= 6.5f);
             }
             return false;
