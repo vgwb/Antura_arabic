@@ -721,7 +721,7 @@ namespace Antura.Rewards
             {
                 case RewardBaseType.Prop:
                     string[] allowedCategories = {
-                        "HEAD", "BACK", "NECK", "JAW"
+                        "HEAD", "NOSE", "BACK", "TAIL" 
                     };
                     list = GenerateNewRewardPacks(baseType, RewardUnlockMethod.NewBaseAndAllColors, allowedCategories);
                     break;
