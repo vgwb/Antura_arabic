@@ -1,3 +1,4 @@
+using Antura.Core;
 using Antura.Profile;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ namespace Antura.Tutorial
         public static bool VERBOSE = true;
         public bool IsRunning { get; protected set; }
 
+        protected abstract AppScene CurrentAppScene { get; }
+
         public void HandleStart()
         {
             /*if (FirstContactManager.I.IsSequenceFinished()) {
@@ -22,6 +25,18 @@ namespace Antura.Tutorial
 
             if (VERBOSE) { Debug.Log("TutorialManager - phase " + FirstContactManager.I.CurrentPhaseInSequence + ""); }
             IsRunning = true;
+
+            // Check what we already unlocked and enable / disable UI
+            foreach (var phase in FirstContactManager.I.GetPhasesForScene(CurrentAppScene))
+            {
+                SetPhaseUIShown(phase, IsPhaseCompleted(phase));
+            }
+
+            // Check whether we are in a phase that this tutorial should handle
+            if (!FirstContactManager.I.IsTutorialToBePlayed(CurrentAppScene))
+            {
+                StopTutorialRunning();
+            }
 
             InternalHandleStart();
         }
@@ -42,25 +57,57 @@ namespace Antura.Tutorial
 
         protected abstract void InternalHandleStart();
 
+        protected virtual void SetPhaseUIShown(FirstContactPhase phase, bool choice)
+        {
+        }
+
 
         #region Phase Unlocking
 
-        public bool IsPhaseUnlocked(FirstContactPhase phase)
+        protected void AutoUnlockAndComplete(FirstContactPhase phase)
+        {
+            if (!FirstContactManager.I.HasCompletedPhase(phase))
+            {
+                FirstContactManager.I.CompletePhase(phase);
+            }
+        }
+
+        protected bool IsPhaseUnlocked(FirstContactPhase phase)
         {
             return FirstContactManager.I.HasUnlockedPhase(phase);
         }
 
-        public bool IsPhaseCompleted(FirstContactPhase phase)
+        protected bool IsPhaseCompleted(FirstContactPhase phase)
         {
             return FirstContactManager.I.HasCompletedPhase(phase);
         }
 
-        public bool IsPhaseToBeCompleted(FirstContactPhase phase, bool unlockingCondition)
+        protected bool IsPhaseToBeCompleted(FirstContactPhase phase)
         {
-            bool shouldBeUnlocked = !FirstContactManager.I.HasCompletedPhase(phase) && unlockingCondition;
+            return FirstContactManager.I.IsPhaseUnlockedAndNotCompleted(phase);
+            /*bool shouldBeUnlocked = !FirstContactManager.I.HasCompletedPhase(phase) && unlockingCondition;
             if (shouldBeUnlocked) FirstContactManager.I.UnlockPhase(phase);
-            return shouldBeUnlocked;
+            return shouldBeUnlocked;*/
         }
+
+        protected void UnlockPhaseIf(FirstContactPhase phase, bool unlockingCondition)
+        {
+            bool shouldBeUnlocked = !FirstContactManager.I.HasUnlockedPhase(phase) && unlockingCondition;
+            if (shouldBeUnlocked) FirstContactManager.I.UnlockPhase(phase);
+        }
+
+        protected void UnlockPhaseIfReachedJourneyPosition(FirstContactPhase phase, int st, int lb, int ps)
+        {
+            bool shouldBeUnlocked = !FirstContactManager.I.HasUnlockedPhase(phase) && HasReachedJourneyPosition(st, lb, ps);
+            if (shouldBeUnlocked) FirstContactManager.I.UnlockPhase(phase);
+        }
+
+        // Check for unlock
+        protected bool HasReachedJourneyPosition(int st, int lb, int ps)
+        {
+            return AppManager.I.Player.MaxJourneyPosition.IsGreaterOrEqual(new JourneyPosition(st, lb, ps));
+        }
+
         #endregion
     }
 }

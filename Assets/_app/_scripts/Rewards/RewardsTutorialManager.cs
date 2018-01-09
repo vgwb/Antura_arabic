@@ -1,3 +1,4 @@
+using Antura.Core;
 using Antura.Keeper;
 using Antura.Profile;
 using Antura.Tutorial;
@@ -18,6 +19,11 @@ namespace Antura.Rewards
                     KeeperManager.I.PlayDialog(Database.LocalizationDataId.Reward_Intro);
                     break;
             }
+        }
+
+        protected override AppScene CurrentAppScene
+        {
+            get { return AppScene.Rewards; }
         }
     }
 }

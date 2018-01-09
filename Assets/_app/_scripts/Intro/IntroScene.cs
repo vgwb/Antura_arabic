@@ -78,7 +78,7 @@ namespace Antura.Intro
             {
                 countDown.onTimesUp -= CountDown_onTimesUp;
             }
-            Debug.Log("OnDisable() Intro scene");
+            //Debug.Log("OnDisable() Intro scene");
         }
 
         void SkipScene()

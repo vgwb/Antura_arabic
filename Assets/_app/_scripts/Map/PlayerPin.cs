@@ -79,7 +79,7 @@ namespace Antura.Map
         public void MoveToPin(int pinIndex, int stageNumber)
         {
             if (CanMoveTo(pinIndex, stageNumber)) {
-                if (stageMapsManager.FollowPlayerWhenMoving) stageMapsManager.mapCamera.SetAutoFollowTransformCurrentMap(transform);
+                if (stageMapsManager.FollowPlayerWhenMoving) stageMapsManager.mapCameraController.SetAutoFollowTransformCurrentMap(transform);
                 AnimateToPin(pinIndex);
             }
         }

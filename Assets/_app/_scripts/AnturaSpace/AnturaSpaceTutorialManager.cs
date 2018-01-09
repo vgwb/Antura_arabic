@@ -9,7 +9,9 @@ using Antura.UI;
 using UnityEngine;
 using System.Collections;
 using System.Linq;
+using Antura.Database;
 using Antura.Extensions;
+using Antura.Keeper;
 using DG.Tweening;
 using UnityEngine.UI;
 
@@ -21,7 +23,7 @@ namespace Antura.AnturaSpace
     public class AnturaSpaceTutorialManager : TutorialManager
     {
         // References
-        private AnturaSpaceScene _mScene;
+        public AnturaSpaceScene _mScene;
 
         [SerializeField]
         private Camera m_oCameraUI;
@@ -37,24 +39,18 @@ namespace Antura.AnturaSpace
         private AnturaSpaceItemButton m_oItemButton;
         private AnturaSpaceSwatchButton m_oSwatchButton;
 
+        protected override AppScene CurrentAppScene
+        {
+            get { return AppScene.AnturaSpace; }
+        }
+
         protected override void InternalHandleStart()
         {
-            // Check what we already unlocked and enable / disable UI
-            foreach (var phase in FirstContactManager.I.GetPhasesForScene(AppScene.AnturaSpace))
-            {
-                SetPhaseUIShown(phase, IsPhaseCompleted(phase)); 
-            }
-
-            // Check whether we are in a phase that this tutorial should handle
-            if (!FirstContactManager.I.IsSceneTutorialAtThisPhase(AppScene.AnturaSpace))
-            {
-                StopTutorialRunning();
-            }
-
-            _mScene = FindObjectOfType<AnturaSpaceScene>();
+            // References
             TutorialUI.SetCamera(m_oCameraUI);
 
-            // Define what tutorial phase to play
+            // Play sequential tutorial phases
+            bool isPlayingSequentialTutorialPhase = false;
             switch (FirstContactManager.I.CurrentPhaseInSequence) {
                 case FirstContactPhase.AnturaSpace_TouchAntura:
                     StepTutorialTouchAntura();
@@ -68,18 +64,32 @@ namespace Antura.AnturaSpace
                     StepTutorialShop();
                     break;
 
-                case FirstContactPhase.AnturaSpace_Photo:
-                    StepTutorialPhoto();
-                    break;
-
                 case FirstContactPhase.AnturaSpace_Exit:
                     StepTutorialExit();
                     break;
             }
 
+            // Play bonus tutorial phases
+            if (!isPlayingSequentialTutorialPhase)
+            {
+                UnlockPhaseIfReachedJourneyPosition(FirstContactPhase.AnturaSpace_Photo, 1, 3, 1);
+
+                bool isPhaseToBeCompleted = IsPhaseToBeCompleted(FirstContactPhase.AnturaSpace_Photo);
+                if (isPhaseToBeCompleted)
+                {
+                    StepTutorialPhoto();
+                    //KeeperManager.I.PlayDialog(LocalizationDataId.AnturaSpace_Intro_Cookie, true, true, () =>
+                    //{
+                    //_stageMapsManager.SetUIActivationByContactPhase(phase);
+                    //StartCoroutine(TutorialHintClickCO(_stageMapsManager.GetGameObjectByContactPhase(phase).transform, _stageMapsManager.UICamera));
+                    // });
+                    return;
+                }
+            }
+
         }
 
-        void SetPhaseUIShown(FirstContactPhase phase, bool choice)
+        protected override void SetPhaseUIShown(FirstContactPhase phase, bool choice)
         {
             switch (phase)
             {
@@ -435,6 +445,9 @@ namespace Antura.AnturaSpace
 
                 case ShopTutorialStep.FINISH:
 
+                    // Cleanup last step
+                    m_oCookieButton.onClick.RemoveListener(StepTutorialShop);
+
                     // New step
                     // dialog: exit and play
                     _mScene.ShowBackButton();
@@ -460,15 +473,53 @@ namespace Antura.AnturaSpace
         private PhotoTutorialStep _currentPhotoStep = PhotoTutorialStep.START;
         private void StepTutorialPhoto()
         {
+            if (_currentPhotoStep < PhotoTutorialStep.FINISH) _currentPhotoStep += 1;
+
+            TutorialUI.Clear(false);
+
+            // Hide other UIs
+            SetPhaseUIShown(FirstContactPhase.AnturaSpace_Customization, false);
+            SetPhaseUIShown(FirstContactPhase.AnturaSpace_Exit, false);
+
             Debug.Log("CURRENT STEP IS " + _currentPhotoStep);
             switch (_currentPhotoStep)
             {
-                case PhotoTutorialStep.START:
-                    _currentPhotoStep = PhotoTutorialStep.FINISH;
+                case PhotoTutorialStep.CLICK_PHOTO:
 
-                    // TODO: implement this
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, () =>
+                    {
+                        m_oPhotoButton.onClick.AddListener(StepTutorialPhoto);
+                        TutorialUI.ClickRepeat(m_oPhotoButton.transform.position, float.MaxValue, 1);
+                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, null);
+                    });
                     break;
 
+                case PhotoTutorialStep.CONFIRM_PHOTO:
+
+                    // Cleanup last step
+                    m_oPhotoButton.onClick.RemoveListener(StepTutorialPhoto);
+
+                    // New step
+                    ShopDecorationsManager.OnPurchaseComplete += StepTutorialPhoto;
+                    var yesButton = UI.ShopPanelUI.confirmationYesButton;
+
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, () =>
+                    {
+                        TutorialUI.ClickRepeat(yesButton.transform.position, float.MaxValue, 1);
+                    });
+                    break;
+                case PhotoTutorialStep.FINISH:
+
+                    // Cleanup last step
+                    ShopDecorationsManager.OnPurchaseComplete -= StepTutorialPhoto;
+
+                    // New step
+                    // dialog: exit and play
+                    _mScene.ShowBackButton();
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
+
+                    CompleteTutorialPhase();
+                    break;
             }
         }
         #endregion

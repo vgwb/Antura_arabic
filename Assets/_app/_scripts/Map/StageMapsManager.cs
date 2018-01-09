@@ -27,11 +27,12 @@ namespace Antura.Map
         [Header("References")]
         public StageMap[] stageMaps;
         public PlayerPin playerPin;
-        public MapCameraController mapCamera;
+        public MapCameraController mapCameraController;
 
         [Header("UI")]
 
         public Camera UICamera;
+        public Camera MapCamera;
         public MapStageIndicator mapStageIndicator;
         public MapPlayInfoPanel playInfoPanel;
         public MapPlayButtonsPanel playButtonsPanel;
@@ -190,7 +191,7 @@ namespace Antura.Map
                 PlayRandomAssessmentDialog();
             }
 
-            mapCamera.Initialise(this);
+            mapCameraController.Initialise(this);
 
             initialMovementNeedsAnimation = InitialiseMapMovement();
 
@@ -221,7 +222,7 @@ namespace Antura.Map
                 //Debug.Log("Already at the correct stage " + shownStage);
                 SelectPin(StageMap(shownStage).PinForJourneyPosition(targetCurrentJourneyPosition));
                 StageMap(shownStage).FlushAppear(AppManager.I.Player.MaxJourneyPosition);
-                mapCamera.SetManualMovementCurrentMap();
+                mapCameraController.SetManualMovementCurrentMap();
             }
             return needsAnimation;
         }
@@ -238,13 +239,13 @@ namespace Antura.Map
                 if (shownStage != targetCurrentJourneyPosition.Stage) {
                     //Debug.Log("ANIMATING TO STAGE: " + targetCurrentJourneyPosition.Stage + " THEN MOVING TO " + targetCurrentJourneyPosition);
                     yield return StartCoroutine(SwitchFromToStageCO(shownStage, targetCurrentJourneyPosition.Stage, true));
-                    mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
+                    mapCameraController.SetAutoFollowTransformCurrentMap(playerPin.transform);
                     SelectPin(StageMap(shownStage).PinForJourneyPosition(targetCurrentJourneyPosition));
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition, StageMap(shownStage));
                 } else {
                     //Debug.Log("JUST MOVING TO " + targetCurrentJourneyPosition);
                     yield return new WaitForSeconds(3.0f);
-                    mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
+                    mapCameraController.SetAutoFollowTransformCurrentMap(playerPin.transform);
                     SelectPin(StageMap(shownStage).PinForJourneyPosition(targetCurrentJourneyPosition));
                     playerPin.MoveToJourneyPosition(targetCurrentJourneyPosition, StageMap(shownStage));
                 }
@@ -254,7 +255,7 @@ namespace Antura.Map
                 yield return null;
             }
 
-            mapCamera.SetManualMovementCurrentMap();
+            mapCameraController.SetManualMovementCurrentMap();
             //ReSelectCurrentPin();
         }
 
@@ -299,7 +300,7 @@ namespace Antura.Map
             //Debug.Log("CurrentPlayerStage: " + CurrentPlayerStage);
             //Debug.Log("current player stage map: " + playerStageMap.stageNumber);
             var targetPin = playerStageMap.PinForIndex(playerPin.CurrentPinIndex);
-            mapCamera.SetAutoFollowTransformCurrentMap(targetPin.transform);
+            mapCameraController.SetAutoFollowTransformCurrentMap(targetPin.transform);
 
             if (targetPin != selectedPin) {
                 //Debug.Log("Selecting pin " + targetPin.journeyPosition);
@@ -313,7 +314,7 @@ namespace Antura.Map
             SelectPin(playerStageMap.PinForIndex(playerPin.CurrentPinIndex));
 
             // Make sure to move the camera too
-            mapCamera.SetAutoFollowTransformCurrentMap(playerPin.transform);
+            mapCameraController.SetAutoFollowTransformCurrentMap(playerPin.transform);
         }
 
         public Pin SelectedPin { get { return selectedPin; } }
@@ -522,9 +523,9 @@ namespace Antura.Map
             // We'll look at the current player position, if possible.
             bool playable = IsStagePlayable(stage);
             if (playable) {
-                mapCamera.TeleportToLookAtFree(playerPin.transform, stageMap.cameraPivotStart);
+                mapCameraController.TeleportToLookAtFree(playerPin.transform, stageMap.cameraPivotStart);
             } else {
-                mapCamera.TeleportTo(stageMap.cameraPivotStart);
+                mapCameraController.TeleportTo(stageMap.cameraPivotStart);
             }
 
             Camera.main.backgroundColor = stageMap.color;
@@ -544,9 +545,9 @@ namespace Antura.Map
             // AND if the player is in that stage
             bool playable = IsStagePlayable(stage);
             if (playable && playerPin.currentStageMap == stageMap) {
-                mapCamera.SetAutoMoveToLookAtFree(playerPin.transform, stageMap.cameraPivotStart, 0.6f);
+                mapCameraController.SetAutoMoveToLookAtFree(playerPin.transform, stageMap.cameraPivotStart, 0.6f);
             } else {
-                mapCamera.SetAutoMoveToTransformFree(stageMap.cameraPivotStart, 0.6f);
+                mapCameraController.SetAutoMoveToTransformFree(stageMap.cameraPivotStart, 0.6f);
             }
 
             Camera.main.DOColor(stageMap.color, 1);
@@ -647,21 +648,21 @@ namespace Antura.Map
         }
 
 
-        public void SetUIActivationByContactPhase(FirstContactPhase phase)
+        public void SetUIActivationByContactPhase(FirstContactPhase phase, bool choice)
         {
             switch (phase)
             {
                  case FirstContactPhase.Map_GoToProfile:
-                    SetProfileBookUIActivation(true);
+                    SetProfileBookUIActivation(choice);
                     break;
                 case FirstContactPhase.Map_GoToBook:
-                    SetLearningBookUIActivation(true);
+                    SetLearningBookUIActivation(choice);
                     break;
                 case FirstContactPhase.Map_GoToMinigames:
-                    SetMinigamesBookUIActivation(true);
+                    SetMinigamesBookUIActivation(choice);
                     break;
                 case FirstContactPhase.Map_GoToAnturaSpace:
-                    SetAnturaSpaceUIActivation(true);
+                    SetAnturaSpaceUIActivation(choice);
                     break;
             }
         }

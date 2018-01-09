@@ -119,7 +119,6 @@ namespace Antura.Profile
                 FirstContactPhase.AnturaSpace_Exit,
 
                 FirstContactPhase.Map_PlaySession,
-
                 //FirstContactPhase.Map_GoToAnturaSpace,
 
                 FirstContactPhase.AnturaSpace_Shop,
@@ -319,9 +318,10 @@ namespace Antura.Profile
 
         #region Scene / Phase links
 
-        public bool IsSceneTutorialAtThisPhase(AppScene scene)
+        public bool IsTutorialToBePlayed(AppScene scene)
         {
-            return GetSceneForTutorialOfPhase(CurrentPhaseInSequence) == scene;
+            return GetPhasesForScene(scene).Any(phase => IsPhaseUnlockedAndNotCompleted(phase));
+            //return GetSceneForTutorialOfPhase(CurrentPhaseInSequence) == scene;
         }
 
         public List<FirstContactPhase> GetPhasesForScene(AppScene scene)
@@ -386,13 +386,12 @@ namespace Antura.Profile
             TransitionCompletePhaseOn(FirstContactPhase.Map_GoToProfile, fromScene == AppScene.Map && toScene == AppScene.Book);
 
             // Check whether this transition needs to be filtered (i.e. it must go to a specific scene)
-            // @note: we always filter if we are coming from home, to handle the fact that the player can shut down the game during a tutorial
-            //FilterTransitionOn(FirstContactPhase.Intro, fromScene == AppScene.Home && toScene == AppScene.Map, ref toScene, AppScene.Intro);
             FilterTransitionOn(FirstContactPhase.Reward_FirstBig, fromScene == AppScene.Intro, ref toScene, AppScene.Rewards);
             FilterTransitionOn(FirstContactPhase.AnturaSpace_TouchAntura, fromScene == AppScene.Rewards, ref toScene, AppScene.AnturaSpace);
             FilterTransitionOn(FirstContactPhase.AnturaSpace_Shop,fromScene == AppScene.PlaySessionResult, ref toScene, AppScene.AnturaSpace);
 
             // Force the game to re-start from the scene of the current tutorial phase if needed
+            // @note: we always filter if we are coming from home, to handle the fact that the player can shut down the game during a tutorial
             foreach (FirstContactPhase phase in state.EnumeratePhases())
             {
                 FilterTransitionOn(phase, fromScene == AppScene.Home, ref toScene, GetSceneForTutorialOfPhase(phase));

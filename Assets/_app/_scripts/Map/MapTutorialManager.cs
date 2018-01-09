@@ -11,18 +11,25 @@ namespace Antura.Map
 {
     public class MapTutorialManager : TutorialManager
     {
-        private StageMapsManager _stageMapsManager;
+        public StageMapsManager _stageMapsManager;
+
+        protected override AppScene CurrentAppScene
+        {
+            get {
+                return AppScene.Map;
+            }
+        }
 
         protected override void InternalHandleStart()
         {
-            _stageMapsManager = FindObjectOfType<StageMapsManager>();
-
             // All UI is deactivated, for starters
             _stageMapsManager.DeactivateAllUI();
 
             // Always activate these buttons
             _stageMapsManager.SetExitButtonActivation(true);
             _stageMapsManager.SetStageUIActivation(true);
+
+            // TODO: see AnturaSpaceTutorialManager and copy it for the unlock and skip steps!
 
             // Antura Space (auto-unlocked from the start)
             if (CheckNewUnlockPhaseAt(1, 1, 1, FirstContactPhase.Map_GoToAnturaSpace, LocalizationDataId.Map_Intro_AnturaSpace))
@@ -45,7 +52,7 @@ namespace Antura.Map
                         KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_Map1);
                     });
 
-                    StartCoroutine(TutorialHintClickCO(_stageMapsManager.SelectedPin.transform));
+                    StartCoroutine(TutorialHintClickCO(_stageMapsManager.SelectedPin.transform, _stageMapsManager.MapCamera));
 
                     // @note: this phase is completed not on Play, but when we come back after the results
                     // check the FirstContactManager navigation filtering
@@ -70,47 +77,41 @@ namespace Antura.Map
             StopTutorialRunning();
         }
 
-        private void AutoUnlockAndComplete(FirstContactPhase phase)
+        protected override void SetPhaseUIShown(FirstContactPhase phase, bool choice)
         {
-            if (!FirstContactManager.I.HasCompletedPhase(phase))
-            {
-                FirstContactManager.I.CompletePhase(phase);
-            }
+            _stageMapsManager.SetUIActivationByContactPhase(phase, choice);
         }
+
 
         private bool CheckNewUnlockPhaseAt(int st, int lb, int ps, FirstContactPhase phase, LocalizationDataId localizationDataId)
         {
             if (st == 1 && lb == 1 && ps == 1) AutoUnlockAndComplete(phase);
-            bool unlockCondition = HasReachedJourneyPosition(st, lb, ps);
-            bool isJustUnlocked = IsPhaseToBeCompleted(phase, unlockCondition);
-            if (isJustUnlocked)
+            UnlockPhaseIfReachedJourneyPosition(phase, st, lb, ps);
+
+            bool isPhaseToBeCompleted = IsPhaseToBeCompleted(phase);
+            if (isPhaseToBeCompleted)
             {
                 KeeperManager.I.PlayDialog(localizationDataId, true, true, () =>
                 {
-                    _stageMapsManager.SetUIActivationByContactPhase(phase);
-                    StartCoroutine(TutorialHintClickCO(_stageMapsManager.GetGameObjectByContactPhase(phase).transform));
+                    _stageMapsManager.SetUIActivationByContactPhase(phase, true);
+                    StartCoroutine(TutorialHintClickCO(_stageMapsManager.GetGameObjectByContactPhase(phase).transform, _stageMapsManager.UICamera));
                 });
                 return true;
             }
             else if (IsPhaseUnlocked(phase))
             {
-                _stageMapsManager.SetUIActivationByContactPhase(phase);
+                _stageMapsManager.SetUIActivationByContactPhase(phase, true);
             }
             return false;
         }
 
-        private bool HasReachedJourneyPosition(int st, int lb, int ps)
+        private IEnumerator TutorialHintClickCO(Transform targetTr, Camera camera)
         {
-            return AppManager.I.Player.MaxJourneyPosition.IsGreaterOrEqual(new JourneyPosition(st, lb, ps));
-        }
-
-        private IEnumerator TutorialHintClickCO(Transform targetTr)
-        {
-            TutorialUI.SetCamera(_stageMapsManager.UICamera);
+            TutorialUI.SetCamera(camera);
             while (true) {
                 TutorialUI.Click(targetTr.position);
                 yield return new WaitForSeconds(0.85f);
-            }
+            } 
         }
     }
 }
