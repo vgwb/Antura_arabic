@@ -97,7 +97,6 @@ namespace Antura.Core
             PlayerProfileManager = new PlayerProfileManager();
             PlayerProfileManager.LoadSettings();
 
-            RewardSystemManager.Init();
             Services = new ServicesManager();
             gameObject.AddComponent<KeeperManager>();
 
