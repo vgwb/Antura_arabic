@@ -1,17 +1,14 @@
 using Antura.Dog;
 using Antura.Core;
-using Antura.Database;
 using Antura.Keeper;
 using Antura.Profile;
 using Antura.Tutorial;
 using Antura.UI;
 using DG.Tweening;
 using System.Collections;
-using System.Linq;
 using Antura.Debugging;
 using Antura.Helpers;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Antura.Rewards
 {
