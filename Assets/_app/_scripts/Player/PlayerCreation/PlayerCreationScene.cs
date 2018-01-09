@@ -1,4 +1,5 @@
 ﻿using Antura.Core;
+using Antura.Debugging;
 using Antura.Profile;
 using UnityEngine;
 
@@ -8,6 +9,18 @@ namespace Antura.Scenes
     {
         protected override void Start()
         {
+            base.Start();
+            DebugManager.OnSkipCurrentScene += HandleSkipScene;
+        }
+
+        void OnDestroy()
+        {
+            DebugManager.OnSkipCurrentScene -= HandleSkipScene;
+        }
+
+        private void HandleSkipScene()
+        {
+            CreatePlayer(4, PlayerGender.M, 0, PlayerTint.Blue);
         }
 
         public static void CreatePlayer(int age, PlayerGender gender, int avatarID, PlayerTint color)
