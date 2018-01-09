@@ -1,3 +1,4 @@
+using System;
 using Antura.AnturaSpace.UI;
 using Antura.Audio;
 using Antura.Core;
@@ -65,6 +66,9 @@ namespace Antura.AnturaSpace
         public float AnturaHappiness { get; private set; }
         public bool InCustomizationMode { get; private set; }
         public float LastTimeCatching { get; set; }
+
+        public Action onEatObject;
+        public Action onHitObject;
 
         protected override void Init()
         {
@@ -247,6 +251,8 @@ namespace Antura.AnturaSpace
                     AnturaHappiness = 1;
                 }
 
+                if (onEatObject != null) onEatObject();
+
                 Destroy(throwableObject.gameObject);
             }
         }
@@ -260,6 +266,9 @@ namespace Antura.AnturaSpace
                 if (AnturaHappiness > 1) {
                     AnturaHappiness = 1;
                 }
+
+
+                if (onHitObject  != null) onHitObject();
 
                 throwableObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 20, ForceMode.Impulse);
             }

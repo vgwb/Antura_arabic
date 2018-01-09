@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,6 +16,16 @@ namespace Antura.Extensions
         public static bool ContainsAny<T>(this IEnumerable<T> thisList, IEnumerable<T> otherList)
         {
             return thisList.Any(otherList.Contains);
+        }
+
+        public static T MaxBy<T>(this IEnumerable<T> list, Func<T, float> getter)
+        {
+            return list.Aggregate((i, j) => getter(i) > getter(j) ? i : j);
+        }
+
+        public static T MinBy<T>(this IEnumerable<T> list, Func<T, float> getter)
+        {
+            return list.Aggregate((i, j) => getter(i) < getter(j) ? i : j);
         }
     }
 }

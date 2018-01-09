@@ -282,7 +282,7 @@ namespace Antura.AnturaSpace.UI
         /// </summary>
         public AnturaSpaceSwatchButton GetRandomUnselectedSwatch()
         {
-            return btsSwatches.Where(x => !x.Data.IsSelected).ToList().RandomSelectOne();
+            return btsSwatches.Where(x => x.Data != null && !x.Data.IsSelected).ToList().RandomSelectOne();
         }
 
         #endregion

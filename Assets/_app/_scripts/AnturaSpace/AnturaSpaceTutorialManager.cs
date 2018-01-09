@@ -9,6 +9,7 @@ using Antura.UI;
 using UnityEngine;
 using System.Collections;
 using System.Linq;
+using Antura.Extensions;
 using DG.Tweening;
 using UnityEngine.UI;
 
@@ -38,10 +39,6 @@ namespace Antura.AnturaSpace
 
         protected override void InternalHandleStart()
         {
-            _mScene = FindObjectOfType<AnturaSpaceScene>();
-
-            TutorialUI.SetCamera(m_oCameraUI);
-
             // Check what we already unlocked and enable / disable UI
             foreach (var phase in FirstContactManager.I.GetPhasesForScene(AppScene.AnturaSpace))
             {
@@ -53,6 +50,9 @@ namespace Antura.AnturaSpace
             {
                 StopTutorialRunning();
             }
+
+            _mScene = FindObjectOfType<AnturaSpaceScene>();
+            TutorialUI.SetCamera(m_oCameraUI);
 
             // Define what tutorial phase to play
             switch (FirstContactManager.I.CurrentPhaseInSequence) {
@@ -195,7 +195,7 @@ namespace Antura.AnturaSpace
                     m_oCustomizationButton.onClick.RemoveListener(StepTutorialCustomization);
                     _mScene.UI.SetTutorialMode(true);
 
-                    StartCoroutine(WaitAndSpawnCO(
+                    StartCoroutine(DelayedCallbackCO(
                         () => {
                             m_oCategoryButton = _mScene.UI.GetNewCategoryButton();
                             if (m_oCategoryButton == null) throw new Exception("No new category!");
@@ -210,7 +210,7 @@ namespace Antura.AnturaSpace
                     // Unregister from category button
                     m_oCategoryButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
 
-                    StartCoroutine(WaitAndSpawnCO(
+                    StartCoroutine(DelayedCallbackCO(
                         () => {
                             // Register on item button
                             m_oItemButton = _mScene.UI.GetNewItemButton();
@@ -227,7 +227,7 @@ namespace Antura.AnturaSpace
                     _mScene.UI.SetTutorialMode(false);
                     m_oItemButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
 
-                    StartCoroutine(WaitAndSpawnCO(
+                    StartCoroutine(DelayedCallbackCO(
                         () => {
                             // Register on item button
                             m_oSwatchButton = _mScene.UI.GetRandomUnselectedSwatch();
@@ -243,7 +243,7 @@ namespace Antura.AnturaSpace
                     _mScene.UI.SetTutorialMode(false);
                     m_oSwatchButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
 
-                    StartCoroutine(WaitAndSpawnCO(
+                    StartCoroutine(DelayedCallbackCO(
                      () => {
                          m_oCustomizationButton.onClick.AddListener(StepTutorialCustomization);
                          TutorialUI.ClickRepeat(m_oCustomizationButton.transform.position, float.MaxValue, 1);
@@ -291,7 +291,7 @@ namespace Antura.AnturaSpace
             FINISH
         }
 
-        private ShopTutorialStep _currentShopStep = ShopTutorialStep.START ;
+        private ShopTutorialStep _currentShopStep = ShopTutorialStep.START;
         private void StepTutorialShop()
         {
             if (_currentShopStep < ShopTutorialStep.FINISH) _currentShopStep += 1;
@@ -300,6 +300,10 @@ namespace Antura.AnturaSpace
 
             TutorialUI.Clear(false);
             AudioManager.I.StopDialogue(false);
+
+            // Hide other UIs
+            SetPhaseUIShown(FirstContactPhase.AnturaSpace_Customization, false);
+            SetPhaseUIShown(FirstContactPhase.AnturaSpace_Exit, false);
 
             ShopActionUI actionUI;
             Button yesButton;
@@ -329,13 +333,19 @@ namespace Antura.AnturaSpace
 
                     // New step
                     actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Bone");
-                    actionUI.ShopAction.OnActionCommitted += StepTutorialShop;
+                    //actionUI.ShopAction.OnActionCommitted += StepTutorialShop;
+                    _mScene.onEatObject += StepTutorialShop;
 
-                    // Dialog (drag cookie)
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_2, () =>
-                    {
-                        StartDrawDragLineFrom(actionUI.transform);
-                    });
+                    // Dialog (drag bone)
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_2);
+
+                    // Start drag line
+                    StartCoroutine(DelayedCallbackCO(
+                        () =>
+                        {
+                            StartDrawDragLineFrom(actionUI.transform);
+                        }
+                    ));
 
                     // TODO: for stop dragging? needed?
                     //m_bIsDragAnimPlaying = true;
@@ -351,16 +361,19 @@ namespace Antura.AnturaSpace
                     // Cleanup last step
                     StopDrawDragLine();
                     actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Bone");
-                    actionUI.ShopAction.OnActionCommitted -= StepTutorialShop;
+                    //actionUI.ShopAction.OnActionCommitted -= StepTutorialShop;
+                    _mScene.onEatObject -= StepTutorialShop;
 
                     // New step
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
-
                     ShopDecorationsManager.OnPurchaseConfirmationRequested += StepTutorialShop;
 
                     actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Decoration_Tree1");
-                    //actionButtonUi.buttonUI.Bt.onClick.RemoveListener(StepTutorialShop);
-                    StartDrawDragLineFrom(actionUI.transform);
+                    var leftmostUnassignedSlot =
+                        ShopDecorationsManager.GetDecorationSlots()
+                            .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Prop)
+                            .MinBy(x => x.transform.position.x);
+                    StartDrawDragLineFromTo(actionUI.transform, leftmostUnassignedSlot.transform);
 
                     break;
 
@@ -397,8 +410,10 @@ namespace Antura.AnturaSpace
 
                     // Slot we assigned
                     var assignedSlot = ShopDecorationsManager.GetDecorationSlots().FirstOrDefault(x => x.Assigned && x.slotType == ShopDecorationSlotType.Prop);
-                    var unassignedSlot = ShopDecorationsManager.GetDecorationSlots().FirstOrDefault(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Prop);
-                    StartDrawDragLineFromTo(assignedSlot.transform, unassignedSlot.transform);
+                    var rightmostUnassignedSlot = ShopDecorationsManager.GetDecorationSlots()
+                            .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Prop)
+                            .MaxBy(x => x.transform.position.x);
+                    StartDrawDragLineFromTo(assignedSlot.transform, rightmostUnassignedSlot.transform);
 
                     break;
 
@@ -477,7 +492,7 @@ namespace Antura.AnturaSpace
 
         #region Utility functions
 
-        IEnumerator WaitAndSpawnCO(System.Action callback)
+        IEnumerator DelayedCallbackCO(System.Action callback)
         {
             yield return new WaitForSeconds(0.6f);
 
