@@ -24,7 +24,7 @@ namespace Antura.Profile
         public bool HasFinishedTheGame;
         public bool HasFinishedTheGameWithAllStars;
         public bool HasMaxStarsInCurrentPlaySessions;
-        public int TotalNumberOfBones = 8;
+        public int TotalNumberOfBones;
         public int ConsecutivePlayDays;
 
         public ProfileCompletionState ProfileCompletion = ProfileCompletionState.New;
@@ -56,7 +56,12 @@ namespace Antura.Profile
 
         #endregion
 
-        #region Bones/coins
+        #region Bones
+
+        public void GiftInitialBones()
+        {
+            TotalNumberOfBones = 20;  // Initial number of bones set so that you can buy decorations
+        }
 
         public int GetTotalNumberOfBones()
         {

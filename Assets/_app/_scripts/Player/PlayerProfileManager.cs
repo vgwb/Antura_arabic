@@ -176,6 +176,7 @@ namespace Antura.Profile
             returnProfile.IsDemoUser = isDemoUser;
             returnProfile.ProfileCompletion =
                 isDemoUser ? ProfileCompletionState.GameCompletedAndFinalShown : ProfileCompletionState.New;
+            returnProfile.GiftInitialBones();
 
             // DB Creation
             AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
