@@ -18,6 +18,8 @@ namespace Antura.Map
         public Renderer baseRenderer;
         public Renderer iconRenderer;
 
+        public ParticleSystem selectionPS;
+
         public void SetAsPlay()
         {
             // DEPRECATED: play button won't show the big Play icon 
@@ -26,17 +28,22 @@ namespace Antura.Map
             
             // Play button is way bigger
             transform.localScale = Vector3.one * 25;
+
+            // PS plays
+            selectionPS.gameObject.SetActive(true);
         }
 
         public void SetAsLock()
         {
             iconRenderer.material = lockDot;
             iconRenderer.gameObject.SetActive(true);
+            selectionPS.gameObject.SetActive(false);
         }
 
         public void SetAsNothing()
         {
             iconRenderer.gameObject.SetActive(false);
+            selectionPS.gameObject.SetActive(false);
         }
 
         public void Highlight(bool choice)
