@@ -1,11 +1,10 @@
-using UnityEngine;
-using System;
+using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
-using Antura.Rewards;
-using Antura.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Antura.Book
 {
@@ -196,7 +195,7 @@ namespace Antura.Book
 
         int GetTotalVocabularyDataUnlocked(VocabularyDataType dataType)
         {
-            if (AppManager.I.Player.IsDemoUser) return GetTotalVocabularyData(dataType);
+            if (AppManager.I.Player.IsDemoUser) { return GetTotalVocabularyData(dataType); }
             string query = "select * from " + typeof(VocabularyScoreData).Name + " where VocabularyDataType='" + (int)dataType + "'";
             var list = AppManager.I.DB.Query<VocabularyScoreData>(query);
             return list.Count(data => data.Unlocked);

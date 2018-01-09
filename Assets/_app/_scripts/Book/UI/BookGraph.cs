@@ -19,7 +19,7 @@ namespace Antura.Book
 
             // Cleanup
             foreach (Transform tr in this.transform) {
-                if (tr != this.transform) Destroy(tr.gameObject);
+                if (tr != this.transform) { Destroy(tr.gameObject); }
             }
 
             for (int i = 0; i < values.Length; i++) {

@@ -20,7 +20,6 @@ namespace Antura.Book
         [Header("Prefabs")]
         public GameObject LetterItemPrefab;
 
-
         public void Init(LetterInfo letterInfo)
         {
             string positionsString = "";
@@ -41,8 +40,9 @@ namespace Antura.Book
                 Destroy(t.gameObject);
             }
             var letterbase = letterInfo.data.Id;
-            var variationsletters = AppManager.I.DB.FindLetterData((x) =>
-                                                         (x.BaseLetter == letterbase && (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation)));
+            var variationsletters = AppManager.I.DB.FindLetterData(
+                (x) => (x.BaseLetter == letterbase && (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation))
+            );
 
             foreach (var letter in variationsletters) {
                 var letterGO = Instantiate(LetterItemPrefab);

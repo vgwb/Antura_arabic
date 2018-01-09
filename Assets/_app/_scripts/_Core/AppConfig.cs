@@ -13,7 +13,7 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public static Version AppVersion = new Version(1, 1, 0, 580);
+        public static Version AppVersion = new Version(1, 1, 0, 581);
 
         /// <summary>
         /// Version of the Static Database Scheme.
@@ -143,7 +143,8 @@ namespace Antura.Core
 
         public static bool IsMobileTablet()
         {
-            if (IsMobilePlatform()) {
+            if (IsMobilePlatform())
+            {
                 return (DeviceDiagonalSizeInInches() > 6.5f);
             }
             return false;
@@ -151,7 +152,8 @@ namespace Antura.Core
 
         public static bool IsMobileSMartphone()
         {
-            if (IsMobilePlatform()) {
+            if (IsMobilePlatform())
+            {
                 return (DeviceDiagonalSizeInInches() <= 6.5f);
             }
             return false;

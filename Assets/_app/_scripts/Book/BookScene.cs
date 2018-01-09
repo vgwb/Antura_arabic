@@ -1,5 +1,4 @@
-﻿using Antura.Audio;
-using Antura.UI;
+﻿using Antura.UI;
 using Antura.Core;
 using UnityEngine;
 
@@ -27,12 +26,11 @@ namespace Antura.Book
 
         [Header("Scene Setup")]
         public Music SceneMusic;
-
         public BookArea OpeningArea;
 
         [Header("References")]
-        public GameObject BookPanel;
-
+        public GameObject UICanvas;
+        public GameObject VocabularyPanel;
         public GameObject PlayerPanel;
         public GameObject JourneyPanel;
         public GameObject GamesPanel;
@@ -47,12 +45,11 @@ namespace Antura.Book
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
-            GlobalUI.ShowBackButton(true, GoBackCustom);
-            AudioManager.I.PlayMusic(SceneMusic);
+            //GlobalUI.ShowBackButton(true, GoBackCustom);
+            //AudioManager.I.PlayMusic(SceneMusic);
+            //AudioManager.I.PlayDialogue("Book_Intro");
 
-            AudioManager.I.PlayDialogue("Book_Intro");
-
-            HideAllPanels();
+            //HideAllPanels();
             if (OverridenOpeningArea != BookArea.None) {
                 OpenArea(OverridenOpeningArea);
             } else {
@@ -64,19 +61,21 @@ namespace Antura.Book
 
         void OpenArea(BookArea newPanel)
         {
-            if (newPanel != currentPanel) {
-                activatePanel(currentPanel, false);
-                currentPanel = newPanel;
-                activatePanel(currentPanel, true);
-                ResetMenuButtons();
-            }
+            var panel = Instantiate(VocabularyPanel);
+            //panel.transform.SetParent(UICanvas.transform, false);
+            //if (newPanel != currentPanel) {
+            //    activatePanel(currentPanel, false);
+            //    currentPanel = newPanel;
+            //    activatePanel(currentPanel, true);
+            //    ResetMenuButtons();
+            //}
         }
 
         void activatePanel(BookArea panel, bool status)
         {
             switch (panel) {
                 case BookArea.Vocabulary:
-                    BookPanel.SetActive(status);
+                    VocabularyPanel.SetActive(status);
                     break;
                 case BookArea.Journey:
                     JourneyPanel.SetActive(status);
@@ -92,7 +91,7 @@ namespace Antura.Book
 
         void HideAllPanels()
         {
-            BookPanel.SetActive(false);
+            VocabularyPanel.SetActive(false);
             PlayerPanel.SetActive(false);
             JourneyPanel.SetActive(false);
             GamesPanel.SetActive(false);

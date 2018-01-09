@@ -75,6 +75,12 @@ namespace Antura.Book
         {
         }
 
+        public void OnBtnClose()
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+
         void OnEnable()
         {
             OpenArea(VocabularyChapter.Letters);
@@ -302,7 +308,7 @@ namespace Antura.Book
             ArabicText.text = output;
             if (currentWord.data.Drawing != "") {
                 WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(currentWord.data);
-                if (currentWord.data.Category == Database.WordDataCategory.Color) {
+                if (currentWord.data.Category == WordDataCategory.Color) {
                     WordDrawingText.SetColor(GenericHelper.GetColorFromString(currentWord.data.Value));
                 }
             } else {
@@ -343,7 +349,7 @@ namespace Antura.Book
             }
 
             foreach (PhraseDataCategory cat in GenericHelper.SortEnums<PhraseDataCategory>()) {
-                if (cat == PhraseDataCategory.None) continue;
+                if (cat == PhraseDataCategory.None) { continue; }
                 btnGO = Instantiate(CategoryItemPrefab);
                 btnGO.transform.SetParent(SubmenuContainer.transform, false);
                 CategoryData = LocalizationManager.GetPhraseCategoryData(cat);
