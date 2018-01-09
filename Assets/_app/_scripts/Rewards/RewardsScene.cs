@@ -9,6 +9,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Linq;
 using Antura.Debugging;
+using Antura.Helpers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -110,7 +111,7 @@ namespace Antura.Rewards
             if (FirstContactManager.I.IsPhaseUnlockedAndNotCompleted(FirstContactPhase.Reward_FirstBig))
             {
                 // Get the first prop reward (already unlocked)
-                var firstRewardPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBaseType(RewardBaseType.Prop).FirstOrDefault();
+                var firstRewardPack = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksOfBaseType(RewardBaseType.Prop).RandomSelectOne();
                 return firstRewardPack;
             } else
             {
