@@ -55,13 +55,21 @@ namespace Antura.Profile
             phaseStates = new FirstContactPhaseState[(int) FirstContactPhase.MAX];
         }
 
-        public override string ToString()
+        public IEnumerable<FirstContactPhase> EnumeratePhases()
         {
-            string s = "";
             foreach (FirstContactPhase phase in System.Enum.GetValues(typeof(FirstContactPhase)))
             {
                 if (phase == FirstContactPhase.MAX) continue;
                 if (phase == FirstContactPhase.NONE) continue;
+                yield return phase;
+            }
+        }
+
+        public override string ToString()
+        {
+            string s = "";
+            foreach (FirstContactPhase phase in EnumeratePhases())
+            {
                 s += phase + ": " + phaseStates[(int)phase] + "\n";
             }
             return s;
@@ -261,10 +269,8 @@ namespace Antura.Profile
 
         public void ForceAllCompleted()
         {
-            foreach (FirstContactPhase phase in System.Enum.GetValues(typeof(FirstContactPhase)))
+            foreach (FirstContactPhase phase in state.EnumeratePhases())
             {
-                if (phase == FirstContactPhase.MAX) continue;
-                if (phase == FirstContactPhase.NONE) continue;
                 SetPhaseState(phase, FirstContactPhaseState.Completed);
             }
             AppManager.I.Player.Save();
@@ -313,6 +319,35 @@ namespace Antura.Profile
 
         #region Navigation Filtering
 
+        // TODO: let tutorial managers use this
+        public AppScene GetSceneForTutorialOfPhase(FirstContactPhase phase)
+        {
+            switch (phase)
+            {
+                case FirstContactPhase.AnturaSpace_Customization:
+                case FirstContactPhase.AnturaSpace_Exit:
+                case FirstContactPhase.AnturaSpace_Photo:
+                case FirstContactPhase.AnturaSpace_Shop:
+                case FirstContactPhase.AnturaSpace_TouchAntura:
+                    return AppScene.AnturaSpace;
+
+                case FirstContactPhase.Map_GoToAnturaSpace:
+                case FirstContactPhase.Map_CollectBones:
+                case FirstContactPhase.Map_GoToBook:
+                case FirstContactPhase.Map_GoToMinigames:
+                case FirstContactPhase.Map_GoToProfile:
+                case FirstContactPhase.Map_PlaySession:
+                    return AppScene.Map;
+
+                 case FirstContactPhase.Intro:
+                    return AppScene.Intro;
+
+                case FirstContactPhase.Reward_FirstBig:
+                    return AppScene.Rewards;
+            }
+            return AppScene.Home;
+        }
+
         /// <summary>
         /// Filter the navigation from a scene to the next based on the first contact requirements
         /// </summary>
@@ -333,17 +368,17 @@ namespace Antura.Profile
 
             // Check whether this transition needs to be filtered (i.e. it must go to a specific scene)
             // @note: we always filter if we are coming from home, to handle the fact that the player can shut down the game during a tutorial
-            FilterTransitionOn(FirstContactPhase.Intro, fromScene == AppScene.Home && toScene == AppScene.Map, ref toScene, AppScene.Intro);
-            FilterTransitionOn(FirstContactPhase.Reward_FirstBig, fromScene == AppScene.Home || fromScene == AppScene.Intro, ref toScene, AppScene.Rewards);
-            FilterTransitionOn(FirstContactPhase.AnturaSpace_TouchAntura, fromScene == AppScene.Home || fromScene == AppScene.Rewards, ref toScene, AppScene.AnturaSpace);
-            FilterTransitionOn(FirstContactPhase.AnturaSpace_Shop, fromScene == AppScene.Home || fromScene == AppScene.PlaySessionResult, ref toScene, AppScene.AnturaSpace);
+            //FilterTransitionOn(FirstContactPhase.Intro, fromScene == AppScene.Home && toScene == AppScene.Map, ref toScene, AppScene.Intro);
+            FilterTransitionOn(FirstContactPhase.Reward_FirstBig, fromScene == AppScene.Intro, ref toScene, AppScene.Rewards);
+            FilterTransitionOn(FirstContactPhase.AnturaSpace_TouchAntura, fromScene == AppScene.Rewards, ref toScene, AppScene.AnturaSpace);
+            FilterTransitionOn(FirstContactPhase.AnturaSpace_Shop,fromScene == AppScene.PlaySessionResult, ref toScene, AppScene.AnturaSpace);
 
-            // Force the game to re-start from the current tutorial phase if needed
-            FilterTransitionOn(FirstContactPhase.Map_GoToProfile, fromScene == AppScene.Home, ref toScene, AppScene.Map);
-            FilterTransitionOn(FirstContactPhase.Map_GoToAnturaSpace, fromScene == AppScene.Home, ref toScene, AppScene.Map);
-            FilterTransitionOn(FirstContactPhase.Map_GoToMinigames, fromScene == AppScene.Home, ref toScene, AppScene.Map);
-            FilterTransitionOn(FirstContactPhase.Map_GoToBook, fromScene == AppScene.Home, ref toScene, AppScene.Map);
-
+            // Force the game to re-start from the scene of the current tutorial phase if needed
+            foreach (FirstContactPhase phase in state.EnumeratePhases())
+            {
+                FilterTransitionOn(phase, fromScene == AppScene.Home, ref toScene, GetSceneForTutorialOfPhase(phase));
+            }
+           
             return toScene;
         }
 
