@@ -616,8 +616,8 @@ namespace Antura.Map
             SetMinigamesBookUIActivation(false);
             SetProfileBookUIActivation(false);
             SetAnturaSpaceUIActivation(false);
-            SetGlobalUIActivation(false);
             SetPlayUIActivation(false);
+            SetPauseUIActivation(false);
             SetExitButtonActivation(false);
         }
 
@@ -628,8 +628,8 @@ namespace Antura.Map
             SetMinigamesBookUIActivation(true);
             SetProfileBookUIActivation(true);
             SetAnturaSpaceUIActivation(true);
-            SetGlobalUIActivation(true);
             SetPlayUIActivation(true);
+            SetPauseUIActivation(true);
             SetExitButtonActivation(true);
         }
 
@@ -719,7 +719,7 @@ namespace Antura.Map
             anturaSpaceButton.gameObject.SetActive(choice);
         }
 
-        public void SetGlobalUIActivation(bool choice)
+        public void SetPauseUIActivation(bool choice)
         {
             GlobalUI.ShowPauseMenu(choice);
         }

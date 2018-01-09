@@ -20,8 +20,9 @@ namespace Antura.Map
             // All UI is deactivated, for starters
             _stageMapsManager.DeactivateAllUI();
 
-            // Always activate the QUIT button
+            // Always activate these buttons
             _stageMapsManager.SetExitButtonActivation(true);
+            _stageMapsManager.SetStageUIActivation(true);
 
             // Antura Space (auto-unlocked from the start)
             if (CheckNewUnlockPhaseAt(1, 1, 1, FirstContactPhase.Map_GoToAnturaSpace, LocalizationDataId.Map_Intro_AnturaSpace))
