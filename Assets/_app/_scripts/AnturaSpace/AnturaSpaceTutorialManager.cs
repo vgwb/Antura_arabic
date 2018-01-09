@@ -42,7 +42,7 @@ namespace Antura.AnturaSpace
             // Check what we already unlocked and enable / disable UI
             foreach (var phase in FirstContactManager.I.GetPhasesForScene(AppScene.AnturaSpace))
             {
-                SetPhaseUIShown(phase, IsPhaseCompleted(phase));
+                SetPhaseUIShown(phase, IsPhaseCompleted(phase)); 
             }
 
             // Check whether we are in a phase that this tutorial should handle
