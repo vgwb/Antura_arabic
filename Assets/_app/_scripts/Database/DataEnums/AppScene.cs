@@ -18,6 +18,8 @@
         PlayerCreation = 11,
         Rewards = 12,
         Ending = 13,
-        DailyReward = 14
+        DailyReward = 14,
+
+        NONE = 100
     }
 }

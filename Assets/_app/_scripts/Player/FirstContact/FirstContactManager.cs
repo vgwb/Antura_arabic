@@ -360,7 +360,7 @@ namespace Antura.Profile
                 case FirstContactPhase.Reward_FirstBig:
                     return AppScene.Rewards;
             }
-            return AppScene.Home;
+            return AppScene.NONE;
         }
         #endregion
 
@@ -402,6 +402,7 @@ namespace Antura.Profile
 
         private void FilterTransitionOn(FirstContactPhase phase, bool condition, ref AppScene toScene, AppScene newScene)
         {
+            if (newScene == AppScene.NONE) return;
             if (IsPhaseUnlockedAndNotCompleted(phase) && condition)
             {
                 toScene = newScene;

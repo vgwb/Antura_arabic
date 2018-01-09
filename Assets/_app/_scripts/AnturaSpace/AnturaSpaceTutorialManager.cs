@@ -78,11 +78,6 @@ namespace Antura.AnturaSpace
                 if (isPhaseToBeCompleted)
                 {
                     StepTutorialPhoto();
-                    //KeeperManager.I.PlayDialog(LocalizationDataId.AnturaSpace_Intro_Cookie, true, true, () =>
-                    //{
-                    //_stageMapsManager.SetUIActivationByContactPhase(phase);
-                    //StartCoroutine(TutorialHintClickCO(_stageMapsManager.GetGameObjectByContactPhase(phase).transform, _stageMapsManager.UICamera));
-                    // });
                     return;
                 }
             }
@@ -488,6 +483,7 @@ namespace Antura.AnturaSpace
 
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, () =>
                     {
+                        m_oPhotoButton.gameObject.SetActive(true);
                         m_oPhotoButton.onClick.AddListener(StepTutorialPhoto);
                         TutorialUI.ClickRepeat(m_oPhotoButton.transform.position, float.MaxValue, 1);
                         AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, null);
