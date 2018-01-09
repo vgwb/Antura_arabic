@@ -16,12 +16,21 @@ namespace Antura.AnturaSpace
         {
             ShopDecorationsManager.I.CreateAndStartDragPlacement(UnlockableDecorationObject, bonesCost);
             ShopDecorationsManager.I.OnPurchaseComplete += CommitAction;
+            ShopDecorationsManager.I.OnPurchaseCancelled += CancelAction;
         }
 
         protected override void CommitAction()
         {
             base.CommitAction();
             ShopDecorationsManager.I.OnPurchaseComplete -= CommitAction;
+            ShopDecorationsManager.I.OnPurchaseCancelled -= CancelAction;
+        }
+
+        public override void CancelAction()
+        {
+            base.CancelAction();
+            ShopDecorationsManager.I.OnPurchaseComplete -= CommitAction;
+            ShopDecorationsManager.I.OnPurchaseCancelled -= CancelAction;
         }
 
         public override bool IsLocked
