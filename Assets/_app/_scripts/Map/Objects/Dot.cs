@@ -20,8 +20,12 @@ namespace Antura.Map
 
         public void SetAsPlay()
         {
-            iconRenderer.material = playDot;
-            iconRenderer.gameObject.SetActive(true);
+            // DEPRECATED: play button won't show the big Play icon 
+            //iconRenderer.material = playDot;
+            //iconRenderer.gameObject.SetActive(true);
+            
+            // Play button is way bigger
+            transform.localScale = Vector3.one * 25;
         }
 
         public void SetAsLock()

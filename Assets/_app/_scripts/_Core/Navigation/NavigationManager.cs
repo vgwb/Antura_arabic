@@ -332,9 +332,9 @@ namespace Antura.Core
         }
 
         /// <summary>
-        /// Exit from the current scene. Called while in pause mode.
+        /// Exit from the current scene. Called while in pause mode during a minigame.
         /// </summary>
-        public void ExitDuringPause()
+        public void ExitToMainMenu()
         {
             Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "ExitDuringPause");
             switch (NavData.CurrentScene) {

@@ -21,8 +21,8 @@ namespace Antura.Map
         [Header("Options")]
         public bool MovePlayerWithStageChange = true;
         public bool FollowPlayerWhenMoving = false;
-        public bool ShowStageButtons = false;
-        public bool ShowMovementButtons = false;
+        //public bool ShowStageButtons = false;
+        //public bool ShowMovementButtons = false;
 
         [Header("References")]
         public StageMap[] stageMaps;
@@ -618,6 +618,7 @@ namespace Antura.Map
             SetAnturaSpaceUIActivation(false);
             SetGlobalUIActivation(false);
             SetPlayUIActivation(false);
+            SetExitButtonActivation(false);
         }
 
         public void ActivateAllUI()
@@ -629,6 +630,12 @@ namespace Antura.Map
             SetAnturaSpaceUIActivation(true);
             SetGlobalUIActivation(true);
             SetPlayUIActivation(true);
+            SetExitButtonActivation(true);
+        }
+
+        private void HandleBackButton()
+        {
+            AppManager.I.NavigationManager.ExitToMainMenu();
         }
 
         public void SetPlayUIActivation(bool choice)
@@ -673,6 +680,18 @@ namespace Antura.Map
                     return anturaSpaceButton;
             }
             return null;
+        }
+
+        public void SetExitButtonActivation(bool choice)
+        {
+            if (choice)
+            {
+                GlobalUI.ShowBackButton(true, HandleBackButton);
+            }
+            else
+            {
+                GlobalUI.ShowBackButton(false);
+            }
         }
 
         public void SetStageUIActivation(bool choice)

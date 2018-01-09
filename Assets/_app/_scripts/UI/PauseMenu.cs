@@ -160,12 +160,12 @@ namespace Antura.UI
                             // Prompt
                             GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
                                 OpenMenu(false);
-                                AppManager.I.NavigationManager.ExitDuringPause();
+                                AppManager.I.NavigationManager.ExitToMainMenu();
                             }, () => { });
                         } else {
                             // No prompt
                             OpenMenu(false);
-                            AppManager.I.NavigationManager.ExitDuringPause();
+                            AppManager.I.NavigationManager.ExitToMainMenu();
                         }
                         break;
                     case MenuButtonType.MusicToggle: // Music on/off
