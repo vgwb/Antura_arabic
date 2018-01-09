@@ -107,7 +107,15 @@ namespace Antura.Map
                 startRopeScale = rope.meshRenderer.transform.localScale;
             }
 
-            currentPinMesh.transform.position = startPinPosition + Vector3.up * 60;
+            if (journeyPosition.IsAssessment())
+            {
+                currentPinMesh.transform.position = startPinPosition + Vector3.down * 20;
+            }
+            else
+            {
+                currentPinMesh.transform.position = startPinPosition + Vector3.up * 60;
+            }
+
             mainDot.transform.SetLocalScale(6f);
             if (rope != null) {
                 rope.meshRenderer.transform.SetLocalScale(0);
@@ -125,8 +133,19 @@ namespace Antura.Map
         {
             if (appeared) { return; }
             appeared = true;
+
             currentPinMesh.gameObject.SetActive(true);
-            currentPinMesh.transform.DOMove(startPinPosition, duration * 0.5f);
+
+            if (journeyPosition.IsAssessment())
+            {
+                currentPinMesh.transform.DOMove(startPinPosition, duration * 0.5f);
+            }
+            else
+            {
+                currentPinMesh.transform.DOMove(startPinPosition, duration * 0.5f);
+            }
+
+
             mainDot.transform.DOScale(Vector3.one * 6, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f).OnComplete(
                 () =>
                 playSessionFeedback.gameObject.SetActive(true)  // make the feedback appear at the end
