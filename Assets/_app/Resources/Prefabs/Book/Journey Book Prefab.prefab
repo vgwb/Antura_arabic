@@ -459,8 +459,8 @@ GameObject:
   - component: {fileID: 222423504658659124}
   - component: {fileID: 114335892499482842}
   - component: {fileID: 223744732931808134}
-  - component: {fileID: 114559614904410992}
   - component: {fileID: 114710130085035108}
+  - component: {fileID: 114559614904410992}
   m_Layer: 5
   m_Name: Journey Book Prefab
   m_TagString: Untagged
@@ -3982,7 +3982,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
