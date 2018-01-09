@@ -144,15 +144,15 @@ namespace Antura.ReservedArea
             var demoUserUiid = AppManager.I.PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
             SelectedPlayerId = demoUserUiid;
 
-            // populate with fake data
+            // Populate with complete data
             var maxJourneyPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
             yield return StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
-            AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
-            AppManager.I.Player.CheckGameFinished(); // force check
-            AppManager.I.Player.CheckStarsState(); // force check
+            AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true, true);
+            AppManager.I.Player.SetFinalShown(); 
+            AppManager.I.Player.CheckStarsState();
             AppManager.I.FirstContactManager.ForceToFinishedSequence();
-            // TODO COMMENTED because bugged in current curriculum
-            // Rewards.RewardSystemManager.UnlockAllRewards();
+            AppManager.I.FirstContactManager.ForceAllCompleted();
+            AppManager.I.RewardSystemManager.UnlockAllPacks();
 
             ResetAll();
             activateWaitingScreen(false);
@@ -172,15 +172,17 @@ namespace Antura.ReservedArea
             var fakeAppSession = LogManager.I.AppSession;
 
             // Add some mood data
+            Debug.Log("Start adding mood scores");
+            yield return null;
             int nMoodData = 15;
             for (int i = 0; i < nMoodData; i++) {
                 logAi.LogMood(0, Random.Range(AppConfig.MinMoodValue, AppConfig.MaxMoodValue + 1));
-                Debug.Log("Add mood " + i);
-                yield return null;
             }
+            yield return null;
 
             // Add scores for all play sessions
             Debug.Log("Start adding PS scores");
+            yield return null;
             var logPlaySessionScoreParamsList = new List<LogPlaySessionScoreParams>();
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
@@ -194,11 +196,11 @@ namespace Antura.ReservedArea
                 }
             }
             logAi.LogPlaySessionScores(0, logPlaySessionScoreParamsList);
-            Debug.Log("Finish adding PS scores");
             yield return null;
 
             // Add scores for all minigames
             Debug.Log("Start adding MiniGame scores");
+            yield return null;
             var logMiniGameScoreParamses = new List<LogMiniGameScoreParams>();
             var allMiniGameInfo = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
             for (int i = 0; i < allMiniGameInfo.Count; i++) {
@@ -210,8 +212,6 @@ namespace Antura.ReservedArea
                 //Debug.Log("Add minigame score " + i);
             }
             logAi.LogMiniGameScores(0, logMiniGameScoreParamses);
-            Debug.Log("Finish adding MiniGame scores");
-            yield return null;
 
             // Add scores for some learning data (words/letters/phrases)
             /*var maxPlaySession = AppManager.I.Player.MaxJourneyPosition.ToString();

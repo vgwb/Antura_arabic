@@ -176,7 +176,7 @@ namespace Antura.Profile
 
 
         /// <summary>
-        /// Check whether the game has finished with all starts and update the player icon.
+        /// Check whether the game has finished with all stars and update the player icon.
         /// Called at each end of play session.
         /// </summary>
         public void CheckStarsState()

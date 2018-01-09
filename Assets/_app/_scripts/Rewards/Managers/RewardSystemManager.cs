@@ -523,8 +523,7 @@ namespace Antura.Rewards
             int nTexturesLeft = GetAllRewardPacksOfBaseType(RewardBaseType.Texture).Count(x => x.IsLocked);
             int nPropsLeft = GetAllRewardPacksOfBaseType(RewardBaseType.Prop, true).Count(x => x.IsLocked);
 
-            Debug.Log("We have left: " + nDecalsLeft + " decals, " + nTexturesLeft + " textures, " + nPropsLeft +
-                      " props");
+            //Debug.Log("We have left: " + nDecalsLeft + " decals, " + nTexturesLeft + " textures, " + nPropsLeft + " props");
 
             List<RewardBaseType> choices = new List<RewardBaseType>();
             if (nDecalsLeft > 0) choices.Add(RewardBaseType.Decal);

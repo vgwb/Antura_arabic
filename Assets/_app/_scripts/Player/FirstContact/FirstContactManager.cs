@@ -207,7 +207,7 @@ namespace Antura.Profile
                 }
             }
 
-            AppManager.I.Player.Save(); // TODO: save only when needed
+            AppManager.I.Player.Save(); 
 
             if (VERBOSE) Debug.Log("FirstContact - FORCING phase " + forcedPhase);
         }
@@ -257,6 +257,17 @@ namespace Antura.Profile
         public bool IsPhaseUnlockedAndNotCompleted(FirstContactPhase _phase)
         {
             return HasUnlockedPhase(_phase) && !HasCompletedPhase(_phase);
+        }
+
+        public void ForceAllCompleted()
+        {
+            foreach (FirstContactPhase phase in System.Enum.GetValues(typeof(FirstContactPhase)))
+            {
+                if (phase == FirstContactPhase.MAX) continue;
+                if (phase == FirstContactPhase.NONE) continue;
+                SetPhaseState(phase, FirstContactPhaseState.Completed);
+            }
+            AppManager.I.Player.Save();
         }
 
         #endregion
