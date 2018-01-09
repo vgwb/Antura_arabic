@@ -42,12 +42,7 @@ namespace Antura.AnturaSpace
             switch (FirstContactManager.I.CurrentPhaseInSequence)
             {
                 default:
-                    return;
-                case FirstContactPhase.AnturaSpace_Customization:
-                    case FirstContactPhase.AnturaSpace_Exit:
-                    case FirstContactPhase.AnturaSpace_Photo:
-                    case FirstContactPhase.AnturaSpace_Shop:
-                    case FirstContactPhase.AnturaSpace_TouchAntura:
+
                     StopTutorialRunning();
 
                     // Restore all UI
@@ -55,6 +50,13 @@ namespace Antura.AnturaSpace
                     UI.ShowShopButton(true);
                     ShopDecorationsManager.SetContextClosed();
                     m_oCustomizationButton.gameObject.SetActive(true);
+
+                    return;
+                case FirstContactPhase.AnturaSpace_Customization:
+                case FirstContactPhase.AnturaSpace_Exit:
+                case FirstContactPhase.AnturaSpace_Photo:
+                case FirstContactPhase.AnturaSpace_Shop:
+                case FirstContactPhase.AnturaSpace_TouchAntura:
                     break;
             }
 
