@@ -10,6 +10,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -273,6 +274,15 @@ namespace Antura.AnturaSpace.UI
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Returns the first swatch button marked as NEW (meaning it has new content).
+        /// Return NULL if the mods panel is not open or a category is not selected.
+        /// </summary>
+        public AnturaSpaceSwatchButton GetRandomUnselectedSwatch()
+        {
+            return btsSwatches.Where(x => !x.Data.IsSelected).ToList().RandomSelectOne();
         }
 
         #endregion

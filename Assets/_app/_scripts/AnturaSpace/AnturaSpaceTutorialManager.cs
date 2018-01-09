@@ -34,6 +34,7 @@ namespace Antura.AnturaSpace
         private Button m_oCustomizationButton;
         private AnturaSpaceCategoryButton m_oCategoryButton;
         private AnturaSpaceItemButton m_oItemButton;
+        private AnturaSpaceSwatchButton m_oSwatchButton;
 
         protected override void InternalHandleStart()
         {
@@ -157,7 +158,8 @@ namespace Antura.AnturaSpace
             OPEN_CUSTOMIZE,
             SELECT_CATEGORY,
             SELECT_ITEM,
-            TOUCH_ANTURA,
+            SELECT_COLOR,
+            CLOSE_CUSTOMIZE,
             FINISH
         }
 
@@ -219,12 +221,35 @@ namespace Antura.AnturaSpace
                         }));
                     break;
 
-                case CustomizationTutorialStep.TOUCH_ANTURA:
+                case CustomizationTutorialStep.SELECT_COLOR:
 
                     // Cleanup last step
                     _mScene.UI.SetTutorialMode(false);
                     m_oItemButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
 
+                    StartCoroutine(WaitAndSpawnCO(
+                        () => {
+                            // Register on item button
+                            m_oSwatchButton = _mScene.UI.GetRandomUnselectedSwatch();
+                            m_oSwatchButton.Bt.onClick.AddListener(StepTutorialCustomization);
+
+                            TutorialUI.ClickRepeat(m_oSwatchButton.transform.position, float.MaxValue, 1);
+                        }));
+                    break;
+
+                case CustomizationTutorialStep.CLOSE_CUSTOMIZE:
+
+                    // Cleanup last step
+                    _mScene.UI.SetTutorialMode(false);
+                    m_oSwatchButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
+
+                    StartCoroutine(WaitAndSpawnCO(
+                     () => {
+                         m_oCustomizationButton.onClick.AddListener(StepTutorialCustomization);
+                         TutorialUI.ClickRepeat(m_oCustomizationButton.transform.position, float.MaxValue, 1);
+                     }));
+
+                    /*
                     // New step
                     StartCoroutine(WaitAnturaInCenterCO(
                         () => {
@@ -236,13 +261,14 @@ namespace Antura.AnturaSpace
                                 m_oAnturaBehaviour.gameObject.transform.position + clickOffset + Vector3.forward * -2 + Vector3.up,
                                 float.MaxValue, 1);
                         }));
-
+                        */
                     break;
 
                 case CustomizationTutorialStep.FINISH:
 
                     // Cleanup last step
-                    m_oAnturaBehaviour.onTouched -= StepTutorialCustomization;
+                    m_oCustomizationButton.onClick.RemoveListener(StepTutorialCustomization);
+                    //m_oAnturaBehaviour.onTouched -= StepTutorialCustomization;
 
                     CompleteTutorialPhase();
                     break;
