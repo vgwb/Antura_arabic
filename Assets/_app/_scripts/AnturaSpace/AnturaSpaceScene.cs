@@ -152,10 +152,9 @@ namespace Antura.AnturaSpace
 
         void OnEnterCustomization()
         {
-            GlobalUI.ShowBackButton(false);
-
             if (!tutorialManager.IsRunning)
             {
+                HideBackButton();
                 ShowBackButton();
             }
 
@@ -166,10 +165,9 @@ namespace Antura.AnturaSpace
 
         void OnExitCustomization()
         {
-            GlobalUI.ShowBackButton(false);
-
             if (!tutorialManager.IsRunning)
             {
+                HideBackButton();
                 ShowBackButton();
             }
 

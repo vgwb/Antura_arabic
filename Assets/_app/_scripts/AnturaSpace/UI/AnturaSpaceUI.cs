@@ -368,8 +368,10 @@ namespace Antura.AnturaSpace.UI
                 AnturaSpaceSwatchButton swatch = btsSwatches[i];
                 swatch.gameObject.SetActive(true);
                 swatch.Data = swatchData;
-                if (swatchData != null) {
-                    swatch.SetAsNew(!swatchData.IsSelected && swatchData.IsNew);
+                if (swatchData != null)
+                {
+                    swatch.SetAsNew(false); // @note: we force the swatch colors to never be shown as new
+                    //swatch.SetAsNew(!swatchData.IsSelected && swatchData.IsNew);
                     swatch.Toggle(swatchData.IsSelected);
                     Color hexColor1 = GenericHelper.HexToColor(swatchData.data.Color1RGB);
                     Color hexColor2 = swatchData.data.Color2RGB == null ? hexColor1 : GenericHelper.HexToColor(swatchData.data.Color2RGB);

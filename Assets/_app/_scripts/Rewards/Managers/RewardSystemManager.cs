@@ -693,8 +693,9 @@ namespace Antura.Rewards
             RegisterLockedPacks(packs, zeroJP, false);
             UnlockPacks(packs);
 
-            // Force as already seen
-            //foreach (var pack in packs) pack.SetNew(false);
+            // Force as already seen (only for texture and decals)
+            foreach (var pack in texturePacks) pack.SetNew(false);
+            foreach (var pack in decalPacks) pack.SetNew(false);
 
             // force to to wear decal and texture
             _player.CurrentAnturaCustomizations.DecalPack = decalPacks[0];
