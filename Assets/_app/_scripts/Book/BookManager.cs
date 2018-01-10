@@ -8,6 +8,8 @@ namespace Antura.Book
     {
         public static BookManager I;
 
+        const string RESOURCES_BOOK = "Prefabs/Book/Book";
+
         void Awake()
         {
             I = this;
@@ -15,7 +17,8 @@ namespace Antura.Book
 
         public void OpenBook(BookArea area)
         {
-            GameObject instance = Instantiate(Resources.Load("Prefabs/Book/Book", typeof(GameObject))) as GameObject;
+            // TODO first check if Book is already isntatiated!
+            GameObject instance = Instantiate(Resources.Load(RESOURCES_BOOK, typeof(GameObject))) as GameObject;
 
             Book.I.OpenArea(area);
         }
