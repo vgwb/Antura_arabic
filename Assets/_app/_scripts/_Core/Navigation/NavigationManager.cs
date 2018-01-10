@@ -310,6 +310,7 @@ namespace Antura.Core
             CustomGoTo(AppScene.Ending, debugMode);
         }
 
+        [System.Obsolete("Method GoToPlayerBookis deprecated, please use the modal BookManager instead.")]
         public void GoToPlayerBook(BookArea bookArea)
         {
             //BookScene.OverridenOpeningArea = bookArea;
