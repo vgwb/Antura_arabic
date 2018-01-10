@@ -153,6 +153,27 @@
             Lets the plugin know that we restarted or rewinded
             </summary>
         </member>
+        <member name="T:DG.Tweening.Core.Enums.RewindCallbackMode">
+            <summary>
+            OnRewind callback behaviour (can only be set via DOTween's Utility Panel)
+            </summary>
+        </member>
+        <member name="F:DG.Tweening.Core.Enums.RewindCallbackMode.FireIfPositionChanged">
+            <summary>
+            When calling Rewind or PlayBackwards/SmoothRewind, OnRewind callbacks will be fired only if the tween isn't already rewinded
+            </summary>
+        </member>
+        <member name="F:DG.Tweening.Core.Enums.RewindCallbackMode.FireAlwaysWithRewind">
+            <summary>
+            When calling Rewind, OnRewind callbacks will always be fired, even if the tween is already rewinded.
+            When calling PlayBackwards/SmoothRewind instead, OnRewind callbacks will be fired only if the tween isn't already rewinded
+            </summary>
+        </member>
+        <member name="F:DG.Tweening.Core.Enums.RewindCallbackMode.FireAlways">
+            <summary>
+            When calling Rewind or PlayBackwards/SmoothRewind, OnRewind callbacks will always be fired, even if the tween is already rewinded
+            </summary>
+        </member>
         <member name="T:DG.Tweening.Core.Extensions">
             <summary>
             Public only so custom shortcuts can access some of these methods
@@ -734,34 +755,38 @@
             A tween is considered as playing even if its delay is actually playing
             </summary>
         </member>
-        <member name="M:DG.Tweening.DOTween.PlayingTweens">
+        <member name="M:DG.Tweening.DOTween.PlayingTweens(System.Collections.Generic.List{DG.Tweening.Tween})">
             <summary>
             Returns a list of all active tweens in a playing state.
             Returns NULL if there are no active playing tweens.
             <para>Beware: each time you call this method a new list is generated, so use it for debug only</para>
             </summary>
+            <param name="fillableList">If NULL creates a new list, otherwise clears and fills this one (and thus saves allocations)</param>
         </member>
-        <member name="M:DG.Tweening.DOTween.PausedTweens">
+        <member name="M:DG.Tweening.DOTween.PausedTweens(System.Collections.Generic.List{DG.Tweening.Tween})">
             <summary>
             Returns a list of all active tweens in a paused state.
             Returns NULL if there are no active paused tweens.
             <para>Beware: each time you call this method a new list is generated, so use it for debug only</para>
             </summary>
+            <param name="fillableList">If NULL creates a new list, otherwise clears and fills this one (and thus saves allocations)</param>
         </member>
-        <member name="M:DG.Tweening.DOTween.TweensById(System.Object,System.Boolean)">
+        <member name="M:DG.Tweening.DOTween.TweensById(System.Object,System.Boolean,System.Collections.Generic.List{DG.Tweening.Tween})">
             <summary>
             Returns a list of all active tweens with the given id.
             Returns NULL if there are no active tweens with the given id.
             <para>Beware: each time you call this method a new list is generated</para>
-            <param name="playingOnly">If TRUE returns only the tweens with the given ID that are currently playing</param>
             </summary>
+            <param name="playingOnly">If TRUE returns only the tweens with the given ID that are currently playing</param>
+            <param name="fillableList">If NULL creates a new list, otherwise clears and fills this one (and thus saves allocations)</param>
         </member>
-        <member name="M:DG.Tweening.DOTween.TweensByTarget(System.Object,System.Boolean)">
+        <member name="M:DG.Tweening.DOTween.TweensByTarget(System.Object,System.Boolean,System.Collections.Generic.List{DG.Tweening.Tween})">
             <summary>
             Returns a list of all active tweens with the given target.
             Returns NULL if there are no active tweens with the given target.
             <para>Beware: each time you call this method a new list is generated</para>
             <param name="playingOnly">If TRUE returns only the tweens with the given target that are currently playing</param>
+            <param name="fillableList">If NULL creates a new list, otherwise clears and fills this one (and thus saves allocations)</param>
             </summary>
         </member>
         <member name="T:DG.Tweening.DOVirtual">
@@ -1778,6 +1803,17 @@
             <param name="byValue">The value to tween by</param><param name="duration">The duration of the tween</param>
             <param name="mode">Rotation mode</param>
         </member>
+        <member name="M:DG.Tweening.ShortcutExtensions.DOBlendablePunchRotation(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Int32,System.Single)">
+            <summary>Punches a Transform's localRotation BY the given value and then back to the starting one
+            as if it was connected to the starting rotation via an elastic. Does it in a way that allows other
+            DOBlendableRotate tweens to work together on the same target</summary>
+            <param name="punch">The punch strength (added to the Transform's current rotation)</param>
+            <param name="duration">The duration of the tween</param>
+            <param name="vibrato">Indicates how much will the punch vibrate</param>
+            <param name="elasticity">Represents how much (0 to 1) the vector will go beyond the starting rotation when bouncing backwards.
+            1 creates a full oscillation between the punch rotation and the opposite rotation,
+            while 0 oscillates only between the punch and the start rotation</param>
+        </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOBlendableScaleBy(UnityEngine.Transform,UnityEngine.Vector3,System.Single)">
             <summary>Tweens a Transform's localScale BY the given value (as if you chained a <code>SetRelative</code>),
             in a way that allows other DOBlendableScale tweens to work together on the same target,
@@ -2099,8 +2135,18 @@
             <param name="autoKillOnCompletion">If TRUE the tween will be automatically killed when complete</param>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.SetId``1(``0,System.Object)">
-            <summary>Sets an ID for the tween, which can then be used as a filter with DOTween's static methods.</summary>
-            <param name="id">The ID to assign to this tween. Can be an int, a string, an object or anything else.</param>
+            <summary>Sets an ID for the tween (<see cref="F:DG.Tweening.Tween.id"/>), which can then be used as a filter with DOTween's static methods.</summary>
+            <param name="objectId">The ID to assign to this tween. Can be an int, a string, an object or anything else.</param>
+        </member>
+        <member name="M:DG.Tweening.TweenSettingsExtensions.SetId``1(``0,System.String)">
+            <summary>Sets a string ID for the tween (<see cref="F:DG.Tweening.Tween.stringId"/>), which can then be used as a filter with DOTween's static methods.<para/>
+            Filtering via string is 2X faster than using an object as an ID (using the alternate obejct overload)</summary>
+            <param name="stringId">The string ID to assign to this tween.</param>
+        </member>
+        <member name="M:DG.Tweening.TweenSettingsExtensions.SetId``1(``0,System.Int32)">
+            <summary>Sets an int ID for the tween (<see cref="F:DG.Tweening.Tween.intId"/>), which can then be used as a filter with DOTween's static methods.<para/>
+            Filtering via int is 4X faster than via object, 2X faster than via string (using the alternate object/string overloads)</summary>
+            <param name="intId">The int ID to assign to this tween.</param>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.SetTarget``1(``0,System.Object)">
             <summary>Sets the target for the tween, which can then be used as a filter with DOTween's static methods.
@@ -2436,7 +2482,15 @@
             <summary>If TRUE the tween wil go backwards</summary>
         </member>
         <member name="F:DG.Tweening.Tween.id">
-            <summary>Id (usable for filtering with DOTween static methods). Can be an int, a string, an object, or anything else</summary>
+            <summary>Object ID (usable for filtering with DOTween static methods). Can be anything except a string or an int
+            (use <see cref="F:DG.Tweening.Tween.stringId"/> or <see cref="F:DG.Tweening.Tween.intId"/> for those)</summary>
+        </member>
+        <member name="F:DG.Tweening.Tween.stringId">
+            <summary>String ID (usable for filtering with DOTween static methods). 2X faster than using an object id</summary>
+        </member>
+        <member name="F:DG.Tweening.Tween.intId">
+            <summary>Int ID (usable for filtering with DOTween static methods). 4X faster than using an object id, 2X faster than using a string id.
+            Default is -999 so avoid using an ID like that or it will capture all unset intIds</summary>
         </member>
         <member name="F:DG.Tweening.Tween.target">
             <summary>Tween target (usable for filtering with DOTween static methods). Automatically set by tween creation shorcuts</summary>
