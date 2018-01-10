@@ -312,7 +312,7 @@ namespace Antura.Core
 
         public void GoToPlayerBook(BookArea bookArea)
         {
-            BookScene.OverridenOpeningArea = bookArea;
+            //BookScene.OverridenOpeningArea = bookArea;
             CustomGoTo(AppScene.Book);
         }
 

@@ -75,12 +75,6 @@ namespace Antura.Book
         {
         }
 
-        public void OnBtnClose()
-        {
-            gameObject.SetActive(false);
-            Destroy(gameObject);
-        }
-
         void OnEnable()
         {
             OpenArea(VocabularyChapter.Letters);
@@ -154,6 +148,7 @@ namespace Antura.Book
                 if (letters.Contains(info_item.data)) {
                     btnGO = Instantiate(LetterItemPrefab);
                     btnGO.transform.SetParent(ElementsContainer.transform, false);
+                    btnGO.transform.SetAsFirstSibling();
                     btnGO.GetComponent<ItemLetter>().Init(this, info_item, false);
                 }
             }

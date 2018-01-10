@@ -13,7 +13,8 @@ namespace Antura.Book
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            AppManager.I.NavigationManager.GoToPlayerBook(bookArea);
+            BookManager.I.OpenBook(bookArea);
+            //AppManager.I.NavigationManager.GoToPlayerBook(bookArea);
         }
     }
 }
