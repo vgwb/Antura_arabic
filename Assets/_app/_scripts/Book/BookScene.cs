@@ -13,13 +13,6 @@ namespace Antura.Book
         MiniGames
     }
 
-    /// <summary>
-    /// Manages the Player Book scene.
-    /// - shows unlocked learning content
-    /// - provides information on player progression
-    /// - grants direct access to minigames
-    /// - grants access to the Parents' Panel
-    /// </summary>
     public class BookScene : MonoBehaviour
     {
         public static BookArea OverridenOpeningArea;
@@ -28,8 +21,9 @@ namespace Antura.Book
         public Music SceneMusic;
         public BookArea OpeningArea;
 
+        public GameObject[] HideTheseAtStartup;
+
         [Header("References")]
-        public GameObject UICanvas;
         public GameObject VocabularyPanel;
         public GameObject PlayerPanel;
         public GameObject JourneyPanel;
@@ -45,6 +39,9 @@ namespace Antura.Book
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
+            foreach (var go in HideTheseAtStartup) {
+                go.SetActive(false);
+            }
             //GlobalUI.ShowBackButton(true, GoBackCustom);
             //AudioManager.I.PlayMusic(SceneMusic);
             //AudioManager.I.PlayDialogue("Book_Intro");
@@ -61,7 +58,21 @@ namespace Antura.Book
 
         void OpenArea(BookArea newPanel)
         {
-            var panel = Instantiate(VocabularyPanel);
+            switch (newPanel) {
+                case BookArea.Vocabulary:
+                    Instantiate(VocabularyPanel);
+                    break;
+                case BookArea.Journey:
+                    Instantiate(JourneyPanel);
+                    break;
+                case BookArea.Player:
+                    Instantiate(PlayerPanel);
+                    break;
+                case BookArea.MiniGames:
+                    Instantiate(GamesPanel);
+                    break;
+            }
+            // var panel = Instantiate(VocabularyPanel);
             //panel.transform.SetParent(UICanvas.transform, false);
             //if (newPanel != currentPanel) {
             //    activatePanel(currentPanel, false);
