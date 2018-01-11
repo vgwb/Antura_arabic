@@ -72,23 +72,26 @@ namespace Antura.Database.Management
                 list.Add(minigameStruct);
             } else {
                 // Non-Assessments (i.e. Minigames) must be checked through columns
-                for (int enum_i = 0; enum_i < System.Enum.GetValues(typeof(MiniGameCode)).Length; enum_i++)
-                {
-                    if ((MiniGameCode) enum_i == MiniGameCode.Invalid) continue;
+                for (int enum_i = 0; enum_i < System.Enum.GetValues(typeof(MiniGameCode)).Length; enum_i++) {
+                    if ((MiniGameCode)enum_i == MiniGameCode.Invalid) {
+                        continue;
+                    }
 
                     var enum_string = ((MiniGameCode)enum_i).ToString();
                     int result = 0;
 
-                    if (enum_string == "") continue; // this means that the enum does not exist
-                    if (int.TryParse(enum_string, out result))
-                    {
+                    if (enum_string == "") {
+                        // this means that the enum does not exist
+                        continue;
+                    }
+                    if (int.TryParse(enum_string, out result)) {
                         // this means that the enum does not exist among the ones we want
                         continue;
                     }
 
-                    if (!dict.ContainsKey(enum_string) ) {
-                        if(!notFoundCodes.Contains((MiniGameCode)enum_i))
-                        {
+                    // this checks if a minigame isn't used in the PlaySession table
+                    if (!dict.ContainsKey(enum_string)) {
+                        if (!notFoundCodes.Contains((MiniGameCode)enum_i)) {
                             Debug.LogError(data.GetType() + " could not find minigame column for " + enum_string);
                             notFoundCodes.Add((MiniGameCode)enum_i);
                         }
@@ -97,6 +100,7 @@ namespace Antura.Database.Management
 
                     var minigameStruct = new MiniGameInPlaySession();
                     minigameStruct.MiniGameCode = (MiniGameCode)enum_i;
+                    // Debug.Log("mingame: " + enum_string);
                     minigameStruct.Weight = ToInt(dict[enum_string]);
                     if (minigameStruct.Weight == 0) {
                         // Skip adding if the weight is zero

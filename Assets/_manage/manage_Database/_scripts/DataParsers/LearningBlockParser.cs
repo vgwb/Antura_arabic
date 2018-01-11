@@ -19,6 +19,7 @@ namespace Antura.Database.Management
             data.Description_Ar = ToString(dict["Description_Ar"]);
             data.Title_Ar = ToString(dict["Title_Ar"]);
             data.Title_En = ToString(dict["Title_En"]);
+            data.AudioFile = ToString(dict["AudioFile"]);
             //data.Reward = ParseID<RewardData, RewardTable>(data, (string)dict["Reward"], db.GetRewardTable());
             data.Focus = ParseEnum<LearningBlockDataFocus>(data, (string)dict["Focus"]);
 
@@ -27,7 +28,8 @@ namespace Antura.Database.Management
             return data;
         }
 
-        protected override bool CanHaveSameKeyMultipleTimes {
+        protected override bool CanHaveSameKeyMultipleTimes
+        {
             get {
                 return true;
             }
