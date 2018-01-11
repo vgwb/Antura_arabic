@@ -32,10 +32,9 @@ namespace Antura.GamesSelector
 
             // play the tutorial only if in LB 1.1
             if (journeyPos.Stage == 1 && journeyPos.LearningBlock == 1) {
-                AudioManager.I.PlayDialogue(learningBlock.GetTitleSoundFilename(), PlayTutorialAudio);
-                //KeeperManager.I.PlayDialog(learningBlock.GetTitleSoundFilename(), false, true, PlayTutorialAudio);
+                AudioManager.I.PlayLearningBlock(learningBlock.GetTitleSoundFilename(), PlayTutorialAudio);
             } else {
-                AudioManager.I.PlayDialogue(learningBlock.GetTitleSoundFilename());
+                AudioManager.I.PlayLearningBlock(learningBlock.GetTitleSoundFilename());
             }
 
             if (!journeyPos.IsMinor(AppManager.I.Player.MaxJourneyPosition)) {
@@ -50,7 +49,6 @@ namespace Antura.GamesSelector
         void PlayTutorialAudio()
         {
             AudioManager.I.PlayDialogue(LocalizationDataId.SelectGame_Tuto_2, null, true);
-            //KeeperManager.I.PlayDialog(LocalizationDataId.SelectGame_Tuto_2, false, true);
         }
 
         void SetStars(int _tot)

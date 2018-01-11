@@ -117,7 +117,7 @@ namespace Antura.Database
 
         public string GetTitleSoundFilename()
         {
-            return "LB_" + Stage + "_" + LearningBlock.ToString("D2");
+            return AudioFile;
         }
     }
 
