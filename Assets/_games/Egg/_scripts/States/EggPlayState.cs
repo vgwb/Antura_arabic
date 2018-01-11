@@ -1,4 +1,4 @@
-using Antura.LivingLetters;
+﻿using Antura.LivingLetters;
 using Antura.Tutorial;
 using UnityEngine;
 
@@ -35,6 +35,10 @@ namespace Antura.Minigames.Egg
         private float tutorialDelayTime = 3f;
         private bool tutorialStop;
 
+        float lastTimePressed = 0;
+        const float deltaPressedInterval = 0.5f;
+        bool isPlayingQuestion = false;
+
         public EggPlayState(EggGame game)
         {
             this.game = game;
@@ -48,13 +52,23 @@ namespace Antura.Minigames.Egg
 
             questionProgress = 0;
 
-            if (isSequence) {
+            if (isSequence)
+            {
                 correctAnswers = game.CurrentQuestion.Letters.Count;
-            } else {
+            }
+            else
+            {
                 correctAnswers = 3;
             }
 
+            game.HintButton.gameObject.SetActive(true);
             game.eggController.onEggPressedCallback = OnEggPressed;
+            UnityEngine.UI.Button.ButtonClickedEvent clickEvent = game.HintButton.onClick;
+
+            if (clickEvent == null)
+                game.HintButton.onClick = clickEvent = new UnityEngine.UI.Button.ButtonClickedEvent();
+
+            clickEvent.AddListener(OnHintPressed);
 
             EnableAllGameplayInput();
 
@@ -73,17 +87,22 @@ namespace Antura.Minigames.Egg
             tutorialDelayTimer = tutorialDelayTime;
             tutorialStop = false;
 
-            if (showTutorial) {
+            if (showTutorial)
+            {
                 ShowTutorialPressCorrect();
 
-                if (isSequence) {
+                if (isSequence)
+                {
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_buildword_Tuto);
-                } else {
+                }
+                else
+                {
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_letters_Tuto);
                 }
             }
 
-            if (!showTutorial) {
+            if (!showTutorial)
+            {
                 game.InitializeOverlayWidget();
             }
 
@@ -92,7 +111,14 @@ namespace Antura.Minigames.Egg
 
         public void ExitState()
         {
-            if (showTutorial) {
+            game.HintButton.gameObject.SetActive(false);
+            UnityEngine.UI.Button.ButtonClickedEvent clickEvent = game.HintButton.onClick;
+
+            if (clickEvent != null)
+                clickEvent.RemoveListener(OnHintPressed);
+
+            if (showTutorial)
+            {
                 TutorialUI.Clear(true);
             }
 
@@ -101,14 +127,18 @@ namespace Antura.Minigames.Egg
 
         public void Update(float delta)
         {
-            if (toNextState) {
+            if (toNextState)
+            {
                 nextStateTimer -= delta;
 
-                if (nextStateTimer <= 0f) {
+                if (nextStateTimer <= 0f)
+                {
                     toNextState = false;
 
-                    if (!showTutorial) {
-                        if (game.stagePositiveResult) {
+                    if (!showTutorial)
+                    {
+                        if (game.stagePositiveResult)
+                        {
                             game.correctStages++;
 
                             ILivingLetterData runLetterData;
@@ -127,7 +157,8 @@ namespace Antura.Minigames.Egg
 
             inputButtonTimer -= delta;
 
-            if (repeatInputHasProgressed) {
+            if (repeatInputHasProgressed)
+            {
                 PlayPositiveAudioFeedback();
 
                 game.eggController.EmoticonPositive();
@@ -135,13 +166,17 @@ namespace Antura.Minigames.Egg
                 game.eggController.ParticleCorrectEnabled();
 
                 repeatInputHasProgressed = false;
-                if (inputButtonTimer >= 0) {
+                if (inputButtonTimer >= 0)
+                {
                     inputButtonCount++;
-                } else {
+                }
+                else
+                {
                     inputButtonCount = 0;
                 }
 
-                if (inputButtonCount >= inputButtonMax) {
+                if (inputButtonCount >= inputButtonMax)
+                {
                     inputButtonCount = 0;
                     PositiveFeedback();
                 }
@@ -151,30 +186,42 @@ namespace Antura.Minigames.Egg
                 inputButtonTimer = inputButtonTime;
             }
 
-            if (showTutorial && !tutorialStop) {
-                if (tutorialCorrectActive) {
+            if (showTutorial && !tutorialStop)
+            {
+                if (tutorialCorrectActive)
+                {
                     tutorialCorrectTimer -= delta;
-                    if (tutorialCorrectTimer <= 0f) {
-                        if (isSequence) {
+                    if (tutorialCorrectTimer <= 0f)
+                    {
+                        if (isSequence)
+                        {
                             tutorialSequenceIndex++;
-                            if (tutorialSequenceIndex < correctAnswers) {
+                            if (tutorialSequenceIndex < correctAnswers)
+                            {
                                 tutorialCorrectTimer = 1f;
 
                                 Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position;
                                 TutorialUI.Click(clickPosition);
-                            } else {
+                            }
+                            else
+                            {
                                 tutorialCorrectActive = false;
                                 tutorialDelayTimer = tutorialDelayTime;
                             }
-                        } else {
+                        }
+                        else
+                        {
                             tutorialCorrectActive = false;
                             tutorialDelayTimer = tutorialDelayTime;
                         }
                     }
-                } else {
+                }
+                else
+                {
                     tutorialDelayTimer -= delta;
 
-                    if (tutorialDelayTimer <= 0f) {
+                    if (tutorialDelayTimer <= 0f)
+                    {
                         ShowTutorialPressCorrect();
                     }
                 }
@@ -187,24 +234,35 @@ namespace Antura.Minigames.Egg
         {
             game.Context.GetAudioManager().PlaySound(Sfx.UIButtonClick);
 
-            if (showTutorial) {
+            if (Time.realtimeSinceStartup - lastTimePressed > deltaPressedInterval)
+                game.Context.GetAudioManager().PlayVocabularyData(letterData, false);
+            lastTimePressed = Time.realtimeSinceStartup;
+
+            if (showTutorial)
+            {
                 if (!enteredRepeatMode)
                     TutorialUI.Clear(false);
                 tutorialDelayTimer = tutorialDelayTime;
                 tutorialCorrectActive = false;
             }
 
-            if (letterData == game.CurrentQuestion.Letters[letterOnSequence]) {
-                if (isSequence) {
+            if (letterData == game.CurrentQuestion.Letters[letterOnSequence])
+            {
+                if (isSequence)
+                {
                     game.eggButtonBox.GetEggButton(letterData).SetPressed();
                     PositiveFeedback();
                     game.Context.GetLogManager().OnAnswered(letterData, true);
-                } else {
+                }
+                else
+                {
                     repeatInputHasProgressed = true;
 
-                    if (!enteredRepeatMode) {
+                    if (!enteredRepeatMode)
+                    {
                         EggConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.OK);
                         enteredRepeatMode = true;
+                        game.HintButton.gameObject.SetActive(false);
                         Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[0].transform.position;
                         TutorialUI.ClickRepeat(clickPosition, 4);
                         game.eggButtonBox.RemoveButtons((a) => { return a != letterData; });
@@ -213,18 +271,31 @@ namespace Antura.Minigames.Egg
                             game.Context.GetLogManager().OnAnswered(letterData, true);
                     }
                 }
-            } else {
+            }
+            else
+            {
                 if (isSequence && game.eggButtonBox.GetEggButton(letterData).IsPressed())
                     return;
 
                 game.eggButtonBox.SetButtonsOnStandardColor(game.eggButtonBox.GetEggButton(letterData));
 
-                if (showTutorial) {
+                if (showTutorial)
+                {
                     ShowTutorialPressedWrong(letterData);
-                } else {
+                }
+                else
+                {
                     NegativeFeedback();
                     game.Context.GetLogManager().OnAnswered(letterData, false);
                 }
+            }
+        }
+
+        void OnHintPressed()
+        {
+            if (!isPlayingQuestion)
+            {
+                OnEggPressed();
             }
         }
 
@@ -233,13 +304,14 @@ namespace Antura.Minigames.Egg
             DisableAllGameplayInput();
 
             game.eggController.EmoticonInterrogative();
-
-            game.eggController.PlayAudioQuestion(delegate () { game.eggController.EmoticonClose(); EnableAllGameplayInput(); });
+            isPlayingQuestion = true;
+            game.eggController.PlayAudioQuestion(delegate () { isPlayingQuestion = false; game.eggController.EmoticonClose(); EnableAllGameplayInput(); });
         }
 
         void PositiveFeedback()
         {
-            if (isSequence) {
+            if (isSequence)
+            {
                 letterOnSequence++;
             }
 
@@ -251,7 +323,9 @@ namespace Antura.Minigames.Egg
 
             game.eggController.ParticleCorrectEnabled();
 
-            if (crackingProgress == 1f) {
+            if (crackingProgress == 1f)
+            {
+                game.HintButton.gameObject.SetActive(false);
                 game.Context.GetAudioManager().PlaySound(Sfx.EggBreak);
                 game.eggController.EmoticonHappy();
                 game.eggController.ParticleWinEnabled();
@@ -260,7 +334,9 @@ namespace Antura.Minigames.Egg
                 TutorialUI.Clear(false);
 
                 OnEggCrackComplete();
-            } else {
+            }
+            else
+            {
                 PlayPositiveAudioFeedback();
                 game.eggController.EmoticonPositive();
             }
@@ -272,14 +348,18 @@ namespace Antura.Minigames.Egg
 
             bool goAntura = false;
 
-            if (!game.eggController.isNextToExit) {
-                if (game.antura.IsAnturaIn()) {
+            if (!game.eggController.isNextToExit)
+            {
+                if (game.antura.IsAnturaIn())
+                {
                     goAntura = true;
                 }
 
                 game.Context.GetAudioManager().PlaySound(Sfx.ScaleUp);
                 tutorialStop = true;
-            } else {
+            }
+            else
+            {
                 game.Context.GetAudioManager().PlaySound(Sfx.ScaleDown);
                 OnEggExitComplete();
             }
@@ -291,10 +371,13 @@ namespace Antura.Minigames.Egg
             questionProgress = 0;
             game.eggController.ResetCrack();
 
-            if (goAntura) {
+            if (goAntura)
+            {
                 AnturaEnter();
                 game.eggController.MoveNext(1f, null);
-            } else {
+            }
+            else
+            {
                 game.eggController.MoveNext(1f, EnableAllGameplayInput);
             }
         }
@@ -340,18 +423,24 @@ namespace Antura.Minigames.Egg
             DisableAllGameplayInput();
             game.stagePositiveResult = true;
 
-            if (isSequence) {
+            if (isSequence)
+            {
                 game.eggButtonBox.PlayButtonsAudio(true, false, 0.5f, OnLightUpButtonsComplete, () => { game.eggButtonBox.SetButtonsOnStandardColor(null, false); });
-            } else {
+            }
+            else
+            {
                 game.eggButtonBox.GetButtons(false)[0].PlayButtonAudio(true, 0.5f, OnLightUpButtonsComplete, () => { game.eggButtonBox.SetButtonsOnStandardColor(null, false); });
             }
         }
 
         void OnLightUpButtonsComplete()
         {
-            if (isSequence) {
+            if (isSequence)
+            {
                 game.eggButtonBox.SetButtonsOnPressedColor();
-            } else {
+            }
+            else
+            {
                 //game.eggButtonBox.GetEggButton(game.CurrentQuestion.Letters[0]).SetPressed();
             }
 
@@ -373,7 +462,8 @@ namespace Antura.Minigames.Egg
 
         void PlayPositiveAudioFeedback()
         {
-            if (positiveAudioSource != null && positiveAudioSource.IsPlaying) {
+            if (positiveAudioSource != null && positiveAudioSource.IsPlaying)
+            {
                 return;
             }
 
@@ -385,7 +475,8 @@ namespace Antura.Minigames.Egg
             tutorialCorrectActive = true;
             tutorialSequenceIndex = letterOnSequence;
 
-            if (isSequence) {
+            if (isSequence)
+            {
                 tutorialCorrectTimer = 1f;
 
                 Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position;

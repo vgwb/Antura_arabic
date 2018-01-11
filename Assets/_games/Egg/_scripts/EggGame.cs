@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Antura.Minigames.Egg
 {
@@ -13,6 +13,8 @@ namespace Antura.Minigames.Egg
         public EggRunLettersBox runLettersBox;
         public GameObject anturaPrefab;
         public GameObject shadowPrefab;
+
+        public UnityEngine.UI.Button HintButton;
 
         public const int numberOfStage = 4;
         public int currentStage { get; set; }
