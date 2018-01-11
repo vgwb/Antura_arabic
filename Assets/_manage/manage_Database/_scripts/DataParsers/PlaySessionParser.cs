@@ -53,6 +53,7 @@ namespace Antura.Database.Management
             newLetters.CopyTo(psData.Letters);
         }
 
+        private List<MiniGameCode> notFoundCodes = new List<MiniGameCode>();
         public MiniGameInPlaySession[] CustomParseMinigames(PlaySessionData data, Dictionary<string, object> dict, MiniGameTable table)
         {
             var list = new List<MiniGameInPlaySession>();
@@ -71,14 +72,26 @@ namespace Antura.Database.Management
                 list.Add(minigameStruct);
             } else {
                 // Non-Assessments (i.e. Minigames) must be checked through columns
-                for (int enum_i = 0; enum_i < System.Enum.GetValues(typeof(MiniGameCode)).Length; enum_i++) {
-                    var enum_string = ((MiniGameCode)enum_i).ToString();
-                    if (enum_string == "") continue; // this means that the enum does not exist
-                    if (enum_string == "0") continue; // 0 does not exist in the table
+                for (int enum_i = 0; enum_i < System.Enum.GetValues(typeof(MiniGameCode)).Length; enum_i++)
+                {
+                    if ((MiniGameCode) enum_i == MiniGameCode.Invalid) continue;
 
-                    if (!dict.ContainsKey(enum_string)) {
-                        // TODO: what to do if the enum is not found in the dict? tell once?
-                        //Debug.LogWarning(data.GetType().ToString() + " could not find minigame column for " + enum_string);
+                    var enum_string = ((MiniGameCode)enum_i).ToString();
+                    int result = 0;
+
+                    if (enum_string == "") continue; // this means that the enum does not exist
+                    if (int.TryParse(enum_string, out result))
+                    {
+                        // this means that the enum does not exist among the ones we want
+                        continue;
+                    }
+
+                    if (!dict.ContainsKey(enum_string) ) {
+                        if(!notFoundCodes.Contains((MiniGameCode)enum_i))
+                        {
+                            Debug.LogError(data.GetType() + " could not find minigame column for " + enum_string);
+                            notFoundCodes.Add((MiniGameCode)enum_i);
+                        }
                         continue;
                     }
 
@@ -94,7 +107,6 @@ namespace Antura.Database.Management
                 }
 
             }
-
 
             return list.ToArray();
         }
