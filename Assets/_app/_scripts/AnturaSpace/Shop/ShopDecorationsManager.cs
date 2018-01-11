@@ -181,6 +181,34 @@ namespace Antura.AnturaSpace
             return newDecoration;
         }
 
+        #region Deletion
+
+        private void DeleteDecoration(ShopDecorationObject decoToDelete)
+        {
+            var assignedSlot = allShopDecorationSlots.FirstOrDefault(x => x.HasCurrentlyAssigned(currentDraggedDecoration));
+            if (assignedSlot != null)
+            {
+                assignedSlot.Free();
+            }
+            Destroy(decoToDelete.gameObject);
+        }
+
+        public void DeleteAllDecorations()
+        {
+            foreach (var slot in allShopDecorationSlots)
+            {
+                if (slot.Assigned)
+                {
+                    var decoToDelete = slot.AssignedDecorationObject;
+                    slot.Free();
+                    Destroy(decoToDelete.gameObject);
+                }
+            }
+            SaveState();
+        }
+
+        #endregion
+
         #region Drag Placement
 
         private Coroutine dragCoroutine;
@@ -198,15 +226,6 @@ namespace Antura.AnturaSpace
             CurrentDecorationCost = bonesCost;
             var newDeco = SpawnNewDecoration(prefab);
             StartDragPlacement(newDeco, true);
-        }
-
-        private void DeleteDecoration(ShopDecorationObject decoToDelete)
-        {
-            var assignedSlot = allShopDecorationSlots.FirstOrDefault(x => x.HasCurrentlyAssigned(currentDraggedDecoration));
-            if (assignedSlot != null) {
-                assignedSlot.Free();
-            }
-            Destroy(decoToDelete.gameObject);
         }
 
         public void StartDragPlacement(ShopDecorationObject decoToDrag, bool isNew)

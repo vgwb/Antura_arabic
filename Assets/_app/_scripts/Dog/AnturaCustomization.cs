@@ -95,5 +95,12 @@ namespace Antura.Dog
             if (TexturePack.BaseId == baseId) return TexturePack;
             return null;
         }
+
+        public void ClearEquippedProps()
+        {
+            PropPacks.Clear();
+            PropPacksIds.Clear();
+            AppManager.I.Player.SaveAnturaCustomization();
+        }
     }
 }

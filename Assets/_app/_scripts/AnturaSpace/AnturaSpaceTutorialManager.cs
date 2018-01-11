@@ -176,6 +176,9 @@ namespace Antura.AnturaSpace
                 case CustomizationTutorialStep.OPEN_CUSTOMIZE:
                     AudioManager.I.StopDialogue(false);
 
+                    // Reset state for the tutorial
+                    AppManager.I.Player.CurrentAnturaCustomizations.ClearEquippedProps();
+
                     //dialog get more cookies
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () {
                         //dialog customize
@@ -243,9 +246,12 @@ namespace Antura.AnturaSpace
                     _mScene.UI.SetTutorialMode(false);
                     m_oSwatchButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
 
+                    // New step
+                    m_oAnturaBehaviour.onTouched += StepTutorialCustomization;
+                    m_oCustomizationButton.onClick.AddListener(StepTutorialCustomization);
+
                     StartCoroutine(DelayedCallbackCO(
                      () => {
-                         m_oCustomizationButton.onClick.AddListener(StepTutorialCustomization);
                          TutorialUI.ClickRepeat(m_oCustomizationButton.transform.position, float.MaxValue, 1);
                      }));
 
@@ -253,9 +259,6 @@ namespace Antura.AnturaSpace
                     // New step
                     StartCoroutine(WaitAnturaInCenterCO(
                         () => {
-                            // Register on Antura touch
-                            m_oAnturaBehaviour.onTouched += StepTutorialCustomization;
-
                             Vector3 clickOffset = m_oAnturaBehaviour.IsSleeping ? Vector3.down * 2 : Vector3.down * 1.5f;
                             TutorialUI.ClickRepeat(
                                 m_oAnturaBehaviour.gameObject.transform.position + clickOffset + Vector3.forward * -2 + Vector3.up,
@@ -268,7 +271,7 @@ namespace Antura.AnturaSpace
 
                     // Cleanup last step
                     m_oCustomizationButton.onClick.RemoveListener(StepTutorialCustomization);
-                    //m_oAnturaBehaviour.onTouched -= StepTutorialCustomization;
+                    m_oAnturaBehaviour.onTouched -= StepTutorialCustomization;
 
                     CompleteTutorialPhase();
                     break;
@@ -314,6 +317,10 @@ namespace Antura.AnturaSpace
 
                     AnturaSpaceScene.I.TutorialMode = true;
                     CurrentTutorialFocus = m_oCookieButton;
+
+                    // Start from a clean state
+                    AppManager.I.Player.MakeSureInitialBonesAreAvailable();
+                    ShopDecorationsManager.I.DeleteAllDecorations();
 
                     // Dialog -> Appear button
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate
