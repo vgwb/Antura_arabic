@@ -277,6 +277,27 @@ namespace Antura.AnturaSpace.UI
         }
 
         /// <summary>
+        /// Returns a random item button.
+        /// Return NULL if the mods panel is not open or a category is not selected.
+        /// </summary>
+        public AnturaSpaceItemButton GetFirstUnlockedItemButton()
+        {
+            if (!IsModsPanelOpen || !ItemsContainer.gameObject.activeSelf)
+            {
+                Debug.LogWarning("AnturaSpaceUI.GetRandomItemButton > Mods Panel is not open or category is not selected");
+                return null;
+            }
+            foreach (var bt in btsItems)
+            {
+                if (!bt.IsLocked)
+                {
+                    return bt;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Returns the first swatch button marked as NEW (meaning it has new content).
         /// Return NULL if the mods panel is not open or a category is not selected.
         /// </summary>

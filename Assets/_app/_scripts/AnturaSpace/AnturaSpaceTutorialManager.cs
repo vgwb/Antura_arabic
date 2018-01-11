@@ -218,8 +218,8 @@ namespace Antura.AnturaSpace
                     StartCoroutine(DelayedCallbackCO(
                         () => {
                             // Register on item button
-                            m_oItemButton = _mScene.UI.GetNewItemButton();
-                            if (m_oItemButton == null) throw new Exception("No new item!");
+                            m_oItemButton = _mScene.UI.GetFirstUnlockedItemButton();
+                            if (m_oItemButton == null) throw new Exception("No unlocked item!");
                             m_oItemButton.Bt.onClick.AddListener(StepTutorialCustomization);
 
                             TutorialUI.ClickRepeat(m_oItemButton.transform.position, float.MaxValue, 1);
