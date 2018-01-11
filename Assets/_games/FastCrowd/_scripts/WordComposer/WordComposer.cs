@@ -16,6 +16,7 @@ namespace Antura.Minigames.FastCrowd
         List<LL_LetterData> CompletedLetters = new List<LL_LetterData>();
         public bool splitMode = false;
 
+        Tweener shake;
         void Awake()
         {
             WordLabel = GetComponent<WordFlexibleContainer>();
@@ -86,8 +87,18 @@ namespace Antura.Minigames.FastCrowd
             yield return new WaitForSeconds(_delay);
             CompletedLetters.Add(data as LL_LetterData);
             AudioManager.I.PlaySound(Sfx.Hit);
-            innerTransform.DOShakeScale(1.5f, 0.5f);
+            shake = innerTransform.DOShakeScale(1.5f, 0.5f);
             UpdateWord();
+        }
+
+        private void OnDisable()
+        {
+            if (shake != null)
+            {
+                shake.Complete();
+                shake = null;
+                innerTransform.localScale = Vector3.one;
+            }
         }
 
         private void DropContainer_OnObjectiveBlockCompleted()

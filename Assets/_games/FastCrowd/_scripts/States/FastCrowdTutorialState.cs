@@ -15,6 +15,16 @@ namespace Antura.Minigames.FastCrowd
 
         bool tutorialStarted;
 
+        bool MustTrunk
+        {
+            get
+            {
+                return FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet ||
+                        FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting ||
+                        FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word;
+            }
+        }
+
         public FastCrowdTutorialState(FastCrowdGame game)
         {
             this.game = game;
@@ -22,12 +32,16 @@ namespace Antura.Minigames.FastCrowd
 
         public void EnterState()
         {
-            answerCounter = 2;
             game.QuestionManager.OnCompleted += OnQuestionCompleted;
             game.QuestionManager.OnDropped += OnAnswerDropped;
 
             if (game.CurrentChallenge != null)
+            {
+                if (MustTrunk)
+                    game.CurrentChallenge.RemoveRange(2, game.CurrentChallenge.Count - 2);
+
                 game.QuestionManager.StartQuestion(game.CurrentChallenge, game.NoiseData);
+            }
             else
                 game.QuestionManager.Clean();
 
@@ -65,21 +79,6 @@ namespace Antura.Minigames.FastCrowd
 
         void OnAnswerDropped(ILivingLetterData data, bool result)
         {
-            if (result)
-            {
-                --answerCounter;
-
-                if (answerCounter <= 0 &&
-                    (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet ||
-                    FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting ||
-                    FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word)
-                    )
-                {
-                    game.SetCurrentState(game.QuestionState);
-                    return;
-                }
-            }
-
             tutorialStartTimer = 3f;
             game.Context.GetCheckmarkWidget().Show(result);
             game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
@@ -87,7 +86,7 @@ namespace Antura.Minigames.FastCrowd
 
         public void Update(float delta)
         {
-            if(tutorialStarted)
+            if (tutorialStarted)
             {
                 tutorialStartTimer += -delta;
 

@@ -1,4 +1,4 @@
-using Antura.Minigames;
+﻿using Antura.Minigames;
 
 namespace Antura.Minigames.FastCrowd
 {
