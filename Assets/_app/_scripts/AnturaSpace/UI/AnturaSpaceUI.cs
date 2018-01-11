@@ -195,6 +195,11 @@ namespace Antura.AnturaSpace.UI
                 && ShopDecorationsManager.I.ShopContext != ShopContext.Purchase)
                 return;
 
+            // Cannot interact with the shop panel while we do the tutorial
+            var scene = AnturaSpaceScene.I as AnturaSpaceScene;
+            if (scene.TutorialMode && scene.tutorialManager.CurrentTutorialFocus != BtBonesShop.Bt)
+                return;
+
             if (ShopDecorationsManager.I.ShopContext == ShopContext.Closed) {
                 ShopPanelContainer.gameObject.SetActive(true);
                 ShopDecorationsManager.I.SetContextPurchase();
