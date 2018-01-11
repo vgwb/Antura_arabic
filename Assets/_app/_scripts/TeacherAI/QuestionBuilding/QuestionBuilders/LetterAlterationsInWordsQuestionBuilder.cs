@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using Antura.Database;
 using Antura.Helpers;
 using Antura.Core;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 namespace Antura.Teacher
 {
@@ -74,7 +76,6 @@ namespace Antura.Teacher
             for (int round_i = 0; round_i < nRounds*nPacksPerRound; round_i++)
             {
                 packs.Add(CreateSingleQuestionPackData());
-                //Debug.LogWarning("PACK ADDED: " + packs[round_i]);
             }
 
             return packs;
@@ -83,32 +84,46 @@ namespace Antura.Teacher
         private QuestionPackData CreateSingleQuestionPackData()
         {
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
-            // First, choose a letter (base, due to filters)
+            //Debug.Log(FindLettersThatAppearInWords(maxWordLength: maximumWordLength).ToDebugStringNewline());
+
+            // First, choose a letter (base only, due to filters)
             var eligibleLetters = teacher.VocabularyAi.SelectData(
-                () => FindLettersThatAppearInWords(minTimesAppearing: 1, maxWordLength: maximumWordLength),
+                () => FindLettersThatAppearInWords(maxWordLength: maximumWordLength),
                     new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_letters)
             );
-            var baseLetters = eligibleLetters;
+            //Debug.Log(eligibleLetters.ToDebugStringNewline());
 
             // Choose one letter randomly from the eligible ones
-            var correctAlteration = eligibleLetters.RandomSelectOne();
+            var chosenLetter = eligibleLetters.RandomSelectOne();
+            //Debug.Log("Chosen: " + chosenLetter);
 
-            //Debug.Log("Correct alteration: " + correctAlteration);
             // Find a word with the letter (strict)
             var usableWords = teacher.VocabularyAi.SelectData(
-                () => FindWordsWithLetter(correctAlteration, maximumWordLength),
+                () => FindWordsWithLetterStrict(chosenLetter, maximumWordLength),
                     new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words)
             );
             var question = usableWords[0];
 
+            // Get the correct form inside the word
+            //Debug.Log("Word is: " + question.ToString());
+            //Debug.Log("Letters: " + vocabularyHelper.GetLettersInWord(question).ToDebugString());
+            //Debug.Log("Letters correct: " + vocabularyHelper.GetLettersInWord(question).Where(l => l.IsSameLetterAs(chosenLetter, LetterEqualityStrictness.LetterOnly)).ToDebugString());
+            var chosenLetterWithForm = vocabularyHelper.GetLettersInWord(question).Where(l => l.IsSameLetterAs(chosenLetter, LetterEqualityStrictness.LetterOnly)).ToList().RandomSelectOne();
+            //chosenLetterWithForm = vocabularyHelper.ExtractLettersWithForms(chosenLetterWithForm);
+            //Debug.Log("Correct form: " + chosenLetterWithForm + " form is " + chosenLetterWithForm.Form);
+
             // Place the correct alteration in the correct list
             var correctAnswers = new List<LetterData>();
-            correctAnswers.Add(correctAlteration);
+            correctAnswers.Add(chosenLetterWithForm);
 
-            // Place some alterations in the wrong list
+            // Place some alterations in the wrong list 
+            List<LetterData> baseLetters;
+            if (letterAlterationFilters.differentBaseLetters) baseLetters = AppManager.I.VocabularyHelper.GetAllLetters(parameters.letterFilters);
+            else baseLetters = eligibleLetters;
             var alterationsPool = AppManager.I.VocabularyHelper.GetAllLetterAlterations(baseLetters, letterAlterationFilters);
             var wrongAnswers = new List<LetterData>();
             //Debug.Log("N Alterations before remove correct: " + alterationsPool.Count + " " + alterationsPool.ToDebugString());
@@ -116,7 +131,7 @@ namespace Antura.Teacher
             // Remove the correct alteration (making sure to get the actual form)
             for (int i = 0; i < alterationsPool.Count; i++)
             {
-                if (alterationsPool[i].IsSameLetterAs(correctAlteration, LetterEqualityStrictness.WithActualForm))
+                if (alterationsPool[i].IsSameLetterAs(chosenLetterWithForm, LetterEqualityStrictness.WithActualForm))
                 {
                     alterationsPool.RemoveAt(i);
                 }
@@ -130,7 +145,9 @@ namespace Antura.Teacher
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nQuestion: " + question;
                 debugString += "\nCorrect Answers: " + correctAnswers.Count;
-                foreach (var l in correctAnswers) { debugString += " " + l; }
+                foreach (var l in correctAnswers) { debugString += " " + l;}
+                debugString += "\nWrong Answers: " + wrongAnswers.Count;
+                foreach (var l in wrongAnswers) debugString += " " + l;
                 ConfigAI.AppendToTeacherReport(debugString);
             }
 
@@ -139,8 +156,10 @@ namespace Antura.Teacher
 
         List<LetterData> lettersThatAppearInWords = new List<LetterData>();
 
-        List<LetterData> FindLettersThatAppearInWords(int minTimesAppearing, int maxWordLength)
+        List<LetterData> FindLettersThatAppearInWords(int maxWordLength)
         {
+            int minTimesAppearing = 1;   // at least once
+
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             var eligibleLetters = new List<LetterData>();
 
@@ -154,14 +173,15 @@ namespace Antura.Teacher
 
                 // The chosen letter should actually have words that contain it multiple times.
                 // This can be quite slow, so we do this only at the start.
+                // @note: we are interested at finding the letter in any form
                 var baseLetters = vocabularyHelper.GetAllLetters(parameters.letterFilters);
-                var allLettersWithForms = vocabularyHelper.GetAllLetterAlterations(baseLetters, LetterAlterationFilters.FormsOfMultipleLetters);
-                foreach (var letterData in allLettersWithForms)
+                //var allLettersWithForms = vocabularyHelper.GetAllLetterAlterations(baseLetters, LetterAlterationFilters.FormsOfMultipleLetters);
+                foreach (var letterData in baseLetters)
                 {
                     int nTimesAppearing = 0;
                     foreach (var wordData in allWords)
                     {
-                        if (WordContainsLetter(wordData, letterData, maxWordLength))
+                        if (WordContainsLetter(wordData, letterData, maxWordLength, LetterEqualityStrictness.LetterOnly))
                         {
                             nTimesAppearing++;
                             break;
@@ -183,7 +203,7 @@ namespace Antura.Teacher
 
         Dictionary<LetterData, List<WordData>> eligibleWordsForLetters = new Dictionary<LetterData, List<WordData>>(new StrictLetterDataComparer(LetterEqualityStrictness.WithActualForm));
 
-        private List<WordData> FindWordsWithLetter(LetterData containedLetter, int maxWordLength)
+        private List<WordData> FindWordsWithLetterStrict(LetterData containedLetter, int maxWordLength)
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             var eligibleWords = new List<WordData>();
@@ -192,7 +212,7 @@ namespace Antura.Teacher
             {
                 foreach (var word in vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters))
                 {
-                    if (!WordContainsLetter(word, containedLetter, maxWordLength)) continue;
+                    if (!WordContainsLetter(word, containedLetter, maxWordLength, LetterEqualityStrictness.LetterOnly)) continue;
                     eligibleWords.Add(word);
                     //Debug.Log("Letter: " + containedLetter + " in Word: " + word);
                 }
@@ -204,7 +224,7 @@ namespace Antura.Teacher
             return eligibleWords;
         }
 
-        private bool WordContainsLetter(WordData word, LetterData letter, int maxWordLength)
+        private bool WordContainsLetter(WordData word, LetterData letter, int maxWordLength, LetterEqualityStrictness strictness)
         {
             // Check max length
             if (word.Letters.Length > maxWordLength)
@@ -213,7 +233,7 @@ namespace Antura.Teacher
             }
 
             // Check that it contains the letter at least once
-            if (AppManager.I.VocabularyHelper.WordContainsLetterTimes(word, letter, LetterEqualityStrictness.WithActualForm) >= 1)
+            if (AppManager.I.VocabularyHelper.WordContainsLetterTimes(word, letter, strictness) >= 1)
             {
                 //Debug.Log("Letter " + letter + " is in word " + word + " " + AppManager.I.VocabularyHelper.WordContainsLetterTimes(word, letter, LetterEqualityStrictness.WithActualForm) + " times");
                 return true;
