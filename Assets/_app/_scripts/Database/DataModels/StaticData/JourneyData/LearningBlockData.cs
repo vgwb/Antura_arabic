@@ -70,6 +70,14 @@ namespace Antura.Database
         [SerializeField]
         private string _Title_En;
 
+        public string AudioFile
+        {
+            get { return AudioFile; }
+            set { _AudioFile = value; }
+        }
+        [SerializeField]
+        private string _AudioFile;
+
         public string Title_Ar
         {
             get {
