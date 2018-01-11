@@ -1,5 +1,8 @@
-﻿using Antura.Core;
+﻿using System.Collections;
+using Antura.Core;
 using Antura.Debugging;
+using Antura.Tutorial;
+using UnityEngine;
 
 namespace Antura.Map
 {
@@ -35,5 +38,35 @@ namespace Antura.Map
         {
             AppManager.I.NavigationManager.GoToNextScene();
         }
+
+
+        #region Tutorial Helper
+
+        private Coroutine tutorialCo;
+        public void StartTutorialClickOn(Transform targetTr)
+        {
+            tutorialCo = StartCoroutine(TutorialHintClickCO(targetTr));
+        }
+
+        public void StopTutorialClick()
+        {
+            if (tutorialCo != null)
+            {
+                StopCoroutine(tutorialCo);
+                tutorialCo = null;
+            }
+        }
+
+        private IEnumerator TutorialHintClickCO(Transform targetTr)
+        {
+            yield return new WaitForSeconds(1.5f);
+            TutorialUI.SetCamera(Camera.main);
+            while (true)
+            {
+                TutorialUI.Click(targetTr.position);
+                yield return new WaitForSeconds(0.85f);
+            }
+        }
+        #endregion
     }
 }
