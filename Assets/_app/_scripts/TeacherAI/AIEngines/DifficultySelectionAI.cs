@@ -31,6 +31,8 @@ namespace Antura.Teacher
 
         public float SelectDifficulty(MiniGameCode miniGameCode)
         {
+            return 0;   // Force difficulty, always zero
+
             float totalWeight = ageWeightContribution + performanceWeightContribution;
 
             // Age
