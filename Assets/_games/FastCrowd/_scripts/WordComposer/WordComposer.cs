@@ -43,7 +43,7 @@ namespace Antura.Minigames.FastCrowd
                         word += " " + letter.Data.GetStringForDisplay(letter.Form);
                 }
                 else
-                    word += letter.Data.GetStringForDisplay();
+                    word += letter.Data.GetStringForDisplay(letter.Form);
             }
 
             if (splitMode)
@@ -61,7 +61,8 @@ namespace Antura.Minigames.FastCrowd
                 }
             }
 
-            WordLabel.SetText(word, !splitMode);
+            //WordLabel.SetText(word, !splitMode);
+            WordLabel.SetText(word, false);
         }
 
         public void AddLetter(ILivingLetterData data)
