@@ -112,7 +112,7 @@ namespace Antura.Map
 
             if (journeyPosition.IsAssessment())
             {
-                currentPinMesh.transform.position = startPinPosition + Vector3.down * 20;
+                //currentPinMesh.transform.localScale = Vector3.zero;// = startPinPosition + Vector3.down * 20;
             }
             else
             {
@@ -141,13 +141,12 @@ namespace Antura.Map
 
             if (journeyPosition.IsAssessment())
             {
-                currentPinMesh.transform.DOMove(startPinPosition, duration * 0.5f);
+                currentPinMesh.transform.DOScale(Vector3.one, duration * 0.5f).SetEase(Ease.OutElastic);
             }
             else
             {
                 currentPinMesh.transform.DOMove(startPinPosition, duration * 0.5f);
             }
-
 
             mainDot.transform.DOScale(Vector3.one * 6, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f).OnComplete(
                 () =>
@@ -164,6 +163,7 @@ namespace Antura.Map
             appeared = true;
             currentPinMesh.gameObject.SetActive(true);
             currentPinMesh.transform.position = startPinPosition;
+            currentPinMesh.transform.localScale = Vector3.one;
             mainDot.transform.localScale = Vector3.one * 6;
             shadowTr.transform.localScale = Vector3.one * 12.5f;
             playSessionFeedback.gameObject.SetActive(true);

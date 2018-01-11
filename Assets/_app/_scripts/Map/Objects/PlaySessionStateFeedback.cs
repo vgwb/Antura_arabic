@@ -40,11 +40,14 @@ namespace Antura.Map
             if (playSessionState != null && playSessionState.scoreData != null)
                 score = (int)playSessionState.scoreData.GetScore();
 
-            if (journeyPosition.IsAssessment()) {
+            if (journeyPosition.IsAssessment())
+            {
                 //Debug.Log( playSessionState.psData.Id + " SCORE: " + score);
                 // Show surprise if this is a not yet completed assessment
                 surpriseGO.SetActive(score == 0);
-            } else {
+            }
+            else
+            {
                 surpriseGO.SetActive(false);
 
                 for (int i = 0; i < stars.Length; i++) {

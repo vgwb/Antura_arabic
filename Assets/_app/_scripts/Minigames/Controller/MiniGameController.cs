@@ -163,7 +163,7 @@ namespace Antura.Minigames
             EndGame(value, value);
         }
 
-        void HandleSceneSkip()
+        protected virtual void HandleSceneSkip()
         {
             if (stateManager.CurrentState != OutcomeState)
             {

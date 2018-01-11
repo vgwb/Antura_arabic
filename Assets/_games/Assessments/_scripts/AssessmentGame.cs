@@ -1,4 +1,5 @@
 using Antura.Minigames;
+using Antura.Rewards;
 using UnityEngine;
 
 namespace Antura.Assessment
@@ -18,7 +19,7 @@ namespace Antura.Assessment
         public AssessmentResultState ResultState { get; private set; }
 
         private Assessment assessment;
-
+    
         private Assessment CreateConfiguredAssessment(AssessmentContext context)
         {
             AssessmentOptions.Reset();
@@ -93,6 +94,18 @@ namespace Antura.Assessment
         protected override IGameConfiguration GetConfiguration()
         {
             return AssessmentConfiguration.Instance;
+        }
+
+        protected override void HandleSceneSkip()
+        {
+            if (StateManager.CurrentState != ResultState)
+            {
+                ResultState.EnterState();
+            }
+            else
+            {
+                EndgameResultPanel.I.Continue();
+            }
         }
     }
 }
