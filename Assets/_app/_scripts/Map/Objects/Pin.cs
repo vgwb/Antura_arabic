@@ -3,6 +3,8 @@ using Antura.UI;
 using DG.DeExtensions;
 using DG.Tweening;
 using System.Collections.Generic;
+using Antura.Animation;
+using DG.Tweening.Core;
 using UnityEngine;
 
 namespace Antura.Map
@@ -91,6 +93,7 @@ namespace Antura.Map
             playButtonGO.SetActive(false);
             lockedButtonGO.SetActive(false);
 
+            HandlePlayerClose(false);
         }
 
         #region Appear / Disappear
@@ -109,7 +112,7 @@ namespace Antura.Map
 
             if (journeyPosition.IsAssessment())
             {
-                currentPinMesh.transform.position = startPinPosition + Vector3.down * 20;
+                //currentPinMesh.transform.localScale = Vector3.zero;// = startPinPosition + Vector3.down * 20;
             }
             else
             {
@@ -138,13 +141,12 @@ namespace Antura.Map
 
             if (journeyPosition.IsAssessment())
             {
-                currentPinMesh.transform.DOMove(startPinPosition, duration * 0.5f);
+                currentPinMesh.transform.DOScale(Vector3.one, duration * 0.5f).SetEase(Ease.OutElastic);
             }
             else
             {
                 currentPinMesh.transform.DOMove(startPinPosition, duration * 0.5f);
             }
-
 
             mainDot.transform.DOScale(Vector3.one * 6, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f).OnComplete(
                 () =>
@@ -161,6 +163,7 @@ namespace Antura.Map
             appeared = true;
             currentPinMesh.gameObject.SetActive(true);
             currentPinMesh.transform.position = startPinPosition;
+            currentPinMesh.transform.localScale = Vector3.one;
             mainDot.transform.localScale = Vector3.one * 6;
             shadowTr.transform.localScale = Vector3.one * 12.5f;
             playSessionFeedback.gameObject.SetActive(true);
@@ -194,15 +197,43 @@ namespace Antura.Map
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player")) {
-                currentPinMesh.SetActive(false);
+            if (other.gameObject.CompareTag("Player"))
+            {
+                HandlePlayerClose(true);
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.CompareTag("Player")) {
-                currentPinMesh.SetActive(true);
+            if (other.gameObject.CompareTag("Player"))
+            {
+                HandlePlayerClose(false);
+            }
+        }
+
+        private Sequence playerCloseTween;
+
+        void HandlePlayerClose(bool choice)
+        {
+            if (playerCloseTween == null)
+            {
+                float duration = 0.75f;
+                playerCloseTween = DOTween.Sequence();
+                playerCloseTween.Join(currentPinMesh.transform.DOScale(Vector3.zero, duration).SetEase(Ease.InOutCubic));
+                playerCloseTween.Join(playSessionFeedback.surpriseGO.transform.DOMove(playSessionFeedback.surpriseGO.transform.position + Vector3.up * 15, duration).SetEase(Ease.OutElastic));
+                playerCloseTween.Pause();
+                playerCloseTween.SetAutoKill(false);
+            }
+
+            playSessionFeedback.surpriseGO.GetComponent<Surprise3D>().SetPulsing(choice); 
+
+            if (choice)
+            {
+                playerCloseTween.PlayForward();
+            }
+            else
+            {
+                playerCloseTween.PlayBackwards();
             }
         }
 
@@ -233,6 +264,8 @@ namespace Antura.Map
             // 3D buttons (DEPRECATED)
             //lockedButtonGO.SetActive(choice && isLocked);
             //playButtonGO.SetActive(choice && !isLocked);
+
+            //Debug.Log("SELECTED " + this.name + ": " + choice);
 
             mainDot.Highlight(choice);
             if (choice) {

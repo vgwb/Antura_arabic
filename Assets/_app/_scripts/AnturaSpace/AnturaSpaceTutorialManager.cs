@@ -9,9 +9,7 @@ using Antura.UI;
 using UnityEngine;
 using System.Collections;
 using System.Linq;
-using Antura.Database;
 using Antura.Extensions;
-using Antura.Keeper;
 using DG.Tweening;
 using UnityEngine.UI;
 
@@ -50,38 +48,34 @@ namespace Antura.AnturaSpace
             TutorialUI.SetCamera(m_oCameraUI);
 
             // Play sequential tutorial phases
-            bool isPlayingSequentialTutorialPhase = false;
             switch (FirstContactManager.I.CurrentPhaseInSequence) {
                 case FirstContactPhase.AnturaSpace_TouchAntura:
                     StepTutorialTouchAntura();
-                    break;
+                    return;
 
                 case FirstContactPhase.AnturaSpace_Customization:
                     StepTutorialCustomization();
-                    break;
+                    return;
 
                 case FirstContactPhase.AnturaSpace_Shop:
                     StepTutorialShop();
-                    break;
+                    return;
 
                 case FirstContactPhase.AnturaSpace_Exit:
                     StepTutorialExit();
-                    break;
+                    return;
             }
 
             // Play bonus tutorial phases
-            if (!isPlayingSequentialTutorialPhase)
+            bool isPhaseToBeCompleted = IsPhaseToBeCompleted(FirstContactPhase.AnturaSpace_Photo);
+            if (isPhaseToBeCompleted)
             {
-                UnlockPhaseIfReachedJourneyPosition(FirstContactPhase.AnturaSpace_Photo);
-
-                bool isPhaseToBeCompleted = IsPhaseToBeCompleted(FirstContactPhase.AnturaSpace_Photo);
-                if (isPhaseToBeCompleted)
-                {
-                    StepTutorialPhoto();
-                    return;
-                }
+                StepTutorialPhoto();
+                return;
             }
 
+            // If nothing else is to be done, stop the tutorial
+            StopTutorialRunning();
         }
 
         protected override void SetPhaseUIShown(FirstContactPhase phase, bool choice)
@@ -104,6 +98,7 @@ namespace Antura.AnturaSpace
                     break;
                 case FirstContactPhase.AnturaSpace_Photo:
                     m_oPhotoButton.gameObject.SetActive(choice);
+                    Debug.Log("Photo is: " + choice);
                     break;
                 case FirstContactPhase.AnturaSpace_Exit:
                     if (choice)
@@ -173,13 +168,16 @@ namespace Antura.AnturaSpace
         {
             if (_currentCustomizationStep < CustomizationTutorialStep.FINISH) _currentCustomizationStep += 1;
 
-            Debug.Log("CURRENT STEP IS " + _currentCustomizationStep);
+            //Debug.Log("CURRENT STEP IS " + _currentCustomizationStep);
             TutorialUI.Clear(false);
 
             switch (_currentCustomizationStep)
             {
                 case CustomizationTutorialStep.OPEN_CUSTOMIZE:
                     AudioManager.I.StopDialogue(false);
+
+                    // Reset state for the tutorial
+                    AppManager.I.Player.CurrentAnturaCustomizations.ClearEquippedProps();
 
                     //dialog get more cookies
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () {
@@ -218,8 +216,8 @@ namespace Antura.AnturaSpace
                     StartCoroutine(DelayedCallbackCO(
                         () => {
                             // Register on item button
-                            m_oItemButton = _mScene.UI.GetNewItemButton();
-                            if (m_oItemButton == null) throw new Exception("No new item!");
+                            m_oItemButton = _mScene.UI.GetFirstUnlockedItemButton();
+                            if (m_oItemButton == null) throw new Exception("No unlocked item!");
                             m_oItemButton.Bt.onClick.AddListener(StepTutorialCustomization);
 
                             TutorialUI.ClickRepeat(m_oItemButton.transform.position, float.MaxValue, 1);
@@ -248,9 +246,12 @@ namespace Antura.AnturaSpace
                     _mScene.UI.SetTutorialMode(false);
                     m_oSwatchButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
 
+                    // New step
+                    m_oAnturaBehaviour.onTouched += StepTutorialCustomization;
+                    m_oCustomizationButton.onClick.AddListener(StepTutorialCustomization);
+
                     StartCoroutine(DelayedCallbackCO(
                      () => {
-                         m_oCustomizationButton.onClick.AddListener(StepTutorialCustomization);
                          TutorialUI.ClickRepeat(m_oCustomizationButton.transform.position, float.MaxValue, 1);
                      }));
 
@@ -258,9 +259,6 @@ namespace Antura.AnturaSpace
                     // New step
                     StartCoroutine(WaitAnturaInCenterCO(
                         () => {
-                            // Register on Antura touch
-                            m_oAnturaBehaviour.onTouched += StepTutorialCustomization;
-
                             Vector3 clickOffset = m_oAnturaBehaviour.IsSleeping ? Vector3.down * 2 : Vector3.down * 1.5f;
                             TutorialUI.ClickRepeat(
                                 m_oAnturaBehaviour.gameObject.transform.position + clickOffset + Vector3.forward * -2 + Vector3.up,
@@ -273,7 +271,7 @@ namespace Antura.AnturaSpace
 
                     // Cleanup last step
                     m_oCustomizationButton.onClick.RemoveListener(StepTutorialCustomization);
-                    //m_oAnturaBehaviour.onTouched -= StepTutorialCustomization;
+                    m_oAnturaBehaviour.onTouched -= StepTutorialCustomization;
 
                     CompleteTutorialPhase();
                     break;
@@ -319,6 +317,10 @@ namespace Antura.AnturaSpace
 
                     AnturaSpaceScene.I.TutorialMode = true;
                     CurrentTutorialFocus = m_oCookieButton;
+
+                    // Start from a clean state
+                    AppManager.I.Player.MakeSureInitialBonesAreAvailable();
+                    ShopDecorationsManager.I.DeleteAllDecorations();
 
                     // Dialog -> Appear button
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate

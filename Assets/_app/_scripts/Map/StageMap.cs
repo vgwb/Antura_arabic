@@ -213,7 +213,8 @@ namespace Antura.Map
                 }
 
                 // Create visual dots and a rope
-                if (jp_i > 0) {
+                if (jp_i > 0)
+                {
                     CreateVisualsBetweenPins(playPins[jp_i], playPins[jp_i - 1]);
                 }
 
@@ -229,8 +230,29 @@ namespace Antura.Map
 
             UnlockPlaySessions();
 
+
             Disappear();
+
+            // TODO: optimize more with a coroutine
+            /*gameObject.SetActive(true);
+            StartCoroutine(InitialiseVisualsCO());
+            gameObject.SetActive(false);*/
         }
+
+        /*
+        IEnumerator InitialiseVisualsCO()
+        {
+            for (int jp_i = 0; jp_i < playPins.Count; jp_i++)
+            {
+                // Create visual dots and a rope
+                if (jp_i > 0)
+                {
+                    CreateVisualsBetweenPins(playPins[jp_i], playPins[jp_i - 1]);
+                    yield return null;
+                }
+            }
+            Disappear();
+        }*/
 
         #region Appear Animation
 

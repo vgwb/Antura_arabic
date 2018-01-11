@@ -38,7 +38,7 @@ namespace Antura.AnturaSpace
         {
             get
             {
-                return AppManager.I.Player.GetTotalNumberOfBones() <= bonesCost;
+                return AppManager.I.Player.GetTotalNumberOfBones() < bonesCost;
             }
         }
 

@@ -155,11 +155,7 @@ namespace Antura.AnturaSpace
 
         void OnEnterCustomization()
         {
-            if (!tutorialManager.IsRunning)
-            {
-                HideBackButton();
-                ShowBackButton();
-            }
+            HideBackButton();
 
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
             InCustomizationMode = true;
@@ -170,7 +166,6 @@ namespace Antura.AnturaSpace
         {
             if (!tutorialManager.IsRunning)
             {
-                HideBackButton();
                 ShowBackButton();
             }
 

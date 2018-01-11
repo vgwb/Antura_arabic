@@ -58,8 +58,12 @@ namespace Antura.AnturaSpace
             }
         }
 
+        private AnturaSpaceScene scene;
+
         public void Initialise()
         {
+            if (!scene) scene = FindObjectOfType<AnturaSpaceScene>();
+
             const float duration = 0.3f;
             showShopPanelTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(purchasePanelBottom.DOAnchorPosY(-150, duration).From().SetEase(Ease.OutQuad));
@@ -86,6 +90,7 @@ namespace Antura.AnturaSpace
 
         private void OnEnable()
         {
+            if (!scene) scene = FindObjectOfType<AnturaSpaceScene>();
             HandleContextChange(ShopContext.Purchase);
             scrollShowTween.Restart();
         }
@@ -101,37 +106,44 @@ namespace Antura.AnturaSpace
             switch (shopContext)
             {
                 case ShopContext.Purchase:
+                    scene.HideBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayForward();
                     showShopPanelTween.PlayForward();
                     showDragPanelTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 case ShopContext.NewPlacement:
+                    scene.HideBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showShopPanelTween.PlayBackwards();
                     showDragPanelTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 case ShopContext.MovingPlacement:
+                    scene.HideBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showShopPanelTween.PlayBackwards();
                     showDragPanelTween.PlayForward();
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 case ShopContext.SpecialAction:
+                    scene.HideBackButton();
                     showShopPanelTween.PlayBackwards();
                     showDragPanelTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 case ShopContext.Closed:
+                    scene.ShowBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayForward();
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 case ShopContext.Customization:
+                    scene.HideBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 case ShopContext.Hidden:
+                    scene.ShowBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
                     break;

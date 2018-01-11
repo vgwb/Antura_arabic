@@ -1,4 +1,6 @@
-﻿using DG.Tweening;
+﻿using System.Collections;
+using Antura.Tutorial;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Antura.Map
@@ -27,11 +29,16 @@ namespace Antura.Map
             //iconRenderer.gameObject.SetActive(true);
             
             // Play button is way bigger
-            transform.localScale = Vector3.one * 25;
+            //transform.localScale = Vector3.one * 25;
 
             // PS plays
             selectionPS.gameObject.SetActive(true);
+
+            // Start the tutorial too
+            var mapScene = MapScene.I as MapScene;
+            mapScene.StartTutorialClickOn(transform);
         }
+
 
         public void SetAsLock()
         {
@@ -44,11 +51,14 @@ namespace Antura.Map
         {
             iconRenderer.gameObject.SetActive(false);
             selectionPS.gameObject.SetActive(false);
+
+            var mapScene = MapScene.I as MapScene;
+            mapScene.StopTutorialClick();
         }
 
         public void Highlight(bool choice)
         {
-            transform.localScale = choice ? Vector3.one * 15 : Vector3.one * 6;
+            transform.localScale = choice ? Vector3.one * 15 : Vector3.one * 8;
             baseRenderer.material = choice ? highlightedDot : blackDot;
         }
 
