@@ -11,6 +11,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -189,14 +190,26 @@ namespace Antura.AnturaSpace.UI
 
         public void ToggleShopPanel()
         {
+            // Cannot close the shop panel while we are confirming a purchase
+            if (ShopDecorationsManager.I.ShopContext != ShopContext.Closed
+                && ShopDecorationsManager.I.ShopContext != ShopContext.Purchase)
+                return;
+
+            // Cannot interact with the shop panel while we do the tutorial
+            var scene = AnturaSpaceScene.I as AnturaSpaceScene;
+            if (scene.TutorialMode && scene.tutorialManager.CurrentTutorialFocus != BtBonesShop.Bt)
+                return;
+
             if (ShopDecorationsManager.I.ShopContext == ShopContext.Closed) {
                 ShopPanelContainer.gameObject.SetActive(true);
                 ShopDecorationsManager.I.SetContextPurchase();
                 showShopTween.PlayForward();
-            } else {
+            } else if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase)
+            { 
                 ShopDecorationsManager.I.SetContextClosed();
                 showShopTween.PlayBackwards();
-            }
+            } 
+
         }
 
         public void ToggleModsPanel()

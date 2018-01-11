@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33000014098641596}
   - component: {fileID: 23000011142527372}
   - component: {fileID: 114000012613543532}
+  - component: {fileID: 136708336627624346}
   m_Layer: 0
   m_Name: Dot
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013482476302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.0840645, y: -2.2471488, z: -1.4512072}
+  m_LocalPosition: {x: 27.675596, y: 0.3911934, z: 8.824917}
   m_LocalScale: {x: 1.5098661, y: 1.5098654, z: 1.5098654}
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,7 +73,6 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33000014098641596
 MeshFilter:
@@ -92,10 +92,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf6386558ab7e145856d03affd5cadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  learningBlockActual: 0
+  playSessionActual: 0
+  posIndex: 0
   blackDot: {fileID: 2100000, guid: 4e4094f1e77806a48b7614b34330a0d6, type: 2}
-  highlightedDot: {fileID: 0}
-  playDot: {fileID: 0}
-  lockDot: {fileID: 0}
-  baseRenderer: {fileID: 0}
-  iconRenderer: {fileID: 0}
-  selectionPS: {fileID: 0}
+  redDot: {fileID: 2100000, guid: a5e4f68df693e0a4b9ef30f50a24a399, type: 2}
+--- !u!136 &136708336627624346
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013482476302}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.50000006
+  m_Height: 6.13
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}

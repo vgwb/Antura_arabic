@@ -111,6 +111,7 @@ namespace Antura.AnturaSpace
                     showShopPanelTween.PlayForward();
                     showDragPanelTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
+                    isWaitingConfirmation = false;
                     break;
                 case ShopContext.NewPlacement:
                     scene.HideBackButton();
@@ -118,6 +119,7 @@ namespace Antura.AnturaSpace
                     showShopPanelTween.PlayBackwards();
                     showDragPanelTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
+                    isWaitingConfirmation = false;
                     break;
                 case ShopContext.MovingPlacement:
                     scene.HideBackButton();
@@ -125,32 +127,39 @@ namespace Antura.AnturaSpace
                     showShopPanelTween.PlayBackwards();
                     showDragPanelTween.PlayForward();
                     showConfirmationPanelTween.PlayBackwards();
+                    isWaitingConfirmation = false;
                     break;
                 case ShopContext.SpecialAction:
                     scene.HideBackButton();
                     showShopPanelTween.PlayBackwards();
                     showDragPanelTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
+                    isWaitingConfirmation = false;
                     break;
                 case ShopContext.Closed:
                     scene.ShowBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayForward();
                     showConfirmationPanelTween.PlayBackwards();
+                    isWaitingConfirmation = false;
                     break;
                 case ShopContext.Customization:
                     scene.HideBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
+                    isWaitingConfirmation = false;
                     break;
                 case ShopContext.Hidden:
                     scene.ShowBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
+                    isWaitingConfirmation = false;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("shopContext", shopContext, null);
             }
         }
+
+        private bool isWaitingConfirmation = false;
 
         private void HandlePurchaseConfirmationRequested()
         {
@@ -163,6 +172,7 @@ namespace Antura.AnturaSpace
             confirmationNoButton.onClick.RemoveAllListeners();
             confirmationNoButton.onClick.AddListener(ShopDecorationsManager.I.CancelPurchase);
 
+            isWaitingConfirmation = true;
             showConfirmationPanelTween.PlayForward();
         }
 
@@ -177,6 +187,7 @@ namespace Antura.AnturaSpace
             confirmationNoButton.onClick.RemoveAllListeners();
             confirmationNoButton.onClick.AddListener(ShopDecorationsManager.I.CancelDeletion);
 
+            isWaitingConfirmation = true;
             showConfirmationPanelTween.PlayForward();
         }
 
@@ -192,6 +203,7 @@ namespace Antura.AnturaSpace
             confirmationNoButton.onClick.RemoveAllListeners();
             confirmationNoButton.onClick.AddListener(ShopPhotoManager.I.CancelPhoto);
 
+            isWaitingConfirmation = true;
             showConfirmationPanelTween.PlayForward();
         }
 

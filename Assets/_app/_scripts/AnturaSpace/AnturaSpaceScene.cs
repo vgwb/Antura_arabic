@@ -81,7 +81,8 @@ namespace Antura.AnturaSpace
                     CurrentState.OnTouched();
                 }
 
-                if (CurrentState == Customization) {
+                if (CurrentState == Customization && (!TutorialMode))
+                {
                     UI.ToggleModsPanel();
                 }
             };

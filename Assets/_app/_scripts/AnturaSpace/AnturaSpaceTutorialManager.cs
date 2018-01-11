@@ -98,7 +98,6 @@ namespace Antura.AnturaSpace
                     break;
                 case FirstContactPhase.AnturaSpace_Photo:
                     m_oPhotoButton.gameObject.SetActive(choice);
-                    Debug.Log("Photo is: " + choice);
                     break;
                 case FirstContactPhase.AnturaSpace_Exit:
                     if (choice)
@@ -110,13 +109,6 @@ namespace Antura.AnturaSpace
                         _mScene.HideBackButton();
                     }
                     break;
-            }
-        }
-
-        void Update()
-        {
-            if (_currentShopStep == ShopTutorialStep.DRAG_BONE && AppManager.I.Player.GetTotalNumberOfBones() <= 0) {
-                StepTutorialShop();
             }
         }
 
@@ -397,10 +389,8 @@ namespace Antura.AnturaSpace
 
                     // New step
                     ShopDecorationsManager.OnPurchaseComplete += StepTutorialShop;
-                    // TODO: what if he cancels? ShopDecorationsManager.OnPurchaseCancelled  += StepTutorialShop;
 
                     yesButton = UI.ShopPanelUI.confirmationYesButton;
-                    //yesButton.onClick.AddListener(StepTutorialShop);
 
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, () =>
                     {
@@ -444,6 +434,8 @@ namespace Antura.AnturaSpace
 
                     m_oCookieButton.onClick.AddListener(StepTutorialShop);
                     TutorialUI.ClickRepeat(m_oCookieButton.transform.position, float.MaxValue, 1);
+
+                    CurrentTutorialFocus = m_oCookieButton;
                     break;
 
                 case ShopTutorialStep.FINISH:
@@ -560,6 +552,7 @@ namespace Antura.AnturaSpace
             }
         }
 
+        /*
         IEnumerator WaitAnturaInCenterCO(System.Action callback)
         {
             while (!_mScene.Antura.IsNearTargetPosition || _mScene.Antura.IsSliping)
@@ -568,8 +561,7 @@ namespace Antura.AnturaSpace
             if (callback != null) {
                 callback();
             }
-        }
-
+        }*/
 
         private TutorialUIAnimation dragLineAnimation;
 
@@ -599,7 +591,7 @@ namespace Antura.AnturaSpace
             path[2] = m_oCameraUI.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));
             path[2].z = path[1].z;
 
-            dragLineAnimation = TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.Finger, false, true);
+            dragLineAnimation = TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.Finger);
             dragLineAnimation.MainTween.timeScale = 0.8f;
             dragLineAnimation.OnComplete(delegate  {
                 StartDrawDragLineFrom(fromTr) ;
@@ -614,7 +606,6 @@ namespace Antura.AnturaSpace
                 dragLineAnimation = null;
             }
         }
-
 
         #endregion
     }
