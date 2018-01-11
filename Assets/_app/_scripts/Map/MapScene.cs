@@ -59,12 +59,12 @@ namespace Antura.Map
 
         private IEnumerator TutorialHintClickCO(Transform targetTr)
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(3f);
             TutorialUI.SetCamera(Camera.main);
             while (true)
             {
                 TutorialUI.Click(targetTr.position);
-                yield return new WaitForSeconds(0.85f);
+                yield return new WaitForSeconds(1.5f);
             }
         }
         #endregion

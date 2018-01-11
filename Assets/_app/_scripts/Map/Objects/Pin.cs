@@ -220,7 +220,7 @@ namespace Antura.Map
                 float duration = 0.75f;
                 playerCloseTween = DOTween.Sequence();
                 playerCloseTween.Join(currentPinMesh.transform.DOScale(Vector3.zero, duration).SetEase(Ease.InOutCubic));
-                playerCloseTween.Join(playSessionFeedback.surpriseGO.transform.DOMove(playSessionFeedback.surpriseGO.transform.position + Vector3.up * 3, duration).SetEase(Ease.OutElastic));
+                playerCloseTween.Join(playSessionFeedback.surpriseGO.transform.DOMove(playSessionFeedback.surpriseGO.transform.position + Vector3.up * 15, duration).SetEase(Ease.OutElastic));
                 playerCloseTween.Pause();
                 playerCloseTween.SetAutoKill(false);
             }
@@ -265,7 +265,7 @@ namespace Antura.Map
             //lockedButtonGO.SetActive(choice && isLocked);
             //playButtonGO.SetActive(choice && !isLocked);
 
-            Debug.Log("SELECTED " + this.name + ": " + choice);
+            //Debug.Log("SELECTED " + this.name + ": " + choice);
 
             mainDot.Highlight(choice);
             if (choice) {
