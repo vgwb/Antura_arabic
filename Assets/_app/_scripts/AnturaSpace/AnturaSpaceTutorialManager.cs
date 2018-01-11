@@ -9,9 +9,7 @@ using Antura.UI;
 using UnityEngine;
 using System.Collections;
 using System.Linq;
-using Antura.Database;
 using Antura.Extensions;
-using Antura.Keeper;
 using DG.Tweening;
 using UnityEngine.UI;
 
@@ -50,38 +48,34 @@ namespace Antura.AnturaSpace
             TutorialUI.SetCamera(m_oCameraUI);
 
             // Play sequential tutorial phases
-            bool isPlayingSequentialTutorialPhase = false;
             switch (FirstContactManager.I.CurrentPhaseInSequence) {
                 case FirstContactPhase.AnturaSpace_TouchAntura:
                     StepTutorialTouchAntura();
-                    break;
+                    return;
 
                 case FirstContactPhase.AnturaSpace_Customization:
                     StepTutorialCustomization();
-                    break;
+                    return;
 
                 case FirstContactPhase.AnturaSpace_Shop:
                     StepTutorialShop();
-                    break;
+                    return;
 
                 case FirstContactPhase.AnturaSpace_Exit:
                     StepTutorialExit();
-                    break;
+                    return;
             }
 
             // Play bonus tutorial phases
-            if (!isPlayingSequentialTutorialPhase)
+            bool isPhaseToBeCompleted = IsPhaseToBeCompleted(FirstContactPhase.AnturaSpace_Photo);
+            if (isPhaseToBeCompleted)
             {
-                UnlockPhaseIfReachedJourneyPosition(FirstContactPhase.AnturaSpace_Photo);
-
-                bool isPhaseToBeCompleted = IsPhaseToBeCompleted(FirstContactPhase.AnturaSpace_Photo);
-                if (isPhaseToBeCompleted)
-                {
-                    StepTutorialPhoto();
-                    return;
-                }
+                StepTutorialPhoto();
+                return;
             }
 
+            // If nothing else is to be done, stop the tutorial
+            StopTutorialRunning();
         }
 
         protected override void SetPhaseUIShown(FirstContactPhase phase, bool choice)
@@ -104,6 +98,7 @@ namespace Antura.AnturaSpace
                     break;
                 case FirstContactPhase.AnturaSpace_Photo:
                     m_oPhotoButton.gameObject.SetActive(choice);
+                    Debug.Log("Photo is: " + choice);
                     break;
                 case FirstContactPhase.AnturaSpace_Exit:
                     if (choice)
@@ -173,7 +168,7 @@ namespace Antura.AnturaSpace
         {
             if (_currentCustomizationStep < CustomizationTutorialStep.FINISH) _currentCustomizationStep += 1;
 
-            Debug.Log("CURRENT STEP IS " + _currentCustomizationStep);
+            //Debug.Log("CURRENT STEP IS " + _currentCustomizationStep);
             TutorialUI.Clear(false);
 
             switch (_currentCustomizationStep)

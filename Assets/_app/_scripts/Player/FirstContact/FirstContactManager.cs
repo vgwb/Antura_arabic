@@ -340,17 +340,20 @@ namespace Antura.Profile
         {
             switch (phase)
             {
-                case FirstContactPhase.Map_GoToBook:
-                    return new JourneyPosition(1, 3, 1);  
+                //case FirstContactPhase.Map_GoToBook:
+                //    return new JourneyPosition(1, 3, 1);
+                //case FirstContactPhase.Map_GoToMinigames:
+                //    return new JourneyPosition(1, 4, 1);
 
-                case FirstContactPhase.Map_GoToMinigames:
-                    return new JourneyPosition(1, 4, 1);
+                case FirstContactPhase.AnturaSpace_Photo:
+                    return new JourneyPosition(1, 10, 1);
 
-                case FirstContactPhase.AnturaSpace_Shop:
-                    return new JourneyPosition(1, 3, 1);
+                case FirstContactPhase.Map_GoToAnturaSpace:
+                case FirstContactPhase.Map_GoToProfile:
+                    return new JourneyPosition(1, 1, 1);    // This means from the start
 
                 default:
-                    return new JourneyPosition(1, 1, 1);    // This means from the start
+                    return null; // This means not auto-unlocked
             }
         }
 

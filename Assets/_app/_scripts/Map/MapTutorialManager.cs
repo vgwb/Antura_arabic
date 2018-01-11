@@ -22,6 +22,8 @@ namespace Antura.Map
 
         protected override void InternalHandleStart()
         {
+            // References
+
             // All UI is deactivated, for starters
             _stageMapsManager.DeactivateAllUI();
 
@@ -63,7 +65,7 @@ namespace Antura.Map
 
 
             // New features unlocking
-
+            /*
             // Book
             if (CheckNewUnlockPhaseAt(FirstContactPhase.Map_GoToBook, LocalizationDataId.Map_Intro_AnturaSpace))
                 return;
@@ -71,8 +73,9 @@ namespace Antura.Map
             // MiniGames
             if (CheckNewUnlockPhaseAt(FirstContactPhase.Map_GoToMinigames, LocalizationDataId.Map_Intro_AnturaSpace))
                 return;
+                */
 
-            // If nothing is being unlocked, let the player play
+            // If nothing new is being unlocked, let the player play
             _stageMapsManager.SetPlayUIActivation(true);
             StopTutorialRunning();
         }

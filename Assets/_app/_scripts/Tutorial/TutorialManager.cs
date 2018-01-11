@@ -28,6 +28,12 @@ namespace Antura.Tutorial
             if (VERBOSE) { Debug.Log("TutorialManager - phase " + FirstContactManager.I.CurrentPhaseInSequence + ""); }
             IsRunning = true;
 
+            // Check what phases we are unlocking now
+            foreach (var phase in FirstContactManager.I.GetPhasesForScene(CurrentAppScene))
+            {
+                UnlockPhaseIfReachedJourneyPosition(phase);
+            }
+
             // Check what we already unlocked and enable / disable UI
             foreach (var phase in FirstContactManager.I.GetPhasesForScene(CurrentAppScene))
             {
@@ -101,13 +107,14 @@ namespace Antura.Tutorial
         protected void UnlockPhaseIfReachedJourneyPosition(FirstContactPhase phase)
         {
             var journeyPosition = FirstContactManager.I.GetUnlockingJourneyPosition(phase);
+            if (journeyPosition == null) return;
             if (journeyPosition.Equals(JourneyPosition.InitialJourneyPosition)) AutoUnlockAndComplete(phase);
             bool shouldBeUnlocked = !FirstContactManager.I.HasUnlockedPhase(phase) && HasReachedJourneyPosition(journeyPosition);
             if (shouldBeUnlocked) FirstContactManager.I.UnlockPhase(phase);
         }
 
         // Checks for unlock
-        protected bool HasReachedJourneyPosition(JourneyPosition journeyPosition)
+        private bool HasReachedJourneyPosition(JourneyPosition journeyPosition)
         {
             return AppManager.I.Player.MaxJourneyPosition.IsGreaterOrEqual(journeyPosition);
         }
