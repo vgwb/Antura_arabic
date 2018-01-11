@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Antura.LivingLetters;
 using Antura.Tutorial;
 using Antura.Minigames;
@@ -36,6 +36,7 @@ namespace Antura.Minigames.FastCrowd
             // TODO: make this more robust to variations
             game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.TutorialLocalizationId, () => { StartTutorial(); });
 
+            game.QuestionManager.wordComposer.gameObject.SetActive(FastCrowdConfiguration.Instance.NeedsWordComposer);
         }
 
         public void ExitState()
@@ -45,6 +46,7 @@ namespace Antura.Minigames.FastCrowd
             game.QuestionManager.Clean();
 
             game.showTutorial = false;
+            game.QuestionManager.wordComposer.gameObject.SetActive(false);
         }
 
         void StartTutorial()
@@ -58,7 +60,7 @@ namespace Antura.Minigames.FastCrowd
 
         void OnQuestionCompleted()
         {
-            game.SetCurrentState(game.QuestionState);
+            game.SetCurrentState(game.ResultState);
         }
 
         void OnAnswerDropped(ILivingLetterData data, bool result)

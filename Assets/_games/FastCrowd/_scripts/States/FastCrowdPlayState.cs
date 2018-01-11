@@ -1,4 +1,4 @@
-using Antura.LivingLetters;
+﻿using Antura.LivingLetters;
 using Antura.Minigames;
 
 namespace Antura.Minigames.FastCrowd
@@ -72,6 +72,8 @@ namespace Antura.Minigames.FastCrowd
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
             StopAntura();
+
+            game.QuestionManager.wordComposer.gameObject.SetActive(FastCrowdConfiguration.Instance.NeedsWordComposer);
         }
 
         public void ExitState()
@@ -82,6 +84,7 @@ namespace Antura.Minigames.FastCrowd
             game.QuestionManager.OnCompleted -= OnQuestionCompleted;
             game.QuestionManager.OnDropped -= OnAnswerDropped;
             game.QuestionManager.Clean();
+            game.QuestionManager.wordComposer.gameObject.SetActive(false);
         }
 
         void OnQuestionCompleted()
@@ -108,7 +111,7 @@ namespace Antura.Minigames.FastCrowd
         {
             game.Context.GetCheckmarkWidget().Show(result);
 
-            if (FastCrowdConfiguration.Instance.NeedsFullQuestionCompleted)
+            if (!FastCrowdConfiguration.Instance.NeedsFullQuestionCompleted)
             {
                 if (result)
                 {

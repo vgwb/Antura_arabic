@@ -1,4 +1,4 @@
-using Antura.Database;
+﻿using Antura.Database;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
@@ -77,7 +77,7 @@ namespace Antura.Minigames.FastCrowd
                 case FastCrowdVariation.LetterName:
                     // Only base letters
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
-                    builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, parameters: builderParams);
+                    builder = new RandomLettersQuestionBuilder(nPacks, 5, nWrong, parameters: builderParams);
                     break;
                 case FastCrowdVariation.LetterForm:
                     // @note: we pass 4 as nCorrect, so we get all the four forms of a single letter, which will be shown one after the other
@@ -197,12 +197,12 @@ namespace Antura.Minigames.FastCrowd
             get {
                 switch (Variation) {
                     case FastCrowdVariation.BuildWord:
-                    case FastCrowdVariation.LetterName:
                     case FastCrowdVariation.LetterForm:
                         return true;
                     case FastCrowdVariation.Word:
                     case FastCrowdVariation.Counting:
                     case FastCrowdVariation.Alphabet:
+                    case FastCrowdVariation.LetterName:
                         return false;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -215,8 +215,8 @@ namespace Antura.Minigames.FastCrowd
             get {
                 switch (Variation) {
                     case FastCrowdVariation.LetterForm:
-                    case FastCrowdVariation.LetterName:
                         return true;
+                    case FastCrowdVariation.LetterName:
                     case FastCrowdVariation.BuildWord:
                     case FastCrowdVariation.Word:
                     case FastCrowdVariation.Counting:
@@ -234,8 +234,8 @@ namespace Antura.Minigames.FastCrowd
                 switch (Variation) {
                     case FastCrowdVariation.BuildWord:
                     case FastCrowdVariation.LetterForm:
-                    case FastCrowdVariation.LetterName:
                         return true;
+                    case FastCrowdVariation.LetterName:
                     case FastCrowdVariation.Word:
                     case FastCrowdVariation.Counting:
                     case FastCrowdVariation.Alphabet:

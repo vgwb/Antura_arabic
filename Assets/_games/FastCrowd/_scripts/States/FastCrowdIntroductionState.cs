@@ -1,4 +1,4 @@
-using Antura.Minigames;
+﻿using Antura.Minigames;
 
 namespace Antura.Minigames.FastCrowd
 {
@@ -20,20 +20,24 @@ namespace Antura.Minigames.FastCrowd
             playIntro = false;
 
             game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.TitleLocalizationId, () => { playIntro = true; });
-           
+
             game.Context.GetAudioManager().PlayMusic(Music.Theme10);
         }
 
-        public void ExitState() { }
+        public void ExitState()
+        {
+        }
 
         public void Update(float delta)
         {
-            if (nextState) {
+            if (nextState)
+            {
                 nextState = false;
                 game.SetCurrentState(game.QuestionState);
             }
 
-            if (playIntro) {
+            if (playIntro)
+            {
                 playIntro = false;
                 game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.IntroLocalizationId, () => { nextState = true; });
 

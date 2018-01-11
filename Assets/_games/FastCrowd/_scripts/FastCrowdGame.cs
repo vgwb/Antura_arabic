@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Antura.LivingLetters;
 using Antura.Minigames;
@@ -137,7 +137,7 @@ namespace Antura.Minigames.FastCrowd
             EndState = new FastCrowdEndState(this);
             TutorialState = new FastCrowdTutorialState(this);
 
-            QuestionManager.wordComposer.gameObject.SetActive(FastCrowdConfiguration.Instance.NeedsWordComposer);
+            QuestionManager.wordComposer.gameObject.SetActive(false);
             QuestionManager.wordComposer.splitMode = FastCrowdConfiguration.Instance.WordComposerInSplitMode;
         }
 

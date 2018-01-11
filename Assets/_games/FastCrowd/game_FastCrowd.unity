@@ -77,15 +77,17 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
   m_LightingDataAsset: {fileID: 0}
   m_ShadowMaskMode: 2
 --- !u!196 &4
@@ -1068,14 +1070,14 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 101744379}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MiniGameCode: 14
-  Stage: 1
-  LearningBlock: 1
+  MiniGameCode: 1
+  Stage: 6
+  LearningBlock: 10
   PlaySession: 1
   Difficulty: 0.5
   TutorialEnabled: 1
@@ -13667,7 +13669,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22477666, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 160
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22477666, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_AnchorMin.x
@@ -13741,7 +13743,7 @@ Prefab:
     - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
         type: 2}
@@ -13751,11 +13753,21 @@ Prefab:
     - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 160
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_SizeDelta.x
       value: 166
+      objectReference: {fileID: 0}
+    - target: {fileID: 114240858757177336, guid: 9957d9cfc035045cb9a389ed852a2e79,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114240858757177336, guid: 9957d9cfc035045cb9a389ed852a2e79,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
