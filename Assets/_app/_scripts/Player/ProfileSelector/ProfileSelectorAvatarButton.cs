@@ -30,7 +30,7 @@ namespace Antura.UI
 
         public void SetAvatar(int _avatarIndex)
         {
-            AvatarImg.sprite = Resources.Load<Sprite>(AppConfig.AvatarsResourcesDir + _avatarIndex);
+            AvatarImg.sprite = Resources.Load<Sprite>(AppConfig.RESOURCES_DIR_AVATARS + _avatarIndex);
         }
 
         public void SetInteractivity(bool _interactive)

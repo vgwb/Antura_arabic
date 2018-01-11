@@ -104,8 +104,8 @@ namespace Antura.Core
         public static readonly TextDirection TextDirection = TextDirection.RightToLeft;
 
         // Resource Paths
-        public const string AvatarsResourcesDir = "Images/Avatars/";
-        public const string DEBUG_PANEL_RESOURCE = "Prefabs/Debug/Debug UI Canvas";
+        public const string RESOURCES_DIR_AVATARS = "Images/Avatars/";
+        public const string RESOURCES_PATH_DEBUG_PANEL = "Prefabs/Debug/Debug UI Canvas";
 
         #endregion
 

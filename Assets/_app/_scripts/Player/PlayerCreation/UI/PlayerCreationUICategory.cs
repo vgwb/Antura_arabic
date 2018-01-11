@@ -168,7 +168,7 @@ namespace Antura.Profile
             // TODO use different avatars
             for (var i = 0; i < UIButtons.Length; ++i)
             {
-                var sprite = Resources.Load<Sprite>(AppConfig.AvatarsResourcesDir + (isFemale ? "F" : "M") + (i + 1));
+                var sprite = Resources.Load<Sprite>(AppConfig.RESOURCES_DIR_AVATARS + (isFemale ? "F" : "M") + (i + 1));
                 UIButtons[i].Ico.sprite = sprite;
             }
         }
