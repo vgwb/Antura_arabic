@@ -425,7 +425,7 @@ namespace Antura.Minigames.Egg
 
             if (isSequence)
             {
-                game.eggButtonBox.PlayButtonsAudio(true, false, 0.5f, OnLightUpButtonsComplete, () => { game.eggButtonBox.SetButtonsOnStandardColor(null, false); });
+                game.eggButtonBox.PlayButtonsAudio(null, game.CurrentQuestion.Question, true, false, 0.5f, OnLightUpButtonsComplete, () => { game.eggButtonBox.SetButtonsOnStandardColor(null, false); });
             }
             else
             {

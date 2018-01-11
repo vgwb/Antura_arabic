@@ -6,6 +6,7 @@ namespace Antura.Minigames.Egg
     public class EggChallenge
     {
         public List<ILivingLetterData> Letters { get; private set; }
+        public ILivingLetterData Question { get; private set; }
         bool sequence;
 
         public EggChallenge(float difficulty, bool onlyLetter)
@@ -18,6 +19,7 @@ namespace Antura.Minigames.Egg
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
+            Question = questionPack.GetQuestion();
             correctAnswers.AddRange(questionPack.GetCorrectAnswers());
             wrongAnswers.AddRange(questionPack.GetWrongAnswers());
 
