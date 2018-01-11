@@ -1,4 +1,4 @@
-using Antura.Database;
+﻿using Antura.Database;
 using Antura.LivingLetters;
 using Antura.Tutorial;
 using Antura.UI;
@@ -405,7 +405,16 @@ namespace Antura.Minigames.Balloons
 
                         // Display
                         wordFlexibleContainer.gameObject.SetActive(true);
-                        wordFlexibleContainer.SetText(letterToKeepData);
+                        //wordFlexibleContainer.SetText(letterToKeepData);
+
+                        string text = "";
+                        text = "<size=130%>" + letterToKeepData.Data.GetStringForDisplay(LetterForm.Isolated) + "</size>";
+                        text += "\n" + letterToKeepData.Data.GetStringForDisplay(LetterForm.Initial);
+                        text += " " + letterToKeepData.Data.GetStringForDisplay(LetterForm.Medial);
+                        text += " " + letterToKeepData.Data.GetStringForDisplay(LetterForm.Final);
+
+                        wordFlexibleContainer.SetText(text, false);
+
 
                         // Debug
                         Debug.Log("[New Round] Letter To Keep: " + letterToKeep);

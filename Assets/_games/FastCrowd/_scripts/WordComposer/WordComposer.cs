@@ -29,17 +29,38 @@ namespace Antura.Minigames.FastCrowd
 
             string word = string.Empty;
 
-            for (int i = 0; i < CompletedLetters.Count; ++i) {
+            for (int i = 0; i < CompletedLetters.Count; ++i)
+            {
                 LL_LetterData letter = CompletedLetters[i];
 
                 if (splitMode)
                 {
-                    word += (splitMode && i > 0 ? " " : "") + letter.Data.GetStringForDisplay(letter.Form);
+                    if (i == 0)
+                        word = "<size=130%>" + letter.Data.GetStringForDisplay(letter.Form) + "</size>";
+                    else if (i == 1)
+                        word += "\n" + letter.Data.GetStringForDisplay(letter.Form);
+                    else
+                        word += " " + letter.Data.GetStringForDisplay(letter.Form);
                 }
                 else
                     word += letter.Data.GetStringForDisplay();
             }
-            
+
+            if (splitMode)
+            {
+                // Hack to fix space
+                string placeholder = "<color=#0000>ﺟ</color>";
+                for (int i = CompletedLetters.Count; i < 4; ++i)
+                {
+                    if (i == 0)
+                        word = "<size=130%>" + placeholder + "</size>";
+                    else if (i == 1)
+                        word += "\n" + placeholder;
+                    else
+                        word += " " + placeholder;
+                }
+            }
+
             WordLabel.SetText(word, !splitMode);
         }
 
