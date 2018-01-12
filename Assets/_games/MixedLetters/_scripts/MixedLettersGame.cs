@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -351,6 +351,8 @@ namespace Antura.Minigames.MixedLetters
 
         public void VerifyLetters()
         {
+            bool isValid = true;
+
             for (int i = 0; i < PromptLettersInOrder.Count; i++)
             {
                 DropZoneController dropZone = dropZoneControllers[i];
@@ -359,19 +361,36 @@ namespace Antura.Minigames.MixedLetters
                     || dropZone.droppedLetter.GetLetter().Id != PromptLettersInOrder[i].Id
                       || Mathf.Abs(dropZone.droppedLetter.transform.rotation.z) > 0.1f)
                 {
-                    for (int j = 0; j < PromptLettersInOrder.Count; j++)
-                    {
-                        SeparateLetterController letter = SeparateLettersSpawnerController.instance.separateLetterControllers[j];
-                        letter.SetIsSubjectOfTutorial(
-                            roundNumber == 0 && TutorialEnabled 
-                            &&  letter == dropZone.correctLetter);
-                    }
+                    if (isValid)
+                        for (int j = 0; j < PromptLettersInOrder.Count; j++)
+                        {
+                            SeparateLetterController letter = SeparateLettersSpawnerController.instance.separateLetterControllers[j];
+                            letter.SetIsSubjectOfTutorial(
+                                roundNumber == 0 && TutorialEnabled 
+                                &&  letter == dropZone.correctLetter);
+                        }
 
-                    return;
+                    isValid = false;
+                }
+                else
+                {
+                    if (dropZone.gameObject.activeInHierarchy)
+                    {
+                        dropZone.droppedLetter.DisableCollider();
+                        dropZone.Disable();
+                        dropZone.DisableCollider();
+                        dropZone.ShowGreenTick();
+                    }
                 }
             }
 
-            OnRoundWon();
+            if (isValid)
+            {
+                for (int i = 0; i < PromptLettersInOrder.Count; i++)
+                    dropZoneControllers[i].droppedLetter.EnableCollider();
+
+                OnRoundWon();
+            }
         }
 
         private void OnRoundWon()

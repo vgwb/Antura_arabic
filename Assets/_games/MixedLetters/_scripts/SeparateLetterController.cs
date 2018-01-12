@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using Antura.LivingLetters;
 using Antura.Minigames;
@@ -296,6 +296,16 @@ namespace Antura.Minigames.MixedLetters
         public void Disable()
         {
             gameObject.SetActive(false);
+        }
+
+        public void EnableCollider()
+        {
+            boxCollider.enabled = true;
+        }
+
+        public void DisableCollider()
+        {
+            boxCollider.enabled = false;
         }
 
         public void SetLetter(LL_LetterData letterData)
