@@ -24,6 +24,7 @@ namespace Antura.Profile
         public float LevelLabelHatShift = 40;
 
         [Header("References")]
+        public Image Background;
         public Sprite EndgameHat;
         public Sprite EndgameHatWStars;
         public GameObject HighlightImage;

@@ -1,6 +1,7 @@
 ﻿using System;
 using Antura.Audio;
 using DG.DeExtensions;
+using DG.DeInspektor.Attributes;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,8 @@ namespace Antura.UI
     {
         #region Serialized
 
+    [DeComment("If Target Bt Img is NULL automatically finds image in same gameObject")]
+        [SerializeField] Image targetBtImg;
         public Color BtToggleOffColor = Color.white;
         public Color BtLockedColor = Color.red;
         public bool ToggleIconAlpha = true;
@@ -53,11 +56,11 @@ namespace Antura.UI
         public Image BtImg
         {
             get {
-                if (fooBtImg == null) {
-                    fooBtImg = this.GetComponent<Image>();
-                    DefaultColor = fooBtImg.color;
+                if (targetBtImg == null) {
+                    targetBtImg = this.GetComponent<Image>();
+                    DefaultColor = targetBtImg.color;
                 }
-                return fooBtImg;
+                return targetBtImg;
             }
         }
 
@@ -89,7 +92,6 @@ namespace Antura.UI
         }
 
         private Button fooBt;
-        private Image fooBtImg;
         private Image fooIco;
         private bool fooIcoSearched;
         private RectTransform fooRectT;
