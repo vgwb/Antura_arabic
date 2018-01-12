@@ -45,9 +45,23 @@ namespace Antura.Minigames.Balloons
         [Tooltip("e.g.: 6")]
         public const int numberOfRounds = 6;
         public int lives;
-        [Range(10, 300)]
-        [Tooltip("e.g.: 30.9")]
-        public float roundTime;
+
+        public float RoundTime
+        {
+            get
+            {
+                switch (BalloonsConfiguration.Instance.Variation)
+                {
+                    case BalloonsVariation.Counting:
+                    case BalloonsVariation.LetterInWord:
+                        return 60;
+                    default:
+                        return 30;
+                }
+            }
+
+        }
+
         public Color[] balloonColors;
 
         [HideInInspector]
@@ -664,11 +678,11 @@ namespace Antura.Minigames.Balloons
                 var floatingLetter = instance.GetComponent<FloatingLetterController>();
 
                 // Set variation, set at least 2 balloons for required letters
-                if (isRequiredLetter) {
+                //if (isRequiredLetter) {
                     floatingLetter.SetActiveVariation(Random.Range(1, floatingLetter.variations.Length));
-                } else {
-                    floatingLetter.SetActiveVariation(Random.Range(0, floatingLetter.variations.Length));
-                }
+                //} else {
+                //    floatingLetter.SetActiveVariation(Random.Range(0, floatingLetter.variations.Length));
+                //}
 
                 var balloons = floatingLetter.Balloons;
                 var letter = floatingLetter.Letter;
@@ -740,11 +754,11 @@ namespace Antura.Minigames.Balloons
                 var floatingLetter = instance.GetComponent<FloatingLetterController>();
 
                 // Set variation, set at least 2 balloons for required word
-                if (isRequiredWord) {
+                //if (isRequiredWord) {
                     floatingLetter.SetActiveVariation(Random.Range(1, floatingLetter.variations.Length));
-                } else {
-                    floatingLetter.SetActiveVariation(Random.Range(0, floatingLetter.variations.Length));
-                }
+                //} else {
+                //    floatingLetter.SetActiveVariation(Random.Range(0, floatingLetter.variations.Length));
+                //}
 
                 var balloons = floatingLetter.Balloons;
                 var letter = floatingLetter.Letter;
@@ -841,11 +855,11 @@ namespace Antura.Minigames.Balloons
                 var floatingLetter = instance.GetComponent<FloatingLetterController>();
 
                 // Set variation, set at least 2 balloons for required words
-                if (isRequiredWord) {
+                //if (isRequiredWord) {
                     floatingLetter.SetActiveVariation(Random.Range(1, floatingLetter.variations.Length));
-                } else {
-                    floatingLetter.SetActiveVariation(Random.Range(0, floatingLetter.variations.Length));
-                }
+                //} else {
+                //    floatingLetter.SetActiveVariation(Random.Range(0, floatingLetter.variations.Length));
+                //}
 
                 var balloons = floatingLetter.Balloons;
                 var letter = floatingLetter.Letter;

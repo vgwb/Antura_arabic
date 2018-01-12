@@ -33,7 +33,7 @@ namespace Antura.Minigames.Balloons
 
         public void InitTimer()
         {
-            time = BalloonsGame.instance.roundTime;
+            time = BalloonsGame.instance.RoundTime;
             if (MinigamesUI.Timer != null)
             {
                 MinigamesUI.Timer.Setup(time);
