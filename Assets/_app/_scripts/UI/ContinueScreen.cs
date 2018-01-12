@@ -1,4 +1,5 @@
 ﻿using System;
+using Antura.Animation;
 using Antura.Audio;
 using DG.Tweening;
 using UnityEngine;
@@ -249,11 +250,15 @@ namespace Antura.UI
         #region Retry Button
 
         public Button BtRetry;
-        public static void SetRetryAction(Action a)
+        AutoAnimator retryAnimator;
+        public static void SetRetryAction(Action a, bool pulseButton = false)
         {
             GlobalUI.ContinueScreen.BtRetry.gameObject.SetActive(true);
             GlobalUI.ContinueScreen.BtRetry.onClick.RemoveAllListeners();
             GlobalUI.ContinueScreen.BtRetry.onClick.AddListener(() => a());
+            if (GlobalUI.ContinueScreen.retryAnimator == null) GlobalUI.ContinueScreen.retryAnimator = GlobalUI.ContinueScreen.BtRetry.GetComponent<AutoAnimator>();
+            if (pulseButton) GlobalUI.ContinueScreen.retryAnimator.Play();
+            else GlobalUI.ContinueScreen.retryAnimator.Rewind();
         }
 
         #endregion

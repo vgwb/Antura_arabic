@@ -129,8 +129,8 @@ namespace Antura.Rewards
             if (numStars > 0) { bgTween.Restart(); }
 
             AudioManager.I.PlaySound(numStars > 0 ? SfxCompleteWithStars : SfxCompleteNoStars);
-            ContinueScreen.Show(Continue, ContinueScreenMode.Button);
-            ContinueScreen.SetRetryAction(Retry);
+            ContinueScreen.Show(Continue, ContinueScreenMode.Button, numStars > 0);
+            ContinueScreen.SetRetryAction(Retry, numStars <= 0);
 
             // We add the bones regardless of where we played this game from
             AppManager.I.Player.AddBones(numStars);

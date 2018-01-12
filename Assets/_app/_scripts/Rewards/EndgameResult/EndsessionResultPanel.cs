@@ -168,7 +168,7 @@ namespace Antura.Rewards
                 yield return new WaitForSeconds(minigamesStarsToBarTween.Duration());
             }
             AudioManager.I.PlaySound(SfxShowContinue);
-            ContinueScreen.Show(Continue, ContinueScreenMode.Button);
+            ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
         }
 
         public void Continue()
