@@ -434,7 +434,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
-  AutoAnimateClick: 1
+  AutoAnimateClick: 0
   AutoPlayButtonFx: 1
 --- !u!114 &114606082479342294
 MonoBehaviour:
@@ -687,7 +687,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224797994045328778
 RectTransform:

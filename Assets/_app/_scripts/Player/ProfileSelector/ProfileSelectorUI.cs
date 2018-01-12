@@ -9,6 +9,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace Antura.UI
 {
@@ -22,7 +23,7 @@ namespace Antura.UI
         public UIButton BtAdd;
 
         public UIButton BtPlay;
-        public GameObject ProfilesPanel;
+        public RectTransform ProfilesPanel;
         public HomeScene HomeScene;
         public LivingLetterController LLInStage;
 
@@ -132,6 +133,7 @@ namespace Antura.UI
                     playerIcon.gameObject.SetActive(true);
                     playerIcon.Init(iconData);
                     playerIcon.Select(AppManager.I.Player.Uuid);
+                    playerIcon.transform.localScale = Vector3.one * (AppManager.I.Player.Uuid == playerIcon.Uuid ? 1.14f : 1);
                 }
             }
 
