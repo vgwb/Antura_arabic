@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Antura.Audio;
 using Antura.LivingLetters;
 using Antura.Minigames;
@@ -143,14 +143,14 @@ namespace Antura.Minigames.SickLetters
                 {
                     LLPrefab.letterView.DoHorray();
                     SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
-                    Context.GetAudioManager().PlayVocabularyData(LLPrefab.letterView.Data, true);
+                    Context.GetAudioManager().PlayVocabularyData(LLPrefab.letterView.Data, true, soundType: SickLettersConfiguration.Instance.GetVocabularySoundType());
                     LLPrefab.jumpOut(1.5f);
                 }
                 else
                 {
                     LLPrefab.jumpOut(0.5f);
                     if(roundsCount > 0)
-                        Context.GetAudioManager().PlayVocabularyData(LLPrefab.letterView.Data, true);
+                        Context.GetAudioManager().PlayVocabularyData(LLPrefab.letterView.Data, true, soundType: SickLettersConfiguration.Instance.GetVocabularySoundType());
                 }
                 if (roundsCount == 1)
                 {
@@ -294,7 +294,7 @@ namespace Antura.Minigames.SickLetters
         public void RepeatAudio()
         {
             if(LLPrefab.letterView && LLPrefab.letterView.Data != null && !disableInput)
-                Context.GetAudioManager().PlayVocabularyData(LLPrefab.letterView.Data, true);
+                Context.GetAudioManager().PlayVocabularyData(LLPrefab.letterView.Data, true, soundType: SickLettersConfiguration.Instance.GetVocabularySoundType());
         }
 
     }

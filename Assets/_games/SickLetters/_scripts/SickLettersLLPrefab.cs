@@ -75,7 +75,7 @@ namespace Antura.Minigames.SickLetters
                 game.tut.doTutorial(thisLLWrongDDs[Random.Range(0, thisLLWrongDDs.Count-1)].transform);
             }
             else
-                SickLettersConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterView.Data, true);          
+                SickLettersConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterView.Data, true, soundType: SickLettersConfiguration.Instance.GetVocabularySoundType());          
             
         }
 

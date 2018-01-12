@@ -1,3 +1,4 @@
+﻿using Antura.Database;
 using Antura.Teacher;
 using System;
 
@@ -68,6 +69,11 @@ namespace Antura.Minigames.SickLetters
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
+        }
+
+        public override LetterDataSoundType GetVocabularySoundType()
+        {
+            return LetterDataSoundType.Name;
         }
     }
 }

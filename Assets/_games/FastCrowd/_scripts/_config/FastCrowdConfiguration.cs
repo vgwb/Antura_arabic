@@ -131,13 +131,14 @@ namespace Antura.Minigames.FastCrowd
         public override LetterDataSoundType GetVocabularySoundType()
         {
             LetterDataSoundType soundType;
-            switch (Variation) {
-                case FastCrowdVariation.LetterForm:
+            switch (Variation)
+            {
+                case FastCrowdVariation.LetterName:
                     soundType = LetterDataSoundType.Name;
                     break;
                 case FastCrowdVariation.BuildWord:
                 case FastCrowdVariation.Word:
-                case FastCrowdVariation.LetterName:
+                case FastCrowdVariation.LetterForm:
                 case FastCrowdVariation.Counting:
                 case FastCrowdVariation.Alphabet:
                     soundType = LetterDataSoundType.Phoneme;

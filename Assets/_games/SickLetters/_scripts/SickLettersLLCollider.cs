@@ -28,7 +28,7 @@ namespace Antura.Minigames.SickLetters
 
         void OnMouseDown()
         {
-            SickLettersConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterView.Data, true);
+            SickLettersConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterView.Data, true, soundType: SickLettersConfiguration.Instance.GetVocabularySoundType());
         }
     }
 }
