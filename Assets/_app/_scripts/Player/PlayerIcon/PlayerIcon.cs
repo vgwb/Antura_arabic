@@ -21,6 +21,7 @@ namespace Antura.Profile
         [Tooltip("If TRUE automatically initializes to the current player")]
         public bool AutoInit;
         public bool HideLevel;
+        public float LevelLabelHatShift = 40;
 
         [Header("References")]
         public Sprite EndgameHat;
@@ -42,6 +43,8 @@ namespace Antura.Profile
         }
 
         UIButton fooUIButton;
+        RectTransform levelLabelRT;
+        Vector2 orLevelLabelPosition;
 
         #region Unity
 
@@ -60,6 +63,10 @@ namespace Antura.Profile
 
         public void Init(PlayerIconData playerIconData)
         {
+            if (levelLabelRT == null) {
+                levelLabelRT = LevelLabel.GetComponent<RectTransform>();
+                orLevelLabelPosition = levelLabelRT.anchoredPosition;
+            }
             Uuid = playerIconData.Uuid;
             //Debug.Log("playerIconData " + playerIconData.Uuid + " " + playerIconData.Gender + " " + playerIconData.AvatarId + " " + playerIconData.Tint + " " + playerIconData.IsDemoUser + " > " + playerIconData.HasFinishedTheGame + "/" + playerIconData.HasFinishedTheGameWithAllStars);
             EndgameState endgameState = playerIconData.HasFinishedTheGameWithAllStars
@@ -96,7 +103,9 @@ namespace Antura.Profile
                 ? Resources.Load<Sprite>(AppConfig.RESOURCES_DIR_AVATARS + "god")
                 : Resources.Load<Sprite>(AppConfig.RESOURCES_DIR_AVATARS + (playerIconData.Gender == PlayerGender.None ? "M" : playerIconData.Gender.ToString()) +
                                          playerIconData.AvatarId);
-            HatImage.gameObject.SetActive(endgameState != EndgameState.Unfinished);
+            bool hasHat = endgameState != EndgameState.Unfinished;
+            HatImage.gameObject.SetActive(hasHat);
+            levelLabelRT.anchoredPosition = hasHat ? orLevelLabelPosition + new Vector2(0, LevelLabelHatShift) : orLevelLabelPosition;
 
             switch (endgameState) {
                 case EndgameState.Finished:
