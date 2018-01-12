@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Antura.Minigames.MissingLetter
@@ -92,7 +92,8 @@ namespace Antura.Minigames.MissingLetter
             //At least, they are all sets to the minimun
             //m_iRoundsLimit = Mathf.RoundToInt(Mathf.Lerp(6, 10, _diff));
             m_iRoundsLimit = 10;
-            m_iNumberOfPossibleAnswers = Mathf.RoundToInt(Mathf.Lerp(2, 6, _diff));
+            //m_iNumberOfPossibleAnswers = Mathf.RoundToInt(Mathf.Lerp(2, 6, _diff));
+            m_iNumberOfPossibleAnswers = 4;
 
             if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.Phrase) {
                 m_fGameTime = Mathf.Lerp(120, 80, _diff);

@@ -1,4 +1,4 @@
-using Antura.Audio;
+﻿using Antura.Audio;
 using Antura.Core;
 using Antura.Helpers;
 using Antura.LivingLetters;
@@ -203,16 +203,17 @@ namespace Antura.Minigames.MissingLetter
                 m_aoCurrentAnswerScene.Add(_wrongAnswerObject);
             }
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.LetterInWord)
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.LetterInWord ||
+                MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.LetterForm)
                 m_aoCurrentAnswerScene.Sort((a, b) => {
                     var first = (LL_LetterData)a.GetComponent<LetterBehaviour>().LetterData;
                     var second = (LL_LetterData)b.GetComponent<LetterBehaviour>().LetterData;
 
                     return Comparer<int>.Default.Compare(
-                        (int)first.Form,
-                        (int)second.Form);
+                        (int)second.Form,
+                        (int)first.Form);
                 });
-            else
+            else 
                 m_aoCurrentAnswerScene.Shuffle();
 
             m_oCurrentCorrectAnswer = _correctAnswer;
