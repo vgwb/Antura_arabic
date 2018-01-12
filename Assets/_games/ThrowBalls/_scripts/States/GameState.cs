@@ -1,4 +1,4 @@
-using Antura.Audio;
+﻿using Antura.Audio;
 using Antura.Core;
 using Antura.Helpers;
 using Antura.LivingLetters;
@@ -315,12 +315,16 @@ namespace Antura.Minigames.ThrowBalls
             UIController.instance.EnableLetterHint();
             UIController.instance.SetLivingLetterData(question);
 
-            flashingTextCoroutine = ArabicTextUtilities.GetWordWithFlashingText(((LL_WordData)question).Data, 0, Color.green, FLASHING_TEXT_CYCLE_DURATION, int.MaxValue,
+            var letterToFlash = (LL_LetterData)currentLettersForLettersInWord[0];
+
+            var letterDataToFlash = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, ((LL_WordData)question).Data, letterToFlash.Data)[0];
+
+            flashingTextCoroutine = ArabicTextUtilities.GetWordWithFlashingText(((LL_WordData)question).Data, letterDataToFlash.fromCharacterIndex, letterDataToFlash.toCharacterIndex, Color.green, FLASHING_TEXT_CYCLE_DURATION, int.MaxValue,
                     (string text) => {
                         UIController.instance.SetText(text);
                     }, false);
 
-            flashedLettersInLiWVariation.Add((LL_LetterData)currentLettersForLettersInWord[0]);
+            flashedLettersInLiWVariation.Add(letterToFlash);
 
             ThrowBallsGame.instance.StartCoroutine(flashingTextCoroutine);
 
@@ -495,7 +499,7 @@ namespace Antura.Minigames.ThrowBalls
                     var letterDataToFlash = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word, letterToFlash.Data)[numTimesLetterHasBeenFlashed];
                     flashedLettersInLiWVariation.Add(letterToFlash);
 
-                    flashingTextCoroutine = ArabicTextUtilities.GetWordWithFlashingText(word, letterDataToFlash.fromCharacterIndex, Color.green, FLASHING_TEXT_CYCLE_DURATION, int.MaxValue,
+                    flashingTextCoroutine = ArabicTextUtilities.GetWordWithFlashingText(word, letterDataToFlash.fromCharacterIndex, letterDataToFlash.toCharacterIndex, Color.green, FLASHING_TEXT_CYCLE_DURATION, int.MaxValue,
                         (string text) => {
                             UIController.instance.SetText(text);
                         }, true);

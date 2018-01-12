@@ -46,7 +46,7 @@ namespace Antura.UI
         /// <summary>
         /// Returns a coroutine which creates a string with a letter that flashes over frames, with an option to mark the text before it.
         /// </summary>
-        public static IEnumerator GetWordWithFlashingText(Database.WordData arabicWord, int indexToFlash, Color flashColor,
+        public static IEnumerator GetWordWithFlashingText(Database.WordData arabicWord, int fromIndexToFlash, int toIndexToFlash, Color flashColor,
             float cycleDuration, int numCycles, System.Action<string> callback, bool markPrecedingLetters = false)
         {
             string text = ArabicAlphabetHelper.ProcessArabicString(arabicWord.Arabic);
@@ -73,17 +73,17 @@ namespace Antura.UI
                 {
                     resultOfThisFrame += markTagStart;
                 }
-                resultOfThisFrame += text.Substring(0, indexToFlash);
+                resultOfThisFrame += text.Substring(0, fromIndexToFlash);
                 if (markPrecedingLetters)
                 {
                     resultOfThisFrame += markTagEnd;
                 }
                 resultOfThisFrame += flashTagStart;
-                resultOfThisFrame += text.Substring(indexToFlash, 1);
+                resultOfThisFrame += text.Substring(fromIndexToFlash, toIndexToFlash - fromIndexToFlash + 1);
                 resultOfThisFrame += flashTagEnd;
-                if (indexToFlash + 1 < text.Length)
+                if (toIndexToFlash + 1 < text.Length)
                 {
-                    resultOfThisFrame += text.Substring(indexToFlash + 1);
+                    resultOfThisFrame += text.Substring(toIndexToFlash + 1);
                 }
 
                 callback(resultOfThisFrame);
