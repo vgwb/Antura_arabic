@@ -296,7 +296,7 @@ namespace Antura.Minigames.DancingDots
             dancingDotsLL.Reset();
 
             // TODO: re-add
-            //tutorial.doTutorial();
+            tutorial.doTutorial();
 
         }
 
