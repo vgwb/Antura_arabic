@@ -44,6 +44,7 @@ namespace Antura.Animation
         void CreateAnimation()
         {
             animTween = DOTween.Sequence().SetAutoKill(false);
+            Vector2 orScale = transform.localScale;
             if (ScaleInOnEnable) {
                 animTween.Append(
                     transform.DOScale(0.0001f, ScaleInDuration).From().SetEase(Ease.OutSine)
@@ -57,7 +58,7 @@ namespace Antura.Animation
                     break;
                 case AnimationType.BounceLoop:
                     animTween = animTween.Append(
-                        transform.DOScale(transform.localScale * To, Duration).SetLoops(int.MaxValue, LoopType.Yoyo).SetEase(Ease.InOutSine)
+                        transform.DOScale(orScale * To, Duration).SetLoops(int.MaxValue, LoopType.Yoyo).SetEase(Ease.InOutSine)
                     );
                     break;
             }
