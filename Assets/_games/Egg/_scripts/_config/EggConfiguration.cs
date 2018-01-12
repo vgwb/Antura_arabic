@@ -1,4 +1,4 @@
-using Antura.Database;
+﻿using Antura.Database;
 using Antura.Teacher;
 using System;
 
@@ -13,7 +13,7 @@ namespace Antura.Minigames.Egg
 
     public class EggConfiguration : AbstractGameConfiguration
     {
-        private EggVariation Variation { get; set; }
+        public EggVariation Variation { get; private set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {

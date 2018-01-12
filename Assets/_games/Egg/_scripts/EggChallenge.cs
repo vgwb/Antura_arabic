@@ -27,42 +27,61 @@ namespace Antura.Minigames.Egg
 
             int numberOfLetters = 3;
 
-            if (sequence) {
-                if (difficulty < 0.5f) {
-                    numberOfLetters += UnityEngine.Mathf.RoundToInt(difficulty * 6);
-                } else {
-                    numberOfLetters += UnityEngine.Mathf.RoundToInt((difficulty - 0.5f) * 4f);
+            if (EggConfiguration.Instance.Variation == EggVariation.BuildWord)
+                numberOfLetters = 8;
+            else
+            {
+                if (sequence)
+                {
+                    if (difficulty < 0.5f)
+                    {
+                        numberOfLetters += UnityEngine.Mathf.RoundToInt(difficulty * 6);
+                    }
+                    else
+                    {
+                        numberOfLetters += UnityEngine.Mathf.RoundToInt((difficulty - 0.5f) * 4f);
+                    }
+                    if (numberOfLetters > 6)
+                    {
+                        numberOfLetters = 6;
+                    }
                 }
-                if (numberOfLetters > 6) {
-                    numberOfLetters = 6;
-                }
-            } else {
-                numberOfLetters += (int)(difficulty * 5);
+                else
+                {
+                    numberOfLetters += (int)(difficulty * 5);
 
-                if (numberOfLetters > 8) {
-                    numberOfLetters = 8;
+                    if (numberOfLetters > 8)
+                    {
+                        numberOfLetters = 8;
+                    }
                 }
             }
 
-
-            if (!sequence) {
+            if (!sequence)
+            {
                 Letters.Add(correctAnswers[0]);
 
                 numberOfLetters -= 1;
 
-                if (numberOfLetters > wrongAnswers.Count) {
+                if (numberOfLetters > wrongAnswers.Count)
+                {
                     numberOfLetters = wrongAnswers.Count;
                 }
 
-                for (int i = 0; i < numberOfLetters; i++) {
+                for (int i = 0; i < numberOfLetters; i++)
+                {
                     Letters.Add(wrongAnswers[i]);
                 }
-            } else {
-                if (numberOfLetters > correctAnswers.Count) {
+            }
+            else
+            {
+                if (numberOfLetters > correctAnswers.Count)
+                {
                     numberOfLetters = correctAnswers.Count;
                 }
 
-                for (int i = 0; i < numberOfLetters; i++) {
+                for (int i = 0; i < numberOfLetters; i++)
+                {
                     Letters.Add(correctAnswers[i]);
                 }
             }
