@@ -39,7 +39,7 @@ namespace Antura.Book
             // Debug.Log("PREV SCENE IS RESERVED AREA: " + AppManager.I.NavigationManager.PrevSceneIsReservedArea());
         }
 
-        public void BtnOpenBook()
+        public void BtnOpenVocabulary()
         {
             BookManager.I.OpenBook(BookArea.Vocabulary);
         }

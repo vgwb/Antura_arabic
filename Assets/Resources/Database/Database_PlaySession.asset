@@ -897,6 +897,8 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 15
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 4
       - MiniGameCode: 36
         Weight: 2
       - MiniGameCode: 37
@@ -933,6 +935,8 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 5
       - MiniGameCode: 34
         Weight: 4
       - MiniGameCode: 36
@@ -1510,6 +1514,8 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 15
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 4
       - MiniGameCode: 36
         Weight: 2
       - MiniGameCode: 37
@@ -1546,6 +1552,8 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 5
       - MiniGameCode: 34
         Weight: 4
       - MiniGameCode: 36
@@ -2120,6 +2128,8 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 15
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 4
       - MiniGameCode: 36
         Weight: 2
       - MiniGameCode: 37
@@ -2156,6 +2166,8 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 5
       - MiniGameCode: 34
         Weight: 4
       - MiniGameCode: 36
@@ -2719,6 +2731,8 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 15
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 4
       - MiniGameCode: 36
         Weight: 2
       - MiniGameCode: 37
@@ -3612,6 +3626,8 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 15
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 4
       - MiniGameCode: 36
         Weight: 2
       - MiniGameCode: 37

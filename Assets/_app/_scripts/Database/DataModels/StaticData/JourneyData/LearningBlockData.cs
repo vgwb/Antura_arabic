@@ -70,6 +70,14 @@ namespace Antura.Database
         [SerializeField]
         private string _Title_En;
 
+        public string AudioFile
+        {
+            get { return _AudioFile; }
+            set { _AudioFile = value; }
+        }
+        [SerializeField]
+        private string _AudioFile;
+
         public string Title_Ar
         {
             get {
@@ -105,11 +113,6 @@ namespace Antura.Database
             string output = "";
             output += string.Format("[LearningBlock: S={0}, LB={1}, description={2}]", Stage, LearningBlock, Description_En);
             return output;
-        }
-
-        public string GetTitleSoundFilename()
-        {
-            return "LB_" + Stage + "_" + LearningBlock.ToString("D2");
         }
     }
 

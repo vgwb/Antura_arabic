@@ -178,7 +178,7 @@ namespace Antura.Debugging
         {
             DebugPanelEnabled = true;
             if (debugPanelGO == null) {
-                debugPanelGO = Instantiate(Resources.Load("Prefabs/Debug/Debug UI Canvas") as GameObject);
+                debugPanelGO = Instantiate(Resources.Load(AppConfig.RESOURCES_PATH_DEBUG_PANEL) as GameObject);
             }
         }
 

@@ -93,8 +93,8 @@ namespace Antura.Profile
             UIButton.Ico = IconImage;   // forced icon
             UIButton.ChangeDefaultColors(color, color.SetAlpha(0.5f));
             UIButton.Ico.sprite = playerIconData.IsDemoUser
-                ? Resources.Load<Sprite>(AppConfig.AvatarsResourcesDir + "god")
-                : Resources.Load<Sprite>(AppConfig.AvatarsResourcesDir + (playerIconData.Gender == PlayerGender.None ? "M" : playerIconData.Gender.ToString()) +
+                ? Resources.Load<Sprite>(AppConfig.RESOURCES_DIR_AVATARS + "god")
+                : Resources.Load<Sprite>(AppConfig.RESOURCES_DIR_AVATARS + (playerIconData.Gender == PlayerGender.None ? "M" : playerIconData.Gender.ToString()) +
                                          playerIconData.AvatarId);
             HatImage.gameObject.SetActive(endgameState != EndgameState.Unfinished);
 

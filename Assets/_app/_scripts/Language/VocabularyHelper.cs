@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using Antura.Helpers;
 using Antura.Teacher;
+using UnityEngine;
 
 namespace Antura.Database
 {
@@ -225,7 +226,6 @@ namespace Antura.Database
                 baseLetters.Add(chosenLetter);
             }
 
-            //Debug.Log("N base letters: " + baseLetters.Count);
             // Get all alterations for the given bases
             foreach (var baseLetter in baseLetters)
             {
@@ -243,6 +243,7 @@ namespace Antura.Database
 
                 List<LetterData> basesForForms = new List<LetterData>(availableVariations);
                 basesForForms.Add(baseLetter);
+                //Debug.Log("N bases for forms: " +  basesForForms.Count);
                 if (letterAlterationFilters.includeForms)
                 {
                     // Place forms only inside the pool, if needed

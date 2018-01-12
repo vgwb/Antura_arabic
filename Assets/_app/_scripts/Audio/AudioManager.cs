@@ -250,6 +250,27 @@ namespace Antura.Audio
             }
             return null;
         }
+
+        public IAudioSource PlayLearningBlock(string AudioFile, System.Action callback, bool clearPreviousCallback = false)
+        {
+            if (clearPreviousCallback) {
+                dialogueEndedCallbacks.Clear();
+            }
+
+            if (!string.IsNullOrEmpty(AudioFile)) {
+                AudioClip clip = GetLearningBlockAudioClip(AudioFile);
+                var wrapper = new AudioSourceWrapper(dialogueGroup.Play(clip), dialogueGroup, this);
+                if (callback != null) {
+                    dialogueEndedCallbacks[wrapper] = callback;
+                }
+                return wrapper;
+            } else {
+                if (callback != null) {
+                    callback();
+                }
+            }
+            return null;
+        }
         #endregion
 
         #region Letters, Words and Phrases

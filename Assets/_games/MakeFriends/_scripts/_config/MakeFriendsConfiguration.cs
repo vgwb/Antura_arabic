@@ -57,6 +57,7 @@ namespace Antura.Minigames.MakeFriends
             var builderParams = new QuestionBuilderParameters();
             switch (Variation) {
                 case MakeFriendsVariation.LetterInWords:
+                    builderParams.letterFilters.excludeDiphthongs = true;
                     builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams);
                     break;
                 default:
