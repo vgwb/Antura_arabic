@@ -232,5 +232,13 @@ namespace Antura.AnturaSpace
                 onTouched();
             }
         }
+
+        public void BoneSmell()
+        {
+            if (onTouched != null)
+            {
+                onTouched();
+            }
+        }
     }
 }

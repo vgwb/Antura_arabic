@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Antura.AnturaSpace.UI;
 using Antura.Audio;
 using Antura.Core;
@@ -218,6 +218,8 @@ namespace Antura.AnturaSpace
 
         private ThrowableObject SpawnNewObject(ThrowableObject ObjectPrefab)
         {
+            Antura.BoneSmell();
+
             var newObjectGo = Instantiate(ObjectPrefab.gameObject);
             newObjectGo.SetActive(true);
             newObjectGo.transform.position = ObjectSpawnPivotTr.position;
