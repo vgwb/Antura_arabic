@@ -93,5 +93,15 @@ namespace Antura.Book
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
+
+        public void BtnOpenVocabulary()
+        {
+            OpenArea(BookArea.Vocabulary);
+        }
+
+        public void BtnOpenGames()
+        {
+            OpenArea(BookArea.MiniGames);
+        }
     }
 }
