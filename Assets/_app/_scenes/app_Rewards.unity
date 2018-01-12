@@ -330,12 +330,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 809695002}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 361, y: 361}
+  m_AnchoredPosition: {x: 8, y: -9}
+  m_SizeDelta: {x: 262, y: 312}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &458916913
 MonoBehaviour:
@@ -356,7 +356,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 03eed299e1e244ddbbf2fcd85385f64a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f9578e93bfed6a04194e0569e6c6969a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -680,7 +680,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 844.99994, y: 109.5}
+  m_AnchoredPosition: {x: 844.9999, y: 109.5}
   m_SizeDelta: {x: 140, y: 137}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632852211
@@ -950,8 +950,8 @@ RectTransform:
   - {fileID: 848103683}
   - {fileID: 1775565533}
   - {fileID: 293792701}
-  - {fileID: 458916912}
   - {fileID: 1111254305}
+  - {fileID: 458916912}
   - {fileID: 632852210}
   m_Father: {fileID: 688744172}
   m_RootOrder: 0
@@ -1101,12 +1101,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 809695002}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0.000015258789}
-  m_SizeDelta: {x: 364, y: 364}
+  m_AnchoredPosition: {x: 29, y: -34}
+  m_SizeDelta: {x: 285, y: 263}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1111254306
 MonoBehaviour:
@@ -1127,7 +1127,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fe80c9ab9282047de9568ae35a1f0419, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d440ebf5b8361140b7e088c28f788de, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1440,9 +1440,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneMusic: 10
+  tutorialManager: {fileID: 0}
   AnturaAnimation: 2
   AnturaAnimController: {fileID: 866367118}
-  AnturaSpaceBtton: {fileID: 632852211}
 --- !u!114 &1814291035
 MonoBehaviour:
   m_ObjectHideFlags: 0
