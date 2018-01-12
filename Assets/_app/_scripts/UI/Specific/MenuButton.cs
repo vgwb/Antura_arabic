@@ -10,7 +10,8 @@
         FxToggle = 5,
         Restart = 6,
         Credits = 7,
-        EnglishToggle = 8
+        EnglishToggle = 8,
+        SubtitlesToggle = 9
     }
 
     /// <summary>
