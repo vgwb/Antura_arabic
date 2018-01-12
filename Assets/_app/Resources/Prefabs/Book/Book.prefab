@@ -4212,7 +4212,7 @@ GameObject:
   - component: {fileID: 114948297290475356}
   - component: {fileID: 114008719379557010}
   m_Layer: 5
-  m_Name: CompletionSlider
+  m_Name: StarsSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4842,7 +4842,7 @@ GameObject:
   - component: {fileID: 114982081677312724}
   - component: {fileID: 114273343083817590}
   m_Layer: 5
-  m_Name: CompletionSlider
+  m_Name: RewardsSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6401,6 +6401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -8311,6 +8312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 0.43529415, g: 0.21176472, b: 0.8235295, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
@@ -10666,6 +10668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
@@ -10727,6 +10730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
@@ -11128,6 +11132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -11423,6 +11428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 0.43529415, g: 0.21176472, b: 0.8235295, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -12332,6 +12338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 0.43529412, g: 0.21176471, b: 0.8235294, a: 1}
   BtLockedColor: {r: 0.8, g: 0, b: 0.6431373, a: 1}
   ToggleIconAlpha: 1
@@ -12743,6 +12750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -13092,6 +13100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 0.3137255, g: 0.15294118, b: 0.59607846, a: 1}
   BtLockedColor: {r: 0.8000001, g: 0, b: 0.6431373, a: 1}
   ToggleIconAlpha: 1
@@ -13677,6 +13686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
@@ -14252,6 +14262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd212253e00547129d7438ae4ef94a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AutoStart: 1
   AnimType: 0
   To: 360
   Duration: 20
@@ -16266,6 +16277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -17501,6 +17513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -18106,6 +18119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 0.43529415, g: 0.21176472, b: 0.8235295, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -21195,6 +21209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -21212,6 +21227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd212253e00547129d7438ae4ef94a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AutoStart: 1
   AnimType: 0
   To: -360
   Duration: 20
@@ -21228,6 +21244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 0.43529412, g: 0.21176471, b: 0.8235294, a: 1}
   BtLockedColor: {r: 0.8, g: 0, b: 0.6431373, a: 1}
   ToggleIconAlpha: 1
@@ -21600,6 +21617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -23100,6 +23118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 0.3137255, g: 0.15294118, b: 0.59607846, a: 1}
   BtLockedColor: {r: 0.8000001, g: 0, b: 0.6431373, a: 1}
   ToggleIconAlpha: 1
@@ -25332,6 +25351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 0.43529415, g: 0.21176472, b: 0.8235295, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -25802,8 +25822,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b58110a6489e4ae487f3682e3250f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InfoTable: {fileID: 0}
-  journeyGraph: {fileID: 0}
+  StarsSlider: {fileID: 114165084603212714}
+  RewardsSlider: {fileID: 114298397552439150}
 --- !u!114 &114761771125624982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25815,6 +25835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 0.43529415, g: 0.21176472, b: 0.8235295, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -26043,6 +26064,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AutoInit: 1
   HideLevel: 0
+  LevelLabelHatShift: 40
+  Background: {fileID: 0}
   EndgameHat: {fileID: 21300000, guid: 602eebe108fce3f45ae939c2a29f2ddd, type: 3}
   EndgameHatWStars: {fileID: 21300000, guid: 367f84c200dc3da41b9ef565570f15f3, type: 3}
   HighlightImage: {fileID: 1898102801651916}
@@ -28016,6 +28039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -30971,6 +30995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -31253,6 +31278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -31645,6 +31671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 0.3137255, g: 0.15294118, b: 0.59607846, a: 1}
   BtLockedColor: {r: 0.8000001, g: 0, b: 0.6431373, a: 1}
   ToggleIconAlpha: 1

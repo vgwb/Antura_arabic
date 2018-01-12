@@ -10,12 +10,12 @@ namespace Antura.Book
 {
     public class PlayerPanel : MonoBehaviour
     {
-        public InfoTable InfoTable;
-        public GraphJourney journeyGraph;
+        public CompletionSlider StarsSlider;
+        public CompletionSlider RewardsSlider;
 
         void Start()
         {
-            InfoTable.Reset();
+            //InfoTable.Reset();
 
             // Level reached
             //InfoTable.AddRow(LocalizationDataId.UI_Stage_and_Level, AppManager.I.Player.MaxJourneyPosition.GetShortTitle());
@@ -28,29 +28,31 @@ namespace Antura.Book
 
             // Total elapsed time
             var totalTimespan = GetTotalApplicationTime();
-            InfoTable.AddRow(LocalizationDataId.UI_Journey_duration,
-                totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
+            //InfoTable.AddRow(LocalizationDataId.UI_Journey_duration,totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
 
             // total play time
             var totalPlayTime = GetTotalMiniGamePlayTime();
-            InfoTable.AddRow(LocalizationDataId.UI_Playing_time,
-                totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
+            //InfoTable.AddRow(LocalizationDataId.UI_Playing_time,                totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
 
             // Played Games
-            InfoTable.AddRow(LocalizationDataId.UI_Games_played, GetTotalMiniGamePlayInstances().ToString());
+            //InfoTable.AddRow(LocalizationDataId.UI_Games_played, GetTotalMiniGamePlayInstances().ToString());
 
             // Total bones
-            InfoTable.AddRow(LocalizationDataId.UI_Bones, AppManager.I.Player.GetTotalNumberOfBones().ToString());
+            //InfoTable.AddRow(LocalizationDataId.UI_Bones, AppManager.I.Player.GetTotalNumberOfBones().ToString());
 
             // Total stars
-            var totalStars = GetTotalMiniGameStars();
-            InfoTable.AddRow(LocalizationDataId.UI_Stars, totalStars.ToString());
+            var playerStars = GetTotalMiniGameStars();
+            // TODO calculate total stars
+            var totalStart = 270;
+            StarsSlider.SetValue(playerStars, totalStart);
+            //InfoTable.AddRow(LocalizationDataId.UI_Stars, totalStars.ToString());
 
             // unlocked / total REWARDS
             var totalRewards = AppManager.I.RewardSystemManager.GetTotalRewardPacksCount();
             var totalRewardsUnlocked = AppManager.I.RewardSystemManager.GetUnlockedRewardsCount();
+            RewardsSlider.SetValue(totalRewardsUnlocked, totalRewards);
             //InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
-            InfoTable.AddSliderRow(LocalizationDataId.UI_Antura_Rewards, totalRewards, totalRewardsUnlocked);
+            //InfoTable.AddSliderRow(LocalizationDataId.UI_Antura_Rewards, totalRewards, totalRewardsUnlocked);
 
             //// unlocked / total Letters
             //var totalLetters = GetTotalVocabularyData(VocabularyDataType.Letter);
