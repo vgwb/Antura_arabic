@@ -32,9 +32,9 @@ namespace Antura.GamesSelector
 
             // play the tutorial only if in LB 1.1
             if (journeyPos.Stage == 1 && journeyPos.LearningBlock == 1) {
-                AudioManager.I.PlayLearningBlock(learningBlock.GetTitleSoundFilename(), PlayTutorialAudio);
+                AudioManager.I.PlayLearningBlock(learningBlock.AudioFile, PlayTutorialAudio);
             } else {
-                AudioManager.I.PlayLearningBlock(learningBlock.GetTitleSoundFilename());
+                AudioManager.I.PlayLearningBlock(learningBlock.AudioFile);
             }
 
             if (!journeyPos.IsMinor(AppManager.I.Player.MaxJourneyPosition)) {
