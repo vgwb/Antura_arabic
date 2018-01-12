@@ -141,7 +141,7 @@ namespace Antura.Minigames.Egg
             }
 
             for (int i = 0; i < numberOfStage; i++) {
-                if (aInStages.Contains(i)) {
+                if (EggConfiguration.Instance.Variation != EggVariation.BuildWord && aInStages.Contains(i)) {
                     if (UnityEngine.Random.Range(0, 2) == 0) {
                         anturaInGame.Add(false);
                         anturaInGame.Add(true);
