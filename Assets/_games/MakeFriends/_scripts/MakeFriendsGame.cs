@@ -1,4 +1,4 @@
-using Antura.Database;
+﻿using Antura.Database;
 using Antura.LivingLetters;
 using Antura.Tutorial;
 using Antura.UI;
@@ -56,6 +56,9 @@ namespace Antura.Minigames.MakeFriends
         private int currentRound = 0;
         private int _currentScore = 0;
         private bool isTutorialRound;
+
+        MakeFriendsLivingLetter livingLetter1;
+        MakeFriendsLivingLetter livingLetter2;
 
         public bool TutorialEnabled
         {
@@ -285,8 +288,8 @@ namespace Antura.Minigames.MakeFriends
 
         private void SpawnLivingLetters()
         {
-            leftArea.SpawnLivingLetter(wordData1);
-            rightArea.SpawnLivingLetter(wordData2);
+            livingLetter1 = leftArea.SpawnLivingLetter(wordData1);
+            livingLetter2 = rightArea.SpawnLivingLetter(wordData2);
 
             leftArea.MakeEntrance();
             rightArea.MakeEntrance();
@@ -395,6 +398,19 @@ namespace Antura.Minigames.MakeFriends
                     HideTutorialUI();
                 }
 
+                List<LL_LetterData> letters = new List<LL_LetterData>();
+
+                foreach (var l in commonLetters)
+                {
+                    LL_LetterData data = l as LL_LetterData;
+
+                    if (data != null)
+                        letters.Add(data);
+                }
+
+                livingLetter1.MarkLetters(letters, Color.green);
+                livingLetter2.MarkLetters(letters, Color.green);
+
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                 leftArea.Celebrate();
                 rightArea.Celebrate();
@@ -470,7 +486,7 @@ namespace Antura.Minigames.MakeFriends
 
         private IEnumerator EndGame_Coroutine()
         {
-            var delay1 = 1f;
+            var delay1 = 0.5f;
             yield return new WaitForSeconds(delay1);
 
             PlayIdleMusic();
@@ -480,6 +496,7 @@ namespace Antura.Minigames.MakeFriends
             FriendsZonesManager.instance.EverybodyDance();
             antura.ReactToEndGame();
 
+            /*
             // Zoom out camera
             var fromPosition = sceneCamera.transform.localPosition;
             var toPosition = endCameraPosition;
@@ -497,6 +514,7 @@ namespace Antura.Minigames.MakeFriends
                 interpolant = Mathf.Sin(interpolant * Mathf.PI * 0.5f);
                 yield return new WaitForFixedUpdate();
             }
+            */
 
             //            endGameCanvas.gameObject.SetActive(true);
             //

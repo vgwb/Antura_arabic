@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
 
@@ -69,7 +69,7 @@ namespace Antura.Minigames.Balloons
                     builder = new WordsWithLetterQuestionBuilder(nPacks, nPacksPerRound: 1, forceUnseparatedLetters: true, nCorrect: nCorrect, nWrong: nWrong);
                     break;
                 case BalloonsVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number);
+                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number, null, true);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

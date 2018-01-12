@@ -2,6 +2,7 @@
 using System.Collections;
 using Antura.LivingLetters;
 using TMPro;
+using System.Collections.Generic;
 
 namespace Antura.Minigames.MakeFriends
 {
@@ -313,6 +314,11 @@ namespace Antura.Minigames.MakeFriends
                 }
             }
             isWalking = false;
+        }
+
+        public void MarkLetters(List<LL_LetterData> commonLetters, Color color)
+        {
+            LLPrefab.MarkLetters(commonLetters, color);
         }
 
         #endregion

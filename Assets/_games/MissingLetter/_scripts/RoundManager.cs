@@ -300,7 +300,7 @@ namespace Antura.Minigames.MissingLetter
 
             LivingLetterController letterView = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
 
-            var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, letter.Data);
+            var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, letter.Data, false);
 
             var partToRemove = parts[0];
             letterView.Label.text = ArabicAlphabetHelper.GetWordWithMissingLetterText(word.Data, partToRemove, mk_sRemovedLetterChar);

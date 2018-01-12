@@ -114,14 +114,15 @@ namespace Antura.Helpers
         /// Find all the occurrences of "letterToFind" in "arabicWord"
         /// </summary>
         /// <returns>the list of occurrences</returns>
-        public static List<ArabicStringPart> FindLetter(DatabaseManager database, WordData arabicWord, LetterData letterToFind)
+        public static List<ArabicStringPart> FindLetter(DatabaseManager database, WordData arabicWord, LetterData letterToFind, bool findSameForm)
         {
             var result = new List<ArabicStringPart>();
 
             var parts = AnalyzeData(database, arabicWord, false, letterToFind.Kind != LetterDataKind.LetterVariation);
 
             for (int i = 0, count = parts.Count; i < count; ++i) {
-                if (parts[i].letter.Id == letterToFind.Id) {
+                if (parts[i].letter.Id == letterToFind.Id &&
+                    (!findSameForm || (parts[i].letterForm == letterToFind.Form))) {
                     result.Add(parts[i]);
                 }
             }

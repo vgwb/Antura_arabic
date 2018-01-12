@@ -1,4 +1,4 @@
-using Antura.Core;
+﻿using Antura.Core;
 using Antura.Helpers;
 using Antura.LivingLetters;
 using Antura.Minigames;
@@ -68,7 +68,7 @@ namespace Antura.Assessment
             var wordInner = word as LL_WordData;
             var letterInner = letter as LL_LetterData;
 
-            var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, wordInner.Data, letterInner.Data);
+            var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, wordInner.Data, letterInner.Data, false);
 
             var partToRemove = parts[0];
 

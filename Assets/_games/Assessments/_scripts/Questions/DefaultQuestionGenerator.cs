@@ -1,4 +1,4 @@
-using Antura.Core;
+﻿using Antura.Core;
 using Antura.Helpers;
 using Antura.LivingLetters;
 using Kore.Coroutines;
@@ -279,7 +279,7 @@ namespace Antura.Assessment
             LL_WordData word = question as LL_WordData;
             var wordGO = ItemFactory.Instance.SpawnQuestion(word);
 
-            var partsToRemove = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, correctLetter.Data);
+            var partsToRemove = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, correctLetter.Data, false);
             partsToRemove.Shuffle(); //pick a random letter
 
             string text = ArabicAlphabetHelper.GetWordWithMissingLetterText(
