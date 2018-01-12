@@ -128,7 +128,6 @@ namespace Antura.Rewards
 
             if (numStars > 0) { bgTween.Restart(); }
 
-            Debug.Log(">>>>> " + numStars);
             AudioManager.I.PlaySound(numStars > 0 ? SfxCompleteWithStars : SfxCompleteNoStars);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button, numStars > 0);
             ContinueScreen.SetRetryAction(Retry, numStars <= 0);
