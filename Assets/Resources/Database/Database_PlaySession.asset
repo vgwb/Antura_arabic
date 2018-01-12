@@ -505,6 +505,8 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 4
         Weight: 3
+      - MiniGameCode: 8
+        Weight: 4
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 32
@@ -575,6 +577,8 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 3
       _Minigames:
+      - MiniGameCode: 8
+        Weight: 3
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 28
@@ -1081,6 +1085,8 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 4
         Weight: 3
+      - MiniGameCode: 8
+        Weight: 4
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 32
@@ -1151,6 +1157,8 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 3
       _Minigames:
+      - MiniGameCode: 8
+        Weight: 3
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 28
@@ -1698,6 +1706,8 @@ MonoBehaviour:
       _Minigames:
       - MiniGameCode: 4
         Weight: 3
+      - MiniGameCode: 8
+        Weight: 4
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 32
@@ -1768,6 +1778,8 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 3
       _Minigames:
+      - MiniGameCode: 8
+        Weight: 3
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 28
@@ -2274,6 +2286,8 @@ MonoBehaviour:
       _Order: 2
       _NumberOfMinigames: 4
       _Minigames:
+      - MiniGameCode: 8
+        Weight: 1
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 32
@@ -2311,6 +2325,8 @@ MonoBehaviour:
       _NumberOfMinigames: 4
       _Minigames:
       - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -2877,6 +2893,8 @@ MonoBehaviour:
       _Order: 2
       _NumberOfMinigames: 4
       _Minigames:
+      - MiniGameCode: 8
+        Weight: 1
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 32
@@ -2914,6 +2932,8 @@ MonoBehaviour:
       _NumberOfMinigames: 4
       _Minigames:
       - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -3772,6 +3792,8 @@ MonoBehaviour:
       _Order: 2
       _NumberOfMinigames: 4
       _Minigames:
+      - MiniGameCode: 8
+        Weight: 1
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 32
@@ -3809,6 +3831,8 @@ MonoBehaviour:
       _NumberOfMinigames: 4
       _Minigames:
       - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
