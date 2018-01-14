@@ -1,6 +1,7 @@
 using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
+using Antura.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace Antura.Book
     {
         public CompletionSlider StarsSlider;
         public CompletionSlider RewardsSlider;
+        public TextRender BonesText;
+        public TextRender PlayTimeText;
 
         void Start()
         {
@@ -30,15 +33,8 @@ namespace Antura.Book
             var totalTimespan = GetTotalApplicationTime();
             //InfoTable.AddRow(LocalizationDataId.UI_Journey_duration,totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
 
-            // total play time
-            var totalPlayTime = GetTotalMiniGamePlayTime();
-            //InfoTable.AddRow(LocalizationDataId.UI_Playing_time,                totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
-
             // Played Games
             //InfoTable.AddRow(LocalizationDataId.UI_Games_played, GetTotalMiniGamePlayInstances().ToString());
-
-            // Total bones
-            //InfoTable.AddRow(LocalizationDataId.UI_Bones, AppManager.I.Player.GetTotalNumberOfBones().ToString());
 
             // Total stars
             var playerStars = GetTotalMiniGameStars();
@@ -53,6 +49,17 @@ namespace Antura.Book
             RewardsSlider.SetValue(totalRewardsUnlocked, totalRewards);
             //InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
             //InfoTable.AddSliderRow(LocalizationDataId.UI_Antura_Rewards, totalRewards, totalRewardsUnlocked);
+
+
+            // Total bones
+            var totalBones = AppManager.I.Player.GetTotalNumberOfBones();
+            BonesText.SetText(totalBones.ToString());
+
+            // total play time
+            var totalPlayTime = GetTotalMiniGamePlayTime();
+            PlayTimeText.SetText(totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
+            //InfoTable.AddRow(LocalizationDataId.UI_Playing_time,                totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
+
 
             //// unlocked / total Letters
             //var totalLetters = GetTotalVocabularyData(VocabularyDataType.Letter);
