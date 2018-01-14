@@ -124,7 +124,7 @@ namespace Antura.Book
         void LettersPanel(string _category = "")
         {
             ListPanel.SetActive(true);
-            Submenu.SetActive(true);
+            Submenu.SetActive(false);
 
             currentCategory = _category;
             List<LetterData> letters;

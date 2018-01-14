@@ -30,11 +30,12 @@ namespace Antura.Book
             info = _info;
             manager = _manager;
 
-            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
-                LockIcon.enabled = false;
-            } else {
-                LockIcon.enabled = true;
-            }
+            //if (info.unlocked || AppManager.I.Player.IsDemoUser) {
+            //    LockIcon.enabled = false;
+            //} else {
+            //    LockIcon.enabled = true;
+            //}
+            LockIcon.enabled = false;
 
             Title.text = info.data.GetStringForDisplay();
             SubTitle.text = info.data.Id;

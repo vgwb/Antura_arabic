@@ -198,8 +198,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 80
-  m_PreferredHeight: 80
+  m_PreferredWidth: 100
+  m_PreferredHeight: 100
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
 --- !u!114 &114000014182016742
@@ -490,6 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
