@@ -72,7 +72,6 @@ namespace Antura.Core
 
         public void UpdateAppVersion()
         {
-            Debug.Log("UpdateAppVersion() " + Settings.AppVersion);
             if (Settings.AppVersion == "") {
                 IsAppJustUpdated = true;
                 AppVersionPrevious = new Version(0, 0, 0, 0);
@@ -80,7 +79,7 @@ namespace Antura.Core
                 AppVersionPrevious = new Version(Settings.AppVersion);
                 IsAppJustUpdated = AppConfig.AppVersion > AppVersionPrevious;
             }
-            Debug.Log("isAppJustUpdated " + IsAppJustUpdated + " previous: " + AppVersionPrevious + " current: " + AppConfig.AppVersion);
+            Debug.Log("UpdateAppVersion() previous: " + AppVersionPrevious + " current: " + AppConfig.AppVersion + " updated: " + (IsAppJustUpdated ? "YES" : "NO"));
             Settings.SetAppVersion(AppConfig.AppVersion);
             SaveSettings();
         }
