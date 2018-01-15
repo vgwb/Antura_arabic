@@ -81,7 +81,7 @@ namespace Antura.ReservedArea
         {
             //Debug.Log("OPEN " + SelectedPlayerId);
             AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
-            AppManager.I.NavigationManager.GoToPlayerBook(BookArea.Player);
+            BookManager.I.OpenBook(BookArea.Player);
         }
 
         public void OnDeleteSelectPlayerProfile()

@@ -1,5 +1,5 @@
 using Antura.Audio;
-using Antura.CameraControl;
+using Antura.Book;
 using Antura.Core.Services;
 using Antura.Database;
 using Antura.Helpers;
@@ -90,6 +90,7 @@ namespace Antura.Core
             NavigationManager = gameObject.AddComponent<NavigationManager>();
             NavigationManager.Init();
             gameObject.AddComponent<KeeperManager>();
+            gameObject.AddComponent<BookManager>();
 
             RewardSystemManager = new RewardSystemManager();
             RewardSystemManager.Init();
@@ -98,7 +99,6 @@ namespace Antura.Core
             PlayerProfileManager.LoadSettings();
 
             Services = new ServicesManager();
-            gameObject.AddComponent<KeeperManager>();
 
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 

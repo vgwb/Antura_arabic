@@ -1,4 +1,3 @@
-using Antura.Book;
 using Antura.Database;
 using Antura.Environment;
 using Antura.Keeper;
@@ -86,17 +85,13 @@ namespace Antura.Core
             // Allowed custom transitions
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Home, AppScene.PlayerCreation));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Home, AppScene.ReservedArea));
-            customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.Book));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.AnturaSpace));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.Rewards));
-            customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.ReservedArea, AppScene.Book));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Rewards, AppScene.AnturaSpace));
 
             // Transitions that can register for a 'back' function
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Home, AppScene.ReservedArea));
-            backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.Book));
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.AnturaSpace));
-            backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.ReservedArea, AppScene.Book));
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.GameSelector));
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Book, AppScene.MiniGame));
         }
@@ -308,13 +303,6 @@ namespace Antura.Core
         public void GoToEnding(bool debugMode = false)
         {
             CustomGoTo(AppScene.Ending, debugMode);
-        }
-
-        [System.Obsolete("Method GoToPlayerBookis deprecated, please use the modal BookManager instead.")]
-        public void GoToPlayerBook(BookArea bookArea)
-        {
-            //BookScene.OverridenOpeningArea = bookArea;
-            CustomGoTo(AppScene.Book);
         }
 
         public void GoToPlayerCreation(bool debugMode = false)
