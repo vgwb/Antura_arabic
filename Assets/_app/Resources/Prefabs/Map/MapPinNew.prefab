@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 11427638}
   - component: {fileID: 6523182}
   m_Layer: 15
-  m_Name: MapPinOLD
+  m_Name: MapPinNew
   m_TagString: Pin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
