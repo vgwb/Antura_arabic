@@ -131,7 +131,7 @@ namespace Antura.Teacher
             // Remove the correct alteration (making sure to get the actual form)
             for (int i = 0; i < alterationsPool.Count; i++)
             {
-                if (alterationsPool[i].IsSameLetterAs(chosenLetterWithForm, LetterEqualityStrictness.WithActualForm))
+                if (alterationsPool[i].IsSameLetterAs(chosenLetterWithForm, LetterEqualityStrictness.WithVisualForm))
                 {
                     alterationsPool.RemoveAt(i);
                 }
