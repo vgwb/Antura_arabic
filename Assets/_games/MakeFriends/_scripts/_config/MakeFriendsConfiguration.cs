@@ -1,5 +1,6 @@
 using Antura.Teacher;
 using System;
+using System.Collections.Generic;
 using Antura.Database;
 
 namespace Antura.Minigames.MakeFriends
@@ -13,7 +14,7 @@ namespace Antura.Minigames.MakeFriends
 
     public enum MakeFriendsVariation
     {
-        LetterInWords = MiniGameCode.MakeFriends_letterinword
+        LetterInWord = MiniGameCode.MakeFriends_letterinword
     }
 
     public class MakeFriendsConfiguration : AbstractGameConfiguration
@@ -50,8 +51,7 @@ namespace Antura.Minigames.MakeFriends
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
-            int nMinCommonLetters = 1;
-            int nMaxCommonLetters = 1;
+            int nCorrect = 1;
             int nWrong = 5;
             int nWords = 2;
             var letterEqualityStrictness = LetterEqualityStrictness.WithVisualForm;
@@ -59,10 +59,10 @@ namespace Antura.Minigames.MakeFriends
 
             var builderParams = new QuestionBuilderParameters();
             switch (Variation) {
-                case MakeFriendsVariation.LetterInWords:
+                case MakeFriendsVariation.LetterInWord:
                     builderParams.letterFilters.excludeDiphthongs = true;
                     builderParams.wordFilters.excludeDipthongs = true;
-                    builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams, letterEqualityStrictness: letterEqualityStrictness);
+                    builder = new CommonLetterInWordQuestionBuilder(nPacks, nCorrect, nWrong, nWords, parameters: builderParams, letterEqualityStrictness: letterEqualityStrictness);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

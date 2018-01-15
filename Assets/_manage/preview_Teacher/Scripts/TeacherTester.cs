@@ -506,7 +506,7 @@ namespace Antura.Teacher.Test
                     builder = new LetterAlterationsInWordsQuestionBuilder(nPacks, nPacksPerRound, parameters: builderParams, letterAlterationFilters: letterAlterationFilters);
                     break;
                 case QuestionBuilderType.CommonLettersInWords:
-                    builder = new CommonLettersInWordQuestionBuilder(nPacks: nPacks, nWrong: nWrongAnswers, parameters: builderParams);
+                    builder = new CommonLetterInWordQuestionBuilder(nPacks: nPacks, nWrong: nWrongAnswers, parameters: builderParams);
                     break;
                 case QuestionBuilderType.RandomWords:
                     builder = new RandomWordsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, firstCorrectIsQuestion: true, parameters: builderParams);

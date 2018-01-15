@@ -91,7 +91,7 @@ namespace Antura.Teacher
 
             // Get a letter
             var usableLetters = teacher.VocabularyAi.SelectData(
-              () => FindEligibleLetters(atLeastNWords: nCorrect),
+              () => FindLettersThatAppearInWords(atLeastNWords: nCorrect),
                 new SelectionParameters(parameters.correctSeverity, 1, useJourney: useJourneyForLetters,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_letters));
             var commonLetter = usableLetters[0];
@@ -100,7 +100,7 @@ namespace Antura.Teacher
             // Get words with the letter 
             // (but without the previous letters)
             var correctWords = teacher.VocabularyAi.SelectData(
-                () => FindCorrectWords(commonLetter),
+                () => FindWordsWithLetter(commonLetter),
                     new SelectionParameters(parameters.correctSeverity, nCorrect, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
             currentRound_words.AddRange(correctWords);
@@ -132,7 +132,7 @@ namespace Antura.Teacher
             return pack;
         }
 
-        private List<LetterData> FindEligibleLetters(int atLeastNWords)
+        private List<LetterData> FindLettersThatAppearInWords(int atLeastNWords)
         {
             var eligibleLetters = new List<LetterData>();
             var vocabularyHelper = AppManager.I.VocabularyHelper;
@@ -174,7 +174,7 @@ namespace Antura.Teacher
             return eligibleLetters;
         }
 
-        private List<WordData> FindCorrectWords(LetterData commonLetter)
+        private List<WordData> FindWordsWithLetter(LetterData commonLetter)
         {
             var eligibleWords = new List<WordData>();
             var vocabularyHelper = AppManager.I.VocabularyHelper;

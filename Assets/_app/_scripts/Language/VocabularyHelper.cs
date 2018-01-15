@@ -361,6 +361,19 @@ namespace Antura.Database
             return commonLettersList;
         }
 
+        public List<LetterData> GetNotCommonLettersInWords(LetterFilters letterFilters, LetterEqualityStrictness letterEqualityStrictness, WordData[] words)
+        {
+            var commonLetters = GetCommonLettersInWords(letterEqualityStrictness, words);
+            var nonCommonLetters = GetAllLettersAndForms(letterFilters);
+            var nonCommonLettersWithComparer= new HashSet<LetterData>(new StrictLetterDataComparer(letterEqualityStrictness));
+            nonCommonLettersWithComparer.UnionWith(nonCommonLetters);
+            foreach (var commonLetter in commonLetters)
+            {
+                nonCommonLettersWithComparer.Remove(commonLetter);
+            }
+            return nonCommonLettersWithComparer.ToList();
+        }
+
         #endregion
 
         #region Word Utilities
