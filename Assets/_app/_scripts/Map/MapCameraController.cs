@@ -163,6 +163,8 @@ namespace Antura.Map
 
         void CheckStageSwitching()
         {
+            if (!_stageMapsManager || !_stageMapsManager.isLazyInitialised) return;
+
             // If dragging between stages, we may need to change stage as we move.
             if (CanDragBetweenStages)
             {

@@ -160,19 +160,44 @@ namespace Antura.Map
             targetCurrentJourneyPosition = CurrentJourneyPosition;
 
             // Setup stage availability
-            for (int stage_i = 1; stage_i <= stageMaps.Length; stage_i++) {
+            for (int stage_i = 1; stage_i <= stageMaps.Length; stage_i++)
+            {
                 bool isStageUnlocked = stage_i <= MaxUnlockedStage;
                 bool isWholeStageUnlocked = stage_i < MaxUnlockedStage;
                 StageMap(stage_i).Initialise(isStageUnlocked, isWholeStageUnlocked);
-                //StageMap(stage_i).Hide();
             }
-
         }
 
+        public bool isLazyInitialised = false;
+
+        IEnumerator LazyInitialiseCO()
+        {
+            for (int stage_i = 1; stage_i <= stageMaps.Length; stage_i++)
+            {
+                if (stage_i == shownStage) continue; // skip already seen stage
+                yield return StartCoroutine(StageMap(stage_i).LazyInitialiseCO());
+            }
+
+            for (int stage_i = 1; stage_i <= stageMaps.Length; stage_i++)
+            {
+                if (stage_i == shownStage) continue; // skip already seen stage
+                yield return StartCoroutine(StageMap(stage_i).LazyInitialiseOptionalsCO());
+            }
+        }
 
         private bool initialMovementNeedsAnimation;
-        private void Start()
+
+        private IEnumerator Start()
         {
+            //Debug.Log("SHOWN STAGE: " + shownStage);
+            if (shownStage == 0) shownStage = 1;
+
+            // Initialise the first one right away
+            var firstBase = StageMap(shownStage).LazyInitialiseCO();
+            while (firstBase.MoveNext()) { }
+            var firstVisuals = StageMap(shownStage).LazyInitialiseOptionalsCO();
+            while (firstVisuals.MoveNext()) { }
+
             // Show the current stage
             TeleportCameraToShownStage(shownStage);
             UpdateStageIndicatorUI(shownStage);
@@ -202,6 +227,11 @@ namespace Antura.Map
             {
                 TriggerInitialMovement();
             }
+
+            // Initialise the rest of the stages
+            yield return StartCoroutine(LazyInitialiseCO());
+
+            isLazyInitialised = true;
         }
 
         // TODO: trigger after the tutorial ends?
@@ -366,8 +396,11 @@ namespace Antura.Map
         {
             foreach (var stageMap in stageMaps) {
                 // Deselect all pins
-                foreach (var pin in stageMap.Pins) {
-                    pin.Select(false);
+                if (stageMap.Pins != null)
+                {
+                    foreach (var pin in stageMap.Pins) {
+                         pin.Select(false);
+                    }
                 }
 
                 // Select the current pin
@@ -450,6 +483,7 @@ namespace Antura.Map
 
         private void SwitchFromToStage(int fromStage, int toStage, bool animateCamera = false)
         {
+            if (!isLazyInitialised) return; // wait for initialisition
             StartCoroutine(SwitchFromToStageCO(fromStage, toStage, animateCamera));
         }
 

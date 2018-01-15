@@ -31,6 +31,7 @@ namespace Antura.Map
         [Header("References")]
         public Transform dotsPivot;
         public Transform mapFloor;
+        public GameObject pinPrefab;
         public GameObject dotPrefab;
         public GameObject ropePrefab;
 
@@ -176,18 +177,35 @@ namespace Antura.Map
         {
             stageUnlocked = _stageUnlocked;
             wholeStageUnlocked = _wholeStageUnlocked;
+        }
 
-            // Find all pins 
-            playPins = new List<Pin>(gameObject.GetComponentsInChildren<Pin>());
+        public IEnumerator LazyInitialiseCO()
+        {
+            // Create all pins
+            var pinPlaceholders = gameObject.GetComponentsInChildren<PinPlaceholder>();
+            playPins = new List<Pin>();
+            for (var jp_i = 0; jp_i < pinPlaceholders.Length; jp_i++)
+            {
+                var pinPlaceholder = pinPlaceholders[jp_i];
+                var pinGO = Instantiate(pinPrefab);
+                var pin = pinGO.GetComponent<Pin>();
+                pin.transform.position = pinPlaceholder.transform.position;
+                playPins.Add(pin);
+                Destroy(pinPlaceholder);
+
+                if (jp_i % 5 == 0) yield return null;
+            }
+
             playPins.Sort((x, y) => x.transform.GetSiblingIndex() - y.transform.GetSiblingIndex());
 
-            // Set the correct data to all pins (also creating the dots)
+            // Set the correct data to all pins
             var allPlaySessionStates = GetAllPlaySessionStatesForStage(stageNumber);
-
-            if (allPlaySessionStates.Count > playPins.Count) {
+            if (allPlaySessionStates.Count > playPins.Count)
+            {
                 Debug.LogError("Stage " + stageNumber + " has only " + playPins.Count + " pins but needs " + allPlaySessionStates.Count);
-                return;
-            } else if (allPlaySessionStates.Count < playPins.Count) {
+                yield break;
+            }
+            else if (allPlaySessionStates.Count < playPins.Count) {
                 Debug.LogWarning("Stage " + stageNumber + " has " + playPins.Count + " pins but needs only " + allPlaySessionStates.Count + ". We destroy the rest");
                 for (int i = allPlaySessionStates.Count; i < playPins.Count; i++) {
                     Destroy(playPins[i].gameObject);
@@ -198,24 +216,17 @@ namespace Antura.Map
             int playerPosIndexCount = 0;
             JourneyPosition assignedJourneyPosition = new JourneyPosition(stageNumber, 1, 1);
 
-            for (int jp_i = 0; jp_i < playPins.Count; jp_i++) {
+            // Initialise all pins
+            for (int jp_i = 0; jp_i < playPins.Count; jp_i++)
+            {
                 var pin = playPins[jp_i];
-                //var psState = allPlaySessionStates[jp_i];
-                //var journeyPos = psState.data.GetJourneyPosition();
                 pin.Initialise(playerPosIndexCount++, assignedJourneyPosition);
                 mapLocations.Add(pin);
 
                 pin.SetLocked();
-                //Debug.Log(assignedJourneyPosition);
                 var psState = allPlaySessionStates.Find(x => x.psData.GetJourneyPosition().Equals(assignedJourneyPosition));
                 if (psState != null) {
                     pin.SetPlaySessionState(psState);
-                }
-
-                // Create visual dots and a rope
-                if (jp_i > 0)
-                {
-                    CreateVisualsBetweenPins(playPins[jp_i], playPins[jp_i - 1]);
                 }
 
                 // Dialogues added to first JP of the stage
@@ -226,44 +237,36 @@ namespace Antura.Map
 
                 // Advance to the next journey pos
                 assignedJourneyPosition = AppManager.I.JourneyHelper.FindNextJourneyPosition(assignedJourneyPosition);
+
+                pin.InitPinHidden();
             }
 
             UnlockPlaySessions();
-
-
-            Disappear();
-
-            // TODO: optimize more with a coroutine
-            /*gameObject.SetActive(true);
-            StartCoroutine(InitialiseVisualsCO());
-            gameObject.SetActive(false);*/
+            //yield return new WaitForSeconds(2.0f);
         }
 
-        /*
-        IEnumerator InitialiseVisualsCO()
+        public IEnumerator LazyInitialiseOptionalsCO()
         {
+            // Load additional visuals
             for (int jp_i = 0; jp_i < playPins.Count; jp_i++)
             {
+                var pin = playPins[jp_i];
+
                 // Create visual dots and a rope
                 if (jp_i > 0)
                 {
                     CreateVisualsBetweenPins(playPins[jp_i], playPins[jp_i - 1]);
-                    yield return null;
+                    if (jp_i % 5 == 0) yield return null;
                 }
+
+                pin.InitOptionalsHidden();
             }
-            Disappear();
-        }*/
+            //yield return new WaitForSeconds(2.0f);
+        }
 
         #region Appear Animation
 
         private bool hasAppeared = false;
-
-        void Disappear()
-        {
-            foreach (var pin in playPins) {
-                pin.Disappear();
-            }
-        }
 
         public void Appear(JourneyPosition fromPos, JourneyPosition toPos)
         {

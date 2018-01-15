@@ -4,7 +4,6 @@ using DG.DeExtensions;
 using DG.Tweening;
 using System.Collections.Generic;
 using Antura.Animation;
-using DG.Tweening.Core;
 using UnityEngine;
 
 namespace Antura.Map
@@ -28,9 +27,6 @@ namespace Antura.Map
         public GameObject pinV1;
         public GameObject pinV2;
         public GameObject pinAssessment;
-
-        public GameObject playButtonGO;
-        public GameObject lockedButtonGO;
 
         public GameObject roadSignGO;
         public TextRender roadSignTextUI;
@@ -90,9 +86,6 @@ namespace Antura.Map
 
             shadowTr = transform.Find("shadow");
 
-            playButtonGO.SetActive(false);
-            lockedButtonGO.SetActive(false);
-
             HandlePlayerClose(false);
         }
 
@@ -102,34 +95,36 @@ namespace Antura.Map
 
         public bool Appeared { get { return appeared; } }
 
-        public void Disappear()
+        public void InitPinHidden()
         {
             appeared = false;
             startPinPosition = currentPinMesh.transform.position;
-            if (rope != null) {
-                startRopeScale = rope.meshRenderer.transform.localScale;
-            }
 
-            if (journeyPosition.IsAssessment())
-            {
-                //currentPinMesh.transform.localScale = Vector3.zero;// = startPinPosition + Vector3.down * 20;
-            }
-            else
+            if (!journeyPosition.IsAssessment())
             {
                 currentPinMesh.transform.position = startPinPosition + Vector3.up * 60;
             }
+            currentPinMesh.gameObject.SetActive(false);
 
             mainDot.transform.SetLocalScale(6f);
-            if (rope != null) {
-                rope.meshRenderer.transform.SetLocalScale(0);
-            }
-            foreach (var dot in dots) {
-                dot.Disappear();
+            shadowTr.SetLocalScale(0);
+        }
+
+        public void InitOptionalsHidden()
+        {
+            if (rope != null)
+            {
+                startRopeScale = rope.meshRenderer.transform.localScale;
             }
 
-            shadowTr.SetLocalScale(0);
-            currentPinMesh.gameObject.SetActive(false);
-            //playSessionFeedback.gameObject.SetActive(false);
+            if (rope != null)
+            {
+                rope.meshRenderer.transform.SetLocalScale(0);
+            }
+            foreach (var dot in dots)
+            {
+                dot.Disappear();
+            }
         }
 
         public void Appear(float duration)
@@ -260,10 +255,6 @@ namespace Antura.Map
                 mainDot.SetAsNothing();
                 return;
             }
-
-            // 3D buttons (DEPRECATED)
-            //lockedButtonGO.SetActive(choice && isLocked);
-            //playButtonGO.SetActive(choice && !isLocked);
 
             //Debug.Log("SELECTED " + this.name + ": " + choice);
 
