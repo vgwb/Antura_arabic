@@ -75,6 +75,8 @@ namespace Antura.AnturaSpace
 
         public void CancelPhoto()
         {
+            if (AnturaSpaceScene.I.TutorialMode) return;
+
             ShopDecorationsManager.I.SetPreviousContext();
 
             currentPhotoTexture = null;

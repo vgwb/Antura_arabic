@@ -473,6 +473,8 @@ namespace Antura.AnturaSpace
             FINISH
         }
 
+        public ShopAction_Photo photoAction;
+
         private PhotoTutorialStep _currentPhotoStep = PhotoTutorialStep.START;
         private void StepTutorialPhoto()
         {
@@ -487,7 +489,7 @@ namespace Antura.AnturaSpace
             SetPhaseUIShown(FirstContactPhase.AnturaSpace_Exit, false);
 
             // Makes sure you have enough bones
-            var photoCost = FindObjectOfType<ShopAction_Photo>().bonesCost;
+            var photoCost = photoAction.bonesCost;
             AppManager.I.Player.MakeSureHasEnoughBones(photoCost);
 
             Debug.Log("CURRENT STEP IS " + _currentPhotoStep);
@@ -504,6 +506,9 @@ namespace Antura.AnturaSpace
                     break;
 
                 case PhotoTutorialStep.CONFIRM_PHOTO:
+
+                    AnturaSpaceScene.I.TutorialMode = true;
+                    CurrentTutorialFocus = m_oCookieButton; // HACK: focus is actually photo, but the shop has no reference to it, so we re-use the shop button instead
 
                     // Cleanup last step
                     m_oPhotoButton.onClick.RemoveListener(StepTutorialPhoto);
@@ -531,6 +536,9 @@ namespace Antura.AnturaSpace
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
 
                     CompleteTutorialPhase();
+
+                    AnturaSpaceScene.I.TutorialMode = false;
+                    CurrentTutorialFocus = null;
                     break;
             }
         }

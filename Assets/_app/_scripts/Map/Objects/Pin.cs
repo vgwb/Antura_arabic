@@ -106,7 +106,8 @@ namespace Antura.Map
             }
             currentPinMesh.gameObject.SetActive(false);
 
-            mainDot.transform.SetLocalScale(6f);
+            mainDot.Highlight(false);
+
             shadowTr.SetLocalScale(0);
         }
 
@@ -143,7 +144,7 @@ namespace Antura.Map
                 currentPinMesh.transform.DOMove(startPinPosition, duration * 0.5f);
             }
 
-            mainDot.transform.DOScale(Vector3.one * 6, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f).OnComplete(
+            mainDot.transform.DOScale(Vector3.one * 8, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f).OnComplete(
                 () =>
                 playSessionFeedback.gameObject.SetActive(true)  // make the feedback appear at the end
                 );
@@ -159,7 +160,7 @@ namespace Antura.Map
             currentPinMesh.gameObject.SetActive(true);
             currentPinMesh.transform.position = startPinPosition;
             currentPinMesh.transform.localScale = Vector3.one;
-            mainDot.transform.localScale = Vector3.one * 6;
+            mainDot.transform.localScale = Vector3.one * 8;
             shadowTr.transform.localScale = Vector3.one * 12.5f;
             playSessionFeedback.gameObject.SetActive(true);
 
