@@ -66,6 +66,7 @@ namespace Antura.Book
             foreach (var game in mainMiniGamesList) {
                 btnGO = Instantiate(MainMiniGameItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
+                btnGO.transform.SetAsFirstSibling();
                 btnGO.GetComponent<ItemMainMiniGame>().Init(this, game);
             }
             DetailMainMiniGame(null);
