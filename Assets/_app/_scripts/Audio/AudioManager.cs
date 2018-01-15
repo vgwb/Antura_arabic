@@ -421,7 +421,7 @@ namespace Antura.Audio
             res = GetCachedResource("AudioArabic/Letters/" + audiofile);
 
             if (res == null) {
-                Debug.Log("Warning: cannot find audio clip for letter:" + data + " filename:" + audiofile);
+                Debug.LogWarning("Warning: cannot find audio clip for letter:" + data + " filename:" + audiofile);
             }
             return res;
         }
@@ -430,7 +430,7 @@ namespace Antura.Audio
         {
             var res = GetCachedResource("AudioArabic/Words/" + data.Id);
             if (res == null) {
-                Debug.Log("Warning: cannot find audio clip for " + data);
+                Debug.LogWarning("Warning: cannot find audio clip for " + data);
             }
             return res;
         }
@@ -439,7 +439,7 @@ namespace Antura.Audio
         {
             var res = GetCachedResource("AudioArabic/Phrases/" + data.Id);
             if (res == null) {
-                Debug.Log("Warning: cannot find audio clip for " + data);
+                Debug.LogWarning("Warning: cannot find audio clip for " + data);
             }
             return res;
         }
@@ -448,7 +448,7 @@ namespace Antura.Audio
         {
             var res = GetCachedResource("AudioArabic/LearningBlocks/" + AudioFile);
             if (res == null) {
-                Debug.Log("Warning: cannot find audio clip for LearningBlocks" + AudioFile);
+                Debug.LogWarning("Warning: cannot find audio clip for LearningBlocks" + AudioFile);
             }
             return res;
         }
@@ -457,7 +457,7 @@ namespace Antura.Audio
         {
             SfxConfiguration conf = GetSfxConfiguration(sfx);
             if (conf == null || conf.clips == null || conf.clips.Count == 0) {
-                Debug.Log("No Audio clips configured for: " + sfx);
+                Debug.LogWarning("No Audio clips configured for: " + sfx);
                 return null;
             }
             return conf.clips.GetRandom();
@@ -467,7 +467,7 @@ namespace Antura.Audio
         {
             SfxConfiguration conf = GetSfxConfiguration(sfx);
             if (conf == null || conf.clips == null || conf.clips.Count == 0) {
-                Debug.Log("No Audio clips configured for: " + sfx);
+                Debug.LogWarning("No Audio clips configured for: " + sfx);
                 return null;
             }
             return conf;
