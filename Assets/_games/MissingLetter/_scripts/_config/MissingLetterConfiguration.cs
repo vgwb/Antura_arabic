@@ -62,6 +62,7 @@ namespace Antura.Minigames.MissingLetter
                     // wrong answers are other letters in different forms & diacritics
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builderParams.letterFilters.excludeDiphthongs = true;
+                    builderParams.wordFilters.excludeDipthongs = true;
                     builder = new LetterAlterationsInWordsQuestionBuilder(nPacks, 1, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters);
                     break;
 

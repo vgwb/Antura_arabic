@@ -63,8 +63,8 @@ namespace Antura.Minigames.Egg
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 case EggVariation.BuildWord:
-                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong: nWrong, useAllCorrectLetters: true,
-                        parameters: builderParams);
+                    builderParams.wordFilters.excludeDipthongs = true;
+                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
                     break;
                 case EggVariation.LetterPhoneme:
                     builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, 3, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters_OneForm);

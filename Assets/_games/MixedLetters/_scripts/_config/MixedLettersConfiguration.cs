@@ -56,6 +56,7 @@ namespace Antura.Minigames.MixedLetters
                     builder = new AlphabetQuestionBuilder(parameters: builderParams);
                     break;
                 case MixedLettersVariation.BuildWord:
+                    builderParams.wordFilters.excludeDipthongs = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, maximumWordLength: 6, useAllCorrectLetters: true, parameters: builderParams);
                     break;
                 default:

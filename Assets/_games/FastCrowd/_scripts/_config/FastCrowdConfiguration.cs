@@ -86,6 +86,7 @@ namespace Antura.Minigames.FastCrowd
                 case FastCrowdVariation.BuildWord:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
+                    builderParams.wordFilters.excludeDipthongs = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, nWrong: nWrong, useAllCorrectLetters: true,
                         parameters: builderParams);
                     break;

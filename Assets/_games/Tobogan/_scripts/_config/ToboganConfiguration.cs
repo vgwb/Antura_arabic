@@ -60,6 +60,7 @@ namespace Antura.Minigames.Tobogan
             {
                 case ToboganVariation.LetterInWord:
                     builderParams.wordFilters.excludeLetterVariations = true;
+                    builderParams.wordFilters.excludeDipthongs = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
                     break;
                 case ToboganVariation.SunMoon:
