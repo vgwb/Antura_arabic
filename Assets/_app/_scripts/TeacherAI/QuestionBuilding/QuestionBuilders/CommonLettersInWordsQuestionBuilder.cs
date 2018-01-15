@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
@@ -79,7 +80,7 @@ namespace Antura.Teacher
 
             // Get words with the common letter 
             // (but without the previous letters)
-            var wordsWithCommonLetter = teacher.VocabularyAi.SelectData(
+             var wordsWithCommonLetter = teacher.VocabularyAi.SelectData(
                 () => FindWordsWithCommonLetter(commonLetter),
                     new SelectionParameters(parameters.correctSeverity, nWords, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
@@ -93,7 +94,6 @@ namespace Antura.Teacher
                         getMaxData:true // needed to skip priority filtering, which will filter out forms!
                         ));
             lettersNotInCommon = lettersNotInCommon.RandomSelect(nWrong);  // needed to skip priority filtering, which will filter out forms!
-
             //Debug.Log("Not in common: " + FindLettersNotInCommon(wordsWithCommonLetter).ToDebugStringNewline());
             //Debug.Log("Wrongs: " + lettersNotInCommon.ToDebugString());
 
@@ -113,40 +113,51 @@ namespace Antura.Teacher
             return pack;
         }
 
+
+        private Dictionary<LetterData, List<WordData>> lettersToWordCache;
+
         private List<LetterData> FindLettersThatAppearInWords(int atLeastNWords)
         {
             var eligibleLetters = new List<LetterData>();
             var vocabularyHelper = AppManager.I.VocabularyHelper;
-            //var allLetters = vocabularyHelper.GetAllLetters(parameters.letterFilters);
-            //Debug.Log("All letters: " + allLetters.Count);
-            var allLetters = vocabularyHelper.GetAllLettersAndForms(parameters.letterFilters);  // we consider different forms as different letters
-            foreach (var letter in allLetters)
+
+            if (lettersToWordCache == null)
             {
-                // Check number of words
-                var wordsWithLetterFull = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, letter, letterEqualityStrictness);
-                //Debug.Log("N words for letter " + letter + " is " + wordsWithLetterFull.Count);
-                wordsWithLetterFull.RemoveAll(x => vocabularyHelper.ProblematicWordIds.Contains(x.Id));  // HACK: Skip the problematic words (for now)
+                lettersToWordCache = new Dictionary<LetterData, List<WordData>>(new StrictLetterDataComparer(letterEqualityStrictness));
 
-                if (wordsWithLetterFull.Count == 0)
+                var allLetters = vocabularyHelper.GetAllLettersAndForms(parameters.letterFilters);     // we consider different forms as different letters
+                foreach (var letter in allLetters)
                 {
-                    continue;
-                }
+                    lettersToWordCache[letter] = new List<WordData>();
+                    // Check number of words
+                    var wordsWithLetterForm = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, letter, letterEqualityStrictness);
+                    //Debug.Log("N words for letter " + letter + " is " + wordsWithLetterFull.Count);
+                    wordsWithLetterForm.RemoveAll(x => vocabularyHelper.ProblematicWordIds.Contains(x.Id));  // HACK: Skip the problematic words (for now)
 
+                    lettersToWordCache[letter].AddRange(wordsWithLetterForm);
+                }
+            }
+
+            foreach (var letter in lettersToWordCache.Keys)
+            {
+                var words = lettersToWordCache[letter];
+
+                if (words.Count == 0)  continue;
+
+                // Check number of words
                 var wordsWithLetter = AppManager.I.Teacher.VocabularyAi.SelectData(
-                    () => wordsWithLetterFull,
+                    () => words,
                         new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: true), canReturnZero: true);
 
-                int nWords = wordsWithLetter.Count;
-
-                if (nWords < atLeastNWords)
+                if (wordsWithLetter.Count < atLeastNWords)
                 {
                     continue;
                 }
 
                 //UnityEngine.Debug.Log("OK letter: " + letter + " with nwords: "  + wordsWithLetter.Count);
-
                 eligibleLetters.Add(letter);
             }
+
             return eligibleLetters;
         }
 
