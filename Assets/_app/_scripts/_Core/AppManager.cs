@@ -98,7 +98,6 @@ namespace Antura.Core
             PlayerProfileManager.LoadSettings();
 
             Services = new ServicesManager();
-            gameObject.AddComponent<KeeperManager>();
 
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
