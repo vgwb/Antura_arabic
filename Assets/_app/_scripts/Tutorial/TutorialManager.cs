@@ -16,6 +16,8 @@ namespace Antura.Tutorial
         protected abstract AppScene CurrentAppScene { get; }
         public Object CurrentTutorialFocus { get; protected set; }
 
+        protected FirstContactPhase CurrentRunningPhase = FirstContactPhase.NONE;
+
         public void HandleStart()
         {
             /*if (FirstContactManager.I.IsSequenceFinished()) {
@@ -57,7 +59,7 @@ namespace Antura.Tutorial
         protected void CompleteTutorialPhase()
         {
             StopTutorialRunning();
-            FirstContactManager.I.CompleteCurrentPhaseInSequence();
+            FirstContactManager.I.CompletePhaseCheckSequence(CurrentRunningPhase);
 
             // Check if we have more
             HandleStart();

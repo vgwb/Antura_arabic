@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Core;
@@ -242,6 +243,20 @@ namespace Antura.Profile
             if (VERBOSE) Debug.Log("FirstContact - phase " + _phase + " unlocked!");
         }
 
+        public void CompletePhaseCheckSequence(FirstContactPhase phase)
+        {
+            if (phase == FirstContactPhase.NONE) throw new Exception("Phase for completion not correctly set!");
+
+            if (phasesSequence.Contains(phase))
+            {
+                CompleteCurrentPhaseInSequence();
+            }
+            else
+            {
+                CompletePhase(phase);
+            }
+        }
+
         public void CompletePhase(FirstContactPhase _phase)
         {
             SetPhaseState(_phase, FirstContactPhaseState.Completed);
@@ -435,14 +450,7 @@ namespace Antura.Profile
         {
             if (IsPhaseUnlockedAndNotCompleted(phase) && condition)
             {
-                if (phasesSequence.Contains(phase))
-                {
-                    CompleteCurrentPhaseInSequence();
-                }
-                else
-                {
-                    CompletePhase(phase);
-                }
+                CompletePhaseCheckSequence(phase);
             }
         }
 

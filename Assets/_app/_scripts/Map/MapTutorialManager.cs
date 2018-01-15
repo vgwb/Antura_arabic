@@ -48,6 +48,8 @@ namespace Antura.Map
             {
                 case FirstContactPhase.Map_PlaySession:
 
+                    CurrentRunningPhase = FirstContactPhase.Map_PlaySession;
+
                     _stageMapsManager.SetPlayUIActivation(true);
 
                     KeeperManager.I.PlayDialog(LocalizationDataId.Map_First, true, true, () => {
@@ -62,7 +64,6 @@ namespace Antura.Map
                     break;
             }
             if (isPlayingSequentialPhase) return;
-
 
             // New features unlocking
             /*

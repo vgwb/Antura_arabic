@@ -116,6 +116,8 @@ namespace Antura.AnturaSpace
 
         private void StepTutorialTouchAntura()
         {
+            CurrentRunningPhase = FirstContactPhase.AnturaSpace_TouchAntura;
+
             // Push the player to touch Antura
 
             TutorialUI.Clear(false);
@@ -158,6 +160,8 @@ namespace Antura.AnturaSpace
         private CustomizationTutorialStep _currentCustomizationStep = CustomizationTutorialStep.START;
         private void StepTutorialCustomization()
         {
+            CurrentRunningPhase = FirstContactPhase.AnturaSpace_Customization;
+
             if (_currentCustomizationStep < CustomizationTutorialStep.FINISH) _currentCustomizationStep += 1;
 
             //Debug.Log("CURRENT STEP IS " + _currentCustomizationStep);
@@ -289,6 +293,8 @@ namespace Antura.AnturaSpace
         private ShopTutorialStep _currentShopStep = ShopTutorialStep.START;
         private void StepTutorialShop()
         {
+            CurrentRunningPhase = FirstContactPhase.AnturaSpace_Shop;
+
             if (_currentShopStep < ShopTutorialStep.FINISH) _currentShopStep += 1;
 
             //Debug.Log("WE ARE IN STEP " + _currentShopStep);
@@ -470,6 +476,8 @@ namespace Antura.AnturaSpace
         private PhotoTutorialStep _currentPhotoStep = PhotoTutorialStep.START;
         private void StepTutorialPhoto()
         {
+            CurrentRunningPhase = FirstContactPhase.AnturaSpace_Photo;
+
             if (_currentPhotoStep < PhotoTutorialStep.FINISH) _currentPhotoStep += 1;
 
             TutorialUI.Clear(false);
