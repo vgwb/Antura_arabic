@@ -24,7 +24,7 @@ namespace Antura.Book
         public GameObject ElementsContainer;
         public TextRender ArabicText;
         public TextRender EnglishText;
-        public TextRender ScoreText;
+        //public TextRender ScoreText;
         public Image MiniGameLogoImage;
         public Image MiniGameBadgeImage;
         public Button LaunchGameButton;
@@ -97,7 +97,7 @@ namespace Antura.Book
                 currentMiniGame = null;
                 ArabicText.text = "";
                 EnglishText.text = "";
-                ScoreText.text = "";
+                //ScoreText.text = "";
                 MiniGameLogoImage.enabled = false;
                 MiniGameBadgeImage.enabled = false;
                 LaunchGameButton.gameObject.SetActive(false);

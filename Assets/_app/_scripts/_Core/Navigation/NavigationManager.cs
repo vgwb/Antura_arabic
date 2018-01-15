@@ -390,7 +390,7 @@ namespace Antura.Core
             if (NavData.PrevSceneStack != null && NavData.PrevSceneStack.Count > 0) {
                 return NavData.PrevSceneStack.Peek() == AppScene.ReservedArea;
             } else {
-                return true;
+                return false;
             }
         }
 
