@@ -13,7 +13,7 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public static Version AppVersion = new Version(1, 1, 0, 581);
+        public static Version AppVersion = new Version(1, 1, 0, 582);
 
         /// <summary>
         /// Version of the Static Database Scheme.
