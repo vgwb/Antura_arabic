@@ -26,8 +26,7 @@ namespace Antura.Rewards
         public AnturaAnimationController AnturaAnimController;
         //public Button AnturaSpaceBtton;
 
-        private TutorialManager tutorialManager;
-        Tween btAnturaTween;
+        //Tween btAnturaTween;
 
         protected override void Start()
         {
@@ -41,7 +40,7 @@ namespace Antura.Rewards
 
             //AnturaSpaceBtton.onClick.AddListener(() => AppManager.I.NavigationManager.GoToAnturaSpace());
 
-            var tutorialManager = gameObject.GetComponentInChildren<RewardsTutorialManager>();
+            tutorialManager = gameObject.GetComponentInChildren<RewardsTutorialManager>();
             tutorialManager.HandleStart();
 
             DebugManager.OnSkipCurrentScene += HandleSceneSkip;
@@ -56,7 +55,7 @@ namespace Antura.Rewards
         {
             DebugManager.OnSkipCurrentScene -= HandleSceneSkip;
 
-            btAnturaTween.Kill();
+            //btAnturaTween.Kill();
         }
 
         public void ShowReward()

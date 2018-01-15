@@ -465,7 +465,7 @@ namespace Antura.LivingLetters
             var word = Data as LL_WordData;
             if (word != null)
             {
-                string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
+                //string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
 
                 List<ArabicAlphabetHelper.ArabicStringPart> parts = new List<ArabicAlphabetHelper.ArabicStringPart>();
 

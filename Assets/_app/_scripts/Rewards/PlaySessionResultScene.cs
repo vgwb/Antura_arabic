@@ -63,7 +63,7 @@ namespace Antura.Rewards
             }
             else
             {
-                var uiGameObjects = GameResultUI.ShowEndsessionResult(AppManager.I.NavigationManager.UseEndSessionResults(), 1);
+                GameResultUI.ShowEndsessionResult(AppManager.I.NavigationManager.UseEndSessionResults(), 1);
             }
 
         }

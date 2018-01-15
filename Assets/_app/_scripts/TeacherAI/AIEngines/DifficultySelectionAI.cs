@@ -12,27 +12,28 @@ namespace Antura.Teacher
     {
 
         // References
-        private DatabaseManager dbManager;
-        private PlayerProfile playerProfile;
+        //private DatabaseManager dbManager;
+        //private PlayerProfile playerProfile;
 
         // Weights
-        private float ageWeightContribution = ConfigAI.Difficulty_Age_Weight;                   // Higher age -> higher difficulty
-        private float performanceWeightContribution = ConfigAI.Difficulty_Performance_Weight;  // Higher performance -> higher difficulty
+        //private float ageWeightContribution = ConfigAI.Difficulty_Age_Weight;                   // Higher age -> higher difficulty
+        //private float performanceWeightContribution = ConfigAI.Difficulty_Performance_Weight;  // Higher performance -> higher difficulty
 
         public DifficultySelectionAI(DatabaseManager _dbManager)
         {
-            dbManager = _dbManager;
+            //dbManager = _dbManager;
         }
 
         public void SetPlayerProfile(PlayerProfile _playerProfile)
         {
-            playerProfile = _playerProfile;
+            // playerProfile = _playerProfile;
         }
 
         public float SelectDifficulty(MiniGameCode miniGameCode)
         {
             return 0;   // Force difficulty, always zero
 
+            /*
             float totalWeight = ageWeightContribution + performanceWeightContribution;
 
             // Age
@@ -88,7 +89,7 @@ namespace Antura.Teacher
                 ConfigAI.AppendToTeacherReport(debugString);
             }
 
-            return totalDifficulty;
+            return totalDifficulty;*/
         }
 
     }

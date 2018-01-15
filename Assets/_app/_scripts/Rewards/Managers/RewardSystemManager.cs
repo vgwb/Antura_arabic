@@ -447,7 +447,7 @@ namespace Antura.Rewards
             for (int i = 0; i < allPlaySessionInfos.Count; i++)
             {
                 var jp = AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id);
-                var packs = UnlockAllRewardPacksForJourneyPosition(jp, false);
+                UnlockAllRewardPacksForJourneyPosition(jp, false);
                 //if (packs != null) Debug.LogFormat("Unlocked rewards for playsession {0} : {1}", jp, packs.Count);
             }
 

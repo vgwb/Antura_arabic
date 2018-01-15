@@ -7,11 +7,11 @@ namespace Antura.Rewards
 {
     public class RewardsTutorialManager : TutorialManager
     {
-        private RewardsScene _mScene;
+        //private RewardsScene _mScene;
 
         protected override void InternalHandleStart()
         {
-            _mScene = FindObjectOfType<RewardsScene>();
+            //_mScene = FindObjectOfType<RewardsScene>();
 
             switch (FirstContactManager.I.CurrentPhaseInSequence) {
                 case FirstContactPhase.Reward_FirstBig:

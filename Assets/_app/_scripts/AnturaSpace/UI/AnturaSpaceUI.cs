@@ -302,7 +302,7 @@ namespace Antura.AnturaSpace.UI
             }
             foreach (var bt in btsItems)
             {
-                if (!bt.IsLocked)
+                if (!bt.IsItemLocked)
                 {
                     return bt;
                 }

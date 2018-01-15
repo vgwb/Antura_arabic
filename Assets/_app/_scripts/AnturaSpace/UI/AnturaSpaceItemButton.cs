@@ -24,13 +24,13 @@ namespace Antura.AnturaSpace.UI
             get { return isNew && !isNewForceHidden; }
         }
 
-        public bool IsLocked
+        public bool IsItemLocked
         {
-            get { return isLocked; }
+            get { return _isItemLocked; }
         }
 
         private RenderTexture renderTexture;
-        private bool isNew, isNewForceHidden, isLocked;
+        private bool isNew, isNewForceHidden, _isItemLocked;
 
         #region Unity
 
@@ -61,7 +61,7 @@ namespace Antura.AnturaSpace.UI
         {
             base.Lock(_doLock);
 
-            isLocked = _doLock;
+            _isItemLocked = _doLock;
 
             IcoLock.SetActive(_doLock);
             RewardImage.gameObject.SetActive(!_doLock);

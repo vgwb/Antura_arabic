@@ -30,7 +30,7 @@ namespace Antura.Book
             //InfoTable.AddSliderRow(LocalizationDataId.UI_Unlocked_Levels, totalPlaySessionsUnlocked.Count, totalPlaySessions.Count);
 
             // Total elapsed time
-            var totalTimespan = GetTotalApplicationTime();
+            //var totalTimespan = GetTotalApplicationTime();
             //InfoTable.AddRow(LocalizationDataId.UI_Journey_duration,totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
 
             // Played Games
