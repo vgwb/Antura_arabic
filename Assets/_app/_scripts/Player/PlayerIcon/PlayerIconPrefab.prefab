@@ -408,7 +408,7 @@ MonoBehaviour:
   AutoInit: 0
   HideLevel: 0
   LevelLabelHatShift: 30
-  Background: {fileID: 0}
+  Background: {fileID: 114132535123787616}
   EndgameHat: {fileID: 21300000, guid: 602eebe108fce3f45ae939c2a29f2ddd, type: 3}
   EndgameHatWStars: {fileID: 21300000, guid: 367f84c200dc3da41b9ef565570f15f3, type: 3}
   HighlightImage: {fileID: 1886912636998786}
