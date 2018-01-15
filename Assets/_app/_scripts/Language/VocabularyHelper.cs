@@ -379,13 +379,16 @@ namespace Antura.Database
             if (filters.excludePluralDual && data.Form != WordDataForm.Singular) {
                 return false;
             }
-            if (filters.excludeDiacritics && this.WordHasDiacriticCombo(data)) {
+            if (filters.excludeDiacritics && WordHasDiacriticCombo(data)) {
                 return false;
             }
-            if (filters.excludeLetterVariations && this.WordHasLetterVariations(data)) {
+            if (filters.excludeLetterVariations && WordHasLetterVariations(data)) {
                 return false;
             }
-            if (filters.requireDiacritics && !this.WordHasDiacriticCombo(data)) {
+            if (filters.requireDiacritics && !WordHasDiacriticCombo(data)) {
+                return false;
+            }
+            if (filters.excludeDipthongs && WordHasDipthongs(data)){
                 return false;
             }
             return true;
@@ -395,6 +398,18 @@ namespace Antura.Database
         {
             foreach (var letter in GetLettersInWord(data)) {
                 if (letter.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool WordHasDipthongs(WordData word)
+        {
+            foreach (var letter in GetLettersInWord(word))
+            {
+                if (letter.Kind == LetterDataKind.Diphthong)
+                {
                     return true;
                 }
             }

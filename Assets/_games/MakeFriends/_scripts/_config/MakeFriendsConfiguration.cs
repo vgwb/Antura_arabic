@@ -1,5 +1,6 @@
 using Antura.Teacher;
 using System;
+using Antura.Database;
 
 namespace Antura.Minigames.MakeFriends
 {
@@ -53,12 +54,15 @@ namespace Antura.Minigames.MakeFriends
             int nMaxCommonLetters = 1;
             int nWrong = 5;
             int nWords = 2;
+            var letterEqualityStrictness = LetterEqualityStrictness.WithVisualForm;
+
 
             var builderParams = new QuestionBuilderParameters();
             switch (Variation) {
                 case MakeFriendsVariation.LetterInWords:
                     builderParams.letterFilters.excludeDiphthongs = true;
-                    builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams);
+                    builderParams.wordFilters.excludeDipthongs = true;
+                    builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams, letterEqualityStrictness: letterEqualityStrictness);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
