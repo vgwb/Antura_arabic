@@ -335,7 +335,7 @@ namespace Antura.Audio
 
         public IAudioSource PlayDialogue(LocalizationData data, bool clearPreviousCallback = false)
         {
-            Debug.Log("PlayDialogue " + data.Id);
+            //Debug.Log("PlayDialogue " + data.Id);
 
             if (clearPreviousCallback) {
                 dialogueEndedCallbacks.Clear();

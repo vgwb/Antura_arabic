@@ -9,25 +9,22 @@ namespace Antura.Book
     /// <summary>
     /// Displays a MiniGame variation item in the MiniGames panel of the Player Book.
     /// </summary>
-    public class ItemMiniGameVariation : MonoBehaviour, IPointerClickHandler
+    public class ItemMiniGame : MonoBehaviour, IPointerClickHandler
     {
         MiniGameInfo miniGameInfo;
 
-        //public Image Icon;
-        Image BackgroundImage;
-
         public Image BadgeIcon;
         public Image LockIcon;
+        public Image BackgroundImage;
 
         bool isSelected;
         bool isLocked;
-        ItemMainMiniGame myManager;
+        GamesPanel myManager;
 
-        public void Init(ItemMainMiniGame _manager, MiniGameInfo _MiniGameInfo)
+        public void Init(GamesPanel _manager, MiniGameInfo _MiniGameInfo)
         {
             miniGameInfo = _MiniGameInfo;
             myManager = _manager;
-            BackgroundImage = GetComponent<Image>();
 
             if (miniGameInfo.unlocked || AppManager.I.Player.IsDemoUser) {
                 isLocked = false;

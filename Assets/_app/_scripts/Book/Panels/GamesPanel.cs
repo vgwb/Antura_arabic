@@ -14,7 +14,9 @@ namespace Antura.Book
     public class GamesPanel : MonoBehaviour
     {
         [Header("Prefabs")]
-        public GameObject MinigameItemPrefab;
+        public GameObject MainMiniGameItemPrefab;
+        public GameObject VariationsContainer;
+        public GameObject MiniGameItemPrefab;
 
         [Header("References")]
         public GameObject DetailPanel;
@@ -51,30 +53,46 @@ namespace Antura.Book
             switch (panel) {
                 case BookArea.MiniGames:
                     //AudioManager.I.PlayDialog("Book_Games");
-                    MinigamesPanel();
+                    MiniGamesPanel();
                     break;
             }
         }
 
-        void MinigamesPanel()
+        void MiniGamesPanel()
         {
             emptyContainer(ElementsContainer);
 
             var mainMiniGamesList = MiniGamesUtilities.GetMainMiniGameList();
             foreach (var game in mainMiniGamesList) {
-                btnGO = Instantiate(MinigameItemPrefab);
+                btnGO = Instantiate(MainMiniGameItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
                 btnGO.GetComponent<ItemMainMiniGame>().Init(this, game);
             }
+            DetailMainMiniGame(null);
             DetailMiniGame(null);
+        }
+
+        public void DetailMainMiniGame(MainMiniGame selectedMainMiniGame)
+        {
+            emptyContainer(VariationsContainer);
+
+            if (selectedMainMiniGame == null) {
+                return;
+            }
+
+            //Debug.Log("DetailMainMiniGame(): " + selectedMainMiniGame.MainId);
+            foreach (var gameVariation in selectedMainMiniGame.variations) {
+                btnGO = Instantiate(MiniGameItemPrefab);
+                btnGO.transform.SetParent(VariationsContainer.transform, false);
+                btnGO.GetComponent<ItemMiniGame>().Init(this, gameVariation);
+            }
+
+            ElementsContainer.BroadcastMessage("Select", selectedMainMiniGame, SendMessageOptions.DontRequireReceiver);
+            DetailMiniGame(selectedMainMiniGame.variations[0]);
         }
 
         public void DetailMiniGame(MiniGameInfo selectedGameInfo)
         {
-            //foreach (Transform t in ElementsContainer.transform) {
-            //    t.GetComponent<ItemMainMiniGame>().Select(selectedGameInfo);
-            //}
-
             if (selectedGameInfo == null) {
                 currentMiniGame = null;
                 ArabicText.text = "";
@@ -86,9 +104,11 @@ namespace Antura.Book
                 DetailPanel.SetActive(false);
                 return;
             }
+
             DetailPanel.SetActive(true);
             currentMiniGame = selectedGameInfo.data;
-            ElementsContainer.BroadcastMessage("Select", selectedGameInfo, SendMessageOptions.DontRequireReceiver);
+            VariationsContainer.BroadcastMessage("Select", selectedGameInfo, SendMessageOptions.DontRequireReceiver);
+
             AudioManager.I.PlayDialogue(selectedGameInfo.data.GetTitleSoundFilename());
 
             ArabicText.text = selectedGameInfo.data.Title_Ar;

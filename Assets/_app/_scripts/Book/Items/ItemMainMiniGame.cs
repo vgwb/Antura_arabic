@@ -14,13 +14,9 @@ namespace Antura.Book
     {
         MainMiniGame mainGameInfo;
 
-        public GameObject VariationsContainer;
-        public GameObject ItemMiniGameVariationPrefab;
-
         public Image BackgroundImage;
         public TextRender Title;
         public Image Icon;
-        public Image BadgeIcon;
         public Image LockIcon;
 
         bool isSelected;
@@ -48,35 +44,33 @@ namespace Antura.Book
 
             Icon.sprite = Resources.Load<Sprite>(icoPath);
 
-            emptyContainers();
             isLocked = true;
             foreach (var gameVariation in mainGameInfo.variations) {
-                btnGO = Instantiate(ItemMiniGameVariationPrefab);
-                btnGO.transform.SetParent(VariationsContainer.transform, false);
-                btnGO.GetComponent<ItemMiniGameVariation>().Init(this, gameVariation);
                 if (gameVariation.unlocked) {
                     isLocked = false;
                 }
+                //Debug.Log("gameVariation() main game " + mainGameInfo.MainId + " / " + gameVariation.data.Code + "(" + isLocked + ")");
             }
             LockIcon.enabled = isLocked;
         }
 
         public void OnClicked()
         {
+            //Debug.Log("OnClicked() main game " + mainGameInfo.MainId);
             if (!isLocked) {
-                DetailMiniGame(mainGameInfo.variations[0]);
+                DetailMiniGame(mainGameInfo);
             }
         }
 
-        public void DetailMiniGame(MiniGameInfo miniGameInfo)
+        public void DetailMiniGame(MainMiniGame mainMiniGameInfo)
         {
-            panelManager.DetailMiniGame(miniGameInfo);
+            panelManager.DetailMainMiniGame(mainMiniGameInfo);
         }
 
-        public void Select(MiniGameInfo gameInfo = null)
+        public void Select(MainMiniGame gameInfo = null)
         {
             if (gameInfo != null) {
-                isSelected = (gameInfo.data.Main == mainGameInfo.MainId);
+                isSelected = (gameInfo.MainId == mainGameInfo.MainId);
             } else {
                 isSelected = false;
             }
@@ -92,11 +86,5 @@ namespace Antura.Book
             }
         }
 
-        void emptyContainers()
-        {
-            foreach (Transform t in VariationsContainer.transform) {
-                Destroy(t.gameObject);
-            }
-        }
     }
 }
