@@ -111,7 +111,9 @@ namespace Antura.Teacher
             {
                 wrongWords = teacher.VocabularyAi.SelectData(
                     () => FindWrongWords(correctWords),
-                        new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
+                        new SelectionParameters(parameters.wrongSeverity, nWrong,
+                          useJourney: parameters.useJourneyForWrong,
+                          packListHistory: PackListHistory.NoFilter,
                             journeyFilter: SelectionParameters.JourneyFilter.CurrentJourney));
                 currentRound_words.AddRange(wrongWords);
             }

@@ -217,7 +217,6 @@ namespace Antura.Assessment
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
-            builderParams.useJourneyForWrong = true;
             builderParams.wordFilters.requireDrawings = true;
             builderParams.sortPacksByDifficulty = false;
 
@@ -237,7 +236,6 @@ namespace Antura.Assessment
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
-            builderParams.useJourneyForWrong = false;
             builderParams.wordFilters.requireDrawings = true;
             builderParams.sortPacksByDifficulty = false;
             SimultaneosQuestions = 1;
@@ -289,7 +287,6 @@ namespace Antura.Assessment
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
-            builderParams.useJourneyForWrong = false;
             builderParams.sortPacksByDifficulty = false;
 
             SimultaneosQuestions = 1;
@@ -357,7 +354,6 @@ namespace Antura.Assessment
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
-            builderParams.useJourneyForWrong = false;
             builderParams.sortPacksByDifficulty = false;
 
             return new WordsWithLetterQuestionBuilder(
@@ -406,7 +402,6 @@ namespace Antura.Assessment
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
-            builderParams.useJourneyForWrong = false;
             builderParams.sortPacksByDifficulty = false;
 
             return new LettersInWordQuestionBuilder(
@@ -427,7 +422,6 @@ namespace Antura.Assessment
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
-            builderParams.useJourneyForWrong = false;
             builderParams.sortPacksByDifficulty = false;
 
             return new RandomLettersQuestionBuilder(
@@ -446,7 +440,6 @@ namespace Antura.Assessment
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
-            builderParams.useJourneyForWrong = false;
             builderParams.sortPacksByDifficulty = false;
 
             return new RandomLetterAlterationsQuestionBuilder(

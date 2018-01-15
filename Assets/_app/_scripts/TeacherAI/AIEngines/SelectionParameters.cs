@@ -64,7 +64,7 @@ namespace Antura.Teacher
     public class QuestionBuilderParameters
     {
         public PackListHistory correctChoicesHistory;
-        public PackListHistory wrongChoicesHistory;
+        public PackListHistory wrongChoicesHistory; // Always set as NoFilter for now.
         public bool useJourneyForWrong;
         public bool useJourneyForCorrect;
         public SelectionSeverity correctSeverity;
@@ -82,7 +82,7 @@ namespace Antura.Teacher
             this.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             this.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             this.useJourneyForCorrect = true;
-            this.useJourneyForWrong = false;
+            this.useJourneyForWrong = true;
             this.correctSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             this.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             this.letterEqualityStrictness = LetterEqualityStrictness.LetterOnly;

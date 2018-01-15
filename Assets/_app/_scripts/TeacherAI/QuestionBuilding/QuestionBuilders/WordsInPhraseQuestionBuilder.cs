@@ -98,7 +98,7 @@ namespace Antura.Teacher
             var wrongWords = teacher.VocabularyAi.SelectData(
                   () => vocabularyHelper.GetWordsNotIn(parameters.wordFilters, relatedWords.ToArray()),
                         new SelectionParameters(parameters.correctSeverity, nWrong, useJourney: parameters.useJourneyForCorrect,
-                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs,
+                        packListHistory: PackListHistory.NoFilter,
                         journeyFilter: SelectionParameters.JourneyFilter.CurrentJourney)
             );
 

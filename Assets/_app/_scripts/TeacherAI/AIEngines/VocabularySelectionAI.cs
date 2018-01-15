@@ -219,7 +219,7 @@ namespace Antura.Teacher
                 }
             }
             debugString += ("\n  Journey: " + dataList.Count);
-            Debug.Log("Journey: " + dataList.ToDebugStringNewline());
+            //Debug.Log("Journey: " + dataList.ToDebugStringNewline());
 
             // (3) Filtering based on pack-list history 
             switch (selectionParams.packListHistory) {
@@ -249,7 +249,7 @@ namespace Antura.Teacher
                     break;
             }
             debugString += ("\n  History: " + dataList.Count);
-            Debug.Log("History: " + dataList.ToDebugStringNewline());
+            //Debug.Log("History: " + dataList.ToDebugStringNewline());
             //Debug.Log("Filtered ids:: " + selectionParams.filteringIds.ToDebugStringNewline());
 
             // (4) Priority filtering based on current focus
@@ -267,12 +267,11 @@ namespace Antura.Teacher
                     AddToListFilteringByContents(currentLearningBlockContents, dataList, priorityFilteredList, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from LB";
                 }
-                /* @note: we cannot get from the current Stage, as this may also get future contents. Instead, get it from the journey!
                 if (nRemaining > 0) {
                     nBefore = nRemaining;
                     AddToListFilteringByContents(currentStageContents, dataList, priorityFilteredList, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from ST";
-                }*/
+                }
                 if (nRemaining > 0) {
                     nBefore = nRemaining;
                     AddToListFilteringByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRemaining);
@@ -292,6 +291,7 @@ namespace Antura.Teacher
             } else {
                 priorityFilteredList = dataList;
             }
+            //Debug.Log("Priority: " + priorityFilteredList.ToDebugStringNewline());
 
             // (5) Weighted selection on the remaining number
             List<T> selectedList = null;

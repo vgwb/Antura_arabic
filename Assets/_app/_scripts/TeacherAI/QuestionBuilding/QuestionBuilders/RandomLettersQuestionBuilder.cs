@@ -73,7 +73,7 @@ namespace Antura.Teacher
             var wrongLetters = teacher.VocabularyAi.SelectData(
                 () => vocabularyHelper.GetLettersNotIn(LetterEqualityStrictness.LetterOnly, parameters.letterFilters, correctLetters.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
-                     packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs,
+                        packListHistory: PackListHistory.NoFilter,
                         journeyFilter: SelectionParameters.JourneyFilter.CurrentJourney)
                 );
 

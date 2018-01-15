@@ -76,7 +76,7 @@ namespace Antura.Teacher
 
                 // Determine what forms the letter appears in
                 List<LetterForm> usableForms = lettersAndForms[letter];
-                //Debug.Log("N USABLE FORMS: " + usableForms.Count + " for letter " + letter);
+                Debug.Log("N USABLE FORMS: " + usableForms.Count + " for letter " + letter);
 
                 // Packs are reduced to the number of available forms, if needed
                 int nPacksFound = Mathf.Min(usableForms.Count, nPacksPerRound);
