@@ -102,7 +102,7 @@ namespace Antura.Assessment
                     return Setup_Letter_Builder();
 
                 case AssessmentVariation.LetterAny:
-                    return Setup_LetterForm_Builder();
+                    return Setup_LetterAny_Builder();
 
                 case AssessmentVariation.MatchLettersToWord:
                     return Setup_MatchLettersToWord_Builder();
@@ -432,7 +432,7 @@ namespace Antura.Assessment
                 parameters: builderParams);
         }
 
-        private IQuestionBuilder Setup_LetterForm_Builder()
+        private IQuestionBuilder Setup_LetterAny_Builder()
         {
             SimultaneosQuestions = 1;
 
@@ -446,7 +446,7 @@ namespace Antura.Assessment
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers
                 1,                              // CorrectAnswers
                 4,                              // WrongAnswers
-                letterAlterationFilters: LetterAlterationFilters.FormsOfSingleLetter,
+                letterAlterationFilters: LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters_OneForm,
                 parameters: builderParams);
         }
 
@@ -455,7 +455,7 @@ namespace Antura.Assessment
             switch (Variation) {
                 case AssessmentVariation.LetterName:
                 case AssessmentVariation.LetterAny:
-                    return Setup_LetterForm_LearnRules();
+                    return Setup_LetterAny_LearnRules();
 
                 case AssessmentVariation.MatchLettersToWord:
                     return Setup_MatchLettersToWord_LearnRules();
@@ -550,7 +550,7 @@ namespace Antura.Assessment
             return new MiniGameLearnRules();
         }
 
-        private MiniGameLearnRules Setup_LetterForm_LearnRules()
+        private MiniGameLearnRules Setup_LetterAny_LearnRules()
         {
             return new MiniGameLearnRules();
         }
