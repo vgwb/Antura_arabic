@@ -423,7 +423,7 @@ namespace Antura.Assessment
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.sortPacksByDifficulty = false;
-            builderParams.letterFilters.excludeDiacritics = true;
+            builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
 
             return new RandomLettersQuestionBuilder(
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers
