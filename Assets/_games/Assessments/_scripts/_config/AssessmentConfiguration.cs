@@ -99,7 +99,7 @@ namespace Antura.Assessment
         {
             switch (Variation) {
                 case AssessmentVariation.LetterName:
-                    return Setup_Letter_Builder();
+                    return Setup_LetterName_Builder();
 
                 case AssessmentVariation.LetterAny:
                     return Setup_LetterAny_Builder();
@@ -414,7 +414,7 @@ namespace Antura.Assessment
                 parameters: builderParams);
         }
 
-        private IQuestionBuilder Setup_Letter_Builder()
+        private IQuestionBuilder Setup_LetterName_Builder()
         {
             SimultaneosQuestions = 1;
 
@@ -423,6 +423,7 @@ namespace Antura.Assessment
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.sortPacksByDifficulty = false;
+            builderParams.letterFilters.excludeDiacritics = true;
 
             return new RandomLettersQuestionBuilder(
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers
