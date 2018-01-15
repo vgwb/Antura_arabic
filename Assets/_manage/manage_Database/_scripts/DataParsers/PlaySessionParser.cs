@@ -54,16 +54,16 @@ namespace Antura.Database.Management
         }
 
         private List<MiniGameCode> notFoundCodes = new List<MiniGameCode>();
-        public MiniGameInPlaySession[] CustomParseMinigames(PlaySessionData data, Dictionary<string, object> dict, MiniGameTable table)
+        public MiniGameInPlaySession[] CustomParseMinigames(PlaySessionData PSdata, Dictionary<string, object> dict, MiniGameTable table)
         {
             var list = new List<MiniGameInPlaySession>();
 
-            if (data.Type == "Assessment") {
+            if (PSdata.Type == "Assessment") {
                 // Assessments have AssessmentType as their minigame
                 var minigameStruct = new MiniGameInPlaySession();
                 var assessmentType = ToString(dict["AssessmentType"]);
                 if (assessmentType == "") {
-                    Debug.LogWarning(data.GetType().ToString() + " could not find AssessmentType for assessment " + data.Id);
+                    Debug.LogWarning(PSdata.GetType() + " could not find AssessmentType for assessment " + PSdata.Id);
                     return list.ToArray(); // this means that no assessment type has been selected
                 }
                 minigameStruct.MiniGameCode = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), assessmentType);
@@ -92,7 +92,7 @@ namespace Antura.Database.Management
                     // this checks if a minigame isn't used in the PlaySession table
                     if (!dict.ContainsKey(enum_string)) {
                         if (!notFoundCodes.Contains((MiniGameCode)enum_i)) {
-                            Debug.LogError(data.GetType() + " could not find minigame column for " + enum_string);
+                            Debug.LogWarning(PSdata.GetType() + " could not find minigame column for " + enum_string);
                             notFoundCodes.Add((MiniGameCode)enum_i);
                         }
                         continue;

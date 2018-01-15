@@ -182,6 +182,7 @@ namespace Antura.Database
         ReadingGame_Title = 259,
         ReadingGame_Tuto = 260,
         Reward_0Star = 261,
+        Reward_0Star_1 = 460,
         Reward_1Star_1 = 262,
         Reward_1Star_2 = 263,
         Reward_1Star_3 = 264,
