@@ -144,7 +144,7 @@ namespace Antura.Teacher
 
         private ProgressionVocabularyContents progressionContents;
         private VocabularyContents currentPlaySessionContents;
-        private VocabularyContents currentBlockContents;
+        private VocabularyContents currentLearningBlockContents;
         private VocabularyContents currentStageContents;
         private VocabularyContents currentJourneyContents;
 
@@ -168,14 +168,14 @@ namespace Antura.Teacher
             var pos = new JourneyPosition(currentPlaySessionId);
             currentJourneyContents = progressionContents.GetContentsUpToPlaySession(pos);
             currentPlaySessionContents = progressionContents.GetContentsOfPlaySession(pos);
-            currentBlockContents = progressionContents.GetContentsOfLearningBlock(pos);
+            currentLearningBlockContents = progressionContents.GetContentsOfLearningBlock(pos);
             currentStageContents = progressionContents.GetContentsOfStage(pos);
 
             if (ConfigAI.VerbosePlaySessionInitialisation) {
                 string debugString = "";
                 debugString += ConfigAI.FormatTeacherReportHeader("Play Session Initalisation (" + currentPlaySessionId + ")");
                 debugString += "\n Current PS:\n" + currentPlaySessionContents;
-                debugString += "\n Current LB:\n" + currentBlockContents;
+                debugString += "\n Current LB:\n" + currentLearningBlockContents;
                 debugString += "\n Current ST:\n" + currentStageContents;
                 debugString += "\n Current journey:\n" + currentJourneyContents;
                 debugString += "\n Whole contents:\n" + progressionContents.AllContents;
@@ -219,6 +219,7 @@ namespace Antura.Teacher
                 }
             }
             debugString += ("\n  Journey: " + dataList.Count);
+            Debug.Log("Journey: " + dataList.ToDebugStringNewline());
 
             // (3) Filtering based on pack-list history 
             switch (selectionParams.packListHistory) {
@@ -248,7 +249,9 @@ namespace Antura.Teacher
                     break;
             }
             debugString += ("\n  History: " + dataList.Count);
-        
+            Debug.Log("History: " + dataList.ToDebugStringNewline());
+            //Debug.Log("Filtered ids:: " + selectionParams.filteringIds.ToDebugStringNewline());
+
             // (4) Priority filtering based on current focus
             List<T> priorityFilteredList = new List<T>();
             if (!isTest && !selectionParams.getMaxData) {
@@ -261,14 +264,15 @@ namespace Antura.Teacher
                 s += "\n" + (nBefore - nRemaining) + " from PS";
                 if (nRemaining > 0) {
                     nBefore = nRemaining;
-                    AddToListFilteringByContents(currentBlockContents, dataList, priorityFilteredList, ref nRemaining);
+                    AddToListFilteringByContents(currentLearningBlockContents, dataList, priorityFilteredList, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from LB";
                 }
+                /* @note: we cannot get from the current Stage, as this may also get future contents. Instead, get it from the journey!
                 if (nRemaining > 0) {
                     nBefore = nRemaining;
                     AddToListFilteringByContents(currentStageContents, dataList, priorityFilteredList, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from ST";
-                }
+                }*/
                 if (nRemaining > 0) {
                     nBefore = nRemaining;
                     AddToListFilteringByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRemaining);
@@ -396,7 +400,7 @@ namespace Antura.Teacher
                 float currentPlaySessionWeight = 0;
                 if (currentPlaySessionContents.Contains(sourceData)) {
                     currentPlaySessionWeight = 1;
-                } else if (currentBlockContents.Contains(sourceData)) {
+                } else if (currentLearningBlockContents.Contains(sourceData)) {
                     currentPlaySessionWeight = 0.5f;
                 } else if (currentStageContents.Contains(sourceData)) {
                     currentPlaySessionWeight = 0.2f;
