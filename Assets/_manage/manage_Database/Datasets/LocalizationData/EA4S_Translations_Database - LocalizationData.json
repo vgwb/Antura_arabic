@@ -115,7 +115,7 @@
       "Arabic": "يمكنك أنْ تعدلَ مظهرَ عنتورة باستعمال الهدايا التي أعطيك إياها.",
       "ArabicFemale": "يُمكِنُكِ أنْ تعدلي مظهرَ عنتورة باستعمال الهدايا التي أعطيكِ إياها.",
       "AudioFile": "AnturaSpace_Custom_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": "IBTISSAM FEM SCRIPT MISSING (BUT THE RECORDING IS OK)"
     },
@@ -149,7 +149,7 @@
       "Arabic": " أَه جَمِيل! بِإِمْكَانِكَ تَغْيِيرُ الأَلْوَانِ كَمَا يَحْلُو لَكَ\n\n",
       "ArabicFemale": "أَه جَمِيل! بإمكانكِ تَغْيِيرُ الأَلْوَانِ كَمَا يَحْلُو لَكِي",
       "AudioFile": "AnturaSpace_Custom_3",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -166,7 +166,7 @@
       "Arabic": "يُمْكِنُكَ المُتَابَعَةُ إِذَا كُنْتَ رَاضِيًا عَنْ الأَلْوَان\n",
       "ArabicFemale": "يُمْكِنُكِ المُتَابَعَةُ إِذَا كُنْتِ رَاضِيَةً عَنْ الأَلْوَان",
       "AudioFile": "AnturaSpace_Custom_4",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -183,7 +183,7 @@
       "Arabic": "اِضْغَطْ عَلَى رَمْزِ الخُرُوجِ",
       "ArabicFemale": "اِضْغَطِي عَلَى رَمْزِ الخُرُوجِ",
       "AudioFile": "AnturaSpace_Exit",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -198,9 +198,9 @@
       "Context": "Keeper explains you can interact with Antura",
       "English": "Here you play with Antura, try to touch him/her",
       "Arabic": "هنا تلعبُ مع عنتورة. حاولْ أنْ تلمسَه.",
-      "ArabicFemale": "هنا تلعبين مع عنتورة. حاولي أنْ تلمسيه.",
+      "ArabicFemale": "هنا تلعبين مع عنتورة. هل أنتِ جاهزة؟ المسيه",
       "AudioFile": "AnturaSpace_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -234,7 +234,7 @@
       "Arabic": "أرأيت؟ عنتورة مستعدٌ دائماً للعبِ معك.",
       "ArabicFemale": "أرأيتِ؟ عنتورة مستعدٌ دائماً للعبِ معِك.",
       "AudioFile": "AnturaSpace_Intro_Touch",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -251,7 +251,7 @@
       "Arabic": "يَتِمُّ حفْظُ الصُّوَرِ فِي مُجَلَّدِ الصُّوَرِ عَلَى جِهَازِكَ\n",
       "ArabicFemale": "يَتِمُّ حفْظُ الصُّوَرِ فِي مُجَلَّدِ الصُّوَر عَلَى جِهَازِكي",
       "AudioFile": "AnturaSpace_Photo_Gallery",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -268,7 +268,7 @@
       "Arabic": "انظروا إلى عنتورة! إنه يستحق صورة ... ولكن الصورَ غالية. خذ، سوف أعطيك بعض الكعك!",
       "ArabicFemale": "اُنْظُري إِلَى عنتورة! إِنَّهُ يَسْتَحِقُّ صُورَةً... وَلَكِنَّ الصُّوَرُغالية. خُذِي, سَوْفَ أُعْطِيكِ بَعْضَ الكَعْكِ!",
       "AudioFile": "AnturaSpace_Photo_Intro",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -285,7 +285,7 @@
       "Arabic": "اِضْغَطْ عَلَى صُورَةِ الكَامِيرَا",
       "ArabicFemale": "اِضْغَطي عَلَى صُورَةِ الكَامِيرَا",
       "AudioFile": "AnturaSpace_Photo_Take",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -302,7 +302,7 @@
       "Arabic": "العب مَعَ عنتورة بِقَدْرِ مَا تُرِيدُ. وَعِنْدَمَا تَكَوُّنٌ مُسْتَعِدًّا, يُمْكِنُكِ الخُرُوجُ وَ العَوْدَةُ إِلَى المُغَامَرَة",
       "ArabicFemale": "العبي مَعَ عنتورة بِقَدْرِ مَا تُرِيدِينَ. وَعِنْدَمَا تَكَوُّنِ مُسْتَعِدَّةً, يُمْكِنُكِ الخُرُوجُ وَ العَوْدَةُ إِلَى المُغَامَرَة",
       "AudioFile": "AnturaSpace_PlayAndExit",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -319,7 +319,7 @@
       "Arabic": "اِسْحَبْ إِلَّا الأَعْلَى أَيَّةُ إِضَافَةٍ تُرِيدُ شِرَاءَهَا",
       "ArabicFemale": "اِسْحَبِي إِلَّا الأَعْلَى أَيَّةُ إِضَافَةٍ تُرِيدِينَ شِرَاءَهَا",
       "AudioFile": "AnturaSpace_Shop_BuyItem",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -336,7 +336,7 @@
       "Arabic": "اِضْغَطْ عَلَى أَيْقُونَةِ الكَعْكَةِ مِنْ جَدِيدٍ لِتُغَلِّقْ مَتْجَرَ الإِضَافَات\n",
       "ArabicFemale": "اِضْغطْي عَلَى أَيْقُونَةِ الكَعْكَةِ مِنْ جَدِيدٍ لِتُغَلِّقِي مَتْجَرَ الإِضَافَات",
       "AudioFile": "AnturaSpace_Shop_Close",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -353,7 +353,7 @@
       "Arabic": "اِسْحَبْ كَعْكَةً وَاِرْمِهَا لعنتورة",
       "ArabicFemale": "اِسْحَبِي كَعْكَةً وَاِرْمِهَا لعنتورة",
       "AudioFile": "AnturaSpace_Shop_Cookie",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -370,7 +370,7 @@
       "Arabic": "يُمْكِنُكَ اِسْتِعْمَالُ الكَعْكَاتِ لِشِرَاءِ إِضَافَتٍ لعنتورة",
       "ArabicFemale": "يُمْكِنُكِ اِسْتِعْمَالُ الكَعْكَاتِ لِشِرَاءِ إِضَافَتٍ لعنتورة",
       "AudioFile": "AnturaSpace_Shop_Intro",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -387,7 +387,7 @@
       "Arabic": "\nاِسْحَبْ الإِضَافَةَ إِلَى المَكَانِ الَّذِي تُرِيدُ وَضْعُهَا فِيه",
       "ArabicFemale": "اِسْحَبِي الإِضَافَةَ إِلَى المَكَانِ الَّذِي تُرِيدِينَ وَضْعُهَا فِيه",
       "AudioFile": "AnturaSpace_Shop_MoveItem",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -404,7 +404,7 @@
       "Arabic": "اِضْغَطْ عَلَى أَيْقُونَةِ الكَعْكَةِ لِفَتْحْ مَتْجَرَ الإِضَافَات",
       "ArabicFemale": "اِضْغَطِي عَلَى أَيْقُونَةِ الكَعْكَةِ لِفَتْحِ مَتْجَر الإِضَافَات",
       "AudioFile": "AnturaSpace_Shop_Open",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -455,8 +455,8 @@
       "Arabic": "لا تقلق. كلما لعبتَ أكثر ستحصلُ على كعكاتٍ أكثر.",
       "ArabicFemale": "لا تقلقي. كلما لعبتِ أكثر ستحصلين على كعكاتٍ أكثر.",
       "AudioFile": "AnturaSpace_Tuto_Cookie_3",
-      "HasF": "MISSING",
-      "Notes": "new (no placeholder for now)",
+      "HasF": "1",
+      "Notes": "",
       "COLOR LEGEND": ""
     },
     {
@@ -557,7 +557,7 @@
       "Arabic": "لقد فعلتَها!",
       "ArabicFemale": "لقد فعلتِها!",
       "AudioFile": "Assessment_Complete_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -574,7 +574,7 @@
       "Arabic": "كنتُ أعلمُ أنّك ستفعلُها!",
       "ArabicFemale": "كنتُ أعلمُ أنّكِ ستفعلينها!",
       "AudioFile": "Assessment_Complete_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -591,7 +591,7 @@
       "Arabic": "نعم! أحسنت!",
       "ArabicFemale": "نعم! أحسنتِ!",
       "AudioFile": "Assessment_Complete_3",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -608,7 +608,7 @@
       "Arabic": "أحسنت! يمكنُك البدءُ الآن...",
       "ArabicFemale": "أحسنتِ! يمكنُكِ البدءُ الآن...",
       "AudioFile": "Assessment_Dog_Gone_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -727,7 +727,7 @@
       "Arabic": "رجاءً أبعِدْ عنتورة كي نبدأ...",
       "ArabicFemale": "رجاءً أبعِدِي عنتورة كي نبدأ...",
       "AudioFile": "Assessment_Push_Dog_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -744,7 +744,7 @@
       "Arabic": "لا يمكنُ أنْ يبقى هنا. ادفعْه بعيداً...",
       "ArabicFemale": "لا يمكنُ أنْ يبقى هنا. ادفعيه بعيداً...",
       "AudioFile": "Assessment_Push_Dog_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -846,7 +846,7 @@
       "Arabic": "وقتُ إظهارِ ما تعلّمتَه حتى الآن.",
       "ArabicFemale": "وقتُ إظهارِ ما تعلّمتِهِ حتى الآن.",
       "AudioFile": "Assessment_Start_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -863,7 +863,7 @@
       "Arabic": "لنرى إنْ كنتَ حاضرَ البالِ مؤخراً...",
       "ArabicFemale": "لنرى إنْ كنتِ حاضرةَ البالِ مؤخراً...",
       "AudioFile": "Assessment_Start_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -880,7 +880,7 @@
       "Arabic": "هل أنتَ مستعدٌ لإظهارِ ما تعلّمتَه؟",
       "ArabicFemale": "هل أنتِ مستعدةٌ لإظهارِ ما تعلّمتِه؟",
       "AudioFile": "Assessment_Start_3",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -965,7 +965,7 @@
       "Arabic": "هممم يمكنُك أنْ تفعلَ أفضلَ من ذلك.",
       "ArabicFemale": "هممم يمكنُكِ أنْ تفعلي أفضلَ من ذلك.",
       "AudioFile": "Assessment_Wrong_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -999,7 +999,7 @@
       "Arabic": "انظر إلى كلِّ تلك الكلماتِ والأرقام.",
       "ArabicFemale": "انظري إلى كلِّ تلك الكلماتِ والأرقام.",
       "AudioFile": "Game_Balloons_counting_Intro",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1033,7 +1033,7 @@
       "Arabic": "افقعِ البالوناتِ بالترتيبِ الصحيح: من أصغرِ رقمٍ إلى الأكبر",
       "ArabicFemale": "افقعي البالوناتِ بالترتيبِ الصحيح: من أصغرِ رقمٍ إلى الأكبر.",
       "AudioFile": "Game_Balloons_counting_Tuto",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1084,7 +1084,7 @@
       "Arabic": "افقعِ لبالوناتِ الكلماتِ الصحيحة فقط.",
       "ArabicFemale": "افقعي بالوناتِ الكلماتِ الصحيحة فقط .",
       "AudioFile": "Game_Balloons_letterinword_Tuto",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1135,7 +1135,7 @@
       "Arabic": "افقعِ البالوناتِ تاركاً فقط الحروفَ الصحيحة",
       "ArabicFemale": "افقعي البالوناتِ تاركةً فقط الحروفَ الصحيحة.",
       "AudioFile": "Balloons_spelling_Tuto",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1186,7 +1186,7 @@
       "Arabic": "افقعِ بالوناتِ الصورةَ الصحيحة فقط.",
       "ArabicFemale": "افقعي بالوناتِ الصورةَ الصحيحة فقط.",
       "AudioFile": "Game_Balloons_word_Tuto",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1220,7 +1220,7 @@
       "Arabic": "هذا كتابُ رحلتِك! يمكنُك أنْ ترى هنا ما تعلّمتَه وما تَبَقّى عليك أنْ تتعلمَه!",
       "ArabicFemale": "هذا كتابُ رحلتِكِ! يمكنُكِ أنْ ترَي هنا ما تعلّمتِه وما تَبَقّى عليكِ أنْ تتعلميه!",
       "AudioFile": "Book_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1339,7 +1339,7 @@
       "Arabic": "قم بتلوينِ الحرفِ دونَ الخروجِ عن حدودِه.",
       "ArabicFemale": "قومي بتلوينِ الحرفِ دونَ الخروجِ عن حدودِه.",
       "AudioFile": "Game_ColorTickle_lettername_Tuto",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1356,7 +1356,7 @@
       "Arabic": "المسْ الكَعْكَات لِجَمْعِهَا",
       "ArabicFemale": "المسي الكَعْكَات لِجَمْعِهَا",
       "AudioFile": "DailyReward_Collect",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1373,7 +1373,7 @@
       "Arabic": "عُدْ غَدًا مِنْ اجْلِ المَزِيدِ!",
       "ArabicFemale": "عُودِي غَدًا مِنْ اجْلِ المَزِيدِ!\n",
       "AudioFile": "DailyReward_ComeBack_1",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1390,7 +1390,7 @@
       "Arabic": "اِلْعَبْ كُلَّ يَوْمٍ لِتَحْصُلَ عَلَى كَعْكٍ إضافيٍ",
       "ArabicFemale": "اِلْعَبِي كُلَّ يَوْمٍ لِتَحْصُلِي عَلَى كَعْكٍ إضافيٍ",
       "AudioFile": "DailyReward_ComeBack_2",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1407,7 +1407,7 @@
       "Arabic": "سَوْفَ أُعْطِيكَ المَزِيدَ مِنْ الكَعْكِ عِنْدَمَا تَلْعَبُ كُلَّ يَوْمٍ",
       "ArabicFemale": "سَوْفَ أُعْطِيكِي المَزِيدَ مِنْ الكَعْكِ عِنْدَمَا تَلْعَبِينَ كُلَّ يَوْمٍ\r\n",
       "AudioFile": "DailyReward_Intro_1",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1424,7 +1424,7 @@
       "Arabic": "هَذِهِ هِيَ كَعَكَاتُ اليَوْمَ, خُذْهَا!",
       "ArabicFemale": "هَذِهِ هِيَ كَعَكَاتُ اليَوْم, خُذِيهَا!",
       "AudioFile": "DailyReward_Intro_2",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1441,7 +1441,7 @@
       "Arabic": "الحركاتُ والنقاطُ الصحيحةُ تعطي الحرفَ القوةَ اللازمةَ للرقص! ساعده!",
       "ArabicFemale": "الحركاتُ والنقاطُ الصحيحةُ تعطي الحرفَ القوةَ اللازمةَ للرقص! ساعديه!",
       "AudioFile": "Game_DancingDots_letterany_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1475,7 +1475,7 @@
       "Arabic": "اسحبِ النقاطَ أو الحركاتِ الصحيحة نحوَ المكانِ الصحيحِ فوقَ الحرف.",
       "ArabicFemale": "اسحبي النقاطَ أو الحركاتِ الصحيحةَ نحوَ المكانِ الصحيحِ فوقَ الحرف.",
       "AudioFile": "Game_DancingDots_letterany_Tuto",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1492,7 +1492,7 @@
       "Arabic": "البيضة و الكلمة المخفية!",
       "ArabicFemale": "",
       "AudioFile": "Game_Egg_buildword_Title",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1526,7 +1526,7 @@
       "Arabic": "لقد قالتِ البيضةُ شيئاً! ساعدْها لتفقس!",
       "ArabicFemale": "لقد قالتِ البيضةُ شيئاً! ساعديها لتفقس!",
       "AudioFile": "Game_Egg_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -1951,7 +1951,7 @@
       "Arabic": "ستختبيءُ الأحرفُ وعليكَ أنْ تجدَها!",
       "ArabicFemale": "ستختبيءُ الأحرفُ وعليكِ أنْ تجديها!",
       "AudioFile": "Game_HideSeek_letterphoneme_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2053,7 +2053,7 @@
       "Arabic": "كلبي عنتورة سيرافقُك. رفقتُه مسليةٌ لكنه فوضويٌ بعضَ الشيء.",
       "ArabicFemale": "كلبي عنتورة سيرافقُكِ. رفقتُه مسليةٌ لكنه فوضويٌ بعضَ الشيء.",
       "AudioFile": "Intro_Dog",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2070,7 +2070,7 @@
       "Arabic": "أرأيت؟ على أيَِ حال، أعتقدُ أنَّك ستستمتعُ كثيراً مع عنتورة.",
       "ArabicFemale": "أرأيتِ؟ على أيَِ حال، أعتقدُ أنَّكِ ستستمتعين كثيراً مع عنتورة.",
       "AudioFile": "Intro_Dog_Chase",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2104,7 +2104,7 @@
       "Arabic": "أيمكنُك أنْ تساعدَني على إعادةِ جميعِ الأحرف إلى مكانِها؟ أرجووووك.",
       "ArabicFemale": "أيمكنُكِ أنْ تساعديني على إعادةِ جميعِ الأحرف إلى مكانِها؟ أرجووووكِ.",
       "AudioFile": "Intro_Letters_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2121,7 +2121,7 @@
       "Arabic": "لقد أتيتَ أخيراً! كنتُ بانتظارِك. أحتاجُ مساعدتَك!",
       "ArabicFemale": "لقد أتيتِ أخيراً! كنتُ بانتظارِِك. أحتاجُ مساعدتَكِ!",
       "AudioFile": "Intro_welcome",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2138,7 +2138,7 @@
       "Arabic": "ليس لديك فرصٌ أخرى؟",
       "ArabicFemale": "ليس لديكِ فرصٌ أخرى!",
       "AudioFile": "Keeper_AttempsOver",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "new (no placeholder for now)",
       "COLOR LEGEND": ""
     },
@@ -2223,7 +2223,7 @@
       "Arabic": "استمر في المحاولة!",
       "ArabicFemale": "استمري في المحاولة!",
       "AudioFile": "Keeper_Bad_5",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2240,7 +2240,7 @@
       "Arabic": "كن جاهزاً!",
       "ArabicFemale": "كوني جاهزةً!",
       "AudioFile": "Keeper_GetReady",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "new (no placeholder for now)",
       "COLOR LEGEND": ""
     },
@@ -2257,7 +2257,7 @@
       "Arabic": "أنتَ تقومُ بعملٍ رائع!",
       "ArabicFemale": "أنتِ تقومينَ بعملٍ رائع!",
       "AudioFile": "Keeper_Good_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2325,7 +2325,7 @@
       "Arabic": "استمر!",
       "ArabicFemale": "استمرِّي!",
       "AudioFile": "Keeper_Good_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2376,7 +2376,7 @@
       "Arabic": "أحسَنت!",
       "ArabicFemale": "أحسَنتِ!",
       "AudioFile": "Keeper_Good_5",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2393,7 +2393,7 @@
       "Arabic": "لقدْ نجحت!",
       "ArabicFemale": "لقدْ نجحتِ!",
       "AudioFile": "Keeper_Good_6",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2461,7 +2461,7 @@
       "Arabic": "فرصتُك الأخيرة...",
       "ArabicFemale": "فرصتُكِ الأخيرة...",
       "AudioFile": "Keeper_Last_Attempt_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2478,7 +2478,7 @@
       "Arabic": "مازالت أمامَك فرصة.",
       "ArabicFemale": "مازالت أمامَكِ فرصة.",
       "AudioFile": "Keeper_Last_Attempt_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2529,7 +2529,7 @@
       "Arabic": "أسرِع!",
       "ArabicFemale": "أسرِعي!",
       "AudioFile": "Keeper_Time_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2597,7 +2597,7 @@
       "Arabic": "الكلماتُ تتجادل! ساعدْها على رؤيةِ الأمورِ المشتركةِ بينها.",
       "ArabicFemale": "الكلماتُ تتجادل! ساعديها على رؤيةِ الأمورِ المشتركةِ بينها.",
       "AudioFile": "Game_MakeFriends_letterinword_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2648,7 +2648,7 @@
       "Arabic": "لقدْ تقدّمتَ كثيراً. استمر.",
       "ArabicFemale": "لقدْ تقدّمتِ كثيراً. استمرِّي.",
       "AudioFile": "Map_Back_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2665,7 +2665,7 @@
       "Arabic": "ممتاز! قطعتَ خطوةً إضافيةً نحو إكمالِ مهمتِك.",
       "ArabicFemale": "ممتاز! قطعتِ خطوةً إضافيةً نحو إكمالِ مهمتِكِ.",
       "AudioFile": "Map_Back_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2682,7 +2682,7 @@
       "Arabic": "خطوةٌ أخرى نحو الأمام. استمر على نفسِ المنوال!",
       "ArabicFemale": "خطوةٌ أخرى نحو الأمام. استمرِّي على نفسِ المنوال!",
       "AudioFile": "Map_Back_3",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2699,7 +2699,7 @@
       "Arabic": "المسْ الكَعْكَات لِجَمْعِهَا",
       "ArabicFemale": "المسي الكَعْكَات لِجَمْعِهَا",
       "AudioFile": "Map_Bones_Collect_1",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2716,7 +2716,7 @@
       "Arabic": "اِجْمَعْ الكَعْكَات الَّتِي تَرَاهَا فِي الجِوَارِ",
       "ArabicFemale": "اِجْمَعِي الكَعْكَات الَّتِي تَرَيْهَا فِي الجِوَارِ\n",
       "AudioFile": "Map_Bones_Collect_2",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2733,7 +2733,7 @@
       "Arabic": "هَذَا هُوَ عَدَدُ الكَعْكَاتِ لَدَيْكَ. بِإِمْكَانِكَ التَّمَتُّعُ بِهَا مَعَ عنتورة\n\n",
       "ArabicFemale": "هَذَا هُوَ عَدَدُ الكَعْكَاتِ لَدَيْكِ. بِإِمْكَانِكِ التَّمَتُّعُ بِهَا مَعَ عنتورة\n\n",
       "AudioFile": "Map_Bones_Counter_1",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2750,7 +2750,7 @@
       "Arabic": "تَذكَر: بِإِمْكَانِكَ التَّمَتُّعُ بِالكَعْكَاتِ مَعَ عنتورة",
       "ArabicFemale": "تَذكَري: بِإِمْكَانِكِ التَّمَتُّعُ بِالكَعْكَاتِ مَعَ عنتورة",
       "AudioFile": "Map_Bones_Counter_2",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2767,7 +2767,7 @@
       "Arabic": "هل أنتَ مستعدٌّ لإثبات ما تعلمتَه إلى الآن؟",
       "ArabicFemale": "هل أنتِ مستعدّةٌ لإثباتِ ما تعلمتِه إلى الآن؟",
       "AudioFile": "Map_End_LB_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2784,7 +2784,7 @@
       "Arabic": "الخطوةُ القادمةُ ستختبرُ معلوماتِك.",
       "ArabicFemale": "الخطوةُ القادمةُ ستختبرُ معلوماتِكِ.",
       "AudioFile": "Map_End_LB_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2801,7 +2801,7 @@
       "Arabic": "لإكمال رحلتِك، يجبٌ أنْ تبرهنَ أنّك أتقنتَ كلَّ ما تعلمت.",
       "ArabicFemale": "لإكمال رحلتِكِ، يجبُ أنْ تبرهني أنّكِ أتقنتِ كلَّ ما تعلمتِ.",
       "AudioFile": "Map_End_LB_3",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2818,7 +2818,7 @@
       "Arabic": "شيءٌ مدهش! عملٌ رائع! لقدْ أكملتَ مهمتَك.",
       "ArabicFemale": "شيءٌ مدهش! عملٌ رائع! لقدْ أكملتِ مهمتَكِ.",
       "AudioFile": "Map_EndGame",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2835,7 +2835,7 @@
       "Arabic": "ممتاز! وصلتَ إلى نهايةِ هذا العالم! لكنْ مازالت أمامك فرصةُ الفوزِ بالكثيرُ من الهدايا!",
       "ArabicFemale": "ممتاز! وصلتِ إلى نهايةِ هذا العالم! لكنْ مازالت أمامكِ فرصةُ الفوزِ بالكثيرُ من الهدايا!",
       "AudioFile": "Map_EndWorld",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2852,7 +2852,7 @@
       "Arabic": "وقتُ بدايةِ رحلتِك. حظاً سعيداً!",
       "ArabicFemale": "وقتُ بدايةِ رحلتِكِ. حظاً سعيداً!",
       "AudioFile": "Map_First",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2869,7 +2869,7 @@
       "Arabic": "ستجوبُ العالمَ بحثاً عن الأحرف.",
       "ArabicFemale": "ستجوبين العالمَ بحثاً عن الأحرف.",
       "AudioFile": "Map_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2886,7 +2886,7 @@
       "Arabic": "ابذل أقصى ما لديك وسأعطيك الكثيرَ من الهدايا لتلعبَ بها مع عنتورة.",
       "ArabicFemale": "ابذلي أقصى ما لديكِ وسأعطيكِ الكثيرَ من الهدايا لتلعبي بها مع عنتورة.",
       "AudioFile": "Map_Intro_AnturaSpace",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2903,7 +2903,7 @@
       "Arabic": "قبل أيِّ شيء، يجب أنْ تعبرَ كلَّ الجبال.",
       "ArabicFemale": "قبل أيِّ شيء، يجبُ أنْ تعبري كلَّ الجبال.",
       "AudioFile": "Map_Intro_Map1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2920,7 +2920,7 @@
       "Arabic": "أحسنت! لقدْ وصلتَ إلى الجزرِ الاستوائية.",
       "ArabicFemale": "أحسنتِ! لقدْ وصلتِ إلى الجزرِ الاستوائية.",
       "AudioFile": "Map_Intro_Map2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2937,7 +2937,7 @@
       "Arabic": "هذا هو المرعى اللانهائي. ستكونُ رحلتُك طويلة.",
       "ArabicFemale": "هذا هو المرعى اللانهائي. ستكونُ رحلتُكِ طويلة.",
       "AudioFile": "Map_Intro_Map3",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2954,7 +2954,7 @@
       "Arabic": "مرحباً بك في الصحراءِ الحارقة. الأمورُ بدأت تصبحُ أصعب.",
       "ArabicFemale": "مرحباً بكِ في الصحراءِ الحارقة. الأمورُ بدأت تصبحُ أصعب.",
       "AudioFile": "Map_Intro_Map4",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2971,7 +2971,7 @@
       "Arabic": "الغابةُ المظلمة! أنتَ على وشكِ إكمالِ مهمتِك.",
       "ArabicFemale": "الغابةُ المظلمة! أنتِ على وشكِ إكمالِ مهمتِكِ.",
       "AudioFile": "Map_Intro_Map5",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -2988,7 +2988,7 @@
       "Arabic": "وصلتَ أخيراً إلى قريةِ الحروف! تعال، أمامك مجهودٌ أخير.",
       "ArabicFemale": "وصلتِ أخيراً إلى قريةِ الحروف! تعالَي، أمامكِ مجهودٌ أخير.",
       "AudioFile": "Map_Intro_Map6",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3005,7 +3005,7 @@
       "Arabic": "مذهل! لقدِ اكتشفتَ خريطةً جديدة.",
       "ArabicFemale": "مذهل! لقدِ اكتشفتِ خريطةً جديدة.",
       "AudioFile": "Map_NewMap",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3022,7 +3022,7 @@
       "Arabic": "لَقَدْ تَعَلَّمْتَ كَثِيرً! يُمْكِنُكَ الآنَ مُرَاجَعَةُ القَامُوسِ فِي أَيِّ وَقْتٍ",
       "ArabicFemale": "لَقَدْ تَعَلَّمْتِ كَثِيرً! يُمْكِنُكِ الآنَ مُرَاجَعَةُ القَامُوسِ فِي أَيِّ وَقْتٍ",
       "AudioFile": "Map_Unveal_Book_Intro",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3039,7 +3039,7 @@
       "Arabic": "اِضْغَطْ عَلَى رَمْزِ القَامُوسِ",
       "ArabicFemale": "اِضْغَطي عَلَى رَمْزِ القَامُوسِ",
       "AudioFile": "Map_Unveal_Book_Open",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3056,7 +3056,7 @@
       "Arabic": "مُفَاجَأَةٌ! يُمْكِنُكَ أَنْ تَلْعَبَ الآنَ أَيَّةَ لَعْبَةً وَقَتَّمَا تَشَاء",
       "ArabicFemale": "مُفَاجَأَةٌ! يُمْكِنُكِ أَنْ تَلْعَبِي الآنَ أَيَّةَ لَعْبَةً وَقْتَمَا تَشَائِين",
       "AudioFile": "Map_Unveal_GameLauncher_Intro",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3073,7 +3073,7 @@
       "Arabic": "اِضْغَطْ عَلَى رَمْزِ الأَلْعَاب",
       "ArabicFemale": "اِضْغَطي عَلَى  رَمْزِ الأَلْعَاب",
       "AudioFile": "Map_Unveal_GameLauncher_Open",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3090,7 +3090,7 @@
       "Arabic": "هَذَا القِسْمُ يَحْتَوِي عَلَى مِلَفِّ تَطَوُّرِ تَعَلُّمِكَ وَإِحْصَائِيَّاتٍ مُخْتَلِفَة مِن اللَّعْبَةِ\n",
       "ArabicFemale": "هَذَا القِسْمُ يَحْتَوِي عَلَى مِلَفِّ تَطَوُّرِ تَعَلُّمِكِ وَإِحْصَائِيَّاتٍ مُخْتَلِفَة مِن اللَّعْبَةِ\n",
       "AudioFile": "Map_Unveal_Profile_Intro",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3107,7 +3107,7 @@
       "Arabic": "اِضْغَطْ عَلَى رَمْزِ الوَجْهِ",
       "ArabicFemale": "اِضْغَطي عَلَى  رَمْزِ الوَجْهِ",
       "AudioFile": "Map_Unveal_Profile_Open",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3124,7 +3124,7 @@
       "Arabic": "أمامَك رحلةٌ طويلة. عليك أنْ تُسرِع!",
       "ArabicFemale": "أمامَكِ رحلةٌ طويلة. عليكِ أنْ تُسرِعي!",
       "AudioFile": "Map_Welcome_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3158,7 +3158,7 @@
       "Arabic": "كلي ثقةٌ أنّك ستنهي مهمتَك قريباً.",
       "ArabicFemale": "كلي ثقةٌ أنّكِ ستنهِين مهمتَكِ قريباً.",
       "AudioFile": "Map_Welcome_3",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3175,7 +3175,7 @@
       "Arabic": "وقتُ السباق! ساعدِ الحرفَ على الوصولِ إلى خطِّ النهاية.",
       "ArabicFemale": "وقتُ السباق! ساعدي الحرفَ على الوصولِ إلى خطِّ النهاية.",
       "AudioFile": "Game_Maze_lettername_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3209,7 +3209,7 @@
       "Arabic": "اتْبعِ الأسهمَ وارسمْ على الممر. السرعةُ مهمة، لا تضيعْ وقتاً ولا تخرجْ عن المسار.",
       "ArabicFemale": "اتْبعي الأسهمَ وارسمي على الممر. السرعةُ مهمة، لا تضيعي وقتاً ولا تخرجي عن المسار.",
       "AudioFile": "Game_Maze_lettername_Tuto",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3226,7 +3226,7 @@
       "Arabic": "أوه لا! لقد فقدتْ هذه الكلمةُ حرفاً. ساعدْها على العثورِ عليه.",
       "ArabicFemale": "أوه لا! لقد فقدتْ هذه الكلمةُ حرفاً. ساعديها على العثورِ عليه.",
       "AudioFile": "Game_MissingLetter_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3243,7 +3243,7 @@
       "Arabic": "الشكلُ المفقود",
       "ArabicFemale": "",
       "AudioFile": "Game_MissingLetter_letterinword_Title",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3396,7 +3396,7 @@
       "Arabic": "انظر إلى كلِّ تلك الأحرف! ساعدها على تشكيلِ كلمةٍ من جديد!",
       "ArabicFemale": "انظري إلى كلِّ تلك الأحرف! ساعديها على تشكيلِ كلمةٍ من جديد!",
       "AudioFile": "Game_MixedLetters_buildword_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3430,7 +3430,7 @@
       "Arabic": "اسحبْ كلِّ حرفٍ إلى موقعِه الصحيح. استعملِ الأزرارَ لتدويرِ الأحرفِ بشكلٍ صحيحٍ كي تكتملَ الكلمة.",
       "ArabicFemale": "اسحبي كلِّ حرفٍ إلى موقعِه الصحيح. استعملي الأزرارَ لتدويرِ الأحرفِ بشكلٍ صحيحٍ كي تكتملَ الكلمة.",
       "AudioFile": "Game_MixedLetters_buildword_Tuto",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3447,7 +3447,7 @@
       "Arabic": "أهلاً بعودتِك! كيف تشعرُ اليوم؟",
       "ArabicFemale": "أهلاً بعودتِكِ! كيف تشعرين اليوم؟",
       "AudioFile": "Mood_Question_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3464,7 +3464,7 @@
       "Arabic": "مرحباً، كيف حالُك اليوم؟",
       "ArabicFemale": "مرحباً، كيف حالُكِ اليوم؟",
       "AudioFile": "Mood_Question_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3481,7 +3481,7 @@
       "Arabic": "أهلاًً بعودتِك! كيف تشعرُ اليوم؟",
       "ArabicFemale": "أهلاًً بعودتِكِ! كيف تشعرين اليوم؟",
       "AudioFile": "Mood_Question_3",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3498,7 +3498,7 @@
       "Arabic": "فَرِيقُ إِنْتَاجِ اللَّعْبَةِ\r",
       "ArabicFemale": "",
       "AudioFile": "Options_Credits",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3515,7 +3515,7 @@
       "Arabic": "إِخْفَاءُ التَّرْجَمَةِ الإِنْكِلِيزِيَّةِ",
       "ArabicFemale": "",
       "AudioFile": "Options_English_OFF",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3532,7 +3532,7 @@
       "Arabic": "إِظْهَارُ التَّرْجَمَةِ الإِنْكِلِيزِيَّةِ",
       "ArabicFemale": "",
       "AudioFile": "Options_English_ON",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3549,7 +3549,7 @@
       "Arabic": "إيقاف",
       "ArabicFemale": "",
       "AudioFile": "Options_Generic_OFF",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3566,7 +3566,7 @@
       "Arabic": "تشغيل",
       "ArabicFemale": "",
       "AudioFile": "Options_Generic_ON",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3583,7 +3583,7 @@
       "Arabic": "إِيقَافُ المُوسِيقَى",
       "ArabicFemale": "",
       "AudioFile": "Options_Music_OFF",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3600,7 +3600,7 @@
       "Arabic": "تَشْغِيلُ المُوسِيقَى",
       "ArabicFemale": "",
       "AudioFile": "Options_Music_ON",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3617,7 +3617,7 @@
       "Arabic": "إِخْفَاءُ التَّرْجَمَةِ المُصَاحِبَةِ",
       "ArabicFemale": "",
       "AudioFile": "Options_Subtitles_OFF",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -3634,7 +3634,7 @@
       "Arabic": "إِظْهَارُ التَّرْجَمَةِ المُصَاحِبَةِ",
       "ArabicFemale": "",
       "AudioFile": "Options_Subtitles_ON",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4161,7 +4161,7 @@
       "Arabic": "شيءٌ مؤسف! في المرةِ القادمةِ سيكونُ أداؤك أفضل!",
       "ArabicFemale": "شيءٌ مؤسف! في المرةِ القادمةِ سيكونُ أداؤكِ أفضل!",
       "AudioFile": "Reward_0Star",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4178,7 +4178,7 @@
       "Arabic": "يُمْكِنُكَ إِعَادَةُ المُحَاوَلَةِ إِذَا كُنْتَ تَرْغَبُ فِي الحُصُولِ عَلَى نَتِيجَةٍ أَفْضَلَ",
       "ArabicFemale": "يُمْكِنُكِ إِعَادَةُ المُحَاوَلَةِ إِذَا كُنْتِ تَرْغَبِينَ فِي الحُصُولِ عَلَى نَتِيجَةٍ أَفْضَلَ",
       "AudioFile": "Reward_0Star_1",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4195,7 +4195,7 @@
       "Arabic": "أحسَنت! لكنْ تحتاجُ المزيدَ من التدريبِ لتحصلَ على كلِّ الهدايا.",
       "ArabicFemale": "أحسَنتِ! لكنْ تحتاجين المزيدَ من التدريبِ لتحصلي على كلِّ الهدايا.",
       "AudioFile": "Reward_1Star_1",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4212,7 +4212,7 @@
       "Arabic": "لقد فعلتَها! أنا واثقٌ أنّه مازال بإمكانِك فعلُ ما هو أفضلَ من ذلك.",
       "ArabicFemale": "لقد فعلتِها! أنا واثقٌ أنّه مازال بإمكانِكِ فعلُ ما هو أفضلُ من ذلك.",
       "AudioFile": "Reward_1Star_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4229,7 +4229,7 @@
       "Arabic": "لقدْ أكملتَه! أمامَك الكثيرُ من التطوير.",
       "ArabicFemale": "لقدْ أكملتِه! وما زال عندكِ مجالٌ للتطوير.",
       "AudioFile": "Reward_1Star_3",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4246,7 +4246,7 @@
       "Arabic": "ممتاز! أوشكتَ على جمعِ كلِّ الهدايا.",
       "ArabicFemale": "ممتاز! أوشكتِ على جمعِ كلِّ الهدايا.",
       "AudioFile": "Reward_2Star_1",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4263,7 +4263,7 @@
       "Arabic": "رائع! أنتَ على وشكِ الوصولِ إلى القمة!",
       "ArabicFemale": "رائع! أنتِ على وشكِ الوصولِ إلى القمة!",
       "AudioFile": "Reward_2Star_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4280,7 +4280,7 @@
       "Arabic": "جميلٌ جداً! اقتربتَ من الإتقانِ التام.",
       "ArabicFemale": "جميلٌ جداً! اقتربتِ من الإتقانِ التام.",
       "AudioFile": "Reward_2Star_3",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4297,7 +4297,7 @@
       "Arabic": "ممتاز! وصلتَ الحدَّ الأقصى.",
       "ArabicFemale": "ممتاز! وصلتِ الحدَّ الأقصى.",
       "AudioFile": "Reward_3Star_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4314,7 +4314,7 @@
       "Arabic": "مدهش! تستحقُّ كل الهدايا!",
       "ArabicFemale": "مدهش! تستحقّين كل الهدايا!",
       "AudioFile": "Reward_3Star_2",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4331,7 +4331,7 @@
       "Arabic": "رائع! أنتَ بطل.",
       "ArabicFemale": "رائع! أنتِ بطلة.",
       "AudioFile": "Reward_3Star_3",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4348,7 +4348,7 @@
       "Arabic": "إليك هديتَك الخاصة! لقد استحققتَها.",
       "ArabicFemale": "إليكِ هديتَك الخاصة! لقد استحققتِها.",
       "AudioFile": "Reward_Big_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4365,7 +4365,7 @@
       "Arabic": "انظر!عنتورة سيكونُ سعيداً جداً!",
       "ArabicFemale": "انظري!عنتورة سيكونُ سعيداً جداً!",
       "AudioFile": "Reward_Big_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4382,7 +4382,7 @@
       "Arabic": "هذه لك! إنها \"رائعةٌ\"، أليسَ كذلك؟",
       "ArabicFemale": "هذه لكِ! إنها \"رائعةٌ\"، أليسَ كذلك؟",
       "AudioFile": "Reward_Big_3",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4399,7 +4399,7 @@
       "Arabic": "إليك الهديةَ الأولى لتلعبَ بها فوراً مع عنتورة.",
       "ArabicFemale": "إليكِ الهديةَ الأولى لتلعبي بها فوراً مع عنتورة.",
       "AudioFile": "Reward_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4535,7 +4535,7 @@
       "Arabic": "هل أنتَ جاهز؟",
       "ArabicFemale": "هل أنتِ جاهزة؟",
       "AudioFile": "SelectGame_Begin_1",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4552,7 +4552,7 @@
       "Arabic": "الأمرُ عائدٌ إليك.",
       "ArabicFemale": "الأمرُ عائدٌ إليكِ.",
       "AudioFile": "SelectGame_Begin_2",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4569,7 +4569,7 @@
       "Arabic": "سيكونُ هذا صعباً.",
       "ArabicFemale": "سيكونُ هذا صعباً.",
       "AudioFile": "SelectGame_Begin_3",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4637,7 +4637,7 @@
       "Arabic": "هناك حركاتٌ كثيرةٌ خاطئة! اجمعْ أكبرَ وزنٍ ممكنٍ من تلك الحركاتِ الخاطئة!",
       "ArabicFemale": "هناك حركاتٌ كثيرةٌ خاطئة! اجمعي أكبرَ وزنٍ ممكنٍ من تلك الحركاتِ الخاطئة!",
       "AudioFile": "Game_SickLetters_lettername_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4722,7 +4722,7 @@
       "Arabic": "تتبّعِ الكلماتِ بإصبعك.",
       "ArabicFemale": "تتبّعي الكلماتِ بإصبعِك.",
       "AudioFile": "Game_Song_alphabet_Tuto",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4824,7 +4824,7 @@
       "Arabic": "هل سمعتَ هذا الصوت؟ اسحبِ الكرةَ إلى الأسفلِ لتشدَّ المقلاعَ ثم صَوِّب على الأحرف بالترتيب الصحيح.",
       "ArabicFemale": "هل سمعتِ هذا الصوت؟ اسحبي الكرةَ إلى الأسفلِ لتشُدِّي المقلاعَ ثم صَوِّبي على الأحرفِ بالترتيب الصحيح.",
       "AudioFile": "Game_ThrowBalls_buildword_Tuto",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4858,7 +4858,7 @@
       "Arabic": "وقتُ المقلاع! اضرِبِ الأهدافَ الصحيحة!",
       "ArabicFemale": "وقتُ المقلاع! اضرِبي الأهدافَ الصحيحة!",
       "AudioFile": "Game_ThrowBalls_Intro",
-      "HasF": "MISSING",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4892,7 +4892,7 @@
       "Arabic": "المقلاع: اصطيادُ الأبجدية",
       "ArabicFemale": "",
       "AudioFile": "Game_ThrowBalls_lettername_Title",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4909,7 +4909,7 @@
       "Arabic": "هل سمعتَ هذا الصوت؟ اسحبِ الكرةَ إلى الأسفلِ لتشُدَّ المقلاعَ ثم صَوِّب على الحرفِ الصحيح.",
       "ArabicFemale": "هل سمعتِ هذا الصوت؟ اسحبي الكرةَ إلى الأسفلِ لتشُدِّي المقلاعَ ثم صَوِّبي على الحرفِ الصحيح.",
       "AudioFile": "Game_ThrowBalls_lettername_Tuto",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -4943,7 +4943,7 @@
       "Arabic": "هل سمعتَ هذا الصوت؟ اسحبِ الكرةَ إلى الأسفلِ لتشدَّ المقلاعَ ثم صَوِّب على الصورةِ الصحيحة.",
       "ArabicFemale": "هل سمعتِ هذا الصوت؟ اسحبي الكرةَ إلى الأسفلِ لتشُدِّي المقلاعَ ثم صَوِّبي على الصورةِ الصحيحة.",
       "AudioFile": "Game_ThrowBalls_word_Tuto",
-      "HasF": "NEW",
+      "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -5079,7 +5079,7 @@
       "Arabic": "شُكْرًا لَكُمْ لِتَحْمِيل الإِصْدَار النِّهَائِيّ مِنْ عنتورة وَالحُرُوف وَ لِمُسَاعَدَتِنَا مِنْ خِلَال لَعِبِ النُّسْخَةِ التَّجْرِيبِيَّة. تَمَّ تَحْدِيثُ قَاعِدَةِ البَيَانَاتِ وَلِسُوءِ الحَظّ, المِلَفَّاتُ الشَّخْصِيَّةَ لِلَاعِبِينَ أَصْبَحَتْ غَيْرَ مُتَوَافِقَةٍ مَعَ الإِصْدَارِ الجَدِيد وَيَجِبُ حَذْفُهَا.",
       "ArabicFemale": "",
       "AudioFile": "",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -5164,7 +5164,7 @@
       "Arabic": "تَحْذِيرٌ هَامٌّ\r\n",
       "ArabicFemale": "",
       "AudioFile": "",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -5198,8 +5198,8 @@
       "Arabic": "كعكات",
       "ArabicFemale": "",
       "AudioFile": "",
-      "HasF": "NEW",
-      "Notes": "Better use COOKIES instead of bones// the arabic text still says bones, if we go for cookies: كعكات",
+      "HasF": "",
+      "Notes": "",
       "COLOR LEGEND": ""
     },
     {
@@ -6099,7 +6099,7 @@
       "Arabic": "اليَوْمَ",
       "ArabicFemale": "",
       "AudioFile": "",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -6116,7 +6116,7 @@
       "Arabic": "يَوْمَ غَدٍ\r\n",
       "ArabicFemale": "",
       "AudioFile": "",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     },
@@ -6371,7 +6371,7 @@
       "Arabic": "البَارِحَة",
       "ArabicFemale": "",
       "AudioFile": "",
-      "HasF": "NEW",
+      "HasF": "",
       "Notes": "",
       "COLOR LEGEND": ""
     }
