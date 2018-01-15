@@ -29,6 +29,7 @@ namespace Antura.Book
         void Awake()
         {
             I = this;
+            HideAllPanels();
         }
 
         void Start()
@@ -99,9 +100,19 @@ namespace Antura.Book
             OpenArea(BookArea.Vocabulary);
         }
 
-        public void BtnOpenGames()
+        public void BtnOpenMinigGames()
         {
             OpenArea(BookArea.MiniGames);
+        }
+
+        public void BtnOpenPlayerProfile()
+        {
+            OpenArea(BookArea.Player);
+        }
+
+        public void BtnOpenJourney()
+        {
+            OpenArea(BookArea.Journey);
         }
     }
 }
