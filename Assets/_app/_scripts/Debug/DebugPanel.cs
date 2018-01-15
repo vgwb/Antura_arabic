@@ -140,6 +140,34 @@ namespace Antura.Debugging
 
         #endregion
 
+        #region Journey
+
+        public void ForwardMaxJourneyPos()
+        {
+            DebugManager.I.ForwardMaxJourneyPos();
+            Close();
+        }
+
+        public void SecondToLastJourneyPos()
+        {
+            DebugManager.I.SecondToLastJourneyPos();
+            Close();
+        }
+
+        public void ResetMaxJourneyPos()
+        {
+            DebugManager.I.ResetMaxJourneyPos();
+            Close();
+        }
+
+        public void ForceMaxJourneyPos()
+        {
+            DebugManager.I.ForceMaxJourneyPos();
+            Close();
+        }
+
+        #endregion
+
         #region Profiles
 
         public void ResetAll()

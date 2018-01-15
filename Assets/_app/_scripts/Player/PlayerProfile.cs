@@ -244,7 +244,7 @@ namespace Antura.Profile
             return AppManager.I.JourneyHelper.IsAssessmentTime(CurrentJourneyPosition);
         }
 
-        private void UpdatePreviousJourneyPosition()
+        public void UpdatePreviousJourneyPosition()
         {
             PreviousJourneyPosition = new JourneyPosition(CurrentJourneyPosition);
             //Debug.LogError("Updating Prev to " + PreviousJourneyPosition);

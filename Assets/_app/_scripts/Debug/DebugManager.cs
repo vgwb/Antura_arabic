@@ -3,6 +3,7 @@ using Antura.Database;
 using Antura.Minigames;
 using Antura.Profile;
 using Antura.Rewards;
+using TMPro;
 using UnityEngine;
 
 namespace Antura.Debugging
@@ -236,14 +237,23 @@ namespace Antura.Debugging
             if (newPos != null) {
                 AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
             }
+            GoToMap();
+        }
+
+        public void ForceMaxJourneyPos()
+        {
+            AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(Stage, LearningBlock, PlaySession), true, true);
+            AppManager.I.Player.UpdatePreviousJourneyPosition();    // Antura is considered as having been there the whole time
+            GoToMap();
         }
 
         public void SecondToLastJourneyPos()
         {
             JourneyPosition newPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
-            newPos.PlaySession = 2;
+            newPos.PlaySession = 1;
             if (newPos != null) {
                 AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
+                AppManager.I.Player.UpdatePreviousJourneyPosition();     // Antura is considered as having been there the whole time
                 FirstContactCompleted = true;
             }
             GoToMap();
@@ -252,6 +262,7 @@ namespace Antura.Debugging
         public void ResetMaxJourneyPos()
         {
             AppManager.I.Player.ResetMaxJourneyPosition();
+            GoToMap();
         }
 
         #endregion
