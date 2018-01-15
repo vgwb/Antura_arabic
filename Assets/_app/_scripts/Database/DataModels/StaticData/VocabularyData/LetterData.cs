@@ -268,7 +268,7 @@ namespace Antura.Database
         public LetterForm Form
         {
             get {
-                if (ForcedLetterForm != LetterForm.None) return ForcedLetterForm;
+                if (ForcedLetterForm != LetterForm.None) { return ForcedLetterForm; }
                 return LetterForm.Isolated;
             }
         }
@@ -278,7 +278,7 @@ namespace Antura.Database
         public override string ToString()
         {
             string s = "(" + Isolated + ")";
-            if (ForcedLetterForm != LetterForm.None) s += " F-" + ForcedLetterForm;
+            if (ForcedLetterForm != LetterForm.None) { s += " F-" + ForcedLetterForm; }
             s += " " + Id;
             return s;
         }

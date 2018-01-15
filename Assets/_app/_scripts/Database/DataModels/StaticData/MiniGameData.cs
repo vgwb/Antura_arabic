@@ -1,4 +1,5 @@
-﻿using Antura.Helpers;
+﻿using Antura.Core;
+using Antura.Helpers;
 using System;
 using SQLite;
 using UnityEngine;
@@ -17,19 +18,15 @@ namespace Antura.Database
 
         public string Title_En
         {
-            get { return _Title_En; }
-            set { _Title_En = value; }
+            get { return LocalizationManager.GetLocalizationData(Code.ToString() + "_Title").English; }
+            set { }
         }
-        [SerializeField]
-        private string _Title_En;
 
         public string Title_Ar
         {
-            get { return _Title_Ar; }
-            set { _Title_Ar = value; }
+            get { return LocalizationManager.GetLocalizationData(Code.ToString() + "_Title").Arabic; }
+            set { }
         }
-        [SerializeField]
-        private string _Title_Ar;
 
         [PrimaryKey]
         public MiniGameCode Code
