@@ -148,8 +148,10 @@ namespace Antura.ReservedArea
             var maxJourneyPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
             yield return StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
             AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true, true);
-            AppManager.I.Player.SetFinalShown(); 
-            AppManager.I.Player.CheckStarsState();
+            AppManager.I.Player.SetFinalShown();
+            AppManager.I.Player.HasFinishedTheGame = true;
+            AppManager.I.Player.HasFinishedTheGameWithAllStars = true;
+            AppManager.I.Player.HasMaxStarsInCurrentPlaySessions = true;
             AppManager.I.FirstContactManager.ForceToFinishedSequence();
             AppManager.I.FirstContactManager.ForceAllCompleted();
             AppManager.I.RewardSystemManager.UnlockAllPacks();
