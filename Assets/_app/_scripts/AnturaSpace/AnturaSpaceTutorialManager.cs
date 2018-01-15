@@ -486,6 +486,10 @@ namespace Antura.AnturaSpace
             SetPhaseUIShown(FirstContactPhase.AnturaSpace_Customization, false);
             SetPhaseUIShown(FirstContactPhase.AnturaSpace_Exit, false);
 
+            // Makes sure you have enough bones
+            var photoCost = FindObjectOfType<ShopAction_Photo>().bonesCost;
+            AppManager.I.Player.MakeSureHasEnoughBones(photoCost);
+
             Debug.Log("CURRENT STEP IS " + _currentPhotoStep);
             switch (_currentPhotoStep)
             {

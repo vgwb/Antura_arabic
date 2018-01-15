@@ -63,12 +63,22 @@ namespace Antura.Profile
 
         public void GiftInitialBones()
         {
-            TotalNumberOfBones = INITIAL_BONES; 
+            TotalNumberOfBones = INITIAL_BONES;
+            Save();
         }
 
         public void MakeSureInitialBonesAreAvailable()
         {
             if (TotalNumberOfBones < INITIAL_BONES) GiftInitialBones();
+        }
+
+        public void MakeSureHasEnoughBones(int wantedBones)
+        {
+            if (TotalNumberOfBones < wantedBones)
+            {
+                TotalNumberOfBones = wantedBones;
+                Save();
+            }
         }
 
         public int GetTotalNumberOfBones()
