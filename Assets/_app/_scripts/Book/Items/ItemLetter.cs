@@ -15,7 +15,7 @@ namespace Antura.Book
         LetterInfo info;
         public TextRender Title;
         public TextRender SubTitle;
-        public Image LockIcon;
+        public Image OkIcon;
 
         VocabularyPanel manager;
 
@@ -30,12 +30,11 @@ namespace Antura.Book
             info = _info;
             manager = _manager;
 
-            //if (info.unlocked || AppManager.I.Player.IsDemoUser) {
-            //    LockIcon.enabled = false;
-            //} else {
-            //    LockIcon.enabled = true;
-            //}
-            LockIcon.enabled = false;
+            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
+                OkIcon.enabled = true;
+            } else {
+                OkIcon.enabled = false;
+            }
 
             Title.text = info.data.GetStringForDisplay();
             SubTitle.text = info.data.Id;
