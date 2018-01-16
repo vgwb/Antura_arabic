@@ -68,6 +68,7 @@ namespace Antura.Book
                 activatePanel(currentPanel, true);
                 //ResetMenuButtons();
             }
+
         }
 
         void activatePanel(BookArea panel, bool status)
@@ -99,8 +100,7 @@ namespace Antura.Book
         public void OnBtnClose()
         {
             if (previousPanel == BookArea.None) {
-                gameObject.SetActive(false);
-                Destroy(gameObject);
+                BookManager.I.CloseBook();
             } else {
                 OpenArea(previousPanel);
             }

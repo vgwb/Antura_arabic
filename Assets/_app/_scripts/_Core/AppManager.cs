@@ -48,6 +48,7 @@ namespace Antura.Core
         }
 
         public bool IsPaused { get; private set; }
+        public bool ModalWindowActivated = false;
 
 
         #region Initialisation
