@@ -209,23 +209,12 @@ namespace Antura.Book
         public void DetailLetter(LetterInfo _currentLetter)
         {
             currentLetter = _currentLetter;
-            HighlightLetterItem(currentLetter.data.Id);
 
             DetailPanel.SetActive(true);
             MoreInfoLetterPanel.SetActive(true);
             MoreInfoWordPanel.SetActive(false);
 
             DetailLetterView.Init(currentLetter);
-        }
-
-        public void OnBtnPlayLetterName()
-        {
-            AudioManager.I.PlayLetter(currentLetter.data, true, LetterDataSoundType.Name);
-        }
-
-        public void OnBtnPlayLetterPhoneme()
-        {
-            AudioManager.I.PlayLetter(currentLetter.data, true, LetterDataSoundType.Phoneme);
         }
 
         #endregion
@@ -393,14 +382,6 @@ namespace Antura.Book
                     break;
             }
         }
-
-        void HighlightLetterItem(string id)
-        {
-            foreach (Transform t in ElementsContainer.transform) {
-                t.GetComponent<ItemLetter>().Select(id);
-            }
-        }
-
 
         void HighlightMenutCategory(string id)
         {

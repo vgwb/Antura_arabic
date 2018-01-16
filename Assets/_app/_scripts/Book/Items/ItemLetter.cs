@@ -1,6 +1,6 @@
-﻿using Antura.Database;
+﻿using Antura.Core;
+using Antura.Database;
 using Antura.UI;
-using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -12,48 +12,46 @@ namespace Antura.Book
     /// </summary>
     public class ItemLetter : MonoBehaviour, IPointerClickHandler
     {
-        LetterInfo info;
         public TextRender Title;
         public TextRender SubTitle;
         public Image OkIcon;
 
-        VocabularyPanel manager;
-
-        UIButton uIButton;
-
+        private VocabularyPanel myManager;
+        private LetterInfo myLetterInfo;
+        private UIButton uIButton;
 
         public void Init(VocabularyPanel _manager, LetterInfo _info, bool _selected)
         {
             uIButton = GetComponent<UIButton>();
+            myLetterInfo = _info;
+            myManager = _manager;
 
-
-            info = _info;
-            manager = _manager;
-
-            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
+            if (myLetterInfo.unlocked || AppManager.I.Player.IsDemoUser) {
                 OkIcon.enabled = true;
             } else {
                 OkIcon.enabled = false;
             }
 
-            Title.text = info.data.GetStringForDisplay();
-            SubTitle.text = info.data.Id;
+            Title.text = myLetterInfo.data.GetStringForDisplay();
+            SubTitle.text = myLetterInfo.data.Id;
 
             hightlight(_selected);
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailLetter(info);
+            myManager.DetailLetter(myLetterInfo);
         }
 
         public void Select(string code)
         {
-            hightlight(code == info.data.Id);
+
+            hightlight(code == myLetterInfo.data.Id);
         }
 
         void hightlight(bool _status)
         {
+            //Debug.Log("ItemLetter hightlight() " + myLetterInfo.data.Id);
             uIButton.Toggle(_status);
         }
     }

@@ -17,9 +17,9 @@ namespace Antura.Book
         public Image LockIcon;
         public Image BackgroundImage;
 
-        bool isSelected;
-        bool isLocked;
-        GamesPanel myManager;
+        private bool isSelected;
+        private bool isLocked;
+        private GamesPanel myManager;
 
         public void Init(GamesPanel _manager, MiniGameInfo _MiniGameInfo)
         {
