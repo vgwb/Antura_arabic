@@ -18,7 +18,7 @@ namespace Antura.Book
         public GameObject VariationsContainer;
 
         [Header("Prefabs")]
-        public GameObject LetterItemPrefab;
+        public GameObject DiacriticSymbolItemPrefab;
 
         public void Init(LetterInfo letterInfo)
         {
@@ -44,10 +44,14 @@ namespace Antura.Book
                 (x) => (x.BaseLetter == letterbase && (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation))
             );
 
+            var letterGO = Instantiate(DiacriticSymbolItemPrefab);
+            letterGO.transform.SetParent(VariationsContainer.transform, false);
+            letterGO.GetComponent<ItemDiacriticSymbol>().Init(null);
+
             foreach (var letter in variationsletters) {
-                var letterGO = Instantiate(LetterItemPrefab);
+                letterGO = Instantiate(DiacriticSymbolItemPrefab);
                 letterGO.transform.SetParent(VariationsContainer.transform, false);
-                letterGO.GetComponent<LetterAllForms>().Init(letter);
+                letterGO.GetComponent<ItemDiacriticSymbol>().Init(letter);
             }
         }
     }
