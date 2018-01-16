@@ -24,6 +24,11 @@ namespace Antura.Database.Management
             data.Tag = ToString(dict["Tag"]);
             data.Notes = ToString(dict["Notes"]);
             data.SunMoon = ParseEnum<LetterDataSunMoon>(data, dict["SunMoon"]);
+
+            var nameSound = ToString(dict["NameSound"]);
+            data.NameSound = (nameSound == "1" ? data.Id + "__lettername" : nameSound);
+
+            data.PhonemeSound = ToString(dict["PhonemeSound"]);
             data.Sound = ToString(dict["Sound"]);
             data.SoundZone = ToString(dict["SoundZone"]);
             data.Isolated = ToString(dict["Isolated"]);

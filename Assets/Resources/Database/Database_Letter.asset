@@ -25,6 +25,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 1
       _Sound: x
+      _NameSound: ain__lettername
+      _PhonemeSound: ain_sukun
       _SoundZone: D
       _Isolated: "\u0639"
       _Initial: "\uFECB"
@@ -52,6 +54,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: ain_dammah
       _SoundZone: 
       _Isolated: "\u0639\u064F"
       _Initial: 
@@ -79,6 +83,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: ain_fathah
       _SoundZone: 
       _Isolated: "\u0639\u064B"
       _Initial: 
@@ -106,6 +112,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: ain_kasrah
       _SoundZone: 
       _Isolated: "\u0639\u0650"
       _Initial: 
@@ -133,6 +141,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0639\u0651"
       _Initial: 
@@ -160,6 +170,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: ain_sukun
       _SoundZone: 
       _Isolated: "\u0639\u0652"
       _Initial: 
@@ -187,6 +199,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: aa
+      _NameSound: alef__lettername
+      _PhonemeSound: alef_sukun
       _SoundZone: D
       _Isolated: "\u0627"
       _Initial: "\u0627"
@@ -214,6 +228,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: alef_dammah
       _SoundZone: 
       _Isolated: "\u0627\u064F"
       _Initial: "\u0627\u064F"
@@ -241,6 +257,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: alef_fathah
       _SoundZone: 
       _Isolated: "\u0627\u064E"
       _Initial: 
@@ -268,6 +286,8 @@ MonoBehaviour:
       _Notes: variation of Alef
       _SunMoon: 0
       _Sound: Aa
+      _NameSound: alef_hamza_hi__lettername
+      _PhonemeSound: alef_sukun
       _SoundZone: 
       _Isolated: "\u0623"
       _Initial: 
@@ -295,6 +315,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: alef_hamza_hi_dammah
       _SoundZone: 
       _Isolated: "\u0623\u064F"
       _Initial: 
@@ -322,6 +344,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: alef_hamza_hi_fathah
       _SoundZone: 
       _Isolated: "\u0623\u064E"
       _Initial: 
@@ -349,6 +373,8 @@ MonoBehaviour:
       _Notes: variation of Alef
       _SunMoon: 0
       _Sound: Aa
+      _NameSound: alef_hamza_low__lettername
+      _PhonemeSound: alef_kasrah
       _SoundZone: 
       _Isolated: "\u0625"
       _Initial: 
@@ -376,6 +402,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: alef_hamza_low_kasrah
       _SoundZone: 
       _Isolated: "\u0625\u0650"
       _Initial: 
@@ -403,6 +431,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: alef_kasrah
       _SoundZone: 
       _Isolated: "\u0627\u0650"
       _Initial: 
@@ -430,6 +460,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: alef_maddah__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0622"
       _Initial: 
@@ -457,6 +489,8 @@ MonoBehaviour:
       _Notes: dotless yeh
       _SunMoon: 0
       _Sound: a
+      _NameSound: alef_maqsura__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0649"
       _Initial: 
@@ -484,6 +518,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 1
       _Sound: b
+      _NameSound: 
+      _PhonemeSound: beh_sukun
       _SoundZone: A
       _Isolated: "\u0628"
       _Initial: "\uFE91"
@@ -511,6 +547,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: beh_sukun
       _SoundZone: 
       _Isolated: "\u0628\u064F"
       _Initial: 
@@ -538,6 +576,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: beh_sukun
       _SoundZone: 
       _Isolated: "\u0628\u064E"
       _Initial: 
@@ -565,6 +605,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: beh_sukun
       _SoundZone: 
       _Isolated: "\u0628\u0650"
       _Initial: 
@@ -592,6 +634,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: beh_sukun
       _SoundZone: 
       _Isolated: "\u0628\u0652"
       _Initial: "\uFE91\u0652"
@@ -619,6 +663,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: D
+      _NameSound: dad__lettername
+      _PhonemeSound: dad_sukun
       _SoundZone: C
       _Isolated: "\u0636"
       _Initial: "\uFEBF"
@@ -646,6 +692,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: dad_dammah
       _SoundZone: 
       _Isolated: "\u0636\u064F"
       _Initial: 
@@ -673,6 +721,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: dad_fathah
       _SoundZone: 
       _Isolated: "\u0636\u064E"
       _Initial: 
@@ -700,6 +750,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: dad_kasrah
       _SoundZone: 
       _Isolated: "\u0636\u0650"
       _Initial: 
@@ -727,6 +779,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0636\u0651"
       _Initial: 
@@ -754,6 +808,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: dad_sukun
       _SoundZone: 
       _Isolated: "\u0636\u0652"
       _Initial: 
@@ -781,6 +837,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: d
+      _NameSound: dal__lettername
+      _PhonemeSound: dal_sukun
       _SoundZone: B
       _Isolated: "\u062F"
       _Initial: "\u062F"
@@ -808,6 +866,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: dal_dammah
       _SoundZone: 
       _Isolated: "\u062F\u064F"
       _Initial: 
@@ -835,6 +895,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: dal_fathah
       _SoundZone: 
       _Isolated: "\u062F\u064B"
       _Initial: 
@@ -862,6 +924,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: dal_kasrah
       _SoundZone: 
       _Isolated: "\u062F\u0650"
       _Initial: 
@@ -889,6 +953,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u062F\u0651"
       _Initial: 
@@ -916,6 +982,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: dal_sukun
       _SoundZone: 
       _Isolated: "\u062F\u0652"
       _Initial: 
@@ -943,6 +1011,8 @@ MonoBehaviour:
       _Notes: short vowel
       _SunMoon: 0
       _Sound: u
+      _NameSound: dammah__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u064F"
       _Initial: 
@@ -970,6 +1040,8 @@ MonoBehaviour:
       _Notes: short vowel
       _SunMoon: 0
       _Sound: a
+      _NameSound: fathah__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u064E"
       _Initial: 
@@ -997,6 +1069,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 1
       _Sound: f
+      _NameSound: feh__lettername
+      _PhonemeSound: feh_sukun
       _SoundZone: A
       _Isolated: "\u0641"
       _Initial: "\uFED3"
@@ -1024,6 +1098,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: feh_dammah
       _SoundZone: 
       _Isolated: "\u0641\u064F"
       _Initial: 
@@ -1051,6 +1127,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: feh_fathah
       _SoundZone: 
       _Isolated: "\u0641\u064B"
       _Initial: 
@@ -1078,6 +1156,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: feh_kasrah
       _SoundZone: 
       _Isolated: "\u0641\u0650"
       _Initial: 
@@ -1105,6 +1185,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0641\u0651"
       _Initial: 
@@ -1132,6 +1214,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: feh_sukun
       _SoundZone: 
       _Isolated: "\u0641\u0652"
       _Initial: 
@@ -1159,6 +1243,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 1
       _Sound: gh
+      _NameSound: ghain__lettername
+      _PhonemeSound: ghain_sukun
       _SoundZone: D
       _Isolated: "\u063A"
       _Initial: "\uFECF"
@@ -1186,6 +1272,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: ghain_dammah
       _SoundZone: 
       _Isolated: "\u063A\u064F"
       _Initial: 
@@ -1213,6 +1301,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: ghain_fathah
       _SoundZone: 
       _Isolated: "\u063A\u064E"
       _Initial: 
@@ -1240,6 +1330,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: ghain_kasrah
       _SoundZone: 
       _Isolated: "\u063A\u0650"
       _Initial: 
@@ -1267,6 +1359,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u063A\u0651"
       _Initial: 
@@ -1294,6 +1388,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: ghain_sukun
       _SoundZone: 
       _Isolated: "\u063A\u0652"
       _Initial: 
@@ -1321,6 +1417,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 1
       _Sound: H
+      _NameSound: hah__lettername
+      _PhonemeSound: hah_sukun
       _SoundZone: D
       _Isolated: "\u062D"
       _Initial: "\uFEA3"
@@ -1348,6 +1446,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: hah_dammah
       _SoundZone: 
       _Isolated: "\u062D\u064F"
       _Initial: 
@@ -1375,6 +1475,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: hah_fathah
       _SoundZone: 
       _Isolated: "\u062D\u064B"
       _Initial: 
@@ -1402,6 +1504,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: hah_kasrah
       _SoundZone: 
       _Isolated: "\u062D\u0650"
       _Initial: 
@@ -1429,6 +1533,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: hah_shaddah__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u062D\u0651"
       _Initial: 
@@ -1456,6 +1562,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: hah_sukun
       _SoundZone: 
       _Isolated: "\u062D\u0652"
       _Initial: 
@@ -1483,6 +1591,8 @@ MonoBehaviour:
       _Notes: applied just on the long vowels Alef, waw, and yeh
       _SunMoon: 0
       _Sound: 
+      _NameSound: hamza__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0621"
       _Initial: 
@@ -1510,6 +1620,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0621\u064F"
       _Initial: 
@@ -1537,6 +1649,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0621\u064E"
       _Initial: 
@@ -1564,6 +1678,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0621\u0650"
       _Initial: 
@@ -1591,6 +1707,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 1
       _Sound: h
+      _NameSound: heh__lettername
+      _PhonemeSound: heh_sukun
       _SoundZone: D
       _Isolated: "\u0647"
       _Initial: "\uFEEB"
@@ -1618,6 +1736,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: heh_dammah
       _SoundZone: 
       _Isolated: "\u0647\u064F"
       _Initial: 
@@ -1645,6 +1765,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: heh_fathah
       _SoundZone: 
       _Isolated: "\u0647\u064B"
       _Initial: 
@@ -1672,6 +1794,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: heh_kasrah
       _SoundZone: 
       _Isolated: "\u0647\u0650"
       _Initial: 
@@ -1699,6 +1823,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0647\u0651"
       _Initial: 
@@ -1726,6 +1852,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: heh_sukun
       _SoundZone: 
       _Isolated: "\u0647\u0652"
       _Initial: 
@@ -1753,6 +1881,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 1
       _Sound: j
+      _NameSound: jeem__lettername
+      _PhonemeSound: jeem_sukun
       _SoundZone: C
       _Isolated: "\u062C"
       _Initial: "\uFE9F"
@@ -1780,6 +1910,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: jeem_dammah
       _SoundZone: 
       _Isolated: "\u062C\u064F"
       _Initial: 
@@ -1807,6 +1939,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: jeem_fathah
       _SoundZone: 
       _Isolated: "\u062C\u064B"
       _Initial: 
@@ -1834,6 +1968,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: jeem_kasrah
       _SoundZone: 
       _Isolated: "\u062C\u0650"
       _Initial: 
@@ -1861,6 +1997,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: jeem_shaddah__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u062C\u0651"
       _Initial: 
@@ -1888,6 +2026,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: jeem_sukun
       _SoundZone: 
       _Isolated: "\u062C\u0652"
       _Initial: 
@@ -1915,6 +2055,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 1
       _Sound: k
+      _NameSound: kaf__lettername
+      _PhonemeSound: kaf_sukun
       _SoundZone: D
       _Isolated: "\u0643"
       _Initial: "\uFEDB"
@@ -1942,6 +2084,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: kaf_dammah
       _SoundZone: 
       _Isolated: "\u0643\u064F"
       _Initial: 
@@ -1969,6 +2113,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: kaf_fathah
       _SoundZone: 
       _Isolated: "\u0643\u064B"
       _Initial: 
@@ -1996,6 +2142,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: kaf_kasrah
       _SoundZone: 
       _Isolated: "\u0643\u0650"
       _Initial: 
@@ -2023,6 +2171,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0643\u0651"
       _Initial: 
@@ -2050,6 +2200,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: kaf_sukun
       _SoundZone: 
       _Isolated: "\u0643\u0652"
       _Initial: 
@@ -2077,6 +2229,8 @@ MonoBehaviour:
       _Notes: short vowel
       _SunMoon: 0
       _Sound: i
+      _NameSound: kasrah__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0650"
       _Initial: 
@@ -2104,6 +2258,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 1
       _Sound: kh
+      _NameSound: khah__lettername
+      _PhonemeSound: khah_sukun
       _SoundZone: D
       _Isolated: "\u062E"
       _Initial: "\uFEA7"
@@ -2131,6 +2287,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: khah_dammah
       _SoundZone: 
       _Isolated: "\u062E\u064F"
       _Initial: 
@@ -2158,6 +2316,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: khah_fathah
       _SoundZone: 
       _Isolated: "\u062E\u064E"
       _Initial: 
@@ -2185,6 +2345,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: khah_kasrah
       _SoundZone: 
       _Isolated: "\u062E\u0650"
       _Initial: 
@@ -2212,6 +2374,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u062E\u0651"
       _Initial: 
@@ -2239,6 +2403,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: khah_sukun
       _SoundZone: 
       _Isolated: "\u062E\u0652"
       _Initial: 
@@ -2266,6 +2432,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: l
+      _NameSound: lam__lettername
+      _PhonemeSound: lam_sukun
       _SoundZone: B
       _Isolated: "\u0644"
       _Initial: "\uFEDF"
@@ -2293,6 +2461,8 @@ MonoBehaviour:
       _Notes: combination of laam & alef together
       _SunMoon: 0
       _Sound: laa
+      _NameSound: 
+      _PhonemeSound: lam_alef
       _SoundZone: 
       _Isolated: "\uFEFB"
       _Initial: 
@@ -2320,6 +2490,8 @@ MonoBehaviour:
       _Notes: variation of Lam
       _SunMoon: 0
       _Sound: 
+      _NameSound: lam_alef_hamza_hi__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\uFEF7"
       _Initial: 
@@ -2347,6 +2519,8 @@ MonoBehaviour:
       _Notes: variation of Lam
       _SunMoon: 0
       _Sound: 
+      _NameSound: lam_alef_hamza_low__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\uFEF9"
       _Initial: 
@@ -2374,6 +2548,8 @@ MonoBehaviour:
       _Notes: variation of Lam
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: lam_alef_maddah
       _SoundZone: 
       _Isolated: "\uFEF5"
       _Initial: 
@@ -2401,6 +2577,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: lam_dammah
       _SoundZone: 
       _Isolated: "\u0644\u064F"
       _Initial: 
@@ -2428,6 +2606,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: lam_fathah
       _SoundZone: 
       _Isolated: "\u0644\u064B"
       _Initial: 
@@ -2455,6 +2635,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: lam_kasrah
       _SoundZone: 
       _Isolated: "\u0644\u0650"
       _Initial: 
@@ -2482,6 +2664,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0644\u0651"
       _Initial: 
@@ -2509,6 +2693,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: lam_sukun
       _SoundZone: 
       _Isolated: "\u0644\u0652"
       _Initial: 
@@ -2536,6 +2722,8 @@ MonoBehaviour:
       _Notes: applied just on the long vowel Alef
       _SunMoon: 0
       _Sound: aa
+      _NameSound: maddah__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0653"
       _Initial: 
@@ -2563,6 +2751,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 1
       _Sound: m
+      _NameSound: meem__lettername
+      _PhonemeSound: meem_sukun
       _SoundZone: A
       _Isolated: "\u0645"
       _Initial: "\uFEE3"
@@ -2590,6 +2780,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: meem_dammah
       _SoundZone: 
       _Isolated: "\u0645\u064F"
       _Initial: 
@@ -2617,6 +2809,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: meem_fathah
       _SoundZone: 
       _Isolated: "\u0645\u064B"
       _Initial: 
@@ -2644,6 +2838,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: meem_kasrah
       _SoundZone: 
       _Isolated: "\u0645\u0650"
       _Initial: 
@@ -2671,6 +2867,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0645\u0651"
       _Initial: 
@@ -2698,6 +2896,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: meem_sukun
       _SoundZone: 
       _Isolated: "\u0645\u0652"
       _Initial: 
@@ -2725,6 +2925,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: n
+      _NameSound: noon__lettername
+      _PhonemeSound: noon_sukun
       _SoundZone: B
       _Isolated: "\u0646"
       _Initial: "\uFEE7"
@@ -2752,6 +2954,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: noon_dammah
       _SoundZone: 
       _Isolated: "\u0646\u064F"
       _Initial: 
@@ -2779,6 +2983,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: noon_fathah
       _SoundZone: 
       _Isolated: "\u0646\u064B"
       _Initial: 
@@ -2806,6 +3012,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: noon_kasrah
       _SoundZone: 
       _Isolated: "\u0646\u0650"
       _Initial: 
@@ -2833,6 +3041,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0646\u0651"
       _Initial: 
@@ -2860,6 +3070,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: noon_sukun
       _SoundZone: 
       _Isolated: "\u0646\u0652"
       _Initial: 
@@ -2887,6 +3099,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 1
       _Sound: q
+      _NameSound: qaf__lettername
+      _PhonemeSound: qaf_sukun
       _SoundZone: D
       _Isolated: "\u0642"
       _Initial: "\uFED7"
@@ -2914,6 +3128,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: qaf_dammah
       _SoundZone: 
       _Isolated: "\u0642\u064F"
       _Initial: 
@@ -2941,6 +3157,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: qaf_fathah
       _SoundZone: 
       _Isolated: "\u0642\u064B"
       _Initial: 
@@ -2968,6 +3186,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: qaf_kasrah
       _SoundZone: 
       _Isolated: "\u0642\u0650"
       _Initial: 
@@ -2995,6 +3215,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0642\u0651"
       _Initial: 
@@ -3022,6 +3244,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: qaf_sukun
       _SoundZone: 
       _Isolated: "\u0642\u0652"
       _Initial: 
@@ -3049,6 +3273,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: r
+      _NameSound: reh__lettername
+      _PhonemeSound: reh_sukun
       _SoundZone: B
       _Isolated: "\u0631"
       _Initial: "\u0631"
@@ -3076,6 +3302,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: reh_dammah
       _SoundZone: 
       _Isolated: "\u0631\u064F"
       _Initial: 
@@ -3103,6 +3331,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: reh_fathah
       _SoundZone: 
       _Isolated: "\u0631\u064B"
       _Initial: 
@@ -3130,6 +3360,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: reh_kasrah
       _SoundZone: 
       _Isolated: "\u0631\u0650"
       _Initial: 
@@ -3157,6 +3389,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0631\u0651"
       _Initial: 
@@ -3184,6 +3418,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: reh_sukun
       _SoundZone: 
       _Isolated: "\u0631\u0652"
       _Initial: 
@@ -3211,6 +3447,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: S
+      _NameSound: sad__lettername
+      _PhonemeSound: sad_sukun
       _SoundZone: A
       _Isolated: "\u0635"
       _Initial: "\uFEBB"
@@ -3238,6 +3476,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: sad_dammah
       _SoundZone: 
       _Isolated: "\u0635\u064F"
       _Initial: 
@@ -3265,6 +3505,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: sad_fathah
       _SoundZone: 
       _Isolated: "\u0635\u064B"
       _Initial: 
@@ -3292,6 +3534,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: sad_kasrah
       _SoundZone: 
       _Isolated: "\u0635\u0650"
       _Initial: 
@@ -3319,6 +3563,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0635\u0651"
       _Initial: 
@@ -3346,6 +3592,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: sad_sukun
       _SoundZone: 
       _Isolated: "\u0635\u0652"
       _Initial: 
@@ -3373,6 +3621,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: s
+      _NameSound: seen__lettername
+      _PhonemeSound: seen_sukun
       _SoundZone: A
       _Isolated: "\u0633"
       _Initial: "\uFEB3"
@@ -3400,6 +3650,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: seen_dammah
       _SoundZone: 
       _Isolated: "\u0633\u064F"
       _Initial: 
@@ -3427,6 +3679,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: seen_fathah
       _SoundZone: 
       _Isolated: "\u0633\u064B"
       _Initial: 
@@ -3454,6 +3708,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: seen_kasrah
       _SoundZone: 
       _Isolated: "\u0633\u0650"
       _Initial: 
@@ -3481,6 +3737,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0633\u0651"
       _Initial: 
@@ -3508,6 +3766,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: seen_sukun
       _SoundZone: 
       _Isolated: "\u0633\u0652"
       _Initial: 
@@ -3535,6 +3795,8 @@ MonoBehaviour:
       _Notes: doubling the consonant sound
       _SunMoon: 0
       _Sound: 
+      _NameSound: shaddah__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0651"
       _Initial: 
@@ -3562,6 +3824,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: sh
+      _NameSound: 
+      _PhonemeSound: sheen_sukun
       _SoundZone: C
       _Isolated: "\u0634"
       _Initial: "\uFEB7"
@@ -3589,6 +3853,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: sheen_dammah
       _SoundZone: 
       _Isolated: "\u0634\u064F"
       _Initial: 
@@ -3616,6 +3882,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: sheen_fathah
       _SoundZone: 
       _Isolated: "\u0634\u064B"
       _Initial: 
@@ -3643,6 +3911,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: sheen_kasrah
       _SoundZone: 
       _Isolated: "\u0634\u0650"
       _Initial: 
@@ -3670,6 +3940,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0634\u0651"
       _Initial: 
@@ -3697,6 +3969,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: sheen_sukun
       _SoundZone: 
       _Isolated: "\u0634\u0652"
       _Initial: 
@@ -3724,6 +3998,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: mute
+      _NameSound: sukun__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0652"
       _Initial: 
@@ -3751,6 +4027,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: T
+      _NameSound: tah__lettername
+      _PhonemeSound: tah_sukun
       _SoundZone: B
       _Isolated: "\u0637"
       _Initial: "\uFEC3"
@@ -3778,6 +4056,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: tah_dammah
       _SoundZone: 
       _Isolated: "\u0637\u064F"
       _Initial: 
@@ -3805,6 +4085,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: tah_fathah
       _SoundZone: 
       _Isolated: "\u0637\u064B"
       _Initial: 
@@ -3832,6 +4114,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: tah_kasrah
       _SoundZone: 
       _Isolated: "\u0637\u0650"
       _Initial: 
@@ -3859,6 +4143,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0637\u0651"
       _Initial: 
@@ -3886,6 +4172,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: tah_sukun
       _SoundZone: 
       _Isolated: "\u0637\u0652"
       _Initial: 
@@ -3913,6 +4201,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: t
+      _NameSound: teh__lettername
+      _PhonemeSound: teh_sukun
       _SoundZone: B
       _Isolated: "\u062A"
       _Initial: "\uFE97"
@@ -3940,6 +4230,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: teh_dammah
       _SoundZone: 
       _Isolated: "\u062A\u064F"
       _Initial: 
@@ -3967,6 +4259,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: teh_fathah
       _SoundZone: 
       _Isolated: "\u062A\u064E"
       _Initial: 
@@ -3994,6 +4288,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: teh_kasrah
       _SoundZone: 
       _Isolated: "\u062A\u0650"
       _Initial: 
@@ -4021,6 +4317,8 @@ MonoBehaviour:
       _Notes: variation of teh
       _SunMoon: 0
       _Sound: a
+      _NameSound: teh_marbuta__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0629"
       _Initial: 
@@ -4048,6 +4346,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0629\u064F"
       _Initial: 
@@ -4075,6 +4375,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0629\u064E"
       _Initial: 
@@ -4102,6 +4404,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0629\u0650"
       _Initial: 
@@ -4129,6 +4433,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: dh
+      _NameSound: thal__lettername
+      _PhonemeSound: thal_sukun
       _SoundZone: A
       _Isolated: "\u0630"
       _Initial: "\u0630"
@@ -4156,6 +4462,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: thal_dammah
       _SoundZone: 
       _Isolated: "\u0630\u064F"
       _Initial: 
@@ -4183,6 +4491,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: thal_fathah
       _SoundZone: 
       _Isolated: "\u0630\u064B"
       _Initial: 
@@ -4210,6 +4520,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: thal_kasrah
       _SoundZone: 
       _Isolated: "\u0630\u0650"
       _Initial: 
@@ -4237,6 +4549,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0630\u0651"
       _Initial: 
@@ -4264,6 +4578,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: thal_sukun
       _SoundZone: 
       _Isolated: "\u0630\u0652"
       _Initial: 
@@ -4291,6 +4607,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: th
+      _NameSound: theh__lettername
+      _PhonemeSound: theh_sukun
       _SoundZone: A
       _Isolated: "\u062B"
       _Initial: "\uFE9B"
@@ -4318,6 +4636,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: theh_dammah
       _SoundZone: 
       _Isolated: "\u062B\u064F"
       _Initial: 
@@ -4345,6 +4665,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: theh_fathah
       _SoundZone: 
       _Isolated: "\u062B\u064E"
       _Initial: 
@@ -4372,6 +4694,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: theh_kasrah
       _SoundZone: 
       _Isolated: "\u062B\u0650"
       _Initial: 
@@ -4399,6 +4723,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: theh_sukun
       _SoundZone: 
       _Isolated: "\u062B\u064C"
       _Initial: 
@@ -4426,6 +4752,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: w, uu
+      _NameSound: 
+      _PhonemeSound: waw_sukun
       _SoundZone: A
       _Isolated: "\u0648"
       _Initial: "\u0648"
@@ -4453,6 +4781,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: waw_dammah
       _SoundZone: 
       _Isolated: "\u0648\u064F"
       _Initial: 
@@ -4480,6 +4810,8 @@ MonoBehaviour:
       _Notes: same letter, different sound
       _SunMoon: 0
       _Sound: w, uu
+      _NameSound: 
+      _PhonemeSound: waw_diph
       _SoundZone: A
       _Isolated: "\u0648"
       _Initial: 
@@ -4507,6 +4839,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: waw_fathah
       _SoundZone: 
       _Isolated: "\u0648\u064E"
       _Initial: 
@@ -4534,6 +4868,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: waw_hamza__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0624"
       _Initial: 
@@ -4561,6 +4897,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: waw_kasrah
       _SoundZone: 
       _Isolated: "\u0648\u0650"
       _Initial: 
@@ -4588,6 +4926,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0648\u0651"
       _Initial: 
@@ -4615,6 +4955,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: waw_sukun
       _SoundZone: 
       _Isolated: "\u0648\u0652"
       _Initial: 
@@ -4642,6 +4984,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: y, ii
+      _NameSound: yeh__lettername
+      _PhonemeSound: yeh_sukun
       _SoundZone: C
       _Isolated: "\u064A"
       _Initial: "\uFEF3"
@@ -4669,6 +5013,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: yeh_dammah
       _SoundZone: 
       _Isolated: "\u064A\u064F"
       _Initial: 
@@ -4696,6 +5042,8 @@ MonoBehaviour:
       _Notes: same letter, different sound
       _SunMoon: 0
       _Sound: y, ii
+      _NameSound: 
+      _PhonemeSound: yeh_diph
       _SoundZone: C
       _Isolated: "\u064A"
       _Initial: "\uFEF3"
@@ -4723,6 +5071,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: yeh_fathah
       _SoundZone: 
       _Isolated: "\u064A\u064E"
       _Initial: 
@@ -4750,6 +5100,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: yeh_hamza__lettername
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0626"
       _Initial: "\uFE8B"
@@ -4777,6 +5129,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: yeh_kasrah
       _SoundZone: 
       _Isolated: "\u064A\u0650"
       _Initial: 
@@ -4804,6 +5158,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u064A\u0651"
       _Initial: 
@@ -4831,6 +5187,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: yeh_sukun
       _SoundZone: 
       _Isolated: "\u064A\u064C"
       _Initial: 
@@ -4858,6 +5216,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: DH
+      _NameSound: zah__lettername
+      _PhonemeSound: zah_sukun
       _SoundZone: A
       _Isolated: "\u0638"
       _Initial: "\uFEC7"
@@ -4885,6 +5245,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: zah_dammah
       _SoundZone: 
       _Isolated: "\u0638\u064F"
       _Initial: 
@@ -4912,6 +5274,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: zah_fathah
       _SoundZone: 
       _Isolated: "\u0638\u064E"
       _Initial: 
@@ -4939,6 +5303,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: zah_kasrah
       _SoundZone: 
       _Isolated: "\u0638\u0650"
       _Initial: 
@@ -4966,6 +5332,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0638\u0651"
       _Initial: 
@@ -4993,6 +5361,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: zah_sukun
       _SoundZone: 
       _Isolated: "\u0638\u0652"
       _Initial: 
@@ -5020,6 +5390,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: z
+      _NameSound: zain__lettername
+      _PhonemeSound: zain_sukun
       _SoundZone: A
       _Isolated: "\u0632"
       _Initial: "\u0632"
@@ -5047,6 +5419,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: zain_dammah
       _SoundZone: 
       _Isolated: "\u0632\u064F"
       _Initial: 
@@ -5074,6 +5448,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: zain_fathah
       _SoundZone: 
       _Isolated: "\u0632\u064B"
       _Initial: 
@@ -5101,6 +5477,8 @@ MonoBehaviour:
       _Notes: from diacritic song
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: zain_kasrah
       _SoundZone: 
       _Isolated: "\u0632\u0650"
       _Initial: 
@@ -5128,6 +5506,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: 
       _SoundZone: 
       _Isolated: "\u0632\u0651"
       _Initial: 
@@ -5155,6 +5535,8 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: 
+      _NameSound: 
+      _PhonemeSound: zain_sukun
       _SoundZone: 
       _Isolated: "\u0632\u0652"
       _Initial: 

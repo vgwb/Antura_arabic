@@ -145,6 +145,22 @@ namespace Antura.Database
         [SerializeField]
         private string _Sound;
 
+        public string NameSound
+        {
+            get { return _NameSound; }
+            set { _NameSound = value; }
+        }
+        [SerializeField]
+        private string _NameSound;
+
+        public string PhonemeSound
+        {
+            get { return _PhonemeSound; }
+            set { _PhonemeSound = value; }
+        }
+        [SerializeField]
+        private string _PhonemeSound;
+
         public string SoundZone
         {
             get { return _SoundZone; }
@@ -379,14 +395,19 @@ namespace Antura.Database
             // Debug.Log("GetAudioFilename " + Id + " " + Kind + " " + Type);
             switch (soundType) {
                 case LetterDataSoundType.Phoneme:
-                    // arabic special case: the phoneme of a simple letter is the letterbase_sukun sound!!!!!
-                    if (Kind == LetterDataKind.Letter) {
-                        return Id + "_sukun";
+                    if (PhonemeSound != "") {
+                        return PhonemeSound;
                     } else {
-                        return Id;
+                        Debug.LogWarning("LetterData(): Requested Phone Sound is missing " + Id);
+                        return "";
                     }
                 case LetterDataSoundType.Name:
-                    return Id + "__lettername";
+                    if (NameSound != "") {
+                        return NameSound; ;
+                    } else {
+                        Debug.LogWarning("LetterData(): Requested Name Sound is missing " + Id);
+                        return "";
+                    }
                 default:
                     return "";
             }
