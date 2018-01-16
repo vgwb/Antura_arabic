@@ -142,7 +142,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: ain_sukun
       _SoundZone: 
       _Isolated: "\u0639\u0651"
       _Initial: 
@@ -316,7 +316,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: alef_hamza_hi_dammah
+      _PhonemeSound: alef_dammah
       _SoundZone: 
       _Isolated: "\u0623\u064F"
       _Initial: 
@@ -345,7 +345,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: alef_hamza_hi_fathah
+      _PhonemeSound: alef_fathah
       _SoundZone: 
       _Isolated: "\u0623\u064E"
       _Initial: 
@@ -403,7 +403,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: alef_hamza_low_kasrah
+      _PhonemeSound: alef_kasrah
       _SoundZone: 
       _Isolated: "\u0625\u0650"
       _Initial: 
@@ -461,7 +461,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: alef_maddah__lettername
-      _PhonemeSound: 
+      _PhonemeSound: alef_fathah
       _SoundZone: 
       _Isolated: "\u0622"
       _Initial: 
@@ -490,7 +490,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: a
       _NameSound: alef_maqsura__lettername
-      _PhonemeSound: 
+      _PhonemeSound: alef_fathah
       _SoundZone: 
       _Isolated: "\u0649"
       _Initial: 
@@ -548,7 +548,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: beh_sukun
+      _PhonemeSound: beh_dammah
       _SoundZone: 
       _Isolated: "\u0628\u064F"
       _Initial: 
@@ -577,7 +577,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: beh_sukun
+      _PhonemeSound: beh_fathah
       _SoundZone: 
       _Isolated: "\u0628\u064E"
       _Initial: 
@@ -606,7 +606,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: beh_sukun
+      _PhonemeSound: beh_kasrah
       _SoundZone: 
       _Isolated: "\u0628\u0650"
       _Initial: 
@@ -780,7 +780,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: dad_sukun
       _SoundZone: 
       _Isolated: "\u0636\u0651"
       _Initial: 
@@ -954,7 +954,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: dal_sukun
       _SoundZone: 
       _Isolated: "\u062F\u0651"
       _Initial: 
@@ -1186,7 +1186,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: feh_sukun
       _SoundZone: 
       _Isolated: "\u0641\u0651"
       _Initial: 
@@ -1360,7 +1360,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: ghain_sukun
       _SoundZone: 
       _Isolated: "\u063A\u0651"
       _Initial: 
@@ -1534,7 +1534,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: hah_shaddah__lettername
-      _PhonemeSound: 
+      _PhonemeSound: hah_sukun
       _SoundZone: 
       _Isolated: "\u062D\u0651"
       _Initial: 
@@ -1592,7 +1592,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: hamza__lettername
-      _PhonemeSound: 
+      _PhonemeSound: hamzah_fathah
       _SoundZone: 
       _Isolated: "\u0621"
       _Initial: 
@@ -1621,7 +1621,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: alef_dammah
       _SoundZone: 
       _Isolated: "\u0621\u064F"
       _Initial: 
@@ -1650,7 +1650,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: alef_fathah
       _SoundZone: 
       _Isolated: "\u0621\u064E"
       _Initial: 
@@ -1679,7 +1679,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: alef_kasrah
       _SoundZone: 
       _Isolated: "\u0621\u0650"
       _Initial: 
@@ -1824,7 +1824,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: heh_sukun
       _SoundZone: 
       _Isolated: "\u0647\u0651"
       _Initial: 
@@ -1998,7 +1998,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: jeem_shaddah__lettername
-      _PhonemeSound: 
+      _PhonemeSound: jeem_sukun
       _SoundZone: 
       _Isolated: "\u062C\u0651"
       _Initial: 
@@ -2172,7 +2172,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: kaf_sukun
       _SoundZone: 
       _Isolated: "\u0643\u0651"
       _Initial: 
@@ -2375,7 +2375,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: khah_sukun
       _SoundZone: 
       _Isolated: "\u062E\u0651"
       _Initial: 
@@ -2491,7 +2491,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: lam_alef_hamza_hi__lettername
-      _PhonemeSound: 
+      _PhonemeSound: lam_alef
       _SoundZone: 
       _Isolated: "\uFEF7"
       _Initial: 
@@ -2520,7 +2520,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: lam_alef_hamza_low__lettername
-      _PhonemeSound: 
+      _PhonemeSound: lam_alef
       _SoundZone: 
       _Isolated: "\uFEF9"
       _Initial: 
@@ -2665,7 +2665,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: lam_sukun
       _SoundZone: 
       _Isolated: "\u0644\u0651"
       _Initial: 
@@ -2868,7 +2868,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: meem_sukun
       _SoundZone: 
       _Isolated: "\u0645\u0651"
       _Initial: 
@@ -3042,7 +3042,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: noon_sukun
       _SoundZone: 
       _Isolated: "\u0646\u0651"
       _Initial: 
@@ -3216,7 +3216,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: qaf_sukun
       _SoundZone: 
       _Isolated: "\u0642\u0651"
       _Initial: 
@@ -3390,7 +3390,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: reh_sukun
       _SoundZone: 
       _Isolated: "\u0631\u0651"
       _Initial: 
@@ -3564,7 +3564,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: sad_sukun
       _SoundZone: 
       _Isolated: "\u0635\u0651"
       _Initial: 
@@ -3738,7 +3738,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: seen_sukun
       _SoundZone: 
       _Isolated: "\u0633\u0651"
       _Initial: 
@@ -3941,7 +3941,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: sheen_sukun
       _SoundZone: 
       _Isolated: "\u0634\u0651"
       _Initial: 
@@ -4144,7 +4144,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: tah_sukun
       _SoundZone: 
       _Isolated: "\u0637\u0651"
       _Initial: 
@@ -4347,7 +4347,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: teh_dammah
       _SoundZone: 
       _Isolated: "\u0629\u064F"
       _Initial: 
@@ -4376,7 +4376,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: teh_fathah
       _SoundZone: 
       _Isolated: "\u0629\u064E"
       _Initial: 
@@ -4405,7 +4405,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: teh_kasrah
       _SoundZone: 
       _Isolated: "\u0629\u0650"
       _Initial: 
@@ -4550,7 +4550,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: thal_sukun
       _SoundZone: 
       _Isolated: "\u0630\u0651"
       _Initial: 
@@ -4927,7 +4927,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: waw_sukun
       _SoundZone: 
       _Isolated: "\u0648\u0651"
       _Initial: 
@@ -5159,7 +5159,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: yeh_sukun
       _SoundZone: 
       _Isolated: "\u064A\u0651"
       _Initial: 
@@ -5333,7 +5333,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: zah_sukun
       _SoundZone: 
       _Isolated: "\u0638\u0651"
       _Initial: 
@@ -5507,7 +5507,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: 
+      _PhonemeSound: zain_sukun
       _SoundZone: 
       _Isolated: "\u0632\u0651"
       _Initial: 
