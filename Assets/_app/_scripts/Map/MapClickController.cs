@@ -1,4 +1,5 @@
-﻿using Antura.Audio;
+﻿using Antura.Core;
+using Antura.Audio;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -15,6 +16,8 @@ namespace Antura.Map
         void Update()
         {
             // Touch movement controls
+            if (AppManager.I.ModalWindowActivated) { return; }
+
             if (Input.GetMouseButtonUp(0) && !IsTouchingSomething() && !mapCameraController.IsFollowingFinger) {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

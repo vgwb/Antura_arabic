@@ -11,6 +11,7 @@ using Antura.Teacher;
 using Antura.UI;
 using Antura.Utilities;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Antura.Core
 {
@@ -120,6 +121,11 @@ namespace Antura.Core
                     QuitApplication();
                 }
             }
+        }
+
+        public void OnSceneChanged()
+        {
+            ModalWindowActivated = false;
         }
 
         public void QuitApplication()

@@ -91,6 +91,7 @@ namespace Antura.Core
         void OnSceneTransitionComplete(string _sceneToLoad)
         {
             SceneManager.LoadScene(_sceneToLoad);
+            AppManager.I.OnSceneChanged();
         }
 
         #endregion
