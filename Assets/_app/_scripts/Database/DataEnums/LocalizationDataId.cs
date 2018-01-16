@@ -107,7 +107,7 @@ namespace Antura.Database
         Intro_Dog_Chase = 100,
         Intro_Letters_1 = 101,
         Intro_Letters_2 = 102,
-        Intro_welcome = 103,
+        Intro_Welcome = 103,
         Keeper_AttempsOver = 104,
         Keeper_Bad_1 = 105,
         Keeper_Bad_2 = 106,

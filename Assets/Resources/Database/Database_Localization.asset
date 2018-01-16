@@ -1553,7 +1553,7 @@ MonoBehaviour:
         \u062C\u0645\u064A\u0639\u0650 \u0627\u0644\u0623\u062D\u0631\u0641 \u0625\u0644\u0649
         \u0645\u0643\u0627\u0646\u0650\u0647\u0627\u061F \u0623\u0631\u062C\u0648\u0648\u0648\u0648\u0643\u0650."
       _AudioFile: Intro_Letters_2
-    - _Id: Intro_welcome
+    - _Id: Intro_Welcome
       _Character: Keeper
       _Area: intro
       _When: Empty scene
@@ -1565,7 +1565,7 @@ MonoBehaviour:
       _ArabicFemale: "\u0644\u0642\u062F \u0623\u062A\u064A\u062A\u0650 \u0623\u062E\u064A\u0631\u0627\u064B!
         \u0643\u0646\u062A\u064F \u0628\u0627\u0646\u062A\u0638\u0627\u0631\u0650\u0650\u0643.
         \u0623\u062D\u062A\u0627\u062C\u064F \u0645\u0633\u0627\u0639\u062F\u062A\u064E\u0643\u0650!"
-      _AudioFile: Intro_welcome
+      _AudioFile: Intro_Welcome
     - _Id: Keeper_AttempsOver
       _Character: Keeper
       _Area: keeper

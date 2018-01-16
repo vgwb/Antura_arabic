@@ -2110,7 +2110,7 @@
     },
     {
       "Id_OLD": "",
-      "Id": "Intro_welcome",
+      "Id": "Intro_Welcome",
       "EnumId": "103",
       "Date": "",
       "Character": "Keeper",
@@ -2120,7 +2120,7 @@
       "English": "Finally you have arrived! I was waiting for you... I need your help!",
       "Arabic": "لقد أتيتَ أخيراً! كنتُ بانتظارِك. أحتاجُ مساعدتَك!",
       "ArabicFemale": "لقد أتيتِ أخيراً! كنتُ بانتظارِِك. أحتاجُ مساعدتَكِ!",
-      "AudioFile": "Intro_welcome",
+      "AudioFile": "Intro_Welcome",
       "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""

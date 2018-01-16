@@ -145,7 +145,7 @@ namespace Antura.Intro
 
             yield return new WaitForSeconds(m_StateDelay);
 
-            KeeperManager.I.PlayDialog(Database.LocalizationDataId.Intro_welcome, true, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.Intro_Welcome, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
