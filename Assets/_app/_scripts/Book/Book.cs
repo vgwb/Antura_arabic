@@ -25,6 +25,7 @@ namespace Antura.Book
         public GameObject GamesPanel;
 
         BookArea currentPanel = BookArea.None;
+        BookArea previousPanel = BookArea.None;
 
         void Awake()
         {
@@ -37,7 +38,7 @@ namespace Antura.Book
 
         }
 
-        public void OpenArea(BookArea newPanel)
+        public void OpenArea(BookArea newPanel, bool navigationHistory = false)
         {
             //switch (newPanel) {
             //    case BookArea.Vocabulary:
@@ -56,6 +57,12 @@ namespace Antura.Book
             //var panel = Instantiate(VocabularyPanel);
             //panel.transform.SetParent(UICanvas.transform, false);
             if (newPanel != currentPanel) {
+                if (navigationHistory) {
+                    previousPanel = currentPanel;
+                } else {
+                    previousPanel = BookArea.None;
+                }
+
                 activatePanel(currentPanel, false);
                 currentPanel = newPanel;
                 activatePanel(currentPanel, true);
@@ -91,8 +98,12 @@ namespace Antura.Book
 
         public void OnBtnClose()
         {
-            gameObject.SetActive(false);
-            Destroy(gameObject);
+            if (previousPanel == BookArea.None) {
+                gameObject.SetActive(false);
+                Destroy(gameObject);
+            } else {
+                OpenArea(previousPanel);
+            }
         }
 
         public void BtnOpenVocabulary()
@@ -103,6 +114,16 @@ namespace Antura.Book
         public void BtnOpenMinigGames()
         {
             OpenArea(BookArea.MiniGames);
+        }
+
+        public void BtnOpenVocabularyWithBack()
+        {
+            OpenArea(BookArea.Vocabulary, true);
+        }
+
+        public void BtnOpenMinigGamesWithBack()
+        {
+            OpenArea(BookArea.MiniGames, true);
         }
 
         public void BtnOpenPlayerProfile()
