@@ -13,11 +13,11 @@ namespace Antura.Book
         public TextRender EnglishLetterText;
         public Image OkIcon;
 
-        private DetailLetterView myManager;
+        private LettersPage myManager;
         private LetterInfo myLetterInfo;
         private UIButton uIButton;
 
-        public void Init(DetailLetterView _manager, LetterInfo letterInfo, bool _selected)
+        public void Init(LettersPage _manager, LetterInfo letterInfo, bool _selected)
         {
             myLetterInfo = letterInfo;
             uIButton = GetComponent<UIButton>();

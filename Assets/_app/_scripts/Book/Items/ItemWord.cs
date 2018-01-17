@@ -20,9 +20,9 @@ namespace Antura.Book
         public TextRender Drawing;
         public Image LockIcon;
 
-        VocabularyPanel manager;
+        WordsPage manager;
 
-        public void Init(VocabularyPanel _manager, WordInfo _info)
+        public void Init(WordsPage _manager, WordInfo _info)
         {
             info = _info;
             manager = _manager;

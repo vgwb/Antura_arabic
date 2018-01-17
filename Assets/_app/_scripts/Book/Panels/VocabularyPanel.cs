@@ -1,9 +1,7 @@
 ﻿using Antura.Audio;
 using Antura.Core;
 using Antura.Database;
-using Antura.Helpers;
 using Antura.UI;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Antura.Book
@@ -30,46 +28,16 @@ namespace Antura.Book
     /// <summary>
     /// Displays information on all learning items the player has unlocked.
     /// </summary>
-    public class VocabularyPanel : MonoBehaviour, IBookPanel
+    public class VocabularyPanel : MonoBehaviour
     {
-        [Header("Prefabs")]
-        public GameObject WordItemPrefab;
-
-        public GameObject LetterItemPrefab;
-        public GameObject PhraseItemPrefab;
-        public GameObject CategoryItemPrefab;
-
         [Header("References")]
-        public GameObject DetailPanel;
-
-        public GameObject BookLetters;
-        public GameObject BookWords;
-        public GameObject Submenu;
-        public GameObject SubmenuContainer;
-        public GameObject ListPanel;
-        public GameObject ElementsContainer;
-
+        public GameObject LettersPage;
+        public GameObject WordsPage;
+        public GameObject PhrasesPage;
         public UIButton BtnLetters;
         public UIButton BtnWords;
-        public UIButton BtnPhrases;
-
-        public DetailLetterView DetailLetterView;
-        public GameObject MoreInfoLetterPanel;
-        public GameObject MoreInfoWordPanel;
-        public TextRender ArabicText;
-        public TextRender WordDrawingText;
-
-        public TextRender ScoreText;
 
         private VocabularyChapter currentChapter = VocabularyChapter.None;
-        private GameObject btnGO;
-        private string currentCategory;
-        private LocalizationData CategoryData;
-        private WordDataCategory currentWordCategory;
-        private PhraseDataCategory currentPhraseCategory;
-        private LetterInfo currentLetter;
-        private WordInfo currentWord;
-        private PhraseInfo currentPhrase;
 
         void Start()
         {
@@ -91,23 +59,20 @@ namespace Antura.Book
 
         void activatePanel(VocabularyChapter panel, bool status)
         {
-            DetailPanel.SetActive(false);
             switch (panel) {
                 case VocabularyChapter.Letters:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Letters);
-                    BookLetters.SetActive(true);
-                    BookWords.SetActive(false);
-                    LettersPanel("letters");
+                    LettersPage.SetActive(true);
+                    WordsPage.SetActive(false);
                     break;
                 case VocabularyChapter.Words:
-                    BookLetters.SetActive(false);
-                    BookWords.SetActive(true);
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Words);
-                    WordsPanel(WordDataCategory.Adjectives);
+                    LettersPage.SetActive(false);
+                    WordsPage.SetActive(true);
                     break;
                 case VocabularyChapter.Phrases:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Phrases);
-                    PhrasesPanel(PhraseDataCategory.Expression);
+                    PhrasesPage.SetActive(true);
                     break;
             }
         }
@@ -116,291 +81,7 @@ namespace Antura.Book
         {
             BtnLetters.Lock(currentChapter == VocabularyChapter.Letters);
             BtnWords.Lock(currentChapter == VocabularyChapter.Words);
-            BtnPhrases.Lock(currentChapter == VocabularyChapter.Phrases);
-        }
-
-        #region Letters
-
-        void LettersPanel(string _category = "")
-        {
-            ListPanel.SetActive(true);
-            Submenu.SetActive(false);
-
-            currentCategory = _category;
-            List<LetterData> letters;
-            switch (currentCategory) {
-                case "combinations":
-                    letters = AppManager.I.DB.FindLetterData((x) =>
-                        (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation));
-                    break;
-                case "symbols":
-                    letters = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
-                    break;
-                default:
-                    letters = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
-                    break;
-            }
-            emptyListContainers();
-
-            List<LetterInfo> info_list = AppManager.I.ScoreHelper.GetAllLetterInfo();
-            info_list.Sort((x, y) => x.data.Number.CompareTo(y.data.Number));
-            foreach (var info_item in info_list) {
-                if (letters.Contains(info_item.data)) {
-                    btnGO = Instantiate(LetterItemPrefab);
-                    btnGO.transform.SetParent(ElementsContainer.transform, false);
-                    btnGO.transform.SetAsFirstSibling();
-                    btnGO.GetComponent<ItemLetter>().Init(this, info_item, false);
-                }
-            }
-
-            //btnGO = Instantiate(CategoryItemPrefab);
-            //btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            //btnGO.GetComponent<MenuItemCategory>().Init(this, new CategoryData { Id = "all", Title = "All" });
-
-            btnGO = Instantiate(CategoryItemPrefab);
-            btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Letters);
-            btnGO.GetComponent<MenuItemCategory>().Init(
-                this,
-                new GenericCategoryData
-                {
-                    area = VocabularyChapter.Letters,
-                    Id = "letters",
-                    Title = CategoryData.Arabic,
-                    TitleEn = CategoryData.English
-                },
-                currentCategory == "letters"
-            );
-
-            btnGO = Instantiate(CategoryItemPrefab);
-            btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Symbols);
-            btnGO.GetComponent<MenuItemCategory>().Init(
-                this,
-                new GenericCategoryData
-                {
-                    area = VocabularyChapter.Letters,
-                    Id = "symbols",
-                    Title = CategoryData.Arabic,
-                    TitleEn = CategoryData.English
-                },
-                currentCategory == "symbols"
-            );
-
-            btnGO = Instantiate(CategoryItemPrefab);
-            btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Combinations);
-            btnGO.GetComponent<MenuItemCategory>().Init(
-                this,
-                new GenericCategoryData
-                {
-                    area = VocabularyChapter.Letters,
-                    Id = "combinations",
-                    Title = CategoryData.Arabic,
-                    TitleEn = CategoryData.English
-                },
-                currentCategory == "combinations"
-            );
-
-            //HighlightMenutCategory(currentCategory);
-            // HighlightLetterItem("");
-        }
-
-        public void DetailLetter(LetterInfo _currentLetter)
-        {
-            currentLetter = _currentLetter;
-
-            DetailPanel.SetActive(true);
-            MoreInfoLetterPanel.SetActive(true);
-            MoreInfoWordPanel.SetActive(false);
-
-            DetailLetterView.Init(currentLetter);
-        }
-
-        #endregion
-
-        #region Words
-
-        void WordsPanel(WordDataCategory _category = WordDataCategory.None)
-        {
-            ListPanel.SetActive(true);
-            Submenu.SetActive(true);
-            currentWordCategory = _category;
-
-            Debug.Log("current wor cat: " + _category);
-
-
-            List<WordData> list;
-            switch (currentWordCategory) {
-                case WordDataCategory.None:
-                    //list = AppManager.I.DB.GetAllWordData();
-                    list = new List<WordData>();
-                    break;
-                default:
-                    //list = AppManager.I.DB.FindWordData((x) => (x.Category == currentWordCategory && x.Article == WordDataArticle.None && x.Kind == WordDataKind.Noun));
-                    list = AppManager.I.DB.FindWordData((x) => (x.Category == currentWordCategory));
-                    break;
-            }
-            emptyListContainers();
-
-            List<WordInfo> info_list = AppManager.I.ScoreHelper.GetAllWordInfo();
-            foreach (var info_item in info_list) {
-                if (list.Contains(info_item.data)) {
-                    btnGO = Instantiate(WordItemPrefab);
-                    btnGO.transform.SetParent(ElementsContainer.transform, false);
-                    btnGO.GetComponent<ItemWord>().Init(this, info_item);
-                }
-            }
-
-            foreach (WordDataCategory cat in GenericHelper.SortEnums<WordDataCategory>()) {
-                if (cat == WordDataCategory.None) continue;
-                btnGO = Instantiate(CategoryItemPrefab);
-                btnGO.transform.SetParent(SubmenuContainer.transform, false);
-                CategoryData = LocalizationManager.GetWordCategoryData(cat);
-                btnGO.GetComponent<MenuItemCategory>().Init(
-                    this,
-                    new GenericCategoryData
-                    {
-                        area = VocabularyChapter.Words,
-                        wordCategory = cat,
-                        Id = cat.ToString(),
-                        Title = CategoryData.Arabic,
-                        TitleEn = CategoryData.English
-                    },
-                    currentWordCategory == cat
-                );
-            }
-        }
-
-        public void DetailWord(WordInfo _currentWord)
-        {
-            currentWord = _currentWord;
-            DetailPanel.SetActive(true);
-            MoreInfoLetterPanel.SetActive(false);
-            MoreInfoWordPanel.SetActive(true);
-            Debug.Log("Detail Word :" + currentWord.data.Id);
-            AudioManager.I.PlayWord(currentWord.data);
-
-            var output = "";
-            output += currentWord.data.Arabic;
-            output += "\n";
-            var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, currentWord.data);
-            foreach (var letter in splittedLetters) {
-                output += letter.letter.GetStringForDisplay() + " ";
-            }
-
-            ArabicText.text = output;
-            if (currentWord.data.Drawing != "") {
-                WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(currentWord.data);
-                if (currentWord.data.Category == WordDataCategory.Color) {
-                    WordDrawingText.SetColor(GenericHelper.GetColorFromString(currentWord.data.Value));
-                }
-            } else {
-                WordDrawingText.text = "";
-            }
-
-            ScoreText.text = "Score: " + currentWord.score;
-        }
-
-        #endregion
-
-        #region Phrases
-
-        void PhrasesPanel(PhraseDataCategory _category = PhraseDataCategory.None)
-        {
-            ListPanel.SetActive(true);
-            Submenu.SetActive(true);
-            currentPhraseCategory = _category;
-
-            List<PhraseData> list;
-            switch (currentPhraseCategory) {
-                case PhraseDataCategory.None:
-                    list = new List<PhraseData>();
-                    break;
-                default:
-                    list = AppManager.I.DB.FindPhraseData((x) => (x.Category == currentPhraseCategory));
-                    break;
-            }
-            emptyListContainers();
-
-            List<PhraseInfo> info_list = AppManager.I.ScoreHelper.GetAllPhraseInfo();
-            foreach (var info_item in info_list) {
-                if (list.Contains(info_item.data)) {
-                    btnGO = Instantiate(PhraseItemPrefab);
-                    btnGO.transform.SetParent(ElementsContainer.transform, false);
-                    btnGO.GetComponent<ItemPhrase>().Init(this, info_item);
-                }
-            }
-
-            foreach (PhraseDataCategory cat in GenericHelper.SortEnums<PhraseDataCategory>()) {
-                if (cat == PhraseDataCategory.None) { continue; }
-                btnGO = Instantiate(CategoryItemPrefab);
-                btnGO.transform.SetParent(SubmenuContainer.transform, false);
-                CategoryData = LocalizationManager.GetPhraseCategoryData(cat);
-                btnGO.GetComponent<MenuItemCategory>().Init(
-                    this,
-                    new GenericCategoryData
-                    {
-                        area = VocabularyChapter.Phrases,
-                        phraseCategory = cat,
-                        Id = cat.ToString(),
-                        Title = CategoryData.Arabic,
-                        TitleEn = CategoryData.English
-                    },
-                    currentPhraseCategory == cat
-                );
-            }
-        }
-
-        public void DetailPhrase(PhraseInfo _currentPhrase)
-        {
-            currentPhrase = _currentPhrase;
-            DetailPanel.SetActive(true);
-            MoreInfoLetterPanel.SetActive(false);
-            MoreInfoWordPanel.SetActive(false);
-
-            Debug.Log("Detail Phrase :" + currentPhrase.data.Id);
-            AudioManager.I.PlayPhrase(currentPhrase.data);
-
-            ArabicText.text = currentPhrase.data.Arabic;
-            ScoreText.text = "Score: " + currentPhrase.score;
-        }
-
-        #endregion
-
-        public void SelectSubCategory(GenericCategoryData _category)
-        {
-            switch (_category.area) {
-                case VocabularyChapter.Letters:
-                    LettersPanel(_category.Id);
-                    break;
-                case VocabularyChapter.Words:
-                    WordsPanel(_category.wordCategory);
-                    break;
-                case VocabularyChapter.Phrases:
-                    PhrasesPanel(_category.phraseCategory);
-                    break;
-            }
-        }
-
-        void HighlightMenutCategory(string id)
-        {
-            foreach (Transform t in SubmenuContainer.transform) {
-                t.GetComponent<MenuItemCategory>().Select(id);
-            }
-        }
-
-        void emptyListContainers()
-        {
-            foreach (Transform t in ElementsContainer.transform) {
-                Destroy(t.gameObject);
-            }
-            // reset vertical position
-            ListPanel.GetComponent<UnityEngine.UI.ScrollRect>().verticalNormalizedPosition = 1.0f;
-
-            foreach (Transform t in SubmenuContainer.transform) {
-                Destroy(t.gameObject);
-            }
+            //BtnPhrases.Lock(currentChapter == VocabularyChapter.Phrases);
         }
 
         #region buttons

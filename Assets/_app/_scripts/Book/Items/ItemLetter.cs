@@ -16,11 +16,11 @@ namespace Antura.Book
         public TextRender SubTitle;
         public Image OkIcon;
 
-        private VocabularyPanel myManager;
+        private LettersPage myManager;
         private LetterInfo myLetterInfo;
         private UIButton uIButton;
 
-        public void Init(VocabularyPanel _manager, LetterInfo _info, bool _selected)
+        public void Init(LettersPage _manager, LetterInfo _info, bool _selected)
         {
             uIButton = GetComponent<UIButton>();
             myLetterInfo = _info;
