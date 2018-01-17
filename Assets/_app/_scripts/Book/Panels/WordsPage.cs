@@ -101,7 +101,7 @@ namespace Antura.Book
             AudioManager.I.PlayWord(currentWordInfo.data);
 
             var spellingString = "";
-            var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, currentWordInfo.data);
+            var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, currentWordInfo.data, false, true);
             foreach (var letter in splittedLetters) {
                 spellingString += letter.letter.GetStringForDisplay() + " ";
             }
