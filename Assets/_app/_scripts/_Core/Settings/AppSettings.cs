@@ -20,7 +20,7 @@ namespace Antura.Core
         public bool EnglishSubtitles = true;
 
         // to enable arabic subtitles (to implement)
-        public bool SUbtitles = true;
+        public bool SubtitlesEnabled = true;
 
         public bool MusicEnabled = true;
 

@@ -83,6 +83,10 @@ namespace Antura.UI
         public void DisplaySentence(Database.LocalizationData data, float _duration = 2, bool _isKeeper = false,
             System.Action _callback = null)
         {
+            if (!AppManager.I.AppSettings.SubtitlesEnabled) {
+                return;
+            }
+
             GlobalUI.Init();
             this.StopAllCoroutines();
             currentCallback = _callback;

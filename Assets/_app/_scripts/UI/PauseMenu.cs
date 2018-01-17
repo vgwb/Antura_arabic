@@ -16,8 +16,12 @@ namespace Antura.UI
 
         [Header("Buttons")]
         public MenuButton BtPause;
-
-        public MenuButton BtExit, BtMusic, BtFx, BtCredits, BtResume, BtSubtitles;
+        public MenuButton BtExit;
+        public MenuButton BtMusic;
+        public MenuButton BtFx;
+        public MenuButton BtCredits;
+        public MenuButton BtResume;
+        public MenuButton BtSubtitles;
 
         [Header("Other")]
         public GameObject PauseMenuContainer;
@@ -117,7 +121,7 @@ namespace Antura.UI
             // Set toggles
             BtMusic.Toggle(AudioManager.I.MusicEnabled);
             BtFx.Toggle(AppManager.I.AppSettings.HighQualityGfx);
-            BtSubtitles.Toggle(AppManager.I.AppSettings.SUbtitles);
+            BtSubtitles.Toggle(AppManager.I.AppSettings.SubtitlesEnabled);
 
             if (_open) {
                 //timeScaleAtMenuOpen = Time.timeScale;
@@ -177,8 +181,8 @@ namespace Antura.UI
                         BtFx.Toggle(AppManager.I.AppSettings.HighQualityGfx);
                         break;
                     case MenuButtonType.SubtitlesToggle:
-                        AppManager.I.AppSettingsManager.ToggleEnglishSubtitles();
-                        BtSubtitles.Toggle(AppManager.I.AppSettings.SUbtitles);
+                        AppManager.I.AppSettingsManager.ToggleSubtitles();
+                        BtSubtitles.Toggle(AppManager.I.AppSettings.SubtitlesEnabled);
                         break;
                     case MenuButtonType.Credits:
                         Credits.Show(true);

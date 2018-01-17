@@ -113,5 +113,11 @@ namespace Antura.Core
             Settings.EnglishSubtitles = !Settings.EnglishSubtitles;
             SaveSettings();
         }
+
+        public void ToggleSubtitles()
+        {
+            Settings.SubtitlesEnabled = !Settings.SubtitlesEnabled;
+            SaveSettings();
+        }
     }
 }
