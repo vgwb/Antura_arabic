@@ -180,9 +180,6 @@ namespace Antura.Book
             } else {
                 AudioManager.I.PlayLetter(myLetterData, true, LetterDataSoundType.Name);
             }
-
-            //AudioManager.I.GetAudioClip(myLetterInfo.data, LetterDataSoundType.Phoneme) != null);
-            //AudioManager.I.PlayLetter(currentLetter.data, true, LetterDataSoundType.Phoneme);
         }
 
         public void ShowDiacriticCombo(LetterInfo newLetterInfo)

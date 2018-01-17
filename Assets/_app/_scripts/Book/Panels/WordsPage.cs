@@ -22,11 +22,13 @@ namespace Antura.Book
         public GameObject Submenu;
         public GameObject SubmenuContainer;
 
-        public TextRender ArabicText;
+        public TextRender WordArabicText;
+        public TextRender WordSpellingArabicText;
         public TextRender WordDrawingText;
 
+        private WordInfo currentWordInfo;
+        private WordData currentWordData;
         private WordDataCategory currentWordCategory;
-        private WordInfo currentWord;
         private string currentCategory;
         private LocalizationData CategoryData;
         private GameObject btnGO;
@@ -62,7 +64,7 @@ namespace Antura.Book
                 if (list.Contains(info_item.data)) {
                     btnGO = Instantiate(WordItemPrefab);
                     btnGO.transform.SetParent(ListContainer.transform, false);
-                    btnGO.GetComponent<ItemWord>().Init(this, info_item);
+                    btnGO.GetComponent<ItemWord>().Init(this, info_item, false);
                 }
             }
 
@@ -88,25 +90,29 @@ namespace Antura.Book
 
         public void DetailWord(WordInfo _currentWord)
         {
-            currentWord = _currentWord;
+            currentWordInfo = _currentWord;
+            currentWordData = currentWordInfo.data;
+
             DetailPanel.SetActive(true);
 
-            Debug.Log("Detail Word :" + currentWord.data.Id);
-            AudioManager.I.PlayWord(currentWord.data);
+            HighlightWordItem(currentWordInfo.data.Id);
 
-            var output = "";
-            output += currentWord.data.Arabic;
-            output += "\n";
-            var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, currentWord.data);
+            Debug.Log("Detail Word :" + currentWordInfo.data.Id);
+            AudioManager.I.PlayWord(currentWordInfo.data);
+
+            var spellingString = "";
+            var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, currentWordInfo.data);
             foreach (var letter in splittedLetters) {
-                output += letter.letter.GetStringForDisplay() + " ";
+                spellingString += letter.letter.GetStringForDisplay() + " ";
             }
 
-            ArabicText.text = output;
-            if (currentWord.data.Drawing != "") {
-                WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(currentWord.data);
-                if (currentWord.data.Category == WordDataCategory.Color) {
-                    WordDrawingText.SetColor(GenericHelper.GetColorFromString(currentWord.data.Value));
+            WordArabicText.text = currentWordInfo.data.Arabic;
+            WordSpellingArabicText.text = spellingString;
+
+            if (currentWordInfo.data.Drawing != "") {
+                WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(currentWordInfo.data);
+                if (currentWordInfo.data.Category == WordDataCategory.Color) {
+                    WordDrawingText.SetColor(GenericHelper.GetColorFromString(currentWordInfo.data.Value));
                 }
             } else {
                 WordDrawingText.text = "";
@@ -122,6 +128,13 @@ namespace Antura.Book
                 case VocabularyChapter.Words:
                     WordsPanel(_category.wordCategory);
                     break;
+            }
+        }
+
+        void HighlightWordItem(string id)
+        {
+            foreach (Transform t in ListContainer.transform) {
+                t.GetComponent<ItemWord>().Select(id);
             }
         }
 

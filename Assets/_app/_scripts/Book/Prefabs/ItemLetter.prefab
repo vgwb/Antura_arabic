@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 222000012789601676}
   - component: {fileID: 114000011959341684}
   - component: {fileID: 114000011140910978}
-  - component: {fileID: 114000013748204426}
   - component: {fileID: 114730674706382146}
+  - component: {fileID: 114000013748204426}
   m_Layer: 5
   m_Name: ItemLetter
   m_TagString: Untagged

@@ -22,9 +22,9 @@ namespace Antura.Book
 
         public void Init(LettersPage _manager, LetterInfo _info, bool _selected)
         {
-            uIButton = GetComponent<UIButton>();
             myLetterInfo = _info;
             myManager = _manager;
+            uIButton = GetComponent<UIButton>();
 
             if (myLetterInfo.unlocked || AppManager.I.Player.IsDemoUser) {
                 OkIcon.enabled = true;
@@ -49,9 +49,8 @@ namespace Antura.Book
             hightlight(code == myLetterInfo.data.Id);
         }
 
-        void hightlight(bool _status)
+        private void hightlight(bool _status)
         {
-            //Debug.Log("ItemLetter hightlight() " + myLetterInfo.data.Id);
             uIButton.Toggle(_status);
         }
     }
