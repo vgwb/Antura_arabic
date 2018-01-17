@@ -92,7 +92,7 @@ MonoBehaviour:
       _Letters:
       - hah_fathah
       - yeh
-      _Drawing: 
+      _Drawing: 101
       _Complexity: 0
     - _Id: and
       _Active: 1
@@ -419,7 +419,7 @@ MonoBehaviour:
       - beh_fathah
       - yeh_sukun
       - noon_fathah
-      _Drawing: 
+      _Drawing: 105
       _Complexity: 0
     - _Id: between_me
       _Active: 1
@@ -555,7 +555,7 @@ MonoBehaviour:
       - noon
       - yeh
       - noon
-      _Drawing: 
+      _Drawing: 99
       _Complexity: 0
     - _Id: brain
       _Active: 1
@@ -719,7 +719,7 @@ MonoBehaviour:
       - noon_kasrah
       - yeh
       - noon
-      _Drawing: 
+      _Drawing: 106
       _Complexity: 0
     - _Id: carpenter
       _Active: 1
@@ -979,7 +979,7 @@ MonoBehaviour:
       _Letters:
       - beh_dammah
       - noon_shaddah
-      _Drawing: 
+      _Drawing: 10D
       _Complexity: 0
     - _Id: cold
       _Active: 1
@@ -2390,7 +2390,7 @@ MonoBehaviour:
       - yeh_dammah
       - hah_kasrah
       - beh_dammah
-      _Drawing: 
+      _Drawing: 107
       _Complexity: 0
     - _Id: he_planted
       _Active: 1
@@ -2406,7 +2406,7 @@ MonoBehaviour:
       - noon_fathah
       - beh_fathah
       - teh_fathah
-      _Drawing: 
+      _Drawing: 10A
       _Complexity: 0
     - _Id: he_plants
       _Active: 1
@@ -2423,7 +2423,7 @@ MonoBehaviour:
       - noon_sukun
       - beh_fathah
       - teh_dammah
-      _Drawing: 
+      _Drawing: 108
       _Complexity: 0
     - _Id: he_praises
       _Active: 1
@@ -2457,7 +2457,7 @@ MonoBehaviour:
       - theh_sukun
       - beh_fathah
       - teh_dammah
-      _Drawing: 
+      _Drawing: 10B
       _Complexity: 0
     - _Id: he_searches
       _Active: 1
@@ -2474,7 +2474,7 @@ MonoBehaviour:
       - beh_sukun
       - hah_fathah
       - theh_dammah
-      _Drawing: 
+      _Drawing: 109
       _Complexity: 0
     - _Id: he_took_a_look
       _Active: 1
@@ -2490,7 +2490,7 @@ MonoBehaviour:
       - teh_fathah
       - beh_fathah
       - teh_fathah
-      _Drawing: 
+      _Drawing: 114
       _Complexity: 0
     - _Id: head
       _Active: 1
@@ -3022,7 +3022,7 @@ MonoBehaviour:
       _Letters:
       - hah_dammah
       - beh
-      _Drawing: 
+      _Drawing: 115
       _Complexity: 0
     - _Id: man
       _Active: 1
@@ -3569,7 +3569,7 @@ MonoBehaviour:
       - noon_sukun
       - teh
       - yeh
-      _Drawing: 
+      _Drawing: 90
       _Complexity: 0
     - _Id: my_face
       _Active: 1
@@ -4756,7 +4756,7 @@ MonoBehaviour:
       - theh_fathah
       - noon
       - yeh
-      _Drawing: 
+      _Drawing: 91
       _Complexity: 0
     - _Id: plum
       _Active: 1
@@ -5244,7 +5244,7 @@ MonoBehaviour:
       - beh_fathah
       - hah_sukun
       - theh
-      _Drawing: 
+      _Drawing: 92
       _Complexity: 0
     - _Id: second
       _Active: 1
@@ -5278,7 +5278,7 @@ MonoBehaviour:
       - teh_dammah
       - hah_kasrah
       - beh_dammah
-      _Drawing: 
+      _Drawing: 93
       _Complexity: 0
     - _Id: she_praises
       _Active: 1
@@ -5312,7 +5312,7 @@ MonoBehaviour:
       - theh_sukun
       - beh_fathah
       - teh_dammah
-      _Drawing: 
+      _Drawing: 94
       _Complexity: 0
     - _Id: she_searches
       _Active: 1
@@ -5329,7 +5329,7 @@ MonoBehaviour:
       - beh_sukun
       - hah_fathah
       - theh_dammah
-      _Drawing: 
+      _Drawing: 95
       _Complexity: 0
     - _Id: she_took_a_look
       _Active: 1
@@ -5346,7 +5346,7 @@ MonoBehaviour:
       - beh_fathah
       - teh_fathah
       - teh
-      _Drawing: 
+      _Drawing: 96
       _Complexity: 0
     - _Id: shirt
       _Active: 1
@@ -5413,7 +5413,7 @@ MonoBehaviour:
       - jeem_fathah
       - noon_sukun
       - beh
-      _Drawing: 
+      _Drawing: 97
       _Complexity: 0
     - _Id: singular
       _Active: 1
@@ -5528,7 +5528,7 @@ MonoBehaviour:
       _Letters:
       - beh_kasrah
       - noon
-      _Drawing: 
+      _Drawing: 98
       _Complexity: 0
     - _Id: sound
       _Active: 1
@@ -7433,7 +7433,7 @@ MonoBehaviour:
       - teh_fathah
       - yeh
       - noon
-      _Drawing: 
+      _Drawing: 9A
       _Complexity: 0
     - _Id: uncle_father
       _Active: 1
@@ -7480,7 +7480,7 @@ MonoBehaviour:
       - teh_fathah
       - hah_sukun
       - teh
-      _Drawing: 
+      _Drawing: 9B
       _Complexity: 0
     - _Id: understood
       _Active: 1
@@ -7529,7 +7529,7 @@ MonoBehaviour:
       - beh_fathah
       - teh_fathah
       - yeh
-      _Drawing: 
+      _Drawing: 9C
       _Complexity: 0
     - _Id: vegetarians
       _Active: 1
@@ -7547,7 +7547,7 @@ MonoBehaviour:
       - teh
       - yeh_shaddah
       - noon
-      _Drawing: 
+      _Drawing: 9D
       _Complexity: 0
     - _Id: verymuch
       _Active: 1
@@ -7716,7 +7716,7 @@ MonoBehaviour:
       - noon_dammah
       - hah_kasrah
       - beh_dammah
-      _Drawing: 
+      _Drawing: 9E
       _Complexity: 0
     - _Id: we_praise
       _Active: 1
@@ -7750,7 +7750,7 @@ MonoBehaviour:
       - theh_sukun
       - beh_fathah
       - teh_dammah
-      _Drawing: 
+      _Drawing: 80
       _Complexity: 0
     - _Id: we_search
       _Active: 1
@@ -7767,7 +7767,7 @@ MonoBehaviour:
       - beh_sukun
       - hah_fathah
       - theh_dammah
-      _Drawing: 
+      _Drawing: 9F
       _Complexity: 0
     - _Id: welcome
       _Active: 1
@@ -7912,7 +7912,7 @@ MonoBehaviour:
       - hah
       - yeh
       - noon
-      _Drawing: 
+      _Drawing: 11B
       _Complexity: 0
     - _Id: where
       _Active: 1
@@ -7928,7 +7928,7 @@ MonoBehaviour:
       - hah_fathah
       - yeh
       - theh
-      _Drawing: 
+      _Drawing: 82
       _Complexity: 0
     - _Id: window
       _Active: 1
