@@ -518,7 +518,7 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 1
       _Sound: b
-      _NameSound: 
+      _NameSound: beh__lettername
       _PhonemeSound: beh_sukun
       _SoundZone: A
       _Isolated: "\u0628"
