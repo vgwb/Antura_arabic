@@ -64,7 +64,7 @@ namespace Antura.Profile
         public void GiftInitialBones()
         {
             TotalNumberOfBones = INITIAL_BONES;
-            Save();
+            //Save();
         }
 
         public void MakeSureInitialBonesAreAvailable()
@@ -74,8 +74,7 @@ namespace Antura.Profile
 
         public void MakeSureHasEnoughBones(int wantedBones)
         {
-            if (TotalNumberOfBones < wantedBones)
-            {
+            if (TotalNumberOfBones < wantedBones) {
                 TotalNumberOfBones = wantedBones;
                 Save();
             }
@@ -549,7 +548,7 @@ namespace Antura.Profile
             PlayerProfileData newProfileData = new PlayerProfileData(
                     Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars, HasMaxStarsInCurrentPlaySessions,
                     Age, TotalNumberOfBones, ProfileCompletion, this.CurrentAnturaCustomizations.GetJsonListOfIds(), ConsecutivePlayDays, CurrentShopState,
-                    FirstContactState 
+                    FirstContactState
             );
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
