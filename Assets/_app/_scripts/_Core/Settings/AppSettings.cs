@@ -19,8 +19,8 @@ namespace Antura.Core
         // to enable english subtitles (especially in the Book)
         public bool EnglishSubtitles = true;
 
-        // to enable arabic subtitles (to implement)
-        public bool SubtitlesEnabled = true;
+        // to enable arabic subtitles / Keeper Widget that shows what he's saying
+        public bool SubtitlesEnabled = false;
 
         public bool MusicEnabled = true;
 
