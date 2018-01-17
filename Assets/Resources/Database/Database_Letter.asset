@@ -3824,7 +3824,7 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 2
       _Sound: sh
-      _NameSound: 
+      _NameSound: sheen__lettername
       _PhonemeSound: sheen_sukun
       _SoundZone: C
       _Isolated: "\u0634"
@@ -4752,7 +4752,7 @@ MonoBehaviour:
       _Notes: 
       _SunMoon: 0
       _Sound: w, uu
-      _NameSound: 
+      _NameSound: waw__lettername
       _PhonemeSound: waw_sukun
       _SoundZone: A
       _Isolated: "\u0648"
