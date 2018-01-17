@@ -18,11 +18,11 @@ PlayerSettings:
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 0
   m_SplashScreenOverlayOpacity: 1
-  m_SplashScreenAnimation: 1
+  m_SplashScreenAnimation: 2
   m_SplashScreenLogoStyle: 1
   m_SplashScreenDrawMode: 1
   m_SplashScreenBackgroundAnimationZoom: 1
-  m_SplashScreenLogoAnimationZoom: 1
+  m_SplashScreenLogoAnimationZoom: 0.4
   m_SplashScreenBackgroundLandscapeAspect: 1
   m_SplashScreenBackgroundPortraitAspect: 1
   m_SplashScreenBackgroundLandscapeUvs:
@@ -38,7 +38,9 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: 48ded48e33d45e74e82e2c1be2c37955, type: 3}
+  - logo: {fileID: 21300000, guid: 544758c03c33b46628ba3f8780d003a7, type: 3}
+    duration: 3
+  - logo: {fileID: 21300000, guid: c52648c57fdfa4b66a96df79a3dca8db, type: 3}
     duration: 3
   m_SplashScreenBackgroundLandscape: {fileID: 0}
   m_SplashScreenBackgroundPortrait: {fileID: 0}
@@ -200,7 +202,7 @@ PlayerSettings:
   tvOSTopShelfImageLayers2x: []
   tvOSTopShelfImageWideLayers: []
   tvOSTopShelfImageWideLayers2x: []
-  iOSLaunchScreenType: 1
+  iOSLaunchScreenType: 3
   iOSLaunchScreenPortrait: {fileID: 2800000, guid: 48ded48e33d45e74e82e2c1be2c37955,
     type: 3}
   iOSLaunchScreenLandscape: {fileID: 2800000, guid: 48ded48e33d45e74e82e2c1be2c37955,
@@ -211,7 +213,7 @@ PlayerSettings:
   iOSLaunchScreenFillPct: 100
   iOSLaunchScreenSize: 100
   iOSLaunchScreenCustomXibPath: 
-  iOSLaunchScreeniPadType: 1
+  iOSLaunchScreeniPadType: 3
   iOSLaunchScreeniPadImage: {fileID: 2800000, guid: 48ded48e33d45e74e82e2c1be2c37955,
     type: 3}
   iOSLaunchScreeniPadBackgroundColor:
@@ -233,7 +235,7 @@ PlayerSettings:
   appleEnableAutomaticSigning: 0
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 1
-  androidSplashScreen: {fileID: 2800000, guid: 48ded48e33d45e74e82e2c1be2c37955, type: 3}
+  androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: /Users/krur/Documents/Projects/VGWB.Antura/_antura_production/Android_Keystore/antura.keystore
   AndroidKeyaliasName: 
   AndroidTVCompatibility: 0
