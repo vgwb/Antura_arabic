@@ -9,6 +9,22 @@
 - repeat minigame
 - upgraded to Unity 5.6
 
+### 1.1.0beta build 583 (17 jan 2018)
+- Subtitles Widged is now disabled by default (can be reactivate by player Option)
+- improved PlaySession & curriculum
+- new First Contact / tutorials for all areas
+- new Book layout (minigames, word)
+- new Player Profile
+- new localizations and audio recordings for all voices, words, minigames, Learning Blocks
+- now all sentences and audio are in the Feminine version if the player is female
+- added new words drawings: alive,between,caring,coffee_bean,he_loves,he_planted,he_plants,he_proves,he_searches,he_took_a_look,love,my_daughter,pleat,search,she_loves,she_proves,she_searches,she_took_a_look,side,son,two_boys,two_girls,under,vegetarian,vegetarians,we_loves,we_prove,we_search,when,where,
+- new letter phoneme sounds for all letters
+- finished Stage 5 & 6 of the Map
+- optimized the map loading
+- lots of bugfixes in the minigames and assessments
+- new Player Avatars icons
+- finalized the new Rewards system
+
 ### 1.1.0beta build 579 (4 jan 2018)
 - at startup you could be asked to delete all previous users (we use a new db format)
 - the app asks for permission to share online analytics
