@@ -118,6 +118,7 @@ namespace Antura.Book
         #endregion
         public void DetailLetter(LetterInfo letterInfo)
         {
+            DetailPanel.SetActive(true);
             myLetterInfo = letterInfo;
             myLetterData = letterInfo.data;
 
@@ -165,11 +166,11 @@ namespace Antura.Book
             foreach (var p in letterInfo.data.GetAvailableForms()) {
                 positionsString = positionsString + " " + p;
             }
-            MainLetterDisplay.Init(myLetterInfo.data);
+            MainLetterDisplay.Init(myLetterData);
             //LetterScoreText.text = "Score: " + myLetterInfo.score;
 
             HighlightDiacriticItem(myLetterData.Id);
-            DetailPanel.SetActive(true);
+
             playSound();
         }
 
