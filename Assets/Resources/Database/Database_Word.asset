@@ -3818,8 +3818,7 @@ MonoBehaviour:
       _Value: 
       _Letters:
       - alef
-      - lam
-      - alef_maddah
+      - lam_alef_kasrah
       - noon
       _Drawing: 
       _Complexity: 0.6
