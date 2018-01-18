@@ -31,9 +31,9 @@ namespace Antura.Book
         public TextRender DetailDescriptionAr;
         public TextRender ScoreText;
 
-        int currentStage;
-        GameObject btnGO;
-        LearningBlockInfo currentLearningBlock;
+        private int currentStage;
+        private GameObject btnGO;
+        private LearningBlockInfo currentLearningBlock;
 
         void Start()
         {

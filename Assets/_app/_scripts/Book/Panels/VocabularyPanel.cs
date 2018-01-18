@@ -12,6 +12,7 @@ namespace Antura.Book
         public string Id;
         public string Title;
         public string TitleEn;
+        public int Stage;
         public WordDataCategory wordCategory;
         public PhraseDataCategory phraseCategory;
     }

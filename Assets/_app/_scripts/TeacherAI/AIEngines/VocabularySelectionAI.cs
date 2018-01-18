@@ -473,9 +473,9 @@ namespace Antura.Teacher
             return progressionContents.GetContentsOfLearningBlock(jp);
         }
 
-        public VocabularyContents GetContentsOfStage(JourneyPosition jp)
+        public VocabularyContents GetContentsOfStage(int stage)
         {
-            return progressionContents.GetContentsOfStage(jp);
+            return progressionContents.GetContentsOfStage(new JourneyPosition(stage, 1, 1));
         }
 
         public VocabularyContents CurrentJourneyContents { get { return currentJourneyContents; } }

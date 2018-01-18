@@ -2,6 +2,7 @@
 using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
+using Antura.Teacher;
 using Antura.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,44 +29,68 @@ namespace Antura.Book
 
         private WordInfo currentWordInfo;
         private WordData currentWordData;
-        private WordDataCategory currentWordCategory;
-        private string currentCategory;
+        private GenericCategoryData currentCategory;
         private LocalizationData CategoryData;
         private GameObject btnGO;
 
         private void OnEnable()
         {
-            WordsPanel();
+            var cat = new GenericCategoryData
+            {
+                area = VocabularyChapter.Words,
+                Id = "1",
+                wordCategory = WordDataCategory.None,
+                Stage = 1
+            };
+            WordsPanel(cat);
         }
 
-        void WordsPanel(WordDataCategory _category = WordDataCategory.None)
+        void WordsPanel(GenericCategoryData _category)
         {
             ListPanel.SetActive(true);
             DetailPanel.SetActive(false);
-            currentWordCategory = _category;
+            currentCategory = _category;
 
-            Debug.Log("current word cat: " + _category);
+            //Debug.Log("current word cat: " + _category);
 
-            List<WordData> list;
-            switch (currentWordCategory) {
-                //case WordDataCategory.None:
-                ////list = AppManager.I.DB.GetAllWordData();
-                //list = new List<WordData>();
-                //break;
-                default:
-                    //list = AppManager.I.DB.FindWordData((x) => (x.Category == currentWordCategory && x.Article == WordDataArticle.None && x.Kind == WordDataKind.Noun));
-                    list = AppManager.I.DB.FindWordData((x) => (x.Category == currentWordCategory));
-                    break;
+            List<WordData> wordsList;
+            if (currentCategory.Stage > 0) {
+                var contents = TeacherAI.I.VocabularyAi.GetContentsOfStage(currentCategory.Stage);
+                var hashList = contents.GetHashSet<WordData>();
+                wordsList = new List<WordData>();
+                wordsList.AddRange(hashList);
+
+            } else {
+                wordsList = AppManager.I.DB.FindWordData((x) => (x.Category == currentCategory.wordCategory));
             }
+
             emptyListContainers();
 
             List<WordInfo> info_list = AppManager.I.ScoreHelper.GetAllWordInfo();
             foreach (var info_item in info_list) {
-                if (list.Contains(info_item.data)) {
+                if (wordsList.Contains(info_item.data)) {
                     btnGO = Instantiate(WordItemPrefab);
                     btnGO.transform.SetParent(ListContainer.transform, false);
                     btnGO.GetComponent<ItemWord>().Init(this, info_item, false);
                 }
+            }
+
+            var listStages = AppManager.I.DB.GetAllStageData();
+            foreach (var stage in listStages) {
+                btnGO = Instantiate(CategoryItemPrefab);
+                btnGO.transform.SetParent(SubmenuContainer.transform, false);
+                btnGO.GetComponent<MenuItemCategory>().Init(
+                    this,
+                    new GenericCategoryData
+                    {
+                        area = VocabularyChapter.Words,
+                        Id = stage.Id,
+                        Title = "المرحلة " + stage.Id,
+                        TitleEn = "stage " + stage.Id,
+                        Stage = int.Parse(stage.Id)
+                    },
+                    int.Parse(stage.Id) == currentCategory.Stage
+                );
             }
 
             foreach (WordDataCategory cat in GenericHelper.SortEnums<WordDataCategory>()) {
@@ -81,9 +106,10 @@ namespace Antura.Book
                         wordCategory = cat,
                         Id = cat.ToString(),
                         Title = CategoryData.Arabic,
-                        TitleEn = CategoryData.English
+                        TitleEn = CategoryData.English,
+                        Stage = 0
                     },
-                    currentWordCategory == cat
+                    currentCategory.wordCategory == cat
                 );
             }
         }
@@ -126,7 +152,7 @@ namespace Antura.Book
         {
             switch (_category.area) {
                 case VocabularyChapter.Words:
-                    WordsPanel(_category.wordCategory);
+                    WordsPanel(_category);
                     break;
             }
         }
