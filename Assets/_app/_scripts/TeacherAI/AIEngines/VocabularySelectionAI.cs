@@ -214,8 +214,8 @@ namespace Antura.Teacher
             }
             if (selectionParams.severity == SelectionSeverity.AllRequired) {
                 if (!CheckRequiredNumberReached(dataList, selectionParams, nAfterBuilder)) {
-                    UnityEngine.Debug.Log(debugString);
-                    throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the journey logic.");
+                    //Debug.Log(debugString);
+                    throw new Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the journey logic.");
                 }
             }
             debugString += ("\n  Journey: " + dataList.Count);
@@ -250,7 +250,7 @@ namespace Antura.Teacher
             }
             debugString += ("\n  History: " + dataList.Count);
             //Debug.Log("History: " + dataList.ToDebugStringNewline());
-            //Debug.Log("Filtered ids:: " + selectionParams.filteringIds.ToDebugStringNewline());
+            //if(selectionParams.filteringIds != null) Debug.Log("Filtered ids:: " + selectionParams.filteringIds.ToDebugStringNewline());
 
             // (4) Priority filtering based on current focus
             List<T> priorityFilteredList = new List<T>();
@@ -301,6 +301,7 @@ namespace Antura.Teacher
                 selectedList = WeightedDataSelect(priorityFilteredList, selectionParams.nRequired, selectionParams.severity);
             }
             debugString += ("\n  Selection: " + selectedList.Count);
+            //if (selectedList.Count > 0) Debug.Log("Selection: " + selectedList.ToDebugStringNewline());
 
             if (ConfigAI.VerboseDataFiltering && !isTest) {
                 foreach (var selectedEntry in selectedList) {
