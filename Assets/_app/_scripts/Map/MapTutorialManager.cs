@@ -128,8 +128,11 @@ namespace Antura.Map
         private IEnumerator TutorialHintClickCO(Transform targetTr, Camera camera)
         {
             TutorialUI.SetCamera(camera);
-            while (true) {
-                TutorialUI.Click(targetTr.position);
+            while (true)
+            {
+                var viewportPos = camera.WorldToViewportPoint(targetTr.position);
+                if (viewportPos.x > 0 && viewportPos.x < 1)
+                    TutorialUI.Click(targetTr.position);
                 yield return new WaitForSeconds(0.85f);
             } 
         }
