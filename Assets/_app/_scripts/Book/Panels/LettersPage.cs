@@ -69,7 +69,7 @@ namespace Antura.Book
             DetailPanel.SetActive(true);
             myLetterInfo = letterInfo;
             myLetterData = letterInfo.data;
-
+            //string debug_output = "//////// LETTER " + myLetterData.Number + " " + myLetterData.Id + "\n";
             HighlightLetterItem(myLetterInfo.data.Id);
 
             emptyContainer(DiacriticsContainer);
@@ -85,21 +85,16 @@ namespace Antura.Book
             letterGO.GetComponent<ItemDiacriticSymbol>().Init(this, myLetterInfo, true);
 
             List<LetterInfo> info_list = AppManager.I.ScoreHelper.GetAllLetterInfo();
-            info_list.Sort((x, y) => x.data.Number.CompareTo(y.data.Number));
+            info_list.Sort((x, y) => x.data.Id.CompareTo(y.data.Id));
             foreach (var info_item in info_list) {
                 if (variationsletters.Contains(info_item.data)) {
                     btnGO = Instantiate(DiacriticSymbolItemPrefab);
                     btnGO.transform.SetParent(DiacriticsContainer.transform, false);
-                    //btnGO.transform.SetAsFirstSibling();
                     btnGO.GetComponent<ItemDiacriticSymbol>().Init(this, info_item, false);
+                    //debug_output += info_item.data.GetDebugDiacriticFix();
                 }
             }
-
-            //foreach (var letter in variationsletters) {
-            //    letterGO = Instantiate(DiacriticSymbolItemPrefab);
-            //    letterGO.transform.SetParent(DiacriticsContainer.transform, false);
-            //    letterGO.GetComponent<ItemDiacriticSymbol>().Init(this, letter);
-            //}
+            //Debug.Log(debug_output);
             ShowLetter(myLetterInfo);
         }
 
@@ -108,7 +103,7 @@ namespace Antura.Book
             myLetterInfo = letterInfo;
             myLetterData = letterInfo.data;
 
-            Debug.Log("ShowLetter " + myLetterData.Id);
+            // Debug.Log("ShowLetter " + myLetterData.Id);
 
             string positionsString = "";
             foreach (var p in letterInfo.data.GetAvailableForms()) {
@@ -121,7 +116,7 @@ namespace Antura.Book
 
             playSound();
 
-            myLetterData.DebugShowDiacriticFix();
+            //Debug.Log(myLetterData.GetDebugDiacriticFix());
         }
 
         private void playSound()

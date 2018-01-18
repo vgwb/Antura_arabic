@@ -517,18 +517,24 @@ namespace Antura.Database
             return hashCode;
         }
 
-        public void DebugShowDiacriticFix()
+        public string GetDebugDiacriticFix()
         {
+            string output = "";
             if (Symbol_Unicode != "") {
-                string output = "";
-                output = "// LETTER: " + Id + "\n";
+                output = "// " + Id + "\n";
                 output += Helpers.ArabicAlphabetHelper.DebugShowDiacriticFix(Isolated_Unicode, Symbol_Unicode) + "\n";
-                output += Helpers.ArabicAlphabetHelper.DebugShowDiacriticFix(Initial_Unicode, Symbol_Unicode) + "\n";
-                output += Helpers.ArabicAlphabetHelper.DebugShowDiacriticFix(Medial_Unicode, Symbol_Unicode) + "\n";
-                output += Helpers.ArabicAlphabetHelper.DebugShowDiacriticFix(Final_Unicode, Symbol_Unicode) + "\n";
-                Debug.Log(output);
+                if (Initial_Unicode != Isolated_Unicode) {
+                    output += Helpers.ArabicAlphabetHelper.DebugShowDiacriticFix(Initial_Unicode, Symbol_Unicode) + "\n";
+                }
+                if (Medial_Unicode != Isolated_Unicode && Medial_Unicode != Initial_Unicode) {
+                    output += Helpers.ArabicAlphabetHelper.DebugShowDiacriticFix(Medial_Unicode, Symbol_Unicode) + "\n";
+                }
+                if (Final_Unicode != Medial_Unicode && Final_Unicode != Initial_Unicode && Final_Unicode != Isolated_Unicode) {
+                    output += Helpers.ArabicAlphabetHelper.DebugShowDiacriticFix(Final_Unicode, Symbol_Unicode) + "\n";
+                }
+                //Debug.Log(output);
             }
-
+            return output;
         }
     }
 }
