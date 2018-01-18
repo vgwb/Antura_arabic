@@ -1,4 +1,4 @@
-﻿using Antura.UI;
+﻿using Antura.Audio;
 using Antura.Core;
 using System.Collections;
 using System.Collections.Generic;
@@ -134,6 +134,11 @@ namespace Antura.Book
         public void BtnOpenJourney()
         {
             OpenArea(BookArea.Journey);
+        }
+
+        public void BtnOpenPhotoGallery()
+        {
+            AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Photo_Gallery);
         }
     }
 }
