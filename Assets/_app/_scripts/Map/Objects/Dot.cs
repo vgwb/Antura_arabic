@@ -77,7 +77,7 @@ namespace Antura.Map
             if (Appeared) { return; }
             Appeared = true;
             transform.DOScale(Vector3.one * 1.5f, duration)
-                .SetEase(Ease.OutElastic)
+                .SetEase(Ease.OutElastic, 4f)
                 .SetDelay(delay);
         }
 

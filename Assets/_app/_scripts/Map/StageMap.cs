@@ -37,9 +37,10 @@ namespace Antura.Map
 
         // Configuration
         private static float preferredDotsSpan = 5.0f;
-        private static float startAppearDuration = 0.4f;
-        private static float appearSpeedupMultiplier = 0.9f;
-        private static float minAppearDuration = 0.01f;
+        private static float startAppearDuration = 0.5f;
+        private static float appearSpeedupMultiplier = 0.95f;
+        private static float minAppearDuration = 0.1f;
+        private static float pinAppearDuration = 3f;
 
         #region Properties
 
@@ -302,8 +303,8 @@ namespace Antura.Map
                         }
                     }
 
-                    pin.Appear(duration);
-                    yield return new WaitForSeconds(duration);
+                    pin.Appear(pinAppearDuration);
+                    yield return new WaitForSeconds(pinAppearDuration);
                     duration *= appearSpeedupMultiplier;
                     if (duration <= minAppearDuration) { duration = minAppearDuration; }
                 }

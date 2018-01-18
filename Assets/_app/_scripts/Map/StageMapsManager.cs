@@ -134,24 +134,24 @@ namespace Antura.Map
                 TEST_JOURNEY_POS = false;
 
                 // TEST: already at a PS, later stage
-                AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(3, 4, 2), _forced: true);
-                AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(3, 4, 2));
-                AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(3, 4, 2));
+                //AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(3, 4, 2), _forced: true);
+                //AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(3, 4, 2));
+                //AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(3, 4, 2));
 
                 // TEST: basic PS
-                //AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(1, 1, 2), _forced: true);
-                //AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(1, 1, 2));
-                //AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 1, 1));
+                //AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(1, 2, 1), _forced: true);
+                //AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(1, 2, 1));
+                //AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 1, 100));
 
                 // TEST: basic assessment
                 //AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(1, 1, 100), _forced: true);
                 //AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(1, 1, 100));
-                //AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 1, 2));
+                //AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 1, 1));
 
                 // TEST: next-stage PS
-                //AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(2, 1, 1), _forced: true);
-                //AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(2, 1, 1));
-                //AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 14, 100));
+                AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(2, 1, 1), _forced: true);
+                AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(2, 1, 1));
+                AppManager.I.Player.ForcePreviousJourneyPosition(new JourneyPosition(1, 15, 100));
 
                 Debug.Log("FORCED TEST_JOURNEY_POS");
             }
@@ -262,7 +262,7 @@ namespace Antura.Map
             //Debug.Log("TARGET CURRENT: " + targetCurrentJourneyPosition  + " PREV: " + PreviousJourneyPosition);
             if (initialMovementNeedsAnimation)
             {
-                yield return new WaitForSeconds(1.0f);
+                yield return new WaitForSeconds(1.5f);
                 StageMap(shownStage).Appear(PreviousJourneyPosition, AppManager.I.Player.MaxJourneyPosition);
 
                 //Debug.Log("Shown stage: " + shownStage + " TargetJourneyPos " + targetCurrentJourneyPosition +   " PreviousJourneyPos " + PreviousJourneyPosition);

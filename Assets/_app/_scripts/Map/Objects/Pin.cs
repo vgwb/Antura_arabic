@@ -137,20 +137,21 @@ namespace Antura.Map
 
             if (journeyPosition.IsAssessment())
             {
+                currentPinMesh.transform.localScale = Vector3.zero;
                 currentPinMesh.transform.DOScale(Vector3.one, duration * 0.5f).SetEase(Ease.OutElastic);
             }
             else
             {
-                currentPinMesh.transform.DOMove(startPinPosition, duration * 0.5f);
+                currentPinMesh.transform.DOMove(startPinPosition, duration * 0.1f);
             }
 
-            mainDot.transform.DOScale(Vector3.one * 8, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f).OnComplete(
+            mainDot.transform.DOScale(Vector3.one * 8, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.25f).OnComplete(
                 () =>
                 playSessionFeedback.gameObject.SetActive(true)  // make the feedback appear at the end
                 );
-            shadowTr.DOScale(Vector3.one * 12.5f, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.5f);
+            shadowTr.DOScale(Vector3.one * 12.5f, duration * 0.5f).SetEase(Ease.OutElastic).SetDelay(duration * 0.25f);
 
-            if (rope != null) { rope.meshRenderer.transform.DOScale(startRopeScale, duration * 0.5f).SetDelay(duration * 0.5f); }
+            if (rope != null) { rope.meshRenderer.transform.DOScale(startRopeScale, duration * 0.5f).SetDelay(duration * 0.25f); }
         }
 
         public void FlushAppear()
@@ -213,7 +214,7 @@ namespace Antura.Map
         {
             if (playerCloseTween == null)
             {
-                float duration = 0.75f;
+                float duration = 0.5f;
                 playerCloseTween = DOTween.Sequence();
                 playerCloseTween.Join(currentPinMesh.transform.DOScale(Vector3.zero, duration).SetEase(Ease.InOutCubic));
                 playerCloseTween.Join(playSessionFeedback.surpriseGO.transform.DOMove(playSessionFeedback.surpriseGO.transform.position + Vector3.up * 15, duration).SetEase(Ease.OutElastic));
