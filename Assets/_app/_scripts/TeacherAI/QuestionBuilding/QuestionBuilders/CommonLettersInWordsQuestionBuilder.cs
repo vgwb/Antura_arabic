@@ -23,7 +23,6 @@ namespace Antura.Teacher
         // journey: enabled
 
         private int nPacks;
-        private int nCorrect;
         private int nWrong;
         private int nWords;
         private LetterEqualityStrictness letterEqualityStrictness;
@@ -35,14 +34,12 @@ namespace Antura.Teacher
         }
 
         public CommonLetterInWordQuestionBuilder(int nPacks, 
-            int nCorrect = 1,
             int nWrong = 0, int nWords = 1,
             LetterEqualityStrictness letterEqualityStrictness = LetterEqualityStrictness.LetterOnly,
             QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
             this.nPacks = nPacks;
-            this.nCorrect = nCorrect;
             this.nWrong = nWrong;
             this.nWords = nWords;
             this.letterEqualityStrictness = letterEqualityStrictness;

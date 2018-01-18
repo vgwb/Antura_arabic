@@ -25,7 +25,7 @@ namespace Antura.Teacher
         private int nPacksPerRound;
         private int nCorrect;
         private int nWrong;
-        private bool packsUsedTogether;
+        //private bool packsUsedTogether;
         private bool forceUnseparatedLetters;
         private QuestionBuilderParameters parameters;
 
@@ -42,7 +42,7 @@ namespace Antura.Teacher
             if (parameters == null) parameters = new QuestionBuilderParameters();
             this.nRounds = nRounds;
             this.nPacksPerRound = nPacksPerRound;
-            this.packsUsedTogether = nPacksPerRound > 1;
+            //this.packsUsedTogether = nPacksPerRound > 1;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
             this.forceUnseparatedLetters = forceUnseparatedLetters;
