@@ -18,7 +18,6 @@ namespace Antura.Rewards
         }
 
         private List<DailyReward> rewards;
-        //public int MaxComboDays { get; set; }
 
         public IEnumerable<DailyReward> GetRewards(int startIndex, int stopIndex)
         {
@@ -41,15 +40,12 @@ namespace Antura.Rewards
         {
             rewards = new List<DailyReward>
             {
-                new DailyReward(DailyRewardType.Bones, 5),      // for 1 combo day
-                new DailyReward(DailyRewardType.Bones, 10),
-                new DailyReward(DailyRewardType.Bones, 20),
-                new DailyReward(DailyRewardType.Test1, 1),
-                new DailyReward(DailyRewardType.Test2, 2),
-                new DailyReward(DailyRewardType.Bones, 30),
-                new DailyReward(DailyRewardType.Bones, 50),     // last one is forever
+                new DailyReward(DailyRewardType.Bones, 1),      // for 1 combo day
+                new DailyReward(DailyRewardType.Bones, 3),
+                new DailyReward(DailyRewardType.Bones, 5),
+                new DailyReward(DailyRewardType.Bones, 7),
+                new DailyReward(DailyRewardType.Bones, 10),     // last one is forever
             };
-            //MaxComboDays = rewards.Count;
         }
 
     }

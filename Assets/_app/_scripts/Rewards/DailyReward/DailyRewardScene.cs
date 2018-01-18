@@ -49,13 +49,14 @@ namespace Antura.Rewards
 
             dailyRewardManager = new DailyRewardManager();
             int nCurrentConsecutiveDaysOfPlaying = AppManager.I.Player.ConsecutivePlayDays;
-            Debug.Assert(nCurrentConsecutiveDaysOfPlaying >= 1, "Should not access this scene with 0 consecutive days");
             nCurrentConsecutiveDaysOfPlaying = Mathf.Max(nCurrentConsecutiveDaysOfPlaying, 1);
 
             if (useForcedConsecutiveDays) {
                 nCurrentConsecutiveDaysOfPlaying = forcedConsecutiveDays;
                 Debug.LogError("FORCING CONSECUTIVE DAYS: " + nCurrentConsecutiveDaysOfPlaying);
             }
+
+            Debug.Assert(nCurrentConsecutiveDaysOfPlaying >= 1, "Should not access this scene with 0 consecutive days");
 
             // Index of the new reward (for the content, not the UI)
             newRewardContentIndex = nCurrentConsecutiveDaysOfPlaying - 1;
@@ -67,21 +68,17 @@ namespace Antura.Rewards
             // 2+ days -> second reward
             newRewardUIIndex = Mathf.Min(newRewardContentIndex, 2);
 
-            // Offset of where the NEW reward is (0 -> all to the right)
-            int newRewardOffset = 0;
-
             /*
             Debug.Log("New Reward Index: " + newRewardContentIndex);
             Debug.Log("New Reward UI Index: " + newRewardUIIndex);
-            Debug.Log("New Reward Offset: " + newRewardOffset);
             */
 
             // Initialise rewards
             dailyRewardUIs = new List<DailyRewardUI>();
             int dayCounter = 0;
-            dayCounter += newRewardOffset;
+            dayCounter += newRewardContentIndex;
 
-            foreach (var reward in dailyRewardManager.GetRewards(newRewardOffset, newRewardOffset + nRewardsToShowToday)) {
+            foreach (var reward in dailyRewardManager.GetRewards(newRewardContentIndex, newRewardContentIndex + nRewardsToShowToday)) {
                 dayCounter++;
                 var dailyRewardUIGo = Instantiate(dailyRewardUIPrefab);
                 dailyRewardUIGo.transform.SetParent(dailyRewardUIPivot);
@@ -122,7 +119,7 @@ namespace Antura.Rewards
                 dailyRewardUIPivot.transform.localPosition += Vector3.left * 200;
             }
 
-            Sequence s = DOTween.Sequence().AppendInterval(1f);
+            Sequence s = DOTween.Sequence().AppendInterval(0.5f);
             if (withTranslation) {
                 s.Append(dailyRewardUIPivot.DOLocalMoveX(targetX, 1f).SetEase(Ease.InOutSine));
             }
@@ -203,7 +200,7 @@ namespace Antura.Rewards
             LogManager.I.LogInfo(InfoEvent.DailyRewardReceived);
 
             // Continue after a little while
-            Invoke("Continue", 1.5f);
+            Invoke("Continue", 0.5f);
         }
 
         private void Continue()
