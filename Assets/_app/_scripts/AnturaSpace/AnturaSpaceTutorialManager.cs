@@ -282,14 +282,6 @@ namespace Antura.AnturaSpace
 
         #endregion
 
-        void Update()
-        {
-            if (CurrentRunningPhase == FirstContactPhase.AnturaSpace_Shop)
-            {
-                
-            }
-        }
-
         #region Shop
 
         private enum ShopTutorialStep
@@ -331,16 +323,15 @@ namespace Antura.AnturaSpace
                     ShopDecorationsManager.I.DeleteAllDecorations();
 
                     // Dialog -> Appear button
-                    DialoguesThen(
+                    DialogueThen(
                         LocalizationDataId.AnturaSpace_Shop_Intro,
-                        LocalizationDataId.AnturaSpace_Shop_Open,
                         () =>
                             {
                                 ShopDecorationsManager.SetContextClosed();
                                 UI.ShowShopButton(true);
                                 m_oCookieButton.onClick.AddListener(StepTutorialShop);
                                 TutorialUI.ClickRepeat(m_oCookieButton.transform.position, float.MaxValue, 1);
-                                //Dialogue(LocalizationDataId.AnturaSpace_Tuto_Cookie_1);
+                                Dialogue(LocalizationDataId.AnturaSpace_Shop_Open);
                             }
                         );
                     break;
@@ -498,31 +489,41 @@ namespace Antura.AnturaSpace
             if (_currentPhotoStep < PhotoTutorialStep.FINISH) _currentPhotoStep += 1;
 
             TutorialUI.Clear(false);
+            //Debug.Log("CURRENT STEP IS " + _currentPhotoStep);
 
             // Hide other UIs
             SetPhaseUIShown(FirstContactPhase.AnturaSpace_Customization, false);
             SetPhaseUIShown(FirstContactPhase.AnturaSpace_Exit, false);
 
-            // Makes sure you have enough bones
-            var photoCost = photoAction.bonesCost;
-            AppManager.I.Player.MakeSureHasEnoughBones(photoCost);
-
-            Debug.Log("CURRENT STEP IS " + _currentPhotoStep);
+            ShopActionUI photoActionUI;
             switch (_currentPhotoStep)
             {
                 case PhotoTutorialStep.CLICK_PHOTO:
 
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, () =>
-                    {
-                        m_oPhotoButton.gameObject.SetActive(true);
-                        m_oPhotoButton.onClick.AddListener(StepTutorialPhoto);
-                        TutorialUI.ClickRepeat(m_oPhotoButton.transform.position, float.MaxValue, 1);
-                    });
+                    DialogueThen(LocalizationDataId.AnturaSpace_Photo_Intro,
+                        () =>
+                        {
+                            // We need to find the shop action photo UI which is attached with the ShopAction_Photo
+                            photoActionUI = photoAction.GetComponent<ShopActionUI>();
+                            CurrentTutorialFocus = photoActionUI;
+
+                            // Makes sure you have enough bones
+                            var photoCost = photoAction.bonesCost;
+                            AppManager.I.Player.MakeSureHasEnoughBones(photoCost);
+
+                            // Focus on the photo button
+                            m_oPhotoButton.gameObject.SetActive(true);
+                            m_oPhotoButton.onClick.AddListener(StepTutorialPhoto);
+                            TutorialUI.ClickRepeat(m_oPhotoButton.transform.position, float.MaxValue, 1);
+
+                            Dialogue(LocalizationDataId.AnturaSpace_Photo_Take);
+                        });
+
                     break;
 
                 case PhotoTutorialStep.CONFIRM_PHOTO:
 
-                    CurrentTutorialFocus = m_oCookieButton; // HACK: focus is actually photo, but the shop has no reference to it, so we re-use the shop button instead
+                    CurrentTutorialFocus = m_oCookieButton; // HACK: focus is actually photo action, but the shop has no reference to it, so we re-use the shop button instead
 
                     // Cleanup last step
                     m_oPhotoButton.onClick.RemoveListener(StepTutorialPhoto);
@@ -530,8 +531,6 @@ namespace Antura.AnturaSpace
                     // New step
                     ShopPhotoManager.I.OnPurchaseCompleted += StepTutorialPhoto;
                     var yesButton = UI.ShopPanelUI.confirmationYesButton;
-
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
 
                     StartCoroutine(DelayedCallbackCO(() =>
                     {
@@ -545,9 +544,9 @@ namespace Antura.AnturaSpace
                     ShopPhotoManager.I.OnPurchaseCompleted -= StepTutorialPhoto;
 
                     // New step
-                    // dialog: exit and play
                     _mScene.ShowBackButton();
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
+
+                    Dialogue(LocalizationDataId.AnturaSpace_Photo_Gallery);
 
                     CompleteTutorialPhase();
 

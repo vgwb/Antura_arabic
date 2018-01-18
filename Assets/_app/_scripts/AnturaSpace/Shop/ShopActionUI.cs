@@ -74,7 +74,7 @@ namespace Antura.AnturaSpace
         public void OnDrag(PointerEventData eventData)
         {
             // Push the drag action to the scroll rect too
-            scrollRect.OnDrag(eventData);
+            if (scrollRect != null) scrollRect.OnDrag(eventData);
 
             if (AnturaSpaceScene.I.TutorialMode
                 && AnturaSpaceScene.I.tutorialManager.CurrentTutorialFocus != this)
