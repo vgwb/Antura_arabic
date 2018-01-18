@@ -8,6 +8,7 @@ using Antura.Tutorial;
 using Antura.UI;
 using System.Collections.Generic;
 using System.Linq;
+using Antura.Profile;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -142,10 +143,12 @@ namespace Antura.AnturaSpace
 
         public void ShowBackButton()
         {
+            Debug.Log("SHOW BACK");
             GlobalUI.ShowBackButton(true, OnExit);
         }
         public void HideBackButton()
         {
+            Debug.Log("HIDE BACK");
             GlobalUI.ShowBackButton(false);
         }
 
@@ -165,7 +168,7 @@ namespace Antura.AnturaSpace
 
         void OnExitCustomization()
         {
-            if (!tutorialManager.IsRunning)
+            if (!tutorialManager.IsRunning || tutorialManager.CurrentRunningPhase == FirstContactPhase.AnturaSpace_Exit)
             {
                 ShowBackButton();
             }

@@ -140,9 +140,13 @@ namespace Antura.AnturaSpace
         private void HandleAnturaTouched()
         {
             m_oAnturaBehaviour.onTouched -= HandleAnturaTouched;
-            TutorialUI.Clear(false);
 
-            DialogueThen(LocalizationDataId.AnturaSpace_Intro_Touch, CompleteTutorialPhase);
+            DialogueThen(LocalizationDataId.AnturaSpace_Intro_Touch, () =>
+                {
+                    TutorialUI.Clear(false);
+                    CompleteTutorialPhase();
+                }
+              );
         }
 
         #endregion
@@ -176,6 +180,8 @@ namespace Antura.AnturaSpace
                     AudioManager.I.StopDialogue(false);
 
                     // Reset state for the tutorial
+                    var anturaModelManager = FindObjectOfType<AnturaModelManager>();
+                    if (anturaModelManager) anturaModelManager.ClearLoadedRewardPacks();
                     AppManager.I.Player.CurrentAnturaCustomizations.ClearEquippedProps();
 
                     DialoguesThen(
@@ -560,6 +566,8 @@ namespace Antura.AnturaSpace
 
         private void StepTutorialExit()
         {
+            CurrentRunningPhase = FirstContactPhase.AnturaSpace_Exit;
+
             TutorialUI.Clear(false);
             AudioManager.I.StopDialogue(false);
 

@@ -22,7 +22,13 @@ namespace Antura.Tutorial
         protected abstract AppScene CurrentAppScene { get; }
         public Object CurrentTutorialFocus { get; protected set; }
 
-        protected FirstContactPhase CurrentRunningPhase = FirstContactPhase.NONE;
+        private FirstContactPhase _currentRunningPhase = FirstContactPhase.NONE;
+        public FirstContactPhase CurrentRunningPhase
+        {
+            get { return _currentRunningPhase; }
+            protected set { _currentRunningPhase = value; }
+        }
+
 
         public void HandleStart()
         {
