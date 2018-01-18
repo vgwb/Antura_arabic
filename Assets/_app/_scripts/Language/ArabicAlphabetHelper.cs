@@ -53,8 +53,7 @@ namespace Antura.Helpers
         static List<LetterData> allLetterData;
         static Dictionary<string, UnicodeLookUpEntry> unicodeLookUpCache = new Dictionary<string, UnicodeLookUpEntry>();
 
-        static Dictionary<DiacriticComboLookUpEntry, LetterData> diacriticComboLookUpCache =
-            new Dictionary<DiacriticComboLookUpEntry, LetterData>();
+        static Dictionary<DiacriticComboLookUpEntry, LetterData> diacriticComboLookUpCache = new Dictionary<DiacriticComboLookUpEntry, LetterData>();
 
         /// <summary>
         /// Collapses diacritics and letters, collapses multiple words variations (e.g. lam + alef), selects correct forms unicodes, and reverses the string.
@@ -73,8 +72,7 @@ namespace Antura.Helpers
         public static string GetLetterFromUnicode(string hexCode)
         {
             if (hexCode == "") {
-                Debug.LogError(
-                    "Letter requested with an empty hexacode (data is probably missing from the DataBase). Returning - for now.");
+                Debug.LogError("Letter requested with an empty hexacode (data is probably missing from the DataBase). Returning - for now.");
                 hexCode = "002D";
             }
 
@@ -121,8 +119,7 @@ namespace Antura.Helpers
             var parts = SplitWord(database, arabicWord, false, letterToFind.Kind != LetterDataKind.LetterVariation);
 
             for (int i = 0, count = parts.Count; i < count; ++i) {
-                if (parts[i].letter.Id == letterToFind.Id &&
-                    (!findSameForm || (parts[i].letterForm == letterToFind.Form))) {
+                if (parts[i].letter.Id == letterToFind.Id && (!findSameForm || (parts[i].letterForm == letterToFind.Form))) {
                     result.Add(parts[i]);
                 }
             }
@@ -323,6 +320,10 @@ namespace Antura.Helpers
         private static void BuildDiacriticCombos2Fix()
         {
             DiacriticCombos2Fix = new Dictionary<DiacriticComboEntry, Vector2>();
+
+            // LETTER: alef_fathah
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("0627", "064E"), new Vector2(0, 60));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE8E", "064E"), new Vector2(-20, 60));
 
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("0627", "064B"), new Vector2(0, 70));
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE8E", "064B"), new Vector2(-20, 80));
@@ -590,6 +591,11 @@ namespace Antura.Helpers
             return changed;
         }
 
+        public static string DebugShowDiacriticFix(string unicode1, string unicode2)
+        {
+            var delta = FindDiacriticCombo2Fix(unicode1, unicode2);
+            return string.Format("DiacriticCombos2Fix.Add(new DiacriticComboEntry(\"{0}\", \"{1}\"), new Vector2({2}, {3}));", unicode1, unicode2, delta.x, delta.y);
+        }
         #endregion
     }
 }

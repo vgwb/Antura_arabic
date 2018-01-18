@@ -37,7 +37,7 @@ namespace Antura.Book
         {
             ListPanel.SetActive(true);
             DetailPanel.SetActive(false);
-            emptyListContainers();
+            emptyContainer(ListContainer);
 
             List<LetterData> letters = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
             letters.Sort((x, y) => x.Number.CompareTo(y.Number));
@@ -72,14 +72,14 @@ namespace Antura.Book
 
             HighlightLetterItem(myLetterInfo.data.Id);
 
-            foreach (Transform t in DiacriticsContainer.transform) {
-                Destroy(t.gameObject);
-            }
+            emptyContainer(DiacriticsContainer);
+
             var letterbase = myLetterInfo.data.Id;
             var variationsletters = AppManager.I.DB.FindLetterData(
                 (x) => (x.BaseLetter == letterbase && (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation))
             );
 
+            // diacritics box
             var letterGO = Instantiate(DiacriticSymbolItemPrefab);
             letterGO.transform.SetParent(DiacriticsContainer.transform, false);
             letterGO.GetComponent<ItemDiacriticSymbol>().Init(this, myLetterInfo, true);
@@ -103,7 +103,7 @@ namespace Antura.Book
             ShowLetter(myLetterInfo);
         }
 
-        public void ShowLetter(LetterInfo letterInfo)
+        private void ShowLetter(LetterInfo letterInfo)
         {
             myLetterInfo = letterInfo;
             myLetterData = letterInfo.data;
@@ -120,9 +120,11 @@ namespace Antura.Book
             HighlightDiacriticItem(myLetterData.Id);
 
             playSound();
+
+            myLetterData.DebugShowDiacriticFix();
         }
 
-        void playSound()
+        private void playSound()
         {
             if (myLetterData.Kind == LetterDataKind.DiacriticCombo) {
                 AudioManager.I.PlayLetter(myLetterData, true, LetterDataSoundType.Phoneme);
@@ -136,23 +138,23 @@ namespace Antura.Book
             ShowLetter(newLetterInfo);
         }
 
-        void HighlightLetterItem(string id)
+        private void HighlightLetterItem(string id)
         {
             foreach (Transform t in ListContainer.transform) {
                 t.GetComponent<ItemLetter>().Select(id);
             }
         }
 
-        void HighlightDiacriticItem(string id)
+        private void HighlightDiacriticItem(string id)
         {
             foreach (Transform t in DiacriticsContainer.transform) {
                 t.GetComponent<ItemDiacriticSymbol>().Select(id);
             }
         }
 
-        void emptyListContainers()
+        private void emptyContainer(GameObject container)
         {
-            foreach (Transform t in ListContainer.transform) {
+            foreach (Transform t in container.transform) {
                 Destroy(t.gameObject);
             }
             // reset vertical position
