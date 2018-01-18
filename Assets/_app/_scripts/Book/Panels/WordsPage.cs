@@ -16,16 +16,17 @@ namespace Antura.Book
         public GameObject WordItemPrefab;
         public GameObject SpacerItemPrefab;
         public GameObject CategoryItemPrefab;
+        public GameObject SpellingLetterItemPrefab;
 
         [Header("References")]
         public GameObject DetailPanel;
         public GameObject ListPanel;
         public GameObject ListContainer;
+        public GameObject SpellingContainer;
         public GameObject Submenu;
         public GameObject SubmenuContainer;
 
         public TextRender WordArabicText;
-        public TextRender WordSpellingArabicText;
         public TextRender WordDrawingText;
 
         private WordInfo currentWordInfo;
@@ -128,14 +129,19 @@ namespace Antura.Book
             Debug.Log("Detail Word :" + currentWordInfo.data.Id);
             PlayWord();
 
-            var spellingString = "";
+            // empty spelling container
+            foreach (Transform t in SpellingContainer.transform) {
+                Destroy(t.gameObject);
+            }
             var splittedLetters = ArabicAlphabetHelper.SplitWord(AppManager.I.DB, currentWordInfo.data, false, true);
             foreach (var letter in splittedLetters) {
-                spellingString += letter.letter.GetStringForDisplay() + " ";
+                btnGO = Instantiate(SpellingLetterItemPrefab);
+                btnGO.transform.SetParent(SpellingContainer.transform, false);
+                btnGO.transform.SetAsFirstSibling();
+                btnGO.GetComponent<ItemSpellingLetter>().Init(letter.letter);
             }
 
             WordArabicText.text = currentWordInfo.data.Arabic;
-            WordSpellingArabicText.text = spellingString;
 
             if (currentWordInfo.data.Drawing != "") {
                 WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(currentWordInfo.data);
