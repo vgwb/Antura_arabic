@@ -3459,6 +3459,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &478022313
@@ -6440,7 +6441,7 @@ Prefab:
     - target: {fileID: 224003568499533652, guid: 436400377ad0d4486bb6a899c4b8abee,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224003568499533652, guid: 436400377ad0d4486bb6a899c4b8abee,
         type: 2}
@@ -6702,6 +6703,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &924510941
@@ -10735,6 +10737,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &1615594762
@@ -11354,6 +11357,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &1663815927
@@ -11968,6 +11972,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &1752150403
@@ -13115,6 +13120,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 1
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &1949059064
