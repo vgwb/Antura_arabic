@@ -516,5 +516,19 @@ namespace Antura.Database
             var hashCode = (Id != null ? Id.GetHashCode() : 0);
             return hashCode;
         }
+
+        public void DebugShowDiacriticFix()
+        {
+            if (Symbol_Unicode != "") {
+                string output = "";
+                output = "// LETTER: " + Id + "\n";
+                output += Helpers.ArabicAlphabetHelper.DebugShowDiacriticFix(Isolated_Unicode, Symbol_Unicode) + "\n";
+                output += Helpers.ArabicAlphabetHelper.DebugShowDiacriticFix(Initial_Unicode, Symbol_Unicode) + "\n";
+                output += Helpers.ArabicAlphabetHelper.DebugShowDiacriticFix(Medial_Unicode, Symbol_Unicode) + "\n";
+                output += Helpers.ArabicAlphabetHelper.DebugShowDiacriticFix(Final_Unicode, Symbol_Unicode) + "\n";
+                Debug.Log(output);
+            }
+
+        }
     }
 }
