@@ -327,6 +327,7 @@ namespace Antura.Database
         UI_Playing_time = 406,
         UI_Games_played = 407,
         UI_Bones = 408,
+        UI_Stage = 461,
         UI_Stars = 409,
         UI_Antura_Rewards = 410,
         UI_Unlocked_Letters = 411,

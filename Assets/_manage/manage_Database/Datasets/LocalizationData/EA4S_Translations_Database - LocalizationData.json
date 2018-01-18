@@ -1,7 +1,6 @@
 {
   "LocalizationData": [
     {
-      "Id_OLD": "",
       "Id": "Action_ChooseAvatar",
       "EnumId": "1",
       "Date": "",
@@ -18,7 +17,6 @@
       "COLOR LEGEND": "NOT USED AT THE MOMENT"
     },
     {
-      "Id_OLD": "",
       "Id": "Action_ConfirmNewProfile",
       "EnumId": "2",
       "Date": "",
@@ -35,7 +33,6 @@
       "COLOR LEGEND": "KEEPER FEM SCRIPT TO BE RECORDED"
     },
     {
-      "Id_OLD": "",
       "Id": "Action_Createprofile",
       "EnumId": "3",
       "Date": "",
@@ -52,7 +49,6 @@
       "COLOR LEGEND": "UPDATED ENGLIGH SCRIPT (CHANGED FROM LAST RECORDING)"
     },
     {
-      "Id_OLD": "",
       "Id": "Action_PressPlay",
       "EnumId": "4",
       "Date": "",
@@ -69,7 +65,6 @@
       "COLOR LEGEND": "ARABIC TO BE CHECKED OR TRANSLATED BECAUSE IT'S NEW OR ENGLISH HAS CHANGED "
     },
     {
-      "Id_OLD": "AlphabetSong_letters_Intro",
       "Id": "AlphabetSong_letters_Intro",
       "EnumId": "71",
       "Date": "",
@@ -86,7 +81,6 @@
       "COLOR LEGEND": "ENGLISH AND ARABIC HAVE CHANGED BUT THEY ARE OK BECAUSE WE REUSED OLD SCRIPT"
     },
     {
-      "Id_OLD": "AlphabetSong_letters_Title",
       "Id": "AlphabetSong_letters_Title",
       "EnumId": "72",
       "Date": "",
@@ -103,7 +97,6 @@
       "COLOR LEGEND": "WORKING AUDIO BUT THE NAMING CONVENTION IS NOT OPTIMAL: SHOULD WE RENAME IT?"
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Custom_1",
       "EnumId": "8",
       "Date": "",
@@ -120,7 +113,6 @@
       "COLOR LEGEND": "IBTISSAM FEM SCRIPT MISSING (BUT THE RECORDING IS OK)"
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Custom_2",
       "EnumId": "9",
       "Date": "",
@@ -137,7 +129,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Custom_3",
       "EnumId": "421",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -147,14 +138,13 @@
       "Context": "",
       "English": "Beautiful! And you can change the colors the way you like...",
       "Arabic": " أَه جَمِيل! بِإِمْكَانِكَ تَغْيِيرُ الأَلْوَانِ كَمَا يَحْلُو لَكَ\n\n",
-      "ArabicFemale": "أَه جَمِيل! بإمكانكِ تَغْيِيرُ الأَلْوَانِ كَمَا يَحْلُو لَكِي",
+      "ArabicFemale": "أَه جَمِيل! بإمكانكِ تَغْيِيرُ الأَلْوَانِ كَمَا يَحْلُو لَكِ",
       "AudioFile": "AnturaSpace_Custom_3",
       "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Custom_4",
       "EnumId": "422",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -171,7 +161,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Exit",
       "EnumId": "423",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -188,7 +177,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Intro",
       "EnumId": "10",
       "Date": "",
@@ -205,7 +193,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Intro_Cookie",
       "EnumId": "11",
       "Date": "",
@@ -222,7 +209,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Intro_Touch",
       "EnumId": "12",
       "Date": "",
@@ -232,14 +218,13 @@
       "Context": "After you touch Antura for the first time",
       "English": "You see? Antura is always willing to play with you",
       "Arabic": "أرأيت؟ عنتورة مستعدٌ دائماً للعبِ معك.",
-      "ArabicFemale": "أرأيتِ؟ عنتورة مستعدٌ دائماً للعبِ معِك.",
+      "ArabicFemale": "أرأيتِ؟ عنتورة مستعدٌ دائماً للعبِ معِكِ.",
       "AudioFile": "AnturaSpace_Intro_Touch",
       "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Photo_Gallery",
       "EnumId": "439",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -249,14 +234,13 @@
       "Context": "Tutorial",
       "English": "Photos are saved into your device Photo Gallery",
       "Arabic": "يَتِمُّ حفْظُ الصُّوَرِ فِي مُجَلَّدِ الصُّوَرِ عَلَى جِهَازِكَ\n",
-      "ArabicFemale": "يَتِمُّ حفْظُ الصُّوَرِ فِي مُجَلَّدِ الصُّوَر عَلَى جِهَازِكي",
+      "ArabicFemale": "يَتِمُّ حفْظُ الصُّوَرِ فِي مُجَلَّدِ الصُّوَر عَلَى جِهَازِكِ",
       "AudioFile": "AnturaSpace_Photo_Gallery",
       "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Photo_Intro",
       "EnumId": "437",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -273,7 +257,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Photo_Take",
       "EnumId": "438",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -290,7 +273,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_PlayAndExit",
       "EnumId": "429",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -300,14 +282,13 @@
       "Context": "",
       "English": "Play with Antura as long as you want, then exit to continue your adventure",
       "Arabic": "العب مَعَ عنتورة بِقَدْرِ مَا تُرِيدُ. وَعِنْدَمَا تَكَوُّنٌ مُسْتَعِدًّا, يُمْكِنُكِ الخُرُوجُ وَ العَوْدَةُ إِلَى المُغَامَرَة",
-      "ArabicFemale": "العبي مَعَ عنتورة بِقَدْرِ مَا تُرِيدِينَ. وَعِنْدَمَا تَكَوُّنِ مُسْتَعِدَّةً, يُمْكِنُكِ الخُرُوجُ وَ العَوْدَةُ إِلَى المُغَامَرَة",
+      "ArabicFemale": "العبي مَعَ عنتورة بِقَدْرِ مَا تُرِيدِين. وَعِنْدَمَا تَكَوني مُسْتَعِدَّة, يُمْكِنُكِ الخُرُوجُ وَالعَوْدَةُ إِلَى المُغَامَرَة",
       "AudioFile": "AnturaSpace_PlayAndExit",
       "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Shop_BuyItem",
       "EnumId": "427",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -317,14 +298,13 @@
       "Context": "Tutorial",
       "English": "Drag an object to buy it",
       "Arabic": "اِسْحَبْ إِلَّا الأَعْلَى أَيَّةُ إِضَافَةٍ تُرِيدُ شِرَاءَهَا",
-      "ArabicFemale": "اِسْحَبِي إِلَّا الأَعْلَى أَيَّةُ إِضَافَةٍ تُرِيدِينَ شِرَاءَهَا",
+      "ArabicFemale": "اِسْحَبي إِلى الأَعْلَى أَيَّةُ إِضَافَةٍ تُرِيدِينَ شِرَاءَهَا",
       "AudioFile": "AnturaSpace_Shop_BuyItem",
       "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Shop_Close",
       "EnumId": "430",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -341,7 +321,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Shop_Cookie",
       "EnumId": "426",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -351,14 +330,13 @@
       "Context": "Tutorial",
       "English": "Drag a cookie and throw it to Antura",
       "Arabic": "اِسْحَبْ كَعْكَةً وَاِرْمِهَا لعنتورة",
-      "ArabicFemale": "اِسْحَبِي كَعْكَةً وَاِرْمِهَا لعنتورة",
+      "ArabicFemale": "اِسْحَبي كَعْكَةً وَاِرْمِهَا لعنتورة",
       "AudioFile": "AnturaSpace_Shop_Cookie",
       "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Shop_Intro",
       "EnumId": "424",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -368,14 +346,13 @@
       "Context": "Tutorial",
       "English": "You can use your Cookies to buy items for Antura",
       "Arabic": "يُمْكِنُكَ اِسْتِعْمَالُ الكَعْكَاتِ لِشِرَاءِ إِضَافَتٍ لعنتورة",
-      "ArabicFemale": "يُمْكِنُكِ اِسْتِعْمَالُ الكَعْكَاتِ لِشِرَاءِ إِضَافَتٍ لعنتورة",
+      "ArabicFemale": "يُمْكِنُكِ اِسْتِعْمَالُ الكَعْكَاتِ لِشِرَاءِ إِضَافَة لعنتورة",
       "AudioFile": "AnturaSpace_Shop_Intro",
       "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Shop_MoveItem",
       "EnumId": "428",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -392,7 +369,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Shop_Open",
       "EnumId": "425",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -409,7 +385,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Tuto_Cookie_1",
       "EnumId": "13",
       "Date": "",
@@ -426,7 +401,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Tuto_Cookie_2",
       "EnumId": "14",
       "Date": "",
@@ -443,7 +417,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "AnturaSpace_Tuto_Cookie_3",
       "EnumId": "15",
       "Date": "",
@@ -453,14 +426,13 @@
       "Context": "Tutorial",
       "English": "Don’t worry, the more you play the more cookies you will get!",
       "Arabic": "لا تقلق. كلما لعبتَ أكثر ستحصلُ على كعكاتٍ أكثر.",
-      "ArabicFemale": "لا تقلقي. كلما لعبتِ أكثر ستحصلين على كعكاتٍ أكثر.",
+      "ArabicFemale": "كلما لعبتِ أكثر سوف أعطيكِ بعض الكعك.",
       "AudioFile": "AnturaSpace_Tuto_Cookie_3",
       "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Classify_Letters",
       "EnumId": "16",
       "Date": "",
@@ -477,7 +449,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Classify_Letters_Article",
       "EnumId": "17",
       "Date": "",
@@ -494,7 +465,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Classify_Word_Article",
       "EnumId": "18",
       "Date": "",
@@ -511,7 +481,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Classify_Word_Nouns",
       "EnumId": "19",
       "Date": "",
@@ -528,7 +497,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Classify_Words_Article",
       "EnumId": "20",
       "Date": "",
@@ -545,7 +513,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Complete_1",
       "EnumId": "21",
       "Date": "",
@@ -562,7 +529,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Complete_2",
       "EnumId": "22",
       "Date": "",
@@ -572,14 +538,13 @@
       "Context": "",
       "English": "I knew you could do it!",
       "Arabic": "كنتُ أعلمُ أنّك ستفعلُها!",
-      "ArabicFemale": "كنتُ أعلمُ أنّكِ ستفعلينها!",
+      "ArabicFemale": "كنتُ أعلمُ أنّكِ ستفعليها!",
       "AudioFile": "Assessment_Complete_2",
       "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Complete_3",
       "EnumId": "23",
       "Date": "",
@@ -596,7 +561,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Dog_Gone_1",
       "EnumId": "24",
       "Date": "",
@@ -613,7 +577,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Dog_Gone_2",
       "EnumId": "25",
       "Date": "",
@@ -630,7 +593,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Dog_Gone_3",
       "EnumId": "26",
       "Date": "",
@@ -647,7 +609,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Match_Letters_Words",
       "EnumId": "27",
       "Date": "",
@@ -664,7 +625,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Match_Sentences",
       "EnumId": "28",
       "Date": "",
@@ -681,7 +641,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Match_Word_Image",
       "EnumId": "29",
       "Date": "",
@@ -698,7 +657,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Order_Letters",
       "EnumId": "30",
       "Date": "",
@@ -715,7 +673,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Push_Dog_1",
       "EnumId": "31",
       "Date": "",
@@ -725,14 +682,13 @@
       "Context": "Keeper tells you to get rid of Antura\n(maybe we can show an finger animation)",
       "English": "Please get rid of Antura so we can start...",
       "Arabic": "رجاءً أبعِدْ عنتورة كي نبدأ...",
-      "ArabicFemale": "رجاءً أبعِدِي عنتورة كي نبدأ...",
+      "ArabicFemale": "رجاءً أبعِدي عنتورة كي نبدأ...",
       "AudioFile": "Assessment_Push_Dog_1",
       "HasF": "1",
       "Notes": "",
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Push_Dog_2",
       "EnumId": "32",
       "Date": "",
@@ -749,7 +705,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Push_Dog_3",
       "EnumId": "33",
       "Date": "",
@@ -766,7 +721,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Select_Letter_Image",
       "EnumId": "34",
       "Date": "",
@@ -783,7 +737,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Select_Letter_Listen",
       "EnumId": "35",
       "Date": "",
@@ -800,7 +753,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Select_Word_Listen",
       "EnumId": "36",
       "Date": "",
@@ -817,7 +769,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Select_Words",
       "EnumId": "37",
       "Date": "",
@@ -834,7 +785,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Start_1",
       "EnumId": "38",
       "Date": "",
@@ -851,7 +801,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Start_2",
       "EnumId": "39",
       "Date": "",
@@ -868,7 +817,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Start_3",
       "EnumId": "40",
       "Date": "",
@@ -885,7 +833,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Upset_1",
       "EnumId": "41",
       "Date": "",
@@ -902,7 +849,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Upset_2",
       "EnumId": "42",
       "Date": "",
@@ -919,7 +865,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Upset_3",
       "EnumId": "43",
       "Date": "",
@@ -936,7 +881,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Wrong_1",
       "EnumId": "44",
       "Date": "",
@@ -953,7 +897,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Wrong_2",
       "EnumId": "45",
       "Date": "",
@@ -970,7 +913,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Assessment_Wrong_3",
       "EnumId": "46",
       "Date": "",
@@ -987,7 +929,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Balloons_counting_Intro",
       "Id": "Balloons_counting_Intro",
       "EnumId": "47",
       "Date": "",
@@ -1004,7 +945,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Balloons_counting_Title",
       "Id": "Balloons_counting_Title",
       "EnumId": "48",
       "Date": "",
@@ -1021,7 +961,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Balloons_counting_Tuto",
       "Id": "Balloons_counting_Tuto",
       "EnumId": "49",
       "Date": "",
@@ -1038,7 +977,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Balloons_letter_Intro",
       "Id": "Balloons_letterinword_Intro",
       "EnumId": "50",
       "Date": "",
@@ -1055,7 +993,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Balloons_letter_Title",
       "Id": "Balloons_letterinword_Title",
       "EnumId": "51",
       "Date": "",
@@ -1072,7 +1009,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Balloons_letter_Tuto",
       "Id": "Balloons_letterinword_Tuto",
       "EnumId": "52",
       "Date": "",
@@ -1089,7 +1025,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Balloons_spelling_Intro",
       "Id": "Balloons_spelling_Intro",
       "EnumId": "53",
       "Date": "",
@@ -1106,7 +1041,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Balloons_spelling_Title",
       "Id": "Balloons_spelling_Title",
       "EnumId": "54",
       "Date": "",
@@ -1123,7 +1057,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Balloons_spelling_Tuto",
       "Id": "Balloons_spelling_Tuto",
       "EnumId": "55",
       "Date": "",
@@ -1140,7 +1073,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Balloons_words_Intro",
       "Id": "Balloons_word_Intro",
       "EnumId": "56",
       "Date": "",
@@ -1157,7 +1089,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Balloons_words_Title",
       "Id": "Balloons_word_Title",
       "EnumId": "57",
       "Date": "",
@@ -1174,7 +1105,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Balloons_words_Tuto",
       "Id": "Balloons_word_Tuto",
       "EnumId": "58",
       "Date": "",
@@ -1191,7 +1121,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Book_Games",
       "EnumId": "59",
       "Date": "",
@@ -1208,7 +1137,6 @@
       "COLOR LEGEND": "PENDING QUESTIONS TO BE SOLVED/ANSWERED"
     },
     {
-      "Id_OLD": "",
       "Id": "Book_Intro",
       "EnumId": "60",
       "Date": "",
@@ -1225,7 +1153,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Book_Letters",
       "EnumId": "61",
       "Date": "",
@@ -1242,7 +1169,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Book_Phrases",
       "EnumId": "62",
       "Date": "",
@@ -1259,7 +1185,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Book_Rewards",
       "EnumId": "63",
       "Date": "",
@@ -1276,7 +1201,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Book_Words",
       "EnumId": "64",
       "Date": "",
@@ -1293,7 +1217,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ColorTickle_Intro",
       "Id": "ColorTickle_lettername_Intro",
       "EnumId": "65",
       "Date": "",
@@ -1310,7 +1233,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ColorTickle_Title",
       "Id": "ColorTickle_lettername_Title",
       "EnumId": "66",
       "Date": "",
@@ -1327,7 +1249,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ColorTickle_Tuto",
       "Id": "ColorTickle_lettername_Tuto",
       "EnumId": "67",
       "Date": "",
@@ -1344,7 +1265,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "DailyReward_Collect",
       "EnumId": "455",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -1361,7 +1281,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "DailyReward_ComeBack_1",
       "EnumId": "453",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -1378,7 +1297,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "DailyReward_ComeBack_2",
       "EnumId": "454",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -1395,7 +1313,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "DailyReward_Intro_1",
       "EnumId": "451",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -1412,7 +1329,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "DailyReward_Intro_2",
       "EnumId": "452",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -1429,7 +1345,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "DancingDots_Intro",
       "Id": "DancingDots_letterany_Intro",
       "EnumId": "68",
       "Date": "",
@@ -1446,7 +1361,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "DancingDots_Title",
       "Id": "DancingDots_letterany_Title",
       "EnumId": "69",
       "Date": "",
@@ -1463,7 +1377,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "DancingDots_Tuto",
       "Id": "DancingDots_letterany_Tuto",
       "EnumId": "70",
       "Date": "",
@@ -1480,7 +1393,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Egg_sequence_Title",
       "Id": "Egg_buildword_Title",
       "EnumId": "74",
       "Date": "",
@@ -1497,7 +1409,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Egg_sequence_Tuto",
       "Id": "Egg_buildword_Tuto",
       "EnumId": "76",
       "Date": "",
@@ -1514,7 +1425,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Egg_sequence_Intro",
       "Id": "Egg_Intro",
       "EnumId": "73",
       "Date": "",
@@ -1531,7 +1441,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Egg_letters_Title",
       "Id": "Egg_letterphoneme_Title",
       "EnumId": "349",
       "Date": "",
@@ -1548,7 +1457,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Egg_letters_Tuto",
       "Id": "Egg_letterphoneme_Tuto",
       "EnumId": "75",
       "Date": "",
@@ -1565,7 +1473,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "End_Scene_1_1",
       "EnumId": "381",
       "Date": "",
@@ -1582,7 +1489,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "End_Scene_1_2",
       "EnumId": "392",
       "Date": "",
@@ -1599,7 +1505,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "End_Scene_2",
       "EnumId": "382",
       "Date": "",
@@ -1616,7 +1521,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "End_Scene_3_1",
       "EnumId": "383",
       "Date": "",
@@ -1633,7 +1537,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "End_Scene_3_2",
       "EnumId": "393",
       "Date": "",
@@ -1650,7 +1553,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "End_Scene_3_3",
       "EnumId": "394",
       "Date": "",
@@ -1667,7 +1569,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_spelling_Intro",
       "Id": "FastCrowd_buildword_Intro",
       "EnumId": "86",
       "Date": "",
@@ -1684,7 +1585,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_spelling_Title",
       "Id": "FastCrowd_buildword_Title",
       "EnumId": "87",
       "Date": "",
@@ -1701,7 +1601,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_spelling_Tuto",
       "Id": "FastCrowd_buildword_Tuto",
       "EnumId": "88",
       "Date": "",
@@ -1718,7 +1617,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_counting_Intro",
       "Id": "FastCrowd_counting_Intro",
       "EnumId": "80",
       "Date": "",
@@ -1735,7 +1633,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_counting_Title",
       "Id": "FastCrowd_counting_Title",
       "EnumId": "81",
       "Date": "",
@@ -1752,7 +1649,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_counting_Tuto",
       "Id": "FastCrowd_counting_Tuto",
       "EnumId": "82",
       "Date": "",
@@ -1769,7 +1665,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_letter_Intro",
       "Id": "FastCrowd_letterform_Intro",
       "EnumId": "83",
       "Date": "",
@@ -1786,7 +1681,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_letter_Title",
       "Id": "FastCrowd_letterform_Title",
       "EnumId": "84",
       "Date": "",
@@ -1803,7 +1697,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_letter_Tuto",
       "Id": "FastCrowd_letterform_Tuto",
       "EnumId": "85",
       "Date": "",
@@ -1820,7 +1713,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_alphabet_Intro",
       "Id": "FastCrowd_lettername_Intro",
       "EnumId": "77",
       "Date": "",
@@ -1837,7 +1729,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_alphabet_Title",
       "Id": "FastCrowd_lettername_Title",
       "EnumId": "78",
       "Date": "",
@@ -1854,7 +1745,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_alphabet_Tuto",
       "Id": "FastCrowd_lettername_Tuto",
       "EnumId": "79",
       "Date": "",
@@ -1871,7 +1761,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_words_Intro",
       "Id": "FastCrowd_word_Intro",
       "EnumId": "89",
       "Date": "",
@@ -1888,7 +1777,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_words_Title",
       "Id": "FastCrowd_word_Title",
       "EnumId": "90",
       "Date": "",
@@ -1905,7 +1793,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "FastCrowd_words_Tuto",
       "Id": "FastCrowd_word_Tuto",
       "EnumId": "91",
       "Date": "",
@@ -1922,7 +1809,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Game_Title",
       "EnumId": "92",
       "Date": "",
@@ -1939,7 +1825,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "HideSeek_Intro",
       "Id": "HideSeek_letterphoneme_Intro",
       "EnumId": "93",
       "Date": "",
@@ -1956,7 +1841,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "HideSeek_Title",
       "Id": "HideSeek_letterphoneme_Title",
       "EnumId": "94",
       "Date": "",
@@ -1973,7 +1857,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "HideSeek_Tuto",
       "Id": "HideSeek_letterphoneme_Tuto",
       "EnumId": "95",
       "Date": "",
@@ -1990,7 +1873,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "HideSeek_Words_Intro",
       "Id": "HideSeek_Words_Intro",
       "EnumId": "96",
       "Date": "",
@@ -2007,7 +1889,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "HideSeek_Words_Title",
       "Id": "HideSeek_Words_Title",
       "EnumId": "97",
       "Date": "",
@@ -2024,7 +1905,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "HideSeek_Words_Tuto",
       "Id": "HideSeek_Words_Tuto",
       "EnumId": "98",
       "Date": "",
@@ -2041,7 +1921,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Intro_Dog",
       "EnumId": "99",
       "Date": "",
@@ -2058,7 +1937,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Intro_Dog_Chase",
       "EnumId": "100",
       "Date": "",
@@ -2075,7 +1953,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Intro_Letters_1",
       "EnumId": "101",
       "Date": "",
@@ -2092,7 +1969,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Intro_Letters_2",
       "EnumId": "102",
       "Date": "",
@@ -2109,7 +1985,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Intro_Welcome",
       "EnumId": "103",
       "Date": "",
@@ -2126,7 +2001,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_AttempsOver",
       "EnumId": "104",
       "Date": "",
@@ -2143,7 +2017,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Bad_1",
       "EnumId": "105",
       "Date": "",
@@ -2160,7 +2033,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Bad_2",
       "EnumId": "106",
       "Date": "",
@@ -2177,7 +2049,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Bad_3",
       "EnumId": "107",
       "Date": "",
@@ -2194,7 +2065,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Bad_4",
       "EnumId": "108",
       "Date": "",
@@ -2211,7 +2081,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Bad_5",
       "EnumId": "109",
       "Date": "",
@@ -2228,7 +2097,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_GetReady",
       "EnumId": "110",
       "Date": "",
@@ -2245,7 +2113,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Good_1",
       "EnumId": "111",
       "Date": "",
@@ -2262,7 +2129,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Good_10",
       "EnumId": "112",
       "Date": "",
@@ -2279,7 +2145,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Good_11",
       "EnumId": "113",
       "Date": "",
@@ -2296,7 +2161,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Good_12",
       "EnumId": "114",
       "Date": "",
@@ -2313,7 +2177,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Good_2",
       "EnumId": "115",
       "Date": "",
@@ -2330,7 +2193,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Good_3",
       "EnumId": "116",
       "Date": "",
@@ -2347,7 +2209,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Good_4",
       "EnumId": "117",
       "Date": "",
@@ -2364,7 +2225,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Good_5",
       "EnumId": "118",
       "Date": "",
@@ -2381,7 +2241,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Good_6",
       "EnumId": "119",
       "Date": "",
@@ -2398,7 +2257,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Good_7",
       "EnumId": "120",
       "Date": "",
@@ -2415,7 +2273,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Good_8",
       "EnumId": "121",
       "Date": "",
@@ -2432,7 +2289,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Good_9",
       "EnumId": "122",
       "Date": "",
@@ -2449,7 +2305,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Last_Attempt_1",
       "EnumId": "123",
       "Date": "",
@@ -2466,7 +2321,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Last_Attempt_2",
       "EnumId": "124",
       "Date": "",
@@ -2483,7 +2337,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Last_Attempt_3",
       "EnumId": "125",
       "Date": "",
@@ -2500,7 +2353,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Remember",
       "EnumId": "126",
       "Date": "",
@@ -2517,7 +2369,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Time_1",
       "EnumId": "127",
       "Date": "",
@@ -2534,7 +2385,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Time_2",
       "EnumId": "128",
       "Date": "",
@@ -2551,7 +2401,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_Time_3",
       "EnumId": "129",
       "Date": "",
@@ -2568,7 +2417,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Keeper_TimeUp",
       "EnumId": "130",
       "Date": "",
@@ -2585,7 +2433,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MakeFriends_Intro",
       "Id": "MakeFriends_letterinword_Intro",
       "EnumId": "216",
       "Date": "",
@@ -2602,7 +2449,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MakeFriends_Title",
       "Id": "MakeFriends_letterinword_Title",
       "EnumId": "217",
       "Date": "",
@@ -2619,7 +2465,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MakeFriends_Tuto",
       "Id": "MakeFriends_letterinword_Tuto",
       "EnumId": "218",
       "Date": "",
@@ -2636,7 +2481,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Back_1",
       "EnumId": "219",
       "Date": "",
@@ -2653,7 +2497,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Back_2",
       "EnumId": "220",
       "Date": "",
@@ -2670,7 +2513,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Back_3",
       "EnumId": "221",
       "Date": "",
@@ -2687,7 +2529,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Bones_Collect_1",
       "EnumId": "456",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -2704,7 +2545,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Bones_Collect_2",
       "EnumId": "457",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -2721,7 +2561,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Bones_Counter_1",
       "EnumId": "458",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -2738,7 +2577,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Bones_Counter_2",
       "EnumId": "459",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -2755,7 +2593,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_End_LB_1",
       "EnumId": "222",
       "Date": "",
@@ -2772,7 +2609,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_End_LB_2",
       "EnumId": "223",
       "Date": "",
@@ -2789,7 +2625,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_End_LB_3",
       "EnumId": "224",
       "Date": "",
@@ -2806,7 +2641,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_EndGame",
       "EnumId": "225",
       "Date": "",
@@ -2823,7 +2657,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_EndWorld",
       "EnumId": "226",
       "Date": "",
@@ -2840,7 +2673,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_First",
       "EnumId": "227",
       "Date": "",
@@ -2857,7 +2689,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Intro",
       "EnumId": "228",
       "Date": "",
@@ -2874,7 +2705,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Intro_AnturaSpace",
       "EnumId": "229",
       "Date": "",
@@ -2891,7 +2721,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Intro_Map1",
       "EnumId": "230",
       "Date": "",
@@ -2908,7 +2737,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Intro_Map2",
       "EnumId": "231",
       "Date": "",
@@ -2925,7 +2753,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Intro_Map3",
       "EnumId": "232",
       "Date": "",
@@ -2942,7 +2769,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Intro_Map4",
       "EnumId": "233",
       "Date": "",
@@ -2959,7 +2785,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Intro_Map5",
       "EnumId": "234",
       "Date": "",
@@ -2976,7 +2801,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Intro_Map6",
       "EnumId": "235",
       "Date": "",
@@ -2993,7 +2817,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_NewMap",
       "EnumId": "236",
       "Date": "",
@@ -3010,7 +2833,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Unveal_Book_Intro",
       "EnumId": "435",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3027,7 +2849,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Unveal_Book_Open",
       "EnumId": "436",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3044,7 +2865,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Unveal_GameLauncher_Intro",
       "EnumId": "431",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3061,7 +2881,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Unveal_GameLauncher_Open",
       "EnumId": "432",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3078,7 +2897,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Unveal_Profile_Intro",
       "EnumId": "433",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3095,7 +2913,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Unveal_Profile_Open",
       "EnumId": "434",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3112,7 +2929,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Welcome_1",
       "EnumId": "237",
       "Date": "",
@@ -3129,7 +2945,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Welcome_2",
       "EnumId": "238",
       "Date": "",
@@ -3146,7 +2961,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Map_Welcome_3",
       "EnumId": "239",
       "Date": "",
@@ -3163,7 +2977,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Maze_Intro",
       "Id": "Maze_lettername_Intro",
       "EnumId": "240",
       "Date": "",
@@ -3180,7 +2993,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Maze_Title",
       "Id": "Maze_lettername_Title",
       "EnumId": "241",
       "Date": "",
@@ -3197,7 +3009,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Maze_Tuto",
       "Id": "Maze_lettername_Tuto",
       "EnumId": "242",
       "Date": "",
@@ -3214,7 +3025,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MissingLetter_Intro",
       "Id": "MissingLetter_Intro",
       "EnumId": "243",
       "Date": "",
@@ -3231,7 +3041,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MissingLetter_forms_Title",
       "Id": "MissingLetter_letterform_Title",
       "EnumId": "390",
       "Date": "",
@@ -3248,7 +3057,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MissingLetter_Title",
       "Id": "MissingLetter_letterinword_Title",
       "EnumId": "247",
       "Date": "",
@@ -3265,7 +3073,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MissingLetter_phrases_Intro",
       "Id": "MissingLetter_phrases_Intro",
       "EnumId": "244",
       "Date": "",
@@ -3282,7 +3089,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MissingLetter_phrases_Title",
       "Id": "MissingLetter_phrases_Title",
       "EnumId": "245",
       "Date": "",
@@ -3299,7 +3105,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MissingLetter_phrases_Tuto",
       "Id": "MissingLetter_phrases_Tuto",
       "EnumId": "246",
       "Date": "",
@@ -3316,7 +3121,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MissingLetter_Tuto",
       "Id": "MissingLetter_Tuto",
       "EnumId": "248",
       "Date": "",
@@ -3333,7 +3137,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MixedLetters_alphabet_Intro",
       "Id": "MixedLetters_alphabet_Intro",
       "EnumId": "249",
       "Date": "",
@@ -3350,7 +3153,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MixedLetters_alphabet_Title",
       "Id": "MixedLetters_alphabet_Title",
       "EnumId": "250",
       "Date": "",
@@ -3367,7 +3169,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MixedLetters_alphabet_Tuto",
       "Id": "MixedLetters_alphabet_Tuto",
       "EnumId": "251",
       "Date": "",
@@ -3384,7 +3185,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MixedLetters_spelling_Intro",
       "Id": "MixedLetters_buildword_Intro",
       "EnumId": "252",
       "Date": "",
@@ -3401,7 +3201,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MixedLetters_spelling_Title",
       "Id": "MixedLetters_buildword_Title",
       "EnumId": "253",
       "Date": "",
@@ -3418,7 +3217,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "MixedLetters_spelling_Tuto",
       "Id": "MixedLetters_buildword_Tuto",
       "EnumId": "254",
       "Date": "",
@@ -3435,7 +3233,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Mood_Question_1",
       "EnumId": "255",
       "Date": "",
@@ -3452,7 +3249,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Mood_Question_2",
       "EnumId": "256",
       "Date": "",
@@ -3469,7 +3265,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Mood_Question_3",
       "EnumId": "257",
       "Date": "",
@@ -3486,7 +3281,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Options_Credits",
       "EnumId": "448",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3503,7 +3297,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Options_English_OFF",
       "EnumId": "443",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3520,7 +3313,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Options_English_ON",
       "EnumId": "442",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3537,7 +3329,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Options_Generic_OFF",
       "EnumId": "447",
       "Date": "\"2018-10-31T23:00:00.000Z\"",
@@ -3554,7 +3345,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Options_Generic_ON",
       "EnumId": "446",
       "Date": "\"2018-10-31T23:00:00.000Z\"",
@@ -3571,7 +3361,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Options_Music_OFF",
       "EnumId": "441",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3588,7 +3377,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Options_Music_ON",
       "EnumId": "440",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3605,7 +3393,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Options_Subtitles_OFF",
       "EnumId": "445",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3622,7 +3409,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Options_Subtitles_ON",
       "EnumId": "444",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -3639,7 +3425,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Parental_Gate",
       "EnumId": "380",
       "Date": "",
@@ -3656,7 +3441,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Profile_Age",
       "EnumId": "367",
       "Date": "",
@@ -3673,7 +3457,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Profile_Avatar",
       "EnumId": "365",
       "Date": "",
@@ -3690,7 +3473,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Profile_Color",
       "EnumId": "366",
       "Date": "",
@@ -3707,7 +3489,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Profile_Gender",
       "EnumId": "364",
       "Date": "",
@@ -3724,7 +3505,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Profile_Years_10",
       "EnumId": "374",
       "Date": "",
@@ -3741,7 +3521,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Profile_Years_11",
       "EnumId": "375",
       "Date": "",
@@ -3758,7 +3537,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Profile_Years_4",
       "EnumId": "368",
       "Date": "",
@@ -3775,7 +3553,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Profile_Years_5",
       "EnumId": "369",
       "Date": "",
@@ -3792,7 +3569,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Profile_Years_6",
       "EnumId": "370",
       "Date": "",
@@ -3809,7 +3585,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Profile_Years_7",
       "EnumId": "371",
       "Date": "",
@@ -3826,7 +3601,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Profile_Years_8",
       "EnumId": "372",
       "Date": "",
@@ -3843,7 +3617,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Profile_Years_9",
       "EnumId": "373",
       "Date": "",
@@ -3860,7 +3633,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ReadingGame_Intro",
       "Id": "ReadingGame_Intro",
       "EnumId": "258",
       "Date": "",
@@ -3877,7 +3649,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ReadingGame_Title",
       "Id": "ReadingGame_Title",
       "EnumId": "259",
       "Date": "",
@@ -3894,7 +3665,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ReadingGame_Tuto",
       "Id": "ReadingGame_Tuto",
       "EnumId": "260",
       "Date": "",
@@ -3911,7 +3681,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_CreateDemoUser",
       "EnumId": "354",
       "Date": "",
@@ -3928,7 +3697,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_DeleteProfile",
       "EnumId": "351",
       "Date": "",
@@ -3945,7 +3713,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_DemoUserAlreadyExists",
       "EnumId": "391",
       "Date": "",
@@ -3962,7 +3729,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_ExportProfile",
       "EnumId": "352",
       "Date": "",
@@ -3979,7 +3745,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_InstallInstructions",
       "EnumId": "357",
       "Date": "",
@@ -3996,7 +3761,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_Privacy",
       "EnumId": "356",
       "Date": "",
@@ -4013,7 +3777,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_Rate",
       "EnumId": "358",
       "Date": "",
@@ -4030,7 +3793,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_Recommend",
       "EnumId": "359",
       "Date": "",
@@ -4047,7 +3809,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_ReviewProfile",
       "EnumId": "353",
       "Date": "",
@@ -4064,7 +3825,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_SectionDescription_Error",
       "EnumId": "363",
       "Date": "",
@@ -4081,7 +3841,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_SectionDescription_Intro",
       "EnumId": "362",
       "Date": "",
@@ -4098,7 +3857,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_Title",
       "EnumId": "361",
       "Date": "",
@@ -4115,7 +3873,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_UnlockingWaring",
       "EnumId": "360",
       "Date": "",
@@ -4132,7 +3889,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "ReservedArea_Website",
       "EnumId": "355",
       "Date": "",
@@ -4149,7 +3905,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_0Star",
       "EnumId": "261",
       "Date": "",
@@ -4166,7 +3921,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_0Star_1",
       "EnumId": "460",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -4183,7 +3937,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_1Star_1",
       "EnumId": "262",
       "Date": "",
@@ -4200,7 +3953,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_1Star_2",
       "EnumId": "263",
       "Date": "",
@@ -4217,7 +3969,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_1Star_3",
       "EnumId": "264",
       "Date": "",
@@ -4234,7 +3985,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_2Star_1",
       "EnumId": "265",
       "Date": "",
@@ -4251,7 +4001,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_2Star_2",
       "EnumId": "266",
       "Date": "",
@@ -4268,7 +4017,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_2Star_3",
       "EnumId": "267",
       "Date": "",
@@ -4285,7 +4033,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_3Star_1",
       "EnumId": "268",
       "Date": "",
@@ -4302,7 +4049,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_3Star_2",
       "EnumId": "269",
       "Date": "",
@@ -4319,7 +4065,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_3Star_3",
       "EnumId": "270",
       "Date": "",
@@ -4336,7 +4081,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_Big_1",
       "EnumId": "271",
       "Date": "",
@@ -4353,7 +4097,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_Big_2",
       "EnumId": "272",
       "Date": "",
@@ -4370,7 +4113,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_Big_3",
       "EnumId": "273",
       "Date": "",
@@ -4387,7 +4129,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "Reward_Intro",
       "EnumId": "274",
       "Date": "",
@@ -4404,7 +4145,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Scanner_Intro",
       "Id": "Scanner_Intro",
       "EnumId": "275",
       "Date": "",
@@ -4421,7 +4161,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Scanner_phrase_Intro",
       "Id": "Scanner_phrase_Intro",
       "EnumId": "276",
       "Date": "",
@@ -4438,7 +4177,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Scanner_phrase_Title",
       "Id": "Scanner_phrase_Title",
       "EnumId": "277",
       "Date": "",
@@ -4455,7 +4193,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Scanner_phrase_Tuto",
       "Id": "Scanner_phrase_Tuto",
       "EnumId": "278",
       "Date": "",
@@ -4472,7 +4209,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Scanner_Title",
       "Id": "Scanner_Title",
       "EnumId": "279",
       "Date": "",
@@ -4489,7 +4225,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Scanner_Tuto",
       "Id": "Scanner_Tuto",
       "EnumId": "280",
       "Date": "",
@@ -4506,7 +4241,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Scanner_Tuto_Antura",
       "Id": "Scanner_Tuto_Antura",
       "EnumId": "379",
       "Date": "",
@@ -4523,7 +4257,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "SelectGame_Begin_1",
       "EnumId": "281",
       "Date": "",
@@ -4540,7 +4273,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "SelectGame_Begin_2",
       "EnumId": "282",
       "Date": "",
@@ -4557,7 +4289,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "SelectGame_Begin_3",
       "EnumId": "283",
       "Date": "",
@@ -4574,7 +4305,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "SelectGame_Tuto_1",
       "EnumId": "284",
       "Date": "",
@@ -4591,7 +4321,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "SelectGame_Tuto_2",
       "EnumId": "285",
       "Date": "",
@@ -4608,7 +4337,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "SelectGame_Tuto_3",
       "EnumId": "286",
       "Date": "",
@@ -4625,7 +4353,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "SickLetters_Intro",
       "Id": "SickLetters_lettername_Intro",
       "EnumId": "287",
       "Date": "",
@@ -4642,7 +4369,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "SickLetters_Title",
       "Id": "SickLetters_lettername_Title",
       "EnumId": "288",
       "Date": "",
@@ -4659,7 +4385,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "SickLetters_Tuto",
       "Id": "SickLetters_lettername_Tuto",
       "EnumId": "289",
       "Date": "",
@@ -4676,7 +4401,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "AlphabetSong_alphabet_Intro",
       "Id": "Song_alphabet_Intro",
       "EnumId": "5",
       "Date": "",
@@ -4693,7 +4417,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "AlphabetSong_alphabet_Title",
       "Id": "Song_alphabet_Title",
       "EnumId": "6",
       "Date": "",
@@ -4710,7 +4433,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "AlphabetSong_alphabet_Tuto",
       "Id": "Song_alphabet_Tuto",
       "EnumId": "7",
       "Date": "",
@@ -4727,7 +4449,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "TakeMeHome_Intro",
       "Id": "TakeMeHome_Intro",
       "EnumId": "290",
       "Date": "",
@@ -4744,7 +4465,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "TakeMeHome_Title",
       "Id": "TakeMeHome_Title",
       "EnumId": "291",
       "Date": "",
@@ -4761,7 +4481,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "TakeMeHome_Tuto",
       "Id": "TakeMeHome_Tuto",
       "EnumId": "292",
       "Date": "",
@@ -4778,7 +4497,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "TakeMeHome_Tuto_Reminder",
       "Id": "TakeMeHome_Tuto_Reminder",
       "EnumId": "293",
       "Date": "",
@@ -4795,7 +4513,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ThrowBalls_letterinword_Title",
       "Id": "ThrowBalls_buildword_Title",
       "EnumId": "296",
       "Date": "",
@@ -4812,7 +4529,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ThrowBalls_letterinword_Tuto",
       "Id": "ThrowBalls_buildword_Tuto",
       "EnumId": "297",
       "Date": "",
@@ -4829,7 +4545,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ThrowBalls_Extra_Intro",
       "Id": "ThrowBalls_Extra_Intro",
       "EnumId": "294",
       "Date": "",
@@ -4846,7 +4561,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ThrowBalls_letters_Intro",
       "Id": "ThrowBalls_Intro",
       "EnumId": "298",
       "Date": "",
@@ -4863,7 +4577,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ThrowBalls_Extra_Title",
       "Id": "ThrowBalls_letterany_Title",
       "EnumId": "295",
       "Date": "",
@@ -4880,7 +4593,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ThrowBalls_letters_Title",
       "Id": "ThrowBalls_lettername_Title",
       "EnumId": "299",
       "Date": "",
@@ -4897,7 +4609,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ThrowBalls_letters_Tuto",
       "Id": "ThrowBalls_lettername_Tuto",
       "EnumId": "300",
       "Date": "",
@@ -4914,7 +4625,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ThrowBalls_words_Title",
       "Id": "ThrowBalls_word_Title",
       "EnumId": "301",
       "Date": "",
@@ -4931,7 +4641,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "ThrowBalls_words_Tuto",
       "Id": "ThrowBalls_word_Tuto",
       "EnumId": "302",
       "Date": "",
@@ -4948,7 +4657,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Tobogan_letters_Intro",
       "Id": "Tobogan_letters_Intro",
       "EnumId": "303",
       "Date": "",
@@ -4965,7 +4673,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Tobogan_letters_Title",
       "Id": "Tobogan_letters_Title",
       "EnumId": "304",
       "Date": "",
@@ -4982,7 +4689,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Tobogan_letters_Tuto",
       "Id": "Tobogan_letters_Tuto",
       "EnumId": "305",
       "Date": "",
@@ -4999,7 +4705,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Tobogan_words_Title",
       "Id": "Tobogan_words_Title",
       "EnumId": "306",
       "Date": "",
@@ -5016,7 +4721,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Tobogan_words_Tuto_Article",
       "Id": "Tobogan_words_Tuto_Article",
       "EnumId": "307",
       "Date": "",
@@ -5033,7 +4737,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Tobogan_words_Tuto_Letter",
       "Id": "Tobogan_words_Tuto_Letter",
       "EnumId": "308",
       "Date": "",
@@ -5050,7 +4753,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "Tobogan_words_Tuto_Word",
       "Id": "Tobogan_words_Tuto_Word",
       "EnumId": "309",
       "Date": "",
@@ -5067,7 +4769,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_AlertFinalRelease",
       "EnumId": "418",
       "Date": "21/12/2017",
@@ -5084,7 +4785,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_All",
       "EnumId": "310",
       "Date": "",
@@ -5101,7 +4801,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Animals",
       "EnumId": "311",
       "Date": "",
@@ -5118,7 +4817,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Antura_Rewards",
       "EnumId": "410",
       "Date": "",
@@ -5135,7 +4833,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_AreYouSure",
       "EnumId": "376",
       "Date": "",
@@ -5152,7 +4849,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Attention",
       "EnumId": "420",
       "Date": "21/12/2017",
@@ -5169,7 +4865,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_BodyParts",
       "EnumId": "312",
       "Date": "",
@@ -5186,7 +4881,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Bones",
       "EnumId": "408",
       "Date": "",
@@ -5203,7 +4897,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Clothes",
       "EnumId": "313",
       "Date": "",
@@ -5220,7 +4913,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Colors",
       "EnumId": "314",
       "Date": "",
@@ -5237,7 +4929,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Combinations",
       "EnumId": "315",
       "Date": "",
@@ -5254,7 +4945,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Conjunctions",
       "EnumId": "346",
       "Date": "",
@@ -5271,7 +4961,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Directions",
       "EnumId": "316",
       "Date": "",
@@ -5288,7 +4977,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_FamilyMembers",
       "EnumId": "317",
       "Date": "",
@@ -5305,7 +4993,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Feelings",
       "EnumId": "318",
       "Date": "",
@@ -5322,7 +5009,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Food",
       "EnumId": "319",
       "Date": "",
@@ -5339,7 +5025,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Furniture",
       "EnumId": "320",
       "Date": "",
@@ -5356,7 +5041,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Games",
       "EnumId": "321",
       "Date": "",
@@ -5373,7 +5057,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Games_played",
       "EnumId": "407",
       "Date": "",
@@ -5390,7 +5073,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_General",
       "EnumId": "345",
       "Date": "",
@@ -5407,7 +5089,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Jobs",
       "EnumId": "322",
       "Date": "",
@@ -5424,7 +5105,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Journey_duration",
       "EnumId": "405",
       "Date": "",
@@ -5441,7 +5121,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_LearningBlock",
       "EnumId": "340",
       "Date": "",
@@ -5458,7 +5137,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Letters",
       "EnumId": "323",
       "Date": "",
@@ -5475,7 +5153,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Nature",
       "EnumId": "324",
       "Date": "",
@@ -5492,7 +5169,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_No",
       "EnumId": "378",
       "Date": "",
@@ -5509,7 +5185,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_None",
       "EnumId": "341",
       "Date": "",
@@ -5526,7 +5201,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Notification_24h",
       "EnumId": "414",
       "Date": "\"2017-01-10T23:00:00.000Z\"",
@@ -5543,7 +5217,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Noun",
       "EnumId": "325",
       "Date": "",
@@ -5560,7 +5233,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Numbers",
       "EnumId": "326",
       "Date": "",
@@ -5577,7 +5249,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_NumbersOrdinal",
       "EnumId": "348",
       "Date": "",
@@ -5594,7 +5265,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_OverallStats",
       "EnumId": "449",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -5611,7 +5281,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_People",
       "EnumId": "327",
       "Date": "",
@@ -5628,7 +5297,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Phrases",
       "EnumId": "328",
       "Date": "",
@@ -5645,7 +5313,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Phrases_Expressions",
       "EnumId": "389",
       "Date": "",
@@ -5662,7 +5329,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Phrases_Greetings",
       "EnumId": "386",
       "Date": "",
@@ -5679,7 +5345,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Phrases_Questions",
       "EnumId": "384",
       "Date": "",
@@ -5696,7 +5361,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Phrases_Replies",
       "EnumId": "385",
       "Date": "",
@@ -5713,7 +5377,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Phrases_Sentences",
       "EnumId": "388",
       "Date": "",
@@ -5730,7 +5393,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Phrases_Years",
       "EnumId": "387",
       "Date": "",
@@ -5747,7 +5409,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Places",
       "EnumId": "329",
       "Date": "",
@@ -5764,7 +5425,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Player",
       "EnumId": "342",
       "Date": "",
@@ -5781,7 +5441,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Playing_time",
       "EnumId": "406",
       "Date": "",
@@ -5798,7 +5457,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_PlayWithSound",
       "EnumId": "450",
       "Date": "\"2018-04-30T22:00:00.000Z\"",
@@ -5815,7 +5473,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Positions",
       "EnumId": "330",
       "Date": "",
@@ -5832,7 +5489,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Preposition",
       "EnumId": "331",
       "Date": "",
@@ -5849,7 +5505,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Prompt_bugreport",
       "EnumId": "402",
       "Date": "",
@@ -5866,7 +5521,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Prompt_rate",
       "EnumId": "401",
       "Date": "",
@@ -5883,7 +5537,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_PromptOnlineAnalytics",
       "EnumId": "419",
       "Date": "21/12/2017",
@@ -5900,7 +5553,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_ReservedArea",
       "EnumId": "350",
       "Date": "",
@@ -5917,7 +5569,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Shapes ",
       "EnumId": "347",
       "Date": "",
@@ -5934,7 +5585,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Size",
       "EnumId": "344",
       "Date": "",
@@ -5951,7 +5601,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Special",
       "EnumId": "332",
       "Date": "",
@@ -5968,7 +5617,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Sports",
       "EnumId": "333",
       "Date": "",
@@ -5985,7 +5633,22 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
+      "Id": "UI_Stage",
+      "EnumId": "461",
+      "Date": "18/1/2018",
+      "Character": "UI",
+      "Area": "book",
+      "When": "",
+      "Context": "",
+      "English": "Stage",
+      "Arabic": "المرحلة",
+      "ArabicFemale": "",
+      "AudioFile": "",
+      "HasF": "",
+      "Notes": "",
+      "COLOR LEGEND": ""
+    },
+    {
       "Id": "UI_Stage_and_Level",
       "EnumId": "403",
       "Date": "",
@@ -6002,7 +5665,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Stars",
       "EnumId": "409",
       "Date": "",
@@ -6019,7 +5681,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Symbols",
       "EnumId": "334",
       "Date": "",
@@ -6036,7 +5697,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Things",
       "EnumId": "335",
       "Date": "",
@@ -6053,7 +5713,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Time",
       "EnumId": "336",
       "Date": "",
@@ -6070,7 +5729,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_TimeSpent",
       "EnumId": "343",
       "Date": "",
@@ -6087,7 +5745,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Today",
       "EnumId": "415",
       "Date": "14/12/2017",
@@ -6104,7 +5761,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Tomorrow",
       "EnumId": "417",
       "Date": "14/12/2017",
@@ -6121,7 +5777,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Unlocked_Letters",
       "EnumId": "411",
       "Date": "",
@@ -6138,7 +5793,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Unlocked_Levels",
       "EnumId": "404",
       "Date": "",
@@ -6155,7 +5809,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Unlocked_Phrases",
       "EnumId": "413",
       "Date": "",
@@ -6172,7 +5825,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Unlocked_Words",
       "EnumId": "412",
       "Date": "",
@@ -6189,7 +5841,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Vehicles",
       "EnumId": "337",
       "Date": "",
@@ -6206,7 +5857,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Verb",
       "EnumId": "338",
       "Date": "",
@@ -6223,7 +5873,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_WordCat_Adjectives",
       "EnumId": "400",
       "Date": "",
@@ -6240,7 +5889,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_WordCat_Expressions",
       "EnumId": "395",
       "Date": "",
@@ -6257,7 +5905,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_WordCat_Greetings",
       "EnumId": "397",
       "Date": "",
@@ -6274,7 +5921,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_WordCat_Names",
       "EnumId": "396",
       "Date": "",
@@ -6291,7 +5937,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_WordCat_Verbs",
       "EnumId": "398",
       "Date": "",
@@ -6308,7 +5953,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_WordCat_Weather",
       "EnumId": "399",
       "Date": "",
@@ -6325,7 +5969,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Words",
       "EnumId": "339",
       "Date": "",
@@ -6342,7 +5985,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Yes",
       "EnumId": "377",
       "Date": "",
@@ -6359,7 +6001,6 @@
       "COLOR LEGEND": ""
     },
     {
-      "Id_OLD": "",
       "Id": "UI_Yesterday",
       "EnumId": "416",
       "Date": "14/12/2017",
