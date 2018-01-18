@@ -59,6 +59,7 @@ namespace Antura.Teacher
             var packs = new List<QuestionPackData>();
 
 
+            // @note: all packs are created together in this builder, as a speed-up
             // Choose all letters we want to focus on
             var teacher = AppManager.I.Teacher;
             var vocabularyHelper = AppManager.I.VocabularyHelper;
@@ -67,7 +68,6 @@ namespace Antura.Teacher
                     new SelectionParameters(parameters.correctSeverity, getMaxData: true, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_letters));
 
-            // @note: all packs are created together in this builder, as a speed-up
             // Keep a list of letters we tried
             var availableLettersWithForms = new HashSet<LetterData>(new StrictLetterDataComparer(LetterEqualityStrictness.WithActualForm));
 

@@ -485,9 +485,14 @@ namespace Antura.Database
             return dbManager.FindWordData(x => CheckFilters(filters, x));
         }
 
-        private List<WordData> GetWordsNotIn(WordFilters filters, List<WordData> tabooWords)
+        public List<WordData> GetWordsNotIn(WordFilters filters, List<WordData> tabooWords)
         {
             return dbManager.FindWordData(word => !tabooWords.Contains(word) && CheckFilters(filters, word));
+        }
+
+        public IEnumerable<WordData> GetWordsNotInOptimized(WordFilters filters, List<WordData> tabooWords)
+        {
+            return dbManager.FindWordDataOptimized(word => !tabooWords.Contains(word) && CheckFilters(filters, word));
         }
 
         public List<WordData> GetWordsNotIn(WordFilters filters, params WordData[] tabooWords)

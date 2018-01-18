@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Antura.Database
 {
@@ -122,6 +123,12 @@ namespace Antura.Database
             var filtered = allValues.FindAll(predicate);
             return filtered;
         }
+
+        public IEnumerable<T> FindAllOptimized<T>(SerializableDataTable<T> table, Predicate<T> predicate) where T : IData
+        {
+            return table.GetValuesTyped().Where(x => predicate(x));
+        }
+
 
         public List<T> GetAll<T>(SerializableDataTable<T> table) where T : IData
         {

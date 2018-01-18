@@ -231,6 +231,11 @@ namespace Antura.Database
             return staticDb.FindAll(staticDb.GetWordTable(), predicate);
         }
 
+        public IEnumerable<WordData> FindWordDataOptimized(Predicate<WordData> predicate)
+        {
+            return staticDb.FindAllOptimized(staticDb.GetWordTable(), predicate);
+        }
+
         public List<WordData> FindWordDataByCategory(WordDataCategory wordCategory)
         {
             return staticDb.FindAll(staticDb.GetWordTable(), (x) => (x.Category == wordCategory));

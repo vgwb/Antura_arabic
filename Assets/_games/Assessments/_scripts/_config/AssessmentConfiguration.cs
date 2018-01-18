@@ -355,6 +355,7 @@ namespace Antura.Assessment
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.sortPacksByDifficulty = false;
+            builderParams.letterEqualityStrictness = LetterEqualityStrictness.WithVisualForm;
 
             return new WordsWithLetterQuestionBuilder(
                 NumberOfRounds,
