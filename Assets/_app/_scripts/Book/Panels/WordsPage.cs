@@ -14,6 +14,7 @@ namespace Antura.Book
     {
         [Header("Prefabs")]
         public GameObject WordItemPrefab;
+        public GameObject SpacerItemPrefab;
         public GameObject CategoryItemPrefab;
 
         [Header("References")]
@@ -84,13 +85,16 @@ namespace Antura.Book
                     {
                         area = VocabularyChapter.Words,
                         Id = stage.Id,
-                        Title = "المرحلة " + stage.Id,
-                        TitleEn = "stage " + stage.Id,
+                        Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Stage),
+                        TitleEn = "stage",
                         Stage = int.Parse(stage.Id)
                     },
                     int.Parse(stage.Id) == currentCategory.Stage
                 );
             }
+
+            btnGO = Instantiate(SpacerItemPrefab);
+            btnGO.transform.SetParent(SubmenuContainer.transform, false);
 
             foreach (WordDataCategory cat in GenericHelper.SortEnums<WordDataCategory>()) {
                 //if (cat == WordDataCategory.None) continue;
@@ -122,7 +126,7 @@ namespace Antura.Book
             HighlightWordItem(currentWordInfo.data.Id);
 
             Debug.Log("Detail Word :" + currentWordInfo.data.Id);
-            AudioManager.I.PlayWord(currentWordInfo.data);
+            PlayWord();
 
             var spellingString = "";
             var splittedLetters = ArabicAlphabetHelper.SplitWord(AppManager.I.DB, currentWordInfo.data, false, true);
@@ -152,6 +156,16 @@ namespace Antura.Book
                     WordsPanel(_category);
                     break;
             }
+        }
+
+        public void BtnClickWord()
+        {
+            PlayWord();
+        }
+
+        void PlayWord()
+        {
+            AudioManager.I.PlayWord(currentWordInfo.data);
         }
 
         void HighlightWordItem(string id)

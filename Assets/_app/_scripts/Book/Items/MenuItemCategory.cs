@@ -9,10 +9,11 @@ namespace Antura.Book
     /// </summary>
     public class MenuItemCategory : MonoBehaviour, IPointerClickHandler
     {
-        GenericCategoryData data;
+        GenericCategoryData categoryData;
         public TextRender Title;
+        public TextRender Code;
         public TextRender SubTitle;
-        IBookPanel manager;
+        IBookPanel myManager;
 
         UIButton uIButton;
 
@@ -20,23 +21,29 @@ namespace Antura.Book
         {
             uIButton = GetComponent<UIButton>();
 
-            data = _data;
-            manager = _manager;
+            categoryData = _data;
+            myManager = _manager;
 
-            Title.text = data.Title;
-            SubTitle.text = data.TitleEn;
+            Title.text = categoryData.Title;
+            SubTitle.text = categoryData.TitleEn;
+
+            if (categoryData.Stage > 0) {
+                Code.text = categoryData.Stage.ToString();
+            } else {
+                Code.text = "";
+            }
 
             hightlight(_selected);
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.SelectSubCategory(data);
+            myManager.SelectSubCategory(categoryData);
         }
 
         public void Select(string code)
         {
-            hightlight(code == data.Id);
+            hightlight(code == categoryData.Id);
         }
 
         void hightlight(bool _status)
