@@ -487,20 +487,21 @@ namespace Antura.AnturaSpace.UI
 
         void RefreshCategories()
         {
+            var rewardSystemManager = AppManager.I.RewardSystemManager;
             foreach (AnturaSpaceCategoryButton btCat in btsCategories) {
                 bool isNew;
+                var rewardBaseType = CategoryToRewardBaseType(btCat.Category);
                 switch (btCat.Category) {
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears:
-                        isNew = AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardBaseType(btCat.Category), "EAR_L")
-                                || AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardBaseType(btCat.Category), "EAR_R");
+                        isNew = rewardSystemManager.DoesRewardCategoryContainNewElements(rewardBaseType, "EAR_L")
+                                || rewardSystemManager.DoesRewardCategoryContainNewElements(rewardBaseType, "EAR_R");
                         break;
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
-                        isNew = AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardBaseType(btCat.Category));
+                        isNew = rewardSystemManager.DoesRewardCategoryContainNewElements(rewardBaseType);
                         break;
                     default:
-                        isNew = AppManager.I.RewardSystemManager.DoesRewardCategoryContainNewElements(CategoryToRewardBaseType(btCat.Category),
-                            btCat.Category.ToString());
+                        isNew = rewardSystemManager.DoesRewardCategoryContainNewElements(rewardBaseType, btCat.Category.ToString());
                         break;
                 }
                 btCat.SetAsNew(isNew);

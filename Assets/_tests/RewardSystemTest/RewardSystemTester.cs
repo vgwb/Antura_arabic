@@ -31,7 +31,7 @@ namespace Antura.Test.Rewards
         void PrintCurrentUnlocks()
         {
             string s = ("We unlocked " + AppManager.I.RewardSystemManager.GetUnlockedRewardsCount());
-            foreach (var unlockedRewardPack in AppManager.I.RewardSystemManager.GetAllUnlockedRewardPacks())
+            foreach (var unlockedRewardPack in AppManager.I.RewardSystemManager.GetUnlockedRewardPacks())
             {
                 s += ("\n- " + unlockedRewardPack);
             }
