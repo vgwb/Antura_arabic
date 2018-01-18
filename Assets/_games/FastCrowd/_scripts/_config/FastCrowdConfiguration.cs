@@ -77,7 +77,8 @@ namespace Antura.Minigames.FastCrowd
                 case FastCrowdVariation.LetterName:
                     // Only base letters
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
-                    builder = new RandomLettersQuestionBuilder(nPacks, 5, nWrong, parameters: builderParams);
+                    builderParams.wrongSeverity = SelectionSeverity.AsManyAsPossible;
+                    builder = new RandomLettersQuestionBuilder(nPacks, 5, 0, parameters: builderParams);
                     break;
                 case FastCrowdVariation.LetterForm:
                     // @note: we pass 4 as nCorrect, so we get all the four forms of a single letter, which will be shown one after the other
