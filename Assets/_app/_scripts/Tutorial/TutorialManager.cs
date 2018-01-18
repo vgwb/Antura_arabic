@@ -1,7 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Antura.Audio;
 using Antura.Core;
+using Antura.Database;
 using Antura.Profile;
 using Antura.Teacher;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Antura.Tutorial
 {
@@ -15,7 +21,6 @@ namespace Antura.Tutorial
 
         protected abstract AppScene CurrentAppScene { get; }
         public Object CurrentTutorialFocus { get; protected set; }
-        public SceneBase scene;
 
         protected FirstContactPhase CurrentRunningPhase = FirstContactPhase.NONE;
 
@@ -116,5 +121,33 @@ namespace Antura.Tutorial
         }
 
         #endregion
+
+        #region Dialogue
+
+        protected void Dialogue(LocalizationDataId id)
+        {
+            AudioManager.I.PlayDialogue(id, null);
+        }
+
+        protected void DialogueThen( Action action, LocalizationDataId id)
+        {
+            AudioManager.I.PlayDialogue(id, action);
+        }
+
+        protected void DialoguesThen(Action action, params LocalizationDataId[] ids)
+        {
+            var lastId = ids.Last();
+            List<LocalizationDataId> prevIds = new List<LocalizationDataId>();
+            prevIds.AddRange(ids);
+            prevIds.RemoveAt(prevIds.Count - 1);
+
+            if (prevIds.Count == 0)
+                AudioManager.I.PlayDialogue(lastId, action);
+            else 
+                DialoguesThen(() => AudioManager.I.PlayDialogue(lastId, action), prevIds.ToArray());
+        }
+
+        #endregion
+
     }
 }

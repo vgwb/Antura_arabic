@@ -20,7 +20,7 @@ namespace Antura.Profile
 
         Reward_FirstBig,
 
-        Map_PlaySession,
+        Map_PlayFirstSession,
         Map_GoToAnturaSpace,
         Map_GoToMinigames,
         Map_GoToBook,
@@ -97,8 +97,8 @@ namespace Antura.Profile
         private static bool SIMULATE_FIRST_CONTACT = false;
         private FirstContactPhase SIMULATE_FIRST_CONTACT_PHASE = FirstContactPhase.AnturaSpace_TouchAntura;
 
-        private static bool FORCE_FIRST_CONTACT_START = false;
-        private FirstContactPhase FORCED_FIRST_CONTACT_START_PHASE = FirstContactPhase.AnturaSpace_Shop;
+        private static bool FORCE_FIRST_CONTACT_START = true;
+        private FirstContactPhase FORCED_FIRST_CONTACT_START_PHASE = FirstContactPhase.Map_PlayFirstSession;
 
         public FirstContactManager()
         {
@@ -119,7 +119,7 @@ namespace Antura.Profile
                 FirstContactPhase.AnturaSpace_Customization,
                 FirstContactPhase.AnturaSpace_Exit,
 
-                FirstContactPhase.Map_PlaySession,
+                FirstContactPhase.Map_PlayFirstSession,
                 //FirstContactPhase.Map_GoToAnturaSpace,
 
                 FirstContactPhase.AnturaSpace_Shop,
@@ -388,7 +388,7 @@ namespace Antura.Profile
                 case FirstContactPhase.Map_GoToBook:
                 case FirstContactPhase.Map_GoToMinigames:
                 case FirstContactPhase.Map_GoToProfile:
-                case FirstContactPhase.Map_PlaySession:
+                case FirstContactPhase.Map_PlayFirstSession:
                     return AppScene.Map;
 
                 case FirstContactPhase.Intro:
@@ -416,7 +416,7 @@ namespace Antura.Profile
             // Check whether this transition is completing a phase
             TransitionCompletePhaseOn(FirstContactPhase.Intro, fromScene == AppScene.Intro);
             TransitionCompletePhaseOn(FirstContactPhase.AnturaSpace_Exit, fromScene == AppScene.AnturaSpace);
-            TransitionCompletePhaseOn(FirstContactPhase.Map_PlaySession, fromScene == AppScene.PlaySessionResult);
+            TransitionCompletePhaseOn(FirstContactPhase.Map_PlayFirstSession, fromScene == AppScene.PlaySessionResult);
             TransitionCompletePhaseOn(FirstContactPhase.Map_GoToAnturaSpace, fromScene == AppScene.Map && toScene == AppScene.AnturaSpace);
             TransitionCompletePhaseOn(FirstContactPhase.Map_GoToBook, fromScene == AppScene.Map && toScene == AppScene.Book);
             TransitionCompletePhaseOn(FirstContactPhase.Map_GoToMinigames, fromScene == AppScene.Map && toScene == AppScene.Book);

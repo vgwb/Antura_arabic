@@ -9,6 +9,7 @@ using Antura.UI;
 using UnityEngine;
 using System.Collections;
 using System.Linq;
+using Antura.Database;
 using Antura.Extensions;
 using DG.Tweening;
 using UnityEngine.UI;
@@ -127,19 +128,21 @@ namespace Antura.AnturaSpace
             _mScene.Antura.AnimationController.State = AnturaAnimationStates.sleeping;
             _mScene.CurrentState = _mScene.Sleeping;
 
-            AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro, null);
-
             m_oAnturaBehaviour.onTouched += HandleAnturaTouched;
 
             Vector3 clickOffset = m_oAnturaBehaviour.IsSleeping ? Vector3.down * 2 : Vector3.zero;
             TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position + clickOffset + Vector3.forward * -2 + Vector3.up,
                 float.MaxValue, 1);
+
+            Dialogue(LocalizationDataId.AnturaSpace_Intro);
         }
 
         private void HandleAnturaTouched()
         {
             m_oAnturaBehaviour.onTouched -= HandleAnturaTouched;
-            CompleteTutorialPhase();
+            TutorialUI.Clear(false);
+
+            DialogueThen(CompleteTutorialPhase, LocalizationDataId.AnturaSpace_Intro_Touch);
         }
 
         #endregion
@@ -175,19 +178,18 @@ namespace Antura.AnturaSpace
                     // Reset state for the tutorial
                     AppManager.I.Player.CurrentAnturaCustomizations.ClearEquippedProps();
 
-                    //dialog get more cookies
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () {
-                        //dialog customize
-                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () {
+                    DialoguesThen(
+                        () =>
+                        {
                             //after the dialog make appear the customization button
                             m_oCustomizationButton.gameObject.SetActive(true);
                             m_oCustomizationButton.onClick.AddListener(StepTutorialCustomization);
-
                             TutorialUI.ClickRepeat(m_oCustomizationButton.transform.position, float.MaxValue, 1);
-                        });
-                    });
-                    break;
+                        }, 
+                        LocalizationDataId.AnturaSpace_Custom_1, 
+                        LocalizationDataId.AnturaSpace_Custom_2);
 
+                    break;
 
                 case CustomizationTutorialStep.SELECT_CATEGORY:
 
@@ -222,6 +224,8 @@ namespace Antura.AnturaSpace
 
                 case CustomizationTutorialStep.SELECT_COLOR:
 
+                    Dialogue(LocalizationDataId.AnturaSpace_Custom_3);
+
                     // Cleanup last step
                     _mScene.UI.SetTutorialMode(false);
                     m_oItemButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
@@ -237,6 +241,8 @@ namespace Antura.AnturaSpace
                     break;
 
                 case CustomizationTutorialStep.CLOSE_CUSTOMIZE:
+
+                    Dialogue(LocalizationDataId.AnturaSpace_Custom_4);
 
                     // Cleanup last step
                     _mScene.UI.SetTutorialMode(false);
@@ -545,10 +551,11 @@ namespace Antura.AnturaSpace
         private void StepTutorialExit()
         {
             TutorialUI.Clear(false);
+            AudioManager.I.StopDialogue(false);
 
             _mScene.ShowBackButton();
 
-            AudioManager.I.StopDialogue(false);
+            Dialogue(LocalizationDataId.AnturaSpace_Exit);
 
             TutorialUI.ClickRepeat(
                 Vector3.down * 0.025f + m_oCameraUI.ScreenToWorldPoint(new Vector3(GlobalUI.I.BackButton.RectT.position.x,

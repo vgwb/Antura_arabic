@@ -46,22 +46,15 @@ namespace Antura.Map
             bool isPlayingSequentialPhase = false;
             switch (FirstContactManager.I.CurrentPhaseInSequence)
             {
-                case FirstContactPhase.Map_PlaySession:
+                case FirstContactPhase.Map_PlayFirstSession:
 
-                    CurrentRunningPhase = FirstContactPhase.Map_PlaySession;
-
-                    _stageMapsManager.SetPlayUIActivation(true);
-
-                    KeeperManager.I.PlayDialog(LocalizationDataId.Map_First, true, true, () => {
-                        KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_Map1);
-                    });
-
-                    StartCoroutine(TutorialHintClickCO(_stageMapsManager.SelectedPin.transform, _stageMapsManager.MapCamera));
+                    StepTutorialPlayFirstSession();
 
                     // @note: this phase is completed not on Play, but when we come back after the results
                     // check the FirstContactManager navigation filtering
                     isPlayingSequentialPhase = true;
                     break;
+
             }
             if (isPlayingSequentialPhase) return;
 
@@ -85,6 +78,30 @@ namespace Antura.Map
         {
             _stageMapsManager.SetUIActivationByContactPhase(phase, choice);
         }
+
+        #region Play First Session
+
+        private void StepTutorialPlayFirstSession()
+        {
+            CurrentRunningPhase = FirstContactPhase.Map_PlayFirstSession;
+
+            _stageMapsManager.SetPlayUIActivation(true);
+
+            KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro, autoClose:false, _callback:
+                () =>
+                {
+                    KeeperManager.I.PlayDialog(LocalizationDataId.Map_Intro_Map1, _callback:
+                        () =>
+                        {
+                            Dialogue(LocalizationDataId.Action_PressPlay);
+                            StartCoroutine(TutorialHintClickCO(_stageMapsManager.SelectedPin.transform,_stageMapsManager.MapCamera));
+                        });
+                }
+            );
+
+        }
+
+        #endregion
 
 
         private bool CheckNewUnlockPhaseAt(FirstContactPhase phase, LocalizationDataId localizationDataId)
