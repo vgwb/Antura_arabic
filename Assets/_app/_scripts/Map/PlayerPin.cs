@@ -135,12 +135,13 @@ namespace Antura.Map
             isAnimating = true;
             if (onMoveStart != null) { onMoveStart(); }
             int tmpCurrentIndex = currentStageMap.CurrentPinIndex;
-            UpdatePlayerJourneyPosition(currentStageMap.mapLocations[targetIndex].JourneyPos);
             //Debug.Log("ANIMATING FROM " + tmpCurrentIndex + " TO " + targetIndex);
 
             // Different stage: we will teleport antura
             int newStageIndex = stageMapsManager.CurrentShownStageMap.stageNumber;
             int oldStageIndex = currentStageMap.stageNumber;
+            UpdatePlayerJourneyPosition(stageMapsManager.CurrentShownStageMap.mapLocations[targetIndex].JourneyPos);
+
             if (newStageIndex != oldStageIndex) {
                 currentStageMap = stageMapsManager.CurrentShownStageMap;
                 if (newStageIndex > oldStageIndex) {
@@ -150,7 +151,7 @@ namespace Antura.Map
                 }
                 //Debug.Log("MOVING TO NEW STAGE AT INDEX " + tmpCurrentIndex + " STAGE " + currentStageMap.stageNumber);
                 currentStageMap.ForceCurrentPinIndex(tmpCurrentIndex);
-                ForceToJourneyPosition(currentStageMap.mapLocations[tmpCurrentIndex].JourneyPos, false);
+                ForceToJourneyPosition(currentStageMap.mapLocations[tmpCurrentIndex].JourneyPos, true);
             }
 
 
@@ -162,7 +163,7 @@ namespace Antura.Map
                 int teleportIndex = targetIndex + (isAdvancing ? -teleportDistance : teleportDistance);
                 teleportIndex = Mathf.Clamp(teleportIndex, 0, currentStageMap.MaxUnlockedPinIndex);
                 currentStageMap.ForceCurrentPinIndex(teleportIndex);
-                ForceToJourneyPosition(currentStageMap.mapLocations[teleportIndex].JourneyPos, false);
+                ForceToJourneyPosition(currentStageMap.mapLocations[teleportIndex].JourneyPos, true);
                 tmpCurrentIndex = teleportIndex;
             }
 
@@ -178,7 +179,7 @@ namespace Antura.Map
                 var nextPos = currentStageMap.mapLocations[tmpCurrentIndex].Position;
                 yield return MoveToCO(nextPos, speed);
                 currentStageMap.ForceCurrentPinIndex(tmpCurrentIndex);
-                ForceToJourneyPosition(currentStageMap.mapLocations[tmpCurrentIndex].JourneyPos, false);
+                ForceToJourneyPosition(currentStageMap.mapLocations[tmpCurrentIndex].JourneyPos, true);
             }
             while (tmpCurrentIndex != targetIndex);
 
