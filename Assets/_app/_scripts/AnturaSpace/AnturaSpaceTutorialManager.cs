@@ -142,7 +142,7 @@ namespace Antura.AnturaSpace
             m_oAnturaBehaviour.onTouched -= HandleAnturaTouched;
             TutorialUI.Clear(false);
 
-            DialogueThen(CompleteTutorialPhase, LocalizationDataId.AnturaSpace_Intro_Touch);
+            DialogueThen(LocalizationDataId.AnturaSpace_Intro_Touch, CompleteTutorialPhase);
         }
 
         #endregion
@@ -179,15 +179,15 @@ namespace Antura.AnturaSpace
                     AppManager.I.Player.CurrentAnturaCustomizations.ClearEquippedProps();
 
                     DialoguesThen(
+                        LocalizationDataId.AnturaSpace_Custom_1,
+                        LocalizationDataId.AnturaSpace_Custom_2,
                         () =>
                         {
                             //after the dialog make appear the customization button
                             m_oCustomizationButton.gameObject.SetActive(true);
                             m_oCustomizationButton.onClick.AddListener(StepTutorialCustomization);
                             TutorialUI.ClickRepeat(m_oCustomizationButton.transform.position, float.MaxValue, 1);
-                        }, 
-                        LocalizationDataId.AnturaSpace_Custom_1, 
-                        LocalizationDataId.AnturaSpace_Custom_2);
+                        });
 
                     break;
 
@@ -282,6 +282,14 @@ namespace Antura.AnturaSpace
 
         #endregion
 
+        void Update()
+        {
+            if (CurrentRunningPhase == FirstContactPhase.AnturaSpace_Shop)
+            {
+                
+            }
+        }
+
         #region Shop
 
         private enum ShopTutorialStep
@@ -300,10 +308,7 @@ namespace Antura.AnturaSpace
         private void StepTutorialShop()
         {
             CurrentRunningPhase = FirstContactPhase.AnturaSpace_Shop;
-
             if (_currentShopStep < ShopTutorialStep.FINISH) _currentShopStep += 1;
-
-            //Debug.Log("WE ARE IN STEP " + _currentShopStep);
 
             TutorialUI.Clear(false);
             AudioManager.I.StopDialogue(false);
@@ -326,16 +331,18 @@ namespace Antura.AnturaSpace
                     ShopDecorationsManager.I.DeleteAllDecorations();
 
                     // Dialog -> Appear button
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate
-                    {
-                        ShopDecorationsManager.SetContextClosed();
-                        UI.ShowShopButton(true);
-
-                        m_oCookieButton.onClick.AddListener(StepTutorialShop);
-                        TutorialUI.ClickRepeat(m_oCookieButton.transform.position, float.MaxValue, 1);
-
-                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_1, null);
-                    });
+                    DialoguesThen(
+                        LocalizationDataId.AnturaSpace_Shop_Intro,
+                        LocalizationDataId.AnturaSpace_Shop_Open,
+                        () =>
+                            {
+                                ShopDecorationsManager.SetContextClosed();
+                                UI.ShowShopButton(true);
+                                m_oCookieButton.onClick.AddListener(StepTutorialShop);
+                                TutorialUI.ClickRepeat(m_oCookieButton.transform.position, float.MaxValue, 1);
+                                //Dialogue(LocalizationDataId.AnturaSpace_Tuto_Cookie_1);
+                            }
+                        );
                     break;
 
                 case ShopTutorialStep.DRAG_BONE:
@@ -344,13 +351,10 @@ namespace Antura.AnturaSpace
                     m_oCookieButton.onClick.RemoveListener(StepTutorialShop);
 
                     // New step
+                    Dialogue(LocalizationDataId.AnturaSpace_Shop_Cookie);
                     actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Bone");
-                    //actionUI.ShopAction.OnActionCommitted += StepTutorialShop;
                     _mScene.onEatObject += StepTutorialShop;
                     CurrentTutorialFocus = actionUI;
-
-                    // Dialog (drag bone)
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_2);
 
                     // Start drag line
                     StartCoroutine(DelayedCallbackCO(
@@ -373,23 +377,25 @@ namespace Antura.AnturaSpace
 
                     // Cleanup last step
                     StopDrawDragLine();
-                    //actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Bone");
-                    //actionUI.ShopAction.OnActionCommitted -= StepTutorialShop;
                     _mScene.onEatObject -= StepTutorialShop;
 
                     // New step
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
-                    ShopDecorationsManager.OnPurchaseConfirmationRequested += StepTutorialShop;
+                    DialoguesThen(
+                        LocalizationDataId.AnturaSpace_Intro_Cookie,
+                        LocalizationDataId.AnturaSpace_Shop_BuyItem,
+                        () =>
+                        {
+                            ShopDecorationsManager.OnPurchaseConfirmationRequested += StepTutorialShop;
 
-                    actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Decoration_Tree1");
-                    var leftmostUnassignedSlot =
-                        ShopDecorationsManager.GetDecorationSlots()
-                            .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Prop)
-                            .MinBy(x => x.transform.position.x);
-                    StartDrawDragLineFromTo(actionUI.transform, leftmostUnassignedSlot.transform);
+                            actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Decoration_Tree1");
+                            var leftmostUnassignedSlot =
+                                ShopDecorationsManager.GetDecorationSlots()
+                                    .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Prop)
+                                    .MinBy(x => x.transform.position.x);
+                            StartDrawDragLineFromTo(actionUI.transform, leftmostUnassignedSlot.transform);
 
-                    CurrentTutorialFocus = actionUI;
-
+                            CurrentTutorialFocus = actionUI;
+                        });
                     break;
 
                 case ShopTutorialStep.CONFIRM_BUY_DECORATION:
@@ -403,10 +409,7 @@ namespace Antura.AnturaSpace
 
                     yesButton = UI.ShopPanelUI.confirmationYesButton;
 
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, () =>
-                    {
-                        TutorialUI.ClickRepeat(yesButton.transform.position, float.MaxValue, 1);
-                    });
+                    TutorialUI.ClickRepeat(yesButton.transform.position, float.MaxValue, 1);
 
                     CurrentTutorialFocus = yesButton;
 
@@ -418,16 +421,20 @@ namespace Antura.AnturaSpace
                     ShopDecorationsManager.OnPurchaseComplete -= StepTutorialShop;
 
                     // New step
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
+                    DialogueThen(
+                        LocalizationDataId.AnturaSpace_Shop_MoveItem,
+                        () =>
+                        {
+                            ShopDecorationsManager.OnDragStop += StepTutorialShop;
 
-                    ShopDecorationsManager.OnDragStop += StepTutorialShop;
-
-                    // Slot we assigned
-                    var assignedSlot = ShopDecorationsManager.GetDecorationSlots().FirstOrDefault(x => x.Assigned && x.slotType == ShopDecorationSlotType.Prop);
-                    var rightmostUnassignedSlot = ShopDecorationsManager.GetDecorationSlots()
-                            .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Prop)
-                            .MaxBy(x => x.transform.position.x);
-                    StartDrawDragLineFromTo(assignedSlot.transform, rightmostUnassignedSlot.transform);
+                            // Slot we assigned
+                            var assignedSlot = ShopDecorationsManager.GetDecorationSlots().FirstOrDefault(x => x.Assigned && x.slotType == ShopDecorationSlotType.Prop);
+                            var rightmostUnassignedSlot = ShopDecorationsManager.GetDecorationSlots()
+                                    .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Prop)
+                                    .MaxBy(x => x.transform.position.x);
+                            StartDrawDragLineFromTo(assignedSlot.transform, rightmostUnassignedSlot.transform);
+                        }
+                    );
 
                     break;
 
@@ -441,12 +448,17 @@ namespace Antura.AnturaSpace
                     yesButton.onClick.RemoveListener(StepTutorialShop);
 
                     // New step
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
+                    DialogueThen(
+                        LocalizationDataId.AnturaSpace_Shop_Close,
+                        () =>
+                        {
+                            m_oCookieButton.onClick.AddListener(StepTutorialShop);
+                            TutorialUI.ClickRepeat(m_oCookieButton.transform.position, float.MaxValue, 1);
 
-                    m_oCookieButton.onClick.AddListener(StepTutorialShop);
-                    TutorialUI.ClickRepeat(m_oCookieButton.transform.position, float.MaxValue, 1);
+                            CurrentTutorialFocus = m_oCookieButton;
+                        }
+                    );
 
-                    CurrentTutorialFocus = m_oCookieButton;
                     break;
 
                 case ShopTutorialStep.FINISH:
@@ -455,9 +467,8 @@ namespace Antura.AnturaSpace
                     m_oCookieButton.onClick.RemoveListener(StepTutorialShop);
 
                     // New step
-                    // dialog: exit and play
                     _mScene.ShowBackButton();
-                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
+                    Dialogue(LocalizationDataId.AnturaSpace_PlayAndExit);
 
                     CurrentTutorialFocus = null;
                     CompleteTutorialPhase();

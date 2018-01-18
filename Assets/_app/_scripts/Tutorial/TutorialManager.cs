@@ -129,9 +129,14 @@ namespace Antura.Tutorial
             AudioManager.I.PlayDialogue(id, null);
         }
 
-        protected void DialogueThen( Action action, LocalizationDataId id)
+        protected void DialogueThen(LocalizationDataId id, Action action)
         {
             AudioManager.I.PlayDialogue(id, action);
+        }
+
+        protected void DialoguesThen(LocalizationDataId id1, LocalizationDataId id2, Action action)
+        {
+            DialoguesThen(action, id1, id2);
         }
 
         protected void DialoguesThen(Action action, params LocalizationDataId[] ids)

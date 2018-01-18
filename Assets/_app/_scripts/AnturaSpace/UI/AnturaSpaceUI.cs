@@ -12,6 +12,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using Antura.Audio;
+using Antura.Database;
+using Antura.Profile;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -188,6 +191,8 @@ namespace Antura.AnturaSpace.UI
 
         #region Public Methods
 
+        private bool alreadyCommentedZeroBones = false;
+
         public void ToggleShopPanel()
         {
             // Cannot close the shop panel while we are confirming a purchase
@@ -201,6 +206,12 @@ namespace Antura.AnturaSpace.UI
                 && scene.tutorialManager.CurrentTutorialFocus != BtBonesShop.Bt
                 )
                 return;
+
+            // If we have no bones, we mention that
+            if (AppManager.I.Player.TotalNumberOfBones == 0)
+            {
+                AudioManager.I.PlayDialogue(LocalizationDataId.AnturaSpace_Tuto_Cookie_3);
+            }
 
             if (ShopDecorationsManager.I.ShopContext == ShopContext.Closed) {
                 ShopPanelContainer.gameObject.SetActive(true);
