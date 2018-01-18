@@ -162,6 +162,7 @@ namespace Antura.Debugging
 
         public void ForceMaxJourneyPos()
         {
+            DebugManager.I.SetDebugJourneyPos(GetCurrentJourneyPositionInUI());
             DebugManager.I.ForceMaxJourneyPos();
             Close();
         }
@@ -290,12 +291,17 @@ namespace Antura.Debugging
             return minigameCode.ToString() + difficulty.ToString("F1");
         }
 
+        private JourneyPosition GetCurrentJourneyPositionInUI()
+        {
+            return new JourneyPosition(int.Parse(InputStage.text), int.Parse(InputLearningBlock.text),
+               int.Parse(InputPlaySession.text));
+        }
+
         public void LaunchMiniGame(MiniGameCode minigameCode, float difficulty)
         {
             playedMinigames[GetDictKey(minigameCode, difficulty)] = true;
 
-            var debugJP = new JourneyPosition(int.Parse(InputStage.text), int.Parse(InputLearningBlock.text),
-                int.Parse(InputPlaySession.text));
+            var debugJP = GetCurrentJourneyPositionInUI();
 
             if (!DebugManager.I.SafeLaunch || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(debugJP, minigameCode)) {
                 LaunchMiniGameAtJourneyPosition(minigameCode, difficulty, debugJP);
