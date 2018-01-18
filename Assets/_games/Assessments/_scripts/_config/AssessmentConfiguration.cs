@@ -581,8 +581,6 @@ namespace Antura.Assessment
                     strictness = LetterEqualityStrictness.LetterOnly;
                     break;
                 case AssessmentVariation.LetterAny:
-                    strictness = LetterEqualityStrictness.WithVisualForm;
-                    break;
                 case AssessmentVariation.MatchLettersToWord:
                 case AssessmentVariation.WordsWithLetter:
                 case AssessmentVariation.CompleteWord:
@@ -592,7 +590,8 @@ namespace Antura.Assessment
                     strictness = LetterEqualityStrictness.WithVisualForm;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    strictness = LetterEqualityStrictness.WithVisualForm;
+                    break;
             }
             return DataMatchingHelper.IsDataMatching(data1, data2, strictness);
         }
