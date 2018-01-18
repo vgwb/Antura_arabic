@@ -184,15 +184,16 @@ namespace Antura.AnturaSpace
                     if (anturaModelManager) anturaModelManager.ClearLoadedRewardPacks();
                     AppManager.I.Player.CurrentAnturaCustomizations.ClearEquippedProps();
 
-                    DialoguesThen(
+                    DialogueThen(
                         LocalizationDataId.AnturaSpace_Custom_1,
-                        LocalizationDataId.AnturaSpace_Custom_2,
                         () =>
                         {
                             //after the dialog make appear the customization button
                             m_oCustomizationButton.gameObject.SetActive(true);
                             m_oCustomizationButton.onClick.AddListener(StepTutorialCustomization);
                             TutorialUI.ClickRepeat(m_oCustomizationButton.transform.position, float.MaxValue, 1);
+
+                            Dialogue(LocalizationDataId.AnturaSpace_Custom_2);
                         });
 
                     break;
