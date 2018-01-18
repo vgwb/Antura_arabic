@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 22423168}
   - component: {fileID: 22252684}
   - component: {fileID: 11410628}
+  - component: {fileID: 114429371696360518}
   - component: {fileID: 11426508}
   - component: {fileID: 114592148747267984}
   m_Layer: 5
@@ -2167,6 +2168,7 @@ GameObject:
   - component: {fileID: 224857379152249132}
   - component: {fileID: 222574458605823582}
   - component: {fileID: 114453671111734128}
+  - component: {fileID: 114276402079571038}
   - component: {fileID: 114076207349289106}
   m_Layer: 5
   m_Name: Button
@@ -2403,6 +2405,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
   Type: 7
@@ -2530,6 +2533,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 1
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &114000010517091894
@@ -2548,6 +2552,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 1
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
 --- !u!114 &114000010524204010
@@ -2661,6 +2666,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
 --- !u!114 &114000010734850370
@@ -2785,6 +2791,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 1
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &114000011342070162
@@ -3453,6 +3460,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 1
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &114000013112968372
@@ -3677,6 +3685,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   Type: 4
@@ -3696,6 +3705,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 1
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   Type: 2
@@ -4030,6 +4040,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   Type: 1
@@ -4049,6 +4060,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   Type: 3
@@ -4109,6 +4121,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   Type: 9
@@ -4403,6 +4416,26 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114276402079571038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131350680504336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7b8879f14c8a945b401bc42e30ca3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
+  BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  ToggleIconAlpha: 0
+  ToggleCanvasGroupAlpha: 0
+  OneShot: 1
+  AutoAnimateClick: 0
+  AutoPlayButtonFx: 0
+  Type: 2
 --- !u!114 &114285368652834164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4551,6 +4584,26 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114429371696360518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7b8879f14c8a945b401bc42e30ca3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 0}
+  BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  ToggleIconAlpha: 0
+  ToggleCanvasGroupAlpha: 0
+  OneShot: 0
+  AutoAnimateClick: 0
+  AutoPlayButtonFx: 0
+  Type: 6
 --- !u!114 &114453671111734128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5605,6 +5658,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
+  OneShot: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   Type: 5

@@ -16,15 +16,19 @@ namespace Antura.UI
     {
         #region Serialized
 
-    [DeComment("If Target Bt Img is NULL automatically finds image in same gameObject")]
+    [DeComment("If Target Bt Img is NULL automatically finds image in same gameObject", style = DeCommentStyle.WrapNextLine, marginBottom = -1)]
         [SerializeField] Image targetBtImg;
         public Color BtToggleOffColor = Color.white;
         public Color BtLockedColor = Color.red;
         public bool ToggleIconAlpha = true;
 
-        [Tooltip("If this is TRUE and a CanvasGroup is not found, it is automatically added")]
+    [Tooltip("If this is TRUE and a CanvasGroup is not found, it is automatically added")]
         public bool ToggleCanvasGroupAlpha = false;
 
+    [DeToggleButton]
+    [DeComment("Button will become non-interactable after the first click (interactivity will be re-enabled next time it's activated)", "OneShot", true, style = DeCommentStyle.WrapNextLine)]
+    [DeComment("Button will allow multiple clicks", "OneShot", false, style = DeCommentStyle.WrapNextLine)]
+        public bool OneShot = false;
         public bool AutoAnimateClick = true;
         public bool AutoPlayButtonFx = false;
 
@@ -98,12 +102,21 @@ namespace Antura.UI
         private CanvasGroup fooCGroup;
         private bool tweensInitialized;
         private Tween clickTween, pulseTween;
+        private bool interactivityChangedByOneShot;
 
         #region Unity + INIT
 
         void OnEnable()
         {
-            if (Application.isPlaying) { UIDirector.Add(this); }
+            if (Application.isPlaying)
+            {
+                UIDirector.Add(this);
+                if (interactivityChangedByOneShot)
+                {
+                    interactivityChangedByOneShot = false;
+                    Bt.interactable = true;
+                }
+            }
         }
 
         void OnDisable()
@@ -205,6 +218,11 @@ namespace Antura.UI
         {
             if (AutoAnimateClick) { AnimateClick(); }
             if (AutoPlayButtonFx) { PlayClickFx(); }
+            if (OneShot)
+            {
+                interactivityChangedByOneShot = true;
+                Bt.interactable = false;
+            }
         }
 
         #endregion
