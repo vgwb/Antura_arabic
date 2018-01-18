@@ -5,6 +5,7 @@ using Antura.UI;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Antura.Database;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -108,16 +109,30 @@ namespace Antura.Rewards
 
             claimButton.onClick.AddListener(UnlockNewReward);
 
-            StartCoroutine(ShowRewardsCO(nCurrentConsecutiveDaysOfPlaying != 1));
-        }
-
-        IEnumerator ShowRewardsCO(bool withTranslation)
-        {
-            // Start to the left
+            // Start from the left
+            bool withTranslation = nCurrentConsecutiveDaysOfPlaying != 1;
             float targetX = dailyRewardUIPivot.transform.localPosition.x;
-            if (withTranslation) {
+            if (withTranslation)
+            {
                 dailyRewardUIPivot.transform.localPosition += Vector3.left * 200;
             }
+
+            AudioManager.I.PlayDialogue(new[]
+                {
+                    LocalizationDataId.DailyReward_Intro_1,
+                    LocalizationDataId.DailyReward_Intro_2
+                }.GetRandom(),
+                () =>
+                {
+                    StartCoroutine(ShowRewardsCO(withTranslation, targetX));
+                }
+                );
+
+        }
+
+        IEnumerator ShowRewardsCO(bool withTranslation, float targetX)
+        {
+            // Start to the left
 
             Sequence s = DOTween.Sequence().AppendInterval(0.5f);
             if (withTranslation) {
@@ -156,6 +171,7 @@ namespace Antura.Rewards
         IEnumerator WaitForClaimCO()
         {
             float waitTime = 0.0f;
+            bool alreadyPoked = false;
             while (true) {
                 waitTime += Time.deltaTime;
 
@@ -168,6 +184,12 @@ namespace Antura.Rewards
                 if (waitTime > 1.0f) {
                     waitTime -= 1.0f;
                     Tutorial.TutorialUI.Click(dailyRewardUIs[newRewardUIIndex].transform.position);
+
+                    if (!alreadyPoked)
+                    {
+                        alreadyPoked = true; 
+                        AudioManager.I.PlayDialogue(LocalizationDataId.DailyReward_Collect);
+                    }
                 }
             }
         }
@@ -199,8 +221,14 @@ namespace Antura.Rewards
             // Log
             LogManager.I.LogInfo(InfoEvent.DailyRewardReceived);
 
-            // Continue after a little while
-            Invoke("Continue", 0.5f);
+            // Continue after audio
+            AudioManager.I.PlayDialogue(new[]
+                {
+                    LocalizationDataId.DailyReward_ComeBack_1,
+                    LocalizationDataId.DailyReward_ComeBack_2
+                }.GetRandom(), Continue);
+
+            //Invoke("Continue", 0.5f);
         }
 
         private void Continue()
