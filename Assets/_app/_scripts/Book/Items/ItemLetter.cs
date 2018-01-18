@@ -23,13 +23,13 @@ namespace Antura.Book
 
         private LettersPage myManager;
         private LetterInfo myLetterInfo;
-        private UIButton uIButton;
+        //private UIButton uIButton;
 
         public void Init(LettersPage _manager, LetterInfo _info, bool _selected)
         {
             myLetterInfo = _info;
             myManager = _manager;
-            uIButton = GetComponent<UIButton>();
+            //uIButton = GetComponent<UIButton>();
 
             if (myLetterInfo.unlocked || AppManager.I.Player.IsDemoUser) {
                 OkIcon.enabled = true;
