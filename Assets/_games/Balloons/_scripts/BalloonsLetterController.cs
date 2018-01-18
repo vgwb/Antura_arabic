@@ -261,7 +261,7 @@ namespace Antura.Minigames.Balloons
         {
             if (letterData is LL_WordData)
             {
-                var splitLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, ((LL_WordData)letterData).Data);
+                var splitLetters = ArabicAlphabetHelper.SplitWord(AppManager.I.DB, ((LL_WordData)letterData).Data);
 
                 int charPosition = 0;
                 List<int> foundLetterIndices = new List<int>();

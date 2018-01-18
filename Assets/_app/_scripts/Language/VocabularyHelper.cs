@@ -296,7 +296,7 @@ namespace Antura.Database
             bool separateVariations = !ForceUnseparatedLetters;
             if (!dictCache.ContainsKey(wordData.Id))
             {
-                var parts = ArabicAlphabetHelper.AnalyzeData(dbManager.StaticDatabase, wordData, separateVariations: separateVariations);
+                var parts = ArabicAlphabetHelper.SplitWord(dbManager.StaticDatabase, wordData, separateVariations: separateVariations);
                 letters = parts.ConvertAll(x => ConvertToLetterWithForcedForm(x.letter, x.letterForm));
                 dictCache[wordData.Id] = letters;
             }

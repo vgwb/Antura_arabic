@@ -118,7 +118,7 @@ namespace Antura.Helpers
         {
             var result = new List<ArabicStringPart>();
 
-            var parts = AnalyzeData(database, arabicWord, false, letterToFind.Kind != LetterDataKind.LetterVariation);
+            var parts = SplitWord(database, arabicWord, false, letterToFind.Kind != LetterDataKind.LetterVariation);
 
             for (int i = 0, count = parts.Count; i < count; ++i) {
                 if (parts[i].letter.Id == letterToFind.Id &&
@@ -133,7 +133,7 @@ namespace Antura.Helpers
         /// <summary>
         /// Returns the list of letters found in a word string
         /// </summary>
-        public static List<ArabicStringPart> AnalyzeData(DatabaseManager database, WordData arabicWord, bool separateDiacritics = false,
+        public static List<ArabicStringPart> SplitWord(DatabaseManager database, WordData arabicWord, bool separateDiacritics = false,
             bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
@@ -141,7 +141,7 @@ namespace Antura.Helpers
                 separateVariations);
         }
 
-        public static List<ArabicStringPart> AnalyzeData(DatabaseObject staticDatabase, WordData arabicWord,
+        public static List<ArabicStringPart> SplitWord(DatabaseObject staticDatabase, WordData arabicWord,
             bool separateDiacritics = false, bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
@@ -151,14 +151,14 @@ namespace Antura.Helpers
         /// <summary>
         /// Returns the list of letters found in a word string
         /// </summary>
-        public static List<ArabicStringPart> AnalyzeData(DatabaseManager database, PhraseData phrase, bool separateDiacritics = false,
+        public static List<ArabicStringPart> SplitPhrase(DatabaseManager database, PhraseData phrase, bool separateDiacritics = false,
             bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
             return AnalyzeArabicString(database.StaticDatabase, ProcessArabicString(phrase.Arabic), separateDiacritics, separateVariations);
         }
 
-        public static List<ArabicStringPart> AnalyzeData(DatabaseObject staticDatabase, PhraseData phrase, bool separateDiacritics = false,
+        public static List<ArabicStringPart> SplitPhrase(DatabaseObject staticDatabase, PhraseData phrase, bool separateDiacritics = false,
             bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes

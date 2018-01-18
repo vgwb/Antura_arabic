@@ -253,12 +253,12 @@ namespace Antura.Database.Management
             }
 
             foreach (var w in dbManager.StaticDatabase.GetWordTable().GetValuesTyped()) {
-                Helpers.ArabicAlphabetHelper.AnalyzeData(dbManager, w, false, false);
+                Helpers.ArabicAlphabetHelper.SplitWord(dbManager, w, false, false);
             }
 
 
             foreach (var w in dbManager.StaticDatabase.GetPhraseTable().GetValuesTyped()) {
-                Helpers.ArabicAlphabetHelper.AnalyzeData(dbManager, w, false, false);
+                Helpers.ArabicAlphabetHelper.SplitPhrase(dbManager, w, false, false);
             }
 
             /*

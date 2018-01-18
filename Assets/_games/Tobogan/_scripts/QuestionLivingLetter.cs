@@ -137,7 +137,7 @@ namespace Antura.Minigames.Tobogan
         {
             string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
 
-            var parts = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, word.Data, false, false);
+            var parts = ArabicAlphabetHelper.SplitWord(AppManager.I.DB, word.Data, false, false);
             if (parts.Count > letterToMark)
                 text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[letterToMark], color, ArabicTextUtilities.MarkType.SingleLetter);
 

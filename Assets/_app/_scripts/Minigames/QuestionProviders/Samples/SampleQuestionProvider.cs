@@ -34,7 +34,7 @@ namespace Antura.LivingLetters.Sample
                 if (newWordData == null)
                     return;
 
-                foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, newWordData.Data)) {
+                foreach (var letterData in ArabicAlphabetHelper.SplitWord(AppManager.I.DB, newWordData.Data)) {
                     correctAnswers.Add(new LL_LetterData(letterData.letter));
                 }
 
