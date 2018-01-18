@@ -19,7 +19,11 @@ namespace Antura.Core
 
         #region Tutorial Mode
 
-        public bool TutorialMode { get; set; }
+        public bool TutorialMode
+        {
+            get { return tutorialManager.IsRunning; }
+        }
+
         public TutorialManager tutorialManager;
 
         #endregion

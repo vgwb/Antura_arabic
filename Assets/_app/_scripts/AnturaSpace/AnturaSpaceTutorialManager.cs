@@ -313,7 +313,6 @@ namespace Antura.AnturaSpace
             {
                 case ShopTutorialStep.ENTER_SHOP:
 
-                    AnturaSpaceScene.I.TutorialMode = true;
                     CurrentTutorialFocus = m_oCookieButton;
 
                     // Start from a clean state
@@ -454,7 +453,6 @@ namespace Antura.AnturaSpace
                     _mScene.ShowBackButton();
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie);
 
-                    AnturaSpaceScene.I.TutorialMode = false;
                     CurrentTutorialFocus = null;
                     CompleteTutorialPhase();
                     break;
@@ -507,7 +505,6 @@ namespace Antura.AnturaSpace
 
                 case PhotoTutorialStep.CONFIRM_PHOTO:
 
-                    AnturaSpaceScene.I.TutorialMode = true;
                     CurrentTutorialFocus = m_oCookieButton; // HACK: focus is actually photo, but the shop has no reference to it, so we re-use the shop button instead
 
                     // Cleanup last step
@@ -537,7 +534,6 @@ namespace Antura.AnturaSpace
 
                     CompleteTutorialPhase();
 
-                    AnturaSpaceScene.I.TutorialMode = false;
                     CurrentTutorialFocus = null;
                     break;
             }

@@ -106,7 +106,7 @@ namespace Antura.AnturaSpace
             base.Start();
 
             GlobalUI.ShowPauseMenu(false);
-            ShowBackButton();
+            //ShowBackButton();
 
             CurrentState = Idle;
 

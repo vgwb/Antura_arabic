@@ -15,19 +15,12 @@ namespace Antura.Tutorial
 
         protected abstract AppScene CurrentAppScene { get; }
         public Object CurrentTutorialFocus { get; protected set; }
+        public SceneBase scene;
 
         protected FirstContactPhase CurrentRunningPhase = FirstContactPhase.NONE;
 
         public void HandleStart()
         {
-            /*if (FirstContactManager.I.IsSequenceFinished()) {
-                gameObject.SetActive(false);
-                IsRunning = false;
-                if (VERBOSE) { Debug.Log("TutorialManager - First contact is off"); }
-                return;
-            }*/
-
-            if (VERBOSE) { Debug.Log("TutorialManager - phase " + FirstContactManager.I.CurrentPhaseInSequence + ""); }
             IsRunning = true;
 
             // Check what phases we are unlocking now
@@ -48,6 +41,7 @@ namespace Antura.Tutorial
                 StopTutorialRunning();
             }
 
+            if (VERBOSE) { Debug.Log("TutorialManager - starting - phase " + FirstContactManager.I.CurrentPhaseInSequence + ""); }
             InternalHandleStart();
         }
 

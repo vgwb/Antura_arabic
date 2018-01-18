@@ -137,7 +137,7 @@ namespace Antura.AnturaSpace
                     isWaitingConfirmation = false;
                     break;
                 case ShopContext.Closed:
-                    scene.ShowBackButton();
+                    if (!scene.TutorialMode) scene.ShowBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayForward();
                     showConfirmationPanelTween.PlayBackwards();
                     isWaitingConfirmation = false;
@@ -149,7 +149,7 @@ namespace Antura.AnturaSpace
                     isWaitingConfirmation = false;
                     break;
                 case ShopContext.Hidden:
-                    scene.ShowBackButton();
+                    if (!scene.TutorialMode) scene.ShowBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
                     isWaitingConfirmation = false;
