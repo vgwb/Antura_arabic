@@ -1,13 +1,21 @@
 # releases
 
-## 1.1.0 next (jan 2018)
+## 1.2.0 next (jan 2018)
 - new Pedagogical Curriculum
 - Daily Rewards
 - Antura Space Shop and Antura interactions
 - new Map
 - local notifications
 - repeat minigame
-- upgraded to Unity 5.6
+
+### 1.1.0beta build 584
+- crash bug in creating new players
+- book: do not split lam_alef into separated letters (soon to be ported in minigames)
+- book: words have better padding now'
+- loading screens animations
+- audio lettername for sheen and waw
+- Arabic subtitles are turned off by default now
+- improved Avatars graphics
 
 ### 1.1.0beta build 583 (17 jan 2018)
 - Subtitles Widged is now disabled by default (can be reactivate by player Option)
