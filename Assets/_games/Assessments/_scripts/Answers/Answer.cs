@@ -37,11 +37,7 @@ namespace Antura.Assessment
         /// <param name="other"> other answer content</param>
         public bool Equals(Answer other)
         {
-            if (Data().Equals(other.Data())) {
-                return true;
-            }
-
-            return false;
+            return AssessmentConfiguration.Instance.IsDataMatching(Data(),other.Data());
         }
 
         /// <summary>

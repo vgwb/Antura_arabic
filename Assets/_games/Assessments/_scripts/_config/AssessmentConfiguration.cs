@@ -572,5 +572,30 @@ namespace Antura.Assessment
             return soundType;
         }
 
+        public bool IsDataMatching(ILivingLetterData data1, ILivingLetterData data2)
+        {
+            LetterEqualityStrictness strictness;
+            switch (Variation)
+            {
+                case AssessmentVariation.LetterName:
+                    strictness = LetterEqualityStrictness.LetterOnly;
+                    break;
+                case AssessmentVariation.LetterAny:
+                    strictness = LetterEqualityStrictness.WithVisualForm;
+                    break;
+                case AssessmentVariation.MatchLettersToWord:
+                case AssessmentVariation.WordsWithLetter:
+                case AssessmentVariation.CompleteWord:
+                case AssessmentVariation.OrderLettersOfWord:
+                case AssessmentVariation.CompleteWord_Form:
+                case AssessmentVariation.MatchLettersToWord_Form:
+                    strictness = LetterEqualityStrictness.WithVisualForm;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            return DataMatchingHelper.IsDataMatching(data1, data2, strictness);
+        }
+
     }
 }
