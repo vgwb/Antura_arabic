@@ -33,86 +33,34 @@ namespace Antura.Book
             LettersPanel();
         }
 
-        void LettersPanel()
+        private void LettersPanel()
         {
             ListPanel.SetActive(true);
             DetailPanel.SetActive(false);
-
-            //switch (currentCategory) {
-            //    case "combinations":
-            //        letters = AppManager.I.DB.FindLetterData((x) =>
-            //            (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation));
-            //        break;
-            //    case "symbols":
-            //        letters = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
-
-            //}
-            List<LetterData> letters = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
-
             emptyListContainers();
 
-            List<LetterInfo> info_list = AppManager.I.ScoreHelper.GetAllLetterInfo();
-            info_list.Sort((x, y) => x.data.Number.CompareTo(y.data.Number));
-            foreach (var info_item in info_list) {
-                if (letters.Contains(info_item.data)) {
-                    btnGO = Instantiate(LetterItemPrefab);
-                    btnGO.transform.SetParent(ListContainer.transform, false);
-                    btnGO.transform.SetAsFirstSibling();
-                    btnGO.GetComponent<ItemLetter>().Init(this, info_item, false);
-                }
+            List<LetterData> letters = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
+            letters.Sort((x, y) => x.Number.CompareTo(y.Number));
+
+            //adds Letter VAriations
+            List<LetterData> lettersVariations = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.LetterVariation));
+            lettersVariations.Sort((x, y) => x.Id.CompareTo(y.Id));
+            letters.AddRange(lettersVariations);
+
+            //adds Symbols
+            List<LetterData> symbols = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
+            symbols.Sort((x, y) => x.Id.CompareTo(y.Id));
+            letters.AddRange(symbols);
+
+            List<LetterInfo> allLetterInfos = AppManager.I.ScoreHelper.GetAllLetterInfo();
+            foreach (var letter in letters) {
+                LetterInfo myLetterinfo = allLetterInfos.Find(value => value.data == letter);
+
+                btnGO = Instantiate(LetterItemPrefab);
+                btnGO.transform.SetParent(ListContainer.transform, false);
+                btnGO.transform.SetAsFirstSibling();
+                btnGO.GetComponent<ItemLetter>().Init(this, myLetterinfo, false);
             }
-
-            //btnGO = Instantiate(CategoryItemPrefab);
-            //btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            //btnGO.GetComponent<MenuItemCategory>().Init(this, new CategoryData { Id = "all", Title = "All" });
-
-            //btnGO = Instantiate(CategoryItemPrefab);
-            //btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            //CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Letters);
-            //btnGO.GetComponent<MenuItemCategory>().Init(
-            //    this,
-            //    new GenericCategoryData
-            //    {
-            //        area = VocabularyChapter.Letters,
-            //        Id = "letters",
-            //        Title = CategoryData.Arabic,
-            //        TitleEn = CategoryData.English
-            //    },
-            //    currentCategory == "letters"
-            //);
-
-            //btnGO = Instantiate(CategoryItemPrefab);
-            //btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            //CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Symbols);
-            //btnGO.GetComponent<MenuItemCategory>().Init(
-            //    this,
-            //    new GenericCategoryData
-            //    {
-            //        area = VocabularyChapter.Letters,
-            //        Id = "symbols",
-            //        Title = CategoryData.Arabic,
-            //        TitleEn = CategoryData.English
-            //    },
-            //    currentCategory == "symbols"
-            //);
-
-            //btnGO = Instantiate(CategoryItemPrefab);
-            //btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            //CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Combinations);
-            //btnGO.GetComponent<MenuItemCategory>().Init(
-            //    this,
-            //    new GenericCategoryData
-            //    {
-            //        area = VocabularyChapter.Letters,
-            //        Id = "combinations",
-            //        Title = CategoryData.Arabic,
-            //        TitleEn = CategoryData.English
-            //    },
-            //    currentCategory == "combinations"
-            //);
-
-            //HighlightMenutCategory(currentCategory);
-            // HighlightLetterItem("");
         }
 
         #endregion

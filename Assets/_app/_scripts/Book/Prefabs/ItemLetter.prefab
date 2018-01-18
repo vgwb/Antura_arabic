@@ -167,6 +167,9 @@ MonoBehaviour:
   Title: {fileID: 114000013451292474}
   SubTitle: {fileID: 114369084156123130}
   OkIcon: {fileID: 114000014182016742}
+  BackgroundImage: {fileID: 114000011959341684}
+  ColorVariation: {r: 0.61310554, g: 0.99264705, b: 0.8856163, a: 1}
+  ColorSymbol: {r: 0.54238755, g: 0.9705882, b: 0.6725605, a: 1}
 --- !u!114 &114000013451292474
 MonoBehaviour:
   m_ObjectHideFlags: 1

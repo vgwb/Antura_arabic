@@ -2461,7 +2461,7 @@ MonoBehaviour:
       _Notes: combination of laam & alef together
       _SunMoon: 0
       _Sound: laa
-      _NameSound: 
+      _NameSound: lam_alef__lettername
       _PhonemeSound: lam_alef
       _SoundZone: 
       _Isolated: "\uFEFB"

@@ -12,9 +12,14 @@ namespace Antura.Book
     /// </summary>
     public class ItemLetter : MonoBehaviour, IPointerClickHandler
     {
+        [Header("References")]
         public TextRender Title;
         public TextRender SubTitle;
         public Image OkIcon;
+        public Image BackgroundImage;
+
+        public Color ColorVariation;
+        public Color ColorSymbol;
 
         private LettersPage myManager;
         private LetterInfo myLetterInfo;
@@ -33,9 +38,8 @@ namespace Antura.Book
             }
 
             Title.text = myLetterInfo.data.GetStringForDisplay();
-            SubTitle.text = myLetterInfo.data.Id;
-
-            hightlight(_selected);
+            SubTitle.text = myLetterInfo.data.Id;// + " " + myLetterInfo.data.Kind.ToString();
+            highlight(_selected);
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -46,12 +50,30 @@ namespace Antura.Book
         public void Select(string code)
         {
 
-            hightlight(code == myLetterInfo.data.Id);
+            highlight(code == myLetterInfo.data.Id);
         }
 
-        private void hightlight(bool _status)
+        private void highlight(bool _status)
         {
-            uIButton.Toggle(_status);
+            if (_status) {
+                BackgroundImage.color = new Color(1f, 1f, 1f, 0f);
+            } else {
+                ColorBackground();
+            }
+            //uIButton.Toggle(_status);
+        }
+
+        private void ColorBackground()
+        {
+            if (myLetterInfo.data.Kind == LetterDataKind.Letter) {
+                BackgroundImage.color = Color.white;
+            } else if (myLetterInfo.data.Kind == LetterDataKind.Symbol) {
+                BackgroundImage.color = ColorSymbol;
+            } else if (myLetterInfo.data.Kind == LetterDataKind.LetterVariation) {
+                BackgroundImage.color = ColorVariation;
+            } else {
+                BackgroundImage.color = new Color(1f, 0.56f, 0.5f);
+            }
         }
     }
 }
