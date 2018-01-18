@@ -1009,6 +1009,11 @@ namespace Antura.Helpers
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("0625", "0650"), new Vector2(0, -120));
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE88", "0650"), new Vector2(0, -120));
 
+            //////// LETTER lam_alef_kasrah
+            // lam_alef_kasrah
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FEF5", "0650"), new Vector2(120, -40));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FEF6", "0650"), new Vector2(100, 0));
+
             //////// LETTER teh_marbuta
             // teh_marbuta_dammah
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("0629", "064F"), new Vector2(0, 0));

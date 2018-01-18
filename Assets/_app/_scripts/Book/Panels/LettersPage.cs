@@ -116,7 +116,7 @@ namespace Antura.Book
 
             playSound();
 
-            //Debug.Log(myLetterData.GetDebugDiacriticFix());
+            // Debug.Log(myLetterData.GetDebugDiacriticFix());
         }
 
         private void playSound()
