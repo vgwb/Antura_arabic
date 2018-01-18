@@ -8,10 +8,36 @@
 - local notifications
 - repeat minigame
 
+### 1.1.0beta build 586
+- book: play Photo Gallery message
+- arabic: added letter combo: lam_alef_kasrah
+- arabic: fix all diacritic symbol positions
+- [Map] Improved "back to map" animations.
+- [Tutorial] Better timing for customization open button
+- [AnturaSpace] Tutorial improvements
+- Fixed bug with assessments.
+- book words: much improved spelling and UI
+- Fixing assessments not considering forms at all.
+- data audio: now teh_marbuta sounds like (phoneme) like alef_fatah
+- [Teacher] Added diacritics to CompleteWord_Form
+- [UI] Fixed game selector skipping in the map
+- [book] letters and words UI improvements
+- [Tutorial] Fixed finger in map.
+- Added tutorial to daily reward.
+- Book: letters/words new image buttons
+- [Tutorial] Photo tutorial audio. FIxed photo tutorial. Fixed bug with dragging photo button.
+- [Teacher] Added filter that filters out all wrong letters that have the same sound
+- [Tutorial] Added tutorial audio for the Shop.
+- [Assessment_WordsWithLetter] Fixed wrong answers not being sent.
+- [DailyReward] Fixed bug with high number of days. Added correct combo values. Cleanup. Speed-up.
+- [UI] Removed locks from PlaySessionResults.
+- [Tutorial] Initial bones are given only when the Shop is unlocked.
+- data: added teh_sukun letter and optimized its phoneme sound
+
 ### 1.1.0beta build 584
 - crash bug in creating new players
 - book: do not split lam_alef into separated letters (soon to be ported in minigames)
-- book: words have better padding now'
+- book: words have better padding now
 - loading screens animations
 - audio lettername for sheen and waw
 - Arabic subtitles are turned off by default now
