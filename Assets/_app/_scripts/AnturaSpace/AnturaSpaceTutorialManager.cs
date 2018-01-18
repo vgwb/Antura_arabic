@@ -316,7 +316,7 @@ namespace Antura.AnturaSpace
                     CurrentTutorialFocus = m_oCookieButton;
 
                     // Start from a clean state
-                    AppManager.I.Player.MakeSureInitialBonesAreAvailable();
+                    AppManager.I.Player.MakeSureHasEnoughBones(20);
                     ShopDecorationsManager.I.DeleteAllDecorations();
 
                     // Dialog -> Appear button

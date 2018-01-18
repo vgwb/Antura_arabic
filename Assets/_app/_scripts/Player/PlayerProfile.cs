@@ -58,18 +58,12 @@ namespace Antura.Profile
 
         #region Bones
 
-        // Initial number of bones set so that you can buy decorations
-        private const int INITIAL_BONES = 20;
+        // Initial number of bones when the game starts
+        private const int INITIAL_BONES = 0;
 
         public void GiftInitialBones()
         {
             TotalNumberOfBones = INITIAL_BONES;
-            //Save();
-        }
-
-        public void MakeSureInitialBonesAreAvailable()
-        {
-            if (TotalNumberOfBones < INITIAL_BONES) GiftInitialBones();
         }
 
         public void MakeSureHasEnoughBones(int wantedBones)
