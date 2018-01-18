@@ -131,7 +131,7 @@ namespace Antura.Teacher
                             useJourney: parameters.useJourneyForCorrect,
                             packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //Debug.LogWarning(e);
                     SAFE_COUNT++;

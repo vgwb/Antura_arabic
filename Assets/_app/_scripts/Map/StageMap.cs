@@ -196,7 +196,7 @@ namespace Antura.Map
                 if (jp_i % 5 == 0) yield return null;
             }
 
-            playPins.Sort((x, y) => x.transform.GetSiblingIndex() - y.transform.GetSiblingIndex());
+            playPins.Sort((pinA, pinB) => (int)(pinB.transform.position.x - pinA.transform.position.x));
 
             // Set the correct data to all pins
             var allPlaySessionStates = GetAllPlaySessionStatesForStage(stageNumber);
