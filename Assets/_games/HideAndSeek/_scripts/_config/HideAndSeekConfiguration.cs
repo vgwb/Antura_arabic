@@ -52,7 +52,8 @@ namespace Antura.Minigames.HideAndSeek
             {
                 case HideAndSeekVariation.LetterPhoneme:
                     var letterAlterationFilters = LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters_OneForm;
-                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, nCorrect, nWrong: nWrong, letterAlterationFilters: letterAlterationFilters, parameters: builderParams);
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, nCorrect, nWrong: nWrong, letterAlterationFilters: letterAlterationFilters, parameters: builderParams,
+                            avoidWrongLettersWithSameSound: true);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

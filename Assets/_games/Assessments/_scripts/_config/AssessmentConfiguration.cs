@@ -449,6 +449,7 @@ namespace Antura.Assessment
                 1,                              // CorrectAnswers
                 4,                              // WrongAnswers
                 letterAlterationFilters: LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters_OneForm,
+                avoidWrongLettersWithSameSound: true,
                 parameters: builderParams);
         }
 

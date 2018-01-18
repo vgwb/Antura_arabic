@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
@@ -23,6 +24,7 @@ namespace Antura.Teacher
         private int nWrong;
         private QuestionBuilderParameters parameters;
         private LetterAlterationFilters letterAlterationFilters;
+        private bool avoidWrongLettersWithSameSound;
 
         public QuestionBuilderParameters Parameters
         {
@@ -31,6 +33,7 @@ namespace Antura.Teacher
        
         public RandomLetterAlterationsQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
             LetterAlterationFilters letterAlterationFilters = null,
+            bool avoidWrongLettersWithSameSound = false,
             QuestionBuilderParameters parameters = null
             )
         {
@@ -46,6 +49,7 @@ namespace Antura.Teacher
             this.nWrong = nWrong;
             this.parameters = parameters;
             this.letterAlterationFilters = letterAlterationFilters;
+            this.avoidWrongLettersWithSameSound = avoidWrongLettersWithSameSound;
 
             // Forced filters
             // We need only base letters as the basis here
@@ -92,6 +96,12 @@ namespace Antura.Teacher
             var wrongAnswers = letterPool;
             foreach (LetterData data in correctAnswers)
                 wrongAnswers.Remove(data);
+
+            if (avoidWrongLettersWithSameSound)
+            {
+                wrongAnswers.RemoveAll(wrongLetter => correctAnswers.Any(correctLetter => correctLetter.PhonemeSound.Equals(wrongLetter.PhonemeSound)));
+            }
+
             wrongAnswers = wrongAnswers.RandomSelect(Mathf.Min(nWrong,wrongAnswers.Count));
 
             var question = correctAnswers[0];
