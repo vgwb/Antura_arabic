@@ -34,11 +34,15 @@ namespace Antura.Map
             AppManager.I.NavigationManager.GoToAnturaSpace();
         }
 
+        private bool alreadyPressedPlay = false;
         public void Play()
         {
-            AppManager.I.NavigationManager.GoToNextScene();
+            if (!alreadyPressedPlay)
+            {
+                alreadyPressedPlay = true;
+                AppManager.I.NavigationManager.GoToNextScene();
+            }
         }
-
 
         #region Tutorial Helper
 

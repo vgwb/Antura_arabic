@@ -385,7 +385,7 @@ namespace Antura.Map
 
         void PlayCurrentPlaySession()
         {
-            AppManager.I.NavigationManager.GoToNextScene();
+            (MapScene.I as MapScene).Play();
         }
 
         #endregion
