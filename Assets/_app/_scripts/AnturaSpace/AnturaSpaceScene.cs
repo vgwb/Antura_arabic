@@ -143,12 +143,10 @@ namespace Antura.AnturaSpace
 
         public void ShowBackButton()
         {
-            Debug.Log("SHOW BACK");
             GlobalUI.ShowBackButton(true, OnExit);
         }
         public void HideBackButton()
         {
-            Debug.Log("HIDE BACK");
             GlobalUI.ShowBackButton(false);
         }
 

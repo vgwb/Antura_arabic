@@ -361,19 +361,16 @@ namespace Antura.AnturaSpace
                         }
                     ));
 
-                    // TODO: for stop dragging? needed?
-                    //m_bIsDragAnimPlaying = true;
-                    // Register delegate to disable draw line after done
-                    //UnityEngine.EventSystems.EventTrigger.Entry _oEntry = new UnityEngine.EventSystems.EventTrigger.Entry();
-                    // _oEntry.eventID = UnityEngine.EventSystems.EventTriggerType.BeginDrag;
-                    //_oEntry.callback.AddListener((data) => { m_bIsDragAnimPlaying = false; });
-                    //m_oCookieButton.GetComponent<UnityEngine.EventSystems.EventTrigger>().triggers.Add(_oEntry);
+                    // Stop dragging as soon as we get a bone
+                    actionUI.ShopAction.OnActionCommitted += StopDrawDragLine;
 
                     break;
                 case ShopTutorialStep.PLACE_NEW_DECORATION:
 
                     // Cleanup last step
                     StopDrawDragLine();
+                    actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Bone");
+                    actionUI.ShopAction.OnActionCommitted -= StopDrawDragLine;
                     _mScene.onEatObject -= StepTutorialShop;
 
                     // New step
