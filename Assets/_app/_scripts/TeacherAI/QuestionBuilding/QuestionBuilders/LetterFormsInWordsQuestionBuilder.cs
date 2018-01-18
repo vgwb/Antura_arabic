@@ -43,9 +43,6 @@ namespace Antura.Teacher
             this.maximumWordLength = maximumWordLength;
             this.forceUnseparatedLetters = forceUnseparatedLetters;
             this.parameters = parameters;
-
-            // Forced parameters
-            this.parameters.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
         }
 
         private List<string> previousPacksIDs_words = new List<string>();
