@@ -148,8 +148,7 @@ namespace Antura.Teacher
                 var wrongWords = new List<WordData>();
                 if (inRoundPackIndex == 0)
                 {
-                    //wrongWords = FindWrongWords(correctWords);
-                    teacher.VocabularyAi.SelectData(
+                    wrongWords = teacher.VocabularyAi.SelectData(
                         () => FindWrongWords(correctWords),
                         new SelectionParameters(parameters.wrongSeverity, nWrong,
                             useJourney: parameters.useJourneyForWrong,
