@@ -208,8 +208,9 @@ namespace Antura.AnturaSpace.UI
                 return;
 
             // If we have no bones, we mention that
-            if (AppManager.I.Player.TotalNumberOfBones == 0)
+            if (AppManager.I.Player.TotalNumberOfBones == 0 && !alreadyCommentedZeroBones)
             {
+                alreadyCommentedZeroBones = true;
                 AudioManager.I.PlayDialogue(LocalizationDataId.AnturaSpace_Tuto_Cookie_3);
             }
 
