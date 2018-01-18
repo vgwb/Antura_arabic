@@ -28,7 +28,6 @@ namespace Antura.Book
         public TextRender WordDrawingText;
 
         private WordInfo currentWordInfo;
-        private WordData currentWordData;
         private GenericCategoryData currentCategory;
         private LocalizationData CategoryData;
         private GameObject btnGO;
@@ -117,7 +116,6 @@ namespace Antura.Book
         public void DetailWord(WordInfo _currentWord)
         {
             currentWordInfo = _currentWord;
-            currentWordData = currentWordInfo.data;
 
             DetailPanel.SetActive(true);
 
@@ -146,7 +144,6 @@ namespace Antura.Book
 
             //ScoreText.text = "Score: " + currentWord.score;
         }
-
 
         public void SelectSubCategory(GenericCategoryData _category)
         {
