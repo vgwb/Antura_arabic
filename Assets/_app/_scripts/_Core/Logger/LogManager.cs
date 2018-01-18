@@ -112,7 +112,7 @@ namespace Antura.Core
         {
             EndPlaySession();
 
-            Debug.Log("LOG PLAY SESSION SCORE: " + AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition + " : score: " + score);
+            //Debug.Log("LOG PLAY SESSION SCORE: " + AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition + " : score: " + score);
             float duration = (float)(endPlaySessionDateTime - startPlaySessionDateTime).TotalSeconds;
             //Debug.LogError("DURATION PS: " + duration);
             AppManager.I.Teacher.logAI.LogPlaySessionScore(AppSession,
