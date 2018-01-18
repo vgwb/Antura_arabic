@@ -141,6 +141,7 @@ namespace Antura.Rewards
 
         void playParticle()
         {
+            if (PoofParticle == null || newRewardInstantiatedGO == null) return;
             PoofParticle.transform.position = newRewardInstantiatedGO.transform.position;
             PoofParticle.Play();
         }
