@@ -20,6 +20,7 @@ namespace Antura.Profile
         [Header("Settings")]
         [Tooltip("If TRUE automatically initializes to the current player")]
         public bool AutoInit;
+        [DeComment("Level is auto-hidden if the player has the hat", style = DeCommentStyle.WrapNextLine, marginBottom = -1)]
         public bool HideLevel;
         public float LevelLabelHatShift = 40;
 
@@ -116,7 +117,7 @@ namespace Antura.Profile
                     HatImage.sprite = EndgameHatWStars;
                     break;
             }
-            if (HideLevel) {
+            if (HideLevel || hasHat) {
                 LevelLabel.text = "";
             } else {
                 LevelLabel.text = playerIconData.MaxJourneyPosition.Stage.ToString() + "-" + playerIconData.MaxJourneyPosition.LearningBlock.ToString();
