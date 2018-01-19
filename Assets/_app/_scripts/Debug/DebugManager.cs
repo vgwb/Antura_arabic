@@ -3,7 +3,6 @@ using Antura.Database;
 using Antura.Minigames;
 using Antura.Profile;
 using Antura.Rewards;
-using TMPro;
 using UnityEngine;
 
 namespace Antura.Debugging
@@ -95,7 +94,6 @@ namespace Antura.Debugging
                 }
             }
         }
-
 
         #region Unity events
 

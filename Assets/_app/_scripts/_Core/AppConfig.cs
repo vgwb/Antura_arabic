@@ -13,7 +13,7 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public static Version AppVersion = new Version(1, 1, 0, 586);
+        public static Version AppVersion = new Version(1, 1, 0, 587);
 
         /// <summary>
         /// Version of the Static Database Scheme.
@@ -33,7 +33,7 @@ namespace Antura.Core
         /// Enabled the Advanced Debug Panel.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool DebugPanelEnabledAtStartup = true;
+        public static bool DebugPanelEnabledAtStartup = false;
 
         /// <summary>
         /// Tracks common events using Unity Analytics.
