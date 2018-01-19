@@ -11,6 +11,10 @@ namespace Antura.Book
 {
     public class PlayerPanel : MonoBehaviour
     {
+        public UIButton BtnMiniGames;
+        public UIButton BtnVocabulary;
+        public UIButton BtnGallery;
+
         public CompletionSlider StarsSlider;
         public CompletionSlider RewardsSlider;
         public TextRender BonesText;
@@ -18,6 +22,9 @@ namespace Antura.Book
 
         void Start()
         {
+            BtnMiniGames.Bt.onClick.AddListener(() => Book.I.BtnOpenMinigGamesWithBack());
+            BtnVocabulary.Bt.onClick.AddListener(() => Book.I.BtnOpenVocabularyWithBack());
+            BtnGallery.Bt.onClick.AddListener(() => BtnOpenPhotoGallery());
             //InfoTable.Reset();
 
             // Level reached

@@ -7486,7 +7486,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 48.25
+  m_fontSize: 60.05
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8550,7 +8550,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114926801405244110}
   m_HandleRect: {fileID: 224301311604292804}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -16020,18 +16020,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114121856560269734}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114189424615206776}
-        m_MethodName: BtnOpenMinigGamesWithBack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114568931135391046
@@ -19781,6 +19770,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b58110a6489e4ae487f3682e3250f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BtnMiniGames: {fileID: 114224830868133930}
+  BtnVocabulary: {fileID: 114193633097113548}
+  BtnGallery: {fileID: 114597006155517496}
   StarsSlider: {fileID: 114165084603212714}
   RewardsSlider: {fileID: 114298397552439150}
   BonesText: {fileID: 114445397148441628}
@@ -20500,18 +20492,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114654108595705640}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114760189223043402}
-        m_MethodName: BtnOpenPhotoGallery
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114796196327983480
@@ -22852,18 +22833,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114971306257996400}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114189424615206776}
-        m_MethodName: BtnOpenVocabularyWithBack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114902934724607526
@@ -24416,7 +24386,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114517691576948300}
   m_HandleRect: {fileID: 224102000226278200}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -26619,8 +26589,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 281.00003, y: -50}
-  m_SizeDelta: {x: 186.00002, y: 98}
+  m_AnchoredPosition: {x: 345.00003, y: -50}
+  m_SizeDelta: {x: 228.66669, y: 98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224141980633099568
 RectTransform:
@@ -27840,7 +27810,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 656.5, y: -55}
+  m_AnchoredPosition: {x: 720.5, y: -55}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!224 &224439225449387858
@@ -29120,7 +29090,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 747.5, y: -55}
+  m_AnchoredPosition: {x: 811.5, y: -55}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!224 &224688845504785230
@@ -29926,7 +29896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 474.5, y: -55}
+  m_AnchoredPosition: {x: 538.5, y: -55}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!224 &224832936172398630
@@ -29946,8 +29916,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 94.00001, y: -50}
-  m_SizeDelta: {x: 186.00002, y: 98}
+  m_AnchoredPosition: {x: 115.33334, y: -50}
+  m_SizeDelta: {x: 228.66669, y: 98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224834917767095432
 RectTransform:
@@ -30144,7 +30114,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 565.5, y: -55}
+  m_AnchoredPosition: {x: 629.5, y: -55}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!224 &224877441895061830
@@ -30682,8 +30652,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 468.00003, y: -50}
-  m_SizeDelta: {x: 186.00002, y: 98}
+  m_AnchoredPosition: {x: 574.66675, y: -50}
+  m_SizeDelta: {x: 228.66669, y: 98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224955902759513016
 RectTransform:
