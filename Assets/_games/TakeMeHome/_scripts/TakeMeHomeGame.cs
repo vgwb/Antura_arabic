@@ -1,17 +1,14 @@
 ﻿using System.Collections.Generic;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.UI;
 using TMPro;
 using UnityEngine;
 
 namespace Antura.Minigames.TakeMeHome
 {
-    public class TakeMeHomeGame : MiniGame
+    public class TakeMeHomeGame : MiniGameController
 	{
-		
-		public TextMeshProUGUI timerText;
-		public TextMeshProUGUI roundText;
 		public GameObject tubes;
 		public TakeMeHomeSpwanTube spawnTube;
 		public Transform LLSpawnPosition;
@@ -151,9 +148,6 @@ namespace Antura.Minigames.TakeMeHome
 				
 				return;
 			}
-			
-
-			roundText.text = "#"+currentRound.ToString ();
 
 			spawnLetteAtTube ();
 		}
@@ -178,7 +172,7 @@ namespace Antura.Minigames.TakeMeHome
 			return TakeMeHomeConfiguration.Instance;
 		}
 
-		protected override IState GetInitialState()
+		protected override FSM.IState GetInitialState()
 		{
 			return TutorialIntroState;
 		}
@@ -196,15 +190,11 @@ namespace Antura.Minigames.TakeMeHome
 			ResetState = new TakeMeHomeResetState (this);
 			AntureState = new TakeMeHomeAnturaState (this);
 
-			timerText.gameObject.SetActive(false);
-			roundText.gameObject.SetActive(false);
-
 			InitTubes ();
 
 
 			//setup timer and round info:
 			currentRound = 0;
-			roundText.text = "#"+currentRound.ToString ();
 
 			Context.GetAudioManager().PlayMusic(Music.Lullaby);
 

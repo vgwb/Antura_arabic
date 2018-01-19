@@ -1,4 +1,4 @@
-# Minigame Missing Letter
+# MiniGame: Missing Letter
 
 ## Testing procedure
 Total tests: 3

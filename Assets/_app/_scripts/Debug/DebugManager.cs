@@ -1,6 +1,6 @@
-﻿using Antura.Core;
+using Antura.Core;
 using Antura.Database;
-using Antura.LivingLetters;
+using Antura.Minigames;
 using Antura.Profile;
 using Antura.Rewards;
 using UnityEngine;
@@ -43,7 +43,6 @@ namespace Antura.Debugging
 
         public float Difficulty = 0.5f;
         public int NumberOfRounds = 1;
-        public bool TutorialEnabled = false;
 
         #endregion
 
@@ -51,8 +50,8 @@ namespace Antura.Debugging
 
         public bool VerboseTeacher
         {
-            get { return Teacher.ConfigAI.verboseTeacher; }
-            set { Teacher.ConfigAI.verboseTeacher = value; }
+            get { return Teacher.ConfigAI.VerboseTeacher; }
+            set { Teacher.ConfigAI.VerboseTeacher = value; }
         }
 
         /// <summary>
@@ -72,30 +71,29 @@ namespace Antura.Debugging
             get { return _ignoreJourneyData; }
             set {
                 _ignoreJourneyData = value;
-                Teacher.ConfigAI.forceJourneyIgnore = _ignoreJourneyData;
+                Teacher.ConfigAI.ForceJourneyIgnore = _ignoreJourneyData;
             }
         }
 
         #endregion
 
         /// <summary>
-        /// Gets or sets a value indicating whether [first contact passed].
+        /// Gets or sets a value indicating whether [first contact completed].
         /// </summary>
         /// <value>
-        ///   <c>true</c> if [first contact passed]; otherwise, <c>false</c>.
+        ///   <c>true</c> if [first contact completed]; otherwise, <c>false</c>.
         /// </value>
-        public bool FirstContactPassed
+        public bool FirstContactCompleted
         {
-            get { return !AppManager.I.Player.IsFirstContact(); }
+            get { return FirstContactManager.I.IsSequenceFinished(); }
             set {
                 if (value) {
-                    AppManager.I.Player.FirstContactPassed(2);
+                    FirstContactManager.I.ForceToFinishedSequence();
                 } else {
-                    AppManager.I.Player.ResetPlayerProfileCompletion();
+                    FirstContactManager.I.ForceToStartOfSequence();
                 }
             }
         }
-
 
         #region Unity events
 
@@ -103,7 +101,7 @@ namespace Antura.Debugging
         {
             I = this;
 
-            if (AppConstants.DebugPanelEnabledAtStartup) {
+            if (AppConfig.DebugPanelEnabledAtStartup) {
                 EnableDebugPanel();
             }
         }
@@ -111,35 +109,44 @@ namespace Antura.Debugging
         void Update()
         {
             if (!DebugPanelOpened) {
-                // shortcut to Reserved Area
+                // RESERVED AREA
                 if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R)) {
                     AppManager.I.NavigationManager.GoToReservedArea();
                 }
 
+                // ADD BONES
+                if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.B)) {
+                    AddBones();
+                }
+
+                // SKIPS
                 if (Input.GetKeyDown(KeyCode.Space)) {
                     Debug.Log("DEBUG - SPACE : skip");
                     if (OnSkipCurrentScene != null) OnSkipCurrentScene();
                 }
 
+                // END MINIGAMES
                 if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0)) {
-                    Debug.Log("DEBUG - 0");
-                    if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(0);
+                    ForceCurrentMinigameEnd(0);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) {
-                    Debug.Log("DEBUG - 1");
-                    if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(1);
+                    ForceCurrentMinigameEnd(1);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2)) {
-                    Debug.Log("DEBUG - 2");
-                    if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(2);
+                    ForceCurrentMinigameEnd(2);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3)) {
-                    Debug.Log("DEBUG - 3");
-                    if (OnForceCurrentMinigameEnd != null) OnForceCurrentMinigameEnd(3);
+                    ForceCurrentMinigameEnd(3);
                 }
+
+                /// VARIOUS TESTS
+                if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.T)) {
+                    AppManager.I.Services.Notifications.TestCalculateSecondsToTomorrowMidnight();
+                }
+
             }
         }
 
@@ -147,15 +154,32 @@ namespace Antura.Debugging
 
         #region Actions
 
+        public void CreateTestProfile()
+        {
+            AppManager.I.PlayerProfileManager.CreatePlayerProfile(4, PlayerGender.F, 1, PlayerTint.Blue);
+            AppManager.I.NavigationManager.GoToHome(debugMode: true);
+        }
+
+        public void AddBones()
+        {
+            AppManager.I.Player.AddBones(50);
+        }
+
+        public void ForceCurrentMinigameEnd(int stars)
+        {
+            if (OnForceCurrentMinigameEnd != null) {
+                Debug.Log("DEBUG - Force Current Minigame End with stars: " + stars);
+                OnForceCurrentMinigameEnd(stars);
+            }
+        }
+
         public void EnableDebugPanel()
         {
             DebugPanelEnabled = true;
             if (debugPanelGO == null) {
-                debugPanelGO = Instantiate(Resources.Load("Prefabs/Debug/UI Debug Canvas") as GameObject);
+                debugPanelGO = Instantiate(Resources.Load(AppConfig.RESOURCES_PATH_DEBUG_PANEL) as GameObject);
             }
         }
-
-        #region Launch
 
         public void LaunchMiniGame(MiniGameCode miniGameCodeSelected, float difficulty)
         {
@@ -164,9 +188,9 @@ namespace Antura.Debugging
             Difficulty = difficulty;
 
             Debug.Log("LaunchMiniGame " + miniGameCodeSelected + " PS: " + AppManager.I.Player.CurrentJourneyPosition + " Diff: " +
-                      Difficulty + " Tutorial: " + TutorialEnabled);
+                      Difficulty + " Tutorial: " + AppConfig.MinigameTutorialsEnabled);
             AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected,
-                new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, tutorialEnabled: TutorialEnabled), forceNewPlaySession: true);
+                                                 new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, tutorialEnabled: AppConfig.MinigameTutorialsEnabled), forceNewPlaySession: true);
         }
 
         public void ResetAll()
@@ -211,15 +235,24 @@ namespace Antura.Debugging
             if (newPos != null) {
                 AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
             }
+            GoToMap();
+        }
+
+        public void ForceMaxJourneyPos()
+        {
+            AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(Stage, LearningBlock, PlaySession), true, true);
+            AppManager.I.Player.UpdatePreviousJourneyPosition();    // Antura is considered as having been there the whole time
+            GoToMap();
         }
 
         public void SecondToLastJourneyPos()
         {
             JourneyPosition newPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
-            newPos.PlaySession = 2;
+            newPos.PlaySession = 1;
             if (newPos != null) {
                 AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
-                FirstContactPassed = true;
+                AppManager.I.Player.UpdatePreviousJourneyPosition();     // Antura is considered as having been there the whole time
+                FirstContactCompleted = true;
             }
             GoToMap();
         }
@@ -227,17 +260,10 @@ namespace Antura.Debugging
         public void ResetMaxJourneyPos()
         {
             AppManager.I.Player.ResetMaxJourneyPosition();
+            GoToMap();
         }
 
         #endregion
-
-        #region Profiles
-
-        public void CreateTestProfile()
-        {
-            AppManager.I.PlayerProfileManager.CreatePlayerProfile(4, PlayerGender.F, 1, PlayerTint.Blue);
-            AppManager.I.NavigationManager.GoToHome(debugMode: true);
-        }
 
         #region Rewards
 
@@ -248,31 +274,21 @@ namespace Antura.Debugging
 
         public void UnlockFirstReward()
         {
-            RewardSystemManager.UnlockFirstSetOfRewards();
+            AppManager.I.RewardSystemManager.UnlockFirstSetOfRewards();
         }
 
-        public void UnlockNextPlaySessionRewards()
+        public void UnlockCurrentPlaySessionRewards()
         {
-            //JourneyPosition CurrentJourney = AppManager.I.Player.CurrentJourneyPosition;
-            foreach (RewardPackUnlockData pack in RewardSystemManager.GetNextRewardPack()) {
-                AppManager.I.Player.AddRewardUnlocked(pack);
-                Debug.LogFormat("Pack added: {0}", pack.ToString());
-            }
-            JourneyPosition next = AppManager.I.JourneyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
-            if (next != null) {
-                AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(next.Stage, next.LearningBlock, next.PlaySession));
-                AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(next.Stage, next.LearningBlock, next.PlaySession));
+            var unlockedPacks = AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
+            foreach (RewardPack unlockedPack in unlockedPacks) {
+                Debug.LogFormat("Pack unlocked: {0}", unlockedPack.ToString());
             }
         }
 
         public void UnlockAllRewards()
         {
-            RewardSystemManager.UnlockAllRewards();
+            AppManager.I.RewardSystemManager.UnlockAllPacks();
         }
-
-        #endregion
-
-        #endregion
 
         #endregion
     }

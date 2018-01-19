@@ -37,21 +37,23 @@ namespace Antura.Tutorial
 
         public void DespawnAll()
         {
-            foreach (TutorialUITrailGroup tr in trailsPool) tr.Despawn();
-            foreach (TutorialUILineGroup lr in linesPool) lr.Despawn();
-            foreach (TutorialUIProp arrow in arrowsPool) arrow.Hide(true);
-            foreach (TutorialUIProp clicker in clickersPool) clicker.Hide(true);
+            foreach (TutorialUITrailGroup tr in trailsPool) { tr.Despawn(); }
+            foreach (TutorialUILineGroup lr in linesPool) { lr.Despawn(); }
+            foreach (TutorialUIProp arrow in arrowsPool) { arrow.Hide(true); }
+            foreach (TutorialUIProp clicker in clickersPool) { clicker.Hide(true); }
         }
 
         public TutorialUITrailGroup SpawnTrailGroup(Transform _parent, Vector3 _position, bool _overlayed)
         {
             TutorialUITrailGroup trailG = null;
-            foreach (TutorialUITrailGroup tr in trailsPool) {
-                if (tr.gameObject.activeSelf) continue;
+            foreach (TutorialUITrailGroup tr in trailsPool)
+            {
+                if (tr.gameObject.activeSelf) { continue; }
                 trailG = tr;
                 break;
             }
-            if (trailG == null) {
+            if (trailG == null)
+            {
                 trailG = Instantiate(TrailGroupPrefab, _parent) as TutorialUITrailGroup;
                 trailsPool.Add(trailG);
             }
@@ -62,12 +64,14 @@ namespace Antura.Tutorial
         public TutorialUILineGroup SpawnLineGroup(Transform _parent, Vector3 _position, bool _overlayed)
         {
             TutorialUILineGroup lineG = null;
-            foreach (TutorialUILineGroup lr in linesPool) {
-                if (lr.gameObject.activeSelf) continue;
+            foreach (TutorialUILineGroup lr in linesPool)
+            {
+                if (lr.gameObject.activeSelf) { continue; }
                 lineG = lr;
                 break;
             }
-            if (lineG == null) {
+            if (lineG == null)
+            {
                 lineG = Instantiate(LineGroupPrefab, _parent) as TutorialUILineGroup;
                 linesPool.Add(lineG);
             }
@@ -87,14 +91,14 @@ namespace Antura.Tutorial
 
         public TutorialUIMark SpawnMarkYes(Transform _parent, Vector3 _position, TutorialUI.MarkSize _size)
         {
-            TutorialUIMark mark = (TutorialUIMark) SpawnProp(marksYesPool, MarkYesPrefab, _parent, _position, true);
+            TutorialUIMark mark = (TutorialUIMark)SpawnProp(marksYesPool, MarkYesPrefab, _parent, _position, true);
             mark.SetSize(_size);
             return mark;
         }
 
         public TutorialUIMark SpawnMarkNo(Transform _parent, Vector3 _position, TutorialUI.MarkSize _size)
         {
-            TutorialUIMark mark = (TutorialUIMark) SpawnProp(marksNoPool, MarkNoPrefab, _parent, _position, true);
+            TutorialUIMark mark = (TutorialUIMark)SpawnProp(marksNoPool, MarkNoPrefab, _parent, _position, true);
             mark.SetSize(_size);
             return mark;
         }
@@ -107,12 +111,14 @@ namespace Antura.Tutorial
             bool _overlayed)
         {
             TutorialUIProp prop = null;
-            foreach (TutorialUIProp p in _propList) {
-                if (p.gameObject.activeSelf) continue;
+            foreach (TutorialUIProp p in _propList)
+            {
+                if (p.gameObject.activeSelf) { continue; }
                 prop = p;
                 break;
             }
-            if (prop == null) {
+            if (prop == null)
+            {
                 prop = Instantiate(_propPrefab, _position, Quaternion.identity, _parent) as TutorialUIProp;
                 _propList.Add(prop);
             }

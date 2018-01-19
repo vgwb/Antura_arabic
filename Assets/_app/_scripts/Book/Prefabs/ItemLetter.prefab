@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 222000012789601676}
   - component: {fileID: 114000011959341684}
   - component: {fileID: 114000011140910978}
-  - component: {fileID: 114000013748204426}
   - component: {fileID: 114730674706382146}
+  - component: {fileID: 114000013748204426}
   m_Layer: 5
   m_Name: ItemLetter
   m_TagString: Untagged
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 222000010293726524}
   - component: {fileID: 114000014182016742}
   m_Layer: 5
-  m_Name: LockIcon
+  m_Name: OkIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -166,7 +166,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: {fileID: 114000013451292474}
   SubTitle: {fileID: 114369084156123130}
-  LockIcon: {fileID: 114000014182016742}
+  OkIcon: {fileID: 114000014182016742}
+  BackgroundImage: {fileID: 114000011959341684}
+  ColorVariation: {r: 0.61310554, g: 0.99264705, b: 0.8856163, a: 1}
+  ColorSymbol: {r: 0.54238755, g: 0.9705882, b: 0.6725605, a: 1}
 --- !u!114 &114000013451292474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,8 +201,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: -1
-  m_PreferredHeight: 80
+  m_PreferredWidth: 140
+  m_PreferredHeight: 140
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
 --- !u!114 &114000014182016742
@@ -214,14 +217,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 94e8e937dfc9d514dbb9d1f6b0a12d90, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6fcd7a23346bbc342b507114eff24cb9, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -410,7 +413,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 50
+  m_fontSizeMax: 100
   m_fontStyle: 0
   m_textAlignment: 4098
   m_isAlignmentEnumConverted: 1
@@ -490,6 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBtImg: {fileID: 114000011959341684}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
@@ -557,7 +561,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224000013248072600
 RectTransform:
@@ -572,11 +576,11 @@ RectTransform:
   m_Father: {fileID: 224000011814469090}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 33, y: 0}
-  m_SizeDelta: {x: 41, y: 50}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 2, y: -2}
+  m_SizeDelta: {x: 28, y: 28}
+  m_Pivot: {x: 0, y: 1}
 --- !u!224 &224824208823207718
 RectTransform:
   m_ObjectHideFlags: 1
@@ -592,6 +596,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2}
+  m_AnchoredPosition: {x: 0, y: 3}
   m_SizeDelta: {x: -20, y: 10}
   m_Pivot: {x: 0.5, y: 0}

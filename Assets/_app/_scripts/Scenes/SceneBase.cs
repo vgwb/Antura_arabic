@@ -1,8 +1,9 @@
 ﻿using Antura.Audio;
+using Antura.Tutorial;
 using Antura.Utilities;
 using UnityEngine;
 
-namespace Antura
+namespace Antura.Core
 {
     public class SceneBase : SingletonMonoBehaviour<SceneBase>
     {
@@ -15,5 +16,16 @@ namespace Antura
                 AudioManager.I.PlayMusic(SceneMusic);
             }
         }
+
+        #region Tutorial Mode
+
+        public bool TutorialMode
+        {
+            get { return tutorialManager.IsRunning; }
+        }
+
+        public TutorialManager tutorialManager;
+
+        #endregion
     }
 }

@@ -51,20 +51,12 @@ namespace Antura.LivingLetters
             get { return AppManager.I.VocabularyHelper.GetWordDrawing(Data); } // TODO refactor: inject the value, no reference to the DB
         }
 
-        /// <summary>
-        /// Return draw of word.
-        /// </summary>
-        [Obsolete("Use DrawingCharForLivingLetter instead of this.")]
-        public Sprite DrawForLivingLetter
-        {
-            get { return Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + Id); }
-        }
-
         public bool Equals(ILivingLetterData data)
         {
             LL_ImageData other = data as LL_ImageData;
-            if (other == null)
+            if (other == null) {
                 return false;
+            }
 
             return other.Data.Id == Data.Id;
         }

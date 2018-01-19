@@ -1,4 +1,4 @@
-﻿using Antura.Rewards;
+using Antura.Rewards;
 using UnityEngine;
 using DG.Tweening;
 
@@ -57,7 +57,7 @@ namespace Antura.LivingLetters
         {
             foreach (var item in _meshRenderer) {
                 SkinnedMeshRenderer m = item.gameObject.GetComponent<SkinnedMeshRenderer>();
-                m.materials = new Material[] {_material};
+                m.materials = new Material[] { _material };
             }
         }
 

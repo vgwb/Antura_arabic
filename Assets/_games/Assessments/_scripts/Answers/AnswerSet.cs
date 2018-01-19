@@ -22,62 +22,66 @@ namespace Antura.Assessment
             return totalCorrectAnswers;
         }
 
-        public AnswerSet( Answer[] answers)
+        public AnswerSet(Answer[] answers)
         {
             //Should filter only correct answers
             int count = 0;
-            foreach (var answ in answers)
-            {
-                if (answ.IsCorrect())
+            foreach (var answ in answers) {
+                if (answ.IsCorrect()) {
                     count++;
-
+                }
             }
 
             totalCorrectAnswers += count;
 
-            correctAnswers = new Answer[ count];
+            correctAnswers = new Answer[count];
             int index = 0;
-            foreach (var answ in answers)
-                if (answ.IsCorrect())
-                    correctAnswers[ index++]= answ;
+            foreach (var answ in answers) {
+                if (answ.IsCorrect()) {
+                    correctAnswers[index++] = answ;
+                }
+            }
         }
 
-        List< Answer> currentAnswers = new List< Answer>();
-         
-        public void OnDroppedAnswer( Answer answer)
+        List<Answer> currentAnswers = new List<Answer>();
+
+        public void OnDroppedAnswer(Answer answer)
         {
-            currentAnswers.Add( answer);
+            currentAnswers.Add(answer);
         }
 
-        public void OnRemovedAnswer( Answer answer)
+        public void OnRemovedAnswer(Answer answer)
         {
-            if (currentAnswers.Remove( answer) == false)
-                throw new InvalidOperationException( "Cannot remove something that was not added");
+            if (currentAnswers.Remove(answer) == false) {
+                throw new InvalidOperationException("Cannot remove something that was not added");
+            }
         }
 
         public bool AllCorrect()
         {
-            foreach (var correct in correctAnswers)   
-            {
+            foreach (var correct in correctAnswers) {
                 bool found = false;
 
-                foreach (var ci in currentAnswers)
-                {
-                    if ( correct.Equals( ci))
+                foreach (var ci in currentAnswers) {
+                    if (correct.Equals(ci)) {
                         found = true;
+                    }
                 }
 
-                if (!found)
+                if (!found) {
                     return false;
+                }
             }
             return true;
         }
 
-        internal bool IsCorrect( Answer answ)
+        internal bool IsCorrect(Answer answ)
         {
-            foreach (var c in correctAnswers)
-                if (c == answ)
+            foreach (var c in correctAnswers) {
+                if (c == answ) {
                     return true;
+                }
+            }
 
             return false;
         }

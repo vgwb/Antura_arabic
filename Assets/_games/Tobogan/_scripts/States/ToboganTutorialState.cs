@@ -1,11 +1,11 @@
-﻿using Antura.LivingLetters;
+using Antura.LivingLetters;
 using Antura.Tutorial;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.Tobogan
 {
-    public class ToboganTutorialState : IState
+    public class ToboganTutorialState : FSM.IState
     {
         ToboganGame game;
 

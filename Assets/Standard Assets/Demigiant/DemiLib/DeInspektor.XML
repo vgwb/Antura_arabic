@@ -158,6 +158,53 @@
             <param name="methodName">Name of the method to call</param>
             <param name="parameters">Eventual parameters to pass to the method</param>
         </member>
+        <member name="T:DG.DeInspektor.Attributes.DeComponentDescriptionAttribute">
+            <summary>
+            <code>Class attribute</code> (MonoBehaviour only)<para/>
+            Shows a description for the given MonoBehaviour before any other field.<para/>
+            Extra properties which can be set directly:<para/>
+            - mode
+            </summary>
+        </member>
+        <member name="M:DG.DeInspektor.Attributes.DeComponentDescriptionAttribute.#ctor(System.String,System.Int32)">
+            <summary>
+            Shows a description for this MonoBehaviour before any other field.
+            </summary>
+            <param name="text">Text</param>
+            <param name="fontSize">Font size</param>
+        </member>
+        <member name="T:DG.DeInspektor.Attributes.DeImagePreviewAttribute">
+            <summary>
+            <code>Property attribute</code><para/>
+            Shows a bigger preview image for the given sprite/texture.<para/>
+            Extra properties which can be set directly:<para/>
+            - emptyAlert<para/>
+            </summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeImagePreviewAttribute.emptyAlert">
+            <summary>If TRUE marks this field if no image is present</summary>
+        </member>
+        <member name="M:DG.DeInspektor.Attributes.DeImagePreviewAttribute.#ctor">
+            <summary>
+            Shows a bigger preview image for the given sprite/texture.
+            </summary>
+        </member>
+        <member name="T:DG.DeInspektor.Attributes.DeRangeAttribute">
+            <summary>
+            <code>Property attribute</code><para/>
+            Shows a float/int value with a slider.
+            Works like Unity's Range attribute, but has extra options for custom label, and also works with DemiLib's <code>Range</code> structs
+            </summary>
+        </member>
+        <member name="M:DG.DeInspektor.Attributes.DeRangeAttribute.#ctor(System.Single,System.Single,System.String)">
+            <summary>
+            Shows a float/int value with a slider.
+            Works like Unity's Range attribute, but has extra options for custom label, and also works with DemiLib's <code>Range</code> structs
+            </summary>
+            <param name="min">Min value</param>
+            <param name="max">Max value</param>
+            <param name="label">Override field label</param>
+        </member>
         <member name="T:DG.DeInspektor.Attributes.DeButtonMode">
             <summary>
             Appearance of button attributes
@@ -189,9 +236,11 @@
         <member name="T:DG.DeInspektor.Attributes.DeCommentAttribute">
             <summary>
             <code>Decorator</code><para/>
-            Shows a comment in the Inspector
+            Shows a comment in the Inspector.<para/>
             Extra properties which can be set directly:<para/>
             - fontSize<para/>
+            - style<para/>
+            - textAnchor<para/>
             Normal properties which can be set directly:<para/>
             - textColor<para/>
             - bgColor<para/>
@@ -208,7 +257,13 @@
             <summary>Background color</summary>
         </member>
         <member name="F:DG.DeInspektor.Attributes.DeCommentAttribute.marginBottom">
-            <summary>Margin bottom</summary>
+            <summary>Margin bottom (default = 1)</summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeCommentAttribute.style">
+            <summary>Comment style (default = Box)</summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeCommentAttribute.textAnchor">
+            <summary>Text anchor (default = UpperLeft)</summary>
         </member>
         <member name="M:DG.DeInspektor.Attributes.DeCommentAttribute.#ctor(System.String,System.Int32)">
             <summary>
@@ -273,6 +328,24 @@
             <param name="propertyToCompare">Name of the property to check for conditions</param>
             <param name="conditionType">Condition type</param>
             <param name="behaviour">Behaviour in case condition is not met</param>
+        </member>
+        <member name="T:DG.DeInspektor.Attributes.DeCommentStyle">
+            <summary>Comment style</summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeCommentStyle.Box">
+            <summary>Text inside a box</summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeCommentStyle.BoxExtended">
+            <summary>Text inside a box, extended to encompass the full width of the Inspector</summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeCommentStyle.TextOnly">
+            <summary>Text only</summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeCommentStyle.TextInValueArea">
+            <summary>Text only, placed inside the value area and not encompassing the label area</summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeCommentStyle.WrapNextLine">
+            <summary>Box that wraps the next line</summary>
         </member>
         <member name="M:DG.DeInspektor.Attributes.DeCondition.#ctor(System.String,System.Boolean)">
             <summary>
@@ -434,6 +507,12 @@
             Only for object reference or string fields: shows them red if empty/null
             </summary>
         </member>
+        <member name="M:DG.DeInspektor.Attributes.DeEmptyAlertAttribute.#ctor(System.Boolean)">
+            <summary>
+            Only for object reference or string fields: shows them red if empty/null
+            </summary>
+            <param name="alsoMarkIfOk">If TRUE, also colorizes the field in green if non-empty</param>
+        </member>
         <member name="T:DG.DeInspektor.Attributes.DeHeaderAttribute">
             <summary>
             <code>Decorator</code><para/>
@@ -517,13 +596,25 @@
         <member name="T:DG.DeInspektor.Attributes.DeMethodButtonAttribute">
             <summary>
             <code>Method attribute</code><para/>
-            Draws a button which will call the given method<para/>
+            Draws a button which will call the given method.<para/>
             Extra properties which can be set directly:<para/>
-            - mode
+            - mode<para/>
+            - textShade<para/>
+            - bgShade<para/>
+            - layout
             </summary>
         </member>
         <member name="F:DG.DeInspektor.Attributes.DeMethodButtonAttribute.mode">
             <summary>Display mode</summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeMethodButtonAttribute.textShade">
+            <summary>Text shade</summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeMethodButtonAttribute.bgShade">
+            <summary>Background shade</summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeMethodButtonAttribute.layout">
+            <summary>Layout changes (default: None)</summary>
         </member>
         <member name="M:DG.DeInspektor.Attributes.DeMethodButtonAttribute.#ctor(System.String,System.Int32,System.Object[])">
             <summary>
@@ -534,6 +625,20 @@
             <param name="buttonText">Button text (if NULL uses a prettified version of the method name)</param>
             <param name="order">Order in which attributes for the same method will be displayed</param>
             <param name="parameters">Eventual parameters to pass to the method (higher means lower vertical position)</param>
+        </member>
+        <member name="T:DG.DeInspektor.Attributes.DeLayout">
+            <summary>
+            Layout
+            </summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeLayout.None">
+            <summary>No layout change</summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeLayout.BeginHorizontal">
+            <summary>Begins an horizontal layout before this element</summary>
+        </member>
+        <member name="F:DG.DeInspektor.Attributes.DeLayout.EndHorizontal">
+            <summary>Ends an horizontal layout after this element</summary>
         </member>
         <member name="F:DG.DeInspektor.Attributes.DePosition.HDefault">
             <summary>Default inspector width excluding label-reserved space</summary>

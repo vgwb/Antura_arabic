@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
 
 namespace Antura.Teacher
@@ -24,7 +24,10 @@ namespace Antura.Teacher
 
         public OrderedWordsQuestionBuilder(Database.WordDataCategory category, QuestionBuilderParameters parameters = null, bool skipWordZero = false)
         {
-            if (parameters == null) parameters = new QuestionBuilderParameters();
+            if (parameters == null)
+            {
+                parameters = new QuestionBuilderParameters();
+            }
 
             this.category = category;
             this.parameters = parameters;
@@ -33,7 +36,7 @@ namespace Antura.Teacher
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            List<QuestionPackData> packs = new List<QuestionPackData>();
+            var packs = new List<QuestionPackData>();
             packs.Add(CreateSingleQuestionPackData());
             return packs;
         }
@@ -46,7 +49,7 @@ namespace Antura.Teacher
             // Ordered words
             var words = teacher.VocabularyAi.SelectData(
                  () => vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters),
-                 new SelectionParameters(parameters.correctSeverity, getMaxData:true, useJourney:parameters.useJourneyForCorrect) 
+                 new SelectionParameters(parameters.correctSeverity, getMaxData: true, useJourney: parameters.useJourneyForCorrect)
                );
 
             // sort by id
@@ -55,13 +58,18 @@ namespace Antura.Teacher
                     return x.Id.CompareTo(y.Id);
                 }
             );
-            if (skipWordZero) words.RemoveAt(0);
+            if (skipWordZero)
+            {
+                words.RemoveAt(0);
+            }
 
-
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 string debugString = "Words: " + words.Count;
-                foreach (var w in words) debugString += " " + w;
+                foreach (var w in words)
+                {
+                    debugString += " " + w;
+                }
                 ConfigAI.AppendToTeacherReport(debugString);
             }
 

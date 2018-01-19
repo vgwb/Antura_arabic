@@ -1,5 +1,6 @@
 ﻿using Antura.UI;
 using Antura.Core;
+using Antura.Debugging;
 using UnityEngine;
 
 namespace Antura.GamesSelector
@@ -14,6 +15,18 @@ namespace Antura.GamesSelector
             base.Start();
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true);
+
+            DebugManager.OnSkipCurrentScene += HandleSceneSkip;
+        }
+
+        private void OnDestroy()
+        {
+            DebugManager.OnSkipCurrentScene -= HandleSceneSkip;
+        }
+
+        private void HandleSceneSkip()
+        {
+            AppManager.I.NavigationManager.GoToNextScene();
         }
     }
 }

@@ -126,7 +126,7 @@ namespace Antura.Minigames.Tobogan
         public void SetQuestionText(LL_WordData word, LL_LetterData markedLetter, Color color)
         {
             string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
-            var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, markedLetter.Data);
+            var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, markedLetter.Data, false);
             if (parts.Count > 0)
                 text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[0], color, ArabicTextUtilities.MarkType.SingleLetter);
 
@@ -137,7 +137,7 @@ namespace Antura.Minigames.Tobogan
         {
             string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
 
-            var parts = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, word.Data, false, false);
+            var parts = ArabicAlphabetHelper.SplitWord(AppManager.I.DB, word.Data, false, false);
             if (parts.Count > letterToMark)
                 text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[letterToMark], color, ArabicTextUtilities.MarkType.SingleLetter);
 
@@ -233,7 +233,7 @@ namespace Antura.Minigames.Tobogan
                 var data = letter.Data;
 
                 if (playWhenDragged)
-                    ToboganConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
+                    ToboganConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(data, true);
 
                 Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
                 Vector3 world = tubesCamera.ScreenToWorldPoint(mousePosition);

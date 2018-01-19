@@ -6,6 +6,7 @@ namespace Antura.Minigames.Egg
     public class EggChallenge
     {
         public List<ILivingLetterData> Letters { get; private set; }
+        public ILivingLetterData Question { get; private set; }
         bool sequence;
 
         public EggChallenge(float difficulty, bool onlyLetter)
@@ -18,31 +19,43 @@ namespace Antura.Minigames.Egg
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
+            Question = questionPack.GetQuestion();
             correctAnswers.AddRange(questionPack.GetCorrectAnswers());
             wrongAnswers.AddRange(questionPack.GetWrongAnswers());
 
-            sequence = EggConfiguration.Instance.Variation == EggVariation.Sequence;
+            sequence = EggConfiguration.Instance.IsSequence();
 
             int numberOfLetters = 3;
 
-            if (sequence)
-            {
-                if (difficulty < 0.5f)
-                    numberOfLetters += UnityEngine.Mathf.RoundToInt(difficulty * 6);
-                else
-                    numberOfLetters += UnityEngine.Mathf.RoundToInt((difficulty-0.5f) * 4f);
-
-                if (numberOfLetters > 6)
-                    numberOfLetters = 6;
-            }
+            if (EggConfiguration.Instance.Variation == EggVariation.BuildWord)
+                numberOfLetters = 8;
             else
             {
-                numberOfLetters += (int)(difficulty * 5);
+                if (sequence)
+                {
+                    if (difficulty < 0.5f)
+                    {
+                        numberOfLetters += UnityEngine.Mathf.RoundToInt(difficulty * 6);
+                    }
+                    else
+                    {
+                        numberOfLetters += UnityEngine.Mathf.RoundToInt((difficulty - 0.5f) * 4f);
+                    }
+                    if (numberOfLetters > 6)
+                    {
+                        numberOfLetters = 6;
+                    }
+                }
+                else
+                {
+                    numberOfLetters += (int)(difficulty * 5);
 
-                if (numberOfLetters > 8)
-                    numberOfLetters = 8;
+                    if (numberOfLetters > 8)
+                    {
+                        numberOfLetters = 8;
+                    }
+                }
             }
-
 
             if (!sequence)
             {

@@ -1,5 +1,4 @@
 ﻿using System;
-using Antura.MinigamesCommon;
 using UnityEngine;
 
 namespace Antura.Minigames.MissingLetter
@@ -12,7 +11,7 @@ namespace Antura.Minigames.MissingLetter
         public float fHeightOffset;
     }
 
-    public class MissingLetterGame : MiniGame
+    public class MissingLetterGame : MiniGameController
     {
         #region API
         public void ResetScore()
@@ -27,22 +26,23 @@ namespace Antura.Minigames.MissingLetter
 
             Context.GetAudioManager().PlaySound(Sfx.Blip);
 
-            if (_result)
+            if (_result) {
                 Context.GetAudioManager().PlaySound(Sfx.StampOK);
-            else
+            } else {
                 Context.GetAudioManager().PlaySound(Sfx.KO);
+            }
 
             Context.GetCheckmarkWidget().Show(_result);
-            
-            if (_result)
-            {
+
+            if (_result) {
                 ++m_iCurrentScore;
             }
 
             Context.GetOverlayWidget().SetStarsScore(m_iCurrentScore);
         }
 
-        public void SetInIdle(bool _idle) {
+        public void SetInIdle(bool _idle)
+        {
             m_oFeedBackDisableLetters.enabled = !_idle;
             m_bInIdle = _idle;
         }
@@ -69,11 +69,11 @@ namespace Antura.Minigames.MissingLetter
 
             Context.GetOverlayWidget().Initialize(false, false, false);
 
-			m_bInIdle = true;
+            m_bInIdle = true;
 
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }
@@ -85,26 +85,28 @@ namespace Antura.Minigames.MissingLetter
         #endregion
 
         #region PRIVATE_FUNCTION
-        private void CalculateDifficulty() {
+        private void CalculateDifficulty()
+        {
             float _diff = MissingLetterConfiguration.Instance.Difficulty;
 
             //At least, they are all sets to the minimun
             //m_iRoundsLimit = Mathf.RoundToInt(Mathf.Lerp(6, 10, _diff));
             m_iRoundsLimit = 10;
-            m_iNumberOfPossibleAnswers = Mathf.RoundToInt(Mathf.Lerp(2, 6, _diff));
+            //m_iNumberOfPossibleAnswers = Mathf.RoundToInt(Mathf.Lerp(2, 6, _diff));
+            m_iNumberOfPossibleAnswers = 4;
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingWord)
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.Phrase) {
                 m_fGameTime = Mathf.Lerp(120, 80, _diff);
-            else
+            } else {
                 m_fGameTime = Mathf.Lerp(90, 60, _diff);
-
+            }
             m_iAnturaTriggersNumber = Mathf.RoundToInt(Mathf.Lerp(1, 4, _diff));
-            
+
             //Calculating time entry point for Antura based off how many times it should enter
             m_afAnturaEnterTriggers = new float[m_iAnturaTriggersNumber];
-            for(int i=0; i< m_iAnturaTriggersNumber; ++i)
+            for (int i = 0; i < m_iAnturaTriggersNumber; ++i) {
                 m_afAnturaEnterTriggers[i] = ((m_fGameTime - 10.0f) / m_iAnturaTriggersNumber) * (m_iAnturaTriggersNumber - i);
-
+            }
             //Calculating stars thresold based on Rounds Number
             STARS_1_THRESHOLD = (int)(m_iRoundsLimit * 0.3);
             STARS_2_THRESHOLD = (int)(m_iRoundsLimit * 0.6);
@@ -173,8 +175,7 @@ namespace Antura.Minigames.MissingLetter
 
         public int m_iCurrentStars
         {
-            get
-            {
+            get {
                 if (m_iCurrentScore < STARS_1_THRESHOLD)
                     return 0;
                 if (m_iCurrentScore < STARS_2_THRESHOLD)

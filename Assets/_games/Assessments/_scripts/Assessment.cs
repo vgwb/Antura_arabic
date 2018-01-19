@@ -7,7 +7,7 @@ namespace Antura.Assessment
 {
     public class Assessment
     {
-        public Assessment(  IAnswerPlacer answ_placer,
+        public Assessment(IAnswerPlacer answ_placer,
                             IQuestionPlacer question_placer,
                             IQuestionGenerator question_generator,
                             ILogicInjector logic_injector,
@@ -22,36 +22,34 @@ namespace Antura.Assessment
             Dialogues = dialogues;
         }
 
-        public void StartGameSession( KoreCallback gameEndedCallback)
+        public void StartGameSession(KoreCallback gameEndedCallback)
         {
-            Koroutine.Run( RoundsCoroutine( gameEndedCallback));
+            Koroutine.Run(RoundsCoroutine(gameEndedCallback));
         }
 
-        private IEnumerator RoundsCoroutine( KoreCallback gameEndedCallback)
+        private IEnumerator RoundsCoroutine(KoreCallback gameEndedCallback)
         {
-            int anturaGagRound = Random.Range( 1, Configuration.NumberOfRounds);
+            int anturaGagRound = Random.Range(1, Configuration.NumberOfRounds);
 
-            for (int round = 0; round < Configuration.NumberOfRounds; round++)
-            {
+            for (int round = 0; round < Configuration.NumberOfRounds; round++) {
                 // Show antura only on the elected round.
-                if (anturaGagRound == round)
-                    yield return Koroutine.Nested( AnturaGag());
-
+                if (anturaGagRound == round) {
+                    yield return Koroutine.Nested(AnturaGag());
+                }
                 InitRound();
 
-                yield return Koroutine.Nested( RoundBegin());
-                yield return Koroutine.Nested( PlaceAnswers());
+                yield return Koroutine.Nested(RoundBegin());
+                yield return Koroutine.Nested(PlaceAnswers());
 
 
-                if (round == 0)
-                {
+                if (round == 0) {
                     executingRound0 = true;
                     Koroutine.Run(DescriptionAudio());
                 }
 
-                yield return Koroutine.Nested( GamePlay());
+                yield return Koroutine.Nested(GamePlay());
                 executingRound0 = false;
-                yield return Koroutine.Nested( ClearRound());
+                yield return Koroutine.Nested(ClearRound());
             }
 
             gameEndedCallback();
@@ -63,8 +61,9 @@ namespace Antura.Assessment
         {
             yield return Dialogues.PlayGameDescription();
 
-            if( executingRound0 && AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial)
+            if (executingRound0 && AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial) {
                 yield return QuestionPlacer.PlayQuestionSound();
+            }
         }
 
         private IEnumerator AnturaGag()
@@ -75,21 +74,23 @@ namespace Antura.Assessment
         private IEnumerator RoundBegin()
         {
             bool playSound = AssessmentOptions.Instance.QuestionSpawnedPlaySound;
-            yield return Koroutine.Nested( PlaceQuestions( playSound));
+            yield return Koroutine.Nested(PlaceQuestions(playSound));
         }
 
-        private IEnumerator PlaceQuestions( bool playAudio = false)
+        private IEnumerator PlaceQuestions(bool playAudio = false)
         {
-            QuestionPlacer.Place( QuestionGenerator.GetAllQuestions(), playAudio);
-            while ( QuestionPlacer.IsAnimating())
+            QuestionPlacer.Place(QuestionGenerator.GetAllQuestions(), playAudio);
+            while (QuestionPlacer.IsAnimating()) {
                 yield return null;
+            }
         }
 
         private IEnumerator PlaceAnswers()
         {
-            AnswerPlacer.Place( QuestionGenerator.GetAllAnswers());
-            while ( AnswerPlacer.IsAnimating())
+            AnswerPlacer.Place(QuestionGenerator.GetAllAnswers());
+            while (AnswerPlacer.IsAnimating()) {
                 yield return null;
+            }
 
             LogicInjector.AnswersAdded();
         }
@@ -98,21 +99,23 @@ namespace Antura.Assessment
         {
             LogicInjector.EnableGamePlay();
 
-            while (LogicInjector.AllAnswersCorrect() == false)
+            while (LogicInjector.AllAnswersCorrect() == false) {
                 yield return null;
+            }
         }
 
         private IEnumerator ClearRound()
         {
             LogicInjector.RemoveDraggables();
 
-            yield return Koroutine.Nested( LogicInjector.AllAnsweredEvent());
+            yield return Koroutine.Nested(LogicInjector.AllAnsweredEvent());
 
             QuestionPlacer.RemoveQuestions();
             AnswerPlacer.RemoveAnswers();
 
-            while (QuestionPlacer.IsAnimating() || AnswerPlacer.IsAnimating())
+            while (QuestionPlacer.IsAnimating() || AnswerPlacer.IsAnimating()) {
                 yield return null;
+            }
 
             LogicInjector.ResetRound();
         }
@@ -121,8 +124,9 @@ namespace Antura.Assessment
         {
             QuestionGenerator.InitRound();
 
-            for (int question = 0; question < Configuration.SimultaneosQuestions; question++)
-                WireLogicInjector( LogicInjector, QuestionGenerator);
+            for (int question = 0; question < Configuration.SimultaneosQuestions; question++) {
+                WireLogicInjector(LogicInjector, QuestionGenerator);
+            }
 
             LogicInjector.CompleteWiring();
             LogicInjector.EnableDragOnly();
@@ -130,12 +134,12 @@ namespace Antura.Assessment
             QuestionGenerator.CompleteRound();
         }
 
-        private void WireLogicInjector( ILogicInjector injector, IQuestionGenerator generator)
+        private void WireLogicInjector(ILogicInjector injector, IQuestionGenerator generator)
         {
             IQuestion question = generator.GetNextQuestion();
             Answer[] answers = generator.GetNextAnswers();
 
-            injector.Wire( question, answers);
+            injector.Wire(question, answers);
         }
 
         public IAnswerPlacer AnswerPlacer { get; private set; }

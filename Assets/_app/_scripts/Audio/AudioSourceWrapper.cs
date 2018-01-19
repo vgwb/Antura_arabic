@@ -1,4 +1,4 @@
-﻿using Antura.MinigamesCommon;
+﻿using Antura.Minigames;
 using DG.DeAudio;
 using UnityEngine;
 
@@ -7,20 +7,22 @@ namespace Antura.Audio
     public class AudioSourceWrapper : IAudioSource
     {
         public DeAudioGroup Group { get; private set; }
+        public DeAudioSource CurrentSource;
 
         AudioClip clip;
-        DeAudioSource source;
         AudioManager manager;
 
         bool paused = false;
 
         public bool IsPlaying
         {
-            get {
-                if (source == null || source.audioSource == null)
+            get
+            {
+                if (CurrentSource == null || CurrentSource.audioSource == null) {
                     return false;
+                }
 
-                return source.isPlaying;
+                return CurrentSource.isPlaying;
             }
         }
 
@@ -30,11 +32,13 @@ namespace Antura.Audio
         {
             get { return loop; }
 
-            set {
+            set
+            {
                 loop = value;
 
-                if (source != null)
-                    source.loop = value;
+                if (CurrentSource != null) {
+                    CurrentSource.loop = value;
+                }
             }
         }
 
@@ -44,11 +48,13 @@ namespace Antura.Audio
         {
             get { return pitch; }
 
-            set {
+            set
+            {
                 pitch = value;
 
-                if (source != null)
-                    source.pitch = value;
+                if (CurrentSource != null) {
+                    CurrentSource.pitch = value;
+                }
             }
         }
 
@@ -58,11 +64,13 @@ namespace Antura.Audio
         {
             get { return volume; }
 
-            set {
+            set
+            {
                 volume = value;
 
-                if (source != null)
-                    source.volume = value;
+                if (CurrentSource != null) {
+                    CurrentSource.volume = value;
+                }
             }
         }
 
@@ -75,64 +83,68 @@ namespace Antura.Audio
 
         public float Position
         {
-            get {
-                if (source == null || source.audioSource == null)
+            get
+            {
+                if (CurrentSource == null || CurrentSource.audioSource == null) {
                     return 0;
+                }
 
-                return source.time;
+                return CurrentSource.time;
             }
-            set {
-                if (source != null)
-                    source.time = value;
+            set
+            {
+                if (CurrentSource != null) {
+                    CurrentSource.time = value;
+                }
             }
         }
 
         public void Stop()
         {
-            if (source != null && source.audioSource != null) {
-                source.loop = false;
-                source.Stop();
+            if (CurrentSource != null && CurrentSource.audioSource != null) {
+                CurrentSource.loop = false;
+                CurrentSource.Stop();
             }
 
-            source = null;
+            CurrentSource = null;
             paused = false;
         }
 
         public void Play()
         {
-            if (paused && source != null) {
-                source.Resume();
+            if (paused && CurrentSource != null) {
+                CurrentSource.Resume();
             } else {
                 paused = false;
 
-                if (source != null) {
-                    source.Stop();
+                if (CurrentSource != null) {
+                    CurrentSource.Stop();
                 }
 
-                source = Group.Play(clip);
-                source.locked = true;
+                CurrentSource = Group.Play(clip);
+                CurrentSource.locked = true;
 
-                source.pitch = pitch;
-                source.volume = volume;
-                source.loop = loop;
+                CurrentSource.pitch = pitch;
+                CurrentSource.volume = volume;
+                CurrentSource.loop = loop;
                 manager.OnAudioStarted(this);
             }
         }
 
         public void Pause()
         {
-            if (source != null && source.Pause()) {
+            if (CurrentSource != null && CurrentSource.Pause()) {
                 paused = true;
             }
         }
 
         public bool Update()
         {
-            if (source != null) {
-                if (!source.isPlaying && !source.isPaused && source.time == 0 && !manager.IsAppPaused) {
-                    source.Stop();
-                    source.locked = false;
-                    source = null;
+            if (CurrentSource != null) {
+                if (!CurrentSource.isPlaying && !CurrentSource.isPaused && CurrentSource.time == 0 && !manager.IsAppPaused) {
+                    CurrentSource.Stop();
+                    CurrentSource.locked = false;
+                    CurrentSource = null;
                     return true;
                 }
             }
@@ -141,7 +153,7 @@ namespace Antura.Audio
 
         public AudioSourceWrapper(DeAudioSource source, DeAudioGroup group, AudioManager manager)
         {
-            this.source = source;
+            this.CurrentSource = source;
             this.Group = group;
             this.manager = manager;
             this.clip = source.clip;

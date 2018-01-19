@@ -19,8 +19,7 @@ namespace Antura.Teacher
         {
             QuestionPackData questionPackData = new QuestionPackData();
             questionPackData.question = question;
-            questionPackData.correctAnswers =
-                correctAnswers.ConvertAll<IConvertibleToLivingLetterData>(x => (IConvertibleToLivingLetterData) x);
+            questionPackData.correctAnswers = correctAnswers.ConvertAll(x => (IConvertibleToLivingLetterData)x);
             return questionPackData;
         }
 
@@ -29,8 +28,7 @@ namespace Antura.Teacher
         {
             QuestionPackData questionPackData = new QuestionPackData();
             questionPackData.question = question;
-            questionPackData.wrongAnswers =
-                wrongAnswers.ConvertAll<IConvertibleToLivingLetterData>(x => (IConvertibleToLivingLetterData) x);
+            questionPackData.wrongAnswers = wrongAnswers.ConvertAll(x => (IConvertibleToLivingLetterData)x);
             return questionPackData;
         }
 
@@ -39,10 +37,8 @@ namespace Antura.Teacher
         {
             QuestionPackData questionPackData = new QuestionPackData();
             questionPackData.question = question;
-            questionPackData.correctAnswers =
-                correctAnswers.ConvertAll<IConvertibleToLivingLetterData>(x => (IConvertibleToLivingLetterData) x);
-            questionPackData.wrongAnswers =
-                wrongAnswers.ConvertAll<IConvertibleToLivingLetterData>(x => (IConvertibleToLivingLetterData) x);
+            questionPackData.correctAnswers = correctAnswers.ConvertAll(x => (IConvertibleToLivingLetterData)x);
+            questionPackData.wrongAnswers = wrongAnswers.ConvertAll(x => (IConvertibleToLivingLetterData)x);
             return questionPackData;
         }
 
@@ -50,11 +46,9 @@ namespace Antura.Teacher
             where T1 : IConvertibleToLivingLetterData where T2 : IConvertibleToLivingLetterData
         {
             QuestionPackData questionPackData = new QuestionPackData();
-            questionPackData.questions = questions.ConvertAll<IConvertibleToLivingLetterData>(x => (IConvertibleToLivingLetterData) x);
-            questionPackData.correctAnswers =
-                correctAnswers.ConvertAll<IConvertibleToLivingLetterData>(x => (IConvertibleToLivingLetterData) x);
-            questionPackData.wrongAnswers =
-                wrongAnswers.ConvertAll<IConvertibleToLivingLetterData>(x => (IConvertibleToLivingLetterData) x);
+            questionPackData.questions = questions.ConvertAll<IConvertibleToLivingLetterData>(x => (IConvertibleToLivingLetterData)x);
+            questionPackData.correctAnswers = correctAnswers.ConvertAll(x => (IConvertibleToLivingLetterData)x);
+            questionPackData.wrongAnswers = wrongAnswers.ConvertAll(x => (IConvertibleToLivingLetterData)x);
             return questionPackData;
         }
 
@@ -63,13 +57,16 @@ namespace Antura.Teacher
             var debugString = "";
             debugString += "Q [" + (question) + "] ";
             debugString += " OK(" + (correctAnswers.Count) + ") [";
-            foreach (var ans in correctAnswers) {
+            foreach (var ans in correctAnswers)
+            {
                 debugString += ans + "; ";
             }
             debugString += "] ";
-            if (wrongAnswers != null) {
+            if (wrongAnswers != null)
+            {
                 debugString += " NO(" + wrongAnswers.Count + ") [";
-                foreach (var ans in wrongAnswers) {
+                foreach (var ans in wrongAnswers)
+                {
                     debugString += ans + "; ";
                 }
             }

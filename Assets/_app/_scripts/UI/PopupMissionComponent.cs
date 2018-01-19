@@ -34,12 +34,12 @@ namespace Antura.UI
             Mission_Completed
         }
 
-        Vector2 HidePosition;
-        Vector2 ShowPosition;
+        private Vector2 HidePosition;
+        private Vector2 ShowPosition;
 
-        Sequence sequence;
-        TweenParams tParms;
-        TweenCallback pendingCallback = null;
+        private Sequence sequence;
+        private TweenParams tParms;
+        private TweenCallback pendingCallback = null;
 
         //float timeScaleAtMenuOpen = 1;
 
@@ -90,8 +90,9 @@ namespace Antura.UI
                 sequence.InsertCallback(_data.AutoCloseTime, delegate { Close(sequence, tParms, _callback); });
             } else {
                 pendingCallback = null; // reset
-                if (_callback != null)
+                if (_callback != null) {
                     pendingCallback = _callback;
+                }
             }
         }
 
@@ -110,8 +111,9 @@ namespace Antura.UI
         {
             Time.timeScale = 1;
             _sequence.Append(GetComponent<RectTransform>().DOAnchorPos(HidePosition, 0.15f).SetAs(_tParms));
-            if (_callback != null)
+            if (_callback != null) {
                 _callback();
+            }
         }
 
         void OnDestroy()

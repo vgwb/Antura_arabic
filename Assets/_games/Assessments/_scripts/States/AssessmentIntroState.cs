@@ -1,14 +1,12 @@
-using Antura.MinigamesCommon;
-
 namespace Antura.Assessment
 {
-    public class AssessmentIntroState : IState
+    public class AssessmentIntroState : FSM.IState
     {
         private AssessmentGame assessmentGame;
         private AssessmentGameState gameState;
         private AssessmentAudioManager audioManager;
 
-        public AssessmentIntroState(    AssessmentGame assessmentGame, 
+        public AssessmentIntroState(AssessmentGame assessmentGame,
                                         AssessmentGameState gameState,
                                         AssessmentAudioManager audioManager)
         {
@@ -33,19 +31,20 @@ namespace Antura.Assessment
 
         private void SetNextState()
         {
-            assessmentGame.SetCurrentState( gameState);
+            assessmentGame.SetCurrentState(gameState);
         }
 
         float timer = 0.6f; // Gives Time to show the first question appearing
 
-        public void Update( float delta)
+        public void Update(float delta)
         {
             timer -= delta;
-            if (timer <= 0)
+            if (timer <= 0) {
                 SetNextState();
+            }
         }
 
-        public void UpdatePhysics( float delta)
+        public void UpdatePhysics(float delta)
         {
         }
     }

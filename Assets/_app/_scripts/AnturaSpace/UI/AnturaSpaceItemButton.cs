@@ -1,8 +1,9 @@
-﻿using Antura.Rewards;
+using Antura.Rewards;
+using Antura.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Antura.UI
+namespace Antura.AnturaSpace.UI
 {
     /// <summary>
     /// Button for an item in a category in the Antura Space scene.
@@ -16,15 +17,20 @@ namespace Antura.UI
         public Transform RewardContainer;
 
         [System.NonSerialized]
-        public RewardItem Data;
+        public RewardBaseItem Data;
 
         public bool IsNew
         {
             get { return isNew && !isNewForceHidden; }
         }
 
+        public bool IsItemLocked
+        {
+            get { return _isItemLocked; }
+        }
+
         private RenderTexture renderTexture;
-        private bool isNew, isNewForceHidden;
+        private bool isNew, isNewForceHidden, _isItemLocked;
 
         #region Unity
 
@@ -54,6 +60,8 @@ namespace Antura.UI
         public override void Lock(bool _doLock)
         {
             base.Lock(_doLock);
+
+            _isItemLocked = _doLock;
 
             IcoLock.SetActive(_doLock);
             RewardImage.gameObject.SetActive(!_doLock);

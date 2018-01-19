@@ -50,10 +50,12 @@ namespace Antura.GamesSelector
             Finger.gameObject.SetActive(true);
 
             Vector3[] path = new Vector3[_bubbles.Count + 1];
-            transform.localPosition = _bubbles[0].transform.localPosition - new Vector3(2, 0, 0);
-            path[path.Length - 1] = _bubbles[_bubbles.Count - 1].transform.localPosition + new Vector3(2, 0, 0);
+//            transform.localPosition = _bubbles[0].transform.localPosition - new Vector3(2, 0, 0);
+//            path[path.Length - 1] = _bubbles[_bubbles.Count - 1].transform.localPosition + new Vector3(2, 0, 0);
+            transform.localPosition = _bubbles[_bubbles.Count - 1].transform.localPosition + new Vector3(2, 0, 0);
+            path[path.Length - 1] = _bubbles[0].transform.localPosition - new Vector3(2, 0, 0);
             for (int i = 0; i < _bubbles.Count; ++i) {
-                path[i] = _bubbles[i].transform.localPosition;
+                path[i] = _bubbles[_bubbles.Count - i - 1].transform.localPosition;
             }
 
             showTween.Restart();

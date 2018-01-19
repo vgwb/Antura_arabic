@@ -11,7 +11,7 @@ namespace Antura.Assessment
 
         public float QuestionSize { private set { } get { return QuestionWideness * 3; } }
         public float AnswerSize { private set { } get { return AnswerWideness * 3; } }
-        public float SlotSize { private set { } get { return AnswerWideness * 3 +0.03f; } }
+        public float SlotSize { private set { } get { return AnswerWideness * 3 + 0.03f; } }
         public readonly float ImageSize = 3;
 
         // Screen Limit extents
@@ -29,8 +29,7 @@ namespace Antura.Assessment
         static QuestionPlacerOptions instance;
         public static QuestionPlacerOptions Instance
         {
-            get
-            {
+            get {
                 return instance;
             }
         }
@@ -39,10 +38,9 @@ namespace Antura.Assessment
         {
             instance = this;
             mainCamera = Camera.main;
-            if (mainCamera.orthographic == false)
+            if (mainCamera.orthographic == false) {
                 Debug.LogWarning("main Camera is not the orthographic one");
+            }
         }
-
-       
     }
 }

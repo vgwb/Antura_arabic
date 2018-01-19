@@ -9,39 +9,41 @@ namespace Antura.Assessment
         IDragManager dragManager = null;
         Tween tween = null;
 
-        public void SetDragManager( IDragManager dragManager)
+        public void SetDragManager(IDragManager dragManager)
         {
             this.dragManager = dragManager;
         }
 
         public Answer GetAnswer()
         {
-            return GetComponent< Answer>();
+            return GetComponent<Answer>();
         }
 
         void OnMouseDown()
         {
-            if (!dragEnabled)
+            if (!dragEnabled) {
                 return;
+            }
 
-            dragManager.StartDragging( this);
-            SetScale( 1.3f);
+            dragManager.StartDragging(this);
+            SetScale(1.3f);
         }
 
         void SetScale(float scale)
         {
-            if (tween != null)
-                tween.Kill( false);
-
-            tween = transform.DOScale( scale, 0.4f).OnComplete( () => tween = null);
+            if (tween != null) {
+                tween.Kill(false);
+            }
+            tween = transform.DOScale(scale, 0.4f).OnComplete(() => tween = null);
         }
 
         void OnMouseUp()
         {
-            if (!dragEnabled)
+            if (!dragEnabled) {
                 return;
+            }
 
-            dragManager.StopDragging( this);
+            dragManager.StopDragging(this);
         }
 
         bool dragEnabled = false;
@@ -55,9 +57,9 @@ namespace Antura.Assessment
             dragEnabled = true;
         }
 
-        Action< IDroppable> OnGoDestroyed = null;
+        Action<IDroppable> OnGoDestroyed = null;
 
-        public void StartDrag( Action< IDroppable> onDestroyed)
+        public void StartDrag(Action<IDroppable> onDestroyed)
         {
             OnGoDestroyed = onDestroyed;
             SetScale(1.3f);
@@ -66,8 +68,9 @@ namespace Antura.Assessment
         void OnDestroy()
         {
             dragEnabled = false;
-            if (OnGoDestroyed != null)
-                OnGoDestroyed( this);
+            if (OnGoDestroyed != null) {
+                OnGoDestroyed(this);
+            }
         }
 
         public void StopDrag()
@@ -79,10 +82,9 @@ namespace Antura.Assessment
         }
 
         private int index = -1;
-        public bool SetSortIndex( int a)
+        public bool SetSortIndex(int a)
         {
-            if(index!=a)
-            {
+            if (index != a) {
                 index = a;
                 return true;
             }
@@ -94,7 +96,7 @@ namespace Antura.Assessment
 
         }
 
-        public void Detach( bool jumpBack = true)
+        public void Detach(bool jumpBack = true)
         {
 
         }
@@ -110,12 +112,13 @@ namespace Antura.Assessment
         }
 
         private Tween tweenMove = null;
-        internal void Move( Vector3 position, float v)
+        internal void Move(Vector3 position, float v)
         {
-            if (tweenMove != null && tweenMove.IsComplete() == false)
+            if (tweenMove != null && tweenMove.IsComplete() == false) {
                 tweenMove.Kill(false);
+            }
 
-            tweenMove = transform.DOLocalMove( position, v);
+            tweenMove = transform.DOLocalMove(position, v);
         }
     }
 }

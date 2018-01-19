@@ -19,7 +19,7 @@ namespace Antura.Helpers
         /// </summary>
         public static IOrderedEnumerable<TEnum> SortEnums<TEnum>()
         {
-            return ((TEnum[]) Enum.GetValues(typeof(TEnum))).OrderBy(v => v.ToString());
+            return ((TEnum[])Enum.GetValues(typeof(TEnum))).OrderBy(v => v.ToString());
         }
 
         #endregion
@@ -40,7 +40,7 @@ namespace Antura.Helpers
         /// </summary>
         /// <returns>The text reversed.</returns>
         /// <param name="_source">Source.</param>
-        static string ReverseSingleParagraphText(string _source)
+        private static string ReverseSingleParagraphText(string _source)
         {
             var cArray = _source.ToCharArray();
             var reverse = String.Empty;
@@ -55,9 +55,9 @@ namespace Antura.Helpers
         /// </summary>
         /// <returns>The text with all paragraphs reversed.</returns>
         /// <param name="_source">Source.</param>
-        static string ReverseMultiParagraphText(string _source)
+        private static string ReverseMultiParagraphText(string _source)
         {
-            char[] split = {'\n'};
+            char[] split = { '\n' };
             string[] paragraphs = _source.Split(split);
             string result = "";
             foreach (string paragraph in paragraphs) {
@@ -76,13 +76,13 @@ namespace Antura.Helpers
         public static int GetRelativeTimestampFromNow(int deltaDays)
         {
             var timeSpan = new TimeSpan(deltaDays, 0, 0, 0, 0);
-            return GetTimestampForNow() + (int) timeSpan.TotalSeconds;
+            return GetTimestampForNow() + (int)timeSpan.TotalSeconds;
         }
 
         public static int GetTimestampForNow()
         {
             var timeSpan = (DateTime.UtcNow - TIME_START);
-            return (int) timeSpan.TotalSeconds;
+            return (int)timeSpan.TotalSeconds;
         }
 
         public static DateTime FromTimestamp(int timestamp)
@@ -196,6 +196,12 @@ namespace Antura.Helpers
         public static string ToDebugString<T>(this IEnumerable<T> list)
         {
             return "{" + string.Join(",", list.ToList().ConvertAll(x => x == null ? "NONE" : x.ToString()).ToArray()) +
+                   "}";
+        }
+
+        public static string ToDebugStringNewline<T>(this IEnumerable<T> list)
+        {
+            return "{" + string.Join(",", list.ToList().ConvertAll(x => (x == null ? "NONE" : x.ToString()) + "\n").ToArray()) +
                    "}";
         }
 

@@ -20,6 +20,7 @@ namespace Antura.Database.Management
             data.Arabic = ToString(dict["Arabic"]);
             data.ArabicFemale = ToString(dict["ArabicFemale"]);
             data.AudioFile = ToString(dict["AudioFile"]);
+            //data.HasF = (ToString(dict["ArabicFemale"]) == "1") ? (data.Arabic + "_F") : "";
 
             return data;
         }

@@ -1,9 +1,10 @@
-﻿using System.Collections;
 using Antura.Animation;
-using Antura.CameraEffects;
 using Antura.Core;
-using Antura.MinigamesCommon;
+using Antura.CameraEffects;
+using Antura.Keeper;
+using Antura.Minigames;
 using Antura.UI;
+using System.Collections;
 using UnityEngine;
 
 namespace Antura.Intro
@@ -52,7 +53,8 @@ namespace Antura.Intro
             m_CameraStartPosition = m_CameraEndPosition + cameraOffset;
             autoMoveObjects = environment.GetComponentsInChildren<AutoMove>();
 
-            foreach (var mazeCharacter in m_MazeCharacters) {
+            foreach (var mazeCharacter in m_MazeCharacters)
+            {
                 mazeCharacter.transform.position += new Vector3(0, 10f, 0);
                 mazeCharacter.m_Velocity = m_MazeCharactesVelocity;
             }
@@ -72,10 +74,11 @@ namespace Antura.Intro
         {
             Debugging.DebugManager.OnSkipCurrentScene -= SkipScene;
 
-            if (countDown != null) {
+            if (countDown != null)
+            {
                 countDown.onTimesUp -= CountDown_onTimesUp;
             }
-            Debug.Log("OnDisable() Intro scene");
+            //Debug.Log("OnDisable() Intro scene");
         }
 
         void SkipScene()
@@ -95,15 +98,20 @@ namespace Antura.Intro
             for (int i = 0; i < autoMoveObjects.Length; ++i)
                 autoMoveObjects[i].SetTime(t);
 
-            if (m_Start) {
+            if (m_Start)
+            {
                 m_Start = false;
                 Debug.Log("Start Introduction");
-                foreach (var mazeCharacter in m_MazeCharacters) {
+                foreach (var mazeCharacter in m_MazeCharacters)
+                {
                     mazeCharacter.SetDestination();
                 }
                 StartCoroutine(DoIntroduction());
-            } else {
-                if (m_End) {
+            }
+            else
+            {
+                if (m_End)
+                {
                     countDown.Update(Time.deltaTime);
                 }
             }
@@ -124,7 +132,8 @@ namespace Antura.Intro
             bool completed = false;
             System.Func<bool> CheckIfCompleted = () =>
             {
-                if (completed) {
+                if (completed)
+                {
                     // Reset it
                     completed = false;
                     return true;
@@ -136,7 +145,7 @@ namespace Antura.Intro
 
             yield return new WaitForSeconds(m_StateDelay);
 
-            KeeperManager.I.PlayDialog(Database.LocalizationDataId.Intro_welcome, true, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.Intro_Welcome, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);

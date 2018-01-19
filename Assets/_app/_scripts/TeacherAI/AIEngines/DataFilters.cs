@@ -23,7 +23,7 @@
         {
             None,
             All,
-            AllButMain 
+            AllButMain
         }
 
         public LetterFilters(
@@ -52,6 +52,7 @@
         public bool excludePluralDual;
         public bool requireDrawings;
         public bool excludeColorWords;
+        public bool excludeDipthongs;
 
         public WordFilters(
             bool excludeDiacritics = false,
@@ -60,7 +61,8 @@
             bool excludeArticles = false,
             bool excludePluralDual = false,
             bool requireDrawings = false,
-            bool excludeColorWords = false)
+            bool excludeColorWords = false,
+            bool excludeDipthongs = false)
         {
             this.excludeDiacritics = excludeDiacritics;
             this.excludeLetterVariations = excludeLetterVariations;
@@ -69,6 +71,7 @@
             this.excludePluralDual = excludePluralDual;
             this.requireDrawings = requireDrawings;
             this.excludeColorWords = excludeColorWords;
+            this.excludeDipthongs = excludeDipthongs;
         }
     }
 

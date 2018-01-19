@@ -1,95 +1,109 @@
-﻿using Antura.LivingLetters;
+using Antura.Database;
 using Antura.LivingLetters.Sample;
-using Antura.MinigamesCommon;
 using Antura.Teacher;
+using System;
 
 namespace Antura.Minigames.MissingLetter
 {
-    public enum MissingLetterVariation 
+    public enum MissingLetterVariation
     {
-        MissingLetter = MiniGameCode.MissingLetter,
-        MissingWord = MiniGameCode.MissingLetter_phrases,
-        MissingForm = MiniGameCode.MissingLetter_forms
+        Phrase = MiniGameCode.MissingLetter_phrase,
+        LetterForm = MiniGameCode.MissingLetter_letterform,
+        LetterInWord = MiniGameCode.MissingLetter_letterinword
     }
 
-    public class MissingLetterConfiguration : IGameConfiguration
+    public class MissingLetterConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
+        public MissingLetterVariation Variation { get; private set; }
 
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
-        public MissingLetterVariation Variation { get; set; }
-
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (MissingLetterVariation) code;
+            Variation = (MissingLetterVariation)code;
         }
 
-        /////////////////
         // Singleton Pattern
         static MissingLetterConfiguration instance;
         public static MissingLetterConfiguration Instance
         {
-            get
-            {
-                if (instance == null)
+            get {
+                if (instance == null) {
                     instance = new MissingLetterConfiguration();
+                }
                 return instance;
             }
         }
-        /////////////////
 
         private MissingLetterConfiguration()
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
-            Context = new MinigamesGameContext(MiniGameCode.MissingLetter, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.MissingLetter_letterinword, System.DateTime.Now.Ticks.ToString());
 
             Difficulty = 0.5f;
             //Variation = MissingLetterVariation.MissingLetter;
-            Variation = MissingLetterVariation.MissingForm;
+            Variation = MissingLetterVariation.LetterInWord;
             TutorialEnabled = true;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public override IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
             int nCorrect = 1;
             int nWrong = 5;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
+            var builderParams = new QuestionBuilderParameters();
 
-            switch (Variation)
-            {
-                case MissingLetterVariation.MissingForm:
+            switch (Variation) {
+                case MissingLetterVariation.LetterInWord:
+                    // Find a letter with the given form inside the word (no diacritics)
+                    // wrong answers are other letters in different forms & diacritics
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builderParams.letterFilters.excludeDiphthongs = true;
-                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters:true, parameters: builderParams);
+                    builderParams.wordFilters.excludeDipthongs = true;
+                    builder = new LetterAlterationsInWordsQuestionBuilder(nPacks, 1, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters);
                     break;
 
-                case MissingLetterVariation.MissingLetter:
-                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, forceUnseparatedLetters: true, parameters: builderParams);
+                case MissingLetterVariation.LetterForm:
+                    // Find the correct form of the letter in the given word
+                    // wrong answers are the other forms of the same letter (not the same visually, tho)
+                    builder = new LetterAlterationsInWordsQuestionBuilder(nPacks, 1, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.VisualFormsOfSingleLetter);
                     break;
 
-                case MissingLetterVariation.MissingWord:
+                case MissingLetterVariation.Phrase:
                     builderParams.phraseFilters.requireWords = true;
                     builderParams.phraseFilters.requireAtLeastTwoWords = true;
                     builder = new WordsInPhraseQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
         }
 
+        public override LocalizationDataId TitleLocalizationId
+        {
+            get {
+                switch (Variation) {
+                    case MissingLetterVariation.Phrase:
+                        return LocalizationDataId.MissingLetter_phrases_Title;
+                    case MissingLetterVariation.LetterForm:
+                        return LocalizationDataId.MissingLetter_letterform_Title;
+                    case MissingLetterVariation.LetterInWord:
+                        return LocalizationDataId.MissingLetter_letterform_Title;    // TODO: we need the correct title!
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
     }
 }

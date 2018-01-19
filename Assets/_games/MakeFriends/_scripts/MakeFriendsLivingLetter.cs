@@ -2,6 +2,7 @@
 using System.Collections;
 using Antura.LivingLetters;
 using TMPro;
+using System.Collections.Generic;
 
 namespace Antura.Minigames.MakeFriends
 {
@@ -147,7 +148,7 @@ namespace Antura.Minigames.MakeFriends
         {
             if (wordData != null && wordData.Id != null)
             {
-                MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(wordData, true);
+                MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(wordData, true);
             }
             //if (container != null)
             //{
@@ -313,6 +314,11 @@ namespace Antura.Minigames.MakeFriends
                 }
             }
             isWalking = false;
+        }
+
+        public void MarkLetters(List<LL_LetterData> commonLetters, Color color)
+        {
+            LLPrefab.MarkLetters(commonLetters, color);
         }
 
         #endregion

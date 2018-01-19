@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Antura.Core;
 using Antura.Database;
 using Antura.Helpers;
 using Antura.LivingLetters;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -173,7 +174,7 @@ namespace Antura.Minigames.Balloons
         {
             if (letterData != null && letterData.Id != null)
             {
-                BalloonsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
+                BalloonsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterData);
             }
         }
 
@@ -260,7 +261,7 @@ namespace Antura.Minigames.Balloons
         {
             if (letterData is LL_WordData)
             {
-                var splitLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, ((LL_WordData)letterData).Data);
+                var splitLetters = ArabicAlphabetHelper.SplitWord(AppManager.I.DB, ((LL_WordData)letterData).Data);
 
                 int charPosition = 0;
                 List<int> foundLetterIndices = new List<int>();
@@ -272,7 +273,7 @@ namespace Antura.Minigames.Balloons
                         foundLetterIndices.Add(charPosition);
                     }
 
-                    charPosition += splitLetters[index].letter.GetChar().Length;
+                    charPosition += splitLetters[index].letter.GetStringForDisplay().Length;
                 }
 
                 if (foundLetterIndices.Count != 0)
@@ -291,7 +292,9 @@ namespace Antura.Minigames.Balloons
 
                     while (numCompletedCycles < NUM_FLASH_CYCLES)
                     {
-                        float interpolant = timeElapsed < halfDuration ? timeElapsed / halfDuration : 1 - ((timeElapsed - halfDuration) / halfDuration);
+                        float interpolant = timeElapsed < halfDuration
+                            ? timeElapsed / halfDuration
+                            : 1 - ((timeElapsed - halfDuration) / halfDuration);
                         string tagStart = "<color=#" + GenericHelper.ColorToHex(Color.Lerp(Color.black, color, interpolant)) + ">";
                         string tagEnd = "</color>";
 
@@ -299,17 +302,17 @@ namespace Antura.Minigames.Balloons
 
                         for (int i = 0; i < foundLetterIndices.Count; i++)
                         {
-                            int startIdx = i == 0 ? 0 : foundLetterIndices[i - 1] + letterToFlash.GetChar().Length;
+                            int startIdx = i == 0 ? 0 : foundLetterIndices[i - 1] + letterToFlash.GetStringForDisplay().Length;
                             int endIdx = foundLetterIndices[i] - 1;
 
                             composedString += preparedText.Substring(startIdx, endIdx - startIdx + 1);
 
                             composedString += tagStart;
-                            composedString += preparedText.Substring(foundLetterIndices[i], letterToFlash.GetChar().Length);
+                            composedString += preparedText.Substring(foundLetterIndices[i], letterToFlash.GetStringForDisplay().Length);
                             composedString += tagEnd;
                         }
 
-                        composedString += preparedText.Substring(foundLetterIndices[foundLetterIndices.Count - 1] + letterToFlash.GetChar().Length);
+                        composedString += preparedText.Substring(foundLetterIndices[foundLetterIndices.Count - 1] + letterToFlash.GetStringForDisplay().Length);
 
                         letterObjectView.Label.SetText(composedString);
 
@@ -332,12 +335,12 @@ namespace Antura.Minigames.Balloons
 
         private Transform FindDescendant(Transform parent, string name)
         {
-            if (parent.name.Equals(name)) return parent;
+            if (parent.name.Equals(name)) { return parent; }
 
             foreach (Transform child in parent)
             {
                 Transform result = FindDescendant(child, name);
-                if (result != null) return result;
+                if (result != null) { return result; }
             }
 
             return null;

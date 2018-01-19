@@ -1,12 +1,14 @@
-﻿using System;
-using System.Reflection;
 using Antura.Core;
 using Antura.Database;
-using Antura.MinigamesCommon;
+using Antura.Helpers;
+using Antura.LivingLetters;
 using Antura.Teacher;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
-namespace Antura.LivingLetters
+namespace Antura.Minigames
 {
     /// <summary>
     /// Handles the logic to launch minigames with the correct configuration.
@@ -15,6 +17,16 @@ namespace Antura.LivingLetters
     {
         private QuestionPacksGenerator questionPacksGenerator;
         private TeacherAI teacher;
+
+        // Last used data
+        private IGameConfiguration currentGameConfig;
+        private IQuestionBuilder currentQuestionBuilder;
+        private List<IQuestionPack> currentQuestionPacks;
+
+        public IGameConfiguration GetCurrentMiniGameConfig()
+        {
+            return currentGameConfig;
+        }
 
         public MiniGameLauncher(TeacherAI _teacher)
         {
@@ -35,7 +47,8 @@ namespace Antura.LivingLetters
             if (_launchConfiguration == null) {
                 var difficulty = teacher.GetCurrentDifficulty(_gameCode);
                 var numberOfRounds = teacher.GetCurrentNumberOfRounds(_gameCode);
-                _launchConfiguration = new MinigameLaunchConfiguration(difficulty, numberOfRounds);
+                var tutorialEnabled = teacher.GetTutorialEnabled(_gameCode);
+                _launchConfiguration = new MinigameLaunchConfiguration(difficulty, numberOfRounds, tutorialEnabled);
             }
 
             var miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
@@ -44,11 +57,11 @@ namespace Antura.LivingLetters
                 AppManager.I.NavigationManager.InitNewPlaySession(miniGameData);
             }
 
-            if (AppConstants.DebugLogEnabled) Debug.Log("StartGame " + _gameCode.ToString());
+            if (AppConfig.DebugLogEnabled) { Debug.Log("StartGame " + _gameCode.ToString()); }
 
             // Assign the configuration for the given minigame
             var minigameSession = System.DateTime.Now.Ticks.ToString();
-            var currentGameConfig = ConfigureMiniGameScene(_gameCode, minigameSession);
+            currentGameConfig = ConfigureMiniGameScene(_gameCode, minigameSession);
             currentGameConfig.Difficulty = _launchConfiguration.Difficulty;
             currentGameConfig.TutorialEnabled = _launchConfiguration.TutorialEnabled;
 
@@ -60,12 +73,12 @@ namespace Antura.LivingLetters
             }
 
             // Retrieve the packs for the current minigame configuration
-            var questionBuilder = currentGameConfig.SetupBuilder();
-            var questionPacks = questionPacksGenerator.GenerateQuestionPacks(questionBuilder);
-            currentGameConfig.Questions = new SequentialQuestionPackProvider(questionPacks);
+            currentQuestionBuilder = currentGameConfig.SetupBuilder();
+            currentQuestionPacks = questionPacksGenerator.GenerateQuestionPacks(currentQuestionBuilder);
+            currentGameConfig.Questions = new SequentialQuestionPackProvider(currentQuestionPacks);
 
             // Communicate to LogManager the start of a new single minigame play session.
-            if (AppConstants.DebugLogDbInserts) Debug.Log("InitGameplayLogSession " + _gameCode.ToString());
+            if (AppConfig.DebugLogDbInserts) { Debug.Log("InitGameplayLogSession " + _gameCode.ToString()); }
             LogManager.I.LogInfo(InfoEvent.GameStart, "{\"minigame\":\"" + _gameCode.ToString() + "\"}");
             LogManager.I.StartMiniGame();
 
@@ -76,7 +89,21 @@ namespace Antura.LivingLetters
             //AudioManager.I.PlayDialogue(_gameCode.ToString()+"_Title");
 
             // Launch the game
-            AppManager.I.NavigationManager.GotoMinigameScene();
+            AppManager.I.NavigationManager.GoToMiniGameScene();
+        }
+
+        public string GetCurrentMiniGameConfigSummary()
+        {
+            var output = "";
+            output += "Difficulty: " + currentGameConfig.Difficulty;
+            output += "\nQuestion builder: " + currentQuestionBuilder.GetType().Name;
+
+            // LB Focus
+            var contents = AppManager.I.Teacher.VocabularyAi.GetContentsAtLearningBlock(AppManager.I.Player.CurrentJourneyPosition);
+            var focusLetters = contents.GetHashSet<LetterData>();
+            output += "\nFocus letters: " + focusLetters.ToDebugString();
+
+            return output;
         }
 
         /// <summary>
@@ -85,7 +112,6 @@ namespace Antura.LivingLetters
         public IGameConfiguration ConfigureMiniGameScene(MiniGameCode code, string sessionName)
         {
             var miniGameData = AppManager.I.DB.GetMiniGameDataByCode(code);
-
             var defaultContext = new MinigamesGameContext(code, sessionName);
 
             // We use reflection to get the correct configuration class given a minigame code
@@ -103,7 +129,7 @@ namespace Antura.LivingLetters
             }
             configurationClassName = baseNamespaceKey + "." + configurationClassName;
 
-            Type configurationClassType = Type.GetType(configurationClassName);
+            var configurationClassType = Type.GetType(configurationClassName);
             if (configurationClassType == null) {
                 throw new Exception("Type " + configurationClassName + " not found. Are the minigame scene and Configuration class ready?");
             }
@@ -114,7 +140,7 @@ namespace Antura.LivingLetters
                                     " not found. This should be present in the minigame's Configuration class.");
             }
 
-            IGameConfiguration currentGameConfig = (IGameConfiguration) property.GetValue(null, null);
+            var currentGameConfig = (IGameConfiguration)property.GetValue(null, null);
 
             if (currentGameConfig != null) {
                 currentGameConfig.Context = defaultContext;

@@ -1,4 +1,5 @@
-﻿using Antura.LivingLetters;
+using Antura.FSM;
+using Antura.LivingLetters;
 using Antura.Minigames.FastCrowd;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace Antura.Intro
         public event System.Action onDestroy;
         public event System.Action<bool> onDropped;
 
-        StateManager stateManager = new StateManager();
+        StateMachineManager stateManager = new StateMachineManager();
 
         // TODO refactor: the use of FSMs is not standardized across the codebase
         public IntroStrollingLetterWalkingState WalkingState { get; private set; }
@@ -57,15 +58,19 @@ namespace Antura.Intro
 
             // Just to be safe
             var currentState = GetCurrentState();
-            if (currentState != HangingState && currentState != FallingState) {
+            if (currentState != HangingState && currentState != FallingState)
+            {
                 var oldPos = transform.position;
 
                 if (oldPos.y != 0)
+                {
                     oldPos.y = 0;
+                }
                 transform.position = oldPos;
             }
 
-            if (Vector3.Distance(transform.position, antura.transform.position) < 15.0f) {
+            if (Vector3.Distance(transform.position, antura.transform.position) < 15.0f)
+            {
                 Scare(antura.transform.position, 5);
                 return;
             }
@@ -78,9 +83,11 @@ namespace Antura.Intro
 
         public bool Raycast(out float distance, out Vector3 position, Ray ray, float maxDistance)
         {
-            for (int i = 0, count = colliders.Length; i < count; ++i) {
+            for (int i = 0, count = colliders.Length; i < count; ++i)
+            {
                 RaycastHit info;
-                if (colliders[i].Raycast(ray, out info, maxDistance)) {
+                if (colliders[i].Raycast(ray, out info, maxDistance))
+                {
                     position = info.point;
                     distance = info.distance;
                     return true;
@@ -98,7 +105,7 @@ namespace Antura.Intro
 
         public IntroStrollingLetterState GetCurrentState()
         {
-            return (IntroStrollingLetterState) stateManager.CurrentState;
+            return (IntroStrollingLetterState)stateManager.CurrentState;
         }
 
         /// <summary>
@@ -109,26 +116,32 @@ namespace Antura.Intro
             ScaredState.ScaredDuration = scareTime;
             ScaredState.ScareSource = scareSource;
 
-            if (GetCurrentState() == IdleState ||
-                GetCurrentState() == WalkingState)
+            if (GetCurrentState() == IdleState || GetCurrentState() == WalkingState)
+            {
                 SetCurrentState(ScaredState);
+            }
         }
 
         void OnDestroy()
         {
             if (onDestroy != null)
+            {
                 onDestroy();
+            }
         }
 
         public void DropOnArea(DropAreaWidget area)
         {
             var currentData = area.GetActiveData();
 
-            if (currentData != null) {
+            if (currentData != null)
+            {
                 bool matching = GetComponent<LivingLetterController>().Data == currentData;
 
                 if (onDropped != null)
+                {
                     onDropped(matching);
+                }
             }
         }
     }

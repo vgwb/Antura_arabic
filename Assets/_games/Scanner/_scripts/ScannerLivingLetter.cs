@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 using Antura.Audio;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 
 namespace Antura.Minigames.Scanner
 {
@@ -33,17 +33,17 @@ namespace Antura.Minigames.Scanner
         public Material mat;
         public float slidingTime;
 
-//		public event Action <ScannerLivingLetter> onReset;
-		public event Action <ScannerLivingLetter> onStartFallOff;
-		public event Action <ScannerLivingLetter> onFallOff;
-		public event Action <ScannerLivingLetter> onPassedMidPoint;
-		public event Action <ScannerLivingLetter> onFlying;
+        //		public event Action <ScannerLivingLetter> onReset;
+        public event Action<ScannerLivingLetter> onStartFallOff;
+        public event Action<ScannerLivingLetter> onFallOff;
+        public event Action<ScannerLivingLetter> onPassedMidPoint;
+        public event Action<ScannerLivingLetter> onFlying;
 
-		public BoxCollider bodyCollider;
+        public BoxCollider bodyCollider;
 
-		[HideInInspector]
-		public bool gotSuitcase;
-//        private Transform originalParent;
+        [HideInInspector]
+        public bool gotSuitcase;
+        //        private Transform originalParent;
         private float fallOffX;
         private float midPointX;
         private bool passedMidPoint = false;
@@ -58,79 +58,70 @@ namespace Antura.Minigames.Scanner
 
         public void Reset(bool stopCO = true)
         {
-            if(stopCO)
+            if (stopCO)
                 StopAllCoroutines();
             rainbowJet.SetActive(false);
 
-			if (game.gameActive)
-			{
-				status = LLStatus.None;
-				LLController.Falling = false;
-				LLController.SetState(LLAnimationStates.LL_still);
-				gotSuitcase = false;
-	            LLController.transform.rotation = startingRotation;
-	            transform.position = startingPosition;
+            if (game.gameActive) {
+                status = LLStatus.None;
+                LLController.Falling = false;
+                LLController.SetState(LLAnimationStates.LL_still);
+                gotSuitcase = false;
+                LLController.transform.rotation = startingRotation;
+                transform.position = startingPosition;
 
-	            fallOffX = fallOffPoint.position.x;
-	            midPointX = midPoint.position.x;
-	            passedMidPoint = false;
+                fallOffX = fallOffPoint.position.x;
+                midPointX = midPoint.position.x;
+                passedMidPoint = false;
 
-	            turnAngle = facingCamera ? 180 : 0;
-				gameObject.SetActive(true);
+                turnAngle = facingCamera ? 180 : 0;
+                gameObject.SetActive(true);
 
-				gameObject.GetComponent<SphereCollider>().enabled = true; // enable feet collider
-				bodyCollider.enabled = false; // disable body collider
+                gameObject.GetComponent<SphereCollider>().enabled = true; // enable feet collider
+                bodyCollider.enabled = false; // disable body collider
 
                 showLLMesh(true);
 
             }
         }
 
-		public void StartSliding()
-		{
-			LLController.Falling = true;
-			status = LLStatus.Sliding;
-		}
+        public void StartSliding()
+        {
+            LLController.Falling = true;
+            status = LLStatus.Sliding;
+        }
 
         IAudioSource wordSound;
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKey(KeyCode.E) && LLController.Data != null)
-            {
-                if(wordSound == null)
-                    wordSound = game.Context.GetAudioManager().PlayLetterData(LLController.Data, true);
-                if (!wordSound.IsPlaying)
-                    wordSound = game.Context.GetAudioManager().PlayLetterData(LLController.Data, true);
+            if (Input.GetKey(KeyCode.E) && LLController.Data != null) {
+                if (wordSound == null) {
+                    wordSound = game.Context.GetAudioManager().PlayVocabularyData(LLController.Data, true);
+                }
+                if (!wordSound.IsPlaying) {
+                    wordSound = game.Context.GetAudioManager().PlayVocabularyData(LLController.Data, true);
+                }
 
                 wordSound.Position = 0;
             }
-            if (wordSound != null)
-                wordSound.Position = Mathf.Clamp( wordSound.Position + Time.deltaTime/10,0, 0.5f);
-
-            if (status == LLStatus.Sliding) 
-			{
-                transform.Translate(slideSpeed * Time.deltaTime, -slideSpeed * Time.deltaTime / 2, 0);
-			}
-			else if (status == LLStatus.StandingOnBelt)
-			{
-				transform.Translate(game.beltSpeed * Time.deltaTime,0,0);
+            if (wordSound != null) {
+                wordSound.Position = Mathf.Clamp(wordSound.Position + Time.deltaTime / 10, 0, 0.5f);
             }
-			else if (status == LLStatus.Flying) 
-			{
+
+            if (status == LLStatus.Sliding) {
+                transform.Translate(slideSpeed * Time.deltaTime, -slideSpeed * Time.deltaTime / 2, 0);
+            } else if (status == LLStatus.StandingOnBelt) {
+                transform.Translate(game.beltSpeed * Time.deltaTime, 0, 0);
+            } else if (status == LLStatus.Flying) {
                 transform.Translate(Vector2.up * flightSpeed * Time.deltaTime);
-            } 
-			else if (status == LLStatus.Falling) 
-			{
+            } else if (status == LLStatus.Falling) {
                 transform.Translate(Vector2.down * flightSpeed * Time.deltaTime);
             }
-				
-			if (livingLetter.transform.position.x > fallOffX && status == LLStatus.StandingOnBelt) 
-			{
+
+            if (livingLetter.transform.position.x > fallOffX && status == LLStatus.StandingOnBelt) {
                 StartCoroutine(co_FallOff());
-            }
-			else if (livingLetter.transform.position.x > midPointX && !passedMidPoint) 
-			{
+            } else if (livingLetter.transform.position.x > midPointX && !passedMidPoint) {
                 passedMidPoint = true;
                 onPassedMidPoint(this);
             }
@@ -139,64 +130,60 @@ namespace Antura.Minigames.Scanner
 
         IEnumerator co_FlyAway()
         {
-//            letterObjectView.DoSmallJump();
-			onFlying(this);
-			status = LLStatus.Happy;
+            //            letterObjectView.DoSmallJump();
+            onFlying(this);
+            status = LLStatus.Happy;
 
             LLController.State = LLAnimationStates.LL_dancing;
             LLController.DoDancingWin();
             //letterObjectView.DoSmallJump();            
             // Rotate in case not facing the camera
             StartCoroutine(RotateGO(livingLetter, new Vector3(0, 180, 0), 1f));
-			yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2f);
 
-//			// building anticipation
-//			letterObjectView.Crouching = true;
-//			yield return new WaitForSeconds(1f);
-//			letterObjectView.Crouching = false;
+            //			// building anticipation
+            //			letterObjectView.Crouching = true;
+            //			yield return new WaitForSeconds(1f);
+            //			letterObjectView.Crouching = false;
 
-			// Starting flight
-			LLController.DoHorray();
+            // Starting flight
+            LLController.DoHorray();
             yield return new WaitForSeconds(0.75f);
             rainbowJet.SetActive(true);
             //yield return new WaitForSeconds(0.15f);
-			status = LLStatus.Flying;
-            
-			LLController.SetState(LLAnimationStates.LL_still);
+            status = LLStatus.Flying;
+
+            LLController.SetState(LLAnimationStates.LL_still);
             yield return new WaitForSeconds(2f);
-//            Reset();
+            //            Reset();
         }
 
         IEnumerator co_Lost()
         {
-			if (status == LLStatus.StandingOnBelt)
-			{
-				status = LLStatus.Sad;
-				LLController.DoAngry();
-            	yield return new WaitForSeconds(1.5f);
-			}
-			Debug.Log(status);
-			if (status != LLStatus.Flying || status != LLStatus.Falling || status != LLStatus.None)
-			{
-				LLController.Poof();
-				yield return new WaitForSeconds(0.2f);
-			}
-			else
-			{
-				yield return new WaitForSeconds(2f);
-			}
-			transform.position = new Vector3(-100,-100,-100); // Move offscreen
+            if (status == LLStatus.StandingOnBelt) {
+                status = LLStatus.Sad;
+                LLController.DoAngry();
+                yield return new WaitForSeconds(1.5f);
+            }
+            Debug.Log(status);
+            if (status != LLStatus.Flying || status != LLStatus.Falling || status != LLStatus.None) {
+                LLController.Poof();
+                yield return new WaitForSeconds(0.2f);
+            } else {
+                yield return new WaitForSeconds(2f);
+            }
+            transform.position = new Vector3(-100, -100, -100); // Move offscreen
 
 
         }
 
         IEnumerator co_FallOff()
         {
-			gotSuitcase = false;
-			status = LLStatus.None;
+            gotSuitcase = false;
+            status = LLStatus.None;
             onStartFallOff(this);
             LLController.SetState(LLAnimationStates.LL_idle);
-			LLController.DoSmallJump();
+            LLController.DoSmallJump();
             StartCoroutine(RotateGO(livingLetter, new Vector3(90, 90, 0), 1f));
             yield return new WaitForSeconds(0.25f);
             AudioManager.I.PlaySound(Sfx.LetterSad);
@@ -210,10 +197,8 @@ namespace Antura.Minigames.Scanner
             showLLMesh(false);
 
             yield return new WaitForSeconds(0.9f);
-            
-            onFallOff(this);
 
-//            Reset();
+            onFallOff(this);
         }
 
         void OnMouseUp()
@@ -224,10 +209,10 @@ namespace Antura.Minigames.Scanner
 
         public void RoundLost()
         {
-			gotSuitcase = false;
+            gotSuitcase = false;
             StopAllCoroutines();
-//            letterObjectView.SetState(LLAnimationStates.LL_idle);
-			StartCoroutine(co_Lost());
+            //            letterObjectView.SetState(LLAnimationStates.LL_idle);
+            StartCoroutine(co_Lost());
         }
 
         public void RoundWon()
@@ -265,14 +250,12 @@ namespace Antura.Minigames.Scanner
 
             yield return new WaitForSeconds(1f);
 
-//			letterObjectView.SetState(LLAnimationStates.LL_idle);
-
             int index = -1;
             LLAnimationStates[] animations =
             {
                 LLAnimationStates.LL_idle,
                 LLAnimationStates.LL_dancing
-			};
+            };
 
             do {
                 int oldIndex = index;
@@ -286,14 +269,12 @@ namespace Antura.Minigames.Scanner
 
         void OnTriggerEnter(Collider other)
         {
-            if (status == LLStatus.Sliding) 
-			{
-                if (other.tag == ScannerGame.TAG_BELT) 
-				{
-//                    transform.parent = other.transform;
+            if (status == LLStatus.Sliding) {
+                if (other.tag == ScannerGame.TAG_BELT) {
+                    //                    transform.parent = other.transform;
                     status = LLStatus.StandingOnBelt;
                     gameObject.GetComponent<SphereCollider>().enabled = false; // disable feet collider
-					bodyCollider.enabled = true; // enable body collider
+                    bodyCollider.enabled = true; // enable body collider
                     LLController.Falling = false;
                     StartCoroutine(RotateGO(livingLetter, new Vector3(0, turnAngle, 0), 1f));
                     StartCoroutine(AnimateLL());
@@ -304,17 +285,18 @@ namespace Antura.Minigames.Scanner
         public void showLLMesh(bool show)
         {
             SkinnedMeshRenderer[] LLMesh = GetComponentsInChildren<SkinnedMeshRenderer>();
-            foreach (SkinnedMeshRenderer sm in LLMesh)
+            foreach (SkinnedMeshRenderer sm in LLMesh) {
                 sm.enabled = show;
+            }
             LLController.contentTransform.gameObject.SetActive(show);
         }
 
         public void setColor(Color col)
         {
-            if (!mat)
+            if (!mat) {
                 mat = sm.material;
+            }
             mat.SetColor("_Color", col);
         }
-
     }
 }

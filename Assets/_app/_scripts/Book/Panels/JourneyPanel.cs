@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using Antura.Audio;
+﻿using Antura.Audio;
 using Antura.Database;
 using Antura.UI;
 using Antura.Core;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Antura.Book
 {
@@ -31,9 +31,9 @@ namespace Antura.Book
         public TextRender DetailDescriptionAr;
         public TextRender ScoreText;
 
-        int currentStage;
-        GameObject btnGO;
-        LearningBlockInfo currentLearningBlock;
+        private int currentStage;
+        private GameObject btnGO;
+        private LearningBlockInfo currentLearningBlock;
 
         void Start()
         {
@@ -98,7 +98,7 @@ namespace Antura.Book
         {
             currentLearningBlock = _currentLearningBlock;
             DetailPanel.SetActive(true);
-            AudioManager.I.PlayDialogue(currentLearningBlock.data.GetTitleSoundFilename());
+            AudioManager.I.PlayLearningBlock(currentLearningBlock.data.AudioFile);
 
             DetailCodeText.text = currentLearningBlock.data.Id;
             DetailTitleText.text = currentLearningBlock.data.Title_Ar;

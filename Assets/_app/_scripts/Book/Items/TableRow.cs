@@ -12,17 +12,16 @@ namespace Antura.Book
 
         public void Init(string _titleEn, string _title, string _value)
         {
-            TxTitle.text = _title;
-            TxTitleEn.text = _titleEn;
+            if (TxTitle != null) { TxTitle.text = _title; }
+            if (TxTitleEn != null) { TxTitleEn.text = _titleEn; }
             TxValue.SetText(_value);
         }
 
         public void InitSlider(string _titleEn, string _title, float _value, float _valueMax)
         {
-            TxTitle.text = _title;
-            TxTitleEn.text = _titleEn;
+            if (TxTitle != null) { TxTitle.text = _title; }
+            if (TxTitleEn != null) { TxTitleEn.text = _titleEn; }
             slider.SetValue(_value, _valueMax);
-            //TxValue.SetText(_value);
         }
     }
 }

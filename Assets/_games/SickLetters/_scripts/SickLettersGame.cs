@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Antura.Audio;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.Tutorial;
 using Antura.UI;
 using UnityEngine;
@@ -10,7 +10,7 @@ namespace Antura.Minigames.SickLetters
 {
     public enum Diacritic { Sokoun, Fatha, Dameh, Kasrah, None };
 
-    public class SickLettersGame : MiniGame
+    public class SickLettersGame : MiniGameController
     {
         public SickLettersLLPrefab LLPrefab;
         public SickLettersAntura antura;
@@ -80,7 +80,7 @@ namespace Antura.Minigames.SickLetters
             scale.transform.localScale = new Vector3(vaseWidth, scale.transform.localScale.y, scale.transform.localScale.z);
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }
@@ -143,14 +143,14 @@ namespace Antura.Minigames.SickLetters
                 {
                     LLPrefab.letterView.DoHorray();
                     SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
-                    Context.GetAudioManager().PlayLetterData(LLPrefab.letterView.Data, true);
+                    Context.GetAudioManager().PlayVocabularyData(LLPrefab.letterView.Data, true, soundType: SickLettersConfiguration.Instance.GetVocabularySoundType());
                     LLPrefab.jumpOut(1.5f);
                 }
                 else
                 {
                     LLPrefab.jumpOut(0.5f);
                     if(roundsCount > 0)
-                        Context.GetAudioManager().PlayLetterData(LLPrefab.letterView.Data, true);
+                        Context.GetAudioManager().PlayVocabularyData(LLPrefab.letterView.Data, true, soundType: SickLettersConfiguration.Instance.GetVocabularySoundType());
                 }
                 if (roundsCount == 1)
                 {
@@ -294,7 +294,7 @@ namespace Antura.Minigames.SickLetters
         public void RepeatAudio()
         {
             if(LLPrefab.letterView && LLPrefab.letterView.Data != null && !disableInput)
-                Context.GetAudioManager().PlayLetterData(LLPrefab.letterView.Data, true);
+                Context.GetAudioManager().PlayVocabularyData(LLPrefab.letterView.Data, true, soundType: SickLettersConfiguration.Instance.GetVocabularySoundType());
         }
 
     }

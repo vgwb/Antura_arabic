@@ -20,6 +20,8 @@
         Reward = 50,
         AnturaCustomization = 51,
         AnturaSpace = 60,
+
+        DailyRewardReceived = 70,
     }
 
     /// <summary>

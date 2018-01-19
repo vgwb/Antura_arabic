@@ -1,9 +1,9 @@
-﻿using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.LivingLetters;
+using Antura.Minigames;
 
 namespace Antura.Minigames.Tobogan
 {
-    public class ToboganPlayState : IState
+    public class ToboganPlayState : FSM.IState
     {
         CountdownTimer gameTime = new CountdownTimer(90.0f);
         ToboganGame game;

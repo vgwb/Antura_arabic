@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Antura.Audio;
@@ -47,19 +47,19 @@ namespace Antura.GamesSelector
 
         const string ResourceID = "GamesSelector";
         const string ResourcePath = "Prefabs/UI/" + ResourceID;
-        static GamesSelector instance;
-        GamesSelectorTrailsManager trailsManager;
-        GamesSelectorTutorial tutorial;
-        List<MiniGameData> games;
-        GamesSelectorBubble mainBubble;
-        readonly List<GamesSelectorBubble> bubbles = new List<GamesSelectorBubble>();
-        TrailRenderer currTrail;
-        Camera cam;
-        Transform camT;
-        bool cutAllowed = true;
-        bool isDragging;
-        int totOpenedBubbles;
-        Sequence showTween;
+        private static GamesSelector instance;
+        private GamesSelectorTrailsManager trailsManager;
+        private GamesSelectorTutorial tutorial;
+        private List<MiniGameData> games;
+        private GamesSelectorBubble mainBubble;
+        private readonly List<GamesSelectorBubble> bubbles = new List<GamesSelectorBubble>();
+        private TrailRenderer currTrail;
+        private Camera cam;
+        private Transform camT;
+        private bool cutAllowed = true;
+        private bool isDragging;
+        private int totOpenedBubbles;
+        private Sequence showTween;
 
         #region Unity
 
@@ -88,7 +88,7 @@ namespace Antura.GamesSelector
 
         void OnDestroy()
         {
-            if (instance == this) instance = null;
+            if (instance == this) { instance = null; }
             StopAllCoroutines();
             showTween.Kill(true);
             OnComplete -= GoToMinigame;
@@ -103,22 +103,6 @@ namespace Antura.GamesSelector
                 }
                 return;
             }
-
-#if UNITY_EDITOR
-            if (Input.GetKeyDown(KeyCode.R)) {
-                Destroy(gameObject);
-                instance = null;
-                Show(new List<MiniGameData>()
-                {
-                    new MiniGameData() {Main = MiniGameCode.Maze.ToString(), Variation = "letters"},
-                    new MiniGameData() {Main = MiniGameCode.DancingDots.ToString(), Variation = "words"},
-                    new MiniGameData() {Main = MiniGameCode.MakeFriends.ToString(), Variation = "spelling"},
-                    new MiniGameData() {Main = MiniGameCode.Egg_letters.ToString(), Variation = "sunmoon"},
-                    new MiniGameData() {Main = MiniGameCode.DancingDots.ToString(), Variation = "counting"}
-                });
-                return;
-            }
-#endif
 
             if (!Input.GetMouseButton(0) && !Input.GetMouseButtonUp(0)) {
                 return;
@@ -239,8 +223,8 @@ namespace Antura.GamesSelector
             float area = totBubbles * bubbleW + (totBubbles - 1) * bubblesDist;
             float startX = -area * 0.5f + bubbleW * 0.5f;
             for (int i = 0; i < totBubbles; ++i) {
-                MiniGameData mgData = games[i];
-                GamesSelectorBubble bubble = i == 0 ? mainBubble : (GamesSelectorBubble) Instantiate(mainBubble, this.transform);
+                MiniGameData mgData = games[totBubbles - i - 1];
+                GamesSelectorBubble bubble = i == 0 ? mainBubble : (GamesSelectorBubble)Instantiate(mainBubble, this.transform);
                 bubble.Setup(mgData.GetIconResourcePath(), mgData.GetBadgeIconResourcePath(), startX + (bubbleW + bubblesDist) * i);
                 bubbles.Add(bubble);
             }
@@ -301,7 +285,7 @@ namespace Antura.GamesSelector
         IEnumerator CO_EndCoroutine()
         {
             yield return new WaitForSeconds(EndDelay);
-            if (AppConstants.DebugLogEnabled) {
+            if (AppConfig.DebugLogEnabled) {
                 Debug.Log("<b>GamesSelector</b> > Complete");
             }
             DispatchOnComplete();

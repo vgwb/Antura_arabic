@@ -1,12 +1,10 @@
-﻿using Antura.MinigamesCommon;
-
 namespace Antura.Minigames.Egg
 {
-    public class EggIntroductionState : IState
+    public class EggIntroductionState : FSM.IState
     {
-        EggGame game;
+        private EggGame game;
 
-        float timer = 1f;
+        private float timer = 1f;
         public EggIntroductionState(EggGame game) { this.game = game; }
 
         public void EnterState()

@@ -9,18 +9,14 @@ namespace Antura.Book
     /// </summary>
     public class CompletionSlider : MonoBehaviour
     {
-        public TextRender Percent;
-        public TextRender Current;
-        public TextRender Total;
+        public TextRender InfoText;
         public Slider Slider;
 
         public void SetValue(float current, float max)
         {
             float ratio = current / max;
             Slider.value = ratio;
-            Percent.text = string.Format("{0:P0}", ratio);
-            Current.text = Mathf.RoundToInt(current).ToString();
-            Total.text = Mathf.RoundToInt(max).ToString();
+            InfoText.text = Mathf.RoundToInt(current).ToString() + " / " + Mathf.RoundToInt(max).ToString();
         }
     }
 }

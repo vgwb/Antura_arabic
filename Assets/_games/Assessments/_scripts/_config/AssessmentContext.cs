@@ -1,6 +1,5 @@
 using Antura.Database;
-using Antura.MinigamesCommon;
-using Antura.Tutorial;
+using Antura.Minigames;
 
 namespace Antura.Assessment
 {

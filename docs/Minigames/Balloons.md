@@ -1,4 +1,4 @@
-# Minigame Balloons
+# MiniGame: Balloons
 
 ## Testing procedure
 Total tests: 4

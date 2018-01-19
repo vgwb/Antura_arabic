@@ -75,6 +75,10 @@ SubShader {
 		uniform float		_MaskSoftnessX;
 		uniform float		_MaskSoftnessY;
 
+		#if UNITY_VERSION < 530
+			bool _UseClipRect;
+		#endif
+
 		v2f vert (appdata_t v)
 		{
 			v2f o;
@@ -84,7 +88,7 @@ SubShader {
 
 			vert.xy += (vert.w * 0.5) / _ScreenParams.xy;
 
-			o.vertex = UnityPixelSnap(mul(UNITY_MATRIX_MVP, vert));
+			o.vertex = UnityPixelSnap(UnityObjectToClipPos(vert));
 			o.color = v.color;
 			o.color *= _Color;
 			o.color.rgb *= _DiffusePower;
@@ -104,9 +108,18 @@ SubShader {
 		{
 			fixed4 c = fixed4(i.color.rgb, i.color.a * tex2D(_MainTex, i.texcoord0).a);
 
-			// Alternative implementation to UnityGet2DClipping with support for softness.
-			half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(i.mask.xy)) * i.mask.zw);
-			c *= m.x * m.y;
+			#if UNITY_VERSION < 530
+				if (_UseClipRect)
+				{
+					// Alternative implementation to UnityGet2DClipping with support for softness.
+					half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(i.mask.xy)) * i.mask.zw);
+					c *= m.x * m.y;
+				}
+			#else
+				// Alternative implementation to UnityGet2DClipping with support for softness.
+				half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(i.mask.xy)) * i.mask.zw);
+				c *= m.x * m.y;
+			#endif
 
 			return c;
 		}

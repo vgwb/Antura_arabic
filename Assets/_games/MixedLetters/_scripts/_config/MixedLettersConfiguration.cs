@@ -1,32 +1,25 @@
-﻿using Antura.LivingLetters;
+using System;
+using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
-using Antura.MinigamesCommon;
 using Antura.Teacher;
 
 namespace Antura.Minigames.MixedLetters
 {
-    public enum MixedLettersVariation 
+    public enum MixedLettersVariation
     {
         Alphabet = MiniGameCode.MixedLetters_alphabet,
-        Spelling = MiniGameCode.MixedLetters_spelling
+        BuildWord = MiniGameCode.MixedLetters_buildword
     }
 
-    public class MixedLettersConfiguration : IGameConfiguration
+    public class MixedLettersConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
+        public MixedLettersVariation Variation { get; private set; }
 
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
-        public MixedLettersVariation Variation { get; set; }
-
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
             Variation = (MixedLettersVariation)code;
         }
 
-        /////////////////
         // Singleton Pattern
         static MixedLettersConfiguration instance;
         public static MixedLettersConfiguration Instance
@@ -38,42 +31,42 @@ namespace Antura.Minigames.MixedLetters
                 return instance;
             }
         }
-        /////////////////
 
         private MixedLettersConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
             Variation = MixedLettersVariation.Alphabet;
-            Context = new MinigamesGameContext(MiniGameCode.MixedLetters_alphabet, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.MixedLetters_alphabet, DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
             TutorialEnabled = true;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public override IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
+            var builderParams = new QuestionBuilderParameters();
             switch (Variation)
             {
                 case MixedLettersVariation.Alphabet:
                     builderParams.useJourneyForCorrect = false; // Force no journey, or the minigame will block
                     builder = new AlphabetQuestionBuilder(parameters: builderParams);
                     break;
-                case MixedLettersVariation.Spelling:
+                case MixedLettersVariation.BuildWord:
+                    builderParams.wordFilters.excludeDipthongs = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, maximumWordLength: 6, useAllCorrectLetters: true, parameters: builderParams);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-
-            UnityEngine.Debug.Log("Chosen variation: " + Variation);
 
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;

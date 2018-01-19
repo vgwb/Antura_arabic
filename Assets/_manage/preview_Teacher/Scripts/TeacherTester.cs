@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Antura.Assessment;
@@ -15,6 +15,7 @@ namespace Antura.Teacher.Test
         Empty,
 
         RandomLetters,
+        RandomLetterForms,
         Alphabet,
         LettersBySunMoon,
         LettersByType,
@@ -27,6 +28,7 @@ namespace Antura.Teacher.Test
 
         LettersInWord,
         LetterFormsInWords,
+        LetterAlterationsInWords,
         CommonLettersInWords,
         WordsWithLetter,
 
@@ -135,7 +137,7 @@ namespace Antura.Teacher.Test
             // Setup for testing
             Application.runInBackground = true;
             SetVerboseAI(true);
-            ConfigAI.forceJourneyIgnore = false;
+            ConfigAI.ForceJourneyIgnore = false;
 
             /*
             journey_stage_in.onValueChanged.AddListener(x => { currentJourneyStage = int.Parse(x); });
@@ -171,17 +173,17 @@ namespace Antura.Teacher.Test
 
         void SetVerboseAI(bool choice)
         {
-            ConfigAI.verboseTeacher = choice;
+            ConfigAI.VerboseTeacher = choice;
         }
 
         #region Testing API
 
         void ApplyParameters()
         {
-            ConfigAI.verboseQuestionPacks = verboseQuestionPacks;
-            ConfigAI.verboseDataFiltering = verboseDataFiltering;
-            ConfigAI.verboseDataSelection = verboseDataSelection;
-            ConfigAI.verbosePlaySessionInitialisation = verbosePlaySessionInitialisation;
+            ConfigAI.VerboseQuestionPacks = verboseQuestionPacks;
+            ConfigAI.VerboseDataFiltering = verboseDataFiltering;
+            ConfigAI.VerboseDataSelection = verboseDataSelection;
+            ConfigAI.VerbosePlaySessionInitialisation = verbosePlaySessionInitialisation;
         }
 
         private bool IsCodeValid(MiniGameCode code)
@@ -446,14 +448,44 @@ namespace Antura.Teacher.Test
 
         #region  QuestionBuilder Simulation
 
+        public int lettersVariationChoice = 0;
+
         private void SimulateQuestionBuilder(QuestionBuilderType builderType)
         {
+
+            LetterAlterationFilters letterAlterationFilters = null;
+            switch (lettersVariationChoice)
+            {
+                case 0:
+                    letterAlterationFilters = LetterAlterationFilters.FormsOfSingleLetter;
+                    break;
+                case 1:
+                    letterAlterationFilters = LetterAlterationFilters.FormsOfMultipleLetters;
+                    break;
+                case 2:
+                    letterAlterationFilters = LetterAlterationFilters.MultipleLetters;
+                    break;
+                case 3:
+                    letterAlterationFilters = LetterAlterationFilters.PhonemesOfSingleLetter;
+                    break;
+                case 4:
+                    letterAlterationFilters = LetterAlterationFilters.PhonemesOfMultipleLetters;
+                    break;
+                case 5:
+                    letterAlterationFilters = LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters;
+                    break;
+            }
+
+
             var builderParams = SetupBuilderParameters();
             IQuestionBuilder builder = null;
             switch (builderType)
             {
                 case QuestionBuilderType.RandomLetters:
                     builder = new RandomLettersQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, firstCorrectIsQuestion: true, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.RandomLetterForms:
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, letterAlterationFilters: letterAlterationFilters, parameters: builderParams);
                     break;
                 case QuestionBuilderType.Alphabet:
                     builder = new AlphabetQuestionBuilder(parameters: builderParams);
@@ -470,8 +502,11 @@ namespace Antura.Teacher.Test
                 case QuestionBuilderType.LetterFormsInWords:
                     builder = new LetterFormsInWordsQuestionBuilder(nPacks, nPacksPerRound, parameters: builderParams);
                     break;
+                case QuestionBuilderType.LetterAlterationsInWords:
+                    builder = new LetterAlterationsInWordsQuestionBuilder(nPacks, nPacksPerRound, parameters: builderParams, letterAlterationFilters: letterAlterationFilters);
+                    break;
                 case QuestionBuilderType.CommonLettersInWords:
-                    builder = new CommonLettersInWordQuestionBuilder(nPacks: nPacks, nWrong: nWrongAnswers, parameters: builderParams);
+                    builder = new CommonLetterInWordQuestionBuilder(nPacks: nPacks, nWrong: nWrongAnswers, parameters: builderParams);
                     break;
                 case QuestionBuilderType.RandomWords:
                     builder = new RandomWordsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, firstCorrectIsQuestion: true, parameters: builderParams);

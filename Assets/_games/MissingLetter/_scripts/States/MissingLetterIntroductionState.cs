@@ -1,9 +1,8 @@
-﻿using Antura.Audio;
-using Antura.MinigamesCommon;
+using Antura.Audio;
 
 namespace Antura.Minigames.MissingLetter
 {
-    public class MissingLetterIntroductionState : IState
+    public class MissingLetterIntroductionState : FSM.IState
     {
         public MissingLetterIntroductionState(MissingLetterGame _game)
         {
@@ -12,18 +11,7 @@ namespace Antura.Minigames.MissingLetter
 
         public void EnterState()
         {
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
-            {
-                AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_Title);
-            }
-            else if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm)
-            {
-                AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_forms_Title);
-            }
-            else
-            {
-                AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_phrases_Title);
-            }
+            AudioManager.I.PlayDialogue(MissingLetterConfiguration.Instance.TitleLocalizationId);
         }
 
         public void ExitState()
@@ -34,10 +22,8 @@ namespace Antura.Minigames.MissingLetter
         {
             m_fTimer -= _delta;
 
-            if (m_fTimer < 0)
-            {
-                if (m_oGame.TutorialEnabled)
-                {
+            if (m_fTimer < 0) {
+                if (m_oGame.TutorialEnabled) {
                     m_oGame.SetCurrentState(m_oGame.TutorialState);
                 } else {
                     m_oGame.SetCurrentState(m_oGame.QuestionState);

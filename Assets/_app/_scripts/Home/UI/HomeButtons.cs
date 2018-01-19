@@ -1,4 +1,5 @@
 ﻿using Antura.Audio;
+using Antura.Core;
 using Antura.Scenes;
 using UnityEngine;
 
@@ -29,8 +30,9 @@ namespace Antura.UI
 
         void OnDestroy()
         {
-            foreach (MenuButton bt in menuBts)
+            foreach (MenuButton bt in menuBts) {
                 bt.Bt.onClick.RemoveAllListeners();
+            }
         }
 
         void OnClick(MenuButton bt)
@@ -41,7 +43,7 @@ namespace Antura.UI
                     BtMusic.Toggle(AudioManager.I.MusicEnabled);
                     break;
                 case MenuButtonType.FxToggle: // FX on/off
-                    AppManager.I.ToggleQualitygfx();
+                    AppManager.I.AppSettingsManager.ToggleQualitygfx();
                     BtFx.Toggle(AppManager.I.AppSettings.HighQualityGfx);
                     break;
                 case MenuButtonType.Continue:

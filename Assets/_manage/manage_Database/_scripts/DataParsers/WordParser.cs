@@ -33,7 +33,7 @@ namespace Antura.Database.Management
 
         private string[] CustomParseLetters(WordData wordData, DatabaseObject db)
         {
-            var parts = ArabicAlphabetHelper.AnalyzeData(db, wordData);
+            var parts = ArabicAlphabetHelper.SplitWord(db, wordData);
 
             string[] letters = new string[parts.Count];
 

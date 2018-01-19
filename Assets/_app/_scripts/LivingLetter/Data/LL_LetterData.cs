@@ -1,6 +1,5 @@
-﻿using System;
-using Antura.Core;
-using UnityEngine;
+﻿using Antura.Core;
+using Antura.Database;
 
 namespace Antura.LivingLetters
 {
@@ -10,8 +9,8 @@ namespace Antura.LivingLetters
     // TODO refactor: rename to better indicate that this is a view
     public class LL_LetterData : ILivingLetterData
     {
-        public Database.LetterData Data;
-        public Database.LetterForm Form = Database.LetterForm.Isolated; // TODO refactor: this is tied to the Arabic language
+        public LetterData Data;
+        public LetterForm Form = LetterForm.Isolated; // TODO refactor: this is tied to the Arabic language
 
         public LivingLetterDataType DataType
         {
@@ -24,31 +23,18 @@ namespace Antura.LivingLetters
             set { Data = AppManager.I.DB.GetLetterDataById(value); }
         }
 
-        public LL_LetterData(string _id) :
-            this(AppManager.I.DB.GetLetterDataById(_id)) /// TODO refactor: inject the value, no reference to the DB
-        {
-        }
-
-        public LL_LetterData(Database.LetterData _data)
+        // @note: this should be the only constructor for LL_LetterData
+        public LL_LetterData(LetterData _data)
         {
             Data = _data;
-        }
-
-        public LL_LetterData(string _id, Database.LetterForm form) : this(AppManager.I.DB.GetLetterDataById(_id), form)
-        {
-        }
-
-        public LL_LetterData(Database.LetterData _data, Database.LetterForm form)
-        {
-            Data = _data;
-            Form = form;
+            if (_data.ForcedLetterForm != LetterForm.None) Form = _data.ForcedLetterForm;
         }
 
         #region API
 
         public string TextForLivingLetter
         {
-            get { return Data.GetCharFixedForDisplay(Form); }
+            get { return Data.GetStringForDisplay(Form); }
         }
 
         public string DrawingCharForLivingLetter
@@ -56,19 +42,19 @@ namespace Antura.LivingLetters
             get { return null; }
         }
 
-        [Obsolete("Use DrawingCharForLivingLetter instead of this.")]
-        public Sprite DrawForLivingLetter
-        {
-            get { return null; }
-        }
-
         public bool Equals(ILivingLetterData data)
         {
             LL_LetterData other = data as LL_LetterData;
-            if (other == null)
+            if (other == null) {
                 return false;
+            }
 
-            return other.Data.Id == Data.Id && other.Form == Form;
+            return Data.IsSameLetterAs(other.Data, LetterEqualityStrictness.LetterOnly);
+        }
+
+        public override string ToString()
+        {
+            return "LL-" + Data;
         }
 
         #endregion

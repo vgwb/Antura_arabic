@@ -1,75 +1,90 @@
-﻿using UnityEngine;
+using Antura.Core;
+using Antura.Database;
+using Antura.Helpers;
+using Antura.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Antura.Database;
-using Antura.Helpers;
-using Antura.Rewards;
-using Antura.Core;
+using UnityEngine;
 
 namespace Antura.Book
 {
     public class PlayerPanel : MonoBehaviour
     {
-        public InfoTable InfoTable;
-        public GraphJourney journeyGraph;
+        public UIButton BtnMiniGames;
+        public UIButton BtnVocabulary;
+        public UIButton BtnGallery;
+
+        public CompletionSlider StarsSlider;
+        public CompletionSlider RewardsSlider;
+        public TextRender BonesText;
+        public TextRender PlayTimeText;
 
         void Start()
         {
-            InfoTable.Reset();
+            BtnMiniGames.Bt.onClick.AddListener(() => Book.I.BtnOpenMinigGamesWithBack());
+            BtnVocabulary.Bt.onClick.AddListener(() => Book.I.BtnOpenVocabularyWithBack());
+            BtnGallery.Bt.onClick.AddListener(() => BtnOpenPhotoGallery());
+            //InfoTable.Reset();
 
             // Level reached
-            InfoTable.AddRow(LocalizationDataId.UI_Stage_and_Level, AppManager.I.Player.MaxJourneyPosition.GetShortTitle());
+            //InfoTable.AddRow(LocalizationDataId.UI_Stage_and_Level, AppManager.I.Player.MaxJourneyPosition.GetShortTitle());
 
             // Unlocked / total PlaySessions
-            var totalPlaySessions = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
-            var totalPlaySessionsUnlocked = totalPlaySessions.FindAll(x => x.unlocked);
-            //InfoTable.AddRow("Unlocked Levels", "", totalPlaySessionsUnlocked.Count.ToString() + " / " + totalPlaySessions.Count.ToString());
-            InfoTable.AddSliderRow(LocalizationDataId.UI_Unlocked_Levels, totalPlaySessionsUnlocked.Count, totalPlaySessions.Count);
+            //var totalPlaySessions = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
+            //var totalPlaySessionsUnlocked = totalPlaySessions.FindAll(x => x.unlocked);
+            ////InfoTable.AddRow("Unlocked Levels", "", totalPlaySessionsUnlocked.Count.ToString() + " / " + totalPlaySessions.Count.ToString());
+            //InfoTable.AddSliderRow(LocalizationDataId.UI_Unlocked_Levels, totalPlaySessionsUnlocked.Count, totalPlaySessions.Count);
 
             // Total elapsed time
-            var totalTimespan = GetTotalApplicationTime();
-            InfoTable.AddRow(LocalizationDataId.UI_Journey_duration,
-                totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
+            //var totalTimespan = GetTotalApplicationTime();
+            //InfoTable.AddRow(LocalizationDataId.UI_Journey_duration,totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
+
+            // Played Games
+            //InfoTable.AddRow(LocalizationDataId.UI_Games_played, GetTotalMiniGamePlayInstances().ToString());
+
+            // Total stars
+            var playerStars = GetTotalMiniGameStars();
+            // TODO calculate total stars
+            var totalStart = 270;
+            StarsSlider.SetValue(playerStars, totalStart);
+            //InfoTable.AddRow(LocalizationDataId.UI_Stars, totalStars.ToString());
+
+            // unlocked / total REWARDS
+            var totalRewards = AppManager.I.RewardSystemManager.GetTotalRewardPacksCount();
+            var totalRewardsUnlocked = AppManager.I.RewardSystemManager.GetUnlockedRewardsCount();
+            RewardsSlider.SetValue(totalRewardsUnlocked, totalRewards);
+            //InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
+            //InfoTable.AddSliderRow(LocalizationDataId.UI_Antura_Rewards, totalRewards, totalRewardsUnlocked);
+
+
+            // Total bones
+            var totalBones = AppManager.I.Player.GetTotalNumberOfBones();
+            BonesText.SetText(totalBones.ToString());
 
             // total play time
             var totalPlayTime = GetTotalMiniGamePlayTime();
-            InfoTable.AddRow(LocalizationDataId.UI_Playing_time,
-                totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
+            PlayTimeText.SetText(totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
+            //InfoTable.AddRow(LocalizationDataId.UI_Playing_time,                totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
 
-            // Played Games
-            InfoTable.AddRow(LocalizationDataId.UI_Games_played, GetTotalMiniGamePlayInstances().ToString());
 
-            // Total bones
-            InfoTable.AddRow(LocalizationDataId.UI_Bones, AppManager.I.Player.GetTotalNumberOfBones().ToString());
+            //// unlocked / total Letters
+            //var totalLetters = GetTotalVocabularyData(VocabularyDataType.Letter);
+            //var totalLettersUnlocked = GetTotalVocabularyDataUnlocked(VocabularyDataType.Letter);
+            ////InfoTable.AddRow("Unlocked Letters", "", totalLettersUnlocked.ToString() + " / " + totalLetters);
+            //InfoTable.AddSliderRow(LocalizationDataId.UI_Unlocked_Letters, totalLettersUnlocked, totalLetters);
 
-            // Total stars
-            var totalStars = GetTotalMiniGameStars();
-            InfoTable.AddRow(LocalizationDataId.UI_Stars, totalStars.ToString());
+            //// unlocked / total Words
+            //var totalWords = GetTotalVocabularyData(VocabularyDataType.Word);
+            //var totalWordsUnlocked = GetTotalVocabularyDataUnlocked(VocabularyDataType.Word);
+            ////InfoTable.AddRow("Unlocked Words", "", totalWordsUnlocked.ToString() + " / " + totalWords);
+            //InfoTable.AddSliderRow(LocalizationDataId.UI_Unlocked_Words, totalWordsUnlocked, totalWords);
 
-            // unlocked / total REWARDS
-            var totalRewards = RewardSystemManager.GetTotalRewardsCount();
-            var totalRewardsUnlocked = RewardSystemManager.GetUnlockedRewardsCount();
-            //InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
-            InfoTable.AddSliderRow(LocalizationDataId.UI_Antura_Rewards, totalRewards, totalRewardsUnlocked);
-
-            // unlocked / total Letters
-            var totalLetters = GetTotalVocabularyData(VocabularyDataType.Letter);
-            var totalLettersUnlocked = GetTotalVocabularyDataUnlocked(VocabularyDataType.Letter);
-            //InfoTable.AddRow("Unlocked Letters", "", totalLettersUnlocked.ToString() + " / " + totalLetters);
-            InfoTable.AddSliderRow(LocalizationDataId.UI_Unlocked_Letters, totalLettersUnlocked, totalLetters);
-
-            // unlocked / total Words
-            var totalWords = GetTotalVocabularyData(VocabularyDataType.Word);
-            var totalWordsUnlocked = GetTotalVocabularyDataUnlocked(VocabularyDataType.Word);
-            //InfoTable.AddRow("Unlocked Words", "", totalWordsUnlocked.ToString() + " / " + totalWords);
-            InfoTable.AddSliderRow(LocalizationDataId.UI_Unlocked_Words, totalWordsUnlocked, totalWords);
-
-            // unlocked / total Phrases
-            var totalPhrases = GetTotalVocabularyData(VocabularyDataType.Phrase);
-            var totalPhrasesUnlocked = GetTotalVocabularyDataUnlocked(VocabularyDataType.Phrase);
-            //InfoTable.AddRow("Unlocked Phrases", "", totalPhrasesUnlocked.ToString() + " / " + totalPhrases);
-            InfoTable.AddSliderRow(LocalizationDataId.UI_Unlocked_Phrases, totalPhrasesUnlocked, totalPhrases);
+            //// unlocked / total Phrases
+            //var totalPhrases = GetTotalVocabularyData(VocabularyDataType.Phrase);
+            //var totalPhrasesUnlocked = GetTotalVocabularyDataUnlocked(VocabularyDataType.Phrase);
+            ////InfoTable.AddRow("Unlocked Phrases", "", totalPhrasesUnlocked.ToString() + " / " + totalPhrases);
+            //InfoTable.AddSliderRow(LocalizationDataId.UI_Unlocked_Phrases, totalPhrasesUnlocked, totalPhrases);
 
             // player UUID
             //InfoTable.AddRow("Player Code", "", AppManager.I.Player.GetShortUuid());
@@ -97,9 +112,14 @@ namespace Antura.Book
             //journeyGraph.Show(allPlaySessionInfos, unlockedPlaySessionInfos);
         }
 
-        #region Queries
+        public void BtnOpenPhotoGallery()
+        {
+            GlobalUI.ShowPrompt(LocalizationDataId.AnturaSpace_Photo_Gallery);
+        }
 
-        TimeSpan GetTotalApplicationTime()
+        #region Player Stats Queries
+
+        private TimeSpan GetTotalApplicationTime()
         {
             string query = "select * from \"" + typeof(LogInfoData).Name + "\"";
             var list = AppManager.I.DB.Query<LogInfoData>(query);
@@ -132,7 +152,7 @@ namespace Antura.Book
             return totalTimespan;
         }
 
-        TimeSpan GetTotalMiniGamePlayTime()
+        private TimeSpan GetTotalMiniGamePlayTime()
         {
             float totalSeconds = 0f;
             string query = "select * from " + typeof(MiniGameScoreData).Name;
@@ -145,7 +165,7 @@ namespace Antura.Book
             return t;
         }
 
-        Dictionary<MiniGameCode, float> GetMiniGamesTotalPlayTime()
+        private Dictionary<MiniGameCode, float> GetMiniGamesTotalPlayTime()
         {
             Dictionary<MiniGameCode, float> dict = new Dictionary<MiniGameCode, float>();
             string query = "select * from " + typeof(MiniGameScoreData).Name;
@@ -157,7 +177,7 @@ namespace Antura.Book
             return dict;
         }
 
-        int GetTotalMiniGamePlayInstances()
+        private int GetTotalMiniGamePlayInstances()
         {
             int total = 0;
             string query = "select * from " + typeof(LogMiniGameScoreData).Name;
@@ -169,7 +189,7 @@ namespace Antura.Book
             return total;
         }
 
-        int GetTotalMiniGameStars()
+        private int GetTotalMiniGameStars()
         {
             string query = "select * from " + typeof(MiniGameScoreData).Name;
             var list = AppManager.I.DB.Query<MiniGameScoreData>(query);
@@ -177,7 +197,7 @@ namespace Antura.Book
             return totalStars;
         }
 
-        int GetTotalVocabularyData(VocabularyDataType dataType)
+        private int GetTotalVocabularyData(VocabularyDataType dataType)
         {
             int count = 0;
             switch (dataType) {
@@ -194,15 +214,15 @@ namespace Antura.Book
             return count;
         }
 
-        int GetTotalVocabularyDataUnlocked(VocabularyDataType dataType)
+        private int GetTotalVocabularyDataUnlocked(VocabularyDataType dataType)
         {
-            if (AppManager.I.Player.IsDemoUser) return GetTotalVocabularyData(dataType);
-            string query = "select * from " + typeof(VocabularyScoreData).Name + " where VocabularyDataType='" + (int) dataType + "'";
+            if (AppManager.I.Player.IsDemoUser) { return GetTotalVocabularyData(dataType); }
+            string query = "select * from " + typeof(VocabularyScoreData).Name + " where VocabularyDataType='" + (int)dataType + "'";
             var list = AppManager.I.DB.Query<VocabularyScoreData>(query);
             return list.Count(data => data.Unlocked);
         }
 
-        Dictionary<MiniGameCode, int> GetNumberOfPlaysByMiniGame()
+        private Dictionary<MiniGameCode, int> GetNumberOfPlaysByMiniGame()
         {
             Dictionary<MiniGameCode, int> dict = new Dictionary<MiniGameCode, int>();
             string query = "select * from " + typeof(LogMiniGameScoreData).Name;

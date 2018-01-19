@@ -1,59 +1,60 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 
 namespace Antura.Minigames.Scanner
 {
-	public class ScannerDevice : MonoBehaviour {
+    public class ScannerDevice : MonoBehaviour
+    {
 
-		public float minX;
-		public float maxX;
+        public float minX;
+        public float maxX;
 
-		bool isDragging = false;
-		private Vector3 screenPoint;
-		private Vector3 offset;
+        bool isDragging = false;
+        private Vector3 screenPoint;
+        private Vector3 offset;
 
-		public GameObject goLight;
+        public GameObject goLight;
 
-		public Vector3 fingerOffset;
+        public Vector3 fingerOffset;
 
-		public float backDepth = -5f;
+        public float backDepth = -5f;
 
-		public float depthMovementSpeed = 10f;
+        public float depthMovementSpeed = 10f;
 
-		public ScannerGame game;
+        public ScannerGame game;
 
         public float smoothedDraggingSpeed;
 
         //private float timeDelta;
 
-		private float frontDepth;
+        private float frontDepth;
 
-		private bool moveBack = false;
+        private bool moveBack = false;
 
-		private bool letterEventsNotSet = true;
+        private bool letterEventsNotSet = true;
 
         float dragDamping = 50;
 
         void Start()
-		{
-			goLight.SetActive(false);
+        {
+            goLight.SetActive(false);
 
-			//timeDelta = 0;
-			frontDepth = transform.position.z;
+            //timeDelta = 0;
+            frontDepth = transform.position.z;
 
-		}
+        }
 
-		void OnLetterFlying(ScannerLivingLetter sender)
-		{
-			moveBack = true;
-			StopAllCoroutines();
-			StartCoroutine(co_Reset());
-		}
-			
+        void OnLetterFlying(ScannerLivingLetter sender)
+        {
+            moveBack = true;
+            StopAllCoroutines();
+            StartCoroutine(co_Reset());
+        }
+
         public float speed = 1;
         public ScannerLivingLetter LL;
-        MinigamesCommon.IAudioSource wordSound;
+        Minigames.IAudioSource wordSound;
 
 
         void Update()
@@ -61,29 +62,22 @@ namespace Antura.Minigames.Scanner
 
             calculateSmoothedSpeed();
 
-            if (game.scannerLL.Count != 0 && letterEventsNotSet)
-            {
+            if (game.scannerLL.Count != 0 && letterEventsNotSet) {
                 letterEventsNotSet = false;
-                foreach (ScannerLivingLetter LL in game.scannerLL)
-                {
+                foreach (ScannerLivingLetter LL in game.scannerLL) {
                     LL.onFlying += OnLetterFlying;
                 }
             }
 
-            if (moveBack && transform.position.z < backDepth)
-            {
+            if (moveBack && transform.position.z < backDepth) {
                 transform.Translate(Vector3.forward * depthMovementSpeed * Time.deltaTime);
-            }
-            else if (!moveBack && transform.position.z > frontDepth)
-            {
+            } else if (!moveBack && transform.position.z > frontDepth) {
                 transform.Translate(Vector3.back * depthMovementSpeed * Time.deltaTime);
             }
-            
 
-            if (dataAudio != null)
-            {
-                if (curPos != prevPose)
-                {
+
+            if (dataAudio != null) {
+                if (curPos != prevPose) {
                     playTime = Mathf.Clamp(playTime + Time.deltaTime, 0, dataAudio.Duration);
                     prevPose = scanPos;
                     scanPos = Mathf.Lerp(0, dataAudio.Duration, Vector3.Distance(scanStartPos, transform.position) / 15f);
@@ -95,23 +89,19 @@ namespace Antura.Minigames.Scanner
 
                     //Debug.LogError(dataAudio.Position + " / " + dataAudio.Duration);
                     //Debug.LogError(Mathf.Abs(scanPos) + " / " + Mathf.Abs(prevPose));
-                }
-                else
-                {
+                } else {
                     dataAudio.Pitch = 0;
                     /*scanStartPos = transform.position;
                     playTime = scanPos;*/
                 }
-                if (!isDragging || (willPronounce && (scanPos >= dataAudio.Duration - 0.1f /*|| dataAudio.Position >= dataAudio.Duration - 0.1f*/)))
-                {
+                if (!isDragging || (willPronounce && (scanPos >= dataAudio.Duration - 0.1f /*|| dataAudio.Position >= dataAudio.Duration - 0.1f*/))) {
                     dataAudio = null;
                     willPronounce = false;
                     LL.setColor(Color.white);
                 }
             }
 
-            if (willPronounce && LL && Vector3.Distance(LL.collForScan.position, transform.position) > 5.5f)
-            {
+            if (willPronounce && LL && Vector3.Distance(LL.collForScan.position, transform.position) > 5.5f) {
                 dataAudio = null;
                 willPronounce = false;
                 LL.setColor(Color.white);
@@ -120,7 +110,7 @@ namespace Antura.Minigames.Scanner
 
         }
 
-        
+
         float curPos, prevPose;
         float[] values = new float[16];
         int i = 0;
@@ -145,74 +135,72 @@ namespace Antura.Minigames.Scanner
         }
 
         public void Reset()
-		{
-			moveBack = false;
-		}
+        {
+            moveBack = false;
+        }
 
-		IEnumerator co_Reset()
-		{
-			yield return new WaitForSeconds(3.25f);
-			moveBack = false;
-		}
+        IEnumerator co_Reset()
+        {
+            yield return new WaitForSeconds(3.25f);
+            moveBack = false;
+        }
 
-		void OnMouseDown()
-		{
-            if (game.disableInput)
+        void OnMouseDown()
+        {
+            if (game.disableInput) {
                 return;
+            }
 
-			isDragging = true;
-			goLight.SetActive(true);
-			screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+            isDragging = true;
+            goLight.SetActive(true);
+            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
-			offset = gameObject.transform.position - 
-				Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+            offset = gameObject.transform.position -
+                Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 
-		}
+        }
 
-		void OnMouseDrag()
-		{
-            if (isDragging)
-			{
-				Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-				Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-				transform.position = Vector3.Lerp(transform.position, new Vector3 (
-					Mathf.Clamp(curPosition.x, minX, maxX),
-					transform.position.y, 
-					transform.position.z), Time.deltaTime * dragDamping);
+        void OnMouseDrag()
+        {
+            if (isDragging) {
+                Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+                Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+                transform.position = Vector3.Lerp(transform.position, new Vector3(
+                    Mathf.Clamp(curPosition.x, minX, maxX),
+                    transform.position.y,
+                    transform.position.z), Time.deltaTime * dragDamping);
 
 
-			}
+            }
 
-		}
+        }
 
-		void OnMouseUp()
-		{
-			isDragging = false;
-			goLight.SetActive(false);
-			Reset();
-		}
+        void OnMouseUp()
+        {
+            isDragging = false;
+            goLight.SetActive(false);
+            Reset();
+        }
 
-		//string lastTag = "";
+        //string lastTag = "";
         Vector3 scanStartPos;
         float playTime, scanPos;
         public bool willPronounce = false;
         IAudioSource dataAudio;
 
-        void OnTriggerStay(Collider other) 
-		{
-			if ((other.tag == ScannerGame.TAG_SCAN_START || other.tag == ScannerGame.TAG_SCAN_END) && isDragging)
-			{
-                if (!willPronounce)
-                {
+        void OnTriggerStay(Collider other)
+        {
+            if ((other.tag == ScannerGame.TAG_SCAN_START || other.tag == ScannerGame.TAG_SCAN_END) && isDragging) {
+                if (!willPronounce) {
                     scanStartPos = transform.position;
                     playTime = 0;
                     willPronounce = true;
 
-                    if(LL)
+                    if (LL)
                         LL.setColor(Color.white);
 
                     LL = other.transform.parent.GetComponent<ScannerLivingLetter>();
-                    dataAudio = game.Context.GetAudioManager().PlayLetterData(LL.LLController.Data, true);
+                    dataAudio = game.Context.GetAudioManager().PlayVocabularyData(LL.LLController.Data, true);
 
                     LL.setColor(Color.green);
 
@@ -220,7 +208,7 @@ namespace Antura.Minigames.Scanner
                         game.tut.setupTutorial(2, LL);
 
                 }
-				/*if (timeDelta == 0 || lastTag == other.tag)
+                /*if (timeDelta == 0 || lastTag == other.tag)
 				{
 					timeDelta = Time.time;
 					lastTag = other.tag;
@@ -235,15 +223,14 @@ namespace Antura.Minigames.Scanner
                     if(game.tut.tutStep == 1)
                         game.tut.setupTutorial(2, LL);
                 }*/
-			}
+            }
 
 
-            if (other.gameObject.name.Equals("Antura") && isDragging)
-            {
+            if (other.gameObject.name.Equals("Antura") && isDragging) {
                 game.antura.GetComponent<ScannerAntura>().beScared();
             }
-		}
+        }
 
 
-	}
+    }
 }

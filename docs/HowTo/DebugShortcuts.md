@@ -6,6 +6,8 @@ to enable the Debug panel, the app has to be compiled with the `AppConstants.Deb
 ## Keyboard Shortcuts
 these works in Editor and in the Desktop versions of Antura
 
+- <kbd>SHIFT + B</kbd> add 50 bones
+
 **Home** scene
 - <kbd>SHIFT + R</kbd> open reserved area bypassing the parental gate
 

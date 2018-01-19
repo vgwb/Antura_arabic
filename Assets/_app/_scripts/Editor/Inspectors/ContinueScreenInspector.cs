@@ -48,6 +48,7 @@ namespace Antura.Editor.Inspectors
             GUILayout.Label("References", DeGUI.styles.label.bold);
             src.Bg = EditorGUILayout.ObjectField("Bg", src.Bg, typeof(Button), true) as Button;
             src.BtContinue = EditorGUILayout.ObjectField("BT Continue", src.BtContinue, typeof(Button), true) as Button;
+            src.BtRetry = EditorGUILayout.ObjectField("BT Retry", src.BtRetry, typeof(Button), true) as Button;
             src.IcoContinue = EditorGUILayout.ObjectField("Ico Continue", src.IcoContinue, typeof(RectTransform), true) as RectTransform;
         }
 

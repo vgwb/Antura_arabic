@@ -1,9 +1,8 @@
-﻿using Antura.MinigamesCommon;
 using UnityEngine;
 
 namespace Antura.Minigames.ColorTickle
 {
-    public class ColorTickleGame : MiniGame
+    public class ColorTickleGame : MiniGameController
     {
         #region PUBLIC MEMBERS
 
@@ -16,7 +15,7 @@ namespace Antura.Minigames.ColorTickle
         [SerializeField]
         private int m_Rounds = 3;
         [SerializeField]
-        private int m_MaxLives = 3;        
+        private int m_MaxLives = 3;
         [SerializeField]
         private GameObject m_oWinParticle;
         [SerializeField]
@@ -128,7 +127,7 @@ namespace Antura.Minigames.ColorTickle
 
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }

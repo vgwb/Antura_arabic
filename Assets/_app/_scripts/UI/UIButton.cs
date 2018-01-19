@@ -1,6 +1,7 @@
 ﻿using System;
 using Antura.Audio;
 using DG.DeExtensions;
+using DG.DeInspektor.Attributes;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,13 +16,19 @@ namespace Antura.UI
     {
         #region Serialized
 
+    [DeComment("If Target Bt Img is NULL automatically finds image in same gameObject", style = DeCommentStyle.WrapNextLine, marginBottom = -1)]
+        [SerializeField] Image targetBtImg;
         public Color BtToggleOffColor = Color.white;
         public Color BtLockedColor = Color.red;
         public bool ToggleIconAlpha = true;
 
-        [Tooltip("If this is TRUE and a CanvasGroup is not found, it is automatically added")]
+    [Tooltip("If this is TRUE and a CanvasGroup is not found, it is automatically added")]
         public bool ToggleCanvasGroupAlpha = false;
 
+    [DeToggleButton]
+    [DeComment("Button will become non-interactable after the first click (interactivity will be re-enabled next time it's activated)", "OneShot", true, style = DeCommentStyle.WrapNextLine)]
+    [DeComment("Button will allow multiple clicks", "OneShot", false, style = DeCommentStyle.WrapNextLine)]
+        public bool OneShot = false;
         public bool AutoAnimateClick = true;
         public bool AutoPlayButtonFx = false;
 
@@ -53,11 +60,11 @@ namespace Antura.UI
         public Image BtImg
         {
             get {
-                if (fooBtImg == null) {
-                    fooBtImg = this.GetComponent<Image>();
-                    DefaultColor = fooBtImg.color;
+                if (targetBtImg == null) {
+                    targetBtImg = this.GetComponent<Image>();
+                    DefaultColor = targetBtImg.color;
                 }
-                return fooBtImg;
+                return targetBtImg;
             }
         }
 
@@ -70,6 +77,10 @@ namespace Antura.UI
                     if (icos.Length > 0) fooIco = icos[0];
                 }
                 return fooIco;
+            }
+            set {
+                fooIcoSearched = true;
+                fooIco = value;
             }
         }
 
@@ -84,25 +95,33 @@ namespace Antura.UI
             }
         }
 
-        Button fooBt;
-        Image fooBtImg;
-        Image fooIco;
-        bool fooIcoSearched;
-        RectTransform fooRectT;
-        CanvasGroup fooCGroup;
-        bool tweensInitialized;
-        Tween clickTween, pulseTween;
+        private Button fooBt;
+        private Image fooIco;
+        private bool fooIcoSearched;
+        private RectTransform fooRectT;
+        private CanvasGroup fooCGroup;
+        private bool tweensInitialized;
+        private Tween clickTween, pulseTween;
+        private bool interactivityChangedByOneShot;
 
         #region Unity + INIT
 
         void OnEnable()
         {
-            if (Application.isPlaying) UIDirector.Add(this);
+            if (Application.isPlaying)
+            {
+                UIDirector.Add(this);
+                if (interactivityChangedByOneShot)
+                {
+                    interactivityChangedByOneShot = false;
+                    Bt.interactable = true;
+                }
+            }
         }
 
         void OnDisable()
         {
-            if (Application.isPlaying) UIDirector.Remove(this);
+            if (Application.isPlaying) { UIDirector.Remove(this); }
         }
 
         protected virtual void Awake()
@@ -129,12 +148,12 @@ namespace Antura.UI
         {
             IsToggled = _activate;
 
-            if (pulseTween != null && pulseTween.Elapsed() > 0) pulseTween.Rewind();
+            if (pulseTween != null && pulseTween.Elapsed() > 0) { pulseTween.Rewind(); }
             BtImg.color = _activate ? DefaultColor : IsLocked ? BtLockedColor : BtToggleOffColor;
-            if (ToggleIconAlpha && Ico != null) Ico.SetAlpha(_activate ? 1 : 0.4f);
-            if (ToggleCanvasGroupAlpha) CGroup.alpha = _activate ? 1 : 0.4f;
+            if (ToggleIconAlpha && Ico != null) { Ico.SetAlpha(_activate ? 1 : 0.4f); }
+            if (ToggleCanvasGroupAlpha) { CGroup.alpha = _activate ? 1 : 0.4f; }
 
-            if (_animateClick) AnimateClick(true);
+            if (_animateClick) { AnimateClick(true); }
         }
 
         public virtual void Lock(bool _doLock)
@@ -148,7 +167,7 @@ namespace Antura.UI
         {
             BtImg.color = new Color(_defaultColor.r, _defaultColor.g, _defaultColor.b, BtImg.color.a);
             DefaultColor = _defaultColor;
-            if (_toggleOffColor != null) BtToggleOffColor = (Color) _toggleOffColor;
+            if (_toggleOffColor != null) { BtToggleOffColor = (Color)_toggleOffColor; }
         }
 
         /// <summary>
@@ -170,7 +189,7 @@ namespace Antura.UI
         {
             InitTweens();
             pulseTween.Rewind();
-            if (AutoAnimateClick || _force) clickTween.Restart();
+            if (AutoAnimateClick || _force) { clickTween.Restart(); }
         }
 
         public void PlayClickFx()
@@ -184,7 +203,7 @@ namespace Antura.UI
 
         void InitTweens()
         {
-            if (tweensInitialized) return;
+            if (tweensInitialized) { return; }
 
             tweensInitialized = true;
             clickTween.ForceInit();
@@ -197,8 +216,13 @@ namespace Antura.UI
 
         void OnInternalClick()
         {
-            if (AutoAnimateClick) AnimateClick();
-            if (AutoPlayButtonFx) PlayClickFx();
+            if (AutoAnimateClick) { AnimateClick(); }
+            if (AutoPlayButtonFx) { PlayClickFx(); }
+            if (OneShot)
+            {
+                interactivityChangedByOneShot = true;
+                Bt.interactable = false;
+            }
         }
 
         #endregion

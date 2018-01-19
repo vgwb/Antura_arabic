@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+#if UNITY_EDITOR
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +9,6 @@ using Antura.Profile;
 using Antura.Rewards;
 using Antura.Teacher;
 using Antura.UI;
-using PlayerProfile = Antura.Profile.PlayerProfile;
 
 // refactor: standardize random use across the codebase
 using RND = UnityEngine.Random;
@@ -25,11 +24,12 @@ namespace Antura.Database.Management
         [HideInInspector]
         public DatabaseManager dbManager;
         private TeacherAI teacherAI;
-        private Profile.PlayerProfile playerProfile;
+        private PlayerProfile playerProfile;
 
         public Text OutputText;
         public TextRender OutputTextArabic;
 
+        private VocabularyHelper vocabularyHelper;
         private ScoreHelper scoreHelper;
 
         public static string DEBUG_PLAYER_UUID = "TEST";
@@ -39,10 +39,9 @@ namespace Antura.Database.Management
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
 
             dbManager = new DatabaseManager();
-            var vocabularyHelper = new VocabularyHelper(dbManager);
-            var journeyHelper = new JourneyHelper(dbManager);
+            vocabularyHelper = new VocabularyHelper(dbManager);
             scoreHelper = new ScoreHelper(dbManager);
-            teacherAI = new TeacherAI(dbManager, vocabularyHelper, journeyHelper, scoreHelper);
+            teacherAI = new TeacherAI(dbManager, vocabularyHelper, scoreHelper);
 
             // Load the first profile
             LoadProfile(DEBUG_PLAYER_UUID);
@@ -254,12 +253,12 @@ namespace Antura.Database.Management
             }
 
             foreach (var w in dbManager.StaticDatabase.GetWordTable().GetValuesTyped()) {
-                Helpers.ArabicAlphabetHelper.AnalyzeData(dbManager, w, false, false);
+                Helpers.ArabicAlphabetHelper.SplitWord(dbManager, w, false, false);
             }
 
 
             foreach (var w in dbManager.StaticDatabase.GetPhraseTable().GetValuesTyped()) {
-                Helpers.ArabicAlphabetHelper.AnalyzeData(dbManager, w, false, false);
+                Helpers.ArabicAlphabetHelper.SplitPhrase(dbManager, w, false, false);
             }
 
             /*
@@ -284,6 +283,24 @@ namespace Antura.Database.Management
 
             //LL_WordData newWordData = new LL_WordData(AppManager.I.DB.GetWordDataById("wolf"));
             */
+
+        }
+
+        public void TestVocabularyHelper()
+        {
+            var allWords = vocabularyHelper.GetAllWords(new WordFilters());
+            var testWord = allWords[2];
+            Debug.Log("N words: " + allWords.Count);
+            Debug.Log("TEST Word: " + testWord);
+            var lettersInWord = vocabularyHelper.GetLettersInWord(testWord);
+            Debug.Log("Letters in that word: " + lettersInWord.ToDebugString());
+
+            var testLetter = lettersInWord[0];
+            var wordsWithLetters = vocabularyHelper.GetWordsWithLetter(new WordFilters(), testLetter, LetterEqualityStrictness.LetterOnly);
+            Debug.Log("Words with unstrict letter " + testLetter + ": \n" + wordsWithLetters.ToDebugStringNewline());
+
+            wordsWithLetters = vocabularyHelper.GetWordsWithLetter(new WordFilters(), testLetter, LetterEqualityStrictness.WithActualForm);
+            Debug.Log("Words with strict letter " + testLetter + ": \n" + wordsWithLetters.ToDebugStringNewline());
 
         }
 
@@ -325,7 +342,7 @@ namespace Antura.Database.Management
             newData.Stage = 1;
             newData.LearningBlock = 1;
             newData.PlaySession = 1;
-            newData.MiniGameCode = MiniGameCode.Assessment_LetterForm;
+            newData.MiniGameCode = MiniGameCode.Assessment_LetterAny;
 
             newData.VocabularyDataType = RandomHelper.GetRandomEnum<VocabularyDataType>();
 
@@ -547,7 +564,7 @@ namespace Antura.Database.Management
 
         public void Teacher_FailedAssessmentLetters()
         {
-            var list = teacherAI.GetFailedAssessmentLetters(MiniGameCode.Assessment_LetterForm);
+            var list = teacherAI.GetFailedAssessmentLetters(MiniGameCode.Assessment_LetterAny);
 
             string output = "Failed letters for assessment 'Letters':\n";
             foreach (var data in list) output += data.ToString() + "\n";
@@ -556,7 +573,7 @@ namespace Antura.Database.Management
 
         public void Teacher_FailedAssessmentWords()
         {
-            var list = teacherAI.GetFailedAssessmentWords(MiniGameCode.Assessment_LetterForm);
+            var list = teacherAI.GetFailedAssessmentWords(MiniGameCode.Assessment_LetterAny);
 
             string output = "Failed words for assessment 'Letters':\n";
             foreach (var data in list) output += data.ToString() + "\n";
@@ -605,8 +622,8 @@ namespace Antura.Database.Management
         public void LoadProfile(string playerUuid)
         {
             dbManager.LoadDatabaseForPlayer(playerUuid);
-            playerProfile = new Profile.PlayerProfile();
-            playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 2, 2);    // test
+            playerProfile = new PlayerProfile();
+            playerProfile.SetCurrentJourneyPosition(new JourneyPosition(1, 2, 2), _save: false);    // test
             teacherAI.SetPlayerProfile(playerProfile);
             PrintOutput("Loading profile " + playerUuid);
         }
@@ -625,7 +642,11 @@ namespace Antura.Database.Management
 
         public void TestDynamicProfileData()
         {
-            dbManager.UpdatePlayerProfileData(new PlayerProfileData(new PlayerIconData(DEBUG_PLAYER_UUID, 1, PlayerGender.M, PlayerTint.Blue, false, false, false), 5, 8, 0));
+            dbManager.UpdatePlayerProfileData(
+                new PlayerProfileData(DEBUG_PLAYER_UUID, 1, PlayerGender.M, PlayerTint.Blue, false, false, false, false,
+                                      5, 8, 0, "", 0, new AnturaSpace.ShopState(), new FirstContactState()
+                                     )
+            );
             var playerProfileData = dbManager.GetPlayerProfileData();
             PrintOutput(playerProfileData.ToString());
         }
@@ -637,9 +658,9 @@ namespace Antura.Database.Management
         public void TestRewardUnlocks()
         {
             var jp = new JourneyPosition(1, 1, 2);
-            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "aaa", "black", RewardTypes.decal, jp));
-            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "bbb", "black", RewardTypes.decal, jp));
-            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "ccc", "black", RewardTypes.decal, jp));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "aaa_black", jp));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "bbb_black", jp));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "ccc_black", jp));
             var rewardPackUnlockDatas = dbManager.GetAllRewardPackUnlockData();
             DumpAllData(rewardPackUnlockDatas);
         }

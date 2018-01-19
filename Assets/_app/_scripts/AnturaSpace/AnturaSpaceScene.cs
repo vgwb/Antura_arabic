@@ -1,7 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using Antura.AnturaSpace.UI;
 using Antura.Audio;
-using Antura.MinigamesCommon;
+using Antura.Core;
+using Antura.FSM;
+using Antura.Minigames;
+using Antura.Tutorial;
 using Antura.UI;
+using System.Collections.Generic;
+using System.Linq;
+using Antura.Profile;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -11,35 +18,27 @@ namespace Antura.AnturaSpace
     /// </summary>
     public class AnturaSpaceScene : SceneBase
     {
-        private const int MaxBonesInScene = 5;
+        private const int MaxSpawnedObjectsInScene = 5;
 
         [Header("References")]
         public AnturaLocomotion Antura;
 
         public AnturaSpaceUI UI;
-        public AnturaSpaceTutorial Tutorial;
+        public ShopActionsManager ShopActionsManager;
 
         public Transform SceneCenter;
         public Pedestal RotatingBase;
         public Transform AttentionPosition;
-        public Transform BoneSpawnPosition;
-        public GameObject BonePrefab;
         public GameObject PoofPrefab;
 
-        public bool MustShowBonesButton { get; set; }
-        public Transform DraggingBone { get; private set; }
-
-        public Transform NextBoneToCatch
+        public ThrowableObject NextObjectToCatch
         {
             get {
-                if (bones.Count == 0) {
-                    return null;
-                }
-                return bones[0].transform;
+                var nextObject = spawnedObjects.FirstOrDefault(x => x.Catchable);
+                if (nextObject == null) { return null; }
+                return nextObject;
             }
         }
-
-        private List<GameObject> bones = new List<GameObject>();
 
         public AnturaIdleState Idle;
         public AnturaCustomizationState Customization;
@@ -49,26 +48,27 @@ namespace Antura.AnturaSpace
         public AnturaWaitingThrowState WaitingThrow;
         public AnturaCatchingState Catching;
 
-        private StateManager stateManager = new StateManager();
+        private StateMachineManager stateManager = new StateMachineManager();
 
         public AnturaState CurrentState
         {
-            get { return (AnturaState) stateManager.CurrentState; }
+            get { return (AnturaState)stateManager.CurrentState; }
             set { stateManager.CurrentState = value; }
         }
 
         public bool HasPlayerBones
         {
             get {
-                var totalBones = AppManager.I.Player.GetTotalNumberOfBones();
-
-                return totalBones > 0;
+                return AppManager.I.Player.GetTotalNumberOfBones() > 0;
             }
         }
 
         public float AnturaHappiness { get; private set; }
         public bool InCustomizationMode { get; private set; }
         public float LastTimeCatching { get; set; }
+
+        public Action onEatObject;
+        public Action onHitObject;
 
         protected override void Init()
         {
@@ -77,13 +77,13 @@ namespace Antura.AnturaSpace
             UI.onEnterCustomization += OnEnterCustomization;
             UI.onExitCustomization += OnExitCustomization;
 
-            Antura.onTouched += () =>
-            {
+            Antura.onTouched += () => {
                 if (CurrentState != null) {
                     CurrentState.OnTouched();
                 }
 
-                if (CurrentState == Customization) {
+                if (CurrentState == Customization && (!TutorialMode))
+                {
                     UI.ToggleModsPanel();
                 }
             };
@@ -107,12 +107,15 @@ namespace Antura.AnturaSpace
             base.Start();
 
             GlobalUI.ShowPauseMenu(false);
-
-            if (!AppManager.I.Player.IsFirstContact()) {
-                ShowBackButton();
-            }
+            //ShowBackButton();
 
             CurrentState = Idle;
+
+            ShopActionsManager.Initialise();
+            UI.Initialise();
+
+            TutorialManager tutorialManager = gameObject.GetComponentInChildren<AnturaSpaceTutorialManager>();
+            tutorialManager.HandleStart();
         }
 
         public void Update()
@@ -124,16 +127,12 @@ namespace Antura.AnturaSpace
 
             stateManager.Update(Time.deltaTime);
 
-            if (!Tutorial.IsRunning) {
-                UI.ShowBonesButton(MustShowBonesButton && (bones.Count < MaxBonesInScene));
-            }
-
             UI.BonesCount = AppManager.I.Player.GetTotalNumberOfBones();
 
-            if (DraggingBone != null && !Input.GetMouseButton(0)) {
+            if (DraggedTransform != null && !Input.GetMouseButton(0)) {
                 AudioManager.I.PlaySound(Sfx.ThrowObj);
-                DraggingBone.GetComponent<BoneBehaviour>().LetGo();
-                DraggingBone = null;
+                DraggedTransform.GetComponent<ThrowableObject>().LetGo();
+                DraggedTransform = null;
             }
         }
 
@@ -146,16 +145,20 @@ namespace Antura.AnturaSpace
         {
             GlobalUI.ShowBackButton(true, OnExit);
         }
+        public void HideBackButton()
+        {
+            GlobalUI.ShowBackButton(false);
+        }
 
         void OnExit()
         {
-            AppManager.I.NavigationManager.GoBack();
+            AppManager.I.NavigationManager.GoToNextScene();
         }
 
         void OnEnterCustomization()
         {
-            GlobalUI.ShowBackButton(false);
-            ShowBackButton();
+            HideBackButton();
+
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
             InCustomizationMode = true;
             CurrentState = Customization;
@@ -163,62 +166,75 @@ namespace Antura.AnturaSpace
 
         void OnExitCustomization()
         {
-            GlobalUI.ShowBackButton(false);
-            ShowBackButton();
+            if (!tutorialManager.IsRunning || tutorialManager.CurrentRunningPhase == FirstContactPhase.AnturaSpace_Exit)
+            {
+                ShowBackButton();
+            }
+
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
             InCustomizationMode = false;
             CurrentState = Idle;
         }
 
-        #region bones actions
 
-        public void ThrowBone()
+        #region Throwable actions
+
+        public Transform DraggedTransform { get; private set; }
+        public Transform ObjectSpawnPivotTr;
+        private List<ThrowableObject> spawnedObjects = new List<ThrowableObject>();
+
+        public bool CanSpawnMoreObjects
         {
-            if (DraggingBone != null) {
-                return;
-            }
+            get { return spawnedObjects.Count < MaxSpawnedObjectsInScene; }
+        }
 
-            if (bones.Count < MaxBonesInScene && AppManager.I.Player.TotalNumberOfBones > 0) {
+        public ThrowableObject ThrowObject(ThrowableObject ObjectPrefab)
+        {
+            if (DraggedTransform != null) { return null; }
+
+            if (CanSpawnMoreObjects) {
                 AudioManager.I.PlaySound(Sfx.ThrowObj);
-                var bone = Instantiate(BonePrefab);
-                bone.SetActive(true);
-                bone.transform.position = BoneSpawnPosition.position;
-                bone.GetComponent<BoneBehaviour>().SimpleThrow();
-                bones.Add(bone);
-                --AppManager.I.Player.TotalNumberOfBones;
-            } else {
-                AudioManager.I.PlaySound(Sfx.KO);
+
+                var throwableObject = SpawnNewObject(ObjectPrefab);
+                throwableObject.SimpleThrow();
+                return throwableObject;
             }
+            return null;
         }
 
-
-        /// <summary>
-        /// Drag a bone around.
-        /// </summary>
-        public void DragBone()
+        public ThrowableObject DragObject(ThrowableObject ObjectPrefab)
         {
-            if (DraggingBone != null)
-                return;
+            if (DraggedTransform != null) { return null; }
 
-            if (bones.Count <= MaxBonesInScene && AppManager.I.Player.TotalNumberOfBones > 0) {
-                var bone = Instantiate(BonePrefab);
-                bone.SetActive(true);
-                bone.transform.position = BoneSpawnPosition.position;
-                DraggingBone = bone.transform;
-                bones.Add(bone);
-                --AppManager.I.Player.TotalNumberOfBones;
-                bone.GetComponent<BoneBehaviour>().Drag();
-            } else {
-                AudioManager.I.PlaySound(Sfx.KO);
+            if (CanSpawnMoreObjects) {
+                ShopDecorationsManager.I.SetContextNewPlacement();
+                var throwableObject = SpawnNewObject(ObjectPrefab);
+                DraggedTransform = throwableObject.transform;
+                throwableObject.Drag();
+                throwableObject.OnRelease += ShopDecorationsManager.I.SetContextPurchase;
+                return throwableObject;
             }
+            return null;
         }
 
-        public void EatBone(GameObject bone)
+        private ThrowableObject SpawnNewObject(ThrowableObject ObjectPrefab)
         {
-            if (bones.Remove(bone)) {
+            Antura.BoneSmell();
+
+            var newObjectGo = Instantiate(ObjectPrefab.gameObject);
+            newObjectGo.SetActive(true);
+            newObjectGo.transform.position = ObjectSpawnPivotTr.position;
+            var throwableObject = newObjectGo.GetComponent<ThrowableObject>();
+            spawnedObjects.Add(throwableObject);
+            return throwableObject;
+        }
+
+        public void EatObject(ThrowableObject throwableObject)
+        {
+            if (spawnedObjects.Remove(throwableObject)) {
                 AudioManager.I.PlaySound(Sfx.EggMove);
                 var poof = Instantiate(PoofPrefab).transform;
-                poof.position = bone.transform.position;
+                poof.position = throwableObject.transform.position;
 
                 foreach (var ps in poof.GetComponentsInChildren<ParticleSystem>()) {
                     var main = ps.main;
@@ -233,7 +249,26 @@ namespace Antura.AnturaSpace
                     AnturaHappiness = 1;
                 }
 
-                Destroy(bone);
+                if (onEatObject != null) onEatObject();
+
+                Destroy(throwableObject.gameObject);
+            }
+        }
+
+        public void HitObject(ThrowableObject throwableObject)
+        {
+            if (spawnedObjects.Remove(throwableObject)) {
+                AudioManager.I.PlaySound(Sfx.EggMove);
+
+                AnturaHappiness += 0.2f;
+                if (AnturaHappiness > 1) {
+                    AnturaHappiness = 1;
+                }
+
+
+                if (onHitObject  != null) onHitObject();
+
+                throwableObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 20, ForceMode.Impulse);
             }
         }
 

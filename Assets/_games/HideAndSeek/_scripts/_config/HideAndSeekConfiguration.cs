@@ -1,68 +1,68 @@
-﻿using Antura.LivingLetters;
+using System;
 using Antura.LivingLetters.Sample;
-using Antura.MinigamesCommon;
 using Antura.Teacher;
 
 namespace Antura.Minigames.HideAndSeek
 {
     public enum HideAndSeekVariation
     {
-        Default = MiniGameCode.HideSeek
+        LetterPhoneme = MiniGameCode.HideSeek_letterphoneme
     }
 
-    public class HideAndSeekConfiguration : IGameConfiguration
+    public class HideAndSeekConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
+        private HideAndSeekVariation Variation { get; set; }
 
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
-        public HideAndSeekVariation Variation { get; set; }
-
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (HideAndSeekVariation) code;
+            Variation = (HideAndSeekVariation)code;
         }
 
-        /////////////////
         // Singleton Pattern
         static HideAndSeekConfiguration instance;
-		public static HideAndSeekConfiguration Instance
+        public static HideAndSeekConfiguration Instance
         {
             get
             {
                 if (instance == null)
-					instance = new HideAndSeekConfiguration();
+                    instance = new HideAndSeekConfiguration();
                 return instance;
             }
         }
-        /////////////////
 
-		private HideAndSeekConfiguration()
+        private HideAndSeekConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new MinigamesGameContext(MiniGameCode.HideSeek, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.HideSeek_letterphoneme, System.DateTime.Now.Ticks.ToString());
             Questions = new SampleQuestionProvider();
             Difficulty = 0.5f;
             TutorialEnabled = true;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public override IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
             int nCorrect = 1;
             int nWrong = 6;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+            var builderParams = new QuestionBuilderParameters();
+            switch (Variation)
+            {
+                case HideAndSeekVariation.LetterPhoneme:
+                    var letterAlterationFilters = LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters_OneForm;
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, nCorrect, nWrong: nWrong, letterAlterationFilters: letterAlterationFilters, parameters: builderParams,
+                            avoidWrongLettersWithSameSound: true);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             return builder;
         }
 
-        public MiniGameLearnRules SetupLearnRules()
+        public override MiniGameLearnRules SetupLearnRules()
         {
             var rules = new MiniGameLearnRules();
             // example: a.minigameVoteSkewOffset = 1f;

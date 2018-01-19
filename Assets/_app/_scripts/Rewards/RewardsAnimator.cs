@@ -1,8 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
 using Antura.Audio;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using DG.Tweening;
+using System.Collections;
+using Antura.Core;
+using UnityEngine;
 
 namespace Antura.Rewards
 {
@@ -14,7 +15,6 @@ namespace Antura.Rewards
     {
         [Header("Settings")]
         public float Pedestal360Duration = 15f;
-
         public float Godrays360Duration = 15f;
 
         [Header("References")]
@@ -24,13 +24,14 @@ namespace Antura.Rewards
         public RectTransform Godray0, Godray1;
         public RectTransform LockClosed, LockOpen;
         public ParticleSystem PoofParticle;
+        public RectTransform AnturaButton;
 
         public bool IsComplete { get; private set; }
 
         private Sequence showTween, godraysTween;
         private Tween pedestalTween;
 
-        private Database.RewardPackUnlockData rewardPackUnlockData = null;
+        private RewardPack rewardPack = null;
         private GameObject newRewardInstantiatedGO;
         private RewardsScene rewardsSceneController;
         private float rotationAngleView = 0;
@@ -46,9 +47,9 @@ namespace Antura.Rewards
             // Reward 
             rewardsSceneController = GetComponent<RewardsScene>();
             rewardsSceneController.ClearLoadedRewardsOnAntura();
-            rewardPackUnlockData = rewardsSceneController.GetRewardToInstantiate();
-            rotationAngleView = RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPackUnlockData.GetRewardCategory());
-            newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPackUnlockData);
+            rewardPack = rewardsSceneController.GetRewardPackToInstantiate();
+            rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPack.Category);
+            newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPack);
 
             if (newRewardInstantiatedGO) {
                 newRewardInstantiatedGO.transform.DOScale(0.00001f, 0f).SetEase(Ease.OutBack);
@@ -59,8 +60,7 @@ namespace Antura.Rewards
                     .Append(LockClosed.DOShakePosition(0.8f, 40f, 16, 90, false, false))
                     .Join(LockClosed.DOShakeRotation(0.8f, new Vector3(0, 0, 70f), 16, 90, false))
                     .Join(LockClosed.DOPunchScale(Vector3.one * 0.8f, 0.4f, 20))
-                    .AppendCallback(() =>
-                    {
+                    .AppendCallback(() => {
                         LockClosed.gameObject.SetActive(false);
                         LockOpen.gameObject.SetActive(true);
                         if (alarmClockSound != null) {
@@ -92,8 +92,7 @@ namespace Antura.Rewards
                     .Append(LockClosed.DOShakePosition(0.8f, 40f, 16, 90, false, false))
                     .Join(LockClosed.DOShakeRotation(0.8f, new Vector3(0, 0, 70f), 16, 90, false))
                     .Join(LockClosed.DOPunchScale(Vector3.one * 0.8f, 0.4f, 20))
-                    .AppendCallback(() =>
-                    {
+                    .AppendCallback(() => {
                         LockClosed.gameObject.SetActive(false);
                         LockOpen.gameObject.SetActive(true);
                         if (alarmClockSound != null) {
@@ -117,6 +116,7 @@ namespace Antura.Rewards
                     .AppendInterval(0.3f)
                     .AppendCallback(() => { pedestalTween.Play(); });
             }
+            //showTween.Insert(showTween.Duration(false) - 1, AnturaButton.DOAnchorPosY(-200, 0.4f).From(true).SetEase(Ease.OutBack));
 
             godraysTween = DOTween.Sequence().SetLoops(-1, LoopType.Restart)
                 .Append(Godray0.DORotate(new Vector3(0, 0, 360), Godrays360Duration, RotateMode.FastBeyond360).SetRelative()
@@ -136,11 +136,12 @@ namespace Antura.Rewards
 
         void InstantiateReward()
         {
-            newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPackUnlockData);
+            newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPack);
         }
 
         void playParticle()
         {
+            if (PoofParticle == null || newRewardInstantiatedGO == null) return;
             PoofParticle.transform.position = newRewardInstantiatedGO.transform.position;
             PoofParticle.Play();
         }
@@ -159,12 +160,11 @@ namespace Antura.Rewards
             RewardSystemManager.OnNewRewardUnlocked += RewardSystemManager_OnRewardChanged;
         }
 
-        private void RewardSystemManager_OnRewardChanged(Database.RewardPackUnlockData _rewardPackUnlockData)
+        private void RewardSystemManager_OnRewardChanged(RewardPack rewardPack)
         {
-            rewardPackUnlockData = _rewardPackUnlockData;
-            if (rewardPackUnlockData.Type == RewardTypes.reward) {
-                Reward r = rewardPackUnlockData.GetReward();
-                rotationAngleView = RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(r.Category);
+            this.rewardPack = rewardPack;
+            if (rewardPack.BaseType == RewardBaseType.Prop) {
+                rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPack.Category);
             }
         }
 

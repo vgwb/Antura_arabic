@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.Tobogan
 {
-    public class ToboganGame : MiniGame
+    public class ToboganGame : MiniGameController
     {
         public static readonly Color32 LETTER_MARK_COLOR = new Color32(0x4C, 0xAF, 0x50, 0xFF);
         public static readonly Color32 LETTER_MARK_PIPE_COLOR = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
@@ -71,7 +71,7 @@ namespace Antura.Minigames.Tobogan
             return ToboganConfiguration.Instance;
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return QuestionState;
         }

@@ -8,17 +8,17 @@ namespace Antura.Assessment
     {
         bool done = false;
 
-        public WaitCoroutine( IEnumerator enumerator)
+        public WaitCoroutine(IEnumerator enumerator)
         {
-            if (enumerator == null)
+            if (enumerator == null) {
                 throw new ArgumentNullException();
-
-            Koroutine.Run( ParallelCoroutine( enumerator));
+            }
+            Koroutine.Run(ParallelCoroutine(enumerator));
         }
 
-        IEnumerator ParallelCoroutine( IEnumerator enumerator)
+        IEnumerator ParallelCoroutine(IEnumerator enumerator)
         {
-            yield return Koroutine.Nested( enumerator);
+            yield return Koroutine.Nested(enumerator);
             done = true;
         }
 
@@ -27,12 +27,12 @@ namespace Antura.Assessment
             return done;
         }
 
-        public void OnYield( ICoroutineEngine engine)
+        public void OnYield(ICoroutineEngine engine)
         {
-            engine.RegisterCustomYield( this);
+            engine.RegisterCustomYield(this);
         }
 
-        public void Update( Method method)
+        public void Update(Method method)
         {
 
         }

@@ -1,8 +1,6 @@
-﻿using Antura.MinigamesCommon;
-
 namespace Antura.Minigames.MakeFriends
 {
-    public class MakeFriendsIntroductionState : IState
+    public class MakeFriendsIntroductionState : FSM.IState
     {
         MakeFriendsGame game;
 
@@ -30,23 +28,18 @@ namespace Antura.Minigames.MakeFriends
 
         public void Update(float delta)
         {
-            if (takenAction)
-            {
+            if (takenAction) {
                 return;
             }
 
             timer -= delta;
 
-            if (timer < 0)
-            {
+            if (timer < 0) {
                 takenAction = true;
 
-                if (game.TutorialEnabled)
-                {
+                if (game.TutorialEnabled) {
                     game.PlayTutorial();
-                }
-                else
-                {
+                } else {
                     game.SetCurrentState(game.QuestionState);
                 }
             }

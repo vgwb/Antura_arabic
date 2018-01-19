@@ -1,6 +1,6 @@
+using Antura.Core;
 using Kore.Coroutines;
 using System.Collections;
-using Antura.Core;
 
 namespace Antura.Assessment
 {
@@ -8,12 +8,12 @@ namespace Antura.Assessment
     /// Result state. notify the LogManager of game ended and play final animation.
     /// Also teleport to main map.
     /// </summary>
-    public class AssessmentResultState : IState
+    public class AssessmentResultState : FSM.IState
     {
         private AssessmentGame assessmentGame;
         private AssessmentAudioManager dialogueManager;
 
-        public AssessmentResultState( AssessmentGame assessmentGame, AssessmentAudioManager dialogueManager)
+        public AssessmentResultState(AssessmentGame assessmentGame, AssessmentAudioManager dialogueManager)
         {
             this.assessmentGame = assessmentGame;
             this.dialogueManager = dialogueManager;
@@ -22,19 +22,20 @@ namespace Antura.Assessment
         public void EnterState()
         {
             AssessmentConfiguration.Instance.Context.GetLogManager().OnGameEnded(3);
+            LogManager.I.LogPlaySessionScore(AppManager.I.JourneyHelper.GetCurrentPlaySessionData().Id, 3);
 
             var audioManager = assessmentGame.Context.GetAudioManager();
 
-            audioManager.PlayMusic( Music.Relax);
-            audioManager.PlaySound( Sfx.TickAndWin);
+            audioManager.PlayMusic(Music.Relax);
+            audioManager.PlaySound(Sfx.TickAndWin);
             dialogueManager.PlayAssessmentCompleteSound();
 
-            Koroutine.Run( QuitAfterSomeTime( seconds: 2));
+            Koroutine.Run(QuitAfterSomeTime(seconds: 2));
         }
 
         IEnumerator QuitAfterSomeTime(float seconds)
         {
-            yield return Wait.For( seconds);
+            yield return Wait.For(seconds);
             ExitState();
         }
 
@@ -47,12 +48,12 @@ namespace Antura.Assessment
             }
         }
 
-        public void Update( float delta)
+        public void Update(float delta)
         {
 
         }
 
-        public void UpdatePhysics( float delta)
+        public void UpdatePhysics(float delta)
         {
 
         }

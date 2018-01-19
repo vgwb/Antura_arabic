@@ -9,8 +9,7 @@ namespace Antura.Assessment
 
         public static float Get(LivingLetterDataType dataType)
         {
-            switch (dataType)
-            {
+            switch (dataType) {
                 case LivingLetterDataType.Word:
                     return 1.3f;
                 case LivingLetterDataType.Phrase:

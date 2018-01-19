@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Core;
+using Antura.Database;
 
 namespace Antura.Teacher
 {
@@ -28,7 +29,10 @@ namespace Antura.Teacher
 
         public RandomLettersQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false, QuestionBuilderParameters parameters = null)
         {
-            if (parameters == null) parameters = new QuestionBuilderParameters();
+            if (parameters == null)
+            {
+                parameters = new QuestionBuilderParameters();
+            }
 
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
@@ -37,7 +41,7 @@ namespace Antura.Teacher
             this.parameters = parameters;
 
             // Forced filters
-            this.parameters.letterFilters.excludeDiphthongs = true; 
+            this.parameters.letterFilters.excludeDiphthongs = true;
         }
 
         private List<string> previousPacksIDs = new List<string>();
@@ -46,7 +50,7 @@ namespace Antura.Teacher
         {
             previousPacksIDs.Clear();
 
-            List<QuestionPackData> packs = new List<QuestionPackData>();
+            var packs = new List<QuestionPackData>();
             for (int pack_i = 0; pack_i < nPacks; pack_i++)
             {
                 var pack = CreateSingleQuestionPackData();
@@ -67,15 +71,15 @@ namespace Antura.Teacher
                 );
 
             var wrongLetters = teacher.VocabularyAi.SelectData(
-                () => vocabularyHelper.GetLettersNotIn(parameters.letterFilters, correctLetters.ToArray()),
+                () => vocabularyHelper.GetLettersNotIn(LetterEqualityStrictness.LetterOnly, parameters.letterFilters, correctLetters.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
-                     packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs,
-                        journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage)
+                        packListHistory: PackListHistory.NoFilter,
+                        journeyFilter: SelectionParameters.JourneyFilter.CurrentJourney)
                 );
 
             var question = firstCorrectIsQuestion ? correctLetters[0] : null;
 
-            if (ConfigAI.verboseQuestionPacks)
+            if (ConfigAI.VerboseQuestionPacks)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nCorrect Letters: " + correctLetters.Count;

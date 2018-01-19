@@ -1,0 +1,28 @@
+var class_antura_1_1_dog_1_1_antura_animation_controller =
+[
+    [ "DoBite", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a869a2d811de25474b1547cd46dab3eeb", null ],
+    [ "DoBurp", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a9ab5e8c47597b6437ebe3abc9634bbef", null ],
+    [ "DoCharge", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a207663df75670a8d8a098a0988cbfb90", null ],
+    [ "DoShout", "class_antura_1_1_dog_1_1_antura_animation_controller.html#ac20a3b58c1d2af5649fa8ac1a63f2eae", null ],
+    [ "DoSmallJumpAndGrab", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a619ca17e7823c7db5fafc0b9465c7d8c", null ],
+    [ "DoSniff", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a65b35ce8ff3587e39a5a74e8c5eb8619", null ],
+    [ "DoSpit", "class_antura_1_1_dog_1_1_antura_animation_controller.html#ad8d62b7495a5ebf6b2e967ff18b452df", null ],
+    [ "OnJumpEnded", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a18bf7173d0a83e3d8528ee255d7b5874", null ],
+    [ "OnJumpGrab", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a71864a87660be1924263d0e54726365a", null ],
+    [ "OnJumpMaximumHeightReached", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a0b8db6a4a9f25a05262bd33502412344", null ],
+    [ "OnJumpStart", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a242569221dc91a26638590c63e57b695", null ],
+    [ "OnSlipEnded", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a23118e3266b5795bceeb4c85cfba4dda", null ],
+    [ "OnSlipStarted", "class_antura_1_1_dog_1_1_antura_animation_controller.html#ad5a9f217a395f89c63e6577c904c0ff1", null ],
+    [ "SetWalkingSpeed", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a1e5b205cf1c1edb1b48593e16bf3e569", null ],
+    [ "RUN_SPEED", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a7ca798df5afc8e74fb6e53c139287a85", null ],
+    [ "WALKING_SPEED", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a60a91caf980a8c19df4b952b6a63e29a", null ],
+    [ "animator", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a2a195353ba02a797445f8a6baaefd9c2", null ],
+    [ "IsAngry", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a0f3754e553bf390ad54d3e20b788abac", null ],
+    [ "IsAnimationActuallyJumping", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a342f5824d7d3938895d04f3a8cc6ca54", null ],
+    [ "IsAnimationActuallyWalking", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a82fc410adab75ba8725673198f9a52a8", null ],
+    [ "IsExcited", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a724465abbd93d0f6d72c039b7141ae08", null ],
+    [ "IsJumping", "class_antura_1_1_dog_1_1_antura_animation_controller.html#af157f2b2cfee0d46d5270bf97c015ea7", null ],
+    [ "IsSad", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a04a37c4997572f418e1b4565b94c8480", null ],
+    [ "State", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a4a8ed5f7e4fc34d21847a77b8abdf69c", null ],
+    [ "WalkingSpeed", "class_antura_1_1_dog_1_1_antura_animation_controller.html#a297614b93420a60f439a1e702ee973f8", null ]
+];

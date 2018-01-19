@@ -62,7 +62,7 @@ namespace Antura.Minigames.MakeFriends
             }
         }
 
-        public void SpawnLivingLetter(LL_WordData wordData)
+        public MakeFriendsLivingLetter SpawnLivingLetter(LL_WordData wordData)
         {
             AdjustForDifficulty();
 
@@ -74,6 +74,8 @@ namespace Antura.Minigames.MakeFriends
             livingLetter.focusOnTouch = MakeFriendsGame.Instance.Configuration.DifficultyChoice == MakeFriendsDifficulty.HARD ? false : true;
 
             AdjustForDifficulty();
+
+            return livingLetter;
         }
 
         public void MakeEntrance()

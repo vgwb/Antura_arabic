@@ -1,4 +1,5 @@
-﻿using Antura.Audio;
+using System.Linq;
+using Antura.Audio;
 using Antura.Core;
 using Antura.Database;
 using Antura.Rewards;
@@ -22,35 +23,32 @@ namespace Antura.GamesSelector
         void Start()
         {
             // Fill with data
-            JourneyPosition journeyPos = AppManager.I.Player.CurrentJourneyPosition;
-            PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.ToStringId());
-            LearningBlockData learningBlock =
-                AppManager.I.DB.GetLearningBlockDataById(playSessionData.Stage + "." + playSessionData.LearningBlock.ToString());
+            var journeyPos = AppManager.I.Player.CurrentJourneyPosition;
+            var playSession = AppManager.I.DB.GetPlaySessionDataById(journeyPos.Id);
+            var learningBlock = AppManager.I.DB.GetLearningBlockDataById(playSession.Stage + "." + playSession.LearningBlock.ToString());
             TitleCode.text = journeyPos.ToString();
             TitleArabic.text = learningBlock.Title_Ar;
             TitleEnglish.text = learningBlock.Title_En;
 
             // play the tutorial only if in LB 1.1
             if (journeyPos.Stage == 1 && journeyPos.LearningBlock == 1) {
-                AudioManager.I.PlayDialogue(learningBlock.GetTitleSoundFilename(), PlayTutorialAudio);
-                //KeeperManager.I.PlayDialog(learningBlock.GetTitleSoundFilename(), false, true, PlayTutorialAudio);
+                AudioManager.I.PlayLearningBlock(learningBlock.AudioFile, PlayTutorialAudio);
             } else {
-                AudioManager.I.PlayDialogue(learningBlock.GetTitleSoundFilename());
+                AudioManager.I.PlayLearningBlock(learningBlock.AudioFile);
             }
 
             if (!journeyPos.IsMinor(AppManager.I.Player.MaxJourneyPosition)) {
                 // First time playing this session: 0 stars
                 SetStars(0);
             } else {
-                int unlockedRewards = RewardSystemManager.GetUnlockedRewardForPlaysession(AppManager.I.Player.CurrentJourneyPosition);
-                SetStars(unlockedRewards + 1);
+                int score = (int)AppManager.I.ScoreHelper.GetCurrentScoreForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
+                SetStars(score);
             }
         }
 
         void PlayTutorialAudio()
         {
             AudioManager.I.PlayDialogue(LocalizationDataId.SelectGame_Tuto_2, null, true);
-            //KeeperManager.I.PlayDialog(LocalizationDataId.SelectGame_Tuto_2, false, true);
         }
 
         void SetStars(int _tot)

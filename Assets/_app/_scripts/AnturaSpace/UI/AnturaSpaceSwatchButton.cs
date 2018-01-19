@@ -1,8 +1,9 @@
-﻿using Antura.Rewards;
+using Antura.Rewards;
+using Antura.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Antura.UI
+namespace Antura.AnturaSpace.UI
 {
     /// <summary>
     /// Button used to select a color for an item in the Antura Space scene.

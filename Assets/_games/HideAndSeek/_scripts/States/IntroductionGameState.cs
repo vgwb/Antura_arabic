@@ -1,18 +1,16 @@
-﻿using Antura.MinigamesCommon;
-
 namespace Antura.Minigames.HideAndSeek
 {
-    public class IntroductionGameState : IState
+    public class IntroductionGameState : FSM.IState
     {
-		HideAndSeekGame game;
+        HideAndSeekGame game;
 
         float timer = 1;
-		public IntroductionGameState(HideAndSeekGame game)
+        public IntroductionGameState(HideAndSeekGame game)
         {
             this.game = game;
         }
 
-        public void EnterState() {}
+        public void EnterState() { }
 
         public void ExitState() { }
 
@@ -20,10 +18,8 @@ namespace Antura.Minigames.HideAndSeek
         {
             timer -= delta;
 
-            if (timer < 0)
-            {
-                if (game.TutorialEnabled)
-                {
+            if (timer < 0) {
+                if (game.TutorialEnabled) {
                     game.SetCurrentState(game.TutorialState);
                 } else {
                     game.SetCurrentState(game.PlayState);

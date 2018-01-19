@@ -6,23 +6,25 @@ namespace Antura.Assessment
     /// <summary>
     /// Implement IUpdater
     /// </summary>
-    public class Updater: SceneScopedSingleton< Updater>
+    public class Updater : SceneScopedSingleton<Updater>
     {
-        List< ITimedUpdate> updates = null;
+        List<ITimedUpdate> updates = null;
 
-        public void AddTimedUpdate( ITimedUpdate timedUpdate)
+        public void AddTimedUpdate(ITimedUpdate timedUpdate)
         {
-            if (updates == null)
+            if (updates == null) {
                 updates = new List<ITimedUpdate>();
-
-            updates.Add( timedUpdate);
+            }
+            updates.Add(timedUpdate);
         }
 
-        public void UpdateDelta( float delta)
+        public void UpdateDelta(float delta)
         {
-            if(updates!=null)
-                foreach (var u in updates)
+            if (updates != null) {
+                foreach (var u in updates) {
                     u.Update(delta);
+                }
+            }
         }
 
         public void Clear()

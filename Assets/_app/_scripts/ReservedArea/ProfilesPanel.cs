@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using Antura.Book;
 using Antura.Core;
 using Antura.Profile;
 using Antura.Teacher;
@@ -80,7 +81,7 @@ namespace Antura.ReservedArea
         {
             //Debug.Log("OPEN " + SelectedPlayerId);
             AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
-            AppManager.I.NavigationManager.GoToPlayerBook();
+            BookManager.I.OpenBook(BookArea.Player);
         }
 
         public void OnDeleteSelectPlayerProfile()
@@ -101,16 +102,16 @@ namespace Antura.ReservedArea
 
         public void OnExportSelectPlayerProfile()
         {
-            if (AppManager.I.DB.ExportDatabaseOfPlayer(SelectedPlayerId)) {
+            if (AppManager.I.DB.ExportPlayerDb(SelectedPlayerId)) {
                 string dbPath;
                 if (Application.platform == RuntimePlatform.IPhonePlayer) {
-                    dbPath = string.Format(@"{0}/{1}", AppConstants.DbExportFolder,
-                        AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
+                    dbPath = string.Format(@"{0}/{1}", AppConfig.DbExportFolder,
+                        AppConfig.GetPlayerDatabaseFilename(SelectedPlayerId));
                     GlobalUI.ShowPrompt("", "Get the DB from iTunes app:\n" + dbPath);
                 } else {
                     // Android or Desktop
-                    dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, AppConstants.DbExportFolder,
-                        AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
+                    dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, AppConfig.DbExportFolder,
+                        AppConfig.GetPlayerDatabaseFilename(SelectedPlayerId));
                     GlobalUI.ShowPrompt("", "The DB is here:\n" + dbPath);
                 }
             } else {
@@ -143,13 +144,17 @@ namespace Antura.ReservedArea
             var demoUserUiid = AppManager.I.PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
             SelectedPlayerId = demoUserUiid;
 
-            // populate with fake data
+            // Populate with complete data
             var maxJourneyPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
             yield return StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
-            AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
-            AppManager.I.Player.CheckGameFinished(); // force check
-            AppManager.I.Player.CheckGameFinishedWithAllStars(); // force check
-            Rewards.RewardSystemManager.UnlockAllRewards();
+            AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true, true);
+            AppManager.I.Player.SetFinalShown();
+            AppManager.I.Player.HasFinishedTheGame = true;
+            AppManager.I.Player.HasFinishedTheGameWithAllStars = true;
+            AppManager.I.Player.HasMaxStarsInCurrentPlaySessions = true;
+            AppManager.I.FirstContactManager.ForceToFinishedSequence();
+            AppManager.I.FirstContactManager.ForceAllCompleted();
+            AppManager.I.RewardSystemManager.UnlockAllPacks();
 
             ResetAll();
             activateWaitingScreen(false);
@@ -169,46 +174,46 @@ namespace Antura.ReservedArea
             var fakeAppSession = LogManager.I.AppSession;
 
             // Add some mood data
+            Debug.Log("Start adding mood scores");
+            yield return null;
             int nMoodData = 15;
             for (int i = 0; i < nMoodData; i++) {
-                logAi.LogMood(0, Random.Range(AppConstants.MinimumMoodValue, AppConstants.MaximumMoodValue + 1));
-                Debug.Log("Add mood " + i);
-                yield return null;
+                logAi.LogMood(0, Random.Range(AppConfig.MinMoodValue, AppConfig.MaxMoodValue + 1));
             }
+            yield return null;
 
             // Add scores for all play sessions
             Debug.Log("Start adding PS scores");
+            yield return null;
             var logPlaySessionScoreParamsList = new List<LogPlaySessionScoreParams>();
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
                 if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
                     int score = useBestScores
-                        ? AppConstants.MaximumMinigameScore
-                        : Random.Range(AppConstants.MinimumMinigameScore, AppConstants.MaximumMinigameScore);
+                        ? AppConfig.MaxMiniGameScore
+                        : Random.Range(AppConfig.MinMiniGameScore, AppConfig.MaxMiniGameScore);
                     logPlaySessionScoreParamsList.Add(new LogPlaySessionScoreParams(allPlaySessionInfos[i].data.GetJourneyPosition(), score,
                         12f));
                     //Debug.Log("Add play session score for " + allPlaySessionInfos[i].data.Id);
                 }
             }
             logAi.LogPlaySessionScores(0, logPlaySessionScoreParamsList);
-            Debug.Log("Finish adding PS scores");
             yield return null;
 
             // Add scores for all minigames
             Debug.Log("Start adding MiniGame scores");
+            yield return null;
             var logMiniGameScoreParamses = new List<LogMiniGameScoreParams>();
             var allMiniGameInfo = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
             for (int i = 0; i < allMiniGameInfo.Count; i++) {
                 int score = useBestScores
-                    ? AppConstants.MaximumMinigameScore
-                    : Random.Range(AppConstants.MinimumMinigameScore, AppConstants.MaximumMinigameScore);
+                    ? AppConfig.MaxMiniGameScore
+                    : Random.Range(AppConfig.MinMiniGameScore, AppConfig.MaxMiniGameScore);
                 logMiniGameScoreParamses.Add(new LogMiniGameScoreParams(JourneyPosition.InitialJourneyPosition,
                     allMiniGameInfo[i].data.Code, score, 12f));
                 //Debug.Log("Add minigame score " + i);
             }
             logAi.LogMiniGameScores(0, logMiniGameScoreParamses);
-            Debug.Log("Finish adding MiniGame scores");
-            yield return null;
 
             // Add scores for some learning data (words/letters/phrases)
             /*var maxPlaySession = AppManager.I.Player.MaxJourneyPosition.ToString();

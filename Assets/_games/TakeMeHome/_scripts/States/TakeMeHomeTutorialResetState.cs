@@ -1,9 +1,9 @@
-﻿using Antura.Tutorial;
-using Antura.MinigamesCommon;
+using Antura.Tutorial;
+using Antura.Minigames;
 
 namespace Antura.Minigames.TakeMeHome
 {
-    public class TakeMeHomeTutorialResetState : IState
+    public class TakeMeHomeTutorialResetState : FSM.IState
     {
 
         TakeMeHomeGame game;

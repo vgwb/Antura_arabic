@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using Antura.Database;
 
-namespace Antura.Core
+namespace Antura.Minigames
 {
     public class MainMiniGame
     {
-        public string id;
+        public string MainId;
         public List<MiniGameInfo> variations;
 
         public string GetIconResourcePath()

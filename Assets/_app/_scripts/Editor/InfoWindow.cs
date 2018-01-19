@@ -1,4 +1,4 @@
-﻿using Antura.Core;
+using Antura.Core;
 using UnityEngine;
 using UnityEditor;
 
@@ -6,7 +6,7 @@ namespace Antura.Editor
 {
     public class InfoView : EditorWindow
     {
-        [MenuItem("Tools/Antura/Info", false, 300)]
+        [MenuItem("Antura/Info", false, 300)]
         static void ShowWindow()
         {
             EditorWindow.GetWindow(typeof(InfoView));
@@ -15,7 +15,7 @@ namespace Antura.Editor
         void OnGUI()
         {
             this.titleContent.text = "Antura";
-            EditorGUILayout.LabelField("Version " + AppConstants.AppVersion);
+            EditorGUILayout.LabelField("Version " + AppConfig.AppVersion);
 
             DrawFooterLayout(Screen.width);
         }
@@ -29,19 +29,19 @@ namespace Antura.Editor
             width = width - margin * 2;
 
             if (GUILayout.Button("Developer docs")) {
-                Application.OpenURL(AppConstants.UrlDeveloperDocs);
+                Application.OpenURL(AppConfig.UrlDeveloperDocs);
             }
 
             if (GUILayout.Button("Source Code (GitHub project)")) {
-                Application.OpenURL(AppConstants.UrlGithubRepository);
+                Application.OpenURL(AppConfig.UrlGithubRepository);
             }
 
             if (GUILayout.Button("GitHub issues")) {
-                Application.OpenURL(AppConstants.UrlGithubRepository + "/issues");
+                Application.OpenURL(AppConfig.UrlGithubRepository + "/issues");
             }
 
             if (GUILayout.Button("antura.org")) {
-                Application.OpenURL(AppConstants.UrlWebsite);
+                Application.OpenURL(AppConfig.UrlWebsite);
             }
 
             //if (GUILayout.Button("Trello", GUILayout.Width(width / 2f - margin))) {

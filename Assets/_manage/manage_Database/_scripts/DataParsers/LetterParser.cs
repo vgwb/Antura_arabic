@@ -24,6 +24,11 @@ namespace Antura.Database.Management
             data.Tag = ToString(dict["Tag"]);
             data.Notes = ToString(dict["Notes"]);
             data.SunMoon = ParseEnum<LetterDataSunMoon>(data, dict["SunMoon"]);
+
+            var nameSound = ToString(dict["NameSound"]);
+            data.NameSound = (nameSound == "1" ? data.Id + "__lettername" : nameSound);
+
+            data.PhonemeSound = ToString(dict["PhonemeSound"]);
             data.Sound = ToString(dict["Sound"]);
             data.SoundZone = ToString(dict["SoundZone"]);
             data.Isolated = ToString(dict["Isolated"]);
@@ -39,11 +44,6 @@ namespace Antura.Database.Management
             data.MedialFix = ToString(dict["MedialFix"]);
             data.FinalFix = ToString(dict["FinalFix"]);
             data.Complexity = ToFloat(dict["Complexity"]);
-
-            data.Old_Isolated = ToString(dict["Old_Isolated"]);
-            data.Old_Initial = ToString(dict["Old_Initial"]);
-            data.Old_Medial = ToString(dict["Old_Medial"]);
-            data.Old_Final = ToString(dict["Old_Final"]);
 
             return data;
         }

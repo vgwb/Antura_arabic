@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   learningBlockActual: 0
   playSessionActual: 0
-  pos: 0
+  posIndex: 0
   blackDot: {fileID: 2100000, guid: 4e4094f1e77806a48b7614b34330a0d6, type: 2}
   redDot: {fileID: 2100000, guid: a5e4f68df693e0a4b9ef30f50a24a399, type: 2}
 --- !u!136 &136708336627624346

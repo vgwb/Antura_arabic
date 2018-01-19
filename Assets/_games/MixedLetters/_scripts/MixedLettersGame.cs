@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Antura.Minigames.MixedLetters
 {
-    public class MixedLettersGame : MiniGame
+    public class MixedLettersGame : MiniGameController
     {
         public static MixedLettersGame instance;
 
@@ -141,7 +141,7 @@ namespace Antura.Minigames.MixedLetters
 
             entireAlphabet = new List<ILivingLetterData>();
 
-            isSpelling = MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.Spelling;
+            isSpelling = MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.BuildWord;
 
             if (!isSpelling)
             {
@@ -192,7 +192,7 @@ namespace Antura.Minigames.MixedLetters
             }
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return TutorialState;
         }
@@ -297,7 +297,7 @@ namespace Antura.Minigames.MixedLetters
 
                 for (int i = 0; i < PromptLettersInOrder.Count; i++)
                 {
-                    victimLLWord += ((LL_LetterData)PromptLettersInOrder[i]).Data.GetChar();
+                    victimLLWord += ((LL_LetterData)PromptLettersInOrder[i]).Data.GetStringForDisplay();
 
                     if (i != PromptLettersInOrder.Count - 1)
                     {
@@ -316,9 +316,9 @@ namespace Antura.Minigames.MixedLetters
 
         public void SayQuestion(Action onQuestionOver)
         {
-            if (MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.Spelling)
+            if (MixedLettersConfiguration.Instance.Variation == MixedLettersVariation.BuildWord)
             {
-                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(question);
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(question);
 
                 if (onQuestionOver != null)
                 {
@@ -338,7 +338,7 @@ namespace Antura.Minigames.MixedLetters
 
             foreach (ILivingLetterData letterData in PromptLettersInOrder)
             {
-                audioManager.PlayLetterData(letterData);
+                audioManager.PlayVocabularyData(letterData);
 
                 yield return new WaitForSeconds(0.75f);
             }
@@ -351,6 +351,8 @@ namespace Antura.Minigames.MixedLetters
 
         public void VerifyLetters()
         {
+            bool isValid = true;
+
             for (int i = 0; i < PromptLettersInOrder.Count; i++)
             {
                 DropZoneController dropZone = dropZoneControllers[i];
@@ -359,19 +361,36 @@ namespace Antura.Minigames.MixedLetters
                     || dropZone.droppedLetter.GetLetter().Id != PromptLettersInOrder[i].Id
                       || Mathf.Abs(dropZone.droppedLetter.transform.rotation.z) > 0.1f)
                 {
-                    for (int j = 0; j < PromptLettersInOrder.Count; j++)
-                    {
-                        SeparateLetterController letter = SeparateLettersSpawnerController.instance.separateLetterControllers[j];
-                        letter.SetIsSubjectOfTutorial(
-                            roundNumber == 0 && TutorialEnabled 
-                            &&  letter == dropZone.correctLetter);
-                    }
+                    if (isValid)
+                        for (int j = 0; j < PromptLettersInOrder.Count; j++)
+                        {
+                            SeparateLetterController letter = SeparateLettersSpawnerController.instance.separateLetterControllers[j];
+                            letter.SetIsSubjectOfTutorial(
+                                roundNumber == 0 && TutorialEnabled 
+                                &&  letter == dropZone.correctLetter);
+                        }
 
-                    return;
+                    isValid = false;
+                }
+                else
+                {
+                    if (dropZone.gameObject.activeInHierarchy)
+                    {
+                        dropZone.droppedLetter.DisableCollider();
+                        dropZone.Disable();
+                        dropZone.DisableCollider();
+                        dropZone.ShowGreenTick();
+                    }
                 }
             }
 
-            OnRoundWon();
+            if (isValid)
+            {
+                for (int i = 0; i < PromptLettersInOrder.Count; i++)
+                    dropZoneControllers[i].droppedLetter.EnableCollider();
+
+                OnRoundWon();
+            }
         }
 
         private void OnRoundWon()

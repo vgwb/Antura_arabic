@@ -1,34 +1,34 @@
-﻿using DG.Tweening;
+﻿using Antura.LivingLetters;
+using DG.Tweening;
 using System;
-using Antura.LivingLetters;
 using UnityEngine;
 
 namespace Antura.Minigames.Egg
 {
     public class EggRunLetter
     {
-        LivingLetterController letterObject;
-        Transform shadowTransform;
+        private LivingLetterController letterObject;
+        private Transform shadowTransform;
 
-        Tween moveTweener;
-        Tween rotationTweener;
+        private Tween moveTweener;
+        private Tween rotationTweener;
 
-        Vector3[] outPositions = new Vector3[2];
+        private Vector3[] outPositions = new Vector3[2];
 
-        int currentOutPosition;
+        private int currentOutPosition;
 
-        Vector3 lookCamera = new Vector3(0f, 180f, 0f);
-        Vector3 lookLeft = new Vector3(0f, 270f, 0f);
-        Vector3 lookRight = new Vector3(0f, 90f, 0f);
+        private Vector3 lookCamera = new Vector3(0f, 180f, 0f);
+        private Vector3 lookLeft = new Vector3(0f, 270f, 0f);
+        private Vector3 lookRight = new Vector3(0f, 90f, 0f);
 
-        Vector3 nextRotation;
-        Vector3 nextPosition;
-        float moveTime;
+        private Vector3 nextRotation;
+        private Vector3 nextPosition;
+        private float moveTime;
 
-        Action moveCallback;
-        Action rotationCallback;
+        private Action moveCallback;
+        private Action rotationCallback;
 
-        float lerpPositionValue;
+        private float lerpPositionValue;
 
         public EggRunLetter(GameObject letterObjectPrefab, GameObject shadowPrefab, ILivingLetterData letterData, Transform parent, Vector3 leftOutPosition, Vector3 rightOutPosition)
         {
@@ -59,11 +59,9 @@ namespace Antura.Minigames.Egg
 
             float delay = UnityEngine.Random.Range(4f, 8f);
 
-            Rotate(nextRotation, 0.2f, delay, delegate ()
-            {
+            Rotate(nextRotation, 0.2f, delay, delegate () {
                 PlayRunAnimation();
-                Move(nextPosition, moveTime, 0.2f, delegate () 
-                {
+                Move(nextPosition, moveTime, 0.2f, delegate () {
                     PlayIdleAnimation();
 
                     Rotate(lookCamera, 0.2f, 0f, Run);
@@ -73,8 +71,7 @@ namespace Antura.Minigames.Egg
 
         public void Stop()
         {
-            if (moveTweener != null)
-            {
+            if (moveTweener != null) {
                 moveTweener.Kill();
             }
         }
@@ -85,7 +82,7 @@ namespace Antura.Minigames.Egg
 
             if (moveTweener != null) { moveTweener.Kill(); }
 
-            moveTweener = letterObject.transform.DOMove(position, duration).OnComplete(delegate () { if (moveCallback != null) { moveCallback(); }  }).SetDelay(delay);
+            moveTweener = letterObject.transform.DOMove(position, duration).OnComplete(delegate () { if (moveCallback != null) { moveCallback(); } }).SetDelay(delay);
         }
 
         void Rotate(Vector3 eulerAngle, float duration, float delay, Action callback)

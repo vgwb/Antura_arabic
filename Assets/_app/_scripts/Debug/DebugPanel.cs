@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
 using Antura.Core;
+using Antura.Minigames;
 using Antura.UI;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +19,8 @@ namespace Antura.Debugging
         public GameObject PrefabRow;
         public GameObject PrefabMiniGameButton;
 
+        public TextMeshProUGUI InfoText;
+
         public InputField InputStage;
         public InputField InputLearningBlock;
         public InputField InputPlaySession;
@@ -28,8 +32,8 @@ namespace Antura.Debugging
 
         public bool TutorialEnabled
         {
-            get { return DebugManager.I.TutorialEnabled; }
-            set { DebugManager.I.TutorialEnabled = value; }
+            get { return AppConfig.MinigameTutorialsEnabled; }
+            set { AppConfig.MinigameTutorialsEnabled = value; }
         }
 
         public bool VerboseTeacher
@@ -136,6 +140,35 @@ namespace Antura.Debugging
 
         #endregion
 
+        #region Journey
+
+        public void ForwardMaxJourneyPos()
+        {
+            DebugManager.I.ForwardMaxJourneyPos();
+            Close();
+        }
+
+        public void SecondToLastJourneyPos()
+        {
+            DebugManager.I.SecondToLastJourneyPos();
+            Close();
+        }
+
+        public void ResetMaxJourneyPos()
+        {
+            DebugManager.I.ResetMaxJourneyPos();
+            Close();
+        }
+
+        public void ForceMaxJourneyPos()
+        {
+            DebugManager.I.SetDebugJourneyPos(GetCurrentJourneyPositionInUI());
+            DebugManager.I.ForceMaxJourneyPos();
+            Close();
+        }
+
+        #endregion
+
         #region Profiles
 
         public void ResetAll()
@@ -150,10 +183,10 @@ namespace Antura.Debugging
             Close();
         }
 
-        public bool FirstContactPassed
+        public bool FirstContactCompleted
         {
-            get { return DebugManager.I.FirstContactPassed; }
-            set { DebugManager.I.FirstContactPassed = value; }
+            get { return DebugManager.I.FirstContactCompleted; }
+            set { DebugManager.I.FirstContactCompleted = value; }
         }
 
         #endregion
@@ -193,6 +226,8 @@ namespace Antura.Debugging
                 InputPlaySession.text = AppManager.I.Player.CurrentJourneyPosition.PlaySession.ToString();
             }
 
+            DisplayInfoText();
+
             TutorialEnabledToggle.isOn = TutorialEnabled;
             AutoCorrectJourneyPosToggle.isOn = AutoCorrectJourneyPos;
             VerboseTeacherToggle.isOn = VerboseTeacher;
@@ -207,7 +242,7 @@ namespace Antura.Debugging
                 var newRow = Instantiate(PrefabRow);
                 newRow.transform.SetParent(Container.transform, false);
 
-                newRow.GetComponent<DebugMiniGameRow>().Title.text = mainMiniGame.id;
+                newRow.GetComponent<DebugMiniGameRow>().Title.text = mainMiniGame.MainId;
 
                 foreach (var gameVariation in mainMiniGame.variations) {
                     Debug.Assert(difficultiesForTesting.ContainsKey(gameVariation.data.Code),
@@ -233,6 +268,20 @@ namespace Antura.Debugging
             NavigationPanel.SetActive(advancedSettingsEnabled);
         }
 
+        private void DisplayInfoText()
+        {
+            InfoText.text = "";
+
+            if (AppManager.I.Player != null) {
+                InfoText.text += "Current JP: " + AppManager.I.Player.CurrentJourneyPosition + "\n";
+            }
+            if (AppManager.I.NavigationManager.CurrentMiniGameData != null) {
+                InfoText.text += "Current MiniGame: " + AppManager.I.NavigationManager.CurrentMiniGameData.Code + "\n";
+                InfoText.text += AppManager.I.GameLauncher.GetCurrentMiniGameConfigSummary();
+            }
+
+        }
+
         #endregion
 
         #region Actions
@@ -242,12 +291,17 @@ namespace Antura.Debugging
             return minigameCode.ToString() + difficulty.ToString("F1");
         }
 
+        private JourneyPosition GetCurrentJourneyPositionInUI()
+        {
+            return new JourneyPosition(int.Parse(InputStage.text), int.Parse(InputLearningBlock.text),
+               int.Parse(InputPlaySession.text));
+        }
+
         public void LaunchMiniGame(MiniGameCode minigameCode, float difficulty)
         {
             playedMinigames[GetDictKey(minigameCode, difficulty)] = true;
 
-            var debugJP = new JourneyPosition(int.Parse(InputStage.text), int.Parse(InputLearningBlock.text),
-                int.Parse(InputPlaySession.text));
+            var debugJP = GetCurrentJourneyPositionInUI();
 
             if (!DebugManager.I.SafeLaunch || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(debugJP, minigameCode)) {
                 LaunchMiniGameAtJourneyPosition(minigameCode, difficulty, debugJP);
@@ -275,6 +329,17 @@ namespace Antura.Debugging
             DebugManager.I.SetDebugJourneyPos(journeyPosition);
             DebugManager.I.LaunchMiniGame(minigameCode, difficulty);
             Close();
+        }
+
+        public void OnEndMinigame()
+        {
+            DebugManager.I.ForceCurrentMinigameEnd(2);
+            Close();
+        }
+
+        public void OnAddBones()
+        {
+            DebugManager.I.AddBones();
         }
 
         public void ToggleAdvancedSettings(bool choice)

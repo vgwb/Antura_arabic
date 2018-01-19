@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+using UnityEngine;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using System.Collections;
 using DG.Tweening;
 
 namespace Antura.Minigames.ThrowBalls
@@ -58,8 +57,7 @@ namespace Antura.Minigames.ThrowBalls
         {
             letterObjectView = GetComponent<LivingLetterController>();
 
-            foreach (Collider collider in GetComponentsInChildren<Collider>())
-            {
+            foreach (Collider collider in GetComponentsInChildren<Collider>()) {
                 collider.enabled = false;
             }
 
@@ -74,8 +72,7 @@ namespace Antura.Minigames.ThrowBalls
             ResetProps();
             DisableProps();
 
-            switch (propVariation)
-            {
+            switch (propVariation) {
                 case PropVariation.StaticPileOfCrates:
                     cratePileController.Enable();
                     shadow.SetActive(false);
@@ -89,8 +86,6 @@ namespace Antura.Minigames.ThrowBalls
                     bushController.Enable();
                     shadow.SetActive(false);
                     break;
-                default:
-                    break;
             }
         }
 
@@ -100,8 +95,7 @@ namespace Antura.Minigames.ThrowBalls
 
             this.motionVariation = motionVariation;
 
-            switch (motionVariation)
-            {
+            switch (motionVariation) {
                 case MotionVariation.Idle:
                     break;
                 case MotionVariation.Jumping:
@@ -109,8 +103,6 @@ namespace Antura.Minigames.ThrowBalls
                     break;
                 case MotionVariation.Popping:
                     SetIsPoppingUpAndDown();
-                    break;
-                default:
                     break;
             }
         }
@@ -145,18 +137,12 @@ namespace Antura.Minigames.ThrowBalls
 
         public void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.tag == Constants.TAG_POKEBALL)
-            {
-                if (tag == Constants.CORRECT_LETTER_TAG)
-                {
+            if (collision.gameObject.tag == Constants.TAG_POKEBALL) {
+                if (tag == Constants.CORRECT_LETTER_TAG) {
                     GameState.instance.OnCorrectLetterHit(this);
                     ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
-                }
-
-                else
-                {
-                    if (ThrowBallsGame.instance.GameState.isRoundOngoing)
-                    {
+                } else {
+                    if (ThrowBallsGame.instance.GameState.isRoundOngoing) {
                         letterObjectView.DoTwirl(null);
                         BallController.instance.OnRebounded();
                     }
@@ -185,8 +171,7 @@ namespace Antura.Minigames.ThrowBalls
         {
             yield return new WaitForSeconds(Random.Range(0.4f, 1f));
 
-            for (;;)
-            {
+            for (;;) {
                 velocity = new Vector3(0f, 30f, 0f);
                 letterObjectView.DoSmallJump();
                 var position = transform.position;
@@ -195,8 +180,7 @@ namespace Antura.Minigames.ThrowBalls
 
                 isAirborne = true;
 
-                while (transform.position.y > yEquilibrium)
-                {
+                while (transform.position.y > yEquilibrium) {
                     velocity.y += GRAVITY * 0.33f * Time.fixedDeltaTime;
                     transform.Translate(velocity * Time.fixedDeltaTime);
                     yield return new WaitForFixedUpdate();
@@ -234,10 +218,10 @@ namespace Antura.Minigames.ThrowBalls
             boxCollider.enabled = isEnabled;
         }
 
-        private bool PassesEquilibriumOnNextFrame(float velocity, float deltaPos, float equilibrium)
+        private bool PassesEquilibriumOnNextFrame(float _velocity, float deltaPos, float equilibrium)
         {
-            return (velocity < 0 && transform.position.y + deltaPos < equilibrium)
-                    || (velocity > 0 && transform.position.y + deltaPos > equilibrium);
+            return (_velocity < 0 && transform.position.y + deltaPos < equilibrium)
+                    || (_velocity > 0 && transform.position.y + deltaPos > equilibrium);
         }
 
 
@@ -254,25 +238,19 @@ namespace Antura.Minigames.ThrowBalls
 
             IAudioManager audioManager = ThrowBallsConfiguration.Instance.Context.GetAudioManager();
 
-            for (;;)
-            {
+            for (;;) {
                 yEquilibrium = isPoppingUp ? transform.position.y + POPPING_OFFSET : transform.position.y - POPPING_OFFSET;
                 float yVelocity = isPoppingUp ? JUMP_VELOCITY_IMPULSE : -JUMP_VELOCITY_IMPULSE;
 
                 float yDelta = 0;
 
-                if (isPoppingUp)
-                {
+                if (isPoppingUp) {
                     audioManager.PlaySound(Sfx.BushRustlingIn);
-                }
-
-                else
-                {
+                } else {
                     audioManager.PlaySound(Sfx.BushRustlingOut);
                 }
 
-                while (!PassesEquilibriumOnNextFrame(yVelocity, yDelta, yEquilibrium))
-                {
+                while (!PassesEquilibriumOnNextFrame(yVelocity, yDelta, yEquilibrium)) {
                     yDelta = yVelocity * Time.fixedDeltaTime;
 
                     transform.position = new Vector3(transform.position.x, transform.position.y + yDelta, transform.position.z);
@@ -343,9 +321,9 @@ namespace Antura.Minigames.ThrowBalls
 
         void OnMouseDown()
         {
-            if (GameState.instance.isRoundOngoing)
-            {
-                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData, true);
+            if (GameState.instance.isRoundOngoing) {
+                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(
+                    letterData, true, soundType: ThrowBallsConfiguration.Instance.GetVocabularySoundType());
             }
         }
 
@@ -353,10 +331,8 @@ namespace Antura.Minigames.ThrowBalls
         {
             Collider[] collidersWithinObstructionTest = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z - OBSTRUCTION_TEST_DEPTH / 2), new Vector3(10f, 10f, OBSTRUCTION_TEST_DEPTH / 2));
 
-            foreach (Collider collider in collidersWithinObstructionTest)
-            {
-                if (collider.gameObject.tag == Constants.WRONG_LETTER_TAG && collider.gameObject != gameObject && collider.transform.position.z < transform.position.z)
-                {
+            foreach (Collider collider in collidersWithinObstructionTest) {
+                if (collider.gameObject.tag == Constants.WRONG_LETTER_TAG && collider.gameObject != gameObject && collider.transform.position.z < transform.position.z) {
                     return true;
                 }
             }
@@ -371,8 +347,7 @@ namespace Antura.Minigames.ThrowBalls
 
         private IEnumerator JumpOffOfCrateCoroutine()
         {
-            if (!isAirborne)
-            {
+            if (!isAirborne) {
                 transform.DORotate(new Vector3(0, 180f, 0), 0.33f);
                 letterObjectView.DoTwirl(null);
 
@@ -388,8 +363,7 @@ namespace Antura.Minigames.ThrowBalls
 
             var position = transform.position;
 
-            while (transform.position.y > 0.51f)
-            {
+            while (transform.position.y > 0.51f) {
                 transform.position = position;
                 velocity.y += GRAVITY * 0.33f * Time.fixedDeltaTime;
                 position += velocity * Time.fixedDeltaTime;

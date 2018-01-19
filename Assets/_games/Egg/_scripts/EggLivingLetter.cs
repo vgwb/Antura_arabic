@@ -1,5 +1,5 @@
-﻿using System;
-using Antura.LivingLetters;
+﻿using Antura.LivingLetters;
+using System;
 using UnityEngine;
 using DG.Tweening;
 
@@ -7,20 +7,20 @@ namespace Antura.Minigames.Egg
 {
     public class EggLivingLetter
     {
-        LivingLetterController livingLetter;
-        Transform shadowTransform;
+        private LivingLetterController livingLetter;
+        private Transform shadowTransform;
 
-        Vector3 startPosition;
-        Vector3 endPosition;
+        private Vector3 startPosition;
+        private Vector3 endPosition;
 
-        float startScale = 0.4f;
-        float endScale = 1f;
+        private float startScale = 0.4f;
+        private float endScale = 1f;
 
-        Vector3 shadowLocalPosition;
+        private Vector3 shadowLocalPosition;
 
-        float delay;
+        private float delay;
 
-        Action endCallback;
+        private Action endCallback;
 
         public EggLivingLetter(Transform parent, GameObject letterObjectViewPrefab, GameObject shadowPrefab, ILivingLetterData livingLetterData, Vector3 startPosition, Vector3 shadowPosition, Vector3 endPosition, float delay, Action endCallback)
         {
@@ -72,8 +72,7 @@ namespace Antura.Minigames.Egg
         {
             float duration = 1f;
 
-            livingLetter.transform.DOLocalMove(startPosition, delay).OnComplete(delegate ()
-            {
+            livingLetter.transform.DOLocalMove(startPosition, delay).OnComplete(delegate () {
                 shadowTransform.gameObject.SetActive(true);
                 livingLetter.gameObject.SetActive(true);
 

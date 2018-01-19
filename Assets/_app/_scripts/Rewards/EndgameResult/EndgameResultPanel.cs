@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Antura.Audio;
 using Antura.UI;
 using DG.Tweening;
@@ -13,6 +13,7 @@ namespace Antura.Rewards
     /// </summary>
     public class EndgameResultPanel : MonoBehaviour
     {
+
         public RectTransform ContentRT;
         public Image Rays;
         public EndgameStar[] Stars;
@@ -46,8 +47,7 @@ namespace Antura.Rewards
             showTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(this.GetComponent<Image>().DOFade(0, 0.35f).From().SetEase(Ease.Linear))
                 .Join(ContentRT.DOAnchorPosY(-960, 0.35f).From().SetEase(Ease.OutBack))
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     this.gameObject.SetActive(false);
                     bgTween.Rewind();
                 })
@@ -93,17 +93,23 @@ namespace Antura.Rewards
             showTween.Restart();
             this.gameObject.SetActive(true);
             GameResultUI.I.BonesCounter.Show();
-            GameResultUI.I.BonesCounter.DecreaseBy(_numStars);
+
+
+            // NOT NEEDED ANYMORE: bones are added only AFTER we Continue after the game
+            // GameResultUI.I.BonesCounter.DecreaseBy(_numStars);
         }
 
         public void Hide(bool _immediate)
         {
-            if (!setupDone) return;
+            if (!setupDone) { return; }
 
             this.StopAllCoroutines();
             ContinueScreen.Close(true);
-            if (_immediate) showTween.Rewind();
-            else showTween.PlayBackwards();
+            if (_immediate) {
+                showTween.Rewind();
+            } else {
+                showTween.PlayBackwards();
+            }
         }
 
         #endregion
@@ -120,16 +126,29 @@ namespace Antura.Rewards
                 id++;
             }
 
-            if (numStars > 0) bgTween.Restart();
+            if (numStars > 0) { bgTween.Restart(); }
 
             AudioManager.I.PlaySound(numStars > 0 ? SfxCompleteWithStars : SfxCompleteNoStars);
-            ContinueScreen.Show(Continue, ContinueScreenMode.Button);
+            ContinueScreen.Show(Continue, ContinueScreenMode.Button, numStars > 0);
+            ContinueScreen.SetRetryAction(Retry, numStars <= 0);
+
+            // We add the bones regardless of where we played this game from
+            AppManager.I.Player.AddBones(numStars);
         }
 
-        void Continue()
+        public void Continue()
         {
-            //          GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.MiniGameDone());
+            // We acknowledge the end of the minigame. Add stars.
+            AppManager.I.NavigationManager.EndMinigame(numStars);
+
+            // Go to the next scene
             AppManager.I.NavigationManager.GoToNextScene();
+        }
+
+        void Retry()
+        {
+            // We retry the current game. No bones are added.
+            AppManager.I.NavigationManager.RepeatCurrentGameOfPlaySession();
         }
 
         #endregion

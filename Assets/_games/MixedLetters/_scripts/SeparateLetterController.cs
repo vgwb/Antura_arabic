@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.Tutorial;
 
 namespace Antura.Minigames.MixedLetters
@@ -96,7 +96,7 @@ namespace Antura.Minigames.MixedLetters
                         droppedZone = null;
                     }
 
-                    MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData, true);
+                    MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterData, true);
                 }
             }
         }
@@ -296,6 +296,16 @@ namespace Antura.Minigames.MixedLetters
         public void Disable()
         {
             gameObject.SetActive(false);
+        }
+
+        public void EnableCollider()
+        {
+            boxCollider.enabled = true;
+        }
+
+        public void DisableCollider()
+        {
+            boxCollider.enabled = false;
         }
 
         public void SetLetter(LL_LetterData letterData)

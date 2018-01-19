@@ -1,8 +1,8 @@
-﻿using Antura.MinigamesCommon;
+﻿using Antura.Minigames;
 
 namespace Antura.Minigames.FastCrowd
 {
-    public class FastCrowdIntroductionState : IState
+    public class FastCrowdIntroductionState : FSM.IState
     {
         FastCrowdGame game;
 
@@ -19,46 +19,28 @@ namespace Antura.Minigames.FastCrowd
             nextState = false;
             playIntro = false;
 
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet) {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_alphabet_Title, () => { playIntro = true; });
-            } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting) {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_counting_Title, () => { playIntro = true; });
-            } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter) {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Title, () => { playIntro = true; });
-            } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling) {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Title, () => { playIntro = true; });
-            } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words) {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_words_Title, () => { playIntro = true; });
-            } else {
-                nextState = true;
-            }
+            game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.TitleLocalizationId, () => { playIntro = true; });
 
             game.Context.GetAudioManager().PlayMusic(Music.Theme10);
         }
 
-        public void ExitState() { }
+        public void ExitState()
+        {
+        }
 
         public void Update(float delta)
         {
-            if (nextState) {
+            if (nextState)
+            {
                 nextState = false;
                 game.SetCurrentState(game.QuestionState);
             }
 
-            if (playIntro) {
+            if (playIntro)
+            {
                 playIntro = false;
+                game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.IntroLocalizationId, () => { nextState = true; });
 
-                if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet) {
-                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_alphabet_Intro, () => { nextState = true; });
-                } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting) {
-                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_counting_Intro, () => { nextState = true; });
-                } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter) {
-                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Intro, () => { nextState = true; });
-                } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling) {
-                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Intro, () => { nextState = true; });
-                } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words) {
-                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_words_Intro, () => { nextState = true; });
-                }
             }
         }
 

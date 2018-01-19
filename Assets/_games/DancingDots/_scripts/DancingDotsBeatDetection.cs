@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using Antura.Audio;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 namespace Antura.Minigames.DancingDots
 {
     public class DancingDotsBeatDetection : MonoBehaviour
@@ -23,6 +26,8 @@ namespace Antura.Minigames.DancingDots
         private float[] _spectrum;
         private float _fSample;
 
+        AudioSourceWrapper sourceWrapper;
+
         void Start()
         {
             //AudioProcessor processor = FindObjectOfType<AudioProcessor>();
@@ -43,8 +48,8 @@ namespace Antura.Minigames.DancingDots
         
         void Update()
         {
-            AnalyzeSound();
-
+            if (!AnalyzeSound())
+                return;
 
             if (PitchValue > pitchThreshold || RmsValue > RmsThreshold)
             {
@@ -69,9 +74,17 @@ namespace Antura.Minigames.DancingDots
             //Debug.LogWarning(text);
         }
 
-        void AnalyzeSound()
+        bool AnalyzeSound()
         {
-            GetComponent<AudioSource>().GetOutputData(_samples, 0); // fill array with samples
+            if (sourceWrapper == null)
+                return false;
+
+            var source = sourceWrapper.CurrentSource == null ? null : sourceWrapper.CurrentSource.audioSource;
+
+            if (source == null)
+                return false;
+
+            source.GetOutputData(_samples, 0); // fill array with samples
             int i;
             float sum = 0;
             for (i = 0; i < QSamples; i++)
@@ -82,7 +95,7 @@ namespace Antura.Minigames.DancingDots
             DbValue = 20 * Mathf.Log10(RmsValue / RefValue); // calculate dB
             if (DbValue < -160) DbValue = -160; // clamp it to -160dB min
                                                 // get sound spectrum
-            GetComponent<AudioSource>().GetSpectrumData(_spectrum, 0, FFTWindow.BlackmanHarris);
+            source.GetSpectrumData(_spectrum, 0, FFTWindow.BlackmanHarris);
             float maxV = 0;
             var maxN = 0;
             for (i = 0; i < QSamples; i++)
@@ -101,6 +114,13 @@ namespace Antura.Minigames.DancingDots
                 freqN += 0.5f * (dR * dR - dL * dL);
             }
             PitchValue = freqN * (_fSample / 2) / QSamples; // convert index to frequency
+
+            return true;
+        }
+
+        public void Initialize(AudioSourceWrapper source)
+        {
+            this.sourceWrapper = source;
         }
     }
 }

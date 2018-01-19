@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using Antura.Helpers;
+﻿using Antura.Helpers;
 using DG.Tweening;
-using Antura.Utilities;
+using System.Collections;
 using UnityEngine;
 
 namespace Antura.UI
@@ -117,8 +116,11 @@ namespace Antura.UI
             yield return null;
 
             float toY = CreditsContainer.rect.height - rectT.rect.height;
-            scrollTween = CreditsContainer.DOAnchorPosY(toY, ScrollAnimationSpeed).SetSpeedBased()
-                .SetEase(Ease.Linear).SetDelay(ScrollAnimationDelay).SetUpdate(true);
+            scrollTween = CreditsContainer.DOAnchorPosY(toY, ScrollAnimationSpeed)
+                                          .SetSpeedBased()
+                                          .SetEase(Ease.Linear)
+                                          .SetDelay(ScrollAnimationDelay)
+                                          .SetUpdate(true);
         }
 
         void StopScrollLoop()

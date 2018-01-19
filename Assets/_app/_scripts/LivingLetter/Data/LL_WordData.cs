@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System;
-using Antura.Helpers;
+﻿using Antura.Helpers;
 using Antura.Core;
 
 namespace Antura.LivingLetters
@@ -53,22 +51,19 @@ namespace Antura.LivingLetters
             get { return AppManager.I.VocabularyHelper.GetWordDrawing(Data); } // TODO refactor: inject the value, no reference to the DB
         }
 
-        /// <summary>
-        /// Return draw of word.
-        /// </summary>
-        [Obsolete("Use DrawingCharForLivingLetter instead of this.")]
-        public Sprite DrawForLivingLetter
-        {
-            get { return Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + Id); }
-        }
-
         public bool Equals(ILivingLetterData data)
         {
             LL_WordData other = data as LL_WordData;
-            if (other == null)
+            if (other == null) {
                 return false;
+            }
 
             return other.Data.Id == Data.Id;
+        }
+
+        public override string ToString()
+        {
+            return "LL-" + Data.ToString();
         }
     }
 }

@@ -41,21 +41,6 @@ namespace Antura.Helpers
         }
 
         /// <summary>
-        /// Gets the random alternative. USE ONLY IN LOOP SCENARIO.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="list">The list.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Exception">Cannot get a random element from the list as count is zero.</exception>
-        public static T GetRandomAlternative<T>(this IList<T> list)
-        {
-            if (list.Count == 0) {
-                throw new Exception("Cannot get a random element from the list as count is zero.");
-            }
-            return list[UnityEngine.Random.Range(0, list.Count)];
-        }
-
-        /// <summary>
         /// Get a random element from an array.
         /// </summary>
         public static T GetRandomParams<T>(params T[] ids)
@@ -69,7 +54,7 @@ namespace Antura.Helpers
         public static T GetRandomEnum<T>()
         {
             var A = Enum.GetValues(typeof(T));
-            var V = (T) A.GetValue(UnityEngine.Random.Range(0, A.Length));
+            var V = (T)A.GetValue(UnityEngine.Random.Range(0, A.Length));
             return V;
         }
 

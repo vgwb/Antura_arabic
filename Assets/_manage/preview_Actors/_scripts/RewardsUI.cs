@@ -1,16 +1,20 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
 using Antura.Dog;
 using Antura.Rewards;
+using Antura.Tutorial;
 using DG.Tweening;
+using System.Collections.Generic;
+using System.Linq;
+using Antura.Core;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Antura
 {
 
     // refactor: why is this in the Test scripts?s
-    public class RewardsUI : MonoBehaviour {
- 
+    public class RewardsUI : MonoBehaviour
+    {
+
         [Header("Rewards elements")]
         public GridLayoutGroup ElementContainer;
         public GameObject ElementPrefab;
@@ -21,15 +25,17 @@ namespace Antura
         /// <summary>
         /// The actual reward enabled for material modification.
         /// </summary>
-        private Reward actualReward;
+        private RewardProp actualReward;
 
         private GameObject actualRewardGO;
-        
-        void Awake() {
+
+        void Awake()
+        {
             ElementContainer = GetComponentInChildren<GridLayoutGroup>();
         }
 
-        void Start() {
+        void Start()
+        {
             ClearList();
             AddListenersMatColor1();
             AddListenersMatColor2();
@@ -45,30 +51,35 @@ namespace Antura
                 Camera.main.transform.LookAt(AnturaModelManager.I.transform.position);
             }
         }
-        
+
         #region Rewards
 
-        void ClearList() {
+        void ClearList()
+        {
             foreach (Button b in ElementContainer.GetComponentsInChildren<Button>()) {
                 b.onClick.RemoveAllListeners();
-                Destroy(b.gameObject);    
+                Destroy(b.gameObject);
             }
-            
+
         }
 
-        void LoadRewarsList(string _position = "") {
+        void LoadRewardsList(string _position = "")
+        {
             ClearList();
-            List<Reward> rewards;
+            IEnumerable<RewardBase> rewardBases;
+            var allPropBases = AppManager.I.RewardSystemManager.GetRewardBasesOfType(RewardBaseType.Prop);
             if (_position != "") {
-                rewards = RewardSystemManager.GetConfig().Rewards.FindAll(r => r.BoneAttach == _position);
+                rewardBases = allPropBases.Where(r => (r as RewardProp).BoneAttach == _position);
             } else {
-                rewards = RewardSystemManager.GetConfig().Rewards;
+                rewardBases = allPropBases;
             }
-            
-            foreach (Reward reward in rewards) {
+
+            foreach (RewardBase rewardBase in rewardBases)
+            {
+                RewardProp rewardProp = rewardBase as RewardProp;
                 Button b = Instantiate<Button>(ElementPrefab.GetComponent<Button>());
                 b.transform.SetParent(ElementContainer.transform);
-                b.GetComponentInChildren<Text>().text = reward.RewardName;
+                b.GetComponentInChildren<Text>().text = rewardProp.RewardName;
                 b.onClick.AddListener(delegate { OnClickButton(b.GetComponentInChildren<Text>().text); });
             }
         }
@@ -77,7 +88,8 @@ namespace Antura
         /// Delegate function for button click.
         /// </summary>
         /// <param name="_name">The name.</param>
-        void OnClickButton(string _name) {
+        void OnClickButton(string _name)
+        {
             LoadRewardOnDog(_name);
         }
 
@@ -85,7 +97,8 @@ namespace Antura
         /// Loads the reward on dog.
         /// </summary>
         /// <param name="_name">The name.</param>
-        void LoadRewardOnDog(string _name) {
+        void LoadRewardOnDog(string _name)
+        {
             actualReward = null;
             //actualReward = RewardSystemManager.GetConfig().Rewards.Find(r => r.RewardName == _name);
             //actualRewardGO = AnturaModelManager.Instance.LoadRewardOnAntura(actualReward.ID);
@@ -103,9 +116,10 @@ namespace Antura
 
         #region Reward type filter
 
-        public void SetRewardTypeFilter(string _filterString) {
+        public void SetRewardTypeFilter(string _filterString)
+        {
             RewardTypeFilter = _filterString;
-            LoadRewarsList(_filterString);
+            LoadRewardsList(_filterString);
 
             switch (_filterString) {
                 case "dog_head":
@@ -140,19 +154,22 @@ namespace Antura
         public Image ActiveMaterial1Image;
         public Image ActiveMaterial2Image;
 
-        public void SetMaterial1(string _materialName) {
+        public void SetMaterial1(string _materialName)
+        {
             ActiveMaterial1Image.material = MaterialManager.LoadMaterial(_materialName, PaletteType.specular_saturated_2side);
             if (actualReward != null)
                 LoadRewardOnDog(actualReward.RewardName);
         }
 
-        public void SetMaterial2(string _materialName) {
+        public void SetMaterial2(string _materialName)
+        {
             ActiveMaterial2Image.material = MaterialManager.LoadMaterial(_materialName, PaletteType.specular_saturated_2side);
             if (actualReward != null)
                 LoadRewardOnDog(actualReward.RewardName);
         }
 
-        void AddListenersMatColor1() {
+        void AddListenersMatColor1()
+        {
             foreach (Button b in MaterialGrid1.GetComponentsInChildren<Button>()) {
                 string selectedButtonName = b.GetComponent<Image>().material.name;
                 b.name = selectedButtonName;
@@ -161,7 +178,8 @@ namespace Antura
                 });
             }
         }
-        void AddListenersMatColor2() {
+        void AddListenersMatColor2()
+        {
             foreach (Button b in MaterialGrid2.GetComponentsInChildren<Button>()) {
                 string selectedButtonName = b.GetComponent<Image>().material.name;
                 b.name = selectedButtonName;
@@ -175,10 +193,11 @@ namespace Antura
 
         #region Camera
 
-        void doMoveCamera(Vector3 _position) {
+        void doMoveCamera(Vector3 _position)
+        {
             float duration = 2;
             Camera.main.transform.DOMove(_position, duration);
-            
+
         }
 
         #endregion

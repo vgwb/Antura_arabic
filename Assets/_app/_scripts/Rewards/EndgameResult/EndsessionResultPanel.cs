@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using Antura.Audio;
+using Antura.Core;
+using Antura.Extensions;
 using Antura.Helpers;
 using Antura.UI;
 using DG.Tweening;
-using Antura.Core;
-using Antura.Utilities;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,16 +38,16 @@ namespace Antura.Rewards
         public Sfx SfxShowContinue = Sfx.UIPauseIn;
 
         public static EndsessionResultPanel I { get; private set; }
-        bool setupDone;
-        List<RectTransform> releasedMinigamesStars;
-        Tween showTween, godraysTween;
-        Sequence minigamesStarsToBarTween;
+        private bool setupDone;
+        private List<RectTransform> releasedMinigamesStars;
+        private Tween showTween, godraysTween;
+        private Sequence minigamesStarsToBarTween;
 
         #region Unity + Setup
 
         void Setup()
         {
-            if (setupDone) return;
+            if (setupDone) { return; }
 
             setupDone = true;
             I = this;
@@ -55,8 +55,7 @@ namespace Antura.Rewards
             showTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(this.GetComponent<Image>().DOFade(0, 0.35f).From().SetEase(Ease.Linear))
                 .Join(GodraysCanvas.DOFade(0, 0.35f).From().SetEase(Ease.Linear))
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     this.gameObject.SetActive(false);
                     godraysTween.Pause();
                 });
@@ -76,7 +75,7 @@ namespace Antura.Rewards
 
         void OnDestroy()
         {
-            if (I == this) I = null;
+            if (I == this) { I = null; }
             this.StopAllCoroutines();
             showTween.Kill();
             godraysTween.Kill();
@@ -94,8 +93,11 @@ namespace Antura.Rewards
             Setup();
 
             this.StopAllCoroutines();
-            if (_immediate) showTween.Complete();
-            else showTween.Restart();
+            if (_immediate) {
+                showTween.Complete();
+            } else {
+                showTween.Restart();
+            }
             godraysTween.Restart();
             this.gameObject.SetActive(true);
             this.StartCoroutine(CO_Show(_sessionData, _alreadyUnlockedRewards));
@@ -107,13 +109,18 @@ namespace Antura.Rewards
 
             ContinueScreen.Close(true);
             this.StopAllCoroutines();
-            if (_immediate) showTween.Rewind();
-            else showTween.PlayBackwards();
+            if (_immediate) {
+                showTween.Rewind();
+            } else {
+                showTween.PlayBackwards();
+            }
             Bar.Hide();
             Minigames.Hide();
             minigamesStarsToBarTween.Kill();
             if (releasedMinigamesStars != null) {
-                foreach (RectTransform rt in releasedMinigamesStars) Destroy(rt.gameObject);
+                foreach (RectTransform rt in releasedMinigamesStars) {
+                    Destroy(rt.gameObject);
+                }
                 releasedMinigamesStars = null;
             }
         }
@@ -134,14 +141,18 @@ namespace Antura.Rewards
             yield return new WaitForSeconds(1);
 
             // Show bar
-            if (_alreadyUnlockedRewards > 2) _alreadyUnlockedRewards = 2;
+            if (_alreadyUnlockedRewards > 2) {
+                _alreadyUnlockedRewards = 2;
+            }
             while (_alreadyUnlockedRewards > -1) {
                 Bar.Achievements[_alreadyUnlockedRewards].AchieveReward(true, true);
                 _alreadyUnlockedRewards--;
             }
             Bar.Show(_sessionData.Count * 3);
-            GameResultUI.I.BonesCounter.Show();
-            while (!Bar.ShowTween.IsComplete()) yield return null;
+            //GameResultUI.I.BonesCounter.Show();
+            while (!Bar.ShowTween.IsComplete()) {
+                yield return null;
+            }
 
             // Start filling bar and/or show Continue button
             releasedMinigamesStars = Minigames.CloneStarsToMainPanel();
@@ -157,12 +168,11 @@ namespace Antura.Rewards
                 yield return new WaitForSeconds(minigamesStarsToBarTween.Duration());
             }
             AudioManager.I.PlaySound(SfxShowContinue);
-            ContinueScreen.Show(Continue, ContinueScreenMode.Button);
+            ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
         }
 
-        void Continue()
+        public void Continue()
         {
-            //GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.MiniGameDone());
             AppManager.I.NavigationManager.GoToNextScene();
         }
 
@@ -170,7 +180,7 @@ namespace Antura.Rewards
         {
             for (int i = 0; i < RewardsGos.Length; ++i) {
                 GameObject go = RewardsGos[i];
-                if (go.transform.childCount == 0) continue;
+                if (go.transform.childCount == 0) { continue; }
                 go.SetLayerRecursive(GenericHelper.LayerMaskToIndex(RewardsGosLayer));
                 CameraHelper.FitRewardToUICamera(go.transform.GetChild(0), RewardsCams[i], true);
             }

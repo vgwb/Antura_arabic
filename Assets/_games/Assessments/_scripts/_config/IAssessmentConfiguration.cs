@@ -1,8 +1,8 @@
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 
 namespace Antura.Assessment
 {
-    public interface IAssessmentConfiguration: IGameConfiguration
+    public interface IAssessmentConfiguration : IGameConfiguration
     {
         int NumberOfRounds { get; set; }
 

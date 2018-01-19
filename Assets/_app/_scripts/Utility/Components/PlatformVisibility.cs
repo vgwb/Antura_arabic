@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using Antura.Core;
+using UnityEngine;
 
 namespace Antura.Utilities
 {
@@ -11,16 +12,15 @@ namespace Antura.Utilities
         void Start()
         {
             if (!Application.isEditor) {
-                if (MobileOnly &&
-                    (Application.platform != RuntimePlatform.Android &&
-                     Application.platform != RuntimePlatform.IPhonePlayer)) {
+                if (MobileOnly && !AppConfig.IsMobilePlatform()) {
                     gameObject.SetActive(false);
                 }
+
                 if (AndroidOnly && Application.platform != RuntimePlatform.Android) {
                     gameObject.SetActive(false);
                 }
 
-                if (DesktopOnly && Application.platform != RuntimePlatform.WindowsPlayer) {
+                if (DesktopOnly && !AppConfig.IsDesktopPlatform()) {
                     gameObject.SetActive(false);
                 }
             }

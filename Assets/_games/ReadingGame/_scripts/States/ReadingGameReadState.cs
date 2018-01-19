@@ -1,11 +1,10 @@
 ﻿using System;
-using Antura.MinigamesCommon;
 using Antura.Tutorial;
 using UnityEngine;
 
 namespace Antura.Minigames.ReadingGame
 {
-    public class ReadingGameReadState : IState
+    public class ReadingGameReadState : FSM.IState
     {
         public bool TutorialMode = false;
 
@@ -39,14 +38,10 @@ namespace Antura.Minigames.ReadingGame
             // Reset game timer
             gameTime.Reset(game.TimeToAnswer);
 
-            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
-            {
-                if (!TutorialMode)
-                {
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer) {
+                if (!TutorialMode) {
                     gameTime.Start();
-                }
-                else
-                {
+                } else {
                     game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ReadingGame_Tuto);
                     drawTutorialLineTimer = 0;
                 }
@@ -60,23 +55,18 @@ namespace Antura.Minigames.ReadingGame
             game.blurredText.SetActive(true);
             //game.circleBox.SetActive(false);
 
-            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
-            {
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.Alphabet) {
                 game.barSet.PlaySong(game.Context.GetAudioManager().PlaySound(game.alphabetSongAudio), OnSongEnded);
-            }
-            else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.DiacriticSong)
-            {
+            } else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.DiacriticSong) {
                 game.barSet.PlaySong(game.Context.GetAudioManager().PlaySound(game.diacriticSongAudio), OnSongEnded);
             }
 
             completedDragging = false;
 
-            if (firstRealRun)
-            {
+            if (firstRealRun) {
                 bool isSong = (ReadingGameConfiguration.Instance.Variation != ReadingGameVariation.ReadAndAnswer);
 
-                if (!TutorialMode)
-                {
+                if (!TutorialMode) {
                     // Configure overlay
                     var overlay = game.Context.GetOverlayWidget();
                     overlay.Initialize(true, !isSong, !isSong);
@@ -90,8 +80,9 @@ namespace Antura.Minigames.ReadingGame
                 }
             }
 
-            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer) {
                 game.barSet.SwitchToNextBar();
+            }
 
             game.barSet.active = true;
         }
@@ -105,28 +96,26 @@ namespace Antura.Minigames.ReadingGame
 
             inputManager.onPointerDown -= OnPointerDown;
             inputManager.onPointerUp -= OnPointerUp;
-            
+
             gameTime.Stop();
 
             game.barSet.active = false;
             game.barSet.Clear();
             game.blurredText.SetActive(false);
+            game.hiddenText.Clear();
         }
 
         public void Update(float delta)
         {
-            if (!TutorialMode)
+            if (!TutorialMode) {
                 game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
-            else if (dragging == null)
-            {
+            } else if (dragging == null) {
                 drawTutorialLineTimer -= delta;
 
-                if (drawTutorialLineTimer < 0)
-                {
+                if (drawTutorialLineTimer < 0) {
                     var activeBar = game.barSet.GetActiveBar();
 
-                    if (activeBar != null)
-                    {
+                    if (activeBar != null) {
                         drawTutorialLineTimer = 5;
 
                         var handleOffset = activeBar.glass.handleOffset.position - activeBar.glass.transform.position;
@@ -137,23 +126,17 @@ namespace Antura.Minigames.ReadingGame
 
             gameTime.Update(delta);
 
-            if (dragging != null)
-            {
+            if (dragging != null) {
                 var inputManager = game.Context.GetInputManager();
                 completedDragging = dragging.SetGlassScreenPosition(inputManager.LastPointerPosition + draggingOffset,
                     ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer);
-            }
-            else
-            {
-                if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
-                {
+            } else {
+                if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer) {
 
-                    if (completedDragging)
-                    {
+                    if (completedDragging) {
                         var completedAllBars = game.barSet.SwitchToNextBar();
 
-                        if (completedAllBars)
-                        {
+                        if (completedAllBars) {
                             // go to Buttons State
                             game.AnswerState.ReadTime = gameTime.Time;
                             game.AnswerState.MaxTime = gameTime.Duration;
@@ -168,47 +151,42 @@ namespace Antura.Minigames.ReadingGame
             }
 
 
-            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
-            {
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer) {
                 float perc = gameTime.Time / gameTime.Duration;
 
-                if (perc < 0.05f)
+                if (perc < 0.05f) {
                     game.antura.Mood = ReadingGameAntura.AnturaMood.SAD;
-                else if (perc < 0.5f)
+                } else if (perc < 0.5f) {
                     game.antura.Mood = ReadingGameAntura.AnturaMood.ANGRY;
-                else
+                } else {
                     game.antura.Mood = ReadingGameAntura.AnturaMood.HAPPY;
-            }
-            else // Alphabet Song
-            {
+                }
+            } else // Alphabet Song
+              {
                 float distance;
-                if (game.barSet.GetFollowingDistance(out distance))
-                {
+                if (game.barSet.GetFollowingDistance(out distance)) {
                     distance = Math.Abs(distance);
 
-                    if (distance > 100)
-                    {
+                    if (distance > 100) {
                         timeFarFromTarget += delta;
-                    }
-                    else
-                    {
+                    } else {
                         timeFarFromTarget = 0;
-                        if (distance < 50)
+                        if (distance < 50) {
                             scoreAccumulator += 1.15f * delta;
-                        else
+                        } else {
                             scoreAccumulator += 1 * delta;
-
-                        if (scoreAccumulator >= 1)
-                        {
+                        }
+                        if (scoreAccumulator >= 1) {
                             game.AddScore((int)scoreAccumulator);
                             scoreAccumulator = scoreAccumulator - (int)scoreAccumulator;
                         }
                     }
 
-                    if (timeFarFromTarget > 1.0f)
+                    if (timeFarFromTarget > 1.0f) {
                         game.antura.Mood = ReadingGameAntura.AnturaMood.ANGRY;
-                    else
+                    } else {
                         game.antura.Mood = ReadingGameAntura.AnturaMood.HAPPY;
+                    }
                 }
             }
         }
@@ -225,13 +203,13 @@ namespace Antura.Minigames.ReadingGame
             game.isTimesUp = true;
             game.Context.GetOverlayWidget().OnClockCompleted();
 
-            if (game.RemoveLife())
+            if (game.RemoveLife()) {
                 return;
+            }
 
             // show time's up and back
             game.Context.GetPopupWidget().ShowTimeUp(
-                () =>
-                {
+                () => {
                     game.SetCurrentState(game.QuestionState);
                     game.Context.GetPopupWidget().Hide();
                 });
@@ -239,14 +217,16 @@ namespace Antura.Minigames.ReadingGame
 
         void OnPointerDown()
         {
-            if (dragging)
+            if (dragging) {
                 return;
+            }
 
             var inputManager = game.Context.GetInputManager();
             dragging = game.barSet.PickGlass(Camera.main, inputManager.LastPointerPosition);
 
-            if (dragging != null)
+            if (dragging != null) {
                 draggingOffset = dragging.GetGlassScreenPosition() - inputManager.LastPointerPosition;
+            }
         }
 
         void OnPointerUp()

@@ -1,8 +1,9 @@
-﻿using Antura.Audio;
+using Antura.Audio;
+using Antura.Core;
 using Antura.UI;
 using UnityEngine;
 
-namespace Antura.Core
+namespace Antura.Keeper
 {
     /// <summary>
     /// Manages the Keeper throughout the application. The Keeper gives hints and explains minigames to the player.
@@ -20,7 +21,8 @@ namespace Antura.Core
         // TODO refactor: remove or complete this
         public void PlaySceneIntroduction(AppScene scene)
         {
-            switch (scene) {
+            switch (scene)
+            {
                 default:
                     break;
             }
@@ -43,17 +45,21 @@ namespace Antura.Core
 
         public void PlayDialog(Database.LocalizationData data, bool isKeeper = true, bool autoClose = true, System.Action _callback = null)
         {
-            if (autoClose) {
+            if (autoClose)
+            {
                 WidgetSubtitles.I.DisplaySentence(data, 2, isKeeper, null);
                 currentCallback = _callback;
                 AudioManager.I.PlayDialogue(data, () =>
                 {
                     CloseDialog();
-                    if (currentCallback != null) {
+                    if (currentCallback != null)
+                    {
                         currentCallback();
                     }
                 });
-            } else {
+            }
+            else
+            {
                 WidgetSubtitles.I.DisplaySentence(data, 2, true, null);
                 AudioManager.I.PlayDialogue(data, _callback);
             }

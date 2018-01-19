@@ -1,4 +1,4 @@
-﻿using Antura.MinigamesCommon;
+using Antura.CameraEffects;
 using UnityEngine;
 
 namespace Antura.Environment

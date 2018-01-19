@@ -2,9 +2,38 @@
 using Antura.Helpers;
 using Antura.Profile;
 using SQLite;
+using UnityEngine;
 
 namespace Antura.Database
 {
+
+    public class PlayerProfileAdditionalData
+    {
+        /// <summary>
+        /// general total final overall score
+        /// Used only for the player icons in the Home scene.
+        /// Part of PlayerIconData
+        /// </summary>
+        public bool HasMaxStarsInCurrentPlaySessions;
+
+        /// <summary>
+        /// Number of consecutive days of playin
+        /// </summary>
+        public int ConsecutivePlayDays;
+
+        /// <summary>
+        /// JSON data for the current shop unlocked state.
+        /// </summary>
+        public string CurrentShopStateJSON;
+
+        public PlayerProfileAdditionalData(bool hasMaxStarsInCurrentPlaySessions, int _ConsecutivePlayDays, string currentShopStateJSON)
+        {
+            HasMaxStarsInCurrentPlaySessions = hasMaxStarsInCurrentPlaySessions;
+            ConsecutivePlayDays = _ConsecutivePlayDays;
+            CurrentShopStateJSON = currentShopStateJSON;
+        }
+    }
+
     /// <summary>
     /// Serialized information about the player. Used by the Player Profile.
     /// </summary>
@@ -25,6 +54,7 @@ namespace Antura.Database
         /// </summary>
         public int Timestamp { get; set; }
 
+        public string AppVersion { get; set; }
 
         #region PlayerIconData
 
@@ -73,7 +103,6 @@ namespace Antura.Database
         /// Part of PlayerIconData.
         /// </summary>
         public float TotalScore { get; set; }
-
         #endregion
 
         #region Details
@@ -89,7 +118,7 @@ namespace Antura.Database
 
         /// <summary>
         /// State of completion for the player profile.
-        /// Can be 0,1,2,3. See PlayerProfile for further details.
+        /// See PlayerProfile for further details.
         /// </summary>
         public ProfileCompletionState ProfileCompletion { get; set; }
 
@@ -124,6 +153,11 @@ namespace Antura.Database
         /// </summary>
         public int CurrentPlaySession { get; set; }
 
+        /// <summary>
+        /// State of the first contact in JSON format
+        /// </summary>
+        public string FirstContactStateJSON { get; set; }
+
         #endregion
 
         #region Rewards
@@ -137,7 +171,6 @@ namespace Antura.Database
         /// JSON data for the current customization set on Antura.
         /// </summary>
         public string CurrentAnturaCustomization { get; set; }
-
         #endregion
 
         #region Additional Data
@@ -149,43 +182,52 @@ namespace Antura.Database
 
         #endregion
 
-
         public PlayerProfileData()
         {
         }
 
-        public PlayerProfileData(PlayerIconData iconData, int age, int totalBones, ProfileCompletionState profileCompletion, string currentAnturaCustomization = null)
+        public PlayerProfileData(
+                string _Uuid,
+                int _AvatarId,
+                PlayerGender _Gender,
+                PlayerTint _Tint,
+                bool _IsDemoUser,
+                bool _HasFinishedTheGame,
+                bool _HasFinishedTheGameWithAllStars,
+                bool _HasMaxStarsInCurrentPlaySessions,
+                int age,
+                int totalBones,
+                ProfileCompletionState profileCompletion,
+                string currentAnturaCustomization,
+                int comboPlayDays,
+                AnturaSpace.ShopState currentShopState,
+                FirstContactState currentFirstContactState
+                )
         {
             Id = UNIQUE_ID;  // Only one record
+            AppVersion = AppConfig.AppVersion.ToString();
+            Uuid = _Uuid;
+            AvatarId = _AvatarId;
+            Gender = _Gender;
+            Tint = _Tint;
+            IsDemoUser = _IsDemoUser;
+            JourneyCompleted = _HasFinishedTheGame;
+            TotalScore = (_HasFinishedTheGameWithAllStars ? 1f : 0f);
+
             Age = age;
-            SetPlayerIconData(iconData);
             ProfileCompletion = profileCompletion;
             TotalBones = totalBones;
             SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
             SetCurrentJourneyPosition(JourneyPosition.InitialJourneyPosition);
             Timestamp = GenericHelper.GetTimestampForNow();
             CurrentAnturaCustomization = currentAnturaCustomization;
+            AdditionalData = JsonUtility.ToJson(new PlayerProfileAdditionalData(_HasMaxStarsInCurrentPlaySessions, comboPlayDays, currentShopState.ToJson()));
+            FirstContactStateJSON = JsonUtility.ToJson(currentFirstContactState);
         }
 
         public bool HasFinishedTheGameWithAllStars()
         {
             return (TotalScore >= 0.999f);
-        }
-
-        public void SetPlayerIconData(PlayerIconData iconData)
-        {
-            Uuid = iconData.Uuid;
-            AvatarId = iconData.AvatarId;
-            Gender = iconData.Gender;
-            Tint = iconData.Tint;
-            IsDemoUser = iconData.IsDemoUser;
-            JourneyCompleted = iconData.HasFinishedTheGame;
-            TotalScore = (iconData.HasFinishedTheGameWithAllStars ? 1f : 0f);
-        }
-
-        public PlayerIconData GetPlayerIconData()
-        {
-            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, JourneyCompleted, HasFinishedTheGameWithAllStars());
         }
 
         #region Journey Position
@@ -202,6 +244,16 @@ namespace Antura.Database
             CurrentStage = pos.Stage;
             CurrentLearningBlock = pos.LearningBlock;
             CurrentPlaySession = pos.PlaySession;
+        }
+
+        public PlayerProfileAdditionalData GetAdditionalData()
+        {
+            var additionalData = JsonUtility.FromJson<PlayerProfileAdditionalData>(AdditionalData);
+            if (additionalData != null) {
+                return additionalData;
+            } else {
+                return new PlayerProfileAdditionalData(false, 0, "");
+            }
         }
 
         public JourneyPosition GetMaxJourneyPosition()
@@ -230,7 +282,7 @@ namespace Antura.Database
 
         public override string ToString()
         {
-            return string.Format("ID{0},U{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8}), ProfCompl{9}, JourneyCompleted{10}, Score{11}",
+            return string.Format("ID{0},U{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8}), ProfCompl:{9}, JourneyCompleted:{10}, Score:{11}, FirstContactPhaseJSON:{12}",
                 Id,
                 Uuid,
                 Timestamp,
@@ -245,11 +297,12 @@ namespace Antura.Database
 
                 ProfileCompletion,
                 JourneyCompleted,
-                TotalScore
+                TotalScore,
+
+                FirstContactStateJSON  
             );
         }
 
         #endregion
-
     }
 }

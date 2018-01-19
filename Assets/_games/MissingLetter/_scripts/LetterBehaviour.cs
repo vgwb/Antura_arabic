@@ -155,11 +155,11 @@ namespace Antura.Minigames.MissingLetter
                 mbIsSpeaking = true;
                 if(m_sInPhrase != null)
                 {
-                    MissingLetterConfiguration.Instance.Context.GetAudioManager().PlayLetterData(m_sInPhrase, true);
+                    MissingLetterConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(m_sInPhrase, true);
                 }
                 else
                 {
-                    MissingLetterConfiguration.Instance.Context.GetAudioManager().PlayLetterData(mLetterData, true);
+                    MissingLetterConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(mLetterData, true);
                 }
                 StartCoroutine(Utils.LaunchDelay(0.8f, SetIsSpeaking, false));
             }

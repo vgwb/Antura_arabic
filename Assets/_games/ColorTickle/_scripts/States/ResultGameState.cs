@@ -2,7 +2,7 @@
 
 namespace Antura.Minigames.ColorTickle
 {
-    public class ResultGameState : IState
+    public class ResultGameState : FSM.IState
     {
         ColorTickleGame game;
 

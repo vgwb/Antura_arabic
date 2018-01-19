@@ -1,9 +1,8 @@
-using Kore.Coroutines;
-using System.Collections;
-using System;
 using Antura.Database;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
+using Kore.Coroutines;
+using System.Collections;
 
 namespace Antura.Assessment
 {
@@ -11,22 +10,22 @@ namespace Antura.Assessment
     {
         public void PlayAssessmentMusic()
         {
-            audioManager.PlayMusic( Music.Theme7);
+            audioManager.PlayMusic(Music.Theme7);
         }
 
         public void PlayKOSound()
         {
-            audioManager.PlaySound( Sfx.KO);
+            audioManager.PlaySound(Sfx.KO);
         }
 
         public void PlayStampSound()
         {
-            audioManager.PlaySound( Sfx.StampOK);
+            audioManager.PlaySound(Sfx.StampOK);
         }
 
         public void PlayUIPopup()
         {
-            audioManager.PlaySound( Sfx.UIPopup);
+            audioManager.PlaySound(Sfx.UIPopup);
         }
 
         /// <summary>
@@ -34,48 +33,50 @@ namespace Antura.Assessment
         /// </summary>
         public void AnturaAngrySound()
         {
-            audioManager.PlaySound( Sfx.DogBarking);
+            audioManager.PlaySound(Sfx.DogBarking);
         }
 
         public void PlayQuestionBlip()
         {
-            audioManager.PlaySound( Sfx.Blip);
+            audioManager.PlaySound(Sfx.Blip);
         }
 
         public void PlayPlaceSlot()
         {
-            audioManager.PlaySound( Sfx.StarFlower);
+            audioManager.PlaySound(Sfx.StarFlower);
         }
 
         public void PlayRemoveSlot()
         {
-            audioManager.PlaySound( Sfx.BalloonPop);
+            audioManager.PlaySound(Sfx.BalloonPop);
         }
 
         public void PlayPoofSound()
         {
-            audioManager.PlaySound( Sfx.Poof);
+            audioManager.PlaySound(Sfx.Poof);
         }
 
         public IYieldable PlayAssessmentCompleteSound()
         {
-            return Speak( Localization.Random(
+            return Speak(Localization.Random(
                                         LocalizationDataId.Assessment_Complete_1,
                                         LocalizationDataId.Assessment_Complete_2,
-                                        LocalizationDataId.Assessment_Complete_3));
+                                        LocalizationDataId.Assessment_Complete_3)
+                        );
         }
 
         public IYieldable PlayAnswerWrong()
         {
-            return Speak( Localization.Random(
+            return Speak(Localization.Random(
                                         LocalizationDataId.Assessment_Wrong_1,
                                         LocalizationDataId.Assessment_Wrong_2,
-                                        LocalizationDataId.Assessment_Wrong_3));
+                                        LocalizationDataId.Assessment_Wrong_3)
+                        );
         }
 
         public IYieldable PlayGameDescription()
         {
-            return Speak( gameDescription);
+            return Speak(gameDescription);
         }
 
         /// <summary>
@@ -83,10 +84,9 @@ namespace Antura.Assessment
         /// </summary>
         /// <param name="ID">Dialogue ID</param>
         /// <returns>Yield instruction to wait it ends</returns>
-        public IYieldable Dialogue( LocalizationDataId ID, 
-                                    bool showWalkieTalkie)
+        public IYieldable Dialogue(LocalizationDataId ID, bool showWalkieTalkie)
         {
-            return new WaitCoroutine( DialogueCoroutine( ID, showWalkieTalkie, true));
+            return new WaitCoroutine(DialogueCoroutine(ID, showWalkieTalkie, true));
         }
 
         /// <summary>
@@ -94,9 +94,9 @@ namespace Antura.Assessment
         /// </summary>
         /// <param name="ID">Dialogue ID</param>
         /// <returns>Yield instruction to wait it ends</returns>
-        public IYieldable Speak( LocalizationDataId ID)
+        public IYieldable Speak(LocalizationDataId ID)
         {
-            return new WaitCoroutine( DialogueCoroutine( ID, false, false));
+            return new WaitCoroutine(DialogueCoroutine(ID, false, false));
         }
 
         private IAudioManager audioManager;
@@ -104,7 +104,7 @@ namespace Antura.Assessment
         private LocalizationDataId gameDescription;
         private PriorityTikets ticket = new PriorityTikets();
 
-        public AssessmentAudioManager( IAudioManager audioManager, 
+        public AssessmentAudioManager(IAudioManager audioManager,
                                     ISubtitlesWidget widget,
                                     LocalizationDataId gameDescription)
         {
@@ -117,60 +117,67 @@ namespace Antura.Assessment
         /// Play LL sound files
         /// </summary>
         /// <param name="data">Sound to play</param>
-        public void PlayLetterData( ILivingLetterData data)
+        public void PlayLetterData(ILivingLetterData data)
         {
-            AssessmentConfiguration.Instance.Context.GetAudioManager()
-                    .PlayLetterData(data, true);
+            AssessmentConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(
+                data, true,
+                soundType: AssessmentConfiguration.Instance.GetVocabularySoundType()
+            );
         }
 
         /// <summary>
         /// Play LL sound files, coroutine
         /// </summary>
         /// <param name="data">Sound to play</param>
-        public IEnumerator PlayLetterDataCoroutine( ILivingLetterData data)
+        public IEnumerator PlayLetterDataCoroutine(ILivingLetterData data)
         {
-            var audioSource = 
-            AssessmentConfiguration.Instance.Context.GetAudioManager()
-                    .PlayLetterData( data, true);
+            var audioSource = AssessmentConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(
+                data, true,
+                soundType: AssessmentConfiguration.Instance.GetVocabularySoundType()
+            );
 
-            while (audioSource.IsPlaying)
+            while (audioSource.IsPlaying) {
                 yield return null;
+            }
         }
 
         /// <summary>
         /// Now dialougues are just ignored if there's already some audio playing.
         /// </summary>
         /// <param name="ID"> Statement to play/display</param>
-        private IEnumerator DialogueCoroutine( LocalizationDataId ID, bool showWalkieTalkie, bool showSubtitles)
+        private IEnumerator DialogueCoroutine(LocalizationDataId ID, bool showWalkieTalkie, bool showSubtitles)
         {
-            yield return Wait.For( 0.2f);
+            yield return Wait.For(0.2f);
 
             var audioTicket = ticket.LockHighPriority();
             bool playing = false;
 
-            if (ticket.IsHighPriorityTicketValid( audioTicket))
-            {
+            if (ticket.IsHighPriorityTicketValid(audioTicket)) {
                 // Can Play Audio
                 playing = true;
 
-                if (showSubtitles)
-                    widget.DisplaySentence( ID, 2.2f, showWalkieTalkie);
+                if (showSubtitles) {
+                    widget.DisplaySentence(ID, 2.2f, showWalkieTalkie);
+                }
 
-                if (showWalkieTalkie && showSubtitles) // give time for walkietalkie sound
-                    yield return Wait.For( 0.2f);
+                if (showWalkieTalkie && showSubtitles) { // give time for walkietalkie sound
+                    yield return Wait.For(0.2f);
+                }
 
-                audioManager.PlayDialogue( ID, () => { playing = false; });
+                audioManager.PlayDialogue(ID, () => { playing = false; });
 
-                while (playing)
+                while (playing) {
                     yield return null;
+                }
 
-                if (showSubtitles)
+                if (showSubtitles) {
                     widget.Clear();
+                }
 
-                yield return Wait.For( 0.2f);
+                yield return Wait.For(0.2f);
             }
 
-            ticket.UnlockHighPriorityTicket( audioTicket);
+            ticket.UnlockHighPriorityTicket(audioTicket);
         }
     }
 }

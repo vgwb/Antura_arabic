@@ -1,4 +1,4 @@
-﻿using Antura.MinigamesCommon;
+﻿using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.ReadingGame
@@ -41,7 +41,8 @@ namespace Antura.Minigames.ReadingGame
         SpriteFader[] spriteFaders;
 
         Color[] startColors;
-        Color startTextColor;
+
+        public Color TextColor = Color.black;
 
         Vector2 lastSize = Vector2.one;
         bool active;
@@ -77,15 +78,13 @@ namespace Antura.Minigames.ReadingGame
                 spriteFaders[i].SetAlphaImmediate(0);
             }
 
-            var textColor = text.color;
-            startTextColor = textColor;
-            textColor.a = 0;
-            text.color = textColor;
+            text.color = TextColor;
+            text.alpha = 0;
         }
 
         void Start()
         {
-            Update();
+            UpdateParts();
 
             // Set glass and target
             target.localPosition = Vector3.Lerp(start.localPosition, endCompleted.localPosition, currentTarget);
@@ -101,10 +100,11 @@ namespace Antura.Minigames.ReadingGame
             oldColor.r = startColor.r;
             oldColor.g = startColor.g;
             oldColor.b = startColor.b;
+            oldColor.a = 0;
             start.GetComponent<SpriteRenderer>().color = oldColor;
         }
 
-        void Update()
+        void UpdateParts()
         {
             Vector2 size = lastSize;
 
@@ -137,21 +137,6 @@ namespace Antura.Minigames.ReadingGame
             oldScale.x = (start.localPosition.x - endCompleted.localPosition.x) * 0.25f;
             backSprite.transform.localScale = oldScale;
 
-            const float ALPHA_LERP_SPEED = 5.0f;
-
-            var textColor = text.color;
-
-            var srcAlpha = textColor.a;
-            var destAlpha = startTextColor.a * alpha;
-
-
-            if (Mathf.Abs(srcAlpha - destAlpha) < 0.01f)
-                textColor.a = destAlpha;
-            else
-                textColor.a = Mathf.Lerp(srcAlpha, destAlpha, ALPHA_LERP_SPEED * Time.deltaTime);
-
-            if (text.color != textColor)
-                text.color = textColor;
 
             if (shineWhenNearTarget)
             {
@@ -166,6 +151,32 @@ namespace Antura.Minigames.ReadingGame
                 glass.Bad = 0;
                 glass.DistanceFactor = 0;
             }
+        }
+
+        void Update()
+        {
+            UpdateParts();
+            UpdateText();
+        }
+
+        void UpdateText()
+        {
+
+            const float ALPHA_LERP_SPEED = 5.0f;
+
+            var textAlpha = text.alpha;
+
+            var srcAlpha = textAlpha;
+            var destAlpha = TextColor.a * alpha;
+
+
+            if (Mathf.Abs(srcAlpha - destAlpha) < 0.01f)
+                textAlpha = destAlpha;
+            else
+                textAlpha = Mathf.Lerp(srcAlpha, destAlpha, ALPHA_LERP_SPEED * Time.deltaTime);
+
+            if (text.alpha != textAlpha)
+                text.alpha = textAlpha;
         }
 
         public void Complete()

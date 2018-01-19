@@ -1,8 +1,6 @@
-﻿using Antura.MinigamesCommon;
-
 namespace Antura.Minigames.ReadingGame
 {
-    public class ReadingGameInitialState : IState
+    public class ReadingGameInitialState : FSM.IState
     {
         ReadingGameGame game;
 
@@ -19,20 +17,13 @@ namespace Antura.Minigames.ReadingGame
         {
             timer = 2;
 
-            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
-            {
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer) {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ReadingGame_Title, () => { introCompleted = true; });
-            }
-            else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.AlphabetSong_alphabet_Title, () => { introCompleted = true; });
-            }
-            else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.DiacriticSong)
-            {
+            } else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.Alphabet) {
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Song_alphabet_Title, () => { introCompleted = true; });
+            } else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.DiacriticSong) {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.AlphabetSong_letters_Title, () => { introCompleted = true; });
-            }
-            else
-            {
+            } else {
                 introCompleted = true;
             }
 
@@ -45,7 +36,7 @@ namespace Antura.Minigames.ReadingGame
 
         public void ExitState()
         {
-           
+
         }
 
         public void Update(float delta)

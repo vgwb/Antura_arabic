@@ -1,6 +1,6 @@
-﻿using Antura.Database;
+﻿using Antura.Core;
+using Antura.Database;
 using Antura.UI;
-using Antura.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -12,49 +12,69 @@ namespace Antura.Book
     /// </summary>
     public class ItemLetter : MonoBehaviour, IPointerClickHandler
     {
-        LetterInfo info;
+        [Header("References")]
         public TextRender Title;
         public TextRender SubTitle;
-        public Image LockIcon;
+        public Image OkIcon;
+        public Image BackgroundImage;
 
-        VocabularyPanel manager;
+        public Color ColorVariation;
+        public Color ColorSymbol;
 
-        UIButton uIButton;
+        private LettersPage myManager;
+        private LetterInfo myLetterInfo;
+        //private UIButton uIButton;
 
-
-        public void Init(VocabularyPanel _manager, LetterInfo _info, bool _selected)
+        public void Init(LettersPage _manager, LetterInfo _info, bool _selected)
         {
-            uIButton = GetComponent<UIButton>();
+            myLetterInfo = _info;
+            myManager = _manager;
+            //uIButton = GetComponent<UIButton>();
 
-
-            info = _info;
-            manager = _manager;
-
-            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
-                LockIcon.enabled = false;
+            if (myLetterInfo.unlocked || AppManager.I.Player.IsDemoUser) {
+                OkIcon.enabled = true;
             } else {
-                LockIcon.enabled = true;
+                OkIcon.enabled = false;
             }
 
-            Title.text = info.data.GetChar();
-            SubTitle.text = info.data.Id;
-
-            hightlight(_selected);
+            Title.text = myLetterInfo.data.GetStringForDisplay();
+            SubTitle.text = myLetterInfo.data.Id + (myLetterInfo.data.Number > 0 ? " (" + myLetterInfo.data.Number + ")" : "");
+            // + " " + myLetterInfo.data.Kind.ToString();
+            highlight(_selected);
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailLetter(info);
+            myManager.DetailLetter(myLetterInfo);
         }
 
         public void Select(string code)
         {
-            hightlight(code == info.data.Id);
+
+            highlight(code == myLetterInfo.data.Id);
         }
 
-        void hightlight(bool _status)
+        private void highlight(bool _status)
         {
-            uIButton.Toggle(_status);
+            if (_status) {
+                BackgroundImage.color = new Color(1f, 1f, 1f, 0f);
+            } else {
+                ColorBackground();
+            }
+            //uIButton.Toggle(_status);
+        }
+
+        private void ColorBackground()
+        {
+            if (myLetterInfo.data.Kind == LetterDataKind.Letter) {
+                BackgroundImage.color = Color.white;
+            } else if (myLetterInfo.data.Kind == LetterDataKind.Symbol) {
+                BackgroundImage.color = ColorSymbol;
+            } else if (myLetterInfo.data.Kind == LetterDataKind.LetterVariation) {
+                BackgroundImage.color = ColorVariation;
+            } else {
+                BackgroundImage.color = new Color(1f, 0.56f, 0.5f);
+            }
         }
     }
 }

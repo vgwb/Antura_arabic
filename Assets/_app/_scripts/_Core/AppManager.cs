@@ -1,16 +1,19 @@
-﻿using Antura.Audio;
-using Antura.CameraControl;
-using Antura.Core;
+using Antura.Audio;
+using Antura.Book;
+using Antura.Core.Services;
 using Antura.Database;
-using Antura.LivingLetters;
+using Antura.Helpers;
+using Antura.Keeper;
+using Antura.Minigames;
 using Antura.Profile;
 using Antura.Rewards;
 using Antura.Teacher;
 using Antura.UI;
 using Antura.Utilities;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace Antura
+namespace Antura.Core
 {
     /// <summary>
     /// Core of the application.
@@ -18,12 +21,6 @@ namespace Antura
     /// </summary>
     public class AppManager : SingletonMonoBehaviour<AppManager>
     {
-        protected override void Awake()
-        {
-            base.Awake();
-            DontDestroyOnLoad(this);
-        }
-
         public AppSettingsManager AppSettingsManager;
         public TeacherAI Teacher;
         public VocabularyHelper VocabularyHelper;
@@ -32,11 +29,13 @@ namespace Antura
         public DatabaseManager DB;
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
+        public ServicesManager Services;
+        public FirstContactManager FirstContactManager;
+        public PlayerProfileManager PlayerProfileManager;
+        public RewardSystemManager RewardSystemManager;
 
         [HideInInspector]
         public NavigationManager NavigationManager;
-
-        public PlayerProfileManager PlayerProfileManager;
 
         public AppSettings AppSettings
         {
@@ -49,6 +48,10 @@ namespace Antura
             set { PlayerProfileManager.CurrentPlayer = value; }
         }
 
+        public bool IsPaused { get; private set; }
+        public bool ModalWindowActivated = false;
+
+
         #region Initialisation
 
         /// <summary>
@@ -57,16 +60,20 @@ namespace Antura
         /// </summary>
         private bool alreadySetup;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            DontDestroyOnLoad(this);
+        }
+
         /// <summary>
-        /// Game entry point.
+        /// first Init, from Awake()
         /// </summary>
         protected override void Init()
         {
-            if (alreadySetup)
+            if (alreadySetup) {
                 return;
-
-            base.Init();
-
+            }
             alreadySetup = true;
 
             AppSettingsManager = new AppSettingsManager();
@@ -76,29 +83,34 @@ namespace Antura
             VocabularyHelper = new VocabularyHelper(DB);
             JourneyHelper = new JourneyHelper(DB);
             ScoreHelper = new ScoreHelper(DB);
-            Teacher = new TeacherAI(DB, VocabularyHelper, JourneyHelper, ScoreHelper);
+            Teacher = new TeacherAI(DB, VocabularyHelper, ScoreHelper);
             GameLauncher = new MiniGameLauncher(Teacher);
+            FirstContactManager = new FirstContactManager();
+            Services = new ServicesManager();
 
+            // MonoBehaviors
             NavigationManager = gameObject.AddComponent<NavigationManager>();
             NavigationManager.Init();
+            gameObject.AddComponent<KeeperManager>();
+            gameObject.AddComponent<BookManager>();
+
+            RewardSystemManager = new RewardSystemManager();
+            RewardSystemManager.Init();
 
             PlayerProfileManager = new PlayerProfileManager();
             PlayerProfileManager.LoadSettings();
 
-            gameObject.AddComponent<KeeperManager>();
+            Services = new ServicesManager();
 
-            RewardSystemManager.Init();
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
             // Debugger setup
-            Debug.logger.logEnabled = AppConstants.DebugLogEnabled;
+            Debug.logger.logEnabled = AppConfig.DebugLogEnabled;
             gameObject.AddComponent<Debugging.DebugManager>();
 
             // Update settings
-            AppSettings.ApplicationVersion = AppConstants.AppVersion;
-            AppSettingsManager.SaveSettings();
+            AppSettingsManager.UpdateAppVersion();
         }
-
         #endregion
 
         void Update()
@@ -106,35 +118,26 @@ namespace Antura
             // Exit with Android back button
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 if (Application.platform == RuntimePlatform.Android) {
-                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () =>
-                    {
-                        Debug.Log("Application Quit");
-                        Application.Quit();
-                    }, () => { });
+                    QuitApplication();
                 }
             }
         }
 
-        #region Setting
-
-        public void ToggleQualitygfx()
+        public void OnSceneChanged()
         {
-            AppSettings.HighQualityGfx = !AppSettings.HighQualityGfx;
-            CameraGameplayController.I.EnableFX(AppSettings.HighQualityGfx);
+            ModalWindowActivated = false;
         }
 
-        public void ToggleEnglishSubtitles()
+        public void QuitApplication()
         {
-            AppSettings.EnglishSubtitles = !AppSettings.EnglishSubtitles;
-            AppSettingsManager.SaveSettings();
+            GlobalUI.ShowPrompt(LocalizationDataId.UI_AreYouSure, () => {
+                Debug.Log("Application Quit");
+                Application.Quit();
+            }, () => {
+            });
         }
 
-        #endregion
-
-        #region Pause
-
-        public bool IsPaused { get; private set; }
-
+        #region Main App Suspend method
         void OnApplicationPause(bool pauseStatus)
         {
             IsPaused = pauseStatus;
@@ -142,29 +145,29 @@ namespace Antura
             // app is pausing
             if (IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
+                Services.Notifications.AppSuspended();
             }
 
             //app is resuming
             if (!IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppResume);
+                Services.Notifications.AppResumed();
                 LogManager.I.InitNewSession();
             }
             AudioManager.I.OnAppPause(IsPaused);
         }
-
         #endregion
 
         public void OpenSupportForm()
         {
             var parameters = "";
-            parameters += "?entry.346861357=" + WWW.EscapeURL(JsonUtility.ToJson(new DeviceInfo()));
-            parameters += "&entry.1999287882=" + WWW.EscapeURL(JsonUtility.ToJson(Player));
+            parameters += "?entry.346861357=" + WWW.EscapeURL(new DeviceInfo().ToJsonData());
+            parameters += "&entry.1999287882=" + WWW.EscapeURL(Player.ToJsonData());
 
-            Application.OpenURL(AppConstants.UrlSupportForm + parameters);
+            Application.OpenURL(AppConfig.UrlSupportForm + parameters);
         }
 
         #region TMPro hack
-
         /// <summary>
         /// TextMesh Pro hack to manage Diacritic Symbols correct positioning
         /// </summary>
@@ -182,11 +185,10 @@ namespace Antura
         void On_TMPro_Text_Changed(Object obj)
         {
             var tmpText = obj as TMPro.TMP_Text;
-            if (tmpText != null && VocabularyHelper.FixDiacriticPositions(tmpText.textInfo)) {
+            if (tmpText != null && ArabicAlphabetHelper.FixTMProDiacriticPositions(tmpText.textInfo)) {
                 tmpText.UpdateVertexData();
             }
         }
-
         #endregion
     }
 }

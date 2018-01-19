@@ -2,7 +2,7 @@
 
 namespace Antura.Minigames.SickLetters
 {
-    public class ResultGameState : IState
+    public class ResultGameState : FSM.IState
     {
         SickLettersGame game;
         int stars, score;
@@ -15,18 +15,16 @@ namespace Antura.Minigames.SickLetters
 
         public void EnterState()
         {
-            
+            game.LLPrefab.jumpOut(0, true);
 
-            game.LLPrefab.jumpOut(0,true);
-
-            if (game.scale.counter < game.targetScale)
-            {
+            if (game.scale.counter < game.targetScale) {
                 game.manager.failure();
                 timer = 6;
             }
 
-            if (game.scale.counter >= game.targetScale)
-                timer= 4;
+            if (game.scale.counter >= game.targetScale) {
+                timer = 4;
+            }
         }
 
         public void ExitState()
@@ -37,18 +35,14 @@ namespace Antura.Minigames.SickLetters
         {
             timer -= delta;
 
-            if (timer < 0)
-            {
+            if (timer < 0) {
                 game.EndGame(game.currentStars, game.maxWieght);
                 game.buttonRepeater.SetActive(false);
 
-                if (game.currentStars == 0)
-                {
-                    AudioManager.I.PlayDialogue("Reward_0Star");
+                if (game.currentStars == 0) {
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.Reward_0Star);
                     //WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Reward_0Star, 4, true);
-                }
-                else
-                {
+                } else {
                     //string dia = "Reward_" + game.currentStars + "Star_" + UnityEngine.Random.Range(1, 4);
                     Database.LocalizationDataId data = randomRewardData();
                     //WidgetSubtitles.I.gameObject.SetActive(true);
@@ -67,13 +61,13 @@ namespace Antura.Minigames.SickLetters
 
         Database.LocalizationDataId randomRewardData()
         {
-            if (game.currentStars == 1)
-                return (Database.LocalizationDataId)(UnityEngine.Random.Range(262,265));
-            else if (game.currentStars == 2)
+            if (game.currentStars == 1) {
+                return (Database.LocalizationDataId)(UnityEngine.Random.Range(262, 265));
+            } else if (game.currentStars == 2) {
                 return (Database.LocalizationDataId)(UnityEngine.Random.Range(265, 268));
-            else
+            } else {
                 return (Database.LocalizationDataId)(UnityEngine.Random.Range(268, 271));
-
+            }
         }
     }
 }

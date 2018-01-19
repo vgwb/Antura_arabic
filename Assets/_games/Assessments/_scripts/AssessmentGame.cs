@@ -1,4 +1,5 @@
-using Antura.MinigamesCommon;
+using Antura.Minigames;
+using Antura.Rewards;
 using UnityEngine;
 
 namespace Antura.Assessment
@@ -8,7 +9,7 @@ namespace Antura.Assessment
     /// Assessment instance according to which assessment code was provided and
     /// Setup the MiniGameStates.
     /// </summary>
-    public class AssessmentGame : MiniGame
+    public class AssessmentGame : MiniGameController
     {
         [HideInInspector]
         public AssessmentVariation AssessmentVariation;
@@ -18,72 +19,74 @@ namespace Antura.Assessment
         public AssessmentResultState ResultState { get; private set; }
 
         private Assessment assessment;
-
-        private Assessment CreateConfiguredAssessment( AssessmentContext context)
+    
+        private Assessment CreateConfiguredAssessment(AssessmentContext context)
         {
             AssessmentOptions.Reset();
 
-            switch (AssessmentConfiguration.Instance.Variation)
-            {
+            switch (AssessmentConfiguration.Instance.Variation) {
                 case AssessmentVariation.MatchLettersToWord:
-                    return ArabicAssessmentsFactory.CreateMatchLettersWordAssessment( context);
+                    return ArabicAssessmentsFactory.CreateMatchLettersWordAssessment(context);
 
-                case AssessmentVariation.LetterForm:
-                    return ArabicAssessmentsFactory.CreateLetterFormAssessment( context);
+                case AssessmentVariation.LetterName:
+                    return ArabicAssessmentsFactory.CreateLetterAssessment(context);
+
+                case AssessmentVariation.LetterAny:
+                    return ArabicAssessmentsFactory.CreateLetterFormAssessment(context);
 
                 case AssessmentVariation.WordsWithLetter:
-                    return ArabicAssessmentsFactory.CreateWordsWithLetterAssessment( context);
+                    return ArabicAssessmentsFactory.CreateWordsWithLetterAssessment(context);
 
                 case AssessmentVariation.SunMoonWord:
-                    return ArabicAssessmentsFactory.CreateSunMoonWordAssessment( context);
+                    return ArabicAssessmentsFactory.CreateSunMoonWordAssessment(context);
 
                 case AssessmentVariation.SunMoonLetter:
-                    return ArabicAssessmentsFactory.CreateSunMoonLetterAssessment( context);
+                    return ArabicAssessmentsFactory.CreateSunMoonLetterAssessment(context);
 
                 case AssessmentVariation.QuestionAndReply:
-                    return ArabicAssessmentsFactory.CreateQuestionAndReplyAssessment( context);
+                    return ArabicAssessmentsFactory.CreateQuestionAndReplyAssessment(context);
 
                 case AssessmentVariation.SelectPronouncedWord:
-                    return ArabicAssessmentsFactory.CreatePronouncedWordAssessment( context);
+                    return ArabicAssessmentsFactory.CreatePronouncedWordAssessment(context);
 
                 case AssessmentVariation.SingularDualPlural:
-                    return ArabicAssessmentsFactory.CreateSingularDualPluralAssessment( context);
+                    return ArabicAssessmentsFactory.CreateSingularDualPluralAssessment(context);
 
                 case AssessmentVariation.WordArticle:
-                    return ArabicAssessmentsFactory.CreateWordArticleAssessment( context);
+                    return ArabicAssessmentsFactory.CreateWordArticleAssessment(context);
 
                 case AssessmentVariation.MatchWordToImage:
-                    return ArabicAssessmentsFactory.CreateMatchWordToImageAssessment( context);
+                    return ArabicAssessmentsFactory.CreateMatchWordToImageAssessment(context);
 
                 case AssessmentVariation.CompleteWord:
-                    return ArabicAssessmentsFactory.CreateCompleteWordAssessment( context);
+                    return ArabicAssessmentsFactory.CreateCompleteWordAssessment(context);
 
                 case AssessmentVariation.OrderLettersOfWord:
-                    return ArabicAssessmentsFactory.CreateOrderLettersInWordAssessment( context);
+                    return ArabicAssessmentsFactory.CreateOrderLettersInWordAssessment(context);
 
                 case AssessmentVariation.CompleteWord_Form:
-                    return ArabicAssessmentsFactory.CreateCompleteWord_FormAssessment( context);
+                    return ArabicAssessmentsFactory.CreateCompleteWord_FormAssessment(context);
 
                 case AssessmentVariation.MatchLettersToWord_Form:
-                    return ArabicAssessmentsFactory.CreateMatchLettersToWord_FormAssessment( context);
+                    return ArabicAssessmentsFactory.CreateMatchLettersToWord_FormAssessment(context);
             }
 
             return null;
         }
 
-        protected override void OnInitialize( IGameContext gameContext)
+        protected override void OnInitialize(IGameContext gameContext)
         {
             AssessmentContext context = new AssessmentContext();
             context.Utils = gameContext;
             context.Game = this;
-            assessment = CreateConfiguredAssessment( context);
+            assessment = CreateConfiguredAssessment(context);
 
-            ResultState = new AssessmentResultState( this, context.AudioManager);
-            GameState = new AssessmentGameState( context.DragManager, assessment, ResultState, this);
-            IntroState = new AssessmentIntroState( this, GameState, context.AudioManager);
+            ResultState = new AssessmentResultState(this, context.AudioManager);
+            GameState = new AssessmentGameState(context.DragManager, assessment, ResultState, this);
+            IntroState = new AssessmentIntroState(this, GameState, context.AudioManager);
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroState;
         }
@@ -92,6 +95,17 @@ namespace Antura.Assessment
         {
             return AssessmentConfiguration.Instance;
         }
+
+        protected override void HandleSceneSkip()
+        {
+            if (StateManager.CurrentState != ResultState)
+            {
+                ResultState.EnterState();
+            }
+            else
+            {
+                EndgameResultPanel.I.Continue();
+            }
+        }
     }
 }
-

@@ -1,10 +1,11 @@
-﻿using System;
-using UnityEngine;
-using System.Collections.Generic;
-using Antura.Dog;
 using Antura.Core;
 using Antura.Database;
+using Antura.Dog;
 using Antura.Rewards;
+using Antura.Tutorial;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Antura.Profile
 {
@@ -22,29 +23,56 @@ namespace Antura.Profile
         public bool IsDemoUser;
         public bool HasFinishedTheGame;
         public bool HasFinishedTheGameWithAllStars;
-        public int TotalNumberOfBones = 8;
+        public bool HasMaxStarsInCurrentPlaySessions;
+        public int TotalNumberOfBones;
+        public int ConsecutivePlayDays;
 
         public ProfileCompletionState ProfileCompletion = ProfileCompletionState.New;
 
-        public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
-        public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
-
-        /// <value>
-        ///  True if player already answered to mood question for today.
-        /// </value>
-        public bool MoodAlreadyAnswered
+        private JourneyPosition maxJourneyPosition = JourneyPosition.InitialJourneyPosition;
+        public JourneyPosition MaxJourneyPosition
         {
-            get {
-                int secondAmount = AppManager.I.Teacher.logAI.SecondsFromLastMoodLog();
-                if (secondAmount > 86400) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
+            get { return maxJourneyPosition; }
+            private set { maxJourneyPosition = value; }
         }
 
-        #region Bones/coins
+        private JourneyPosition currentJourneyPosition = JourneyPosition.InitialJourneyPosition;
+        public JourneyPosition CurrentJourneyPosition
+        {
+            get { return currentJourneyPosition; }
+            private set { currentJourneyPosition = value; }
+        }
+
+        private JourneyPosition previousJourneyPosition = JourneyPosition.InitialJourneyPosition;
+        public JourneyPosition PreviousJourneyPosition
+        {
+            get { return previousJourneyPosition; }
+            private set { previousJourneyPosition = value; }
+        }
+
+        #region First Contact State
+
+        public FirstContactState FirstContactState;
+
+        #endregion
+
+        #region Bones
+
+        // Initial number of bones when the game starts
+        private const int INITIAL_BONES = 0;
+
+        public void GiftInitialBones()
+        {
+            TotalNumberOfBones = INITIAL_BONES;
+        }
+
+        public void MakeSureHasEnoughBones(int wantedBones)
+        {
+            if (TotalNumberOfBones < wantedBones) {
+                TotalNumberOfBones = wantedBones;
+                Save();
+            }
+        }
 
         public int GetTotalNumberOfBones()
         {
@@ -58,6 +86,13 @@ namespace Antura.Profile
             return TotalNumberOfBones;
         }
 
+        public int RemoveBones(int _bonesToRemove)
+        {
+            TotalNumberOfBones -= _bonesToRemove;
+            Save();
+            return TotalNumberOfBones;
+        }
+
         #endregion
 
         #region Management
@@ -67,12 +102,13 @@ namespace Antura.Profile
         /// </summary>
         public void Save()
         {
+            AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
             AppManager.I.PlayerProfileManager.SavePlayerProfile(this);
         }
 
         #endregion
 
-        #region Journey position        
+        #region Journey position
 
         /// <summary>
         /// Sets the actual journey position and save to profile.
@@ -85,8 +121,9 @@ namespace Antura.Profile
         public void SetCurrentJourneyPosition(int _stage, int _lb, int _ps, bool _save = true)
         {
             SetCurrentJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
-            if (_save)
+            if (_save) {
                 Save();
+            }
         }
 
         /// <summary>
@@ -95,11 +132,15 @@ namespace Antura.Profile
         /// </summary>
         /// <param name="_journeyPosition">The journey position.</param>
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
-        public void SetCurrentJourneyPosition(JourneyPosition _journeyPosition, bool _save = true)
+        public void SetCurrentJourneyPosition(JourneyPosition _journeyPosition, bool _save = true, bool _updatePrevToo = true)
         {
             CurrentJourneyPosition = _journeyPosition;
-            if (_save)
+            if (_updatePrevToo) {
+                UpdatePreviousJourneyPosition();
+            }
+            if (_save) {
                 Save();
+            }
         }
 
         /// <summary>
@@ -107,8 +148,11 @@ namespace Antura.Profile
         /// </summary>
         public void AdvanceMaxJourneyPosition()
         {
+            UpdatePreviousJourneyPosition();
             JourneyPosition p = AppManager.I.JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition);
             SetMaxJourneyPosition(p);
+
+            AppManager.I.Player.CheckStarsState();
         }
 
         /// <summary>
@@ -117,9 +161,9 @@ namespace Antura.Profile
         /// </summary>
         /// <param name="newJourneyPosition">The journey position.</param>
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
-        public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true)
+        public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true, bool _forced = false)
         {
-            if (MaxJourneyPosition.IsMinor(newJourneyPosition)) {
+            if (MaxJourneyPosition.IsMinor(newJourneyPosition) || _forced) {
                 MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock,
                     newJourneyPosition.PlaySession);
                 CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock,
@@ -141,7 +185,6 @@ namespace Antura.Profile
             if (!HasFinishedTheGame) {
                 HasFinishedTheGame = AppManager.I.JourneyHelper.HasFinishedTheGame();
                 if (HasFinishedTheGame) {
-                    AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
                     Save();
                 }
             }
@@ -149,18 +192,20 @@ namespace Antura.Profile
 
 
         /// <summary>
-        /// Check whether the game has finished with all starts and update the player icon.
+        /// Check whether the game has finished with all stars and update the player icon.
         /// Called at each end of play session.
         /// </summary>
-        public void CheckGameFinishedWithAllStars()
+        public void CheckStarsState()
         {
             if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars) {
                 HasFinishedTheGameWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
                 if (HasFinishedTheGameWithAllStars) {
-                    AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
                     Save();
                 }
             }
+
+            HasMaxStarsInCurrentPlaySessions = AppManager.I.ScoreHelper.HasEarnedMaxStarsInCurrentPlaySessions();
+            Save();
         }
 
         /// <summary>
@@ -168,8 +213,9 @@ namespace Antura.Profile
         /// </summary>
         public void ResetMaxJourneyPosition(bool _save = true)
         {
-            MaxJourneyPosition = JourneyPosition.InitialJourneyPosition;
-            CurrentJourneyPosition = JourneyPosition.InitialJourneyPosition;
+            MaxJourneyPosition = new JourneyPosition(JourneyPosition.InitialJourneyPosition);
+            CurrentJourneyPosition = new JourneyPosition(JourneyPosition.InitialJourneyPosition);
+            UpdatePreviousJourneyPosition();
             if (_save) {
                 Save();
             }
@@ -182,9 +228,41 @@ namespace Antura.Profile
         public bool IsAtMaxJourneyPosition()
         {
             return (CurrentJourneyPosition.Stage == MaxJourneyPosition.Stage) &&
-                   (CurrentJourneyPosition.LearningBlock == MaxJourneyPosition.LearningBlock) &&
-                   (CurrentJourneyPosition.PlaySession == MaxJourneyPosition.PlaySession);
+            (CurrentJourneyPosition.LearningBlock == MaxJourneyPosition.LearningBlock) &&
+            (CurrentJourneyPosition.PlaySession == MaxJourneyPosition.PlaySession);
         }
+
+        public void AdvanceCurrentStage()
+        {
+            CurrentJourneyPosition.Stage++;
+        }
+
+        public void RetractCurrentStage()
+        {
+            CurrentJourneyPosition.Stage--;
+        }
+
+        public bool IsAssessmentTime()
+        {
+            return AppManager.I.JourneyHelper.IsAssessmentTime(CurrentJourneyPosition);
+        }
+
+        public void UpdatePreviousJourneyPosition()
+        {
+            PreviousJourneyPosition = new JourneyPosition(CurrentJourneyPosition);
+            //Debug.LogError("Updating Prev to " + PreviousJourneyPosition);
+        }
+
+        public void ForcePreviousJourneyPosition(JourneyPosition journeyPosition)
+        {
+            PreviousJourneyPosition = journeyPosition;
+        }
+
+        #endregion
+
+        #region Shop State
+
+        public AnturaSpace.ShopState CurrentShopState = new AnturaSpace.ShopState();
 
         #endregion
 
@@ -200,54 +278,48 @@ namespace Antura.Profile
             get {
                 if (_currentAnturaCustomizations == null) {
                     _currentAnturaCustomizations = new AnturaCustomization();
-                    _currentAnturaCustomizations.LoadFromListOfIds(jsonAnturaCustimizationData);
+                    _currentAnturaCustomizations.LoadFromListOfIds(jsonAnturaCustomizationData);
                 }
                 return _currentAnturaCustomizations;
             }
             private set {
                 _currentAnturaCustomizations = value;
-                SaveCustomization();
+                SaveAnturaCustomization();
             }
         }
 
-        #region Already unlocked rewards
+        #region Data for unlocked rewards
 
-        private List<RewardPackUnlockData> _rewardsUnlocked;
-
-        /// <summary>
-        /// Gets or sets the rewards unlocked.
-        /// </summary>
-        /// <value>
-        /// The rewards unlocked.
-        /// </value>
-        public List<RewardPackUnlockData> RewardsUnlocked
-        {
-            get {
-                if (_rewardsUnlocked == null) {
-                    _rewardsUnlocked = LoadRewardsUnlockedFromDB();
-                }
-                return _rewardsUnlocked;
-            }
-
-            private set { _rewardsUnlocked = value; }
-        }
-
+        private List<RewardPackUnlockData> _rewardPackUnlockDataList = new List<RewardPackUnlockData>();
 
         /// <summary>
         /// Resets the rewards unlocked data.
         /// </summary>
-        public void ResetRewardsUnlockedData()
+        public void ResetRewardPackUnlockData()
         {
-            RewardsUnlocked = new List<RewardPackUnlockData>();
+            _rewardPackUnlockDataList.Clear();
+            AppManager.I.DB.DeleteAll<RewardPackUnlockData>();
         }
 
         /// <summary>
         /// Loads the rewards unlocked from database.
         /// </summary>
         /// <returns></returns>
-        public List<RewardPackUnlockData> LoadRewardsUnlockedFromDB()
+        public void LoadRewardPackUnlockDataList()
         {
-            return AppManager.I.DB.GetAllRewardPackUnlockData();
+            _rewardPackUnlockDataList = AppManager.I.DB.GetAllRewardPackUnlockData();
+            AppManager.I.RewardSystemManager.InjectRewardsUnlockData(_rewardPackUnlockDataList);
+        }
+
+        public void SaveRewardPackUnlockDataList()
+        {
+            AppManager.I.DB.UpdateRewardPackUnlockDataAll(_rewardPackUnlockDataList);
+        }
+
+        public void RegisterUnlockData(RewardPackUnlockData unlockData)
+        {
+            if (!_rewardPackUnlockDataList.Contains(unlockData))
+                _rewardPackUnlockDataList.Add(unlockData);
         }
 
         /// <summary>
@@ -255,7 +327,7 @@ namespace Antura.Profile
         /// </summary>
         /// <param name="_rewardType">Type of the reward.</param>
         /// <returns></returns>
-        public int GetNotYetUnlockedRewardCountForType(RewardTypes _rewardType)
+        /*public int GetNotYetUnlockedRewardCountForType(RewardTypes _rewardType)
         {
             int counter = 0;
             //foreach (PlaySessionRewardUnlock plsRew in RewardSystemManager.GetConfig().PlaySessionRewardsUnlock) {
@@ -284,120 +356,67 @@ namespace Antura.Profile
             //}
             switch (_rewardType) {
                 case RewardTypes.reward:
-                    counter = RewardSystemManager.GetConfig().Rewards.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
+                    counter = AppManager.I.RewardSystemManager.ItemsConfig.PropBases.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
                     break;
                 case RewardTypes.texture:
-                    counter = RewardSystemManager.GetConfig().RewardsTile.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
+                    counter = AppManager.I.RewardSystemManager.ItemsConfig.TextureBases.Count - RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
                     break;
                 case RewardTypes.decal:
-                    counter = RewardSystemManager.GetConfig().RewardsDecal.Count -
-                              RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
+                    counter = AppManager.I.RewardSystemManager.ItemsConfig.DecalBases.Count -
+                    RewardsUnlocked.FindAll(r => r.Type == _rewardType).Count;
                     break;
             }
 
             return counter;
-        }
+        }*/
 
         /// <summary>
         /// Return true if rewards for this type available.
         /// </summary>
         /// <param name="_rewardType">Type of the reward.</param>
         /// <returns></returns>
-        public bool RewardForTypeAvailableYet(RewardTypes _rewardType)
+        /*public bool RewardForTypeAvailableYet(RewardTypes _rewardType)
         {
             return GetNotYetUnlockedRewardCountForType(_rewardType) <= 0 ? false : true;
-        }
+        }*/
 
         /// <summary>
         /// Used to store antura custumization data in json and load it at runtime.
         /// </summary>
-        string jsonAnturaCustimizationData = string.Empty;
+        string jsonAnturaCustomizationData = string.Empty;
 
         #endregion
 
-        #region API
-
-        /// <summary>
-        /// True if there is at least one new reward for this player.
-        /// </summary>
-        /// <returns></returns>
-        public bool ThereIsSomeNewReward()
-        {
-            if (RewardsUnlocked.Exists(r => r.IsNew == true)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public bool RewardColorIsNew(string _itemId, string _colorId)
-        {
-            if (RewardsUnlocked.Exists(r => r.ItemId == _itemId && r.ColorId == _colorId && r.IsNew == true)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Return true if Reward is never used by player.
-        /// </summary>
-        /// <returns></returns>
-        public bool RewardItemIsNew(string _itemId)
-        {
-            if (RewardsUnlocked.Exists(r => r.ItemId == _itemId && r.IsNew == true)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Return true if Reward category container at least one reward never used by player.
-        /// </summary>
-        /// <returns></returns>
-        public bool RewardCategoryContainsNewElements(RewardTypes _rewardType, string _rewardCategory = "")
-        {
-            if (RewardsUnlocked.Exists(r => r.Type == _rewardType && r.GetRewardCategory() == _rewardCategory && r.IsNew == true)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        /// <summary>
+        /*/// <summary>
         /// Mark RewardPackUnlockData as not new and update db entry.
         /// </summary>
         public void SetRewardPackUnlockedToNotNew(string _rewardPackId)
         {
-            RewardPackUnlockData rewardPackToUpdate = RewardsUnlocked.Find(r => r.Id == _rewardPackId && r.IsNew == true);
+            RewardPackUnlockData rewardPackToUpdate = UnlockedRewardsData.Find(r => r.Id == _rewardPackId && r.IsNew == true);
             if (rewardPackToUpdate != null) {
                 rewardPackToUpdate.IsNew = false;
             }
             AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackToUpdate);
-        }
+        }*/
 
-        /// <summary>
-        /// Delete all reward unlocks from the Dynamic DB.
-        /// </summary>
-        private void DeleteAllRewardUnlocks()
-        {
-            AppManager.I.DB.DeleteAll<RewardPackUnlockData>();
-        }
+        /* /// <summary>
+         /// Delete all reward unlocks from the Dynamic DB.
+         /// </summary>
+         private void DeleteAllRewardUnlocks()
+         {
+             AppManager.I.DB.DeleteAll<RewardPackUnlockData>();
+         }
 
-        /// <summary>
-        /// Adds or update the reward unlocked and persist it.
-        /// </summary>
-        /// <param name="rewardPackUnlockData">The reward pack.</param>
-        public void AddRewardUnlocked(RewardPackUnlockData rewardPackUnlockData)
-        {
-            AppManager.I.Player.RewardsUnlocked.Add(rewardPackUnlockData);
-            AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackUnlockData);
-        }
+         /// <summary>
+         /// Adds or update the reward unlocked and persist it.
+         /// </summary>
+         /// <param name="rewardPackUnlockData">The reward pack.</param>
+         public void AddRewardUnlocked(RewardPackUnlockData rewardPackUnlockData)
+         {
+             // DEPRECATE THIS!!!
+             AppManager.I.Player.UnlockedRewardsData.Add(rewardPackUnlockData);
+             AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackUnlockData);
+         }
 
         /// <summary>
         /// Add update to db all 'this' reward unlocked.
@@ -407,28 +426,28 @@ namespace Antura.Profile
             List<RewardPackUnlockData> rewards = new List<RewardPackUnlockData>();
             rewards.Add(_rewardPackUnlockData);
             AppManager.I.DB.UpdateRewardPackUnlockDataAll(rewards);
-        }
+        }*/
 
         /// <summary>
         /// Adds or update a list of unlocked rewards and persist it.
         /// </summary>
-        public void AddRewardUnlockedRange(List<RewardPackUnlockData> rewardPackUnlockDatas)
+        public void AddRewardUnlockedRange()//List<RewardPackUnlockData> rewardPackUnlockDatas)
         {
             //Debug.Log(this.RewardsUnlocked); 
-            AppManager.I.Player.RewardsUnlocked.AddRange(rewardPackUnlockDatas);
-            AppManager.I.DB.UpdateRewardPackUnlockDataAll(rewardPackUnlockDatas);
+            //AppManager.I.Player.UnlockedRewardsData.AddRange(rewardPackUnlockDatas);
+            AppManager.I.DB.UpdateRewardPackUnlockDataAll(_rewardPackUnlockDataList);
         }
 
         /// <summary>
         /// Saves the customization on db.
         /// </summary>
         /// <param name="_anturaCustomization">The antura customization. If null save only on db.</param>
-        public void SaveCustomization(AnturaCustomization _anturaCustomization = null)
+        public void SaveAnturaCustomization(AnturaCustomization _anturaCustomization = null)
         {
             if (_anturaCustomization != null) {
                 CurrentAnturaCustomizations = _anturaCustomization;
             }
-            jsonAnturaCustimizationData = CurrentAnturaCustomizations.GetJsonListOfIds();
+            jsonAnturaCustomizationData = CurrentAnturaCustomizations.GetJsonListOfIds();
             Save();
 
             AppManager.I.LogManager.LogInfo(InfoEvent.AnturaCustomization, CurrentAnturaCustomizations.GetJsonListOfIds());
@@ -436,58 +455,7 @@ namespace Antura.Profile
 
         #endregion
 
-        #endregion
-
         #region Profile completion
-
-        #region First Contact (ProfileCompletion = 1 & 2)
-
-        /// <summary>
-        /// Determines whether [is first contact].
-        /// </summary>
-        /// <returns>
-        ///   <c>true</c> if [is first contact]; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsFirstContact()
-        {
-            return (ProfileCompletion < ProfileCompletionState.FirstContact2);
-        }
-
-        /// <summary>
-        /// Determines whether [is first contact] whit [the specified step] (1 or 2).
-        /// </summary>
-        /// <param name="_step">The step.</param>
-        /// <returns>
-        ///   <c>true</c> if [is first contact] [the specified step]; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsFirstContact(int _step)
-        {
-            if (_step < (int) ProfileCompletionState.FirstContact1) return true;
-            if (_step >= (int) ProfileCompletionState.FirstContact2) return false;
-
-            if ((int) ProfileCompletion == _step - 1) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Set firsts contact flag as passed for step specified.
-        /// </summary>
-        /// <param name="_step">The step (1 (default) or 2).</param>
-        public void FirstContactPassed(int _step = 1)
-        {
-            switch (_step) {
-                case 1:
-                    ProfileCompletion = ProfileCompletionState.FirstContact1;
-                    break;
-                case 2:
-                    ProfileCompletion = ProfileCompletionState.FirstContact2;
-                    break;
-            }
-            Save();
-        }
 
         /// <summary>
         /// Resets the player profile completion.
@@ -497,32 +465,6 @@ namespace Antura.Profile
             ProfileCompletion = ProfileCompletionState.New;
             Save();
         }
-
-        #endregion
-
-        #region BookVisited (ProfileCompletion = 3)                
-
-        /// <summary>
-        /// Determines whether [is first time book].
-        /// </summary>
-        /// <returns>
-        ///   <c>true</c> if [is first time book]; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsBookVisited()
-        {
-            return (ProfileCompletion < ProfileCompletionState.BookVisited);
-        }
-
-        /// <summary>
-        /// Firsts the time book passed.
-        /// </summary>
-        public void SetBookVisited()
-        {
-            ProfileCompletion = ProfileCompletionState.BookVisited;
-            Save();
-        }
-
-        #endregion
 
         #region GameEnded
 
@@ -536,43 +478,26 @@ namespace Antura.Profile
         public void SetGameCompleted()
         {
             ProfileCompletion = ProfileCompletionState.GameCompleted;
-            AppManager.I.StartCoroutine(RewardSystemManager.UnlockExtraRewards());
-            AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
+            AppManager.I.RewardSystemManager.UnlockAllMissingExtraPacks();
             CheckGameFinished();
+            Save();
         }
 
         public bool HasFinalBeenShown()
         {
-            return ProfileCompletion >= ProfileCompletionState.GameCompletedAndFinalShowed;
+            return ProfileCompletion >= ProfileCompletionState.GameCompletedAndFinalShown;
         }
 
         public void SetFinalShown()
         {
-            ProfileCompletion = ProfileCompletionState.GameCompletedAndFinalShowed;
+            ProfileCompletion = ProfileCompletionState.GameCompletedAndFinalShown;
         }
 
         #endregion
 
         #endregion
 
-        #region To/From PlayerProfileData        
-
-        /// <summary>
-        /// Converts this instance to PlayerProfileData.
-        /// </summary>
-        /// <returns></returns>
-        public PlayerProfileData ToData()
-        {
-            PlayerProfileData newProfileData =
-                new PlayerProfileData(
-                    new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars), Age,
-                    TotalNumberOfBones, ProfileCompletion);
-            newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
-            newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
-            string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
-            newProfileData.CurrentAnturaCustomization = jsonStringForAnturaCustomization;
-            return newProfileData;
-        }
+        #region Input
 
         /// <summary>
         /// Charge this with PlayerProfileData.
@@ -590,17 +515,39 @@ namespace Antura.Profile
             HasFinishedTheGameWithAllStars = _data.HasFinishedTheGameWithAllStars();
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalBones;
-            this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
-            this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
+
+            HasMaxStarsInCurrentPlaySessions = _data.GetAdditionalData().HasMaxStarsInCurrentPlaySessions;
+            ConsecutivePlayDays = _data.GetAdditionalData().ConsecutivePlayDays;
+            CurrentShopState = AnturaSpace.ShopState.CreateFromJson(_data.GetAdditionalData().CurrentShopStateJSON);
+            FirstContactState = JsonUtility.FromJson<FirstContactState>(_data.FirstContactStateJSON);
+
+            SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
+            SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
             // Antura customization save only customization data
-            jsonAnturaCustimizationData = _data.CurrentAnturaCustomization;
+            jsonAnturaCustomizationData = _data.CurrentAnturaCustomization;
 
             return this;
         }
 
         #endregion
 
-        #region Player icon data
+        #region Output
+
+        /// <summary>
+        /// Converts this instance to PlayerProfileData.
+        /// </summary>
+        /// <returns></returns>
+        public PlayerProfileData ToData()
+        {
+            PlayerProfileData newProfileData = new PlayerProfileData(
+                    Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars, HasMaxStarsInCurrentPlaySessions,
+                    Age, TotalNumberOfBones, ProfileCompletion, this.CurrentAnturaCustomizations.GetJsonListOfIds(), ConsecutivePlayDays, CurrentShopState,
+                    FirstContactState
+            );
+            newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
+            newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
+            return newProfileData;
+        }
 
         public PlayerIconData GetPlayerIconData()
         {
@@ -612,11 +559,34 @@ namespace Antura.Profile
                 Tint = this.Tint,
                 IsDemoUser = this.IsDemoUser,
                 HasFinishedTheGame = this.HasFinishedTheGame,
-                HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars
+                HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars,
+                HasMaxStarsInCurrentPlaySessions = this.HasMaxStarsInCurrentPlaySessions,
+                MaxJourneyPosition = this.MaxJourneyPosition
             };
             return returnIconData;
         }
 
+        public string ToJsonData()
+        {
+            return JsonUtility.ToJson(this);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("ID{0}, MaxJ({1}.{2}.{3}), CurrentJ({4}.{5}.{6}), ProfCompl{7}",
+                Uuid,
+                MaxJourneyPosition.Stage,
+                MaxJourneyPosition.LearningBlock,
+                MaxJourneyPosition.PlaySession,
+
+                CurrentJourneyPosition.Stage,
+                CurrentJourneyPosition.LearningBlock,
+                CurrentJourneyPosition.PlaySession,
+                ProfileCompletion
+            );
+        }
+
         #endregion
+
     }
 }

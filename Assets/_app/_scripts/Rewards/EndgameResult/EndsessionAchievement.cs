@@ -1,4 +1,4 @@
-﻿using Antura.Audio;
+using Antura.Audio;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;

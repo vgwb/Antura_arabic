@@ -1,9 +1,8 @@
-﻿using Antura.Audio;
-using Antura.MinigamesCommon;
+using Antura.Audio;
 
 namespace Antura.Minigames.MissingLetter
 {
-    public class MissingLetterPlayState : IState
+    public class MissingLetterPlayState : FSM.IState
     {
         public MissingLetterPlayState(MissingLetterGame _game)
         {
@@ -35,30 +34,26 @@ namespace Antura.Minigames.MissingLetter
             m_oGame.m_oRoundManager.onAnswered -= OnRoundResult;
 
             AudioManager.I.StopMusic();
-            
+
             M_oGameTime.Stop();
         }
 
         public void Update(float _delta)
         {
 
-            if (m_oGame.m_iAnturaTriggersIndex < m_oGame.m_afAnturaEnterTriggers.Length && M_oGameTime.Time <= m_oGame.m_afAnturaEnterTriggers[m_oGame.m_iAnturaTriggersIndex])
-            {
-                if (m_oGame.IsInIdle())
-                {
+            if (m_oGame.m_iAnturaTriggersIndex < m_oGame.m_afAnturaEnterTriggers.Length && M_oGameTime.Time <= m_oGame.m_afAnturaEnterTriggers[m_oGame.m_iAnturaTriggersIndex]) {
+                if (m_oGame.IsInIdle()) {
                     ++m_oGame.m_iAnturaTriggersIndex;
                     m_oGame.m_oAntura.GetComponent<AnturaBehaviour>().EnterScene(m_oGame.m_fAnturaAnimDuration);
                     m_oGame.StartCoroutine(Utils.LaunchDelay(m_oGame.m_fAnturaAnimDuration / 6, m_oGame.m_oRoundManager.ShuffleLetters, m_oGame.m_fAnturaAnimDuration / 2));
-                }
-                else
-                {
+                } else {
                     m_oGame.m_afAnturaEnterTriggers[m_oGame.m_iAnturaTriggersIndex] -= 3.0f;
                 }
             }
 
             m_oGame.Context.GetOverlayWidget().SetClockTime(M_oGameTime.Time);
 
-            
+
             M_oGameTime.Update(_delta);
         }
 

@@ -2,7 +2,7 @@
 
 namespace Antura.Minigames.Scanner
 {
-	public class ScannerResultState : IState
+	public class ScannerResultState : FSM.IState
 	{
 		ScannerGame game;
 

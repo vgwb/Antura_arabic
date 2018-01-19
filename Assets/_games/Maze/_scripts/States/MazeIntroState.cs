@@ -1,18 +1,12 @@
 ﻿namespace Antura.Minigames.Maze
 {
-    public class MazeIntroState : IState
+    public class MazeIntroState : FSM.IState
     {
         MazeGame game;
-
-        //int currentShownTubes = 2;
-
-
 
         public MazeIntroState(MazeGame game)
         {
             this.game = game;
-
-
         }
 
         public void EnterState()

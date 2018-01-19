@@ -119,7 +119,7 @@ namespace Antura.Minigames.MakeFriends
         {
             if (letterData != null && letterData.Id != null)
             {
-                MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
+                MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(letterData);
             }
         }
 

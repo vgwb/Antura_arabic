@@ -1,6 +1,7 @@
-﻿using Antura.LivingLetters;
-using Antura.MinigamesCommon;
 using Antura.Teacher;
+using System;
+using System.Collections.Generic;
+using Antura.Database;
 
 namespace Antura.Minigames.MakeFriends
 {
@@ -13,29 +14,75 @@ namespace Antura.Minigames.MakeFriends
 
     public enum MakeFriendsVariation
     {
-        Default = MiniGameCode.MakeFriends
+        LetterInWord = MiniGameCode.MakeFriends_letterinword
     }
 
-    public class MakeFriendsConfiguration : IGameConfiguration
+    public class MakeFriendsConfiguration : AbstractGameConfiguration
     {
-        // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
+        private MakeFriendsVariation Variation { get; set; }
 
-
-        public float Difficulty { get; set; }
-        public bool TutorialEnabled { get; set; }
-        public MakeFriendsVariation Variation { get; set; }
-
-        public void SetMiniGameCode(MiniGameCode code)
+        public override void SetMiniGameCode(MiniGameCode code)
         {
-            Variation = (MakeFriendsVariation) code;
+            Variation = (MakeFriendsVariation)code;
+        }
+
+        // Singleton Pattern
+        static MakeFriendsConfiguration instance;
+        public static MakeFriendsConfiguration Instance
+        {
+            get {
+                if (instance == null)
+                    instance = new MakeFriendsConfiguration();
+                return instance;
+            }
+        }
+
+        private MakeFriendsConfiguration()
+        {
+            // Default values
+            Questions = new MakeFriendsQuestionProvider();
+            Context = new MinigamesGameContext(MiniGameCode.MakeFriends_letterinword, System.DateTime.Now.Ticks.ToString());
+            Difficulty = 0f;
+            TutorialEnabled = true;
+        }
+
+        public override IQuestionBuilder SetupBuilder()
+        {
+            IQuestionBuilder builder = null;
+
+            int nPacks = 10;
+            int nWrong = 5;
+            int nWords = 2;
+            var letterEqualityStrictness = LetterEqualityStrictness.WithVisualForm;
+
+
+            var builderParams = new QuestionBuilderParameters();
+            switch (Variation) {
+                case MakeFriendsVariation.LetterInWord:
+                    builderParams.letterFilters.excludeDiphthongs = true;
+                    builderParams.wordFilters.excludeDipthongs = true;
+                    builder = new CommonLetterInWordQuestionBuilder(nPacks, nWrong, nWords, parameters: builderParams, letterEqualityStrictness: letterEqualityStrictness);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return builder;
+        }
+
+        public override MiniGameLearnRules SetupLearnRules()
+        {
+            var rules = new MiniGameLearnRules();
+            // example: a.minigameVoteSkewOffset = 1f;
+            return rules;
         }
 
 
-        public const float EASY_THRESHOLD = 0f;
-        public const float MEDIUM_THRESHOLD = 0.3f;
-        public const float HARD_THRESHOLD = 0.7f;
+        #region Difficulty Choice
+
+        private const float EASY_THRESHOLD = 0f;
+        private const float MEDIUM_THRESHOLD = 0.3f;
+        private const float HARD_THRESHOLD = 0.7f;
 
         public MakeFriendsDifficulty DifficultyChoice
         {
@@ -57,26 +104,6 @@ namespace Antura.Minigames.MakeFriends
                     }
                 }
 
-                // SRDebugger Override
-#if SRDebuggerEnabled
-                if (SROptions.Current.MakeFriendsUseDifficulty)
-                {
-                    switch (SROptions.Current.MakeFriendsDifficulty)
-                    {
-                        case MakeFriendsVariation.EASY:
-                            Difficulty = EASY_THRESHOLD;
-                            break;
-
-                        case MakeFriendsVariation.MEDIUM:
-                            Difficulty = MEDIUM_THRESHOLD;
-                            break;
-
-                        case MakeFriendsVariation.HARD:
-                            Difficulty = HARD_THRESHOLD;
-                            break;
-                    }
-                }
-#endif
                 // Get Variation based on Difficulty
                 MakeFriendsDifficulty variation;
                 if (Difficulty < MEDIUM_THRESHOLD) {
@@ -91,53 +118,6 @@ namespace Antura.Minigames.MakeFriends
             }
         }
 
-        /////////////////
-        // Singleton Pattern
-        static MakeFriendsConfiguration instance;
-
-        public static MakeFriendsConfiguration Instance {
-            get {
-                if (instance == null)
-                    instance = new MakeFriendsConfiguration();
-                return instance;
-            }
-        }
-
-        /////////////////
-
-        private MakeFriendsConfiguration()
-        {
-            // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Questions = new MakeFriendsQuestionProvider();
-            Context = new MinigamesGameContext(MiniGameCode.MakeFriends, System.DateTime.Now.Ticks.ToString());
-            Difficulty = 0f;
-            TutorialEnabled = true;
-        }
-
-        public IQuestionBuilder SetupBuilder()
-        {
-            IQuestionBuilder builder = null;
-
-            int nPacks = 10;
-            int nMinCommonLetters = 1;
-            int nMaxCommonLetters = 1;
-            int nWrong = 5;
-            int nWords = 2;
-
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams);
-
-            return builder;
-        }
-
-        public MiniGameLearnRules SetupLearnRules()
-        {
-            var rules = new MiniGameLearnRules();
-            // example: a.minigameVoteSkewOffset = 1f;
-            return rules;
-        }
-
-
+        #endregion
     }
 }

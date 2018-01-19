@@ -1,9 +1,8 @@
-﻿using Antura.MinigamesCommon;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Antura.Minigames.Egg
 {
-    public class EggGame : MiniGame
+    public class EggGame : MiniGameController
     {
         public EggBox eggBox;
         public EggController eggController;
@@ -15,6 +14,8 @@ namespace Antura.Minigames.Egg
         public GameObject anturaPrefab;
         public GameObject shadowPrefab;
 
+        public UnityEngine.UI.Button HintButton;
+
         public const int numberOfStage = 4;
         public int currentStage { get; set; }
 
@@ -22,8 +23,7 @@ namespace Antura.Minigames.Egg
 
         public int CurrentStars
         {
-            get
-            {
+            get {
                 if (correctStages == 0)
                     return 0;
 
@@ -44,16 +44,17 @@ namespace Antura.Minigames.Egg
 
         public bool stagePositiveResult { get; set; }
 
-        bool tutorialFlag;
+        private bool tutorialFlag;
 
         public bool ShowTutorial
         {
-            get
-            {
+            get {
                 if (tutorialFlag) {
                     tutorialFlag = false;
                     return true;
-                } else return false;
+                } else {
+                    return false;
+                }
             }
         }
 
@@ -69,7 +70,7 @@ namespace Antura.Minigames.Egg
             return EggConfiguration.Instance;
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }
@@ -89,7 +90,7 @@ namespace Antura.Minigames.Egg
             currentStage = 0;
             correctStages = 0;
 
-            bool isSingleVariation = EggConfiguration.Instance.Variation == EggVariation.Single;
+            bool isSingleVariation = EggConfiguration.Instance.IsSingleVariation();
 
             eggController.Initialize(letterObjectPrefab, shadowPrefab, eggBox.GetEggLocalPositions(), eggBox.GetLocalLettersMaxPositions(),
                 EggConfiguration.Instance.Context.GetAudioManager());
@@ -98,7 +99,7 @@ namespace Antura.Minigames.Egg
             antura.Initialize(anturaPrefab);
         }
 
-        bool overlayWidgetInitialized;
+        private bool overlayWidgetInitialized;
 
         public void InitializeOverlayWidget()
         {

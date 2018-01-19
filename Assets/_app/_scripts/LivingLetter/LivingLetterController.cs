@@ -1,9 +1,10 @@
 ﻿using Antura.Helpers;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.Utilities;
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 namespace Antura.LivingLetters
 {
@@ -62,29 +63,39 @@ namespace Antura.LivingLetters
         public ILivingLetterData Data
         {
             get { return data; }
-            private set {
+            private set
+            {
                 data = value;
 
-                if (Data == null) {
+                if (Data == null)
+                {
                     ImageSprite.enabled = false;
                     Drawing.enabled = false;
                     Label.enabled = false;
-                } else {
-                    if (Data.DataType == LivingLetterDataType.Image) {
+                }
+                else
+                {
+                    if (Data.DataType == LivingLetterDataType.Image)
+                    {
                         Drawing.text = Data.DrawingCharForLivingLetter;
                         Drawing.enabled = true;
 
-                        LL_ImageData data = (LL_ImageData) Data;
-                        if (data.Data.Category == Database.WordDataCategory.Color) {
+                        LL_ImageData data = (LL_ImageData)Data;
+                        if (data.Data.Category == Database.WordDataCategory.Color)
+                        {
                             Drawing.color = GenericHelper.GetColorFromString(data.Data.Value);
-                        } else {
+                        }
+                        else
+                        {
                             Drawing.color = Color.black;
                         }
 
                         //ImageSprite.sprite = Data.DrawForLivingLetter;
                         //ImageSprite.enabled = true;
                         Label.enabled = false;
-                    } else {
+                    }
+                    else
+                    {
                         ImageSprite.enabled = false;
                         Drawing.enabled = false;
                         Label.enabled = true;
@@ -92,7 +103,8 @@ namespace Antura.LivingLetters
                         Label.text = Data.TextForLivingLetter;
 
                         // Scale modification
-                        switch (data.DataType) {
+                        switch (data.DataType)
+                        {
                             case LivingLetterDataType.Word:
                                 Scale = 1.3f;
                                 break;
@@ -114,8 +126,10 @@ namespace Antura.LivingLetters
         public LLAnimationStates State
         {
             get { return state; }
-            set {
-                if (state != value) {
+            set
+            {
+                if (state != value)
+                {
                     var oldState = state;
                     state = value;
                     OnStateChanged(oldState, state);
@@ -128,9 +142,12 @@ namespace Antura.LivingLetters
 
         Animator animator
         {
-            get {
+            get
+            {
                 if (!anim)
+                {
                     anim = GetComponentInChildren<Animator>();
+                }
                 return anim;
             }
             set { anim = value; }
@@ -203,31 +220,40 @@ namespace Antura.LivingLetters
             animator.SetBool("tickling", false);
             animator.SetBool("idle", false);
 
-            if (_oldState != LLAnimationStates.LL_limbless && _newState == LLAnimationStates.LL_limbless) {
+            if (_oldState != LLAnimationStates.LL_limbless && _newState == LLAnimationStates.LL_limbless)
+            {
                 // going limbless
-                if (started) {
+                if (started)
+                {
                     Poof();
                 }
 
-                for (int i = 0; i < normalGraphics.Length; ++i) {
+                for (int i = 0; i < normalGraphics.Length; ++i)
+                {
                     normalGraphics[i].SetActive(false);
                 }
-                for (int i = 0; i < limblessGraphics.Length; ++i) {
+                for (int i = 0; i < limblessGraphics.Length; ++i)
+                {
                     limblessGraphics[i].SetActive(true);
                 }
-            } else if (_oldState == LLAnimationStates.LL_limbless && _newState != LLAnimationStates.LL_limbless) {
+            }
+            else if (_oldState == LLAnimationStates.LL_limbless && _newState != LLAnimationStates.LL_limbless)
+            {
                 if (started)
                     Poof();
 
-                for (int i = 0; i < normalGraphics.Length; ++i) {
+                for (int i = 0; i < normalGraphics.Length; ++i)
+                {
                     normalGraphics[i].SetActive(true);
                 }
-                for (int i = 0; i < limblessGraphics.Length; ++i) {
+                for (int i = 0; i < limblessGraphics.Length; ++i)
+                {
                     limblessGraphics[i].SetActive(false);
                 }
             }
 
-            switch (_newState) {
+            switch (_newState)
+            {
                 case LLAnimationStates.LL_idle:
                 case LLAnimationStates.LL_still:
                     animator.SetBool("idle", true);
@@ -258,10 +284,12 @@ namespace Antura.LivingLetters
 
         void Update()
         {
-            if (State == LLAnimationStates.LL_idle) {
+            if (State == LLAnimationStates.LL_idle)
+            {
                 idleTimer -= Time.deltaTime;
 
-                if (idleTimer < 0.0f) {
+                if (idleTimer < 0.0f)
+                {
                     idleTimer = Random.Range(3, 8);
                     animator.SetFloat("random", Random.value);
                     animator.SetTrigger("doAlternative");
@@ -272,9 +300,12 @@ namespace Antura.LivingLetters
 
             animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, walkingSpeed, Time.deltaTime * 6.0f));
 
-            if (dancingRefs > 0) {
+            if (dancingRefs > 0)
+            {
                 animator.speed = Mathf.Lerp(animator.speed, DancingSpeed, Time.deltaTime * 10.0f);
-            } else {
+            }
+            else
+            {
                 animator.speed = Mathf.Lerp(animator.speed, 1, Time.deltaTime * 10.0f);
             }
         }
@@ -283,7 +314,8 @@ namespace Antura.LivingLetters
         {
             //if (Scale != lastScale && Scale >= 1.0f)
             {
-                if (contentTransform) {
+                if (contentTransform)
+                {
                     boneToScaleTransform.localScale = new Vector3(startScale.x, startScale.y, startScale.z * Scale);
                     contentTransform.localScale = new Vector3(1 / Scale, 1, 1);
                     textTransform.sizeDelta = new Vector3(startTextScale.x * Scale, startTextScale.y);
@@ -309,7 +341,8 @@ namespace Antura.LivingLetters
         public bool Crouching
         {
             get { return crouch; }
-            set {
+            set
+            {
                 crouch = value;
                 animator.SetBool("crouch", value);
             }
@@ -321,7 +354,8 @@ namespace Antura.LivingLetters
         public bool Falling
         {
             get { return falling; }
-            set {
+            set
+            {
                 falling = value;
                 animator.SetBool("falling", value);
             }
@@ -332,7 +366,8 @@ namespace Antura.LivingLetters
         public bool HasFear
         {
             get { return fear; }
-            set {
+            set
+            {
                 fear = value;
                 animator.SetBool("fear", value);
             }
@@ -344,9 +379,11 @@ namespace Antura.LivingLetters
         public bool Horraying
         {
             get { return hooraying; }
-            set {
+            set
+            {
                 animator.SetBool("holdHorray", value);
-                if (value) {
+                if (value)
+                {
                     DoHorray();
                 }
                 hooraying = value;
@@ -383,16 +420,20 @@ namespace Antura.LivingLetters
         {
             if ((State != LLAnimationStates.LL_still) &&
                 (State != LLAnimationStates.LL_idle) &&
-                (State != LLAnimationStates.LL_rocketing)) {
-                if (!hasToGoBackState) {
+                (State != LLAnimationStates.LL_rocketing))
+            {
+                if (!hasToGoBackState)
+                {
                     backState = State;
                 }
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
 
-            if (!hooraying) {
-                if (inIdleAlternative) {
+            if (!hooraying)
+            {
+                if (inIdleAlternative)
+                {
                     animator.SetTrigger("stopAlternative");
                 }
                 animator.SetTrigger("doHorray");
@@ -402,32 +443,57 @@ namespace Antura.LivingLetters
         public void DoChestStop()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle)) {
-                if (!hasToGoBackState) {
+                (State != LLAnimationStates.LL_idle))
+            {
+                if (!hasToGoBackState)
+                {
                     backState = State;
                 }
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
 
-            if (inIdleAlternative) {
+            if (inIdleAlternative)
+            {
                 animator.SetTrigger("stopAlternative");
             }
             animator.SetTrigger("doChestStop");
         }
 
+        public void MarkLetters(List<LL_LetterData> toMark, Color color)
+        {
+            var word = Data as LL_WordData;
+            if (word != null)
+            {
+                //string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
+
+                List<ArabicAlphabetHelper.ArabicStringPart> parts = new List<ArabicAlphabetHelper.ArabicStringPart>();
+
+                foreach (var markedLetter in toMark)
+                    parts.AddRange(ArabicAlphabetHelper.FindLetter(Core.AppManager.I.DB, word.Data, markedLetter.Data, true));
+
+                if (parts.Count > 0)
+                {
+                    Label.text = Antura.UI.ArabicTextUtilities.GetWordWithMarkedLettersText(word.Data, parts, color);
+                }
+            }
+        }
+
         public void DoAngry()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle)) {
-                if (!hasToGoBackState) {
+                (State != LLAnimationStates.LL_idle))
+            {
+                if (!hasToGoBackState)
+                {
                     backState = State;
                 }
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
 
-            if (inIdleAlternative) {
+            if (inIdleAlternative)
+            {
                 animator.SetTrigger("stopAlternative");
             }
             animator.SetFloat("random", Random.value);
@@ -437,15 +503,18 @@ namespace Antura.LivingLetters
         public void DoHighFive()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle)) {
-                if (!hasToGoBackState) {
+                (State != LLAnimationStates.LL_idle))
+            {
+                if (!hasToGoBackState)
+                {
                     backState = State;
                 }
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
 
-            if (inIdleAlternative) {
+            if (inIdleAlternative)
+            {
                 animator.SetTrigger("stopAlternative");
             }
             animator.SetTrigger("doHighFive");
@@ -456,7 +525,8 @@ namespace Antura.LivingLetters
         /// </summary>
         void OnActionCompleted()
         {
-            if (hasToGoBackState) {
+            if (hasToGoBackState)
+            {
                 hasToGoBackState = false;
                 SetState(backState);
             }
@@ -480,15 +550,18 @@ namespace Antura.LivingLetters
         {
             if ((State != LLAnimationStates.LL_still) &&
                 (State != LLAnimationStates.LL_idle) &&
-                (State != LLAnimationStates.LL_dancing)) {
-                if (!hasToGoBackState) {
+                (State != LLAnimationStates.LL_dancing))
+            {
+                if (!hasToGoBackState)
+                {
                     backState = State;
                 }
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
 
-            if (inIdleAlternative) {
+            if (inIdleAlternative)
+            {
                 animator.SetTrigger("stopAlternative");
             }
 
@@ -506,8 +579,10 @@ namespace Antura.LivingLetters
         {
             if ((State != LLAnimationStates.LL_still) &&
                 (State != LLAnimationStates.LL_idle) &&
-                (State != LLAnimationStates.LL_walking)) {
-                if (!hasToGoBackState) {
+                (State != LLAnimationStates.LL_walking))
+            {
+                if (!hasToGoBackState)
+                {
                     backState = State;
                 }
                 SetState(LLAnimationStates.LL_still);
@@ -515,7 +590,9 @@ namespace Antura.LivingLetters
             }
 
             if (inIdleAlternative)
+            {
                 animator.SetTrigger("stopAlternative");
+            }
             animator.SetBool("jumping", true);
             animator.SetBool("falling", true);
         }
@@ -535,15 +612,18 @@ namespace Antura.LivingLetters
         public void DoSmallJump()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle)) {
-                if (!hasToGoBackState) {
+                (State != LLAnimationStates.LL_idle))
+            {
+                if (!hasToGoBackState)
+                {
                     backState = State;
                 }
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
 
-            if (inIdleAlternative) {
+            if (inIdleAlternative)
+            {
                 animator.SetTrigger("stopAlternative");
             }
             animator.SetTrigger("doSmallJump");
@@ -565,7 +645,8 @@ namespace Antura.LivingLetters
 
         void OnTwirlBack()
         {
-            if (onTwirlCallback != null) {
+            if (onTwirlCallback != null)
+            {
                 onTwirlCallback();
                 onTwirlCallback = null;
             }

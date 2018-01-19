@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Antura.LivingLetters;
 using Antura.Tutorial;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.FastCrowd
 {
-    public class FastCrowdTutorialState : IState
+    public class FastCrowdTutorialState : FSM.IState
     {
         FastCrowdGame game;
 
@@ -15,6 +15,16 @@ namespace Antura.Minigames.FastCrowd
 
         bool tutorialStarted;
 
+        bool MustTrunk
+        {
+            get
+            {
+                return FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet ||
+                        FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting ||
+                        FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word;
+            }
+        }
+
         public FastCrowdTutorialState(FastCrowdGame game)
         {
             this.game = game;
@@ -22,41 +32,25 @@ namespace Antura.Minigames.FastCrowd
 
         public void EnterState()
         {
-            answerCounter = 2;
             game.QuestionManager.OnCompleted += OnQuestionCompleted;
             game.QuestionManager.OnDropped += OnAnswerDropped;
 
             if (game.CurrentChallenge != null)
+            {
+                if (MustTrunk)
+                    game.CurrentChallenge.RemoveRange(2, game.CurrentChallenge.Count - 2);
+
                 game.QuestionManager.StartQuestion(game.CurrentChallenge, game.NoiseData);
+            }
             else
                 game.QuestionManager.Clean();
 
             tutorialStarted = false;
 
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet)
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_alphabet_Tuto, () => { StartTutorial(); });
-            }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_counting_Tuto, () => { StartTutorial(); });
-            }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Tuto, () => { StartTutorial(); });
-            }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Tuto, () => { StartTutorial(); });
-            }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_words_Tuto, () => { StartTutorial(); });
-            }
-            else
-            {
-                StartTutorial();
-            }
+            // TODO: make this more robust to variations
+            game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.TutorialLocalizationId, () => { StartTutorial(); });
+
+            game.QuestionManager.wordComposer.gameObject.SetActive(FastCrowdConfiguration.Instance.NeedsWordComposer);
         }
 
         public void ExitState()
@@ -66,6 +60,7 @@ namespace Antura.Minigames.FastCrowd
             game.QuestionManager.Clean();
 
             game.showTutorial = false;
+            game.QuestionManager.wordComposer.gameObject.SetActive(false);
         }
 
         void StartTutorial()
@@ -79,26 +74,11 @@ namespace Antura.Minigames.FastCrowd
 
         void OnQuestionCompleted()
         {
-            game.SetCurrentState(game.QuestionState);
+            game.SetCurrentState(game.ResultState);
         }
 
         void OnAnswerDropped(ILivingLetterData data, bool result)
         {
-            if (result)
-            {
-                --answerCounter;
-
-                if (answerCounter <= 0 &&
-                    (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet ||
-                    FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting ||
-                    FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
-                    )
-                {
-                    game.SetCurrentState(game.QuestionState);
-                    return;
-                }
-            }
-
             tutorialStartTimer = 3f;
             game.Context.GetCheckmarkWidget().Show(result);
             game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
@@ -106,7 +86,7 @@ namespace Antura.Minigames.FastCrowd
 
         public void Update(float delta)
         {
-            if(tutorialStarted)
+            if (tutorialStarted)
             {
                 tutorialStartTimer += -delta;
 

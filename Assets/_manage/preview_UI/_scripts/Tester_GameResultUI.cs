@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Antura.Database;
 using Antura.Rewards;
 using UnityEngine;
@@ -28,9 +28,9 @@ namespace Antura.Test
         {
             GameResultUI.HideEndgameResult();
 
-            MiniGameData d0 = new MiniGameData() { Main = MiniGameCode.Maze.ToString(), Variation = "letters" };
-            MiniGameData d1 = new MiniGameData() { Main = MiniGameCode.DancingDots.ToString(), Variation = "alphabet" };
-            MiniGameData d2 = new MiniGameData() { Main = MiniGameCode.MakeFriends.ToString(), Variation = "counting" };
+            MiniGameData d0 = new MiniGameData() { Main = MiniGameCode.Maze_lettername.ToString(), Variation = "letters" };
+            MiniGameData d1 = new MiniGameData() { Main = MiniGameCode.DancingDots_lettername.ToString(), Variation = "alphabet" };
+            MiniGameData d2 = new MiniGameData() { Main = MiniGameCode.MakeFriends_letterinword.ToString(), Variation = "counting" };
             List<EndsessionResultData> res = new List<EndsessionResultData>() {
                 new EndsessionResultData(2, d0.GetIconResourcePath(), d0.GetBadgeIconResourcePath()),
                 new EndsessionResultData(0, d1.GetIconResourcePath(), d1.GetBadgeIconResourcePath()),

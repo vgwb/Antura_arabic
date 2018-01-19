@@ -1,6 +1,6 @@
+using Antura.LivingLetters;
 using System;
 using System.Collections.Generic;
-using Antura.LivingLetters;
 using UnityEngine;
 
 namespace Antura.Assessment
@@ -10,34 +10,32 @@ namespace Antura.Assessment
         private StillLetterBox view;
         private int placeholdersCount;
 
-        public DefaultQuestion( StillLetterBox letter, int placeholders, AssessmentAudioManager dialogues)
+        public DefaultQuestion(StillLetterBox letter, int placeholders, AssessmentAudioManager dialogues)
         {
             view = letter;
             placeholdersCount = placeholders;
-            placeholdersSet = new List< GameObject>();
-            var question = letter.gameObject.AddComponent< QuestionBehaviour>();
-            question.SetQuestion( this, dialogues);
+            placeholdersSet = new List<GameObject>();
+            var question = letter.gameObject.AddComponent<QuestionBehaviour>();
+            question.SetQuestion(this, dialogues);
         }
 
         public GameObject gameObject
         {
-            get
-            {
+            get {
                 return view.gameObject;
             }
         }
 
         public QuestionBehaviour QuestionBehaviour
         {
-            get
-            {
-                return view.GetComponent< QuestionBehaviour>();
+            get {
+                return view.GetComponent<QuestionBehaviour>();
             }
         }
 
         public ILivingLetterData Image()
         {
-            throw new NotImplementedException( "Not implemented (on purpose)");
+            throw new NotImplementedException("Not implemented (on purpose)");
         }
 
         public ILivingLetterData LetterData()
@@ -50,24 +48,24 @@ namespace Antura.Assessment
             return placeholdersCount;
         }
 
-        private List< GameObject> placeholdersSet;
+        private List<GameObject> placeholdersSet;
 
-        public void TrackPlaceholder( GameObject gameObject)
+        public void TrackPlaceholder(GameObject gameObject)
         {
-            placeholdersSet.Add( gameObject);
+            placeholdersSet.Add(gameObject);
         }
 
-        public IEnumerable< GameObject> GetPlaceholders()
+        public IEnumerable<GameObject> GetPlaceholders()
         {
-            if (placeholdersSet.Count != placeholdersCount)
-                throw new InvalidOperationException( "Something wrong. Check Question placer");
-
+            if (placeholdersSet.Count != placeholdersCount) {
+                throw new InvalidOperationException("Something wrong. Check Question placer");
+            }
             return placeholdersSet;
         }
 
         private AnswerSet answerSet;
 
-        public void SetAnswerSet( AnswerSet answerSet)
+        public void SetAnswerSet(AnswerSet answerSet)
         {
             this.answerSet = answerSet;
         }

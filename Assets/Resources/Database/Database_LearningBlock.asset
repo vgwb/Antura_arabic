@@ -16,973 +16,967 @@ MonoBehaviour:
     - _Id: 1.1
       _Stage: 1
       _LearningBlock: 1
-      _NumberOfPlaySessions: 3
-      _Description_En: "The trio-alif (\u0627 - \u0623 - \u0625): Same shape, different
-        location of alif, absence & different location of hamza (\u0621), in different
-        position in the word (just prononciation)"
-      _Description_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0627\u0644\u0623\u0644\u0641
-        (\u0627 - \u0623 - \u0623): \u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C
-        \u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u062E\u062A\u0644\u0641\u0629\u060C
-        \u0639\u062F\u0645 \u0648\u062C\u0648\u062F \u0627\u0644\u0647\u0645\u0632\u0629
-        \u0645\u0639 \u0627\u062E\u062A\u0644\u0627\u0641 \u0645\u0648\u0627\u0642\u0639\u0647\u0627
-        \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629"
-      _Title_En: The trio Alif
-      _Title_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0627 - \u0623 - \u0625"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Discover the first letters!
+      _AudioFile: LB_Discover_first_letters
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0627\u0644\u0623\u0648\u0644\u0649!"
       _Focus: 1
     - _Id: 1.2
       _Stage: 1
       _LearningBlock: 2
-      _NumberOfPlaySessions: 3
-      _Description_En: "The trio beh, teh, theh (\u0628 - \u062A \u2013 \u062B): Same
-        shape, different number & location of dots"
-      _Description_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0627\u0644\u0628\u0627\u0621
-        \u0648\u0627\u0644\u062A\u0627\u0621 \u0648\u0627\u0644\u062B\u0627\u0621
-        (\u0628 - \u062A - \u062B): \u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C
-        \u0627\u062E\u062A\u0644\u0627\u0641 \u0645\u0648\u0627\u0642\u0639 \u0648\u0623\u0639\u062F\u0627\u062F
-        \u0627\u0644\u0646\u0642\u0627\u0637"
-      _Title_En: The trio baa, taa and thaa
-      _Title_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0628 - \u062A - \u062B"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: From ba to ya!
+      _AudioFile: LB_From_ba_to_ya
+      _Title_Ar: "\u0645\u0646 \u0627\u0644\u0628\u0627\u0621 \u0627\u0644\u06CC \u0627\u0644\u064A\u0627\u0621
+        !"
       _Focus: 1
     - _Id: 1.3
       _Stage: 1
       _LearningBlock: 3
-      _NumberOfPlaySessions: 3
-      _Description_En: "The trio jeem, hah, khah (\u062C - \u062D \u2013 \u062E):
-        Same shape, different location of a dot"
-      _Description_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0627\u0644\u062C\u064A\u0645
-        \u0648\u0627\u0644\u062D\u0627\u0621 \u0648\u0627\u0644\u062E\u0627\u0621
-        (\u062C - \u062D - \u062E): \u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C
-        \u0627\u062E\u062A\u0644\u0627\u0641 \u0645\u0648\u0642\u0639 \u0627\u0644\u0646\u0642\u0637\u0629"
-      _Title_En: The trio jiim, haa and khaa
-      _Title_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u062C - \u062D - \u062E"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Will we find the letters?
+      _AudioFile: LB_Find_the_letters
+      _Title_Ar: "\u0647\u0644 \u0633\u0646\u062C\u062F \u0627\u0644\u062D\u0631\u0648\u0641
+        \u061F"
       _Focus: 1
     - _Id: 1.4
       _Stage: 1
       _LearningBlock: 4
-      _NumberOfPlaySessions: 3
-      _Description_En: "The duo dal and thal (\u062F \u2013 \u0630): Same shape, absence
-        of a dot"
-      _Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u062F\u0627\u0644
-        \u0648\u0627\u0644\u0630\u0627\u0644 (\u062F - \u0630): \u0646\u0641\u0633
-        \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645 \u0648\u062C\u0648\u062F
-        \u0627\u0644\u0646\u0642\u0637\u0629"
-      _Title_En: The duo daal and dhaal
-      _Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u062F - \u0630"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's read the letters
+      _AudioFile: LB_Read_the_letters
+      _Title_Ar: "\u0644\u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641
+        !"
       _Focus: 1
     - _Id: 1.5
       _Stage: 1
       _LearningBlock: 5
-      _NumberOfPlaySessions: 3
-      _Description_En: "The duo reh and zain (\u0631 \u2013 \u0632): Same shape, absence
-        of a dot"
-      _Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0631\u0627\u0621
-        \u0648\u0627\u0644\u0632\u0627\u064A (\u0631 - \u0632): \u0646\u0641\u0633
-        \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645 \u0648\u062C\u0648\u062F
-        \u0627\u0644\u0646\u0642\u0637\u0629"
-      _Title_En: The duo raa and zaay
-      _Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0631 - \u0632"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Shapes and sounds!
+      _AudioFile: LB_Shapes_and_sounds
+      _Title_Ar: "\u0627\u0634\u0643\u0627\u0644 \u0648 \u0627\u0635\u0648\u0627\u062A!"
+      _Focus: 6
     - _Id: 1.6
       _Stage: 1
       _LearningBlock: 6
-      _NumberOfPlaySessions: 3
-      _Description_En: "The duo seen and sheen (\u0633 \u2013 \u0634): Same shape,
-        absence of three dots"
-      _Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0633\u064A\u0646
-        \u0648\u0627\u0644\u0634\u064A\u0646 (\u0633 - \u0634): \u0646\u0641\u0633
-        \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645 \u0648\u062C\u0648\u062F
-        \u0627\u0644\u0646\u0642\u0627\u0637 \u0627\u0644\u062B\u0644\u0627\u062B"
-      _Title_En: The duo siin and shiin
-      _Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0633 - \u0634"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with shapes!
+      _AudioFile: LB_Play_with_shapes
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0634\u0643\u0627\u0644!"
+      _Focus: 6
     - _Id: 1.7
       _Stage: 1
       _LearningBlock: 7
-      _NumberOfPlaySessions: 3
-      _Description_En: "The sad and dad (\u0635 \u2013 \u0636): Same shape, absence
-        of a dot"
-      _Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0635\u0627\u062F
-        \u0648\u0627\u0644\u0636\u0627\u062F (\u0635 - \u0636): \u0646\u0641\u0633
-        \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645 \u0648\u062C\u0648\u062F
-        \u0627\u0644\u0646\u0642\u0637\u0629"
-      _Title_En: The Saad and Daad
-      _Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0635 - \u0636"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with sounds!
+      _AudioFile: LB_Play_with_sounds
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0635\u0648\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 1.8
       _Stage: 1
       _LearningBlock: 8
-      _NumberOfPlaySessions: 3
-      _Description_En: "The tah and zah (\u0637 \u2013 \u0638): Same shape, absence
-        of a dot"
-      _Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0637\u0627\u0621
-        \u0648\u0627\u0644\u0638\u0627\u0621 (\u0637 - \u0638): \u0646\u0641\u0633
-        \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645 \u0648\u062C\u0648\u062F
-        \u0627\u0644\u0646\u0642\u0637\u0629"
-      _Title_En: The Taa and DHaa
-      _Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0637 - \u0638"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with phonems!
+      _AudioFile: LB_Play_with_phonems
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0635\u0648\u062A\u064A\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 1.9
       _Stage: 1
       _LearningBlock: 9
-      _NumberOfPlaySessions: 3
-      _Description_En: "The duo ain and ghain (\u0639 \u2013 \u063A): Same shape,
-        absence of a dot"
-      _Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0639\u064A\u0646
-        \u0648\u0627\u0644\u063A\u064A\u0646 (\u0639 - \u063A): \u0646\u0641\u0633
-        \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645 \u0648\u062C\u0648\u062F
-        \u0627\u0644\u0646\u0642\u0637\u0629"
-      _Title_En: The duo ayn and ghayn
-      _Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0639 - \u063A"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's read the phonems!
+      _AudioFile: LB_Read_the_phonems
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u0635\u0648\u062A\u064A\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 1.10
       _Stage: 1
       _LearningBlock: 10
-      _NumberOfPlaySessions: 3
-      _Description_En: "The duo feh and qaf (\u0641 \u2013 \u0642): Almost same shape,
-        different number of dots"
-      _Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0641\u0627\u0621
-        \u0648\u0627\u0644\u0642\u0627\u0641 (\u0641 - \u0642): \u062A\u0642\u0631\u064A\u0628\u0627\u064B
-        \u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0627\u062E\u062A\u0644\u0627\u0641
-        \u0639\u062F\u062F \u0627\u0644\u0646\u0642\u0627\u0637"
-      _Title_En: The duo faa and qaaf
-      _Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0641 - \u0642"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's build our first words!
+      _AudioFile: LB_Build_first_words
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0628\u0646\u064A \u0627\u0648\u0644 \u0643\u0644\u0645\u0627\u062A\u0646\u0627
+        !"
+      _Focus: 4
     - _Id: 1.11
       _Stage: 1
       _LearningBlock: 11
-      _NumberOfPlaySessions: 3
-      _Description_En: "The duo kaf and lam (\u0643 \u2013 \u0644): Almost same shape,
-        absence of hamza (\u0621)"
-      _Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0643\u0627\u0641
-        \u0648\u0627\u0644\u0644\u0627\u0645 (\u0643 - \u0644): \u062A\u0642\u0631\u064A\u0628\u0627\u064B
-        \u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
-        \u0648\u062C\u0648\u062F \u0627\u0644\u0647\u0645\u0632\u0629"
-      _Title_En: The duo kaaf and laam
-      _Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0643 - \u0644"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with the words!
+      _AudioFile: LB_Play_with_words
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      _Focus: 4
     - _Id: 1.12
       _Stage: 1
       _LearningBlock: 12
-      _NumberOfPlaySessions: 3
-      _Description_En: "The duo meem and noon (\u0645 \u2013 \u0646): No specific
-        criterion, just different letters"
-      _Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0645\u064A\u0645
-        \u0648\u0627\u0644\u0646\u0648\u0646 (\u0645 - \u0646): \u0639\u062F\u0645
-        \u0648\u062C\u0648\u062F \u0645\u0639\u064A\u0627\u0631 \u0645\u062D\u062F\u062F\u060C
-        \u0641\u0642\u0637 \u062D\u0631\u0648\u0641 \u0645\u062E\u062A\u0644\u0641\u0629"
-      _Title_En: The duo miim and nuun
-      _Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0645 - \u0646"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 1st trip'
+      _AudioFile: LB_Words_adventures_1
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u0623\u0648\u0644\u06CC"
+      _Focus: 4
     - _Id: 1.13
       _Stage: 1
       _LearningBlock: 13
-      _NumberOfPlaySessions: 3
-      _Description_En: "The trio heh waw yeh (\u0647 - \u0648 - \u064A): No specific
-        criterion, jusy different letters"
-      _Description_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0627\u0644\u0647\u0627\u0621
-        \u0648\u0627\u0644\u0648\u0627\u0648 \u0648\u0627\u0644\u064A\u0627\u0621
-        (\u0647 - \u0648 - \u064A): \u0639\u062F\u0645 \u0648\u062C\u0648\u062F \u0645\u0639\u064A\u0627\u0631
-        \u0645\u062D\u062F\u062F\u060C \u0641\u0642\u0637 \u062D\u0631\u0648\u0641
-        \u0645\u062E\u062A\u0644\u0641\u0629"
-      _Title_En: The trio haa, waaw and yaa
-      _Title_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0647 - \u0648 - \u064A"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 2nd trip'
+      _AudioFile: LB_Words_adventures_2
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u062B\u0627\u0646\u064A\u0629"
+      _Focus: 4
     - _Id: 1.14
       _Stage: 1
       _LearningBlock: 14
-      _NumberOfPlaySessions: 3
-      _Description_En: "The long-vowels \u201Calif\u201D (\u0623), \u201Cwaw\u201D
-        (\u0648), \u201Cyeh\u201D (\u064A)"
-      _Description_Ar: "\u062D\u0631\u0648\u0641 \u0627\u0644\u0639\u0644\u0651\u0629
-        \u0627\u0644\u0637\u0648\u064A\u0644\u0629: \u0627\u0644\u0623\u0644\u0641
-        \u0648\u0627\u0644\u0648\u0627\u0648 \u0648\u0627\u0644\u064A\u0627\u0621
-        (\u0623 - \u0648 - \u064A)"
-      _Title_En: The vowels alif, waaw and yaa
-      _Title_Ar: "\u062D\u0631\u0648\u0641 \u0627\u0644\u0639\u0644\u0629 \u0623 -
-        \u0648 - \u064A"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 3rd trip'
+      _AudioFile: LB_Words_adventures_3
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u062B\u0627\u0644\u062B\u0629"
+      _Focus: 4
+    - _Id: 1.15
+      _Stage: 1
+      _LearningBlock: 15
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: last trip!'
+      _AudioFile: LB_Words_adventures_last
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u0623\u062E\u064A\u0631\u0629"
+      _Focus: 4
     - _Id: 2.1
       _Stage: 2
       _LearningBlock: 1
-      _NumberOfPlaySessions: 3
-      _Description_En: "The two shapes of the letter \u201Calef\u201D (\u0627 \u0640\u0627)"
-      _Description_Ar: "\u0634\u0643\u0644\u064A \u0627\u0644\u0623\u0644\u0641 (\u0627
-        \u0640\u0627)"
-      _Title_En: The shapes of alif
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0623\u0644\u0641"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: The trio jeem-hah-khah!
+      _AudioFile: LB_Trio_jeem_hah_khah
+      _Title_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u062C - \u062D - \u062E"
       _Focus: 1
     - _Id: 2.2
       _Stage: 2
       _LearningBlock: 2
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \"beh\" (\u0628   \u0640\u0628
-        \  \u0640\u0628\u0640  \u0628\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0628\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0628   \u0640\u0628   \u0640\u0628\u0640
-        \ \u0628\u0640)"
-      _Title_En: The shapes of baa
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0628\u0627\u0621"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: From jeem to khah!
+      _AudioFile: LB_From_jeem_to_khah
+      _Title_Ar: "\u0645\u0646 \u0627\u0644\u062C\u064A\u0645 \u0627\u0644\u06CC \u0627\u0644\u062E\u0627\u0621
+        !"
       _Focus: 1
     - _Id: 2.3
       _Stage: 2
       _LearningBlock: 3
-      _NumberOfPlaySessions: 3
-      _Description_En: "\"The six shapes of the letter \u201Cteh\u201D (\u062A \u0640\u062A
-        \ \u0629  \u0640\u0629  \u0640\u062A\u0640  \u062A\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062A\u0627\u0621
-        \u0627\u0644\u0633\u062A\u0629 (\u062A \u0640\u062A  \u0629  \u0640\u0629
-        \ \u0640\u062A\u0640  \u062A\u0640)"
-      _Title_En: The shapes of taa
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062A\u0627\u0621"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Will we find the letters?
+      _AudioFile: LB_Find_the_letters
+      _Title_Ar: "\u0647\u0644 \u0633\u0646\u062C\u062F \u0627\u0644\u062D\u0631\u0648\u0641
+        \u061F"
       _Focus: 1
     - _Id: 2.4
       _Stage: 2
       _LearningBlock: 4
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Ctheh\u201D (\u062B \u0640\u062B
-        \  \u0640\u062B\u0640  \u062B\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062B\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u062B \u0640\u062B   \u0640\u062B\u0640
-        \ \u062B\u0640)"
-      _Title_En: The shapes of thaa
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062B\u0627\u0621"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's read the letters
+      _AudioFile: LB_Read_the_letters
+      _Title_Ar: "\u0644\u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641
+        !"
       _Focus: 1
     - _Id: 2.5
       _Stage: 2
       _LearningBlock: 5
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Cjeem\u201D (\u062C   \u0640\u062C
-        \  \u0640\u062C\u0640   \u062C\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062C\u064A\u0645
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u062C   \u0640\u062C   \u0640\u062C\u0640
-        \  \u062C\u0640)"
-      _Title_En: The shapes of jiim
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062C\u064A\u0645"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Shapes and sounds!
+      _AudioFile: LB_Shapes_and_sounds
+      _Title_Ar: "\u0627\u0634\u0643\u0627\u0644 \u0648 \u0627\u0635\u0648\u0627\u062A!"
+      _Focus: 6
     - _Id: 2.6
       _Stage: 2
       _LearningBlock: 6
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Chah\u201D (\u062D  \u0640\u062D
-        \ \u0640\u062D\u0640  \u062D\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062D\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u062D  \u0640\u062D  \u0640\u062D\u0640
-        \ \u062D\u0640)"
-      _Title_En: The shapes of haa
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062D\u0627\u0621"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with shapes!
+      _AudioFile: LB_Play_with_shapes
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0634\u0643\u0627\u0644!"
+      _Focus: 6
     - _Id: 2.7
       _Stage: 2
       _LearningBlock: 7
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Ckhah\u201D (\u062E  \u0640\u062E
-        \u0640\u062E\u0640  \u062E\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062E\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u062E  \u0640\u062E \u0640\u062E\u0640
-        \ \u062E\u0640)"
-      _Title_En: The shapes of khaa
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062E\u0627\u0621"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with sounds!
+      _AudioFile: LB_Play_with_sounds
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0635\u0648\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 2.8
       _Stage: 2
       _LearningBlock: 8
-      _NumberOfPlaySessions: 3
-      _Description_En: "The two shapes of the letter \u201Cdal\u201D ( \u0640\u062F
-        \ \u062F)"
-      _Description_Ar: "\u0634\u0643\u0644\u064A \u0627\u0644\u062F\u0627\u0644 (
-        \u0640\u062F  \u062F)"
-      _Title_En: The shapes of daal
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062F\u0627\u0644"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with phonems!
+      _AudioFile: LB_Play_with_phonems
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0635\u0648\u062A\u064A\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 2.9
       _Stage: 2
       _LearningBlock: 9
-      _NumberOfPlaySessions: 3
-      _Description_En: "The two shapes of the letter \u201Cthal\u201D (\u0640\u0630
-        \ \u0630)"
-      _Description_Ar: "\u0634\u0643\u0644\u064A \u0627\u0644\u0630\u0627\u0644 (\u0640\u0630
-        \ \u0630)"
-      _Title_En: The shapes of dhaal
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0630\u0627\u0644"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's read the phonems!
+      _AudioFile: LB_Read_the_phonems
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u0635\u0648\u062A\u064A\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 2.10
       _Stage: 2
       _LearningBlock: 10
-      _NumberOfPlaySessions: 3
-      _Description_En: "The two shapes of the letter \u201Creh\u201D ( \u0640\u0631
-        \ \u0631)"
-      _Description_Ar: "\u0634\u0643\u0644\u064A \u0627\u0644\u0631\u0627\u0621 (
-        \u0640\u0631  \u0631)"
-      _Title_En: The shapes of raa
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0631\u0627\u0621"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's build our first words!
+      _AudioFile: LB_Build_first_words
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0628\u0646\u064A \u0627\u0648\u0644 \u0643\u0644\u0645\u0627\u062A\u0646\u0627
+        !"
+      _Focus: 4
     - _Id: 2.11
       _Stage: 2
       _LearningBlock: 11
-      _NumberOfPlaySessions: 3
-      _Description_En: "The two shapes of the letter \u201Czain\u201D ( \u0640\u0632
-        \ \u0632)"
-      _Description_Ar: "\u0634\u0643\u0644\u064A \u0627\u0644\u0632\u0627\u064A (
-        \u0640\u0632  \u0632)"
-      _Title_En: The shapes of zay
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0632\u0627\u064A"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with the words!
+      _AudioFile: LB_Play_with_words
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      _Focus: 4
     - _Id: 2.12
       _Stage: 2
       _LearningBlock: 12
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Cseen\u201D (\u0633  \u0640\u0633
-        \ \u0640\u0633\u0640  \u0633\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0633\u064A\u0646
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0633  \u0640\u0633  \u0640\u0633\u0640
-        \ \u0633\u0640)"
-      _Title_En: The shapes of siin
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0633\u064A\u0646"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 1st trip'
+      _AudioFile: LB_Words_adventures_1
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u0623\u0648\u0644\u06CC"
+      _Focus: 4
     - _Id: 2.13
       _Stage: 2
       _LearningBlock: 13
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Csheen\u201D (\u0634 \u0640\u0634
-        \u0640\u0634\u0640 \u0634\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0634\u064A\u0646
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0634 \u0640\u0634 \u0640\u0634\u0640
-        \u0634\u0640)"
-      _Title_En: The shapes of shiin
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0634\u064A\u0646"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 2nd trip'
+      _AudioFile: LB_Words_adventures_2
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u062B\u0627\u0646\u064A\u0629"
+      _Focus: 4
     - _Id: 2.14
       _Stage: 2
       _LearningBlock: 14
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Csad\u201D (\u0635 \u0640\u0635
-        \u0640\u0635\u0640 \u0635\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0635\u0627\u062F
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0635 \u0640\u0635 \u0640\u0635\u0640
-        \u0635\u0640)"
-      _Title_En: The shapes of Saad
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0635\u0627\u062F"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 3rd trip'
+      _AudioFile: LB_Words_adventures_3
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u062B\u0627\u0644\u062B\u0629"
+      _Focus: 4
+    - _Id: 2.15
+      _Stage: 2
+      _LearningBlock: 15
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: last trip!'
+      _AudioFile: LB_Words_adventures_last
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u0623\u062E\u064A\u0631\u0629"
+      _Focus: 4
     - _Id: 3.1
       _Stage: 3
       _LearningBlock: 1
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Cdad\u201D (\u0636 \u0640\u0636
-        \u0640\u0636\u0640 \u0636\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0636\u0627\u062F
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0636 \u0640\u0636 \u0640\u0636\u0640
-        \u0636\u0640)"
-      _Title_En: The shapes of Daad
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0636\u0627\u062F"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: The capricious letters!
+      _AudioFile: LB_The_capricious_letters
+      _Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u062D\u0633\u0627\u0633\u0629"
       _Focus: 1
     - _Id: 3.2
       _Stage: 3
       _LearningBlock: 2
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Ctah\u201D (\u0637  \u0640\u0637
-        \u0640\u0637\u0640 \u0637\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0637\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0637  \u0640\u0637 \u0640\u0637\u0640
-        \u0637\u0640)"
-      _Title_En: The shapes of Taa
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0637\u0627\u0621"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: From alef to waw!
+      _AudioFile: LB_From_alef_to_waw
+      _Title_Ar: "\u0645\u0646 \u0627\u0644\u0627\u0644\u0641 \u0627\u0644\u06CC \u0627\u0644\u0648\u0627\u0648!"
       _Focus: 1
     - _Id: 3.3
       _Stage: 3
       _LearningBlock: 3
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Czah\u201D (\u0638 \u0640\u0638
-        \u0640\u0638\u0640 \u0638\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0638\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0638 \u0640\u0638 \u0640\u0638\u0640
-        \u0638\u0640)"
-      _Title_En: The shapes of DHaa
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0638\u0627\u0621"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Will we find the letters?
+      _AudioFile: LB_Find_the_letters
+      _Title_Ar: "\u0647\u0644 \u0633\u0646\u062C\u062F \u0627\u0644\u062D\u0631\u0648\u0641
+        \u061F"
       _Focus: 1
     - _Id: 3.4
       _Stage: 3
       _LearningBlock: 4
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Cain\u201D (\u0639  \u0640\u0639
-        \u0640\u0639\u0640 \u0639\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0639\u064A\u0646
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0639  \u0640\u0639 \u0640\u0639\u0640
-        \u0639\u0640)"
-      _Title_En: The shapes of ayn
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0639\u064A\u0646"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's read the letters
+      _AudioFile: LB_Read_the_letters
+      _Title_Ar: "\u0644\u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641
+        !"
       _Focus: 1
     - _Id: 3.5
       _Stage: 3
       _LearningBlock: 5
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Cghain\u201D (\u063A \u0640\u063A
-        \u0640\u063A\u0640 \u063A\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u063A\u064A\u0646
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u063A \u0640\u063A \u0640\u063A\u0640
-        \u063A\u0640)"
-      _Title_En: The shapes of ghayn
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u063A\u064A\u0646"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Shapes and sounds!
+      _AudioFile: LB_Shapes_and_sounds
+      _Title_Ar: "\u0627\u0634\u0643\u0627\u0644 \u0648 \u0627\u0635\u0648\u0627\u062A!"
+      _Focus: 6
     - _Id: 3.6
       _Stage: 3
       _LearningBlock: 6
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Cfeh\u201D (\u0641 \u0640\u0641
-        \u0640\u0641\u0640 \u0641\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0641\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0641 \u0640\u0641 \u0640\u0641\u0640
-        \u0641\u0640)"
-      _Title_En: The shapes of faa
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0641\u0627\u0621"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with shapes!
+      _AudioFile: LB_Play_with_shapes
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0634\u0643\u0627\u0644!"
+      _Focus: 6
     - _Id: 3.7
       _Stage: 3
       _LearningBlock: 7
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Cqaf\u201D (\u0642 \u0640\u0642
-        \u0640\u0642\u0640 \u0642\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0642\u0627\u0641
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0642 \u0640\u0642 \u0640\u0642\u0640
-        \u0642\u0640)"
-      _Title_En: The shapes of qaaf
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0642\u0627\u0641"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with sounds!
+      _AudioFile: LB_Play_with_sounds
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0635\u0648\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 3.8
       _Stage: 3
       _LearningBlock: 8
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Ckaf\u201D ( \u0643 \u0640\u0643
-        \u0640\u0643\u0640 \u0643\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0643\u0627\u0641
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 ( \u0643 \u0640\u0643 \u0640\u0643\u0640
-        \u0643\u0640)"
-      _Title_En: The shapes of kaaf
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0643\u0627\u0641"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with phonems!
+      _AudioFile: LB_Play_with_phonems
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0635\u0648\u062A\u064A\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 3.9
       _Stage: 3
       _LearningBlock: 9
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Clam\u201D (\u0644 \u0640\u0644
-        \ \u0640\u0644\u0640 \u0644\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0644\u0627\u0645
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0644 \u0640\u0644  \u0640\u0644\u0640
-        \u0644\u0640)"
-      _Title_En: The shapes of laam
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0644\u0627\u0645"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's read the phonems!
+      _AudioFile: LB_Read_the_phonems
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u0635\u0648\u062A\u064A\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 3.10
       _Stage: 3
       _LearningBlock: 10
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Cmeem\u201D ( \u0645 \u0640\u0645
-        \u0640\u0645\u0640 \u0645\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0645\u064A\u0645
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 ( \u0645 \u0640\u0645 \u0640\u0645\u0640
-        \u0645\u0640)"
-      _Title_En: The shapes of miim
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0645\u064A\u0645"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's build our first words!
+      _AudioFile: LB_Build_first_words
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0628\u0646\u064A \u0627\u0648\u0644 \u0643\u0644\u0645\u0627\u062A\u0646\u0627
+        !"
+      _Focus: 4
     - _Id: 3.11
       _Stage: 3
       _LearningBlock: 11
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Cnoon\u201D (\u0646 \u0640\u0646
-        \u0640\u0646\u0640 \u0646\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0646\u0648\u0646
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0646 \u0640\u0646 \u0640\u0646\u0640
-        \u0646\u0640)"
-      _Title_En: The shapes of nuun
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0646\u0648\u0646"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with the words!
+      _AudioFile: LB_Play_with_words
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      _Focus: 4
     - _Id: 3.12
       _Stage: 3
       _LearningBlock: 12
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Cheh\u201D (\u0647  \u0640\u0647
-        \u0640\u0647\u0640 \u0647\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0647\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0647  \u0640\u0647 \u0640\u0647\u0640
-        \u0647\u0640)"
-      _Title_En: The shapes of haa
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0647\u0627\u0621"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 1st trip'
+      _AudioFile: LB_Words_adventures_1
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u0623\u0648\u0644\u06CC"
+      _Focus: 4
     - _Id: 3.13
       _Stage: 3
       _LearningBlock: 13
-      _NumberOfPlaySessions: 3
-      _Description_En: "The two shapes of the letter \u201Cwaw\u201D ( \u0640\u0648
-        \ \u0648)"
-      _Description_Ar: "\u0634\u0643\u0644\u064A \u0627\u0644\u0648\u0627\u0648 (
-        \u0640\u0648  \u0648)"
-      _Title_En: The shapes of waaw
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0648\u0627\u0648"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 2nd trip'
+      _AudioFile: LB_Words_adventures_2
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u062B\u0627\u0646\u064A\u0629"
+      _Focus: 4
     - _Id: 3.14
       _Stage: 3
       _LearningBlock: 14
-      _NumberOfPlaySessions: 3
-      _Description_En: "The four shapes of the letter \u201Cyeh\u201D (\u064A \u0640\u064A
-        \u0640\u064A\u0640 \u064A\u0640)"
-      _Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u064A\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u064A \u0640\u064A \u0640\u064A\u0640
-        \u064A\u0640)"
-      _Title_En: The shapes of yaa
-      _Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u064A\u0627\u0621"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 3rd trip'
+      _AudioFile: LB_Words_adventures_3
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u062B\u0627\u0644\u062B\u0629"
+      _Focus: 4
+    - _Id: 3.15
+      _Stage: 3
+      _LearningBlock: 15
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: last trip!'
+      _AudioFile: LB_Words_adventures_last
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u0623\u062E\u064A\u0631\u0629"
+      _Focus: 4
     - _Id: 4.1
       _Stage: 4
       _LearningBlock: 1
-      _NumberOfPlaySessions: 3
-      _Description_En: "The sound of Fathah (\u064E) as a short vowel, Fatha on letters,
-        and vocabulary,"
-      _Description_Ar: "\u0627\u0644\u0641\u062A\u062D\u0629 \u0643\u0639\u0644\u0627\u0645\u0629
-        \u0642\u0635\u064A\u0631\u0629 \u0641\u0648\u0642 \u0627\u0644\u062D\u0631\u0648\u0641"
-      _Title_En: The symbol Fathah
-      _Title_Ar: "\u0627\u0644\u0641\u062A\u062D\u0629"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: The beautiful letters!
+      _AudioFile: LB_The_beautiful_letters
+      _Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u062C\u0645\u064A\u0644\u0629!"
+      _Focus: 1
     - _Id: 4.2
       _Stage: 4
       _LearningBlock: 2
-      _NumberOfPlaySessions: 3
-      _Description_En: "The sound of Dammah (\u064F) as a short vowel, Dammah on letters,
-        and vocabulary"
-      _Description_Ar: "\u0627\u0644\u0636\u0645\u0629 \u0643\u0639\u0644\u0627\u0645\u0629
-        \u0642\u0635\u064A\u0631\u0629 \u0641\u0648\u0642 \u0627\u0644\u062D\u0631\u0648\u0641"
-      _Title_En: The symbol Dammah
-      _Title_Ar: "\u0627\u0644\u0636\u0645\u0629"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: From seen to zah!
+      _AudioFile: LB_From_seen_to_zah
+      _Title_Ar: "\u0645\u0646 \u0627\u0644\u0633\u064A\u0646 \u0627\u0644\u06CC \u0627\u0644\u0638\u0627\u0621
+        !"
+      _Focus: 1
     - _Id: 4.3
       _Stage: 4
       _LearningBlock: 3
-      _NumberOfPlaySessions: 3
-      _Description_En: "The sound of Kasrah (\u0650) as a short vowel,  Kasrah under
-        letters, and vocabulary"
-      _Description_Ar: "\u0627\u0644\u0643\u0633\u0631\u0629 \u0643\u0639\u0644\u0627\u0645\u0629
-        \u0642\u0635\u064A\u0631\u0629 \u062A\u062D\u062A \u0627\u0644\u062D\u0631\u0648\u0641"
-      _Title_En: The symbol Kasrah
-      _Title_Ar: "\u0627\u0644\u0643\u0633\u0631\u0629"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Will we find the letters?
+      _AudioFile: LB_Find_the_letters
+      _Title_Ar: "\u0647\u0644 \u0633\u0646\u062C\u062F \u0627\u0644\u062D\u0631\u0648\u0641
+        \u061F"
+      _Focus: 1
     - _Id: 4.4
       _Stage: 4
       _LearningBlock: 4
-      _NumberOfPlaySessions: 3
-      _Description_En: "Revision of the 3 previous + The the non sound of the mute
-        Sukun (\u0652)"
-      _Description_Ar: "\u0645\u0631\u0627\u062C\u0639\u0629 \u0627\u0644\u062D\u0631\u0643\u0627\u062A
-        \u0627\u0644\u062B\u0644\u0627\u062B \u0648\u0639\u0644\u0627\u0645\u0629
-        \u0627\u0644\u0633\u0643\u0648\u0646"
-      _Title_En: Symbols and Sukun
-      _Title_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0648\u0627\u0644\u0633\u0643\u0648\u0646"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's read the letters
+      _AudioFile: LB_Read_the_letters
+      _Title_Ar: "\u0644\u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641
+        !"
+      _Focus: 1
     - _Id: 4.5
       _Stage: 4
       _LearningBlock: 5
-      _NumberOfPlaySessions: 3
-      _Description_En: "Same as 4.1 with Fathah tanwin (\u064B) (double Fathah)"
-      _Description_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0641\u062A\u062D
-        (\u0641\u062A\u062D\u062A\u0627\u0646)"
-      _Title_En: the double Fathah
-      _Title_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0641\u062A\u062D"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Shapes and sounds!
+      _AudioFile: LB_Shapes_and_sounds
+      _Title_Ar: "\u0627\u0634\u0643\u0627\u0644 \u0648 \u0627\u0635\u0648\u0627\u062A!"
+      _Focus: 6
     - _Id: 4.6
       _Stage: 4
       _LearningBlock: 6
-      _NumberOfPlaySessions: 3
-      _Description_En: "Same as 4.2 The sound of Dammah tanwin (\u064C) (double Dammah)"
-      _Description_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0636\u0645 (\u0636\u0645\u062A\u0627\u0646)"
-      _Title_En: the double Dammah
-      _Title_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0636\u0645"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with shapes!
+      _AudioFile: LB_Play_with_shapes
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0634\u0643\u0627\u0644!"
+      _Focus: 6
     - _Id: 4.7
       _Stage: 4
       _LearningBlock: 7
-      _NumberOfPlaySessions: 3
-      _Description_En: "Same than 3 The sound of Kasrah tanwin (\u064D) (double Kasrah)"
-      _Description_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0643\u0633\u0631
-        (\u0643\u0633\u0631\u062A\u0627\u0646)"
-      _Title_En: the double Kasrah
-      _Title_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0643\u0633\u0631"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with sounds!
+      _AudioFile: LB_Play_with_sounds
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0635\u0648\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 4.8
       _Stage: 4
       _LearningBlock: 8
-      _NumberOfPlaySessions: 3
-      _Description_En: The 3 diacritic + double diacritic signs.
-      _Description_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062B\u0644\u0627\u062B
-        \u0648\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0646\u0648\u064A\u0646
-        \u0627\u0644\u062B\u0644\u0627\u062B"
-      _Title_En: single and double symbols
-      _Title_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0648\u062D\u0631\u0643\u0627\u062A
-        \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with phonems!
+      _AudioFile: LB_Play_with_phonems
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0635\u0648\u062A\u064A\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 4.9
       _Stage: 4
       _LearningBlock: 9
-      _NumberOfPlaySessions: 3
-      _Description_En: "The different sound variations of hamza (\u0621) on a vowel
-        (different with/without), separate. waw hamza (\u0624) and yeh hamza (\u0626)"
-      _Description_Ar: "\u0623\u0646\u0648\u0627\u0639 \u0627\u0644\u0647\u0645\u0632\u0629
-        \u0627\u0644\u0645\u062E\u062A\u0644\u0641\u0629\u060C \u0639\u0644\u0649
-        \u062D\u0631\u0648\u0641 \u0627\u0644\u0639\u0644\u0629 \u0645\u062B\u0644
-        \u0627\u0644\u0648\u0627\u0648 (\u0624) \u0648\u0627\u0644\u064A\u0627\u0621
-        (\u0626)\u060C \u0639\u0644\u0649 \u0627\u0644\u0633\u0637\u0631 (\u0621)"
-      _Title_En: Hamza variations
-      _Title_Ar: "\u0623\u0646\u0648\u0627\u0639 \u0627\u0644\u0647\u0645\u0632\u0629"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's read the phonems!
+      _AudioFile: LB_Read_the_phonems
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u0635\u0648\u062A\u064A\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 4.10
       _Stage: 4
       _LearningBlock: 10
-      _NumberOfPlaySessions: 3
-      _Description_En: "The diphthong \u201Cwaw\u201D (\u0648): different sound than
-        short and long vowel"
-      _Description_Ar: "\u0648\u0627\u0648 \u0627\u0644\u0625\u062F\u063A\u0627\u0645
-        \u0627\u0644\u062A\u064A \u062A\u062E\u062A\u0644\u0641 \u0639\u0646 \u0627\u0644\u0648\u0627\u0648
-        \u0643\u062D\u0631\u0641 \u0639\u0644\u0629"
-      _Title_En: The diphthong waaw
-      _Title_Ar: "\u0648\u0627\u0648 \u0627\u0644\u0625\u062F\u063A\u0627\u0645"
-      _Focus: 3
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's build our first words!
+      _AudioFile: LB_Build_first_words
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0628\u0646\u064A \u0627\u0648\u0644 \u0643\u0644\u0645\u0627\u062A\u0646\u0627
+        !"
+      _Focus: 4
     - _Id: 4.11
       _Stage: 4
       _LearningBlock: 11
-      _NumberOfPlaySessions: 3
-      _Description_En: "The diphthong \u201Cyeh\u201D (\u064A): different sound than
-        short and long vowel"
-      _Description_Ar: "\u064A\u0627\u0621 \u0627\u0644\u0625\u062F\u063A\u0627\u0645
-        \u0627\u0644\u062A\u064A \u062A\u062E\u062A\u0644\u0641 \u0639\u0646 \u0627\u0644\u064A\u0627\u0621
-        \u0643\u062D\u0631\u0641 \u0639\u0644\u0629"
-      _Title_En: The diphthong yaa
-      _Title_Ar: "\u064A\u0627\u0621 \u0627\u0644\u0625\u062F\u063A\u0627\u0645"
-      _Focus: 3
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with the words!
+      _AudioFile: LB_Play_with_words
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      _Focus: 4
     - _Id: 4.12
       _Stage: 4
       _LearningBlock: 12
-      _NumberOfPlaySessions: 3
-      _Description_En: Verbs (past simple)
-      _Description_Ar: "\u0623\u0641\u0639\u0627\u0644 \u0628\u0632\u0645\u0646 \u0627\u0644\u0645\u0627\u0636\u064A
-        \u0627\u0644\u0628\u0633\u064A\u0637"
-      _Title_En: 'Words: Verbs'
-      _Title_Ar: "\u0627\u0644\u0623\u0641\u0639\u0627\u0644"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 1st trip'
+      _AudioFile: LB_Words_adventures_1
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u0623\u0648\u0644\u06CC"
       _Focus: 4
     - _Id: 4.13
       _Stage: 4
       _LearningBlock: 13
-      _NumberOfPlaySessions: 3
-      _Description_En: Places
-      _Description_Ar: "\u0627\u0644\u0623\u0645\u0627\u0643\u0646"
-      _Title_En: 'Words: Places'
-      _Title_Ar: "\u0627\u0644\u0623\u0645\u0627\u0643\u0646"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 2nd trip'
+      _AudioFile: LB_Words_adventures_2
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u062B\u0627\u0646\u064A\u0629"
       _Focus: 4
     - _Id: 4.14
       _Stage: 4
       _LearningBlock: 14
-      _NumberOfPlaySessions: 3
-      _Description_En: Grains (food)
-      _Description_Ar: "\u0627\u0644\u0623\u0637\u0639\u0645\u0629 (\u0627\u0644\u062D\u0628\u0648\u0628)"
-      _Title_En: 'Words: grains food'
-      _Title_Ar: "\u0627\u0644\u0623\u0637\u0639\u0645\u0629 (\u0627\u0644\u062D\u0628\u0648\u0628)"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 3rd trip'
+      _AudioFile: LB_Words_adventures_3
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u062B\u0627\u0644\u062B\u0629"
       _Focus: 4
     - _Id: 4.15
       _Stage: 4
       _LearningBlock: 15
-      _NumberOfPlaySessions: 3
-      _Description_En: Furniture
-      _Description_Ar: "\u0627\u0644\u0645\u0641\u0631\u0648\u0634\u0627\u062A"
-      _Title_En: 'Words: Furniture'
-      _Title_Ar: "\u0627\u0644\u0645\u0641\u0631\u0648\u0634\u0627\u062A"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: last trip!'
+      _AudioFile: LB_Words_adventures_last
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u0623\u062E\u064A\u0631\u0629"
       _Focus: 4
     - _Id: 5.1
       _Stage: 5
       _LearningBlock: 1
-      _NumberOfPlaySessions: 3
-      _Description_En: "The \u201Calef maqSura\u201D"
-      _Description_Ar: "\u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u0642\u0635\u0648\u0631\u0629
-        (\u0649)"
-      _Title_En: the alif maqSura
-      _Title_Ar: "\u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u0642\u0635\u0648\u0631\u0629"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: The strange letters!
+      _AudioFile: LB_The_strange_letters
+      _Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0639\u062C\u064A\u0628\u0629!"
       _Focus: 1
     - _Id: 5.2
       _Stage: 5
       _LearningBlock: 2
-      _NumberOfPlaySessions: 3
-      _Description_En: "The special combination letter \u201Clam-alef\u201D (\u0644\u0627)"
-      _Description_Ar: "\u0627\u0644\u0644\u0627\u0645 \u0627\u0644\u0641 (\u0644\u0627)"
-      _Title_En: lam-alif combination
-      _Title_Ar: "\u0644\u0627"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: From feh to hamza!
+      _AudioFile: LB_From_feh_to_hamza
+      _Title_Ar: "\u0645\u0646 \u0627\u0644\u0641\u0627\u0621 \u0627\u0644\u06CC \u0627\u0644\u0647\u0645\u0632\u0629
+        !"
       _Focus: 1
     - _Id: 5.3
       _Stage: 5
       _LearningBlock: 3
-      _NumberOfPlaySessions: 3
-      _Description_En: The maddah (~)
-      _Description_Ar: "\u0627\u0644\u0645\u062F\u0651"
-      _Title_En: the madd symbol
-      _Title_Ar: "\u0627\u0644\u0645\u062F"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Will we find the letters?
+      _AudioFile: LB_Find_the_letters
+      _Title_Ar: "\u0647\u0644 \u0633\u0646\u062C\u062F \u0627\u0644\u062D\u0631\u0648\u0641
+        \u061F"
+      _Focus: 1
     - _Id: 5.4
       _Stage: 5
       _LearningBlock: 4
-      _NumberOfPlaySessions: 3
-      _Description_En: The 3 diacritic signs
-      _Description_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062B\u0644\u0627\u062B"
-      _Title_En: The 3 diacritic signs
-      _Title_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's read the letters
+      _AudioFile: LB_Read_the_letters
+      _Title_Ar: "\u0644\u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641
+        !"
+      _Focus: 1
     - _Id: 5.5
       _Stage: 5
       _LearningBlock: 5
-      _NumberOfPlaySessions: 3
-      _Description_En: The 3 double diacritic signs (Tanwin)
-      _Description_Ar: "\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0646\u0648\u064A\u0646
-        \u0627\u0644\u062B\u0644\u0627\u062B"
-      _Title_En: The 3 double diacritic signs
-      _Title_Ar: "\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Shapes and sounds!
+      _AudioFile: LB_Shapes_and_sounds
+      _Title_Ar: "\u0627\u0634\u0643\u0627\u0644 \u0648 \u0627\u0635\u0648\u0627\u062A!"
+      _Focus: 6
     - _Id: 5.6
       _Stage: 5
       _LearningBlock: 6
-      _NumberOfPlaySessions: 3
-      _Description_En: "The diacritic sign \u201Cshadda\u201D (\u0651) as a double
-        consonant"
-      _Description_Ar: "\u0627\u0644\u0634\u062F\u0651\u0629 (\u0627\u0644\u062A\u0636\u0639\u064A\u0641)"
-      _Title_En: the shadda symbol
-      _Title_Ar: "\u0627\u0644\u0634\u062F\u0629"
-      _Focus: 2
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with shapes!
+      _AudioFile: LB_Play_with_shapes
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0634\u0643\u0627\u0644!"
+      _Focus: 6
     - _Id: 5.7
       _Stage: 5
       _LearningBlock: 7
-      _NumberOfPlaySessions: 3
-      _Description_En: Singular, dual, and plural forms of nouns
-      _Description_Ar: "\u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
-        \u0648\u0627\u0644\u062C\u0645\u0639 (\u0627\u0644\u0623\u0633\u0645\u0627\u0621)"
-      _Title_En: 'Words: plurals'
-      _Title_Ar: "\u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
-        \u0648\u0627\u0644\u062C\u0645\u0639"
-      _Focus: 4
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with sounds!
+      _AudioFile: LB_Play_with_sounds
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0635\u0648\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 5.8
       _Stage: 5
       _LearningBlock: 8
-      _NumberOfPlaySessions: 3
-      _Description_En: Professions (emphasis singular, dual, plural)
-      _Description_Ar: "\u0627\u0644\u0645\u0647\u0646 (\u0645\u0639 \u0627\u0644\u062A\u0623\u0643\u064A\u062F
-        \u0639\u0644\u0649 \u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
-        \u0648\u0627\u0644\u062C\u0645\u0639)"
-      _Title_En: 'words: professions'
-      _Title_Ar: "\u0627\u0644\u0645\u0647\u0646"
-      _Focus: 4
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with phonems!
+      _AudioFile: LB_Play_with_phonems
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0635\u0648\u062A\u064A\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 5.9
       _Stage: 5
       _LearningBlock: 9
-      _NumberOfPlaySessions: 3
-      _Description_En: Nature (emphasis singular, dual, plural)
-      _Description_Ar: "\u0627\u0644\u0637\u0628\u064A\u0639\u0629 (\u0645\u0639 \u0627\u0644\u062A\u0623\u0643\u064A\u062F
-        \u0639\u0644\u0649 \u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
-        \u0648\u0627\u0644\u062C\u0645\u0639)"
-      _Title_En: 'words: nature'
-      _Title_Ar: "\u0627\u0644\u0637\u0628\u064A\u0639\u0629"
-      _Focus: 4
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's read the phonems!
+      _AudioFile: LB_Read_the_phonems
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u0635\u0648\u062A\u064A\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 5.10
       _Stage: 5
       _LearningBlock: 10
-      _NumberOfPlaySessions: 3
-      _Description_En: "The definite article \u201Cal\u201D (\u0627\u0644\u0640)"
-      _Description_Ar: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
-      _Title_En: the article "al"
-      _Title_Ar: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's build our first words!
+      _AudioFile: LB_Build_first_words
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0628\u0646\u064A \u0627\u0648\u0644 \u0643\u0644\u0645\u0627\u062A\u0646\u0627
+        !"
       _Focus: 4
     - _Id: 5.11
       _Stage: 5
       _LearningBlock: 11
-      _NumberOfPlaySessions: 3
-      _Description_En: "Principle (the different pronounciation of the consonant following
-        the definite article \"al\" (\u0627\u0644\u0640) \n\nmoon consonants: \u0628
-        - \u062C - \u062D - \u062E - \u0639 - \u063A - \u0641 - \u0642 - \u0643 -
-        \u0645 - \u0647 \nsun consonants: \u062A - \u062B - \u062F - \u0630 - \u0631
-        - \u0632 - \u0633 - \u0634 - \u0635 - \u0636 - \u0637 - \u0638 - \u0644 -
-        \u0646"
-      _Description_Ar: "\u0627\u0644\u062A\u0645\u064A\u064A\u0632 \u0641\u064A \u0644\u0641\u0638
-        \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0634\u0645\u0633\u064A\u0629
-        \u0648\u0627\u0644\u0642\u0645\u0631\u064A\u0629 \u0645\u0639 \u0627\u0644
-        \u0627\u0644\u062A\u0639\u0631\u064A\u0641 \u0627\u0644\u062D\u0631\u0648\u0641
-        \u0627\u0644\u0642\u0645\u0631\u064A\u0629 (\u0628 - \u062C - \u062D - \u062E
-        - \u0639 - \u063A - \u0641 - \u0642 - \u0643 - \u0645 - \u0647)\u060C \u0627\u0644\u062D\u0631\u0648\u0641
-        \u0627\u0644\u0634\u0645\u0633\u064A\u0629 (\u062A - \u062B - \u062F - \u0630
-        - \u0631 - \u0632 - \u0633 - \u0634 - \u0635 - \u0636 - \u0637 - \u0638 -
-        \u0644 - \u0646)"
-      _Title_En: sun and moon consonants
-      _Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0634\u0645\u0633\u064A\u0629
-        \u0648\u0627\u0644\u0642\u0645\u0631\u064A\u0629"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with the words!
+      _AudioFile: LB_Play_with_words
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      _Focus: 4
     - _Id: 5.12
       _Stage: 5
       _LearningBlock: 12
-      _NumberOfPlaySessions: 3
-      _Description_En: Sports (emphasis moon & sun consonant) the red color of the
-        sun&moon letter means it is not pronounced which means it proceeds a sun consonant
-      _Description_Ar: "\u0627\u0644\u0631\u064A\u0627\u0636\u0629 (\u0645\u0639 \u0627\u0644\u062A\u0623\u0643\u064A\u062F
-        \u0639\u0644\u0649 \u0627\u0644\u062A\u0645\u064A\u064A\u0632 \u0641\u064A
-        \u0644\u0641\u0638 \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0634\u0645\u0633\u064A\u0629
-        \u0648\u0627\u0644\u0642\u0645\u0631\u064A\u0629 \u0645\u0639 \u0627\u0644
-        \u0627\u0644\u062A\u0639\u0631\u064A\u0641)"
-      _Title_En: Sports
-      _Title_Ar: "\u0627\u0644\u0631\u064A\u0627\u0636\u0629"
-      _Focus: 1
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 1st trip'
+      _AudioFile: LB_Words_adventures_1
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u0623\u0648\u0644\u06CC"
+      _Focus: 4
     - _Id: 5.13
       _Stage: 5
       _LearningBlock: 13
-      _NumberOfPlaySessions: 3
-      _Description_En: Adjectives of feelings
-      _Description_Ar: "\u0635\u0641\u0627\u062A \u0627\u0644\u0645\u0634\u0627\u0639\u0631"
-      _Title_En: 'Adjectives: feelings'
-      _Title_Ar: "\u0635\u0641\u0627\u062A \u0627\u0644\u0645\u0634\u0627\u0639\u0631"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 2nd trip'
+      _AudioFile: LB_Words_adventures_2
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u062B\u0627\u0646\u064A\u0629"
+      _Focus: 4
+    - _Id: 5.14
+      _Stage: 5
+      _LearningBlock: 14
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 3rd trip'
+      _AudioFile: LB_Words_adventures_3
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u062B\u0627\u0644\u062B\u0629"
+      _Focus: 4
+    - _Id: 5.15
+      _Stage: 5
+      _LearningBlock: 15
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: last trip!'
+      _AudioFile: LB_Words_adventures_last
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u0623\u062E\u064A\u0631\u0629"
       _Focus: 4
     - _Id: 6.1
       _Stage: 6
       _LearningBlock: 1
-      _NumberOfPlaySessions: 3
-      _Description_En: Greeting phrase
-      _Description_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u062D\u064A\u0629
-        \u0645\u062B\u0644 \"\u0635\u0628\u0627\u062D \u0627\u0644\u062E\u064A\u0631\""
-      _Title_En: Greetings
-      _Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u062D\u064A\u0629"
-      _Focus: 5
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Discover the last letters!
+      _AudioFile: LB_Discover_last_letters
+      _Title_Ar: "\u0627\u0643\u062A\u0634\u0641 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0627\u0644\u0623\u062E\u064A\u0631\u0629!"
+      _Focus: 1
     - _Id: 6.2
       _Stage: 6
       _LearningBlock: 2
-      _NumberOfPlaySessions: 3
-      _Description_En: '"Hello" and "Hi" phrases'
-      _Description_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0631\u062D\u064A\u0628
-        \u0645\u062B\u0644 \"\u0645\u0631\u062D\u0628\u0627\u064B\""
-      _Title_En: Hello phrases
-      _Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0631\u062D\u064A\u0628"
-      _Focus: 5
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: From ain to heh!
+      _AudioFile: LB_From_ain_to_heh
+      _Title_Ar: "\u0645\u0646 \u0627\u0644\u0639\u064A\u0646 \u0627\u0644\u06CC \u0627\u0644\u0647\u0627\u0621
+        !"
+      _Focus: 1
     - _Id: 6.3
       _Stage: 6
       _LearningBlock: 3
-      _NumberOfPlaySessions: 3
-      _Description_En: '"How are you" and "Goodbye" phrases'
-      _Description_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0633\u0624\u0627\u0644
-        \u0639\u0646 \u0627\u0644\u062D\u0627\u0644 \u0645\u062B\u0644 \"\u0643\u064A\u0641
-        \u062D\u0627\u0644\u0643\u061F\"\u060C \"\u0648\u062F\u0627\u0639\u0627\u064B\""
-      _Title_En: How are you phrases
-      _Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0633\u0624\u0627\u0644
-        \u0639\u0646 \u0627\u0644\u062D\u0627\u0644"
-      _Focus: 5
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Will we find the letters?
+      _AudioFile: LB_Find_the_letters
+      _Title_Ar: "\u0647\u0644 \u0633\u0646\u062C\u062F \u0627\u0644\u062D\u0631\u0648\u0641
+        \u061F"
+      _Focus: 1
     - _Id: 6.4
       _Stage: 6
       _LearningBlock: 4
-      _NumberOfPlaySessions: 3
-      _Description_En: 'Adjectives: colors'
-      _Description_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
-      _Title_En: 'Adjectives: colors'
-      _Title_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
-      _Focus: 4
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's read the letters
+      _AudioFile: LB_Read_the_letters
+      _Title_Ar: "\u0644\u0646\u0642\u0631\u0623 \u0627\u0644\u062D\u0631\u0648\u0641
+        !"
+      _Focus: 1
     - _Id: 6.5
       _Stage: 6
       _LearningBlock: 5
-      _NumberOfPlaySessions: 3
-      _Description_En: 'Adjectives: describing nature'
-      _Description_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0628\u064A\u0639\u0629"
-      _Title_En: nature adjectives
-      _Title_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0628\u064A\u0639\u0629"
-      _Focus: 4
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Shapes and sounds!
+      _AudioFile: LB_Shapes_and_sounds
+      _Title_Ar: "\u0627\u0634\u0643\u0627\u0644 \u0648 \u0627\u0635\u0648\u0627\u062A!"
+      _Focus: 6
     - _Id: 6.6
       _Stage: 6
       _LearningBlock: 6
-      _NumberOfPlaySessions: 3
-      _Description_En: 'Adjectives: describing weather'
-      _Description_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0642\u0633"
-      _Title_En: weather adjectives
-      _Title_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0642\u0633"
-      _Focus: 4
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with shapes!
+      _AudioFile: LB_Play_with_shapes
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0634\u0643\u0627\u0644!"
+      _Focus: 6
     - _Id: 6.7
       _Stage: 6
       _LearningBlock: 7
-      _NumberOfPlaySessions: 3
-      _Description_En: Cardinal numbers 0 to 20
-      _Description_Ar: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629
-        (\u0645\u0646 \u0627\u0644\u0635\u0641\u0631 \u0625\u0644\u0649 \u0627\u0644\u0639\u0634\u0631\u0648\u0646)"
-      _Title_En: cardinal numbers
-      _Title_Ar: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629"
-      _Focus: 4
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with sounds!
+      _AudioFile: LB_Play_with_sounds
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0627\u0635\u0648\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 6.8
       _Stage: 6
       _LearningBlock: 8
-      _NumberOfPlaySessions: 3
-      _Description_En: Ordinal numbers 1 to 10 (with the definite article "al")
-      _Description_Ar: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629
-        (\u0645\u0646 \u0627\u0644\u0623\u0648\u0644 \u0625\u0644\u0649 \u0627\u0644\u0639\u0627\u0634\u0631)"
-      _Title_En: ordinal numbers
-      _Title_Ar: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
-      _Focus: 4
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with phonems!
+      _AudioFile: LB_Play_with_phonems
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0635\u0648\u062A\u064A\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 6.9
       _Stage: 6
       _LearningBlock: 9
-      _NumberOfPlaySessions: 3
-      _Description_En: Time expressions such as "today" "yesterday"
-      _Description_Ar: "\u0638\u0631\u0648\u0641 \u0627\u0644\u0632\u0645\u0627\u0646
-        \u0645\u062B\u0644 \"\u0627\u0644\u064A\u0648\u0645\"\u060C \"\u0627\u0644\u0628\u0627\u0631\u062D\u0629\""
-      _Title_En: Time adverbs
-      _Title_Ar: "\u0638\u0631\u0648\u0641 \u0627\u0644\u0632\u0645\u0627\u0646"
-      _Focus: 4
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's read the phonems!
+      _AudioFile: LB_Read_the_phonems
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0642\u0631\u0623 \u0627\u0644\u0635\u0648\u062A\u064A\u0627\u062A
+        !"
+      _Focus: 6
     - _Id: 6.10
       _Stage: 6
       _LearningBlock: 10
-      _NumberOfPlaySessions: 3
-      _Description_En: Days of the week
-      _Description_Ar: "\u0623\u064A\u0627\u0645 \u0627\u0644\u0627\u0633\u0628\u0648\u0639"
-      _Title_En: Days of the week
-      _Title_Ar: "\u0623\u064A\u0627\u0645 \u0627\u0644\u0627\u0633\u0628\u0648\u0639"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's build our first words!
+      _AudioFile: LB_Build_first_words
+      _Title_Ar: "\u0647\u064A\u0627 \u0646\u0628\u0646\u064A \u0627\u0648\u0644 \u0643\u0644\u0645\u0627\u062A\u0646\u0627
+        !"
       _Focus: 4
     - _Id: 6.11
       _Stage: 6
       _LearningBlock: 11
-      _NumberOfPlaySessions: 3
-      _Description_En: The months
-      _Description_Ar: "\u0627\u0644\u0623\u0634\u0647\u0631"
-      _Title_En: The months
-      _Title_Ar: "\u0627\u0644\u0623\u0634\u0647\u0631"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: Let's play with the words!
+      _AudioFile: LB_Play_with_words
+      _Title_Ar: "\u0644\u0646\u0644\u0639\u0628 \u0628\u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _Focus: 4
     - _Id: 6.12
       _Stage: 6
       _LearningBlock: 12
-      _NumberOfPlaySessions: 3
-      _Description_En: The years (in numbers)
-      _Description_Ar: "\u0627\u0644\u0633\u0646\u0629 \u0628\u0627\u0644\u0623\u0631\u0642\u0627\u0645"
-      _Title_En: the years in numbers
-      _Title_Ar: "\u0627\u0644\u0633\u0646\u0629 \u0628\u0627\u0644\u0623\u0631\u0642\u0627\u0645"
-      _Focus: 0
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 1st trip'
+      _AudioFile: LB_Words_adventures_1
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u0623\u0648\u0644\u06CC"
+      _Focus: 4
     - _Id: 6.13
       _Stage: 6
       _LearningBlock: 13
-      _NumberOfPlaySessions: 3
-      _Description_En: 'Nature: Feminine and masculine: adding teh marbuta to any
-        noun makes it feminine'
-      _Description_Ar: "\u0627\u0644\u0637\u0628\u064A\u0639\u0629 (\u0627\u0644\u0623\u0633\u0645\u0627\u0621
-        \u0627\u0644\u0645\u0630\u0643\u0631\u0629 \u0648\u0627\u0644\u0645\u0624\u0646\u062B\u0629):
-        \u0625\u0636\u0627\u0641\u0629 \u0627\u0644\u062A\u0627\u0621 \u0627\u0644\u0645\u0631\u0628\u0648\u0637\u0629
-        \u0643\u0639\u0644\u0627\u0645\u0629 \u0627\u0644\u062A\u0623\u0646\u064A\u062B"
-      _Title_En: faminine and masculine nouns
-      _Title_Ar: "\u0627\u0644\u0623\u0633\u0645\u0627\u0621 \u0627\u0644\u0645\u0630\u0643\u0631\u0629
-        \u0648\u0627\u0644\u0645\u0624\u0646\u062B\u0629"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 2nd trip'
+      _AudioFile: LB_Words_adventures_2
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u062B\u0627\u0646\u064A\u0629"
       _Focus: 4
     - _Id: 6.14
       _Stage: 6
       _LearningBlock: 14
-      _NumberOfPlaySessions: 3
-      _Description_En: Clothes with the definite article "al"
-      _Description_Ar: "\u0627\u0644\u0645\u0644\u0627\u0628\u0633 (\u0645\u0639 \u0627\u0644
-        \u0627\u0644\u062A\u0639\u0631\u064A\u0641)"
-      _Title_En: the article "al"
-      _Title_Ar: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: 3rd trip'
+      _AudioFile: LB_Words_adventures_3
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u062B\u0627\u0644\u062B\u0629"
       _Focus: 4
     - _Id: 6.15
       _Stage: 6
       _LearningBlock: 15
-      _NumberOfPlaySessions: 3
-      _Description_En: Simple phrases and sentences
-      _Description_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0648\u062C\u0645\u0644
-        \u0628\u0633\u064A\u0637\u0629"
-      _Title_En: Some phrases
-      _Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0628\u0633\u064A\u0637\u0629"
-      _Focus: 5
+      _NumberOfPlaySessions: 2
+      _Description_En: 
+      _Description_Ar: 
+      _Title_En: 'Words adventures: last trip!'
+      _AudioFile: LB_Words_adventures_last
+      _Title_Ar: "\u0645\u063A\u0627\u0645\u0631\u0627\u062A \u0627\u0644\u0643\u0644\u0645\u0627\u062A:
+        \u0627\u0644\u0631\u062D\u0644\u0629 \u0627\u0644\u0623\u062E\u064A\u0631\u0629"
+      _Focus: 4

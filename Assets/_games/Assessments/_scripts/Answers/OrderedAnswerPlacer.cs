@@ -1,4 +1,5 @@
 using Antura.Core;
+using Antura.Extensions;
 using Antura.Helpers;
 using DG.Tweening;
 using Kore.Coroutines;
@@ -15,7 +16,7 @@ namespace Antura.Assessment
     /// </summary>
     public class OrderedAnswerPlacer : IAnswerPlacer
     {
-        public OrderedAnswerPlacer( AssessmentAudioManager audioManager, QuestionPlacerOptions placerOptions)
+        public OrderedAnswerPlacer(AssessmentAudioManager audioManager, QuestionPlacerOptions placerOptions)
         {
             this.audioManager = audioManager;
             this.placerOptions = placerOptions;
@@ -35,20 +36,20 @@ namespace Antura.Assessment
         {
             allAnswers = answer;
             isAnimating = true;
-            Koroutine.Run( PlaceCoroutine());
+            Koroutine.Run(PlaceCoroutine());
         }
 
         public void RemoveAnswers()
         {
             isAnimating = true;
-            Koroutine.Run( RemoveCoroutine());
+            Koroutine.Run(RemoveCoroutine());
         }
 
         private IEnumerator PlaceCoroutine()
         {
             allAnswers.Shuffle();
 
-            List< Vector3> positions = new List< Vector3>();
+            List<Vector3> positions = new List<Vector3>();
             float xMin = placerOptions.LeftX + 2.0f;
             float xMax = placerOptions.RightX - 2.0f;
             float yMin = placerOptions.BottomY + 2.9f;
@@ -57,34 +58,34 @@ namespace Antura.Assessment
             float deltaX = xMax - xMin;
 
             int answerCount = 0;
-            foreach (var a in allAnswers)
+            foreach (var a in allAnswers) {
                 answerCount++;
+            }
 
             float answerGap = placerOptions.AnswerSize + 0.5f;
-            var flow = AssessmentOptions.Instance.LocaleTextFlow;
-            while (answerCount > 0)
-            {
-                int answersInThisLine = Mathf.FloorToInt( deltaX / answerGap);
-                if (answersInThisLine > answerCount)
+            var flow = AssessmentOptions.Instance.LocaleTextDirection;
+            while (answerCount > 0) {
+                int answersInThisLine = Mathf.FloorToInt(deltaX / answerGap);
+                if (answersInThisLine > answerCount) {
                     answersInThisLine = answerCount;
+                }
 
                 // space occupied by this line
-                float lineSpace = (answersInThisLine -1) * 0.5f + answersInThisLine * placerOptions.AnswerSize;
+                float lineSpace = (answersInThisLine - 1) * 0.5f + answersInThisLine * placerOptions.AnswerSize;
                 // startin X position for an answer
-                float startX = (lineSpace / 2.0f) + (placerOptions.AnswerSize/2.0f);
+                float startX = (lineSpace / 2.0f) + (placerOptions.AnswerSize / 2.0f);
                 float direction = -1;
 
-                if (flow == TextFlow.LeftToRight) // Not Arabic
+                if (flow == TextDirection.LeftToRight) // Not Arabic
                 {
                     startX = -startX;
                     direction = 1;
                 }
 
-                for( int i=0; i < answersInThisLine && answerCount > 0; i++, answerCount--)
-                {
-                    startX += direction * ( 0.5f + placerOptions.AnswerSize);
-                    var position = new Vector3( startX, yMin, z);
-                    positions.Add( position);
+                for (int i = 0; i < answersInThisLine && answerCount > 0; i++, answerCount--) {
+                    startX += direction * (0.5f + placerOptions.AnswerSize);
+                    var position = new Vector3(startX, yMin, z);
+                    positions.Add(position);
                 }
 
                 yMin += 3.5f;
@@ -92,65 +93,64 @@ namespace Antura.Assessment
 
             positions.Shuffle();
 
-            playbackAnswers = new List< Answer>();
-            foreach (var a in allAnswers)
-                yield return Koroutine.Nested( PlaceAnswer( a, positions));
+            playbackAnswers = new List<Answer>();
+            foreach (var a in allAnswers) {
+                yield return Koroutine.Nested(PlaceAnswer(a, positions));
+            }
+            yield return Koroutine.Nested(PlayBackCorrectAnswers());
 
-            yield return Koroutine.Nested( PlayBackCorrectAnswers());
-
-            yield return Wait.For( 0.65f);
-            isAnimating = false;           
+            yield return Wait.For(0.65f);
+            isAnimating = false;
         }
 
         List<Answer> playbackAnswers = null;
 
-        private IEnumerator PlaceAnswer( Answer answer, List< Vector3> positions)
+        private IEnumerator PlaceAnswer(Answer answer, List<Vector3> positions)
         {
             var go = answer.gameObject;
             go.transform.localPosition = positions.Pull();
-            go.GetComponent< StillLetterBox>().InstaShrink();
-            go.GetComponent< StillLetterBox>().Poof();
-            go.GetComponent< StillLetterBox>().Magnify();
+            go.GetComponent<StillLetterBox>().InstaShrink();
+            go.GetComponent<StillLetterBox>().Poof();
+            go.GetComponent<StillLetterBox>().Magnify();
             audioManager.PlayPoofSound();
-            if (answer.IsCorrect())
-            {
-                if (playbackAnswers.Count == 0 && AssessmentOptions.Instance.PlayCorrectAnswer)
-                    playbackAnswers.Add( answer);
-                else if (AssessmentOptions.Instance.PlayAllCorrectAnswers)
-                    playbackAnswers.Add( answer);
+            if (answer.IsCorrect()) {
+                if (playbackAnswers.Count == 0 && AssessmentOptions.Instance.PlayCorrectAnswer) {
+                    playbackAnswers.Add(answer);
+                } else if (AssessmentOptions.Instance.PlayAllCorrectAnswers) {
+                    playbackAnswers.Add(answer);
+                }
             }
 
-            yield return Wait.For( Random.Range( 0.07f, 0.13f));
+            yield return Wait.For(Random.Range(0.07f, 0.13f));
         }
 
         private IEnumerator PlayBackCorrectAnswers()
         {
             playbackAnswers.Shuffle();
-            foreach (var a in playbackAnswers)
-            {
-                yield return Koroutine.Nested( a.PlayLetter());
-                yield return Wait.For( 0.3f);
+            foreach (var a in playbackAnswers) {
+                yield return Koroutine.Nested(a.PlayLetter());
+                yield return Wait.For(0.3f);
             }
             playbackAnswers = null;
         }
 
         private IEnumerator RemoveCoroutine()
         {
-            foreach (var a in allAnswers)
-                yield return Koroutine.Nested( RemoveAnswer( a.gameObject));
-
-            yield return Wait.For( 0.65f);
+            foreach (var a in allAnswers) {
+                yield return Koroutine.Nested(RemoveAnswer(a.gameObject));
+            }
+            yield return Wait.For(0.65f);
             isAnimating = false;
         }
 
-        private IEnumerator RemoveAnswer( GameObject answ)
+        private IEnumerator RemoveAnswer(GameObject answ)
         {
             audioManager.PlayPoofSound();
 
-            answ.GetComponent< StillLetterBox>().Poof();
-            answ.transform.DOScale( 0, 0.3f).OnComplete( () => GameObject.Destroy( answ));
+            answ.GetComponent<StillLetterBox>().Poof();
+            answ.transform.DOScale(0, 0.3f).OnComplete(() => GameObject.Destroy(answ));
 
-            yield return Wait.For( 0.1f);
+            yield return Wait.For(0.1f);
         }
     }
 }

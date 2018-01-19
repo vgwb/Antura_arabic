@@ -15,7 +15,6 @@ namespace Antura.Minigames.Maze
         private bool playedSfx;
         private float timeRemaining;
 
-
         public void initTimer()
         {
             /*time = MazeGameManager.Instance.gameTime;
@@ -23,60 +22,34 @@ namespace Antura.Minigames.Maze
 			DisplayTime ();*/
 
             // this.StopAllCoroutines();
-            if (!MazeGame.instance.isTutorialMode)
+            if (!MazeGame.instance.isTutorialMode) {
                 MinigamesUI.Timer.Setup(MazeGame.instance.gameTime);
-
-
+            }
         }
 
         public void Update()
         {
-
             if (!MazeGame.instance.isTutorialMode &&
                 MinigamesUI.Timer != null &&
-                MinigamesUI.Timer.Duration == MinigamesUI.Timer.Elapsed)
-            {
+                MinigamesUI.Timer.Duration == MinigamesUI.Timer.Elapsed) {
                 StopTimer();
                 MazeGame.instance.onTimeUp();
             }
-
-            /*if (isRunning) {
-				if (timeRemaining > 0f) {
-					timeRemaining -= Time.deltaTime;
-					DisplayTime();
-				}
-				if (!playedSfx && timeRemaining < 5f) {
-					AudioManager.I.PlaySound(Sfx.DangerClockLong);
-					playedSfx = true;
-				}
-				if (timeRemaining < 1f) {
-					StopTimer();
-					MazeGameManager.Instance.onTimeUp();
-				}
-			}*/
-
         }
 
         public void StartTimer()
         {
             //isRunning = true;
             //   this.StopAllCoroutines();
-            if (!MazeGame.instance.isTutorialMode)
-                MinigamesUI.Timer.Play();
+            if (!MazeGame.instance.isTutorialMode) { MinigamesUI.Timer.Play(); }
 
         }
 
         public void StopTimer()
         {
             // this.StopAllCoroutines();
-            if (!MazeGame.instance.isTutorialMode)
-                MinigamesUI.Timer.Pause();
-            /*isRunning = false;
-			playedSfx = false;
-			AudioManager.I.StopSfx(Sfx.DangerClockLong);*/
+            if (!MazeGame.instance.isTutorialMode) { MinigamesUI.Timer.Pause(); }
         }
-
-
 
         public void DisplayTime()
         {

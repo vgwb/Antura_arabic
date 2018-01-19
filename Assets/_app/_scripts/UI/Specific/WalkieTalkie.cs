@@ -10,8 +10,8 @@ namespace Antura.UI
     public class WalkieTalkie : MonoBehaviour
     {
         public bool IsShown { get; private set; }
-        bool shouldPulse;
-        Tween showTween, pulseTween;
+        private bool shouldPulse;
+        private Tween showTween, pulseTween;
 
         public void Setup()
         {
@@ -20,12 +20,12 @@ namespace Antura.UI
                 .Append(this.transform.DOPunchRotation(new Vector3(0, 0, 20), pulseShakeDuration))
                 .Append(this.transform.DOScale(this.transform.localScale * 1.1f, 0.3f).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo)
                     .SetAutoKill(false).Pause()
-                    .OnComplete(() =>
-                    {
+                    .OnComplete(() => {
                         if (shouldPulse) pulseTween.Goto(pulseShakeDuration, true);
                     })
                 );
             pulseTween.ForceInit();
+
             showTween = this.transform.DOScale(0.0001f, 0.45f).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
                 .OnRewind(() => this.gameObject.SetActive(false))
                 .OnComplete(() => pulseTween.Goto(pulseShakeDuration, true));
@@ -46,12 +46,18 @@ namespace Antura.UI
                 this.gameObject.SetActive(true);
                 AudioManager.I.PlaySound(Sfx.WalkieTalkie);
                 StopPulse(true);
-                if (_immediate) showTween.Complete();
-                else showTween.PlayForward();
+                if (_immediate) {
+                    showTween.Complete();
+                } else {
+                    showTween.PlayForward();
+                }
             } else {
                 StopPulse(true);
-                if (_immediate) showTween.Rewind();
-                else showTween.PlayBackwards();
+                if (_immediate) {
+                    showTween.Rewind();
+                } else {
+                    showTween.PlayBackwards();
+                }
             }
         }
 
@@ -64,7 +70,7 @@ namespace Antura.UI
         public void StopPulse(bool _immediate = false)
         {
             shouldPulse = false;
-            if (_immediate) pulseTween.Rewind();
+            if (_immediate) { pulseTween.Rewind(); }
         }
     }
 }

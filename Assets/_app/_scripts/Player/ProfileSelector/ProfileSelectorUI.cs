@@ -1,13 +1,15 @@
-﻿using DG.DeExtensions;
-using DG.Tweening;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Antura.Audio;
+﻿using Antura.Audio;
+using Antura.Core;
 using Antura.LivingLetters;
 using Antura.Profile;
 using Antura.Scenes;
 using UnityEngine;
+using DG.DeExtensions;
+using DG.Tweening;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace Antura.UI
 {
@@ -21,7 +23,7 @@ namespace Antura.UI
         public UIButton BtAdd;
 
         public UIButton BtPlay;
-        public GameObject ProfilesPanel;
+        public RectTransform ProfilesPanel;
         public HomeScene HomeScene;
         public LivingLetterController LLInStage;
 
@@ -31,8 +33,7 @@ namespace Antura.UI
         public Sfx SfxCreateNewProfile;
         public Sfx SfxSelectProfile;
 
-        public PlayerProfileManager ProfileManager
-        {
+        public PlayerProfileManager ProfileManager {
             get { return AppManager.I.PlayerProfileManager; }
         }
 
@@ -59,11 +60,9 @@ namespace Antura.UI
 
             btAddTween = BtAdd.transform.DORotate(new Vector3(0, 0, -45), 0.3f).SetAutoKill(false).Pause()
                 .SetEase(Ease.OutBack)
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     if (AppManager.I.PlayerProfileManager.GetPlayersIconData() == null ||
-                        AppManager.I.PlayerProfileManager.GetPlayersIconData().Count == 0) 
-                    {
+                        AppManager.I.PlayerProfileManager.GetPlayersIconData().Count == 0) {
                         BtAdd.Pulse();
                     }
                 });
@@ -77,8 +76,7 @@ namespace Antura.UI
 
             // Listeners
             BtAdd.Bt.onClick.AddListener(() => OnClick(BtAdd));
-            BtPlay.Bt.onClick.AddListener(() =>
-            {
+            BtPlay.Bt.onClick.AddListener(() => {
                 AudioManager.I.PlaySound(Sfx.UIButtonClick);
                 HomeScene.Play();
             });
@@ -135,6 +133,7 @@ namespace Antura.UI
                     playerIcon.gameObject.SetActive(true);
                     playerIcon.Init(iconData);
                     playerIcon.Select(AppManager.I.Player.Uuid);
+                    playerIcon.transform.localScale = Vector3.one * (AppManager.I.Player.Uuid == playerIcon.Uuid ? 1.14f : 1);
                 }
             }
 

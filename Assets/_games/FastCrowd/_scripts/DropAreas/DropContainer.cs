@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using Antura.Audio;
 using Antura.LivingLetters;
@@ -53,8 +53,7 @@ namespace Antura.Minigames.FastCrowd
                 actualAreaIndex++;
                 DOTween.Sequence().InsertCallback(1, delegate ()
                     {
-                        // Todo: move to FastCrowd domain
-                        if (Minigames.FastCrowd.FastCrowdConfiguration.Instance.Variation == Minigames.FastCrowd.FastCrowdVariation.Words)
+                        if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word)
                             AudioManager.I.PlaySound(Sfx.Hit);
                         dropAreaSetPosition();
                     });
@@ -64,9 +63,8 @@ namespace Antura.Minigames.FastCrowd
                     {
                         dropAreaSetPosition(delegate ()
                             {
-                                // Todo: move to FastCrowd domain
                                 float waitAtEnd = 2;
-                                if (Minigames.FastCrowd.FastCrowdConfiguration.Instance.Variation == Minigames.FastCrowd.FastCrowdVariation.Words) { 
+                                if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word) { 
                                     AudioManager.I.PlaySound(Sfx.Hit);
                                     waitAtEnd = 1;
                                 }

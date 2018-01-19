@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using Antura.Core;
 using SQLite;
 using System;
 using System.Collections;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq.Expressions;
-using Antura.Core;
+using UnityEngine;
 
 namespace Antura.Database
 {
@@ -17,6 +17,8 @@ namespace Antura.Database
     /// </summary>
     public class DBService
     {
+        SQLiteConnection _connection;
+
         #region Paths
 
         public static string GetDatabaseFilePath(string fileName, string dirName)
@@ -33,7 +35,7 @@ namespace Antura.Database
 
         #region Factory Methods
 
-        public static DBService OpenFromFileName(bool createIfNotFound, string fileName, string dirName = AppConstants.DbPlayersFolder)
+        public static DBService OpenFromDirectoryAndFilename(bool createIfNotFound, string fileName, string dirName = AppConfig.DbPlayersFolder)
         {
             var dirPath = GetDatabaseDirectoryPath(dirName);
             if (!Directory.Exists(dirPath)) {
@@ -50,10 +52,10 @@ namespace Antura.Database
         }
 
         public static DBService OpenFromPlayerUUID(bool createIfNotFound, string playerUuid, string fileName = "",
-            string dirName = AppConstants.DbPlayersFolder)
+            string dirName = AppConfig.DbPlayersFolder)
         {
             if (fileName == "") {
-                fileName = AppConstants.GetPlayerDatabaseFilename(playerUuid);
+                fileName = AppConfig.GetPlayerDatabaseFilename(playerUuid);
             }
             var dirPath = GetDatabaseDirectoryPath(dirName);
             if (!Directory.Exists(dirPath)) {
@@ -64,15 +66,15 @@ namespace Antura.Database
             return new DBService(createIfNotFound, dbPath);
         }
 
-        public static DBService ExportAndOpenFromPlayerUUID(string playerUuid, string fileName = "",
-            string dirName = AppConstants.DbPlayersFolder)
+        public static DBService ExportFromPlayerUUIDAndReopen(string playerUuid, string fileName = "",
+            string dirName = AppConfig.DbPlayersFolder)
         {
             if (fileName == "") {
-                fileName = AppConstants.GetPlayerDatabaseFilename(playerUuid);
+                fileName = AppConfig.GetPlayerDatabaseFilename(playerUuid);
             }
             ExportFromPlayerUUID(playerUuid, fileName, dirName);
-            return OpenFromPlayerUUID(false, playerUuid, AppConstants.GetPlayerDatabaseFilenameForExport(playerUuid),
-                AppConstants.DbExportFolder);
+            return OpenFromPlayerUUID(false, playerUuid, AppConfig.GetPlayerDatabaseFilenameForExport(playerUuid),
+                AppConfig.DbExportFolder);
         }
 
         public static void ExportFromPlayerUUID(string playerUuid, string fileName, string dirName)
@@ -84,13 +86,13 @@ namespace Antura.Database
                 return;
             }
 
-            var dirNameExport = AppConstants.DbExportFolder;
+            var dirNameExport = AppConfig.DbExportFolder;
             var dirPathExport = GetDatabaseDirectoryPath(dirNameExport);
             if (!Directory.Exists(dirPathExport)) {
                 Directory.CreateDirectory(dirPathExport);
             }
 
-            var dbNameExport = AppConstants.GetPlayerDatabaseFilenameForExport(playerUuid);
+            var dbNameExport = AppConfig.GetPlayerDatabaseFilenameForExport(playerUuid);
             var dbPathExport = GetDatabaseFilePath(dbNameExport, dirNameExport);
 
             File.Copy(dbPath, dbPathExport);
@@ -98,7 +100,6 @@ namespace Antura.Database
 
         #endregion
 
-        SQLiteConnection _connection;
 
         private DBService(bool createIfNotFound, string dbPath)
         {
@@ -108,8 +109,7 @@ namespace Antura.Database
             // Try to open an existing DB connection, or create a new DB if it does not exist already
             try {
                 _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
-            }
-            catch {
+            } catch {
                 if (createIfNotFound) {
                     _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
                     RegenerateDatabase();
@@ -122,11 +122,10 @@ namespace Antura.Database
                 // Check that the DB version is correct, otherwise recreate the tables
                 GenerateTable<DatabaseInfoData>(true, false); // Makes sure that the database info data table exists
                 var info = _connection.Find<DatabaseInfoData>(1);
-                if (info == null || info.DynamicDbVersion != AppConstants.DynamicDbSchemeVersion) {
+                if (info == null || info.DynamicDbVersion != AppConfig.DynamicDbSchemeVersion) {
                     var lastVersion = info != null ? info.DynamicDbVersion : "NONE";
-                    Debug.LogWarning("SQL database at path " + dbPath + " is outdated. Recreating it (from " +
-                                     lastVersion + " to " + AppConstants.DynamicDbSchemeVersion + ")");
-                    RegenerateDatabase();
+                    Debug.LogWarning("SQL DB outdated. Updating it (from " + lastVersion + " to " + AppConfig.DynamicDbSchemeVersion + ") Path: " + dbPath);
+                    MigrateDatabase();
                 }
                 //Debug.Log("Database ready at path " + dbPath + "   Version: " + (info != null ? info.DynamicDbVersion : "NONE"));
             }
@@ -138,7 +137,14 @@ namespace Antura.Database
         {
             RecreateAllTables();
 
-            _connection.Insert(new DatabaseInfoData(AppConstants.DynamicDbSchemeVersion, AppConstants.StaticDbSchemeVersion));
+            _connection.Insert(new DatabaseInfoData(AppConfig.DynamicDbSchemeVersion, AppConfig.StaticDbSchemeVersion));
+        }
+
+        private void MigrateDatabase()
+        {
+            MigrateAllTables();
+
+            _connection.InsertOrReplace(new DatabaseInfoData(AppConfig.DynamicDbSchemeVersion, AppConfig.StaticDbSchemeVersion));
         }
 
         public void GenerateTables(bool create, bool drop)
@@ -186,6 +192,11 @@ namespace Antura.Database
             GenerateTables(true, true);
         }
 
+        public void MigrateAllTables()
+        {
+            GenerateTables(true, false);
+        }
+
         #endregion
 
         #region Deletion
@@ -202,7 +213,7 @@ namespace Antura.Database
 
         public void Insert<T>(T data) where T : IData, new()
         {
-            if (AppConstants.DebugLogDbInserts) {
+            if (AppConfig.DebugLogDbInserts) {
                 Debug.Log("DB Insert: " + data);
             }
             _connection.Insert(data);
@@ -210,7 +221,7 @@ namespace Antura.Database
 
         public void InsertOrReplace<T>(T data) where T : IData, new()
         {
-            if (AppConstants.DebugLogDbInserts) {
+            if (AppConfig.DebugLogDbInserts) {
                 Debug.Log("DB Insert: " + data);
             }
             _connection.InsertOrReplace(data);
@@ -218,7 +229,7 @@ namespace Antura.Database
 
         public void InsertAll<T>(IEnumerable<T> objects) where T : IData, new()
         {
-            if (AppConstants.DebugLogDbInserts) {
+            if (AppConfig.DebugLogDbInserts) {
                 foreach (var obj in objects) {
                     Debug.Log("DB Insert: " + obj);
                 }
@@ -228,7 +239,7 @@ namespace Antura.Database
 
         public void InsertAllObjects(IEnumerable objects)
         {
-            if (AppConstants.DebugLogDbInserts) {
+            if (AppConfig.DebugLogDbInserts) {
                 foreach (var obj in objects) {
                     Debug.Log("DB Insert: " + obj);
                 }
@@ -238,7 +249,7 @@ namespace Antura.Database
 
         public void InsertOrReplaceAll<T>(IEnumerable<T> objects) where T : IData, new()
         {
-            if (AppConstants.DebugLogDbInserts) {
+            if (AppConfig.DebugLogDbInserts) {
                 foreach (var obj in objects) {
                     Debug.Log("DB Insert: " + obj);
                 }
@@ -366,7 +377,6 @@ namespace Antura.Database
         {
             [PrimaryKey]
             public int Value { get; set; }
-
             public string Name { get; set; }
 
             public EnumContainerData()
@@ -375,9 +385,7 @@ namespace Antura.Database
 
             public void Set(T enumValue)
             {
-                if (!typeof(T).IsEnum) {
-                    throw new ArgumentException("T must be an enumerated type");
-                }
+                if (!typeof(T).IsEnum) { throw new ArgumentException("T must be an enumerated type"); }
 
                 Name = enumValue.ToString(CultureInfo.InvariantCulture);
                 Value = Convert.ToInt32(enumValue);

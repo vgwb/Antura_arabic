@@ -9,7 +9,7 @@ namespace Antura.Assessment
         }
 
         // Question not setted
-        public void SetQuestion( IQuestion question)
+        public void SetQuestion(IQuestion question)
         {
             this.question = question;
         }

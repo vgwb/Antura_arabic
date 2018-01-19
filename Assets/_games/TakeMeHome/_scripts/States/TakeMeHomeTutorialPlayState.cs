@@ -1,10 +1,10 @@
-﻿using Antura.Tutorial;
-using Antura.MinigamesCommon;
+using Antura.Tutorial;
+using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.TakeMeHome
 {
-    public class TakeMeHomeTutorialPlayState : IState
+    public class TakeMeHomeTutorialPlayState : FSM.IState
     {
 
         TakeMeHomeGame game;

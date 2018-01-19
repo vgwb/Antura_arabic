@@ -2,7 +2,7 @@
 
 namespace Antura.Minigames.FastCrowd
 {
-    public class FastCrowdQuestionState : IState
+    public class FastCrowdQuestionState : FSM.IState
     {
         FastCrowdGame game;
 
@@ -31,40 +31,15 @@ namespace Antura.Minigames.FastCrowd
                 return;
             }
 
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
-            {
-                LL_LetterData isolated = new LL_LetterData(question.GetQuestion().Id);
-                isolated.Form = Database.LetterForm.Isolated;
-                game.CurrentChallenge.Add(isolated);
+            // Add correct data
+            foreach (var l in question.GetCorrectAnswers())
+                game.CurrentChallenge.Add(l);
 
-                LL_LetterData data = new LL_LetterData(question.GetQuestion().Id);
-                foreach (var form in data.Data.GetAvailableForms())
-                {
-                    if (form == Database.LetterForm.Isolated)
-                        continue;
+            // Add wrong data
+            if (question.GetWrongAnswers() != null)
+                foreach (var l in question.GetWrongAnswers())
+                    game.NoiseData.Add(l);
 
-                    game.CurrentChallenge.Add(new LL_LetterData(data.Data, form));
-                }
-
-                if (game.CurrentChallenge.Count < 2)
-                {
-                    game.SetCurrentState(this);
-                    return;
-                }
-            }
-            else
-            {
-                foreach (var l in question.GetCorrectAnswers())
-                    game.CurrentChallenge.Add(l);
-            }
-
-            //if (FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Alphabet)
-            {
-                // Add wrong data too
-                if (question.GetWrongAnswers() != null)
-                    foreach (var l in question.GetWrongAnswers())
-                        game.NoiseData.Add(l);
-            }
 
             ++game.QuestionNumber;
 
@@ -119,3 +94,4 @@ namespace Antura.Minigames.FastCrowd
         }
     }
 }
+ 

@@ -21,7 +21,7 @@ namespace Antura.Assessment
             instance = new AssessmentOptions();
         }
 
-        public TextFlow LocaleTextFlow { get; set; }
+        public TextDirection LocaleTextDirection { get; set; }
         public bool PronunceQuestionWhenClicked { get; set; }
         public bool PronunceAnswerWhenClicked { get; set; }
         public bool ShowQuestionAsImage { get; set; }

@@ -1,5 +1,6 @@
-﻿using DG.Tweening;
+﻿using Antura.Audio;
 using Antura.Core;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,10 @@ namespace Antura.UI
     /// </summary>
     public class BonesCounter : MonoBehaviour
     {
+        [Header("Setup")]
+        public bool AutoSetup;
+
+        [Header("References")]
         public TextMeshProUGUI TfCount;
         public RectTransform BoneImg;
 
@@ -31,12 +36,17 @@ namespace Antura.UI
 
         void Start()
         {
-            Setup();
+            if (AutoSetup) {
+                Show(true);
+            } else {
+                // this should be called.. left here for rtetrocompatibility
+                Setup();
+            }
         }
 
         void Setup()
         {
-            if (setupDone) return;
+            if (setupDone) { return; }
 
             setupDone = true;
 
@@ -60,7 +70,7 @@ namespace Antura.UI
         public void Show(bool _setValueAuto = true)
         {
             Setup();
-            if (_setValueAuto) SetValueAuto();
+            if (_setValueAuto) { SetValueAuto(); }
             this.gameObject.SetActive(true);
             showTween.PlayForward();
         }
@@ -68,7 +78,7 @@ namespace Antura.UI
         public void Hide()
         {
             Setup();
-            if (increaseTween != null) increaseTween.Complete();
+            if (increaseTween != null) { increaseTween.Complete(); }
             showTween.Rewind();
         }
 
@@ -90,15 +100,16 @@ namespace Antura.UI
         public void IncreaseByOne(bool _animate = true)
         {
             increaseTween.Restart();
+            AudioManager.I.PlaySound(Sfx.Blip);
             totBones++;
         }
 
-//        public void AnimateIncreaseToCurrent(int _by)
-//        {
-//            increaseTween = DOVirtual.Float(totBones, totBones + _by, 0.35f, x => {
-//                totBones = Mathf.RoundToInt(x);
-//            }).SetEase(Ease.Linear).OnKill(()=> increaseTween = null);
-//        }
+        //        public void AnimateIncreaseToCurrent(int _by)
+        //        {
+        //            increaseTween = DOVirtual.Float(totBones, totBones + _by, 0.35f, x => {
+        //                totBones = Mathf.RoundToInt(x);
+        //            }).SetEase(Ease.Linear).OnKill(()=> increaseTween = null);
+        //        }
 
         #endregion
     }

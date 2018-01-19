@@ -9,13 +9,13 @@ namespace Antura.Assessment
     /// on the map. Those can be both instances already present on the
     /// map or injected prefabs.
     /// </summary>
-    public class ItemFactory: MonoBehaviour
+    public class ItemFactory : MonoBehaviour
     {
-        [Header( "Prefabs")]
+        [Header("Prefabs")]
         public GameObject StillLetterBox = null;
         public GameObject QuestionBoxPrefab = null;
 
-        [Header( "Folders")]
+        [Header("Folders")]
         public GameObject Questions = null;
         public GameObject Answers = null;
         public GameObject Placeholders = null;
@@ -34,73 +34,70 @@ namespace Antura.Assessment
             return antura;
         }
 
-        public StillLetterBox SpawnQuestion( ILivingLetterData data)
+        public StillLetterBox SpawnQuestion(ILivingLetterData data)
         {
             // Organize LLs in inspector's hierarchy view
-            var letter = SpawnStillLetter( Questions);
-            letter.Init( data, false);
+            var letter = SpawnStillLetter(Questions);
+            letter.Init(data, false);
 
             return letter;
         }
 
-        public Answer SpawnAnswer( ILivingLetterData data, bool correct, AssessmentAudioManager dialogues)
+        public Answer SpawnAnswer(ILivingLetterData data, bool correct, AssessmentAudioManager dialogues)
         {
             // Organize LLs in inspector's hierarchy view
-            var letter = SpawnStillLetter( Answers);
+            var letter = SpawnStillLetter(Answers);
 
             // Link LL to answer
-            var answ = letter.gameObject.AddComponent< Answer>();
-            letter.Init( data, true);
-            answ.Init( correct, dialogues, data);
+            var answ = letter.gameObject.AddComponent<Answer>();
+            letter.Init(data, true);
+            answ.Init(correct, dialogues, data);
             return answ;
         }
 
-        public StillLetterBox SpawnPlaceholder( LivingLetterDataType type)
+        public StillLetterBox SpawnPlaceholder(LivingLetterDataType type)
         {
             // Organize LLs in inspector's hierarchy view
-            var letter = SpawnStillLetter( Placeholders);
-            letter.InitAsSlot( type);
-            letter.gameObject.AddComponent< PlaceholderBehaviour>();
+            var letter = SpawnStillLetter(Placeholders);
+            letter.InitAsSlot(type);
+            letter.gameObject.AddComponent<PlaceholderBehaviour>();
             return letter;
         }
 
-        private StillLetterBox SpawnStillLetter( GameObject parent_Folder)
+        private StillLetterBox SpawnStillLetter(GameObject parent_Folder)
         {
             counter++;
-            var letter = (Instantiate( StillLetterBox) as GameObject)
-                    .GetComponent< StillLetterBox>();
+            var letter = (Instantiate(StillLetterBox) as GameObject).GetComponent<StillLetterBox>();
 
-            letter.gameObject.name= "instance_" + counter;
+            letter.gameObject.name = "instance_" + counter;
             letter.InstaShrink();
-            letter.transform.SetParent( parent_Folder.transform);
-            
+            letter.transform.SetParent(parent_Folder.transform);
+
             return letter;
         }
 
-        public QuestionBox SpawnQuestionBox( IEnumerable< StillLetterBox> letterBoxes)
+        public QuestionBox SpawnQuestionBox(IEnumerable<StillLetterBox> letterBoxes)
         {
             counter++;
-            var qbox = (Instantiate( QuestionBoxPrefab) as GameObject)
-                    .GetComponent< QuestionBox>();
+            var qbox = (Instantiate(QuestionBoxPrefab) as GameObject).GetComponent<QuestionBox>();
 
             qbox.gameObject.name = "instance_" + counter;
             qbox.HideInstant();
-            qbox.transform.SetParent( QuestionBoxes.transform);
-            qbox.WrapBoxAroundWords( letterBoxes);
+            qbox.transform.SetParent(QuestionBoxes.transform);
+            qbox.WrapBoxAroundWords(letterBoxes);
             return qbox;
         }
 
         void Awake()
         {
             instance = this;
-            antura = FindObjectOfType< AnturaView>();
+            antura = FindObjectOfType<AnturaView>();
         }
 
         static ItemFactory instance;
         public static ItemFactory Instance
         {
-            get
-            {
+            get {
                 return instance;
             }
         }

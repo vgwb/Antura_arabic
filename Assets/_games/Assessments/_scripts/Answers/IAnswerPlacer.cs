@@ -10,8 +10,8 @@ namespace Antura.Assessment
         /// Take a array of Answers and move theiry GameObjects to proper positions. This
         /// start a animation (poof FX) and we should wait the end of the animation.
         /// </summary>
-        void Place( Answer[] answer);
-        
+        void Place(Answer[] answer);
+
         /// <summary>
         /// Remove all previously placed answers. This start a animation (poof FX)
         /// and we should wait the end of the animation.

@@ -6,6 +6,7 @@
 // (and do not remove from it please!)"
 namespace Antura.Environment
 {
+    // TODO refactor we want Worlds 1..6 (not 0..5)
     public enum WorldID
     {
         Default = -1,
@@ -67,7 +68,7 @@ namespace Antura.Environment
 
                 return prefabSet.worldPrefabs[0];
             } else {
-                return prefabSet.worldPrefabs[(int) world];
+                return prefabSet.worldPrefabs[(int)world];
             }
         }
 
@@ -84,7 +85,7 @@ namespace Antura.Environment
             if (world == WorldID.Default) {
                 return set.defaultColor;
             } else {
-                return set.colors[(int) world];
+                return set.colors[(int)world];
             }
         }
     }

@@ -1,6 +1,7 @@
-﻿using Antura.Audio;
+using Antura.Audio;
+using Antura.Core;
 using Antura.Helpers;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using Antura.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,10 +28,10 @@ namespace Antura.Test
 
             InitUI();
 
-            foreach (var l in AppManager.I.DB.StaticDatabase.GetLetterTable().GetValuesTyped())
-            {
-                if (AudioManager.I.GetAudioClip(l) == null)
+            foreach (var l in AppManager.I.DB.StaticDatabase.GetLetterTable().GetValuesTyped()) {
+                if (AudioManager.I.GetAudioClip(l) == null) {
                     Debug.LogError("Cannot find audio file: " + l);
+                }
             }
         }
 
@@ -98,7 +99,8 @@ namespace Antura.Test
 
         #region music
 
-        public GameObject PanelMusic1 {
+        public GameObject PanelMusic1
+        {
             get { return PanelMusic; }
             set { PanelMusic = value; }
         }
@@ -169,9 +171,9 @@ namespace Antura.Test
         public void StopAll()
         {
             AudioManager.I.StopMusic();
-            AudioManager.I.StopSounds();
+            AudioManager.I.StopSfxGroup();
             AudioManager.I.StopDialogue(true);
-            AudioManager.I.StopLettersWordsPhrases();
+            AudioManager.I.StopVocabularyGroup();
         }
     }
 }

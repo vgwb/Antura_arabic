@@ -1,7 +1,8 @@
-﻿using Antura.Rewards;
+using Antura.Tutorial;
+using Antura.UI;
 using UnityEngine;
 
-namespace Antura.UI
+namespace Antura.AnturaSpace.UI
 {
     /// <summary>
     /// Button for a category in the Antura Space scene.
@@ -24,8 +25,7 @@ namespace Antura.UI
 
         public AnturaSpaceCategory Category;
 
-        public bool IsNew
-        {
+        public bool IsNew {
             get { return isNew && !isNewForceHidden; }
         }
 

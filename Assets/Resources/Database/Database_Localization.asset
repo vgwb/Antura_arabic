@@ -59,36 +59,25 @@ MonoBehaviour:
       _Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0628\u062F\u0621!"
       _ArabicFemale: "\u0627\u0636\u063A\u0637\u064A \u0639\u0644\u0649 \u0628\u062F\u0621!"
       _AudioFile: Action_PressPlay
-    - _Id: AlphabetSong_alphabet_Intro
+    - _Id: AlphabetSong_letters_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
       _Context: Introduction
-      _English: It's time to sing all the letters in order.
-      _Arabic: "\u062D\u0627\u0646 \u0648\u0642\u062A\u064F \u063A\u0646\u0627\u0621\u0650
-        \u0627\u0644\u0623\u062D\u0631\u0641\u0650 \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628."
+      _English: It's time to sing all the letters
+      _Arabic: "\u0648\u0642\u062A\u064F \u063A\u0646\u0627\u0621\u0650 \u062C\u0645\u064A\u0639\u0650
+        \u0627\u0644\u062D\u0631\u0648\u0641."
       _ArabicFemale: 
-      _AudioFile: AlphabetSong_alphabet_Intro
-    - _Id: AlphabetSong_alphabet_Title
+      _AudioFile: AlphabetSong_letters_Intro
+    - _Id: AlphabetSong_letters_Title
       _Character: Keeper
       _Area: minigame
       _When: 
-      _Context: 
-      _English: Alphabet Song
-      _Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629"
+      _Context: Title
+      _English: Diacritic Song!
+      _Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
       _ArabicFemale: 
-      _AudioFile: AlphabetSong_alphabet_Title
-    - _Id: AlphabetSong_alphabet_Tuto
-      _Character: Ibtissam
-      _Area: minigame
-      _When: 
-      _Context: Tutorial
-      _English: Follow the lyrics with your finger.
-      _Arabic: "\u062A\u062A\u0628\u0651\u0639\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
-        \u0628\u0625\u0635\u0628\u0639\u0643."
-      _ArabicFemale: "\u062A\u062A\u0628\u0651\u0639\u064A \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
-        \u0628\u0625\u0635\u0628\u0639\u0650\u0643."
-      _AudioFile: AlphabetSong_alphabet_Tuto
+      _AudioFile: AlphabetSong_letters_Title
     - _Id: AnturaSpace_Custom_1
       _Character: Keeper
       _Area: space
@@ -116,6 +105,46 @@ MonoBehaviour:
         \u0639\u0646\u062A\u0648\u0631\u0629 \u0644\u062A\u063A\u064A\u0631\u064A
         \u0645\u0638\u0647\u0631\u0647"
       _AudioFile: AnturaSpace_Custom_2
+    - _Id: AnturaSpace_Custom_3
+      _Character: Keeper
+      _Area: space
+      _When: When you set the first item on Antura
+      _Context: 
+      _English: Beautiful! And you can change the colors the way you like...
+      _Arabic: "\u0623\u064E\u0647 \u062C\u064E\u0645\u0650\u064A\u0644! \u0628\u0650\u0625\u0650\u0645\u0652\u0643\u064E\u0627\u0646\u0650\u0643\u064E
+        \u062A\u064E\u063A\u0652\u064A\u0650\u064A\u0631\u064F \u0627\u0644\u0623\u064E\u0644\u0652\u0648\u064E\u0627\u0646\u0650
+        \u0643\u064E\u0645\u064E\u0627 \u064A\u064E\u062D\u0652\u0644\u064F\u0648
+        \u0644\u064E\u0643\u064E"
+      _ArabicFemale: "\u0623\u064E\u0647 \u062C\u064E\u0645\u0650\u064A\u0644! \u0628\u0625\u0645\u0643\u0627\u0646\u0643\u0650
+        \u062A\u064E\u063A\u0652\u064A\u0650\u064A\u0631\u064F \u0627\u0644\u0623\u064E\u0644\u0652\u0648\u064E\u0627\u0646\u0650
+        \u0643\u064E\u0645\u064E\u0627 \u064A\u064E\u062D\u0652\u0644\u064F\u0648
+        \u0644\u064E\u0643\u0650"
+      _AudioFile: AnturaSpace_Custom_3
+    - _Id: AnturaSpace_Custom_4
+      _Character: Keeper
+      _Area: space
+      _When: After you change color
+      _Context: 
+      _English: Once you are happy with the colors you can move on
+      _Arabic: "\u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u064E \u0627\u0644\u0645\u064F\u062A\u064E\u0627\u0628\u064E\u0639\u064E\u0629\u064F
+        \u0625\u0650\u0630\u064E\u0627 \u0643\u064F\u0646\u0652\u062A\u064E \u0631\u064E\u0627\u0636\u0650\u064A\u064B\u0627
+        \u0639\u064E\u0646\u0652 \u0627\u0644\u0623\u064E\u0644\u0652\u0648\u064E\u0627\u0646"
+      _ArabicFemale: "\u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u0650
+        \u0627\u0644\u0645\u064F\u062A\u064E\u0627\u0628\u064E\u0639\u064E\u0629\u064F
+        \u0625\u0650\u0630\u064E\u0627 \u0643\u064F\u0646\u0652\u062A\u0650 \u0631\u064E\u0627\u0636\u0650\u064A\u064E\u0629\u064B
+        \u0639\u064E\u0646\u0652 \u0627\u0644\u0623\u064E\u0644\u0652\u0648\u064E\u0627\u0646"
+      _AudioFile: AnturaSpace_Custom_4
+    - _Id: AnturaSpace_Exit
+      _Character: Ibtissam
+      _Area: space
+      _When: 
+      _Context: 
+      _English: Press the Exit button
+      _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
+        \u0631\u064E\u0645\u0652\u0632\u0650 \u0627\u0644\u062E\u064F\u0631\u064F\u0648\u062C\u0650"
+      _ArabicFemale: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0650\u064A \u0639\u064E\u0644\u064E\u0649
+        \u0631\u064E\u0645\u0652\u0632\u0650 \u0627\u0644\u062E\u064F\u0631\u064F\u0648\u062C\u0650"
+      _AudioFile: AnturaSpace_Exit
     - _Id: AnturaSpace_Intro
       _Character: Keeper
       _Area: space
@@ -125,8 +154,8 @@ MonoBehaviour:
       _Arabic: "\u0647\u0646\u0627 \u062A\u0644\u0639\u0628\u064F \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629.
         \u062D\u0627\u0648\u0644\u0652 \u0623\u0646\u0652 \u062A\u0644\u0645\u0633\u064E\u0647."
       _ArabicFemale: "\u0647\u0646\u0627 \u062A\u0644\u0639\u0628\u064A\u0646 \u0645\u0639
-        \u0639\u0646\u062A\u0648\u0631\u0629. \u062D\u0627\u0648\u0644\u064A \u0623\u0646\u0652
-        \u062A\u0644\u0645\u0633\u064A\u0647."
+        \u0639\u0646\u062A\u0648\u0631\u0629. \u0647\u0644 \u0623\u0646\u062A\u0650
+        \u062C\u0627\u0647\u0632\u0629\u061F \u0627\u0644\u0645\u0633\u064A\u0647"
       _AudioFile: AnturaSpace_Intro
     - _Id: AnturaSpace_Intro_Cookie
       _Character: Keeper
@@ -148,8 +177,159 @@ MonoBehaviour:
         \u0644\u0644\u0639\u0628\u0650 \u0645\u0639\u0643."
       _ArabicFemale: "\u0623\u0631\u0623\u064A\u062A\u0650\u061F \u0639\u0646\u062A\u0648\u0631\u0629
         \u0645\u0633\u062A\u0639\u062F\u064C \u062F\u0627\u0626\u0645\u0627\u064B
-        \u0644\u0644\u0639\u0628\u0650 \u0645\u0639\u0650\u0643."
+        \u0644\u0644\u0639\u0628\u0650 \u0645\u0639\u0650\u0643\u0650."
       _AudioFile: AnturaSpace_Intro_Touch
+    - _Id: AnturaSpace_Photo_Gallery
+      _Character: Ibtissam
+      _Area: space
+      _When: 
+      _Context: Tutorial
+      _English: Photos are saved into your device Photo Gallery
+      _Arabic: "\u064A\u064E\u062A\u0650\u0645\u0651\u064F \u062D\u0641\u0652\u0638\u064F
+        \u0627\u0644\u0635\u0651\u064F\u0648\u064E\u0631\u0650 \u0641\u0650\u064A
+        \u0645\u064F\u062C\u064E\u0644\u0651\u064E\u062F\u0650 \u0627\u0644\u0635\u0651\u064F\u0648\u064E\u0631\u0650
+        \u0639\u064E\u0644\u064E\u0649 \u062C\u0650\u0647\u064E\u0627\u0632\u0650\u0643\u064E"
+      _ArabicFemale: "\u064A\u064E\u062A\u0650\u0645\u0651\u064F \u062D\u0641\u0652\u0638\u064F
+        \u0627\u0644\u0635\u0651\u064F\u0648\u064E\u0631\u0650 \u0641\u0650\u064A
+        \u0645\u064F\u062C\u064E\u0644\u0651\u064E\u062F\u0650 \u0627\u0644\u0635\u0651\u064F\u0648\u064E\u0631
+        \u0639\u064E\u0644\u064E\u0649 \u062C\u0650\u0647\u064E\u0627\u0632\u0650\u0643\u0650"
+      _AudioFile: AnturaSpace_Photo_Gallery
+    - _Id: AnturaSpace_Photo_Intro
+      _Character: Keeper
+      _Area: space
+      _When: after PS 1.9.100
+      _Context: Tutorial
+      _English: Look at Antura! He deserves a photo... but photos are expensive. I
+        give you some cookies!
+      _Arabic: "\u0627\u0646\u0638\u0631\u0648\u0627 \u0625\u0644\u0649 \u0639\u0646\u062A\u0648\u0631\u0629!
+        \u0625\u0646\u0647 \u064A\u0633\u062A\u062D\u0642 \u0635\u0648\u0631\u0629
+        ... \u0648\u0644\u0643\u0646 \u0627\u0644\u0635\u0648\u0631\u064E \u063A\u0627\u0644\u064A\u0629.
+        \u062E\u0630\u060C \u0633\u0648\u0641 \u0623\u0639\u0637\u064A\u0643 \u0628\u0639\u0636
+        \u0627\u0644\u0643\u0639\u0643!"
+      _ArabicFemale: "\u0627\u064F\u0646\u0652\u0638\u064F\u0631\u064A \u0625\u0650\u0644\u064E\u0649
+        \u0639\u0646\u062A\u0648\u0631\u0629! \u0625\u0650\u0646\u0651\u064E\u0647\u064F
+        \u064A\u064E\u0633\u0652\u062A\u064E\u062D\u0650\u0642\u0651\u064F \u0635\u064F\u0648\u0631\u064E\u0629\u064B...
+        \u0648\u064E\u0644\u064E\u0643\u0650\u0646\u0651\u064E \u0627\u0644\u0635\u0651\u064F\u0648\u064E\u0631\u064F\u063A\u0627\u0644\u064A\u0629.
+        \u062E\u064F\u0630\u0650\u064A, \u0633\u064E\u0648\u0652\u0641\u064E \u0623\u064F\u0639\u0652\u0637\u0650\u064A\u0643\u0650
+        \u0628\u064E\u0639\u0652\u0636\u064E \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u0650!"
+      _AudioFile: AnturaSpace_Photo_Intro
+    - _Id: AnturaSpace_Photo_Take
+      _Character: Ibtissam
+      _Area: space
+      _When: 
+      _Context: Tutorial
+      _English: Press the PHOTO button
+      _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
+        \u0635\u064F\u0648\u0631\u064E\u0629\u0650 \u0627\u0644\u0643\u064E\u0627\u0645\u0650\u064A\u0631\u064E\u0627"
+      _ArabicFemale: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u064A \u0639\u064E\u0644\u064E\u0649
+        \u0635\u064F\u0648\u0631\u064E\u0629\u0650 \u0627\u0644\u0643\u064E\u0627\u0645\u0650\u064A\u0631\u064E\u0627"
+      _AudioFile: AnturaSpace_Photo_Take
+    - _Id: AnturaSpace_PlayAndExit
+      _Character: Keeper
+      _Area: space
+      _When: 
+      _Context: 
+      _English: Play with Antura as long as you want, then exit to continue your adventure
+      _Arabic: "\u0627\u0644\u0639\u0628 \u0645\u064E\u0639\u064E \u0639\u0646\u062A\u0648\u0631\u0629
+        \u0628\u0650\u0642\u064E\u062F\u0652\u0631\u0650 \u0645\u064E\u0627 \u062A\u064F\u0631\u0650\u064A\u062F\u064F.
+        \u0648\u064E\u0639\u0650\u0646\u0652\u062F\u064E\u0645\u064E\u0627 \u062A\u064E\u0643\u064E\u0648\u0651\u064F\u0646\u064C
+        \u0645\u064F\u0633\u0652\u062A\u064E\u0639\u0650\u062F\u0651\u064B\u0627,
+        \u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u0650 \u0627\u0644\u062E\u064F\u0631\u064F\u0648\u062C\u064F
+        \u0648\u064E \u0627\u0644\u0639\u064E\u0648\u0652\u062F\u064E\u0629\u064F
+        \u0625\u0650\u0644\u064E\u0649 \u0627\u0644\u0645\u064F\u063A\u064E\u0627\u0645\u064E\u0631\u064E\u0629"
+      _ArabicFemale: "\u0627\u0644\u0639\u0628\u064A \u0645\u064E\u0639\u064E \u0639\u0646\u062A\u0648\u0631\u0629
+        \u0628\u0650\u0642\u064E\u062F\u0652\u0631\u0650 \u0645\u064E\u0627 \u062A\u064F\u0631\u0650\u064A\u062F\u0650\u064A\u0646.
+        \u0648\u064E\u0639\u0650\u0646\u0652\u062F\u064E\u0645\u064E\u0627 \u062A\u064E\u0643\u064E\u0648\u0646\u064A
+        \u0645\u064F\u0633\u0652\u062A\u064E\u0639\u0650\u062F\u0651\u064E\u0629,
+        \u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u0650 \u0627\u0644\u062E\u064F\u0631\u064F\u0648\u062C\u064F
+        \u0648\u064E\u0627\u0644\u0639\u064E\u0648\u0652\u062F\u064E\u0629\u064F \u0625\u0650\u0644\u064E\u0649
+        \u0627\u0644\u0645\u064F\u063A\u064E\u0627\u0645\u064E\u0631\u064E\u0629"
+      _AudioFile: AnturaSpace_PlayAndExit
+    - _Id: AnturaSpace_Shop_BuyItem
+      _Character: Ibtissam
+      _Area: space
+      _When: 
+      _Context: Tutorial
+      _English: Drag an object to buy it
+      _Arabic: "\u0627\u0650\u0633\u0652\u062D\u064E\u0628\u0652 \u0625\u0650\u0644\u0651\u064E\u0627
+        \u0627\u0644\u0623\u064E\u0639\u0652\u0644\u064E\u0649 \u0623\u064E\u064A\u0651\u064E\u0629\u064F
+        \u0625\u0650\u0636\u064E\u0627\u0641\u064E\u0629\u064D \u062A\u064F\u0631\u0650\u064A\u062F\u064F
+        \u0634\u0650\u0631\u064E\u0627\u0621\u064E\u0647\u064E\u0627"
+      _ArabicFemale: "\u0627\u0650\u0633\u0652\u062D\u064E\u0628\u064A \u0625\u0650\u0644\u0649
+        \u0627\u0644\u0623\u064E\u0639\u0652\u0644\u064E\u0649 \u0623\u064E\u064A\u0651\u064E\u0629\u064F
+        \u0625\u0650\u0636\u064E\u0627\u0641\u064E\u0629\u064D \u062A\u064F\u0631\u0650\u064A\u062F\u0650\u064A\u0646\u064E
+        \u0634\u0650\u0631\u064E\u0627\u0621\u064E\u0647\u064E\u0627"
+      _AudioFile: AnturaSpace_Shop_BuyItem
+    - _Id: AnturaSpace_Shop_Close
+      _Character: Ibtissam
+      _Area: space
+      _When: 
+      _Context: Tutorial
+      _English: Press again the COOKIE button to close the Shop
+      _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
+        \u0623\u064E\u064A\u0652\u0642\u064F\u0648\u0646\u064E\u0629\u0650 \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0629\u0650
+        \u0645\u0650\u0646\u0652 \u062C\u064E\u062F\u0650\u064A\u062F\u064D \u0644\u0650\u062A\u064F\u063A\u064E\u0644\u0651\u0650\u0642\u0652
+        \u0645\u064E\u062A\u0652\u062C\u064E\u0631\u064E \u0627\u0644\u0625\u0650\u0636\u064E\u0627\u0641\u064E\u0627\u062A"
+      _ArabicFemale: "\u0627\u0650\u0636\u0652\u063A\u0637\u0652\u064A \u0639\u064E\u0644\u064E\u0649
+        \u0623\u064E\u064A\u0652\u0642\u064F\u0648\u0646\u064E\u0629\u0650 \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0629\u0650
+        \u0645\u0650\u0646\u0652 \u062C\u064E\u062F\u0650\u064A\u062F\u064D \u0644\u0650\u062A\u064F\u063A\u064E\u0644\u0651\u0650\u0642\u0650\u064A
+        \u0645\u064E\u062A\u0652\u062C\u064E\u0631\u064E \u0627\u0644\u0625\u0650\u0636\u064E\u0627\u0641\u064E\u0627\u062A"
+      _AudioFile: AnturaSpace_Shop_Close
+    - _Id: AnturaSpace_Shop_Cookie
+      _Character: Ibtissam
+      _Area: space
+      _When: 
+      _Context: Tutorial
+      _English: Drag a cookie and throw it to Antura
+      _Arabic: "\u0627\u0650\u0633\u0652\u062D\u064E\u0628\u0652 \u0643\u064E\u0639\u0652\u0643\u064E\u0629\u064B
+        \u0648\u064E\u0627\u0650\u0631\u0652\u0645\u0650\u0647\u064E\u0627 \u0644\u0639\u0646\u062A\u0648\u0631\u0629"
+      _ArabicFemale: "\u0627\u0650\u0633\u0652\u062D\u064E\u0628\u064A \u0643\u064E\u0639\u0652\u0643\u064E\u0629\u064B
+        \u0648\u064E\u0627\u0650\u0631\u0652\u0645\u0650\u0647\u064E\u0627 \u0644\u0639\u0646\u062A\u0648\u0631\u0629"
+      _AudioFile: AnturaSpace_Shop_Cookie
+    - _Id: AnturaSpace_Shop_Intro
+      _Character: Keeper
+      _Area: space
+      _When: 
+      _Context: Tutorial
+      _English: You can use your Cookies to buy items for Antura
+      _Arabic: "\u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u064E \u0627\u0650\u0633\u0652\u062A\u0650\u0639\u0652\u0645\u064E\u0627\u0644\u064F
+        \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A\u0650 \u0644\u0650\u0634\u0650\u0631\u064E\u0627\u0621\u0650
+        \u0625\u0650\u0636\u064E\u0627\u0641\u064E\u062A\u064D \u0644\u0639\u0646\u062A\u0648\u0631\u0629"
+      _ArabicFemale: "\u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u0650
+        \u0627\u0650\u0633\u0652\u062A\u0650\u0639\u0652\u0645\u064E\u0627\u0644\u064F
+        \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A\u0650 \u0644\u0650\u0634\u0650\u0631\u064E\u0627\u0621\u0650
+        \u0625\u0650\u0636\u064E\u0627\u0641\u064E\u0629 \u0644\u0639\u0646\u062A\u0648\u0631\u0629"
+      _AudioFile: AnturaSpace_Shop_Intro
+    - _Id: AnturaSpace_Shop_MoveItem
+      _Character: Ibtissam
+      _Area: space
+      _When: 
+      _Context: Tutorial
+      _English: Drag again the object to move it around
+      _Arabic: "\u0627\u0650\u0633\u0652\u062D\u064E\u0628\u0652 \u0627\u0644\u0625\u0650\u0636\u064E\u0627\u0641\u064E\u0629\u064E
+        \u0625\u0650\u0644\u064E\u0649 \u0627\u0644\u0645\u064E\u0643\u064E\u0627\u0646\u0650
+        \u0627\u0644\u0651\u064E\u0630\u0650\u064A \u062A\u064F\u0631\u0650\u064A\u062F\u064F
+        \u0648\u064E\u0636\u0652\u0639\u064F\u0647\u064E\u0627 \u0641\u0650\u064A\u0647"
+      _ArabicFemale: "\u0627\u0650\u0633\u0652\u062D\u064E\u0628\u0650\u064A \u0627\u0644\u0625\u0650\u0636\u064E\u0627\u0641\u064E\u0629\u064E
+        \u0625\u0650\u0644\u064E\u0649 \u0627\u0644\u0645\u064E\u0643\u064E\u0627\u0646\u0650
+        \u0627\u0644\u0651\u064E\u0630\u0650\u064A \u062A\u064F\u0631\u0650\u064A\u062F\u0650\u064A\u0646\u064E
+        \u0648\u064E\u0636\u0652\u0639\u064F\u0647\u064E\u0627 \u0641\u0650\u064A\u0647"
+      _AudioFile: AnturaSpace_Shop_MoveItem
+    - _Id: AnturaSpace_Shop_Open
+      _Character: Ibtissam
+      _Area: space
+      _When: 
+      _Context: Tutorial
+      _English: Press the COOKIE button to open the Shop
+      _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
+        \u0623\u064E\u064A\u0652\u0642\u064F\u0648\u0646\u064E\u0629\u0650 \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0629\u0650
+        \u0644\u0650\u0641\u064E\u062A\u0652\u062D\u0652 \u0645\u064E\u062A\u0652\u062C\u064E\u0631\u064E
+        \u0627\u0644\u0625\u0650\u0636\u064E\u0627\u0641\u064E\u0627\u062A"
+      _ArabicFemale: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0650\u064A \u0639\u064E\u0644\u064E\u0649
+        \u0623\u064E\u064A\u0652\u0642\u064F\u0648\u0646\u064E\u0629\u0650 \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0629\u0650
+        \u0644\u0650\u0641\u064E\u062A\u0652\u062D\u0650 \u0645\u064E\u062A\u0652\u062C\u064E\u0631
+        \u0627\u0644\u0625\u0650\u0636\u064E\u0627\u0641\u064E\u0627\u062A"
+      _AudioFile: AnturaSpace_Shop_Open
     - _Id: AnturaSpace_Tuto_Cookie_1
       _Character: Ibtissam
       _Area: space
@@ -187,9 +367,9 @@ MonoBehaviour:
       _Arabic: "\u0644\u0627 \u062A\u0642\u0644\u0642. \u0643\u0644\u0645\u0627 \u0644\u0639\u0628\u062A\u064E
         \u0623\u0643\u062B\u0631 \u0633\u062A\u062D\u0635\u0644\u064F \u0639\u0644\u0649
         \u0643\u0639\u0643\u0627\u062A\u064D \u0623\u0643\u062B\u0631."
-      _ArabicFemale: "\u0644\u0627 \u062A\u0642\u0644\u0642\u064A. \u0643\u0644\u0645\u0627
-        \u0644\u0639\u0628\u062A\u0650 \u0623\u0643\u062B\u0631 \u0633\u062A\u062D\u0635\u0644\u064A\u0646
-        \u0639\u0644\u0649 \u0643\u0639\u0643\u0627\u062A\u064D \u0623\u0643\u062B\u0631."
+      _ArabicFemale: "\u0643\u0644\u0645\u0627 \u0644\u0639\u0628\u062A\u0650 \u0623\u0643\u062B\u0631
+        \u0633\u0648\u0641 \u0623\u0639\u0637\u064A\u0643\u0650 \u0628\u0639\u0636
+        \u0627\u0644\u0643\u0639\u0643."
       _AudioFile: AnturaSpace_Tuto_Cookie_3
     - _Id: Assessment_Classify_Letters
       _Character: Ibtissam
@@ -293,11 +473,11 @@ MonoBehaviour:
       _Area: assessment
       _When: 
       _Context: 
-      _English: I know you could do it!
+      _English: I knew you could do it!
       _Arabic: "\u0643\u0646\u062A\u064F \u0623\u0639\u0644\u0645\u064F \u0623\u0646\u0651\u0643
         \u0633\u062A\u0641\u0639\u0644\u064F\u0647\u0627!"
       _ArabicFemale: "\u0643\u0646\u062A\u064F \u0623\u0639\u0644\u0645\u064F \u0623\u0646\u0651\u0643\u0650
-        \u0633\u062A\u0641\u0639\u0644\u064A\u0646\u0647\u0627!"
+        \u0633\u062A\u0641\u0639\u0644\u064A\u0647\u0627!"
       _AudioFile: Assessment_Complete_2
     - _Id: Assessment_Complete_3
       _Character: Keeper
@@ -405,7 +585,7 @@ MonoBehaviour:
       _English: Please get rid of Antura so we can start...
       _Arabic: "\u0631\u062C\u0627\u0621\u064B \u0623\u0628\u0639\u0650\u062F\u0652
         \u0639\u0646\u062A\u0648\u0631\u0629 \u0643\u064A \u0646\u0628\u062F\u0623..."
-      _ArabicFemale: "\u0631\u062C\u0627\u0621\u064B \u0623\u0628\u0639\u0650\u062F\u0650\u064A
+      _ArabicFemale: "\u0631\u062C\u0627\u0621\u064B \u0623\u0628\u0639\u0650\u062F\u064A
         \u0639\u0646\u062A\u0648\u0631\u0629 \u0643\u064A \u0646\u0628\u062F\u0623..."
       _AudioFile: Assessment_Push_Dog_1
     - _Id: Assessment_Push_Dog_2
@@ -591,17 +771,18 @@ MonoBehaviour:
       _English: Look! All these Words are numbers...
       _Arabic: "\u0627\u0646\u0638\u0631 \u0625\u0644\u0649 \u0643\u0644\u0651\u0650
         \u062A\u0644\u0643 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650 \u0648\u0627\u0644\u0623\u0631\u0642\u0627\u0645."
-      _ArabicFemale: 
-      _AudioFile: Balloons_counting_Intro
+      _ArabicFemale: "\u0627\u0646\u0638\u0631\u064A \u0625\u0644\u0649 \u0643\u0644\u0651\u0650
+        \u062A\u0644\u0643 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650 \u0648\u0627\u0644\u0623\u0631\u0642\u0627\u0645."
+      _AudioFile: Game_Balloons_counting_Intro
     - _Id: Balloons_counting_Title
       _Character: Keeper
       _Area: minigame
       _When: 
-      _Context: 
+      _Context: Title
       _English: Balloons & Numbers!
       _Arabic: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0623\u0631\u0642\u0627\u0645!"
       _ArabicFemale: 
-      _AudioFile: Balloons_counting_Title
+      _AudioFile: Game_Balloons_counting_Title
     - _Id: Balloons_counting_Tuto
       _Character: Ibtissam
       _Area: minigame
@@ -617,8 +798,8 @@ MonoBehaviour:
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650 \u0627\u0644\u0635\u062D\u064A\u062D:
         \u0645\u0646 \u0623\u0635\u063A\u0631\u0650 \u0631\u0642\u0645\u064D \u0625\u0644\u0649
         \u0627\u0644\u0623\u0643\u0628\u0631."
-      _AudioFile: Balloons_counting_Tuto
-    - _Id: Balloons_letter_Intro
+      _AudioFile: Game_Balloons_counting_Tuto
+    - _Id: Balloons_letterinword_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -628,30 +809,30 @@ MonoBehaviour:
         \u0625\u0644\u0649 \u0628\u0639\u0636\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
         \u0623\u0639\u0644\u0627\u0647."
       _ArabicFemale: 
-      _AudioFile: Balloons_letter_Intro
-    - _Id: Balloons_letter_Title
+      _AudioFile: Game_Balloons_letterinword_Intro
+    - _Id: Balloons_letterinword_Title
       _Character: Keeper
       _Area: minigame
       _When: 
-      _Context: 
+      _Context: Title
       _English: Balloons & the Shared Letter!
       _Arabic: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064F \u0648\u0627\u0644\u062D\u0631\u0641\u064F
         \u0627\u0644\u0645\u0634\u062A\u0631\u0643!"
       _ArabicFemale: 
-      _AudioFile: Balloons_letter_Title
-    - _Id: Balloons_letter_Tuto
+      _AudioFile: Game_Balloons_letterinword_Title
+    - _Id: Balloons_letterinword_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial
-      _English: Pop the balloons and LEAVE ONLY the right Words
-      _Arabic: "\u0627\u0641\u0642\u0639\u0650 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
-        \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      _ArabicFemale: "\u0627\u0641\u0642\u0639\u064A \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
-        \u062A\u0627\u0631\u0643\u0629\u064B \u0641\u0642\u0637 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      _AudioFile: Balloons_letter_Tuto
+      _English: Pop the balloons of the right Words
+      _Arabic: "\u0627\u0641\u0642\u0639\u0650 \u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
+        \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629
+        \u0641\u0642\u0637."
+      _ArabicFemale: "\u0627\u0641\u0642\u0639\u064A \u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
+        \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629
+        \u0641\u0642\u0637 ."
+      _AudioFile: Game_Balloons_letterinword_Tuto
     - _Id: Balloons_spelling_Intro
       _Character: Keeper
       _Area: minigame
@@ -686,7 +867,7 @@ MonoBehaviour:
         \u062A\u0627\u0631\u0643\u0629\u064B \u0641\u0642\u0637 \u0627\u0644\u062D\u0631\u0648\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
       _AudioFile: Balloons_spelling_Tuto
-    - _Id: Balloons_words_Intro
+    - _Id: Balloons_word_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -697,8 +878,8 @@ MonoBehaviour:
         \u0639\u0646 \u062A\u0644\u0643\u064E \u0627\u0644\u0643\u0644\u0645\u0629\u0650
         \u0627\u0644\u0648\u062D\u064A\u062F\u0629."
       _ArabicFemale: 
-      _AudioFile: Balloons_words_Intro
-    - _Id: Balloons_words_Title
+      _AudioFile: Game_Balloons_word_Intro
+    - _Id: Balloons_word_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -706,20 +887,20 @@ MonoBehaviour:
       _English: Balloons & Images!
       _Arabic: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0635\u0648\u0631!"
       _ArabicFemale: 
-      _AudioFile: Balloons_words_Title
-    - _Id: Balloons_words_Tuto
+      _AudioFile: Game_Balloons_word_Title
+    - _Id: Balloons_word_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial
-      _English: Pop the balloons and LEAVE ONLY the right Image
-      _Arabic: "\u0627\u0641\u0642\u0639\u0650 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
-        \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u0635\u0648\u0631\u0629\u064E
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      _ArabicFemale: "\u0627\u0641\u0642\u0639\u064A \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
-        \u062A\u0627\u0631\u0643\u0629\u064B \u0641\u0642\u0637 \u0627\u0644\u0635\u0648\u0631\u0629\u064E
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      _AudioFile: Balloons_words_Tuto
+      _English: Pop the balloons of the right Image
+      _Arabic: "\u0627\u0641\u0642\u0639\u0650 \u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
+        \u0627\u0644\u0635\u0648\u0631\u0629\u064E \u0627\u0644\u0635\u062D\u064A\u062D\u0629
+        \u0641\u0642\u0637."
+      _ArabicFemale: "\u0627\u0641\u0642\u0639\u064A \u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
+        \u0627\u0644\u0635\u0648\u0631\u0629\u064E \u0627\u0644\u0635\u062D\u064A\u062D\u0629
+        \u0641\u0642\u0637."
+      _AudioFile: Game_Balloons_word_Tuto
     - _Id: Book_Games
       _Character: Ibtissam
       _Area: book
@@ -783,7 +964,7 @@ MonoBehaviour:
       _Arabic: "\u0643\u0644\u0645\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: Book_Words
-    - _Id: ColorTickle_Intro
+    - _Id: ColorTickle_lettername_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -792,8 +973,8 @@ MonoBehaviour:
       _Arabic: "\u0644\u0642\u062F \u0641\u0642\u062F\u064E \u0627\u0644\u062D\u0631\u0641\u064F
         \u0644\u0648\u0646\u064E\u0647!"
       _ArabicFemale: 
-      _AudioFile: ColorTickle_Intro
-    - _Id: ColorTickle_Title
+      _AudioFile: Game_ColorTickle_lettername_Intro
+    - _Id: ColorTickle_lettername_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -801,8 +982,8 @@ MonoBehaviour:
       _English: Color Tickle
       _Arabic: "\u062F\u063A\u062F\u063A\u0629\u064F \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
       _ArabicFemale: 
-      _AudioFile: ColorTickle_Title
-    - _Id: ColorTickle_Tuto
+      _AudioFile: Game_ColorTickle_lettername_Title
+    - _Id: ColorTickle_lettername_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -814,8 +995,72 @@ MonoBehaviour:
       _ArabicFemale: "\u0642\u0648\u0645\u064A \u0628\u062A\u0644\u0648\u064A\u0646\u0650
         \u0627\u0644\u062D\u0631\u0641\u0650 \u062F\u0648\u0646\u064E \u0627\u0644\u062E\u0631\u0648\u062C\u0650
         \u0639\u0646 \u062D\u062F\u0648\u062F\u0650\u0647."
-      _AudioFile: ColorTickle_Tuto
-    - _Id: DancingDots_Intro
+      _AudioFile: Game_ColorTickle_lettername_Tuto
+    - _Id: DailyReward_Collect
+      _Character: Ibtissam
+      _Area: reward
+      _When: 
+      _Context: Tutorial
+      _English: Touch the Cookies to collect them
+      _Arabic: "\u0627\u0644\u0645\u0633\u0652 \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A
+        \u0644\u0650\u062C\u064E\u0645\u0652\u0639\u0650\u0647\u064E\u0627"
+      _ArabicFemale: "\u0627\u0644\u0645\u0633\u064A \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A
+        \u0644\u0650\u062C\u064E\u0645\u0652\u0639\u0650\u0647\u064E\u0627"
+      _AudioFile: DailyReward_Collect
+    - _Id: DailyReward_ComeBack_1
+      _Character: Keeper
+      _Area: reward
+      _When: 
+      _Context: Tutorial
+      _English: Come back tomorrow for more!
+      _Arabic: "\u0639\u064F\u062F\u0652 \u063A\u064E\u062F\u064B\u0627 \u0645\u0650\u0646\u0652
+        \u0627\u062C\u0652\u0644\u0650 \u0627\u0644\u0645\u064E\u0632\u0650\u064A\u062F\u0650!"
+      _ArabicFemale: "\u0639\u064F\u0648\u062F\u0650\u064A \u063A\u064E\u062F\u064B\u0627
+        \u0645\u0650\u0646\u0652 \u0627\u062C\u0652\u0644\u0650 \u0627\u0644\u0645\u064E\u0632\u0650\u064A\u062F\u0650!"
+      _AudioFile: DailyReward_ComeBack_1
+    - _Id: DailyReward_ComeBack_2
+      _Character: Keeper
+      _Area: reward
+      _When: 
+      _Context: Tutorial
+      _English: Play every day to receive more cookies
+      _Arabic: "\u0627\u0650\u0644\u0652\u0639\u064E\u0628\u0652 \u0643\u064F\u0644\u0651\u064E
+        \u064A\u064E\u0648\u0652\u0645\u064D \u0644\u0650\u062A\u064E\u062D\u0652\u0635\u064F\u0644\u064E
+        \u0639\u064E\u0644\u064E\u0649 \u0643\u064E\u0639\u0652\u0643\u064D \u0625\u0636\u0627\u0641\u064A\u064D"
+      _ArabicFemale: "\u0627\u0650\u0644\u0652\u0639\u064E\u0628\u0650\u064A \u0643\u064F\u0644\u0651\u064E
+        \u064A\u064E\u0648\u0652\u0645\u064D \u0644\u0650\u062A\u064E\u062D\u0652\u0635\u064F\u0644\u0650\u064A
+        \u0639\u064E\u0644\u064E\u0649 \u0643\u064E\u0639\u0652\u0643\u064D \u0625\u0636\u0627\u0641\u064A\u064D"
+      _AudioFile: DailyReward_ComeBack_2
+    - _Id: DailyReward_Intro_1
+      _Character: Keeper
+      _Area: reward
+      _When: 
+      _Context: Tutorial
+      _English: Every day you play I give you some cookies
+      _Arabic: "\u0633\u064E\u0648\u0652\u0641\u064E \u0623\u064F\u0639\u0652\u0637\u0650\u064A\u0643\u064E
+        \u0627\u0644\u0645\u064E\u0632\u0650\u064A\u062F\u064E \u0645\u0650\u0646\u0652
+        \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u0650 \u0639\u0650\u0646\u0652\u062F\u064E\u0645\u064E\u0627
+        \u062A\u064E\u0644\u0652\u0639\u064E\u0628\u064F \u0643\u064F\u0644\u0651\u064E
+        \u064A\u064E\u0648\u0652\u0645\u064D"
+      _ArabicFemale: "\u0633\u064E\u0648\u0652\u0641\u064E \u0623\u064F\u0639\u0652\u0637\u0650\u064A\u0643\u0650\u064A
+        \u0627\u0644\u0645\u064E\u0632\u0650\u064A\u062F\u064E \u0645\u0650\u0646\u0652
+        \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u0650 \u0639\u0650\u0646\u0652\u062F\u064E\u0645\u064E\u0627
+        \u062A\u064E\u0644\u0652\u0639\u064E\u0628\u0650\u064A\u0646\u064E \u0643\u064F\u0644\u0651\u064E
+        \u064A\u064E\u0648\u0652\u0645\u064D"
+      _AudioFile: DailyReward_Intro_1
+    - _Id: DailyReward_Intro_2
+      _Character: Keeper
+      _Area: reward
+      _When: 
+      _Context: Tutorial
+      _English: Here you have your daily cookies
+      _Arabic: "\u0647\u064E\u0630\u0650\u0647\u0650 \u0647\u0650\u064A\u064E \u0643\u064E\u0639\u064E\u0643\u064E\u0627\u062A\u064F
+        \u0627\u0644\u064A\u064E\u0648\u0652\u0645\u064E, \u062E\u064F\u0630\u0652\u0647\u064E\u0627!"
+      _ArabicFemale: "\u0647\u064E\u0630\u0650\u0647\u0650 \u0647\u0650\u064A\u064E
+        \u0643\u064E\u0639\u064E\u0643\u064E\u0627\u062A\u064F \u0627\u0644\u064A\u064E\u0648\u0652\u0645,
+        \u062E\u064F\u0630\u0650\u064A\u0647\u064E\u0627!"
+      _AudioFile: DailyReward_Intro_2
+    - _Id: DancingDots_letterany_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -831,8 +1076,8 @@ MonoBehaviour:
         \u0627\u0644\u062D\u0631\u0641\u064E \u0627\u0644\u0642\u0648\u0629\u064E
         \u0627\u0644\u0644\u0627\u0632\u0645\u0629\u064E \u0644\u0644\u0631\u0642\u0635!
         \u0633\u0627\u0639\u062F\u064A\u0647!"
-      _AudioFile: DancingDots_Intro
-    - _Id: DancingDots_Title
+      _AudioFile: Game_DancingDots_letterany_Intro
+    - _Id: DancingDots_letterany_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -840,8 +1085,8 @@ MonoBehaviour:
       _English: Dancing Star!
       _Arabic: "\u0646\u062C\u0648\u0645\u064F \u0627\u0644\u0631\u0642\u0635!"
       _ArabicFemale: 
-      _AudioFile: DancingDots_Title
-    - _Id: DancingDots_Tuto
+      _AudioFile: Game_DancingDots_letterany_Title
+    - _Id: DancingDots_letterany_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -855,64 +1100,18 @@ MonoBehaviour:
         \u0623\u0648 \u0627\u0644\u062D\u0631\u0643\u0627\u062A\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E
         \u0646\u062D\u0648\u064E \u0627\u0644\u0645\u0643\u0627\u0646\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0650
         \u0641\u0648\u0642\u064E \u0627\u0644\u062D\u0631\u0641."
-      _AudioFile: DancingDots_Tuto
-    - _Id: AlphabetSong_letters_Intro
-      _Character: Keeper
-      _Area: minigame
-      _When: 
-      _Context: Introduction
-      _English: It's time to sing all the letters
-      _Arabic: "\u0648\u0642\u062A\u064F \u063A\u0646\u0627\u0621\u0650 \u062C\u0645\u064A\u0639\u0650
-        \u0627\u0644\u062D\u0631\u0648\u0641."
-      _ArabicFemale: 
-      _AudioFile: AlphabetSong_letters_Intro
-    - _Id: AlphabetSong_letters_Title
-      _Character: Keeper
-      _Area: minigame
-      _When: At start
-      _Context: Title
-      _English: Diacritic Song!
-      _Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: AlphabetSong_letters_Title
-    - _Id: Egg_sequence_Intro
-      _Character: Keeper
-      _Area: minigame
-      _When: 
-      _Context: Introduction
-      _English: The egg said something! Help it to hatch!
-      _Arabic: "\u0644\u0642\u062F \u0642\u0627\u0644\u062A\u0650 \u0627\u0644\u0628\u064A\u0636\u0629\u064F
-        \u0634\u064A\u0626\u0627\u064B! \u0633\u0627\u0639\u062F\u0652\u0647\u0627
-        \u0644\u062A\u0641\u0642\u0633!"
-      _ArabicFemale: "\u0644\u0642\u062F \u0642\u0627\u0644\u062A\u0650 \u0627\u0644\u0628\u064A\u0636\u0629\u064F
-        \u0634\u064A\u0626\u0627\u064B! \u0633\u0627\u0639\u062F\u064A\u0647\u0627
-        \u0644\u062A\u0641\u0642\u0633!"
-      _AudioFile: Egg_sequence_Intro
-    - _Id: Egg_sequence_Title
+      _AudioFile: Game_DancingDots_letterany_Tuto
+    - _Id: Egg_buildword_Title
       _Character: Keeper
       _Area: minigame
       _When: 
       _Context: Title
-      _English: The Egg!
-      _Arabic: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
+      _English: The Egg and the hidden Word!
+      _Arabic: "\u0627\u0644\u0628\u064A\u0636\u0629 \u0648 \u0627\u0644\u0643\u0644\u0645\u0629
+        \u0627\u0644\u0645\u062E\u0641\u064A\u0629!"
       _ArabicFemale: 
-      _AudioFile: Egg_sequence_Title
-    - _Id: Egg_letters_Tuto
-      _Character: Ibtissam
-      _Area: minigame
-      _When: 
-      _Context: Tutorial
-      _English: Listen carefully, then bash the correct button.
-      _Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u064D
-        \u062B\u0645 \u0627\u0636\u063A\u0637\u0650 \u0627\u0644\u0632\u0631\u0651\u064E
-        \u0627\u0644\u0635\u062D\u064A\u062D\u064E \u0628\u0634\u0643\u0644\u064D
-        \u0645\u062A\u0643\u0631\u0631."
-      _ArabicFemale: "\u0623\u0646\u0635\u0650\u062A\u064A \u0628\u0625\u0645\u0639\u0627\u0646\u064D
-        \u062B\u0645 \u0627\u0636\u063A\u0637\u064A \u0627\u0644\u0632\u0631\u0651\u064E
-        \u0627\u0644\u0635\u062D\u064A\u062D\u064E \u0628\u0634\u0643\u0644\u064D
-        \u0645\u062A\u0643\u0631\u0631."
-      _AudioFile: Egg_letters_Tuto
-    - _Id: Egg_sequence_Tuto
+      _AudioFile: Game_Egg_buildword_Title
+    - _Id: Egg_buildword_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -929,42 +1128,157 @@ MonoBehaviour:
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0650
         \u0644\u0643\u064A \u062A\u0643\u0631\u0651\u0650\u0631\u064E \u0645\u0627
         \u0633\u064E\u0645\u0650\u0639\u0652\u062A\u0650\u0647."
-      _AudioFile: Egg_Tuto_Sequence
-    - _Id: FastCrowd_alphabet_Intro
+      _AudioFile: Game_Egg_buildword_Tuto
+    - _Id: Egg_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
       _Context: Introduction
-      _English: What a mess! Let's put the Letters in the right order...
-      _Arabic: "\u064A\u0627 \u0644\u0644\u0641\u0648\u0636\u0649! \u0644\u0646\u0636\u0639\u0650
-        \u0627\u0644\u0623\u062D\u0631\u0641\u064E \u0641\u064A \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650
-        \u0627\u0644\u0635\u062D\u064A\u062D."
-      _ArabicFemale: 
-      _AudioFile: FastCrowd_alphabet_Intro
-    - _Id: FastCrowd_alphabet_Title
+      _English: The egg said something! Help it to hatch!
+      _Arabic: "\u0644\u0642\u062F \u0642\u0627\u0644\u062A\u0650 \u0627\u0644\u0628\u064A\u0636\u0629\u064F
+        \u0634\u064A\u0626\u0627\u064B! \u0633\u0627\u0639\u062F\u0652\u0647\u0627
+        \u0644\u062A\u0641\u0642\u0633!"
+      _ArabicFemale: "\u0644\u0642\u062F \u0642\u0627\u0644\u062A\u0650 \u0627\u0644\u0628\u064A\u0636\u0629\u064F
+        \u0634\u064A\u0626\u0627\u064B! \u0633\u0627\u0639\u062F\u064A\u0647\u0627
+        \u0644\u062A\u0641\u0642\u0633!"
+      _AudioFile: Game_Egg_Intro
+    - _Id: Egg_letterphoneme_Title
       _Character: Keeper
       _Area: minigame
       _When: 
       _Context: Title
-      _English: Alphabet Crowd!
-      _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
+      _English: The Egg and the Letters!
+      _Arabic: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
-      _AudioFile: FastCrowd_alphabet_Title
-    - _Id: FastCrowd_alphabet_Tuto
+      _AudioFile: Game_Egg_letterphoneme_Title
+    - _Id: Egg_letterphoneme_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial
-      _English: Drag the Letters one by one, following the Alphabet order
+      _English: Listen carefully, then bash the correct button.
+      _Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u064D
+        \u062B\u0645 \u0627\u0636\u063A\u0637\u0650 \u0627\u0644\u0632\u0631\u0651\u064E
+        \u0627\u0644\u0635\u062D\u064A\u062D\u064E \u0628\u0634\u0643\u0644\u064D
+        \u0645\u062A\u0643\u0631\u0631."
+      _ArabicFemale: "\u0623\u0646\u0635\u0650\u062A\u064A \u0628\u0625\u0645\u0639\u0627\u0646\u064D
+        \u062B\u0645 \u0627\u0636\u063A\u0637\u064A \u0627\u0644\u0632\u0631\u0651\u064E
+        \u0627\u0644\u0635\u062D\u064A\u062D\u064E \u0628\u0634\u0643\u0644\u064D
+        \u0645\u062A\u0643\u0631\u0631."
+      _AudioFile: Game_Egg_letterphoneme_Tuto
+    - _Id: End_Scene_1_1
+      _Character: Ibtissam
+      _Area: end game
+      _When: 
+      _Context: end game
+      _English: Superb! Your prize for finishing your journey is superpowers in real
+        life!
+      _Arabic: "\u0631\u0627\u0626\u0639! \u062C\u0627\u0626\u0632\u0629\u064F \u0625\u0643\u0645\u0627\u0644\u0650\u0643\u064E
+        \u0627\u0644\u0631\u062D\u0644\u0629\u064E \u0647\u064A \u0642\u0648\u0649\u064B
+        \u062E\u0627\u0631\u0642\u0629\u064C \u062D\u0642\u064A\u0642\u064A\u0629!"
+      _ArabicFemale: "\u0631\u0627\u0626\u0639! \u062C\u0627\u0626\u0632\u0629\u064F
+        \u0625\u0643\u0645\u0627\u0644\u0650\u0643\u0650 \u0627\u0644\u0631\u062D\u0644\u0629\u064E
+        \u0647\u064A \u0642\u0648\u0649\u064B \u062E\u0627\u0631\u0642\u0629\u064C
+        \u062D\u0642\u064A\u0642\u064A\u0629! \u0627\u0643\u062A\u0633\u0628\u062A\u0650
+        \u0627\u0644\u0622\u0646 \u0642\u0648\u0629\u064E \u0627\u0644\u0642\u062F\u0631\u0629\u0650
+        \u0639\u0644\u0649 \u0642\u0631\u0627\u0621\u0629\u0650 \u0647\u0630\u0627
+        \u0627\u0644\u0643\u0644\u0627\u0645\u0650..."
+      _AudioFile: End_Scene_1_1
+    - _Id: End_Scene_1_2
+      _Character: Ibtissam
+      _Area: end game
+      _When: 
+      _Context: end game
+      _English: "You have now the power to read this\u2026"
+      _Arabic: "\u0627\u0643\u062A\u0633\u0628\u062A\u064E \u0627\u0644\u0622\u0646
+        \u0642\u0648\u0629\u064E \u0627\u0644\u0642\u062F\u0631\u0629\u0650 \u0639\u0644\u0649
+        \u0642\u0631\u0627\u0621\u0629\u0650 \u0647\u0630\u0627 \u0627\u0644\u0643\u0644\u0627\u0645\u0650..."
+      _ArabicFemale: 
+      _AudioFile: End_Scene_1_2
+    - _Id: End_Scene_2
+      _Character: Ibtissam
+      _Area: end game
+      _When: 
+      _Context: end game
+      _English: You are awesome!
+      _Arabic: "\u0623\u0646\u062A\u064E \u0631\u0627\u0626\u0639!"
+      _ArabicFemale: "\u0623\u0646\u062A\u0650 \u0631\u0627\u0626\u0639\u0629!"
+      _AudioFile: End_Scene_2
+    - _Id: End_Scene_3_1
+      _Character: Ibtissam
+      _Area: end game
+      _When: 
+      _Context: end game
+      _English: Now go, leave your mark in the world!
+      _Arabic: "\u0627\u0646\u0637\u0644\u0642\u0650 \u0627\u0644\u0622\u0646 \u0648\u0627\u062A\u0631\u0643\u0652
+        \u0623\u062B\u0631\u0627\u064B \u0641\u064A \u0627\u0644\u0639\u0627\u0644\u0645!"
+      _ArabicFemale: "\u0627\u0646\u0637\u0644\u0642\u064A \u0627\u0644\u0622\u0646
+        \u0648\u0627\u062A\u0631\u0643\u064A \u0623\u062B\u0631\u0627\u064B \u0641\u064A
+        \u0627\u0644\u0639\u0627\u0644\u0645! \u0644\u0643\u0646 \u062A\u0630\u0643\u0651\u064E\u0631\u064A
+        \u0623\u0646\u0651\u064E \u0627\u0644\u0642\u0648\u0649 \u0627\u0644\u062E\u0627\u0631\u0642\u0629\u064E
+        \u062A\u062D\u062A\u0627\u062C\u064F \u0625\u0644\u0649 \u0627\u0644\u062A\u0645\u0631\u064A\u0646\u0650
+        \u062F\u0627\u0626\u0645\u0627\u064B. \u0639\u0648\u062F\u064A \u0644\u0632\u064A\u0627\u0631\u062A\u0650\u0646\u0627
+        \u0642\u0631\u064A\u0628\u0627\u064B! \u0633\u0646\u0634\u062A\u0627\u0642\u064F
+        \u0625\u0644\u064A\u0643\u0650!"
+      _AudioFile: End_Scene_3_1
+    - _Id: End_Scene_3_2
+      _Character: Ibtissam
+      _Area: end game
+      _When: 
+      _Context: end game
+      _English: But don't forget that superpowers need to be trained.
+      _Arabic: "\u0644\u0643\u0646 \u062A\u0630\u0643\u0651\u064E\u0631\u0652 \u0623\u0646\u0651\u064E
+        \u0627\u0644\u0642\u0648\u0649 \u0627\u0644\u062E\u0627\u0631\u0642\u0629\u064E
+        \u062A\u062D\u062A\u0627\u062C\u064F \u0625\u0644\u0649 \u0627\u0644\u062A\u0645\u0631\u064A\u0646
+        \u062F\u0627\u0626\u0645\u0627\u064B."
+      _ArabicFemale: 
+      _AudioFile: End_Scene_3_2
+    - _Id: End_Scene_3_3
+      _Character: Ibtissam
+      _Area: end game
+      _When: 
+      _Context: end game
+      _English: Come back to visit! We'll miss you!
+      _Arabic: "\u0639\u062F \u0644\u0632\u064A\u0627\u0631\u062A\u0650\u0646\u0627
+        \u0642\u0631\u064A\u0628\u0627\u064B! \u0633\u0646\u0634\u062A\u0627\u0642\u064F
+        \u0625\u0644\u064A\u0643!"
+      _ArabicFemale: 
+      _AudioFile: End_Scene_3_3
+    - _Id: FastCrowd_buildword_Intro
+      _Character: Keeper
+      _Area: minigame
+      _When: 
+      _Context: Introduction
+      _English: What a mess! Let's put the Letters in the right order to form a Word
+      _Arabic: "\u064A\u0627 \u0644\u0644\u0641\u0648\u0636\u0649! \u0644\u0646\u0636\u0639\u0650
+        \u0627\u0644\u0623\u062D\u0631\u0641\u064E \u0641\u064A \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650
+        \u0627\u0644\u0635\u062D\u064A\u062D \u0644\u062A\u0634\u0643\u0651\u0650\u0644\u064E
+        \u0643\u0644\u0645\u0629."
+      _ArabicFemale: 
+      _AudioFile: Game_FastCrowd_buildword_Intro
+    - _Id: FastCrowd_buildword_Title
+      _Character: Keeper
+      _Area: minigame
+      _When: 
+      _Context: Title
+      _English: 'Letter Crowd: Form a Word!'
+      _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641:
+        \u062A\u0643\u0648\u064A\u0646\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      _ArabicFemale: 
+      _AudioFile: Game_FastCrowd_buildword_Title
+    - _Id: FastCrowd_buildword_Tuto
+      _Character: Ibtissam
+      _Area: minigame
+      _When: 
+      _Context: Tutorial
+      _English: Drag the correct Letters, one by one
       _Arabic: "\u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0623\u062D\u0631\u0641\u064E
-        \u0648\u0627\u062D\u062F\u0627\u064B \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631\u0650
-        \u062D\u0633\u0628\u064E \u062A\u0631\u062A\u064A\u0628\u0650 \u0627\u0644\u062D\u0631\u0648\u0641\u0650
-        \u0627\u0644\u0647\u062C\u0627\u0626\u064A\u0629"
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0627\u064B
+        \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631"
       _ArabicFemale: "\u0627\u0633\u062D\u0628\u064A \u0627\u0644\u0623\u062D\u0631\u0641\u064E
-        \u0648\u0627\u062D\u062F\u0627\u064B \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631\u0650
-        \u062D\u0633\u0628\u064E \u062A\u0631\u062A\u064A\u0628\u0650 \u0627\u0644\u062D\u0631\u0648\u0641\u0650
-        \u0627\u0644\u0647\u062C\u0627\u0626\u064A\u0629."
-      _AudioFile: FastCrowd_alphabet_Tuto
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0627\u064B
+        \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631."
+      _AudioFile: Game_FastCrowd_spelling_Tuto
     - _Id: FastCrowd_counting_Intro
       _Character: Keeper
       _Area: minigame
@@ -975,7 +1289,7 @@ MonoBehaviour:
         \u0627\u0644\u0623\u0631\u0642\u0627\u0645\u064E \u0641\u064A \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D."
       _ArabicFemale: 
-      _AudioFile: FastCrowd_counting_Intro
+      _AudioFile: Game_FastCrowd_counting_Intro
     - _Id: FastCrowd_counting_Title
       _Character: Keeper
       _Area: minigame
@@ -984,7 +1298,7 @@ MonoBehaviour:
       _English: Number Crowd!
       _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0631\u0642\u0627\u0645!"
       _ArabicFemale: 
-      _AudioFile: FastCrowd_counting_Title
+      _AudioFile: Game_FastCrowd_counting_Title
     - _Id: FastCrowd_counting_Tuto
       _Character: Ibtissam
       _Area: minigame
@@ -1000,8 +1314,8 @@ MonoBehaviour:
         \u0648\u0627\u062D\u062F\u0629\u064B \u062A\u0644\u0648 \u0627\u0644\u0623\u062E\u0631\u0649
         \u0645\u0646 \u0623\u0635\u063A\u0631\u0650 \u0631\u0642\u0645\u064D \u0625\u0644\u0649
         \u0627\u0644\u0623\u0643\u0628\u0631."
-      _AudioFile: FastCrowd_counting_Tuto
-    - _Id: FastCrowd_letter_Intro
+      _AudioFile: Game_FastCrowd_counting_Tuto
+    - _Id: FastCrowd_letterform_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1011,8 +1325,8 @@ MonoBehaviour:
         \u0627\u0644\u0623\u062D\u0631\u0641\u064E \u0641\u064A \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D."
       _ArabicFemale: 
-      _AudioFile: FastCrowd_letter_Intro
-    - _Id: FastCrowd_letter_Title
+      _AudioFile: Game_FastCrowd_letterform_Intro
+    - _Id: FastCrowd_letterform_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1020,8 +1334,8 @@ MonoBehaviour:
       _English: Letter Crowd!
       _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
-      _AudioFile: FastCrowd_letter_Title
-    - _Id: FastCrowd_letter_Tuto
+      _AudioFile: Game_FastCrowd_letterform_Title
+    - _Id: FastCrowd_letterform_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -1033,30 +1347,28 @@ MonoBehaviour:
       _ArabicFemale: "\u0627\u0633\u062D\u0628\u064A \u0627\u0644\u0623\u062D\u0631\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0627\u064B
         \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631."
-      _AudioFile: FastCrowd_letter_Tuto
-    - _Id: FastCrowd_spelling_Intro
+      _AudioFile: Game_FastCrowd_letterform_Tuto
+    - _Id: FastCrowd_lettername_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
       _Context: Introduction
-      _English: What a mess! Let's put the Letters in the right order to form a Word
+      _English: What a mess! Let's put the Letters in the right order...
       _Arabic: "\u064A\u0627 \u0644\u0644\u0641\u0648\u0636\u0649! \u0644\u0646\u0636\u0639\u0650
         \u0627\u0644\u0623\u062D\u0631\u0641\u064E \u0641\u064A \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650
-        \u0627\u0644\u0635\u062D\u064A\u062D \u0644\u062A\u0634\u0643\u0651\u0650\u0644\u064E
-        \u0643\u0644\u0645\u0629."
+        \u0627\u0644\u0635\u062D\u064A\u062D."
       _ArabicFemale: 
-      _AudioFile: FastCrowd_spelling_Intro
-    - _Id: FastCrowd_spelling_Title
+      _AudioFile: Game_FastCrowd_lettername_Intro
+    - _Id: FastCrowd_lettername_Title
       _Character: Keeper
       _Area: minigame
       _When: 
       _Context: Title
-      _English: 'Letter Crowd: Form a Word!'
-      _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641:
-        \u062A\u0643\u0648\u064A\u0646\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      _English: Alphabet Crowd!
+      _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
       _ArabicFemale: 
-      _AudioFile: FastCrowd_spelling_Title
-    - _Id: FastCrowd_spelling_Tuto
+      _AudioFile: Game_FastCrowd_lettername_Title
+    - _Id: FastCrowd_lettername_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -1068,8 +1380,8 @@ MonoBehaviour:
       _ArabicFemale: "\u0627\u0633\u062D\u0628\u064A \u0627\u0644\u0623\u062D\u0631\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0627\u064B
         \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631."
-      _AudioFile: FastCrowd_spelling_Tuto
-    - _Id: FastCrowd_words_Intro
+      _AudioFile: Game_FastCrowd_letterform_Tuto
+    - _Id: FastCrowd_word_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1079,8 +1391,8 @@ MonoBehaviour:
         \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650 \u0641\u064A \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D."
       _ArabicFemale: 
-      _AudioFile: FastCrowd_words_Intro
-    - _Id: FastCrowd_words_Title
+      _AudioFile: Game_FastCrowd_word_Intro
+    - _Id: FastCrowd_word_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1088,8 +1400,8 @@ MonoBehaviour:
       _English: Word Crowd!
       _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _ArabicFemale: 
-      _AudioFile: FastCrowd_words_Title
-    - _Id: FastCrowd_words_Tuto
+      _AudioFile: Game_FastCrowd_word_Title
+    - _Id: FastCrowd_word_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -1101,7 +1413,7 @@ MonoBehaviour:
       _ArabicFemale: "\u0627\u0633\u062D\u0628\u064A \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0629\u064B
         \u062A\u0644\u0648\u064E \u0627\u0644\u0623\u062E\u0631\u0649."
-      _AudioFile: FastCrowd_words_Tuto
+      _AudioFile: Game_FastCrowd_word_Tuto
     - _Id: Game_Title
       _Character: Kids
       _Area: home
@@ -1111,7 +1423,7 @@ MonoBehaviour:
       _Arabic: "\u0639\u0646\u062A\u0648\u0631\u0629 \u0648\u0627\u0644\u062D\u0631\u0648\u0641"
       _ArabicFemale: 
       _AudioFile: Game_Title
-    - _Id: HideSeek_Intro
+    - _Id: HideSeek_letterphoneme_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1121,8 +1433,8 @@ MonoBehaviour:
         \u0648\u0639\u0644\u064A\u0643\u064E \u0623\u0646\u0652 \u062A\u062C\u062F\u064E\u0647\u0627!"
       _ArabicFemale: "\u0633\u062A\u062E\u062A\u0628\u064A\u0621\u064F \u0627\u0644\u0623\u062D\u0631\u0641\u064F
         \u0648\u0639\u0644\u064A\u0643\u0650 \u0623\u0646\u0652 \u062A\u062C\u062F\u064A\u0647\u0627!"
-      _AudioFile: HideSeek_Intro
-    - _Id: HideSeek_Title
+      _AudioFile: Game_HideSeek_letterphoneme_Intro
+    - _Id: HideSeek_letterphoneme_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -1130,8 +1442,8 @@ MonoBehaviour:
       _English: Hidden Letters!
       _Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
       _ArabicFemale: 
-      _AudioFile: HideSeek_Title
-    - _Id: HideSeek_Tuto
+      _AudioFile: Game_HideSeek_letterphoneme_Title
+    - _Id: HideSeek_letterphoneme_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -1146,11 +1458,11 @@ MonoBehaviour:
         \u0627\u0644\u0645\u0633\u064A \u0634\u062C\u064A\u0631\u0629\u064B \u0644\u064A\u062E\u0631\u062C\u064E
         \u0645\u0646\u0647\u0627 \u062D\u0631\u0641\u060C \u062B\u0645 \u0627\u0644\u0645\u0633\u064A
         \u0627\u0644\u062D\u0631\u0641\u064E \u0627\u0644\u0635\u062D\u064A\u062D."
-      _AudioFile: HideSeek_Tuto
+      _AudioFile: Game_HideSeek_letterphoneme_Tuto
     - _Id: HideSeek_Words_Intro
       _Character: Keeper
       _Area: minigame
-      _When: At start
+      _When: 
       _Context: Introduction
       _English: The Words hide and you have to find them!
       _Arabic: "\u0639\u0644\u064A\u0643 \u0623\u0646\u0652 \u062A\u062C\u062F\u064E
@@ -1161,7 +1473,7 @@ MonoBehaviour:
     - _Id: HideSeek_Words_Title
       _Character: Keeper
       _Area: minigame
-      _When: At start
+      _When: 
       _Context: Title
       _English: Hidden Words!
       _Arabic: "\u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
@@ -1241,7 +1553,7 @@ MonoBehaviour:
         \u062C\u0645\u064A\u0639\u0650 \u0627\u0644\u0623\u062D\u0631\u0641 \u0625\u0644\u0649
         \u0645\u0643\u0627\u0646\u0650\u0647\u0627\u061F \u0623\u0631\u062C\u0648\u0648\u0648\u0648\u0643\u0650."
       _AudioFile: Intro_Letters_2
-    - _Id: Intro_welcome
+    - _Id: Intro_Welcome
       _Character: Keeper
       _Area: intro
       _When: Empty scene
@@ -1253,7 +1565,7 @@ MonoBehaviour:
       _ArabicFemale: "\u0644\u0642\u062F \u0623\u062A\u064A\u062A\u0650 \u0623\u062E\u064A\u0631\u0627\u064B!
         \u0643\u0646\u062A\u064F \u0628\u0627\u0646\u062A\u0638\u0627\u0631\u0650\u0650\u0643.
         \u0623\u062D\u062A\u0627\u062C\u064F \u0645\u0633\u0627\u0639\u062F\u062A\u064E\u0643\u0650!"
-      _AudioFile: Intro_welcome
+      _AudioFile: Intro_Welcome
     - _Id: Keeper_AttempsOver
       _Character: Keeper
       _Area: keeper
@@ -1506,778 +1818,7 @@ MonoBehaviour:
       _Arabic: "\u0627\u0647, \u0627\u0646\u062A\u0647\u0649 \u0627\u0644\u0648\u0642\u062A!"
       _ArabicFemale: 
       _AudioFile: Keeper_TimeUp
-    - _Id: LB_1_01
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The trio Alif
-      _Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0627 - \u0623 - \u0625"
-      _ArabicFemale: 
-      _AudioFile: LB_1_01
-    - _Id: LB_1_02
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The trio baa, taa and thaa
-      _Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0628 - \u062A - \u062B"
-      _ArabicFemale: 
-      _AudioFile: LB_1_02
-    - _Id: LB_1_03
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The trio jiim, haa and khaa
-      _Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u062C - \u062D - \u062E"
-      _ArabicFemale: 
-      _AudioFile: LB_1_03
-    - _Id: LB_1_04
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The duo daal and dhaal
-      _Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u062F - \u0630"
-      _ArabicFemale: 
-      _AudioFile: LB_1_04
-    - _Id: LB_1_05
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The duo raa and zaay
-      _Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0631 - \u0632"
-      _ArabicFemale: 
-      _AudioFile: LB_1_05
-    - _Id: LB_1_06
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The duo siin and shiin
-      _Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0633 - \u0634"
-      _ArabicFemale: 
-      _AudioFile: LB_1_06
-    - _Id: LB_1_07
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The Saad and Daad
-      _Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0635 - \u0636"
-      _ArabicFemale: 
-      _AudioFile: LB_1_07
-    - _Id: LB_1_08
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The Taa and DHaa
-      _Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0637 - \u0638"
-      _ArabicFemale: 
-      _AudioFile: LB_1_08
-    - _Id: LB_1_09
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The duo ayn and ghayn
-      _Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0639 - \u063A"
-      _ArabicFemale: 
-      _AudioFile: LB_1_09
-    - _Id: LB_1_10
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The duo faa and qaaf
-      _Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0641 - \u0642"
-      _ArabicFemale: 
-      _AudioFile: LB_1_10
-    - _Id: LB_1_11
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The duo kaaf and laam
-      _Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0643 - \u0644"
-      _ArabicFemale: 
-      _AudioFile: LB_1_11
-    - _Id: LB_1_12
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The duo miim and nuun
-      _Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0645 - \u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_1_12
-    - _Id: LB_1_13
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The trio haa, waaw and yaa
-      _Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0647 - \u0648 - \u064A"
-      _ArabicFemale: 
-      _AudioFile: LB_1_13
-    - _Id: LB_1_14
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The vowels alif, waaw and yaa
-      _Arabic: "\u062D\u0631\u0648\u0641 \u0627\u0644\u0639\u0644\u0629 \u0623 - \u0648
-        - \u064A"
-      _ArabicFemale: 
-      _AudioFile: LB_1_14
-    - _Id: LB_2_01
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of alif
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0623\u0644\u0641"
-      _ArabicFemale: 
-      _AudioFile: LB_2_01
-    - _Id: LB_2_02
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of baa
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0628\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: LB_2_02
-    - _Id: LB_2_03
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of taa
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062A\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: LB_2_03
-    - _Id: LB_2_04
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of thaa
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062B\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: LB_2_04
-    - _Id: LB_2_05
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of jiim
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062C\u064A\u0645"
-      _ArabicFemale: 
-      _AudioFile: LB_2_05
-    - _Id: LB_2_06
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of haa
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062D\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: LB_2_06
-    - _Id: LB_2_07
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of khaa
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062E\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: LB_2_07
-    - _Id: LB_2_08
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of daal
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062F\u0627\u0644"
-      _ArabicFemale: 
-      _AudioFile: LB_2_08
-    - _Id: LB_2_09
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of dhaal
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0630\u0627\u0644"
-      _ArabicFemale: 
-      _AudioFile: LB_2_09
-    - _Id: LB_2_10
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of raa
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0631\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: LB_2_10
-    - _Id: LB_2_11
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of zay
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0632\u0627\u064A"
-      _ArabicFemale: 
-      _AudioFile: LB_2_11
-    - _Id: LB_2_12
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of siin
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0633\u064A\u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_2_12
-    - _Id: LB_2_13
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of shiin
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0634\u064A\u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_2_13
-    - _Id: LB_2_14
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of Saad
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0635\u0627\u062F"
-      _ArabicFemale: 
-      _AudioFile: LB_2_14
-    - _Id: LB_3_01
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of Daad
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0636\u0627\u062F"
-      _ArabicFemale: 
-      _AudioFile: LB_3_01
-    - _Id: LB_3_02
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of Taa
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0637\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: LB_3_02
-    - _Id: LB_3_03
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of DHaa
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0638\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: LB_3_03
-    - _Id: LB_3_04
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of ayn
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0639\u064A\u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_3_04
-    - _Id: LB_3_05
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of ghayn
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u063A\u064A\u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_3_05
-    - _Id: LB_3_06
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of faa
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0641\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: LB_3_06
-    - _Id: LB_3_07
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of qaaf
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0642\u0627\u0641"
-      _ArabicFemale: 
-      _AudioFile: LB_3_07
-    - _Id: LB_3_08
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of kaaf
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0643\u0627\u0641"
-      _ArabicFemale: 
-      _AudioFile: LB_3_08
-    - _Id: LB_3_09
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of laam
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0644\u0627\u0645"
-      _ArabicFemale: 
-      _AudioFile: LB_3_09
-    - _Id: LB_3_10
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of miim
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0645\u064A\u0645"
-      _ArabicFemale: 
-      _AudioFile: LB_3_10
-    - _Id: LB_3_11
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of nuun
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0646\u0648\u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_3_11
-    - _Id: LB_3_12
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of haa
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0647\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: LB_3_12
-    - _Id: LB_3_13
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of waaw
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0648\u0627\u0648"
-      _ArabicFemale: 
-      _AudioFile: LB_3_13
-    - _Id: LB_3_14
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The shapes of yaa
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u064A\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: LB_3_14
-    - _Id: LB_4_01
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The symbol Fathah
-      _Arabic: "\u0627\u0644\u0641\u062A\u062D\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_4_01
-    - _Id: LB_4_02
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The symbol Dammah
-      _Arabic: "\u0627\u0644\u0636\u0645\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_4_02
-    - _Id: LB_4_03
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The symbol Kasrah
-      _Arabic: "\u0627\u0644\u0643\u0633\u0631\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_4_03
-    - _Id: LB_4_04
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: Symbols and Sukun
-      _Arabic: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0648\u0627\u0644\u0633\u0643\u0648\u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_4_04
-    - _Id: LB_4_05
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: the double Fathah
-      _Arabic: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0641\u062A\u062D"
-      _ArabicFemale: 
-      _AudioFile: LB_4_05
-    - _Id: LB_4_06
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: the double Dammah
-      _Arabic: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0636\u0645"
-      _ArabicFemale: 
-      _AudioFile: LB_4_06
-    - _Id: LB_4_07
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: the double Kasrah
-      _Arabic: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0643\u0633\u0631"
-      _ArabicFemale: 
-      _AudioFile: LB_4_07
-    - _Id: LB_4_08
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: single and double symbols
-      _Arabic: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0648\u062D\u0631\u0643\u0627\u062A
-        \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_4_08
-    - _Id: LB_4_09
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: Hamza variations
-      _Arabic: "\u0623\u0646\u0648\u0627\u0639 \u0627\u0644\u0647\u0645\u0632\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_4_09
-    - _Id: LB_4_10
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The diphthong waaw
-      _Arabic: "\u0648\u0627\u0648 \u0627\u0644\u0625\u062F\u063A\u0627\u0645"
-      _ArabicFemale: 
-      _AudioFile: LB_4_10
-    - _Id: LB_4_11
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The diphthong yaa
-      _Arabic: "\u064A\u0627\u0621 \u0627\u0644\u0625\u062F\u063A\u0627\u0645"
-      _ArabicFemale: 
-      _AudioFile: LB_4_11
-    - _Id: LB_4_12
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: 'Words: Verbs'
-      _Arabic: "\u0627\u0644\u0623\u0641\u0639\u0627\u0644"
-      _ArabicFemale: 
-      _AudioFile: LB_4_12
-    - _Id: LB_4_13
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: 'Words: Places'
-      _Arabic: "\u0627\u0644\u0623\u0645\u0627\u0643\u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_4_13
-    - _Id: LB_4_14
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: 'Words: grains food'
-      _Arabic: "\u0627\u0644\u0623\u0637\u0639\u0645\u0629 (\u0627\u0644\u062D\u0628\u0648\u0628)"
-      _ArabicFemale: 
-      _AudioFile: LB_4_14
-    - _Id: LB_4_15
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: 'Words: Furniture'
-      _Arabic: "\u0627\u0644\u0645\u0641\u0631\u0648\u0634\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: LB_4_15
-    - _Id: LB_5_01
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: the alif maqSura
-      _Arabic: "\u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u0642\u0635\u0648\u0631\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_5_01
-    - _Id: LB_5_02
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: lam-alif combination
-      _Arabic: "\u0644\u0627"
-      _ArabicFemale: 
-      _AudioFile: LB_5_02
-    - _Id: LB_5_03
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: the madd symbol
-      _Arabic: "\u0627\u0644\u0645\u062F"
-      _ArabicFemale: 
-      _AudioFile: LB_5_03
-    - _Id: LB_5_04
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The 3 diacritic signs
-      _Arabic: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: LB_5_04
-    - _Id: LB_5_05
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The 3 double diacritic signs
-      _Arabic: "\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_5_05
-    - _Id: LB_5_06
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: the shadda symbol
-      _Arabic: "\u0627\u0644\u0634\u062F\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_5_06
-    - _Id: LB_5_07
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: 'Words: plurals'
-      _Arabic: "\u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
-        \u0648\u0627\u0644\u062C\u0645\u0639"
-      _ArabicFemale: 
-      _AudioFile: LB_5_07
-    - _Id: LB_5_08
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: 'words: professions'
-      _Arabic: "\u0627\u0644\u0645\u0647\u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_5_08
-    - _Id: LB_5_09
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: 'words: nature'
-      _Arabic: "\u0627\u0644\u0637\u0628\u064A\u0639\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_5_09
-    - _Id: LB_5_10
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: the article "al"
-      _Arabic: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
-      _ArabicFemale: 
-      _AudioFile: LB_5_10
-    - _Id: LB_5_11
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: sun and moon consonants
-      _Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0634\u0645\u0633\u064A\u0629
-        \u0648\u0627\u0644\u0642\u0645\u0631\u064A\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_5_11
-    - _Id: LB_5_12
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: Sports
-      _Arabic: "\u0627\u0644\u0631\u064A\u0627\u0636\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_5_12
-    - _Id: LB_5_13
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: 'Adjectives: feelings'
-      _Arabic: "\u0635\u0641\u0627\u062A \u0627\u0644\u0645\u0634\u0627\u0639\u0631"
-      _ArabicFemale: 
-      _AudioFile: LB_5_13
-    - _Id: LB_6_01
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: Greetings
-      _Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u062D\u064A\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_6_01
-    - _Id: LB_6_02
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: Hello phrases
-      _Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0631\u062D\u064A\u0628"
-      _ArabicFemale: 
-      _AudioFile: LB_6_02
-    - _Id: LB_6_03
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: How are you phrases
-      _Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0633\u0624\u0627\u0644
-        \u0639\u0646 \u0627\u0644\u062D\u0627\u0644"
-      _ArabicFemale: 
-      _AudioFile: LB_6_03
-    - _Id: LB_6_04
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: 'Adjectives: colors'
-      _Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_6_04
-    - _Id: LB_6_05
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: nature adjectives
-      _Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0628\u064A\u0639\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_6_05
-    - _Id: LB_6_06
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: weather adjectives
-      _Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0642\u0633"
-      _ArabicFemale: 
-      _AudioFile: LB_6_06
-    - _Id: LB_6_07
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: cardinal numbers
-      _Arabic: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_6_07
-    - _Id: LB_6_08
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: ordinal numbers
-      _Arabic: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_6_08
-    - _Id: LB_6_09
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: Time adverbs
-      _Arabic: "\u0638\u0631\u0648\u0641 \u0627\u0644\u0632\u0645\u0627\u0646"
-      _ArabicFemale: 
-      _AudioFile: LB_6_09
-    - _Id: LB_6_10
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: Days of the week
-      _Arabic: "\u0623\u064A\u0627\u0645 \u0627\u0644\u0623\u0633\u0628\u0648\u0639"
-      _ArabicFemale: 
-      _AudioFile: LB_6_10
-    - _Id: LB_6_11
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: The months
-      _Arabic: "\u0627\u0644\u0623\u0634\u0647\u0631"
-      _ArabicFemale: 
-      _AudioFile: LB_6_11
-    - _Id: LB_6_12
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: the years in numbers
-      _Arabic: "\u0627\u0644\u0633\u0646\u0629 \u0628\u0627\u0644\u0623\u0631\u0642\u0627\u0645"
-      _ArabicFemale: 
-      _AudioFile: LB_6_12
-    - _Id: LB_6_13
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: faminine and masculine nouns
-      _Arabic: "\u0627\u0644\u0623\u0633\u0645\u0627\u0621 \u0627\u0644\u0645\u0630\u0643\u0631\u0629
-        \u0648\u0627\u0644\u0645\u0624\u0646\u062B\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_6_13
-    - _Id: LB_6_14
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: the article "al"
-      _Arabic: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
-      _ArabicFemale: 
-      _AudioFile: LB_6_14
-    - _Id: LB_6_15
-      _Character: keeper
-      _Area: LB
-      _When: 
-      _Context: 
-      _English: Some phrases
-      _Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0628\u0633\u064A\u0637\u0629"
-      _ArabicFemale: 
-      _AudioFile: LB_6_15
-    - _Id: MakeFriends_Intro
+    - _Id: MakeFriends_letterinword_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2287,9 +1828,12 @@ MonoBehaviour:
         \u0633\u0627\u0639\u062F\u0652\u0647\u0627 \u0639\u0644\u0649 \u0631\u0624\u064A\u0629\u0650
         \u0627\u0644\u0623\u0645\u0648\u0631\u0650 \u0627\u0644\u0645\u0634\u062A\u0631\u0643\u0629\u0650
         \u0628\u064A\u0646\u0647\u0627."
-      _ArabicFemale: 
-      _AudioFile: MakeFriends_Intro
-    - _Id: MakeFriends_Title
+      _ArabicFemale: "\u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F \u062A\u062A\u062C\u0627\u062F\u0644!
+        \u0633\u0627\u0639\u062F\u064A\u0647\u0627 \u0639\u0644\u0649 \u0631\u0624\u064A\u0629\u0650
+        \u0627\u0644\u0623\u0645\u0648\u0631\u0650 \u0627\u0644\u0645\u0634\u062A\u0631\u0643\u0629\u0650
+        \u0628\u064A\u0646\u0647\u0627."
+      _AudioFile: Game_MakeFriends_letterinword_Intro
+    - _Id: MakeFriends_letterinword_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2297,8 +1841,8 @@ MonoBehaviour:
       _English: Friendship Spark!
       _Arabic: "\u0634\u0631\u0627\u0631\u0629\u064F \u0627\u0644\u0635\u062F\u0627\u0642\u0629!"
       _ArabicFemale: 
-      _AudioFile: MakeFriends_Title
-    - _Id: MakeFriends_Tuto
+      _AudioFile: Game_MakeFriends_letterinword_Title
+    - _Id: MakeFriends_letterinword_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -2311,7 +1855,7 @@ MonoBehaviour:
         \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F \u0641\u064A \u062D\u0631\u0641\u064D
         \u0648\u0627\u062D\u062F. \u0627\u0633\u062D\u0628\u064A\u0647 \u0625\u0644\u0649
         \u0645\u0646\u062A\u0635\u0641 \u0627\u0644\u0634\u0627\u0634\u0629."
-      _AudioFile: MakeFriends_Tuto
+      _AudioFile: Game_MakeFriends_letterinword_Tuto
     - _Id: Map_Back_1
       _Character: Keeper
       _Area: map
@@ -2349,6 +1893,60 @@ MonoBehaviour:
         \u0627\u0644\u0623\u0645\u0627\u0645. \u0627\u0633\u062A\u0645\u0631\u0651\u0650\u064A
         \u0639\u0644\u0649 \u0646\u0641\u0633\u0650 \u0627\u0644\u0645\u0646\u0648\u0627\u0644!"
       _AudioFile: Map_Back_3
+    - _Id: Map_Bones_Collect_1
+      _Character: Keeper
+      _Area: map
+      _When: when a bonus bone appears
+      _Context: Tutorial
+      _English: Touch the Cookies to collect them
+      _Arabic: "\u0627\u0644\u0645\u0633\u0652 \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A
+        \u0644\u0650\u062C\u064E\u0645\u0652\u0639\u0650\u0647\u064E\u0627"
+      _ArabicFemale: "\u0627\u0644\u0645\u0633\u064A \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A
+        \u0644\u0650\u062C\u064E\u0645\u0652\u0639\u0650\u0647\u064E\u0627"
+      _AudioFile: Map_Bones_Collect_1
+    - _Id: Map_Bones_Collect_2
+      _Character: Keeper
+      _Area: map
+      _When: when a bonus bone appears
+      _Context: Tutorial
+      _English: Collect the Cookies you see around
+      _Arabic: "\u0627\u0650\u062C\u0652\u0645\u064E\u0639\u0652 \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A
+        \u0627\u0644\u0651\u064E\u062A\u0650\u064A \u062A\u064E\u0631\u064E\u0627\u0647\u064E\u0627
+        \u0641\u0650\u064A \u0627\u0644\u062C\u0650\u0648\u064E\u0627\u0631\u0650"
+      _ArabicFemale: "\u0627\u0650\u062C\u0652\u0645\u064E\u0639\u0650\u064A \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A
+        \u0627\u0644\u0651\u064E\u062A\u0650\u064A \u062A\u064E\u0631\u064E\u064A\u0652\u0647\u064E\u0627
+        \u0641\u0650\u064A \u0627\u0644\u062C\u0650\u0648\u064E\u0627\u0631\u0650"
+      _AudioFile: Map_Bones_Collect_2
+    - _Id: Map_Bones_Counter_1
+      _Character: Keeper
+      _Area: map
+      _When: when player touches the bone counter
+      _Context: Tutorial
+      _English: This is the amount of cookies you have. You can spend them with Antura.
+      _Arabic: "\u0647\u064E\u0630\u064E\u0627 \u0647\u064F\u0648\u064E \u0639\u064E\u062F\u064E\u062F\u064F
+        \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A\u0650 \u0644\u064E\u062F\u064E\u064A\u0652\u0643\u064E.
+        \u0628\u0650\u0625\u0650\u0645\u0652\u0643\u064E\u0627\u0646\u0650\u0643\u064E
+        \u0627\u0644\u062A\u0651\u064E\u0645\u064E\u062A\u0651\u064F\u0639\u064F \u0628\u0650\u0647\u064E\u0627
+        \u0645\u064E\u0639\u064E \u0639\u0646\u062A\u0648\u0631\u0629"
+      _ArabicFemale: "\u0647\u064E\u0630\u064E\u0627 \u0647\u064F\u0648\u064E \u0639\u064E\u062F\u064E\u062F\u064F
+        \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A\u0650 \u0644\u064E\u062F\u064E\u064A\u0652\u0643\u0650.
+        \u0628\u0650\u0625\u0650\u0645\u0652\u0643\u064E\u0627\u0646\u0650\u0643\u0650
+        \u0627\u0644\u062A\u0651\u064E\u0645\u064E\u062A\u0651\u064F\u0639\u064F \u0628\u0650\u0647\u064E\u0627
+        \u0645\u064E\u0639\u064E \u0639\u0646\u062A\u0648\u0631\u0629"
+      _AudioFile: Map_Bones_Counter_1
+    - _Id: Map_Bones_Counter_2
+      _Character: Keeper
+      _Area: map
+      _When: when player touches the bone counter
+      _Context: Tutorial
+      _English: 'Remember: you can spend the cookies with Antura.'
+      _Arabic: "\u062A\u064E\u0630\u0643\u064E\u0631: \u0628\u0650\u0625\u0650\u0645\u0652\u0643\u064E\u0627\u0646\u0650\u0643\u064E
+        \u0627\u0644\u062A\u0651\u064E\u0645\u064E\u062A\u0651\u064F\u0639\u064F \u0628\u0650\u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A\u0650
+        \u0645\u064E\u0639\u064E \u0639\u0646\u062A\u0648\u0631\u0629"
+      _ArabicFemale: "\u062A\u064E\u0630\u0643\u064E\u0631\u064A: \u0628\u0650\u0625\u0650\u0645\u0652\u0643\u064E\u0627\u0646\u0650\u0643\u0650
+        \u0627\u0644\u062A\u0651\u064E\u0645\u064E\u062A\u0651\u064F\u0639\u064F \u0628\u0650\u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A\u0650
+        \u0645\u064E\u0639\u064E \u0639\u0646\u062A\u0648\u0631\u0629"
+      _AudioFile: Map_Bones_Counter_2
     - _Id: Map_End_LB_1
       _Character: Keeper
       _Area: map
@@ -2549,6 +2147,93 @@ MonoBehaviour:
       _ArabicFemale: "\u0645\u0630\u0647\u0644! \u0644\u0642\u062F\u0650 \u0627\u0643\u062A\u0634\u0641\u062A\u0650
         \u062E\u0631\u064A\u0637\u0629\u064B \u062C\u062F\u064A\u062F\u0629."
       _AudioFile: Map_NewMap
+    - _Id: Map_Unveal_Book_Intro
+      _Character: Keeper
+      _Area: map
+      _When: after PS 1.5.100
+      _Context: Tutorial
+      _English: You are learning a lot! Now you can also check the dictionary at any
+        time
+      _Arabic: "\u0644\u064E\u0642\u064E\u062F\u0652 \u062A\u064E\u0639\u064E\u0644\u0651\u064E\u0645\u0652\u062A\u064E
+        \u0643\u064E\u062B\u0650\u064A\u0631\u064B! \u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u064E
+        \u0627\u0644\u0622\u0646\u064E \u0645\u064F\u0631\u064E\u0627\u062C\u064E\u0639\u064E\u0629\u064F
+        \u0627\u0644\u0642\u064E\u0627\u0645\u064F\u0648\u0633\u0650 \u0641\u0650\u064A
+        \u0623\u064E\u064A\u0651\u0650 \u0648\u064E\u0642\u0652\u062A\u064D"
+      _ArabicFemale: "\u0644\u064E\u0642\u064E\u062F\u0652 \u062A\u064E\u0639\u064E\u0644\u0651\u064E\u0645\u0652\u062A\u0650
+        \u0643\u064E\u062B\u0650\u064A\u0631\u064B! \u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u0650
+        \u0627\u0644\u0622\u0646\u064E \u0645\u064F\u0631\u064E\u0627\u062C\u064E\u0639\u064E\u0629\u064F
+        \u0627\u0644\u0642\u064E\u0627\u0645\u064F\u0648\u0633\u0650 \u0641\u0650\u064A
+        \u0623\u064E\u064A\u0651\u0650 \u0648\u064E\u0642\u0652\u062A\u064D"
+      _AudioFile: Map_Unveal_Book_Intro
+    - _Id: Map_Unveal_Book_Open
+      _Character: Ibtissam
+      _Area: map
+      _When: 
+      _Context: Tutorial
+      _English: Press the BOOK button
+      _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
+        \u0631\u064E\u0645\u0652\u0632\u0650 \u0627\u0644\u0642\u064E\u0627\u0645\u064F\u0648\u0633\u0650"
+      _ArabicFemale: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u064A \u0639\u064E\u0644\u064E\u0649
+        \u0631\u064E\u0645\u0652\u0632\u0650 \u0627\u0644\u0642\u064E\u0627\u0645\u064F\u0648\u0633\u0650"
+      _AudioFile: Map_Unveal_Book_Open
+    - _Id: Map_Unveal_GameLauncher_Intro
+      _Character: Keeper
+      _Area: map
+      _When: after PS 1.2.100
+      _Context: Tutorial
+      _English: Surprise! You can now play any game whenever you want
+      _Arabic: "\u0645\u064F\u0641\u064E\u0627\u062C\u064E\u0623\u064E\u0629\u064C!
+        \u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u064E \u0623\u064E\u0646\u0652
+        \u062A\u064E\u0644\u0652\u0639\u064E\u0628\u064E \u0627\u0644\u0622\u0646\u064E
+        \u0623\u064E\u064A\u0651\u064E\u0629\u064E \u0644\u064E\u0639\u0652\u0628\u064E\u0629\u064B
+        \u0648\u064E\u0642\u064E\u062A\u0651\u064E\u0645\u064E\u0627 \u062A\u064E\u0634\u064E\u0627\u0621"
+      _ArabicFemale: "\u0645\u064F\u0641\u064E\u0627\u062C\u064E\u0623\u064E\u0629\u064C!
+        \u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u0650 \u0623\u064E\u0646\u0652
+        \u062A\u064E\u0644\u0652\u0639\u064E\u0628\u0650\u064A \u0627\u0644\u0622\u0646\u064E
+        \u0623\u064E\u064A\u0651\u064E\u0629\u064E \u0644\u064E\u0639\u0652\u0628\u064E\u0629\u064B
+        \u0648\u064E\u0642\u0652\u062A\u064E\u0645\u064E\u0627 \u062A\u064E\u0634\u064E\u0627\u0626\u0650\u064A\u0646"
+      _AudioFile: Map_Unveal_GameLauncher_Intro
+    - _Id: Map_Unveal_GameLauncher_Open
+      _Character: Ibtissam
+      _Area: map
+      _When: 
+      _Context: Tutorial
+      _English: Press the GAMES button
+      _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
+        \u0631\u064E\u0645\u0652\u0632\u0650 \u0627\u0644\u0623\u064E\u0644\u0652\u0639\u064E\u0627\u0628"
+      _ArabicFemale: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u064A \u0639\u064E\u0644\u064E\u0649
+        \ \u0631\u064E\u0645\u0652\u0632\u0650 \u0627\u0644\u0623\u064E\u0644\u0652\u0639\u064E\u0627\u0628"
+      _AudioFile: Map_Unveal_GameLauncher_Open
+    - _Id: Map_Unveal_Profile_Intro
+      _Character: Keeper
+      _Area: map
+      _When: 
+      _Context: Tutorial
+      _English: All your your progress and stats are here.
+      _Arabic: "\u0647\u064E\u0630\u064E\u0627 \u0627\u0644\u0642\u0650\u0633\u0652\u0645\u064F
+        \u064A\u064E\u062D\u0652\u062A\u064E\u0648\u0650\u064A \u0639\u064E\u0644\u064E\u0649
+        \u0645\u0650\u0644\u064E\u0641\u0651\u0650 \u062A\u064E\u0637\u064E\u0648\u0651\u064F\u0631\u0650
+        \u062A\u064E\u0639\u064E\u0644\u0651\u064F\u0645\u0650\u0643\u064E \u0648\u064E\u0625\u0650\u062D\u0652\u0635\u064E\u0627\u0626\u0650\u064A\u0651\u064E\u0627\u062A\u064D
+        \u0645\u064F\u062E\u0652\u062A\u064E\u0644\u0650\u0641\u064E\u0629 \u0645\u0650\u0646
+        \u0627\u0644\u0644\u0651\u064E\u0639\u0652\u0628\u064E\u0629\u0650"
+      _ArabicFemale: "\u0647\u064E\u0630\u064E\u0627 \u0627\u0644\u0642\u0650\u0633\u0652\u0645\u064F
+        \u064A\u064E\u062D\u0652\u062A\u064E\u0648\u0650\u064A \u0639\u064E\u0644\u064E\u0649
+        \u0645\u0650\u0644\u064E\u0641\u0651\u0650 \u062A\u064E\u0637\u064E\u0648\u0651\u064F\u0631\u0650
+        \u062A\u064E\u0639\u064E\u0644\u0651\u064F\u0645\u0650\u0643\u0650 \u0648\u064E\u0625\u0650\u062D\u0652\u0635\u064E\u0627\u0626\u0650\u064A\u0651\u064E\u0627\u062A\u064D
+        \u0645\u064F\u062E\u0652\u062A\u064E\u0644\u0650\u0641\u064E\u0629 \u0645\u0650\u0646
+        \u0627\u0644\u0644\u0651\u064E\u0639\u0652\u0628\u064E\u0629\u0650"
+      _AudioFile: Map_Unveal_Profile_Intro
+    - _Id: Map_Unveal_Profile_Open
+      _Character: Ibtissam
+      _Area: map
+      _When: 
+      _Context: Tutorial
+      _English: Press the FACE button
+      _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
+        \u0631\u064E\u0645\u0652\u0632\u0650 \u0627\u0644\u0648\u064E\u062C\u0652\u0647\u0650"
+      _ArabicFemale: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u064A \u0639\u064E\u0644\u064E\u0649
+        \ \u0631\u064E\u0645\u0652\u0632\u0650 \u0627\u0644\u0648\u064E\u062C\u0652\u0647\u0650"
+      _AudioFile: Map_Unveal_Profile_Open
     - _Id: Map_Welcome_1
       _Character: Keeper
       _Area: map
@@ -2584,7 +2269,7 @@ MonoBehaviour:
         \u0633\u062A\u0646\u0647\u0650\u064A\u0646 \u0645\u0647\u0645\u062A\u064E\u0643\u0650
         \u0642\u0631\u064A\u0628\u0627\u064B."
       _AudioFile: Map_Welcome_3
-    - _Id: Maze_Intro
+    - _Id: Maze_lettername_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2597,8 +2282,8 @@ MonoBehaviour:
         \u0633\u0627\u0639\u062F\u064A \u0627\u0644\u062D\u0631\u0641\u064E \u0639\u0644\u0649
         \u0627\u0644\u0648\u0635\u0648\u0644\u0650 \u0625\u0644\u0649 \u062E\u0637\u0651\u0650
         \u0627\u0644\u0646\u0647\u0627\u064A\u0629."
-      _AudioFile: Maze_Intro
-    - _Id: Maze_Title
+      _AudioFile: Game_Maze_lettername_Intro
+    - _Id: Maze_lettername_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2606,14 +2291,13 @@ MonoBehaviour:
       _English: Rocket Race!
       _Arabic: "\u0633\u0628\u0627\u0642\u064F \u0627\u0644\u0635\u0627\u0631\u0648\u062E!"
       _ArabicFemale: 
-      _AudioFile: Maze_Title
-    - _Id: Maze_Tuto
+      _AudioFile: Game_Maze_lettername_Title
+    - _Id: Maze_lettername_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial
-      _English: Follow the arrows and draw over the path. Speed is important, don't
-        lose time and don't get out of the track.
+      _English: Follow the arrows, draw over the path and don't get out of the track!
       _Arabic: "\u0627\u062A\u0652\u0628\u0639\u0650 \u0627\u0644\u0623\u0633\u0647\u0645\u064E
         \u0648\u0627\u0631\u0633\u0645\u0652 \u0639\u0644\u0649 \u0627\u0644\u0645\u0645\u0631.
         \u0627\u0644\u0633\u0631\u0639\u0629\u064F \u0645\u0647\u0645\u0629\u060C
@@ -2624,7 +2308,7 @@ MonoBehaviour:
         \u0627\u0644\u0633\u0631\u0639\u0629\u064F \u0645\u0647\u0645\u0629\u060C
         \u0644\u0627 \u062A\u0636\u064A\u0639\u064A \u0648\u0642\u062A\u0627\u064B
         \u0648\u0644\u0627 \u062A\u062E\u0631\u062C\u064A \u0639\u0646 \u0627\u0644\u0645\u0633\u0627\u0631."
-      _AudioFile: Maze_Tuto
+      _AudioFile: Game_Maze_lettername_Tuto
     - _Id: MissingLetter_Intro
       _Character: Keeper
       _Area: minigame
@@ -2639,7 +2323,25 @@ MonoBehaviour:
         \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0629\u064F \u062D\u0631\u0641\u0627\u064B.
         \u0633\u0627\u0639\u062F\u064A\u0647\u0627 \u0639\u0644\u0649 \u0627\u0644\u0639\u062B\u0648\u0631\u0650
         \u0639\u0644\u064A\u0647."
-      _AudioFile: MissingLetter_Intro
+      _AudioFile: Game_MissingLetter_Intro
+    - _Id: MissingLetter_letterform_Title
+      _Character: Keeper
+      _Area: minigame
+      _When: 
+      _Context: Title
+      _English: Missing Form!
+      _Arabic: "\u0627\u0644\u0634\u0643\u0644\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F"
+      _ArabicFemale: 
+      _AudioFile: Game_MissingLetter_letterinword_Title
+    - _Id: MissingLetter_letterinword_Title
+      _Character: Keeper
+      _Area: minigame
+      _When: 
+      _Context: Title
+      _English: Missing Letter!
+      _Arabic: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
+      _ArabicFemale: 
+      _AudioFile: Game_MissingLetter_letterinword_Title
     - _Id: MissingLetter_phrases_Intro
       _Character: Keeper
       _Area: minigame
@@ -2675,15 +2377,6 @@ MonoBehaviour:
       _ArabicFemale: "\u0627\u0639\u062B\u0631\u064A \u0639\u0644\u0649 \u0627\u0644\u0643\u0644\u0645\u0629\u0650
         \u0627\u0644\u0646\u0627\u0642\u0635\u0629\u0650 \u0648\u0627\u0644\u0645\u0633\u064A\u0647\u0627."
       _AudioFile: MissingLetter_phrases_Tuto
-    - _Id: MissingLetter_Title
-      _Character: Keeper
-      _Area: minigame
-      _When: 
-      _Context: Title
-      _English: Missing Letter!
-      _Arabic: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
-      _ArabicFemale: 
-      _AudioFile: MissingLetter_Title
     - _Id: MissingLetter_Tuto
       _Character: Ibtissam
       _Area: minigame
@@ -2694,7 +2387,7 @@ MonoBehaviour:
         \u0627\u0644\u0646\u0627\u0642\u0635\u0650 \u0648\u0627\u0644\u0645\u0633\u0652\u0647."
       _ArabicFemale: "\u0627\u0639\u062B\u0631\u064A \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641\u0650
         \u0627\u0644\u0646\u0627\u0642\u0635\u0650 \u0648\u0627\u0644\u0645\u0633\u064A\u0647."
-      _AudioFile: MissingLetter_Tuto
+      _AudioFile: Game_MissingLetter_Tuto
     - _Id: MixedLetters_alphabet_Intro
       _Character: Keeper
       _Area: minigame
@@ -2740,7 +2433,7 @@ MonoBehaviour:
         \u0627\u0644\u0623\u062D\u0631\u0641\u0650 \u0628\u0634\u0643\u0644\u064D
         \u0635\u062D\u064A\u062D."
       _AudioFile: MixedLetters_alphabet_Tuto
-    - _Id: MixedLetters_spelling_Intro
+    - _Id: MixedLetters_buildword_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2754,8 +2447,8 @@ MonoBehaviour:
         \u062A\u0644\u0643 \u0627\u0644\u0623\u062D\u0631\u0641! \u0633\u0627\u0639\u062F\u064A\u0647\u0627
         \u0639\u0644\u0649 \u062A\u0634\u0643\u064A\u0644\u0650 \u0643\u0644\u0645\u0629\u064D
         \u0645\u0646 \u062C\u062F\u064A\u062F!"
-      _AudioFile: MixedLetters_spelling_Intro
-    - _Id: MixedLetters_spelling_Title
+      _AudioFile: Game_MixedLetters_buildword_Intro
+    - _Id: MixedLetters_buildword_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -2763,14 +2456,14 @@ MonoBehaviour:
       _English: Word Salad!
       _Arabic: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _ArabicFemale: 
-      _AudioFile: MixedLetters_spelling_Title
-    - _Id: MixedLetters_spelling_Tuto
+      _AudioFile: Game_MixedLetters_buildword_Title
+    - _Id: MixedLetters_buildword_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial
-      _English: Drag each LETTER to the right position and use the buttons to rotate
-        it correctly, so the WORD can be whole again.
+      _English: Drag each LETTER to the right position and use the button to rotate
+        it correctly..
       _Arabic: "\u0627\u0633\u062D\u0628\u0652 \u0643\u0644\u0651\u0650 \u062D\u0631\u0641\u064D
         \u0625\u0644\u0649 \u0645\u0648\u0642\u0639\u0650\u0647 \u0627\u0644\u0635\u062D\u064A\u062D.
         \u0627\u0633\u062A\u0639\u0645\u0644\u0650 \u0627\u0644\u0623\u0632\u0631\u0627\u0631\u064E
@@ -2783,7 +2476,7 @@ MonoBehaviour:
         \u0644\u062A\u062F\u0648\u064A\u0631\u0650 \u0627\u0644\u0623\u062D\u0631\u0641\u0650
         \u0628\u0634\u0643\u0644\u064D \u0635\u062D\u064A\u062D\u064D \u0643\u064A
         \u062A\u0643\u062A\u0645\u0644\u064E \u0627\u0644\u0643\u0644\u0645\u0629."
-      _AudioFile: MixedLetters_spelling_Tuto
+      _AudioFile: Game_MixedLetters_buildword_Tuto
     - _Id: Mood_Question_1
       _Character: Keeper
       _Area: mood
@@ -2817,6 +2510,213 @@ MonoBehaviour:
       _ArabicFemale: "\u0623\u0647\u0644\u0627\u064B\u064B \u0628\u0639\u0648\u062F\u062A\u0650\u0643\u0650!
         \u0643\u064A\u0641 \u062A\u0634\u0639\u0631\u064A\u0646 \u0627\u0644\u064A\u0648\u0645\u061F"
       _AudioFile: Mood_Question_3
+    - _Id: Options_Credits
+      _Character: Ibtissam
+      _Area: ui
+      _When: 
+      _Context: Options
+      _English: Credits
+      _Arabic: "\u0641\u064E\u0631\u0650\u064A\u0642\u064F \u0625\u0650\u0646\u0652\u062A\u064E\u0627\u062C\u0650
+        \u0627\u0644\u0644\u0651\u064E\u0639\u0652\u0628\u064E\u0629\u0650"
+      _ArabicFemale: 
+      _AudioFile: Options_Credits
+    - _Id: Options_English_OFF
+      _Character: Ibtissam
+      _Area: ui
+      _When: 
+      _Context: Options
+      _English: English OFF
+      _Arabic: "\u0625\u0650\u062E\u0652\u0641\u064E\u0627\u0621\u064F \u0627\u0644\u062A\u0651\u064E\u0631\u0652\u062C\u064E\u0645\u064E\u0629\u0650
+        \u0627\u0644\u0625\u0650\u0646\u0652\u0643\u0650\u0644\u0650\u064A\u0632\u0650\u064A\u0651\u064E\u0629\u0650"
+      _ArabicFemale: 
+      _AudioFile: Options_English_OFF
+    - _Id: Options_English_ON
+      _Character: Ibtissam
+      _Area: ui
+      _When: 
+      _Context: Options
+      _English: English ON
+      _Arabic: "\u0625\u0650\u0638\u0652\u0647\u064E\u0627\u0631\u064F \u0627\u0644\u062A\u0651\u064E\u0631\u0652\u062C\u064E\u0645\u064E\u0629\u0650
+        \u0627\u0644\u0625\u0650\u0646\u0652\u0643\u0650\u0644\u0650\u064A\u0632\u0650\u064A\u0651\u064E\u0629\u0650"
+      _ArabicFemale: 
+      _AudioFile: Options_English_ON
+    - _Id: Options_Generic_OFF
+      _Character: Ibtissam
+      _Area: ui
+      _When: 
+      _Context: Options
+      _English: Switching OFF
+      _Arabic: "\u0625\u064A\u0642\u0627\u0641"
+      _ArabicFemale: 
+      _AudioFile: Options_Generic_OFF
+    - _Id: Options_Generic_ON
+      _Character: Ibtissam
+      _Area: ui
+      _When: 
+      _Context: Options
+      _English: Switching ON
+      _Arabic: "\u062A\u0634\u063A\u064A\u0644"
+      _ArabicFemale: 
+      _AudioFile: Options_Generic_ON
+    - _Id: Options_Music_OFF
+      _Character: Ibtissam
+      _Area: ui
+      _When: 
+      _Context: Options
+      _English: Music OFF
+      _Arabic: "\u0625\u0650\u064A\u0642\u064E\u0627\u0641\u064F \u0627\u0644\u0645\u064F\u0648\u0633\u0650\u064A\u0642\u064E\u0649"
+      _ArabicFemale: 
+      _AudioFile: Options_Music_OFF
+    - _Id: Options_Music_ON
+      _Character: Ibtissam
+      _Area: ui
+      _When: 
+      _Context: Options
+      _English: Music ON
+      _Arabic: "\u062A\u064E\u0634\u0652\u063A\u0650\u064A\u0644\u064F \u0627\u0644\u0645\u064F\u0648\u0633\u0650\u064A\u0642\u064E\u0649"
+      _ArabicFemale: 
+      _AudioFile: Options_Music_ON
+    - _Id: Options_Subtitles_OFF
+      _Character: Ibtissam
+      _Area: ui
+      _When: 
+      _Context: Options
+      _English: Subtitles OFF
+      _Arabic: "\u0625\u0650\u062E\u0652\u0641\u064E\u0627\u0621\u064F \u0627\u0644\u062A\u0651\u064E\u0631\u0652\u062C\u064E\u0645\u064E\u0629\u0650
+        \u0627\u0644\u0645\u064F\u0635\u064E\u0627\u062D\u0650\u0628\u064E\u0629\u0650"
+      _ArabicFemale: 
+      _AudioFile: Options_Subtitles_OFF
+    - _Id: Options_Subtitles_ON
+      _Character: Ibtissam
+      _Area: ui
+      _When: 
+      _Context: Options
+      _English: Subtitles ON
+      _Arabic: "\u0625\u0650\u0638\u0652\u0647\u064E\u0627\u0631\u064F \u0627\u0644\u062A\u0651\u064E\u0631\u0652\u062C\u064E\u0645\u064E\u0629\u0650
+        \u0627\u0644\u0645\u064F\u0635\u064E\u0627\u062D\u0650\u0628\u064E\u0629\u0650"
+      _ArabicFemale: 
+      _AudioFile: Options_Subtitles_ON
+    - _Id: Parental_Gate
+      _Character: Ibtissam
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: This section is reserved to Parents and Guardians.
+      _Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0645\u0633\u0627\u062D\u0629 \u0645\u062E\u0635\u0635\u0629
+        \u0644\u0644\u0622\u0628\u0627\u0621 \u0648\u0623\u0648\u0644\u064A\u0627\u0621
+        \u0627\u0644\u0623\u0645\u0648\u0631"
+      _ArabicFemale: 
+      _AudioFile: Parental_Gate
+    - _Id: Profile_Age
+      _Character: Ibtissam
+      _Area: home
+      _When: 
+      _Context: 
+      _English: How old are you?
+      _Arabic: "\u0643\u0645 \u0639\u064F\u0645\u0652\u0631\u064F\u0643\u061F"
+      _ArabicFemale: "\u0643\u0645 \u0639\u064F\u0645\u0652\u0631\u064F\u0643\u0650\u061F"
+      _AudioFile: Profile_Age
+    - _Id: Profile_Avatar
+      _Character: Ibtissam
+      _Area: home
+      _When: 
+      _Context: 
+      _English: Select a face
+      _Arabic: "\u0627\u062E\u062A\u064E\u0631 \u0648\u062C\u0647\u0627\u064B."
+      _ArabicFemale: "\u0627\u062E\u062A\u0627\u0631\u064A \u0648\u062C\u0647\u0627\u064B."
+      _AudioFile: Profile_Avatar
+    - _Id: Profile_Color
+      _Character: Ibtissam
+      _Area: home
+      _When: 
+      _Context: 
+      _English: Select a color
+      _Arabic: "\u0627\u062E\u062A\u064E\u064E\u0631 \u0644\u0648\u0646\u0627\u064B."
+      _ArabicFemale: "\u0627\u062E\u062A\u0627\u0631\u064A \u0644\u0648\u0646\u0627\u064B."
+      _AudioFile: Profile_Color
+    - _Id: Profile_Gender
+      _Character: Ibtissam
+      _Area: home
+      _When: 
+      _Context: 
+      _English: Are you a girl or a boy?
+      _Arabic: "\u0647\u0644 \u0623\u0646\u062A\u064E \u0648\u0644\u062F \u0623\u0645
+        \u0628\u0646\u062A\u061F"
+      _ArabicFemale: 
+      _AudioFile: Profile_Gender
+    - _Id: Profile_Years_10
+      _Character: Ibtissam
+      _Area: home
+      _When: 
+      _Context: 
+      _English: 10 years
+      _Arabic: "\u0639\u0634\u0631\u064F \u0633\u0646\u0648\u0627\u062A"
+      _ArabicFemale: 
+      _AudioFile: Profile_Years_10
+    - _Id: Profile_Years_11
+      _Character: Ibtissam
+      _Area: home
+      _When: 
+      _Context: 
+      _English: 11 or more years
+      _Arabic: "\u0625\u062D\u062F\u0649 \u0639\u0634\u0631\u0629 \u0633\u0646\u0629\u064B
+        \u0623\u0648 \u0623\u0643\u062B\u0631"
+      _ArabicFemale: 
+      _AudioFile: Profile_Years_11
+    - _Id: Profile_Years_4
+      _Character: Ibtissam
+      _Area: home
+      _When: 
+      _Context: 
+      _English: 4 years
+      _Arabic: "\u0623\u0631\u0628\u0639\u064F \u0633\u0646\u0648\u0627\u062A"
+      _ArabicFemale: 
+      _AudioFile: Profile_Years_4
+    - _Id: Profile_Years_5
+      _Character: Ibtissam
+      _Area: home
+      _When: 
+      _Context: 
+      _English: 5 years
+      _Arabic: "\u062E\u0645\u0633\u064F \u0633\u0646\u0648\u0627\u062A"
+      _ArabicFemale: 
+      _AudioFile: Profile_Years_5
+    - _Id: Profile_Years_6
+      _Character: Ibtissam
+      _Area: home
+      _When: 
+      _Context: 
+      _English: 6 years
+      _Arabic: "\u0633\u062A\u0651\u064F \u0633\u0646\u0648\u0627\u062A"
+      _ArabicFemale: 
+      _AudioFile: Profile_Years_6
+    - _Id: Profile_Years_7
+      _Character: Ibtissam
+      _Area: home
+      _When: 
+      _Context: 
+      _English: 7 years
+      _Arabic: "\u0633\u0628\u0639\u064F \u0633\u0646\u0648\u0627\u062A"
+      _ArabicFemale: 
+      _AudioFile: Profile_Years_7
+    - _Id: Profile_Years_8
+      _Character: Ibtissam
+      _Area: home
+      _When: 
+      _Context: 
+      _English: 8 years
+      _Arabic: "\u062B\u0645\u0627\u0646\u064A\u0652 \u0633\u0646\u0648\u0627\u062A"
+      _ArabicFemale: 
+      _AudioFile: Profile_Years_8
+    - _Id: Profile_Years_9
+      _Character: Ibtissam
+      _Area: home
+      _When: 
+      _Context: 
+      _English: 9 years
+      _Arabic: "\u062A\u0633\u0639\u064F \u0633\u0646\u0648\u0627\u062A"
+      _ArabicFemale: 
+      _AudioFile: Profile_Years_9
     - _Id: ReadingGame_Intro
       _Character: Keeper
       _Area: minigame
@@ -2857,6 +2757,138 @@ MonoBehaviour:
         \u062B\u0645 \u0623\u062C\u0650\u064A\u0628\u064A \u0628\u0634\u0643\u0644\u064D
         \u0635\u062D\u064A\u062D"
       _AudioFile: ReadingGame_Tuto
+    - _Id: ReservedArea_CreateDemoUser
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: Create demo player
+      _Arabic: "\u0625\u0646\u0634\u0627\u0621 \u0644\u0627\u0639\u0628 \u062A\u062C\u0631\u064A\u0628\u064A"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_DeleteProfile
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: Delete
+      _Arabic: "\u062D\u0630\u0641"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_DemoUserAlreadyExists
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: Demo user already exists
+      _Arabic: "\u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u062A\u062C\u0631\u064A\u0628\u064A
+        \u0645\u0648\u062C\u0648\u062F \u0623\u0635\u0644\u0627\u064B"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_ExportProfile
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: Export
+      _Arabic: "\u062A\u0635\u062F\u064A\u0631"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_InstallInstructions
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: Install instructions
+      _Arabic: "\u062A\u062B\u0628\u064A\u062A \u0627\u0644\u062A\u0639\u0644\u064A\u0645\u0627\u062A"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_Privacy
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: Privacy Policy
+      _Arabic: "\u0627\u0644\u062E\u0635\u0648\u0635\u064A\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_Rate
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: Rate
+      _Arabic: "\u0645\u0639\u062F\u0644"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_Recommend
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: Recommend
+      _Arabic: "\u0646\u0648\u0635\u064A"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_ReviewProfile
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: Review
+      _Arabic: "\u0645\u062A\u0627\u0628\u0639\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_SectionDescription_Error
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: If you make an error, retry by re-accessing this panel
+      _Arabic: "\u0641\u064A \u062D\u0627\u0644 \u0623\u062E\u0637\u0623\u062A\u060C
+        \u0623\u0639\u062F \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629 \u0628\u0627\u0633\u062A\u0639\u0645\u0627\u0644
+        \u0647\u0630\u0647 \u0627\u0644\u0644\u0648\u062D\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_SectionDescription_Intro
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: This section is reserved for parents and guardians.
+      _Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0645\u0633\u0627\u062D\u0629 \u0645\u062E\u0635\u0635\u0629
+        \u0644\u0644\u0622\u0628\u0627\u0621 \u0648\u0623\u0648\u0644\u064A\u0627\u0621
+        \u0627\u0644\u0623\u0645\u0648\u0631"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_Title
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: RESERVED AREA
+      _Arabic: "\u0645\u0646\u0637\u0642\u0629 \u0627\u0644\u0622\u0628\u0627\u0621"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_UnlockingWaring
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: UNLOCKING... please wait
+      _Arabic: "\u062C\u0627\u0631\u064A \u0627\u0644\u0641\u062A\u062D! \u064A\u0631\u062C\u0649
+        \u0627\u0644\u0625\u0646\u062A\u0638\u0627\u0631"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: ReservedArea_Website
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: Website
+      _Arabic: "\u0645\u0648\u0642\u0639 \u0627\u0644\u0643\u062A\u0631\u0648\u0646\u064A"
+      _ArabicFemale: 
+      _AudioFile: 
     - _Id: Reward_0Star
       _Character: Keeper
       _Area: reward
@@ -2871,13 +2903,31 @@ MonoBehaviour:
         \u0633\u064A\u0643\u0648\u0646\u064F \u0623\u062F\u0627\u0624\u0643\u0650
         \u0623\u0641\u0636\u0644!"
       _AudioFile: Reward_0Star
+    - _Id: Reward_0Star_1
+      _Character: Keeper
+      _Area: reward
+      _When: 
+      _Context: When the player scores 0 bones in a minigame
+      _English: You can retry if you want...
+      _Arabic: "\u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u064E \u0625\u0650\u0639\u064E\u0627\u062F\u064E\u0629\u064F
+        \u0627\u0644\u0645\u064F\u062D\u064E\u0627\u0648\u064E\u0644\u064E\u0629\u0650
+        \u0625\u0650\u0630\u064E\u0627 \u0643\u064F\u0646\u0652\u062A\u064E \u062A\u064E\u0631\u0652\u063A\u064E\u0628\u064F
+        \u0641\u0650\u064A \u0627\u0644\u062D\u064F\u0635\u064F\u0648\u0644\u0650
+        \u0639\u064E\u0644\u064E\u0649 \u0646\u064E\u062A\u0650\u064A\u062C\u064E\u0629\u064D
+        \u0623\u064E\u0641\u0652\u0636\u064E\u0644\u064E"
+      _ArabicFemale: "\u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u0650
+        \u0625\u0650\u0639\u064E\u0627\u062F\u064E\u0629\u064F \u0627\u0644\u0645\u064F\u062D\u064E\u0627\u0648\u064E\u0644\u064E\u0629\u0650
+        \u0625\u0650\u0630\u064E\u0627 \u0643\u064F\u0646\u0652\u062A\u0650 \u062A\u064E\u0631\u0652\u063A\u064E\u0628\u0650\u064A\u0646\u064E
+        \u0641\u0650\u064A \u0627\u0644\u062D\u064F\u0635\u064F\u0648\u0644\u0650
+        \u0639\u064E\u0644\u064E\u0649 \u0646\u064E\u062A\u0650\u064A\u062C\u064E\u0629\u064D
+        \u0623\u064E\u0641\u0652\u0636\u064E\u0644\u064E"
+      _AudioFile: Reward_0Star_1
     - _Id: Reward_1Star_1
       _Character: Keeper
       _Area: reward
       _When: 
       _Context: The bar fllls up to 1-Star >>> 1 Reward out of 3
-      _English: Well done! But will have to practice more if you want to get all the
-        Gifts...
+      _English: Well done! But you will have to practice more
       _Arabic: "\u0623\u062D\u0633\u064E\u0646\u062A! \u0644\u0643\u0646\u0652 \u062A\u062D\u062A\u0627\u062C\u064F
         \u0627\u0644\u0645\u0632\u064A\u062F\u064E \u0645\u0646 \u0627\u0644\u062A\u062F\u0631\u064A\u0628\u0650
         \u0644\u062A\u062D\u0635\u0644\u064E \u0639\u0644\u0649 \u0643\u0644\u0651\u0650
@@ -2921,7 +2971,7 @@ MonoBehaviour:
       _Area: reward
       _When: 
       _Context: The bar fllls up to 2-Stars >>> 2 Rewards out of 3
-      _English: Great! You almost got all the Gifts...
+      _English: Great! You almost got it all
       _Arabic: "\u0645\u0645\u062A\u0627\u0632! \u0623\u0648\u0634\u0643\u062A\u064E
         \u0639\u0644\u0649 \u062C\u0645\u0639\u0650 \u0643\u0644\u0651\u0650 \u0627\u0644\u0647\u062F\u0627\u064A\u0627."
       _ArabicFemale: "\u0645\u0645\u062A\u0627\u0632! \u0623\u0648\u0634\u0643\u062A\u0650
@@ -2967,7 +3017,7 @@ MonoBehaviour:
       _Area: reward
       _When: 
       _Context: 
-      _English: Brilliant! You deserved all the Gifts!
+      _English: Brilliant! You deserved it!
       _Arabic: "\u0645\u062F\u0647\u0634! \u062A\u0633\u062A\u062D\u0642\u0651\u064F
         \u0643\u0644 \u0627\u0644\u0647\u062F\u0627\u064A\u0627!"
       _ArabicFemale: "\u0645\u062F\u0647\u0634! \u062A\u0633\u062A\u062D\u0642\u0651\u064A\u0646
@@ -3019,7 +3069,7 @@ MonoBehaviour:
       _AudioFile: Reward_Big_3
     - _Id: Reward_Intro
       _Character: Keeper
-      _Area: rewards
+      _Area: reward
       _When: 1 ITEM (BIG REWARD) is unlocked
       _Context: Keeper give you the first reward
       _English: Here you have a first Gift, so you can start playing with Antura immediately
@@ -3109,6 +3159,19 @@ MonoBehaviour:
         \u0627\u0644\u062A\u064A \u0623\u062E\u0628\u064E\u0631\u064E\u062A\u0652\u0643\u0650
         \u0639\u0646\u0647\u0627."
       _AudioFile: Scanner_Tuto
+    - _Id: Scanner_Tuto_Antura
+      _Character: Ibtissam
+      _Area: minigame
+      _When: 
+      _Context: 
+      _English: Drag the scanner over Antura to push him away
+      _Arabic: "\u0627\u0633\u062D\u0628\u0652 \u062C\u0647\u0627\u0632\u064E \u0627\u0644\u0645\u0633\u062D\u0650
+        \u0641\u0648\u0642\u064E \u0639\u0646\u062A\u0648\u0631\u0629 \u0644\u062A\u062F\u0641\u0639\u064E\u0647
+        \u0628\u0639\u064A\u062F\u0627\u064B."
+      _ArabicFemale: "\u0627\u0633\u062D\u0628\u064A \u062C\u0647\u0627\u0632\u064E
+        \u0627\u0644\u0645\u0633\u062D\u0650 \u0641\u0648\u0642\u064E \u0639\u0646\u062A\u0648\u0631\u0629
+        \u0644\u062A\u062F\u0641\u0639\u064A\u0647\u0650 \u0628\u0639\u064A\u062F\u0627\u064B."
+      _AudioFile: Scanner_Tuto_Antura
     - _Id: SelectGame_Begin_1
       _Character: Keeper
       _Area: selector
@@ -3172,7 +3235,7 @@ MonoBehaviour:
       _ArabicFemale: "\u0627\u0644\u0645\u0633\u064A \u0627\u0644\u0641\u0642\u0627\u0639\u0627\u062A\u0650
         \u0644\u062A\u0641\u0642\u0639\u064A\u0647\u0627."
       _AudioFile: SelectGame_Tuto_3
-    - _Id: SickLetters_Intro
+    - _Id: SickLetters_lettername_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -3187,8 +3250,8 @@ MonoBehaviour:
         \u0623\u0643\u0628\u0631\u064E \u0648\u0632\u0646\u064D \u0645\u0645\u0643\u0646\u064D
         \u0645\u0646 \u062A\u0644\u0643 \u0627\u0644\u062D\u0631\u0643\u0627\u062A\u0650
         \u0627\u0644\u062E\u0627\u0637\u0626\u0629!"
-      _AudioFile: SickLetters_Intro
-    - _Id: SickLetters_Title
+      _AudioFile: Game_SickLetters_lettername_Intro
+    - _Id: SickLetters_lettername_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -3196,8 +3259,8 @@ MonoBehaviour:
       _English: Sick Letters!
       _Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u0645\u0631\u064A\u0636\u0629!"
       _ArabicFemale: 
-      _AudioFile: SickLetters_Title
-    - _Id: SickLetters_Tuto
+      _AudioFile: Game_SickLetters_lettername_Title
+    - _Id: SickLetters_lettername_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
@@ -3211,7 +3274,37 @@ MonoBehaviour:
         \u0648\u0627\u0644\u0646\u0642\u0627\u0637\u064E \u0627\u0644\u062E\u0627\u0637\u0626\u0629\u064E
         \u062E\u0627\u0631\u062C\u064E \u0627\u0644\u062D\u0631\u0641\u0650 \u062B\u0645
         \u0636\u0639\u064A\u0647\u0645 \u062F\u0627\u062E\u0644\u064E \u0627\u0644\u0645\u0632\u0647\u0631\u064A\u0629."
-      _AudioFile: SickLetters_Tuto
+      _AudioFile: Game_SickLetters_lettername_Tuto
+    - _Id: Song_alphabet_Intro
+      _Character: Keeper
+      _Area: minigame
+      _When: 
+      _Context: Introduction
+      _English: It's time to sing all the letters in order.
+      _Arabic: "\u062D\u0627\u0646 \u0648\u0642\u062A\u064F \u063A\u0646\u0627\u0621\u0650
+        \u0627\u0644\u0623\u062D\u0631\u0641\u0650 \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628."
+      _ArabicFemale: 
+      _AudioFile: Game_Song_alphabet_Intro
+    - _Id: Song_alphabet_Title
+      _Character: Keeper
+      _Area: minigame
+      _When: 
+      _Context: Title
+      _English: Alphabet Song
+      _Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629"
+      _ArabicFemale: 
+      _AudioFile: Game_Song_alphabet_Title
+    - _Id: Song_alphabet_Tuto
+      _Character: Ibtissam
+      _Area: minigame
+      _When: 
+      _Context: Tutorial
+      _English: Follow the lyrics with your finger.
+      _Arabic: "\u062A\u062A\u0628\u0651\u0639\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
+        \u0628\u0625\u0635\u0628\u0639\u0643."
+      _ArabicFemale: "\u062A\u062A\u0628\u0651\u0639\u064A \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
+        \u0628\u0625\u0635\u0628\u0639\u0650\u0643."
+      _AudioFile: Game_Song_alphabet_Tuto
     - _Id: TakeMeHome_Intro
       _Character: Keeper
       _Area: minigame
@@ -3273,28 +3366,7 @@ MonoBehaviour:
         \u0628\u0635\u0648\u062A\u064D \u0639\u0627\u0644\u064D\u060C \u0648\u0627\u0646\u062A\u0628\u0650\u0647\u064A
         \u0625\u0644\u0649 \u062D\u0631\u0643\u0629\u0650 \u0641\u0645\u0650\u0643."
       _AudioFile: TakeMeHome_Tuto_Reminder
-    - _Id: ThrowBalls_Extra_Intro
-      _Character: Keeper
-      _Area: minigame
-      _When: Introduction
-      _Context: One of the letters belongs to the Word.
-      _English: 
-      _Arabic: "\u062C\u062F \u0627\u0644\u062D\u0631\u0641 \u0627\u0644\u0645\u0648\u062C\u0648\u062F
-        \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629"
-      _ArabicFemale: "\u0627\u0639\u062B\u0631\u064A \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641
-        \u0627\u0644\u0645\u0648\u062C\u0648\u062F \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629."
-      _AudioFile: ThrowBalls_Extra_Intro
-    - _Id: ThrowBalls_Extra_Title
-      _Character: Keeper
-      _Area: minigame
-      _When: 
-      _Context: 'SlingShot: Letter in Word!'
-      _English: 
-      _Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0644\u062D\u0631\u0641
-        \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629!"
-      _ArabicFemale: 
-      _AudioFile: ThrowBalls_Extra_Title
-    - _Id: ThrowBalls_letterinword_Title
+    - _Id: ThrowBalls_buildword_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -3304,14 +3376,14 @@ MonoBehaviour:
         \u0627\u0644\u062D\u0631\u0648\u0641\u0650 \u0644\u062A\u0643\u0648\u064A\u0646
         \u0627\u0644\u0643\u0644\u0645\u0629!"
       _ArabicFemale: 
-      _AudioFile: ThrowBalls_letterinword_Title
-    - _Id: ThrowBalls_letterinword_Tuto
+      _AudioFile: Game_ThrowBalls_buildword_Title
+    - _Id: ThrowBalls_buildword_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial
-      _English: Did you hear that? Drag the ball down to charge the slingshot, and
-        hit the LETTERS in the right sequence.
+      _English: Drag the ball down to charge the slingshot, and hit the LETTERS in
+        the right sequence.
       _Arabic: "\u0647\u0644 \u0633\u0645\u0639\u062A\u064E \u0647\u0630\u0627 \u0627\u0644\u0635\u0648\u062A\u061F
         \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0631\u0629\u064E \u0625\u0644\u0649
         \u0627\u0644\u0623\u0633\u0641\u0644\u0650 \u0644\u062A\u0634\u062F\u0651\u064E
@@ -3324,8 +3396,19 @@ MonoBehaviour:
         \u0627\u0644\u0645\u0642\u0644\u0627\u0639\u064E \u062B\u0645 \u0635\u064E\u0648\u0651\u0650\u0628\u064A
         \u0639\u0644\u0649 \u0627\u0644\u0623\u062D\u0631\u0641\u0650 \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628
         \u0627\u0644\u0635\u062D\u064A\u062D."
-      _AudioFile: ThrowBalls_letterinword_Tuto
-    - _Id: ThrowBalls_letters_Intro
+      _AudioFile: Game_ThrowBalls_buildword_Tuto
+    - _Id: ThrowBalls_Extra_Intro
+      _Character: Keeper
+      _Area: minigame
+      _When: 
+      _Context: Introduction
+      _English: One of the letters belongs to the Word.
+      _Arabic: "\u0627\u0639\u062B\u0631 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641
+        \u0627\u0644\u0645\u0648\u062C\u0648\u062F \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629"
+      _ArabicFemale: "\u0627\u0639\u062B\u0631\u064A \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641
+        \u0627\u0644\u0645\u0648\u062C\u0648\u062F \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629."
+      _AudioFile: ThrowBalls_Extra_Intro
+    - _Id: ThrowBalls_Intro
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -3337,36 +3420,45 @@ MonoBehaviour:
       _ArabicFemale: "\u0648\u0642\u062A\u064F \u0627\u0644\u0645\u0642\u0644\u0627\u0639!
         \u0627\u0636\u0631\u0650\u0628\u064A \u0627\u0644\u0623\u0647\u062F\u0627\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629!"
-      _AudioFile: ThrowBalls_letters_Intro
-    - _Id: ThrowBalls_letters_Title
+      _AudioFile: Game_ThrowBalls_Intro
+    - _Id: ThrowBalls_letterany_Title
       _Character: Keeper
       _Area: minigame
       _When: 
       _Context: Title
-      _English: 'SlingShot: letters hunt'
+      _English: 'SlingShot: Letters Hunt'
       _Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
-      _AudioFile: ThrowBalls_letters_Title
-    - _Id: ThrowBalls_letters_Tuto
+      _AudioFile: Game_ThrowBalls_letterany_Title
+    - _Id: ThrowBalls_lettername_Title
+      _Character: Keeper
+      _Area: minigame
+      _When: 
+      _Context: Title
+      _English: 'SlingShot: Alphabet Hunt'
+      _Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
+        \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629"
+      _ArabicFemale: 
+      _AudioFile: Game_ThrowBalls_lettername_Title
+    - _Id: ThrowBalls_lettername_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial
-      _English: Did you hear that? Drag the ball down to charge the slingshot, and
-        hit the right LETTER.
+      _English: Drag the ball down to charge the slingshot, and hit the right LETTER.
       _Arabic: "\u0647\u0644 \u0633\u0645\u0639\u062A\u064E \u0647\u0630\u0627 \u0627\u0644\u0635\u0648\u062A\u061F
         \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0631\u0629\u064E \u0625\u0644\u0649
         \u0627\u0644\u0623\u0633\u0641\u0644\u0650 \u0644\u062A\u0634\u064F\u062F\u0651\u064E
-        \u0627\u0644\u0645\u0642\u0644\u0627\u0639\u064E \u062B\u0645 \u0635\u064E\u0648\u064E\u0650\u0628
+        \u0627\u0644\u0645\u0642\u0644\u0627\u0639\u064E \u062B\u0645 \u0635\u064E\u0648\u0651\u0650\u0628
         \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641\u0650 \u0627\u0644\u0635\u062D\u064A\u062D."
       _ArabicFemale: "\u0647\u0644 \u0633\u0645\u0639\u062A\u0650 \u0647\u0630\u0627
         \u0627\u0644\u0635\u0648\u062A\u061F \u0627\u0633\u062D\u0628\u064A \u0627\u0644\u0643\u0631\u0629\u064E
         \u0625\u0644\u0649 \u0627\u0644\u0623\u0633\u0641\u0644\u0650 \u0644\u062A\u0634\u064F\u062F\u0651\u0650\u064A
         \u0627\u0644\u0645\u0642\u0644\u0627\u0639\u064E \u062B\u0645 \u0635\u064E\u0648\u0651\u0650\u0628\u064A
         \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641\u0650 \u0627\u0644\u0635\u062D\u064A\u062D."
-      _AudioFile: ThrowBalls_letters_Tuto
-    - _Id: ThrowBalls_words_Title
+      _AudioFile: Game_ThrowBalls_lettername_Tuto
+    - _Id: ThrowBalls_word_Title
       _Character: Keeper
       _Area: minigame
       _When: 
@@ -3375,14 +3467,13 @@ MonoBehaviour:
       _Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _ArabicFemale: 
-      _AudioFile: ThrowBalls_words_Title
-    - _Id: ThrowBalls_words_Tuto
+      _AudioFile: Game_ThrowBalls_word_Title
+    - _Id: ThrowBalls_word_Tuto
       _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial
-      _English: Did you hear that? Drag the ball down to charge the slingshot, and
-        hit the right IMAGE.
+      _English: Drag the ball down to charge the slingshot, and hit the right IMAGE.
       _Arabic: "\u0647\u0644 \u0633\u0645\u0639\u062A\u064E \u0647\u0630\u0627 \u0627\u0644\u0635\u0648\u062A\u061F
         \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0631\u0629\u064E \u0625\u0644\u0649
         \u0627\u0644\u0623\u0633\u0641\u0644\u0650 \u0644\u062A\u0634\u062F\u0651\u064E
@@ -3393,7 +3484,7 @@ MonoBehaviour:
         \u0625\u0644\u0649 \u0627\u0644\u0623\u0633\u0641\u0644\u0650 \u0644\u062A\u0634\u064F\u062F\u0651\u0650\u064A
         \u0627\u0644\u0645\u0642\u0644\u0627\u0639\u064E \u062B\u0645 \u0635\u064E\u0648\u0651\u0650\u0628\u064A
         \u0639\u0644\u0649 \u0627\u0644\u0635\u0648\u0631\u0629\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      _AudioFile: ThrowBalls_words_Tuto
+      _AudioFile: Game_ThrowBalls_word_Tuto
     - _Id: Tobogan_letters_Intro
       _Character: Keeper
       _Area: minigame
@@ -3462,7 +3553,7 @@ MonoBehaviour:
         \u0641\u064A \"\u0627\u0644\u0634\u0651\u0645\u0633\" \u0623\u0645 \"\u0627\u0644\u0642\u0645\u0631\"\u061F"
       _AudioFile: Tobogan_words_Tuto_Article
     - _Id: Tobogan_words_Tuto_Letter
-      _Character: 
+      _Character: Ibtissam
       _Area: minigame
       _When: 
       _Context: Tutorial (Moon & Sun consonants/words)
@@ -3487,6 +3578,32 @@ MonoBehaviour:
         \u062B\u0645 \u0627\u0633\u062D\u0628\u064A \u0627\u0644\u0643\u0644\u0645\u0629\u064E
         \u0646\u062D\u0648 \u0627\u0644\u0623\u0646\u0628\u0648\u0628\u0650 \u0627\u0644\u0635\u062D\u064A\u062D."
       _AudioFile: Tobogan_words_Tuto_Word
+    - _Id: UI_AlertFinalRelease
+      _Character: UI
+      _Area: 
+      _When: 
+      _Context: 
+      _English: Thank you for downloading the final release of Antura and the Letters
+        and for helping us playing the beta version. All existing player profiles
+        are no more compatible with the game and they must be deleted.
+      _Arabic: "\u0634\u064F\u0643\u0652\u0631\u064B\u0627 \u0644\u064E\u0643\u064F\u0645\u0652
+        \u0644\u0650\u062A\u064E\u062D\u0652\u0645\u0650\u064A\u0644 \u0627\u0644\u0625\u0650\u0635\u0652\u062F\u064E\u0627\u0631
+        \u0627\u0644\u0646\u0651\u0650\u0647\u064E\u0627\u0626\u0650\u064A\u0651 \u0645\u0650\u0646\u0652
+        \u0639\u0646\u062A\u0648\u0631\u0629 \u0648\u064E\u0627\u0644\u062D\u064F\u0631\u064F\u0648\u0641
+        \u0648\u064E \u0644\u0650\u0645\u064F\u0633\u064E\u0627\u0639\u064E\u062F\u064E\u062A\u0650\u0646\u064E\u0627
+        \u0645\u0650\u0646\u0652 \u062E\u0650\u0644\u064E\u0627\u0644 \u0644\u064E\u0639\u0650\u0628\u0650
+        \u0627\u0644\u0646\u0651\u064F\u0633\u0652\u062E\u064E\u0629\u0650 \u0627\u0644\u062A\u0651\u064E\u062C\u0652\u0631\u0650\u064A\u0628\u0650\u064A\u0651\u064E\u0629.
+        \u062A\u064E\u0645\u0651\u064E \u062A\u064E\u062D\u0652\u062F\u0650\u064A\u062B\u064F
+        \u0642\u064E\u0627\u0639\u0650\u062F\u064E\u0629\u0650 \u0627\u0644\u0628\u064E\u064A\u064E\u0627\u0646\u064E\u0627\u062A\u0650
+        \u0648\u064E\u0644\u0650\u0633\u064F\u0648\u0621\u0650 \u0627\u0644\u062D\u064E\u0638\u0651,
+        \u0627\u0644\u0645\u0650\u0644\u064E\u0641\u0651\u064E\u0627\u062A\u064F \u0627\u0644\u0634\u0651\u064E\u062E\u0652\u0635\u0650\u064A\u0651\u064E\u0629\u064E
+        \u0644\u0650\u0644\u064E\u0627\u0639\u0650\u0628\u0650\u064A\u0646\u064E \u0623\u064E\u0635\u0652\u0628\u064E\u062D\u064E\u062A\u0652
+        \u063A\u064E\u064A\u0652\u0631\u064E \u0645\u064F\u062A\u064E\u0648\u064E\u0627\u0641\u0650\u0642\u064E\u0629\u064D
+        \u0645\u064E\u0639\u064E \u0627\u0644\u0625\u0650\u0635\u0652\u062F\u064E\u0627\u0631\u0650
+        \u0627\u0644\u062C\u064E\u062F\u0650\u064A\u062F \u0648\u064E\u064A\u064E\u062C\u0650\u0628\u064F
+        \u062D\u064E\u0630\u0652\u0641\u064F\u0647\u064E\u0627."
+      _ArabicFemale: 
+      _AudioFile: 
     - _Id: UI_All
       _Character: UI
       _Area: ui
@@ -3505,6 +3622,33 @@ MonoBehaviour:
       _Arabic: "\u062D\u064A\u0648\u0627\u0646\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: UI_Animals
+    - _Id: UI_Antura_Rewards
+      _Character: UI
+      _Area: Player Profile
+      _When: 
+      _Context: 
+      _English: Antura Rewards
+      _Arabic: "\u062C\u0648\u0627\u0626\u0632 \u0639\u0646\u062A\u0648\u0631\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_AreYouSure
+      _Character: Ibtissam
+      _Area: ui
+      _When: 
+      _Context: 
+      _English: Are you sure?
+      _Arabic: "\u0647\u0644 \u0623\u0646\u062A\u064E \u0645\u062A\u0623\u0643\u062F\u061F"
+      _ArabicFemale: "\u0647\u0644 \u0623\u0646\u062A\u0650 \u0645\u062A\u0623\u0643\u062F\u0629\u061F"
+      _AudioFile: UI_AreYouSure
+    - _Id: UI_Attention
+      _Character: UI
+      _Area: 
+      _When: 
+      _Context: 
+      _English: Important Warning
+      _Arabic: "\u062A\u064E\u062D\u0652\u0630\u0650\u064A\u0631\u064C \u0647\u064E\u0627\u0645\u0651\u064C"
+      _ArabicFemale: 
+      _AudioFile: 
     - _Id: UI_BodyParts
       _Character: UI
       _Area: ui
@@ -3514,6 +3658,15 @@ MonoBehaviour:
       _Arabic: "\u0623\u0639\u0636\u0627\u0621 \u0627\u0644\u062C\u0633\u0645"
       _ArabicFemale: 
       _AudioFile: UI_Body Parts
+    - _Id: UI_Bones
+      _Character: UI
+      _Area: Player Profile
+      _When: 
+      _Context: 
+      _English: Cookies
+      _Arabic: "\u0643\u0639\u0643\u0627\u062A"
+      _ArabicFemale: 
+      _AudioFile: 
     - _Id: UI_Clothes
       _Character: UI
       _Area: ui
@@ -3541,6 +3694,15 @@ MonoBehaviour:
       _Arabic: "\u062A\u0631\u0643\u064A\u0628\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: UI_Combinations
+    - _Id: UI_Conjunctions
+      _Character: UI
+      _Area: ui
+      _When: 
+      _Context: 
+      _English: Conjunctions
+      _Arabic: "\u0627\u0644\u0639\u0637\u0641/\u0627\u0644\u0631\u0628\u0637"
+      _ArabicFemale: 
+      _AudioFile: 
     - _Id: UI_Directions
       _Character: UI
       _Area: ui
@@ -3595,6 +3757,24 @@ MonoBehaviour:
       _Arabic: "\u0623\u0644\u0639\u0627\u0628"
       _ArabicFemale: 
       _AudioFile: UI_Games
+    - _Id: UI_Games_played
+      _Character: UI
+      _Area: Player Profile
+      _When: 
+      _Context: 
+      _English: Games played
+      _Arabic: "\u0623\u0644\u0639\u0627\u0628 \u0645\u0644\u0639\u0648\u0628\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_General
+      _Character: UI
+      _Area: ui
+      _When: 
+      _Context: 
+      _English: Year
+      _Arabic: "\u0639\u0627\u0645"
+      _ArabicFemale: 
+      _AudioFile: 
     - _Id: UI_Jobs
       _Character: UI
       _Area: ui
@@ -3604,6 +3784,24 @@ MonoBehaviour:
       _Arabic: "\u0648\u0638\u0627\u0626\u0641"
       _ArabicFemale: 
       _AudioFile: UI_Jobs
+    - _Id: UI_Journey_duration
+      _Character: UI
+      _Area: Player Profile
+      _When: 
+      _Context: 
+      _English: Journey duration
+      _Arabic: "\u0645\u062F\u0629 \u0627\u0644\u0631\u062D\u0644\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_LearningBlock
+      _Character: UI
+      _Area: ui
+      _When: 
+      _Context: 
+      _English: Learning Block
+      _Arabic: "\u0645\u0642\u0637\u0639 \u062A\u0639\u0644\u064A\u0645\u064A"
+      _ArabicFemale: 
+      _AudioFile: 
     - _Id: UI_Letters
       _Character: UI
       _Area: ui
@@ -3622,6 +3820,35 @@ MonoBehaviour:
       _Arabic: "\u0637\u0628\u064A\u0639\u0629"
       _ArabicFemale: 
       _AudioFile: UI_Nature
+    - _Id: UI_No
+      _Character: Ibtissam
+      _Area: ui
+      _When: 
+      _Context: 
+      _English: No
+      _Arabic: "\u0644\u0627"
+      _ArabicFemale: 
+      _AudioFile: UI_No
+    - _Id: UI_None
+      _Character: UI
+      _Area: ui
+      _When: 
+      _Context: 
+      _English: Nothing
+      _Arabic: "\u0644\u0627 \u0634\u064A\u0621"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Notification_24h
+      _Character: UI
+      _Area: 
+      _When: 
+      _Context: 
+      _English: Antura is waiting for you to play!
+      _Arabic: "\u0639\u0646\u062A\u0648\u0631\u0629 \u064A\u064E\u0646\u0652\u062A\u064E\u0638\u0650\u0631\u064F\u0643\u064E
+        \u0644\u0650\u062A\u064E\u0644\u0652\u0639\u064E\u0628\u064E \u0645\u064E\u0639\u064E\u0647\u064F!"
+      _ArabicFemale: "\u0639\u0646\u062A\u0648\u0631\u0629 \u064A\u064E\u0646\u0652\u062A\u064E\u0638\u0650\u0631\u064F\u0643\u0650
+        \u0644\u0650\u062A\u064E\u0644\u0652\u0639\u064E\u0628\u0650\u064A \u0645\u064E\u0639\u064E\u0647\u064F!"
+      _AudioFile: 
     - _Id: UI_Noun
       _Character: UI
       _Area: ui
@@ -3640,6 +3867,25 @@ MonoBehaviour:
       _Arabic: "\u0623\u0631\u0642\u0627\u0645"
       _ArabicFemale: 
       _AudioFile: UI_Numbers
+    - _Id: UI_NumbersOrdinal
+      _Character: UI
+      _Area: ui
+      _When: 
+      _Context: 
+      _English: Ordinal Numbers
+      _Arabic: "\u0627\u0644\u0623\u0639\u062F\u0627\u062F \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_OverallStats
+      _Character: UI
+      _Area: Player Profile
+      _When: 
+      _Context: 
+      _English: Overall Stats
+      _Arabic: "\u0625\u0650\u062D\u0652\u0635\u064E\u0627\u0626\u0650\u064A\u0651\u064E\u0627\u062A\u064F
+        \u0627\u0644\u0645\u064F\u0633\u0652\u062A\u064E\u062E\u0652\u062F\u0650\u0645\u0650"
+      _ArabicFemale: 
+      _AudioFile: 
     - _Id: UI_People
       _Character: UI
       _Area: ui
@@ -3658,6 +3904,60 @@ MonoBehaviour:
       _Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: UI_Phrases
+    - _Id: UI_Phrases_Expressions
+      _Character: UI
+      _Area: book
+      _When: 
+      _Context: 
+      _English: Expressions
+      _Arabic: "\u0627\u0644\u062A\u0639\u0628\u064A\u0631\u0627\u062A"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Phrases_Greetings
+      _Character: UI
+      _Area: book
+      _When: 
+      _Context: 
+      _English: Greetings
+      _Arabic: "\u062A\u062D\u064A\u0629 \u0637\u064A\u0628\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Phrases_Questions
+      _Character: UI
+      _Area: book
+      _When: 
+      _Context: 
+      _English: Questions
+      _Arabic: "\u0623\u0633\u0626\u0644\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Phrases_Replies
+      _Character: UI
+      _Area: book
+      _When: 
+      _Context: 
+      _English: Replies
+      _Arabic: "\u0623\u062C\u0648\u0628\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Phrases_Sentences
+      _Character: UI
+      _Area: book
+      _When: 
+      _Context: 
+      _English: Sentences
+      _Arabic: "\u062C\u0645\u0644"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Phrases_Years
+      _Character: UI
+      _Area: book
+      _When: 
+      _Context: 
+      _English: Years
+      _Arabic: "\u0633\u0646\u0648\u0627\u062A"
+      _ArabicFemale: 
+      _AudioFile: 
     - _Id: UI_Places
       _Character: UI
       _Area: ui
@@ -3667,6 +3967,46 @@ MonoBehaviour:
       _Arabic: "\u0623\u0645\u0627\u0643\u0646"
       _ArabicFemale: 
       _AudioFile: UI_Places
+    - _Id: UI_Player
+      _Character: UI
+      _Area: ui
+      _When: 
+      _Context: 
+      _English: Player Id
+      _Arabic: "\u0644\u0627\u0639\u0628"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Playing_time
+      _Character: UI
+      _Area: Player Profile
+      _When: 
+      _Context: 
+      _English: Playing time
+      _Arabic: "\u0648\u0642\u062A \u0627\u0644\u0644\u0639\u0628"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_PlayWithSound
+      _Character: UI
+      _Area: ui
+      _When: 
+      _Context: 
+      _English: Be sure to play with enough audio volume to listen the voice instructions
+      _Arabic: "\u064A\u064E\u062C\u0650\u0628\u064F \u0623\u064E\u0646\u0652 \u064A\u064E\u0643\u064F\u0648\u0646\u064E
+        \u0627\u0644\u0635\u0651\u064E\u0648\u0652\u062A\u064F \u0645\u064E\u0633\u0652\u0645\u064F\u0648\u0639\u064B\u0627
+        \u0628\u0650\u0648\u064F\u0636\u064F\u0648\u062D \u0639\u0650\u0646\u0652\u062F\u064E\u0645\u064E\u0627
+        \u062A\u064E\u0644\u0652\u0639\u064E\u0628\u064F, \u0644\u0650\u062A\u064E\u062A\u064E\u0645\u064E\u0643\u0651\u064E\u0646\u064E
+        \u0645\u0650\u0646\u0652 \u0627\u0644\u0627\u0650\u0633\u0652\u062A\u0650\u0645\u064E\u0627\u0639\u0650
+        \u0625\u0650\u0644\u064E\u0649 \u0627\u0644\u062A\u0651\u064E\u0639\u0652\u0644\u0650\u064A\u0645\u064E\u0627\u062A\u0650
+        \u0627\u0644\u0635\u0651\u064E\u0648\u0652\u062A\u0650\u064A\u0651\u064E\u0629\u0650"
+      _ArabicFemale: "\u064A\u064E\u062C\u0650\u0628\u064F \u0623\u064E\u0646\u0652
+        \u064A\u064E\u0643\u064F\u0648\u0646\u064E \u0627\u0644\u0635\u0651\u064E\u0648\u0652\u062A\u064F
+        \u0645\u064E\u0633\u0652\u0645\u064F\u0648\u0639\u064B\u0627 \u0628\u0650\u0648\u064F\u0636\u064F\u0648\u062D
+        \u0639\u0650\u0646\u0652\u062F\u064E\u0645\u064E\u0627 \u062A\u064E\u0644\u0652\u0639\u064E\u0628\u064A,
+        \u0644\u0650\u062A\u064E\u062A\u064E\u0645\u064E\u0643\u0651\u064E\u0646\u064A
+        \u0645\u0650\u0646\u0652 \u0627\u0644\u0627\u0650\u0633\u0652\u062A\u0650\u0645\u064E\u0627\u0639\u0650
+        \u0625\u0650\u0644\u064E\u0649 \u0627\u0644\u062A\u0651\u064E\u0639\u0652\u0644\u0650\u064A\u0645\u064E\u0627\u062A\u0650
+        \u0627\u0644\u0635\u0651\u064E\u0648\u0652\u062A\u0650\u064A\u0651\u064E\u0629\u0650"
+      _AudioFile: 
     - _Id: UI_Positions
       _Character: UI
       _Area: ui
@@ -3685,6 +4025,85 @@ MonoBehaviour:
       _Arabic: "\u062D\u0631\u0641 \u062C\u0631"
       _ArabicFemale: 
       _AudioFile: UI_Preposition
+    - _Id: UI_Prompt_bugreport
+      _Character: UI
+      _Area: 
+      _When: 
+      _Context: 
+      _English: If you found a problem or have a suggestion, please tell us using
+        this web page
+      _Arabic: "\u0625\u0630\u0627 \u0648\u062C\u062F\u062A \u0645\u0634\u0643\u0644\u0629
+        \u0623\u0648 \u0644\u062F\u064A\u0643 \u0627\u0642\u062A\u0631\u0627\u062D\u060C
+        \u0631\u062C\u0627\u0621\u064B \u0623\u062E\u0628\u0631\u0646\u0627 \u0639\u0646
+        \u0637\u0631\u064A\u0642 \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062D\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Prompt_rate
+      _Character: UI
+      _Area: 
+      _When: 
+      _Context: 
+      _English: If you like this app, please write a review on the store. It can help
+        reaching more kids!
+      _Arabic: "\u0625\u0630\u0627 \u0623\u0639\u062C\u0628\u0643 \u0647\u0630\u0627
+        \u0627\u0644\u062A\u0637\u0628\u064A\u0642\u060C \u0631\u062C\u0627\u0621\u064B
+        \u0627\u0643\u062A\u0628 \u062A\u0642\u064A\u064A\u0645 \u0641\u064A \u0645\u062E\u0632\u0646
+        \u0627\u0644\u0623\u0644\u0639\u0627\u0628 \u0644\u062A\u0633\u0627\u0639\u062F
+        \u0639\u0644\u0649 \u0627\u064A\u0635\u0627\u0644\u0647 \u0625\u0644\u0649
+        \u0639\u062F\u062F \u0623\u0643\u0628\u0631 \u0645\u0646 \u0627\u0644\u0623\u0648\u0644\u0627\u062F"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_PromptOnlineAnalytics
+      _Character: UI
+      _Area: 
+      _When: 
+      _Context: 
+      _English: Would you like to help us improve this learning app by sharing online
+        your ANONYMOUS play data?
+      _Arabic: "\u0647\u064E\u0644\u0652 \u062A\u064E\u0631\u0652\u063A\u064E\u0628\u064F
+        \u0641\u0650\u064A \u0645\u064F\u0633\u064E\u0627\u0639\u064E\u062F\u064E\u062A\u0650\u0646\u064E\u0627
+        \u0639\u064E\u0644\u064E\u0649 \u062A\u064E\u062D\u0652\u0633\u0650\u064A\u0646\u0650
+        \u0647\u064E\u0630\u064E\u0627 \u0627\u0644\u062A\u0651\u064E\u0637\u0652\u0628\u0650\u064A\u0642\u0650
+        \u0627\u0644\u062A\u0651\u064E\u0639\u0652\u0644\u0650\u064A\u0645\u0650\u064A\u0651\u0650
+        \u0645\u0650\u0646\u0652 \u062E\u0650\u0644\u064E\u0627\u0644\u0650 \u0645\u064F\u0634\u064E\u0627\u0631\u064E\u0643\u064E\u062A\u0650\u0646\u064E\u0627
+        \u0628\u064E\u064A\u064E\u0627\u0646\u064E\u0627\u062A\u0650 \u0627\u0644\u0644\u0651\u064E\u0639\u0650\u0628\u0650
+        \u0627\u0644\u062E\u064E\u0627\u0635\u0651\u064E\u0629\u064E \u0628\u0650\u0643\u064E?"
+      _ArabicFemale: "\u0647\u064E\u0644\u0652 \u062A\u064E\u0631\u0652\u063A\u064E\u0628\u0650\u064A\u0646\u064E
+        \u0641\u0650\u064A \u0645\u064F\u0633\u064E\u0627\u0639\u064E\u062F\u064E\u062A\u0650\u0646\u064E\u0627
+        \u0639\u064E\u0644\u064E\u0649 \u062A\u064E\u062D\u0652\u0633\u0650\u064A\u0646\u0650
+        \u0647\u064E\u0630\u064E\u0627 \u0627\u0644\u062A\u0651\u064E\u0637\u0652\u0628\u0650\u064A\u0642\u0650
+        \u0627\u0644\u062A\u0651\u064E\u0639\u0652\u0644\u0650\u064A\u0645\u0650\u064A\u0651\u0650
+        \u0645\u0650\u0646\u0652 \u062E\u0650\u0644\u064E\u0627\u0644\u0650 \u0645\u064F\u0634\u064E\u0627\u0631\u064E\u0643\u064E\u062A\u0650\u0646\u064E\u0627
+        \u0628\u064E\u064A\u064E\u0627\u0646\u064E\u0627\u062A\u0650 \u0627\u0644\u0644\u0651\u064E\u0639\u0650\u0628\u0650
+        \u0627\u0644\u062E\u064E\u0627\u0635\u0651\u064E\u0629\u064E \u0628\u0650\u0643\u0650?"
+      _AudioFile: 
+    - _Id: UI_ReservedArea
+      _Character: UI
+      _Area: reserved
+      _When: 
+      _Context: 
+      _English: Parents Area
+      _Arabic: "\u0645\u0646\u0637\u0642\u0629 \u0627\u0644\u0622\u0628\u0627\u0621"
+      _ArabicFemale: 
+      _AudioFile: UI_ReservedArea
+    - _Id: UI_Shapes
+      _Character: UI
+      _Area: ui
+      _When: 
+      _Context: 
+      _English: Shapes
+      _Arabic: "\u0623\u0634\u0643\u0627\u0644"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Size
+      _Character: UI
+      _Area: ui
+      _When: 
+      _Context: 
+      _English: Volume
+      _Arabic: "\u062D\u062C\u0645"
+      _ArabicFemale: 
+      _AudioFile: 
     - _Id: UI_Special
       _Character: UI
       _Area: ui
@@ -3703,6 +4122,33 @@ MonoBehaviour:
       _Arabic: "\u0631\u064A\u0627\u0636\u0629"
       _ArabicFemale: 
       _AudioFile: UI_Sports
+    - _Id: UI_Stage
+      _Character: UI
+      _Area: book
+      _When: 
+      _Context: 
+      _English: Stage
+      _Arabic: "\u0627\u0644\u0645\u0631\u062D\u0644\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Stage_and_Level
+      _Character: UI
+      _Area: Player Profile
+      _When: 
+      _Context: 
+      _English: Stage and Level
+      _Arabic: "\u0627\u0644\u0645\u0631\u062D\u0644\u0629 \u0648\u0627\u0644\u0645\u0633\u062A\u0648\u0649"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Stars
+      _Character: UI
+      _Area: Player Profile
+      _When: 
+      _Context: 
+      _English: Stars
+      _Arabic: "\u0646\u062C\u0648\u0645"
+      _ArabicFemale: 
+      _AudioFile: 
     - _Id: UI_Symbols
       _Character: UI
       _Area: ui
@@ -3730,6 +4176,69 @@ MonoBehaviour:
       _Arabic: "\u0627\u0644\u0632\u0645\u0646"
       _ArabicFemale: 
       _AudioFile: UI_Time
+    - _Id: UI_TimeSpent
+      _Character: UI
+      _Area: ui
+      _When: 
+      _Context: 
+      _English: Playing Time
+      _Arabic: "\u0632\u0645\u0646 \u0627\u0644\u0644\u0639\u0628"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Today
+      _Character: UI
+      _Area: reward
+      _When: 
+      _Context: 
+      _English: Today
+      _Arabic: "\u0627\u0644\u064A\u064E\u0648\u0652\u0645\u064E"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Tomorrow
+      _Character: UI
+      _Area: reward
+      _When: 
+      _Context: 
+      _English: Tomorrow
+      _Arabic: "\u064A\u064E\u0648\u0652\u0645\u064E \u063A\u064E\u062F\u064D"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Unlocked_Letters
+      _Character: UI
+      _Area: Player Profile
+      _When: 
+      _Context: 
+      _English: Unlocked Letters
+      _Arabic: "\u062D\u0631\u0648\u0641 \u063A\u064A\u0631 \u0645\u0642\u0641\u0644\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Unlocked_Levels
+      _Character: UI
+      _Area: Player Profile
+      _When: 
+      _Context: 
+      _English: Unlocked Levels
+      _Arabic: "\u0645\u0633\u062A\u0648\u064A\u0627\u062A \u063A\u064A\u0631 \u0645\u0642\u0641\u0644\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Unlocked_Phrases
+      _Character: UI
+      _Area: Player Profile
+      _When: 
+      _Context: 
+      _English: Unlocked Phrases
+      _Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u063A\u064A\u0631 \u0645\u0642\u0641\u0644\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_Unlocked_Words
+      _Character: UI
+      _Area: Player Profile
+      _When: 
+      _Context: 
+      _English: Unlocked Words
+      _Arabic: "\u0643\u0644\u0645\u0627\u062A \u063A\u064A\u0631 \u0645\u0642\u0641\u0644\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
     - _Id: UI_Vehicles
       _Character: UI
       _Area: ui
@@ -3748,533 +4257,15 @@ MonoBehaviour:
       _Arabic: "\u0641\u0639\u0644"
       _ArabicFemale: 
       _AudioFile: UI_Verb
-    - _Id: UI_Words
-      _Character: UI
-      _Area: ui
-      _When: 
-      _Context: 
-      _English: Words
-      _Arabic: "\u0643\u0644\u0645\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: UI_Words
-    - _Id: UI_LearningBlock
-      _Character: UI
-      _Area: ui
-      _When: 
-      _Context: 
-      _English: Learning Block
-      _Arabic: "\u0645\u0642\u0637\u0639 \u062A\u0639\u0644\u064A\u0645\u064A"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_None
-      _Character: UI
-      _Area: ui
-      _When: 
-      _Context: 
-      _English: Nothing
-      _Arabic: "\u0644\u0627 \u0634\u064A\u0621"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Player
-      _Character: UI
-      _Area: ui
-      _When: 
-      _Context: 
-      _English: Player Id
-      _Arabic: "\u0644\u0627\u0639\u0628"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_TimeSpent
-      _Character: UI
-      _Area: ui
-      _When: 
-      _Context: 
-      _English: Playing Time
-      _Arabic: "\u0632\u0645\u0646 \u0627\u0644\u0644\u0639\u0628"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Size
-      _Character: UI
-      _Area: ui
-      _When: 
-      _Context: 
-      _English: Volume
-      _Arabic: "\u062D\u062C\u0645"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_General
-      _Character: UI
-      _Area: ui
-      _When: 
-      _Context: 
-      _English: Year
-      _Arabic: "\u0639\u0627\u0645"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Conjunctions
-      _Character: UI
-      _Area: ui
-      _When: 
-      _Context: 
-      _English: Conjunctions
-      _Arabic: "\u0627\u0644\u0639\u0637\u0641/\u0627\u0644\u0631\u0628\u0637"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Shapes
-      _Character: UI
-      _Area: ui
-      _When: 
-      _Context: 
-      _English: Shapes
-      _Arabic: "\u0623\u0634\u0643\u0627\u0644"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_NumbersOrdinal
-      _Character: UI
-      _Area: ui
-      _When: 
-      _Context: 
-      _English: Ordinal Numbers
-      _Arabic: "\u0627\u0644\u0623\u0639\u062F\u0627\u062F \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: Egg_letters_Title
-      _Character: Keeper
-      _Area: minigame
-      _When: 
-      _Context: Title
-      _English: The Egg of the Alphabet!
-      _Arabic: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
-      _ArabicFemale: 
-      _AudioFile: Egg_letters_Title
-    - _Id: UI_ReservedArea
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: Parents Area
-      _Arabic: "\u0645\u0646\u0637\u0642\u0629 \u0627\u0644\u0622\u0628\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: UI_ReservedArea
-    - _Id: ReservedArea_DeleteProfile
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: Delete
-      _Arabic: "\u062D\u0630\u0641"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: ReservedArea_ExportProfile
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: Export
-      _Arabic: "\u062A\u0635\u062F\u064A\u0631"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: ReservedArea_ReviewProfile
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: Review
-      _Arabic: "\u0645\u062A\u0627\u0628\u0639\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: ReservedArea_CreateDemoUser
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: Create demo player
-      _Arabic: "\u0625\u0646\u0634\u0627\u0621 \u0644\u0627\u0639\u0628 \u062A\u062C\u0631\u064A\u0628\u064A"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: ReservedArea_Website
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: Website
-      _Arabic: "\u0645\u0648\u0642\u0639 \u0627\u0644\u0643\u062A\u0631\u0648\u0646\u064A"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: ReservedArea_Privacy
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: Privacy Policy
-      _Arabic: "\u0627\u0644\u062E\u0635\u0648\u0635\u064A\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: ReservedArea_InstallInstructions
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: Install instructions
-      _Arabic: "\u062A\u062B\u0628\u064A\u062A \u0627\u0644\u062A\u0639\u0644\u064A\u0645\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: ReservedArea_Rate
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: Rate
-      _Arabic: "\u0645\u0639\u062F\u0644"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: ReservedArea_Recommend
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: Recommend
-      _Arabic: "\u0646\u0648\u0635\u064A"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: ReservedArea_UnlockingWaring
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: UNLOCKING... please wait
-      _Arabic: "\u062C\u0627\u0631\u064A \u0627\u0644\u0641\u062A\u062D! \u064A\u0631\u062C\u0649
-        \u0627\u0644\u0625\u0646\u062A\u0638\u0627\u0631"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: ReservedArea_Title
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: RESERVED AREA
-      _Arabic: "\u0645\u0646\u0637\u0642\u0629 \u0627\u0644\u0622\u0628\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: ReservedArea_SectionDescription_Intro
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: This section is reserved for parents and guardians.
-      _Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0645\u0633\u0627\u062D\u0629 \u0645\u062E\u0635\u0635\u0629
-        \u0644\u0644\u0622\u0628\u0627\u0621 \u0648\u0623\u0648\u0644\u064A\u0627\u0621
-        \u0627\u0644\u0623\u0645\u0648\u0631"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: ReservedArea_SectionDescription_Error
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: If you make an error, retry by re-accessing this panel
-      _Arabic: "\u0641\u064A \u062D\u0627\u0644 \u0623\u062E\u0637\u0623\u062A\u060C
-        \u0623\u0639\u062F \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629 \u0628\u0627\u0633\u062A\u0639\u0645\u0627\u0644
-        \u0647\u0630\u0647 \u0627\u0644\u0644\u0648\u062D\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: Profile_Gender
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: Are you a girl or a boy?
-      _Arabic: "\u0647\u0644 \u0623\u0646\u062A\u064E \u0648\u0644\u062F \u0623\u0645
-        \u0628\u0646\u062A\u061F"
-      _ArabicFemale: 
-      _AudioFile: Profile_Gender
-    - _Id: Profile_Avatar
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: Select a face
-      _Arabic: "\u0627\u062E\u062A\u064E\u0631 \u0648\u062C\u0647\u0627\u064B."
-      _ArabicFemale: 
-      _AudioFile: Profile_Avatar
-    - _Id: Profile_Color
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: Select a color
-      _Arabic: "\u0627\u062E\u062A\u064E\u064E\u0631 \u0644\u0648\u0646\u0627\u064B."
-      _ArabicFemale: 
-      _AudioFile: Profile_Color
-    - _Id: Profile_Age
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: How old are you?
-      _Arabic: "\u0643\u0645 \u0639\u064F\u0645\u0652\u0631\u064F\u0643\u061F"
-      _ArabicFemale: 
-      _AudioFile: Profile_Age
-    - _Id: Profile_Years_4
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: 4 years
-      _Arabic: "\u0623\u0631\u0628\u0639\u064F \u0633\u0646\u0648\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: Profile_Years_4
-    - _Id: Profile_Years_5
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: 5 years
-      _Arabic: "\u062E\u0645\u0633\u064F \u0633\u0646\u0648\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: Profile_Years_5
-    - _Id: Profile_Years_6
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: 6 years
-      _Arabic: "\u0633\u062A\u0651\u064F \u0633\u0646\u0648\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: Profile_Years_6
-    - _Id: Profile_Years_7
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: 7 years
-      _Arabic: "\u0633\u0628\u0639\u064F \u0633\u0646\u0648\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: Profile_Years_7
-    - _Id: Profile_Years_8
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: 8 years
-      _Arabic: "\u062B\u0645\u0627\u0646\u064A\u0652 \u0633\u0646\u0648\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: Profile_Years_8
-    - _Id: Profile_Years_9
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: 9 years
-      _Arabic: "\u062A\u0633\u0639\u064F \u0633\u0646\u0648\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: Profile_Years_9
-    - _Id: Profile_Years_10
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: 10 years
-      _Arabic: "\u0639\u0634\u0631\u064F \u0633\u0646\u0648\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: Profile_Years_10
-    - _Id: Profile_Years_11
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: 11 or more years
-      _Arabic: "\u0625\u062D\u062F\u0649 \u0639\u0634\u0631\u0629 \u0633\u0646\u0629\u064B
-        \u0623\u0648 \u0623\u0643\u062B\u0631"
-      _ArabicFemale: 
-      _AudioFile: Profile_Years_11
-    - _Id: UI_AreYouSure
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: Are you sure?
-      _Arabic: "\u0647\u0644 \u0623\u0646\u062A\u064E \u0645\u062A\u0623\u0643\u062F\u061F"
-      _ArabicFemale: 
-      _AudioFile: UI_AreYouSure
-    - _Id: UI_Yes
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: Yes
-      _Arabic: "\u0646\u0639\u0645"
-      _ArabicFemale: 
-      _AudioFile: UI_Yes
-    - _Id: UI_No
-      _Character: Ibtissam
-      _Area: home
-      _When: 
-      _Context: 
-      _English: No
-      _Arabic: "\u0644\u0627"
-      _ArabicFemale: 
-      _AudioFile: UI_No
-    - _Id: Scanner_Tuto_Antura
-      _Character: Ibtissam
-      _Area: minigame
-      _When: 
-      _Context: 
-      _English: Drag the scanner over Antura to push him away
-      _Arabic: "\u0627\u0633\u062D\u0628\u0652 \u062C\u0647\u0627\u0632\u064E \u0627\u0644\u0645\u0633\u062D\u0650
-        \u0641\u0648\u0642\u064E \u0639\u0646\u062A\u0648\u0631\u0629 \u0644\u062A\u062F\u0641\u0639\u064E\u0647
-        \u0628\u0639\u064A\u062F\u0627\u064B."
-      _ArabicFemale: 
-      _AudioFile: Scanner_Tuto_Antura
-    - _Id: Parental_Gate
-      _Character: Ibtissam
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: This section is reserved to Parents and Guardians.
-      _Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0645\u0633\u0627\u062D\u0629 \u0645\u062E\u0635\u0635\u0629
-        \u0644\u0644\u0622\u0628\u0627\u0621 \u0648\u0623\u0648\u0644\u064A\u0627\u0621
-        \u0627\u0644\u0623\u0645\u0648\u0631"
-      _ArabicFemale: 
-      _AudioFile: Parental_Gate
-    - _Id: End_Scene_1_1
-      _Character: Ibtissam
-      _Area: end game
-      _When: 
-      _Context: end game
-      _English: Superb! Your prize for finishing your journey is superpowers in real
-        life!
-      _Arabic: "\u0631\u0627\u0626\u0639! \u062C\u0627\u0626\u0632\u0629\u064F \u0625\u0643\u0645\u0627\u0644\u0650\u0643\u064E
-        \u0627\u0644\u0631\u062D\u0644\u0629\u064E \u0647\u064A \u0642\u0648\u0649\u064B
-        \u062E\u0627\u0631\u0642\u0629\u064C \u062D\u0642\u064A\u0642\u064A\u0629!"
-      _ArabicFemale: 
-      _AudioFile: End_Scene_1_1
-    - _Id: End_Scene_2
-      _Character: Ibtissam
-      _Area: end game
-      _When: 
-      _Context: end game
-      _English: You are awesome!
-      _Arabic: "\u0623\u0646\u062A\u064E \u0631\u0627\u0626\u0639!"
-      _ArabicFemale: 
-      _AudioFile: End_Scene_2
-    - _Id: End_Scene_3_1
-      _Character: Ibtissam
-      _Area: end game
-      _When: 
-      _Context: end game
-      _English: Now go, leave your mark in the world!
-      _Arabic: "\u0627\u0646\u0637\u0644\u0642\u0650 \u0627\u0644\u0622\u0646 \u0648\u0627\u062A\u0631\u0643\u0652
-        \u0623\u062B\u0631\u0627\u064B \u0641\u064A \u0627\u0644\u0639\u0627\u0644\u0645!"
-      _ArabicFemale: 
-      _AudioFile: End_Scene_3_1
-    - _Id: UI_Phrases_Questions
+    - _Id: UI_WordCat_Adjectives
       _Character: UI
       _Area: book
       _When: 
       _Context: 
-      _English: Questions
-      _Arabic: "\u0623\u0633\u0626\u0644\u0629"
+      _English: Adjectives
+      _Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: 
-    - _Id: UI_Phrases_Replies
-      _Character: UI
-      _Area: book
-      _When: 
-      _Context: 
-      _English: Replies
-      _Arabic: "\u0623\u062C\u0648\u0628\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Phrases_Greetings
-      _Character: UI
-      _Area: book
-      _When: 
-      _Context: 
-      _English: Greetings
-      _Arabic: "\u062A\u062D\u064A\u0629 \u0637\u064A\u0628\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Phrases_Years
-      _Character: UI
-      _Area: book
-      _When: 
-      _Context: 
-      _English: Years
-      _Arabic: "\u0633\u0646\u0648\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Phrases_Sentences
-      _Character: UI
-      _Area: book
-      _When: 
-      _Context: 
-      _English: Sentences
-      _Arabic: "\u062C\u0645\u0644"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Phrases_Expressions
-      _Character: UI
-      _Area: book
-      _When: 
-      _Context: 
-      _English: Expressions
-      _Arabic: "\u0627\u0644\u062A\u0639\u0628\u064A\u0631\u0627\u062A"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: MissingLetter_forms_Title
-      _Character: Keeper
-      _Area: minigame
-      _When: 
-      _Context: Title
-      _English: Missing Letter!
-      _Arabic: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
-      _ArabicFemale: 
-      _AudioFile: MissingLetter_Title
-    - _Id: ReservedArea_DemoUserAlreadyExists
-      _Character: UI
-      _Area: reserved
-      _When: 
-      _Context: 
-      _English: Demo user already exists
-      _Arabic: "\u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u062A\u062C\u0631\u064A\u0628\u064A
-        \u0645\u0648\u062C\u0648\u062F \u0623\u0635\u0644\u0627\u064B"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: End_Scene_1_2
-      _Character: Ibtissam
-      _Area: end game
-      _When: 
-      _Context: end game
-      _English: "You have now the power to read this\u2026"
-      _Arabic: "\u0627\u0643\u062A\u0633\u0628\u062A\u064E \u0627\u0644\u0622\u0646
-        \u0642\u0648\u0629\u064E \u0627\u0644\u0642\u062F\u0631\u0629\u0650 \u0639\u0644\u0649
-        \u0642\u0631\u0627\u0621\u0629\u0650 \u0647\u0630\u0627 \u0627\u0644\u0643\u0644\u0627\u0645\u0650..."
-      _ArabicFemale: 
-      _AudioFile: End_Scene_1_2
-    - _Id: End_Scene_3_2
-      _Character: Ibtissam
-      _Area: end game
-      _When: 
-      _Context: end game
-      _English: But don't forget that superpowers need to be trained.
-      _Arabic: "\u0644\u0643\u0646 \u062A\u0630\u0643\u0651\u064E\u0631\u0652 \u0623\u0646\u0651\u064E
-        \u0627\u0644\u0642\u0648\u0649 \u0627\u0644\u062E\u0627\u0631\u0642\u0629\u064E
-        \u062A\u062D\u062A\u0627\u062C\u064F \u0625\u0644\u0649 \u0627\u0644\u062A\u0645\u0631\u064A\u0646
-        \u062F\u0627\u0626\u0645\u0627\u064B."
-      _ArabicFemale: 
-      _AudioFile: End_Scene_3_2
-    - _Id: End_Scene_3_3
-      _Character: Ibtissam
-      _Area: end game
-      _When: 
-      _Context: end game
-      _English: Come back to visit! We'll miss you!
-      _Arabic: "\u0639\u062F \u0644\u0632\u064A\u0627\u0631\u062A\u0650\u0646\u0627
-        \u0642\u0631\u064A\u0628\u0627\u064B! \u0633\u0646\u0634\u062A\u0627\u0642\u064F
-        \u0625\u0644\u064A\u0643!"
-      _ArabicFemale: 
-      _AudioFile: End_Scene_3_3
     - _Id: UI_WordCat_Expressions
       _Character: UI
       _Area: book
@@ -4284,15 +4275,6 @@ MonoBehaviour:
       _Arabic: "\u0645\u0635\u0637\u0644\u062D\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: 
-    - _Id: UI_WordCat_Names
-      _Character: UI
-      _Area: book
-      _When: 
-      _Context: 
-      _English: Names
-      _Arabic: "\u0623\u0633\u0645\u0627\u0621"
-      _ArabicFemale: 
-      _AudioFile: 
     - _Id: UI_WordCat_Greetings
       _Character: UI
       _Area: book
@@ -4300,6 +4282,15 @@ MonoBehaviour:
       _Context: 
       _English: Greetings
       _Arabic: "\u062A\u062D\u064A\u0629 \u0637\u064A\u0628\u0629"
+      _ArabicFemale: 
+      _AudioFile: 
+    - _Id: UI_WordCat_Names
+      _Character: UI
+      _Area: book
+      _When: 
+      _Context: 
+      _English: Names
+      _Arabic: "\u0623\u0633\u0645\u0627\u0621"
       _ArabicFemale: 
       _AudioFile: 
     - _Id: UI_WordCat_Verbs
@@ -4320,139 +4311,30 @@ MonoBehaviour:
       _Arabic: "\u0627\u0644\u0637\u0642\u0633"
       _ArabicFemale: 
       _AudioFile: 
-    - _Id: UI_WordCat_Adjectives
+    - _Id: UI_Words
       _Character: UI
-      _Area: book
+      _Area: ui
       _When: 
       _Context: 
-      _English: Adjectives
-      _Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A"
+      _English: Words
+      _Arabic: "\u0643\u0644\u0645\u0627\u062A"
       _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Prompt_rate
-      _Character: UI
-      _Area: 
+      _AudioFile: UI_Words
+    - _Id: UI_Yes
+      _Character: Ibtissam
+      _Area: ui
       _When: 
       _Context: 
-      _English: If you like this app, please write a review on the store. It can help
-        reaching more kids!
-      _Arabic: "\u0625\u0630\u0627 \u0623\u0639\u062C\u0628\u0643 \u0647\u0630\u0627
-        \u0627\u0644\u062A\u0637\u0628\u064A\u0642\u060C \u0631\u062C\u0627\u0621\u064B
-        \u0627\u0643\u062A\u0628 \u062A\u0642\u064A\u064A\u0645 \u0641\u064A \u0645\u062E\u0632\u0646
-        \u0627\u0644\u0623\u0644\u0639\u0627\u0628 \u0644\u062A\u0633\u0627\u0639\u062F
-        \u0639\u0644\u0649 \u0627\u064A\u0635\u0627\u0644\u0647 \u0625\u0644\u0649
-        \u0639\u062F\u062F \u0623\u0643\u0628\u0631 \u0645\u0646 \u0627\u0644\u0623\u0648\u0644\u0627\u062F"
+      _English: Yes
+      _Arabic: "\u0646\u0639\u0645"
       _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Prompt_bugreport
+      _AudioFile: UI_Yes
+    - _Id: UI_Yesterday
       _Character: UI
-      _Area: 
+      _Area: reward
       _When: 
       _Context: 
-      _English: If you found a problem or have a suggestion, please tell us using
-        this web page
-      _Arabic: "\u0625\u0630\u0627 \u0648\u062C\u062F\u062A \u0645\u0634\u0643\u0644\u0629
-        \u0623\u0648 \u0644\u062F\u064A\u0643 \u0627\u0642\u062A\u0631\u0627\u062D\u060C
-        \u0631\u062C\u0627\u0621\u064B \u0623\u062E\u0628\u0631\u0646\u0627 \u0639\u0646
-        \u0637\u0631\u064A\u0642 \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062D\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Stage_and_Level
-      _Character: UI
-      _Area: Player Profile
-      _When: 
-      _Context: 
-      _English: Stage and Level
-      _Arabic: "\u0627\u0644\u0645\u0631\u062D\u0644\u0629 \u0648\u0627\u0644\u0645\u0633\u062A\u0648\u0649"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Unlocked_Levels
-      _Character: UI
-      _Area: Player Profile
-      _When: 
-      _Context: 
-      _English: Unlocked Levels
-      _Arabic: "\u0645\u0633\u062A\u0648\u064A\u0627\u062A \u063A\u064A\u0631 \u0645\u0642\u0641\u0644\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Journey_duration
-      _Character: UI
-      _Area: Player Profile
-      _When: 
-      _Context: 
-      _English: Journey duration
-      _Arabic: "\u0645\u062F\u0629 \u0627\u0644\u0631\u062D\u0644\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Playing_time
-      _Character: UI
-      _Area: Player Profile
-      _When: 
-      _Context: 
-      _English: Playing time
-      _Arabic: "\u0648\u0642\u062A \u0627\u0644\u0644\u0639\u0628"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Games_played
-      _Character: UI
-      _Area: Player Profile
-      _When: 
-      _Context: 
-      _English: Games played
-      _Arabic: "\u0623\u0644\u0639\u0627\u0628 \u0645\u0644\u0639\u0648\u0628\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Bones
-      _Character: UI
-      _Area: Player Profile
-      _When: 
-      _Context: 
-      _English: Bones
-      _Arabic: "\u0639\u0638\u0627\u0645"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Stars
-      _Character: UI
-      _Area: Player Profile
-      _When: 
-      _Context: 
-      _English: Stars
-      _Arabic: "\u0646\u062C\u0648\u0645"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Antura_Rewards
-      _Character: UI
-      _Area: Player Profile
-      _When: 
-      _Context: 
-      _English: Antura Rewards
-      _Arabic: "\u062C\u0648\u0627\u0626\u0632 \u0639\u0646\u062A\u0648\u0631\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Unlocked_Letters
-      _Character: UI
-      _Area: Player Profile
-      _When: 
-      _Context: 
-      _English: Unlocked Letters
-      _Arabic: "\u062D\u0631\u0648\u0641 \u063A\u064A\u0631 \u0645\u0642\u0641\u0644\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Unlocked_Words
-      _Character: UI
-      _Area: Player Profile
-      _When: 
-      _Context: 
-      _English: Unlocked Words
-      _Arabic: "\u0643\u0644\u0645\u0627\u062A \u063A\u064A\u0631 \u0645\u0642\u0641\u0644\u0629"
-      _ArabicFemale: 
-      _AudioFile: 
-    - _Id: UI_Unlocked_Phrases
-      _Character: UI
-      _Area: Player Profile
-      _When: 
-      _Context: 
-      _English: Unlocked Phrases
-      _Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u063A\u064A\u0631 \u0645\u0642\u0641\u0644\u0629"
+      _English: Yesterday
+      _Arabic: "\u0627\u0644\u0628\u064E\u0627\u0631\u0650\u062D\u064E\u0629"
       _ArabicFemale: 
       _AudioFile: 

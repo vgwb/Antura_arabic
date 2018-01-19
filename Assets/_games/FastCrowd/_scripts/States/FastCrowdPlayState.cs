@@ -1,9 +1,9 @@
 ﻿using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 
 namespace Antura.Minigames.FastCrowd
 {
-    public class FastCrowdPlayState : IState
+    public class FastCrowdPlayState : FSM.IState
     {
         CountdownTimer gameTime;
         FastCrowdGame game;
@@ -72,6 +72,8 @@ namespace Antura.Minigames.FastCrowd
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
             StopAntura();
+
+            game.QuestionManager.wordComposer.gameObject.SetActive(FastCrowdConfiguration.Instance.NeedsWordComposer);
         }
 
         public void ExitState()
@@ -82,19 +84,19 @@ namespace Antura.Minigames.FastCrowd
             game.QuestionManager.OnCompleted -= OnQuestionCompleted;
             game.QuestionManager.OnDropped -= OnAnswerDropped;
             game.QuestionManager.Clean();
+            game.QuestionManager.wordComposer.gameObject.SetActive(false);
         }
 
         void OnQuestionCompleted()
         {
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling ||
-                  FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
+            if (FastCrowdConfiguration.Instance.NeedsFullQuestionCompleted)
             {
                 // In spelling and letter, increment score only when the full question is completed
                 for (int i = 0; i < game.CurrentChallenge.Count; ++i)
                     game.IncrementScore();
             }
 
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.BuildWord)
             {
                 var question = game.CurrentQuestion;
 
@@ -109,9 +111,7 @@ namespace Antura.Minigames.FastCrowd
         {
             game.Context.GetCheckmarkWidget().Show(result);
 
-            if ((FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Spelling &&
-                FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Letter)
-                )
+            if (!FastCrowdConfiguration.Instance.NeedsFullQuestionCompleted)
             {
                 if (result)
                 {

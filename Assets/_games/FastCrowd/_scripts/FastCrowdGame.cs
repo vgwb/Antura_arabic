@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Antura.LivingLetters;
-using Antura.MinigamesCommon;
+using Antura.Minigames;
 using UnityEngine;
 
 namespace Antura.Minigames.FastCrowd
 {
-    public class FastCrowdGame : MiniGame
+    public class FastCrowdGame : MiniGameController
     {
         public QuestionManager QuestionManager;
 
@@ -42,7 +42,7 @@ namespace Antura.Minigames.FastCrowd
             {
                 switch (FastCrowdConfiguration.Instance.Variation)
                 {
-                    case FastCrowdVariation.Words:
+                    case FastCrowdVariation.Word:
                         return 8;
                     case FastCrowdVariation.Alphabet:
                         return (int)(CurrentChallenge.Count * 0.333f);
@@ -119,7 +119,7 @@ namespace Antura.Minigames.FastCrowd
             return FastCrowdConfiguration.Instance;
         }
 
-        protected override IState GetInitialState()
+        protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
         }
@@ -137,18 +137,13 @@ namespace Antura.Minigames.FastCrowd
             EndState = new FastCrowdEndState(this);
             TutorialState = new FastCrowdTutorialState(this);
 
-            QuestionManager.wordComposer.gameObject.SetActive(
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling ||
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter
-                );
-
-            QuestionManager.wordComposer.splitMode = FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter;
+            QuestionManager.wordComposer.gameObject.SetActive(false);
+            QuestionManager.wordComposer.splitMode = FastCrowdConfiguration.Instance.WordComposerInSplitMode;
         }
-
 
         public bool ShowChallengePopupWidget(bool showAsGoodAnswer, Action callback)
         {
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.BuildWord)
             {
                 var popupWidget = Context.GetPopupWidget();
                 popupWidget.Show();
@@ -165,7 +160,7 @@ namespace Antura.Minigames.FastCrowd
 
                 var question = CurrentQuestion.GetQuestion();
                 popupWidget.SetLetterData(question);
-                Context.GetAudioManager().PlayLetterData(question);
+                Context.GetAudioManager().PlayVocabularyData(question, soundType: FastCrowdConfiguration.Instance.GetVocabularySoundType());
                 return true;
             }
             return false;
