@@ -1,7 +1,5 @@
 ﻿using Antura.Audio;
 using Antura.Core;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Antura.Book
@@ -40,22 +38,6 @@ namespace Antura.Book
 
         public void OpenArea(BookArea newPanel, bool navigationHistory = false)
         {
-            //switch (newPanel) {
-            //    case BookArea.Vocabulary:
-            //        Instantiate(VocabularyPanel);
-            //        break;
-            //    case BookArea.Journey:
-            //        Instantiate(JourneyPanel);
-            //        break;
-            //    case BookArea.Player:
-            //        Instantiate(PlayerPanel);
-            //        break;
-            //    case BookArea.MiniGames:
-            //        Instantiate(GamesPanel);
-            //        break;
-            //}
-            //var panel = Instantiate(VocabularyPanel);
-            //panel.transform.SetParent(UICanvas.transform, false);
             if (newPanel != currentPanel) {
                 if (navigationHistory) {
                     previousPanel = currentPanel;
@@ -66,12 +48,10 @@ namespace Antura.Book
                 activatePanel(currentPanel, false);
                 currentPanel = newPanel;
                 activatePanel(currentPanel, true);
-                //ResetMenuButtons();
             }
-
         }
 
-        void activatePanel(BookArea panel, bool status)
+        private void activatePanel(BookArea panel, bool status)
         {
             switch (panel) {
                 case BookArea.Vocabulary:
@@ -89,7 +69,7 @@ namespace Antura.Book
             }
         }
 
-        void HideAllPanels()
+        private void HideAllPanels()
         {
             VocabularyPanel.SetActive(false);
             PlayerPanel.SetActive(false);
@@ -134,11 +114,6 @@ namespace Antura.Book
         public void BtnOpenJourney()
         {
             OpenArea(BookArea.Journey);
-        }
-
-        public void BtnOpenPhotoGallery()
-        {
-            AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Photo_Gallery);
         }
     }
 }

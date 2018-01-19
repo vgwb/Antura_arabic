@@ -105,9 +105,14 @@ namespace Antura.Book
             //journeyGraph.Show(allPlaySessionInfos, unlockedPlaySessionInfos);
         }
 
-        #region Queries
+        public void BtnOpenPhotoGallery()
+        {
+            GlobalUI.ShowPrompt(LocalizationDataId.AnturaSpace_Photo_Gallery);
+        }
 
-        TimeSpan GetTotalApplicationTime()
+        #region Player Stats Queries
+
+        private TimeSpan GetTotalApplicationTime()
         {
             string query = "select * from \"" + typeof(LogInfoData).Name + "\"";
             var list = AppManager.I.DB.Query<LogInfoData>(query);
@@ -140,7 +145,7 @@ namespace Antura.Book
             return totalTimespan;
         }
 
-        TimeSpan GetTotalMiniGamePlayTime()
+        private TimeSpan GetTotalMiniGamePlayTime()
         {
             float totalSeconds = 0f;
             string query = "select * from " + typeof(MiniGameScoreData).Name;
@@ -153,7 +158,7 @@ namespace Antura.Book
             return t;
         }
 
-        Dictionary<MiniGameCode, float> GetMiniGamesTotalPlayTime()
+        private Dictionary<MiniGameCode, float> GetMiniGamesTotalPlayTime()
         {
             Dictionary<MiniGameCode, float> dict = new Dictionary<MiniGameCode, float>();
             string query = "select * from " + typeof(MiniGameScoreData).Name;
@@ -165,7 +170,7 @@ namespace Antura.Book
             return dict;
         }
 
-        int GetTotalMiniGamePlayInstances()
+        private int GetTotalMiniGamePlayInstances()
         {
             int total = 0;
             string query = "select * from " + typeof(LogMiniGameScoreData).Name;
@@ -177,7 +182,7 @@ namespace Antura.Book
             return total;
         }
 
-        int GetTotalMiniGameStars()
+        private int GetTotalMiniGameStars()
         {
             string query = "select * from " + typeof(MiniGameScoreData).Name;
             var list = AppManager.I.DB.Query<MiniGameScoreData>(query);
@@ -185,7 +190,7 @@ namespace Antura.Book
             return totalStars;
         }
 
-        int GetTotalVocabularyData(VocabularyDataType dataType)
+        private int GetTotalVocabularyData(VocabularyDataType dataType)
         {
             int count = 0;
             switch (dataType) {
@@ -202,7 +207,7 @@ namespace Antura.Book
             return count;
         }
 
-        int GetTotalVocabularyDataUnlocked(VocabularyDataType dataType)
+        private int GetTotalVocabularyDataUnlocked(VocabularyDataType dataType)
         {
             if (AppManager.I.Player.IsDemoUser) { return GetTotalVocabularyData(dataType); }
             string query = "select * from " + typeof(VocabularyScoreData).Name + " where VocabularyDataType='" + (int)dataType + "'";
@@ -210,7 +215,7 @@ namespace Antura.Book
             return list.Count(data => data.Unlocked);
         }
 
-        Dictionary<MiniGameCode, int> GetNumberOfPlaysByMiniGame()
+        private Dictionary<MiniGameCode, int> GetNumberOfPlaysByMiniGame()
         {
             Dictionary<MiniGameCode, int> dict = new Dictionary<MiniGameCode, int>();
             string query = "select * from " + typeof(LogMiniGameScoreData).Name;

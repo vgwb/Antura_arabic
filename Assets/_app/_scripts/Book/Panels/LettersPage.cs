@@ -113,7 +113,6 @@ namespace Antura.Book
             //LetterScoreText.text = "Score: " + myLetterInfo.score;
 
             HighlightDiacriticItem(myLetterData.Id);
-
             playSound();
 
             // Debug.Log(myLetterData.GetDebugDiacriticFix());
