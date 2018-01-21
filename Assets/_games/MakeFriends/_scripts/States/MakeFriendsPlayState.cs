@@ -11,7 +11,7 @@
 
         public void EnterState()
         {
-            MakeFriendsConfiguration.Instance.Context.GetOverlayWidget().Initialize(showStarsBar: true, showClock: false, showLives: false);
+            game.InitializeMinigameUI();
 
             game.Reset();
             game.PlayIntroVoiceOver();
