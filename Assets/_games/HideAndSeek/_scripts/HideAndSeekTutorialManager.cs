@@ -1,4 +1,4 @@
-using Antura.Audio;
+﻿using Antura.Audio;
 using Antura.LivingLetters;
 using Antura.Tutorial;
 using System.Collections;
@@ -83,7 +83,15 @@ namespace Antura.Minigames.HideAndSeek
             var winInitialDelay = 1f;
             yield return new WaitForSeconds(winInitialDelay);
 
-            game.Context.GetAudioManager().PlayVocabularyData(GetCorrectAnswer());
+            var answerAudio = game.Context.GetAudioManager().PlayVocabularyData(GetCorrectAnswer());
+
+            yield return new WaitForSeconds(answerAudio.Duration);
+
+            if (HideAndSeekConfiguration.Instance.Variation == HideAndSeekVariation.LetterPhoneme)
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.HideSeek_letterphoneme_Tuto);
+            else
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.HideSeek_Words_Tuto);
+
 
             buttonRepeater.SetActive(true);
 

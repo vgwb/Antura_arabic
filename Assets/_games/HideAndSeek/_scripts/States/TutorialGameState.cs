@@ -13,11 +13,6 @@
         {
             game.Context.GetAudioManager().PlayMusic(Music.Lullaby);
             game.TutorialManager.enabled = true;
-
-            if (HideAndSeekConfiguration.Instance.Variation == HideAndSeekVariation.LetterPhoneme)
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.HideSeek_letterphoneme_Tuto);
-            else
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.HideSeek_Words_Tuto);
         }
 
         public void ExitState()
