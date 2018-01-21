@@ -586,10 +586,6 @@ namespace Antura.Minigames.Maze
                 numberOfStars = 0;
             }
 
-            if (numberOfStars > 0) {
-                MinigamesUI.Starbar.GotoStar(numberOfStars - 1);
-            }
-
             // Reset physics collisions:
             Physics.IgnoreLayerCollision(10, 12, false);
 

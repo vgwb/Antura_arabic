@@ -107,18 +107,7 @@ namespace Antura.Minigames.Balloons
             set
             {
                 _currentScore = value;
-                if (CurrentScore == STARS_1_THRESHOLD)
-                {
-                    MinigamesUI.Starbar.GotoStar(0);
-                }
-                else if (CurrentScore == STARS_2_THRESHOLD)
-                {
-                    MinigamesUI.Starbar.GotoStar(1);
-                }
-                else if (CurrentScore == STARS_3_THRESHOLD)
-                {
-                    MinigamesUI.Starbar.GotoStar(2);
-                }
+                Context.GetOverlayWidget().SetStarsScore(CurrentScore);
             }
         }
 
@@ -182,6 +171,13 @@ namespace Antura.Minigames.Balloons
             QuestionState = new BalloonsQuestionState(this);
             PlayState = new BalloonsPlayState(this);
             ResultState = new BalloonsResultState(this);
+
+        }
+
+        public void InitializeMinigameUI()
+        {
+            Context.GetOverlayWidget().Initialize(true, true, false);
+            Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
         }
 
         protected override FSM.IState GetInitialState()

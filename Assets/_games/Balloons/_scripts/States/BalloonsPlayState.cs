@@ -13,7 +13,8 @@ namespace Antura.Minigames.Balloons
 
         public void EnterState()
         {
-            MinigamesUI.Init(MinigamesUIElement.Starbar | MinigamesUIElement.Timer);
+            game.InitializeMinigameUI();
+            
             game.PlayIntroVoiceOver();
             game.Play();
         }
