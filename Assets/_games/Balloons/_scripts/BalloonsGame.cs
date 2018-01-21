@@ -514,7 +514,8 @@ namespace Antura.Minigames.Balloons
             float delay = 0.25f;
             yield return new WaitForSeconds(delay);
 
-            SayQuestion();
+            if (BalloonsConfiguration.Instance.Variation != BalloonsVariation.Words)
+                SayQuestion();
 
             switch (BalloonsConfiguration.Instance.Variation)
             {
@@ -1452,7 +1453,7 @@ namespace Antura.Minigames.Balloons
 
         public void OnLetterHintClicked()
         {
-            if (roundStatus == RoundStatus.Started)
+            if (BalloonsConfiguration.Instance.Variation != BalloonsVariation.Words && roundStatus == RoundStatus.Started)
             {
                 SayQuestion();
                 WobbleLetterHint();
