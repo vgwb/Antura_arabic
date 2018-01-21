@@ -90,6 +90,9 @@ namespace Antura.Minigames.MakeFriends
 
         private IEnumerator ShowAndUnblockDelayed_Coroutine(float delay)
         {
+            while (MakeFriendsGame.Instance.SpokenWords < 2)
+                yield return null;
+
             yield return new WaitForSeconds(delay);
             Show();
             Unblock();

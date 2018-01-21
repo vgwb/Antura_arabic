@@ -38,11 +38,10 @@ namespace Antura.Minigames.MakeFriends
             public LLAnimationStates afterWalkAnimation;
             public float afterWalkSpeed;
             public bool speak;
-            public float speakDelay;
             public bool rotateAfterWalk;
             public Vector3 afterWalkRotation;
 
-            public WalkParameters(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay = 0f, LLAnimationStates walkAnimation = LLAnimationStates.LL_walking, float walkSpeed = 0f, LLAnimationStates afterWalkAnimation = LLAnimationStates.LL_idle, float afterWalkSpeed = 0f, bool speak = false, float speakDelay = 0f, bool rotateAfterWalk = false, Vector3 afterWalkRotation = default(Vector3))
+            public WalkParameters(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay = 0f, LLAnimationStates walkAnimation = LLAnimationStates.LL_walking, float walkSpeed = 0f, LLAnimationStates afterWalkAnimation = LLAnimationStates.LL_idle, float afterWalkSpeed = 0f, bool speak = false, bool rotateAfterWalk = false, Vector3 afterWalkRotation = default(Vector3))
             {
                 this.from = from;
                 this.to = to;
@@ -54,7 +53,6 @@ namespace Antura.Minigames.MakeFriends
                 this.afterWalkAnimation = afterWalkAnimation;
                 this.afterWalkSpeed = afterWalkSpeed;
                 this.speak = speak;
-                this.speakDelay = speakDelay;
                 this.rotateAfterWalk = rotateAfterWalk;
                 this.afterWalkRotation = afterWalkRotation;
             }
@@ -90,9 +88,9 @@ namespace Antura.Minigames.MakeFriends
             LLPrefab.SetDancingSpeed(LLPrefab.DancingSpeed * Random.Range(0.75f, 1.25f));
         }
 
-        public void MakeEntrance(Vector3 offscreenPosition, Vector3 startingPosition, Vector3 entranceRotation, float entranceDuration, float speakDelay, Vector3 afterWalkRotation)
+        public void MakeEntrance(Vector3 offscreenPosition, Vector3 startingPosition, Vector3 entranceRotation, float entranceDuration, Vector3 afterWalkRotation)
         {
-            Walk(offscreenPosition, startingPosition, entranceRotation, entranceDuration, speak: true, speakDelay: speakDelay, rotateAfterWalk: true, afterWalkRotation: afterWalkRotation);
+            Walk(offscreenPosition, startingPosition, entranceRotation, entranceDuration, speak: true, rotateAfterWalk: true, afterWalkRotation: afterWalkRotation);
         }
 
         public void MakeFriendlyExit(Vector3 position, Vector3 rotation, float duration)
@@ -144,17 +142,20 @@ namespace Antura.Minigames.MakeFriends
             StartCoroutine(HighFive_Coroutine(delay, rotate, rotation));
         }
 
-        public void SpeakWord()
+        public float SpeakWord()
         {
+            float duration = 0;
             if (wordData != null && wordData.Id != null)
             {
-                MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(wordData, true);
+                var s = MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(wordData, true);
+                duration = s.Duration;
             }
             //if (container != null)
             //{
             //    container.GetComponent<Animator>().SetTrigger("Throb");
             //}
             LookAngry();
+            return duration;
         }
 
         public void LookAngry()
@@ -237,9 +238,9 @@ namespace Antura.Minigames.MakeFriends
             LLPrefab.DoHighFive();
         }
 
-        private void Walk(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay = 0f, LLAnimationStates walkAnimation = LLAnimationStates.LL_walking, float walkSpeed = 0f, LLAnimationStates afterWalkAnimation = LLAnimationStates.LL_idle, float afterWalkSpeed = 0f, bool speak = false, float speakDelay = 0f, bool rotateAfterWalk = false, Vector3 afterWalkRotation = default(Vector3))
+        private void Walk(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay = 0f, LLAnimationStates walkAnimation = LLAnimationStates.LL_walking, float walkSpeed = 0f, LLAnimationStates afterWalkAnimation = LLAnimationStates.LL_idle, float afterWalkSpeed = 0f, bool speak = false, bool rotateAfterWalk = false, Vector3 afterWalkRotation = default(Vector3))
         {
-            var parameters = new WalkParameters(from, to, rotation, duration, delay, walkAnimation, walkSpeed, afterWalkAnimation, afterWalkSpeed, speak, speakDelay, rotateAfterWalk, afterWalkRotation);
+            var parameters = new WalkParameters(from, to, rotation, duration, delay, walkAnimation, walkSpeed, afterWalkAnimation, afterWalkSpeed, speak, rotateAfterWalk, afterWalkRotation);
             StopCoroutine("Walk_Coroutine");
             StartCoroutine("Walk_Coroutine", parameters);
         }
@@ -257,7 +258,6 @@ namespace Antura.Minigames.MakeFriends
             var afterWalkAnimation = parameters.afterWalkAnimation;
             var afterWalkSpeed = parameters.afterWalkSpeed;
             var speak = parameters.speak;
-            var speakDelay = parameters.speakDelay;
             var rotateAfterWalk = parameters.rotateAfterWalk;
             var afterWalkRotation = parameters.afterWalkRotation;
 
@@ -290,9 +290,17 @@ namespace Antura.Minigames.MakeFriends
 
             if (speak)
             {
-                yield return new WaitForSeconds(speakDelay);
-                SpeakWord();
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.25f);
+
+                // Dirty Hack to fix an audio synch bug
+                while (MakeFriendsGame.Instance.IsIntroducingLetter)
+                    yield return null;
+
+                MakeFriendsGame.Instance.IsIntroducingLetter = true;
+                yield return new WaitForSeconds(SpeakWord());
+                MakeFriendsGame.Instance.IsIntroducingLetter = false;
+                yield return new WaitForSeconds(0.25f);
+                MakeFriendsGame.Instance.SpokenWords++;
             }
 
             if (rotateAfterWalk)

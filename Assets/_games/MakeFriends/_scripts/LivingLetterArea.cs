@@ -18,7 +18,6 @@ namespace Antura.Minigames.MakeFriends
         public float entranceDuration;
         public float celebrationDuration;
         public float friendlyExitDuration;
-        public float speakDelay;
         public float movingAwayDuration;
 
         [HideInInspector]
@@ -80,7 +79,7 @@ namespace Antura.Minigames.MakeFriends
 
         public void MakeEntrance()
         {
-            livingLetter.MakeEntrance(offscreenPosition, startingPosition, entranceRotation, entranceDuration, speakDelay, exitRotation);
+            livingLetter.MakeEntrance(offscreenPosition, startingPosition, entranceRotation, entranceDuration, exitRotation);
         }
 
         public void MakeFriendlyExit()

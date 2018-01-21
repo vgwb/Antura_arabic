@@ -1,4 +1,4 @@
-namespace Antura.Minigames.MakeFriends
+﻿namespace Antura.Minigames.MakeFriends
 {
     public class MakeFriendsPlayState : FSM.IState
     {
@@ -13,6 +13,7 @@ namespace Antura.Minigames.MakeFriends
         {
             MakeFriendsConfiguration.Instance.Context.GetOverlayWidget().Initialize(showStarsBar: true, showClock: false, showLives: false);
 
+            game.Reset();
             game.PlayIntroVoiceOver();
             game.PlayActiveMusic();
             game.Play();
