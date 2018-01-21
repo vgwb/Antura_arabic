@@ -21,7 +21,8 @@ namespace Antura.Minigames.FastCrowd
             {
                 return FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet ||
                         FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting ||
-                        FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word;
+                        FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word ||
+                        FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName;
             }
         }
 
