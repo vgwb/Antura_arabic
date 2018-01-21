@@ -124,6 +124,9 @@ namespace Antura.Minigames.FastCrowd
 
             game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
 
+            if (result && (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting || FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word))
+                game.Context.GetAudioManager().PlayVocabularyData(data);
+
             if (game.CurrentStars == 3)
                 game.SetCurrentState(game.EndState);
         }
