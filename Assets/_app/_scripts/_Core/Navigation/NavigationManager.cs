@@ -87,13 +87,14 @@ namespace Antura.Core
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Home, AppScene.ReservedArea));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.AnturaSpace));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.Rewards));
+            customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.MiniGame));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Rewards, AppScene.AnturaSpace));
 
             // Transitions that can register for a 'back' function
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Home, AppScene.ReservedArea));
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.AnturaSpace));
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.GameSelector));
-            backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Book, AppScene.MiniGame));
+            backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.MiniGame));
         }
 
         /// <summary>
@@ -193,11 +194,12 @@ namespace Antura.Core
         /// </summary>
         public void GoBack()
         {
-            /*Debug.LogError("HITTING BACK FROM " + NavData.CurrentScene);
-            for (int i = 0; i < NavData.PrevSceneStack.Count; i++)
+            /*
+            Debug.LogError("HITTING BACK FROM " + NavData.CurrentScene);
+            for (int i = 0; i < NavData.PrevSceneStack.Count; i++) {
                 Debug.LogError(i + ": " + NavData.PrevSceneStack.ToArray()[i]);
-                */
-
+            }
+            */
 
             if (NavData.PrevSceneStack.Count > 0) {
                 var prevScene = NavData.PrevSceneStack.Pop();
