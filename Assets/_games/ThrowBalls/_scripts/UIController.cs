@@ -50,7 +50,8 @@ namespace Antura.Minigames.ThrowBalls
 
         public void OnLetterHintClicked()
         {
-            if (livingLetterData != null && ThrowBallsGame.instance.GameState.isRoundOngoing) {
+            if (livingLetterData != null && ThrowBallsGame.instance.GameState.isRoundOngoing &&
+                ThrowBallsConfiguration.Instance.Variation != ThrowBallsVariation.Word) {
                 ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(
                     livingLetterData, true, soundType: ThrowBallsConfiguration.Instance.GetVocabularySoundType()
                 );
