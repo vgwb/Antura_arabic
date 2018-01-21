@@ -129,13 +129,9 @@ namespace Antura.Minigames.TakeMeHome
             
 			CurrentScore++;
             //update stars:
-            TakeMeHomeConfiguration.Instance.Context.GetOverlayWidget().SetStarsThresholds(2, 4, 6);
             TakeMeHomeConfiguration.Instance.Context.GetOverlayWidget().SetStarsScore(CurrentScore);
 
             return;
-            //int stars = CurrentStars;
-            //if (stars > 0)
-            //MinigamesUI.Starbar.GotoStar(stars - 1);
         }
 
         public void IncrementRound()
@@ -239,6 +235,7 @@ namespace Antura.Minigames.TakeMeHome
             //ui:
             //MinigamesUI.Init(MinigamesUIElement.Starbar | MinigamesUIElement.Timer);
             Context.GetOverlayWidget().Initialize(true, true, false);
+            Context.GetOverlayWidget().SetStarsThresholds(2, 4, 6);
             //Context.GetOverlayWidget().SetClockTime( UnityEngine.Mathf.Lerp(90.0f, 60.0f, TakeMeHomeConfiguration.Instance.Difficulty));
 
             MinigamesUI.Timer.Setup( UnityEngine.Mathf.Lerp(90.0f, 60.0f, TakeMeHomeConfiguration.Instance.Difficulty));

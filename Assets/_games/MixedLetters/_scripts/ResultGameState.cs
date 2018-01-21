@@ -1,4 +1,4 @@
-using Antura.LivingLetters;
+﻿using Antura.LivingLetters;
 using Antura.UI;
 using Antura.Minigames;
 
@@ -15,8 +15,6 @@ namespace Antura.Minigames.MixedLetters
         private bool wasBackShownDuringTwirlAnimation;
         private float endResultTimer;
         private bool isGameOver;
-
-        private int lastNumStarsWentTo = 0;
 
         public ResultGameState(MixedLettersGame game)
         {
@@ -45,14 +43,7 @@ namespace Antura.Minigames.MixedLetters
             {
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
                 SeparateLettersSpawnerController.instance.ShowWinAnimation(OnVictimLLIsShowingBack, OnResultAnimationEnded);
-
-                int numStarsAsOfCurrentRound = game.GetNumStarsAsOfCurrentRound();
-
-                if (numStarsAsOfCurrentRound != lastNumStarsWentTo)
-                {
-                    MinigamesUI.Starbar.GotoStar(numStarsAsOfCurrentRound - 1);
-                    lastNumStarsWentTo = numStarsAsOfCurrentRound;
-                }
+                
             }
 
             twirlAnimationDelayTimer = TWIRL_ANIMATION_BACK_SHOWN_DELAY;
@@ -107,7 +98,7 @@ namespace Antura.Minigames.MixedLetters
 
                 if (endResultTimer < 0)
                 {
-                    game.EndGame(game.GetNumStarsAsOfCurrentRound(), 0);
+                    game.EndGame(game.CurrentStars, game.numRoundsWon);
                 }
             }
 
