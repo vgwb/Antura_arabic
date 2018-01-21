@@ -1,4 +1,4 @@
-using Antura.Database;
+﻿using Antura.Database;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
 using System;
@@ -99,7 +99,7 @@ namespace Antura.Minigames.MissingLetter
                     case MissingLetterVariation.LetterForm:
                         return LocalizationDataId.MissingLetter_letterform_Title;
                     case MissingLetterVariation.LetterInWord:
-                        return LocalizationDataId.MissingLetter_letterform_Title;    // TODO: we need the correct title!
+                        return LocalizationDataId.MissingLetter_letterinword_Title;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
