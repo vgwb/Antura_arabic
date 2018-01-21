@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Antura.LivingLetters;
@@ -163,13 +163,13 @@ namespace Antura.Minigames.Maze
         {
             float difficulty = MazeConfiguration.Instance.Difficulty;
 
-            if (difficulty < 0.2f) {
+           /* if (difficulty < 0.2f) {
                 gameTime = 120f;
             } else if (difficulty < 0.4f) {
                 gameTime = 110f;
             } else if (difficulty < 0.6f) {
                 gameTime = 100f;
-            } else if (difficulty < 0.8f) {
+            } else */ if (difficulty < 0.8f) {
                 gameTime = 90f;
             } else {
                 gameTime = 70f;
