@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Antura.LivingLetters.Sample;
 using Antura.Teacher;
 
@@ -11,7 +11,7 @@ namespace Antura.Minigames.HideAndSeek
 
     public class HideAndSeekConfiguration : AbstractGameConfiguration
     {
-        private HideAndSeekVariation Variation { get; set; }
+        public HideAndSeekVariation Variation { get; private set; }
 
         public override void SetMiniGameCode(MiniGameCode code)
         {
