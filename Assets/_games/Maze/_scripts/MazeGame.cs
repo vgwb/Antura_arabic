@@ -290,6 +290,7 @@ namespace Antura.Minigames.Maze
                     roundNumber++;
 
                     MazeConfiguration.Instance.Context.GetLogManager().OnAnswered(currentLL, true);
+
                 }
 
                 // Show message:
@@ -311,7 +312,8 @@ namespace Antura.Minigames.Maze
                         roundNumberText.text = "#" + (roundNumber + 1);
                         restartCurrentLetter(won);
                     }
-                });
+                },
+                OnAnswerValidated);
             } else {
                 addLine();
                 currentCharacter.nextPath();
@@ -362,22 +364,6 @@ namespace Antura.Minigames.Maze
         {
 
             //Destroy (currentPrefab);
-            int numberOfStars = 0;
-            if (correctLetters == 6) {
-                numberOfStars = 3;
-            } else if (correctLetters >= 3) {
-                numberOfStars = 2;
-            } else if (correctLetters >= 2) {
-                numberOfStars = 1;
-            } else {
-                numberOfStars = 0;
-            }
-
-            if (numberOfStars > 0) {
-                MinigamesUI.Starbar.GotoStar(numberOfStars - 1);
-            }
-
-
 
 
             currentPrefab.SendMessage("moveOut", won);
@@ -386,11 +372,26 @@ namespace Antura.Minigames.Maze
             removeLines();
 
             initCurrentLetter();
+        }
 
-
-
-
-
+        void OnAnswerValidated()
+        {
+            if (correctLetters == 6)
+            {
+                MinigamesUI.Starbar.GotoStar(2);
+            }
+            else if (correctLetters >= 3)
+            {
+                MinigamesUI.Starbar.Goto(Mathf.Clamp01(0.6661f + (correctLetters-3)*0.111f ));
+            }
+            else if (correctLetters == 2)
+            {
+                MinigamesUI.Starbar.Goto(0.3331f);
+            }
+            else if (correctLetters == 1)
+            {
+                MinigamesUI.Starbar.Goto(0.1665f);
+            }
         }
 
         void removeLines()

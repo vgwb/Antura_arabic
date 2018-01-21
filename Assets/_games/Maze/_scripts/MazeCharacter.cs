@@ -1,4 +1,4 @@
-using Antura.LivingLetters;
+﻿using Antura.LivingLetters;
 using Antura.Minigames.Tobogan;
 using DG.Tweening;
 using System.Collections;
@@ -122,6 +122,7 @@ namespace Antura.Minigames.Maze
         private IAudioSource rocketMoveSFX;
 
         private bool showedCheckmarkUponVictory = false;
+        System.Action OnMarkStamp;
 
         private IAudioSource letterPronounciation;
         private bool pronouncedLetter = false;
@@ -817,8 +818,9 @@ namespace Antura.Minigames.Maze
             }
         }
 
-        public void Celebrate(System.Action OnCelebrationOver)
+        public void Celebrate(System.Action OnCelebrationOver, System.Action OnMarkStamp)
         {
+            this.OnMarkStamp = OnMarkStamp;
             List<Vector3> celebrationPathPoints = new List<Vector3>();
 
             var cameraPosition = Camera.main.transform.position;
@@ -904,6 +906,8 @@ namespace Antura.Minigames.Maze
                             MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
 
                             showedCheckmarkUponVictory = true;
+                            if (OnMarkStamp != null)
+                                OnMarkStamp();
                         }
 
                         if (Time.time - endTimeOfLetterPronounciation > (DELAY_BETWEEN_LETTER_SOUND_AND_CHECKMARK + DELAY_BETWEEN_CHECKMARK_AND_EXIT)) {
