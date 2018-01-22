@@ -18,7 +18,7 @@ namespace Antura.Map
             // Touch movement controls
             if (AppManager.I.ModalWindowActivated) { return; }
 
-            if (Input.GetMouseButtonUp(0) && !GlobalUI.I.IsFingerTouchingUI() && !mapCameraController.IsFollowingFinger) {
+            if (Input.GetMouseButtonUp(0) && !GlobalUI.I.IsFingerOverUI() && !mapCameraController.IsFollowingFinger) {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 RaycastHit hit;
