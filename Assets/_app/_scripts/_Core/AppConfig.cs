@@ -13,13 +13,13 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public static Version AppVersion = new Version(1, 1, 0, 588);
+        public static Version AppVersion = new Version(1, 1, 0, 589);
 
         /// <summary>
         /// Version of the Static Database Scheme.
         /// v1.0.7 - added ArabicFemale to LocalizationData
         /// </summary>
-        public const string StaticDbSchemeVersion = "1.1.0.579";
+        public const string StaticDbSchemeVersion = "1.1.0.578";
 
         /// <summary>
         /// Version of the MySQL Database Scheme.
