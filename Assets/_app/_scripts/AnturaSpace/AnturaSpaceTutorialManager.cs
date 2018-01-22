@@ -201,13 +201,13 @@ namespace Antura.AnturaSpace
                 case CustomizationTutorialStep.SELECT_CATEGORY:
 
                     m_oCustomizationButton.onClick.RemoveListener(StepTutorialCustomization);
+                    CurrentTutorialFocus = null;
 
                     StartCoroutine(DelayedCallbackCO(
                         () => {
                             m_oCategoryButton = _mScene.UI.GetNewCategoryButton();
                             if (m_oCategoryButton == null)
                             {
-                                Debug.Log("Getting first unlocked cat instead");
                                 m_oCategoryButton = _mScene.UI.GetFirstUnlockedCategoryButton();
                             }
                             m_oCategoryButton.Bt.onClick.AddListener(StepTutorialCustomization);
@@ -221,6 +221,7 @@ namespace Antura.AnturaSpace
 
                     // Unregister from category button
                     m_oCategoryButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
+                    CurrentTutorialFocus = null;
 
                     StartCoroutine(DelayedCallbackCO(
                         () => {
@@ -228,7 +229,6 @@ namespace Antura.AnturaSpace
                             m_oItemButton = _mScene.UI.GetNewItemButton();
                             if (m_oItemButton == null)
                             {
-                                Debug.Log("Getting first unlocked item instead");
                                 m_oItemButton = _mScene.UI.GetFirstUnlockedItemButton();
                             }
                             m_oItemButton.Bt.onClick.AddListener(StepTutorialCustomization);
@@ -241,6 +241,7 @@ namespace Antura.AnturaSpace
                 case CustomizationTutorialStep.SELECT_COLOR:
 
                     Dialogue(LocalizationDataId.AnturaSpace_Custom_3);
+                    CurrentTutorialFocus = null;
 
                     // Cleanup last step
                     m_oItemButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
