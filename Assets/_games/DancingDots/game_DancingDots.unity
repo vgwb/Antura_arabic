@@ -77,15 +77,17 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
   m_LightingDataAsset: {fileID: 0}
   m_ShadowMaskMode: 2
 --- !u!196 &4
@@ -395,7 +397,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.x
-      value: 4.84
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.y
@@ -403,7 +405,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.z
-      value: 4.8400006
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
@@ -704,7 +706,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.z
-      value: 4.8400006
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114000013830082922, guid: 380988909aba2462c8a2d2888f035197,
         type: 2}
@@ -776,7 +778,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.x
-      value: 4.84
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
         type: 2}
@@ -822,6 +824,16 @@ Prefab:
         type: 2}
       propertyPath: m_textInfo.spaceCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSizeBase
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
@@ -6390,7 +6402,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.z
-      value: 4.8400006
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114000013830082922, guid: 380988909aba2462c8a2d2888f035197,
         type: 2}
@@ -6473,7 +6485,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.x
-      value: 4.84
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
         type: 2}
@@ -6499,6 +6511,16 @@ Prefab:
         type: 2}
       propertyPath: m_textInfo.lineCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSizeBase
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
@@ -6627,7 +6649,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.z
-      value: 4.8400006
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114000013830082922, guid: 380988909aba2462c8a2d2888f035197,
         type: 2}
@@ -6702,7 +6724,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.x
-      value: 4.84
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011069946288, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
@@ -7004,7 +7031,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.z
-      value: 4.8400006
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114000013830082922, guid: 380988909aba2462c8a2d2888f035197,
         type: 2}
@@ -7082,7 +7109,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.x
-      value: 4.84
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
         type: 2}
@@ -7143,6 +7170,16 @@ Prefab:
         type: 2}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSizeBase
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
@@ -7293,7 +7330,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.z
-      value: 4.8400006
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_textInfo.characterCount
@@ -7359,7 +7396,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.x
-      value: 4.84
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
@@ -11441,12 +11478,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010733870158, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224000010008228622, guid: 380988909aba2462c8a2d2888f035197,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4000012897578374, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_RootOrder
@@ -11462,7 +11499,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.x
-      value: 4.84
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.y
@@ -11470,7 +11507,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.z
-      value: 4.8400006
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
         type: 2}
@@ -11501,6 +11538,16 @@ Prefab:
         type: 2}
       propertyPath: m_textInfo.lineCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSizeBase
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
@@ -12016,7 +12063,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.z
-      value: 4.8400006
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_textInfo.characterCount
@@ -12094,7 +12141,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_LocalScale.x
-      value: 4.84
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
         type: 2}
@@ -12772,8 +12819,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a5fd23481066d4b87c7d20e2f46eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MiniGameCode: 10
-  Stage: 1
+  MiniGameCode: 36
+  Stage: 6
   LearningBlock: 1
   PlaySession: 1
   Difficulty: 0.5

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Antura.LivingLetters;
@@ -27,7 +27,23 @@ namespace Antura.Minigames.Maze
 
         public Canvas endGameCanvas;
 
+        const int STARS_1_THRESHOLD = 1;
+        const int STARS_2_THRESHOLD = 3;
+        const int STARS_3_THRESHOLD = 5;
 
+        public int CurrentStars
+        {
+            get
+            {
+                if (correctLetters < STARS_1_THRESHOLD)
+                    return 0;
+                if (correctLetters < STARS_2_THRESHOLD)
+                    return 1;
+                if (correctLetters < STARS_3_THRESHOLD)
+                    return 2;
+                return 3;
+            }
+        }
 
 
         public float idleTime = 7;
@@ -163,13 +179,13 @@ namespace Antura.Minigames.Maze
         {
             float difficulty = MazeConfiguration.Instance.Difficulty;
 
-            if (difficulty < 0.2f) {
+           /* if (difficulty < 0.2f) {
                 gameTime = 120f;
             } else if (difficulty < 0.4f) {
                 gameTime = 110f;
             } else if (difficulty < 0.6f) {
                 gameTime = 100f;
-            } else if (difficulty < 0.8f) {
+            } else */ if (difficulty < 0.8f) {
                 gameTime = 90f;
             } else {
                 gameTime = 70f;
@@ -192,8 +208,8 @@ namespace Antura.Minigames.Maze
             if (uiInitialized) return;
             uiInitialized = true;
 
-            //ui:
-            MinigamesUI.Init(MinigamesUIElement.Starbar | MinigamesUIElement.Timer);
+            Context.GetOverlayWidget().Initialize(true, true, false);
+            Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
 
             timer.initTimer();
         }
@@ -290,6 +306,7 @@ namespace Antura.Minigames.Maze
                     roundNumber++;
 
                     MazeConfiguration.Instance.Context.GetLogManager().OnAnswered(currentLL, true);
+
                 }
 
                 // Show message:
@@ -299,7 +316,7 @@ namespace Antura.Minigames.Maze
                 currentTutorial.HideCheckpointsAndLineOfCurrentPath();
 
                 currentCharacter.Celebrate(() => {
-                    if (roundNumber == MAX_NUM_ROUNDS) {
+                    if (roundNumber == MAX_NUM_ROUNDS || CurrentStars == 3) {
                         endGame();
                         return;
                     } else {
@@ -311,7 +328,8 @@ namespace Antura.Minigames.Maze
                         roundNumberText.text = "#" + (roundNumber + 1);
                         restartCurrentLetter(won);
                     }
-                });
+                },
+                OnAnswerValidated);
             } else {
                 addLine();
                 currentCharacter.nextPath();
@@ -349,7 +367,7 @@ namespace Antura.Minigames.Maze
 
             MazeConfiguration.Instance.Context.GetLogManager().OnAnswered(currentLL, false);
 
-            if (roundNumber == MAX_NUM_ROUNDS) {
+            if (roundNumber == MAX_NUM_ROUNDS || CurrentStars == 3) {
                 endGame();
                 return;
             } else {
@@ -362,22 +380,6 @@ namespace Antura.Minigames.Maze
         {
 
             //Destroy (currentPrefab);
-            int numberOfStars = 0;
-            if (correctLetters == 6) {
-                numberOfStars = 3;
-            } else if (correctLetters >= 3) {
-                numberOfStars = 2;
-            } else if (correctLetters >= 2) {
-                numberOfStars = 1;
-            } else {
-                numberOfStars = 0;
-            }
-
-            if (numberOfStars > 0) {
-                MinigamesUI.Starbar.GotoStar(numberOfStars - 1);
-            }
-
-
 
 
             currentPrefab.SendMessage("moveOut", won);
@@ -386,11 +388,11 @@ namespace Antura.Minigames.Maze
             removeLines();
 
             initCurrentLetter();
+        }
 
-
-
-
-
+        void OnAnswerValidated()
+        {
+            Context.GetOverlayWidget().SetStarsScore(correctLetters);
         }
 
         void removeLines()
@@ -574,25 +576,10 @@ namespace Antura.Minigames.Maze
             MinigamesUI.Timer.Pause();
             TutorialUI.Clear(false);
 
-            int numberOfStars = 0;
-            if (correctLetters == 6) {
-                numberOfStars = 3;
-            } else if (correctLetters >= 3) {
-                numberOfStars = 2;
-            } else if (correctLetters >= 2) {
-                numberOfStars = 1;
-            } else {
-                numberOfStars = 0;
-            }
-
-            if (numberOfStars > 0) {
-                MinigamesUI.Starbar.GotoStar(numberOfStars - 1);
-            }
-
             // Reset physics collisions:
             Physics.IgnoreLayerCollision(10, 12, false);
 
-            EndGame(numberOfStars, correctLetters);
+            EndGame(CurrentStars, correctLetters);
             //StartCoroutine(EndGame_Coroutine());
         }
 

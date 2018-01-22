@@ -1,6 +1,7 @@
 ﻿using Antura.Database;
 using Antura.Teacher;
 using System;
+using UnityEngine;
 
 namespace Antura.Minigames.Egg
 {
@@ -35,9 +36,9 @@ namespace Antura.Minigames.Egg
         private EggConfiguration()
         {
             // Default values
-            Context = new MinigamesGameContext(MiniGameCode.Egg_lettername, System.DateTime.Now.Ticks.ToString());
+            Context = new MinigamesGameContext(MiniGameCode.Egg_letterphoneme, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.1f;
-            Variation = EggVariation.LetterName;
+            Variation = EggVariation.LetterPhoneme;
 
             if (Variation == EggVariation.BuildWord) {
                 Questions = new SampleEggSequenceQuestionProvider();
@@ -55,6 +56,8 @@ namespace Antura.Minigames.Egg
             int nCorrect = 6;
             int nWrong = 7;
 
+            // Debug.LogWarning("SetupBuilder " + Variation.ToString());
+
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctSeverity = SelectionSeverity.AsManyAsPossible;
 
@@ -67,7 +70,7 @@ namespace Antura.Minigames.Egg
                     builder = new LettersInWordQuestionBuilder(nPacks, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
                     break;
                 case EggVariation.LetterPhoneme:
-                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, 3, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters_OneForm, avoidWrongLettersWithSameSound:true);
+                    builder = new RandomLetterAlterationsQuestionBuilder(nPacks, 1, 3, parameters: builderParams, letterAlterationFilters: LetterAlterationFilters.FormsAndPhonemesOfMultipleLetters_OneForm, avoidWrongLettersWithSameSound: true);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

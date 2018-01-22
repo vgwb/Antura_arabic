@@ -171,11 +171,11 @@ namespace Antura.Minigames.ReadingGame
                         timeFarFromTarget += delta;
                     } else {
                         timeFarFromTarget = 0;
-                        if (distance < 50) {
-                            scoreAccumulator += 1.15f * delta;
-                        } else {
-                            scoreAccumulator += 1 * delta;
-                        }
+                        //if (distance < 50) {
+                            scoreAccumulator += 1.2f * delta;
+                        //} else {
+                        //    scoreAccumulator += 1 * delta;
+                        // }
                         if (scoreAccumulator >= 1) {
                             game.AddScore((int)scoreAccumulator);
                             scoreAccumulator = scoreAccumulator - (int)scoreAccumulator;

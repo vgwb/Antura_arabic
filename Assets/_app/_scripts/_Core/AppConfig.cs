@@ -13,19 +13,19 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public static Version AppVersion = new Version(1, 1, 0, 587);
+        public static Version AppVersion = new Version(1, 2, 0, 0);
 
         /// <summary>
         /// Version of the Static Database Scheme.
         /// v1.0.7 - added ArabicFemale to LocalizationData
         /// </summary>
-        public const string StaticDbSchemeVersion = "1.1.0.578";
+        public const string StaticDbSchemeVersion = "1.2.0.0";
 
         /// <summary>
         /// Version of the MySQL Database Scheme.
         /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
         /// </summary>
-        public const string DynamicDbSchemeVersion = "1.1.0.581";
+        public const string DynamicDbSchemeVersion = "1.2.0.0";
 
         #region Debug Options
 
@@ -39,13 +39,13 @@ namespace Antura.Core
         /// Tracks common events using Unity Analytics.
         /// Set to TRUE for production.
         /// </summary>
-        public static bool UnityAnalyticsEnabled = false;
+        public static bool UnityAnalyticsEnabled = true;
 
         /// <summary>
         /// Switches on all Debug.Log calls for performance.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool DebugLogEnabled = true;
+        public static bool DebugLogEnabled = false;
 
         /// <summary>
         /// Logs all MySQL database inserts.

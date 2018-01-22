@@ -21,7 +21,8 @@ namespace Antura.Minigames.FastCrowd
             {
                 return FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet ||
                         FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting ||
-                        FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word;
+                        FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word ||
+                        FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.LetterName;
             }
         }
 
@@ -82,6 +83,10 @@ namespace Antura.Minigames.FastCrowd
             tutorialStartTimer = 3f;
             game.Context.GetCheckmarkWidget().Show(result);
             game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
+
+            if (result && (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting || FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word))
+                game.Context.GetAudioManager().PlayVocabularyData(data);
+
         }
 
         public void Update(float delta)

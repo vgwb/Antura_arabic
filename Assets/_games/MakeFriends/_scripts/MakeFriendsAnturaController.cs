@@ -29,6 +29,7 @@ namespace Antura.Minigames.MakeFriends
         public void ReactNegatively()
         {
             animationController.DoShout();
+            Audio.AudioManager.I.PlaySound(Sfx.DogBarking);
         }
 
         public void ReactPositively()

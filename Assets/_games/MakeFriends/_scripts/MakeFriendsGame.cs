@@ -21,7 +21,7 @@ namespace Antura.Minigames.MakeFriends
         public Canvas endGameCanvas;
         public GameObject sceneCamera;
         public const int numberOfRounds = 6;
-        public float uiDelay;
+        //public float uiDelay;
         public float feedbackDuration;
         public float loseDuration;
         public Vector3 endCameraPosition;
@@ -40,6 +40,9 @@ namespace Antura.Minigames.MakeFriends
         public bool overrideDifficulty;
         public MakeFriendsDifficulty difficultySetting;
         public static MakeFriendsGame Instance { get { return I as MakeFriendsGame; } }
+
+        public bool IsIntroducingLetter = false;
+        public int SpokenWords = 0;
 
         [HideInInspector]
         public MakeFriendsConfiguration Configuration { get { return MakeFriendsConfiguration.Instance; } }
@@ -70,13 +73,7 @@ namespace Antura.Minigames.MakeFriends
             get { return _currentScore; }
             set {
                 _currentScore = value;
-                if (CurrentScore == STARS_1_THRESHOLD) {
-                    MinigamesUI.Starbar.GotoStar(0);
-                } else if (CurrentScore == STARS_2_THRESHOLD) {
-                    MinigamesUI.Starbar.GotoStar(1);
-                } else if (CurrentScore == STARS_3_THRESHOLD) {
-                    MinigamesUI.Starbar.GotoStar(2);
-                }
+                Context.GetOverlayWidget().SetStarsScore(CurrentScore);
             }
         }
 
@@ -117,6 +114,12 @@ namespace Antura.Minigames.MakeFriends
             ResultState = new MakeFriendsResultState(this);
         }
 
+        public void InitializeMinigameUI()
+        {
+            Context.GetOverlayWidget().Initialize(true, false, false);
+            Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
+        }
+
         protected override FSM.IState GetInitialState()
         {
             return IntroductionState;
@@ -145,22 +148,24 @@ namespace Antura.Minigames.MakeFriends
 
         public void PlayTitleVoiceOver()
         {
-            StartCoroutine(PlayDialog_Coroutine(LocalizationDataId.MakeFriends_letterinword_Title, 0f));
+            AudioManager.PlayDialogue(LocalizationDataId.MakeFriends_letterinword_Title);
         }
 
-        public void PlayTutorialVoiceOver(float delay = 3.8f)
+        public void PlayTutorialVoiceOver()
         {
-            StartCoroutine(PlayDialog_Coroutine(LocalizationDataId.MakeFriends_letterinword_Tuto, delay));
+            StartCoroutine(PlayDialog_Coroutine(LocalizationDataId.MakeFriends_letterinword_Tuto));
         }
 
-        public void PlayIntroVoiceOver(float delay = 3.75f)
+        public void PlayIntroVoiceOver()
         {
-            StartCoroutine(PlayDialog_Coroutine(LocalizationDataId.MakeFriends_letterinword_Intro, delay));
+            StartCoroutine(PlayDialog_Coroutine(LocalizationDataId.MakeFriends_letterinword_Intro));
         }
 
-        private IEnumerator PlayDialog_Coroutine(LocalizationDataId dialog, float delay)
+        private IEnumerator PlayDialog_Coroutine(LocalizationDataId dialog)
         {
-            yield return new WaitForSeconds(delay);
+            while (MakeFriendsGame.Instance.SpokenWords < 2)
+                yield return null;
+            
             AudioManager.PlayDialogue(dialog);
         }
 
@@ -204,7 +209,10 @@ namespace Antura.Minigames.MakeFriends
 
         private IEnumerator ShowTutorialUI_Coroutine()
         {
-            yield return new WaitForSeconds(uiDelay + 0.5f);
+            while (MakeFriendsGame.Instance.SpokenWords < 2)
+                yield return null;
+
+            yield return new WaitForSeconds(0.5f);
 
             while (isTutorialRound) {
                 for (int i = 0; i < letterPicker.CorrectLetterChoices.Count; i++) {
@@ -297,7 +305,7 @@ namespace Antura.Minigames.MakeFriends
 
         private void ShowDropZone()
         {
-            dropZone.Appear(uiDelay);
+            dropZone.Appear();
         }
 
         private void HideDropZone()
@@ -305,9 +313,8 @@ namespace Antura.Minigames.MakeFriends
             dropZone.Disappear();
         }
 
-        private void ShowLetterPicker(float delay = -1f)
+        private void ShowLetterPicker(float delay = 0)
         {
-            delay = delay == -1f ? uiDelay : delay;
             letterPicker.Block();
             letterPicker.ShowAndUnblockDelayed(delay);
         }
@@ -462,8 +469,11 @@ namespace Antura.Minigames.MakeFriends
             }
         }
 
-        private void Reset()
+        public void Reset()
         {
+            IsIntroducingLetter = false;
+            SpokenWords = 0;
+
             commonLetters.Clear();
             choiceLetters.Clear();
             correctChoices.Clear();
@@ -486,7 +496,7 @@ namespace Antura.Minigames.MakeFriends
 
         private IEnumerator EndGame_Coroutine()
         {
-            var delay1 = 0.5f;
+            var delay1 = 0.25f;
             yield return new WaitForSeconds(delay1);
 
             PlayIdleMusic();
@@ -495,6 +505,11 @@ namespace Antura.Minigames.MakeFriends
             // Everybody dance!
             FriendsZonesManager.instance.EverybodyDance();
             antura.ReactToEndGame();
+
+            yield return new WaitForSeconds(1.0f);
+
+            antura.animationController.DoShout();
+            Context.GetAudioManager().PlaySound(Sfx.DogBarking);
 
             /*
             // Zoom out camera

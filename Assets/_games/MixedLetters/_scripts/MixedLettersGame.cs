@@ -27,6 +27,24 @@ namespace Antura.Minigames.MixedLetters
             }
         }
 
+        public int STARS_1_THRESHOLD { get { return Mathf.CeilToInt(0.33f * TotalNumRounds); } }
+        public int STARS_2_THRESHOLD { get { return Mathf.CeilToInt(0.66f * TotalNumRounds); } }
+        public int STARS_3_THRESHOLD { get { return TotalNumRounds; } }
+
+        public int CurrentStars
+        {
+            get
+            {
+                if (numRoundsWon < STARS_1_THRESHOLD)
+                    return 0;
+                if (numRoundsWon < STARS_2_THRESHOLD)
+                    return 1;
+                if (numRoundsWon < STARS_3_THRESHOLD)
+                    return 2;
+                return 3;
+            }
+        }
+
         private readonly int[] ALPHABET_PICKING_ORDER = new int[] { 4, 3, 4, 4, 4, 4, 2, 3 };
 
         public IntroductionGameState IntroductionState { get; private set; }
@@ -398,6 +416,7 @@ namespace Antura.Minigames.MixedLetters
             _wasLastRoundWon = true;
 
             numRoundsWon++;
+            Context.GetOverlayWidget().SetStarsScore(numRoundsWon);
             
             HideRotationButtons();
             ShowGreenTicks();
@@ -411,28 +430,6 @@ namespace Antura.Minigames.MixedLetters
         public void DisableRepeatPromptButton()
         {
             repeatPromptButton.gameObject.SetActive(false);
-        }
-
-        public int GetNumStarsAsOfCurrentRound()
-        {
-            float progress = (numRoundsWon + 0f) / TotalNumRounds;
-
-            if (progress < 0.33f)
-            {
-                return 0;
-            }
-
-            else if (progress < 0.67f)
-            {
-                return 1;
-            }
-
-            else if (progress < 1f)
-            {
-                return 2;
-            }
-
-            else return 3;
         }
     }
 }

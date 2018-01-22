@@ -201,8 +201,11 @@ namespace Antura.Minigames.ThrowBalls
 
             if (!uiInitialised && !IsTutorialRound()) {
                 uiInitialised = true;
-                MinigamesUI.Init(MinigamesUIElement.Lives | MinigamesUIElement.Starbar);
-                MinigamesUI.Lives.Setup(MAX_NUM_BALLS);
+
+                
+                game.Context.GetOverlayWidget().Initialize(true, false, true);
+                game.Context.GetOverlayWidget().SetStarsThresholds(1, 3, 5);
+                game.Context.GetOverlayWidget().SetMaxLives(MAX_NUM_BALLS);
             }
 
             IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
@@ -218,8 +221,8 @@ namespace Antura.Minigames.ThrowBalls
                     wrongData[i] = new LL_ImageData(wrongData[i].Id);
                 }
             }
-
-            SayQuestion();
+            else
+                SayQuestion();
 
             yield return new WaitForSeconds(1f);
 
@@ -302,8 +305,9 @@ namespace Antura.Minigames.ThrowBalls
 
             if (!uiInitialised && !IsTutorialRound()) {
                 uiInitialised = true;
-                MinigamesUI.Init(MinigamesUIElement.Lives | MinigamesUIElement.Starbar);
-                MinigamesUI.Lives.Setup(MAX_NUM_BALLS);
+                game.Context.GetOverlayWidget().Initialize(true, false, true);
+                game.Context.GetOverlayWidget().SetStarsThresholds(1, 3, 5);
+                game.Context.GetOverlayWidget().SetMaxLives(MAX_NUM_BALLS);
             }
 
             question = newQuestionPack.GetQuestion();
@@ -441,8 +445,8 @@ namespace Antura.Minigames.ThrowBalls
         {
             if (isRoundOngoing && !IsTutorialRound()) {
                 numBalls--;
-
-                MinigamesUI.Lives.SetCurrLives(numBalls);
+                
+                game.Context.GetOverlayWidget().SetLives(numBalls);
 
                 if (numBalls == 0) {
                     BallController.instance.Disable();
@@ -526,13 +530,8 @@ namespace Antura.Minigames.ThrowBalls
                 if (!IsTutorialRound()) {
                     numRoundsWon++;
 
-                    if (numRoundsWon == 1) {
-                        MinigamesUI.Starbar.GotoStar(0);
-                    } else if (numRoundsWon == 3) {
-                        MinigamesUI.Starbar.GotoStar(1);
-                    } else if (numRoundsWon == 5) {
-                        MinigamesUI.Starbar.GotoStar(2);
-                    }
+                    game.Context.GetOverlayWidget().SetStarsScore(numRoundsWon);
+
                 } else {
                     TutorialUI.Clear(true);
                 }
@@ -733,7 +732,8 @@ namespace Antura.Minigames.ThrowBalls
             numBalls = MAX_NUM_BALLS;
 
             if (roundNumber > 1 || !game.TutorialEnabled && roundNumber > 0) {
-                MinigamesUI.Lives.ResetToMax();
+                
+                game.Context.GetOverlayWidget().SetLives(MAX_NUM_BALLS);
             }
 
             isRoundOngoing = false;

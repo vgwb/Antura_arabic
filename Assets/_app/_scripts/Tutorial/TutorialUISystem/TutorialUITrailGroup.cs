@@ -85,6 +85,7 @@ namespace Antura.Tutorial
                 tr.startWidth = defStartWidths[i] * TutorialUI.GetCameraBasedScaleMultiplier(_position);
                 tr.endWidth = defEndWidths[i] * TutorialUI.GetCameraBasedScaleMultiplier(_position);
                 tr.sortingOrder = _overlayed ? defSortingOrder[i] : 0;
+                tr.Clear();
             }
         }
 

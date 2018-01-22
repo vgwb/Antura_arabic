@@ -1,4 +1,4 @@
-using Antura.Core;
+﻿using Antura.Core;
 using Kore.Coroutines;
 using System.Collections;
 
@@ -28,9 +28,14 @@ namespace Antura.Assessment
 
             audioManager.PlayMusic(Music.Relax);
             audioManager.PlaySound(Sfx.TickAndWin);
-            dialogueManager.PlayAssessmentCompleteSound();
 
-            Koroutine.Run(QuitAfterSomeTime(seconds: 2));
+            Koroutine.Run(QuitAfterYieldable(dialogueManager.PlayAssessmentCompleteSound()));
+        }
+
+        IEnumerator QuitAfterYieldable(IYieldable yieldable)
+        {
+            yield return yieldable;
+            ExitState();
         }
 
         IEnumerator QuitAfterSomeTime(float seconds)

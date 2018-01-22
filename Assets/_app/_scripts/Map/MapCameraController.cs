@@ -1,10 +1,10 @@
-﻿using Antura.Core;
-using Antura.Audio;
+﻿using Antura.Audio;
+using Antura.Core;
+using Antura.UI;
 using DG.DeExtensions;
 using DG.Tweening;
 using System.Linq;
 using UnityEngine;
-
 
 namespace Antura.Map
 {
@@ -131,6 +131,7 @@ namespace Antura.Map
         private void LateUpdate()
         {
             if (AppManager.I.ModalWindowActivated) { return; }
+            if (GlobalUI.I.IsFingerOverUI()) { return; }
 
             if (movementType == MovementType.AUTO) {
                 // Auto-follow
@@ -238,7 +239,7 @@ namespace Antura.Map
         void CameraMoveUpdate()
         {
             if (isFollowingFinger) { currentSpeed = 0.0f; }
-            if (currentSpeed != 0.0f) {
+            if (Mathf.Abs(currentSpeed) > AppConfig.EPSILON) {
                 int startDir = (int)Mathf.Sign(currentSpeed);
                 currentSpeed -= Time.deltaTime * deceleration * startDir;
 

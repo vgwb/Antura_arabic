@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Antura.Minigames.ThrowBalls
 {
@@ -42,6 +42,7 @@ namespace Antura.Minigames.ThrowBalls
             sphereCollider = GetComponent<SphereCollider>();
 
             trailRenderer = GetComponent<TrailRenderer>();
+            trailRenderer.Clear();
 
             audioManager = ThrowBallsConfiguration.Instance.Context.GetAudioManager();
         }
@@ -162,6 +163,7 @@ namespace Antura.Minigames.ThrowBalls
                 case State.Launched:
                     rigidBody.isKinematic = false;
                     trailRenderer.enabled = true;
+                    trailRenderer.Clear();
 
                     audioManager.PlaySound(Sfx.ThrowObj);
 

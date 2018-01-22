@@ -188,10 +188,10 @@ namespace Antura.AnturaSpace
                         LocalizationDataId.AnturaSpace_Custom_1,
                         () =>
                         {
-                            //after the dialog make appear the customization button
                             m_oCustomizationButton.gameObject.SetActive(true);
                             m_oCustomizationButton.onClick.AddListener(StepTutorialCustomization);
                             TutorialUI.ClickRepeat(m_oCustomizationButton.transform.position, float.MaxValue, 1);
+                            CurrentTutorialFocus = m_oCustomizationButton;
 
                             Dialogue(LocalizationDataId.AnturaSpace_Custom_2);
                         });
@@ -201,13 +201,17 @@ namespace Antura.AnturaSpace
                 case CustomizationTutorialStep.SELECT_CATEGORY:
 
                     m_oCustomizationButton.onClick.RemoveListener(StepTutorialCustomization);
-                    _mScene.UI.SetTutorialMode(true);
+                    CurrentTutorialFocus = null;
 
                     StartCoroutine(DelayedCallbackCO(
                         () => {
                             m_oCategoryButton = _mScene.UI.GetNewCategoryButton();
-                            if (m_oCategoryButton == null) throw new Exception("No new category!");
+                            if (m_oCategoryButton == null)
+                            {
+                                m_oCategoryButton = _mScene.UI.GetFirstUnlockedCategoryButton();
+                            }
                             m_oCategoryButton.Bt.onClick.AddListener(StepTutorialCustomization);
+                            CurrentTutorialFocus = m_oCategoryButton;
 
                             TutorialUI.ClickRepeat(m_oCategoryButton.transform.position, float.MaxValue, 1);
                         }));
@@ -217,13 +221,18 @@ namespace Antura.AnturaSpace
 
                     // Unregister from category button
                     m_oCategoryButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
+                    CurrentTutorialFocus = null;
 
                     StartCoroutine(DelayedCallbackCO(
                         () => {
                             // Register on item button
-                            m_oItemButton = _mScene.UI.GetFirstUnlockedItemButton();
-                            if (m_oItemButton == null) throw new Exception("No unlocked item!");
+                            m_oItemButton = _mScene.UI.GetNewItemButton();
+                            if (m_oItemButton == null)
+                            {
+                                m_oItemButton = _mScene.UI.GetFirstUnlockedItemButton();
+                            }
                             m_oItemButton.Bt.onClick.AddListener(StepTutorialCustomization);
+                            CurrentTutorialFocus = m_oItemButton;
 
                             TutorialUI.ClickRepeat(m_oItemButton.transform.position, float.MaxValue, 1);
                         }));
@@ -232,10 +241,11 @@ namespace Antura.AnturaSpace
                 case CustomizationTutorialStep.SELECT_COLOR:
 
                     Dialogue(LocalizationDataId.AnturaSpace_Custom_3);
+                    CurrentTutorialFocus = null;
 
                     // Cleanup last step
-                    _mScene.UI.SetTutorialMode(false);
                     m_oItemButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
+                    CurrentTutorialFocus = null;
 
                     StartCoroutine(DelayedCallbackCO(
                         () => {
@@ -252,12 +262,12 @@ namespace Antura.AnturaSpace
                     Dialogue(LocalizationDataId.AnturaSpace_Custom_4);
 
                     // Cleanup last step
-                    _mScene.UI.SetTutorialMode(false);
                     m_oSwatchButton.Bt.onClick.RemoveListener(StepTutorialCustomization);
 
                     // New step
                     m_oAnturaBehaviour.onTouched += StepTutorialCustomization;
                     m_oCustomizationButton.onClick.AddListener(StepTutorialCustomization);
+                    CurrentTutorialFocus = m_oCustomizationButton;
 
                     StartCoroutine(DelayedCallbackCO(
                      () => {
@@ -281,6 +291,7 @@ namespace Antura.AnturaSpace
                     // Cleanup last step
                     m_oCustomizationButton.onClick.RemoveListener(StepTutorialCustomization);
                     m_oAnturaBehaviour.onTouched -= StepTutorialCustomization;
+                    CurrentTutorialFocus = null;
 
                     CompleteTutorialPhase();
                     break;

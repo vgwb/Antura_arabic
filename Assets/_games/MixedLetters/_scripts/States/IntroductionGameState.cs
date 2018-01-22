@@ -1,4 +1,4 @@
-using Antura.UI;
+﻿using Antura.UI;
 using UnityEngine;
 
 namespace Antura.Minigames.MixedLetters
@@ -25,13 +25,20 @@ namespace Antura.Minigames.MixedLetters
 
             float difficulty = MixedLettersConfiguration.Instance.Difficulty;
 
-            if (difficulty <= 0.25f) {
+            if (difficulty <= 0.25f)
+            {
                 timePerRound = 60f;
-            } else if (difficulty <= 0.5f) {
+            }
+            else if (difficulty <= 0.5f)
+            {
                 timePerRound = 45f;
-            } else if (difficulty <= 0.75f) {
+            }
+            else if (difficulty <= 0.75f)
+            {
                 timePerRound = 30f;
-            } else {
+            }
+            else
+            {
                 timePerRound = 15f;
             }
         }
@@ -43,7 +50,8 @@ namespace Antura.Minigames.MixedLetters
 
         public void EnterState()
         {
-            if (!game.WasLastRoundWon) {
+            if (!game.WasLastRoundWon)
+            {
                 game.GenerateNewWord();
             }
 
@@ -67,9 +75,13 @@ namespace Antura.Minigames.MixedLetters
             victimLLPosition.x = Random.Range(0, 40) % 2 == 0 ? 0.5f : -0.5f;
             VictimLLController.instance.SetPosition(victimLLPosition);*/
 
-            if (!uiInitialised) {
+            if (!uiInitialised)
+            {
                 uiInitialised = true;
-                MinigamesUI.Init(MinigamesUIElement.Timer | MinigamesUIElement.Starbar);
+
+                game.Context.GetOverlayWidget().Initialize(true, true, false);
+                game.Context.GetOverlayWidget().SetStarsThresholds(game.STARS_1_THRESHOLD, game.STARS_2_THRESHOLD, game.STARS_3_THRESHOLD);
+
                 MinigamesUI.Timer.Setup(timePerRound);
             }
 
@@ -82,11 +94,13 @@ namespace Antura.Minigames.MixedLetters
 
         public void Update(float delta)
         {
-            if (isAnturaEnterTimerActivated) {
+            if (isAnturaEnterTimerActivated)
+            {
                 anturaEnterTimer -= delta;
             }
 
-            if (anturaEnterTimer < 0.25f && !anturaBarked) {
+            if (anturaEnterTimer < 0.25f && !anturaBarked)
+            {
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
                 //AnturaController.instance.Enable();
                 AnturaController.instance.PrepareToEnterScene();
@@ -94,7 +108,8 @@ namespace Antura.Minigames.MixedLetters
                 anturaBarked = true;
             }
 
-            if (anturaEnterTimer < 0 && !anturaEntered) {
+            if (anturaEnterTimer < 0 && !anturaEntered)
+            {
                 AnturaController.instance.Enable();
                 AnturaController.instance.EnterScene(OnFightBegan, OnAnturaExitedScene);
                 anturaEntered = true;
