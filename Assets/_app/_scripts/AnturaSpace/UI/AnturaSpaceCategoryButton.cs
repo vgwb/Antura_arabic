@@ -1,3 +1,5 @@
+using Antura.Core;
+using Antura.Rewards;
 using Antura.Tutorial;
 using Antura.UI;
 using UnityEngine;
@@ -28,6 +30,8 @@ namespace Antura.AnturaSpace.UI
         public bool IsNew {
             get { return isNew && !isNewForceHidden; }
         }
+
+        public bool Unlocked { get; set; }
 
         private GameObject icoNew;
         private bool isNew, isNewForceHidden;

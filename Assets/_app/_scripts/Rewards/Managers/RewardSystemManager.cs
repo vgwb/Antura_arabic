@@ -237,11 +237,6 @@ namespace Antura.Rewards
             return unlockedBases.ToList();
         }
 
-        private bool IsRewardBaseUnlocked(RewardBase rewardBase)
-        {
-            return GetUnlockedRewardPacks().Any(x => x.RewardBase == rewardBase);
-        }
-
         #endregion
 
         #endregion
@@ -316,9 +311,19 @@ namespace Antura.Rewards
             return GetUnlockedRewardPacks().Any(r => r.BaseId == rewardBase.ID && r.IsNew);
         }
 
+        public bool IsRewardBaseUnlocked(RewardBase rewardBase)
+        {
+            return GetUnlockedRewardPacks().Any(x => x.RewardBase == rewardBase);
+        }
+
         public bool DoesRewardCategoryContainNewElements(RewardBaseType baseType, string _rewardCategory = "")
         {
             return GetUnlockedRewardPacks().Any(r => r.BaseType == baseType && r.Category == _rewardCategory && r.IsNew);
+        }
+
+        public bool DoesRewardCategoryContainUnlockedElements(RewardBaseType baseType, string _rewardCategory = "")
+        {
+            return GetUnlockedRewardPacks().Any(r => r.BaseType == baseType && r.Category == _rewardCategory);
         }
 
         /// <summary>
