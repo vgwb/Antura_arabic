@@ -1,6 +1,6 @@
 # releases
 
-## 1.2.0 next (jan 2018)
+## 1.2.0.0 (22 jan 2018)
 - new Pedagogical Curriculum
 - Daily Rewards
 - Antura Space Shop and Antura interactions
