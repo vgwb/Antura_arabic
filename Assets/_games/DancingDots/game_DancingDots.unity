@@ -825,6 +825,16 @@ Prefab:
       propertyPath: m_textInfo.spaceCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSizeBase
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
   m_IsPrefabParent: 0
@@ -6502,6 +6512,16 @@ Prefab:
       propertyPath: m_textInfo.lineCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSizeBase
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
   m_IsPrefabParent: 0
@@ -7150,6 +7170,16 @@ Prefab:
         type: 2}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSizeBase
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
@@ -11508,6 +11538,16 @@ Prefab:
         type: 2}
       propertyPath: m_textInfo.lineCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482497951819312, guid: 380988909aba2462c8a2d2888f035197,
+        type: 2}
+      propertyPath: m_fontSizeBase
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
