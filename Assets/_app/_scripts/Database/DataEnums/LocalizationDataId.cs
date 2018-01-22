@@ -77,7 +77,7 @@ namespace Antura.Database
         AlphabetSong_letters_Title = 72,
         Egg_Intro = 73,
         Egg_buildword_Title = 74,
-        Egg_letters_Tuto = 75,
+        Egg_letterphoneme_Tuto = 75,
         Egg_buildword_Tuto = 76,
         Egg_letters_Title = 379,
         Egg_letterphoneme_Title = 349,
