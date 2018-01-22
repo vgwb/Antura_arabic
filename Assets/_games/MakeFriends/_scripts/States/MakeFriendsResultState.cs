@@ -4,7 +4,7 @@
     {
         MakeFriendsGame game;
 
-        float timer = 0.5f;
+        float timer = 0.25f;
         public MakeFriendsResultState(MakeFriendsGame game)
         {
             this.game = game;

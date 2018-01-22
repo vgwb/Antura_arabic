@@ -496,7 +496,7 @@ namespace Antura.Minigames.MakeFriends
 
         private IEnumerator EndGame_Coroutine()
         {
-            var delay1 = 0.5f;
+            var delay1 = 0.25f;
             yield return new WaitForSeconds(delay1);
 
             PlayIdleMusic();
@@ -505,6 +505,11 @@ namespace Antura.Minigames.MakeFriends
             // Everybody dance!
             FriendsZonesManager.instance.EverybodyDance();
             antura.ReactToEndGame();
+
+            yield return new WaitForSeconds(1.0f);
+
+            antura.animationController.DoShout();
+            Context.GetAudioManager().PlaySound(Sfx.DogBarking);
 
             /*
             // Zoom out camera
