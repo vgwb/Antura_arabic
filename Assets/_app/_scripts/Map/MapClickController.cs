@@ -1,7 +1,7 @@
-﻿using Antura.Core;
-using Antura.Audio;
+﻿using Antura.Audio;
+using Antura.Core;
+using Antura.UI;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Antura.Map
 {
@@ -18,7 +18,7 @@ namespace Antura.Map
             // Touch movement controls
             if (AppManager.I.ModalWindowActivated) { return; }
 
-            if (Input.GetMouseButtonUp(0) && !IsTouchingSomething() && !mapCameraController.IsFollowingFinger) {
+            if (Input.GetMouseButtonUp(0) && !GlobalUI.I.IsFingerTouchingUI() && !mapCameraController.IsFollowingFinger) {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 RaycastHit hit;
@@ -32,16 +32,6 @@ namespace Antura.Map
                     }
                 }
             }
-        }
-
-        private bool IsTouchingSomething()
-        {
-            // Mouse is -1, the rest are fingers
-            for (int touchId = -1; touchId < Input.touchCount; touchId++) {
-                bool isTouching = EventSystem.current.IsPointerOverGameObject(touchId);
-                if (isTouching) { return true; }
-            }
-            return false;
         }
 
     }
