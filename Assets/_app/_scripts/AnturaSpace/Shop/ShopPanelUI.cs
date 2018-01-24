@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Antura.Database;
 using Antura.UI;
 using DG.Tweening;
 using UnityEngine;
@@ -165,21 +166,22 @@ namespace Antura.AnturaSpace
 
             confirmationPanelUI.SetupForPurchase();
 
-            AskForConfirmation(ShopDecorationsManager.I.ConfirmPurchase, ShopDecorationsManager.I.CancelPurchase);
+            ShopDecorationsManager.I.ResetHighlights();
 
-            showConfirmationPanelTween.PlayForward();
+            AskForConfirmation(ShopDecorationsManager.I.ConfirmPurchase, ShopDecorationsManager.I.CancelPurchase);
         }
 
         private void HandleDeleteConfirmationRequested()
         {
-            showDragPanelTween.PlayBackwards();
             showPurchasePanelAlwaysAvailableTween.PlayBackwards();
 
             confirmationPanelUI.SetupForDeletion();
 
-            AskForConfirmation(ShopDecorationsManager.I.ConfirmDeletion, ShopDecorationsManager.I.CancelDeletion);
+            ShopDecorationsManager.I.ResetHighlights();
 
-            showConfirmationPanelTween.PlayForward();
+            GlobalUI.ShowPrompt(LocalizationDataId.UI_AreYouSure, ShopDecorationsManager.I.ConfirmDeletion, ShopDecorationsManager.I.CancelDeletion);
+
+            //AskForConfirmation(ShopDecorationsManager.I.ConfirmDeletion, ShopDecorationsManager.I.CancelDeletion);
         }
 
         private void HandlePhotoConfirmationRequested()
@@ -191,8 +193,6 @@ namespace Antura.AnturaSpace
             confirmationPanelUI.SetupForPhoto();
 
             AskForConfirmation(ShopPhotoManager.I.ConfirmPhoto, ShopPhotoManager.I.CancelPhoto);
-
-            showConfirmationPanelTween.PlayForward();
         }
 
         private UnityAction currentYesAction;
@@ -205,6 +205,7 @@ namespace Antura.AnturaSpace
             confirmationYesButton.onClick.AddListener(ResetConfirmationButtons);
             confirmationNoButton.onClick.AddListener(noAction);
             confirmationNoButton.onClick.AddListener(ResetConfirmationButtons);
+            showConfirmationPanelTween.PlayForward();
         }
 
         private void ResetConfirmationButtons()

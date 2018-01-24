@@ -105,9 +105,7 @@ namespace Antura.AnturaSpace
         {
             EndPlacementContext();
 
-            foreach (var shopDecorationSlot in allShopDecorationSlots) {
-                shopDecorationSlot.Highlight(false);
-            }
+            ResetHighlights();
 
             SwitchToContext(ShopContext.Purchase);
         }
@@ -362,6 +360,14 @@ namespace Antura.AnturaSpace
                     // Move it right away
                     ConfirmMovement();
                 }
+            }
+        }
+
+        public void ResetHighlights()
+        {
+            foreach (var shopDecorationSlot in allShopDecorationSlots)
+            {
+                shopDecorationSlot.Highlight(false);
             }
         }
 
