@@ -26,7 +26,12 @@ namespace Antura.AnturaSpace
 
         void Start()
         {
-            gameObjectsToHide.Add(FindObjectOfType<DebugPanel>().gameObject);
+            var debugPanel= FindObjectOfType<DebugPanel>();
+            if (debugPanel != null)
+            {
+                gameObjectsToHide.Add(debugPanel.gameObject);
+            }
+
             gameObjectsToHide.Add(FindObjectOfType<GlobalUI>().gameObject);
         }
 
