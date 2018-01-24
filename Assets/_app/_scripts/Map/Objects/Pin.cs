@@ -242,37 +242,41 @@ namespace Antura.Map
         public void EnableInteraction(bool choice)
         {
             interactionEnabled = choice;
-            if (!interactionEnabled) {
-                mainDot.SetAsNothing();
-            } else {
-                mainDot.Highlight(true);    // re-highlight the selected pin
-            }
+            HighlightFeedback(interactionEnabled);
         }
 
         public bool IsInteractionEnabled { get { return interactionEnabled; } }
 
         public void Select(bool choice)
         {
-            if (!interactionEnabled) {
+            if (!interactionEnabled)
+            {
                 mainDot.SetAsNothing();
                 return;
             }
 
-            //Debug.Log("SELECTED " + this.name + ": " + choice);
-
-            mainDot.Highlight(choice);
-            if (choice) {
-                if (isLocked) {
-                    mainDot.SetAsLock();
-                } else {
-                    mainDot.SetAsPlay();
-                }
-            } else {
-                mainDot.SetAsNothing();
-            }
+            HighlightFeedback(choice);
 
             if (!isLocked) {
                 playSessionFeedback.Highlight(choice);
+            }
+        }
+
+        void HighlightFeedback(bool choice)
+        {
+            mainDot.Highlight(choice);
+            if (choice)
+            {
+                if (isLocked)
+                {
+                    mainDot.SetAsLock();
+                }
+                else {
+                    mainDot.SetAsPlay();
+                }
+            }
+            else {
+                mainDot.SetAsNothing();
             }
         }
 

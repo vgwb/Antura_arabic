@@ -676,9 +676,6 @@ namespace Antura.Map
         public void SetPlayUIActivation(bool choice)
         {
             if (selectedPin) { selectedPin.EnableInteraction(choice); }
-            // TEST disable all panels 
-            //playButtonsPanel.gameObject.SetActive(choice);
-            //playInfoPanel.gameObject.SetActive(choice);
         }
 
 
