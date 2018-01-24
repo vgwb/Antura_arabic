@@ -321,6 +321,7 @@ namespace Antura.Database
         UI_WordCat_Adjectives = 400,
         UI_Prompt_rate = 401,
         UI_Prompt_bugreport = 402,
+        UI_Prompt_AndroidInstallPDF = 462,
         UI_Stage_and_Level = 403,
         UI_Unlocked_Levels = 404,
         UI_Journey_duration = 405,
