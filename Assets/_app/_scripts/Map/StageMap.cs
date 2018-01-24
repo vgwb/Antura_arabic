@@ -37,7 +37,7 @@ namespace Antura.Map
 
         // Configuration
         private static float preferredDotsSpan = 5.0f;
-        private static float startAppearDuration = 0.5f;
+        private static float startAppearDuration = 0.1f;
         private static float appearSpeedupMultiplier = 0.95f;
         private static float minAppearDuration = 0.1f;
         private static float pinAppearDuration = 3f;
