@@ -43,8 +43,7 @@ namespace Antura.ReservedArea
 
         public void OnOpenInstallInstructions()
         {
-            GlobalUI.ShowPrompt("",
-                "Opening a PDF with the Install instructions.\nIf the document doesn't open, please install a PDF viewer app and retry!");
+            GlobalUI.ShowPrompt(LocalizationDataId.UI_Prompt_AndroidInstallPDF);
             OpenPDF(AppConfig.PdfAndroidInstall);
         }
 

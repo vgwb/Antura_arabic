@@ -5521,6 +5521,22 @@
       "COLOR LEGEND": ""
     },
     {
+      "Id": "UI_Prompt_AndroidInstallPDF",
+      "EnumId": "462",
+      "Date": "24/01/2018",
+      "Character": "UI",
+      "Area": "",
+      "When": "",
+      "Context": "",
+      "English": "Opening a PDF with the Install instructions. If the document doesn't open, please install a PDF viewer app and retry!",
+      "Arabic": "",
+      "ArabicFemale": "",
+      "AudioFile": "",
+      "HasF": "",
+      "Notes": "",
+      "COLOR LEGEND": ""
+    },
+    {
       "Id": "UI_Prompt_rate",
       "EnumId": "401",
       "Date": "",
