@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Antura.UI;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Antura.AnturaSpace
@@ -25,6 +27,7 @@ namespace Antura.AnturaSpace
         public Button confirmationYesButton;
         public Button confirmationNoButton;
 
+        public ShopActionUI photoActionUI;
         private List<ShopActionUI> actionUIs;
         Tween scrollShowTween;
 
@@ -111,7 +114,6 @@ namespace Antura.AnturaSpace
                     showShopPanelTween.PlayForward();
                     showDragPanelTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
-                    isWaitingConfirmation = false;
                     break;
                 case ShopContext.NewPlacement:
                     scene.HideBackButton();
@@ -119,7 +121,6 @@ namespace Antura.AnturaSpace
                     showShopPanelTween.PlayBackwards();
                     showDragPanelTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
-                    isWaitingConfirmation = false;
                     break;
                 case ShopContext.MovingPlacement:
                     scene.HideBackButton();
@@ -127,39 +128,35 @@ namespace Antura.AnturaSpace
                     showShopPanelTween.PlayBackwards();
                     showDragPanelTween.PlayForward();
                     showConfirmationPanelTween.PlayBackwards();
-                    isWaitingConfirmation = false;
                     break;
                 case ShopContext.SpecialAction:
                     scene.HideBackButton();
                     showShopPanelTween.PlayBackwards();
                     showDragPanelTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
-                    isWaitingConfirmation = false;
                     break;
                 case ShopContext.Closed:
                     if (!scene.TutorialMode) scene.ShowBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayForward();
                     showConfirmationPanelTween.PlayBackwards();
-                    isWaitingConfirmation = false;
                     break;
                 case ShopContext.Customization:
                     scene.HideBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
-                    isWaitingConfirmation = false;
                     break;
                 case ShopContext.Hidden:
                     if (!scene.TutorialMode) scene.ShowBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showConfirmationPanelTween.PlayBackwards();
-                    isWaitingConfirmation = false;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("shopContext", shopContext, null);
             }
         }
 
-        private bool isWaitingConfirmation = false;
+
+        #region Confirmation
 
         private void HandlePurchaseConfirmationRequested()
         {
@@ -167,12 +164,9 @@ namespace Antura.AnturaSpace
             showPurchasePanelAlwaysAvailableTween.PlayBackwards();
 
             confirmationPanelUI.SetupForPurchase();
-            confirmationYesButton.onClick.RemoveAllListeners();
-            confirmationYesButton.onClick.AddListener(ShopDecorationsManager.I.ConfirmPurchase);
-            confirmationNoButton.onClick.RemoveAllListeners();
-            confirmationNoButton.onClick.AddListener(ShopDecorationsManager.I.CancelPurchase);
 
-            isWaitingConfirmation = true;
+            AskForConfirmation(ShopDecorationsManager.I.ConfirmPurchase, ShopDecorationsManager.I.CancelPurchase);
+
             showConfirmationPanelTween.PlayForward();
         }
 
@@ -182,12 +176,9 @@ namespace Antura.AnturaSpace
             showPurchasePanelAlwaysAvailableTween.PlayBackwards();
 
             confirmationPanelUI.SetupForDeletion();
-            confirmationYesButton.onClick.RemoveAllListeners();
-            confirmationYesButton.onClick.AddListener(ShopDecorationsManager.I.ConfirmDeletion);
-            confirmationNoButton.onClick.RemoveAllListeners();
-            confirmationNoButton.onClick.AddListener(ShopDecorationsManager.I.CancelDeletion);
 
-            isWaitingConfirmation = true;
+            AskForConfirmation(ShopDecorationsManager.I.ConfirmDeletion, ShopDecorationsManager.I.CancelDeletion);
+
             showConfirmationPanelTween.PlayForward();
         }
 
@@ -198,14 +189,33 @@ namespace Antura.AnturaSpace
             showPurchasePanelAlwaysAvailableTween.PlayBackwards();
 
             confirmationPanelUI.SetupForPhoto();
-            confirmationYesButton.onClick.RemoveAllListeners();
-            confirmationYesButton.onClick.AddListener(ShopPhotoManager.I.ConfirmPhoto);
-            confirmationNoButton.onClick.RemoveAllListeners();
-            confirmationNoButton.onClick.AddListener(ShopPhotoManager.I.CancelPhoto);
 
-            isWaitingConfirmation = true;
+            AskForConfirmation(ShopPhotoManager.I.ConfirmPhoto, ShopPhotoManager.I.CancelPhoto);
+
             showConfirmationPanelTween.PlayForward();
         }
+
+        private UnityAction currentYesAction;
+        private UnityAction currentNoAction;
+        private void AskForConfirmation(UnityAction yesAction, UnityAction noAction)
+        {
+            currentYesAction = yesAction;
+            currentNoAction = noAction;
+            confirmationYesButton.onClick.AddListener(yesAction);
+            confirmationNoButton.onClick.AddListener(noAction);
+            confirmationNoButton.onClick.AddListener(ResetConfirmationButtons);
+            confirmationYesButton.onClick.AddListener(ResetConfirmationButtons);
+        }
+
+        private void ResetConfirmationButtons()
+        {
+            confirmationYesButton.onClick.RemoveListener(currentYesAction);
+            confirmationYesButton.onClick.RemoveListener(ResetConfirmationButtons);
+            confirmationNoButton.onClick.RemoveListener(currentNoAction);
+            confirmationNoButton.onClick.RemoveListener(ResetConfirmationButtons);
+        }
+
+        #endregion
 
         public void UpdateAllActionButtons()
         {
@@ -213,6 +223,7 @@ namespace Antura.AnturaSpace
             {
                 actionUI.UpdateAction();
             }
+            photoActionUI.UpdateAction();
         }
     }
 }

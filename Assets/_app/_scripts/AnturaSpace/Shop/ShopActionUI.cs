@@ -30,8 +30,11 @@ namespace Antura.AnturaSpace
 
         public void UpdateAction()
         {
-            bool isLocked = shopAction.IsLocked;
-            buttonUI.Lock(isLocked);
+            if (shopAction != null)
+            {
+                bool isLocked = shopAction.IsLocked;
+                buttonUI.Lock(isLocked);
+            }
         }
 
         public void OnClick()
@@ -60,17 +63,23 @@ namespace Antura.AnturaSpace
         public void OnBeginDrag(PointerEventData eventData)
         {
             // Push the drag action to the scroll rect too
-            scrollRect.OnBeginDrag(eventData);
-            scrollRect.movementType = ScrollRect.MovementType.Unrestricted;
+            if (scrollRect != null)
+            {
+                scrollRect.OnBeginDrag(eventData);
+                scrollRect.movementType = ScrollRect.MovementType.Unrestricted;
+            }
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
             errorAlreadyPlayed = false;
 
-            // Push the drag action to the scroll rect too
-            scrollRect.OnEndDrag(eventData);
-            scrollRect.movementType = ScrollRect.MovementType.Elastic;
+            if (scrollRect != null)
+            {
+                // Push the drag action to the scroll rect too
+                scrollRect.OnEndDrag(eventData);
+                scrollRect.movementType = ScrollRect.MovementType.Elastic;
+            }
         }
 
         private bool errorAlreadyPlayed = false;
@@ -83,7 +92,8 @@ namespace Antura.AnturaSpace
                 && AnturaSpaceScene.I.tutorialManager.CurrentTutorialFocus != this)
                 return;
 
-            if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase)
+            if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase
+                && !shopAction.IsClickButton)
             {
                 var mousePos = AnturaSpaceUI.I.ScreenToUIPoint(Input.mousePosition);
                 var buttonPos = AnturaSpaceUI.I.WorldToUIPoint(transform.position);
@@ -92,6 +102,7 @@ namespace Antura.AnturaSpace
                     if (!shopAction.IsLocked)
                     {
                         shopAction.PerformDrag();
+                        AudioManager.I.PlaySound(Sfx.OK);
                     }
                     else
                     {
@@ -109,15 +120,16 @@ namespace Antura.AnturaSpace
 
             AudioManager.I.PlaySound(Sfx.KO);
 
+            // Optionally, play an audio that tells why we cannot buy it anymore
+            /*
             if (shopAction.NotEnoughBones)
             {
-                // TODO: change this
                 AudioManager.I.PlayDialogue(LocalizationDataId.ReservedArea_SectionDescription_Error);
             }
             else
             {
                 AudioManager.I.PlayDialogue(shopAction.errorLocalizationID);
-            }
+            }*/
         }
 
     }

@@ -368,7 +368,7 @@ MonoBehaviour:
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
   OneShot: 0
-  AutoAnimateClick: 1
+  AutoAnimateClick: 0
   AutoPlayButtonFx: 0
 --- !u!222 &222022785551410916
 CanvasRenderer:
