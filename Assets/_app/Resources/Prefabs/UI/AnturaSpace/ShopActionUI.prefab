@@ -364,7 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetBtImg: {fileID: 0}
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
-  BtLockedColor: {r: 0.6544118, g: 0.6544118, b: 0.6544118, a: 1}
+  BtLockedColor: {r: 0.3602941, g: 0.3602941, b: 0.3602941, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
   OneShot: 0

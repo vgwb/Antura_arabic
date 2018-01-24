@@ -178,8 +178,6 @@ namespace Antura.AnturaSpace
             ShopDecorationsManager.I.ResetHighlights();
 
             GlobalUI.ShowPrompt(LocalizationDataId.UI_AreYouSure, ShopDecorationsManager.I.ConfirmDeletion, ShopDecorationsManager.I.CancelDeletion);
-
-            //AskForConfirmation(ShopDecorationsManager.I.ConfirmDeletion, ShopDecorationsManager.I.CancelDeletion);
         }
 
         private void HandlePhotoConfirmationRequested()

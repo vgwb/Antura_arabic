@@ -281,10 +281,11 @@ namespace Antura.AnturaSpace
                 if (distanceForDelete < thresholdForDelete * thresholdForDelete) {
                     closestSlot = null;
                     SwitchSlotTo(null);
-                    deletePropButtonTransform.GetComponent<Image>().color = Color.cyan;
-                    shouldBeDeleted = true;
-                } else {
                     deletePropButtonTransform.GetComponent<Image>().color = Color.red;
+                    shouldBeDeleted = true;
+                } else
+                {
+                    deletePropButtonTransform.GetComponent<Image>().color = new Color(188/255f,81f/255f,177/255f);
                 }
 
                 // Place the object there (change slot)
