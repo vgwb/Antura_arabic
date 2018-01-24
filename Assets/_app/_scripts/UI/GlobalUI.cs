@@ -153,7 +153,7 @@ namespace Antura.UI
             for (int touchIndex = -1; touchIndex < Input.touchCount; touchIndex++)
             {
                 int fingerIndex = touchIndex;
-                if (touchIndex > 0)
+                if (touchIndex >= 0)
                 {
                     var touch = Input.GetTouch(touchIndex);
                     if (touch.phase == TouchPhase.Canceled || touch.phase == TouchPhase.Ended)
