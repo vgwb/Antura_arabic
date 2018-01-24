@@ -11,7 +11,6 @@ using Antura.Teacher;
 using Antura.UI;
 using Antura.Utilities;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Antura.Core
 {
