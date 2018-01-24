@@ -566,6 +566,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   containerPivotTR: {fileID: 4712124985613114}
+  eulOffset: {x: 0, y: 0, z: 0}
+  scaleMultiplier: 2
 --- !u!114 &114930798342497000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -659,7 +661,7 @@ RectTransform:
   m_Children:
   - {fileID: 224661412475260488}
   m_Father: {fileID: 224859546621181490}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -713,8 +715,8 @@ RectTransform:
   m_LocalScale: {x: 1.0001552, y: 1.0001552, z: 1.0001552}
   m_Children:
   - {fileID: 224266352431133830}
-  - {fileID: 224252871268131530}
   - {fileID: 224964748277200138}
+  - {fileID: 224252871268131530}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -736,7 +738,7 @@ RectTransform:
   - {fileID: 224973765739207990}
   - {fileID: 4655428502165660}
   m_Father: {fileID: 224859546621181490}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

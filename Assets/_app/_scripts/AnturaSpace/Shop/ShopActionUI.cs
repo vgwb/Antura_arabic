@@ -27,9 +27,9 @@ namespace Antura.AnturaSpace
 
             if (shopAction.ObjectToRender != null)
             {
-                renderedMeshUI.AssignObjectToRender(shopAction.ObjectToRender);
                 renderedMeshUI.scaleMultiplier = shopAction.scaleMultiplier;
                 renderedMeshUI.eulOffset = shopAction.eulOffset;
+                renderedMeshUI.AssignObjectToRender(shopAction.ObjectToRender);
                 iconUI.enabled = false;
             }
             else

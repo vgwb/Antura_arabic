@@ -2,10 +2,9 @@ namespace Antura.AnturaSpace
 {
     public enum ShopDecorationSlotType
     {
-        Mountains = 0,  
-        Houses = 1,
-        Tube = 2,
-        Prop = 3,
-        Carpet = 4
+        Mountain = 0,  
+        Tree = 1,
+        Prop = 2,
+        Carpet = 3
     }
 }

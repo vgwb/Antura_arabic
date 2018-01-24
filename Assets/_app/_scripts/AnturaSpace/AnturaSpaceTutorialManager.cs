@@ -396,7 +396,7 @@ namespace Antura.AnturaSpace
                             actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Decoration_Tree1");
                             var leftmostUnassignedSlot =
                                 ShopDecorationsManager.GetDecorationSlots()
-                                    .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Prop)
+                                    .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Tree)
                                     .MinBy(x => x.transform.position.x);
                             StartDrawDragLineFromTo(actionUI.transform, leftmostUnassignedSlot.transform);
 
@@ -434,9 +434,9 @@ namespace Antura.AnturaSpace
                             ShopDecorationsManager.OnDragStop += StepTutorialShop;
 
                             // Slot we assigned
-                            var assignedSlot = ShopDecorationsManager.GetDecorationSlots().FirstOrDefault(x => x.Assigned && x.slotType == ShopDecorationSlotType.Prop);
+                            var assignedSlot = ShopDecorationsManager.GetDecorationSlots().FirstOrDefault(x => x.Assigned && x.slotType == ShopDecorationSlotType.Tree);
                             var rightmostUnassignedSlot = ShopDecorationsManager.GetDecorationSlots()
-                                    .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Prop)
+                                    .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Tree)
                                     .MaxBy(x => x.transform.position.x);
                             StartDrawDragLineFromTo(assignedSlot.transform, rightmostUnassignedSlot.transform);
                         }
