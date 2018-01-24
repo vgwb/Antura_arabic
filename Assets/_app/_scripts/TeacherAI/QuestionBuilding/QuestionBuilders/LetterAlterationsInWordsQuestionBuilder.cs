@@ -131,7 +131,7 @@ namespace Antura.Teacher
                     new SelectionParameters(parameters.wrongSeverity, getMaxData:true, useJourney: true,
                         packListHistory: PackListHistory.NoFilter)
             );
-            Debug.LogWarning("Filtered bases: " + filteredBaseLetters.ToDebugStringNewline());
+            //Debug.LogWarning("Filtered bases: " + filteredBaseLetters.ToDebugStringNewline());
 
             var alterationsPool = AppManager.I.VocabularyHelper.GetAllLetterAlterations(filteredBaseLetters, letterAlterationFilters);
             var wrongAnswers = new List<LetterData>();
