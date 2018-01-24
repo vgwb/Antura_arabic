@@ -66,11 +66,14 @@ namespace Antura.AnturaSpace
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            errorAlreadyPlayed = false;
+
             // Push the drag action to the scroll rect too
             scrollRect.OnEndDrag(eventData);
             scrollRect.movementType = ScrollRect.MovementType.Elastic;
         }
 
+        private bool errorAlreadyPlayed = false;
         public void OnDrag(PointerEventData eventData)
         {
             // Push the drag action to the scroll rect too
@@ -82,24 +85,28 @@ namespace Antura.AnturaSpace
 
             if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase)
             {
-                if (!shopAction.IsLocked)
+                var mousePos = AnturaSpaceUI.I.ScreenToUIPoint(Input.mousePosition);
+                var buttonPos = AnturaSpaceUI.I.WorldToUIPoint(transform.position);
+                if (mousePos.y - buttonPos.y > minHeightForDragAction)
                 {
-                    var mousePos = AnturaSpaceUI.I.ScreenToUIPoint(Input.mousePosition);
-                    var buttonPos = AnturaSpaceUI.I.WorldToUIPoint(transform.position);
-                    if (mousePos.y - buttonPos.y > minHeightForDragAction)
+                    if (!shopAction.IsLocked)
                     {
                         shopAction.PerformDrag();
                     }
-                }
-                else
-                {
-                    ErrorFeedback();
+                    else
+                    {
+                        ErrorFeedback();
+                    }
+
                 }
             }
         }
 
         void ErrorFeedback()
         {
+            if (errorAlreadyPlayed) return;
+            errorAlreadyPlayed = true;
+
             AudioManager.I.PlaySound(Sfx.KO);
 
             if (shopAction.NotEnoughBones)
