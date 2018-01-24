@@ -76,7 +76,7 @@ namespace Antura.Book
 
             var letterbase = myLetterInfo.data.Id;
             var variationsletters = AppManager.I.DB.FindLetterData(
-                (x) => (x.BaseLetter == letterbase && (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation))
+                (x) => (x.BaseLetter == letterbase && (x.Kind == LetterDataKind.DiacriticCombo))
             );
 
             // diacritics box

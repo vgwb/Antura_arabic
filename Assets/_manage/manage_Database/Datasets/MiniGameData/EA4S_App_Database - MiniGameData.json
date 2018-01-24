@@ -383,7 +383,7 @@
     {
       "Id": "Balloons_letterinword",
       "Type": "MiniGame",
-      "Status": "active",
+      "Status": "disabled",
       "Main": "Balloons",
       "Variation": "letterinword",
       "Badge": "spelling",
