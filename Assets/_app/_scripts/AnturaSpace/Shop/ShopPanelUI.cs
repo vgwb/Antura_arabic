@@ -202,9 +202,9 @@ namespace Antura.AnturaSpace
             currentYesAction = yesAction;
             currentNoAction = noAction;
             confirmationYesButton.onClick.AddListener(yesAction);
+            confirmationYesButton.onClick.AddListener(ResetConfirmationButtons);
             confirmationNoButton.onClick.AddListener(noAction);
             confirmationNoButton.onClick.AddListener(ResetConfirmationButtons);
-            confirmationYesButton.onClick.AddListener(ResetConfirmationButtons);
         }
 
         private void ResetConfirmationButtons()
