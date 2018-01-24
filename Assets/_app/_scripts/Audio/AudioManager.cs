@@ -343,6 +343,7 @@ namespace Antura.Audio
 
             if (!string.IsNullOrEmpty(LocalizationManager.GetLocalizedAudioFileName(data.Id))) {
                 AudioClip clip = GetAudioClip(data);
+                //Debug.Log("PlayDialogue " + clip);
                 return new AudioSourceWrapper(dialogueGroup.Play(clip), dialogueGroup, this);
             }
             return null;
