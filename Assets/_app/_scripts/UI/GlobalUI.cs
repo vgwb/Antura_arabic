@@ -149,28 +149,26 @@ namespace Antura.UI
 
         public bool IsFingerOverUI()
         {
-            //var isTouching = false;
-
-            ////// check Mouse
-            //if (Input.GetMouseButtonDown(0)) {
-            //    // Check if the mouse was clicked over a UI element
-            //    if (EventSystem.current.IsPointerOverGameObject()) {
-            //        isTouching = true;
-            //    }
-            //}
-            //// check touch
-            //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
-            //    // Check if finger is over a UI element
-            //    if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) {
-            //        isTouching = true;
-            //    }
-            //}
-            //return isTouching;
-
             // Mouse is -1, the rest are fingers
-            for (int touchId = -1; touchId < Input.touchCount; touchId++) {
-                bool isTouching = EventSystem.current.IsPointerOverGameObject(touchId);
-                if (isTouching) { return true; }
+            for (int touchIndex = -1; touchIndex < Input.touchCount; touchIndex++)
+            {
+                int fingerIndex = touchIndex;
+                if (touchIndex > 0)
+                {
+                    var touch = Input.GetTouch(touchIndex);
+                    if (touch.phase == TouchPhase.Canceled || touch.phase == TouchPhase.Ended)
+                    {
+                        // Skip this touch
+                        continue;
+                    }
+                    fingerIndex = Input.GetTouch(touchIndex).fingerId;
+                }
+                bool isTouching = EventSystem.current.IsPointerOverGameObject(fingerIndex);
+                if (isTouching)
+                {
+                    //Debug.Log("FINGER " + touchIndex + " IS TOUCHING");
+                    return true;
+                }
             }
             return false;
         }
