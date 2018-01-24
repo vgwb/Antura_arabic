@@ -197,14 +197,19 @@ namespace Antura.AnturaSpace.UI
             // Cannot close the shop panel while we are confirming a purchase
             if (ShopDecorationsManager.I.ShopContext != ShopContext.Closed
                 && ShopDecorationsManager.I.ShopContext != ShopContext.Purchase)
+            {
+                AudioManager.I.PlaySound(Sfx.KO);
                 return;
+            }
 
             // Cannot interact with the shop panel while we do the tutorial
             var scene = AnturaSpaceScene.I as AnturaSpaceScene;
             if (scene.TutorialMode
                 && scene.tutorialManager.CurrentTutorialFocus != BtBonesShop.Bt
-                )
+            )
+            {
                 return;
+            }
 
             // If we have no bones, we mention that
             if (AppManager.I.Player.TotalNumberOfBones == 0 && !alreadyCommentedZeroBones)
