@@ -10,7 +10,7 @@ namespace Antura.AnturaSpace
 {
     public class ShopDragIconUI : MonoBehaviour
     {
-        public Image iconUI;
+        public RawImage iconUI;
         public CanvasScaler canvasScaler;
 
         private void Start()
@@ -24,7 +24,7 @@ namespace Antura.AnturaSpace
         private void HandleDragStart(ShopDecorationObject decorationObject)
         {
             isDragging = true;
-            iconUI.sprite = decorationObject.iconSprite;
+            iconUI.texture = decorationObject.rawImage.texture;
         }
 
         private void HandleDragStop()

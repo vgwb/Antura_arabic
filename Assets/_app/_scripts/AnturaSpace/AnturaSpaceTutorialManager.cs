@@ -370,7 +370,7 @@ namespace Antura.AnturaSpace
                         () =>
                         {
                             StartDrawDragLineFrom(actionUI.transform);
-                        }
+                        }, 1.5f
                     ));
 
                     // Stop dragging as soon as we get a bone
@@ -393,10 +393,10 @@ namespace Antura.AnturaSpace
                         {
                             ShopDecorationsManager.OnPurchaseConfirmationRequested += StepTutorialShop;
 
-                            actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Decoration_Tree1");
+                            actionUI = UI.ShopPanelUI.GetActionUIByName("ShopAction_Decoration_Prop2");
                             var leftmostUnassignedSlot =
                                 ShopDecorationsManager.GetDecorationSlots()
-                                    .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Tree)
+                                    .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Prop)
                                     .MinBy(x => x.transform.position.x);
                             StartDrawDragLineFromTo(actionUI.transform, leftmostUnassignedSlot.transform);
 
@@ -434,11 +434,11 @@ namespace Antura.AnturaSpace
                             ShopDecorationsManager.OnDragStop += StepTutorialShop;
 
                             // Slot we assigned
-                            var assignedSlot = ShopDecorationsManager.GetDecorationSlots().FirstOrDefault(x => x.Assigned && x.slotType == ShopDecorationSlotType.Tree);
+                            var assignedSlot = ShopDecorationsManager.GetDecorationSlots().FirstOrDefault(x => x.Assigned && x.slotType == ShopDecorationSlotType.Prop);
                             var rightmostUnassignedSlot = ShopDecorationsManager.GetDecorationSlots()
-                                    .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Tree)
+                                    .Where(x => !x.Assigned && x.slotType == ShopDecorationSlotType.Prop)
                                     .MaxBy(x => x.transform.position.x);
-                            StartDrawDragLineFromTo(assignedSlot.transform, rightmostUnassignedSlot.transform);
+                            StartDrawDragLineFromTo(assignedSlot.transform, rightmostUnassignedSlot.transform, Vector3.up * 2f);
                         }
                     );
 
@@ -593,9 +593,9 @@ namespace Antura.AnturaSpace
 
         #region Utility functions
 
-        IEnumerator DelayedCallbackCO(System.Action callback)
+        IEnumerator DelayedCallbackCO(Action callback, float delay = 0.6f)
         {
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(delay);
 
             if (callback != null) {
                 callback();
@@ -617,17 +617,21 @@ namespace Antura.AnturaSpace
 
         private void StartDrawDragLineFromTo(Transform fromTr, Transform toTr)
         {
+            StartDrawDragLineFromTo(fromTr, toTr, Vector3.zero);
+        }
+        private void StartDrawDragLineFromTo(Transform fromTr, Transform toTr, Vector3 offset)
+        {
             TutorialUI.Clear(false);
 
             Vector3[] path = new Vector3[3];
-            path[0] = fromTr.position;
-            path[2] = toTr.position;
+            path[0] = fromTr.position + offset;
+            path[2] = toTr.position + offset;
             path[1] = (path[0] + path[2])/2f + Vector3.up * 4 + Vector3.left * 2;
 
             dragLineAnimation = TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.Finger, false, true);
             dragLineAnimation.MainTween.timeScale = 0.8f;
             dragLineAnimation.OnComplete(delegate {
-                StartDrawDragLineFromTo(fromTr, toTr);
+                StartDrawDragLineFromTo(fromTr, toTr, offset);
             });
         }
 

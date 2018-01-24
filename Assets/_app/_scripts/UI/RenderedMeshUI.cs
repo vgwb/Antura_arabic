@@ -19,6 +19,8 @@ namespace Antura.UI
         public Vector3 eulOffset = new Vector3(0,0,0);
         public float scaleMultiplier = 2f;
 
+        private RawImage rawImage;
+
         public void AssignObjectToRender(GameObject go)
         {
             renderedGo = Instantiate(go);
@@ -30,13 +32,24 @@ namespace Antura.UI
             renderTexture.Create();
             var camera = GetComponentInChildren<Camera>(true);
             camera.targetTexture = renderTexture;
-            GetComponentInChildren<RawImage>(true).texture = renderTexture;
+            rawImage = GetComponentInChildren<RawImage>(true);
+            rawImage.texture = renderTexture;
 
             renderedGo.SetLayerRecursive(GenericHelper.LayerMaskToIndex(RenderOnUILayer));
             CameraHelper.FitShopDecorationToUICamera(renderedGo.transform, camera, scaleMultiplier, eulOffset);
             camera.Render();
             camera.enabled = false;
             renderedGo.gameObject.SetActive(false);
+        }
+
+        public RawImage GetRawImage()
+        {
+            return rawImage;
+        }
+
+        public Texture GetTexture()
+        {
+            return rawImage.mainTexture;
         }
 
         void OnDestroy()

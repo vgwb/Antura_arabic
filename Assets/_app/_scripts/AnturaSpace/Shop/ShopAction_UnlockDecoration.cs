@@ -12,12 +12,7 @@ namespace Antura.AnturaSpace
         {
             get { return UnlockableDecorationObject.gameObject; }
         }
-
-        void Awake()
-        {
-            iconSprite = UnlockableDecorationObject.iconSprite;
-        }
-
+        
         public override void PerformDrag()
         {
             ShopDecorationsManager.I.CreateAndStartDragPlacement(UnlockableDecorationObject, bonesCost);
