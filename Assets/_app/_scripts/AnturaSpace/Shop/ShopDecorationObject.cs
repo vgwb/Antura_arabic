@@ -43,6 +43,7 @@ namespace Antura.AnturaSpace
         private void SetAsReal()
         {
             pulseTween.Kill(true);
+            transform.SetLocalScale(1);
         }
 
         public void FocusHighlight(bool choice)

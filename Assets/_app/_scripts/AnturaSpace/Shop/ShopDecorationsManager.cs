@@ -341,8 +341,9 @@ namespace Antura.AnturaSpace
             StopDragPlacement();
 
             // If not dragged on anything
-            if (!shouldBeDeleted && currentDraggedSlot == null) {
-                CancelPurchase();
+            if (!shouldBeDeleted && currentDraggedSlot == null)
+            {
+                CancelMovement();
             }
 
             if (shouldBeDeleted) {
@@ -411,6 +412,11 @@ namespace Antura.AnturaSpace
             startDragSlot.Despawn();
             DeleteDecoration(currentDraggedDecoration);
             SaveState();
+            SetContextPurchase();
+        }
+
+        private void CancelMovement()
+        {
             SetContextPurchase();
         }
 
