@@ -370,7 +370,7 @@ namespace Antura.AnturaSpace
                         () =>
                         {
                             StartDrawDragLineFrom(actionUI.transform);
-                        }
+                        }, 1.5f
                     ));
 
                     // Stop dragging as soon as we get a bone
@@ -593,9 +593,9 @@ namespace Antura.AnturaSpace
 
         #region Utility functions
 
-        IEnumerator DelayedCallbackCO(System.Action callback)
+        IEnumerator DelayedCallbackCO(Action callback, float delay = 0.6f)
         {
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(delay);
 
             if (callback != null) {
                 callback();
