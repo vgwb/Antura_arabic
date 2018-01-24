@@ -164,7 +164,7 @@ namespace Antura.AnturaSpace
 
             confirmationPanelUI.SetupForPurchase();
 
-            ShopDecorationsManager.I.ResetHighlights();
+            ShopDecorationsManager.I.ResetSlotHighlights();
 
             AskForConfirmation(ShopDecorationsManager.I.ConfirmPurchase, ShopDecorationsManager.I.CancelPurchase);
         }
@@ -175,7 +175,7 @@ namespace Antura.AnturaSpace
 
             confirmationPanelUI.SetupForDeletion();
 
-            ShopDecorationsManager.I.ResetHighlights();
+            ShopDecorationsManager.I.ResetSlotHighlights();
 
             GlobalUI.ShowPrompt(LocalizationDataId.UI_AreYouSure, ShopDecorationsManager.I.ConfirmDeletion, ShopDecorationsManager.I.CancelDeletion);
         }

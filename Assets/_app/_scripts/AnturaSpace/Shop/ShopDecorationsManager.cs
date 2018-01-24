@@ -104,8 +104,7 @@ namespace Antura.AnturaSpace
         public void SetContextPurchase()
         {
             EndPlacementContext();
-
-            ResetHighlights();
+            ResetObjectHighlights();
 
             SwitchToContext(ShopContext.Purchase);
         }
@@ -245,12 +244,13 @@ namespace Antura.AnturaSpace
         private void StopDragPlacement()
         {
             if (OnDragStop != null) { OnDragStop(); }
-            currentDraggedDecoration.FocusHighlight(false);
+            //currentDraggedDecoration.FocusHighlight(false);
             StopCoroutine(dragCoroutine);
         }
 
         private void EndPlacementContext()
         {
+            ResetSlotHighlights();
             currentDraggedDecoration = null;
             currentDraggedSlot = null;
             startDragSlot = null;
@@ -279,9 +279,16 @@ namespace Antura.AnturaSpace
                 bool shouldBeDeleted = false;
                 float distanceForDelete = (Camera.main.WorldToScreenPoint(deletePropButtonTransform.position) - Input.mousePosition).sqrMagnitude;
                 if (distanceForDelete < thresholdForDelete * thresholdForDelete) {
-                    closestSlot = null;
-                    SwitchSlotTo(null);
-                    deletePropButtonTransform.GetComponent<Image>().color = Color.red;
+
+                    // First time: feedback
+                    if (currentDraggedSlot != null)
+                    {
+                        deletePropButtonTransform.GetComponent<Image>().color = Color.red;
+                        if (startDragSlot) { startDragSlot.Despawn(); }
+                        closestSlot = null;
+                        SwitchSlotTo(null);
+                    }
+
                     shouldBeDeleted = true;
                 } else
                 {
@@ -351,12 +358,12 @@ namespace Antura.AnturaSpace
                     CancelPurchase();
                 } else if (shopContext == ShopContext.MovingPlacement) {
                     // Ask for confirmation
-                    if (OnDeleteConfirmationRequested != null) OnDeleteConfirmationRequested();
+                    AskDeleteConfirmation();
                 }
             } else {
                 if (shopContext == ShopContext.NewPlacement) {
                     // Ask for confirmation
-                    if (OnPurchaseConfirmationRequested != null) OnPurchaseConfirmationRequested();
+                    AskPurchaseConfirmation();
                 } else if (shopContext == ShopContext.MovingPlacement) {
                     // Move it right away
                     ConfirmMovement();
@@ -364,11 +371,32 @@ namespace Antura.AnturaSpace
             }
         }
 
-        public void ResetHighlights()
+        private void AskDeleteConfirmation()
+        {
+            if (OnDeleteConfirmationRequested != null) OnDeleteConfirmationRequested();
+        }
+
+        private void AskPurchaseConfirmation()
+        {
+            if (OnPurchaseConfirmationRequested != null) OnPurchaseConfirmationRequested();
+        }
+
+        public void ResetSlotHighlights()
         {
             foreach (var shopDecorationSlot in allShopDecorationSlots)
             {
                 shopDecorationSlot.Highlight(false);
+            }
+        }
+
+        public void ResetObjectHighlights()
+        {
+            foreach (var shopDecorationSlot in allShopDecorationSlots)
+            {
+                if (shopDecorationSlot.Assigned)
+                {
+                    shopDecorationSlot.AssignedDecorationObject.FocusHighlight(false);
+                }
             }
         }
 
@@ -416,7 +444,6 @@ namespace Antura.AnturaSpace
         {
             if (AnturaSpaceScene.I.TutorialMode) return;
 
-            startDragSlot.Despawn();
             DeleteDecoration(currentDraggedDecoration);
             SaveState();
             SetContextPurchase();

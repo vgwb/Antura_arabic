@@ -15,6 +15,7 @@ namespace Antura.AnturaSpace
         public Image iconUI;
         public TextMeshProUGUI amountUI;
         public UIButton buttonUI;
+        public RenderedMeshUI renderedMeshUI;
 
         private ShopAction shopAction;
 
@@ -23,7 +24,20 @@ namespace Antura.AnturaSpace
         public void SetAction(ShopAction shopAction)
         {
             this.shopAction = shopAction;
-            iconUI.sprite = shopAction.iconSprite;
+
+            if (shopAction.ObjectToRender != null)
+            {
+                renderedMeshUI.AssignObjectToRender(shopAction.ObjectToRender);
+                renderedMeshUI.scaleMultiplier = shopAction.scaleMultiplier;
+                renderedMeshUI.eulOffset = shopAction.eulOffset;
+                iconUI.enabled = false;
+            }
+            else
+            {
+                iconUI.sprite = shopAction.iconSprite;
+                iconUI.enabled = true;
+            }
+
             amountUI.text = shopAction.bonesCost.ToString();
             UpdateAction();
         }

@@ -1,11 +1,17 @@
 ﻿
 using System;
+using UnityEngine;
 
 namespace Antura.AnturaSpace
 {
     public class ShopAction_UnlockDecoration : ShopAction
     {
         public ShopDecorationObject UnlockableDecorationObject;
+
+        public override GameObject ObjectToRender
+        {
+            get { return UnlockableDecorationObject.gameObject; }
+        }
 
         void Awake()
         {
