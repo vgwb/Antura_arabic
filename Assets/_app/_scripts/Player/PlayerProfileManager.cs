@@ -1,6 +1,5 @@
 using Antura.Core;
 using Antura.Database;
-using Antura.Rewards;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +11,8 @@ namespace Antura.Profile
     /// </summary>
     public class PlayerProfileManager
     {
+        public PlayerGender TemporaryPlayerGender = PlayerGender.M;
+
         #region Current Player
 
         private PlayerProfile _currentPlayer;
