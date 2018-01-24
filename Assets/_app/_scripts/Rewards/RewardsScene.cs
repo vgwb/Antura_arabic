@@ -81,7 +81,7 @@ namespace Antura.Rewards
             }
 
             // Wait animation ending before show continue button
-            yield return new WaitForSeconds(4.4f);
+            yield return new WaitForSeconds(8.0f);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
             //if (FirstContactManager.I.IsFinished()) {
             //    AnturaSpaceBtton.gameObject.SetActive(true);
