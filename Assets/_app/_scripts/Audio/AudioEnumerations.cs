@@ -15,7 +15,7 @@
         Theme10 = 10
     }
 
-    // last is 70
+    // last is 73
     public enum Sfx
     {
         AlarmClock = 13,
@@ -63,12 +63,15 @@
         LL_Yeah = 49,
         Lose = 7,
         OK = 25,
+        Photo = 71,
         PipeBlowIn = 35,
         PipeBlowOut = 36,
         Poof = 37,
         RocketMove = 66,
         ScaleDown = 43,
         ScaleUp = 44,
+        ScoreDown = 72,
+        ScoreUp = 73,
         ScreenHit = 38,
         ScreenGlassHit = 65,
         Splat = 30,
