@@ -254,7 +254,7 @@ namespace Antura.UI
         public static void SetRetryAction(Action a, bool pulseButton = false)
         {
             GlobalUI.ContinueScreen.BtRetry.gameObject.SetActive(true);
-            GlobalUI.ContinueScreen.BtRetry.onClick.RemoveAllListeners();
+            //GlobalUI.ContinueScreen.BtRetry.onClick.RemoveAllListeners();
             GlobalUI.ContinueScreen.BtRetry.onClick.AddListener(() => a());
             if (GlobalUI.ContinueScreen.retryAnimator == null) GlobalUI.ContinueScreen.retryAnimator = GlobalUI.ContinueScreen.BtRetry.GetComponent<AutoAnimator>();
             if (pulseButton) GlobalUI.ContinueScreen.retryAnimator.Play();

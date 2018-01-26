@@ -4619,8 +4619,8 @@ MonoBehaviour:
   ToggleIconAlpha: 0
   ToggleCanvasGroupAlpha: 0
   OneShot: 0
-  AutoAnimateClick: 0
-  AutoPlayButtonFx: 0
+  AutoAnimateClick: 1
+  AutoPlayButtonFx: 1
   Type: 6
 --- !u!114 &114453671111734128
 MonoBehaviour:
@@ -6731,7 +6731,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.4999695, y: 0.000061035156}
+  m_AnchoredPosition: {x: 8.5, y: 0.000061035156}
   m_SizeDelta: {x: -131, y: 651.31}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224000013431732186

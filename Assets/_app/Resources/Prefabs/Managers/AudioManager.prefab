@@ -469,6 +469,21 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 296344978701a0f4ea954a70e5d504d7, type: 3}
     volume: 1
     randomPitchOffset: 0
+  - sfx: 71
+    clips:
+    - {fileID: 8300000, guid: 0b85369862b084236975a60f0fb602b4, type: 3}
+    volume: 1
+    randomPitchOffset: 0
+  - sfx: 72
+    clips:
+    - {fileID: 8300000, guid: 027ce47bba9b14d32b83185b17a3e268, type: 3}
+    volume: 1
+    randomPitchOffset: 0
+  - sfx: 73
+    clips:
+    - {fileID: 8300000, guid: bdf186b121c294535b8f1c26b3b94023, type: 3}
+    volume: 1
+    randomPitchOffset: 0
   musicConfs:
   - music: 1
     clip: {fileID: 8300000, guid: 462e9bd13f32041098fe186f5e58d7dd, type: 3}
