@@ -1,14 +1,23 @@
-# releases
+# Antura Changelog
+All notable changes to this project will be documented in this file.
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
 
-## 1.2.0.0 (22 jan 2018)
+## [Unreleased]
+### Fixed
+
+## [1.2.0] - 2018-01-22
+### Changed
 - new Pedagogical Curriculum
+
+### Added
 - Daily Rewards
 - Antura Space Shop and Antura interactions
 - new Map
 - local notifications
 - repeat minigame
 
-### 1.1.0beta build 586
+## 1.1.0beta build 586
 - book: play Photo Gallery message
 - arabic: added letter combo: lam_alef_kasrah
 - arabic: fix all diacritic symbol positions
@@ -34,7 +43,7 @@
 - [Tutorial] Initial bones are given only when the Shop is unlocked.
 - data: added teh_sukun letter and optimized its phoneme sound
 
-### 1.1.0beta build 584
+## 1.1.0beta build 584
 - crash bug in creating new players
 - book: do not split lam_alef into separated letters (soon to be ported in minigames)
 - book: words have better padding now
@@ -43,7 +52,7 @@
 - Arabic subtitles are turned off by default now
 - improved Avatars graphics
 
-### 1.1.0beta build 583 (17 jan 2018)
+## 1.1.0beta build 583 (17 jan 2018)
 - Subtitles Widged is now disabled by default (can be reactivate by player Option)
 - improved PlaySession & curriculum
 - new First Contact / tutorials for all areas
@@ -59,7 +68,7 @@
 - new Player Avatars icons
 - finalized the new Rewards system
 
-### 1.1.0beta build 579 (4 jan 2018)
+## 1.1.0beta build 579 (4 jan 2018)
 - at startup you could be asked to delete all previous users (we use a new db format)
 - the app asks for permission to share online analytics
 - all curriculum has been updated, could be final
@@ -72,7 +81,7 @@
 - all Rewards system has been reworked, please test any oddity
 - fixed many bugs in the minigames
 
-### 1.1.0beta build 570
+## 1.1.0beta build 570
 - dialogs and music have changed from load in memory to streaming: please test if you hear something odd
 - some optimization to the map and song games: please test and report (the map is still slow, we know)
 - test low spec ios device (like ipad mini 1) and play long trying to crash it :wink:

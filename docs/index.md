@@ -4,7 +4,7 @@ this documentation website is dedicated to Teachers, Designers and Developers, m
 - **GitHub project:** [github.com/vgwb/Antura_arabic](https://github.com/vgwb/Antura_arabic)
 - **Public Website:** [www.antura.org](http://www.antura.org)
 
-- [Releases](Releases.md) history of app releases and major changelog
+- [Changelog](Changelog.md) history of app releases and major changelog
 - [User, Tester and Dev HowTo](HowTo/) several HowTo guides
 - [Game Design](GameDesign/)
 - [Project Architecture and Modules](Modules/) mostly for Developers
