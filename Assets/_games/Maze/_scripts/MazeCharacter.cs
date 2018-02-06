@@ -681,25 +681,35 @@ namespace Antura.Minigames.Maze
 
             var finalPosition = Fruits[0].transform.GetChild(0).gameObject.transform.position + new Vector3(0f, 0.6f, 0f);
 
-            int numTrajectoryPoints = 7;
-            float yDecrement = (finalPosition.y - transform.position.y) / (numTrajectoryPoints + 1);
+            if (!MazeGame.instance.isTutorialMode)
+            {
+                trajectoryPoints.Add(Vector3.forward*15);
+                transform.position = trajectoryPoints[0];
+            }
+            else
+            {
+                trajectoryPoints.Add(transform.position);
 
-            float[] trajectoryPointXAnchors = { -0.7f, 0f, 0.7f, 0f, -0.75f, -0.4f, 0f };
-            float[] trajectoryPointZAnchors = { 0f, 0.8f, 0f, -0.8f, -0.5f, 0.7f, 0.85f, 1.2f };
+                int numTrajectoryPoints = 7;
+                float yDecrement = (finalPosition.y - transform.position.y) / (numTrajectoryPoints + 1);
 
-            trajectoryPoints.Add(transform.position);
+                float[] trajectoryPointXAnchors = { -0.7f, 0f, 0.7f, 0f, -0.75f, -0.4f, 0f };
+                float[] trajectoryPointZAnchors = { 0f, 0.8f, 0f, -0.8f, -0.5f, 0.7f, 0.85f, 1.2f };
 
-            for (int i = 0; i < numTrajectoryPoints; i++) {
-                Vector3 trajectoryPoint = new Vector3();
-                trajectoryPoint.y = transform.position.y + (i + 1) * yDecrement;
 
-                var frustumHeight = GetFrustumHeightAtDistance(Camera.main.transform.position.y - trajectoryPoint.y);
-                var frustumWidth = GetFrustumWidth(frustumHeight);
+                for (int i = 0; i < numTrajectoryPoints; i++) {
+                    Vector3 trajectoryPoint = new Vector3();
+                    trajectoryPoint.y = transform.position.y + (i + 1) * yDecrement;
 
-                trajectoryPoint.x = frustumWidth * 0.5f * trajectoryPointXAnchors[i];
-                trajectoryPoint.z = frustumHeight * 0.5f * trajectoryPointZAnchors[i];
+                    var frustumHeight = GetFrustumHeightAtDistance(Camera.main.transform.position.y - trajectoryPoint.y);
+                    var frustumWidth = GetFrustumWidth(frustumHeight);
 
-                trajectoryPoints.Add(trajectoryPoint);
+                    trajectoryPoint.x = frustumWidth * 0.5f * trajectoryPointXAnchors[i];
+                    trajectoryPoint.z = frustumHeight * 0.5f * trajectoryPointZAnchors[i];
+
+                    trajectoryPoints.Add(trajectoryPoint);
+                }
+
             }
 
             trajectoryPoints.Add(finalPosition);
