@@ -57,6 +57,14 @@ namespace Antura.Assessment
             audioManager.PlayPoofSound();
             LL.Magnify();
             LL.SetQuestionGreen();
+
+            // HACK: make the image green too
+            var questions = GameObject.FindObjectsOfType<QuestionBehaviour>();
+            foreach (var questionBehaviour in questions)
+            {
+                questionBehaviour.GreenyTintQuestion();
+            }
+
             yield return Wait.For(AssessmentOptions.Instance.TimeToShowCompleteWord + 0.5f);
             LL.gameObject.GetComponent<StillLetterBox>().Poof();
             box.gameObject.transform.DOScale(0, 0.4f).OnComplete(() => GameObject.Destroy(box.gameObject));
