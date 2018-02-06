@@ -7673,7 +7673,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
-  OneShot: 0
+  OneShot: 1
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &114152441641480354
