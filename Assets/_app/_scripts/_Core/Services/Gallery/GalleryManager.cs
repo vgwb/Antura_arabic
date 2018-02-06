@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Antura.Core.Services.Gallery
@@ -16,8 +14,8 @@ namespace Antura.Core.Services.Gallery
         public void ShowPreview(Texture texture)
         {
             float frameAspectRatio = 640f / 480f;
-            float aspectRatio = Screen.width  * 1f/ Screen.height;
-            PhotoImage.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,  640 * aspectRatio / frameAspectRatio);
+            float aspectRatio = Screen.width * 1f / Screen.height;
+            PhotoImage.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 640 * aspectRatio / frameAspectRatio);
             PhotoBorder.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 640 * aspectRatio / frameAspectRatio);
 
             PhotoImage.texture = texture;
