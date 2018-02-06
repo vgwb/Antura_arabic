@@ -72,7 +72,7 @@ namespace Antura.Minigames.FastCrowd
                     builder = new AlphabetQuestionBuilder();
                     break;
                 case FastCrowdVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(WordDataCategory.Number, builderParams, true);
+                    builder = new OrderedWordsQuestionBuilder(WordDataCategory.Number, builderParams, false);
                     break;
                 case FastCrowdVariation.LetterName:
                     // Only base letters
