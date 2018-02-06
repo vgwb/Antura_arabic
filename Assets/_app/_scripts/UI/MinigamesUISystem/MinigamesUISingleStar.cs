@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Antura.Audio;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Antura.UI
@@ -10,8 +11,9 @@ namespace Antura.UI
     {
         public Transform Star;
 
-        bool hasStar;
-        Tween loseTween, gainTween;
+        private bool hasStar;
+        private Tween loseTween;
+        private Tween gainTween;
 
         #region Unity
 
@@ -38,8 +40,8 @@ namespace Antura.UI
 
         public void Gain()
         {
-            if (hasStar) return;
-
+            if (hasStar) { return; }
+            AudioManager.I.PlaySound(Sfx.ScoreUp);
             hasStar = true;
             loseTween.Rewind();
             Star.gameObject.SetActive(true);
@@ -48,7 +50,7 @@ namespace Antura.UI
 
         public void Lose()
         {
-            if (!hasStar) return;
+            if (!hasStar) { return; }
 
             hasStar = false;
             gainTween.Complete();

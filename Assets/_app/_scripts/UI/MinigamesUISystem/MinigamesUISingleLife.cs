@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Antura.Audio;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Antura.UI
@@ -10,8 +11,9 @@ namespace Antura.UI
     {
         public Transform Heart;
 
-        bool hasHeart = true;
-        Tween loseTween, gainTween;
+        private bool hasHeart = true;
+        private Tween loseTween;
+        private Tween gainTween;
 
         #region Unity
 
@@ -37,7 +39,9 @@ namespace Antura.UI
         {
             loseTween.Rewind();
             Heart.gameObject.SetActive(true);
-            if (!hasHeart && !gainTween.IsPlaying()) gainTween.Restart();
+            if (!hasHeart && !gainTween.IsPlaying()) {
+                gainTween.Restart();
+            }
             hasHeart = true;
         }
 
@@ -45,6 +49,7 @@ namespace Antura.UI
         {
             gainTween.Complete();
             if (hasHeart && !loseTween.IsPlaying()) {
+                AudioManager.I.PlaySound(Sfx.ScoreDown);
                 Heart.gameObject.SetActive(true);
                 loseTween.Restart();
                 hasHeart = false;
