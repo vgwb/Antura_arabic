@@ -6,9 +6,13 @@ namespace Antura.Minigames.ColorTickle
 {
     public class TutorialUIManager : MonoBehaviour
     {
+        public Transform line1FingerPivot;
+        public Transform line2FingerPivot;
+
+        private Transform[] m_Finger1Positions;
+        private Transform[] m_Finger2Positions;
+
         [SerializeField]
-        private Transform[] m_FingerPositions;
-		[SerializeField]
 		private float m_MaxDelay = 2.0f; // Time waiting before Start the Tutorial Animation
 
         [HideInInspector]
@@ -19,11 +23,12 @@ namespace Antura.Minigames.ColorTickle
         // Use this for initialization
         void Start()
         {
-            m_FingerPositions = GetComponentsInChildren<Transform>().Where(tr => tr != this.transform).ToArray();
+            m_Finger1Positions = line1FingerPivot.GetComponentsInChildren<Transform>().Where(tr => tr != line1FingerPivot).ToArray();
+            m_Finger2Positions = line2FingerPivot.GetComponentsInChildren<Transform>().Where(tr => tr != line2FingerPivot).ToArray();
             m_Delay = m_MaxDelay;
         }
 
-        // Update is called once per frame
+        private bool toggleLine = false;
         void Update()
         {
 			if (StartTutorial) {
@@ -31,13 +36,28 @@ namespace Antura.Minigames.ColorTickle
 				if (m_Delay >= m_MaxDelay) 
 				{
 					m_Delay = 0;
-					Vector3[] path = new Vector3[m_FingerPositions.Length];
-				    for (int i = 0; i < m_FingerPositions.Length; i++)
+
+				    toggleLine = !toggleLine;
+
+				    Vector3[] path = null;
+                    if (toggleLine)
 				    {
-				        path[i] = m_FingerPositions[i].position;
+				        path = new Vector3[m_Finger1Positions.Length];
+				        for (int i = 0; i < m_Finger1Positions.Length; i++)
+				        {
+				            path[i] = m_Finger1Positions[i].position;
+				        }
 				    }
-                    TutorialUI.DrawLine (path, TutorialUI.DrawLineMode.Finger);
-				}
+				    else
+				    {
+                        path = new Vector3[m_Finger2Positions.Length];
+                        for (int i = 0; i < m_Finger2Positions.Length; i++)
+                        {
+                            path[i] = m_Finger2Positions[i].position;
+                        }
+                    }
+                    TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.Finger);
+                }
             }
 
         }
