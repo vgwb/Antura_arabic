@@ -117,23 +117,19 @@ namespace Antura.Rewards
                 dailyRewardUIPivot.transform.localPosition += Vector3.left * 200;
             }
 
-            AudioManager.I.PlayDialogue(new[]
-                {
-                    LocalizationDataId.DailyReward_Intro_1,
-                    LocalizationDataId.DailyReward_Intro_2
-                }.GetRandom(),
-                () =>
-                {
                     StartCoroutine(ShowRewardsCO(withTranslation, targetX));
-                }
-                );
-
         }
 
         IEnumerator ShowRewardsCO(bool withTranslation, float targetX)
         {
             // Start to the left
-
+            AudioManager.I.PlayDialogue(new[]
+            {
+                LocalizationDataId.DailyReward_Intro_1,
+                LocalizationDataId.DailyReward_Intro_2
+            }.GetRandom());
+            yield return new WaitForSeconds(1.0f);
+                      
             Sequence s = DOTween.Sequence().AppendInterval(0.5f);
             if (withTranslation) {
                 s.Append(dailyRewardUIPivot.DOLocalMoveX(targetX, 1f).SetEase(Ease.InOutSine));
@@ -216,7 +212,7 @@ namespace Antura.Rewards
             }
             AppManager.I.Player.AddBones(nNewBones);
 
-            yield return new WaitForSeconds(1.0f);
+            //yield return new WaitForSeconds(0.1f);
 
             // Log
             LogManager.I.LogInfo(InfoEvent.DailyRewardReceived);
