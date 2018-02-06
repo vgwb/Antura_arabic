@@ -255,7 +255,11 @@ namespace Antura.UI
         {
             GlobalUI.ContinueScreen.BtRetry.gameObject.SetActive(true);
             //GlobalUI.ContinueScreen.BtRetry.onClick.RemoveAllListeners();
-            GlobalUI.ContinueScreen.BtRetry.onClick.AddListener(() => a());
+            GlobalUI.ContinueScreen.BtRetry.onClick.AddListener(() =>
+            {
+                GlobalUI.ContinueScreen.retryAnimator.enabled = false;
+                a();
+            });
             if (GlobalUI.ContinueScreen.retryAnimator == null) GlobalUI.ContinueScreen.retryAnimator = GlobalUI.ContinueScreen.BtRetry.GetComponent<AutoAnimator>();
             if (pulseButton) GlobalUI.ContinueScreen.retryAnimator.Play();
             else GlobalUI.ContinueScreen.retryAnimator.Rewind();
