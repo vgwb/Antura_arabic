@@ -52,7 +52,7 @@ namespace Antura.Minigames.MissingLetter
         {
             IQuestionBuilder builder = null;
 
-            int nPacks = 10;
+            int nPacks = N_ROUNDS;
             int nCorrect = 1;
             int nWrong = 5;
 
@@ -60,7 +60,6 @@ namespace Antura.Minigames.MissingLetter
 
             switch (Variation) {
                 case MissingLetterVariation.LetterInWord:
-                    nPacks = N_ROUNDS; 
                     // Find a letter with the given form inside the word (no diacritics)
                     // wrong answers are other letters in different forms & diacritics
                     builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
