@@ -59,7 +59,7 @@ namespace Antura.Minigames.Balloons
             //AudioManager.I.StopSfx(Sfx.DangerClockLong);
 
             // Hide the timer
-            MinigamesUI.Timer.gameObject.SetActive(false);
+            if (MinigamesUI.Timer != null) MinigamesUI.Timer.gameObject.SetActive(false);
         }
 
         public void ResetTimer()
