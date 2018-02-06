@@ -168,12 +168,12 @@ MonoBehaviour:
       _Order: 1
       _NumberOfMinigames: 3
       _Minigames:
-      - MiniGameCode: 35
-        Weight: 3
       - MiniGameCode: 36
         Weight: 2
       - MiniGameCode: 38
         Weight: 1
+      - MiniGameCode: 39
+        Weight: 3
       _NumberOfRoundsPerMinigame: 0
       _Letters:
       - noon_shaddah
@@ -214,8 +214,6 @@ MonoBehaviour:
       - you_prove
       - we_prove
       - boys
-      - vegetarian
-      - vegetarians
       - son
       - adoption
       - pleat
@@ -800,6 +798,8 @@ MonoBehaviour:
       - caring
       - darling
       - my_darling
+      - vegetarian
+      - vegetarians
       _Words_previous: []
       _Phrases: []
       _Phrases_previous: []
@@ -2360,11 +2360,9 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 2
-      _NumberOfMinigames: 4
+      _NumberOfMinigames: 3
       _Minigames:
       - MiniGameCode: 4
-        Weight: 1
-      - MiniGameCode: 6
         Weight: 1
       - MiniGameCode: 28
         Weight: 1
@@ -2398,11 +2396,9 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 2
-      _NumberOfMinigames: 4
+      _NumberOfMinigames: 3
       _Minigames:
-      - MiniGameCode: 6
-        Weight: 1
-      - MiniGameCode: 13
+      - MiniGameCode: 4
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -2967,11 +2963,9 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 2
-      _NumberOfMinigames: 4
+      _NumberOfMinigames: 3
       _Minigames:
       - MiniGameCode: 4
-        Weight: 1
-      - MiniGameCode: 6
         Weight: 1
       - MiniGameCode: 28
         Weight: 1
@@ -3005,11 +2999,9 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 2
-      _NumberOfMinigames: 4
+      _NumberOfMinigames: 3
       _Minigames:
-      - MiniGameCode: 6
-        Weight: 1
-      - MiniGameCode: 13
+      - MiniGameCode: 4
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -3058,6 +3050,7 @@ MonoBehaviour:
       - lam
       - heh
       - alef_maqsura
+      - lam_alef
       _Words: []
       _Words_previous: []
       _Phrases: []
@@ -3231,6 +3224,10 @@ MonoBehaviour:
       - heh_shaddah
       - heh_sukun
       - alef_maqsura
+      - lam_alef
+      - lam_alef_hamza_hi
+      - lam_alef_hamza_low
+      - lam_alef_maddah
       _Words:
       - believed
       - color_red
@@ -3754,10 +3751,12 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 1
-      _NumberOfMinigames: 3
+      _NumberOfMinigames: 4
       _Minigames:
       - MiniGameCode: 1
         Weight: 3
+      - MiniGameCode: 13
+        Weight: 4
       - MiniGameCode: 22
         Weight: 2
       - MiniGameCode: 35
