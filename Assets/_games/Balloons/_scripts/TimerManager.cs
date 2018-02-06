@@ -44,6 +44,8 @@ namespace Antura.Minigames.Balloons
         {
             isRunning = true;
             MinigamesUI.Timer.Play();
+
+            MinigamesUI.Timer.gameObject.SetActive(true);
         }
 
         public void StopTimer(bool forceCompletion = false)
@@ -55,6 +57,9 @@ namespace Antura.Minigames.Balloons
                 else MinigamesUI.Timer.Pause();
             }
             //AudioManager.I.StopSfx(Sfx.DangerClockLong);
+
+            // Hide the timer
+            MinigamesUI.Timer.gameObject.SetActive(false);
         }
 
         public void ResetTimer()
