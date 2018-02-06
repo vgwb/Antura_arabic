@@ -1,6 +1,7 @@
 ﻿using Antura.Core;
 using DG.DeInspektor.Attributes;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -163,7 +164,12 @@ namespace Antura.UI
                     }
                     fingerIndex = Input.GetTouch(touchIndex).fingerId;
                 }
-                bool isTouching = EventSystem.current.IsPointerOverGameObject(fingerIndex);
+
+                Vector2 pos;
+                if (fingerIndex == -1) pos = Input.mousePosition;
+                else pos = Input.GetTouch(touchIndex).position;
+
+                bool isTouching = IsPointerOverUIObject(pos);
                 if (isTouching)
                 {
                     //Debug.Log("FINGER " + touchIndex + " IS TOUCHING");
@@ -171,6 +177,15 @@ namespace Antura.UI
                 }
             }
             return false;
+        }
+
+        private bool IsPointerOverUIObject(Vector2 pos)
+        {
+            PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+            eventDataCurrentPosition.position = pos;
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+            return results.Count > 0;
         }
     }
 }
