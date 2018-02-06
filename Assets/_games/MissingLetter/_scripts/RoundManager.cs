@@ -65,6 +65,13 @@ namespace Antura.Minigames.MissingLetter
                 return;
             }
 
+            // Force the game to end if you reach the max score
+            if (m_oGame.m_iCurrentScore >= m_oGame.STARS_3_THRESHOLD)
+            {
+                m_oGame.SetCurrentState(m_oGame.ResultState);
+                return;
+            }
+
             m_oGame.SetInIdle(false);
             ExitCurrentScene();
 
