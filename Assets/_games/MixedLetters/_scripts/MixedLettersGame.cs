@@ -367,6 +367,8 @@ namespace Antura.Minigames.MixedLetters
             }
         }
 
+
+
         public void VerifyLetters()
         {
             bool isValid = true;
@@ -376,7 +378,7 @@ namespace Antura.Minigames.MixedLetters
                 DropZoneController dropZone = dropZoneControllers[i];
                 
                 if (dropZone.droppedLetter == null
-                    || dropZone.droppedLetter.GetLetter().Id != PromptLettersInOrder[i].Id
+                    || !MixedLettersConfiguration.Instance.IsDataMatching(dropZone.droppedLetter.GetLetter(), PromptLettersInOrder[i])
                       || Mathf.Abs(dropZone.droppedLetter.transform.rotation.z) > 0.1f)
                 {
                     if (isValid)

@@ -1,6 +1,8 @@
 using System;
+using Antura.Database;
 using Antura.LivingLetters;
 using Antura.LivingLetters.Sample;
+using Antura.Minigames.FastCrowd;
 using Antura.Teacher;
 
 namespace Antura.Minigames.MixedLetters
@@ -73,5 +75,21 @@ namespace Antura.Minigames.MixedLetters
             return rules;
         }
 
+        public override bool IsDataMatching(ILivingLetterData data1, ILivingLetterData data2)
+        {
+            LetterEqualityStrictness strictness;
+            switch (Variation)
+            {
+                case MixedLettersVariation.Alphabet:
+                    strictness = LetterEqualityStrictness.WithVisualForm;
+                    break;
+                case MixedLettersVariation.BuildWord:
+                    strictness = LetterEqualityStrictness.WithVisualForm;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            return DataMatchingHelper.IsDataMatching(data1, data2, strictness);
+        }
     }
 }
