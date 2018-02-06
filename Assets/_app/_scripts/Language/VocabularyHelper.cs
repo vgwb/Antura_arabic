@@ -15,9 +15,6 @@ namespace Antura.Database
     {
         private DatabaseManager dbManager;
 
-        // HACK: this is needed for some games where LamAlef behaves differently
-        public bool ForceUnseparatedLetters { get; set; }
-
         // @note: these words are problematic as they contain letters that are not available in the journey position they are played at
         // TODO: remove this! Should be handled by the curriculum
         public List<string> ProblematicWordIds = new List<string>();
@@ -285,18 +282,16 @@ namespace Antura.Database
 
         #region Word -> Letter
 
-        private Dictionary<string, List<LetterData>> unseparatedWordsToLetterCache = new Dictionary<string, List<LetterData>>();
-        private Dictionary<string, List<LetterData>> separatedWordsToLetterCache = new Dictionary<string, List<LetterData>>();
+        private Dictionary<string, List<LetterData>> wordsToLetterCache = new Dictionary<string, List<LetterData>>();
 
         public List<LetterData> GetLettersInWord(WordData wordData)
         {
             // @note: this will always retrieve all letters with their forms, the strictness will then define whether that has any consequence or not
             List<LetterData> letters = null;
-            var dictCache = ForceUnseparatedLetters ? unseparatedWordsToLetterCache : separatedWordsToLetterCache;
-            bool separateVariations = !ForceUnseparatedLetters;
+            var dictCache = wordsToLetterCache;
             if (!dictCache.ContainsKey(wordData.Id))
             {
-                var parts = ArabicAlphabetHelper.SplitWord(dbManager.StaticDatabase, wordData, separateVariations: separateVariations);
+                var parts = ArabicAlphabetHelper.SplitWord(dbManager.StaticDatabase, wordData, separateVariations: false);
                 letters = parts.ConvertAll(x => ConvertToLetterWithForcedForm(x.letter, x.letterForm));
                 dictCache[wordData.Id] = letters;
             }

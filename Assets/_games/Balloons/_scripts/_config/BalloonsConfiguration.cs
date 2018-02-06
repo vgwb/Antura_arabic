@@ -67,7 +67,7 @@ namespace Antura.Minigames.Balloons
                     break;
                 case BalloonsVariation.LetterInWord:
                     builderParams.wordFilters.excludeDipthongs = true;
-                    builder = new WordsWithLetterQuestionBuilder(nPacks, nPacksPerRound: 1, forceUnseparatedLetters: true, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
+                    builder = new WordsWithLetterQuestionBuilder(nPacks, nPacksPerRound: 1, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
                     break;
                 case BalloonsVariation.Counting:
                     builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number, null, true);

@@ -33,7 +33,7 @@ namespace Antura.Teacher
 
         public LetterFormsInWordsQuestionBuilder(int nPacksPerRound, int nRounds,
             WordDataCategory category = WordDataCategory.None,
-            int maximumWordLength = 20, bool forceUnseparatedLetters = false,
+            int maximumWordLength = 20,
             QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
@@ -41,7 +41,6 @@ namespace Antura.Teacher
             this.nRounds = nRounds;
             this.category = category;
             this.maximumWordLength = maximumWordLength;
-            this.forceUnseparatedLetters = forceUnseparatedLetters;
             this.parameters = parameters;
         }
 
@@ -50,12 +49,6 @@ namespace Antura.Teacher
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            // HACK: the game may need unseparated letters
-            if (forceUnseparatedLetters)
-            {
-                AppManager.I.VocabularyHelper.ForceUnseparatedLetters = true;
-            }
-
             previousPacksIDs_words.Clear();
             previousPacksIDs_letters.Clear();
             var packs = new List<QuestionPackData>();

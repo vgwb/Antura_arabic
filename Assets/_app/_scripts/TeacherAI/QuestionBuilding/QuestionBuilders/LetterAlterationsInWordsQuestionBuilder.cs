@@ -39,7 +39,6 @@ namespace Antura.Teacher
             int nWrongs = 4,
             WordDataCategory category = WordDataCategory.None,
             int maximumWordLength = 20,
-            bool forceUnseparatedLetters = false,
             LetterAlterationFilters letterAlterationFilters = null,
             QuestionBuilderParameters parameters = null)
         {
@@ -49,7 +48,6 @@ namespace Antura.Teacher
             this.nWrongs = nWrongs;
             this.category = category;
             this.maximumWordLength = maximumWordLength;
-            this.forceUnseparatedLetters = forceUnseparatedLetters;
             this.parameters = parameters;
             this.letterAlterationFilters = letterAlterationFilters;
 
@@ -63,12 +61,6 @@ namespace Antura.Teacher
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            // HACK: the game may need unseparated letters
-            if (forceUnseparatedLetters)
-            {
-                AppManager.I.VocabularyHelper.ForceUnseparatedLetters = true;
-            }
-
             previousPacksIDs_words.Clear();
             previousPacksIDs_letters.Clear();
             var packs = new List<QuestionPackData>();
