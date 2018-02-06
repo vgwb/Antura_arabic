@@ -10,14 +10,14 @@ namespace Antura.Teacher
     public static class ConfigAI
     {
         // Reporting
-        public static bool VerboseTeacher = true;
+        public static bool VerboseTeacher = false;
         // these depends on main VerboseTeacher bool
-        public static bool VerboseMinigameSelection = true;
-        public static bool VerboseDifficultySelection = true;
-        public static bool VerboseQuestionPacks = true;
-        public static bool VerboseDataFiltering = true;
-        public static bool VerboseDataSelection = true;
-        public static bool VerbosePlaySessionInitialisation = true;
+        public static bool VerboseMinigameSelection = false;
+        public static bool VerboseDifficultySelection = false;
+        public static bool VerboseQuestionPacks = false;
+        public static bool VerboseDataFiltering = false;
+        public static bool VerboseDataSelection = false;
+        public static bool VerbosePlaySessionInitialisation = false;
 
         // If true, the Teacher will keep retrying if it encounters a selection error, to avoid blocking the game
         // @note: this may HANG the game if an error keeps appearing, so use it only for extreme cases!

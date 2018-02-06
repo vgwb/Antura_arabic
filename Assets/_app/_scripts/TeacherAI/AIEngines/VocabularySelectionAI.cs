@@ -41,16 +41,16 @@ namespace Antura.Teacher
             UnionWith(otherContents.GetHashSet<PhraseData>());
         }
 
-        public List<T> FilterListByContents<T>(List<T> targetList)
+        public void AddAndFilterHashSetByContents<T>(List<T> inputList, HashSet<T> outputHash)
         {
             var set = GetHashSet<T>();
-            var newList = new List<T>();
-            foreach (var v in targetList) {
-                if (set.Contains(v)) {
-                    newList.Add(v);
+            foreach (T v in inputList)
+            {
+                if (set.Contains(v))
+                {
+                    outputHash.Add(v);
                 }
             }
-            return newList;
         }
 
         public override string ToString()
@@ -185,6 +185,7 @@ namespace Antura.Teacher
 
         #region Data Selection logic
 
+        private string debugString_selectData;
 
         public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams, bool isTest = false, bool canReturnZero = false) where T : IVocabularyData
         {
@@ -193,13 +194,16 @@ namespace Antura.Teacher
                 return new List<T>();
             }
 
-            string debugString = "";
-            debugString += ConfigAI.FormatTeacherReportHeader("Data Selection: " + typeof(T).Name);
+            if (ConfigAI.VerboseDataSelection)
+            {
+                debugString_selectData = "";
+                debugString_selectData += ConfigAI.FormatTeacherReportHeader("Data Selection: " + typeof(T).Name);
+            }
 
             // (1) Filtering based on the builder's logic
             var dataList = builderSelectionFunction();
             int nAfterBuilder = dataList.Count;
-            debugString += ("\n  Builder: " + dataList.Count);
+            if (ConfigAI.VerboseDataFiltering) debugString_selectData += ("\n  Builder: " + dataList.Count);
 
             // (2) Filtering based on journey
             if (selectionParams.useJourney && !ConfigAI.ForceJourneyIgnore) {
@@ -215,11 +219,10 @@ namespace Antura.Teacher
             }
             if (selectionParams.severity == SelectionSeverity.AllRequired) {
                 if (!CheckRequiredNumberReached(dataList, selectionParams, nAfterBuilder)) {
-                    //Debug.Log(debugString);
                     throw new Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the journey logic.");
                 }
             }
-            debugString += ("\n  Journey: " + dataList.Count);
+            if (ConfigAI.VerboseDataFiltering) debugString_selectData += ("\n  Journey: " + dataList.Count);
             //Debug.Log("Journey: " + dataList.ToDebugStringNewline());
 
             // (3) Filtering based on pack-list history 
@@ -232,7 +235,7 @@ namespace Antura.Teacher
                     // filter only by those that have not been found already in this pack, if possible
                     dataList = dataList.FindAll(x => !selectionParams.filteringIds.Contains(x.GetId()));
                     if (!CheckRequiredNumberReached(dataList, selectionParams, nAfterBuilder)) {
-                        UnityEngine.Debug.Log(debugString);
+                        UnityEngine.Debug.Log(debugString_selectData);
                         throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the pack-history logic.");
                     }
                     break;
@@ -249,46 +252,50 @@ namespace Antura.Teacher
                     }
                     break;
             }
-            debugString += ("\n  History: " + dataList.Count);
+            if (ConfigAI.VerboseDataFiltering) debugString_selectData += ("\n  History: " + dataList.Count);
             //Debug.Log("History: " + dataList.ToDebugStringNewline());
             //if(selectionParams.filteringIds != null) Debug.Log("Filtered ids:: " + selectionParams.filteringIds.ToDebugStringNewline());
 
             // (4) Priority filtering based on current focus
-            List<T> priorityFilteredList = new List<T>();
-            if (!isTest && !selectionParams.getMaxData) {
+            List<T> priorityFilteredList = null;
+            if (!isTest && !selectionParams.getMaxData)
+            {
+                HashSet<T> priorityFilteredHash = new HashSet<T>();
                 string s = ConfigAI.FormatTeacherReportHeader("Priority Filtering");
                 int nBefore = selectionParams.nRequired;
                 int nRemaining = selectionParams.nRequired;
-                AddToListFilteringByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
+                AddToHashSetFilteringByContents(currentPlaySessionContents, dataList, priorityFilteredHash, ref nRemaining);
 
                 s += "\n Required: " + nRemaining + " " + typeof(T).Name.ToString();
                 s += "\n" + (nBefore - nRemaining) + " from PS";
                 if (nRemaining > 0) {
                     nBefore = nRemaining;
-                    AddToListFilteringByContents(currentLearningBlockContents, dataList, priorityFilteredList, ref nRemaining);
+                    AddToHashSetFilteringByContents(currentLearningBlockContents, dataList, priorityFilteredHash, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from LB";
                 }
                 if (nRemaining > 0) {
                     nBefore = nRemaining;
-                    AddToListFilteringByContents(currentStageContents, dataList, priorityFilteredList, ref nRemaining);
+                    AddToHashSetFilteringByContents(currentStageContents, dataList, priorityFilteredHash, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from ST";
                 }
                 if (nRemaining > 0) {
                     nBefore = nRemaining;
-                    AddToListFilteringByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRemaining);
+                    AddToHashSetFilteringByContents(currentJourneyContents, dataList, priorityFilteredHash, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from the current Journey";
                 }
                 // @note: when journey filtering is disabled, we may still have to get some data from the rest of the journey
                 if (nRemaining > 0 && !selectionParams.useJourney) {
                     nBefore = nRemaining;
-                    AddToListFilteringByContents(progressionContents.AllContents, dataList, priorityFilteredList, ref nRemaining);
+                    AddToHashSetFilteringByContents(progressionContents.AllContents, dataList, priorityFilteredHash, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from the complete contents.";
                 }
 
                 if (ConfigAI.VerboseDataFiltering) {
                     ConfigAI.AppendToTeacherReport(s);
                 }
-                debugString += ("\n  Priority: " + priorityFilteredList.Count);
+                priorityFilteredList = new List<T>();
+                priorityFilteredList.AddRange(priorityFilteredHash);
+                if (ConfigAI.VerboseDataFiltering) debugString_selectData += ("\n  Priority: " + priorityFilteredList.Count);
             } else {
                 priorityFilteredList = dataList;
             }
@@ -301,14 +308,14 @@ namespace Antura.Teacher
             } else {
                 selectedList = WeightedDataSelect(priorityFilteredList, selectionParams.nRequired, selectionParams.severity);
             }
-            debugString += ("\n  Selection: " + selectedList.Count);
+            if (ConfigAI.VerboseDataFiltering) debugString_selectData += ("\n  Selection: " + selectedList.Count);
             //if (selectedList.Count > 0) Debug.Log("Selection: " + selectedList.ToDebugStringNewline());
 
             if (ConfigAI.VerboseDataFiltering && !isTest) {
                 foreach (var selectedEntry in selectedList) {
-                    debugString += "   [" + selectedEntry + "]";
+                    debugString_selectData += "   [" + selectedEntry + "]";
                 }
-                ConfigAI.AppendToTeacherReport(debugString);
+                ConfigAI.AppendToTeacherReport(debugString_selectData);
             }
 
             if (selectedList.Count == 0) {
@@ -317,7 +324,7 @@ namespace Antura.Teacher
                 }
 
                 throw new System.Exception("The teacher could not find any data with the current filters. The game does not seem to be playable at the selected play session."
-                     + "\n" + debugString);
+                     + "\n" + debugString_selectData);
             }
 
             // Update the filtering ids
@@ -333,15 +340,11 @@ namespace Antura.Teacher
             return selectedList;
         }
 
-        private void AddToListFilteringByContents<T>(VocabularyContents contents, List<T> inputList, List<T> outputList, ref int nRemaining)
+        private void AddToHashSetFilteringByContents<T>(VocabularyContents contents, List<T> inputList, HashSet<T> outputHash, ref int nRemaining)
         {
-            int nBefore = outputList.Count;
-            foreach (var data in contents.FilterListByContents(inputList)) {
-                if (!outputList.Contains(data)) {
-                    outputList.Add(data);
-                }
-            }
-            nRemaining -= outputList.Count - nBefore;
+            int nBefore = outputHash.Count;
+            contents.AddAndFilterHashSetByContents(inputList, outputHash);
+            nRemaining -= outputHash.Count - nBefore;
             if (nRemaining < 0) {
                 nRemaining = 0;
             }
@@ -353,6 +356,7 @@ namespace Antura.Teacher
                 || (selectionParams.getMaxData && dataList.Count >= nAfterBuilder);
         }
 
+        private string weightedData_debugString;
         private List<T> WeightedDataSelect<T>(List<T> source_data_list, int nToSelect, SelectionSeverity severity) where T : IData
         {
             VocabularyDataType dataType = VocabularyDataType.Letter;
@@ -367,13 +371,17 @@ namespace Antura.Teacher
             // Given a (filtered) list of data, select some using weights
             var score_data_list = dbManager.Query<VocabularyScoreData>("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "'");
 
-            string debugString = "";
-            debugString += ConfigAI.FormatTeacherReportHeader("Selection Weights");
+            if (ConfigAI.VerboseDataSelection)
+            {
+                weightedData_debugString += ConfigAI.FormatTeacherReportHeader("Selection Weights");
+                weightedData_debugString = "";
+            }
 
             var weights_list = new List<float>();
             foreach (var sourceData in source_data_list) {
                 float cumulativeWeight = 0;
-                debugString += "\n" + sourceData.GetId() + " ---";
+                if (ConfigAI.VerboseDataSelection) weightedData_debugString += "\n" + sourceData.GetId() + " ---";
+
 
                 // Get score data
                 var score_data = score_data_list.Find(x => x.ElementId == sourceData.GetId());
@@ -384,19 +392,20 @@ namespace Antura.Teacher
                     daysSinceLastScore = timespanFromLastScoreToNow.Days;
                     currentScore = score_data.Score;
                 }
+
                 //UnityEngine.Debug.Log("Data " + id + " score: " + currentScore + " days " + daysSinceLastScore);
 
                 // Score Weight [0,1]: higher the lower the score [-1,1] is
                 var scoreWeight = 0.5f * (1 - currentScore);
                 cumulativeWeight += scoreWeight * ConfigAI.Vocabulary_Score_Weight;
-                debugString += " \tScore: " + scoreWeight * ConfigAI.Vocabulary_Score_Weight + "(" + scoreWeight + ")";
+                if (ConfigAI.VerboseDataSelection) weightedData_debugString += " \tScore: " + scoreWeight * ConfigAI.Vocabulary_Score_Weight + "(" + scoreWeight + ")";
 
                 // RecentPlay Weight  [1,0]: higher the more in the past we saw that data
                 const float dayLinerWeightDecrease = 1f / ConfigAI.DaysForMaximumRecentPlayMalus;
                 float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
                 float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
                 cumulativeWeight += recentPlayWeight * ConfigAI.Vocabulary_RecentPlay_Weight;
-                debugString += " \tRecent: " + recentPlayWeight * ConfigAI.Vocabulary_RecentPlay_Weight + "(" + recentPlayWeight + ")";
+                if (ConfigAI.VerboseDataSelection) weightedData_debugString += " \tRecent: " + recentPlayWeight * ConfigAI.Vocabulary_RecentPlay_Weight + "(" + recentPlayWeight + ")";
 
                 // Current focus weight [1,0]: higher if the data is part of the current play session / learning block / stage
                 float currentPlaySessionWeight = 0;
@@ -408,7 +417,7 @@ namespace Antura.Teacher
                     currentPlaySessionWeight = 0.2f;
                 }
                 cumulativeWeight += currentPlaySessionWeight * ConfigAI.Vocabulary_CurrentPlaySession_Weight;
-                debugString += " \tFocus: " + currentPlaySessionWeight * ConfigAI.Vocabulary_CurrentPlaySession_Weight + "(" + currentPlaySessionWeight + ")";
+                if (ConfigAI.VerboseDataSelection) weightedData_debugString += " \tFocus: " + currentPlaySessionWeight * ConfigAI.Vocabulary_CurrentPlaySession_Weight + "(" + currentPlaySessionWeight + ")";
 
                 // If the cumulative weight goes to the negatives, we give it a fixed weight
                 // TODO check if we shound use if (cumulativeWeight <= ConfigAI.Vocabulary_MinTotal_Weight)
@@ -420,11 +429,13 @@ namespace Antura.Teacher
 
                 // Save cumulative weight
                 weights_list.Add(cumulativeWeight);
-                debugString += " TOTw: " + cumulativeWeight;
+                if (ConfigAI.VerboseDataSelection) weightedData_debugString += " TOTw: " + cumulativeWeight;
             }
 
+            //return source_data_list;
+
             if (ConfigAI.VerboseDataSelection) {
-                ConfigAI.AppendToTeacherReport(debugString);
+                ConfigAI.AppendToTeacherReport(weightedData_debugString);
             }
 
             // Select data from the list
