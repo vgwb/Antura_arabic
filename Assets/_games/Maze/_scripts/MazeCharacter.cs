@@ -679,15 +679,19 @@ namespace Antura.Minigames.Maze
 
             List<Vector3> trajectoryPoints = new List<Vector3>();
 
-            var finalPosition = Fruits[0].transform.GetChild(0).gameObject.transform.position + new Vector3(0f, 0.6f, 0f);
+            var startPivot = Fruits[0].transform.GetChild(0).gameObject.transform;
+            var finalPosition = startPivot.position + new Vector3(0f, 0.6f, 0f);
 
+            float duration = 1;
             if (!MazeGame.instance.isTutorialMode)
             {
-                trajectoryPoints.Add(Vector3.forward*15);
+                duration = 1;
+                trajectoryPoints.Add(-startPivot.right * 15);
                 transform.position = trajectoryPoints[0];
             }
             else
             {
+                duration = 3;
                 trajectoryPoints.Add(transform.position);
 
                 int numTrajectoryPoints = 7;
@@ -695,7 +699,6 @@ namespace Antura.Minigames.Maze
 
                 float[] trajectoryPointXAnchors = { -0.7f, 0f, 0.7f, 0f, -0.75f, -0.4f, 0f };
                 float[] trajectoryPointZAnchors = { 0f, 0.8f, 0f, -0.8f, -0.5f, 0.7f, 0.85f, 1.2f };
-
 
                 for (int i = 0; i < numTrajectoryPoints; i++) {
                     Vector3 trajectoryPoint = new Vector3();
@@ -711,10 +714,9 @@ namespace Antura.Minigames.Maze
                 }
 
             }
-
             trajectoryPoints.Add(finalPosition);
 
-            transform.DOPath(trajectoryPoints.ToArray(), 3, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) => {
+            transform.DOPath(trajectoryPoints.ToArray(), duration, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) => {
                 if (index + 1 < trajectoryPoints.Count) {
                     LookAt(trajectoryPoints[index + 1], true);
                 }
