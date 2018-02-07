@@ -17,6 +17,7 @@ namespace Antura.Book
 
         public CompletionSlider StarsSlider;
         public CompletionSlider RewardsSlider;
+        public CompletionSlider JourneySlider;
         public TextRender BonesText;
         public TextRender PlayTimeText;
 
@@ -34,10 +35,9 @@ namespace Antura.Book
             //InfoTable.AddRow(LocalizationDataId.UI_Stage_and_Level, AppManager.I.Player.MaxJourneyPosition.GetShortTitle());
 
             // Unlocked / total PlaySessions
-            //var totalPlaySessions = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
-            //var totalPlaySessionsUnlocked = totalPlaySessions.FindAll(x => x.unlocked);
-            ////InfoTable.AddRow("Unlocked Levels", "", totalPlaySessionsUnlocked.Count.ToString() + " / " + totalPlaySessions.Count.ToString());
-            //InfoTable.AddSliderRow(LocalizationDataId.UI_Unlocked_Levels, totalPlaySessionsUnlocked.Count, totalPlaySessions.Count);
+            var totalPlaySessions = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
+            var totalPlaySessionsUnlocked = totalPlaySessions.FindAll(x => x.unlocked);
+            JourneySlider.SetValue(totalPlaySessionsUnlocked.Count, totalPlaySessions.Count);
 
             // Total elapsed time
             //var totalTimespan = GetTotalApplicationTime();
