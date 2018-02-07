@@ -20,6 +20,9 @@ namespace Antura.Book
         public TextRender BonesText;
         public TextRender PlayTimeText;
 
+        // TODO has to be calculated dynamically
+        private const int TOTAL_NUMBER_OF_STARS = 270;
+
         void Start()
         {
             BtnMiniGames.Bt.onClick.AddListener(() => Book.I.BtnOpenMinigGamesWithBack());
@@ -45,13 +48,11 @@ namespace Antura.Book
 
             // Total stars
             var playerStars = GetTotalMiniGameStars();
-            // TODO calculate total stars
-            var totalStart = 270;
-            StarsSlider.SetValue(playerStars, totalStart);
+            StarsSlider.SetValue(playerStars, TOTAL_NUMBER_OF_STARS);
             //InfoTable.AddRow(LocalizationDataId.UI_Stars, totalStars.ToString());
 
             // unlocked / total REWARDS
-            var totalRewards = AppManager.I.RewardSystemManager.GetTotalRewardPacksCount();
+            var totalRewards = AppManager.I.RewardSystemManager.GetCountOfAllBigRewards();
             var totalRewardsUnlocked = AppManager.I.RewardSystemManager.GetUnlockedRewardsCount();
             RewardsSlider.SetValue(totalRewardsUnlocked, totalRewards);
             //InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
