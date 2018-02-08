@@ -20,7 +20,7 @@ namespace Antura.Database.Management
             data.Id = data.Stage + "." + data.LearningBlock + "." + data.PlaySession;
 
             data.Letters = ParseIDArray<LetterData, LetterTable>(data, (string)dict["Letters"], db.GetLetterTable());
-            CustomAddDiacritics(data, db);
+            //CustomAddDiacritics(data, db);
 
             data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.GetWordTable());
             data.Words_previous = ParseIDArray<WordData, WordTable>(data, (string)dict["Words_previous"], db.GetWordTable());
