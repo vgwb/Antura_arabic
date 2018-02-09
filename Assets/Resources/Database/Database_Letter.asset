@@ -1650,7 +1650,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: 
-      _PhonemeSound: alef_fathah
+      _PhonemeSound: hamzah_fathah
       _SoundZone: 
       _Isolated: "\u0621\u064E"
       _Initial: 
@@ -2491,7 +2491,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: lam_alef_hamza_hi__lettername
-      _PhonemeSound: lam_alef
+      _PhonemeSound: lam_alef_hamza_hi
       _SoundZone: 
       _Isolated: "\uFEF7"
       _Initial: 
@@ -2502,6 +2502,35 @@ MonoBehaviour:
       _Medial_Unicode: 
       _Final_Unicode: FEF8
       _Symbol_Unicode: 
+      _InitialFix: 
+      _FinalFix: 
+      _MedialFix: 
+      _Complexity: 1
+      ForcedLetterForm: 0
+    - _Id: lam_alef_hamza_hi_dammah
+      _Active: 1
+      _Number: 0
+      _Title: lam alef hamza (hi) dammah
+      _Kind: 4
+      _BaseLetter: lam_alef_hamza_hi
+      _Symbol: dammah
+      _Type: 0
+      _Tag: 
+      _Notes: 
+      _SunMoon: 0
+      _Sound: 
+      _NameSound: 
+      _PhonemeSound: lam_alef_hamza_hi_dammah
+      _SoundZone: 
+      _Isolated: "\uFEF7\u064F"
+      _Initial: 
+      _Medial: 
+      _Final: "\uFEF8\u064F"
+      _Isolated_Unicode: FEF7
+      _Initial_Unicode: 
+      _Medial_Unicode: 
+      _Final_Unicode: FEF8
+      _Symbol_Unicode: 064F
       _InitialFix: 
       _FinalFix: 
       _MedialFix: 
@@ -2520,7 +2549,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: lam_alef_hamza_low__lettername
-      _PhonemeSound: lam_alef
+      _PhonemeSound: lam_alef_hamza_low
       _SoundZone: 
       _Isolated: "\uFEF9"
       _Initial: 
@@ -2551,7 +2580,7 @@ MonoBehaviour:
       _NameSound: 
       _PhonemeSound: lam_alef
       _SoundZone: 
-      _Isolated: "\uFEF5"
+      _Isolated: "\uFEF5\u0650"
       _Initial: 
       _Medial: 
       _Final: "\uFEF6"
@@ -2679,6 +2708,35 @@ MonoBehaviour:
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
+      _Complexity: 1
+      ForcedLetterForm: 0
+    - _Id: lam_kasrah_alef_hamza_hi
+      _Active: 1
+      _Number: 0
+      _Title: lam_kasrah_alef_hamza_hi
+      _Kind: 4
+      _BaseLetter: lam_alef_hamza_hi
+      _Symbol: kasrah
+      _Type: 0
+      _Tag: 
+      _Notes: 
+      _SunMoon: 0
+      _Sound: 
+      _NameSound: 
+      _PhonemeSound: lam_kasrah_alef_hamza_hi
+      _SoundZone: 
+      _Isolated: "\uFEF7\u0650"
+      _Initial: 
+      _Medial: 
+      _Final: "\uFEF8\u0650"
+      _Isolated_Unicode: FEF7
+      _Initial_Unicode: 
+      _Medial_Unicode: 
+      _Final_Unicode: FEF8
+      _Symbol_Unicode: 0650
+      _InitialFix: 
+      _FinalFix: 
+      _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: lam_shaddah
@@ -4914,35 +4972,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: waw_hamza
-      _Active: 1
-      _Number: 0
-      _Title: waw_hamza
-      _Kind: 4
-      _BaseLetter: waw
-      _Symbol: hamza
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: waw_hamza__lettername
-      _PhonemeSound: 
-      _SoundZone: 
-      _Isolated: "\u0624"
-      _Initial: 
-      _Medial: 
-      _Final: "\uFE86"
-      _Isolated_Unicode: 0624
-      _Initial_Unicode: 0648
-      _Medial_Unicode: FEEE
-      _Final_Unicode: FE86
-      _Symbol_Unicode: 
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: waw_kasrah
       _Active: 1
       _Number: 0
@@ -5141,35 +5170,6 @@ MonoBehaviour:
       _Medial_Unicode: FEF4
       _Final_Unicode: FEF2
       _Symbol_Unicode: 064E
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: yeh_hamza
-      _Active: 1
-      _Number: 0
-      _Title: yeh_hamza
-      _Kind: 4
-      _BaseLetter: yeh
-      _Symbol: hamza
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: yeh_hamza__lettername
-      _PhonemeSound: 
-      _SoundZone: 
-      _Isolated: "\u0626"
-      _Initial: "\uFE8B"
-      _Medial: "\uFE8C"
-      _Final: "\uFE8A"
-      _Isolated_Unicode: 0626
-      _Initial_Unicode: FE8B
-      _Medial_Unicode: FE8C
-      _Final_Unicode: FE8A
-      _Symbol_Unicode: 
       _InitialFix: 
       _FinalFix: 
       _MedialFix: 1
