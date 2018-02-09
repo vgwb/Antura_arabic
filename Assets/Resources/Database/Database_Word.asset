@@ -5517,7 +5517,7 @@ MonoBehaviour:
     - _Id: son
       _Active: 1
       _Kind: 5
-      _Category: 5
+      _Category: 0
       _Form: 1
       _Article: 0
       _Gender: 2
