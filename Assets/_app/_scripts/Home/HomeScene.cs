@@ -38,11 +38,6 @@ namespace Antura.Scenes
 
             // after 2 seconds (after the game title audio) invite palyer to create a profile
             Invoke("TutorCreateProfile", 2.3f);
-
-            if (AppManager.I.AppSettingsManager.IsAppJustUpdated) {
-                AppManager.I.AppSettingsManager.AppUpdateCheckDone();
-                OpenAppUpdatePanel();
-            }
         }
 
         void TutorCreateProfile()
@@ -102,24 +97,6 @@ namespace Antura.Scenes
             ProfileSelectorUI.SetActive(true);
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
             reservedAreaIsOpen = false;
-        }
-        #endregion
-
-        #region FirstCheckPanel
-        public void OpenAppUpdatePanel()
-        {
-            ProfileSelectorUI.SetActive(false);
-            GlobalUI.ShowPauseMenu(false);
-
-            PanelAppUpdate.SetActive(true);
-        }
-
-        public void CloseAppUpdatePanel()
-        {
-            ProfileSelectorUI.SetActive(true);
-            GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
-
-            PanelAppUpdate.SetActive(false);
         }
         #endregion
     }

@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_app/_scenes/_Start.unity
+    path: Assets/_app/_scenes/app_Bootstrap.unity
+    guid: f4f63720b0c134859b413b57229f5c07
+  - enabled: 1
+    path: Assets/_app/_scenes/app_Home.unity
     guid: c30e873510386a340ad18ee66d43c771
   - enabled: 1
     path: Assets/_app/_scenes/app_AnturaSpace.unity

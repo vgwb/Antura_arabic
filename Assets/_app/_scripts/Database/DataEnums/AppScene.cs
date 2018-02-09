@@ -5,6 +5,7 @@
     /// </summary>
     public enum AppScene
     {
+        Bootstrap = 15,
         Home = 1,
         AnturaSpace = 2,
         Book = 3,

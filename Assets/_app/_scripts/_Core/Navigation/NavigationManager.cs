@@ -83,6 +83,7 @@ namespace Antura.Core
         private void InitializeAllowedTransitions()
         {
             // Allowed custom transitions
+            customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Bootstrap, AppScene.Home));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Home, AppScene.PlayerCreation));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Home, AppScene.ReservedArea));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.AnturaSpace));

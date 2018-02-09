@@ -70,6 +70,13 @@ namespace Antura.Core
         }
         #endregion
 
+        public bool IsAppJustUpdatedFromOldVersion()
+        {
+            // AppManager.I.AppSettingsManager.AppVersionPrevious <= new Version(1, 0, 0, 0)) {
+
+            return false;
+        }
+
         public void UpdateAppVersion()
         {
             if (Settings.AppVersion == "") {
