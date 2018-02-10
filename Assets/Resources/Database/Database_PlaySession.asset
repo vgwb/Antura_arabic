@@ -754,12 +754,14 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 1
-      _NumberOfMinigames: 2
+      _NumberOfMinigames: 3
       _Minigames:
       - MiniGameCode: 36
         Weight: 2
       - MiniGameCode: 38
         Weight: 1
+      - MiniGameCode: 39
+        Weight: 3
       _NumberOfRoundsPerMinigame: 0
       _Letters:
       - jeem_fathah
@@ -798,8 +800,6 @@ MonoBehaviour:
       - caring
       - darling
       - my_darling
-      - vegetarian
-      - vegetarians
       _Words_previous: []
       _Phrases: []
       _Phrases_previous: []
@@ -1339,12 +1339,14 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 1
-      _NumberOfMinigames: 2
+      _NumberOfMinigames: 3
       _Minigames:
       - MiniGameCode: 36
         Weight: 2
       - MiniGameCode: 38
         Weight: 1
+      - MiniGameCode: 39
+        Weight: 3
       _NumberOfRoundsPerMinigame: 0
       _Letters:
       - alef_fathah
@@ -1421,6 +1423,8 @@ MonoBehaviour:
       - flower
       - color_pink
       - hand
+      - vegetarian
+      - vegetarians
       _Words_previous: []
       _Phrases: []
       _Phrases_previous: []
@@ -1960,12 +1964,14 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 1
-      _NumberOfMinigames: 2
+      _NumberOfMinigames: 3
       _Minigames:
       - MiniGameCode: 36
         Weight: 2
       - MiniGameCode: 38
         Weight: 1
+      - MiniGameCode: 39
+        Weight: 3
       _NumberOfRoundsPerMinigame: 0
       _Letters:
       - seen_fathah
@@ -2578,12 +2584,14 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 1
-      _NumberOfMinigames: 2
+      _NumberOfMinigames: 3
       _Minigames:
       - MiniGameCode: 36
         Weight: 2
       - MiniGameCode: 38
         Weight: 1
+      - MiniGameCode: 39
+        Weight: 3
       _NumberOfRoundsPerMinigame: 0
       _Letters:
       - feh_fathah
@@ -2777,7 +2785,7 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 1
-      _NumberOfMinigames: 5
+      _NumberOfMinigames: 4
       _Minigames:
       - MiniGameCode: 16
         Weight: 1
@@ -2787,8 +2795,6 @@ MonoBehaviour:
         Weight: 3
       - MiniGameCode: 38
         Weight: 2
-      - MiniGameCode: 39
-        Weight: 5
       _NumberOfRoundsPerMinigame: 0
       _Letters: []
       _Words: []
@@ -3185,12 +3191,14 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 1
-      _NumberOfMinigames: 2
+      _NumberOfMinigames: 3
       _Minigames:
       - MiniGameCode: 36
         Weight: 2
       - MiniGameCode: 38
         Weight: 1
+      - MiniGameCode: 39
+        Weight: 3
       _NumberOfRoundsPerMinigame: 0
       _Letters:
       - ain_fathah
@@ -3229,319 +3237,318 @@ MonoBehaviour:
       - lam_alef_hamza_low
       - lam_alef_maddah
       _Words:
-      - believed
-      - color_red
-      - number_04
-      - number_14
-      - food
-      - ate
-      - river_plural
-      - welcome
-      - month_september
-      - finger
-      - to
-      - it_is
-      - number_12
-      - number_11
-      - your_name
       - al
-      - now
-      - day_sunday
-      - the_color_green
-      - day_wednesday
-      - number_o01
-      - day_monday
-      - yesterday
-      - the_bus
-      - the_parrot
-      - the_color_orange
-      - the_cold
-      - the_girl
-      - the_trousers
-      - the_color_purple
-      - the_color_brown
-      - the_icecream
-      - the_house
-      - number_o09
-      - the_apple
-      - the_berry
-      - number_o03
-      - number_o08
-      - number_o02
-      - day_tuesday
-      - the_fridge
-      - the_snow
-      - the_mountain
-      - the_carrot
-      - day_friday
-      - the_beautiful
-      - number_o11
-      - the_shoe
-      - the_sad
-      - the_whale
-      - number_o05
-      - the_bread
-      - the_cupboard
-      - day_thursday
-      - the_well-being
-      - the_bear
-      - the_shop
-      - the_wolf
-      - the_wonderful
-      - number_o04
-      - number_o04
-      - the_leg
-      - the_oil
-      - number_o07
-      - number_o06
-      - the_time
-      - day_saturday
-      - the_happy
-      - the_tooth
-      - the_winter
-      - the_policeman
-      - the_sun
-      - the_month
-      - the_boy
-      - the_box
-      - the_light
-      - the_table
-      - the_doctor
-      - the_back
-      - number_o10
-      - the_ten_oclock
-      - the_scientist
-      - the_worker
-      - the_bird
-      - the_juice
-      - the_eye
-      - the_forest
-      - the_room
-      - the_deer
-      - the_bed
-      - the_oven
-      - number_2000
-      - next
-      - the_hat
-      - the_moon
-      - the_shirt
-      - the_book
-      - the_ball
-      - the_chair
-      - the_lazy
-      - the_player
-      - the_meeting
-      - last
-      - the_station
-      - the_hospital
-      - the_restaurant
-      - the_coat
-      - the_teacher
-      - the_playground
-      - the_club
-      - the_engineer
-      - the_window
-      - the_carpenter
-      - the_active
-      - the_tiger
-      - the_river
-      - the_light_v2
-      - the_flower
-      - today
-      - woman
-      - safe
-      - parrot
-      - color_orange
-      - bulgar
-      - cried
-      - trousers
-      - released
-      - number_09
-      - number_19
-      - month_october
-      - month_november
-      - television
-      - month_july
-      - number_03
-      - number_13
-      - fridge
-      - snow
-      - number_08
-      - number_18
-      - garlic
-      - ready
-      - mountain_plural
-      - mountain
-      - mountain_dual
-      - verymuch
-      - sat
-      - sat_feminine
-      - plural
-      - camel
-      - beautiful
-      - your_situation
-      - consonant
-      - vowel
-      - field
-      - chickpea
-      - carried
-      - uncle_mother
-      - aunt_mother
-      - my_aunt_mother
-      - my_uncle_mother
-      - number_05
-      - number_15
-      - shop
-      - brain
-      - without_article
-      - went
-      - went_feminine
-      - color_gold
-      - wonderful
-      - spring
-      - man
-      - leg
-      - color_grey
-      - hour
-      - samer
-      - number_07
-      - number_17
-      - number_16
-      - happy
-      - sugar
-      - peace
-      - sky
-      - welcome_assertion
-      - brave
-      - hair
-      - lips
-      - thankyou
-      - sun
-      - month
-      - small
-      - glue
-      - laughed
-      - table
-      - of_course
-      - back
-      - scientist
-      - scientist_dual
-      - year
-      - worker
-      - worker_dual
-      - lentil
-      - nest
-      - number_10
-      - number_20
-      - bird
-      - juice
-      - sure
-      - OokaDH
-      - flag
-      - knowledge
-      - scientist_plural
-      - on
-      - uncle_father
-      - worker_plural
-      - aunt_father
-      - my_aunt_father
-      - my_uncle_father
-      - grapes
-      - eye
-      - forest
-      - tomorrow
-      - room
-      - deer
-      - washing_machine
       - anger
-      - cloud
-      - farmer
-      - mouth
-      - understood
+      - apricot
+      - are
+      - ate
+      - aunt_father
+      - aunt_mother
+      - back
+      - ball
+      - banana
+      - bank
+      - basketball
+      - beautiful
+      - believed
+      - big
+      - bird
+      - book
+      - books
+      - brain
+      - brave
+      - breeze
       - broad_bean
+      - bulgar
+      - camel
+      - carried
+      - cat
+      - caught
+      - chair
+      - cherry
+      - chickpea
+      - cloud
+      - club
+      - coat
+      - color_gold
+      - color_grey
+      - color_orange
+      - color_red
+      - congratulations
+      - consonant
+      - costume
+      - cried
+      - day_friday
+      - day_monday
+      - day_saturday
+      - day_sunday
+      - day_thursday
+      - day_tuesday
+      - day_wednesday
+      - day
+      - deer
+      - delicious
+      - do_need
+      - dog
+      - dual
       - elephant
-      - hat
+      - engineer
+      - evening
+      - eye
+      - face
+      - farmer
+      - field
+      - finger
+      - flag
+      - food
       - foot
-      - pencil
-      - moon
-      - shirt
+      - football
+      - forest
+      - fridge
+      - from
+      - garlic
+      - glue
+      - go_v2
+      - go
+      - goodbye
+      - grapes
+      - hair
+      - happy
+      - hat
+      - help
+      - hi
+      - hospital
+      - hour
+      - how
+      - insistent
+      - is
+      - it_is
+      - juice
+      - kid
+      - knowledge
+      - last
+      - laughed
+      - lazy
+      - leg
+      - lentil
+      - lets
+      - lips
+      - man
+      - meat
       - melancholy
-      - was
       - month_december
       - month_january
-      - big
-      - book
-      - wrote
-      - books
-      - ball
-      - basketball
-      - football
-      - cherry
-      - chair
-      - lazy
-      - dog
-      - whats
-      - pear_big
-      - how
-      - pearl
-      - player
-      - costume
-      - wore
-      - yogurt
-      - meat
-      - delicious
-      - tongue
-      - played
-      - go_v2
-      - what
-      - water
-      - rainy
+      - month_july
+      - month_november
+      - month_october
+      - month_september
+      - month
+      - moon
       - mother
-      - congratulations
-      - triangle
-      - dual
-      - station
-      - school
-      - toilet
-      - hi
-      - evening
-      - help
-      - hospital
-      - caught
-      - apricot
-      - walked
-      - bank
-      - rain
-      - restaurant
-      - with_article
-      - coat
-      - teacher
-      - singular
-      - scissors
-      - insistent
-      - salt
-      - playground
-      - from
-      - club
-      - engineer
-      - banana
-      - go
-      - virtuous
-      - breeze
-      - yes
-      - tiger
-      - river
-      - river_dual
-      - cat
-      - are
-      - do_need
-      - is
-      - lets
-      - face
+      - mountain_dual
+      - mountain_plural
+      - mountain
+      - mouth
+      - my_aunt_father
+      - my_aunt_mother
       - my_face
-      - goodbye
-      - kid
-      - day
+      - my_uncle_father
+      - my_uncle_mother
+      - nest
+      - next
+      - now
+      - number_03
+      - number_04
+      - number_05
+      - number_07
+      - number_08
+      - number_09
+      - number_10
+      - number_11
+      - number_12
+      - number_13
+      - number_14
+      - number_15
+      - number_16
+      - number_17
+      - number_18
+      - number_19
+      - number_20
+      - number_2000
+      - number_o01
+      - number_o02
+      - number_o03
+      - number_o04
+      - number_o04
+      - number_o05
+      - number_o06
+      - number_o07
+      - number_o08
+      - number_o09
+      - number_o10
+      - number_o11
+      - of_course
+      - on
+      - OokaDH
+      - parrot
+      - peace
+      - pear_big
+      - pencil
+      - played
+      - player
+      - playground
+      - plural
+      - rain
+      - rainy
+      - ready
+      - released
+      - restaurant
+      - river_dual
+      - river_plural
+      - river
+      - room
+      - safe
+      - salt
+      - samer
+      - sat_feminine
+      - sat
+      - school
+      - scientist_dual
+      - scientist_plural
+      - scientist
+      - scissors
+      - shirt
+      - shop
+      - singular
+      - sky
+      - small
+      - snow
+      - spring
+      - station
+      - sugar
+      - sun
+      - sure
+      - table
+      - teacher
+      - television
+      - thankyou
+      - the_active
+      - the_apple
+      - the_back
+      - the_ball
+      - the_bear
+      - the_beautiful
+      - the_bed
+      - the_berry
+      - the_bird
+      - the_book
+      - the_box
+      - the_boy
+      - the_bread
+      - the_bus
+      - the_carpenter
+      - the_carrot
+      - the_chair
+      - the_club
+      - the_coat
+      - the_cold
+      - the_color_brown
+      - the_color_green
+      - the_color_orange
+      - the_color_purple
+      - the_cupboard
+      - the_deer
+      - the_doctor
+      - the_engineer
+      - the_eye
+      - the_flower
+      - the_forest
+      - the_fridge
+      - the_girl
+      - the_happy
+      - the_hat
+      - the_hospital
+      - the_house
+      - the_icecream
+      - the_juice
+      - the_lazy
+      - the_leg
+      - the_light_v2
+      - the_light
+      - the_meeting
+      - the_month
+      - the_moon
+      - the_mountain
+      - the_oil
+      - the_oven
+      - the_parrot
+      - the_player
+      - the_playground
+      - the_policeman
+      - the_restaurant
+      - the_river
+      - the_room
+      - the_sad
+      - the_scientist
+      - the_shirt
+      - the_shoe
+      - the_shop
+      - the_snow
+      - the_station
+      - the_sun
+      - the_table
+      - the_teacher
+      - the_ten_oclock
+      - the_tiger
+      - the_time
+      - the_tooth
+      - the_trousers
+      - the_well-being
+      - the_whale
+      - the_window
+      - the_winter
+      - the_wolf
+      - the_wonderful
+      - the_worker
+      - tiger
+      - to
+      - today
+      - toilet
+      - tomorrow
+      - tongue
+      - triangle
+      - trousers
+      - uncle_father
+      - uncle_mother
+      - understood
+      - verymuch
+      - virtuous
+      - vowel
+      - walked
+      - was
+      - washing_machine
+      - water
+      - welcome_assertion
+      - welcome
+      - went_feminine
+      - went
+      - what
+      - whats
+      - with_article
+      - without_article
+      - woman
+      - wonderful
+      - wore
+      - worker_dual
+      - worker_plural
+      - worker
+      - wrote
+      - year
+      - yes
+      - yesterday
+      - yogurt
+      - your_name
+      - your_situation
       _Words_previous: []
       _Phrases: []
       _Phrases_previous: []
@@ -3677,7 +3684,7 @@ MonoBehaviour:
       _PlaySession: 1
       _Type: MiniGame
       _Order: 1
-      _NumberOfMinigames: 5
+      _NumberOfMinigames: 4
       _Minigames:
       - MiniGameCode: 16
         Weight: 1
@@ -3687,8 +3694,6 @@ MonoBehaviour:
         Weight: 3
       - MiniGameCode: 38
         Weight: 2
-      - MiniGameCode: 39
-        Weight: 5
       _NumberOfRoundsPerMinigame: 0
       _Letters: []
       _Words: []
