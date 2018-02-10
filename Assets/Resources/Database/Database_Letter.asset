@@ -2511,7 +2511,7 @@ MonoBehaviour:
       _Active: 1
       _Number: 0
       _Title: lam alef hamza (hi) dammah
-      _Kind: 4
+      _Kind: 5
       _BaseLetter: lam_alef_hamza_hi
       _Symbol: dammah
       _Type: 0
@@ -2714,7 +2714,7 @@ MonoBehaviour:
       _Active: 1
       _Number: 0
       _Title: lam_kasrah_alef_hamza_hi
-      _Kind: 4
+      _Kind: 5
       _BaseLetter: lam_alef_hamza_hi
       _Symbol: kasrah
       _Type: 0
