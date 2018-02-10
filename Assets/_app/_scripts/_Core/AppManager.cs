@@ -136,6 +136,15 @@ namespace Antura.Core
             });
         }
 
+        public void StartNewPlaySession()
+        {
+            LogManager.I.InitNewSession();
+            LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new DeviceInfo()));
+            Services.Notifications.DeleteAllLocalNotifications();
+
+        }
+
+
         #region Main App Suspend method
         void OnApplicationPause(bool pauseStatus)
         {

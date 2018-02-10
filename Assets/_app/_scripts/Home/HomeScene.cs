@@ -52,14 +52,10 @@ namespace Antura.Scenes
         /// </summary>
         public void Play()
         {
-            Debug.Log("Play with Player: " + AppManager.I.Player);
-
+            // Debug.Log("Play with Player: " + AppManager.I.Player);
             GlobalUI.ShowPauseMenu(true);
 
-            // TODO refactor: move this initialisation logic to the AppManager
-            LogManager.I.InitNewSession();
-            LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new DeviceInfo()));
-
+            AppManager.I.StartNewPlaySession();
             AppManager.I.NavigationManager.GoToNextScene();
         }
 
