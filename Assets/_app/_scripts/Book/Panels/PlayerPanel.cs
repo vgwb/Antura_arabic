@@ -52,7 +52,7 @@ namespace Antura.Book
             //InfoTable.AddRow(LocalizationDataId.UI_Stars, totalStars.ToString());
 
             // unlocked / total REWARDS
-            var totalRewards = AppManager.I.RewardSystemManager.GetCountOfAllBigRewards();
+            var totalRewards = AppManager.I.RewardSystemManager.GetTotalRewardPacksCount(true);
             var totalRewardsUnlocked = AppManager.I.RewardSystemManager.GetUnlockedRewardsCount();
             RewardsSlider.SetValue(totalRewardsUnlocked, totalRewards);
             //InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);

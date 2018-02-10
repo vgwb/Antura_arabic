@@ -21,7 +21,6 @@ namespace Antura.Rewards
     {
         private static bool VERBOSE = false;
 
-        private const int TOTAL_NUMBER_OF_BIG_REWARDS = 95;
         private const string ANTURA_REWARDS_PARTS_CONFIG_PATH = "Configs/AnturaRewardsPartsConfig";
         private const string ANTURA_REWARDS_UNLOCKS_CONFIG_PATH = "Configs/AnturaRewardsUnlocksConfig";
 
@@ -137,7 +136,7 @@ namespace Antura.Rewards
 
         public List<RewardPack> GetAllRewardPacksOfBaseType(RewardBaseType baseType, bool onePerBase = false)
         {
-            if (!rewardPacksDict.ContainsKey(baseType)) throw new ArgumentNullException("Dict not initialised correctly!");
+            if (!rewardPacksDict.ContainsKey(baseType)) { throw new ArgumentNullException("Dict not initialised correctly!"); }
             var allRewardsOfBaseType = rewardPacksDict[baseType];
 
             if (onePerBase) {
@@ -154,18 +153,21 @@ namespace Antura.Rewards
 
         public List<RewardPack> GetUnlockedRewardPacksOfBaseType(RewardBaseType baseType)
         {
-            if (!rewardPacksDict.ContainsKey(baseType)) throw new ArgumentNullException("Dict not initialised correctly!");
+            if (!rewardPacksDict.ContainsKey(baseType)) { throw new ArgumentNullException("Dict not initialised correctly!"); }
             return rewardPacksDict[baseType].Where(x => x.IsUnlocked).ToList();
         }
 
         public IEnumerable<RewardPack> GetRewardPacks()
         {
-            foreach (var rewardPack in rewardPacksDict[RewardBaseType.Prop])
+            foreach (var rewardPack in rewardPacksDict[RewardBaseType.Prop]) {
                 yield return rewardPack;
-            foreach (var rewardPack in rewardPacksDict[RewardBaseType.Decal])
+            }
+            foreach (var rewardPack in rewardPacksDict[RewardBaseType.Decal]) {
                 yield return rewardPack;
-            foreach (var rewardPack in rewardPacksDict[RewardBaseType.Texture])
+            }
+            foreach (var rewardPack in rewardPacksDict[RewardBaseType.Texture]) {
                 yield return rewardPack;
+            }
         }
         public List<RewardPack> GetUnlockedRewardPacks()
         {
@@ -344,13 +346,6 @@ namespace Antura.Rewards
                 return GetRewardPacks().Count();
             }
         }
-
-        // TODO has to be reafactored, because GetTotalRewardPacksCount returns 743, and we want the 95!!
-        public int GetCountOfAllBigRewards()
-        {
-            return TOTAL_NUMBER_OF_BIG_REWARDS;
-        }
-
 
         /// <summary>
         /// Gets the unlocked reward count for the current player. 0 if current player is null.
