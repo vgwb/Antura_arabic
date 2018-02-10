@@ -56,6 +56,9 @@ namespace Antura.Book
 
             List<LetterInfo> allLetterInfos = AppManager.I.ScoreHelper.GetAllLetterInfo();
             foreach (var letter in letters) {
+                if (AppConfig.DisableShaddah && letter.Id == "shaddah") {
+                    continue;
+                }
                 LetterInfo myLetterinfo = allLetterInfos.Find(value => value.data == letter);
 
                 btnGO = Instantiate(LetterItemPrefab);
@@ -92,6 +95,9 @@ namespace Antura.Book
             info_list.Sort((x, y) => x.data.Id.CompareTo(y.data.Id));
             foreach (var info_item in info_list) {
                 if (variationsletters.Contains(info_item.data)) {
+                    if (AppConfig.DisableShaddah && info_item.data.Symbol == "shaddah") {
+                        continue;
+                    }
                     btnGO = Instantiate(DiacriticSymbolItemPrefab);
                     btnGO.transform.SetParent(DiacriticsContainer.transform, false);
                     btnGO.GetComponent<ItemDiacriticSymbol>().Init(this, info_item, false);

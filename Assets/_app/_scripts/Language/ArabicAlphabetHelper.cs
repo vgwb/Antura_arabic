@@ -1,4 +1,5 @@
-﻿using Antura.Database;
+﻿using Antura.Core;
+using Antura.Database;
 using ArabicSupport;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,6 @@ namespace Antura.Helpers
     // TODO refactor: this class needs a large refactoring as it is used for several different purposes
     public static class ArabicAlphabetHelper
     {
-        const bool DISABLE_SHADDAH = true;
-
         public struct ArabicStringPart
         {
             public LetterData letter;
@@ -255,7 +254,7 @@ namespace Antura.Helpers
                         var baseLetterId = lastLetterData.letter.Id;
 
                         LetterData diacriticLetterData = null;
-                        if (DISABLE_SHADDAH) {
+                        if (AppConfig.DisableShaddah) {
                             if (symbolId == "shaddah") {
                                 diacriticLetterData = lastLetterData.letter;
                             } else {

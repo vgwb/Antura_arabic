@@ -58,6 +58,9 @@ namespace Antura.Core
 
         public static bool MinigameTutorialsEnabled = true;
 
+        // disables the listing and use of the Shaddah from all the words/book
+        public static bool DisableShaddah = true;
+
         #endregion
 
         #region Application Constants
