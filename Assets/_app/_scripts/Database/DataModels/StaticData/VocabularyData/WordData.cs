@@ -89,6 +89,14 @@ namespace Antura.Database
         [SerializeField]
         private string _Arabic;
 
+        public string ArabicNoShaddah
+        {
+            get { return _ArabicNoShaddah; }
+            set { _ArabicNoShaddah = value; }
+        }
+        [SerializeField]
+        private string _ArabicNoShaddah;
+
         public string Value
         {
             get { return _Value; }

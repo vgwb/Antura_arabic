@@ -1828,6 +1828,21 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 224183720588408822, guid: b16b07248894441dcac91986b90e8727,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.9421265
+      objectReference: {fileID: 0}
+    - target: {fileID: 224183720588408822, guid: b16b07248894441dcac91986b90e8727,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224183720588408822, guid: b16b07248894441dcac91986b90e8727,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b16b07248894441dcac91986b90e8727, type: 2}
   m_IsPrefabParent: 0
@@ -1860,7 +1875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneMusic: 0
-  OpeningArea: 2
+  OpeningArea: 1
   HideAtStartup:
   - {fileID: 2005255946}
 --- !u!4 &1351784052

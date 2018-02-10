@@ -10,6 +10,8 @@ namespace Antura.Helpers
     // TODO refactor: this class needs a large refactoring as it is used for several different purposes
     public static class ArabicAlphabetHelper
     {
+        const bool DISABLE_SHADDAH = true;
+
         public struct ArabicStringPart
         {
             public LetterData letter;
@@ -253,8 +255,15 @@ namespace Antura.Helpers
                         var baseLetterId = lastLetterData.letter.Id;
 
                         LetterData diacriticLetterData = null;
-
-                        diacriticComboLookUpCache.TryGetValue(new DiacriticComboLookUpEntry(symbolId, baseLetterId), out diacriticLetterData);
+                        if (DISABLE_SHADDAH) {
+                            if (symbolId == "shaddah") {
+                                diacriticLetterData = lastLetterData.letter;
+                            } else {
+                                diacriticComboLookUpCache.TryGetValue(new DiacriticComboLookUpEntry(symbolId, baseLetterId), out diacriticLetterData);
+                            }
+                        } else {
+                            diacriticComboLookUpCache.TryGetValue(new DiacriticComboLookUpEntry(symbolId, baseLetterId), out diacriticLetterData);
+                        }
 
                         if (diacriticLetterData == null) {
                             Debug.LogError("Cannot find a single character for " + baseLetterId + " + " + symbolId +

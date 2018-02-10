@@ -22,6 +22,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0634\u064A\u0637"
+      _ArabicNoShaddah: "\u0646\u064E\u0634\u064A\u0637"
       _Value: 
       _Letters:
       - noon_fathah
@@ -39,11 +40,12 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062A\u064E\u0628\u064E\u0646\u0651\u064A"
+      _ArabicNoShaddah: "\u062A\u064E\u0628\u064E\u0646\u064A"
       _Value: 
       _Letters:
       - teh_fathah
       - beh_fathah
-      - noon_shaddah
+      - noon
       - yeh
       _Drawing: 
       _Complexity: 0
@@ -56,6 +58,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0648\u0627\u0641\u064E\u0642\u064E"
+      _ArabicNoShaddah: "\u0648\u0627\u0641\u064E\u0642\u064E"
       _Value: 
       _Letters:
       - waw
@@ -73,6 +76,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u0640"
+      _ArabicNoShaddah: "\u0627\u0644\u0640"
       _Value: 
       _Letters:
       - alef
@@ -87,7 +91,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u062D\u064E\u064A"
+      _Arabic: "\u062D\u064E\u064A\u0651"
+      _ArabicNoShaddah: "\u062D\u064E\u064A"
       _Value: 
       _Letters:
       - hah_fathah
@@ -103,6 +108,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0648\u064E"
+      _ArabicNoShaddah: "\u0648\u064E"
       _Value: 
       _Letters:
       - waw_fathah
@@ -117,6 +123,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u063A\u064A\u0638"
+      _ArabicNoShaddah: "\u063A\u064A\u0638"
       _Value: 
       _Letters:
       - ghain
@@ -132,7 +139,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u062A\u064F\u0641\u0627\u062D"
+      _Arabic: "\u062A\u064F\u0641\u0651\u0627\u062D"
+      _ArabicNoShaddah: "\u062A\u064F\u0641\u0627\u062D"
       _Value: 
       _Letters:
       - teh_dammah
@@ -150,6 +158,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u0650\u0634\u0652\u0645\u0650\u0634"
+      _ArabicNoShaddah: "\u0645\u0650\u0634\u0652\u0645\u0650\u0634"
       _Value: 
       _Letters:
       - meem_kasrah
@@ -167,6 +176,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0647\u064E\u0644"
+      _ArabicNoShaddah: "\u0647\u064E\u0644"
       _Value: 
       _Letters:
       - heh_fathah
@@ -182,6 +192,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u064E\u0643\u064E\u0644\u064E"
+      _ArabicNoShaddah: "\u0623\u064E\u0643\u064E\u0644\u064E"
       _Value: 
       _Letters:
       - alef_hamza_hi_fathah
@@ -197,7 +208,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0639\u064E\u0645\u064E\u0629"
+      _Arabic: "\u0639\u064E\u0645\u064E\u0651\u0629"
+      _ArabicNoShaddah: "\u0639\u064E\u0645\u064E\u0629"
       _Value: 
       _Letters:
       - ain_fathah
@@ -214,6 +226,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062E\u0627\u0644\u064E\u0629"
+      _ArabicNoShaddah: "\u062E\u0627\u0644\u064E\u0629"
       _Value: 
       _Letters:
       - khah
@@ -231,6 +244,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0638\u064E\u0647\u064E\u0631"
+      _ArabicNoShaddah: "\u0638\u064E\u0647\u064E\u0631"
       _Value: 
       _Letters:
       - zah_fathah
@@ -247,6 +261,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0643\u064F\u0631\u064E\u0629"
+      _ArabicNoShaddah: "\u0643\u064F\u0631\u064E\u0629"
       _Value: 
       _Letters:
       - kaf_dammah
@@ -263,6 +278,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u0648\u0652\u0632"
+      _ArabicNoShaddah: "\u0645\u064E\u0648\u0652\u0632"
       _Value: 
       _Letters:
       - meem_fathah
@@ -279,6 +295,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u0635\u0652\u0631\u064E\u0641"
+      _ArabicNoShaddah: "\u0645\u064E\u0635\u0652\u0631\u064E\u0641"
       _Value: 
       _Letters:
       - meem_fathah
@@ -295,7 +312,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0643\u064F\u0631\u064E\u0629 \u0627\u0644\u0633\u064E\u0644\u064E\u0629"
+      _Arabic: "\u0643\u064F\u0631\u064E\u0629 \u0627\u0644\u0633\u064E\u0651\u0644\u064E\u0651\u0629"
+      _ArabicNoShaddah: "\u0643\u064F\u0631\u064E\u0629 \u0627\u0644\u0633\u064E\u0644\u064E\u0629"
       _Value: 
       _Letters:
       - kaf_dammah
@@ -316,7 +334,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u062F\u064F\u0628"
+      _Arabic: "\u062F\u064F\u0628\u0651"
+      _ArabicNoShaddah: "\u062F\u064F\u0628"
       _Value: 
       _Letters:
       - dal_dammah
@@ -332,6 +351,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062C\u064E\u0645\u064A\u0644"
+      _ArabicNoShaddah: "\u062C\u064E\u0645\u064A\u0644"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -349,6 +369,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0641\u0650\u0631\u0627\u0634"
+      _ArabicNoShaddah: "\u0641\u0650\u0631\u0627\u0634"
       _Value: 
       _Letters:
       - feh_kasrah
@@ -366,6 +387,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0622\u0645\u064E\u0646\u064E"
+      _ArabicNoShaddah: "\u0622\u0645\u064E\u0646\u064E"
       _Value: 
       _Letters:
       - alef_maddah
@@ -382,6 +404,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u0637\u0652\u0646"
+      _ArabicNoShaddah: "\u0628\u064E\u0637\u0652\u0646"
       _Value: 
       _Letters:
       - beh_fathah
@@ -398,6 +421,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062A\u0648\u062A"
+      _ArabicNoShaddah: "\u062A\u0648\u062A"
       _Value: 
       _Letters:
       - teh
@@ -414,6 +438,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u064A\u0652\u0646\u064E"
+      _ArabicNoShaddah: "\u0628\u064E\u064A\u0652\u0646\u064E"
       _Value: 
       _Letters:
       - beh_fathah
@@ -430,6 +455,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u064A\u0652\u0646\u064E\u064A"
+      _ArabicNoShaddah: "\u0628\u064E\u064A\u0652\u0646\u064E\u064A"
       _Value: 
       _Letters:
       - beh_fathah
@@ -447,6 +473,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0643\u064E\u0628\u064A\u0631"
+      _ArabicNoShaddah: "\u0643\u064E\u0628\u064A\u0631"
       _Value: 
       _Letters:
       - kaf_fathah
@@ -464,6 +491,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u064F\u0635\u0652\u0641\u0648\u0631"
+      _ArabicNoShaddah: "\u0639\u064F\u0635\u0652\u0641\u0648\u0631"
       _Value: 
       _Letters:
       - ain_dammah
@@ -482,6 +510,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0643\u0650\u062A\u0627\u0628"
+      _ArabicNoShaddah: "\u0643\u0650\u062A\u0627\u0628"
       _Value: 
       _Letters:
       - kaf_kasrah
@@ -499,6 +528,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0643\u064F\u062A\u064F\u0628"
+      _ArabicNoShaddah: "\u0643\u064F\u062A\u064F\u0628"
       _Value: 
       _Letters:
       - kaf_dammah
@@ -515,6 +545,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0635\u064F\u0646\u062F\u0648\u0642"
+      _ArabicNoShaddah: "\u0635\u064F\u0646\u062F\u0648\u0642"
       _Value: 
       _Letters:
       - sad_dammah
@@ -533,6 +564,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0635\u064E\u0628\u064A"
+      _ArabicNoShaddah: "\u0635\u064E\u0628\u064A"
       _Value: 
       _Letters:
       - sad_fathah
@@ -549,6 +581,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u0646\u064A\u0646"
+      _ArabicNoShaddah: "\u0628\u064E\u0646\u064A\u0646"
       _Value: 
       _Letters:
       - beh_fathah
@@ -566,6 +599,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062F\u0650\u0645\u0627\u063A"
+      _ArabicNoShaddah: "\u062F\u0650\u0645\u0627\u063A"
       _Value: 
       _Letters:
       - dal_kasrah
@@ -583,6 +617,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0634\u064F\u062C\u0627\u0639"
+      _ArabicNoShaddah: "\u0634\u064F\u062C\u0627\u0639"
       _Value: 
       _Letters:
       - sheen_dammah
@@ -600,6 +635,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062E\u064F\u0628\u0652\u0632"
+      _ArabicNoShaddah: "\u062E\u064F\u0628\u0652\u0632"
       _Value: 
       _Letters:
       - khah_dammah
@@ -616,6 +652,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0633\u0652\u0645\u064E\u0629"
+      _ArabicNoShaddah: "\u0646\u064E\u0633\u0652\u0645\u064E\u0629"
       _Value: 
       _Letters:
       - noon_fathah
@@ -633,6 +670,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0641\u0648\u0644"
+      _ArabicNoShaddah: "\u0641\u0648\u0644"
       _Value: 
       _Letters:
       - feh
@@ -649,6 +687,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u062E"
+      _ArabicNoShaddah: "\u0623\u062E"
       _Value: 
       _Letters:
       - alef_hamza_hi
@@ -664,6 +703,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064F\u0631\u0652\u063A\u064F\u0644"
+      _ArabicNoShaddah: "\u0628\u064F\u0631\u0652\u063A\u064F\u0644"
       _Value: 
       _Letters:
       - beh_dammah
@@ -681,6 +721,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u0627\u0635"
+      _ArabicNoShaddah: "\u0628\u0627\u0635"
       _Value: 
       _Letters:
       - beh
@@ -697,6 +738,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062C\u064E\u0645\u064E\u0644"
+      _ArabicNoShaddah: "\u062C\u064E\u0645\u064E\u0644"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -713,6 +755,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062D\u064E\u0646\u0650\u064A\u0646"
+      _ArabicNoShaddah: "\u062D\u064E\u0646\u0650\u064A\u0646"
       _Value: 
       _Letters:
       - hah_fathah
@@ -730,10 +773,11 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u062C\u0651\u0627\u0631"
+      _ArabicNoShaddah: "\u0646\u064E\u062C\u0627\u0631"
       _Value: 
       _Letters:
       - noon_fathah
-      - jeem_shaddah
+      - jeem
       - alef
       - reh
       _Drawing: 57
@@ -747,6 +791,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062D\u064E\u0645\u064E\u0644\u064E"
+      _ArabicNoShaddah: "\u062D\u064E\u0645\u064E\u0644\u064E"
       _Value: 
       _Letters:
       - hah_fathah
@@ -763,6 +808,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062C\u064E\u0632\u064E\u0631"
+      _ArabicNoShaddah: "\u062C\u064E\u0632\u064E\u0631"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -779,6 +825,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0647\u0631"
+      _ArabicNoShaddah: "\u0647\u0631"
       _Value: 
       _Letters:
       - heh
@@ -794,6 +841,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u0633\u064E\u0643\u064E"
+      _ArabicNoShaddah: "\u0645\u064E\u0633\u064E\u0643\u064E"
       _Value: 
       _Letters:
       - meem_fathah
@@ -810,6 +858,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0643\u064F\u0631\u0652\u0633\u064A"
+      _ArabicNoShaddah: "\u0643\u064F\u0631\u0652\u0633\u064A"
       _Value: 
       _Letters:
       - kaf_dammah
@@ -827,6 +876,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062C\u064F\u0628\u0652\u0646"
+      _ArabicNoShaddah: "\u062C\u064F\u0628\u0652\u0646"
       _Value: 
       _Letters:
       - jeem_dammah
@@ -843,6 +893,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0643\u064E\u0631\u064E\u0632"
+      _ArabicNoShaddah: "\u0643\u064E\u0631\u064E\u0632"
       _Value: 
       _Letters:
       - kaf_fathah
@@ -859,6 +910,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0635\u064E\u062F\u0652\u0631"
+      _ArabicNoShaddah: "\u0635\u064E\u062F\u0652\u0631"
       _Value: 
       _Letters:
       - sad_fathah
@@ -874,7 +926,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u062D\u064F\u0645\u064F\u0635"
+      _Arabic: "\u062D\u064F\u0645\u064F\u0651\u0635"
+      _ArabicNoShaddah: "\u062D\u064F\u0645\u064F\u0635"
       _Value: 
       _Letters:
       - hah_dammah
@@ -890,7 +943,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0635\u064E\u0641"
+      _Arabic: "\u0635\u064E\u0641\u0651"
+      _ArabicNoShaddah: "\u0635\u064E\u0641"
       _Value: 
       _Letters:
       - sad_fathah
@@ -906,6 +960,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0638\u064A\u0641"
+      _ArabicNoShaddah: "\u0646\u064E\u0638\u064A\u0641"
       _Value: 
       _Letters:
       - noon_fathah
@@ -923,6 +978,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u063A\u064E\u064A\u0645\u064E\u0629"
+      _ArabicNoShaddah: "\u063A\u064E\u064A\u0645\u064E\u0629"
       _Value: 
       _Letters:
       - ghain_fathah
@@ -940,6 +996,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064F\u0646\u0652\u062A\u064E\u062F\u0649"
+      _ArabicNoShaddah: "\u0645\u064F\u0646\u0652\u062A\u064E\u062F\u0649"
       _Value: 
       _Letters:
       - meem_dammah
@@ -958,6 +1015,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u0650\u0639\u0652\u0637\u064E\u0641"
+      _ArabicNoShaddah: "\u0645\u0650\u0639\u0652\u0637\u064E\u0641"
       _Value: 
       _Letters:
       - meem_kasrah
@@ -975,10 +1033,11 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064F\u0646\u0651"
+      _ArabicNoShaddah: "\u0628\u064F\u0646"
       _Value: 
       _Letters:
       - beh_dammah
-      - noon_shaddah
+      - noon
       _Drawing: 10D
       _Complexity: 0
     - _Id: cold
@@ -990,6 +1049,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u0631\u0652\u062F"
+      _ArabicNoShaddah: "\u0628\u064E\u0631\u0652\u062F"
       _Value: 
       _Letters:
       - beh_fathah
@@ -1006,6 +1066,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u0627\u0631\u0650\u062F"
+      _ArabicNoShaddah: "\u0628\u0627\u0631\u0650\u062F"
       _Value: 
       _Letters:
       - beh
@@ -1023,6 +1084,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u0633\u0652\u0648\u064E\u062F\u0652"
+      _ArabicNoShaddah: "\u0623\u0633\u0652\u0648\u064E\u062F\u0652"
       _Value: black
       _Letters:
       - alef_hamza_hi
@@ -1040,6 +1102,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u0632\u0652\u0631\u064E\u0642\u0652"
+      _ArabicNoShaddah: "\u0623\u0632\u0652\u0631\u064E\u0642\u0652"
       _Value: blue
       _Letters:
       - alef_hamza_hi
@@ -1056,7 +1119,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0628\u064F\u0646\u0650\u064A"
+      _Arabic: "\u0628\u064F\u0646\u0650\u0651\u064A"
+      _ArabicNoShaddah: "\u0628\u064F\u0646\u0650\u064A"
       _Value: brown
       _Letters:
       - beh_dammah
@@ -1073,6 +1137,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0630\u064E\u0647\u064E\u0628\u064A"
+      _ArabicNoShaddah: "\u0630\u064E\u0647\u064E\u0628\u064A"
       _Value: gold
       _Letters:
       - thal_fathah
@@ -1090,6 +1155,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u062E\u0652\u0636\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u0623\u062E\u0652\u0636\u064E\u0631\u0652"
       _Value: green
       _Letters:
       - alef_hamza_hi
@@ -1107,6 +1173,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0631\u064E\u0645\u0627\u062F\u064A"
+      _ArabicNoShaddah: "\u0631\u064E\u0645\u0627\u062F\u064A"
       _Value: grey
       _Letters:
       - reh_fathah
@@ -1125,6 +1192,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064F\u0631\u0652\u062A\u064F\u0642\u0627\u0644\u064A"
+      _ArabicNoShaddah: "\u0628\u064F\u0631\u0652\u062A\u064F\u0642\u0627\u0644\u064A"
       _Value: orange
       _Letters:
       - beh_dammah
@@ -1145,6 +1213,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0648\u064E\u0631\u0652\u062F\u064A"
+      _ArabicNoShaddah: "\u0648\u064E\u0631\u0652\u062F\u064A"
       _Value: pink
       _Letters:
       - waw_fathah
@@ -1162,6 +1231,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u0646\u064E\u0641\u0652\u0633\u064E\u062C\u064A"
+      _ArabicNoShaddah: "\u0628\u064E\u0646\u064E\u0641\u0652\u0633\u064E\u062C\u064A"
       _Value: purple
       _Letters:
       - beh_fathah
@@ -1181,6 +1251,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u062D\u0652\u0645\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u0623\u062D\u0652\u0645\u064E\u0631\u0652"
       _Value: red
       _Letters:
       - alef_hamza_hi
@@ -1197,7 +1268,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0641\u064E\u0636\u064A"
+      _Arabic: "\u0641\u064E\u0636\u0651\u064A"
+      _ArabicNoShaddah: "\u0641\u064E\u0636\u064A"
       _Value: silver
       _Letters:
       - feh_fathah
@@ -1214,6 +1286,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u0628\u0652\u064A\u064E\u0636\u0652"
+      _ArabicNoShaddah: "\u0623\u0628\u0652\u064A\u064E\u0636\u0652"
       _Value: white
       _Letters:
       - alef_hamza_hi
@@ -1231,6 +1304,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u0635\u0652\u0641\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u0623\u0635\u0652\u0641\u064E\u0631\u0652"
       _Value: yellow
       _Letters:
       - alef_hamza_hi
@@ -1248,6 +1322,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u0628\u0652\u0631\u0648\u0643"
+      _ArabicNoShaddah: "\u0645\u064E\u0628\u0652\u0631\u0648\u0643"
       _Value: 
       _Letters:
       - meem_fathah
@@ -1266,6 +1341,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062D\u064E\u0631\u0652\u0641 \u0633\u0627\u0643\u0646"
+      _ArabicNoShaddah: "\u062D\u064E\u0631\u0652\u0641 \u0633\u0627\u0643\u0646"
       _Value: 
       _Letters:
       - hah_fathah
@@ -1286,6 +1362,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0644\u0650\u0628\u0627\u0633"
+      _ArabicNoShaddah: "\u0644\u0650\u0628\u0627\u0633"
       _Value: 
       _Letters:
       - lam_kasrah
@@ -1303,6 +1380,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u0643\u064E\u0649"
+      _ArabicNoShaddah: "\u0628\u064E\u0643\u064E\u0649"
       _Value: 
       _Letters:
       - beh_fathah
@@ -1319,6 +1397,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062E\u0650\u064A\u0627\u0631"
+      _ArabicNoShaddah: "\u062E\u0650\u064A\u0627\u0631"
       _Value: 
       _Letters:
       - khah_kasrah
@@ -1336,6 +1415,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062E\u064E\u0632\u0627\u0646\u064E\u0629"
+      _ArabicNoShaddah: "\u062E\u064E\u0632\u0627\u0646\u064E\u0629"
       _Value: 
       _Letters:
       - khah_fathah
@@ -1354,6 +1434,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062D\u064E\u0628\u064A\u0628"
+      _ArabicNoShaddah: "\u062D\u064E\u0628\u064A\u0628"
       _Value: 
       _Letters:
       - hah_fathah
@@ -1371,6 +1452,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u064A\u064E\u0648\u0645"
+      _ArabicNoShaddah: "\u064A\u064E\u0648\u0645"
       _Value: 
       _Letters:
       - yeh_fathah
@@ -1387,6 +1469,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u062C\u064F\u0645\u064F\u0639\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u0644\u062C\u064F\u0645\u064F\u0639\u064E\u0629"
       _Value: 
       _Letters:
       - alef
@@ -1406,6 +1489,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u0627\u0650\u062B\u0652\u0646\u064E\u064A\u0646"
+      _ArabicNoShaddah: "\u0627\u0644\u0627\u0650\u062B\u0652\u0646\u064E\u064A\u0646"
       _Value: 
       _Letters:
       - alef
@@ -1426,6 +1510,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u0633\u064E\u0628\u0652\u062A"
+      _ArabicNoShaddah: "\u0627\u0644\u0633\u064E\u0628\u0652\u062A"
       _Value: 
       _Letters:
       - alef
@@ -1444,6 +1529,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u0623\u062D\u064E\u062F"
+      _ArabicNoShaddah: "\u0627\u0644\u0623\u062D\u064E\u062F"
       _Value: 
       _Letters:
       - alef
@@ -1462,6 +1548,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u062E\u064E\u0645\u064A\u0633"
+      _ArabicNoShaddah: "\u0627\u0644\u062E\u064E\u0645\u064A\u0633"
       _Value: 
       _Letters:
       - alef
@@ -1481,6 +1568,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u062B\u064F\u0644\u0627\u062B\u064E\u0627\u0621"
+      _ArabicNoShaddah: "\u0627\u0644\u062B\u064F\u0644\u0627\u062B\u064E\u0627\u0621"
       _Value: 
       _Letters:
       - alef
@@ -1502,6 +1590,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u0623\u0631\u0652\u0628\u0650\u0639\u0627\u0621"
+      _ArabicNoShaddah: "\u0627\u0644\u0623\u0631\u0652\u0628\u0650\u0639\u0627\u0621"
       _Value: 
       _Letters:
       - alef
@@ -1523,6 +1612,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u063A\u064E\u0632\u0627\u0644"
+      _ArabicNoShaddah: "\u063A\u064E\u0632\u0627\u0644"
       _Value: 
       _Letters:
       - ghain_fathah
@@ -1540,6 +1630,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0644\u064E\u0630\u064A\u0630"
+      _ArabicNoShaddah: "\u0644\u064E\u0630\u064A\u0630"
       _Value: 
       _Letters:
       - lam_fathah
@@ -1557,6 +1648,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0647\u064E\u0644"
+      _ArabicNoShaddah: "\u0647\u064E\u0644"
       _Value: 
       _Letters:
       - heh_fathah
@@ -1572,6 +1664,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0637\u064E\u0628\u064A\u0628"
+      _ArabicNoShaddah: "\u0637\u064E\u0628\u064A\u0628"
       _Value: 
       _Letters:
       - tah_fathah
@@ -1589,6 +1682,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0643\u064E\u0644\u0652\u0628"
+      _ArabicNoShaddah: "\u0643\u064E\u0644\u0652\u0628"
       _Value: 
       _Letters:
       - kaf_fathah
@@ -1605,6 +1699,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u0627\u0628"
+      _ArabicNoShaddah: "\u0628\u0627\u0628"
       _Value: 
       _Letters:
       - beh
@@ -1621,6 +1716,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0634\u064E\u0631\u0650\u0628\u064E"
+      _ArabicNoShaddah: "\u0634\u064E\u0631\u0650\u0628\u064E"
       _Value: 
       _Letters:
       - sheen_fathah
@@ -1637,6 +1733,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0634\u064E\u0631\u0650\u0628\u064E\u062A"
+      _ArabicNoShaddah: "\u0634\u064E\u0631\u0650\u0628\u064E\u062A"
       _Value: 
       _Letters:
       - sheen_fathah
@@ -1654,6 +1751,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0645\u064F\u062B\u064E\u0646\u0649"
+      _ArabicNoShaddah: "\u0645\u064F\u062B\u064E\u0646\u0649"
       _Value: 
       _Letters:
       - meem_dammah
@@ -1671,6 +1769,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u0637\u0652"
+      _ArabicNoShaddah: "\u0628\u064E\u0637\u0652"
       _Value: 
       _Letters:
       - beh_fathah
@@ -1686,6 +1785,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0633\u0652\u0631"
+      _ArabicNoShaddah: "\u0646\u064E\u0633\u0652\u0631"
       _Value: 
       _Letters:
       - noon_fathah
@@ -1702,6 +1802,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u064F\u0630\u064F\u0646"
+      _ArabicNoShaddah: "\u0623\u064F\u0630\u064F\u0646"
       _Value: 
       _Letters:
       - alef_hamza_hi_dammah
@@ -1718,6 +1819,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0641\u064A\u0644"
+      _ArabicNoShaddah: "\u0641\u064A\u0644"
       _Value: 
       _Letters:
       - feh
@@ -1734,6 +1836,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064F\u0647\u064E\u0646\u0652\u062F\u0650\u0633"
+      _ArabicNoShaddah: "\u0645\u064F\u0647\u064E\u0646\u0652\u062F\u0650\u0633"
       _Value: 
       _Letters:
       - meem_dammah
@@ -1752,6 +1855,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u0633\u064E\u0627\u0621"
+      _ArabicNoShaddah: "\u0645\u064E\u0633\u064E\u0627\u0621"
       _Value: 
       _Letters:
       - meem_fathah
@@ -1769,6 +1873,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u064E\u064A\u0646"
+      _ArabicNoShaddah: "\u0639\u064E\u064A\u0646"
       _Value: 
       _Letters:
       - ain_fathah
@@ -1785,6 +1890,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0648\u064E\u062C\u064E\u0647"
+      _ArabicNoShaddah: "\u0648\u064E\u062C\u064E\u0647"
       _Value: 
       _Letters:
       - waw_fathah
@@ -1801,6 +1907,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062E\u064E\u0631\u064A\u0641"
+      _ArabicNoShaddah: "\u062E\u064E\u0631\u064A\u0641"
       _Value: 
       _Letters:
       - khah_fathah
@@ -1817,7 +1924,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0641\u064E\u0644\u0627\u062D"
+      _Arabic: "\u0641\u064E\u0644\u0651\u0627\u062D"
+      _ArabicNoShaddah: "\u0641\u064E\u0644\u0627\u062D"
       _Value: 
       _Letters:
       - feh_fathah
@@ -1835,6 +1943,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u0627\u0628\u0627"
+      _ArabicNoShaddah: "\u0628\u0627\u0628\u0627"
       _Value: 
       _Letters:
       - beh
@@ -1852,6 +1961,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062D\u0642\u0644"
+      _ArabicNoShaddah: "\u062D\u0642\u0644"
       _Value: 
       _Letters:
       - hah
@@ -1868,6 +1978,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062A\u064A\u0646"
+      _ArabicNoShaddah: "\u062A\u064A\u0646"
       _Value: 
       _Letters:
       - teh
@@ -1884,6 +1995,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u0650\u062E\u064E\u064A\u0631"
+      _ArabicNoShaddah: "\u0628\u0650\u062E\u064E\u064A\u0631"
       _Value: 
       _Letters:
       - beh_kasrah
@@ -1901,6 +2013,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0625\u0635\u0652\u0628\u064E\u0639"
+      _ArabicNoShaddah: "\u0625\u0635\u0652\u0628\u064E\u0639"
       _Value: 
       _Letters:
       - alef_hamza_low
@@ -1918,6 +2031,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u0644\u064E\u0645"
+      _ArabicNoShaddah: "\u0639\u0644\u064E\u0645"
       _Value: 
       _Letters:
       - ain
@@ -1934,6 +2048,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0631\u064E\u0641\u0652\u0631\u064E\u0641\u064E"
+      _ArabicNoShaddah: "\u0631\u064E\u0641\u0652\u0631\u064E\u0641\u064E"
       _Value: 
       _Letters:
       - reh_fathah
@@ -1951,6 +2066,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0637\u0627\u0631\u064E"
+      _ArabicNoShaddah: "\u0637\u0627\u0631\u064E"
       _Value: 
       _Letters:
       - tah
@@ -1967,6 +2083,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0648\u064E\u0631\u0652\u062F"
+      _ArabicNoShaddah: "\u0648\u064E\u0631\u0652\u062F"
       _Value: 
       _Letters:
       - waw_fathah
@@ -1983,6 +2100,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u0643\u064E\u0644\u0652"
+      _ArabicNoShaddah: "\u0623\u0643\u064E\u0644\u0652"
       _Value: 
       _Letters:
       - alef_hamza_hi
@@ -1999,6 +2117,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0642\u064E\u062F\u064E\u0645"
+      _ArabicNoShaddah: "\u0642\u064E\u062F\u064E\u0645"
       _Value: 
       _Letters:
       - qaf_fathah
@@ -2015,6 +2134,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0643\u064F\u0631\u064E\u0629 \u0627\u0644\u0642\u064E\u062F\u064E\u0645"
+      _ArabicNoShaddah: "\u0643\u064F\u0631\u064E\u0629 \u0627\u0644\u0642\u064E\u062F\u064E\u0645"
       _Value: 
       _Letters:
       - kaf_dammah
@@ -2036,6 +2156,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u063A\u0627\u0628\u064E\u0629"
+      _ArabicNoShaddah: "\u063A\u0627\u0628\u064E\u0629"
       _Value: 
       _Letters:
       - ghain
@@ -2052,7 +2173,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u062B\u064E\u0644\u0627\u062C\u064E\u0629"
+      _Arabic: "\u062B\u064E\u0644\u0651\u0627\u062C\u064E\u0629"
+      _ArabicNoShaddah: "\u062B\u064E\u0644\u0627\u062C\u064E\u0629"
       _Value: 
       _Letters:
       - theh_fathah
@@ -2071,6 +2193,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0645\u0650\u0646\u0652"
+      _ArabicNoShaddah: "\u0645\u0650\u0646\u0652"
       _Value: 
       _Letters:
       - meem_kasrah
@@ -2086,6 +2209,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u062B\u0627\u062B"
+      _ArabicNoShaddah: "\u0623\u062B\u0627\u062B"
       _Value: 
       _Letters:
       - alef_hamza_hi
@@ -2103,6 +2227,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064F\u0633\u062A\u0627\u0646"
+      _ArabicNoShaddah: "\u0628\u064F\u0633\u062A\u0627\u0646"
       _Value: 
       _Letters:
       - beh_dammah
@@ -2121,6 +2246,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062B\u0648\u0645"
+      _ArabicNoShaddah: "\u062B\u0648\u0645"
       _Value: 
       _Letters:
       - theh
@@ -2137,6 +2263,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0628\u0650\u0646\u0652\u062A"
+      _ArabicNoShaddah: "\u0628\u0650\u0646\u0652\u062A"
       _Value: 
       _Letters:
       - beh_kasrah
@@ -2153,6 +2280,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0635\u064E\u0645\u063A"
+      _ArabicNoShaddah: "\u0635\u064E\u0645\u063A"
       _Value: 
       _Letters:
       - sad_fathah
@@ -2169,6 +2297,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0630\u0652\u0647\u064E\u0628\u064F"
+      _ArabicNoShaddah: "\u0646\u064E\u0630\u0652\u0647\u064E\u0628\u064F"
       _Value: 
       _Letters:
       - noon_fathah
@@ -2186,6 +2315,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0644\u0650\u0646\u064E\u0630\u0652\u0647\u064E\u0628"
+      _ArabicNoShaddah: "\u0644\u0650\u0646\u064E\u0630\u0652\u0647\u064E\u0628"
       _Value: 
       _Letters:
       - lam_kasrah
@@ -2204,6 +2334,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0648\u064E\u062F\u064E\u0627\u0639\u0627"
+      _ArabicNoShaddah: "\u0648\u064E\u062F\u064E\u0627\u0639\u0627"
       _Value: 
       _Letters:
       - waw_fathah
@@ -2222,6 +2353,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062D\u064E\u0641\u064A\u062F\u064E\u0629"
+      _ArabicNoShaddah: "\u062D\u064E\u0641\u064A\u062F\u064E\u0629"
       _Value: 
       _Letters:
       - hah_fathah
@@ -2239,7 +2371,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u062C\u064E\u062F"
+      _Arabic: "\u062C\u064E\u062F\u0651"
+      _ArabicNoShaddah: "\u062C\u064E\u062F"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -2254,7 +2387,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u062C\u064E\u062F\u0629"
+      _Arabic: "\u062C\u064E\u062F\u0651\u0629"
+      _ArabicNoShaddah: "\u062C\u064E\u062F\u0629"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -2271,6 +2405,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062D\u064E\u0641\u064A\u062F"
+      _ArabicNoShaddah: "\u062D\u064E\u0641\u064A\u062F"
       _Value: 
       _Letters:
       - hah_fathah
@@ -2288,6 +2423,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u0650\u0646\u064E\u0628"
+      _ArabicNoShaddah: "\u0639\u0650\u0646\u064E\u0628"
       _Value: 
       _Letters:
       - ain_kasrah
@@ -2304,6 +2440,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u0631\u0652\u0636"
+      _ArabicNoShaddah: "\u0623\u0631\u0652\u0636"
       _Value: 
       _Letters:
       - alef_hamza_hi
@@ -2320,6 +2457,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0634\u064E\u0639\u064E\u0631"
+      _ArabicNoShaddah: "\u0634\u064E\u0639\u064E\u0631"
       _Value: 
       _Letters:
       - sheen_fathah
@@ -2335,7 +2473,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u064A\u064E\u062F"
+      _Arabic: "\u064A\u064E\u062F\u0651"
+      _ArabicNoShaddah: "\u064A\u064E\u062F"
       _Value: 
       _Letters:
       - yeh_fathah
@@ -2351,6 +2490,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0633\u064E\u0639\u064A\u062F"
+      _ArabicNoShaddah: "\u0633\u064E\u0639\u064A\u062F"
       _Value: 
       _Letters:
       - seen_fathah
@@ -2368,6 +2508,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0642\u064F\u0628\u0652\u0639\u064E\u0629"
+      _ArabicNoShaddah: "\u0642\u064F\u0628\u0652\u0639\u064E\u0629"
       _Value: 
       _Letters:
       - qaf_dammah
@@ -2385,6 +2526,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u064A\u064F\u062D\u0650\u0628\u064F"
+      _ArabicNoShaddah: "\u064A\u064F\u062D\u0650\u0628\u064F"
       _Value: 
       _Letters:
       - yeh_dammah
@@ -2401,6 +2543,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0628\u064E\u062A\u064E"
+      _ArabicNoShaddah: "\u0646\u064E\u0628\u064E\u062A\u064E"
       _Value: 
       _Letters:
       - noon_fathah
@@ -2417,6 +2560,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u064A\u064F\u0646\u0652\u0628\u0650\u062A\u064F"
+      _ArabicNoShaddah: "\u064A\u064F\u0646\u0652\u0628\u0650\u062A\u064F"
       _Value: 
       _Letters:
       - yeh_dammah
@@ -2434,6 +2578,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u064A\u064E\u062B\u0652\u0646\u064A"
+      _ArabicNoShaddah: "\u064A\u064E\u062B\u0652\u0646\u064A"
       _Value: 
       _Letters:
       - yeh_fathah
@@ -2451,6 +2596,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u064A\u064E\u062B\u0652\u0628\u064E\u062A\u064F"
+      _ArabicNoShaddah: "\u064A\u064E\u062B\u0652\u0628\u064E\u062A\u064F"
       _Value: 
       _Letters:
       - yeh_fathah
@@ -2468,6 +2614,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u064A\u064E\u0628\u0652\u062D\u064E\u062B\u064F"
+      _ArabicNoShaddah: "\u064A\u064E\u0628\u0652\u062D\u064E\u062B\u064F"
       _Value: 
       _Letters:
       - yeh_fathah
@@ -2485,6 +2632,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062B\u064E\u0628\u064E\u062A\u064E"
+      _ArabicNoShaddah: "\u062B\u064E\u0628\u064E\u062A\u064E"
       _Value: 
       _Letters:
       - theh_fathah
@@ -2501,6 +2649,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0631\u0623\u0633"
+      _ArabicNoShaddah: "\u0631\u0623\u0633"
       _Value: 
       _Letters:
       - reh
@@ -2517,6 +2666,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0645\u064F\u0633\u0627\u0639\u064E\u062F\u064E\u0629"
+      _ArabicNoShaddah: "\u0645\u064F\u0633\u0627\u0639\u064E\u062F\u064E\u0629"
       _Value: 
       _Letters:
       - meem_dammah
@@ -2536,6 +2686,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u0631\u0652\u062D\u064E\u0628\u0627"
+      _ArabicNoShaddah: "\u0645\u064E\u0631\u0652\u062D\u064E\u0628\u0627"
       _Value: 
       _Letters:
       - meem_fathah
@@ -2554,6 +2705,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064F\u0633\u0652\u062A\u064E\u0634\u0652\u0641\u0649"
+      _ArabicNoShaddah: "\u0645\u064F\u0633\u0652\u062A\u064E\u0634\u0652\u0641\u0649"
       _Value: 
       _Letters:
       - meem_dammah
@@ -2573,6 +2725,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0633\u0627\u062E\u0650\u0646"
+      _ArabicNoShaddah: "\u0633\u0627\u062E\u0650\u0646"
       _Value: 
       _Letters:
       - seen
@@ -2590,6 +2743,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062D\u0627\u0631"
+      _ArabicNoShaddah: "\u062D\u0627\u0631"
       _Value: 
       _Letters:
       - hah
@@ -2606,6 +2760,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0633\u0627\u0639\u064E\u0629"
+      _ArabicNoShaddah: "\u0633\u0627\u0639\u064E\u0629"
       _Value: 
       _Letters:
       - seen
@@ -2623,6 +2778,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u064A\u0652\u062A"
+      _ArabicNoShaddah: "\u0628\u064E\u064A\u0652\u062A"
       _Value: 
       _Letters:
       - beh_fathah
@@ -2639,6 +2795,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0643\u064E\u064A\u0652\u0641\u064E"
+      _ArabicNoShaddah: "\u0643\u064E\u064A\u0652\u0641\u064E"
       _Value: 
       _Letters:
       - kaf_fathah
@@ -2655,6 +2812,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u064E\u0646\u0627"
+      _ArabicNoShaddah: "\u0623\u064E\u0646\u0627"
       _Value: 
       _Letters:
       - alef_hamza_hi_fathah
@@ -2671,6 +2829,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0628\u0648\u0638\u0629"
+      _ArabicNoShaddah: "\u0628\u0648\u0638\u0629"
       _Value: 
       _Letters:
       - beh
@@ -2688,6 +2847,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0641\u064A"
+      _ArabicNoShaddah: "\u0641\u064A"
       _Value: 
       _Letters:
       - feh
@@ -2703,6 +2863,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0635\u064E\u0628\u064E\u0627\u062D\u0627"
+      _ArabicNoShaddah: "\u0635\u064E\u0628\u064E\u0627\u062D\u0627"
       _Value: 
       _Letters:
       - sad_fathah
@@ -2721,11 +2882,12 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064F\u0644\u0650\u062D\u0651"
+      _ArabicNoShaddah: "\u0645\u064F\u0644\u0650\u062D\u0651"
       _Value: 
       _Letters:
       - meem_dammah
       - lam_kasrah
-      - hah_shaddah
+      - hah
       _Drawing: 
       _Complexity: 0.6
     - _Id: is
@@ -2737,6 +2899,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0647\u064F\u0648"
+      _ArabicNoShaddah: "\u0647\u064F\u0648"
       _Value: 
       _Letters:
       - heh_dammah
@@ -2752,6 +2915,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062C\u064F\u0632\u064F\u0631"
+      _ArabicNoShaddah: "\u062C\u064F\u0632\u064F\u0631"
       _Value: 
       _Letters:
       - jeem_dammah
@@ -2767,7 +2931,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0625\u0646\u064E\u0647\u0627"
+      _Arabic: "\u0625\u0646\u064E\u0651\u0647\u0627"
+      _ArabicNoShaddah: "\u0625\u0646\u064E\u0647\u0627"
       _Value: 
       _Letters:
       - alef_hamza_low
@@ -2785,6 +2950,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u064E\u0635\u064A\u0631"
+      _ArabicNoShaddah: "\u0639\u064E\u0635\u064A\u0631"
       _Value: 
       _Letters:
       - ain_fathah
@@ -2802,6 +2968,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0648\u064E\u0644\u064E\u062F"
+      _ArabicNoShaddah: "\u0648\u064E\u0644\u064E\u062F"
       _Value: 
       _Letters:
       - waw_fathah
@@ -2818,6 +2985,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u0650\u0644\u0652\u0645"
+      _ArabicNoShaddah: "\u0639\u0650\u0644\u0652\u0645"
       _Value: 
       _Letters:
       - ain_kasrah
@@ -2834,6 +3002,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u0645\u0627\u0636\u064A"
+      _ArabicNoShaddah: "\u0627\u0644\u0645\u0627\u0636\u064A"
       _Value: 
       _Letters:
       - alef
@@ -2853,6 +3022,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0636\u064E\u062D\u0650\u0643\u064E"
+      _ArabicNoShaddah: "\u0636\u064E\u062D\u0650\u0643\u064E"
       _Value: 
       _Letters:
       - dad_fathah
@@ -2869,6 +3039,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0643\u064E\u0633\u0648\u0644"
+      _ArabicNoShaddah: "\u0643\u064E\u0633\u0648\u0644"
       _Value: 
       _Letters:
       - kaf_fathah
@@ -2886,6 +3057,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0631\u0650\u062C\u0652\u0644"
+      _ArabicNoShaddah: "\u0631\u0650\u062C\u0652\u0644"
       _Value: 
       _Letters:
       - reh_kasrah
@@ -2902,6 +3074,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u064E\u062F\u064E\u0633"
+      _ArabicNoShaddah: "\u0639\u064E\u062F\u064E\u0633"
       _Value: 
       _Letters:
       - ain_fathah
@@ -2917,7 +3090,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0647\u064E\u064A\u0627"
+      _Arabic: "\u0647\u064E\u064A\u0651\u0627"
+      _ArabicNoShaddah: "\u0647\u064E\u064A\u0627"
       _Value: 
       _Letters:
       - heh_fathah
@@ -2934,6 +3108,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0636\u0648\u0621"
+      _ArabicNoShaddah: "\u0636\u0648\u0621"
       _Value: 
       _Letters:
       - dad
@@ -2950,6 +3125,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u0633\u064E\u062F"
+      _ArabicNoShaddah: "\u0623\u0633\u064E\u062F"
       _Value: 
       _Letters:
       - alef_hamza_hi
@@ -2966,6 +3142,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u0633\u064E\u062F\u064E\u0627\u0646"
+      _ArabicNoShaddah: "\u0623\u0633\u064E\u062F\u064E\u0627\u0646"
       _Value: 
       _Letters:
       - alef_hamza_hi
@@ -2984,6 +3161,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0623\u0633\u0652\u0648\u064E\u062F"
+      _ArabicNoShaddah: "\u0623\u0633\u0652\u0648\u064E\u062F"
       _Value: 
       _Letters:
       - alef_hamza_hi
@@ -3001,6 +3179,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0634\u064E\u0641\u0627\u0647"
+      _ArabicNoShaddah: "\u0634\u064E\u0641\u0627\u0647"
       _Value: 
       _Letters:
       - sheen_fathah
@@ -3018,6 +3197,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062D\u064F\u0628"
+      _ArabicNoShaddah: "\u062D\u064F\u0628"
       _Value: 
       _Letters:
       - hah_dammah
@@ -3033,6 +3213,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0631\u064E\u062C\u064F\u0644"
+      _ArabicNoShaddah: "\u0631\u064E\u062C\u064F\u0644"
       _Value: 
       _Letters:
       - reh_fathah
@@ -3049,6 +3230,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0633\u0648\u0642"
+      _ArabicNoShaddah: "\u0633\u0648\u0642"
       _Value: 
       _Letters:
       - seen
@@ -3065,6 +3247,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0644\u064E\u062D\u064E\u0645"
+      _ArabicNoShaddah: "\u0644\u064E\u062D\u064E\u0645"
       _Value: 
       _Letters:
       - lam_fathah
@@ -3081,6 +3264,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0643\u0627\u0628\u0629"
+      _ArabicNoShaddah: "\u0643\u0627\u0628\u0629"
       _Value: 
       _Letters:
       - kaf
@@ -3098,6 +3282,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0634\u064E\u0647\u0652\u0631"
+      _ArabicNoShaddah: "\u0634\u064E\u0647\u0652\u0631"
       _Value: 
       _Letters:
       - sheen_fathah
@@ -3114,6 +3299,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0646\u064A\u0633\u0627\u0646"
+      _ArabicNoShaddah: "\u0646\u064A\u0633\u0627\u0646"
       _Value: 
       _Letters:
       - noon
@@ -3132,6 +3318,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0622\u0628"
+      _ArabicNoShaddah: "\u0622\u0628"
       _Value: 
       _Letters:
       - alef_maddah
@@ -3147,6 +3334,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u0623\u0648\u064E\u0644"
+      _ArabicNoShaddah: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u0623\u0648\u064E\u0644"
       _Value: 
       _Letters:
       - kaf
@@ -3170,6 +3358,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0634\u0628\u0627\u0637"
+      _ArabicNoShaddah: "\u0634\u0628\u0627\u0637"
       _Value: 
       _Letters:
       - sheen
@@ -3187,6 +3376,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
+      _ArabicNoShaddah: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
       _Value: 
       _Letters:
       - kaf
@@ -3211,6 +3401,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062A\u0645\u0648\u0632"
+      _ArabicNoShaddah: "\u062A\u0645\u0648\u0632"
       _Value: 
       _Letters:
       - teh
@@ -3228,6 +3419,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062D\u0632\u064A\u0631\u0627\u0646"
+      _ArabicNoShaddah: "\u062D\u0632\u064A\u0631\u0627\u0646"
       _Value: 
       _Letters:
       - hah
@@ -3247,6 +3439,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0622\u0630\u0627\u0631"
+      _ArabicNoShaddah: "\u0622\u0630\u0627\u0631"
       _Value: 
       _Letters:
       - alef_maddah
@@ -3264,6 +3457,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0623\u064A\u0627\u0631"
+      _ArabicNoShaddah: "\u0623\u064A\u0627\u0631"
       _Value: 
       _Letters:
       - alef_hamza_hi
@@ -3281,6 +3475,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
+      _ArabicNoShaddah: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
       _Value: 
       _Letters:
       - teh
@@ -3305,6 +3500,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u0623\u0648\u0644"
+      _ArabicNoShaddah: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u0623\u0648\u0644"
       _Value: 
       _Letters:
       - teh
@@ -3328,6 +3524,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0623\u064A\u0644\u0648\u0644"
+      _ArabicNoShaddah: "\u0623\u064A\u0644\u0648\u0644"
       _Value: 
       _Letters:
       - alef_hamza_hi
@@ -3346,6 +3543,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0642\u0645\u064E\u0631"
+      _ArabicNoShaddah: "\u0642\u0645\u064E\u0631"
       _Value: 
       _Letters:
       - qaf
@@ -3362,6 +3560,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0635\u064E\u0628\u0627\u062D"
+      _ArabicNoShaddah: "\u0635\u064E\u0628\u0627\u062D"
       _Value: 
       _Letters:
       - sad_fathah
@@ -3379,6 +3578,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0645\u0627\u0645\u0627"
+      _ArabicNoShaddah: "\u0645\u0627\u0645\u0627"
       _Value: 
       _Letters:
       - meem
@@ -3396,6 +3596,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062C\u064E\u0628\u064E\u0644"
+      _ArabicNoShaddah: "\u062C\u064E\u0628\u064E\u0644"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -3412,6 +3613,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062C\u064E\u0628\u064E\u0644\u0627\u0646"
+      _ArabicNoShaddah: "\u062C\u064E\u0628\u064E\u0644\u0627\u0646"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -3430,6 +3632,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062C\u0650\u0628\u0627\u0644"
+      _ArabicNoShaddah: "\u062C\u0650\u0628\u0627\u0644"
       _Value: 
       _Letters:
       - jeem_kasrah
@@ -3447,6 +3650,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0641\u0623\u0631"
+      _ArabicNoShaddah: "\u0641\u0623\u0631"
       _Value: 
       _Letters:
       - feh
@@ -3463,6 +3667,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0641\u064E\u0645"
+      _ArabicNoShaddah: "\u0641\u064E\u0645"
       _Value: 
       _Letters:
       - feh_fathah
@@ -3478,6 +3683,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u064A\u064E\u062C\u0650\u0628"
+      _ArabicNoShaddah: "\u064A\u064E\u062C\u0650\u0628"
       _Value: 
       _Letters:
       - yeh_fathah
@@ -3493,11 +3699,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0639\u064E\u0645\u0652\u062A\u064A"
+      _Arabic: "\u0639\u064E\u0645\u0651\u064E\u062A\u064A"
+      _ArabicNoShaddah: "\u0639\u064E\u0645\u0652\u062A\u064A"
       _Value: 
       _Letters:
       - ain_fathah
-      - meem_sukun
+      - meem_fathah
       - teh
       - yeh
       _Drawing: 
@@ -3511,6 +3718,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062E\u064E\u0627\u0644\u064E\u062A\u064A"
+      _ArabicNoShaddah: "\u062E\u064E\u0627\u0644\u064E\u062A\u064A"
       _Value: 
       _Letters:
       - khah_fathah
@@ -3529,6 +3737,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u064E\u062E\u064A"
+      _ArabicNoShaddah: "\u0623\u064E\u062E\u064A"
       _Value: 
       _Letters:
       - alef_hamza_hi_fathah
@@ -3545,6 +3754,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062D\u064E\u0628\u064A\u0628\u064A"
+      _ArabicNoShaddah: "\u062D\u064E\u0628\u064A\u0628\u064A"
       _Value: 
       _Letters:
       - hah_fathah
@@ -3563,6 +3773,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0628\u0650\u0646\u0652\u062A\u064A"
+      _ArabicNoShaddah: "\u0628\u0650\u0646\u0652\u062A\u064A"
       _Value: 
       _Letters:
       - beh_kasrah
@@ -3580,6 +3791,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0648\u064E\u062C\u0652\u0647\u064A"
+      _ArabicNoShaddah: "\u0648\u064E\u062C\u0652\u0647\u064A"
       _Value: 
       _Letters:
       - waw_fathah
@@ -3596,7 +3808,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u062C\u064E\u062F\u064A"
+      _Arabic: "\u062C\u064E\u062F\u0651\u064A"
+      _ArabicNoShaddah: "\u062C\u064E\u062F\u064A"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -3613,6 +3826,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u064A\u0652\u062A\u064A"
+      _ArabicNoShaddah: "\u0628\u064E\u064A\u0652\u062A\u064A"
       _Value: 
       _Letters:
       - beh_fathah
@@ -3630,6 +3844,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0627\u0650\u0633\u0652\u0645\u064A"
+      _ArabicNoShaddah: "\u0627\u0650\u0633\u0652\u0645\u064A"
       _Value: 
       _Letters:
       - alef_kasrah
@@ -3647,6 +3862,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0623\u064F\u062E\u0652\u062A\u064A"
+      _ArabicNoShaddah: "\u0623\u064F\u062E\u0652\u062A\u064A"
       _Value: 
       _Letters:
       - alef_hamza_hi_dammah
@@ -3663,7 +3879,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0639\u064E\u0645\u064A"
+      _Arabic: "\u0639\u064E\u0645\u0651\u064A"
+      _ArabicNoShaddah: "\u0639\u064E\u0645\u064A"
       _Value: 
       _Letters:
       - ain_fathah
@@ -3680,6 +3897,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062E\u0627\u0644\u064A"
+      _ArabicNoShaddah: "\u062E\u0627\u0644\u064A"
       _Value: 
       _Letters:
       - khah
@@ -3697,6 +3915,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0638\u064E\u0641\u064E\u0631"
+      _ArabicNoShaddah: "\u0638\u064E\u0641\u064E\u0631"
       _Value: 
       _Letters:
       - zah_fathah
@@ -3713,6 +3932,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062A\u064E\u062D\u0652\u062A\u0627\u062C\u064F"
+      _ArabicNoShaddah: "\u062A\u064E\u062D\u0652\u062A\u0627\u062C\u064F"
       _Value: 
       _Letters:
       - teh_fathah
@@ -3731,6 +3951,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0625\u0628\u0652\u0631\u064E\u0629"
+      _ArabicNoShaddah: "\u0625\u0628\u0652\u0631\u064E\u0629"
       _Value: 
       _Letters:
       - alef_hamza_low
@@ -3748,6 +3969,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u064F\u0634"
+      _ArabicNoShaddah: "\u0639\u064F\u0634"
       _Value: 
       _Letters:
       - ain_dammah
@@ -3763,6 +3985,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u0642\u0627\u062F\u0650\u0645"
+      _ArabicNoShaddah: "\u0627\u0644\u0642\u0627\u062F\u0650\u0645"
       _Value: 
       _Letters:
       - alef
@@ -3782,6 +4005,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0623\u0646\u0652\u0641"
+      _ArabicNoShaddah: "\u0623\u0646\u0652\u0641"
       _Value: 
       _Letters:
       - alef_hamza_hi
@@ -3798,6 +4022,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062F\u064E\u0641\u0652\u062A\u064E\u0631"
+      _ArabicNoShaddah: "\u062F\u064E\u0641\u0652\u062A\u064E\u0631"
       _Value: 
       _Letters:
       - dal_fathah
@@ -3815,6 +4040,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u0622\u0646"
+      _ArabicNoShaddah: "\u0627\u0644\u0622\u0646"
       _Value: 
       _Letters:
       - alef
@@ -3831,6 +4057,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0635\u0650\u0641\u064E\u0631"
+      _ArabicNoShaddah: "\u0635\u0650\u0641\u064E\u0631"
       _Value: 0
       _Letters:
       - sad_kasrah
@@ -3847,6 +4074,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0648\u0627\u062D\u0650\u062F"
+      _ArabicNoShaddah: "\u0648\u0627\u062D\u0650\u062F"
       _Value: 1
       _Letters:
       - waw
@@ -3864,6 +4092,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0650\u062B\u0652\u0646\u064E\u0627\u0646"
+      _ArabicNoShaddah: "\u0627\u0650\u062B\u0652\u0646\u064E\u0627\u0646"
       _Value: 2
       _Letters:
       - alef_kasrah
@@ -3882,6 +4111,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062B\u064E\u0644\u0627\u062B\u064E\u0629"
+      _ArabicNoShaddah: "\u062B\u064E\u0644\u0627\u062B\u064E\u0629"
       _Value: 3
       _Letters:
       - theh_fathah
@@ -3900,6 +4130,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0623\u0631\u0652\u0628\u064E\u0639\u064E\u0629"
+      _ArabicNoShaddah: "\u0623\u0631\u0652\u0628\u064E\u0639\u064E\u0629"
       _Value: 4
       _Letters:
       - alef_hamza_hi
@@ -3918,6 +4149,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062E\u064E\u0645\u0652\u0633\u064E\u0629"
+      _ArabicNoShaddah: "\u062E\u064E\u0645\u0652\u0633\u064E\u0629"
       _Value: 5
       _Letters:
       - khah_fathah
@@ -3934,7 +4166,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0633\u0650\u062A\u064E\u0629"
+      _Arabic: "\u0633\u0650\u062A\u064E\u0651\u0629"
+      _ArabicNoShaddah: "\u0633\u0650\u062A\u064E\u0629"
       _Value: 6
       _Letters:
       - seen_kasrah
@@ -3951,6 +4184,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0633\u064E\u0628\u0652\u0639\u064E\u0629"
+      _ArabicNoShaddah: "\u0633\u064E\u0628\u0652\u0639\u064E\u0629"
       _Value: 7
       _Letters:
       - seen_fathah
@@ -3968,6 +4202,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062B\u064E\u0645\u0627\u0646\u064A\u0629"
+      _ArabicNoShaddah: "\u062B\u064E\u0645\u0627\u0646\u064A\u0629"
       _Value: 8
       _Letters:
       - theh_fathah
@@ -3987,6 +4222,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062A\u0650\u0633\u0652\u0639\u064E\u0629"
+      _ArabicNoShaddah: "\u062A\u0650\u0633\u0652\u0639\u064E\u0629"
       _Value: 9
       _Letters:
       - teh_kasrah
@@ -4004,6 +4240,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0639\u064E\u0634\u064E\u0631\u064E\u0629"
+      _ArabicNoShaddah: "\u0639\u064E\u0634\u064E\u0631\u064E\u0629"
       _Value: 10
       _Letters:
       - ain_fathah
@@ -4021,6 +4258,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u064E\u062D\u064E\u062F\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u0627\u064E\u062D\u064E\u062F\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 11
       _Letters:
       - alef_fathah
@@ -4040,6 +4278,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0650\u062B\u0652\u0646\u064E\u0649 \u0639\u064E\u0634\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u0627\u0650\u062B\u0652\u0646\u064E\u0649 \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 12
       _Letters:
       - alef_kasrah
@@ -4060,6 +4299,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062B\u064E\u0644\u0627\u062B\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u062B\u064E\u0644\u0627\u062B\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 13
       _Letters:
       - theh_fathah
@@ -4081,6 +4321,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0623\u0631\u0652\u0628\u064E\u0639\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u0623\u0631\u0652\u0628\u064E\u0639\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 14
       _Letters:
       - alef_hamza_hi
@@ -4102,6 +4343,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062E\u064E\u0645\u0652\u0633\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u062E\u064E\u0645\u0652\u0633\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 15
       _Letters:
       - khah_fathah
@@ -4121,7 +4363,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0633\u0650\u062A\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
+      _Arabic: "\u0633\u0650\u062A\u064E\u0651\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u0633\u0650\u062A\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 16
       _Letters:
       - seen_kasrah
@@ -4141,6 +4384,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0633\u064E\u0628\u0652\u0639\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u0633\u064E\u0628\u0652\u0639\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 17
       _Letters:
       - seen_fathah
@@ -4161,6 +4405,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062B\u064E\u0645\u0627\u0646\u064A\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u062B\u064E\u0645\u0627\u0646\u064A\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 18
       _Letters:
       - theh_fathah
@@ -4183,6 +4428,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062A\u0650\u0633\u0652\u0639\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u062A\u0650\u0633\u0652\u0639\u064E\u0629\u064E \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 19
       _Letters:
       - teh_kasrah
@@ -4203,6 +4449,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0639\u064E\u0634\u0652\u0631\u0648\u0646"
+      _ArabicNoShaddah: "\u0639\u064E\u0634\u0652\u0631\u0648\u0646"
       _Value: 20
       _Letters:
       - ain_fathah
@@ -4221,6 +4468,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u064E\u0644\u0652\u0641\u064E\u064A\u0646"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0652\u0641\u064E\u064A\u0646"
       _Value: 2000
       _Letters:
       - alef_fathah
@@ -4239,6 +4487,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u0623\u0648\u064E\u0644"
+      _ArabicNoShaddah: "\u0627\u0644\u0623\u0648\u064E\u0644"
       _Value: 
       _Letters:
       - alef
@@ -4256,7 +4505,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u062B\u064E\u0627\u0646\u064A"
+      _Arabic: "\u0627\u0644\u062B\u064E\u0651\u0627\u0646\u064A"
+      _ArabicNoShaddah: "\u0627\u0644\u062B\u064E\u0627\u0646\u064A"
       _Value: 
       _Letters:
       - alef
@@ -4275,7 +4525,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u062B\u064E\u0627\u0644\u0650\u062B"
+      _Arabic: "\u0627\u0644\u062B\u064E\u0651\u0627\u0644\u0650\u062B"
+      _ArabicNoShaddah: "\u0627\u0644\u062B\u064E\u0627\u0644\u0650\u062B"
       _Value: 
       _Letters:
       - alef
@@ -4294,7 +4545,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u0631\u0627\u0628\u0650\u0639"
+      _Arabic: "\u0627\u0644\u0631\u0651\u0627\u0628\u0650\u0639"
+      _ArabicNoShaddah: "\u0627\u0644\u0631\u0627\u0628\u0650\u0639"
       _Value: 
       _Letters:
       - alef
@@ -4314,6 +4566,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u062E\u0627\u0645\u0650\u0633"
+      _ArabicNoShaddah: "\u0627\u0644\u062E\u0627\u0645\u0650\u0633"
       _Value: 
       _Letters:
       - alef
@@ -4332,7 +4585,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u0633\u0627\u062F\u0650\u0633"
+      _Arabic: "\u0627\u0644\u0633\u0651\u0627\u062F\u0650\u0633"
+      _ArabicNoShaddah: "\u0627\u0644\u0633\u0627\u062F\u0650\u0633"
       _Value: 
       _Letters:
       - alef
@@ -4351,7 +4605,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u0633\u0627\u0628\u0650\u0639"
+      _Arabic: "\u0627\u0644\u0633\u0651\u0627\u0628\u0650\u0639"
+      _ArabicNoShaddah: "\u0627\u0644\u0633\u0627\u0628\u0650\u0639"
       _Value: 
       _Letters:
       - alef
@@ -4370,7 +4625,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u062B\u0627\u0645\u0650\u0646"
+      _Arabic: "\u0627\u0644\u062B\u0651\u0627\u0645\u0650\u0646"
+      _ArabicNoShaddah: "\u0627\u0644\u062B\u0627\u0645\u0650\u0646"
       _Value: 
       _Letters:
       - alef
@@ -4389,7 +4645,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u062A\u0627\u0633\u0650\u0639"
+      _Arabic: "\u0627\u0644\u062A\u0651\u0627\u0633\u0650\u0639"
+      _ArabicNoShaddah: "\u0627\u0644\u062A\u0627\u0633\u0650\u0639"
       _Value: 
       _Letters:
       - alef
@@ -4409,6 +4666,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u0639\u0627\u0634\u0650\u0631"
+      _ArabicNoShaddah: "\u0627\u0644\u0639\u0627\u0634\u0650\u0631"
       _Value: 
       _Letters:
       - alef
@@ -4428,6 +4686,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u062D\u0627\u062F\u064A \u0639\u064E\u0634\u064E\u0631\u0652"
+      _ArabicNoShaddah: "\u0627\u0644\u062D\u0627\u062F\u064A \u0639\u064E\u0634\u064E\u0631\u0652"
       _Value: 
       _Letters:
       - alef
@@ -4450,6 +4709,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0637\u064E\u0628\u0652\u0639\u0627"
+      _ArabicNoShaddah: "\u0637\u064E\u0628\u0652\u0639\u0627"
       _Value: 
       _Letters:
       - tah_fathah
@@ -4467,6 +4727,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0632\u064E\u064A\u0652\u062A"
+      _ArabicNoShaddah: "\u0632\u064E\u064A\u0652\u062A"
       _Value: 
       _Letters:
       - zain_fathah
@@ -4483,6 +4744,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0639\u064E\u0644\u0649"
+      _ArabicNoShaddah: "\u0639\u064E\u0644\u0649"
       _Value: 
       _Letters:
       - ain_fathah
@@ -4499,6 +4761,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u0635\u064E\u0644"
+      _ArabicNoShaddah: "\u0628\u064E\u0635\u064E\u0644"
       _Value: 
       _Letters:
       - beh_fathah
@@ -4515,6 +4778,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0639\u0643\u0627\u0638"
+      _ArabicNoShaddah: "\u0639\u0643\u0627\u0638"
       _Value: 
       _Letters:
       - ain
@@ -4532,6 +4796,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0641\u064E\u062A\u064E\u062D\u064E"
+      _ArabicNoShaddah: "\u0641\u064E\u062A\u064E\u062D\u064E"
       _Value: 
       _Letters:
       - feh_fathah
@@ -4548,6 +4813,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0641\u064F\u0631\u0652\u0646"
+      _ArabicNoShaddah: "\u0641\u064F\u0631\u0652\u0646"
       _Value: 
       _Letters:
       - feh_dammah
@@ -4564,6 +4830,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0648\u064E\u0631\u064E\u0642"
+      _ArabicNoShaddah: "\u0648\u064E\u0631\u064E\u0642"
       _Value: 
       _Letters:
       - waw_fathah
@@ -4580,6 +4847,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u0628\u064E\u063A\u0627\u0621"
+      _ArabicNoShaddah: "\u0628\u064E\u0628\u064E\u063A\u0627\u0621"
       _Value: 
       _Letters:
       - beh_fathah
@@ -4598,6 +4866,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0633\u064E\u0644\u0627\u0645"
+      _ArabicNoShaddah: "\u0633\u064E\u0644\u0627\u0645"
       _Value: 
       _Letters:
       - seen_fathah
@@ -4615,6 +4884,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0625\u062C\u0627\u0635"
+      _ArabicNoShaddah: "\u0625\u062C\u0627\u0635"
       _Value: 
       _Letters:
       - alef_hamza_low
@@ -4632,6 +4902,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0643\u0645\u062B\u0631\u0649"
+      _ArabicNoShaddah: "\u0643\u0645\u062B\u0631\u0649"
       _Value: 
       _Letters:
       - kaf
@@ -4640,23 +4911,6 @@ MonoBehaviour:
       - reh
       - alef_maqsura
       _Drawing: B6
-      _Complexity: 1
-    - _Id: pearl
-      _Active: 1
-      _Kind: 5
-      _Category: 7
-      _Form: 1
-      _Article: 0
-      _Gender: 2
-      _LinkedWord: 
-      _Arabic: "\u0644\u0624\u0644\u0624"
-      _Value: 
-      _Letters:
-      - lam
-      - waw_hamza
-      - lam
-      - waw_hamza
-      _Drawing: E0
       _Complexity: 1
     - _Id: pencil
       _Active: 1
@@ -4667,6 +4921,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0642\u064E\u0644\u064E\u0645"
+      _ArabicNoShaddah: "\u0642\u064E\u0644\u064E\u0645"
       _Value: 
       _Letters:
       - qaf_fathah
@@ -4683,6 +4938,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0644\u064E\u0639\u0650\u0628\u064E"
+      _ArabicNoShaddah: "\u0644\u064E\u0639\u0650\u0628\u064E"
       _Value: 
       _Letters:
       - lam_fathah
@@ -4699,6 +4955,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0644\u0627\u0639\u0650\u0628"
+      _ArabicNoShaddah: "\u0644\u0627\u0639\u0650\u0628"
       _Value: 
       _Letters:
       - lam
@@ -4716,6 +4973,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u0644\u0652\u0639\u064E\u0628"
+      _ArabicNoShaddah: "\u0645\u064E\u0644\u0652\u0639\u064E\u0628"
       _Value: 
       _Letters:
       - meem_fathah
@@ -4733,6 +4991,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0631\u062C\u0627\u0621"
+      _ArabicNoShaddah: "\u0631\u062C\u0627\u0621"
       _Value: 
       _Letters:
       - reh
@@ -4750,6 +5009,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062B\u064E\u0646\u064A"
+      _ArabicNoShaddah: "\u062B\u064E\u0646\u064A"
       _Value: 
       _Letters:
       - theh_fathah
@@ -4766,6 +5026,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062E\u0648\u062E"
+      _ArabicNoShaddah: "\u062E\u0648\u062E"
       _Value: 
       _Letters:
       - khah
@@ -4782,6 +5043,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062C\u064E\u0645\u0652\u0639"
+      _ArabicNoShaddah: "\u062C\u064E\u0645\u0652\u0639"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -4798,6 +5060,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0634\u064F\u0631\u0652\u0637\u064A"
+      _ArabicNoShaddah: "\u0634\u064F\u0631\u0652\u0637\u064A"
       _Value: 
       _Letters:
       - sheen_dammah
@@ -4815,6 +5078,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u0637\u0627\u0637\u0627"
+      _ArabicNoShaddah: "\u0628\u064E\u0637\u0627\u0637\u0627"
       _Value: 
       _Letters:
       - beh_fathah
@@ -4833,6 +5097,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u0637\u064E\u0631"
+      _ArabicNoShaddah: "\u0645\u064E\u0637\u064E\u0631"
       _Value: 
       _Letters:
       - meem_fathah
@@ -4849,6 +5114,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u0627\u0637\u0650\u0631"
+      _ArabicNoShaddah: "\u0645\u064E\u0627\u0637\u0650\u0631"
       _Value: 
       _Letters:
       - meem_fathah
@@ -4866,6 +5132,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062C\u064E\u0627\u0647\u0650\u0632"
+      _ArabicNoShaddah: "\u062C\u064E\u0627\u0647\u0650\u0632"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -4883,6 +5150,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062A\u064E\u0631\u064E\u0643\u064E"
+      _ArabicNoShaddah: "\u062A\u064E\u0631\u064E\u0643\u064E"
       _Value: 
       _Letters:
       - teh_fathah
@@ -4899,6 +5167,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062A\u064E\u0635\u0652\u0628\u064E\u062D\u064F"
+      _ArabicNoShaddah: "\u062A\u064E\u0635\u0652\u0628\u064E\u062D\u064F"
       _Value: 
       _Letters:
       - teh_fathah
@@ -4916,6 +5185,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u0637\u0652\u0639\u064E\u0645"
+      _ArabicNoShaddah: "\u0645\u064E\u0637\u0652\u0639\u064E\u0645"
       _Value: 
       _Letters:
       - meem_fathah
@@ -4933,6 +5203,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0631\u064F\u0632"
+      _ArabicNoShaddah: "\u0631\u064F\u0632"
       _Value: 
       _Letters:
       - reh_dammah
@@ -4948,6 +5219,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0647\u0652\u0631"
+      _ArabicNoShaddah: "\u0646\u064E\u0647\u0652\u0631"
       _Value: 
       _Letters:
       - noon_fathah
@@ -4964,6 +5236,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0647\u0652\u0631\u0627\u0646"
+      _ArabicNoShaddah: "\u0646\u064E\u0647\u0652\u0631\u0627\u0646"
       _Value: 
       _Letters:
       - noon_fathah
@@ -4982,6 +5255,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0623\u0646\u0652\u0647\u0627\u0631"
+      _ArabicNoShaddah: "\u0623\u0646\u0652\u0647\u0627\u0631"
       _Value: 
       _Letters:
       - alef_hamza_hi
@@ -5000,6 +5274,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u063A\u064F\u0631\u0652\u0641\u064E\u0629"
+      _ArabicNoShaddah: "\u063A\u064F\u0631\u0652\u0641\u064E\u0629"
       _Value: 
       _Letters:
       - ghain_dammah
@@ -5017,6 +5292,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062D\u064E\u0632\u064A\u0646"
+      _ArabicNoShaddah: "\u062D\u064E\u0632\u064A\u0646"
       _Value: 
       _Letters:
       - hah_fathah
@@ -5034,6 +5310,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062D\u064E\u0632\u064A\u0646\u064E\u0629"
+      _ArabicNoShaddah: "\u062D\u064E\u0632\u064A\u0646\u064E\u0629"
       _Value: 
       _Letters:
       - hah_fathah
@@ -5052,6 +5329,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0627\u0645\u0650\u0646\u0652"
+      _ArabicNoShaddah: "\u0627\u0645\u0650\u0646\u0652"
       _Value: 
       _Letters:
       - alef
@@ -5068,6 +5346,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u0650\u0644\u0652\u062D"
+      _ArabicNoShaddah: "\u0645\u0650\u0644\u0652\u062D"
       _Value: 
       _Letters:
       - meem_kasrah
@@ -5084,6 +5363,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0633\u0627\u0645\u0631"
+      _ArabicNoShaddah: "\u0633\u0627\u0645\u0631"
       _Value: 
       _Letters:
       - seen
@@ -5101,6 +5381,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062C\u064E\u0644\u064E\u0633\u064E"
+      _ArabicNoShaddah: "\u062C\u064E\u0644\u064E\u0633\u064E"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -5117,6 +5398,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062C\u064E\u0644\u064E\u0633\u064E\u062A"
+      _ArabicNoShaddah: "\u062C\u064E\u0644\u064E\u0633\u064E\u062A"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -5134,6 +5416,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0631\u064E\u0623\u0649"
+      _ArabicNoShaddah: "\u0631\u064E\u0623\u0649"
       _Value: 
       _Letters:
       - reh_fathah
@@ -5150,6 +5433,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u062F\u0652\u0631\u064E\u0633\u064E\u0629"
+      _ArabicNoShaddah: "\u0645\u064E\u062F\u0652\u0631\u064E\u0633\u064E\u0629"
       _Value: 
       _Letters:
       - meem_fathah
@@ -5168,6 +5452,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u0627\u0644\u0650\u0645"
+      _ArabicNoShaddah: "\u0639\u0627\u0644\u0650\u0645"
       _Value: 
       _Letters:
       - ain
@@ -5185,6 +5470,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u0627\u0644\u0650\u0645\u0627\u0646"
+      _ArabicNoShaddah: "\u0639\u0627\u0644\u0650\u0645\u0627\u0646"
       _Value: 
       _Letters:
       - ain
@@ -5204,6 +5490,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u064F\u0644\u064E\u0645\u0627\u0621"
+      _ArabicNoShaddah: "\u0639\u064F\u0644\u064E\u0645\u0627\u0621"
       _Value: 
       _Letters:
       - ain_dammah
@@ -5221,7 +5508,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0645\u0650\u0642\u064E\u0635"
+      _Arabic: "\u0645\u0650\u0642\u064E\u0635\u0651"
+      _ArabicNoShaddah: "\u0645\u0650\u0642\u064E\u0635"
       _Value: 
       _Letters:
       - meem_kasrah
@@ -5238,6 +5526,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u062D\u0652\u062B"
+      _ArabicNoShaddah: "\u0628\u064E\u062D\u0652\u062B"
       _Value: 
       _Letters:
       - beh_fathah
@@ -5254,6 +5543,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062B\u0627\u0646\u0650\u064A\u064E\u0629"
+      _ArabicNoShaddah: "\u062B\u0627\u0646\u0650\u064A\u064E\u0629"
       _Value: 
       _Letters:
       - theh
@@ -5272,6 +5562,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062A\u064F\u062D\u0650\u0628\u064F"
+      _ArabicNoShaddah: "\u062A\u064F\u062D\u0650\u0628\u064F"
       _Value: 
       _Letters:
       - teh_dammah
@@ -5288,6 +5579,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062A\u064E\u062B\u0652\u0646\u064A"
+      _ArabicNoShaddah: "\u062A\u064E\u062B\u0652\u0646\u064A"
       _Value: 
       _Letters:
       - teh_fathah
@@ -5305,6 +5597,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062A\u064E\u062B\u0652\u0628\u064E\u062A\u064F"
+      _ArabicNoShaddah: "\u062A\u064E\u062B\u0652\u0628\u064E\u062A\u064F"
       _Value: 
       _Letters:
       - teh_fathah
@@ -5322,6 +5615,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062A\u064E\u0628\u0652\u062D\u064E\u062B\u064F"
+      _ArabicNoShaddah: "\u062A\u064E\u0628\u0652\u062D\u064E\u062B\u064F"
       _Value: 
       _Letters:
       - teh_fathah
@@ -5339,6 +5633,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062B\u064E\u0628\u064E\u062A\u064E\u062A"
+      _ArabicNoShaddah: "\u062B\u064E\u0628\u064E\u062A\u064E\u062A"
       _Value: 
       _Letters:
       - theh_fathah
@@ -5356,6 +5651,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0642\u064E\u0645\u064A\u0635"
+      _ArabicNoShaddah: "\u0642\u064E\u0645\u064A\u0635"
       _Value: 
       _Letters:
       - qaf_fathah
@@ -5373,6 +5669,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062D\u0650\u0630\u0627\u0621"
+      _ArabicNoShaddah: "\u062D\u0650\u0630\u0627\u0621"
       _Value: 
       _Letters:
       - hah_kasrah
@@ -5389,7 +5686,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u062F\u064F\u0643\u0627\u0646"
+      _Arabic: "\u062F\u064F\u0643\u0651\u0627\u0646"
+      _ArabicNoShaddah: "\u062F\u064F\u0643\u0627\u0646"
       _Value: 
       _Letters:
       - dal_dammah
@@ -5407,6 +5705,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062C\u064E\u0646\u0652\u0628"
+      _ArabicNoShaddah: "\u062C\u064E\u0646\u0652\u0628"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -5422,11 +5721,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0645\u064F\u0641\u064E\u0631\u064E\u062F"
+      _Arabic: "\u0645\u064F\u0641\u0631\u064E\u062F"
+      _ArabicNoShaddah: "\u0645\u064F\u0641\u064E\u0631\u064E\u062F"
       _Value: 
       _Letters:
       - meem_dammah
-      - feh_fathah
+      - feh
       - reh_fathah
       - dal
       _Drawing: 
@@ -5440,6 +5740,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0623\u064F\u062E\u0652\u062A"
+      _ArabicNoShaddah: "\u0623\u064F\u062E\u0652\u062A"
       _Value: 
       _Letters:
       - alef_hamza_hi_dammah
@@ -5456,6 +5757,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0633\u064E\u0645\u0627\u0621"
+      _ArabicNoShaddah: "\u0633\u064E\u0645\u0627\u0621"
       _Value: 
       _Letters:
       - seen_fathah
@@ -5473,6 +5775,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u064E\u0637\u064A\u0621"
+      _ArabicNoShaddah: "\u0628\u064E\u0637\u064A\u0621"
       _Value: 
       _Letters:
       - beh_fathah
@@ -5490,6 +5793,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0635\u064E\u063A\u064A\u0631"
+      _ArabicNoShaddah: "\u0635\u064E\u063A\u064A\u0631"
       _Value: 
       _Letters:
       - sad_fathah
@@ -5507,6 +5811,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062B\u064E\u0644\u0652\u062C"
+      _ArabicNoShaddah: "\u062B\u064E\u0644\u0652\u062C"
       _Value: 
       _Letters:
       - theh_fathah
@@ -5517,12 +5822,13 @@ MonoBehaviour:
     - _Id: son
       _Active: 1
       _Kind: 5
-      _Category: 0
+      _Category: 5
       _Form: 1
       _Article: 0
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u0650\u0646"
+      _ArabicNoShaddah: "\u0628\u0650\u0646"
       _Value: 
       _Letters:
       - beh_kasrah
@@ -5538,6 +5844,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0635\u064E\u0648\u062A"
+      _ArabicNoShaddah: "\u0635\u064E\u0648\u062A"
       _Value: 
       _Letters:
       - sad_fathah
@@ -5554,6 +5861,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0631\u064E\u0628\u064A\u0639"
+      _ArabicNoShaddah: "\u0631\u064E\u0628\u064A\u0639"
       _Value: 
       _Letters:
       - reh_fathah
@@ -5570,7 +5878,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0645\u064E\u062D\u064E\u0637\u064E\u0629"
+      _Arabic: "\u0645\u064E\u062D\u064E\u0637\u064E\u0651\u0629"
+      _ArabicNoShaddah: "\u0645\u064E\u062D\u064E\u0637\u064E\u0629"
       _Value: 
       _Letters:
       - meem_fathah
@@ -5588,6 +5897,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062F\u064E\u0631\u064E\u0633\u064E"
+      _ArabicNoShaddah: "\u062F\u064E\u0631\u064E\u0633\u064E"
       _Value: 
       _Letters:
       - dal_fathah
@@ -5603,7 +5913,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0633\u064F\u0643\u064E\u0631"
+      _Arabic: "\u0633\u064F\u0643\u064E\u0651\u0631"
+      _ArabicNoShaddah: "\u0633\u064F\u0643\u064E\u0631"
       _Value: 
       _Letters:
       - seen_dammah
@@ -5620,6 +5931,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0635\u064E\u064A\u0652\u0641"
+      _ArabicNoShaddah: "\u0635\u064E\u064A\u0652\u0641"
       _Value: 
       _Letters:
       - sad_fathah
@@ -5636,6 +5948,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0634\u064E\u0645\u0652\u0633"
+      _ArabicNoShaddah: "\u0634\u064E\u0645\u0652\u0633"
       _Value: 
       _Letters:
       - sheen_fathah
@@ -5652,6 +5965,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0639\u064E\u0641\u0652\u0648\u064E\u0627"
+      _ArabicNoShaddah: "\u0639\u064E\u0641\u0652\u0648\u064E\u0627"
       _Value: 
       _Letters:
       - ain_fathah
@@ -5669,6 +5983,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0637\u0627\u0650\u0648\u0644\u064E\u0629"
+      _ArabicNoShaddah: "\u0637\u0627\u0650\u0648\u0644\u064E\u0629"
       _Value: 
       _Letters:
       - tah
@@ -5687,6 +6002,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0634\u0627\u064A"
+      _ArabicNoShaddah: "\u0634\u0627\u064A"
       _Value: 
       _Letters:
       - sheen
@@ -5702,7 +6018,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0645\u064F\u0639\u064E\u0644\u0650\u0645"
+      _Arabic: "\u0645\u064F\u0639\u064E\u0644\u0650\u0651\u0645"
+      _ArabicNoShaddah: "\u0645\u064F\u0639\u064E\u0644\u0650\u0645"
       _Value: 
       _Letters:
       - meem_dammah
@@ -5720,6 +6037,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062A\u064E\u0644\u0652\u0641\u0627\u0632"
+      _ArabicNoShaddah: "\u062A\u064E\u0644\u0652\u0641\u0627\u0632"
       _Value: 
       _Letters:
       - teh_fathah
@@ -5738,6 +6056,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0634\u064F\u0643\u0652\u0631\u064E\u0627"
+      _ArabicNoShaddah: "\u0634\u064F\u0643\u0652\u0631\u064E\u0627"
       _Value: 
       _Letters:
       - sheen_dammah
@@ -5754,7 +6073,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: active
-      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u0634\u0650\u064A\u0637"
+      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u0651\u0634\u0650\u064A\u0637"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0646\u064E\u0634\u0650\u064A\u0637"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5773,7 +6093,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: apple
-      _Arabic: "\u0627\u064E\u0644\u062A\u064F\u0641\u0627\u062D"
+      _Arabic: "\u0627\u064E\u0644\u062A\u064F\u0651\u0641\u0627\u062D"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062A\u064F\u0641\u0627\u062D"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5792,7 +6113,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: back
-      _Arabic: "\u0627\u064E\u0644\u0638\u064E\u0647\u0652\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0638\u064E\u0651\u0647\u0652\u0631"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0638\u064E\u0647\u0652\u0631"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5811,6 +6133,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: ball
       _Arabic: "\u0627\u064E\u0644\u0643\u064F\u0631\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0643\u064F\u0631\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5828,7 +6151,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: bear
-      _Arabic: "\u0627\u064E\u0644\u062F\u064F\u0628"
+      _Arabic: "\u0627\u064E\u0644\u062F\u064F\u0651\u0628"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062F\u064F\u0628"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5846,6 +6170,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: beautiful
       _Arabic: "\u0627\u064E\u0644\u062C\u064E\u0645\u064A\u0644"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062C\u064E\u0645\u064A\u0644"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5865,6 +6190,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: bed
       _Arabic: "\u0627\u064E\u0644\u0641\u0650\u0631\u0627\u0634"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0641\u0650\u0631\u0627\u0634"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5883,7 +6209,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: berry
-      _Arabic: "\u0627\u064E\u0644\u062A\u0648\u062A"
+      _Arabic: "\u0627\u064E\u0644\u062A\u0651\u0648\u062A"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062A\u0648\u062A"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5902,6 +6229,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: bird
       _Arabic: "\u0627\u064E\u0644\u0639\u064E\u0635\u0652\u0641\u064F\u0648\u0631"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0639\u064E\u0635\u0652\u0641\u064F\u0648\u0631"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5922,6 +6250,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: book
       _Arabic: "\u0627\u064E\u0644\u0643\u0650\u062A\u0627\u0628"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0643\u0650\u062A\u0627\u0628"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5940,7 +6269,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: box
-      _Arabic: "\u0627\u064E\u0644\u0635\u064E\u0646\u0652\u062F\u064F\u0648\u0642"
+      _Arabic: "\u0627\u064E\u0644\u0635\u064E\u0651\u0646\u0652\u062F\u064F\u0648\u0642"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0635\u064E\u0646\u0652\u062F\u064F\u0648\u0642"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5960,7 +6290,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: boy
-      _Arabic: "\u0627\u064E\u0644\u0635\u064E\u0628\u064A"
+      _Arabic: "\u0627\u064E\u0644\u0635\u064E\u0651\u0628\u064A"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0635\u064E\u0628\u064A"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5979,6 +6310,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: bread
       _Arabic: "\u0627\u064E\u0644\u062E\u064F\u0628\u0652\u0632"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062E\u064F\u0628\u0652\u0632"
       _Value: 
       _Letters:
       - alef_fathah
@@ -5997,6 +6329,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: bus
       _Arabic: "\u0627\u064E\u0644\u0628\u0627\u0635"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0628\u0627\u0635"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6014,7 +6347,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: carpenter
-      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u062C\u064E\u0627\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u0651\u062C\u064E\u0651\u0627\u0631"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0646\u064E\u062C\u064E\u0627\u0631"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6034,6 +6368,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: carrot
       _Arabic: "\u0627\u064E\u0644\u062C\u064E\u0632\u064E\u0631"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062C\u064E\u0632\u064E\u0631"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6052,6 +6387,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: chair
       _Arabic: "\u0627\u064E\u0644\u0643\u064F\u0631\u0652\u0633\u064A"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0643\u064F\u0631\u0652\u0633\u064A"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6071,6 +6407,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: club
       _Arabic: "\u0627\u064E\u0644\u0645\u064F\u0646\u0652\u062A\u064E\u062F\u0649"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0645\u064F\u0646\u0652\u062A\u064E\u062F\u0649"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6091,6 +6428,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: coat
       _Arabic: "\u0627\u064E\u0644\u0645\u0650\u0639\u0652\u0637\u064E\u0641"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0645\u0650\u0639\u0652\u0637\u064E\u0641"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6110,6 +6448,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0627\u064E\u0644\u0628\u064E\u0631\u0652\u062F"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0628\u064E\u0631\u0652\u062F"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6127,7 +6466,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: color_brown
-      _Arabic: "\u0627\u064E\u0644\u0628\u064F\u0646\u064A"
+      _Arabic: "\u0627\u064E\u0644\u0628\u064F\u0646\u0651\u064A"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0628\u064F\u0646\u064A"
       _Value: brown
       _Letters:
       - alef_fathah
@@ -6146,6 +6486,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: color_green
       _Arabic: "\u0627\u064E\u0644\u0623\u062E\u0652\u0636\u064E\u0631"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0623\u062E\u0652\u0636\u064E\u0631"
       _Value: green
       _Letters:
       - alef_fathah
@@ -6165,6 +6506,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: color_orange
       _Arabic: "\u0627\u064E\u0644\u0628\u064F\u0631\u0652\u062A\u064F\u0642\u0627\u0644\u064A"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0628\u064F\u0631\u0652\u062A\u064F\u0642\u0627\u0644\u064A"
       _Value: orange
       _Letters:
       - alef_fathah
@@ -6187,6 +6529,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: color_purple
       _Arabic: "\u0627\u064E\u0644\u0628\u064E\u0646\u064E\u0641\u0652\u0633\u064E\u062C\u064A"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0628\u064E\u0646\u064E\u0641\u0652\u0633\u064E\u062C\u064A"
       _Value: purple
       _Letters:
       - alef_fathah
@@ -6208,6 +6551,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: cupboard
       _Arabic: "\u0627\u064E\u0644\u062E\u064E\u0632\u0627\u0646\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062E\u064E\u0632\u0627\u0646\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6228,6 +6572,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: deer
       _Arabic: "\u0627\u064E\u0644\u063A\u064E\u0632\u0627\u0644"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u063A\u064E\u0632\u0627\u0644"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6246,7 +6591,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: doctor
-      _Arabic: "\u0627\u064E\u0644\u0637\u064E\u0628\u064A\u0628"
+      _Arabic: "\u0627\u064E\u0644\u0637\u064E\u0651\u0628\u064A\u0628"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0637\u064E\u0628\u064A\u0628"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6266,6 +6612,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: engineer
       _Arabic: "\u0627\u064E\u0644\u0645\u064F\u0647\u064E\u0646\u0652\u062F\u0650\u0633"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0645\u064F\u0647\u064E\u0646\u0652\u062F\u0650\u0633"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6286,6 +6633,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: eye
       _Arabic: "\u0627\u064E\u0644\u0639\u064E\u064A\u0652\u0646"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0639\u064E\u064A\u0652\u0646"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6304,6 +6652,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: flower
       _Arabic: "\u0627\u064E\u0644\u0648\u064E\u0631\u0652\u062F"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0648\u064E\u0631\u0652\u062F"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6322,6 +6671,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: forest
       _Arabic: "\u0627\u064E\u0644\u063A\u064E\u0627\u0628\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u063A\u064E\u0627\u0628\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6340,7 +6690,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 1
       _LinkedWord: fridge
-      _Arabic: "\u0627\u064E\u0644\u062B\u064E\u0644\u0627\u062C\u064E\u0629"
+      _Arabic: "\u0627\u064E\u0644\u062B\u064E\u0651\u0644\u0651\u0627\u062C\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062B\u064E\u0644\u0627\u062C\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6361,6 +6712,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: girl
       _Arabic: "\u0627\u064E\u0644\u0628\u0650\u0646\u0652\u062A"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0628\u0650\u0646\u0652\u062A"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6378,7 +6730,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: happy
-      _Arabic: "\u0627\u064E\u0644\u0633\u064E\u0639\u0650\u064A\u062F"
+      _Arabic: "\u0627\u064E\u0644\u0633\u064E\u0651\u0639\u0650\u064A\u062F"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0633\u064E\u0639\u0650\u064A\u062F"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6398,6 +6751,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: hat
       _Arabic: "\u0627\u064E\u0644\u0642\u064F\u0628\u0652\u0639\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0642\u064F\u0628\u0652\u0639\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6417,6 +6771,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: hospital
       _Arabic: "\u0627\u064E\u0644\u0645\u064F\u0633\u0652\u062A\u064E\u0634\u0652\u0641\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0645\u064F\u0633\u0652\u062A\u064E\u0634\u0652\u0641\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6438,6 +6793,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: house
       _Arabic: "\u0627\u064E\u0644\u0628\u064E\u064A\u0652\u062A"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0628\u064E\u064A\u0652\u062A"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6456,6 +6812,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: icecream
       _Arabic: "\u0627\u064E\u0644\u0628\u064F\u0648\u0638\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0628\u064F\u0648\u0638\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6475,6 +6832,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: juice
       _Arabic: "\u0627\u064E\u0644\u0639\u064E\u0635\u0650\u064A\u0631"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0639\u064E\u0635\u0650\u064A\u0631"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6494,6 +6852,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: lazy
       _Arabic: "\u0627\u064E\u0644\u0643\u064E\u0633\u064F\u0648\u0644"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0643\u064E\u0633\u064F\u0648\u0644"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6512,7 +6871,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: leg
-      _Arabic: "\u0627\u064E\u0644\u0631\u0650\u062C\u0652\u0644"
+      _Arabic: "\u0627\u064E\u0644\u0631\u0650\u0651\u062C\u0652\u0644"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0631\u0650\u062C\u0652\u0644"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6530,7 +6890,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: light
-      _Arabic: "\u0627\u064E\u0644\u0636\u064F\u0648\u0621"
+      _Arabic: "\u0627\u064E\u0644\u0636\u064F\u0651\u0648\u0621"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0636\u064F\u0648\u0621"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6548,7 +6909,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0627\u064E\u0644\u0646\u064F\u0648\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0646\u064F\u0651\u0648\u0631"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0646\u064F\u0648\u0631"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6566,7 +6928,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0627\u064E\u0644\u0644\u0650\u0642\u0627\u0621"
+      _Arabic: "\u0627\u064E\u0644\u0644\u0650\u0651\u0642\u0627\u0621"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0644\u0650\u0642\u0627\u0621"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6585,7 +6948,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: month
-      _Arabic: "\u0627\u064E\u0644\u0634\u064E\u0647\u064E\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0634\u064E\u0651\u0647\u064E\u0631"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0634\u064E\u0647\u064E\u0631"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6604,6 +6968,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: moon
       _Arabic: "\u0627\u064E\u0644\u0642\u064E\u0645\u064E\u0631"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0642\u064E\u0645\u064E\u0631"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6622,6 +6987,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: mountain
       _Arabic: "\u0627\u064E\u0644\u062C\u064E\u0628\u064E\u0644"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062C\u064E\u0628\u064E\u0644"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6639,7 +7005,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: oil
-      _Arabic: "\u0627\u064E\u0644\u0632\u064E\u064A\u0652\u062A"
+      _Arabic: "\u0627\u064E\u0644\u0632\u064E\u0651\u064A\u0652\u062A"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0632\u064E\u064A\u0652\u062A"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6658,6 +7025,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: oven
       _Arabic: "\u0627\u064E\u0644\u0641\u064F\u0631\u0652\u0646"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0641\u064F\u0631\u0652\u0646"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6676,6 +7044,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: parrot
       _Arabic: "\u0627\u064E\u0644\u0628\u064E\u0628\u064E\u063A\u064E\u0627\u0621"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0628\u064E\u0628\u064E\u063A\u064E\u0627\u0621"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6695,7 +7064,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: player
-      _Arabic: "\u0627\u064E\u0644\u0644\u0627\u0639\u0650\u0628"
+      _Arabic: "\u0627\u064E\u0644\u0644\u0651\u0627\u0639\u0650\u0628"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0644\u0627\u0639\u0650\u0628"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6715,6 +7085,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: playground
       _Arabic: "\u0627\u064E\u0644\u0645\u064E\u0644\u0652\u0639\u064E\u0628"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0645\u064E\u0644\u0652\u0639\u064E\u0628"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6733,7 +7104,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: policeman
-      _Arabic: "\u0627\u064E\u0644\u0634\u064F\u0631\u0652\u0637\u0650\u064A"
+      _Arabic: "\u0627\u064E\u0644\u0634\u064F\u0651\u0631\u0652\u0637\u0650\u064A"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0634\u064F\u0631\u0652\u0637\u0650\u064A"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6753,6 +7125,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: restaurant
       _Arabic: "\u0627\u064E\u0644\u0645\u064E\u0637\u0652\u0639\u064E\u0645"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0645\u064E\u0637\u0652\u0639\u064E\u0645"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6771,7 +7144,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: river
-      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u0647\u064E\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u0651\u0647\u064E\u0631"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0646\u064E\u0647\u064E\u0631"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6790,6 +7164,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: room
       _Arabic: "\u0627\u064E\u0644\u063A\u064F\u0631\u0652\u0641\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u063A\u064F\u0631\u0652\u0641\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6809,6 +7184,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: sad
       _Arabic: "\u0627\u064E\u0644\u062D\u064E\u0632\u0650\u064A\u0646"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062D\u064E\u0632\u0650\u064A\u0646"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6828,6 +7204,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: scientist
       _Arabic: "\u0627\u064E\u0644\u0639\u064E\u0627\u0644\u0650\u0645"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0639\u064E\u0627\u0644\u0650\u0645"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6847,6 +7224,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: shirt
       _Arabic: "\u0627\u064E\u0644\u0642\u064E\u0645\u0650\u064A\u0635"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0642\u064E\u0645\u0650\u064A\u0635"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6866,6 +7244,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: shoe
       _Arabic: "\u0627\u064E\u0644\u062D\u0650\u0630\u064E\u0627\u0621"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062D\u0650\u0630\u064E\u0627\u0621"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6884,7 +7263,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: shop
-      _Arabic: "\u0627\u064E\u0644\u062F\u064F\u0643\u064E\u0627\u0646"
+      _Arabic: "\u0627\u064E\u0644\u062F\u064F\u0651\u0643\u064E\u0651\u0627\u0646"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062F\u064F\u0643\u064E\u0627\u0646"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6903,7 +7283,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: snow
-      _Arabic: "\u0627\u064E\u0644\u062B\u064E\u0644\u0652\u062C"
+      _Arabic: "\u0627\u064E\u0644\u062B\u064E\u0651\u0644\u0652\u062C"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062B\u064E\u0644\u0652\u062C"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6922,6 +7303,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: station
       _Arabic: "\u0627\u064E\u0644\u0645\u064E\u062D\u064E\u0637\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0645\u064E\u062D\u064E\u0637\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6940,7 +7322,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 1
       _LinkedWord: sun
-      _Arabic: "\u0627\u064E\u0644\u0634\u064E\u0645\u0652\u0633"
+      _Arabic: "\u0627\u064E\u0644\u0634\u064E\u0651\u0645\u0652\u0633"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0634\u064E\u0645\u0652\u0633"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6958,7 +7341,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 1
       _LinkedWord: table
-      _Arabic: "\u0627\u064E\u0644\u0637\u064E\u0627\u0648\u0650\u0644\u064E\u0629"
+      _Arabic: "\u0627\u064E\u0644\u0637\u064E\u0651\u0627\u0648\u0650\u0644\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0637\u064E\u0627\u0648\u0650\u0644\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6979,6 +7363,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: teacher
       _Arabic: "\u0627\u064E\u0644\u0645\u064F\u0639\u064E\u0644\u0650\u0645"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0645\u064F\u0639\u064E\u0644\u0650\u0645"
       _Value: 
       _Letters:
       - alef_fathah
@@ -6998,6 +7383,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0627\u064E\u0644\u0639\u064E\u0627\u0634\u0650\u0631\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0639\u064E\u0627\u0634\u0650\u0631\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -7017,7 +7403,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: tiger
-      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u0645\u0652\u0631"
+      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u0651\u0645\u0652\u0631"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0646\u064E\u0645\u0652\u0631"
       _Value: 
       _Letters:
       - alef_fathah
@@ -7035,7 +7422,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0627\u064E\u0644\u0633\u064E\u0627\u0639\u064E\u0629"
+      _Arabic: "\u0627\u064E\u0644\u0633\u064E\u0651\u0627\u0639\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0633\u064E\u0627\u0639\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -7054,7 +7442,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: tooth
-      _Arabic: "\u0627\u064E\u0644\u0633\u0650\u0646"
+      _Arabic: "\u0627\u064E\u0644\u0633\u0650\u0651\u0646"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0633\u0650\u0646"
       _Value: 
       _Letters:
       - alef_fathah
@@ -7072,6 +7461,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: trousers
       _Arabic: "\u0627\u064E\u0644\u0628\u064E\u0646\u0652\u0637\u064E\u0627\u0644"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0628\u064E\u0646\u0652\u0637\u064E\u0627\u0644"
       _Value: 
       _Letters:
       - alef_fathah
@@ -7092,6 +7482,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: well-being
       _Arabic: "\u0627\u064E\u0644\u062E\u064E\u064A\u0652\u0631"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062E\u064E\u064A\u0652\u0631"
       _Value: 
       _Letters:
       - alef_fathah
@@ -7110,6 +7501,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: whale
       _Arabic: "\u0627\u064E\u0644\u062D\u064F\u0648\u062A"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u062D\u064F\u0648\u062A"
       _Value: 
       _Letters:
       - alef_fathah
@@ -7127,7 +7519,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 1
       _LinkedWord: window
-      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u0627\u0641\u0650\u0630\u064E\u0629"
+      _Arabic: "\u0627\u064E\u0644\u0646\u064E\u0651\u0627\u0641\u0650\u0630\u064E\u0629"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0646\u064E\u0627\u0641\u0650\u0630\u064E\u0629"
       _Value: 
       _Letters:
       - alef_fathah
@@ -7147,7 +7540,8 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: winter
-      _Arabic: "\u0627\u064E\u0644\u0634\u0650\u062A\u064E\u0627\u0621"
+      _Arabic: "\u0627\u064E\u0644\u0634\u0650\u0651\u062A\u064E\u0627\u0621"
+      _ArabicNoShaddah: "\u0627\u064E\u0644\u0634\u0650\u062A\u064E\u0627\u0621"
       _Value: 
       _Letters:
       - alef_fathah
@@ -7166,13 +7560,13 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: wolf
-      _Arabic: "\u0627\u0644\u0630\u0626\u0628"
+      _Arabic: "\u0627\u0644\u0630\u0651\u0626\u0628"
+      _ArabicNoShaddah: "\u0627\u0644\u0630\u0626\u0628"
       _Value: 
       _Letters:
       - alef
       - lam
       - thal
-      - yeh_hamza
       - beh
       _Drawing: FF
       _Complexity: 1
@@ -7184,14 +7578,14 @@ MonoBehaviour:
       _Article: 1
       _Gender: 2
       _LinkedWord: wonderful
-      _Arabic: "\u0627\u0644\u0631\u0627\u0626\u0639"
+      _Arabic: "\u0627\u0644\u0631\u0651\u0627\u0626\u0639"
+      _ArabicNoShaddah: "\u0627\u0644\u0631\u0627\u0626\u0639"
       _Value: 
       _Letters:
       - alef
       - lam
       - reh
       - alef
-      - yeh_hamza
       - ain
       _Drawing: 24
       _Complexity: 0.6
@@ -7204,6 +7598,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: worker
       _Arabic: "\u0627\u0644\u0639\u0627\u0645\u0644"
+      _ArabicNoShaddah: "\u0627\u0644\u0639\u0627\u0645\u0644"
       _Value: 
       _Letters:
       - alef
@@ -7223,6 +7618,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0645\u0652\u0631"
+      _ArabicNoShaddah: "\u0646\u064E\u0645\u0652\u0631"
       _Value: 
       _Letters:
       - noon_fathah
@@ -7239,6 +7635,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0625\u0644\u0649"
+      _ArabicNoShaddah: "\u0625\u0644\u0649"
       _Value: 
       _Letters:
       - alef_hamza_low
@@ -7254,12 +7651,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0627\u0644\u064A\u0648\u0645"
+      _Arabic: "\u0627\u0644\u064A\u064E\u0648\u0645"
+      _ArabicNoShaddah: "\u0627\u0644\u064A\u0648\u0645"
       _Value: 
       _Letters:
       - alef
       - lam
-      - yeh
+      - yeh_fathah
       - waw
       - meem
       _Drawing: 
@@ -7273,6 +7671,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u0650\u0631\u0652\u062D\u064E\u0627\u0636"
+      _ArabicNoShaddah: "\u0645\u0650\u0631\u0652\u062D\u064E\u0627\u0636"
       _Value: 
       _Letters:
       - meem_kasrah
@@ -7291,6 +7690,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0628\u0646\u062F\u0648\u0631\u0629"
+      _ArabicNoShaddah: "\u0628\u0646\u062F\u0648\u0631\u0629"
       _Value: 
       _Letters:
       - beh
@@ -7310,6 +7710,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u063A\u064E\u062F\u0627"
+      _ArabicNoShaddah: "\u063A\u064E\u062F\u0627"
       _Value: 
       _Letters:
       - ghain_fathah
@@ -7326,6 +7727,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0644\u0650\u0633\u0627\u0646"
+      _ArabicNoShaddah: "\u0644\u0650\u0633\u0627\u0646"
       _Value: 
       _Letters:
       - lam_kasrah
@@ -7342,7 +7744,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0633\u064E\u0646"
+      _Arabic: "\u0633\u064E\u0646\u0651"
+      _ArabicNoShaddah: "\u0633\u064E\u0646"
       _Value: 
       _Letters:
       - seen_fathah
@@ -7357,11 +7760,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0628\u0631\u062C"
+      _Arabic: "\u0628\u064F\u0631\u0652\u062C"
+      _ArabicNoShaddah: "\u0628\u0631\u062C"
       _Value: 
       _Letters:
-      - beh
-      - reh
+      - beh_dammah
+      - reh_sukun
       - jeem
       _Drawing: FA
       _Complexity: 0.3
@@ -7374,6 +7778,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0634\u064E\u062C\u064E\u0631"
+      _ArabicNoShaddah: "\u0634\u064E\u062C\u064E\u0631"
       _Value: 
       _Letters:
       - sheen_fathah
@@ -7389,7 +7794,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0645\u064F\u062B\u064E\u0644\u064E\u062B"
+      _Arabic: "\u0645\u064F\u062B\u064E\u0644\u064E\u0651\u062B"
+      _ArabicNoShaddah: "\u0645\u064F\u062B\u064E\u0644\u064E\u062B"
       _Value: 
       _Letters:
       - meem_dammah
@@ -7407,6 +7813,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u0646\u0637\u0627\u0644"
+      _ArabicNoShaddah: "\u0628\u0646\u0637\u0627\u0644"
       _Value: 
       _Letters:
       - beh
@@ -7425,6 +7832,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0628\u0650\u0646\u0652\u062A\u064E\u064A\u0646"
+      _ArabicNoShaddah: "\u0628\u0650\u0646\u0652\u062A\u064E\u064A\u0646"
       _Value: 
       _Letters:
       - beh_kasrah
@@ -7442,7 +7850,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0639\u064E\u0645"
+      _Arabic: "\u0639\u064E\u0645\u0651"
+      _ArabicNoShaddah: "\u0639\u064E\u0645"
       _Value: 
       _Letters:
       - ain_fathah
@@ -7458,6 +7867,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062E\u0627\u0644"
+      _ArabicNoShaddah: "\u062E\u0627\u0644"
       _Value: 
       _Letters:
       - khah
@@ -7474,6 +7884,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062A\u064E\u062D\u0652\u062A"
+      _ArabicNoShaddah: "\u062A\u064E\u062D\u0652\u062A"
       _Value: 
       _Letters:
       - teh_fathah
@@ -7490,6 +7901,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0641\u064E\u0647\u0650\u0645\u064E"
+      _ArabicNoShaddah: "\u0641\u064E\u0647\u0650\u0645\u064E"
       _Value: 
       _Letters:
       - feh_fathah
@@ -7505,11 +7917,12 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u062E\u0636\u0631"
+      _Arabic: "\u062E\u064F\u0636\u064E\u0631"
+      _ArabicNoShaddah: "\u062E\u0636\u0631"
       _Value: 
       _Letters:
-      - khah
-      - dad
+      - khah_dammah
+      - dad_fathah
       - reh
       _Drawing: 2E
       _Complexity: 0.3
@@ -7522,6 +7935,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0628\u064E\u0627\u062A\u064A"
+      _ArabicNoShaddah: "\u0646\u064E\u0628\u064E\u0627\u062A\u064A"
       _Value: 
       _Letters:
       - noon_fathah
@@ -7540,13 +7954,14 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0628\u064E\u0627\u062A\u064A\u0651\u0646"
+      _ArabicNoShaddah: "\u0646\u064E\u0628\u064E\u0627\u062A\u064A\u0646"
       _Value: 
       _Letters:
       - noon_fathah
       - beh_fathah
       - alef
       - teh
-      - yeh_shaddah
+      - yeh
       - noon
       _Drawing: 9D
       _Complexity: 0
@@ -7559,6 +7974,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062C\u064E\u0632\u064A\u0644\u0627"
+      _ArabicNoShaddah: "\u062C\u064E\u0632\u064A\u0644\u0627"
       _Value: 
       _Letters:
       - jeem_fathah
@@ -7577,6 +7993,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0632\u064A\u0647"
+      _ArabicNoShaddah: "\u0646\u064E\u0632\u064A\u0647"
       _Value: 
       _Letters:
       - noon_fathah
@@ -7594,6 +8011,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0635\u0648\u062A"
+      _ArabicNoShaddah: "\u0635\u0648\u062A"
       _Value: 
       _Letters:
       - sad
@@ -7609,7 +8027,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u062D\u0631\u0641 \u0639\u0644\u0629"
+      _Arabic: "\u062D\u0631\u0641 \u0639\u0644\u0651\u0629"
+      _ArabicNoShaddah: "\u062D\u0631\u0641 \u0639\u0644\u0629"
       _Value: 
       _Letters:
       - hah
@@ -7629,6 +8048,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u0634\u064E\u0649"
+      _ArabicNoShaddah: "\u0645\u064E\u0634\u064E\u0649"
       _Value: 
       _Letters:
       - meem_fathah
@@ -7645,6 +8065,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0643\u0627\u0646"
+      _ArabicNoShaddah: "\u0643\u0627\u0646"
       _Value: 
       _Letters:
       - kaf
@@ -7660,7 +8081,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u063A\u064E\u0633\u0627\u0644\u064E\u0629"
+      _Arabic: "\u063A\u064E\u0633\u0651\u0627\u0644\u064E\u0629"
+      _ArabicNoShaddah: "\u063A\u064E\u0633\u0627\u0644\u064E\u0629"
       _Value: 
       _Letters:
       - ghain_fathah
@@ -7679,6 +8101,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0645\u0627\u0621"
+      _ArabicNoShaddah: "\u0645\u0627\u0621"
       _Value: 
       _Letters:
       - meem
@@ -7695,6 +8118,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0628\u0637\u064A\u062E"
+      _ArabicNoShaddah: "\u0628\u0637\u064A\u062E"
       _Value: 
       _Letters:
       - beh
@@ -7712,6 +8136,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0646\u064F\u062D\u0650\u0628\u064F"
+      _ArabicNoShaddah: "\u0646\u064F\u062D\u0650\u0628\u064F"
       _Value: 
       _Letters:
       - noon_dammah
@@ -7728,6 +8153,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u062B\u0652\u0646\u064A"
+      _ArabicNoShaddah: "\u0646\u064E\u062B\u0652\u0646\u064A"
       _Value: 
       _Letters:
       - noon_fathah
@@ -7745,6 +8171,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u062B\u0652\u0628\u064E\u062A\u064F"
+      _ArabicNoShaddah: "\u0646\u064E\u062B\u0652\u0628\u064E\u062A\u064F"
       _Value: 
       _Letters:
       - noon_fathah
@@ -7762,6 +8189,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0628\u0652\u062D\u064E\u062B\u064F"
+      _ArabicNoShaddah: "\u0646\u064E\u0628\u0652\u062D\u064E\u062B\u064F"
       _Value: 
       _Letters:
       - noon_fathah
@@ -7779,6 +8207,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0623\u0647\u0652\u0644\u0627"
+      _ArabicNoShaddah: "\u0623\u0647\u0652\u0644\u0627"
       _Value: 
       _Letters:
       - alef_hamza_hi
@@ -7796,6 +8225,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0633\u064E\u0647\u0652\u0644\u0627"
+      _ArabicNoShaddah: "\u0633\u064E\u0647\u0652\u0644\u0627"
       _Value: 
       _Letters:
       - seen_fathah
@@ -7813,6 +8243,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062E\u064E\u064A\u0631"
+      _ArabicNoShaddah: "\u062E\u064E\u064A\u0631"
       _Value: 
       _Letters:
       - khah_fathah
@@ -7829,6 +8260,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0630\u064E\u0647\u064E\u0628\u064E"
+      _ArabicNoShaddah: "\u0630\u064E\u0647\u064E\u0628\u064E"
       _Value: 
       _Letters:
       - thal_fathah
@@ -7845,6 +8277,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0630\u064E\u0647\u064E\u0628\u064E\u062A"
+      _ArabicNoShaddah: "\u0630\u064E\u0647\u064E\u0628\u064E\u062A"
       _Value: 
       _Letters:
       - thal_fathah
@@ -7862,6 +8295,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u062D\u0648\u062A"
+      _ArabicNoShaddah: "\u062D\u0648\u062A"
       _Value: 
       _Letters:
       - hah
@@ -7878,6 +8312,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0645\u0627"
+      _ArabicNoShaddah: "\u0645\u0627"
       _Value: 
       _Letters:
       - meem
@@ -7893,6 +8328,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0643\u064E\u0645"
+      _ArabicNoShaddah: "\u0643\u064E\u0645"
       _Value: 
       _Letters:
       - kaf_fathah
@@ -7908,6 +8344,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062D\u064A\u0646"
+      _ArabicNoShaddah: "\u062D\u064A\u0646"
       _Value: 
       _Letters:
       - hah
@@ -7924,6 +8361,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062D\u064E\u064A\u062B"
+      _ArabicNoShaddah: "\u062D\u064E\u064A\u062B"
       _Value: 
       _Letters:
       - hah_fathah
@@ -7940,6 +8378,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0627\u0641\u0650\u0630\u064E\u0629"
+      _ArabicNoShaddah: "\u0646\u064E\u0627\u0641\u0650\u0630\u064E\u0629"
       _Value: 
       _Letters:
       - noon_fathah
@@ -7958,6 +8397,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0634\u0650\u062A\u0627\u0621"
+      _ArabicNoShaddah: "\u0634\u0650\u062A\u0627\u0621"
       _Value: 
       _Letters:
       - sheen_kasrah
@@ -7975,6 +8415,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0645\u064E\u0639\u064E \u0623\u062F\u0627\u0629 \u0627\u064E\u0644\u0652\u062A\u064E\u0639\u0652\u0631\u0650\u064A\u0641"
+      _ArabicNoShaddah: "\u0645\u064E\u0639\u064E \u0623\u062F\u0627\u0629 \u0627\u064E\u0644\u0652\u062A\u064E\u0639\u0652\u0631\u0650\u064A\u0641"
       _Value: 
       _Letters:
       - meem_fathah
@@ -8001,6 +8442,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0628\u0650\u062E\u064E\u064A\u0631"
+      _ArabicNoShaddah: "\u0628\u0650\u062E\u064E\u064A\u0631"
       _Value: 
       _Letters:
       - beh_kasrah
@@ -8018,6 +8460,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062F\u0648\u0646 \u0623\u062F\u0627\u0629 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
+      _ArabicNoShaddah: "\u062F\u0648\u0646 \u0623\u062F\u0627\u0629 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
       _Value: 
       _Letters:
       - dal
@@ -8045,10 +8488,10 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0630\u0650\u0626\u0628"
+      _ArabicNoShaddah: "\u0630\u0650\u0626\u0628"
       _Value: 
       _Letters:
       - thal_kasrah
-      - yeh_hamza
       - beh
       _Drawing: FF
       _Complexity: 1
@@ -8061,6 +8504,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0627\u0645\u0631\u0623\u0629"
+      _ArabicNoShaddah: "\u0627\u0645\u0631\u0623\u0629"
       _Value: 
       _Letters:
       - alef
@@ -8079,6 +8523,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0631\u064E\u0628\u0650\u062D\u064E"
+      _ArabicNoShaddah: "\u0631\u064E\u0628\u0650\u062D\u064E"
       _Value: 
       _Letters:
       - reh_fathah
@@ -8095,6 +8540,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0631\u064E\u0628\u0650\u062D\u064E\u062A"
+      _ArabicNoShaddah: "\u0631\u064E\u0628\u0650\u062D\u064E\u062A"
       _Value: 
       _Letters:
       - reh_fathah
@@ -8112,11 +8558,11 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0631\u064E\u0627\u0626\u0639"
+      _ArabicNoShaddah: "\u0631\u064E\u0627\u0626\u0639"
       _Value: 
       _Letters:
       - reh_fathah
       - alef
-      - yeh_hamza
       - ain
       _Drawing: 24
       _Complexity: 0.6
@@ -8129,6 +8575,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0644\u064E\u0628\u0650\u0633\u064E"
+      _ArabicNoShaddah: "\u0644\u064E\u0628\u0650\u0633\u064E"
       _Value: 
       _Letters:
       - lam_fathah
@@ -8145,6 +8592,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u0627\u0645\u0650\u0644"
+      _ArabicNoShaddah: "\u0639\u0627\u0645\u0650\u0644"
       _Value: 
       _Letters:
       - ain
@@ -8162,6 +8610,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u0627\u0645\u0650\u0644\u0627\u0646"
+      _ArabicNoShaddah: "\u0639\u0627\u0645\u0650\u0644\u0627\u0646"
       _Value: 
       _Letters:
       - ain
@@ -8180,7 +8629,8 @@ MonoBehaviour:
       _Article: 0
       _Gender: 2
       _LinkedWord: 
-      _Arabic: "\u0639\u064F\u0645\u0627\u0644"
+      _Arabic: "\u0639\u064F\u0645\u0651\u0627\u0644"
+      _ArabicNoShaddah: "\u0639\u064F\u0645\u0627\u0644"
       _Value: 
       _Letters:
       - ain_dammah
@@ -8198,6 +8648,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0643\u064E\u062A\u064E\u0628\u064E"
+      _ArabicNoShaddah: "\u0643\u064E\u062A\u064E\u0628\u064E"
       _Value: 
       _Letters:
       - kaf_fathah
@@ -8214,6 +8665,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0639\u0627\u0645"
+      _ArabicNoShaddah: "\u0639\u0627\u0645"
       _Value: 
       _Letters:
       - ain
@@ -8230,6 +8682,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0646\u064E\u0639\u064E\u0645"
+      _ArabicNoShaddah: "\u0646\u064E\u0639\u064E\u0645"
       _Value: 
       _Letters:
       - noon_fathah
@@ -8246,6 +8699,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629"
+      _ArabicNoShaddah: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629"
       _Value: 
       _Letters:
       - alef
@@ -8266,6 +8720,7 @@ MonoBehaviour:
       _Gender: 2
       _LinkedWord: 
       _Arabic: "\u0644\u064E\u0628\u064E\u0646"
+      _ArabicNoShaddah: "\u0644\u064E\u0628\u064E\u0646"
       _Value: 
       _Letters:
       - lam_fathah
@@ -8282,6 +8737,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0623\u064E\u0646\u0652\u062A\u064E"
+      _ArabicNoShaddah: "\u0623\u064E\u0646\u0652\u062A\u064E"
       _Value: 
       _Letters:
       - alef_hamza_hi_fathah
@@ -8298,6 +8754,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062A\u064F\u062D\u0650\u0628\u064A\u0646\u064E"
+      _ArabicNoShaddah: "\u062A\u064F\u062D\u0650\u0628\u064A\u0646\u064E"
       _Value: 
       _Letters:
       - teh_dammah
@@ -8316,6 +8773,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062A\u064E\u062B\u0652\u0646\u064A\u0646\u064E"
+      _ArabicNoShaddah: "\u062A\u064E\u062B\u0652\u0646\u064A\u0646\u064E"
       _Value: 
       _Letters:
       - teh_fathah
@@ -8334,6 +8792,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062A\u064E\u062B\u0652\u0628\u064E\u062A\u064A\u0646\u064E"
+      _ArabicNoShaddah: "\u062A\u064E\u062B\u0652\u0628\u064E\u062A\u064A\u0646\u064E"
       _Value: 
       _Letters:
       - teh_fathah
@@ -8353,6 +8812,7 @@ MonoBehaviour:
       _Gender: 1
       _LinkedWord: 
       _Arabic: "\u062A\u064E\u0628\u0652\u062D\u064E\u062B\u0650\u064A\u0646\u064E"
+      _ArabicNoShaddah: "\u062A\u064E\u0628\u0652\u062D\u064E\u062B\u0650\u064A\u0646\u064E"
       _Value: 
       _Letters:
       - teh_fathah
@@ -8372,6 +8832,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u0627\u0650\u0633\u0652\u0645\u064F\u0643"
+      _ArabicNoShaddah: "\u0627\u0650\u0633\u0652\u0645\u064F\u0643"
       _Value: 
       _Letters:
       - alef_kasrah
@@ -8389,6 +8850,7 @@ MonoBehaviour:
       _Gender: 0
       _LinkedWord: 
       _Arabic: "\u062D\u0627\u0644\u064F\u0643"
+      _ArabicNoShaddah: "\u062D\u0627\u0644\u064F\u0643"
       _Value: 
       _Letters:
       - hah
