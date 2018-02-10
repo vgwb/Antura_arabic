@@ -129,35 +129,6 @@ MonoBehaviour:
       _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: ain_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: ain_shaddah
-      _Kind: 5
-      _BaseLetter: ain
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: ain_sukun
-      _SoundZone: 
-      _Isolated: "\u0639\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0639
-      _Initial_Unicode: FECB
-      _Medial_Unicode: FECC
-      _Final_Unicode: FECA
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: ain_sukun
       _Active: 1
       _Number: 0
@@ -767,35 +738,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: dad_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: dad_shaddah
-      _Kind: 5
-      _BaseLetter: dad
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: dad_sukun
-      _SoundZone: 
-      _Isolated: "\u0636\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0636
-      _Initial_Unicode: FEBF
-      _Medial_Unicode: FEC0
-      _Final_Unicode: FEBE
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: dad_sukun
       _Active: 1
       _Number: 0
@@ -936,35 +878,6 @@ MonoBehaviour:
       _Medial_Unicode: FEAA
       _Final_Unicode: FEAA
       _Symbol_Unicode: 0650
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: dal_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: dal_shaddah
-      _Kind: 5
-      _BaseLetter: dal
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: dal_sukun
-      _SoundZone: 
-      _Isolated: "\u062F\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 062F
-      _Initial_Unicode: 062F
-      _Medial_Unicode: FEAA
-      _Final_Unicode: FEAA
-      _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
@@ -1173,35 +1086,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: feh_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: feh_shaddah
-      _Kind: 5
-      _BaseLetter: feh
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: feh_sukun
-      _SoundZone: 
-      _Isolated: "\u0641\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0641
-      _Initial_Unicode: FED3
-      _Medial_Unicode: FED4
-      _Final_Unicode: FED2
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: feh_sukun
       _Active: 1
       _Number: 0
@@ -1347,35 +1231,6 @@ MonoBehaviour:
       _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: ghain_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: ghain_shaddah
-      _Kind: 5
-      _BaseLetter: ghain
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: ghain_sukun
-      _SoundZone: 
-      _Isolated: "\u063A\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 063A
-      _Initial_Unicode: FECF
-      _Medial_Unicode: FED0
-      _Final_Unicode: FECE
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: ghain_sukun
       _Active: 1
       _Number: 0
@@ -1516,35 +1371,6 @@ MonoBehaviour:
       _Medial_Unicode: FEA4
       _Final_Unicode: FEA2
       _Symbol_Unicode: 0650
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: hah_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: hah_shaddah
-      _Kind: 5
-      _BaseLetter: hah
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: hah_shaddah__lettername
-      _PhonemeSound: hah_sukun
-      _SoundZone: 
-      _Isolated: "\u062D\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 062D
-      _Initial_Unicode: FEA3
-      _Medial_Unicode: FEA4
-      _Final_Unicode: FEA2
-      _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 
       _MedialFix: 1
@@ -1811,35 +1637,6 @@ MonoBehaviour:
       _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: heh_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: heh_shaddah
-      _Kind: 5
-      _BaseLetter: heh
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: heh_sukun
-      _SoundZone: 
-      _Isolated: "\u0647\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0647
-      _Initial_Unicode: FEEB
-      _Medial_Unicode: FEEC
-      _Final_Unicode: FEEA
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: heh_sukun
       _Active: 1
       _Number: 0
@@ -1985,35 +1782,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: jeem_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: jeem_shaddah
-      _Kind: 5
-      _BaseLetter: jeem
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: jeem_shaddah__lettername
-      _PhonemeSound: jeem_sukun
-      _SoundZone: 
-      _Isolated: "\u062C\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 062C
-      _Initial_Unicode: FE9F
-      _Medial_Unicode: FEA0
-      _Final_Unicode: FE9E
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: jeem_sukun
       _Active: 1
       _Number: 0
@@ -2154,35 +1922,6 @@ MonoBehaviour:
       _Medial_Unicode: FEDC
       _Final_Unicode: FEDA
       _Symbol_Unicode: 0650
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: kaf_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: kaf_shaddah
-      _Kind: 5
-      _BaseLetter: kaf
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: kaf_sukun
-      _SoundZone: 
-      _Isolated: "\u0643\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0643
-      _Initial_Unicode: FEDB
-      _Medial_Unicode: FEDC
-      _Final_Unicode: FEDA
-      _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
@@ -2357,35 +2096,6 @@ MonoBehaviour:
       _Medial_Unicode: FEA8
       _Final_Unicode: FEA6
       _Symbol_Unicode: 0650
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: khah_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: khah_shaddah
-      _Kind: 5
-      _BaseLetter: khah
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: khah_sukun
-      _SoundZone: 
-      _Isolated: "\u062E\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 062E
-      _Initial_Unicode: FEA7
-      _Medial_Unicode: FEA8
-      _Final_Unicode: FEA6
-      _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 
       _MedialFix: 1
@@ -2739,35 +2449,6 @@ MonoBehaviour:
       _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: lam_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: lam_shaddah
-      _Kind: 5
-      _BaseLetter: lam
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: lam_sukun
-      _SoundZone: 
-      _Isolated: "\u0644\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0644
-      _Initial_Unicode: FEDF
-      _Medial_Unicode: FEE0
-      _Final_Unicode: FEDE
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: lam_sukun
       _Active: 1
       _Number: 0
@@ -2942,35 +2623,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: meem_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: meem_shaddah
-      _Kind: 5
-      _BaseLetter: meem
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: meem_sukun
-      _SoundZone: 
-      _Isolated: "\u0645\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0645
-      _Initial_Unicode: FEE3
-      _Medial_Unicode: FEE4
-      _Final_Unicode: FEE2
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: meem_sukun
       _Active: 1
       _Number: 0
@@ -3111,35 +2763,6 @@ MonoBehaviour:
       _Medial_Unicode: FEE8
       _Final_Unicode: FEE6
       _Symbol_Unicode: 0650
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: noon_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: noon_shaddah
-      _Kind: 5
-      _BaseLetter: noon
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: noon_sukun
-      _SoundZone: 
-      _Isolated: "\u0646\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0646
-      _Initial_Unicode: FEE7
-      _Medial_Unicode: FEE8
-      _Final_Unicode: FEE6
-      _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
@@ -3290,35 +2913,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: qaf_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: qaf_shaddah
-      _Kind: 5
-      _BaseLetter: qaf
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: qaf_sukun
-      _SoundZone: 
-      _Isolated: "\u0642\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0642
-      _Initial_Unicode: FED7
-      _Medial_Unicode: FED8
-      _Final_Unicode: FED6
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: qaf_sukun
       _Active: 1
       _Number: 0
@@ -3459,35 +3053,6 @@ MonoBehaviour:
       _Medial_Unicode: FEAE
       _Final_Unicode: FEAE
       _Symbol_Unicode: 0650
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: reh_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: reh_shaddah
-      _Kind: 5
-      _BaseLetter: reh
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: reh_sukun
-      _SoundZone: 
-      _Isolated: "\u0631\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0631
-      _Initial_Unicode: 0631
-      _Medial_Unicode: FEAE
-      _Final_Unicode: FEAE
-      _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
@@ -3638,35 +3203,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: sad_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: sad_shaddah
-      _Kind: 5
-      _BaseLetter: sad
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: sad_sukun
-      _SoundZone: 
-      _Isolated: "\u0635\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0635
-      _Initial_Unicode: FEBB
-      _Medial_Unicode: FEBC
-      _Final_Unicode: FEBA
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: sad_sukun
       _Active: 1
       _Number: 0
@@ -3812,35 +3348,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: seen_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: seen_shaddah
-      _Kind: 5
-      _BaseLetter: seen
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: seen_sukun
-      _SoundZone: 
-      _Isolated: "\u0633\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0633
-      _Initial_Unicode: FEB3
-      _Medial_Unicode: FEB4
-      _Final_Unicode: FEB2
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: seen_sukun
       _Active: 1
       _Number: 0
@@ -3868,35 +3375,6 @@ MonoBehaviour:
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: shaddah
-      _Active: 1
-      _Number: 0
-      _Title: shaddah
-      _Kind: 3
-      _BaseLetter: 
-      _Symbol: 
-      _Type: 4
-      _Tag: 
-      _Notes: doubling the consonant sound
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: shaddah__lettername
-      _PhonemeSound: 
-      _SoundZone: 
-      _Isolated: "\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0651
-      _Initial_Unicode: 
-      _Medial_Unicode: 
-      _Final_Unicode: 
-      _Symbol_Unicode: 
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: sheen
@@ -4010,35 +3488,6 @@ MonoBehaviour:
       _Medial_Unicode: FEB8
       _Final_Unicode: FEB6
       _Symbol_Unicode: 0650
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: sheen_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: sheen_shaddah
-      _Kind: 5
-      _BaseLetter: sheen
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: sheen_sukun
-      _SoundZone: 
-      _Isolated: "\u0634\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0634
-      _Initial_Unicode: FEB7
-      _Medial_Unicode: FEB8
-      _Final_Unicode: FEB6
-      _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
@@ -4213,35 +3662,6 @@ MonoBehaviour:
       _Medial_Unicode: FEC4
       _Final_Unicode: FEC2
       _Symbol_Unicode: 0650
-      _InitialFix: 1
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: tah_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: tah_shaddah
-      _Kind: 5
-      _BaseLetter: tah
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: tah_sukun
-      _SoundZone: 
-      _Isolated: "\u0637\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0637
-      _Initial_Unicode: FEC3
-      _Medial_Unicode: FEC4
-      _Final_Unicode: FEC2
-      _Symbol_Unicode: 0651
       _InitialFix: 1
       _FinalFix: 1
       _MedialFix: 1
@@ -4653,35 +4073,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: thal_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: thal_shaddah
-      _Kind: 5
-      _BaseLetter: thal
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: thal_sukun
-      _SoundZone: 
-      _Isolated: "\u0630\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0630
-      _Initial_Unicode: 0630
-      _Medial_Unicode: FEAC
-      _Final_Unicode: FEAC
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: thal_sukun
       _Active: 1
       _Number: 0
@@ -5001,35 +4392,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: waw_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: waw_shaddah
-      _Kind: 5
-      _BaseLetter: waw
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: waw_fathah
-      _SoundZone: 
-      _Isolated: "\u0648\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0648
-      _Initial_Unicode: 0648
-      _Medial_Unicode: FEEE
-      _Final_Unicode: FEEE
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: waw_sukun
       _Active: 1
       _Number: 0
@@ -5204,35 +4566,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: yeh_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: yeh_shaddah
-      _Kind: 5
-      _BaseLetter: yeh
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: yeh_sukun
-      _SoundZone: 
-      _Isolated: "\u064A\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 064A
-      _Initial_Unicode: FEF3
-      _Medial_Unicode: FEF4
-      _Final_Unicode: FEF2
-      _Symbol_Unicode: 0651
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: yeh_sukun
       _Active: 1
       _Number: 0
@@ -5378,35 +4711,6 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: zah_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: zah_shaddah
-      _Kind: 5
-      _BaseLetter: zah
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: zah_sukun
-      _SoundZone: 
-      _Isolated: "\u0638\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0638
-      _Initial_Unicode: FEC7
-      _Medial_Unicode: FEC8
-      _Final_Unicode: FEC6
-      _Symbol_Unicode: 0651
-      _InitialFix: 1
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: zah_sukun
       _Active: 1
       _Number: 0
@@ -5547,35 +4851,6 @@ MonoBehaviour:
       _Medial_Unicode: FEB0
       _Final_Unicode: FEB0
       _Symbol_Unicode: 0650
-      _InitialFix: 
-      _FinalFix: 1
-      _MedialFix: 1
-      _Complexity: 1
-      ForcedLetterForm: 0
-    - _Id: zain_shaddah
-      _Active: 1
-      _Number: 0
-      _Title: zain_shaddah
-      _Kind: 5
-      _BaseLetter: zain
-      _Symbol: shaddah
-      _Type: 0
-      _Tag: 
-      _Notes: 
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: 
-      _PhonemeSound: zain_sukun
-      _SoundZone: 
-      _Isolated: "\u0632\u0651"
-      _Initial: 
-      _Medial: 
-      _Final: 
-      _Isolated_Unicode: 0632
-      _Initial_Unicode: 0632
-      _Medial_Unicode: FEB0
-      _Final_Unicode: FEB0
-      _Symbol_Unicode: 0651
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
