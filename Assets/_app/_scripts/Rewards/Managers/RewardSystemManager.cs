@@ -4,6 +4,7 @@ using Antura.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -138,23 +139,26 @@ namespace Antura.Rewards
         {
             if (!rewardPacksDict.ContainsKey(baseType)) { throw new ArgumentNullException("Dict not initialised correctly!"); }
             var allRewardsOfBaseType = rewardPacksDict[baseType];
-
-            if (onePerBase) {
-                List<RewardPack> basePacks = new List<RewardPack>();
-                foreach (var rewardBase in GetRewardBasesOfType(baseType)) {
-                    var firstBasePack = allRewardsOfBaseType.First(x => x.RewardBase == rewardBase);
-                    basePacks.Add(firstBasePack);
-                }
-                return basePacks;
-            } else {
-                return allRewardsOfBaseType;
-            }
+            return onePerBase ? FilterByOnePerBase(allRewardsOfBaseType, baseType) : allRewardsOfBaseType;
         }
 
-        public List<RewardPack> GetUnlockedRewardPacksOfBaseType(RewardBaseType baseType)
+        public List<RewardPack> GetUnlockedRewardPacksOfBaseType(RewardBaseType baseType, bool onePerBase = false)
         {
             if (!rewardPacksDict.ContainsKey(baseType)) { throw new ArgumentNullException("Dict not initialised correctly!"); }
-            return rewardPacksDict[baseType].Where(x => x.IsUnlocked).ToList();
+            var unlockedRewardsOfBaseType = rewardPacksDict[baseType].Where(x => x.IsUnlocked).ToList();
+            return onePerBase ? FilterByOnePerBase(unlockedRewardsOfBaseType, baseType) : unlockedRewardsOfBaseType;
+        }
+
+        List<RewardPack> FilterByOnePerBase(List<RewardPack> inPacks, RewardBaseType baseType)
+        {
+            if (inPacks.Count == 0) return inPacks;
+            List<RewardPack> basePacks = new List<RewardPack>();
+            foreach (var rewardBase in GetRewardBasesOfType(baseType))
+            {
+                var firstBasePack = inPacks.FirstOrDefault(x => x.RewardBase == rewardBase);
+                if (firstBasePack != null) basePacks.Add(firstBasePack);
+            }
+            return basePacks;
         }
 
         public IEnumerable<RewardPack> GetRewardPacks()
@@ -348,14 +352,24 @@ namespace Antura.Rewards
         }
 
         /// <summary>
-        /// Gets the unlocked reward count for the current player. 0 if current player is null.
+        /// Gets the total count of all reward packs. 
+        /// Any base with any color variation available in game.
         /// </summary>
-        /// <returns></returns>
-        public int GetUnlockedRewardsCount()
+        public int GetUnlockedRewardPacksCount(bool mergePropColors = false)
         {
-            return AppManager.I.Player != null ? GetUnlockedRewardPacks().Count : 0;
+            if (mergePropColors)
+            {
+                int tot = 0;
+                tot += GetUnlockedRewardPacksOfBaseType(RewardBaseType.Decal).Count;
+                tot += GetUnlockedRewardPacksOfBaseType(RewardBaseType.Texture).Count;
+                tot += GetUnlockedRewardPacksOfBaseType(RewardBaseType.Prop, true).Count;
+                return tot;
+            }
+            else {
+                return GetUnlockedRewardPacks().Count;
+            }
         }
-
+        
         private IEnumerable<RewardPack> GetRewardPacksAlreadyUnlockedForJourneyPosition(JourneyPosition journeyPosition)
         {
             return GetRewardPacks().Where(x => x.IsFoundAtJourneyPosition(journeyPosition) && x.IsUnlocked);
