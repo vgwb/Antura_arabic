@@ -47,7 +47,7 @@ namespace Antura.Book
             //InfoTable.AddRow(LocalizationDataId.UI_Games_played, GetTotalMiniGamePlayInstances().ToString());
 
             // Total stars
-            var playerStars = GetTotalMiniGameStars();
+            var playerStars = GetPlaySessionStars();
             StarsSlider.SetValue(playerStars, TOTAL_NUMBER_OF_STARS);
             //InfoTable.AddRow(LocalizationDataId.UI_Stars, totalStars.ToString());
 
@@ -190,11 +190,12 @@ namespace Antura.Book
             return total;
         }
 
-        private int GetTotalMiniGameStars()
+        private int GetPlaySessionStars()
         {
-            string query = "select * from " + typeof(MiniGameScoreData).Name;
-            var list = AppManager.I.DB.Query<MiniGameScoreData>(query);
-            var totalStars = list.Sum(data => data.Stars);
+            string query = "select * from " + typeof(JourneyScoreData).Name;
+            var list = AppManager.I.DB.Query<JourneyScoreData>(query);
+            // @note: assessments are skipped when computing stars
+            var totalStars = list.Sum(data => data.PlaySession != JourneyPosition.ASSESSMENT_PLAY_SESSION_INDEX ? data.Stars : 0);
             return totalStars;
         }
 
