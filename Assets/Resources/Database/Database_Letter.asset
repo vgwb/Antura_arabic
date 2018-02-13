@@ -1418,7 +1418,7 @@ MonoBehaviour:
       _SunMoon: 0
       _Sound: 
       _NameSound: hamza__lettername
-      _PhonemeSound: alef_hamza_hi_fathah
+      _PhonemeSound: alef_sukun
       _SoundZone: 
       _Isolated: "\u0621"
       _Initial: 
@@ -3375,6 +3375,35 @@ MonoBehaviour:
       _InitialFix: 
       _FinalFix: 1
       _MedialFix: 1
+      _Complexity: 1
+      ForcedLetterForm: 0
+    - _Id: shaddah
+      _Active: 1
+      _Number: 0
+      _Title: shaddah
+      _Kind: 3
+      _BaseLetter: 
+      _Symbol: 
+      _Type: 4
+      _Tag: 
+      _Notes: doubling the consonant sound
+      _SunMoon: 0
+      _Sound: 
+      _NameSound: shaddah__lettername
+      _PhonemeSound: 
+      _SoundZone: 
+      _Isolated: "\u0651"
+      _Initial: 
+      _Medial: 
+      _Final: 
+      _Isolated_Unicode: 0651
+      _Initial_Unicode: 
+      _Medial_Unicode: 
+      _Final_Unicode: 
+      _Symbol_Unicode: 
+      _InitialFix: 
+      _FinalFix: 
+      _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
     - _Id: sheen
