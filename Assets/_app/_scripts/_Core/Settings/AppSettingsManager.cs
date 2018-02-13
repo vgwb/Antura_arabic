@@ -34,6 +34,7 @@ namespace Antura.Core
             if (PlayerPrefs.HasKey(SETTINGS_PREFS_KEY)) {
                 var serializedObjs = PlayerPrefs.GetString(SETTINGS_PREFS_KEY);
                 Settings = JsonUtility.FromJson<AppSettings>(serializedObjs);
+                //Debug.Log("LoadAppSettings " + serializedObjs);
             } else {
                 Settings = new AppSettings();
             }
@@ -72,9 +73,7 @@ namespace Antura.Core
 
         public bool IsAppJustUpdatedFromOldVersion()
         {
-            // AppManager.I.AppSettingsManager.AppVersionPrevious <= new Version(1, 0, 0, 0)) {
-
-            return false;
+            return (AppManager.I.AppSettingsManager.AppVersionPrevious <= new Version(1, 0, 0, 0));
         }
 
         public void UpdateAppVersion()

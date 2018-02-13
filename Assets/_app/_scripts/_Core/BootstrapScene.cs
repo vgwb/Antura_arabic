@@ -2,7 +2,6 @@
 using Antura.UI;
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Antura.Scenes
 {
@@ -18,9 +17,14 @@ namespace Antura.Scenes
         protected override void Start()
         {
             if (AppManager.I.AppSettingsManager.IsAppJustUpdatedFromOldVersion()) {
+                Debug.Log("Updating from Old version");
                 AppManager.I.AppSettingsManager.AppUpdateCheckDone();
-                AppManager.I.PlayerProfileManager.DeleteAllPlayers();
-                PanelAppUpdate.Init();
+                if (AppManager.I.AppSettings.SavedPlayers != null) {
+                    AppManager.I.PlayerProfileManager.DeleteAllPlayers();
+                    PanelAppUpdate.Init();
+                } else {
+                    GoToHomeScene();
+                }
             } else {
                 GoToHomeScene();
             }
@@ -29,7 +33,6 @@ namespace Antura.Scenes
         private void GoToHomeScene()
         {
             AppManager.I.NavigationManager.GoToHome();
-            //SceneManager.LoadScene(SceneHelper.GetSceneName(AppScene.Home));
         }
 
         public void CloseAppUpdatePanel()
