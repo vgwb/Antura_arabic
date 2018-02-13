@@ -395,6 +395,12 @@ namespace Antura.Helpers
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE98", "064F"), new Vector2(-10, 40));
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE96", "064F"), new Vector2(60, 0));
 
+            // teh_shaddah
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("062A", "0651"), new Vector2(0, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE97", "0651"), new Vector2(0, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE98", "0651"), new Vector2(0, 100));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE96", "0651"), new Vector2(0, 0));
+
             //////// LETTER theh
             // theh_kasrah
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("062B", "0650"), new Vector2(160, 0));
@@ -416,6 +422,12 @@ namespace Antura.Helpers
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE9B", "064F"), new Vector2(-30, 70));
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE9C", "064F"), new Vector2(-30, 70));
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE9A", "064F"), new Vector2(60, 40));
+
+            // theh_shaddah
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("062B", "0651"), new Vector2(0, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE9B", "0651"), new Vector2(0, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE9C", "0651"), new Vector2(0, 120));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE9A", "0651"), new Vector2(0, 0));
 
             //////// LETTER jeem
             // jeem_fathah
@@ -904,7 +916,7 @@ namespace Antura.Helpers
             // meem_shaddah
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("0645", "0651"), new Vector2(0, 0));
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FEE3", "0651"), new Vector2(0, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FEE4", "0651"), new Vector2(0, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FEE4", "0651"), new Vector2(0, 120));
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FEE2", "0651"), new Vector2(0, 0));
             // meem_sukun
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("0645", "0652"), new Vector2(0, 0));
@@ -1048,7 +1060,9 @@ namespace Antura.Helpers
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE94", "064E"), new Vector2(0, 0));
 
             //////// SYMBOL shaddah
-            DiacriticCombos2Fix.Add(new DiacriticComboEntry("064E", "0651"), new Vector2(0, 100));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("0650", "0651"), new Vector2(0, 20));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("064E", "0651"), new Vector2(0, 160));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FEFC", "0651"), new Vector2(20, 130));
         }
 
         private static Vector2 FindDiacriticCombo2Fix(string Unicode1, string Unicode2)

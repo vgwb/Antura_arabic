@@ -34,8 +34,12 @@ namespace Antura.Book
         private LocalizationData CategoryData;
         private GameObject btnGO;
 
+        private string debugSingleWord;
+
         private void OnEnable()
         {
+            debugSingleWord = "";
+
             var cat = new GenericCategoryData
             {
                 area = VocabularyChapter.Words,
@@ -59,8 +63,13 @@ namespace Antura.Book
                 var contents = TeacherAI.I.VocabularyAi.GetContentsOfStage(currentCategory.Stage);
                 var hashList = contents.GetHashSet<WordData>();
                 wordsList = new List<WordData>();
-                wordsList.AddRange(hashList);
 
+                if (debugSingleWord != "") {
+                    var customWord = AppManager.I.DB.GetWordDataById(debugSingleWord);
+                    wordsList.Add(customWord);
+                } else {
+                    wordsList.AddRange(hashList);
+                }
             } else {
                 wordsList = AppManager.I.DB.FindWordData((x) => (x.Category == currentCategory.wordCategory));
             }
@@ -121,12 +130,8 @@ namespace Antura.Book
         public void DetailWord(WordInfo _currentWord)
         {
             currentWordInfo = _currentWord;
-
             DetailPanel.SetActive(true);
-
             HighlightWordItem(currentWordInfo.data.Id);
-
-            Debug.Log("Detail Word :" + currentWordInfo.data.Id);
             PlayWord();
 
             // empty spelling container
@@ -143,8 +148,6 @@ namespace Antura.Book
 
             WordArabicText.text = currentWordInfo.data.Arabic;
 
-            Debug.Log("parse word: " + ArabicAlphabetHelper.GetStringUnicodes(currentWordInfo.data.Arabic));
-
             if (currentWordInfo.data.Drawing != "") {
                 WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(currentWordInfo.data);
                 if (currentWordInfo.data.Category == WordDataCategory.Color) {
@@ -154,6 +157,11 @@ namespace Antura.Book
                 WordDrawingText.text = "";
             }
 
+            if (AppConfig.DebugLogEnabled) {
+                Debug.Log("Detail Word(): " + currentWordInfo.data.Id);
+                Debug.Log("word unicodes: " + ArabicAlphabetHelper.GetStringUnicodes(currentWordInfo.data.Arabic));
+                Debug.Log("word unicodes forms: " + ArabicAlphabetHelper.GetStringUnicodes(WordArabicText.RenderedText));
+            }
             //ScoreText.text = "Score: " + currentWord.score;
         }
 
