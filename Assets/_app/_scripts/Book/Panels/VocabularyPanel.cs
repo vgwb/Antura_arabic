@@ -46,7 +46,7 @@ namespace Antura.Book
 
         void OnEnable()
         {
-            OpenArea(VocabularyChapter.Words);
+            OpenArea(VocabularyChapter.Letters);
         }
 
         void OpenArea(VocabularyChapter newArea)

@@ -2304,35 +2304,6 @@ MonoBehaviour:
       _MedialFix: 
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: lam_alef_maddah
-      _Active: 1
-      _Number: 0
-      _Title: lam alef_maddah
-      _Kind: 4
-      _BaseLetter: lam
-      _Symbol: alef_maddah
-      _Type: 0
-      _Tag: 
-      _Notes: variation of Lam
-      _SunMoon: 0
-      _Sound: 
-      _NameSound: lam_alef_maddah__lettername
-      _PhonemeSound: lam_alef_maddah
-      _SoundZone: 
-      _Isolated: "\uFEF5"
-      _Initial: 
-      _Medial: 
-      _Final: "\uFEF6"
-      _Isolated_Unicode: FEF5
-      _Initial_Unicode: 
-      _Medial_Unicode: 
-      _Final_Unicode: FEF6
-      _Symbol_Unicode: 
-      _InitialFix: 
-      _FinalFix: 
-      _MedialFix: 
-      _Complexity: 1
-      ForcedLetterForm: 0
     - _Id: lam_dammah
       _Active: 1
       _Number: 0
