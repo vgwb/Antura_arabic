@@ -143,6 +143,8 @@ namespace Antura.Book
 
             WordArabicText.text = currentWordInfo.data.Arabic;
 
+            Debug.Log("parse word: " + ArabicAlphabetHelper.GetStringUnicodes(currentWordInfo.data.Arabic));
+
             if (currentWordInfo.data.Drawing != "") {
                 WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(currentWordInfo.data);
                 if (currentWordInfo.data.Category == WordDataCategory.Color) {

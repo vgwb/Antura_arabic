@@ -65,6 +65,17 @@ namespace Antura.Helpers
             return GenericHelper.ReverseText(ArabicFixer.Fix(str, true, true));
         }
 
+        public static string GetStringUnicodes(string str)
+        {
+            char[] chars = str.ToCharArray();
+            string output = "";
+            for (int i = 0; i < chars.Length; i++) {
+                char character = chars[i];
+                output += GetHexUnicodeFromChar(character) + ", ";
+            }
+            return output;
+        }
+
         /// <summary>
         /// Return single letter string start from unicode hex code.
         /// </summary>
@@ -925,7 +936,7 @@ namespace Antura.Helpers
             // noon_shaddah
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("0646", "0651"), new Vector2(0, 0));
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FEE7", "0651"), new Vector2(0, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FEE8", "0651"), new Vector2(0, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("FEE8", "0651"), new Vector2(0, 40));
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FEE6", "0651"), new Vector2(0, 0));
             // noon_sukun
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("0646", "0652"), new Vector2(50, 0));
@@ -1035,6 +1046,9 @@ namespace Antura.Helpers
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("0629", "064E"), new Vector2(0, 0));
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("", "064E"), new Vector2(0, 0));
             DiacriticCombos2Fix.Add(new DiacriticComboEntry("FE94", "064E"), new Vector2(0, 0));
+
+            //////// SYMBOL shaddah
+            DiacriticCombos2Fix.Add(new DiacriticComboEntry("064E", "0651"), new Vector2(0, 100));
         }
 
         private static Vector2 FindDiacriticCombo2Fix(string Unicode1, string Unicode2)
