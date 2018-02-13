@@ -3606,12 +3606,12 @@
       "Old_Initial": ""
     },
     {
-      "Id": "lam_kasrah_alef_hamza_hi",
+      "Id": "lam_alef_hamza_hi_kasrah",
       "Number": "",
       "Added": "\"2018-02-08T23:00:00.000Z\"",
       "Active": "1",
       "Complexity": "1",
-      "Title": "lam_kasrah_alef_hamza_hi",
+      "Title": "lam_alef_hamza_hi_kasrah",
       "Kind": "DiacriticCombo",
       "BaseLetter": "lam_alef_hamza_hi",
       "Symbol": "kasrah",
@@ -3619,7 +3619,7 @@
       "NameSound": "",
       "PhonemeSound": "lam_kasrah_alef_hamza_hi",
       "Type": "",
-      "Tag": "",
+      "Tag": "lam_kasrah_alef_hamza_hi",
       "Notes": "",
       "SunMoon": "",
       "Sound": "",

@@ -2391,15 +2391,15 @@ MonoBehaviour:
       _MedialFix: 1
       _Complexity: 1
       ForcedLetterForm: 0
-    - _Id: lam_kasrah_alef_hamza_hi
+    - _Id: lam_alef_hamza_hi_kasrah
       _Active: 1
       _Number: 0
-      _Title: lam_kasrah_alef_hamza_hi
+      _Title: lam_alef_hamza_hi_kasrah
       _Kind: 5
       _BaseLetter: lam_alef_hamza_hi
       _Symbol: kasrah
       _Type: 0
-      _Tag: 
+      _Tag: lam_kasrah_alef_hamza_hi
       _Notes: 
       _SunMoon: 0
       _Sound: 
