@@ -56,9 +56,6 @@ namespace Antura.Book
 
             List<LetterInfo> allLetterInfos = AppManager.I.ScoreHelper.GetAllLetterInfo();
             foreach (var letter in letters) {
-                if (AppConfig.DisableShaddah && letter.Id == "shaddah") {
-                    continue;
-                }
                 LetterInfo myLetterinfo = allLetterInfos.Find(value => value.data == letter);
 
                 btnGO = Instantiate(LetterItemPrefab);
