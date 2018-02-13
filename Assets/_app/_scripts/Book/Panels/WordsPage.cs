@@ -138,7 +138,7 @@ namespace Antura.Book
             foreach (Transform t in SpellingContainer.transform) {
                 Destroy(t.gameObject);
             }
-            var splittedLetters = ArabicAlphabetHelper.SplitWord(AppManager.I.DB, currentWordInfo.data, false, true);
+            var splittedLetters = ArabicAlphabetHelper.SplitWord(AppManager.I.DB, currentWordInfo.data, false, false);
             foreach (var letter in splittedLetters) {
                 btnGO = Instantiate(SpellingLetterItemPrefab);
                 btnGO.transform.SetParent(SpellingContainer.transform, false);
