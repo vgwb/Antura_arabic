@@ -61,6 +61,7 @@ namespace Antura.Rewards
 
             // Index of the new reward (for the content, not the UI)
             newRewardContentIndex = nCurrentConsecutiveDaysOfPlaying - 1;
+            int startShownRewardContentIndex = Mathf.Max(0, newRewardContentIndex - 2);
 
             int nRewardsToShowToday = Mathf.Min(MAX_REWARDS_TO_SHOW, nCurrentConsecutiveDaysOfPlaying + 2);
 
@@ -77,9 +78,14 @@ namespace Antura.Rewards
             // Initialise rewards
             dailyRewardUIs = new List<DailyRewardUI>();
             int dayCounter = 0;
-            dayCounter += newRewardContentIndex;
+            dayCounter += startShownRewardContentIndex;
 
-            foreach (var reward in dailyRewardManager.GetRewards(newRewardContentIndex, newRewardContentIndex + nRewardsToShowToday)) {
+            foreach (var reward in dailyRewardManager.GetRewards(startShownRewardContentIndex,
+                startShownRewardContentIndex + nRewardsToShowToday
+                )) {
+
+                //Debug.Log("Reward for day " + dayCounter + " is " + reward.amount);
+
                 dayCounter++;
                 var dailyRewardUIGo = Instantiate(dailyRewardUIPrefab);
                 dailyRewardUIGo.transform.SetParent(dailyRewardUIPivot);
