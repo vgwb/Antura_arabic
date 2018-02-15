@@ -1493,8 +1493,7 @@ MonoBehaviour:
       _Value: 
       _Letters:
       - alef
-      - lam
-      - alef_kasrah
+      - lam_alef_kasrah
       - theh_sukun
       - noon_fathah
       - yeh
@@ -1533,8 +1532,7 @@ MonoBehaviour:
       _Value: 
       _Letters:
       - alef
-      - lam
-      - alef_hamza_hi
+      - lam_alef_hamza_hi
       - hah_fathah
       - dal
       _Drawing: 3D
@@ -1574,8 +1572,7 @@ MonoBehaviour:
       - alef
       - lam
       - theh_dammah
-      - lam
-      - alef
+      - lam_alef
       - theh_fathah
       - alef
       - hamza
@@ -1594,8 +1591,7 @@ MonoBehaviour:
       _Value: 
       _Letters:
       - alef
-      - lam
-      - alef_hamza_hi
+      - lam_alef_hamza_hi
       - reh_sukun
       - beh_kasrah
       - ain
@@ -1929,8 +1925,7 @@ MonoBehaviour:
       _Value: 
       _Letters:
       - feh_fathah
-      - lam
-      - alef
+      - lam_alef
       - hah
       _Drawing: 72
       _Complexity: 0.6
@@ -2178,8 +2173,7 @@ MonoBehaviour:
       _Value: 
       _Letters:
       - theh_fathah
-      - lam
-      - alef
+      - lam_alef
       - jeem_fathah
       - teh_marbuta
       _Drawing: 7A
@@ -3343,8 +3337,7 @@ MonoBehaviour:
       - waw
       - noon
       - alef
-      - lam
-      - alef_hamza_hi
+      - lam_alef_hamza_hi
       - waw_fathah
       - lam
       _Drawing: 2248
@@ -3509,8 +3502,7 @@ MonoBehaviour:
       - yeh
       - noon
       - alef
-      - lam
-      - alef_hamza_hi
+      - lam_alef_hamza_hi
       - waw
       - lam
       _Drawing: 221A
@@ -3618,8 +3610,7 @@ MonoBehaviour:
       _Letters:
       - jeem_fathah
       - beh_fathah
-      - lam
-      - alef
+      - lam_alef
       - noon
       _Drawing: B0
       _Complexity: 1
@@ -4115,8 +4106,7 @@ MonoBehaviour:
       _Value: 3
       _Letters:
       - theh_fathah
-      - lam
-      - alef
+      - lam_alef
       - theh_fathah
       - teh_marbuta
       _Drawing: 266C
@@ -4303,8 +4293,7 @@ MonoBehaviour:
       _Value: 13
       _Letters:
       - theh_fathah
-      - lam
-      - alef
+      - lam_alef
       - theh_fathah
       - teh_marbuta_fathah
       - ain_fathah
@@ -4491,8 +4480,7 @@ MonoBehaviour:
       _Value: 
       _Letters:
       - alef
-      - lam
-      - alef_hamza_hi
+      - lam_alef_hamza_hi
       - waw_fathah
       - lam
       _Drawing: AE
@@ -4870,8 +4858,7 @@ MonoBehaviour:
       _Value: 
       _Letters:
       - seen_fathah
-      - lam
-      - alef
+      - lam_alef
       - meem
       _Drawing: 40
       _Complexity: 0.6
@@ -4958,8 +4945,7 @@ MonoBehaviour:
       _ArabicNoShaddah: "\u0644\u0627\u0639\u0650\u0628"
       _Value: 
       _Letters:
-      - lam
-      - alef
+      - lam_alef
       - ain_kasrah
       - beh
       _Drawing: 20AC
@@ -6490,8 +6476,7 @@ MonoBehaviour:
       _Value: green
       _Letters:
       - alef_fathah
-      - lam
-      - alef_hamza_hi
+      - lam_alef_hamza_hi
       - khah_sukun
       - dad_fathah
       - reh
@@ -6697,8 +6682,7 @@ MonoBehaviour:
       - alef_fathah
       - lam
       - theh_fathah
-      - lam
-      - alef
+      - lam_alef
       - jeem_fathah
       - teh_marbuta
       _Drawing: 7A
@@ -7070,8 +7054,7 @@ MonoBehaviour:
       _Letters:
       - alef_fathah
       - lam
-      - lam
-      - alef
+      - lam_alef
       - ain_kasrah
       - beh
       _Drawing: 20AC
@@ -7963,8 +7946,7 @@ MonoBehaviour:
       - jeem_fathah
       - zain
       - yeh
-      - lam
-      - alef
+      - lam_alef
       _Drawing: 
       _Complexity: 0.6
     - _Id: virtuous
@@ -8195,8 +8177,7 @@ MonoBehaviour:
       _Letters:
       - alef_hamza_hi
       - heh_sukun
-      - lam
-      - alef
+      - lam_alef
       _Drawing: 
       _Complexity: 0.3
     - _Id: welcome_assertion
@@ -8213,8 +8194,7 @@ MonoBehaviour:
       _Letters:
       - seen_fathah
       - heh_sukun
-      - lam
-      - alef
+      - lam_alef
       _Drawing: 
       _Complexity: 0.3
     - _Id: well-being
@@ -8584,8 +8564,7 @@ MonoBehaviour:
       - ain
       - alef
       - meem_kasrah
-      - lam
-      - alef
+      - lam_alef
       - noon
       _Drawing: 201D
       _Complexity: 0.6

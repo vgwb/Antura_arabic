@@ -142,15 +142,13 @@ namespace Antura.Helpers
         /// <summary>
         /// Returns the list of letters found in a word string
         /// </summary>
-        public static List<ArabicStringPart> SplitWord(DatabaseManager database, WordData arabicWord, bool separateDiacritics = false,
-            bool separateVariations = true)
+        public static List<ArabicStringPart> SplitWord(DatabaseManager database, WordData arabicWord, bool separateDiacritics = false, bool separateVariations = false)
         {
             // Use ArabicFixer to deal only with combined unicodes
             return AnalyzeArabicString(database.StaticDatabase, ProcessArabicString(arabicWord.Arabic), separateDiacritics, separateVariations);
         }
 
-        public static List<ArabicStringPart> SplitWord(DatabaseObject staticDatabase, WordData arabicWord,
-            bool separateDiacritics = false, bool separateVariations = true)
+        public static List<ArabicStringPart> SplitWord(DatabaseObject staticDatabase, WordData arabicWord, bool separateDiacritics = false, bool separateVariations = false)
         {
             // Use ArabicFixer to deal only with combined unicodes
             return AnalyzeArabicString(staticDatabase, ProcessArabicString(arabicWord.Arabic), separateDiacritics, separateVariations);
