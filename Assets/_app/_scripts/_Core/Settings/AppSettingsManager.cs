@@ -36,7 +36,9 @@ namespace Antura.Core
                 Settings = JsonUtility.FromJson<AppSettings>(serializedObjs);
                 //Debug.Log("LoadAppSettings " + serializedObjs);
             } else {
+                // FIRST INSTALLATION
                 Settings = new AppSettings();
+                Settings.SetAppVersion(AppConfig.AppVersion);
             }
 
             AudioManager.I.MusicEnabled = Settings.MusicEnabled;
