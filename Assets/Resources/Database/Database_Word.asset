@@ -454,13 +454,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0628\u064E\u064A\u0652\u0646\u064E\u064A"
-      _ArabicNoShaddah: "\u0628\u064E\u064A\u0652\u0646\u064E\u064A"
+      _Arabic: "\u0628\u064E\u064A\u0652\u0646\u0650\u064A"
+      _ArabicNoShaddah: "\u0628\u064E\u064A\u0652\u0646\u0650\u064A"
       _Value: 
       _Letters:
       - beh_fathah
       - yeh_sukun
-      - noon_fathah
+      - noon_kasrah
       - yeh
       _Drawing: 
       _Complexity: 0
@@ -3160,13 +3160,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u0623\u0633\u0652\u0648\u064E\u062F"
-      _ArabicNoShaddah: "\u0623\u0633\u0652\u0648\u064E\u062F"
+      _Arabic: "\u0623\u064F\u0633\u064F\u0648\u062F"
+      _ArabicNoShaddah: "\u0623\u064F\u0633\u064F\u0648\u062F"
       _Value: 
       _Letters:
-      - alef_hamza_hi
-      - seen_sukun
-      - waw_fathah
+      - alef_hamza_hi_dammah
+      - seen_dammah
+      - waw
       - dal
       _Drawing: 203A
       _Complexity: 1
@@ -3931,15 +3931,15 @@ MonoBehaviour:
       _Article: 0
       _Gender: 1
       _LinkedWord: 
-      _Arabic: "\u062A\u064E\u062D\u0652\u062A\u0627\u062C\u064F"
-      _ArabicNoShaddah: "\u062A\u064E\u062D\u0652\u062A\u0627\u062C\u064F"
+      _Arabic: "\u062A\u064E\u062D\u0652\u062A\u0627\u062C"
+      _ArabicNoShaddah: "\u062A\u064E\u062D\u0652\u062A\u0627\u062C"
       _Value: 
       _Letters:
       - teh_fathah
       - hah_sukun
       - teh
       - alef
-      - jeem_dammah
+      - jeem
       _Drawing: 
       _Complexity: 1
     - _Id: needle
@@ -7552,24 +7552,6 @@ MonoBehaviour:
       - hamza
       _Drawing: BF
       _Complexity: 0.6
-    - _Id: the_wolf
-      _Active: 1
-      _Kind: 5
-      _Category: 10
-      _Form: 1
-      _Article: 1
-      _Gender: 2
-      _LinkedWord: wolf
-      _Arabic: "\u0627\u0644\u0630\u0651\u0626\u0628"
-      _ArabicNoShaddah: "\u0627\u0644\u0630\u0626\u0628"
-      _Value: 
-      _Letters:
-      - alef
-      - lam
-      - thal
-      - beh
-      _Drawing: FF
-      _Complexity: 1
     - _Id: the_wonderful
       _Active: 1
       _Kind: 5
@@ -7586,6 +7568,7 @@ MonoBehaviour:
       - lam
       - reh
       - alef
+      - yeh_hamza
       - ain
       _Drawing: 24
       _Complexity: 0.6
@@ -8479,22 +8462,6 @@ MonoBehaviour:
       - feh
       _Drawing: 
       _Complexity: 0.3
-    - _Id: wolf
-      _Active: 1
-      _Kind: 5
-      _Category: 10
-      _Form: 1
-      _Article: 0
-      _Gender: 2
-      _LinkedWord: 
-      _Arabic: "\u0630\u0650\u0626\u0628"
-      _ArabicNoShaddah: "\u0630\u0650\u0626\u0628"
-      _Value: 
-      _Letters:
-      - thal_kasrah
-      - beh
-      _Drawing: FF
-      _Complexity: 1
     - _Id: woman
       _Active: 1
       _Kind: 5
@@ -8563,6 +8530,7 @@ MonoBehaviour:
       _Letters:
       - reh_fathah
       - alef
+      - yeh_hamza
       - ain
       _Drawing: 24
       _Complexity: 0.6
@@ -8736,13 +8704,13 @@ MonoBehaviour:
       _Article: 0
       _Gender: 0
       _LinkedWord: 
-      _Arabic: "\u0623\u064E\u0646\u0652\u062A\u064E"
-      _ArabicNoShaddah: "\u0623\u064E\u0646\u0652\u062A\u064E"
+      _Arabic: "\u0623\u064E\u0646\u0652\u062A"
+      _ArabicNoShaddah: "\u0623\u064E\u0646\u0652\u062A"
       _Value: 
       _Letters:
       - alef_hamza_hi_fathah
       - noon_sukun
-      - teh_fathah
+      - teh
       _Drawing: 
       _Complexity: 0.3
     - _Id: you_love_feminine

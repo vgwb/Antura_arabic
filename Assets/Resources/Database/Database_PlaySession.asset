@@ -2609,7 +2609,6 @@ MonoBehaviour:
       - fall
       - cupboard
       - notebook
-      - wolf
       - saw
       - please
       - flapped
@@ -3039,6 +3038,7 @@ MonoBehaviour:
       - heh
       - alef_maqsura
       - lam_alef
+      - yeh_hamza
       _Words: []
       _Words_previous: []
       _Phrases: []
@@ -3482,7 +3482,6 @@ MonoBehaviour:
       - the_whale
       - the_window
       - the_winter
-      - the_wolf
       - the_wonderful
       - the_worker
       - tiger
