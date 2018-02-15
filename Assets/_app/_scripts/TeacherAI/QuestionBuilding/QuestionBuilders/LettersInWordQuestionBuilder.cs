@@ -1,6 +1,6 @@
-using System.Collections.Generic;
-using Antura.Database;
 using Antura.Core;
+using Antura.Database;
+using System.Collections.Generic;
 
 namespace Antura.Teacher
 {
@@ -35,11 +35,10 @@ namespace Antura.Teacher
         public LettersInWordQuestionBuilder(
             int nRounds, int nPacksPerRound = 1, int nCorrect = 1, int nWrong = 0,
             bool useAllCorrectLetters = false, WordDataCategory category = WordDataCategory.None,
-            int maximumWordLength = 20, 
+            int maximumWordLength = 20,
             QuestionBuilderParameters parameters = null)
         {
-            if (parameters == null)
-            {
+            if (parameters == null) {
                 parameters = new QuestionBuilderParameters();
             }
             this.nRounds = nRounds;
@@ -64,14 +63,12 @@ namespace Antura.Teacher
             previousPacksIDs_words.Clear();
             previousPacksIDs_letters.Clear();
             var packs = new List<QuestionPackData>();
-            for (int round_i = 0; round_i < nRounds; round_i++)
-            {
+            for (int round_i = 0; round_i < nRounds; round_i++) {
                 // At each round, we must make sure to not repeat some words / letters
                 currentRound_letters.Clear();
                 currentRound_words.Clear();
 
-                for (int pack_i = 0; pack_i < nPacksPerRound; pack_i++)
-                {
+                for (int pack_i = 0; pack_i < nPacksPerRound; pack_i++) {
                     packs.Add(CreateSingleQuestionPackData(pack_i));
                 }
             }
@@ -100,7 +97,7 @@ namespace Antura.Teacher
             bool useJourneyForLetters = parameters.useJourneyForCorrect;
             // @note: we force journey in this case to be off so that all letters can be found
             // @note: we also force the journey if the packs must be used together, as the data filters for journey clash with the new filter
-            if (useAllCorrectLetters || packsUsedTogether) useJourneyForLetters = false;
+            if (useAllCorrectLetters || packsUsedTogether) { useJourneyForLetters = false; }
 
             // Get some letters (from that word)
             var correctLetters = teacher.VocabularyAi.SelectData(
@@ -112,8 +109,7 @@ namespace Antura.Teacher
             // Get some wrong letters (not from that word, nor other words, nor previous letters)
             // Only for the first pack of the round
             var wrongLetters = new List<LetterData>();
-            if (inRoundPackIndex == 0)
-            {
+            if (inRoundPackIndex == 0) {
                 wrongLetters = teacher.VocabularyAi.SelectData(
                 () => FindWrongLetters(wordQuestion, wordLetters),
                     new SelectionParameters(
@@ -122,8 +118,7 @@ namespace Antura.Teacher
                 currentRound_letters.AddRange(wrongLetters);
             }
 
-            if (ConfigAI.VerboseQuestionPacks)
-            {
+            if (ConfigAI.VerboseQuestionPacks) {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nQuestion: " + wordQuestion;
                 debugString += "\nCorrect Answers: " + correctLetters.Count;
@@ -140,29 +135,19 @@ namespace Antura.Teacher
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             var eligibleWords = new List<WordData>();
-            foreach (var word in vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters))
-            {
-                // HACK: Skip the problematic words (for now)
-                if (vocabularyHelper.ProblematicWordIds.Contains(word.Id))
-                {
-                    continue;
-                }
-
+            foreach (var word in vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters)) {
                 // Check max length
-                if (word.Letters.Length > maxWordLength)
-                {
+                if (word.Letters.Length > maxWordLength) {
                     continue;
                 }
 
                 // Avoid using words that contain previously chosen letters
-                if (vocabularyHelper.WordContainsAnyLetter(word, currentRound_letters))
-                {
+                if (vocabularyHelper.WordContainsAnyLetter(word, currentRound_letters)) {
                     continue;
                 }
 
                 // Avoid using words that have ONLY letters that appeared in previous words
-                if (vocabularyHelper.WordHasAllLettersInCommonWith(word, currentRound_words))
-                {
+                if (vocabularyHelper.WordHasAllLettersInCommonWith(word, currentRound_words)) {
                     continue;
                 }
 
@@ -178,11 +163,9 @@ namespace Antura.Teacher
             var eligibleLetters = new List<LetterData>();
             var badWords = new List<WordData>(currentRound_words);
             badWords.Remove(selectedWord);
-            foreach (var letter in wordLetters)
-            {
+            foreach (var letter in wordLetters) {
                 // Avoid using letters that appeared in previous words
-                if (vocabularyHelper.IsLetterContainedInAnyWord(letter, badWords))
-                {
+                if (vocabularyHelper.IsLetterContainedInAnyWord(letter, badWords)) {
                     continue;
                 }
 
@@ -198,11 +181,9 @@ namespace Antura.Teacher
             var eligibleLetters = new List<LetterData>();
             var badWords = new List<WordData>(currentRound_words);
             badWords.Remove(selectedWord);
-            foreach (var letter in noWordLetters)
-            {
+            foreach (var letter in noWordLetters) {
                 // Avoid using letters that appeared in previous words
-                if (vocabularyHelper.IsLetterContainedInAnyWord(letter, badWords))
-                {
+                if (vocabularyHelper.IsLetterContainedInAnyWord(letter, badWords)) {
                     continue;
                 }
 

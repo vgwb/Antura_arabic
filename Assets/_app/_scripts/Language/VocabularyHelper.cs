@@ -15,24 +15,6 @@ namespace Antura.Database
     {
         private DatabaseManager dbManager;
 
-        // @note: these words are problematic as they contain letters that are not available in the journey position they are played at
-        // TODO: remove this! Should be handled by the curriculum
-        public List<string> ProblematicWordIds = new List<string>();
-        /*
-        {
-            "won",
-            "went",
-            "sat",
-            "studied",
-            "laughed",
-            "played",
-            "flapped",
-            "caught",
-            "released",
-            "carried",
-            "understood"
-        };*/
-
         public VocabularyHelper(DatabaseManager _dbManager)
         {
             dbManager = _dbManager;
@@ -187,8 +169,7 @@ namespace Antura.Database
         public List<LetterData> ExtractLettersWithForms(IEnumerable<LetterData> letters)
         {
             List<LetterData> lettersWithForms = new List<LetterData>();
-            foreach (var letter in letters)
-            {
+            foreach (var letter in letters) {
                 lettersWithForms.AddRange(ExtractLettersWithForms(letter));
             }
             return lettersWithForms;
@@ -196,8 +177,7 @@ namespace Antura.Database
 
         public List<LetterData> ExtractLettersWithForms(LetterData baseForVariation)
         {
-            return new List<LetterForm>(baseForVariation.GetAvailableForms()).ConvertAll(f =>
-            {
+            return new List<LetterForm>(baseForVariation.GetAvailableForms()).ConvertAll(f => {
                 var l = baseForVariation.Clone();
                 l.ForcedLetterForm = f;
                 return l;
@@ -216,21 +196,18 @@ namespace Antura.Database
             List<LetterData> letterPool = new List<LetterData>();
 
             // Filter: only 1 base or multiple bases?
-            if (!letterAlterationFilters.differentBaseLetters)
-            {
+            if (!letterAlterationFilters.differentBaseLetters) {
                 var chosenLetter = baseLetters.RandomSelectOne();
                 baseLetters.Clear();
                 baseLetters.Add(chosenLetter);
             }
 
             // Get all alterations for the given bases
-            foreach (var baseLetter in baseLetters)
-            {
+            foreach (var baseLetter in baseLetters) {
                 // Check all alterations of this base letter
                 var letterAlterations = GetLettersWithBase(baseLetter.GetId());
                 List<LetterData> availableVariations = new List<LetterData>();
-                foreach (var letterData in letterAlterations)
-                {
+                foreach (var letterData in letterAlterations) {
                     if (!FilterByDiacritics(letterAlterationFilters.ExcludeDiacritics, letterData)) continue;
                     if (!FilterByLetterVariations(letterAlterationFilters.ExcludeLetterVariations, letterData)) continue;
                     if (!FilterByDipthongs(letterAlterationFilters.excludeDipthongs, letterData)) continue;
@@ -241,35 +218,26 @@ namespace Antura.Database
                 List<LetterData> basesForForms = new List<LetterData>(availableVariations);
                 basesForForms.Add(baseLetter);
                 //Debug.Log("N bases for forms: " +  basesForForms.Count);
-                if (letterAlterationFilters.includeForms)
-                {
+                if (letterAlterationFilters.includeForms) {
                     // Place forms only inside the pool, if needed
-                    foreach (var baseForForm in basesForForms)
-                    {
+                    foreach (var baseForForm in basesForForms) {
                         var availableForms = ExtractLettersWithForms(baseForForm);
 
-                        if (letterAlterationFilters.oneFormPerLetter)
-                        {
+                        if (letterAlterationFilters.oneFormPerLetter) {
                             // If we are using forms and only one form per letter must appear, add just one at random
                             letterPool.Add(availableForms.RandomSelectOne());
-                        }
-                        else
-                        {
+                        } else {
                             // Add all the (different) forms 
                             var visualFormComparer = new StrictLetterDataComparer(LetterEqualityStrictness.WithVisualForm);
-                            foreach (var availableForm in availableForms)
-                            {
-                                if (letterAlterationFilters.visuallyDifferentForms && letterPool.Contains(availableForm, visualFormComparer))
-                                {
+                            foreach (var availableForm in availableForms) {
+                                if (letterAlterationFilters.visuallyDifferentForms && letterPool.Contains(availableForm, visualFormComparer)) {
                                     continue;
                                 }
                                 letterPool.Add(availableForm);
                             }
                         }
                     }
-                }
-                else
-                {
+                } else {
                     // Place just the isolated versions
                     letterPool.AddRange(basesForForms);
                 }
@@ -289,8 +257,7 @@ namespace Antura.Database
             // @note: this will always retrieve all letters with their forms, the strictness will then define whether that has any consequence or not
             List<LetterData> letters = null;
             var dictCache = wordsToLetterCache;
-            if (!dictCache.ContainsKey(wordData.Id))
-            {
+            if (!dictCache.ContainsKey(wordData.Id)) {
                 var parts = ArabicAlphabetHelper.SplitWord(dbManager.StaticDatabase, wordData, separateVariations: false);
                 letters = parts.ConvertAll(x => ConvertToLetterWithForcedForm(x.letter, x.letterForm));
                 dictCache[wordData.Id] = letters;
@@ -329,13 +296,11 @@ namespace Antura.Database
         {
             var comparer = new StrictLetterDataComparer(letterEqualityStrictness);
             Dictionary<LetterData, int> countDict = new Dictionary<LetterData, int>(comparer);
-            foreach (var word in words)
-            {
+            foreach (var word in words) {
                 var nonRepeatingLettersOfWord = new HashSet<LetterData>(comparer);
 
                 var letters = GetLettersInWord(word);
-                foreach (var letter in letters)
-                {
+                foreach (var letter in letters) {
                     nonRepeatingLettersOfWord.Add(letter);
                 }
 
@@ -360,10 +325,9 @@ namespace Antura.Database
         {
             var commonLetters = GetCommonLettersInWords(letterEqualityStrictness, words);
             var nonCommonLetters = GetAllLettersAndForms(letterFilters);
-            var nonCommonLettersWithComparer= new HashSet<LetterData>(new StrictLetterDataComparer(letterEqualityStrictness));
+            var nonCommonLettersWithComparer = new HashSet<LetterData>(new StrictLetterDataComparer(letterEqualityStrictness));
             nonCommonLettersWithComparer.UnionWith(nonCommonLetters);
-            foreach (var commonLetter in commonLetters)
-            {
+            foreach (var commonLetter in commonLetters) {
                 nonCommonLettersWithComparer.Remove(commonLetter);
             }
             return nonCommonLettersWithComparer.ToList();
@@ -396,7 +360,7 @@ namespace Antura.Database
             if (filters.requireDiacritics && !WordHasDiacriticCombo(data)) {
                 return false;
             }
-            if (filters.excludeDipthongs && WordHasDipthongs(data)){
+            if (filters.excludeDipthongs && WordHasDipthongs(data)) {
                 return false;
             }
             return true;
@@ -414,10 +378,8 @@ namespace Antura.Database
 
         private bool WordHasDipthongs(WordData word)
         {
-            foreach (var letter in GetLettersInWord(word))
-            {
-                if (letter.Kind == LetterDataKind.Diphthong)
-                {
+            foreach (var letter in GetLettersInWord(word)) {
+                if (letter.Kind == LetterDataKind.Diphthong) {
                     return true;
                 }
             }
@@ -569,8 +531,7 @@ namespace Antura.Database
                     foreach (var okLetter in okLetters) {
                         bool hasThisLetter = false;
                         foreach (var letter in lettersInWord) {
-                            if (letter.IsSameLetterAs(okLetter, letterEqualityStrictness))
-                            {
+                            if (letter.IsSameLetterAs(okLetter, letterEqualityStrictness)) {
                                 hasThisLetter = true;
                                 break;
                             }
