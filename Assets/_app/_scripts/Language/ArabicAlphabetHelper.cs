@@ -146,8 +146,7 @@ namespace Antura.Helpers
             bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
-            return AnalyzeArabicString(database.StaticDatabase, ProcessArabicString(arabicWord.Arabic), separateDiacritics,
-                separateVariations);
+            return AnalyzeArabicString(database.StaticDatabase, ProcessArabicString(arabicWord.Arabic), separateDiacritics, separateVariations);
         }
 
         public static List<ArabicStringPart> SplitWord(DatabaseObject staticDatabase, WordData arabicWord,
