@@ -16,6 +16,8 @@ namespace Antura.Scenes
 
         protected override void Start()
         {
+            GlobalUI.ShowPauseMenu(false);
+
             if (AppManager.I.AppSettingsManager.IsAppJustUpdatedFromOldVersion()) {
                 Debug.Log("Updating from Old version");
                 AppManager.I.AppSettingsManager.AppUpdateCheckDone();
