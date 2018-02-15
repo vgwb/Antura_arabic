@@ -41,16 +41,16 @@ namespace Antura.Book
             DetailPanel.SetActive(false);
             emptyContainer(ListContainer);
 
-            List<LetterData> letters = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter && x.Active));
+            List<LetterData> letters = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter && x.InBook));
             letters.Sort((x, y) => x.Number.CompareTo(y.Number));
 
             //adds Letter VAriations
-            List<LetterData> lettersVariations = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.LetterVariation && x.Active));
+            List<LetterData> lettersVariations = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.LetterVariation && x.InBook));
             lettersVariations.Sort((x, y) => x.Id.CompareTo(y.Id));
             letters.AddRange(lettersVariations);
 
             //adds Symbols
-            List<LetterData> symbols = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol && x.Active));
+            List<LetterData> symbols = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol && x.InBook));
             symbols.Sort((x, y) => x.Id.CompareTo(y.Id));
             letters.AddRange(symbols);
 

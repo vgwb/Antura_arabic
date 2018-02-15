@@ -13,12 +13,12 @@ namespace Antura.Book
         public TextRender SubtitleText;
 
         private LetterData myLetterData;
-        private UIButton uIButton;
+        //        private UIButton uIButton;
 
         public void Init(LetterData _letterData)
         {
             myLetterData = _letterData;
-            uIButton = GetComponent<UIButton>();
+            //            uIButton = GetComponent<UIButton>();
 
             if (myLetterData == null) {
                 LetterText.SetTextUnfiltered("");
