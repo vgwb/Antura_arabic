@@ -35,7 +35,6 @@ namespace Antura.Core
                 var serializedObjs = PlayerPrefs.GetString(SETTINGS_PREFS_KEY);
                 //Debug.Log("LoadSettings() " + serializedObjs);
                 Settings = JsonUtility.FromJson<AppSettings>(serializedObjs);
-                Application.Quit();
             } else {
                 // FIRST INSTALLATION
                 isFirstIstall = true;
