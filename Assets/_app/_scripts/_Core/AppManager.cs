@@ -102,12 +102,14 @@ namespace Antura.Core
 
             Services = new ServicesManager();
 
+            Debug.Log("AppManager Init(): UIDirector.Init()");
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
             // Debugger setup
             Debug.logger.logEnabled = AppConfig.DebugLogEnabled;
             gameObject.AddComponent<Debugging.DebugManager>();
 
+            Debug.Log("AppManager Init(): UpdateAppVersion");
             // Update settings
             AppSettingsManager.UpdateAppVersion();
         }

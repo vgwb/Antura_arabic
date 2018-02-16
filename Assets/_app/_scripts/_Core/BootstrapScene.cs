@@ -16,6 +16,7 @@ namespace Antura.Scenes
 
         protected override void Start()
         {
+            Debug.Log("BootstrapScene: Start()");
             // GlobalUI.ShowPauseMenu(false);
 
             if (AppManager.I.AppSettingsManager.IsAppJustUpdatedFromOldVersion()) {
