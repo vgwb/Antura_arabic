@@ -1,12 +1,13 @@
 ﻿using Antura.Database;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
 
-namespace Antura.Services
+namespace Antura.Core.Services.OnlineAnalytics
 {
-    public class OnlineAnalytics
+    public class AnalyticsService
     {
 
         /// <summary>
@@ -36,15 +37,43 @@ namespace Antura.Services
         /// 10 - additional(json encoded additional parameters that we don't know now or custom specific per minigame)
         /// </summary>
         /// <param name="eventName">Event name.</param>
+        /// 
+
+        private bool areUnityAnalyticsEnabled()
+        {
+            return AppConfig.UnityAnalyticsEnabled && !Application.isEditor && AppManager.I.AppSettings.OnlineAnalyticsEnabled;
+        }
+
         public void TrackEvent(LogGamePlayData _data)
         {
-            var eventName = "GamePlay";
-            var evetData = new Dictionary<string, object>{
+            if (areUnityAnalyticsEnabled()) {
+                var eventName = "GamePlay";
+                var evetData = new Dictionary<string, object>{
                 { "uuid", _data.Uuid },
                  { "app", 2 },
                  { "player", 3 }
             };
-            Analytics.CustomEvent(eventName, evetData);
+                Analytics.CustomEvent(eventName, evetData);
+            }
         }
+
+        public void TrackScene(string sceneName)
+        {
+            if (areUnityAnalyticsEnabled()) {
+                Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
+            }
+        }
+
+        public void TrackPlayerSession(int age, Profile.PlayerGender gender)
+        {
+            if (areUnityAnalyticsEnabled()) {
+                Gender playerGender = (gender == Profile.PlayerGender.F ? Gender.Female : Gender.Male);
+                Analytics.SetUserGender(playerGender);
+
+                int birthYear = DateTime.Now.Year - age;
+                Analytics.SetUserBirthYear(birthYear);
+            }
+        }
+
     }
 }

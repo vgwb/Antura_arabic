@@ -142,6 +142,7 @@ namespace Antura.Core
             LogManager.I.InitNewSession();
             LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new DeviceInfo()));
             Services.Notifications.DeleteAllLocalNotifications();
+            Services.Analytics.TrackPlayerSession(Player.Age, Player.Gender);
         }
 
         #region Main App Suspend method
