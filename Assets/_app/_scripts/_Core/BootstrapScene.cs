@@ -19,8 +19,7 @@ namespace Antura.Scenes
             GlobalUI.ShowPauseMenu(false);
 
             if (AppManager.I.AppSettingsManager.IsAppJustUpdatedFromOldVersion()) {
-                Debug.Log("Updating from Old version");
-                AppManager.I.AppSettingsManager.AppUpdateCheckDone();
+                Debug.Log("BootstrapScene: Updating from Old version");
                 if (AppManager.I.AppSettings.SavedPlayers != null) {
                     AppManager.I.PlayerProfileManager.DeleteAllPlayers();
                     PanelAppUpdate.Init();

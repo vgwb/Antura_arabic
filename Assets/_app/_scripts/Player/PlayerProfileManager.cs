@@ -94,7 +94,7 @@ namespace Antura.Profile
         /// Reloads all the settings and, optionally, the current player
         /// TODO: rebuild database only for desynchronized profile
         /// </summary>
-        public void LoadSettings(bool alsoLoadCurrentPlayerProfile = true)
+        public void LoadPlayerSettings(bool alsoLoadCurrentPlayerProfile = true)
         {
             AppManager.I.AppSettingsManager.LoadSettings();
 
@@ -122,7 +122,7 @@ namespace Antura.Profile
                     } else {
                         //UnityEngine.Debug.Log("DB OUT OF SYNC. RESET");
                         ResetEverything();
-                        LoadSettings();
+                        LoadPlayerSettings();
                     }
                 }
             }
@@ -265,7 +265,7 @@ namespace Antura.Profile
 
             // Reset all settings too
             AppManager.I.AppSettingsManager.DeleteAllSettings();
-            LoadSettings(alsoLoadCurrentPlayerProfile: false);
+            LoadPlayerSettings(alsoLoadCurrentPlayerProfile: false);
             AppManager.I.Player = null;
         }
 

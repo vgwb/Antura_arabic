@@ -76,6 +76,7 @@ namespace Antura.Core
             alreadySetup = true;
 
             AppSettingsManager = new AppSettingsManager();
+
             DB = new DatabaseManager();
             // TODO refactor: standardize initialisation of managers
             LogManager = new LogManager();
@@ -97,7 +98,7 @@ namespace Antura.Core
             RewardSystemManager.Init();
 
             PlayerProfileManager = new PlayerProfileManager();
-            PlayerProfileManager.LoadSettings();
+            PlayerProfileManager.LoadPlayerSettings();
 
             Services = new ServicesManager();
 
