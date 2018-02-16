@@ -1,6 +1,7 @@
 ﻿using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Antura.AnturaSpace
 {
@@ -8,7 +9,7 @@ namespace Antura.AnturaSpace
     {
         public ShopDecorationSlotType slotType;
         public string id;
-        public Sprite iconSprite;
+        public RawImage rawImage;
 
         public void OnMouseDown()
         {
@@ -43,6 +44,7 @@ namespace Antura.AnturaSpace
         private void SetAsReal()
         {
             pulseTween.Kill(true);
+            transform.SetLocalScale(1);
         }
 
         public void FocusHighlight(bool choice)

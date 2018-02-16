@@ -104,10 +104,7 @@ namespace Antura.AnturaSpace
         public void SetContextPurchase()
         {
             EndPlacementContext();
-
-            foreach (var shopDecorationSlot in allShopDecorationSlots) {
-                shopDecorationSlot.Highlight(false);
-            }
+            ResetObjectHighlights();
 
             SwitchToContext(ShopContext.Purchase);
         }
@@ -247,12 +244,13 @@ namespace Antura.AnturaSpace
         private void StopDragPlacement()
         {
             if (OnDragStop != null) { OnDragStop(); }
-            currentDraggedDecoration.FocusHighlight(false);
+            //currentDraggedDecoration.FocusHighlight(false);
             StopCoroutine(dragCoroutine);
         }
 
         private void EndPlacementContext()
         {
+            ResetSlotHighlights();
             currentDraggedDecoration = null;
             currentDraggedSlot = null;
             startDragSlot = null;
@@ -281,12 +279,20 @@ namespace Antura.AnturaSpace
                 bool shouldBeDeleted = false;
                 float distanceForDelete = (Camera.main.WorldToScreenPoint(deletePropButtonTransform.position) - Input.mousePosition).sqrMagnitude;
                 if (distanceForDelete < thresholdForDelete * thresholdForDelete) {
-                    closestSlot = null;
-                    SwitchSlotTo(null);
-                    deletePropButtonTransform.GetComponent<Image>().color = Color.cyan;
+
+                    // First time: feedback
+                    if (currentDraggedSlot != null)
+                    {
+                        deletePropButtonTransform.GetComponent<Image>().color = Color.red;
+                        if (startDragSlot) { startDragSlot.Despawn(); }
+                        closestSlot = null;
+                        SwitchSlotTo(null);
+                    }
+
                     shouldBeDeleted = true;
-                } else {
-                    deletePropButtonTransform.GetComponent<Image>().color = Color.red;
+                } else
+                {
+                    deletePropButtonTransform.GetComponent<Image>().color = new Color(188/255f,81f/255f,177/255f);
                 }
 
                 // Place the object there (change slot)
@@ -341,8 +347,9 @@ namespace Antura.AnturaSpace
             StopDragPlacement();
 
             // If not dragged on anything
-            if (!shouldBeDeleted && currentDraggedSlot == null) {
-                CancelPurchase();
+            if (!shouldBeDeleted && currentDraggedSlot == null)
+            {
+                CancelMovement();
             }
 
             if (shouldBeDeleted) {
@@ -351,15 +358,44 @@ namespace Antura.AnturaSpace
                     CancelPurchase();
                 } else if (shopContext == ShopContext.MovingPlacement) {
                     // Ask for confirmation
-                    if (OnDeleteConfirmationRequested != null) OnDeleteConfirmationRequested();
+                    AskDeleteConfirmation();
                 }
             } else {
                 if (shopContext == ShopContext.NewPlacement) {
                     // Ask for confirmation
-                    if (OnPurchaseConfirmationRequested != null) OnPurchaseConfirmationRequested();
+                    AskPurchaseConfirmation();
                 } else if (shopContext == ShopContext.MovingPlacement) {
                     // Move it right away
                     ConfirmMovement();
+                }
+            }
+        }
+
+        private void AskDeleteConfirmation()
+        {
+            if (OnDeleteConfirmationRequested != null) OnDeleteConfirmationRequested();
+        }
+
+        private void AskPurchaseConfirmation()
+        {
+            if (OnPurchaseConfirmationRequested != null) OnPurchaseConfirmationRequested();
+        }
+
+        public void ResetSlotHighlights()
+        {
+            foreach (var shopDecorationSlot in allShopDecorationSlots)
+            {
+                shopDecorationSlot.Highlight(false);
+            }
+        }
+
+        public void ResetObjectHighlights()
+        {
+            foreach (var shopDecorationSlot in allShopDecorationSlots)
+            {
+                if (shopDecorationSlot.Assigned)
+                {
+                    shopDecorationSlot.AssignedDecorationObject.FocusHighlight(false);
                 }
             }
         }
@@ -408,9 +444,13 @@ namespace Antura.AnturaSpace
         {
             if (AnturaSpaceScene.I.TutorialMode) return;
 
-            startDragSlot.Despawn();
             DeleteDecoration(currentDraggedDecoration);
             SaveState();
+            SetContextPurchase();
+        }
+
+        private void CancelMovement()
+        {
             SetContextPurchase();
         }
 

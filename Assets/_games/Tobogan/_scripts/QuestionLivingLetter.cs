@@ -19,43 +19,43 @@ namespace Antura.Minigames.Tobogan
 
         public LivingLetterController letter;
 
-        Tweener moveTweener;
-        Tweener rotationTweener;
+        private Tweener moveTweener;
+        private Tweener rotationTweener;
 
-        Vector3 holdPosition;
-        Vector3 normalPosition;
+        private Vector3 holdPosition;
+        private Vector3 normalPosition;
 
         private float cameraDistance;
 
-        Camera tubesCamera;
-        float minX;
-        float maxX;
-        float minY;
-        float maxY;
+        private Camera tubesCamera;
+        private float minX;
+        private float maxX;
+        private float minY;
+        private float maxY;
 
         public bool Sucked = false;
 
-        bool isFalling;
-        bool dragging = false;
-        Vector3 dragOffset = Vector3.zero;
+        private bool isFalling;
+        private bool dragging = false;
+        private Vector3 dragOffset = Vector3.zero;
 
         public event Action onMouseUpLetter;
 
-        Action endTransformToCallback;
+        private Action endTransformToCallback;
 
-        Transform[] letterPositions;
-        int currentPosition;
+        private Transform[] letterPositions;
+        private int currentPosition;
 
-        Vector3 colliderStartScale;
+        private Vector3 colliderStartScale;
 
-        Vector3 targetDragPosition;
+        private Vector3 targetDragPosition;
 
         public Vector3? TargetContentDragPosition
         {
-            get
-            {
-                if (dragging)
+            get {
+                if (dragging) {
                     return targetDragPosition + ContentOffset;
+                }
                 return null;
             }
         }
@@ -127,9 +127,9 @@ namespace Antura.Minigames.Tobogan
         {
             string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
             var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, markedLetter.Data, false);
-            if (parts.Count > 0)
+            if (parts.Count > 0) {
                 text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[0], color, ArabicTextUtilities.MarkType.SingleLetter);
-
+            }
             letter.Init(word, text, 1.3f);
         }
 
@@ -138,9 +138,9 @@ namespace Antura.Minigames.Tobogan
             string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
 
             var parts = ArabicAlphabetHelper.SplitWord(AppManager.I.DB, word.Data, false, false);
-            if (parts.Count > letterToMark)
+            if (parts.Count > letterToMark) {
                 text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[letterToMark], color, ArabicTextUtilities.MarkType.SingleLetter);
-
+            }
             letter.Init(word, text, 1.3f);
         }
 
@@ -153,27 +153,25 @@ namespace Antura.Minigames.Tobogan
         {
             PlayWalkAnimation();
 
-            if (moveTweener != null)
-            {
+            if (moveTweener != null) {
                 moveTweener.Kill();
             }
 
-            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate ()
-            {
-                if (letter.Data == null)
+            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate () {
+                if (letter.Data == null) {
                     PlayStillAnimation();
-                else
+                } else {
                     PlayIdleAnimation();
-
-                if (endTransformToCallback != null)
+                }
+                if (endTransformToCallback != null) {
                     endTransformToCallback();
+                }
             });
         }
 
         void RoteteTo(Vector3 rotation, float duration)
         {
-            if (rotationTweener != null)
-            {
+            if (rotationTweener != null) {
                 rotationTweener.Kill();
             }
 
@@ -216,8 +214,7 @@ namespace Antura.Minigames.Tobogan
 
             currentPosition++;
 
-            if (currentPosition >= letterPositions.Length)
-            {
+            if (currentPosition >= letterPositions.Length) {
                 currentPosition = 0;
             }
 
@@ -226,15 +223,14 @@ namespace Antura.Minigames.Tobogan
 
         public void OnPointerDown(Vector2 pointerPosition)
         {
-            if (!dragging)
-            {
+            if (!dragging) {
                 dragging = true;
 
                 var data = letter.Data;
 
-                if (playWhenDragged)
+                if (playWhenDragged) {
                     ToboganConfiguration.Instance.Context.GetAudioManager().PlayVocabularyData(data, true);
-
+                }
                 Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
                 Vector3 world = tubesCamera.ScreenToWorldPoint(mousePosition);
                 dragOffset = world - transform.position;
@@ -247,8 +243,7 @@ namespace Antura.Minigames.Tobogan
 
         public void OnPointerDrag(Vector2 pointerPosition)
         {
-            if (dragging)
-            {
+            if (dragging) {
                 isFalling = false;
 
                 Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
@@ -260,15 +255,13 @@ namespace Antura.Minigames.Tobogan
 
         public void OnPointerUp()
         {
-            if (dragging)
-            {
+            if (dragging) {
                 dragging = false;
                 isFalling = true;
 
                 PlayIdleAnimation();
 
-                if (onMouseUpLetter != null)
-                {
+                if (onMouseUpLetter != null) {
                     onMouseUpLetter();
                 }
             }
@@ -276,24 +269,20 @@ namespace Antura.Minigames.Tobogan
 
         void Update()
         {
-            if (!dragging)
+            if (!dragging) {
                 NearTube = null;
-
+            }
             Vector3 targetScale;
             Vector3 targetPosition = transform.position;
 
-            if (Sucked)
-            {
+            if (Sucked) {
                 transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, 10.0f * Time.deltaTime);
-                transform.position += Vector3.up * Time.deltaTime*20;
-            }
-            else
-            {
-                if (dragging)
+                transform.position += Vector3.up * Time.deltaTime * 20;
+            } else {
+                if (dragging) {
                     targetPosition = targetDragPosition;
-
-                if (NearTube != null)
-                {
+                }
+                if (NearTube != null) {
                     float yScale = 1.3f * (1 + 0.1f * Mathf.Cos(Time.realtimeSinceStartup * 3.14f * 6));
 
                     targetScale = 0.75f * new Vector3(1 / yScale, yScale, 1);
@@ -301,15 +290,14 @@ namespace Antura.Minigames.Tobogan
                     targetPosition = NearTube.tutorialPoint.position - ContentOffset;
 
                     targetPosition.y = Mathf.Lerp(targetPosition.y, maxY, 2.0f * Mathf.Abs(targetPosition.x - transform.position.x));
-                }
-                else
+                } else {
                     targetScale = Vector3.one;
+                }
 
                 transform.localScale = Vector3.Lerp(transform.localScale, targetScale, 15.0f * Time.deltaTime);
                 transform.position = Vector3.Lerp(transform.position, targetPosition, 25.0f * Time.deltaTime);
 
-                if (isFalling)
-                {
+                if (isFalling) {
                     // Linear fall
                     transform.position = ClampPositionToStage(transform.position + Vector3.down * 20 * Time.deltaTime);
                 }

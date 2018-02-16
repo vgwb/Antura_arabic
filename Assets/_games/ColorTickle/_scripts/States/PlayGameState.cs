@@ -80,7 +80,7 @@ namespace Antura.Minigames.ColorTickle
         {
             tryAnturaTimer -= delta;
 
-            if (m_Rounds <= 0) {
+            if (m_Rounds <= 0 || game.starsAwarded >= 3) {
                 game.SetCurrentState(game.ResultState);
             } else {
                 bool stillWaitForInput = !(m_HitStateLLController != null && m_HitStateLLController.hitState == eHitState.HIT_LETTEROUTSIDE) && (m_TMPTextColoringLetter != null && m_TMPTextColoringLetter.IsTouching);

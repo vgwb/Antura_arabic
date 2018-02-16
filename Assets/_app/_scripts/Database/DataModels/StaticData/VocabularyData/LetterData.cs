@@ -65,6 +65,14 @@ namespace Antura.Database
         [SerializeField]
         private bool _Active;
 
+        public bool InBook
+        {
+            get { return _InBook; }
+            set { _InBook = value; }
+        }
+        [SerializeField]
+        private bool _InBook;
+
         public int Number
         {
             get { return _Number; }

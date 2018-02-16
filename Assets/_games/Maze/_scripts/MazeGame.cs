@@ -51,6 +51,8 @@ namespace Antura.Minigames.Maze
 
 
         private int roundNumber;
+        public int RoundNumber {  get { return roundNumber; } }
+
         public GameObject currentPrefab;
         public int health = 4;
         public GameObject cracks;

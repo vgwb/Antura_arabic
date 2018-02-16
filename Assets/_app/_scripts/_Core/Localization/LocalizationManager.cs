@@ -8,6 +8,17 @@ namespace Antura.Core
     /// </summary>
     public class LocalizationManager
     {
+
+        private static PlayerGender CurrentPlayerGender
+        {
+            get {
+                if (AppManager.I.Player == null) {
+                    return AppManager.I.PlayerProfileManager.TemporaryPlayerGender;
+                }
+                return AppManager.I.Player.Gender;
+            }
+        }
+
         public static string GetTranslation(LocalizationDataId id)
         {
             return GetLocalizationData(id).GetLocalizedText(CurrentPlayerGender);
@@ -26,16 +37,6 @@ namespace Antura.Core
         public static string GetLocalizedAudioFileName(string id, PlayerGender forcedGender)
         {
             return GetLocalizationData(id).GetLocalizedAudioFileName(forcedGender);
-        }
-
-        private static PlayerGender CurrentPlayerGender
-        {
-            get {
-                if (AppManager.I.Player == null) {
-                    return PlayerGender.M;
-                }
-                return AppManager.I.Player.Gender;
-            }
         }
 
         public static LocalizationData GetLocalizationData(LocalizationDataId id)

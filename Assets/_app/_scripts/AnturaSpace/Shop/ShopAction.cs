@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Policy;
 using Antura.Core;
 using Antura.Database;
 using UnityEngine;
@@ -7,9 +8,17 @@ namespace Antura.AnturaSpace
 {
     public class ShopAction : MonoBehaviour
     {
+        [Header("Preview Parameters")]
+        public float scaleMultiplier = 2f;
+        public Vector3 eulOffset = Vector3.zero;
+
+        public virtual GameObject ObjectToRender
+        {
+            get { return null; }
+        }
+
         public Sprite iconSprite; 
         public int bonesCost;
-        public LocalizationDataId errorLocalizationID;
 
         public virtual bool IsOnTheSide
         {

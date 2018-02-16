@@ -9,8 +9,10 @@ namespace Antura.Core
         public static string GetSceneName(AppScene scene, MiniGameData minigameData = null)
         {
             switch (scene) {
+                case AppScene.Bootstrap:
+                    return "app_Bootstrap";
                 case AppScene.Home:
-                    return "_Start";
+                    return "app_Home";
                 case AppScene.AnturaSpace:
                     return "app_AnturaSpace";
                 case AppScene.Book:
@@ -46,7 +48,9 @@ namespace Antura.Core
         {
             var currentScene = SceneManager.GetActiveScene().name;
             switch (currentScene) {
-                case "_Start":
+                case "app_Bootstrap":
+                    return AppScene.Bootstrap;
+                case "app_Home":
                     return AppScene.Home;
                 case "app_AnturaSpace":
                     return AppScene.AnturaSpace;

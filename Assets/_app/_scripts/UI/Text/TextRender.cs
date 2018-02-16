@@ -43,6 +43,25 @@ namespace Antura.UI
             }
         }
 
+        public string RenderedText
+        {
+            get {
+                if (isTMPro) {
+                    if (isUI) {
+                        return gameObject.GetComponent<TextMeshProUGUI>().text;
+                    } else {
+                        return gameObject.GetComponent<TextMeshPro>().text;
+                    }
+                } else {
+                    if (isUI) {
+                        return gameObject.GetComponent<Text>().text;
+                    } else {
+                        return gameObject.GetComponent<TextMesh>().text;
+                    }
+                }
+            }
+        }
+
         [SerializeField]
         protected string m_text;
 

@@ -11,7 +11,6 @@ using Antura.Teacher;
 using Antura.UI;
 using Antura.Utilities;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Antura.Core
 {
@@ -77,6 +76,7 @@ namespace Antura.Core
             alreadySetup = true;
 
             AppSettingsManager = new AppSettingsManager();
+
             DB = new DatabaseManager();
             // TODO refactor: standardize initialisation of managers
             LogManager = new LogManager();
@@ -98,16 +98,18 @@ namespace Antura.Core
             RewardSystemManager.Init();
 
             PlayerProfileManager = new PlayerProfileManager();
-            PlayerProfileManager.LoadSettings();
+            PlayerProfileManager.LoadPlayerSettings();
 
             Services = new ServicesManager();
 
+            Debug.Log("AppManager Init(): UIDirector.Init()");
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
             // Debugger setup
             Debug.logger.logEnabled = AppConfig.DebugLogEnabled;
             gameObject.AddComponent<Debugging.DebugManager>();
 
+            Debug.Log("AppManager Init(): UpdateAppVersion");
             // Update settings
             AppSettingsManager.UpdateAppVersion();
         }
@@ -135,6 +137,14 @@ namespace Antura.Core
                 Application.Quit();
             }, () => {
             });
+        }
+
+        public void StartNewPlaySession()
+        {
+            LogManager.I.InitNewSession();
+            LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new DeviceInfo()));
+            Services.Notifications.DeleteAllLocalNotifications();
+            Services.Analytics.TrackPlayerSession(Player.Age, Player.Gender);
         }
 
         #region Main App Suspend method

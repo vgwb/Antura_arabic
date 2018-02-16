@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Antura.Audio;
+﻿using Antura.Audio;
 using Antura.Core;
 using Antura.Core.Services.Gallery;
 using Antura.Debugging;
-using Antura.Helpers;
 using Antura.UI;
 using Antura.Utilities;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Antura.AnturaSpace
@@ -26,7 +25,11 @@ namespace Antura.AnturaSpace
 
         void Start()
         {
-            gameObjectsToHide.Add(FindObjectOfType<DebugPanel>().gameObject);
+            var debugPanel = FindObjectOfType<DebugPanel>();
+            if (debugPanel != null) {
+                gameObjectsToHide.Add(debugPanel.gameObject);
+            }
+
             gameObjectsToHide.Add(FindObjectOfType<GlobalUI>().gameObject);
         }
 
@@ -38,11 +41,12 @@ namespace Antura.AnturaSpace
         private Texture2D currentPhotoTexture;
         private IEnumerator TakeScreenshotCO()
         {
-            AudioManager.I.PlaySound(Sfx.WheelTick);
+            AudioManager.I.PlaySound(Sfx.Photo);
 
             // Hide objects first
-            foreach (var go in gameObjectsToHide)
+            foreach (var go in gameObjectsToHide) {
                 go.SetActive(false);
+            }
 
             yield return new WaitForEndOfFrame();
 
@@ -50,8 +54,9 @@ namespace Antura.AnturaSpace
             currentPhotoTexture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
             currentPhotoTexture.Apply();
 
-            foreach (var go in gameObjectsToHide)
+            foreach (var go in gameObjectsToHide) {
                 go.SetActive(true);
+            }
 
             GalleryManager.ShowPreview(currentPhotoTexture);
 
@@ -64,7 +69,7 @@ namespace Antura.AnturaSpace
         {
             AppManager.I.Services.Gallery.SaveScreenshot(currentPhotoTexture);
             currentPhotoTexture = null;
-            if (OnPurchaseCompleted != null) OnPurchaseCompleted();
+            if (OnPurchaseCompleted != null) { OnPurchaseCompleted(); }
 
             ShopDecorationsManager.I.SetPreviousContext();
 
@@ -75,7 +80,7 @@ namespace Antura.AnturaSpace
 
         public void CancelPhoto()
         {
-            if (AnturaSpaceScene.I.TutorialMode) return;
+            if (AnturaSpaceScene.I.TutorialMode) { return; }
 
             ShopDecorationsManager.I.SetPreviousContext();
 

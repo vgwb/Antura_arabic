@@ -1,5 +1,6 @@
 ﻿
 using System;
+using UnityEngine;
 
 namespace Antura.AnturaSpace
 {
@@ -7,11 +8,11 @@ namespace Antura.AnturaSpace
     {
         public ShopDecorationObject UnlockableDecorationObject;
 
-        void Awake()
+        public override GameObject ObjectToRender
         {
-            iconSprite = UnlockableDecorationObject.iconSprite;
+            get { return UnlockableDecorationObject.gameObject; }
         }
-
+        
         public override void PerformDrag()
         {
             ShopDecorationsManager.I.CreateAndStartDragPlacement(UnlockableDecorationObject, bonesCost);

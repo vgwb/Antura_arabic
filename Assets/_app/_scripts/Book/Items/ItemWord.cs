@@ -56,8 +56,9 @@ namespace Antura.Book
 
         public void Select(string code)
         {
-
-            hightlight(code == myWordInfo.data.Id);
+            if (myWordInfo != null) {
+                hightlight(code == myWordInfo.data.Id);
+            }
         }
 
         private void hightlight(bool _status)

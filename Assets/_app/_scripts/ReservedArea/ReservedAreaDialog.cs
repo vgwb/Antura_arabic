@@ -81,7 +81,7 @@ namespace Antura.ReservedArea
             string arabicIntroduction = "";
             arabicIntroduction += "<b>" + LocalizationManager.GetTranslation(titleLoc.Id) + "<b/> \n";
             arabicIntroduction += LocalizationManager.GetTranslation(sectionIntroLoc.Id) + "\n\n";
-            arabicIntroduction += string.Format("لفتح القفل، اضغط الزر {0} {2} مرات، ثم الزر {1} مرة واحدة", firstColorWordArabic,
+            arabicIntroduction += string.Format("لفتح القفل، اضغط الزر {0} {2} ، ثم الزر {1} مرة واحدة", firstColorWordArabic,
                 secondColorWordArabic, numberWordArabic);
             arabicIntroduction += "\n\n" + LocalizationManager.GetTranslation(sectionErrorLoc.Id);
 

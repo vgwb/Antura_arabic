@@ -44,7 +44,7 @@ namespace Antura.Core.Services.Notification
             Debug.Log("Next Local Notifications prepared");
             var arabicString = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Notification_24h);
             ScheduleSimpleWithAppIcon(
-                TimeSpan.FromSeconds(CalculateSecondsToTomorrowMidnight()),
+                TimeSpan.FromSeconds(CalculateSecondsToTomorrow()),
                 "Antura and the Letters",
                 arabicString.Arabic,
                 Color.blue
@@ -103,7 +103,7 @@ namespace Antura.Core.Services.Notification
             });
         }
 
-        private void DeleteAllLocalNotifications()
+        public void DeleteAllLocalNotifications()
         {
             //Debug.Log("NotificationService:DeleteNextLocalNotifications()");
             pluginBridge.CancelAllNotifications();
@@ -111,6 +111,10 @@ namespace Antura.Core.Services.Notification
         #endregion
 
         #region utilities
+        private int CalculateSecondsToTomorrow()
+        {
+            return 3600 * 20;
+        }
         private int CalculateSecondsToTomorrowMidnight()
         {
             TimeSpan ts = DateTime.Today.AddDays(2).Subtract(DateTime.Now);

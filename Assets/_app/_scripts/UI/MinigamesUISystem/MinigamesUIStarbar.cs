@@ -10,10 +10,10 @@ namespace Antura.UI
     {
         public RectTransform ProgressBar;
 
-        MinigamesUISingleStar[] stars;
-        float[] starPercentages = new[] {0.333f, 0.666f, 1};
-        Vector2 progressBarFullSize;
-        Tween gotoTween;
+        private MinigamesUISingleStar[] stars;
+        private float[] starPercentages = new[] { 0.333f, 0.666f, 1 };
+        private Vector2 progressBarFullSize;
+        private Tween gotoTween;
 
         #region Unity
 
@@ -42,13 +42,15 @@ namespace Antura.UI
         {
             if (gotoTween != null) gotoTween.Kill();
             gotoTween = ProgressBar.DOSizeDelta(new Vector2(progressBarFullSize.x, progressBarFullSize.y * _percentage), 0.2f)
-                .OnUpdate(() =>
-                {
+                .OnUpdate(() => {
                     for (int i = 0; i < stars.Length; ++i) {
                         float starPercent = starPercentages[i];
                         float progressPercent = ProgressBar.sizeDelta.y / progressBarFullSize.y;
-                        if (progressPercent >= starPercent || Mathf.Approximately(progressPercent, starPercent)) stars[i].Gain();
-                        else stars[i].Lose();
+                        if (progressPercent >= starPercent || Mathf.Approximately(progressPercent, starPercent)) {
+                            stars[i].Gain();
+                        } else {
+                            stars[i].Lose();
+                        }
                     }
                 });
         }

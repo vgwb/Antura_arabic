@@ -5,6 +5,7 @@ using Antura.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Antura.Book
 {
@@ -16,6 +17,7 @@ namespace Antura.Book
 
         [Header("References")]
         public GameObject DetailPanel;
+        public GameObject MainLetterPanel;
         public GameObject ListPanel;
         public GameObject ListContainer;
 
@@ -39,16 +41,16 @@ namespace Antura.Book
             DetailPanel.SetActive(false);
             emptyContainer(ListContainer);
 
-            List<LetterData> letters = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
+            List<LetterData> letters = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter && x.InBook));
             letters.Sort((x, y) => x.Number.CompareTo(y.Number));
 
             //adds Letter VAriations
-            List<LetterData> lettersVariations = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.LetterVariation));
+            List<LetterData> lettersVariations = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.LetterVariation && x.InBook));
             lettersVariations.Sort((x, y) => x.Id.CompareTo(y.Id));
             letters.AddRange(lettersVariations);
 
             //adds Symbols
-            List<LetterData> symbols = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
+            List<LetterData> symbols = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol && x.InBook));
             symbols.Sort((x, y) => x.Id.CompareTo(y.Id));
             letters.AddRange(symbols);
 
@@ -61,6 +63,8 @@ namespace Antura.Book
                 btnGO.transform.SetAsFirstSibling();
                 btnGO.GetComponent<ItemLetter>().Init(this, myLetterinfo, false);
             }
+
+            MainLetterPanel.GetComponent<Button>().onClick.AddListener(BtnClickMainLetterPanel);
         }
 
         #endregion
@@ -76,7 +80,7 @@ namespace Antura.Book
 
             var letterbase = myLetterInfo.data.Id;
             var variationsletters = AppManager.I.DB.FindLetterData(
-                (x) => (x.BaseLetter == letterbase && (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation))
+                (x) => (x.BaseLetter == letterbase && (x.Kind == LetterDataKind.DiacriticCombo && x.Active))
             );
 
             // diacritics box
@@ -88,6 +92,9 @@ namespace Antura.Book
             info_list.Sort((x, y) => x.data.Id.CompareTo(y.data.Id));
             foreach (var info_item in info_list) {
                 if (variationsletters.Contains(info_item.data)) {
+                    if (AppConfig.DisableShaddah && info_item.data.Symbol == "shaddah") {
+                        continue;
+                    }
                     btnGO = Instantiate(DiacriticSymbolItemPrefab);
                     btnGO.transform.SetParent(DiacriticsContainer.transform, false);
                     btnGO.GetComponent<ItemDiacriticSymbol>().Init(this, info_item, false);
@@ -116,6 +123,11 @@ namespace Antura.Book
             playSound();
 
             // Debug.Log(myLetterData.GetDebugDiacriticFix());
+        }
+
+        private void BtnClickMainLetterPanel()
+        {
+            AudioManager.I.PlayLetter(myLetterData, true, LetterDataSoundType.Phoneme);
         }
 
         private void playSound()

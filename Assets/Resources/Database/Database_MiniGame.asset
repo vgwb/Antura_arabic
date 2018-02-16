@@ -178,7 +178,7 @@ MonoBehaviour:
       - Skill: 2
         Weight: 0.4
     - _Code: 7
-      _Active: 1
+      _Active: 0
       _Type: 1
       _Main: Balloons
       _Variation: letterinword

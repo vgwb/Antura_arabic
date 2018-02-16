@@ -161,7 +161,6 @@ namespace Antura.Assessment
             return new LetterFormsInWordsQuestionBuilder(
                 nPacksPerRound: SimultaneosQuestions,
                 nRounds: NumberOfRounds,
-                forceUnseparatedLetters: true,
                 parameters: builderParams);
         }
 
@@ -176,7 +175,6 @@ namespace Antura.Assessment
             return new LetterFormsInWordsQuestionBuilder(
                 nPacksPerRound: SimultaneosQuestions,
                 nRounds: NumberOfRounds,
-                forceUnseparatedLetters: true,
                 parameters: builderParams);
         }
 
@@ -226,7 +224,6 @@ namespace Antura.Assessment
                 nCorrect: 1,            // Always one!
                 nWrong: 4,            // WrongAnswers
                 useAllCorrectLetters: false,
-                forceUnseparatedLetters: true,
                 parameters: builderParams);
         }
 
@@ -411,7 +408,6 @@ namespace Antura.Assessment
                 nCorrect: 1,
                 nWrong: nWrong,
                 useAllCorrectLetters: false,
-                forceUnseparatedLetters: true,
                 parameters: builderParams);
         }
 

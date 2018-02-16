@@ -30,13 +30,14 @@ namespace Antura.Test.Rewards
         [DeMethodButton("Print Unlocks")]
         void PrintCurrentUnlocks()
         {
-            string s = ("We unlocked " + AppManager.I.RewardSystemManager.GetUnlockedRewardsCount());
+            string s = "We unlocked " + AppManager.I.RewardSystemManager.GetUnlockedRewardPacksCount(true);
             foreach (var unlockedRewardPack in AppManager.I.RewardSystemManager.GetUnlockedRewardPacks())
             {
-                s += ("\n- " + unlockedRewardPack);
+                s += "\n- " + unlockedRewardPack;
             }
             Debug.Log(s);
         }
+
 
         [DeMethodButton("Reset Unlocks")]
         void ResetUnlocks()

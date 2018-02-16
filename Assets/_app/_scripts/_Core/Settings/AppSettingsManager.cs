@@ -23,7 +23,7 @@ namespace Antura.Core
             }
         }
 
-        public bool IsAppJustUpdated;
+        private bool isFirstIstall;
         public Version AppVersionPrevious;
 
         /// <summary>
@@ -33,9 +33,14 @@ namespace Antura.Core
         {
             if (PlayerPrefs.HasKey(SETTINGS_PREFS_KEY)) {
                 var serializedObjs = PlayerPrefs.GetString(SETTINGS_PREFS_KEY);
+                //Debug.Log("LoadSettings() " + serializedObjs);
                 Settings = JsonUtility.FromJson<AppSettings>(serializedObjs);
             } else {
+                // FIRST INSTALLATION
+                isFirstIstall = true;
+                Debug.Log("LoadSettings() FIRST INSTALLATION");
                 Settings = new AppSettings();
+                Settings.SetAppVersion(AppConfig.AppVersion);
             }
 
             AudioManager.I.MusicEnabled = Settings.MusicEnabled;
@@ -51,7 +56,7 @@ namespace Antura.Core
             var serializedObjs = JsonUtility.ToJson(Settings);
             PlayerPrefs.SetString(SETTINGS_PREFS_KEY, serializedObjs);
             PlayerPrefs.Save();
-            //Debug.Log("AppSettingsManager SaveSettings()");
+            // Debug.Log("AppSettingsManager SaveSettings() " + serializedObjs);
         }
 
         /// <summary>
@@ -70,23 +75,25 @@ namespace Antura.Core
         }
         #endregion
 
+        public bool IsAppJustUpdatedFromOldVersion()
+        {
+            if (!isFirstIstall && AppVersionPrevious != null && AppVersionPrevious <= new Version(1, 0, 0, 0)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public void UpdateAppVersion()
         {
-            if (Settings.AppVersion == "") {
-                IsAppJustUpdated = true;
+            if (Settings.AppVersion != null && Settings.AppVersion == "") {
                 AppVersionPrevious = new Version(0, 0, 0, 0);
             } else {
                 AppVersionPrevious = new Version(Settings.AppVersion);
-                IsAppJustUpdated = AppConfig.AppVersion > AppVersionPrevious;
             }
-            Debug.Log("UpdateAppVersion() previous: " + AppVersionPrevious + " current: " + AppConfig.AppVersion + " updated: " + (IsAppJustUpdated ? "YES" : "NO"));
+            Debug.Log("UpdateAppVersion() previous: " + AppVersionPrevious + " current: " + AppConfig.AppVersion);
             Settings.SetAppVersion(AppConfig.AppVersion);
             SaveSettings();
-        }
-
-        public void AppUpdateCheckDone()
-        {
-            IsAppJustUpdated = false;
         }
 
         public void EnableOnlineAnalytics(bool status)

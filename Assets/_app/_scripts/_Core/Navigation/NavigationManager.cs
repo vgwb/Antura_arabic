@@ -83,6 +83,7 @@ namespace Antura.Core
         private void InitializeAllowedTransitions()
         {
             // Allowed custom transitions
+            customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Bootstrap, AppScene.Home));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Home, AppScene.PlayerCreation));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Home, AppScene.ReservedArea));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.AnturaSpace));
@@ -257,12 +258,10 @@ namespace Antura.Core
         {
             IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
 
-            if (AppConfig.DebugLogEnabled) Debug.LogFormat(" ==== Loading scene {0} ====", sceneName);
+            if (AppConfig.DebugLogEnabled) { Debug.LogFormat(" ==== Loading scene {0} ====", sceneName); }
             SceneTransitionManager.LoadSceneWithTransition(sceneName);
 
-            if (AppConfig.UnityAnalyticsEnabled && !Application.isEditor) {
-                UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
-            }
+            AppManager.I.Services.Analytics.TrackScene(sceneName);
             LogManager.I.LogInfo(InfoEvent.EnterScene, "{\"Scene\":\"" + sceneName + "\"}");
         }
 

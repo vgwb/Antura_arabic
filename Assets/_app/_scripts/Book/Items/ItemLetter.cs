@@ -38,7 +38,7 @@ namespace Antura.Book
             }
 
             Title.text = myLetterInfo.data.GetStringForDisplay();
-            SubTitle.text = myLetterInfo.data.Id + (myLetterInfo.data.Number > 0 ? " (" + myLetterInfo.data.Number + ")" : "");
+            SubTitle.text = myLetterInfo.data.Id; //  + (myLetterInfo.data.Number > 0 ? " (" + myLetterInfo.data.Number + ")" : "");
             // + " " + myLetterInfo.data.Kind.ToString();
             highlight(_selected);
         }

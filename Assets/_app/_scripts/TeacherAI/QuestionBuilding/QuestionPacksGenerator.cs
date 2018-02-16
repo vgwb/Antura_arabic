@@ -12,8 +12,6 @@ namespace Antura.Teacher
     {
         public List<IQuestionPack> GenerateQuestionPacks(IQuestionBuilder questionBuilder)
         {
-            // HACK: make sure to clear the flag for force unseparated letters whenever we re-generate new packs
-            AppManager.I.VocabularyHelper.ForceUnseparatedLetters = false;
 
             // Safety fallback, used for release to avoid crashing the application.
             // @note: This WILL block the game if an error happens EVERYTIME, so make sure that never happens!

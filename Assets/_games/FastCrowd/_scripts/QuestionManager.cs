@@ -51,7 +51,7 @@ namespace Antura.Minigames.FastCrowd
 
                 // Add drop areas
                 if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
-                    dropContainer.AddDropNumber(correctAnswer, i+1);
+                    dropContainer.AddDropNumber(correctAnswer, i);
                 else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word)
                     dropContainer.AddDropData(correctAnswer, true);
                 else

@@ -34,8 +34,12 @@ namespace Antura.Book
         private LocalizationData CategoryData;
         private GameObject btnGO;
 
+        private string debugSingleWord;
+
         private void OnEnable()
         {
+            debugSingleWord = "";
+
             var cat = new GenericCategoryData
             {
                 area = VocabularyChapter.Words,
@@ -59,8 +63,13 @@ namespace Antura.Book
                 var contents = TeacherAI.I.VocabularyAi.GetContentsOfStage(currentCategory.Stage);
                 var hashList = contents.GetHashSet<WordData>();
                 wordsList = new List<WordData>();
-                wordsList.AddRange(hashList);
 
+                if (debugSingleWord != "") {
+                    var customWord = AppManager.I.DB.GetWordDataById(debugSingleWord);
+                    wordsList.Add(customWord);
+                } else {
+                    wordsList.AddRange(hashList);
+                }
             } else {
                 wordsList = AppManager.I.DB.FindWordData((x) => (x.Category == currentCategory.wordCategory));
             }
@@ -121,19 +130,15 @@ namespace Antura.Book
         public void DetailWord(WordInfo _currentWord)
         {
             currentWordInfo = _currentWord;
-
             DetailPanel.SetActive(true);
-
             HighlightWordItem(currentWordInfo.data.Id);
-
-            Debug.Log("Detail Word :" + currentWordInfo.data.Id);
             PlayWord();
 
             // empty spelling container
             foreach (Transform t in SpellingContainer.transform) {
                 Destroy(t.gameObject);
             }
-            var splittedLetters = ArabicAlphabetHelper.SplitWord(AppManager.I.DB, currentWordInfo.data, false, true);
+            var splittedLetters = ArabicAlphabetHelper.SplitWord(AppManager.I.DB, currentWordInfo.data, false, false);
             foreach (var letter in splittedLetters) {
                 btnGO = Instantiate(SpellingLetterItemPrefab);
                 btnGO.transform.SetParent(SpellingContainer.transform, false);
@@ -152,6 +157,11 @@ namespace Antura.Book
                 WordDrawingText.text = "";
             }
 
+            if (AppConfig.DebugLogEnabled) {
+                Debug.Log("Detail Word(): " + currentWordInfo.data.Id);
+                Debug.Log("word unicodes: " + ArabicAlphabetHelper.GetStringUnicodes(currentWordInfo.data.Arabic));
+                Debug.Log("word unicodes forms: " + ArabicAlphabetHelper.GetStringUnicodes(WordArabicText.RenderedText));
+            }
             //ScoreText.text = "Score: " + currentWord.score;
         }
 

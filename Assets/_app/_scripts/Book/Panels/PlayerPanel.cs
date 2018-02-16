@@ -17,8 +17,12 @@ namespace Antura.Book
 
         public CompletionSlider StarsSlider;
         public CompletionSlider RewardsSlider;
+        public CompletionSlider JourneySlider;
         public TextRender BonesText;
         public TextRender PlayTimeText;
+
+        // TODO has to be calculated dynamically
+        private const int TOTAL_NUMBER_OF_STARS = 270;
 
         void Start()
         {
@@ -31,10 +35,9 @@ namespace Antura.Book
             //InfoTable.AddRow(LocalizationDataId.UI_Stage_and_Level, AppManager.I.Player.MaxJourneyPosition.GetShortTitle());
 
             // Unlocked / total PlaySessions
-            //var totalPlaySessions = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
-            //var totalPlaySessionsUnlocked = totalPlaySessions.FindAll(x => x.unlocked);
-            ////InfoTable.AddRow("Unlocked Levels", "", totalPlaySessionsUnlocked.Count.ToString() + " / " + totalPlaySessions.Count.ToString());
-            //InfoTable.AddSliderRow(LocalizationDataId.UI_Unlocked_Levels, totalPlaySessionsUnlocked.Count, totalPlaySessions.Count);
+            var totalPlaySessions = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
+            var totalPlaySessionsUnlocked = totalPlaySessions.FindAll(x => x.unlocked);
+            JourneySlider.SetValue(totalPlaySessionsUnlocked.Count, totalPlaySessions.Count);
 
             // Total elapsed time
             //var totalTimespan = GetTotalApplicationTime();
@@ -44,15 +47,13 @@ namespace Antura.Book
             //InfoTable.AddRow(LocalizationDataId.UI_Games_played, GetTotalMiniGamePlayInstances().ToString());
 
             // Total stars
-            var playerStars = GetTotalMiniGameStars();
-            // TODO calculate total stars
-            var totalStart = 270;
-            StarsSlider.SetValue(playerStars, totalStart);
+            var playerStars = GetPlaySessionStars();
+            StarsSlider.SetValue(playerStars, TOTAL_NUMBER_OF_STARS);
             //InfoTable.AddRow(LocalizationDataId.UI_Stars, totalStars.ToString());
 
             // unlocked / total REWARDS
-            var totalRewards = AppManager.I.RewardSystemManager.GetTotalRewardPacksCount();
-            var totalRewardsUnlocked = AppManager.I.RewardSystemManager.GetUnlockedRewardsCount();
+            var totalRewards = AppManager.I.RewardSystemManager.GetTotalRewardPacksCount(true);
+            var totalRewardsUnlocked = AppManager.I.RewardSystemManager.GetUnlockedRewardPacksCount(true);
             RewardsSlider.SetValue(totalRewardsUnlocked, totalRewards);
             //InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
             //InfoTable.AddSliderRow(LocalizationDataId.UI_Antura_Rewards, totalRewards, totalRewardsUnlocked);
@@ -189,11 +190,12 @@ namespace Antura.Book
             return total;
         }
 
-        private int GetTotalMiniGameStars()
+        private int GetPlaySessionStars()
         {
-            string query = "select * from " + typeof(MiniGameScoreData).Name;
-            var list = AppManager.I.DB.Query<MiniGameScoreData>(query);
-            var totalStars = list.Sum(data => data.Stars);
+            string query = "select * from " + typeof(JourneyScoreData).Name;
+            var list = AppManager.I.DB.Query<JourneyScoreData>(query);
+            // @note: assessments are skipped when computing stars
+            var totalStars = list.Sum(data => data.PlaySession != JourneyPosition.ASSESSMENT_PLAY_SESSION_INDEX ? data.Stars : 0);
             return totalStars;
         }
 

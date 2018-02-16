@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Antura.Core;
 using Antura.Helpers;
-using Antura.Core;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Antura.LivingLetters.Sample
 {
@@ -12,9 +12,9 @@ namespace Antura.LivingLetters.Sample
     /// </summary>
     public class SampleQuestionProvider : IQuestionProvider
     {
-        List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
+        private List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
 
-        int currentQuestion;
+        private int currentQuestion;
 
         public SampleQuestionProvider()
         {
@@ -22,17 +22,16 @@ namespace Antura.LivingLetters.Sample
 
             // 10 QuestionPacks
             for (int i = 0; i < 32; i++) {
-                List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
-                List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
+                var correctAnswers = new List<ILivingLetterData>();
+                var wrongAnswers = new List<ILivingLetterData>();
 
-                LL_WordData newWordData = AppManager.I.Teacher.GetRandomTestWordDataLL();
+                var newWordData = AppManager.I.Teacher.GetRandomTestWordDataLL();
                 //LL_WordData newWordData = AppManager.I.Teacher.GetRandomTestWordDataLL(new WordFilters(requireDiacritics: true));
-
                 //LL_WordData newWordData = new LL_WordData(AppManager.I.DB.GetWordDataById("wolf"));
 
-
-                if (newWordData == null)
+                if (newWordData == null) {
                     return;
+                }
 
                 foreach (var letterData in ArabicAlphabetHelper.SplitWord(AppManager.I.DB, newWordData.Data)) {
                     correctAnswers.Add(new LL_LetterData(letterData.letter));
@@ -56,9 +55,11 @@ namespace Antura.LivingLetters.Sample
 
         static bool CheckIfContains(List<ILivingLetterData> list, ILivingLetterData letter)
         {
-            for (int i = 0, count = list.Count; i < count; ++i)
-                if (list[i].Id == letter.Id)
+            for (int i = 0, count = list.Count; i < count; ++i) {
+                if (list[i].Id == letter.Id) {
                     return true;
+                }
+            }
             return false;
         }
 
@@ -66,8 +67,9 @@ namespace Antura.LivingLetters.Sample
         {
             currentQuestion++;
 
-            if (currentQuestion >= questions.Count)
+            if (currentQuestion >= questions.Count) {
                 currentQuestion = 0;
+            }
 
             return questions[currentQuestion];
         }

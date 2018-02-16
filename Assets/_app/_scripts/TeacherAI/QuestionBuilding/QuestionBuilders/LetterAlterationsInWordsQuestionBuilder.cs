@@ -39,7 +39,6 @@ namespace Antura.Teacher
             int nWrongs = 4,
             WordDataCategory category = WordDataCategory.None,
             int maximumWordLength = 20,
-            bool forceUnseparatedLetters = false,
             LetterAlterationFilters letterAlterationFilters = null,
             QuestionBuilderParameters parameters = null)
         {
@@ -49,7 +48,6 @@ namespace Antura.Teacher
             this.nWrongs = nWrongs;
             this.category = category;
             this.maximumWordLength = maximumWordLength;
-            this.forceUnseparatedLetters = forceUnseparatedLetters;
             this.parameters = parameters;
             this.letterAlterationFilters = letterAlterationFilters;
 
@@ -63,12 +61,6 @@ namespace Antura.Teacher
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            // HACK: the game may need unseparated letters
-            if (forceUnseparatedLetters)
-            {
-                AppManager.I.VocabularyHelper.ForceUnseparatedLetters = true;
-            }
-
             previousPacksIDs_words.Clear();
             previousPacksIDs_letters.Clear();
             var packs = new List<QuestionPackData>();
@@ -124,7 +116,16 @@ namespace Antura.Teacher
             List<LetterData> baseLetters;
             if (letterAlterationFilters.differentBaseLetters) baseLetters = AppManager.I.VocabularyHelper.GetAllLetters(parameters.letterFilters);
             else baseLetters = eligibleLetters;
-            var alterationsPool = AppManager.I.VocabularyHelper.GetAllLetterAlterations(baseLetters, letterAlterationFilters);
+
+            // Filter out unknown letters
+            var filteredBaseLetters = teacher.VocabularyAi.SelectData(
+                () => baseLetters,
+                    new SelectionParameters(parameters.wrongSeverity, getMaxData:true, useJourney: true,
+                        packListHistory: PackListHistory.NoFilter)
+            );
+            //Debug.LogWarning("Filtered bases: " + filteredBaseLetters.ToDebugStringNewline());
+
+            var alterationsPool = AppManager.I.VocabularyHelper.GetAllLetterAlterations(filteredBaseLetters, letterAlterationFilters);
             var wrongAnswers = new List<LetterData>();
             //Debug.Log("N Alterations before remove correct: " + alterationsPool.Count + " " + alterationsPool.ToDebugString());
 

@@ -13,8 +13,12 @@ namespace Antura.Map
         private void OnTriggerEnter(Collider other)
         {
             var isAtMaxJourneyPosition = AppManager.I.Player.IsAtMaxJourneyPosition();
+
             if (other.gameObject.CompareTag("Player") && isAtMaxJourneyPosition
-                && stageNumber > 1 && !dialoguePlayed)
+                && stageNumber > 1
+                && AppManager.I.Player.MaxJourneyPosition.LearningBlock == 1
+                && AppManager.I.Player.MaxJourneyPosition.PlaySession == 1
+                && !dialoguePlayed)
             {
                 var data = new LocalizationDataId[7];
                 data[2] = LocalizationDataId.Map_Intro_Map2;

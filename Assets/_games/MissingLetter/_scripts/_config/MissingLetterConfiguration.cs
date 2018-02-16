@@ -46,11 +46,13 @@ namespace Antura.Minigames.MissingLetter
             TutorialEnabled = true;
         }
 
+        public int N_ROUNDS = 15;   // a few more than the base line to allow for more errors
+
         public override IQuestionBuilder SetupBuilder()
         {
             IQuestionBuilder builder = null;
 
-            int nPacks = 10;
+            int nPacks = N_ROUNDS;
             int nCorrect = 1;
             int nWrong = 5;
 

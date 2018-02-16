@@ -16,6 +16,8 @@ namespace Antura.Core
 
         public static JourneyPosition InitialJourneyPosition = new JourneyPosition(1, 1, 1);
 
+        public static int ASSESSMENT_PLAY_SESSION_INDEX = 100;
+
         public string Id
         {
             get { return Stage + "." + LearningBlock + "." + PlaySession; }

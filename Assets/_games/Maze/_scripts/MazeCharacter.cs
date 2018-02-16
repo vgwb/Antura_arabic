@@ -91,13 +91,13 @@ namespace Antura.Minigames.Maze
 
         public Vector3 initialPosition;
         public Quaternion initialRotation;
-        Vector3 targetPos;
+        private Vector3 targetPos;
 
         public List<GameObject> _fruits;
 
-        int currentFruitList = 0;
+        private int currentFruitList = 0;
 
-        int currentFruitIndex;
+        private int currentFruitIndex;
 
 #pragma warning disable 0219
 #pragma warning disable 0414
@@ -122,7 +122,7 @@ namespace Antura.Minigames.Maze
         private IAudioSource rocketMoveSFX;
 
         private bool showedCheckmarkUponVictory = false;
-        System.Action OnMarkStamp;
+        private System.Action OnMarkStamp;
 
         private IAudioSource letterPronounciation;
         private bool pronouncedLetter = false;
@@ -188,7 +188,7 @@ namespace Antura.Minigames.Maze
 
         public void toggleVisibility(bool value)
         {
-            foreach (GameObject particle in particles) particle.SetActive(value);
+            foreach (GameObject particle in particles) { particle.SetActive(value); }
         }
 
         private void ResetRocket()
@@ -302,8 +302,9 @@ namespace Antura.Minigames.Maze
 
         void OnTriggerEnter(Collider other)
         {
-            if (donotHandleBorderCollision || !characterIsMoving)
+            if (donotHandleBorderCollision || !characterIsMoving) {
                 return;
+            }
 
             print("Colliding with: " + other.gameObject.name);
 
@@ -364,13 +365,14 @@ namespace Antura.Minigames.Maze
         public bool isComplete()
         {
             if (currentFruitList == Fruits.Count - 1) {
-                if (dot == null)
+                if (dot == null) {
                     return true;
-                else
+                } else {
                     return dot.isClicked;
-            } else
+                }
+            } else {
                 return false;
-
+            }
         }
 
         public void setClickedDot()
@@ -381,14 +383,14 @@ namespace Antura.Minigames.Maze
 
         public void nextPath()
         {
-            if (currentFruitList == Fruits.Count - 1)
+            if (currentFruitList == Fruits.Count - 1) {
                 return;
+            }
 
             transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isDrawing = false;
             currentFruitList++;
 
             SetFruitsList();
-
 
             Vector3 initPos = _fruits[0].transform.position + new Vector3(0f, 0.6f, 0f);
 
@@ -455,10 +457,9 @@ namespace Antura.Minigames.Maze
 
         public bool canMouseBeDown()
         {
-            if (_fruits == null || MazeGame.instance.isShowingAntura) return false;
+            if (_fruits == null || MazeGame.instance.isShowingAntura) { return false; }
 
-            if (_fruits.Count == 0)
-                return false;
+            if (_fruits.Count == 0) { return false; }
 
             float distance = Camera.main.transform.position.y;
             Vector3 pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(distance));
@@ -521,8 +522,9 @@ namespace Antura.Minigames.Maze
                 MazeGame.instance.moveToNext(true);
 
                 if (currentFruitList == Fruits.Count - 1) {
-                    if (dot != null)
+                    if (dot != null) {
                         dot.GetComponent<BoxCollider>().enabled = true;
+                    }
                 }
             } else {
                 if (loseState != LoseState.OutOfBounds) {
@@ -679,32 +681,43 @@ namespace Antura.Minigames.Maze
 
             List<Vector3> trajectoryPoints = new List<Vector3>();
 
-            var finalPosition = Fruits[0].transform.GetChild(0).gameObject.transform.position + new Vector3(0f, 0.6f, 0f);
+            var startPivot = Fruits[0].transform.GetChild(0).gameObject.transform;
+            var finalPosition = startPivot.position + new Vector3(0f, 0.6f, 0f);
 
-            int numTrajectoryPoints = 7;
-            float yDecrement = (finalPosition.y - transform.position.y) / (numTrajectoryPoints + 1);
+            rocketMoveSFX = MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.RocketMove);
+            rocketMoveSFX.Play();
+            float duration = 1;
+            if (!MazeGame.instance.isTutorialMode) {
+                duration = 1;
+                trajectoryPoints.Add(-startPivot.right * 15);
+                transform.position = trajectoryPoints[0];
+            } else {
+                duration = 3;
+                trajectoryPoints.Add(transform.position);
 
-            float[] trajectoryPointXAnchors = { -0.7f, 0f, 0.7f, 0f, -0.75f, -0.4f, 0f };
-            float[] trajectoryPointZAnchors = { 0f, 0.8f, 0f, -0.8f, -0.5f, 0.7f, 0.85f, 1.2f };
+                int numTrajectoryPoints = 7;
+                float yDecrement = (finalPosition.y - transform.position.y) / (numTrajectoryPoints + 1);
 
-            trajectoryPoints.Add(transform.position);
+                float[] trajectoryPointXAnchors = { -0.7f, 0f, 0.7f, 0f, -0.75f, -0.4f, 0f };
+                float[] trajectoryPointZAnchors = { 0f, 0.8f, 0f, -0.8f, -0.5f, 0.7f, 0.85f, 1.2f };
 
-            for (int i = 0; i < numTrajectoryPoints; i++) {
-                Vector3 trajectoryPoint = new Vector3();
-                trajectoryPoint.y = transform.position.y + (i + 1) * yDecrement;
+                for (int i = 0; i < numTrajectoryPoints; i++) {
+                    Vector3 trajectoryPoint = new Vector3();
+                    trajectoryPoint.y = transform.position.y + (i + 1) * yDecrement;
 
-                var frustumHeight = GetFrustumHeightAtDistance(Camera.main.transform.position.y - trajectoryPoint.y);
-                var frustumWidth = GetFrustumWidth(frustumHeight);
+                    var frustumHeight = GetFrustumHeightAtDistance(Camera.main.transform.position.y - trajectoryPoint.y);
+                    var frustumWidth = GetFrustumWidth(frustumHeight);
 
-                trajectoryPoint.x = frustumWidth * 0.5f * trajectoryPointXAnchors[i];
-                trajectoryPoint.z = frustumHeight * 0.5f * trajectoryPointZAnchors[i];
+                    trajectoryPoint.x = frustumWidth * 0.5f * trajectoryPointXAnchors[i];
+                    trajectoryPoint.z = frustumHeight * 0.5f * trajectoryPointZAnchors[i];
 
-                trajectoryPoints.Add(trajectoryPoint);
+                    trajectoryPoints.Add(trajectoryPoint);
+                }
+
             }
-
             trajectoryPoints.Add(finalPosition);
 
-            transform.DOPath(trajectoryPoints.ToArray(), 3, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) => {
+            transform.DOPath(trajectoryPoints.ToArray(), duration, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) => {
                 if (index + 1 < trajectoryPoints.Count) {
                     LookAt(trajectoryPoints[index + 1], true);
                 }
@@ -712,6 +725,7 @@ namespace Antura.Minigames.Maze
             }).OnComplete(() => {
                 toggleVisibility(false);
                 isAppearing = false;
+                rocketMoveSFX.Stop();
 
                 //transform.rotation = initialRotation;
                 MazeGame.instance.showCurrentTutorial();
@@ -799,7 +813,6 @@ namespace Antura.Minigames.Maze
                     if (!MazeGame.instance.isTutorialMode) {
                         MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
                     }
-
                 },
                 () => {
                     MazeGame.instance.lostCurrentLetter();

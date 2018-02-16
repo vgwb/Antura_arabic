@@ -15,6 +15,7 @@ namespace Antura.AnturaSpace
         public Image iconUI;
         public TextMeshProUGUI amountUI;
         public UIButton buttonUI;
+        public RenderedMeshUI renderedMeshUI;
 
         private ShopAction shopAction;
 
@@ -23,15 +24,37 @@ namespace Antura.AnturaSpace
         public void SetAction(ShopAction shopAction)
         {
             this.shopAction = shopAction;
-            iconUI.sprite = shopAction.iconSprite;
+
+            if (shopAction.ObjectToRender != null)
+            {
+                renderedMeshUI.scaleMultiplier = shopAction.scaleMultiplier;
+                renderedMeshUI.eulOffset = shopAction.eulOffset;
+                renderedMeshUI.AssignObjectToRender(shopAction.ObjectToRender);
+
+                ShopAction_UnlockDecoration shopAction_unlock = shopAction as ShopAction_UnlockDecoration;
+                if (shopAction_unlock != null)
+                {
+                    shopAction_unlock.UnlockableDecorationObject.rawImage = renderedMeshUI.GetRawImage();
+                }
+                iconUI.enabled = false;
+            }
+            else
+            {
+                iconUI.sprite = shopAction.iconSprite;
+                iconUI.enabled = true;
+            }
+
             amountUI.text = shopAction.bonesCost.ToString();
             UpdateAction();
         }
 
         public void UpdateAction()
         {
-            bool isLocked = shopAction.IsLocked;
-            buttonUI.Lock(isLocked);
+            if (shopAction != null)
+            {
+                bool isLocked = shopAction.IsLocked;
+                buttonUI.Lock(isLocked);
+            }
         }
 
         public void OnClick()
@@ -60,17 +83,26 @@ namespace Antura.AnturaSpace
         public void OnBeginDrag(PointerEventData eventData)
         {
             // Push the drag action to the scroll rect too
-            scrollRect.OnBeginDrag(eventData);
-            scrollRect.movementType = ScrollRect.MovementType.Unrestricted;
+            if (scrollRect != null)
+            {
+                scrollRect.OnBeginDrag(eventData);
+                scrollRect.movementType = ScrollRect.MovementType.Unrestricted;
+            }
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            // Push the drag action to the scroll rect too
-            scrollRect.OnEndDrag(eventData);
-            scrollRect.movementType = ScrollRect.MovementType.Elastic;
+            errorAlreadyPlayed = false;
+
+            if (scrollRect != null)
+            {
+                // Push the drag action to the scroll rect too
+                scrollRect.OnEndDrag(eventData);
+                scrollRect.movementType = ScrollRect.MovementType.Elastic;
+            }
         }
 
+        private bool errorAlreadyPlayed = false;
         public void OnDrag(PointerEventData eventData)
         {
             // Push the drag action to the scroll rect too
@@ -80,37 +112,44 @@ namespace Antura.AnturaSpace
                 && AnturaSpaceScene.I.tutorialManager.CurrentTutorialFocus != this)
                 return;
 
-            if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase)
+            if (ShopDecorationsManager.I.ShopContext == ShopContext.Purchase
+                && !shopAction.IsClickButton)
             {
-                if (!shopAction.IsLocked)
+                var mousePos = AnturaSpaceUI.I.ScreenToUIPoint(Input.mousePosition);
+                var buttonPos = AnturaSpaceUI.I.WorldToUIPoint(transform.position);
+                if (mousePos.y - buttonPos.y > minHeightForDragAction)
                 {
-                    var mousePos = AnturaSpaceUI.I.ScreenToUIPoint(Input.mousePosition);
-                    var buttonPos = AnturaSpaceUI.I.WorldToUIPoint(transform.position);
-                    if (mousePos.y - buttonPos.y > minHeightForDragAction)
+                    if (!shopAction.IsLocked)
                     {
                         shopAction.PerformDrag();
+                        AudioManager.I.PlaySound(Sfx.OK);
                     }
-                }
-                else
-                {
-                    ErrorFeedback();
+                    else
+                    {
+                        ErrorFeedback();
+                    }
+
                 }
             }
         }
 
         void ErrorFeedback()
         {
+            if (errorAlreadyPlayed) return;
+            errorAlreadyPlayed = true;
+
             AudioManager.I.PlaySound(Sfx.KO);
 
+            // Optionally, play an audio that tells why we cannot buy it anymore
+            /*
             if (shopAction.NotEnoughBones)
             {
-                // TODO: change this
                 AudioManager.I.PlayDialogue(LocalizationDataId.ReservedArea_SectionDescription_Error);
             }
             else
             {
                 AudioManager.I.PlayDialogue(shopAction.errorLocalizationID);
-            }
+            }*/
         }
 
     }

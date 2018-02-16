@@ -50,6 +50,7 @@ namespace Antura.Plugins.Notification
 
         public void CancelAllNotifications()
         {
+            // TODO check taht this method could be bugged.. search for an alternative
             UnityEngine.iOS.NotificationServices.ClearLocalNotifications();
         }
 

@@ -27,7 +27,9 @@ namespace Antura.Rewards
         [SerializeField]
         private DailyRewardPopupPool popupPool;
         [SerializeField]
-        private RectTransform fromPopupPivot, toPopupPivot;
+        private RectTransform fromPopupPivot;
+        [SerializeField]
+        private RectTransform toPopupPivot;
 
         private DailyRewardManager dailyRewardManager;
         private List<DailyRewardUI> dailyRewardUIs;
@@ -61,6 +63,7 @@ namespace Antura.Rewards
 
             // Index of the new reward (for the content, not the UI)
             newRewardContentIndex = nCurrentConsecutiveDaysOfPlaying - 1;
+            int startShownRewardContentIndex = Mathf.Max(0, newRewardContentIndex - 2);
 
             int nRewardsToShowToday = Mathf.Min(MAX_REWARDS_TO_SHOW, nCurrentConsecutiveDaysOfPlaying + 2);
 
@@ -77,9 +80,14 @@ namespace Antura.Rewards
             // Initialise rewards
             dailyRewardUIs = new List<DailyRewardUI>();
             int dayCounter = 0;
-            dayCounter += newRewardContentIndex;
+            dayCounter += startShownRewardContentIndex;
 
-            foreach (var reward in dailyRewardManager.GetRewards(newRewardContentIndex, newRewardContentIndex + nRewardsToShowToday)) {
+            foreach (var reward in dailyRewardManager.GetRewards(startShownRewardContentIndex,
+                startShownRewardContentIndex + nRewardsToShowToday
+                )) {
+
+                //Debug.Log("Reward for day " + dayCounter + " is " + reward.amount);
+
                 dayCounter++;
                 var dailyRewardUIGo = Instantiate(dailyRewardUIPrefab);
                 dailyRewardUIGo.transform.SetParent(dailyRewardUIPivot);
@@ -112,27 +120,22 @@ namespace Antura.Rewards
             // Start from the left
             bool withTranslation = nCurrentConsecutiveDaysOfPlaying != 1;
             float targetX = dailyRewardUIPivot.transform.localPosition.x;
-            if (withTranslation)
-            {
+            if (withTranslation) {
                 dailyRewardUIPivot.transform.localPosition += Vector3.left * 200;
             }
 
-            AudioManager.I.PlayDialogue(new[]
-                {
-                    LocalizationDataId.DailyReward_Intro_1,
-                    LocalizationDataId.DailyReward_Intro_2
-                }.GetRandom(),
-                () =>
-                {
-                    StartCoroutine(ShowRewardsCO(withTranslation, targetX));
-                }
-                );
-
+            StartCoroutine(ShowRewardsCO(withTranslation, targetX));
         }
 
         IEnumerator ShowRewardsCO(bool withTranslation, float targetX)
         {
             // Start to the left
+            AudioManager.I.PlayDialogue(new[]
+            {
+                LocalizationDataId.DailyReward_Intro_1,
+                LocalizationDataId.DailyReward_Intro_2
+            }.GetRandom());
+            yield return new WaitForSeconds(1.0f);
 
             Sequence s = DOTween.Sequence().AppendInterval(0.5f);
             if (withTranslation) {
@@ -185,9 +188,8 @@ namespace Antura.Rewards
                     waitTime -= 1.0f;
                     Tutorial.TutorialUI.Click(dailyRewardUIs[newRewardUIIndex].transform.position);
 
-                    if (!alreadyPoked)
-                    {
-                        alreadyPoked = true; 
+                    if (!alreadyPoked) {
+                        alreadyPoked = true;
                         AudioManager.I.PlayDialogue(LocalizationDataId.DailyReward_Collect);
                     }
                 }
@@ -216,7 +218,7 @@ namespace Antura.Rewards
             }
             AppManager.I.Player.AddBones(nNewBones);
 
-            yield return new WaitForSeconds(1.0f);
+            //yield return new WaitForSeconds(0.1f);
 
             // Log
             LogManager.I.LogInfo(InfoEvent.DailyRewardReceived);

@@ -91,7 +91,7 @@ namespace Antura.Minigames.MissingLetter
 
             //At least, they are all sets to the minimun
             //m_iRoundsLimit = Mathf.RoundToInt(Mathf.Lerp(6, 10, _diff));
-            m_iRoundsLimit = 10;
+            m_iRoundsLimit = MissingLetterConfiguration.Instance.N_ROUNDS;
             //m_iNumberOfPossibleAnswers = Mathf.RoundToInt(Mathf.Lerp(2, 6, _diff));
             m_iNumberOfPossibleAnswers = 4;
 
@@ -107,10 +107,12 @@ namespace Antura.Minigames.MissingLetter
             for (int i = 0; i < m_iAnturaTriggersNumber; ++i) {
                 m_afAnturaEnterTriggers[i] = ((m_fGameTime - 10.0f) / m_iAnturaTriggersNumber) * (m_iAnturaTriggersNumber - i);
             }
-            //Calculating stars thresold based on Rounds Number
-            STARS_1_THRESHOLD = (int)(m_iRoundsLimit * 0.3);
-            STARS_2_THRESHOLD = (int)(m_iRoundsLimit * 0.6);
-            STARS_3_THRESHOLD = (int)(m_iRoundsLimit * 0.9);
+
+            // Stars threshold is computed as if we had 10 rounds
+            int nBaseRounds = 10;
+            STARS_1_THRESHOLD = (int)(nBaseRounds * 0.3);
+            STARS_2_THRESHOLD = (int)(nBaseRounds * 0.6);
+            STARS_3_THRESHOLD = (int)(nBaseRounds * 0.9);
         }
         #endregion
 

@@ -131,7 +131,7 @@ namespace Antura.Map
         private void LateUpdate()
         {
             if (AppManager.I.ModalWindowActivated) { return; }
-            if (GlobalUI.I.IsFingerOverUI()) { return; }
+            //if (GlobalUI.I.IsFingerOverUI()) { return; }
 
             if (movementType == MovementType.AUTO) {
                 // Auto-follow

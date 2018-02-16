@@ -1,14 +1,14 @@
 #if UNITY_EDITOR
 
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
 using Antura.Core;
 using Antura.Helpers;
 using Antura.Profile;
 using Antura.Rewards;
 using Antura.Teacher;
 using Antura.UI;
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 // refactor: standardize random use across the codebase
 using RND = UnityEngine.Random;
@@ -549,7 +549,7 @@ namespace Antura.Database.Management
             var scores = scoreHelper.GetLatestScoresForMiniGame(MiniGameCode.Balloons_counting, 3);
 
             string output = "Scores:\n";
-            foreach (var score in scores) output += score.ToString() + "\n";
+            foreach (var score in scores) { output += score.ToString() + "\n"; }
             PrintOutput(output);
         }
 
@@ -558,7 +558,7 @@ namespace Antura.Database.Management
             var list = scoreHelper.GetCurrentScoreForAllPlaySessions();
 
             string output = "All play session scores:\n";
-            foreach (var data in list) output += data.ElementId + ": " + data.GetScore() + "\n";
+            foreach (var data in list) { output += data.ElementId + ": " + data.GetScore() + "\n"; }
             PrintOutput(output);
         }
 

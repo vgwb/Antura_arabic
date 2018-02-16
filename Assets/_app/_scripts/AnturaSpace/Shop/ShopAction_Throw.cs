@@ -1,10 +1,17 @@
 ﻿using Antura.Core;
+using UnityEngine;
 
 namespace Antura.AnturaSpace
 {
     public class ShopAction_Throw : ShopAction
     {
+        public GameObject objectToRender;
         public ThrowableObject throwingObjectPrefabGO;
+
+        public override GameObject ObjectToRender
+        {
+            get { return objectToRender; }
+        }
 
         public AnturaSpaceScene AnturaSpaceScene
         {

@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using Antura.Audio;
-using Antura.Core;
-using UnityEngine;
-
-namespace Antura.AnturaSpace
+﻿namespace Antura.AnturaSpace
 {
     public class ShopAction_Photo : ShopAction
     {
@@ -25,10 +20,8 @@ namespace Antura.AnturaSpace
 
         public override bool IsLocked
         {
-            get
-            {
-                if (base.IsLocked)
-                {
+            get {
+                if (base.IsLocked) {
                     return true;
                 }
                 return false;

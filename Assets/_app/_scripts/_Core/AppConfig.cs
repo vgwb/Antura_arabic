@@ -13,7 +13,7 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public static Version AppVersion = new Version(1, 2, 0, 0);
+        public static Version AppVersion = new Version(1, 2, 0, 8);
 
         /// <summary>
         /// Version of the Static Database Scheme.
@@ -57,6 +57,9 @@ namespace Antura.Core
         public static bool DisableFirstContact = false;
 
         public static bool MinigameTutorialsEnabled = true;
+
+        // disables the listing and use of the Shaddah from all the words/book
+        public static bool DisableShaddah = true;
 
         #endregion
 

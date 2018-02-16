@@ -98,7 +98,7 @@ namespace Antura.Profile
         private FirstContactPhase SIMULATE_FIRST_CONTACT_PHASE = FirstContactPhase.AnturaSpace_TouchAntura;
 
         private static bool FORCE_FIRST_CONTACT_START = false;
-        private FirstContactPhase FORCED_FIRST_CONTACT_START_PHASE = FirstContactPhase.Map_PlayFirstSession;
+        private FirstContactPhase FORCED_FIRST_CONTACT_START_PHASE = FirstContactPhase.AnturaSpace_Customization;
 
         public FirstContactManager()
         {

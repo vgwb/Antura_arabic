@@ -39,7 +39,7 @@ namespace Antura.Teacher
             includeForms = true,
             ExcludeDiacritics = LetterFilters.ExcludeDiacritics.None,
             ExcludeLetterVariations = LetterFilters.ExcludeLetterVariations.None,
-            excludeDipthongs = false,
+            excludeDipthongs = true, // dipthongs are excluded since these alterations are used in LetterAny games, where you need to hear the correct letter and distinguish it
         };
         public static readonly LetterAlterationFilters FormsAndPhonemesOfMultipleLetters_OneForm = new LetterAlterationFilters()
         {
@@ -48,7 +48,7 @@ namespace Antura.Teacher
             oneFormPerLetter = true,
             ExcludeDiacritics = LetterFilters.ExcludeDiacritics.None,
             ExcludeLetterVariations = LetterFilters.ExcludeLetterVariations.None,
-            excludeDipthongs = false,
+            excludeDipthongs = true, // dipthongs are excluded since these alterations are used in LetterPhoneme games, where you need to hear the correct letter and distinguish it
         };
 
 

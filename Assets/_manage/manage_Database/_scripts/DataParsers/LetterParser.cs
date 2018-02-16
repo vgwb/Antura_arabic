@@ -15,6 +15,7 @@ namespace Antura.Database.Management
             data.Active = (ToInt(dict["Active"]) == 1);
             if (!data.Active) return null;  // Skip this data if inactive
 
+            data.InBook = (ToInt(dict["InBook"]) == 1);
             data.Number = ToInt(dict["Number"]);
             data.Title = ToString(dict["Title"]);
             data.Kind = ParseEnum<LetterDataKind>(data, dict["Kind"]);
