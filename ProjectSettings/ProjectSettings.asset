@@ -151,7 +151,7 @@ PlayerSettings:
     iOS: org.eduapp4syria.antura
     tvOS: org.eduapp4syria.antura
   buildNumber:
-    iOS: 0
+    iOS: 2
   AndroidBundleVersionCode: 1020000
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
