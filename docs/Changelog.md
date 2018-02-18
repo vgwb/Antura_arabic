@@ -6,18 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 
-## [1.2.0] - 2018-01-22
-### Changed
-- new Pedagogical Curriculum
+## [1.2.0] - 2018-02-17
+- the first full release
+- new arabic curriculum
+- new map
+- new Antura space with shop
+- save photos of your Antura
+- daily rewards and notifications
+- feminime arabic localizations and speeches
 
-### Added
-- Daily Rewards
-- Antura Space Shop and Antura interactions
-- new Map
-- local notifications
-- repeat minigame
-
-## 1.1.0beta build 586
+## [1.1.0beta build 586]
 - book: play Photo Gallery message
 - arabic: added letter combo: lam_alef_kasrah
 - arabic: fix all diacritic symbol positions
