@@ -15,14 +15,11 @@ namespace Antura.Scenes
     {
         [Header("Setup")]
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
-
         public LLAnimationStates LLAnimation = LLAnimationStates.LL_dancing;
 
         [Header("References")]
         public AnturaAnimationController AnturaAnimController;
-
         public LivingLetterController LLAnimController;
-
 
         protected override void Start()
         {
@@ -35,5 +32,14 @@ namespace Antura.Scenes
 
         }
 
+        public void OnBtnPlay()
+        {
+
+        }
+
+        public void OnBtnDonate()
+        {
+
+        }
     }
 }
