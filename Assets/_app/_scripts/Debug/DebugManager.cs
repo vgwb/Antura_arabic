@@ -229,6 +229,11 @@ namespace Antura.Debugging
             AppManager.I.NavigationManager.GoToReservedArea(debugMode: true);
         }
 
+        public void GoToKiosk()
+        {
+            AppManager.I.NavigationManager.GoToKiosk(debugMode: true);
+        }
+
         public void ForwardMaxJourneyPos()
         {
             JourneyPosition newPos = AppManager.I.JourneyHelper.FindNextJourneyPosition(AppManager.I.Player.MaxJourneyPosition);

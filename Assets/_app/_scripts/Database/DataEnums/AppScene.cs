@@ -20,6 +20,7 @@
         Rewards = 12,
         Ending = 13,
         DailyReward = 14,
+        Kiosk = 16,
 
         NONE = 100
     }

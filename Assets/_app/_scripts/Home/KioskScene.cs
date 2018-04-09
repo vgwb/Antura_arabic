@@ -2,6 +2,7 @@
 using Antura.Core;
 using Antura.Database;
 using Antura.Dog;
+using Antura.Kiosk;
 using Antura.LivingLetters;
 using Antura.UI;
 using UnityEngine;
@@ -13,6 +14,10 @@ namespace Antura.Scenes
     /// </summary>
     public class KioskScene : SceneBase
     {
+        public const string UrlKioskEng = "http://www.antura.org/triennale/";
+        public const string UrlKioskIta = "http://www.antura.org/it/triennale_it/";
+
+
         [Header("Setup")]
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
         public LLAnimationStates LLAnimation = LLAnimationStates.LL_dancing;
@@ -20,6 +25,8 @@ namespace Antura.Scenes
         [Header("References")]
         public AnturaAnimationController AnturaAnimController;
         public LivingLetterController LLAnimController;
+
+        public WebPanel WebPanel;
 
         protected override void Start()
         {
@@ -39,7 +46,7 @@ namespace Antura.Scenes
 
         public void OnBtnDonate()
         {
-
+            WebPanel.Open(UrlKioskEng);
         }
     }
 }

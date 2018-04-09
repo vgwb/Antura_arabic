@@ -293,6 +293,9 @@ namespace Antura.Core
 
         public void GoToHome(bool debugMode = false)
         {
+            if (AppManager.I.AppSettings.KioskMode) {
+                AppManager.I.AppSettingsManager.SetKioskMode(false);
+            }
             CustomGoTo(AppScene.Home, debugMode);
         }
 
@@ -319,6 +322,12 @@ namespace Antura.Core
         public void GoToAnturaSpace(bool debugMode = false)
         {
             CustomGoTo(AppScene.AnturaSpace, debugMode);
+        }
+
+        public void GoToKiosk(bool debugMode = false)
+        {
+            AppManager.I.AppSettingsManager.SetKioskMode(true);
+            CustomGoTo(AppScene.Kiosk, debugMode);
         }
 
         /// <summary>

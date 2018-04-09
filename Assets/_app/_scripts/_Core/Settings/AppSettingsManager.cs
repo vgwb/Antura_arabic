@@ -102,6 +102,12 @@ namespace Antura.Core
             SaveSettings();
         }
 
+        public void SetKioskMode(bool status)
+        {
+            Settings.KioskMode = status;
+            SaveSettings();
+        }
+
         public void DeleteAllPlayers()
         {
             Settings.DeletePlayers();

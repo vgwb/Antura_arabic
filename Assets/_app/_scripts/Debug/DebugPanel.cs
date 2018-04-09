@@ -138,6 +138,12 @@ namespace Antura.Debugging
             Close();
         }
 
+        public void GoToKiosk()
+        {
+            DebugManager.I.GoToKiosk();
+            Close();
+        }
+
         #endregion
 
         #region Journey

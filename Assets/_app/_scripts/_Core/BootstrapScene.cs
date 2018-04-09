@@ -34,7 +34,11 @@ namespace Antura.Scenes
 
         private void GoToHomeScene()
         {
-            AppManager.I.NavigationManager.GoToHome();
+            if (AppManager.I.AppSettings.KioskMode) {
+                AppManager.I.NavigationManager.GoToKiosk(true);
+            } else {
+                AppManager.I.NavigationManager.GoToHome();
+            }
         }
 
         public void CloseAppUpdatePanel()
