@@ -17,11 +17,12 @@ Daniele Giardini
 ### LEAD PROGRAMMERS
 Paolo Bragonzi
 Davide Barbieri
+Michele Pirovano
 
 ### MUSIC AND SOUND DESIGNER
 Hamza Chioua
 
-### R&D AND PRODUCTION SUPPORT
+### R&D AND PRODUCTION
 Stefano Cecere
 
 ### ASSOCIATE PRODUCER AND ADDITIONAL GAME DESIGN
@@ -29,7 +30,6 @@ Ziad Feghali
 
 ### PRODUCER AND ADDITIONAL GAME DESIGN
 Francesco Cavallari
-
 
 ## TH Köln / Cologne Game Lab
 
@@ -39,16 +39,24 @@ Prof. Dr. Emmanuel Guardiola
 ### PSYCHOLOGY ADVISOR
 Dr. Marc Wittman
 
-### ARABIC LANGUAGE TEACHER
-Mouna Barmada
+### MAIN PEDAGOGICAL ADVISOR
+Safâa El Ouafi
 
-### INTERNATIONAL EDUCATOR
+### PEDAGOGICAL EXPERTS
+Mouna Barmada
 Bahjat Moura
 
-### PLAYTEST COORDINATOR
-Lubna Odeh
+### PLAYTESTS AND FIELD TESTS COORDINATORS
+Lubna Odeh (CNAM Paris)
+Dr Yavuz Samur (Bahcesehir University Istanbul)
+Fatimaezzahra Benmarrakchi (Université Chouaib Doukkali)
+Dr Antoun Yaacoub (Université Libanaise Beirut)
+
+### DATA ANALYST
+Thiago Gatti
 
 ### ADMINISTRATION COORDINATION
+Sebastian Felzmann
 Katharina Tillmanns
 
 ### LEAD MARKETING STRATEGIST
@@ -60,12 +68,11 @@ Imaad Manzar
 ### PR COORDINATOR
 Judith Neumann
 
-### DIGITAL MARKETING COORDINATOR
+### DIGITAL MARKETING COORDINATOR AND 2D ILLUSTRATOR
 Pierre Schlömp
 
 ### PROMOTIONAL ART AND DESIGN
 Karen Barbosa
-
 
 ## Video Games Without Borders
 
@@ -81,16 +88,16 @@ Daniele Giardini
 ### LEAD PROGRAMMERS
 Paolo Bragonzi
 Davide Barbieri
+Michele Pirovano
 
 ### MUSIC AND SOUND DESIGNER
 Hamza Chioua
 
-### R&D AND PRODUCTION SUPPORT
+### R&D AND PRODUCTION
 Stefano Cecere
 
 ### PROGRAMMERS
 Armando Teora
-Michele Pirovano
 Elena Blanes
 Dario Oliveri
 
@@ -111,7 +118,6 @@ Mar Mas
 
 ### ADMINISTRATION
 Montse Villar
-
 
 ## Wixel Studios
 
@@ -135,7 +141,6 @@ Remi Abdel Rassoul
 Pamela Al Alam
 Rami Bordokani
 
-
 ## University of Verona
 MASTER IN COMPUTER GAMES DEVELOPMENT
 
@@ -153,7 +158,6 @@ Edoardo Tosatti
 ### MASTER COORDINATOR
 Umberto Castellani
 
-
 ## VOICES
 
 ### THE KEEPER
@@ -161,7 +165,6 @@ Fares Al-Helou
 
 ### VOCABULARY, TUTORIAL & SONGS
 Ibtissam Shakar
-
 
 ## MARKETING AND COMMUNICATION CONTRIBUTORS
 
@@ -209,7 +212,6 @@ Delphine Soriano
 ### DEVELOPER (CONCEPT PHASE)
 Dr. Zahen Malla Osman
 
-
 ## SCIENTIFIC BOARD
 
 ### UNHCR
@@ -233,8 +235,11 @@ Dr. Juho Hamari
 - Miriam Lozano
 - Curtis Maughan
 - Mai Saki
+- Aurélie Perrin
+- Bárbara Cejudo
+- Efsaia Vardoulaki
+- Suany Lima
 - Fabio Cecere
-
 
 ### PRODUCED WITH THE GENEROUS SUPPORT OF
 - Unity
