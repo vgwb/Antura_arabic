@@ -78,6 +78,8 @@ namespace Antura.Core
                     return AppScene.Ending;
                 case "app_DailyReward":
                     return AppScene.DailyReward;
+                case "app_Kiosk":
+                    return AppScene.Kiosk;
                 default:
                     return AppScene.MiniGame;
             }

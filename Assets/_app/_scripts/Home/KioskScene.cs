@@ -1,9 +1,9 @@
 ﻿using Antura.Audio;
 using Antura.Core;
-using Antura.Database;
 using Antura.Dog;
 using Antura.Kiosk;
 using Antura.LivingLetters;
+using Antura.Minigames;
 using Antura.UI;
 using UnityEngine;
 
@@ -16,7 +16,6 @@ namespace Antura.Scenes
     {
         public const string UrlKioskEng = "http://www.antura.org/triennale/";
         public const string UrlKioskIta = "http://www.antura.org/it/triennale_it/";
-
 
         [Header("Setup")]
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
@@ -37,11 +36,17 @@ namespace Antura.Scenes
             AnturaAnimController.State = AnturaAnimation;
             LLAnimController.State = LLAnimation;
 
+
+            AppManager.I.AppSettings.KioskMode = true;
         }
 
         public void OnBtnPlay()
         {
-
+            AppManager.I.Player.CurrentJourneyPosition.SetPosition(6, 15, 1);
+            AppManager.I.GameLauncher.LaunchGame(MiniGameCode.FastCrowd_buildword,
+                                                             new MinigameLaunchConfiguration(0, 1, tutorialEnabled: true),
+                                                             forceNewPlaySession: true
+                                                            );
         }
 
         public void OnBtnDonate()

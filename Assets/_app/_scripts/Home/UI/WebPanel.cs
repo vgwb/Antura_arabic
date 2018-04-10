@@ -1,4 +1,5 @@
 ﻿using Antura.Core;
+using Antura.Core.Services.WebView;
 using UnityEngine;
 
 namespace Antura.Kiosk
@@ -10,12 +11,13 @@ namespace Antura.Kiosk
         public void Open(string url)
         {
             gameObject.SetActive(true);
-            AppManager.I.Services.WebView.OpenUrl(url);
+            WebViewComponent.I.OpenBrowser(url, 0, 100, 0, 0);
         }
 
         public void OnClose()
         {
-
+            WebViewComponent.I.CloseBrowser();
+            gameObject.SetActive(false);
         }
     }
 }

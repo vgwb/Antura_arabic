@@ -89,6 +89,8 @@ namespace Antura.Core
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.AnturaSpace));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.Rewards));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.MiniGame));
+            customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Kiosk, AppScene.MiniGame));
+            customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.MiniGame, AppScene.Kiosk));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Rewards, AppScene.AnturaSpace));
 
             // Transitions that can register for a 'back' function
@@ -96,6 +98,7 @@ namespace Antura.Core
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.AnturaSpace));
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.GameSelector));
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.MiniGame));
+            backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Kiosk, AppScene.MiniGame));
         }
 
         /// <summary>
@@ -151,7 +154,11 @@ namespace Antura.Core
                     GoToFirstGameOfPlaySession();
                     break;
                 case AppScene.MiniGame:
-                    GoToNextGameOfPlaySession();
+                    if (AppManager.I.AppSettings.KioskMode) {
+                        GoToKiosk();
+                    } else {
+                        GoToNextGameOfPlaySession();
+                    }
                     break;
                 case AppScene.AnturaSpace:
                     GoToScene(AppScene.Map);
@@ -326,6 +333,7 @@ namespace Antura.Core
 
         public void GoToKiosk(bool debugMode = false)
         {
+            Debug.Log("GoToKiosk");
             AppManager.I.AppSettingsManager.SetKioskMode(true);
             CustomGoTo(AppScene.Kiosk, debugMode);
         }
@@ -344,7 +352,11 @@ namespace Antura.Core
                     GoToScene(AppScene.Home);
                     break;
                 default:
-                    GoToScene(AppScene.Map);
+                    if (AppManager.I.AppSettings.KioskMode) {
+                        GoToKiosk();
+                    } else {
+                        GoToScene(AppScene.Map);
+                    }
                     break;
             }
         }
@@ -541,6 +553,7 @@ namespace Antura.Core
         private void GoToNextGameOfPlaySession()
         {
             if (!NavData.RealPlaySession) {
+                Debug.Log("GoToNextGameOfPlaySession 1");
                 // Go where you were previously
                 GoBack();
                 return;
