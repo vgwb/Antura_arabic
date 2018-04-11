@@ -6,6 +6,7 @@ using Antura.LivingLetters;
 using Antura.Minigames;
 using Antura.UI;
 using UnityEngine;
+using TMPro;
 
 namespace Antura.Scenes
 {
@@ -26,18 +27,22 @@ namespace Antura.Scenes
         public LivingLetterController LLAnimController;
 
         public WebPanel WebPanel;
+        public TextMeshProUGUI ButtonTextDonate;
+        public TextMeshProUGUI ButtonTextPlay;
 
         protected override void Start()
         {
             base.Start();
-            GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
+            GlobalUI.ShowPauseMenu(false, PauseMenuType.StartScreen);
             AudioManager.I.PlaySound(Sfx.GameTitle);
 
             AnturaAnimController.State = AnturaAnimation;
             LLAnimController.State = LLAnimation;
 
+            LLAnimController.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
 
             AppManager.I.AppSettings.KioskMode = true;
+            updateUI();
         }
 
         public void OnBtnPlay()
@@ -51,7 +56,37 @@ namespace Antura.Scenes
 
         public void OnBtnDonate()
         {
-            WebPanel.Open(UrlKioskEng);
+            if (AppManager.I.AppSettings.AppLanguage == AppLanguages.Italian) {
+                WebPanel.Open(UrlKioskIta);
+            } else {
+                WebPanel.Open(UrlKioskEng);
+            }
+        }
+
+        public void OnBtnLanguageIta()
+        {
+            AppManager.I.AppSettings.AppLanguage = AppLanguages.Italian;
+            updateUI();
+        }
+
+        public void OnBtnLanguageEng()
+        {
+            AppManager.I.AppSettings.AppLanguage = AppLanguages.English;
+            updateUI();
+        }
+
+        private void updateUI()
+        {
+            switch (AppManager.I.AppSettings.AppLanguage) {
+                case AppLanguages.English:
+                    ButtonTextDonate.text = "Donate";
+                    ButtonTextPlay.text = "Play";
+                    break;
+                case AppLanguages.Italian:
+                    ButtonTextDonate.text = "Donazione";
+                    ButtonTextPlay.text = "Gioca";
+                    break;
+            }
         }
     }
 }
