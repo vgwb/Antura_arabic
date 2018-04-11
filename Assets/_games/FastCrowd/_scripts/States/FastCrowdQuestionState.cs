@@ -1,10 +1,14 @@
-﻿using Antura.LivingLetters;
+﻿using Antura.Core;
+using Antura.LivingLetters;
+using UnityEngine;
 
 namespace Antura.Minigames.FastCrowd
 {
     public class FastCrowdQuestionState : FSM.IState
     {
-        FastCrowdGame game;
+        private FastCrowdGame game;
+        private float idleTime;
+        private const int idleTimeDuration = 60;
 
         public FastCrowdQuestionState(FastCrowdGame game)
         {
@@ -13,11 +17,11 @@ namespace Antura.Minigames.FastCrowd
 
         public void EnterState()
         {
-            if (game.showTutorial)
+            if (game.showTutorial) {
                 game.QuestionManager.crowd.MaxConcurrentLetters = 2;
-            else
+            } else {
                 game.QuestionManager.crowd.MaxConcurrentLetters = UnityEngine.Mathf.RoundToInt(4 + FastCrowdConfiguration.Instance.Difficulty * 4);
-
+            }
             game.CurrentChallenge.Clear();
             game.NoiseData.Clear();
 
@@ -25,8 +29,7 @@ namespace Antura.Minigames.FastCrowd
             var question = provider.GetNextQuestion();
             game.CurrentQuestion = question;
 
-            if (question == null)
-            {
+            if (question == null) {
                 game.SetCurrentState(game.EndState);
                 return;
             }
@@ -36,45 +39,37 @@ namespace Antura.Minigames.FastCrowd
                 game.CurrentChallenge.Add(l);
 
             // Add wrong data
-            if (question.GetWrongAnswers() != null)
-                foreach (var l in question.GetWrongAnswers())
+            if (question.GetWrongAnswers() != null) {
+                foreach (var l in question.GetWrongAnswers()) {
                     game.NoiseData.Add(l);
+                }
+            }
 
 
             ++game.QuestionNumber;
 
-            if (game.CurrentChallenge.Count > 0)
-            {
+            if (game.CurrentChallenge.Count > 0) {
                 // Show question
-                if (!game.ShowChallengePopupWidget(false, OnPopupCloseRequested))
-                {
-                    if (game.showTutorial)
-                    {
+                if (!game.ShowChallengePopupWidget(false, OnPopupCloseRequested)) {
+                    if (game.showTutorial) {
                         game.SetCurrentState(game.TutorialState);
-                    }
-                    else
-                    {
+                    } else {
                         game.SetCurrentState(game.PlayState);
                     }
                 }
-            }
-            else
-            {
+            } else {
                 // no more questions
                 game.SetCurrentState(game.EndState);
             }
+            idleTime = Time.time + idleTimeDuration;
         }
 
         void OnPopupCloseRequested()
         {
-            if (game.GetCurrentState() == this)
-            {
-                if (game.showTutorial)
-                {
+            if (game.GetCurrentState() == this) {
+                if (game.showTutorial) {
                     game.SetCurrentState(game.TutorialState);
-                }
-                else
-                {
+                } else {
                     game.SetCurrentState(game.PlayState);
                 }
             }
@@ -87,6 +82,12 @@ namespace Antura.Minigames.FastCrowd
 
         public void Update(float delta)
         {
+            if (AppManager.I.AppSettings.KioskMode) {
+                if (idleTime > 0 && Time.time > idleTime) {
+                    idleTime = -1;
+                    AppManager.I.NavigationManager.ExitToMainMenu();
+                }
+            }
         }
 
         public void UpdatePhysics(float delta)
@@ -94,4 +95,3 @@ namespace Antura.Minigames.FastCrowd
         }
     }
 }
- 

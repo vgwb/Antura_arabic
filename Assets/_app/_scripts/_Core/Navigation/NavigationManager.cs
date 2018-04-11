@@ -90,6 +90,7 @@ namespace Antura.Core
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.Rewards));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.MiniGame));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Kiosk, AppScene.MiniGame));
+            customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Kiosk, AppScene.Kiosk));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.MiniGame, AppScene.Kiosk));
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Rewards, AppScene.AnturaSpace));
 
