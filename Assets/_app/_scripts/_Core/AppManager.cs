@@ -119,7 +119,7 @@ namespace Antura.Core
         {
             // Exit with Android back button
             if (Input.GetKeyDown(KeyCode.Escape)) {
-                if (Application.platform == RuntimePlatform.Android) {
+                if (Application.platform == RuntimePlatform.Android && !AppSettings.KioskMode) {
                     QuitApplication();
                 }
             }
