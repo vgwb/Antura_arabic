@@ -11,7 +11,12 @@ namespace Antura.UI
     {
         void Start()
         {
-            gameObject.GetComponent<TextMeshProUGUI>().text = AppConfig.GetAppVersionString();
+            var label = "";
+            if (AppManager.I.AppSettings.KioskMode) {
+                label = "CROWFUNDING DEMO ";
+            }
+            label += AppConfig.GetAppVersionString();
+            gameObject.GetComponent<TextMeshProUGUI>().text = label;
         }
     }
 }
