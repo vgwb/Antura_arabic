@@ -21,6 +21,7 @@ namespace Antura.UI
         public GameObject Background;
 
         public TextMeshProUGUI TextUI;
+        public TextMeshProUGUI TextUItranslation;
         public WalkieTalkie WalkieTalkie;
 
         public static WidgetSubtitles I;
@@ -42,6 +43,7 @@ namespace Antura.UI
                 .OnPlay(() => this.gameObject.SetActive(true))
                 .OnRewind(() => {
                     TextUI.text = "";
+                    TextUItranslation.text = "";
                     this.gameObject.SetActive(false);
                 });
             bgColorTween = Background.GetComponent<Image>().DOColor(BgNoKeeperColor, 0.3f).SetEase(Ease.Linear)
@@ -133,6 +135,9 @@ namespace Antura.UI
             if (WalkieTalkie.IsShown) { WalkieTalkie.Pulse(); }
 
             TextUI.text = string.IsNullOrEmpty(localizedText) ? data.Id : ReverseText(ArabicFixer.Fix(localizedText));
+            if (AppManager.I.AppSettings.EnglishSubtitles) {
+                TextUItranslation.text = string.IsNullOrEmpty(localizedText) ? data.Id : data.English;
+            }
             this.StartCoroutine(DisplayTextCoroutine(_duration));
 
             //Debug.Log("DisplayText() " + data + " - " + data.English);
@@ -143,6 +148,7 @@ namespace Antura.UI
             this.StopAllCoroutines();
             textTween.Kill();
             TextUI.text = "";
+            TextUItranslation.text = "";
             this.gameObject.SetActive(false);
         }
 
