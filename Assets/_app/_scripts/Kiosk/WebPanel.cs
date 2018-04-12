@@ -11,7 +11,7 @@ namespace Antura.Kiosk
         public void Open(string url)
         {
             gameObject.SetActive(true);
-            WebViewComponent.I.OpenBrowser(url, 0, 100, 0, 0);
+            WebViewComponent.I.OpenBrowser(url, 130, 0, 0, 0);
         }
 
         public void OnClose()
