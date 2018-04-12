@@ -21,8 +21,7 @@ namespace Antura.Keeper
         // TODO refactor: remove or complete this
         public void PlaySceneIntroduction(AppScene scene)
         {
-            switch (scene)
-            {
+            switch (scene) {
                 default:
                     break;
             }
@@ -45,21 +44,16 @@ namespace Antura.Keeper
 
         public void PlayDialog(Database.LocalizationData data, bool isKeeper = true, bool autoClose = true, System.Action _callback = null)
         {
-            if (autoClose)
-            {
+            if (autoClose) {
                 WidgetSubtitles.I.DisplaySentence(data, 2, isKeeper, null);
                 currentCallback = _callback;
-                AudioManager.I.PlayDialogue(data, () =>
-                {
+                AudioManager.I.PlayDialogue(data, () => {
                     CloseDialog();
-                    if (currentCallback != null)
-                    {
+                    if (currentCallback != null) {
                         currentCallback();
                     }
                 });
-            }
-            else
-            {
+            } else {
                 WidgetSubtitles.I.DisplaySentence(data, 2, true, null);
                 AudioManager.I.PlayDialogue(data, _callback);
             }

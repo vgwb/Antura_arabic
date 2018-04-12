@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Antura.Core;
+using Antura.Keeper;
 using Antura.LivingLetters;
 using Antura.Tutorial;
-using Antura.Minigames;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Antura.Minigames.FastCrowd
@@ -17,8 +18,7 @@ namespace Antura.Minigames.FastCrowd
 
         bool MustTrunk
         {
-            get
-            {
+            get {
                 return FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet ||
                         FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting ||
                         FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word ||
@@ -36,20 +36,23 @@ namespace Antura.Minigames.FastCrowd
             game.QuestionManager.OnCompleted += OnQuestionCompleted;
             game.QuestionManager.OnDropped += OnAnswerDropped;
 
-            if (game.CurrentChallenge != null)
-            {
-                if (MustTrunk)
+            if (game.CurrentChallenge != null) {
+                if (MustTrunk) {
                     game.CurrentChallenge.RemoveRange(2, game.CurrentChallenge.Count - 2);
-
+                }
                 game.QuestionManager.StartQuestion(game.CurrentChallenge, game.NoiseData);
-            }
-            else
+            } else {
                 game.QuestionManager.Clean();
-
+            }
             tutorialStarted = false;
 
             // TODO: make this more robust to variations
-            game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.TutorialLocalizationId, () => { StartTutorial(); });
+
+            if (AppManager.I.AppSettings.EnglishSubtitles) {
+                KeeperManager.I.PlayDialog(FastCrowdConfiguration.Instance.TutorialLocalizationId, false, true, () => { StartTutorial(); });
+            } else {
+                game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.TutorialLocalizationId, () => { StartTutorial(); });
+            }
 
             game.QuestionManager.wordComposer.gameObject.SetActive(FastCrowdConfiguration.Instance.NeedsWordComposer);
         }
@@ -84,19 +87,18 @@ namespace Antura.Minigames.FastCrowd
             game.Context.GetCheckmarkWidget().Show(result);
             game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
 
-            if (result && (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting || FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word))
+            if (result && (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting || FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Word)) {
                 game.Context.GetAudioManager().PlayVocabularyData(data);
+            }
 
         }
 
         public void Update(float delta)
         {
-            if (tutorialStarted)
-            {
+            if (tutorialStarted) {
                 tutorialStartTimer += -delta;
 
-                if (tutorialStartTimer <= 0f)
-                {
+                if (tutorialStartTimer <= 0f) {
                     tutorialStartTimer = 3f;
 
                     DrawTutorial();
@@ -106,8 +108,9 @@ namespace Antura.Minigames.FastCrowd
 
         void DrawTutorial()
         {
-            if (game.QuestionManager.crowd.GetLetter(game.QuestionManager.dropContainer.GetActiveData()) == null)
+            if (game.QuestionManager.crowd.GetLetter(game.QuestionManager.dropContainer.GetActiveData()) == null) {
                 return;
+            }
 
             StrollingLivingLetter tutorialLetter = game.QuestionManager.crowd.GetLetter(game.QuestionManager.dropContainer.GetActiveData());
 
@@ -118,10 +121,8 @@ namespace Antura.Minigames.FastCrowd
 
             game.QuestionManager.crowd.GetNearLetters(nearLetters, startLine, 10f);
 
-            for (int i = 0; i < nearLetters.Count; i++)
-            {
-                if (nearLetters[i] != tutorialLetter)
-                {
+            for (int i = 0; i < nearLetters.Count; i++) {
+                if (nearLetters[i] != tutorialLetter) {
                     nearLetters[i].Scare(startLine, 3f);
                 }
             }

@@ -43,6 +43,8 @@ namespace Antura.Scenes
             LLAnimController.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
 
             AppManager.I.AppSettings.KioskMode = true;
+            AppManager.I.AppSettings.SubtitlesEnabled = true;
+            AppManager.I.AppSettings.EnglishSubtitles = true;
             updateUI();
         }
 
@@ -80,13 +82,13 @@ namespace Antura.Scenes
         {
             switch (AppManager.I.AppSettings.AppLanguage) {
                 case AppLanguages.English:
-                    ButtonTextDonate.text = "Donate";
-                    ButtonTextPlay.text = "Play";
+                    ButtonTextDonate.text = "Help us!\nDonate";
+                    ButtonTextPlay.text = "Play Demo";
                     WebViewTitle.text = "Donate";
                     break;
                 case AppLanguages.Italian:
-                    ButtonTextDonate.text = "Donazione";
-                    ButtonTextPlay.text = "Gioca";
+                    ButtonTextDonate.text = "Aiutaci!\nDonazione";
+                    ButtonTextPlay.text = "Gioca Demo";
                     WebViewTitle.text = "Donazione";
                     break;
             }

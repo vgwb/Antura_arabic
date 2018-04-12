@@ -1,4 +1,5 @@
-﻿using Antura.Minigames;
+﻿using Antura.Core;
+using Antura.Keeper;
 
 namespace Antura.Minigames.FastCrowd
 {
@@ -18,8 +19,11 @@ namespace Antura.Minigames.FastCrowd
         {
             nextState = false;
             playIntro = false;
-
-            game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.TitleLocalizationId, () => { playIntro = true; });
+            if (AppManager.I.AppSettings.EnglishSubtitles) {
+                KeeperManager.I.PlayDialog(FastCrowdConfiguration.Instance.TitleLocalizationId, true, true, () => { playIntro = true; });
+            } else {
+                game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.TitleLocalizationId, () => { playIntro = true; });
+            }
 
             game.Context.GetAudioManager().PlayMusic(Music.Theme10);
         }
@@ -30,17 +34,19 @@ namespace Antura.Minigames.FastCrowd
 
         public void Update(float delta)
         {
-            if (nextState)
-            {
+            if (nextState) {
                 nextState = false;
                 game.SetCurrentState(game.QuestionState);
             }
 
-            if (playIntro)
-            {
+            if (playIntro) {
                 playIntro = false;
-                game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.IntroLocalizationId, () => { nextState = true; });
 
+                if (AppManager.I.AppSettings.EnglishSubtitles) {
+                    KeeperManager.I.PlayDialog(FastCrowdConfiguration.Instance.IntroLocalizationId, true, true, () => { nextState = true; });
+                } else {
+                    game.Context.GetAudioManager().PlayDialogue(FastCrowdConfiguration.Instance.IntroLocalizationId, () => { nextState = true; });
+                }
             }
         }
 
