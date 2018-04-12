@@ -84,12 +84,12 @@ namespace Antura.Scenes
                 case AppLanguages.English:
                     ButtonTextDonate.text = "Help us!\nDonate";
                     ButtonTextPlay.text = "Play Demo";
-                    WebViewTitle.text = "Donate";
+                    WebViewTitle.text = "Loading\nwww.antura.org ...";
                     break;
                 case AppLanguages.Italian:
                     ButtonTextDonate.text = "Aiutaci!\nDonazione";
                     ButtonTextPlay.text = "Gioca Demo";
-                    WebViewTitle.text = "Donazione";
+                    WebViewTitle.text = "Caricando\nwww.antura.org ...";
                     break;
             }
         }
