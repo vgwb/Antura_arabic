@@ -17,6 +17,7 @@ namespace Antura.Database.Management
             data.When = ToString(dict["When"]);
             data.Context = ToString(dict["Context"]);
             data.English = ToString(dict["English"]);
+            data.Italian = ToString(dict["Italian"]);
             data.Arabic = ToString(dict["Arabic"]);
             data.ArabicFemale = ToString(dict["ArabicFemale"]);
             data.AudioFile = ToString(dict["AudioFile"]);

@@ -61,7 +61,7 @@ namespace Antura.UI
         {
             var localizationData = LocalizationManager.GetLocalizationData(id);
             AudioManager.I.PlayDialogue(localizationData);
-            Show(LocalizationManager.GetTranslation(id), localizationData.English, _onYes, _onNo);
+            Show(LocalizationManager.GetTranslation(id), localizationData.GetSubtitleTranslation(), _onYes, _onNo);
         }
 
         public void Show(string _messageAr, Action _onYes, Action _onNo)

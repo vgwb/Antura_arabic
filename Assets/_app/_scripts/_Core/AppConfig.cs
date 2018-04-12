@@ -26,7 +26,7 @@ namespace Antura.Core
         /// Version of the Static Database Scheme.
         /// v1.0.7 - added ArabicFemale to LocalizationData
         /// </summary>
-        public const string StaticDbSchemeVersion = "1.2.0.0";
+        public const string StaticDbSchemeVersion = "1.2.1.0";
 
         /// <summary>
         /// Version of the MySQL Database Scheme.

@@ -1,3 +1,4 @@
+using Antura.Core;
 using Antura.Profile;
 using System;
 using SQLite;
@@ -60,6 +61,14 @@ namespace Antura.Database
         [SerializeField]
         private string _English;
 
+        public string Italian
+        {
+            get { return _Italian; }
+            set { _Italian = value; }
+        }
+        [SerializeField]
+        private string _Italian;
+
         public string Arabic
         {
             get { return _Arabic; }
@@ -96,8 +105,7 @@ namespace Antura.Database
 
         public string GetLocalizedAudioFileName(PlayerGender playerGender)
         {
-            if (playerGender == PlayerGender.F && ArabicFemale != string.Empty && AudioFile != string.Empty)
-            {
+            if (playerGender == PlayerGender.F && ArabicFemale != string.Empty && AudioFile != string.Empty) {
                 return AudioFile + "_F";
             }
             return AudioFile;
@@ -105,11 +113,19 @@ namespace Antura.Database
 
         public string GetLocalizedText(PlayerGender playerGender)
         {
-            if (playerGender == PlayerGender.F && ArabicFemale != string.Empty)
-            {
+            if (playerGender == PlayerGender.F && ArabicFemale != string.Empty) {
                 return ArabicFemale;
             }
             return Arabic;
+        }
+
+        public string GetSubtitleTranslation()
+        {
+            if (AppManager.I.AppSettings.AppLanguage == AppLanguages.Italian) {
+                return Italian;
+            } else {
+                return English;
+            }
         }
     }
 }

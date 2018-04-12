@@ -19,6 +19,7 @@ MonoBehaviour:
       _When: Profile Icon Selection (always)
       _Context: You have to choose among several icons
       _English: Choose an animal to represent you
+      _Italian: 
       _Arabic: "\u0627\u062E\u062A\u0631 \u062D\u064A\u0648\u0627\u0646\u0627\u064B
         \u064A\u0639\u0628\u0631 \u0639\u0646\u0643"
       _ArabicFemale: "\u0627\u062E\u062A\u0627\u0631\u064A \u062D\u064A\u0648\u0627\u0646\u0627\u064B
@@ -30,6 +31,7 @@ MonoBehaviour:
       _When: Profile Creation (after the first one)
       _Context: Player selects PLUS (add new profile)
       _English: Are you sure you want to create a new profile?
+      _Italian: 
       _Arabic: "\u0647\u0644 \u0623\u0646\u062A \u0645\u062A\u0623\u0643\u062F\u064C
         \u0623\u0646\u0643 \u062A\u0631\u064A\u062F\u064F \u0625\u0646\u0634\u0627\u0621\u064E
         \u062D\u0633\u0627\u0628\u064D \u062C\u062F\u064A\u062F\u061F"
@@ -43,6 +45,7 @@ MonoBehaviour:
       _When: No action (only if no created profile)
       _Context: Animation on top of "New Profile" button
       _English: Press the PLUS button to create your profile
+      _Italian: 
       _Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0625\u0634\u0627\u0631\u0629\u0650
         \u0627\u0644\u0632\u0627\u0626\u062F \u0644\u062A\u0646\u0634\u064A\u0621\u064E
         \u062D\u0633\u0627\u0628\u064E\u0643"
@@ -56,6 +59,7 @@ MonoBehaviour:
       _When: Play the selected Profile (only after Profile creation)
       _Context: You have to press PLAY button (animated) to start
       _English: Press PLAY!
+      _Italian: 
       _Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0628\u062F\u0621!"
       _ArabicFemale: "\u0627\u0636\u063A\u0637\u064A \u0639\u0644\u0649 \u0628\u062F\u0621!"
       _AudioFile: Action_PressPlay
@@ -65,6 +69,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: It's time to sing all the letters
+      _Italian: 
       _Arabic: "\u0648\u0642\u062A\u064F \u063A\u0646\u0627\u0621\u0650 \u062C\u0645\u064A\u0639\u0650
         \u0627\u0644\u062D\u0631\u0648\u0641."
       _ArabicFemale: 
@@ -75,6 +80,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Diacritic Song!
+      _Italian: 
       _Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: AlphabetSong_letters_Title
@@ -84,6 +90,7 @@ MonoBehaviour:
       _When: Customization UI appears
       _Context: Keeper explains to customize Antura
       _English: You can customize Antura with all the Gifts I give you
+      _Italian: 
       _Arabic: "\u064A\u0645\u0643\u0646\u0643 \u0623\u0646\u0652 \u062A\u0639\u062F\u0644\u064E
         \u0645\u0638\u0647\u0631\u064E \u0639\u0646\u062A\u0648\u0631\u0629 \u0628\u0627\u0633\u062A\u0639\u0645\u0627\u0644
         \u0627\u0644\u0647\u062F\u0627\u064A\u0627 \u0627\u0644\u062A\u064A \u0623\u0639\u0637\u064A\u0643
@@ -99,6 +106,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Press the ANTURA button to customize him/her
+      _Italian: 
       _Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0632\u0631 \u0639\u0646\u062A\u0648\u0631\u0629
         \u0644\u062A\u063A\u064A\u0631 \u0645\u0638\u0647\u0631\u0647"
       _ArabicFemale: "\u0627\u0636\u063A\u0637\u064A \u0639\u0644\u0649 \u0632\u0631
@@ -111,6 +119,7 @@ MonoBehaviour:
       _When: When you set the first item on Antura
       _Context: 
       _English: Beautiful! And you can change the colors the way you like...
+      _Italian: 
       _Arabic: "\u0623\u064E\u0647 \u062C\u064E\u0645\u0650\u064A\u0644! \u0628\u0650\u0625\u0650\u0645\u0652\u0643\u064E\u0627\u0646\u0650\u0643\u064E
         \u062A\u064E\u063A\u0652\u064A\u0650\u064A\u0631\u064F \u0627\u0644\u0623\u064E\u0644\u0652\u0648\u064E\u0627\u0646\u0650
         \u0643\u064E\u0645\u064E\u0627 \u064A\u064E\u062D\u0652\u0644\u064F\u0648
@@ -126,6 +135,7 @@ MonoBehaviour:
       _When: After you change color
       _Context: 
       _English: Once you are happy with the colors you can move on
+      _Italian: 
       _Arabic: "\u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u064E \u0627\u0644\u0645\u064F\u062A\u064E\u0627\u0628\u064E\u0639\u064E\u0629\u064F
         \u0625\u0650\u0630\u064E\u0627 \u0643\u064F\u0646\u0652\u062A\u064E \u0631\u064E\u0627\u0636\u0650\u064A\u064B\u0627
         \u0639\u064E\u0646\u0652 \u0627\u0644\u0623\u064E\u0644\u0652\u0648\u064E\u0627\u0646"
@@ -140,6 +150,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Press the Exit button
+      _Italian: 
       _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
         \u0631\u064E\u0645\u0652\u0632\u0650 \u0627\u0644\u062E\u064F\u0631\u064F\u0648\u062C\u0650"
       _ArabicFemale: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0650\u064A \u0639\u064E\u0644\u064E\u0649
@@ -151,6 +162,7 @@ MonoBehaviour:
       _When: No UI
       _Context: Keeper explains you can interact with Antura
       _English: Here you play with Antura, try to touch him/her
+      _Italian: 
       _Arabic: "\u0647\u0646\u0627 \u062A\u0644\u0639\u0628\u064F \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629.
         \u062D\u0627\u0648\u0644\u0652 \u0623\u0646\u0652 \u062A\u0644\u0645\u0633\u064E\u0647."
       _ArabicFemale: "\u0647\u0646\u0627 \u062A\u0644\u0639\u0628\u064A\u0646 \u0645\u0639
@@ -163,6 +175,7 @@ MonoBehaviour:
       _When: Cookie button/counter appears
       _Context: Keeper explains you can throw cookies at Antura
       _English: Antura loves cookies!
+      _Italian: 
       _Arabic: "\u0639\u0646\u062A\u0648\u0631\u0629 \u064A\u062D\u0628\u064F \u0627\u0644\u0643\u0639\u0643!"
       _ArabicFemale: 
       _AudioFile: AnturaSpace_Intro_Cookie
@@ -172,6 +185,7 @@ MonoBehaviour:
       _When: 
       _Context: After you touch Antura for the first time
       _English: You see? Antura is always willing to play with you
+      _Italian: 
       _Arabic: "\u0623\u0631\u0623\u064A\u062A\u061F \u0639\u0646\u062A\u0648\u0631\u0629
         \u0645\u0633\u062A\u0639\u062F\u064C \u062F\u0627\u0626\u0645\u0627\u064B
         \u0644\u0644\u0639\u0628\u0650 \u0645\u0639\u0643."
@@ -185,6 +199,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Photos are saved into your device Photo Gallery
+      _Italian: 
       _Arabic: "\u064A\u064E\u062A\u0650\u0645\u0651\u064F \u062D\u0641\u0652\u0638\u064F
         \u0627\u0644\u0635\u0651\u064F\u0648\u064E\u0631\u0650 \u0641\u0650\u064A
         \u0645\u064F\u062C\u064E\u0644\u0651\u064E\u062F\u0650 \u0627\u0644\u0635\u0651\u064F\u0648\u064E\u0631\u0650
@@ -201,6 +216,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: Look at Antura! He deserves a photo... but photos are expensive. I
         give you some cookies!
+      _Italian: 
       _Arabic: "\u0627\u0646\u0638\u0631\u0648\u0627 \u0625\u0644\u0649 \u0639\u0646\u062A\u0648\u0631\u0629!
         \u0625\u0646\u0647 \u064A\u0633\u062A\u062D\u0642 \u0635\u0648\u0631\u0629
         ... \u0648\u0644\u0643\u0646 \u0627\u0644\u0635\u0648\u0631\u064E \u063A\u0627\u0644\u064A\u0629.
@@ -219,6 +235,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Press the PHOTO button
+      _Italian: 
       _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
         \u0635\u064F\u0648\u0631\u064E\u0629\u0650 \u0627\u0644\u0643\u064E\u0627\u0645\u0650\u064A\u0631\u064E\u0627"
       _ArabicFemale: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u064A \u0639\u064E\u0644\u064E\u0649
@@ -230,6 +247,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Play with Antura as long as you want, then exit to continue your adventure
+      _Italian: 
       _Arabic: "\u0627\u0644\u0639\u0628 \u0645\u064E\u0639\u064E \u0639\u0646\u062A\u0648\u0631\u0629
         \u0628\u0650\u0642\u064E\u062F\u0652\u0631\u0650 \u0645\u064E\u0627 \u062A\u064F\u0631\u0650\u064A\u062F\u064F.
         \u0648\u064E\u0639\u0650\u0646\u0652\u062F\u064E\u0645\u064E\u0627 \u062A\u064E\u0643\u064E\u0648\u0651\u064F\u0646\u064C
@@ -251,6 +269,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Drag an object to buy it
+      _Italian: 
       _Arabic: "\u0627\u0650\u0633\u0652\u062D\u064E\u0628\u0652 \u0625\u0650\u0644\u0651\u064E\u0627
         \u0627\u0644\u0623\u064E\u0639\u0652\u0644\u064E\u0649 \u0623\u064E\u064A\u0651\u064E\u0629\u064F
         \u0625\u0650\u0636\u064E\u0627\u0641\u064E\u0629\u064D \u062A\u064F\u0631\u0650\u064A\u062F\u064F
@@ -266,6 +285,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Press again the COOKIE button to close the Shop
+      _Italian: 
       _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
         \u0623\u064E\u064A\u0652\u0642\u064F\u0648\u0646\u064E\u0629\u0650 \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0629\u0650
         \u0645\u0650\u0646\u0652 \u062C\u064E\u062F\u0650\u064A\u062F\u064D \u0644\u0650\u062A\u064F\u063A\u064E\u0644\u0651\u0650\u0642\u0652
@@ -281,6 +301,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Drag a cookie and throw it to Antura
+      _Italian: 
       _Arabic: "\u0627\u0650\u0633\u0652\u062D\u064E\u0628\u0652 \u0643\u064E\u0639\u0652\u0643\u064E\u0629\u064B
         \u0648\u064E\u0627\u0650\u0631\u0652\u0645\u0650\u0647\u064E\u0627 \u0644\u0639\u0646\u062A\u0648\u0631\u0629"
       _ArabicFemale: "\u0627\u0650\u0633\u0652\u062D\u064E\u0628\u064A \u0643\u064E\u0639\u0652\u0643\u064E\u0629\u064B
@@ -292,6 +313,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: You can use your Cookies to buy items for Antura
+      _Italian: 
       _Arabic: "\u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u064E \u0627\u0650\u0633\u0652\u062A\u0650\u0639\u0652\u0645\u064E\u0627\u0644\u064F
         \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A\u0650 \u0644\u0650\u0634\u0650\u0631\u064E\u0627\u0621\u0650
         \u0625\u0650\u0636\u064E\u0627\u0641\u064E\u062A\u064D \u0644\u0639\u0646\u062A\u0648\u0631\u0629"
@@ -306,6 +328,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Drag again the object to move it around
+      _Italian: 
       _Arabic: "\u0627\u0650\u0633\u0652\u062D\u064E\u0628\u0652 \u0627\u0644\u0625\u0650\u0636\u064E\u0627\u0641\u064E\u0629\u064E
         \u0625\u0650\u0644\u064E\u0649 \u0627\u0644\u0645\u064E\u0643\u064E\u0627\u0646\u0650
         \u0627\u0644\u0651\u064E\u0630\u0650\u064A \u062A\u064F\u0631\u0650\u064A\u062F\u064F
@@ -321,6 +344,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Press the COOKIE button to open the Shop
+      _Italian: 
       _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
         \u0623\u064E\u064A\u0652\u0642\u064F\u0648\u0646\u064E\u0629\u0650 \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0629\u0650
         \u0644\u0650\u0641\u064E\u062A\u0652\u062D\u0652 \u0645\u064E\u062A\u0652\u062C\u064E\u0631\u064E
@@ -336,6 +360,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Press the COOKIE button to throw a cookie for Antura
+      _Italian: 
       _Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0632\u0631\u0651\u0650
         \u0627\u0644\u0643\u0639\u0643\u0629\u0650 \u0644\u062A\u0644\u0642\u064A\u064E
         \u0648\u0627\u062D\u062F\u0629\u064B \u0644\u0639\u0646\u062A\u0648\u0631\u0629"
@@ -349,6 +374,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: You can also drag a cookie around before throwing it
+      _Italian: 
       _Arabic: "\u064A\u0645\u0643\u0646\u0643 \u0643\u0630\u0644\u0643 \u0623\u0646\u0652
         \u062A\u0642\u0648\u0645 \u0628\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0639\u0643\u0629\u0650
         \u0639\u0628\u0631\u064E \u0627\u0644\u0634\u0627\u0634\u0629\u0650 \u0642\u0628\u0644
@@ -364,6 +390,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: "Don\u2019t worry, the more you play the more cookies you will get!"
+      _Italian: 
       _Arabic: "\u0644\u0627 \u062A\u0642\u0644\u0642. \u0643\u0644\u0645\u0627 \u0644\u0639\u0628\u062A\u064E
         \u0623\u0643\u062B\u0631 \u0633\u062A\u062D\u0635\u0644\u064F \u0639\u0644\u0649
         \u0643\u0639\u0643\u0627\u062A\u064D \u0623\u0643\u062B\u0631."
@@ -377,6 +404,7 @@ MonoBehaviour:
       _When: 
       _Context: Classify the letter as Vowel and Consonant
       _English: Letters can be Vowels or Consonants. Drag them to the correct group.
+      _Italian: 
       _Arabic: "\u062A\u0648\u062C\u062F \u0623\u062D\u0631\u0641\u064F \u0639\u0644\u0629
         \u0648\u0623\u062E\u0631\u0649 \u0633\u0627\u0643\u0646\u0629. \u0627\u0633\u062D\u0628
         \u0643\u0644\u0651\u064E \u062D\u0631\u0641\u064D \u0625\u0644\u0649 \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629\u0650
@@ -392,6 +420,7 @@ MonoBehaviour:
       _When: 
       _Context: Classify the Letters as Moon and Sun
       _English: Letters can be Moon or Sun. Drag them to correct group.
+      _Italian: 
       _Arabic: "\u0642\u062F \u064A\u0643\u0648\u0646 \u0627\u0644\u062D\u0631\u0641\u064F
         \u0642\u0645\u0631\u064A\u0627\u064B \u0623\u0648 \u0634\u0645\u0633\u064A\u0627\u064B.
         \u0627\u0633\u062D\u0628\u0652\u0647 \u0646\u062D\u0648 \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629\u0650
@@ -408,6 +437,7 @@ MonoBehaviour:
       _Context: Classify the Word as with or without Al article
       _English: Words can accept the "Al" article or not. Drag them to the correct
         group.
+      _Italian: 
       _Arabic: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0642\u062F \u062A\u0642\u0628\u0644\u064F
         \u0648\u0642\u062F \u0644\u0627 \u062A\u0642\u0628\u0644\u064C \"\u0627\u0644\"
         \u0627\u0644\u062A\u0639\u0631\u064A\u0641. \u0627\u0633\u062D\u0628\u0652\u0647\u0627
@@ -425,6 +455,7 @@ MonoBehaviour:
       _When: 
       _Context: Classify the Word as Singular, Dual or Plural
       _English: Words can be Singular, Dual or Plural. Drag them to the correct group.
+      _Italian: 
       _Arabic: "\u0642\u062F \u062A\u0643\u0648\u0646 \u0627\u0644\u0643\u0644\u0645\u0629
         \u0645\u0641\u0631\u062F\u0627\u064B \u0623\u0648 \u0645\u062B\u0646\u0651\u0649\u064B
         \u0623\u0648 \u062C\u0645\u0639\u0627\u064B. \u0627\u0633\u062D\u0628\u0652\u0647\u0627
@@ -443,6 +474,7 @@ MonoBehaviour:
       _Context: Classify Words as Moon and Sun
       _English: Words can be pronunced like "The Moon" or like "The Sun". Drag them
         to correct group.
+      _Italian: 
       _Arabic: "\u064A\u0645\u0643\u0646 \u0644\u0644\u062D\u0631\u0641\u0650 \u0628\u0639\u062F
         \"\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641\" \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629
         \u0623\u0646\u0652 \u064A\u064F\u0646\u0652\u0637\u064E\u0642\u064E \u0645\u062B\u0644\u0645\u0627
@@ -465,6 +497,7 @@ MonoBehaviour:
       _When: Once you complete an assessment
       _Context: Assessment completed successfully
       _English: You did it!
+      _Italian: 
       _Arabic: "\u0644\u0642\u062F \u0641\u0639\u0644\u062A\u064E\u0647\u0627!"
       _ArabicFemale: "\u0644\u0642\u062F \u0641\u0639\u0644\u062A\u0650\u0647\u0627!"
       _AudioFile: Assessment_Complete_1
@@ -474,6 +507,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: I knew you could do it!
+      _Italian: 
       _Arabic: "\u0643\u0646\u062A\u064F \u0623\u0639\u0644\u0645\u064F \u0623\u0646\u0651\u0643
         \u0633\u062A\u0641\u0639\u0644\u064F\u0647\u0627!"
       _ArabicFemale: "\u0643\u0646\u062A\u064F \u0623\u0639\u0644\u0645\u064F \u0623\u0646\u0651\u0643\u0650
@@ -485,6 +519,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Yes! Well done!
+      _Italian: 
       _Arabic: "\u0646\u0639\u0645! \u0623\u062D\u0633\u0646\u062A!"
       _ArabicFemale: "\u0646\u0639\u0645! \u0623\u062D\u0633\u0646\u062A\u0650!"
       _AudioFile: Assessment_Complete_3
@@ -494,6 +529,7 @@ MonoBehaviour:
       _When: 
       _Context: Antura leaves
       _English: Well done! Now you can start...
+      _Italian: 
       _Arabic: "\u0623\u062D\u0633\u0646\u062A! \u064A\u0645\u0643\u0646\u064F\u0643
         \u0627\u0644\u0628\u062F\u0621\u064F \u0627\u0644\u0622\u0646..."
       _ArabicFemale: "\u0623\u062D\u0633\u0646\u062A\u0650! \u064A\u0645\u0643\u0646\u064F\u0643\u0650
@@ -505,6 +541,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Finally! It's time to start.
+      _Italian: 
       _Arabic: "\u0623\u062E\u064A\u0631\u0627\u064B! \u062D\u0627\u0646\u064E \u0648\u0642\u062A\u064F
         \u0627\u0644\u0628\u062F\u0621."
       _ArabicFemale: 
@@ -515,6 +552,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Bye bye Antura! Let's go...
+      _Italian: 
       _Arabic: "\u0625\u0644\u0649 \u0627\u0644\u0644\u0642\u0627\u0621 \u0639\u0646\u062A\u0648\u0631\u0629!
         \u0647\u064A\u0627 \u0628\u0646\u0627..."
       _ArabicFemale: 
@@ -526,6 +564,7 @@ MonoBehaviour:
       _Context: Match the Letters to the Words containing them
       _English: These Letters belong to these Words. Drag each Letter to the correct
         Word.
+      _Italian: 
       _Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0623\u062D\u0631\u0641\u064F \u062A\u0646\u062A\u0645\u064A
         \u0625\u0644\u0649 \u062A\u0644\u0643 \u0627\u0644\u0643\u0644\u0645\u0627\u062A.
         \u0627\u0633\u062D\u0628 \u0643\u0644\u0651\u064E \u062D\u0631\u0641\u064D
@@ -542,6 +581,7 @@ MonoBehaviour:
       _Context: "Match questions and reply sentences (like \u201CGood morning question\u201D
         with \u201CGood morning reply\u201D)"
       _English: Drag each Sentence to the corresponding one.
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628\u0652 \u0643\u0644\u0651\u064E \u062C\u0645\u0644\u0629\u064D
         \u0646\u062D\u0648\u064E \u0627\u0644\u062C\u0645\u0644\u0629\u0650 \u0627\u0644\u0645\u0646\u0627\u0633\u0628\u0629\u0650
         \u0644\u0647\u0627."
@@ -555,6 +595,7 @@ MonoBehaviour:
       _When: 
       _Context: Match the good Word to the good Image
       _English: Drag each Word to the correct Image.
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628 \u0643\u0644\u0651\u064E \u0643\u0644\u0645\u0629\u064D
         \u0646\u062D\u0648 \u0627\u0644\u0635\u0648\u0631\u0629\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
       _ArabicFemale: "\u0627\u0633\u062D\u0628\u064A \u0643\u0644\u0651\u064E \u0643\u0644\u0645\u0629\u064D
@@ -566,6 +607,7 @@ MonoBehaviour:
       _When: 
       _Context: Order the letters to compose the indicated Word
       _English: Put the Letters in the correct order to form this Word
+      _Italian: 
       _Arabic: "\u0631\u062A\u0651\u0650\u0628 \u0627\u0644\u0623\u062D\u0631\u0641
         \u0628\u0627\u0644\u0634\u0643\u0644\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0650
         \u0644\u062A\u064F\u0634\u064E\u0643\u0651\u0650\u0644\u064E \u0647\u0630\u0647
@@ -583,6 +625,7 @@ MonoBehaviour:
 
         (maybe we can show an finger animation)'
       _English: Please get rid of Antura so we can start...
+      _Italian: 
       _Arabic: "\u0631\u062C\u0627\u0621\u064B \u0623\u0628\u0639\u0650\u062F\u0652
         \u0639\u0646\u062A\u0648\u0631\u0629 \u0643\u064A \u0646\u0628\u062F\u0623..."
       _ArabicFemale: "\u0631\u062C\u0627\u0621\u064B \u0623\u0628\u0639\u0650\u062F\u064A
@@ -594,6 +637,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: He/she cannot stay here, push him away...
+      _Italian: 
       _Arabic: "\u0644\u0627 \u064A\u0645\u0643\u0646\u064F \u0623\u0646\u0652 \u064A\u0628\u0642\u0649
         \u0647\u0646\u0627. \u0627\u062F\u0641\u0639\u0652\u0647 \u0628\u0639\u064A\u062F\u0627\u064B..."
       _ArabicFemale: "\u0644\u0627 \u064A\u0645\u0643\u0646\u064F \u0623\u0646\u0652
@@ -606,6 +650,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: We will start as soon as Antura leaves
+      _Italian: 
       _Arabic: "\u0633\u0646\u0628\u062F\u0623\u064F \u0628\u0645\u062C\u0631\u062F\u0650
         \u0645\u063A\u0627\u062F\u0631\u0629\u0650 \u0639\u0646\u062A\u0648\u0631\u0629."
       _ArabicFemale: 
@@ -616,6 +661,7 @@ MonoBehaviour:
       _When: 
       _Context: Select the missing Letter to complete the Word + Image
       _English: This word is missing a Letter. Drag the correct one.
+      _Italian: 
       _Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0629\u064F \u064A\u0646\u0642\u064F\u0635\u064F\u0647\u0627
         \u062D\u0631\u0641. \u0627\u0633\u062D\u0628 \u0627\u0644\u062D\u0631\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D."
@@ -629,6 +675,7 @@ MonoBehaviour:
       _When: Tutorial for each "type" of assessment
       _Context: Select the Letter Shape of the pronounced Letter
       _English: Listen carefully, then drag the correct Letter
+      _Italian: 
       _Arabic: "\u0623\u0646\u0635\u062A\u0652 \u0628\u0625\u0645\u0639\u0627\u0646\u064D
         \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u062D\u0631\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D"
@@ -642,6 +689,7 @@ MonoBehaviour:
       _When: 
       _Context: Select the written Word of the pronounced word or the pronounced definition
       _English: Listen carefully, then drag the correct Word.
+      _Italian: 
       _Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
         \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0644\u0645\u0629
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
@@ -655,6 +703,7 @@ MonoBehaviour:
       _When: 
       _Context: Select the Words containing the indicated Letter
       _English: This letter belongs to some of the words below. Drag all of them.
+      _Italian: 
       _Arabic: "\u0647\u0630\u0627 \u0627\u0644\u062D\u0631\u0641\u064F \u064A\u0646\u062A\u0645\u064A
         \u0625\u0644\u0649 \u0628\u0639\u0636\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
         \u0623\u062F\u0646\u0627\u0647. \u0627\u0633\u062D\u0628\u0647\u0627 \u062C\u0645\u064A\u0639\u0627\u064B."
@@ -669,6 +718,7 @@ MonoBehaviour:
       _When: At start
       _Context: Keeper challenges you before it starts
       _English: It's time to prove what you learned so far!
+      _Italian: 
       _Arabic: "\u0648\u0642\u062A\u064F \u0625\u0638\u0647\u0627\u0631\u0650 \u0645\u0627
         \u062A\u0639\u0644\u0651\u0645\u062A\u064E\u0647 \u062D\u062A\u0649 \u0627\u0644\u0622\u0646."
       _ArabicFemale: "\u0648\u0642\u062A\u064F \u0625\u0638\u0647\u0627\u0631\u0650
@@ -681,6 +731,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Let's see if you paid attention lately...
+      _Italian: 
       _Arabic: "\u0644\u0646\u0631\u0649 \u0625\u0646\u0652 \u0643\u0646\u062A\u064E
         \u062D\u0627\u0636\u0631\u064E \u0627\u0644\u0628\u0627\u0644\u0650 \u0645\u0624\u062E\u0631\u0627\u064B..."
       _ArabicFemale: "\u0644\u0646\u0631\u0649 \u0625\u0646\u0652 \u0643\u0646\u062A\u0650
@@ -693,6 +744,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Are you ready to show what you learned?
+      _Italian: 
       _Arabic: "\u0647\u0644 \u0623\u0646\u062A\u064E \u0645\u0633\u062A\u0639\u062F\u064C
         \u0644\u0625\u0638\u0647\u0627\u0631\u0650 \u0645\u0627 \u062A\u0639\u0644\u0651\u0645\u062A\u064E\u0647\u061F"
       _ArabicFemale: "\u0647\u0644 \u0623\u0646\u062A\u0650 \u0645\u0633\u062A\u0639\u062F\u0629\u064C
@@ -704,6 +756,7 @@ MonoBehaviour:
       _When: Antura enters and block interactions
       _Context: Keeper gets upset with Antura
       _English: What? Antura this not the moment to play with you!
+      _Italian: 
       _Arabic: "\u0645\u0627 \u0627\u0644\u0623\u0645\u0631\u061F \u0627\u0644\u0648\u0642\u062A
         \u0644\u064A\u0633\u064E \u0645\u0646\u0627\u0633\u0628\u0627\u064B \u0644\u0644\u0639\u0628
         \u0627\u0644\u0622\u0646 \u064A\u0627 \u0639\u0646\u062A\u0648\u0631\u0629!"
@@ -715,6 +768,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Oh no! Antura you are always in the middle!
+      _Italian: 
       _Arabic: "\u0623\u0648\u0647 \u0644\u0627! \u0639\u0646\u062A\u0648\u0631\u0629
         \u0623\u0646\u062A\u064E \u062F\u0627\u0626\u0645\u0627\u064B \u062A\u0642\u0641\u064F
         \u0641\u064A \u0627\u0644\u0648\u0633\u0637!"
@@ -726,6 +780,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Again you? What can I do with this dog?
+      _Italian: 
       _Arabic: "\u0645\u0631\u0629\u064B \u0623\u062E\u0631\u0649\u061F \u0645\u0627\u0630\u0627
         \u0623\u0641\u0639\u0644\u064F \u0628\u0647\u0630\u0627 \u0627\u0644\u0643\u0644\u0628\u0650
         \u0627\u0644\u0634\u0642\u064A\u061F"
@@ -737,6 +792,7 @@ MonoBehaviour:
       _When: 
       _Context: Wrong aswers, the Keeper tries to motivate you
       _English: Oh oh... let's try again...
+      _Italian: 
       _Arabic: "\u0623\u0648\u0647 \u0644\u0627... \u0644\u0646\u062C\u0631\u0651\u0650\u0628\u0652
         \u0645\u0631\u0629\u064B \u0623\u062E\u0631\u0649."
       _ArabicFemale: 
@@ -747,6 +803,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Mmm... now you'll do better
+      _Italian: 
       _Arabic: "\u0647\u0645\u0645\u0645 \u064A\u0645\u0643\u0646\u064F\u0643 \u0623\u0646\u0652
         \u062A\u0641\u0639\u0644\u064E \u0623\u0641\u0636\u0644\u064E \u0645\u0646
         \u0630\u0644\u0643."
@@ -760,6 +817,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Not yet... one more time...
+      _Italian: 
       _Arabic: "\u0644\u064A\u0633 \u0628\u0639\u062F. \u0645\u0631\u0629\u064B \u0623\u062E\u0631\u0649!"
       _ArabicFemale: 
       _AudioFile: Assessment_Wrong_3
@@ -769,6 +827,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: Look! All these Words are numbers...
+      _Italian: 
       _Arabic: "\u0627\u0646\u0638\u0631 \u0625\u0644\u0649 \u0643\u0644\u0651\u0650
         \u062A\u0644\u0643 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650 \u0648\u0627\u0644\u0623\u0631\u0642\u0627\u0645."
       _ArabicFemale: "\u0627\u0646\u0638\u0631\u064A \u0625\u0644\u0649 \u0643\u0644\u0651\u0650
@@ -780,6 +839,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Balloons & Numbers!
+      _Italian: 
       _Arabic: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0623\u0631\u0642\u0627\u0645!"
       _ArabicFemale: 
       _AudioFile: Game_Balloons_counting_Title
@@ -790,6 +850,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: 'Pop the balloons in the right order: from the smallest number to
         the biggest one'
+      _Italian: 
       _Arabic: "\u0627\u0641\u0642\u0639\u0650 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650 \u0627\u0644\u0635\u062D\u064A\u062D:
         \u0645\u0646 \u0623\u0635\u063A\u0631\u0650 \u0631\u0642\u0645\u064D \u0625\u0644\u0649
@@ -805,6 +866,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: That Letter belongs to some of the Words above
+      _Italian: 
       _Arabic: "\u0647\u0630\u0627 \u0627\u0644\u062D\u0631\u0641\u064F \u064A\u0646\u062A\u0645\u064A
         \u0625\u0644\u0649 \u0628\u0639\u0636\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
         \u0623\u0639\u0644\u0627\u0647."
@@ -816,6 +878,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Balloons & the Shared Letter!
+      _Italian: 
       _Arabic: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064F \u0648\u0627\u0644\u062D\u0631\u0641\u064F
         \u0627\u0644\u0645\u0634\u062A\u0631\u0643!"
       _ArabicFemale: 
@@ -826,6 +889,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Pop the balloons of the right Words
+      _Italian: 
       _Arabic: "\u0627\u0641\u0642\u0639\u0650 \u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
         \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629
         \u0641\u0642\u0637."
@@ -839,6 +903,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: There are too many Letters to form this Word!
+      _Italian: 
       _Arabic: "\u0639\u062F\u062F\u064F \u0627\u0644\u0623\u062D\u0631\u0641\u0650
         \u0623\u0643\u0628\u0631\u064F \u0645\u0646 \u0627\u0644\u0645\u0637\u0644\u0648\u0628\u0650
         \u0644\u062A\u0634\u0643\u064A\u0644\u0650 \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0629\u0650!"
@@ -850,6 +915,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Balloons & the Hidden Word!
+      _Italian: 
       _Arabic: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064F \u0648\u0627\u0644\u0643\u0644\u0645\u0629\u064F
         \u0627\u0644\u062E\u0641\u064A\u0629!"
       _ArabicFemale: 
@@ -860,6 +926,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Pop the balloons and LEAVE ONLY the right Letters
+      _Italian: 
       _Arabic: "\u0627\u0641\u0642\u0639\u0650 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
         \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u062D\u0631\u0648\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
@@ -873,6 +940,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: There are too many Images for this single Word...
+      _Italian: 
       _Arabic: "\u0639\u062F\u062F\u064F \u0627\u0644\u0635\u0648\u0631\u0650 \u0623\u0643\u0628\u0631\u064F
         \u0645\u0646 \u0627\u0644\u0645\u0637\u0644\u0648\u0628\u0650 \u0644\u0644\u062A\u0639\u0628\u064A\u0631\u0650
         \u0639\u0646 \u062A\u0644\u0643\u064E \u0627\u0644\u0643\u0644\u0645\u0629\u0650
@@ -885,6 +953,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Balloons & Images!
+      _Italian: 
       _Arabic: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0635\u0648\u0631!"
       _ArabicFemale: 
       _AudioFile: Game_Balloons_word_Title
@@ -894,6 +963,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Pop the balloons of the right Image
+      _Italian: 
       _Arabic: "\u0627\u0641\u0642\u0639\u0650 \u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
         \u0627\u0644\u0635\u0648\u0631\u0629\u064E \u0627\u0644\u0635\u062D\u064A\u062D\u0629
         \u0641\u0642\u0637."
@@ -907,6 +977,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Games
+      _Italian: 
       _Arabic: "\u0623\u0644\u0639\u0627\u0628"
       _ArabicFemale: 
       _AudioFile: Book_Games
@@ -917,6 +988,7 @@ MonoBehaviour:
       _Context: Introduction
       _English: This is your copybook! Here you can see what you learned and what
         you have still to learn!
+      _Italian: 
       _Arabic: "\u0647\u0630\u0627 \u0643\u062A\u0627\u0628\u064F \u0631\u062D\u0644\u062A\u0650\u0643!
         \u064A\u0645\u0643\u0646\u064F\u0643 \u0623\u0646\u0652 \u062A\u0631\u0649
         \u0647\u0646\u0627 \u0645\u0627 \u062A\u0639\u0644\u0651\u0645\u062A\u064E\u0647
@@ -934,6 +1006,7 @@ MonoBehaviour:
       _When: when you select a chapter
       _Context: when you select a chapter
       _English: Letters
+      _Italian: 
       _Arabic: "\u062D\u0631\u0648\u0641"
       _ArabicFemale: 
       _AudioFile: Book_Letters
@@ -943,6 +1016,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Phrases
+      _Italian: 
       _Arabic: "\u062C\u0645\u0644"
       _ArabicFemale: 
       _AudioFile: Book_Phrases
@@ -952,6 +1026,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Gifts
+      _Italian: 
       _Arabic: "\u0647\u062F\u0627\u064A\u0627"
       _ArabicFemale: 
       _AudioFile: Book_Rewards
@@ -961,6 +1036,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Words
+      _Italian: 
       _Arabic: "\u0643\u0644\u0645\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: Book_Words
@@ -970,6 +1046,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: The LETTER have lost her color!
+      _Italian: 
       _Arabic: "\u0644\u0642\u062F \u0641\u0642\u062F\u064E \u0627\u0644\u062D\u0631\u0641\u064F
         \u0644\u0648\u0646\u064E\u0647!"
       _ArabicFemale: 
@@ -980,6 +1057,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Color Tickle
+      _Italian: 
       _Arabic: "\u062F\u063A\u062F\u063A\u0629\u064F \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
       _ArabicFemale: 
       _AudioFile: Game_ColorTickle_lettername_Title
@@ -989,6 +1067,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Color the LETTER without going out of the borders.
+      _Italian: 
       _Arabic: "\u0642\u0645 \u0628\u062A\u0644\u0648\u064A\u0646\u0650 \u0627\u0644\u062D\u0631\u0641\u0650
         \u062F\u0648\u0646\u064E \u0627\u0644\u062E\u0631\u0648\u062C\u0650 \u0639\u0646
         \u062D\u062F\u0648\u062F\u0650\u0647."
@@ -1002,6 +1081,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Touch the Cookies to collect them
+      _Italian: 
       _Arabic: "\u0627\u0644\u0645\u0633\u0652 \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A
         \u0644\u0650\u062C\u064E\u0645\u0652\u0639\u0650\u0647\u064E\u0627"
       _ArabicFemale: "\u0627\u0644\u0645\u0633\u064A \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A
@@ -1013,6 +1093,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Come back tomorrow for more!
+      _Italian: 
       _Arabic: "\u0639\u064F\u062F\u0652 \u063A\u064E\u062F\u064B\u0627 \u0645\u0650\u0646\u0652
         \u0627\u062C\u0652\u0644\u0650 \u0627\u0644\u0645\u064E\u0632\u0650\u064A\u062F\u0650!"
       _ArabicFemale: "\u0639\u064F\u0648\u062F\u0650\u064A \u063A\u064E\u062F\u064B\u0627
@@ -1024,6 +1105,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Play every day to receive more cookies
+      _Italian: 
       _Arabic: "\u0627\u0650\u0644\u0652\u0639\u064E\u0628\u0652 \u0643\u064F\u0644\u0651\u064E
         \u064A\u064E\u0648\u0652\u0645\u064D \u0644\u0650\u062A\u064E\u062D\u0652\u0635\u064F\u0644\u064E
         \u0639\u064E\u0644\u064E\u0649 \u0643\u064E\u0639\u0652\u0643\u064D \u0625\u0636\u0627\u0641\u064A\u064D"
@@ -1037,6 +1119,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Every day you play I give you some cookies
+      _Italian: 
       _Arabic: "\u0633\u064E\u0648\u0652\u0641\u064E \u0623\u064F\u0639\u0652\u0637\u0650\u064A\u0643\u064E
         \u0627\u0644\u0645\u064E\u0632\u0650\u064A\u062F\u064E \u0645\u0650\u0646\u0652
         \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u0650 \u0639\u0650\u0646\u0652\u062F\u064E\u0645\u064E\u0627
@@ -1054,6 +1137,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Here you have your daily cookies
+      _Italian: 
       _Arabic: "\u0647\u064E\u0630\u0650\u0647\u0650 \u0647\u0650\u064A\u064E \u0643\u064E\u0639\u064E\u0643\u064E\u0627\u062A\u064F
         \u0627\u0644\u064A\u064E\u0648\u0652\u0645\u064E, \u062E\u064F\u0630\u0652\u0647\u064E\u0627!"
       _ArabicFemale: "\u0647\u064E\u0630\u0650\u0647\u0650 \u0647\u0650\u064A\u064E
@@ -1066,6 +1150,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: The right signs give energy to the LETTER so she can dance! Help her!
+      _Italian: 
       _Arabic: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A\u064F \u0648\u0627\u0644\u0646\u0642\u0627\u0637\u064F
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064F \u062A\u0639\u0637\u064A
         \u0627\u0644\u062D\u0631\u0641\u064E \u0627\u0644\u0642\u0648\u0629\u064E
@@ -1083,6 +1168,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Dancing Star!
+      _Italian: 
       _Arabic: "\u0646\u062C\u0648\u0645\u064F \u0627\u0644\u0631\u0642\u0635!"
       _ArabicFemale: 
       _AudioFile: Game_DancingDots_letterany_Title
@@ -1092,6 +1178,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Drag the right signs to the right place over the LETTER.
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0646\u0642\u0627\u0637\u064E
         \u0623\u0648 \u0627\u0644\u062D\u0631\u0643\u0627\u062A\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629
         \u0646\u062D\u0648\u064E \u0627\u0644\u0645\u0643\u0627\u0646\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0650
@@ -1107,6 +1194,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: The Egg and the hidden Word!
+      _Italian: 
       _Arabic: "\u0627\u0644\u0628\u064A\u0636\u0629 \u0648 \u0627\u0644\u0643\u0644\u0645\u0629
         \u0627\u0644\u0645\u062E\u0641\u064A\u0629!"
       _ArabicFemale: 
@@ -1118,6 +1206,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: Listen carefully, then press the buttons in the right sequence to
         repeat what you heard.
+      _Italian: 
       _Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u064D
         \u062B\u0645 \u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0627\u0644\u0623\u0632\u0631\u0627\u0631\u0650
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0650
@@ -1135,6 +1224,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: The egg said something! Help it to hatch!
+      _Italian: 
       _Arabic: "\u0644\u0642\u062F \u0642\u0627\u0644\u062A\u0650 \u0627\u0644\u0628\u064A\u0636\u0629\u064F
         \u0634\u064A\u0626\u0627\u064B! \u0633\u0627\u0639\u062F\u0652\u0647\u0627
         \u0644\u062A\u0641\u0642\u0633!"
@@ -1148,6 +1238,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: The Egg and the Letters!
+      _Italian: 
       _Arabic: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
       _AudioFile: Game_Egg_letterphoneme_Title
@@ -1157,6 +1248,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Listen carefully, then bash the correct button.
+      _Italian: 
       _Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u064D
         \u062B\u0645 \u0627\u0636\u063A\u0637\u0650 \u0627\u0644\u0632\u0631\u0651\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u064E \u0628\u0634\u0643\u0644\u064D
@@ -1173,6 +1265,7 @@ MonoBehaviour:
       _Context: end game
       _English: Superb! Your prize for finishing your journey is superpowers in real
         life!
+      _Italian: 
       _Arabic: "\u0631\u0627\u0626\u0639! \u062C\u0627\u0626\u0632\u0629\u064F \u0625\u0643\u0645\u0627\u0644\u0650\u0643\u064E
         \u0627\u0644\u0631\u062D\u0644\u0629\u064E \u0647\u064A \u0642\u0648\u0649\u064B
         \u062E\u0627\u0631\u0642\u0629\u064C \u062D\u0642\u064A\u0642\u064A\u0629!"
@@ -1190,6 +1283,7 @@ MonoBehaviour:
       _When: 
       _Context: end game
       _English: "You have now the power to read this\u2026"
+      _Italian: 
       _Arabic: "\u0627\u0643\u062A\u0633\u0628\u062A\u064E \u0627\u0644\u0622\u0646
         \u0642\u0648\u0629\u064E \u0627\u0644\u0642\u062F\u0631\u0629\u0650 \u0639\u0644\u0649
         \u0642\u0631\u0627\u0621\u0629\u0650 \u0647\u0630\u0627 \u0627\u0644\u0643\u0644\u0627\u0645\u0650..."
@@ -1201,6 +1295,7 @@ MonoBehaviour:
       _When: 
       _Context: end game
       _English: You are awesome!
+      _Italian: 
       _Arabic: "\u0623\u0646\u062A\u064E \u0631\u0627\u0626\u0639!"
       _ArabicFemale: "\u0623\u0646\u062A\u0650 \u0631\u0627\u0626\u0639\u0629!"
       _AudioFile: End_Scene_2
@@ -1210,6 +1305,7 @@ MonoBehaviour:
       _When: 
       _Context: end game
       _English: Now go, leave your mark in the world!
+      _Italian: 
       _Arabic: "\u0627\u0646\u0637\u0644\u0642\u0650 \u0627\u0644\u0622\u0646 \u0648\u0627\u062A\u0631\u0643\u0652
         \u0623\u062B\u0631\u0627\u064B \u0641\u064A \u0627\u0644\u0639\u0627\u0644\u0645!"
       _ArabicFemale: "\u0627\u0646\u0637\u0644\u0642\u064A \u0627\u0644\u0622\u0646
@@ -1227,6 +1323,7 @@ MonoBehaviour:
       _When: 
       _Context: end game
       _English: But don't forget that superpowers need to be trained.
+      _Italian: 
       _Arabic: "\u0644\u0643\u0646 \u062A\u0630\u0643\u0651\u064E\u0631\u0652 \u0623\u0646\u0651\u064E
         \u0627\u0644\u0642\u0648\u0649 \u0627\u0644\u062E\u0627\u0631\u0642\u0629\u064E
         \u062A\u062D\u062A\u0627\u062C\u064F \u0625\u0644\u0649 \u0627\u0644\u062A\u0645\u0631\u064A\u0646
@@ -1239,6 +1336,7 @@ MonoBehaviour:
       _When: 
       _Context: end game
       _English: Come back to visit! We'll miss you!
+      _Italian: 
       _Arabic: "\u0639\u062F \u0644\u0632\u064A\u0627\u0631\u062A\u0650\u0646\u0627
         \u0642\u0631\u064A\u0628\u0627\u064B! \u0633\u0646\u0634\u062A\u0627\u0642\u064F
         \u0625\u0644\u064A\u0643!"
@@ -1250,6 +1348,8 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: What a mess! Let's put the Letters in the right order to form a Word
+      _Italian: Che confusione! Mettiamo le Lettere nel giusto ordine per formare
+        una Parola
       _Arabic: "\u064A\u0627 \u0644\u0644\u0641\u0648\u0636\u0649! \u0644\u0646\u0636\u0639\u0650
         \u0627\u0644\u0623\u062D\u0631\u0641\u064E \u0641\u064A \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D \u0644\u062A\u0634\u0643\u0651\u0650\u0644\u064E
@@ -1262,6 +1362,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: 'Letter Crowd: Form a Word!'
+      _Italian: 'Letter Crowd: forma una Parola!'
       _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641:
         \u062A\u0643\u0648\u064A\u0646\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _ArabicFemale: 
@@ -1272,6 +1373,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Drag the correct Letters, one by one
+      _Italian: Trascina le Lettere corrette, una dopo l'altra
       _Arabic: "\u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0623\u062D\u0631\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0627\u064B
         \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631"
@@ -1285,6 +1387,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: What a mess! Let's put these numbers in the right order...
+      _Italian: 
       _Arabic: "\u064A\u0627 \u0644\u0644\u0641\u0648\u0636\u0649! \u0644\u0646\u0636\u0639\u0650
         \u0627\u0644\u0623\u0631\u0642\u0627\u0645\u064E \u0641\u064A \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D."
@@ -1296,6 +1399,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Number Crowd!
+      _Italian: 
       _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0631\u0642\u0627\u0645!"
       _ArabicFemale: 
       _AudioFile: Game_FastCrowd_counting_Title
@@ -1306,6 +1410,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: Drag the Words one by one, from the smallest number to the biggest
         one
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
         \u0648\u0627\u062D\u062F\u0629 \u062A\u0644\u0648 \u0627\u0644\u0623\u062E\u0631\u0649
         \u0645\u0646 \u0623\u0635\u063A\u0631 \u0631\u0642\u0645 \u0625\u0644\u0649
@@ -1321,6 +1426,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: What a mess! Let's put the Letters in the right order...
+      _Italian: 
       _Arabic: "\u064A\u0627 \u0644\u0644\u0641\u0648\u0636\u0649! \u0644\u0646\u0636\u0639\u0650
         \u0627\u0644\u0623\u062D\u0631\u0641\u064E \u0641\u064A \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D."
@@ -1332,6 +1438,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Letter Crowd!
+      _Italian: 
       _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
       _AudioFile: Game_FastCrowd_letterform_Title
@@ -1341,6 +1448,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Drag the correct Letters, one by one
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0623\u062D\u0631\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0627\u064B
         \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631"
@@ -1354,6 +1462,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: What a mess! Let's put the Letters in the right order...
+      _Italian: 
       _Arabic: "\u064A\u0627 \u0644\u0644\u0641\u0648\u0636\u0649! \u0644\u0646\u0636\u0639\u0650
         \u0627\u0644\u0623\u062D\u0631\u0641\u064E \u0641\u064A \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D."
@@ -1365,6 +1474,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Alphabet Crowd!
+      _Italian: 
       _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
       _ArabicFemale: 
       _AudioFile: Game_FastCrowd_lettername_Title
@@ -1374,6 +1484,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Drag the correct Letters, one by one
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0623\u062D\u0631\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0627\u064B
         \u062A\u0644\u0648\u064E \u0627\u0644\u0622\u062E\u0631"
@@ -1387,6 +1498,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: What a mess! Let's put the Words in the right order...
+      _Italian: 
       _Arabic: "\u064A\u0627 \u0644\u0644\u0641\u0648\u0636\u0649! \u0644\u0646\u0636\u0639\u0650
         \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650 \u0641\u064A \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D."
@@ -1398,6 +1510,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Word Crowd!
+      _Italian: 
       _Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _ArabicFemale: 
       _AudioFile: Game_FastCrowd_word_Title
@@ -1407,6 +1520,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Drag the correct Words one by one
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E \u0648\u0627\u062D\u062F\u0629\u064B
         \u062A\u0644\u0648\u064E \u0627\u0644\u0623\u062E\u0631\u0649"
@@ -1420,6 +1534,7 @@ MonoBehaviour:
       _When: At start (always)
       _Context: Title Screen appear
       _English: ANTURA AND THE LETTERS
+      _Italian: 
       _Arabic: "\u0639\u0646\u062A\u0648\u0631\u0629 \u0648\u0627\u0644\u062D\u0631\u0648\u0641"
       _ArabicFemale: 
       _AudioFile: Game_Title
@@ -1429,6 +1544,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: The LETTERS hide and you have to find them!
+      _Italian: 
       _Arabic: "\u0633\u062A\u062E\u062A\u0628\u064A\u0621\u064F \u0627\u0644\u0623\u062D\u0631\u0641\u064F
         \u0648\u0639\u0644\u064A\u0643\u064E \u0623\u0646\u0652 \u062A\u062C\u062F\u064E\u0647\u0627!"
       _ArabicFemale: "\u0633\u062A\u062E\u062A\u0628\u0626\u064F \u0627\u0644\u0623\u062D\u0631\u0641\u064F
@@ -1440,6 +1556,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Hidden Letters!
+      _Italian: 
       _Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
       _ArabicFemale: 
       _AudioFile: Game_HideSeek_letterphoneme_Title
@@ -1450,6 +1567,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: Listen carefully, touch a bush to make a LETTER come out, then touch
         the correct LETTER.
+      _Italian: 
       _Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646.
         \u0627\u0644\u0645\u0633\u0652 \u0634\u062C\u064A\u0631\u0629\u064B \u0644\u064A\u062E\u0631\u062C\u064E
         \u0645\u0646\u0647\u0627 \u062D\u0631\u0641\u060C \u062B\u0645 \u0627\u0644\u0645\u0633\u0650
@@ -1465,6 +1583,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: The Words hide and you have to find them!
+      _Italian: 
       _Arabic: "\u0639\u0644\u064A\u0643 \u0623\u0646\u0652 \u062A\u062C\u062F\u064E
         \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650 \u0627\u0644\u0645\u062E\u062A\u0628\u0650\u0626\u0629!"
       _ArabicFemale: "\u0639\u0644\u064A\u0643\u0650 \u0623\u0646\u0652 \u062A\u062C\u062F\u064A
@@ -1476,6 +1595,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Hidden Words!
+      _Italian: 
       _Arabic: "\u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
       _ArabicFemale: 
       _AudioFile: HideSeek_Words_Title
@@ -1486,6 +1606,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: Listen carefully, touch a bush to make a Word come out, then touch
         the correct Word.
+      _Italian: 
       _Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646.
         \u0627\u0644\u0645\u0633\u0652 \u0634\u062C\u064A\u0631\u0629\u064B \u0644\u062A\u062E\u0631\u062C\u064E
         \u0645\u0646\u0647\u0627 \u0643\u0644\u0645\u0629\u060C \u062B\u0645 \u0627\u0644\u0645\u0633\u0650
@@ -1502,6 +1623,7 @@ MonoBehaviour:
       _Context: Keeper introduces Antura the dog
       _English: My dog, Antura, will come with you. He/she is very fun but he/she
         can be messy!
+      _Italian: 
       _Arabic: "\u0643\u0644\u0628\u064A \u0639\u0646\u062A\u0648\u0631\u0629 \u0633\u064A\u0631\u0627\u0641\u0642\u064F\u0643.
         \u0631\u0641\u0642\u062A\u064F\u0647 \u0645\u0633\u0644\u064A\u0629\u064C
         \u0644\u0643\u0646\u0647 \u0641\u0648\u0636\u0648\u064A\u064C \u0628\u0639\u0636\u064E
@@ -1517,6 +1639,7 @@ MonoBehaviour:
       _When: 
       _Context: The Dog chases the Letters, scaring them
       _English: You see? Anyway, I'm sure you will have lot of fun with Antura
+      _Italian: 
       _Arabic: "\u0623\u0631\u0623\u064A\u062A\u061F \u0639\u0644\u0649 \u0623\u064A\u064E\u0650
         \u062D\u0627\u0644\u060C \u0623\u0639\u062A\u0642\u062F\u064F \u0623\u0646\u0651\u064E\u0643
         \u0633\u062A\u0633\u062A\u0645\u062A\u0639\u064F \u0643\u062B\u064A\u0631\u0627\u064B
@@ -1532,6 +1655,7 @@ MonoBehaviour:
       _When: The Letters enter
       _Context: Keeper introduces the Letters
       _English: All my Letters have come to life and they are now going everywhere...
+      _Italian: 
       _Arabic: "\u0644\u0642\u062F \u062F\u0628\u0651\u064E\u062A \u0627\u0644\u062D\u064A\u0627\u0629\u064F
         \u0641\u064A \u0643\u0644\u0651\u0650 \u062D\u0631\u0648\u0641\u064A\u060C
         \u0648\u0627\u0644\u0622\u0646 \u0647\u064A \u0645\u0646\u062A\u0634\u0631\u0629\u064C
@@ -1544,6 +1668,7 @@ MonoBehaviour:
       _When: 
       _Context: Keeper asks for your help
       _English: Would you help me getting back all the Letters at their place? Pleeeease?
+      _Italian: 
       _Arabic: "\u0623\u064A\u0645\u0643\u0646\u064F\u0643 \u0623\u0646\u0652 \u062A\u0633\u0627\u0639\u062F\u064E\u0646\u064A
         \u0639\u0644\u0649 \u0625\u0639\u0627\u062F\u0629\u0650 \u062C\u0645\u064A\u0639\u0650
         \u0627\u0644\u0623\u062D\u0631\u0641 \u0625\u0644\u0649 \u0645\u0643\u0627\u0646\u0650\u0647\u0627\u061F
@@ -1559,6 +1684,7 @@ MonoBehaviour:
       _When: Empty scene
       _Context: Keeper welcomes you
       _English: Finally you have arrived! I was waiting for you... I need your help!
+      _Italian: 
       _Arabic: "\u0644\u0642\u062F \u0623\u062A\u064A\u062A\u064E \u0623\u062E\u064A\u0631\u0627\u064B!
         \u0643\u0646\u062A\u064F \u0628\u0627\u0646\u062A\u0638\u0627\u0631\u0650\u0643.
         \u0623\u062D\u062A\u0627\u062C\u064F \u0645\u0633\u0627\u0639\u062F\u062A\u064E\u0643!"
@@ -1572,6 +1698,7 @@ MonoBehaviour:
       _When: 
       _Context: No more attemps
       _English: you have no more chances!
+      _Italian: 
       _Arabic: "\u0644\u064A\u0633 \u0644\u062F\u064A\u0643 \u0641\u0631\u0635\u064C
         \u0623\u062E\u0631\u0649\u061F"
       _ArabicFemale: "\u0622\u0647! \u0644\u064A\u0633 \u0644\u062F\u064A\u0643\u0650
@@ -1583,6 +1710,7 @@ MonoBehaviour:
       _When: 
       _Context: Keeper comments your mistakes
       _English: Too bad!
+      _Italian: 
       _Arabic: "\u064A\u0627 \u0644\u0644\u0623\u0633\u0641!"
       _ArabicFemale: 
       _AudioFile: Keeper_Bad_1
@@ -1592,6 +1720,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Next time will do better!
+      _Italian: 
       _Arabic: "\u0628\u0627\u0644\u062A\u0648\u0641\u064A\u0642 \u0641\u064A \u0627\u0644\u0645\u0631\u0629\u0650
         \u0627\u0644\u0642\u0627\u062F\u0645\u0629!"
       _ArabicFemale: 
@@ -1602,6 +1731,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Oh no!
+      _Italian: 
       _Arabic: "\u0623\u0648\u0647 \u0644\u0627!"
       _ArabicFemale: 
       _AudioFile: Keeper_Bad_3
@@ -1611,6 +1741,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Come on!
+      _Italian: 
       _Arabic: "\u0647\u064A\u0627 \u0647\u064A\u0627!"
       _ArabicFemale: 
       _AudioFile: Keeper_Bad_4
@@ -1620,6 +1751,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Keep trying!
+      _Italian: 
       _Arabic: "\u0627\u0633\u062A\u0645\u0631 \u0641\u064A \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629!"
       _ArabicFemale: "\u0627\u0633\u062A\u0645\u0631\u064A \u0641\u064A \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629!"
       _AudioFile: Keeper_Bad_5
@@ -1629,6 +1761,7 @@ MonoBehaviour:
       _When: 
       _Context: At the begining of a round
       _English: Get ready!
+      _Italian: 
       _Arabic: "\u0643\u0646 \u062C\u0627\u0647\u0632\u0627\u064B!"
       _ArabicFemale: "\u0643\u0648\u0646\u064A \u062C\u0627\u0647\u0632\u0629!"
       _AudioFile: Keeper_GetReady
@@ -1638,6 +1771,7 @@ MonoBehaviour:
       _When: Any game, during gameplay
       _Context: Keeper comments your good actions
       _English: You are on fire!
+      _Italian: 
       _Arabic: "\u0623\u0646\u062A\u064E \u062A\u0642\u0648\u0645\u064F \u0628\u0639\u0645\u0644\u064D
         \u0631\u0627\u0626\u0639!"
       _ArabicFemale: "\u0648\u0627\u0627\u0627\u0627! \u0623\u0646\u062A\u0650 \u062A\u0642\u0648\u0645\u064A\u0646\u064E
@@ -1649,6 +1783,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Excellent!
+      _Italian: 
       _Arabic: "\u0645\u0645\u062A\u0627\u0632!"
       _ArabicFemale: 
       _AudioFile: Keeper_Good_10
@@ -1658,6 +1793,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Wonderful!
+      _Italian: 
       _Arabic: "\u063A\u064A\u0631\u064F \u0645\u0639\u0642\u0648\u0644!"
       _ArabicFemale: 
       _AudioFile: Keeper_Good_11
@@ -1667,6 +1803,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Amazing!
+      _Italian: 
       _Arabic: "\u062C\u0645\u064A\u0644\u064C \u062C\u062F\u0627\u064B!"
       _ArabicFemale: 
       _AudioFile: Keeper_Good_12
@@ -1676,6 +1813,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Continue like that!
+      _Italian: 
       _Arabic: "\u0627\u0633\u062A\u0645\u0631!"
       _ArabicFemale: "\u0627\u0633\u062A\u0645\u0631\u0651\u0650\u064A!"
       _AudioFile: Keeper_Good_2
@@ -1685,6 +1823,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Oh oh oh!
+      _Italian: 
       _Arabic: "\u064A\u0627\u0647 \u064A\u0627\u0647 \u064A\u0627\u0647!"
       _ArabicFemale: 
       _AudioFile: Keeper_Good_3
@@ -1694,6 +1833,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Good!
+      _Italian: 
       _Arabic: "\u062C\u064A\u062F!"
       _ArabicFemale: 
       _AudioFile: Keeper_Good_4
@@ -1703,6 +1843,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Well done!
+      _Italian: 
       _Arabic: "\u0623\u062D\u0633\u064E\u0646\u062A!"
       _ArabicFemale: "\u0623\u062D\u0633\u064E\u0646\u062A\u0650!"
       _AudioFile: Keeper_Good_5
@@ -1712,6 +1853,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: You did it!
+      _Italian: 
       _Arabic: "\u0644\u0642\u062F\u0652 \u0646\u062C\u062D\u062A!"
       _ArabicFemale: "\u0644\u0642\u062F\u0652 \u0646\u062C\u062D\u062A\u0650!"
       _AudioFile: Keeper_Good_6
@@ -1721,6 +1863,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Great!
+      _Italian: 
       _Arabic: "\u0631\u0627\u0626\u0639!"
       _ArabicFemale: 
       _AudioFile: Keeper_Good_7
@@ -1730,6 +1873,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Brilliant!
+      _Italian: 
       _Arabic: "\u062E\u0631\u0627\u0641\u064A!"
       _ArabicFemale: 
       _AudioFile: Keeper_Good_8
@@ -1739,6 +1883,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Yeah!
+      _Italian: 
       _Arabic: "\u0645\u0631\u062D\u0649!"
       _ArabicFemale: 
       _AudioFile: Keeper_Good_9
@@ -1748,6 +1893,7 @@ MonoBehaviour:
       _When: 
       _Context: Only one attempt/life left
       _English: This is your last chance...
+      _Italian: 
       _Arabic: "\u0641\u0631\u0635\u062A\u064F\u0643 \u0627\u0644\u0623\u062E\u064A\u0631\u0629..."
       _ArabicFemale: "\u0641\u0631\u0635\u062A\u064F\u0643\u0650 \u0627\u0644\u0623\u062E\u064A\u0631\u0629..."
       _AudioFile: Keeper_Last_Attempt_1
@@ -1757,6 +1903,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: You still have a chance
+      _Italian: 
       _Arabic: "\u0645\u0627\u0632\u0627\u0644\u062A \u0623\u0645\u0627\u0645\u064E\u0643
         \u0641\u0631\u0635\u0629."
       _ArabicFemale: "\u0645\u0627\u0632\u0627\u0644\u062A \u0623\u0645\u0627\u0645\u064E\u0643\u0650
@@ -1768,6 +1915,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: One last attempt...
+      _Italian: 
       _Arabic: "\u0628\u0627\u0642\u064D\u064D \u0645\u062D\u0627\u0648\u0644\u0629\u064C
         \u0648\u0627\u062D\u062F\u0629..."
       _ArabicFemale: 
@@ -1778,6 +1926,7 @@ MonoBehaviour:
       _When: After a mistake, to help the player
       _Context: Tutorial (used to repeat the Tutorial sentence)
       _English: 'Remember: ...'
+      _Italian: 
       _Arabic: "\u062A\u064E\u0630\u064E\u0643\u0651\u064E\u0631..."
       _ArabicFemale: "\u062A\u064E\u0630\u064E\u0643\u0651\u064E\u0631\u064A..."
       _AudioFile: Keeper_Remember
@@ -1787,6 +1936,7 @@ MonoBehaviour:
       _When: 
       _Context: Running out of time
       _English: Harry up!
+      _Italian: 
       _Arabic: "\u0623\u0633\u0631\u0650\u0639!"
       _ArabicFemale: "\u0623\u0633\u0631\u0650\u0639\u064A!"
       _AudioFile: Keeper_Time_1
@@ -1796,6 +1946,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Time is almost over!
+      _Italian: 
       _Arabic: "\u0623\u0648\u0634\u0643\u064E \u0627\u0644\u0648\u0642\u062A\u064F
         \u0639\u0644\u0649 \u0627\u0644\u0646\u0641\u0627\u062F!"
       _ArabicFemale: 
@@ -1806,6 +1957,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Few seconds left...
+      _Italian: 
       _Arabic: "\u0628\u0627\u0642\u064D \u0639\u062F\u0629\u064F \u062B\u0648\u0627\u0646\u064D!"
       _ArabicFemale: 
       _AudioFile: Keeper_Time_3
@@ -1815,6 +1967,7 @@ MonoBehaviour:
       _When: 
       _Context: Time is Over
       _English: Time up!
+      _Italian: 
       _Arabic: "\u0627\u0647, \u0627\u0646\u062A\u0647\u0649 \u0627\u0644\u0648\u0642\u062A!"
       _ArabicFemale: 
       _AudioFile: Keeper_TimeUp
@@ -1824,6 +1977,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: The WORDS are arguing! Show them they have something in common!
+      _Italian: 
       _Arabic: "\u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F \u062A\u062A\u062C\u0627\u062F\u0644!
         \u0633\u0627\u0639\u062F\u0652\u0647\u0627 \u0639\u0644\u0649 \u0631\u0624\u064A\u0629\u0650
         \u0627\u0644\u0623\u0645\u0648\u0631\u0650 \u0627\u0644\u0645\u0634\u062A\u0631\u0643\u0629\u0650
@@ -1839,6 +1993,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Friendship Spark!
+      _Italian: 
       _Arabic: "\u0634\u0631\u0627\u0631\u0629\u064F \u0627\u0644\u0635\u062F\u0627\u0642\u0629!"
       _ArabicFemale: 
       _AudioFile: Game_MakeFriends_letterinword_Title
@@ -1848,6 +2003,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: These WORDS share one letter. Drag it to the center of the screen.
+      _Italian: 
       _Arabic: "\u062A\u062A\u0634\u0627\u0631\u0643\u064F \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F
         \u0641\u064A \u062D\u0631\u0641\u064D \u0648\u0627\u062D\u062F. \u0627\u0633\u062D\u0628\u0652\u0647
         \u0625\u0644\u0649 \u0645\u0646\u062A\u0635\u0641 \u0627\u0644\u0634\u0627\u0634\u0629."
@@ -1862,6 +2018,7 @@ MonoBehaviour:
       _When: 
       _Context: Back to map after a session
       _English: You have progressed a lot! Keep up with the good work...
+      _Italian: 
       _Arabic: "\u0644\u0642\u062F\u0652 \u062A\u0642\u062F\u0651\u0645\u062A\u064E
         \u0643\u062B\u064A\u0631\u0627\u064B. \u0627\u0633\u062A\u0645\u0631."
       _ArabicFemale: "\u0644\u0642\u062F\u0652 \u062A\u0642\u062F\u0651\u0645\u062A\u0650
@@ -1873,6 +2030,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Well done! You are one step closer to complete your mission!
+      _Italian: 
       _Arabic: "\u0645\u0645\u062A\u0627\u0632! \u0642\u0637\u0639\u062A\u064E \u062E\u0637\u0648\u0629\u064B
         \u0625\u0636\u0627\u0641\u064A\u0629\u064B \u0646\u062D\u0648 \u0625\u0643\u0645\u0627\u0644\u0650
         \u0645\u0647\u0645\u062A\u0650\u0643."
@@ -1886,6 +2044,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Another step forward. Continue like that!
+      _Italian: 
       _Arabic: "\u062E\u0637\u0648\u0629\u064C \u0623\u062E\u0631\u0649 \u0646\u062D\u0648
         \u0627\u0644\u0623\u0645\u0627\u0645. \u0627\u0633\u062A\u0645\u0631 \u0639\u0644\u0649
         \u0646\u0641\u0633\u0650 \u0627\u0644\u0645\u0646\u0648\u0627\u0644!"
@@ -1899,6 +2058,7 @@ MonoBehaviour:
       _When: when a bonus bone appears
       _Context: Tutorial
       _English: Touch the Cookies to collect them
+      _Italian: 
       _Arabic: "\u0627\u0644\u0645\u0633\u0652 \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A
         \u0644\u0650\u062C\u064E\u0645\u0652\u0639\u0650\u0647\u064E\u0627"
       _ArabicFemale: "\u0627\u0644\u0645\u0633\u064A \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A
@@ -1910,6 +2070,7 @@ MonoBehaviour:
       _When: when a bonus bone appears
       _Context: Tutorial
       _English: Collect the Cookies you see around
+      _Italian: 
       _Arabic: "\u0627\u0650\u062C\u0652\u0645\u064E\u0639\u0652 \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A
         \u0627\u0644\u0651\u064E\u062A\u0650\u064A \u062A\u064E\u0631\u064E\u0627\u0647\u064E\u0627
         \u0641\u0650\u064A \u0627\u0644\u062C\u0650\u0648\u064E\u0627\u0631\u0650"
@@ -1923,6 +2084,7 @@ MonoBehaviour:
       _When: when player touches the bone counter
       _Context: Tutorial
       _English: This is the amount of cookies you have. You can spend them with Antura.
+      _Italian: 
       _Arabic: "\u0647\u064E\u0630\u064E\u0627 \u0647\u064F\u0648\u064E \u0639\u064E\u062F\u064E\u062F\u064F
         \u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A\u0650 \u0644\u064E\u062F\u064E\u064A\u0652\u0643\u064E.
         \u0628\u0650\u0625\u0650\u0645\u0652\u0643\u064E\u0627\u0646\u0650\u0643\u064E
@@ -1940,6 +2102,7 @@ MonoBehaviour:
       _When: when player touches the bone counter
       _Context: Tutorial
       _English: 'Remember: you can spend the cookies with Antura.'
+      _Italian: 
       _Arabic: "\u062A\u064E\u0630\u0643\u064E\u0631: \u0628\u0650\u0625\u0650\u0645\u0652\u0643\u064E\u0627\u0646\u0650\u0643\u064E
         \u0627\u0644\u062A\u0651\u064E\u0645\u064E\u062A\u0651\u064F\u0639\u064F \u0628\u0650\u0627\u0644\u0643\u064E\u0639\u0652\u0643\u064E\u0627\u062A\u0650
         \u0645\u064E\u0639\u064E \u0639\u0646\u062A\u0648\u0631\u0629"
@@ -1953,6 +2116,7 @@ MonoBehaviour:
       _When: 
       _Context: Reached a Pin/Assessment (the final step of a Learning Block)
       _English: Are you ready to prove what you learned so far?
+      _Italian: 
       _Arabic: "\u0647\u0644 \u0623\u0646\u062A\u064E \u0645\u0633\u062A\u0639\u062F\u0651\u064C
         \u0644\u0625\u062B\u0628\u0627\u062A \u0645\u0627 \u062A\u0639\u0644\u0645\u062A\u064E\u0647
         \u0625\u0644\u0649 \u0627\u0644\u0622\u0646\u061F"
@@ -1966,6 +2130,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: The next step will challenge your knowledge...
+      _Italian: 
       _Arabic: "\u0627\u0644\u062E\u0637\u0648\u0629\u064F \u0627\u0644\u0642\u0627\u062F\u0645\u0629\u064F
         \u0633\u062A\u062E\u062A\u0628\u0631\u064F \u0645\u0639\u0644\u0648\u0645\u0627\u062A\u0650\u0643."
       _ArabicFemale: "\u0627\u0644\u062E\u0637\u0648\u0629\u064F \u0627\u0644\u0642\u0627\u062F\u0645\u0629\u064F
@@ -1978,6 +2143,7 @@ MonoBehaviour:
       _Context: 
       _English: To continue your journey you will have to prove you have mastered
         all this.
+      _Italian: 
       _Arabic: "\u0644\u0625\u0643\u0645\u0627\u0644 \u0631\u062D\u0644\u062A\u0650\u0643\u060C
         \u064A\u062C\u0628\u064C \u0623\u0646\u0652 \u062A\u0628\u0631\u0647\u0646\u064E
         \u0623\u0646\u0651\u0643 \u0623\u062A\u0642\u0646\u062A\u064E \u0643\u0644\u0651\u064E
@@ -1993,6 +2159,7 @@ MonoBehaviour:
       _When: 
       _Context: Finished the game and Unlocked all Rewards
       _English: Yeaaaah! Excellent job! You completed your mission!
+      _Italian: 
       _Arabic: "\u0634\u064A\u0621\u064C \u0645\u062F\u0647\u0634! \u0639\u0645\u0644\u064C
         \u0631\u0627\u0626\u0639! \u0644\u0642\u062F\u0652 \u0623\u0643\u0645\u0644\u062A\u064E
         \u0645\u0647\u0645\u062A\u064E\u0643."
@@ -2007,6 +2174,7 @@ MonoBehaviour:
       _Context: Reached the end of the Last Map
       _English: Excellent! You reached the end of the World! But you still have lot
         of Gifts to gain!
+      _Italian: 
       _Arabic: "\u0645\u0645\u062A\u0627\u0632! \u0648\u0635\u0644\u062A\u064E \u0625\u0644\u0649
         \u0646\u0647\u0627\u064A\u0629\u0650 \u0647\u0630\u0627 \u0627\u0644\u0639\u0627\u0644\u0645!
         \u0644\u0643\u0646\u0652 \u0645\u0627\u0632\u0627\u0644\u062A \u0623\u0645\u0627\u0645\u0643
@@ -2025,6 +2193,7 @@ MonoBehaviour:
       _When: 
       _Context: 'First Session: special Keeper sentence'
       _English: It's time for you to start your journey. Good luck!
+      _Italian: 
       _Arabic: "\u0648\u0642\u062A\u064F \u0628\u062F\u0627\u064A\u0629\u0650 \u0631\u062D\u0644\u062A\u0650\u0643.
         \u062D\u0638\u0627\u064B \u0633\u0639\u064A\u062F\u0627\u064B!"
       _ArabicFemale: "\u0648\u0642\u062A\u064F \u0628\u062F\u0627\u064A\u0629\u0650
@@ -2036,6 +2205,7 @@ MonoBehaviour:
       _When: No UI / no interaction
       _Context: Keeper introduces the journey
       _English: You will travel the world to find all the Letters.
+      _Italian: 
       _Arabic: "\u0633\u062A\u062C\u0648\u0628\u064F \u0627\u0644\u0639\u0627\u0644\u0645\u064E
         \u0628\u062D\u062B\u0627\u064B \u0639\u0646 \u0627\u0644\u0623\u062D\u0631\u0641."
       _ArabicFemale: "\u0633\u062A\u062C\u0648\u0628\u064A\u0646 \u0627\u0644\u0639\u0627\u0644\u0645\u064E
@@ -2048,6 +2218,7 @@ MonoBehaviour:
       _Context: Keeper introduces the rewards (Finger/Click anim over the Antura Space
         button)
       _English: Do your best and I will give you tons of Gifts to play with Antura
+      _Italian: 
       _Arabic: "\u0627\u0628\u0630\u0644 \u0623\u0642\u0635\u0649 \u0645\u0627 \u0644\u062F\u064A\u0643
         \u0648\u0633\u0623\u0639\u0637\u064A\u0643 \u0627\u0644\u0643\u062B\u064A\u0631\u064E
         \u0645\u0646 \u0627\u0644\u0647\u062F\u0627\u064A\u0627 \u0644\u062A\u0644\u0639\u0628\u064E
@@ -2063,6 +2234,7 @@ MonoBehaviour:
       _When: 
       _Context: Dialog to introduce the Map 1 (mountain)
       _English: First of all you have to cross all the Mountains...
+      _Italian: 
       _Arabic: "\u0642\u0628\u0644 \u0623\u064A\u0651\u0650 \u0634\u064A\u0621\u060C
         \u064A\u062C\u0628 \u0623\u0646\u0652 \u062A\u0639\u0628\u0631\u064E \u0643\u0644\u0651\u064E
         \u0627\u0644\u062C\u0628\u0627\u0644."
@@ -2076,6 +2248,7 @@ MonoBehaviour:
       _When: 
       _Context: Dialog to introduce the Map 2 (island)
       _English: Well done! You have reached the tropical Islands.
+      _Italian: 
       _Arabic: "\u0623\u062D\u0633\u0646\u062A! \u0644\u0642\u062F\u0652 \u0648\u0635\u0644\u062A\u064E
         \u0625\u0644\u0649 \u0627\u0644\u062C\u0632\u0631\u0650 \u0627\u0644\u0627\u0633\u062A\u0648\u0627\u0626\u064A\u0629."
       _ArabicFemale: "\u0623\u062D\u0633\u0646\u062A\u0650! \u0644\u0642\u062F\u0652
@@ -2088,6 +2261,7 @@ MonoBehaviour:
       _When: 
       _Context: Dialog to introduce the Map 3 (grassland)
       _English: This is the endless Grassland. It will be a long journey.
+      _Italian: 
       _Arabic: "\u0647\u0630\u0627 \u0647\u0648 \u0627\u0644\u0645\u0631\u0639\u0649
         \u0627\u0644\u0644\u0627\u0646\u0647\u0627\u0626\u064A. \u0633\u062A\u0643\u0648\u0646\u064F
         \u0631\u062D\u0644\u062A\u064F\u0643 \u0637\u0648\u064A\u0644\u0629."
@@ -2101,6 +2275,7 @@ MonoBehaviour:
       _When: 
       _Context: Dialog to introduce the Map 4 (desert)
       _English: Welcome to the burning Desert. Things are getting harder...
+      _Italian: 
       _Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B \u0628\u0643 \u0641\u064A \u0627\u0644\u0635\u062D\u0631\u0627\u0621\u0650
         \u0627\u0644\u062D\u0627\u0631\u0642\u0629. \u0627\u0644\u0623\u0645\u0648\u0631\u064F
         \u0628\u062F\u0623\u062A \u062A\u0635\u0628\u062D\u064F \u0623\u0635\u0639\u0628."
@@ -2115,6 +2290,7 @@ MonoBehaviour:
       _When: 
       _Context: Dialog to introduce the Map 5 (forest)
       _English: The dark Forest! You are getting closer to accomplish your mission...
+      _Italian: 
       _Arabic: "\u0627\u0644\u063A\u0627\u0628\u0629\u064F \u0627\u0644\u0645\u0638\u0644\u0645\u0629!
         \u0623\u0646\u062A\u064E \u0639\u0644\u0649 \u0648\u0634\u0643\u0650 \u0625\u0643\u0645\u0627\u0644\u0650
         \u0645\u0647\u0645\u062A\u0650\u0643."
@@ -2128,6 +2304,7 @@ MonoBehaviour:
       _When: 
       _Context: Dialog to introduce the Map 6 (village)
       _English: Finally you reached the Letters Village! Come on, just a last effort!
+      _Italian: 
       _Arabic: "\u0648\u0635\u0644\u062A\u064E \u0623\u062E\u064A\u0631\u0627\u064B
         \u0625\u0644\u0649 \u0642\u0631\u064A\u0629\u0650 \u0627\u0644\u062D\u0631\u0648\u0641!
         \u062A\u0639\u0627\u0644\u060C \u0623\u0645\u0627\u0645\u0643 \u0645\u062C\u0647\u0648\u062F\u064C
@@ -2143,6 +2320,7 @@ MonoBehaviour:
       _When: 
       _Context: New Map/Stage reached
       _English: Wow! You discovered a new Map!
+      _Italian: 
       _Arabic: "\u0645\u0630\u0647\u0644! \u0644\u0642\u062F\u0650 \u0627\u0643\u062A\u0634\u0641\u062A\u064E
         \u062E\u0631\u064A\u0637\u0629\u064B \u062C\u062F\u064A\u062F\u0629."
       _ArabicFemale: "\u0645\u0630\u0647\u0644! \u0644\u0642\u062F\u0650 \u0627\u0643\u062A\u0634\u0641\u062A\u0650
@@ -2155,6 +2333,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: You are learning a lot! Now you can also check the dictionary at any
         time
+      _Italian: 
       _Arabic: "\u0644\u064E\u0642\u064E\u062F\u0652 \u062A\u064E\u0639\u064E\u0644\u0651\u064E\u0645\u0652\u062A\u064E
         \u0643\u064E\u062B\u0650\u064A\u0631\u064B! \u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u064E
         \u0627\u0644\u0622\u0646\u064E \u0645\u064F\u0631\u064E\u0627\u062C\u064E\u0639\u064E\u0629\u064F
@@ -2172,6 +2351,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Press the BOOK button
+      _Italian: 
       _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
         \u0631\u064E\u0645\u0652\u0632\u0650 \u0627\u0644\u0642\u064E\u0627\u0645\u064F\u0648\u0633\u0650"
       _ArabicFemale: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u064A \u0639\u064E\u0644\u064E\u0649
@@ -2183,6 +2363,7 @@ MonoBehaviour:
       _When: after PS 1.2.100
       _Context: Tutorial
       _English: Surprise! You can now play any game whenever you want
+      _Italian: 
       _Arabic: "\u0645\u064F\u0641\u064E\u0627\u062C\u064E\u0623\u064E\u0629\u064C!
         \u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u064E \u0623\u064E\u0646\u0652
         \u062A\u064E\u0644\u0652\u0639\u064E\u0628\u064E \u0627\u0644\u0622\u0646\u064E
@@ -2200,6 +2381,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Press the GAMES button
+      _Italian: 
       _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
         \u0631\u064E\u0645\u0652\u0632\u0650 \u0627\u0644\u0623\u064E\u0644\u0652\u0639\u064E\u0627\u0628"
       _ArabicFemale: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u064A \u0639\u064E\u0644\u064E\u0649
@@ -2211,6 +2393,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: All your your progress and stats are here.
+      _Italian: 
       _Arabic: "\u0647\u064E\u0630\u064E\u0627 \u0627\u0644\u0642\u0650\u0633\u0652\u0645\u064F
         \u064A\u064E\u062D\u0652\u062A\u064E\u0648\u0650\u064A \u0639\u064E\u0644\u064E\u0649
         \u0645\u0650\u0644\u064E\u0641\u0651\u0650 \u062A\u064E\u0637\u064E\u0648\u0651\u064F\u0631\u0650
@@ -2230,6 +2413,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Press the FACE button
+      _Italian: 
       _Arabic: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u0652 \u0639\u064E\u0644\u064E\u0649
         \u0631\u064E\u0645\u0652\u0632\u0650 \u0627\u0644\u0648\u064E\u062C\u0652\u0647\u0650"
       _ArabicFemale: "\u0627\u0650\u0636\u0652\u063A\u064E\u0637\u064A \u0639\u064E\u0644\u064E\u0649
@@ -2241,6 +2425,7 @@ MonoBehaviour:
       _When: 
       _Context: Keeper welcomes you back
       _English: You still have a long journey in front of you. Better you harry up!
+      _Italian: 
       _Arabic: "\u0623\u0645\u0627\u0645\u064E\u0643 \u0631\u062D\u0644\u0629\u064C
         \u0637\u0648\u064A\u0644\u0629. \u0639\u0644\u064A\u0643 \u0623\u0646\u0652
         \u062A\u064F\u0633\u0631\u0650\u0639!"
@@ -2254,6 +2439,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Come on, your mission is not over yet!
+      _Italian: 
       _Arabic: "\u0647\u064A\u0627. \u0627\u0644\u0645\u0647\u0645\u0629\u064F \u0644\u0645\u0652
         \u062A\u0646\u062A\u0647\u0650 \u0628\u0639\u062F."
       _ArabicFemale: 
@@ -2264,6 +2450,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: I trust you. You will complete your mission soon!
+      _Italian: 
       _Arabic: "\u0643\u0644\u064A \u062B\u0642\u0629\u064C \u0623\u0646\u0651\u0643
         \u0633\u062A\u0646\u0647\u064A \u0645\u0647\u0645\u062A\u064E\u0643 \u0642\u0631\u064A\u0628\u0627\u064B."
       _ArabicFemale: "\u0643\u0644\u064A \u062B\u0642\u0629\u064C \u0623\u0646\u0651\u0643\u0650
@@ -2276,6 +2463,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: Race time! Help the LETTER reach the track's end.
+      _Italian: 
       _Arabic: "\u0648\u0642\u062A\u064F \u0627\u0644\u0633\u0628\u0627\u0642! \u0633\u0627\u0639\u062F\u0650
         \u0627\u0644\u062D\u0631\u0641\u064E \u0639\u0644\u0649 \u0627\u0644\u0648\u0635\u0648\u0644\u0650
         \u0625\u0644\u0649 \u062E\u0637\u0651\u0650 \u0627\u0644\u0646\u0647\u0627\u064A\u0629."
@@ -2290,6 +2478,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Rocket Race!
+      _Italian: 
       _Arabic: "\u0633\u0628\u0627\u0642\u064F \u0627\u0644\u0635\u0627\u0631\u0648\u062E!"
       _ArabicFemale: 
       _AudioFile: Game_Maze_lettername_Title
@@ -2299,6 +2488,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Follow the arrows, draw over the path and don't get out of the track!
+      _Italian: 
       _Arabic: "\u0627\u062A\u0652\u0628\u0639\u0650 \u0627\u0644\u0623\u0633\u0647\u0645\u064E
         \u0648\u0627\u0631\u0633\u0645\u0652 \u0639\u0644\u0649 \u0627\u0644\u0645\u0645\u0631.
         \u0627\u0644\u0633\u0631\u0639\u0629\u064F \u0645\u0647\u0645\u0629\u060C
@@ -2316,6 +2506,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: Oh no! This WORD has lost a LETTER... help her to get it back!
+      _Italian: 
       _Arabic: "\u0623\u0648\u0647 \u0644\u0627! \u0644\u0642\u062F \u0641\u0642\u062F\u062A\u0652
         \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0629\u064F \u062D\u0631\u0641\u0627\u064B.
         \u0633\u0627\u0639\u062F\u0652\u0647\u0627 \u0639\u0644\u0649 \u0627\u0644\u0639\u062B\u0648\u0631\u0650
@@ -2331,6 +2522,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Missing Form!
+      _Italian: 
       _Arabic: "\u0627\u0644\u0634\u0643\u0644\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F"
       _ArabicFemale: 
       _AudioFile: Game_MissingLetter_letterinword_Title
@@ -2340,6 +2532,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Missing Letter!
+      _Italian: 
       _Arabic: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
       _ArabicFemale: 
       _AudioFile: Game_MissingLetter_letterinword_Title
@@ -2349,6 +2542,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: Oh no! This SENTENCE has lost a WORD... help her to get it back!
+      _Italian: 
       _Arabic: "\u0623\u0648\u0647 \u0644\u0627! \u0644\u0642\u062F \u0641\u0642\u062F\u062A\u0652
         \u0647\u0630\u0647 \u0627\u0644\u062C\u0645\u0644\u0629\u064F \u0643\u0644\u0645\u0629.
         \u0633\u0627\u0639\u062F\u0652\u0647\u0627 \u0639\u0644\u0649 \u0627\u0644\u0639\u062B\u0648\u0631\u0650
@@ -2364,6 +2558,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Missing Word!
+      _Italian: 
       _Arabic: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F\u0629!"
       _ArabicFemale: 
       _AudioFile: MissingLetter_phrases_Title
@@ -2373,6 +2568,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Spot the missing WORD and touch it.
+      _Italian: 
       _Arabic: "\u0627\u0639\u062B\u0631\u0652 \u0639\u0644\u0649 \u0627\u0644\u0643\u0644\u0645\u0629\u0650
         \u0627\u0644\u0646\u0627\u0642\u0635\u0629\u0650 \u0648\u0627\u0644\u0645\u0633\u0652\u0647\u0627."
       _ArabicFemale: "\u0627\u0639\u062B\u0631\u064A \u0639\u0644\u0649 \u0627\u0644\u0643\u0644\u0645\u0629\u0650
@@ -2384,6 +2580,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Spot the missing LETTER and touch it.
+      _Italian: 
       _Arabic: "\u0627\u0639\u062B\u0631\u0652 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641\u0650
         \u0627\u0644\u0646\u0627\u0642\u0635\u0650 \u0648\u0627\u0644\u0645\u0633\u0652\u0647."
       _ArabicFemale: "\u0627\u0639\u062B\u0631\u064A \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641\u0650
@@ -2395,6 +2592,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: Look at all those LETTERS! Put them in the right order.
+      _Italian: 
       _Arabic: "\u0627\u0646\u0638\u0631 \u0625\u0644\u0649 \u0643\u0644\u0651\u0650
         \u062A\u0644\u0643 \u0627\u0644\u0623\u062D\u0631\u0641! \u0636\u0639\u0647\u0627
         \u0641\u064A \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u0650 \u0627\u0644\u0635\u062D\u064A\u062D."
@@ -2408,6 +2606,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Letter Salad!
+      _Italian: 
       _Arabic: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
       _AudioFile: MixedLetters_alphabet_Title
@@ -2418,6 +2617,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: Follow the Alphabet order, drag each LETTER to the right position
         and use the buttons to rotate it correctly.
+      _Italian: 
       _Arabic: "\u062A\u062A\u0628\u0639 \u062A\u0631\u062A\u064A\u0628\u064E \u0627\u0644\u0623\u062D\u0631\u0641\u0650
         \u0627\u0644\u0647\u062C\u0627\u0626\u064A\u0629\u0650 \u0639\u0646 \u0637\u0631\u064A\u0642\u0650
         \u0633\u062D\u0628\u0650 \u0643\u0644\u0651\u0650 \u062D\u0631\u0641\u064D
@@ -2440,6 +2640,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: Look at all those LETTERS! Help them become a WORD again!
+      _Italian: 
       _Arabic: "\u0627\u0646\u0638\u0631 \u0625\u0644\u0649 \u0643\u0644\u0651\u0650
         \u062A\u0644\u0643 \u0627\u0644\u0623\u062D\u0631\u0641! \u0633\u0627\u0639\u062F\u0647\u0627
         \u0639\u0644\u0649 \u062A\u0634\u0643\u064A\u0644\u0650 \u0643\u0644\u0645\u0629\u064D
@@ -2455,6 +2656,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Word Salad!
+      _Italian: 
       _Arabic: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _ArabicFemale: 
       _AudioFile: Game_MixedLetters_buildword_Title
@@ -2465,6 +2667,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: Drag each LETTER to the right position and use the button to rotate
         it correctly..
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628\u0652 \u0643\u0644\u0651\u0650 \u062D\u0631\u0641\u064D
         \u0625\u0644\u0649 \u0645\u0648\u0642\u0639\u0650\u0647 \u0627\u0644\u0635\u062D\u064A\u062D.
         \u0627\u0633\u062A\u0639\u0645\u0644\u0650 \u0627\u0644\u0623\u0632\u0631\u0627\u0631\u064E
@@ -2484,6 +2687,7 @@ MonoBehaviour:
       _When: Once a day
       _Context: One dialog "How do you feel?"
       _English: Welcome back! How do you feel today?
+      _Italian: 
       _Arabic: "\u0623\u0647\u0644\u0627\u064B \u0628\u0639\u0648\u062F\u062A\u0650\u0643!
         \u0643\u064A\u0641 \u062A\u0634\u0639\u0631\u064F \u0627\u0644\u064A\u0648\u0645\u061F"
       _ArabicFemale: "\u0623\u0647\u0644\u0627\u064B \u0628\u0639\u0648\u062F\u062A\u0650\u0643\u0650!
@@ -2495,6 +2699,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Hello! How are you today?
+      _Italian: 
       _Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B\u060C \u0643\u064A\u0641 \u062D\u0627\u0644\u064F\u0643
         \u0627\u0644\u064A\u0648\u0645\u061F"
       _ArabicFemale: "\u0645\u0631\u062D\u0628\u0627\u064B\u060C \u0643\u064A\u0641
@@ -2506,6 +2711,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Welcome back! How's going?
+      _Italian: 
       _Arabic: "\u0623\u0647\u0644\u0627\u064B\u064B \u0628\u0639\u0648\u062F\u062A\u0650\u0643!
         \u0643\u064A\u0641 \u062A\u0634\u0639\u0631\u064F \u0627\u0644\u064A\u0648\u0645\u061F"
       _ArabicFemale: "\u0623\u0647\u0644\u0627\u064B\u064B \u0628\u0639\u0648\u062F\u062A\u0650\u0643\u0650!
@@ -2517,6 +2723,7 @@ MonoBehaviour:
       _When: 
       _Context: Options
       _English: Credits
+      _Italian: 
       _Arabic: "\u0641\u064E\u0631\u0650\u064A\u0642\u064F \u0625\u0650\u0646\u0652\u062A\u064E\u0627\u062C\u0650
         \u0627\u0644\u0644\u0651\u064E\u0639\u0652\u0628\u064E\u0629\u0650"
       _ArabicFemale: 
@@ -2527,6 +2734,7 @@ MonoBehaviour:
       _When: 
       _Context: Options
       _English: English OFF
+      _Italian: 
       _Arabic: "\u0625\u0650\u062E\u0652\u0641\u064E\u0627\u0621\u064F \u0627\u0644\u062A\u0651\u064E\u0631\u0652\u062C\u064E\u0645\u064E\u0629\u0650
         \u0627\u0644\u0625\u0650\u0646\u0652\u0643\u0650\u0644\u0650\u064A\u0632\u0650\u064A\u0651\u064E\u0629\u0650"
       _ArabicFemale: 
@@ -2537,6 +2745,7 @@ MonoBehaviour:
       _When: 
       _Context: Options
       _English: English ON
+      _Italian: 
       _Arabic: "\u0625\u0650\u0638\u0652\u0647\u064E\u0627\u0631\u064F \u0627\u0644\u062A\u0651\u064E\u0631\u0652\u062C\u064E\u0645\u064E\u0629\u0650
         \u0627\u0644\u0625\u0650\u0646\u0652\u0643\u0650\u0644\u0650\u064A\u0632\u0650\u064A\u0651\u064E\u0629\u0650"
       _ArabicFemale: 
@@ -2547,6 +2756,7 @@ MonoBehaviour:
       _When: 
       _Context: Options
       _English: Switching OFF
+      _Italian: 
       _Arabic: "\u0625\u064A\u0642\u0627\u0641"
       _ArabicFemale: 
       _AudioFile: Options_Generic_OFF
@@ -2556,6 +2766,7 @@ MonoBehaviour:
       _When: 
       _Context: Options
       _English: Switching ON
+      _Italian: 
       _Arabic: "\u062A\u0634\u063A\u064A\u0644"
       _ArabicFemale: 
       _AudioFile: Options_Generic_ON
@@ -2565,6 +2776,7 @@ MonoBehaviour:
       _When: 
       _Context: Options
       _English: Music OFF
+      _Italian: 
       _Arabic: "\u0625\u0650\u064A\u0642\u064E\u0627\u0641\u064F \u0627\u0644\u0645\u064F\u0648\u0633\u0650\u064A\u0642\u064E\u0649"
       _ArabicFemale: 
       _AudioFile: Options_Music_OFF
@@ -2574,6 +2786,7 @@ MonoBehaviour:
       _When: 
       _Context: Options
       _English: Music ON
+      _Italian: 
       _Arabic: "\u062A\u064E\u0634\u0652\u063A\u0650\u064A\u0644\u064F \u0627\u0644\u0645\u064F\u0648\u0633\u0650\u064A\u0642\u064E\u0649"
       _ArabicFemale: 
       _AudioFile: Options_Music_ON
@@ -2583,6 +2796,7 @@ MonoBehaviour:
       _When: 
       _Context: Options
       _English: Subtitles OFF
+      _Italian: 
       _Arabic: "\u0625\u0650\u062E\u0652\u0641\u064E\u0627\u0621\u064F \u0627\u0644\u062A\u0651\u064E\u0631\u0652\u062C\u064E\u0645\u064E\u0629\u0650
         \u0627\u0644\u0645\u064F\u0635\u064E\u0627\u062D\u0650\u0628\u064E\u0629\u0650"
       _ArabicFemale: 
@@ -2593,6 +2807,7 @@ MonoBehaviour:
       _When: 
       _Context: Options
       _English: Subtitles ON
+      _Italian: 
       _Arabic: "\u0625\u0650\u0638\u0652\u0647\u064E\u0627\u0631\u064F \u0627\u0644\u062A\u0651\u064E\u0631\u0652\u062C\u064E\u0645\u064E\u0629\u0650
         \u0627\u0644\u0645\u064F\u0635\u064E\u0627\u062D\u0650\u0628\u064E\u0629\u0650"
       _ArabicFemale: 
@@ -2603,6 +2818,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: This section is reserved to Parents and Guardians.
+      _Italian: 
       _Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0645\u0633\u0627\u062D\u0629 \u0645\u062E\u0635\u0635\u0629
         \u0644\u0644\u0622\u0628\u0627\u0621 \u0648\u0623\u0648\u0644\u064A\u0627\u0621
         \u0627\u0644\u0623\u0645\u0648\u0631"
@@ -2614,6 +2830,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: How old are you?
+      _Italian: 
       _Arabic: "\u0643\u0645 \u0639\u064F\u0645\u0652\u0631\u064F\u0643\u061F"
       _ArabicFemale: "\u0643\u0645 \u0639\u064F\u0645\u0652\u0631\u064F\u0643\u0650\u061F"
       _AudioFile: Profile_Age
@@ -2623,6 +2840,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Select a face
+      _Italian: 
       _Arabic: "\u0627\u062E\u062A\u064E\u0631 \u0648\u062C\u0647\u0627\u064B."
       _ArabicFemale: "\u0627\u062E\u062A\u0627\u0631\u064A \u0648\u062C\u0647\u0627\u064B."
       _AudioFile: Profile_Avatar
@@ -2632,6 +2850,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Select a color
+      _Italian: 
       _Arabic: "\u0627\u062E\u062A\u064E\u064E\u0631 \u0644\u0648\u0646\u0627\u064B."
       _ArabicFemale: "\u0627\u062E\u062A\u0627\u0631\u064A \u0644\u0648\u0646\u0627\u064B."
       _AudioFile: Profile_Color
@@ -2641,6 +2860,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Are you a girl or a boy?
+      _Italian: 
       _Arabic: "\u0647\u0644 \u0623\u0646\u062A\u064E \u0648\u0644\u062F \u0623\u0645
         \u0628\u0646\u062A\u061F"
       _ArabicFemale: 
@@ -2651,6 +2871,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: 10 years
+      _Italian: 
       _Arabic: "\u0639\u0634\u0631\u064F \u0633\u0646\u0648\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: Profile_Years_10
@@ -2660,6 +2881,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: 11 or more years
+      _Italian: 
       _Arabic: "\u0625\u062D\u062F\u0649 \u0639\u0634\u0631\u0629 \u0633\u0646\u0629\u064B
         \u0623\u0648 \u0623\u0643\u062B\u0631"
       _ArabicFemale: 
@@ -2670,6 +2892,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: 4 years
+      _Italian: 
       _Arabic: "\u0623\u0631\u0628\u0639\u064F \u0633\u0646\u0648\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: Profile_Years_4
@@ -2679,6 +2902,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: 5 years
+      _Italian: 
       _Arabic: "\u062E\u0645\u0633\u064F \u0633\u0646\u0648\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: Profile_Years_5
@@ -2688,6 +2912,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: 6 years
+      _Italian: 
       _Arabic: "\u0633\u062A\u0651\u064F \u0633\u0646\u0648\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: Profile_Years_6
@@ -2697,6 +2922,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: 7 years
+      _Italian: 
       _Arabic: "\u0633\u0628\u0639\u064F \u0633\u0646\u0648\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: Profile_Years_7
@@ -2706,6 +2932,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: 8 years
+      _Italian: 
       _Arabic: "\u062B\u0645\u0627\u0646\u064A\u0652 \u0633\u0646\u0648\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: Profile_Years_8
@@ -2715,6 +2942,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: 9 years
+      _Italian: 
       _Arabic: "\u062A\u0633\u0639\u064F \u0633\u0646\u0648\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: Profile_Years_9
@@ -2724,6 +2952,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: This SENTENCE hides a mistery... solve it!
+      _Italian: 
       _Arabic: "\u0647\u0630\u0647 \u0627\u0644\u062C\u0645\u0644\u0629\u064F \u062A\u064F\u062E\u064E\u0628\u0651\u064A\u0621\u064F
         \u0623\u0645\u0631\u0627\u064B \u063A\u0627\u0645\u0636\u0627\u064B. \u0639\u0644\u064A\u0643
         \u0623\u0646 \u062A\u0643\u062A\u0634\u0641\u064E\u0647!"
@@ -2738,6 +2967,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Reading Discovery!
+      _Italian: 
       _Arabic: "\u0627\u0642\u0631\u0623 \u0648\u0627\u0633\u062A\u0643\u0634\u0641!"
       _ArabicFemale: 
       _AudioFile: ReadingGame_Title
@@ -2748,6 +2978,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: Drag the lens with your finger, read the SENTENCE quickly and then
         answer correctly
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0639\u062F\u0633\u0629\u064E
         \u0628\u0625\u0635\u0628\u0639\u0650\u0643 \u0648\u0627\u0642\u0631\u0623
         \u0627\u0644\u062C\u0645\u0644\u0629\u064E \u0628\u0633\u0631\u0639\u0629\u060C
@@ -2764,6 +2995,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Create demo player
+      _Italian: 
       _Arabic: "\u0625\u0646\u0634\u0627\u0621 \u0644\u0627\u0639\u0628 \u062A\u062C\u0631\u064A\u0628\u064A"
       _ArabicFemale: 
       _AudioFile: 
@@ -2773,6 +3005,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Delete
+      _Italian: 
       _Arabic: "\u062D\u0630\u0641"
       _ArabicFemale: 
       _AudioFile: 
@@ -2782,6 +3015,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Demo user already exists
+      _Italian: 
       _Arabic: "\u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u062A\u062C\u0631\u064A\u0628\u064A
         \u0645\u0648\u062C\u0648\u062F \u0623\u0635\u0644\u0627\u064B"
       _ArabicFemale: 
@@ -2792,6 +3026,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Export
+      _Italian: 
       _Arabic: "\u062A\u0635\u062F\u064A\u0631"
       _ArabicFemale: 
       _AudioFile: 
@@ -2801,6 +3036,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Install instructions
+      _Italian: 
       _Arabic: "\u062A\u062B\u0628\u064A\u062A \u0627\u0644\u062A\u0639\u0644\u064A\u0645\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: 
@@ -2810,6 +3046,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Privacy Policy
+      _Italian: 
       _Arabic: "\u0627\u0644\u062E\u0635\u0648\u0635\u064A\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -2819,6 +3056,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Rate
+      _Italian: 
       _Arabic: "\u0645\u0639\u062F\u0644"
       _ArabicFemale: 
       _AudioFile: 
@@ -2828,6 +3066,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Recommend
+      _Italian: 
       _Arabic: "\u0646\u0648\u0635\u064A"
       _ArabicFemale: 
       _AudioFile: 
@@ -2837,6 +3076,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Review
+      _Italian: 
       _Arabic: "\u0645\u062A\u0627\u0628\u0639\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -2846,6 +3086,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: If you make an error, retry by re-accessing this panel
+      _Italian: 
       _Arabic: "\u0641\u064A \u062D\u0627\u0644 \u0623\u062E\u0637\u0623\u062A\u060C
         \u0623\u0639\u062F \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629 \u0628\u0627\u0633\u062A\u0639\u0645\u0627\u0644
         \u0647\u0630\u0647 \u0627\u0644\u0644\u0648\u062D\u0629"
@@ -2857,6 +3098,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: This section is reserved for parents and guardians.
+      _Italian: 
       _Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0645\u0633\u0627\u062D\u0629 \u0645\u062E\u0635\u0635\u0629
         \u0644\u0644\u0622\u0628\u0627\u0621 \u0648\u0623\u0648\u0644\u064A\u0627\u0621
         \u0627\u0644\u0623\u0645\u0648\u0631"
@@ -2868,6 +3110,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: RESERVED AREA
+      _Italian: 
       _Arabic: "\u0645\u0646\u0637\u0642\u0629 \u0627\u0644\u0622\u0628\u0627\u0621"
       _ArabicFemale: 
       _AudioFile: 
@@ -2877,6 +3120,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: UNLOCKING... please wait
+      _Italian: 
       _Arabic: "\u062C\u0627\u0631\u064A \u0627\u0644\u0641\u062A\u062D! \u064A\u0631\u062C\u0649
         \u0627\u0644\u0625\u0646\u062A\u0638\u0627\u0631"
       _ArabicFemale: 
@@ -2887,6 +3131,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Website
+      _Italian: 
       _Arabic: "\u0645\u0648\u0642\u0639 \u0627\u0644\u0643\u062A\u0631\u0648\u0646\u064A"
       _ArabicFemale: 
       _AudioFile: 
@@ -2896,6 +3141,7 @@ MonoBehaviour:
       _When: At the end of a Play Session
       _Context: The bar does not reach the First Star (0-Stars) >>> No Rewards
       _English: Too bad! Next time you will do better!
+      _Italian: 
       _Arabic: "\u0634\u064A\u0621\u064C \u0645\u0624\u0633\u0641! \u0641\u064A \u0627\u0644\u0645\u0631\u0629\u0650
         \u0627\u0644\u0642\u0627\u062F\u0645\u0629\u0650 \u0633\u064A\u0643\u0648\u0646\u064F
         \u0623\u062F\u0627\u0624\u0643 \u0623\u0641\u0636\u0644!"
@@ -2910,6 +3156,7 @@ MonoBehaviour:
       _When: 
       _Context: When the player scores 0 bones in a minigame
       _English: You can retry if you want...
+      _Italian: 
       _Arabic: "\u064A\u064F\u0645\u0652\u0643\u0650\u0646\u064F\u0643\u064E \u0625\u0650\u0639\u064E\u0627\u062F\u064E\u0629\u064F
         \u0627\u0644\u0645\u064F\u062D\u064E\u0627\u0648\u064E\u0644\u064E\u0629\u0650
         \u0625\u0650\u0630\u064E\u0627 \u0643\u064F\u0646\u0652\u062A\u064E \u062A\u064E\u0631\u0652\u063A\u064E\u0628\u064F
@@ -2929,6 +3176,7 @@ MonoBehaviour:
       _When: 
       _Context: The bar fllls up to 1-Star >>> 1 Reward out of 3
       _English: Well done! But you will have to practice more
+      _Italian: 
       _Arabic: "\u0623\u062D\u0633\u064E\u0646\u062A! \u0644\u0643\u0646\u0652 \u062A\u062D\u062A\u0627\u062C\u064F
         \u0627\u0644\u0645\u0632\u064A\u062F\u064E \u0645\u0646 \u0627\u0644\u062A\u062F\u0631\u064A\u0628\u0650
         \u0644\u062A\u062D\u0635\u0644\u064E \u0639\u0644\u0649 \u0643\u0644\u0651\u0650
@@ -2944,6 +3192,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: You did it! And I'm sure you can do even better...
+      _Italian: 
       _Arabic: "\u0644\u0642\u062F \u0641\u0639\u0644\u062A\u064E\u0647\u0627! \u0623\u0646\u0627
         \u0648\u0627\u062B\u0642\u064C \u0623\u0646\u0651\u0647 \u0645\u0627\u0632\u0627\u0644
         \u0628\u0625\u0645\u0643\u0627\u0646\u0650\u0643 \u0641\u0639\u0644\u064F
@@ -2960,6 +3209,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Done! And you still have lot of margin for improvement...
+      _Italian: 
       _Arabic: "\u0644\u0642\u062F\u0652 \u0623\u0643\u0645\u0644\u062A\u064E\u0647!
         \u0623\u0645\u0627\u0645\u064E\u0643 \u0627\u0644\u0643\u062B\u064A\u0631\u064F
         \u0645\u0646 \u0627\u0644\u062A\u0637\u0648\u064A\u0631."
@@ -2973,6 +3223,7 @@ MonoBehaviour:
       _When: 
       _Context: The bar fllls up to 2-Stars >>> 2 Rewards out of 3
       _English: Great! You almost got it all
+      _Italian: 
       _Arabic: "\u0645\u0645\u062A\u0627\u0632! \u0623\u0648\u0634\u0643\u062A\u064E
         \u0639\u0644\u0649 \u062C\u0645\u0639\u0650 \u0643\u0644\u0651\u0650 \u0627\u0644\u0647\u062F\u0627\u064A\u0627."
       _ArabicFemale: "\u0645\u0645\u062A\u0627\u0632! \u0623\u0648\u0634\u0643\u062A\u0650
@@ -2984,6 +3235,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Brilliant! So close to reach the top!
+      _Italian: 
       _Arabic: "\u0631\u0627\u0626\u0639! \u0623\u0646\u062A\u064E \u0639\u0644\u0649
         \u0648\u0634\u0643\u0650 \u0627\u0644\u0648\u0635\u0648\u0644\u0650 \u0625\u0644\u0649
         \u0627\u0644\u0642\u0645\u0629!"
@@ -2997,6 +3249,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Well Done! Getting close to perfection...
+      _Italian: 
       _Arabic: "\u062C\u0645\u064A\u0644\u064C \u062C\u062F\u0627\u064B! \u0627\u0642\u062A\u0631\u0628\u062A\u064E
         \u0645\u0646 \u0627\u0644\u0625\u062A\u0642\u0627\u0646\u0650 \u0627\u0644\u062A\u0627\u0645."
       _ArabicFemale: "\u062C\u0645\u064A\u0644\u064C \u062C\u062F\u0627\u064B! \u0627\u0642\u062A\u0631\u0628\u062A\u0650
@@ -3008,6 +3261,7 @@ MonoBehaviour:
       _When: 
       _Context: The bar fllls up to 3-Stars >>> 3 Rewards out of 3
       _English: Excellent! You reached the maximum!
+      _Italian: 
       _Arabic: "\u0645\u0645\u062A\u0627\u0632! \u0648\u0635\u0644\u062A\u064E \u0627\u0644\u062D\u062F\u0651\u064E
         \u0627\u0644\u0623\u0642\u0635\u0649."
       _ArabicFemale: "\u0645\u0645\u062A\u0627\u0632! \u0648\u0635\u0644\u062A\u0650
@@ -3019,6 +3273,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Brilliant! You deserved it!
+      _Italian: 
       _Arabic: "\u0645\u062F\u0647\u0634! \u062A\u0633\u062A\u062D\u0642\u0651\u064F
         \u0643\u0644 \u0627\u0644\u0647\u062F\u0627\u064A\u0627!"
       _ArabicFemale: "\u0645\u062F\u0647\u0634! \u062A\u0633\u062A\u062D\u0642\u0651\u064A\u0646
@@ -3030,6 +3285,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Amazing! You are a champion!
+      _Italian: 
       _Arabic: "\u0631\u0627\u0626\u0639! \u0623\u0646\u062A\u064E \u0628\u0637\u0644."
       _ArabicFemale: "\u0631\u0627\u0626\u0639! \u0623\u0646\u062A\u0650 \u0628\u0637\u0644\u0629."
       _AudioFile: Reward_3Star_3
@@ -3039,6 +3295,7 @@ MonoBehaviour:
       _When: At the end of an Assessment
       _Context: 1 BIG REWARD is unlocked
       _English: Here's your special Gift! Well deserved!
+      _Italian: 
       _Arabic: "\u0625\u0644\u064A\u0643 \u0647\u062F\u064A\u062A\u064E\u0643 \u0627\u0644\u062E\u0627\u0635\u0629!
         \u0644\u0642\u062F \u0627\u0633\u062A\u062D\u0642\u0642\u062A\u064E\u0647\u0627."
       _ArabicFemale: "\u0625\u0644\u064A\u0643\u0650 \u0647\u062F\u064A\u062A\u064E\u0643\u0650
@@ -3050,6 +3307,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Look at this! Antura will love it!
+      _Italian: 
       _Arabic: "\u0627\u0646\u0638\u0631!\u0639\u0646\u062A\u0648\u0631\u0629 \u0633\u064A\u0643\u0648\u0646\u064F
         \u0633\u0639\u064A\u062F\u0627\u064B \u062C\u062F\u0627\u064B!"
       _ArabicFemale: "\u0627\u0646\u0638\u0631\u064A!\u0639\u0646\u062A\u0648\u0631\u0629
@@ -3062,6 +3320,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: This is for you! It's "cool", isn't it?
+      _Italian: 
       _Arabic: "\u0647\u0630\u0647 \u0644\u0643! \u0625\u0646\u0647\u0627 \"\u0631\u0627\u0626\u0639\u0629\u064C\"\u060C
         \u0623\u0644\u064A\u0633\u064E \u0643\u0630\u0644\u0643\u061F"
       _ArabicFemale: "\u0647\u0630\u0647 \u0644\u0643\u0650! \u0625\u0646\u0647\u0627
@@ -3074,6 +3333,7 @@ MonoBehaviour:
       _When: 1 ITEM (BIG REWARD) is unlocked
       _Context: Keeper give you the first reward
       _English: Here you have a first Gift, so you can start playing with Antura immediately
+      _Italian: 
       _Arabic: "\u0625\u0644\u064A\u0643 \u0627\u0644\u0647\u062F\u064A\u0629\u064E
         \u0627\u0644\u0623\u0648\u0644\u0649 \u0644\u062A\u0644\u0639\u0628\u064E
         \u0628\u0647\u0627 \u0641\u0648\u0631\u0627\u064B \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629."
@@ -3087,6 +3347,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: The WORD is about to travel and she needs her suitcase.
+      _Italian: 
       _Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0639\u0644\u0649
         \u0648\u0634\u0643\u0650 \u0627\u0644\u0633\u0641\u0631\u0650 \u0648\u0647\u064A
         \ \u0628\u062D\u0627\u062C\u0629\u064D \u0625\u0644\u0649 \u062D\u0642\u064A\u0628\u062A\u0647\u0627."
@@ -3098,6 +3359,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: These WORDS are about to travel and they need their suitcases.
+      _Italian: 
       _Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F
         \u0639\u0644\u0649 \u0648\u0634\u0643\u0650 \u0627\u0644\u0633\u0641\u0631\u0650
         \u0648\u0647\u064A  \u0628\u062D\u0627\u062C\u0629\u064D \u0625\u0644\u0649
@@ -3110,6 +3372,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Phrase Scanner!
+      _Italian: 
       _Arabic: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0639\u0650\u0628\u0627\u0631\u0627\u062A!"
       _ArabicFemale: 
       _AudioFile: Scanner_phrase_Title
@@ -3120,6 +3383,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: Drag the scanner over the WORDS to make them speak. Then give the
         correct suitecase to each WORD.
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628 \u062C\u0647\u0627\u0632\u064E \u0627\u0644\u0645\u0633\u062D\u0650
         \u0641\u0648\u0642\u064E \u0627\u0644\u0643\u0644\u0645\u0627\u062A \u0644\u062A\u062C\u0639\u0644\u064E\u0647\u0627
         \u062A\u062A\u0643\u0644\u0645\u060C \u062B\u0645 \u0623\u0639\u0637\u0650
@@ -3138,6 +3402,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Word Scanner!
+      _Italian: 
       _Arabic: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _ArabicFemale: 
       _AudioFile: Scanner_Title
@@ -3148,6 +3413,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: Drag the scanner over the WORD to make her speak. Then give her the
         suitcase she told you about.
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628 \u062C\u0647\u0627\u0632\u064E \u0627\u0644\u0645\u0633\u062D\u0650
         \u0641\u0648\u0642\u064E \u0627\u0644\u0643\u0644\u0645\u0629\u0650 \u0644\u062A\u062C\u0639\u0644\u064E\u0647\u0627
         \u062A\u062A\u0643\u0644\u0645\u060C \u062B\u0645 \u0623\u0639\u0637\u0650\u0647\u0627
@@ -3166,6 +3432,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Drag the scanner over Antura to push him away
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628\u0652 \u062C\u0647\u0627\u0632\u064E \u0627\u0644\u0645\u0633\u062D\u0650
         \u0641\u0648\u0642\u064E \u0639\u0646\u062A\u0648\u0631\u0629 \u0644\u062A\u062F\u0641\u0639\u064E\u0647
         \u0628\u0639\u064A\u062F\u0627\u064B."
@@ -3179,6 +3446,7 @@ MonoBehaviour:
       _When: 
       _Context: After the Selection
       _English: Are you ready?
+      _Italian: 
       _Arabic: "\u0647\u0644 \u0623\u0646\u062A\u064E \u062C\u0627\u0647\u0632\u061F"
       _ArabicFemale: "\u0647\u0644 \u0623\u0646\u062A\u0650 \u062C\u0627\u0647\u0632\u0629\u061F"
       _AudioFile: SelectGame_Begin_1
@@ -3188,6 +3456,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Now it's up to you...
+      _Italian: 
       _Arabic: "\u0627\u0644\u0623\u0645\u0631\u064F \u0639\u0627\u0626\u062F\u064C
         \u0625\u0644\u064A\u0643."
       _ArabicFemale: "\u0627\u0644\u0623\u0645\u0631\u064F \u0639\u0627\u0626\u062F\u064C
@@ -3199,6 +3468,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: This is going to be challenging...
+      _Italian: 
       _Arabic: "\u0633\u064A\u0643\u0648\u0646\u064F \u0647\u0630\u0627 \u0635\u0639\u0628\u0627\u064B."
       _ArabicFemale: "\u0645\u0645\u0645 \u0633\u064A\u0643\u0648\u0646\u064F \u0647\u0630\u0627
         \u0635\u0639\u0628\u0627\u064B."
@@ -3209,6 +3479,7 @@ MonoBehaviour:
       _When: Always
       _Context: Tutorial finger/arrow animation
       _English: Swipe to pop the bubbles
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628\u0652 \u0644\u062A\u0641\u0642\u0639\u064E
         \u0627\u0644\u0641\u0642\u0627\u0639\u0627\u062A"
       _ArabicFemale: "\u0627\u0633\u062D\u0628\u064A \u0644\u062A\u0641\u0642\u0639\u064A
@@ -3220,6 +3491,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Swipe to discover the games you are going to play
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628 \u0644\u062A\u0643\u062A\u0634\u0641 \u0627\u0644\u0623\u0644\u0639\u0627\u0628
         \u0627\u0644\u062A\u064A \u0633\u062A\u0644\u0639\u0628\u0647\u0627"
       _ArabicFemale: "\u0627\u0633\u062D\u0628\u064A \u0644\u062A\u0643\u062A\u0634\u0641\u064A
@@ -3232,6 +3504,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Touch the bubbles to make them explode
+      _Italian: 
       _Arabic: "\u0627\u0644\u0645\u0633\u0650 \u0627\u0644\u0641\u0642\u0627\u0639\u0627\u062A\u0650
         \u0644\u062A\u0641\u0642\u0639\u064E\u0647\u0627"
       _ArabicFemale: "\u0627\u0644\u0645\u0633\u064A \u0627\u0644\u0641\u0642\u0627\u0639\u0627\u062A\u0650
@@ -3243,6 +3516,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: Too many signs! Collect the wrong ones to reach the maximum weight.
+      _Italian: 
       _Arabic: "\u0647\u0646\u0627\u0643 \u062D\u0631\u0643\u0627\u062A\u064C \u0643\u062B\u064A\u0631\u0629\u064C
         \u062E\u0627\u0637\u0626\u0629! \u0627\u062C\u0645\u0639\u0652 \u0623\u0643\u0628\u0631\u064E
         \u0648\u0632\u0646\u064D \u0645\u0645\u0643\u0646\u064D \u0645\u0646 \u062A\u0644\u0643
@@ -3259,6 +3533,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Sick Letters!
+      _Italian: 
       _Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u0645\u0631\u064A\u0636\u0629!"
       _ArabicFemale: 
       _AudioFile: Game_SickLetters_lettername_Title
@@ -3268,6 +3543,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Drag the wrong signs out of the LETTER and drop them inside the vase.
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u062D\u0631\u0643\u0627\u062A\u0650
         \u0648\u0627\u0644\u0646\u0642\u0627\u0637\u064E \u0627\u0644\u062E\u0627\u0637\u0626\u0629\u064E
         \u062E\u0627\u0631\u062C\u064E \u0627\u0644\u062D\u0631\u0641\u0650 \u062B\u0645
@@ -3283,6 +3559,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: It's time to sing all the letters in order.
+      _Italian: 
       _Arabic: "\u062D\u0627\u0646 \u0648\u0642\u062A\u064F \u063A\u0646\u0627\u0621\u0650
         \u0627\u0644\u0623\u062D\u0631\u0641\u0650 \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628."
       _ArabicFemale: 
@@ -3293,6 +3570,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Alphabet Song
+      _Italian: 
       _Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629"
       _ArabicFemale: 
       _AudioFile: Game_Song_alphabet_Title
@@ -3302,6 +3580,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Follow the lyrics with your finger.
+      _Italian: 
       _Arabic: "\u062A\u062A\u0628\u0651\u0639\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
         \u0628\u0625\u0635\u0628\u0639\u0643."
       _ArabicFemale: "\u062A\u062A\u0628\u0651\u0639\u064A \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
@@ -3313,6 +3592,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: This LETTER comes from somewhere in your mouth! Bring it back home!
+      _Italian: 
       _Arabic: "\u0633\u0627\u0639\u062F\u0652 \u0647\u0630\u0627 \u0627\u0644\u062D\u0631\u0641\u064E
         \u0639\u0644\u0649 \u0627\u0644\u0639\u062B\u0648\u0631\u0650 \u0639\u0644\u0649
         \u0645\u062E\u0631\u062C\u0650\u0647 \u0627\u0644\u062E\u0627\u0635\u0651\u0650
@@ -3328,6 +3608,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Take Me Home!
+      _Italian: 
       _Arabic: "\u062E\u0630\u0646\u064A \u0625\u0644\u0649 \u0627\u0644\u0628\u064A\u062A!"
       _ArabicFemale: 
       _AudioFile: TakeMeHome_Title
@@ -3338,6 +3619,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: Say aloud the letter you heard, to understand what part of your mouth
         is involved. Then drag the LETTER to the correct pipe.
+      _Italian: 
       _Arabic: "\u0627\u0646\u0637\u064F\u0642\u0650 \u0627\u0644\u062D\u0631\u0641\u064E
         \u0627\u0644\u0630\u064A \u062A\u0639\u0644\u0645\u062A\u064E\u0647 \u0628\u0635\u0648\u062A\u064D
         \u0639\u0627\u0644\u064D \u0644\u062A\u0639\u0631\u0641\u064E \u0623\u064A\u0651\u064E
@@ -3359,6 +3641,7 @@ MonoBehaviour:
       _Context: Tutorial Reminder
       _English: Try again saying the letter aloud and pay attention to your mouth
         movement
+      _Italian: 
       _Arabic: "\u062C\u0631\u0651\u0650\u0628 \u0645\u0631\u0629\u064B \u0623\u062E\u0631\u0649
         \u0646\u0637\u0642\u064E \u0627\u0644\u062D\u0631\u0641\u0650 \u0628\u0635\u0648\u062A\u064D
         \u0639\u0627\u0644\u064D\u060C \u0648\u0627\u0646\u062A\u0628\u0650\u0647
@@ -3374,6 +3657,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: 'SlingShot: Form a Word!'
+      _Italian: 
       _Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u062D\u0631\u0648\u0641\u0650 \u0644\u062A\u0643\u0648\u064A\u0646
         \u0627\u0644\u0643\u0644\u0645\u0629!"
@@ -3386,6 +3670,7 @@ MonoBehaviour:
       _Context: Tutorial
       _English: Drag the ball down to charge the slingshot, and hit the LETTERS in
         the right sequence.
+      _Italian: 
       _Arabic: "\u0647\u0644 \u0633\u0645\u0639\u062A\u064E \u0647\u0630\u0627 \u0627\u0644\u0635\u0648\u062A\u061F
         \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0631\u0629\u064E \u0625\u0644\u0649
         \u0627\u0644\u0623\u0633\u0641\u0644\u0650 \u0644\u062A\u0634\u062F\u0651\u064E
@@ -3405,6 +3690,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: One of the letters belongs to the Word.
+      _Italian: 
       _Arabic: "\u0627\u0639\u062B\u0631 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641
         \u0627\u0644\u0645\u0648\u062C\u0648\u062F \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629"
       _ArabicFemale: "\u0627\u0639\u062B\u0631\u064A \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641
@@ -3416,6 +3702,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: Slingshot time! Hit the right targets!
+      _Italian: 
       _Arabic: "\u0648\u0642\u062A\u064F \u0627\u0644\u0645\u0642\u0644\u0627\u0639!
         \u0627\u0636\u0631\u0650\u0628\u0650 \u0627\u0644\u0623\u0647\u062F\u0627\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629!"
@@ -3429,6 +3716,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: 'SlingShot: Letters Hunt'
+      _Italian: 
       _Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
@@ -3439,6 +3727,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: 'SlingShot: Alphabet Hunt'
+      _Italian: 
       _Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629"
       _ArabicFemale: 
@@ -3449,6 +3738,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Drag the ball down to charge the slingshot, and hit the right LETTER.
+      _Italian: 
       _Arabic: "\u0647\u0644 \u0633\u0645\u0639\u062A\u064E \u0647\u0630\u0627 \u0627\u0644\u0635\u0648\u062A\u061F
         \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0631\u0629\u064E \u0625\u0644\u0649
         \u0627\u0644\u0623\u0633\u0641\u0644\u0650 \u0644\u062A\u0634\u064F\u062F\u0651\u064E
@@ -3466,6 +3756,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: 'SlingShot: Words!'
+      _Italian: 
       _Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       _ArabicFemale: 
@@ -3476,6 +3767,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Drag the ball down to charge the slingshot, and hit the right IMAGE.
+      _Italian: 
       _Arabic: "\u0647\u0644 \u0633\u0645\u0639\u062A\u064E \u0647\u0630\u0627 \u0627\u0644\u0635\u0648\u062A\u061F
         \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0631\u0629\u064E \u0625\u0644\u0649
         \u0627\u0644\u0623\u0633\u0641\u0644\u0650 \u0644\u062A\u0634\u062F\u0651\u064E
@@ -3493,6 +3785,7 @@ MonoBehaviour:
       _When: 
       _Context: Introduction
       _English: Let's see how tall you can build the tower!
+      _Italian: 
       _Arabic: "\u0623\u0631\u0646\u064A \u0623\u0639\u0644\u0649 \u0628\u0631\u062C\u064D
         \u064A\u0645\u0643\u0646\u064F\u0643 \u0623\u0646\u0652 \u062A\u0628\u0646\u064A\u064E\u0647."
       _ArabicFemale: "\u0623\u0631\u064A\u0646\u064A \u0623\u0639\u0644\u0649 \u0628\u0631\u062C\u064D
@@ -3504,6 +3797,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: The Tower!
+      _Italian: 
       _Arabic: "\u0628\u0631\u062C\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       _ArabicFemale: 
       _AudioFile: Tobogan_letters_Title
@@ -3513,6 +3807,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial
       _English: Drag the WORD to the pipe that shows one of its letters
+      _Italian: 
       _Arabic: "\u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0644\u0645\u0629\u064E
         \u0646\u062D\u0648 \u0627\u0644\u0623\u0646\u0628\u0648\u0628\u0650 \u0627\u0644\u0630\u064A
         \u064A\u062D\u062A\u0648\u064A \u0639\u0644\u0649 \u0623\u062D\u062F\u0650
@@ -3528,6 +3823,7 @@ MonoBehaviour:
       _When: 
       _Context: Title
       _English: Sun & Moon Tower!
+      _Italian: 
       _Arabic: "\u0623\u0628\u0631\u0627\u062C\u064F \u0627\u0644\u0634\u0645\u0633\u0650
         \u0648 \u0627\u0644\u0642\u0645\u0631!"
       _ArabicFemale: 
@@ -3539,6 +3835,7 @@ MonoBehaviour:
       _Context: Tutorial (Moon & Sun consonants/words)
       _English: Listen carefully, then drag the WORD to the correct pipe depending
         on the pronunciation of the article, like "The Moon" or like "The Sun"
+      _Italian: 
       _Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u060C
         \u062B\u0645 \u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0629\u064E
         \u0646\u062D\u0648 \u0627\u0644\u0623\u0646\u0628\u0648\u0628\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0650
@@ -3560,6 +3857,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial (Moon & Sun consonants/words)
       _English: Listen carefully, then drag the LETTER to the correct pipe
+      _Italian: 
       _Arabic: "\u0623\u0646\u0635\u0650\u062A\u0652 \u0628\u0625\u0645\u0639\u0627\u0646\u060C
         \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u062D\u0631\u0641\u064E
         \u0625\u0644\u0649 \u0627\u0644\u0623\u0646\u0628\u0648\u0628\u0650 \u0627\u0644\u0635\u062D\u064A\u062D."
@@ -3573,6 +3871,7 @@ MonoBehaviour:
       _When: 
       _Context: Tutorial (Moon & Sun consonants/words)
       _English: Listen carefully, then drag the WORD to the correct pipe
+      _Italian: 
       _Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
         \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0644\u0645\u0629\u064E
         \u0646\u062D\u0648 \u0627\u0644\u0623\u0646\u0628\u0648\u0628\u0650 \u0644\u0635\u062D\u064A\u062D"
@@ -3588,6 +3887,7 @@ MonoBehaviour:
       _English: Thank you for downloading the final release of Antura and the Letters
         and for helping us playing the beta version. All existing player profiles
         are no more compatible with the game and they must be deleted.
+      _Italian: 
       _Arabic: "\u0634\u064F\u0643\u0652\u0631\u064B\u0627 \u0644\u064E\u0643\u064F\u0645\u0652
         \u0644\u0650\u062A\u064E\u062D\u0652\u0645\u0650\u064A\u0644 \u0627\u0644\u0625\u0650\u0635\u0652\u062F\u064E\u0627\u0631
         \u0627\u0644\u0646\u0651\u0650\u0647\u064E\u0627\u0626\u0650\u064A\u0651 \u0645\u0650\u0646\u0652
@@ -3612,6 +3912,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: All
+      _Italian: 
       _Arabic: "\u062C\u0645\u064A\u0639"
       _ArabicFemale: 
       _AudioFile: UI_All
@@ -3621,6 +3922,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Animals
+      _Italian: 
       _Arabic: "\u062D\u064A\u0648\u0627\u0646\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: UI_Animals
@@ -3630,6 +3932,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Antura Rewards
+      _Italian: 
       _Arabic: "\u062C\u0648\u0627\u0626\u0632 \u0639\u0646\u062A\u0648\u0631\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -3639,6 +3942,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Are you sure?
+      _Italian: Confermi per davvero?
       _Arabic: "\u0647\u0644 \u0623\u0646\u062A\u064E \u0645\u062A\u0623\u0643\u062F\u061F"
       _ArabicFemale: "\u0647\u0644 \u0623\u0646\u062A\u0650 \u0645\u062A\u0623\u0643\u062F\u0629\u061F"
       _AudioFile: UI_AreYouSure
@@ -3648,6 +3952,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Important Warning
+      _Italian: 
       _Arabic: "\u062A\u064E\u062D\u0652\u0630\u0650\u064A\u0631\u064C \u0647\u064E\u0627\u0645\u0651\u064C"
       _ArabicFemale: 
       _AudioFile: 
@@ -3657,6 +3962,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Body Parts
+      _Italian: 
       _Arabic: "\u0623\u0639\u0636\u0627\u0621 \u0627\u0644\u062C\u0633\u0645"
       _ArabicFemale: 
       _AudioFile: UI_Body Parts
@@ -3666,6 +3972,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Cookies
+      _Italian: 
       _Arabic: "\u0643\u0639\u0643\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: 
@@ -3675,6 +3982,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Clothes
+      _Italian: 
       _Arabic: "\u0645\u0644\u0627\u0628\u0633"
       _ArabicFemale: 
       _AudioFile: UI_Clothes
@@ -3684,6 +3992,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Colors
+      _Italian: 
       _Arabic: "\u0623\u0644\u0648\u0627\u0646"
       _ArabicFemale: 
       _AudioFile: UI_Colors
@@ -3693,6 +4002,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Combinations
+      _Italian: 
       _Arabic: "\u062A\u0631\u0643\u064A\u0628\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: UI_Combinations
@@ -3702,6 +4012,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Conjunctions
+      _Italian: 
       _Arabic: "\u0627\u0644\u0639\u0637\u0641/\u0627\u0644\u0631\u0628\u0637"
       _ArabicFemale: 
       _AudioFile: 
@@ -3711,6 +4022,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Directions
+      _Italian: 
       _Arabic: "\u0627\u062A\u062C\u0627\u0647\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: UI_Directions
@@ -3720,6 +4032,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Family Members
+      _Italian: 
       _Arabic: "\u0623\u0641\u0631\u0627\u062F \u0627\u0644\u0623\u0633\u0631\u0629"
       _ArabicFemale: 
       _AudioFile: UI_Family Members
@@ -3729,6 +4042,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Feelings
+      _Italian: 
       _Arabic: "\u0645\u0634\u0627\u0639\u0631"
       _ArabicFemale: 
       _AudioFile: UI_Feelings
@@ -3738,6 +4052,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Food
+      _Italian: 
       _Arabic: "\u0637\u0639\u0627\u0645"
       _ArabicFemale: 
       _AudioFile: UI_Food
@@ -3747,6 +4062,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Furniture
+      _Italian: 
       _Arabic: "\u0623\u062B\u0627\u062B"
       _ArabicFemale: 
       _AudioFile: UI_Furniture
@@ -3756,6 +4072,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Games
+      _Italian: 
       _Arabic: "\u0623\u0644\u0639\u0627\u0628"
       _ArabicFemale: 
       _AudioFile: UI_Games
@@ -3765,6 +4082,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Games played
+      _Italian: 
       _Arabic: "\u0623\u0644\u0639\u0627\u0628 \u0645\u0644\u0639\u0648\u0628\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -3774,6 +4092,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Year
+      _Italian: 
       _Arabic: "\u0639\u0627\u0645"
       _ArabicFemale: 
       _AudioFile: 
@@ -3783,6 +4102,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Jobs
+      _Italian: 
       _Arabic: "\u0648\u0638\u0627\u0626\u0641"
       _ArabicFemale: 
       _AudioFile: UI_Jobs
@@ -3792,6 +4112,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Journey duration
+      _Italian: 
       _Arabic: "\u0645\u062F\u0629 \u0627\u0644\u0631\u062D\u0644\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -3801,6 +4122,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Learning Block
+      _Italian: 
       _Arabic: "\u0645\u0642\u0637\u0639 \u062A\u0639\u0644\u064A\u0645\u064A"
       _ArabicFemale: 
       _AudioFile: 
@@ -3810,6 +4132,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Letters
+      _Italian: 
       _Arabic: "\u062D\u0631\u0648\u0641"
       _ArabicFemale: 
       _AudioFile: UI_Letters
@@ -3819,6 +4142,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Nature
+      _Italian: 
       _Arabic: "\u0637\u0628\u064A\u0639\u0629"
       _ArabicFemale: 
       _AudioFile: UI_Nature
@@ -3828,6 +4152,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: No
+      _Italian: 
       _Arabic: "\u0644\u0627"
       _ArabicFemale: 
       _AudioFile: UI_No
@@ -3837,6 +4162,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Nothing
+      _Italian: 
       _Arabic: "\u0644\u0627 \u0634\u064A\u0621"
       _ArabicFemale: 
       _AudioFile: 
@@ -3846,6 +4172,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Antura is waiting for you to play!
+      _Italian: 
       _Arabic: "\u0639\u0646\u062A\u0648\u0631\u0629 \u064A\u064E\u0646\u0652\u062A\u064E\u0638\u0650\u0631\u064F\u0643\u064E
         \u0644\u0650\u062A\u064E\u0644\u0652\u0639\u064E\u0628\u064E \u0645\u064E\u0639\u064E\u0647\u064F!"
       _ArabicFemale: "\u0639\u0646\u062A\u0648\u0631\u0629 \u064A\u064E\u0646\u0652\u062A\u064E\u0638\u0650\u0631\u064F\u0643\u0650
@@ -3857,6 +4184,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Noun
+      _Italian: 
       _Arabic: "\u0627\u0633\u0645"
       _ArabicFemale: 
       _AudioFile: UI_Noun
@@ -3866,6 +4194,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Numbers
+      _Italian: 
       _Arabic: "\u0623\u0631\u0642\u0627\u0645"
       _ArabicFemale: 
       _AudioFile: UI_Numbers
@@ -3875,6 +4204,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Ordinal Numbers
+      _Italian: 
       _Arabic: "\u0627\u0644\u0623\u0639\u062F\u0627\u062F \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -3884,6 +4214,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Overall Stats
+      _Italian: 
       _Arabic: "\u0625\u0650\u062D\u0652\u0635\u064E\u0627\u0626\u0650\u064A\u0651\u064E\u0627\u062A\u064F
         \u0627\u0644\u0645\u064F\u0633\u0652\u062A\u064E\u062E\u0652\u062F\u0650\u0645\u0650"
       _ArabicFemale: 
@@ -3894,6 +4225,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: People
+      _Italian: 
       _Arabic: "\u0627\u0644\u0646\u0627\u0633"
       _ArabicFemale: 
       _AudioFile: UI_People
@@ -3903,6 +4235,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Phrases
+      _Italian: 
       _Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: UI_Phrases
@@ -3912,6 +4245,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Expressions
+      _Italian: 
       _Arabic: "\u0627\u0644\u062A\u0639\u0628\u064A\u0631\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: 
@@ -3921,6 +4255,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Greetings
+      _Italian: 
       _Arabic: "\u062A\u062D\u064A\u0629 \u0637\u064A\u0628\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -3930,6 +4265,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Questions
+      _Italian: 
       _Arabic: "\u0623\u0633\u0626\u0644\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -3939,6 +4275,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Replies
+      _Italian: 
       _Arabic: "\u0623\u062C\u0648\u0628\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -3948,6 +4285,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Sentences
+      _Italian: 
       _Arabic: "\u062C\u0645\u0644"
       _ArabicFemale: 
       _AudioFile: 
@@ -3957,6 +4295,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Years
+      _Italian: 
       _Arabic: "\u0633\u0646\u0648\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: 
@@ -3966,6 +4305,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Places
+      _Italian: 
       _Arabic: "\u0623\u0645\u0627\u0643\u0646"
       _ArabicFemale: 
       _AudioFile: UI_Places
@@ -3975,6 +4315,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Player Id
+      _Italian: 
       _Arabic: "\u0644\u0627\u0639\u0628"
       _ArabicFemale: 
       _AudioFile: 
@@ -3984,6 +4325,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Playing time
+      _Italian: 
       _Arabic: "\u0648\u0642\u062A \u0627\u0644\u0644\u0639\u0628"
       _ArabicFemale: 
       _AudioFile: 
@@ -3993,6 +4335,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Be sure to play with enough audio volume to listen the voice instructions
+      _Italian: 
       _Arabic: "\u064A\u064E\u062C\u0650\u0628\u064F \u0623\u064E\u0646\u0652 \u064A\u064E\u0643\u064F\u0648\u0646\u064E
         \u0627\u0644\u0635\u0651\u064E\u0648\u0652\u062A\u064F \u0645\u064E\u0633\u0652\u0645\u064F\u0648\u0639\u064B\u0627
         \u0628\u0650\u0648\u064F\u0636\u064F\u0648\u062D \u0639\u0650\u0646\u0652\u062F\u064E\u0645\u064E\u0627
@@ -4015,6 +4358,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Positions
+      _Italian: 
       _Arabic: "\u0645\u0648\u0627\u0642\u0639"
       _ArabicFemale: 
       _AudioFile: UI_Positions
@@ -4024,6 +4368,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Preposition
+      _Italian: 
       _Arabic: "\u062D\u0631\u0641 \u062C\u0631"
       _ArabicFemale: 
       _AudioFile: UI_Preposition
@@ -4034,6 +4379,7 @@ MonoBehaviour:
       _Context: 
       _English: If you found a problem or have a suggestion, please tell us using
         this web page
+      _Italian: 
       _Arabic: "\u0625\u0630\u0627 \u0648\u062C\u062F\u062A \u0645\u0634\u0643\u0644\u0629
         \u0623\u0648 \u0644\u062F\u064A\u0643 \u0627\u0642\u062A\u0631\u0627\u062D\u060C
         \u0631\u062C\u0627\u0621\u064B \u0623\u062E\u0628\u0631\u0646\u0627 \u0639\u0646
@@ -4047,6 +4393,7 @@ MonoBehaviour:
       _Context: 
       _English: Opening a PDF with the Install instructions. If the document doesn't
         open, please install a PDF viewer app and retry!
+      _Italian: 
       _Arabic: 
       _ArabicFemale: 
       _AudioFile: 
@@ -4057,6 +4404,7 @@ MonoBehaviour:
       _Context: 
       _English: If you like this app, please write a review on the store. It can help
         reaching more kids!
+      _Italian: 
       _Arabic: "\u0625\u0630\u0627 \u0623\u0639\u062C\u0628\u0643 \u0647\u0630\u0627
         \u0627\u0644\u062A\u0637\u0628\u064A\u0642\u060C \u0631\u062C\u0627\u0621\u064B
         \u0627\u0643\u062A\u0628 \u062A\u0642\u064A\u064A\u0645 \u0641\u064A \u0645\u062E\u0632\u0646
@@ -4072,6 +4420,7 @@ MonoBehaviour:
       _Context: 
       _English: Would you like to help us improve this learning app by sharing online
         your ANONYMOUS play data?
+      _Italian: 
       _Arabic: "\u0647\u064E\u0644\u0652 \u062A\u064E\u0631\u0652\u063A\u064E\u0628\u064F
         \u0641\u0650\u064A \u0645\u064F\u0633\u064E\u0627\u0639\u064E\u062F\u064E\u062A\u0650\u0646\u064E\u0627
         \u0639\u064E\u0644\u064E\u0649 \u062A\u064E\u062D\u0652\u0633\u0650\u064A\u0646\u0650
@@ -4095,6 +4444,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Parents Area
+      _Italian: 
       _Arabic: "\u0645\u0646\u0637\u0642\u0629 \u0627\u0644\u0622\u0628\u0627\u0621"
       _ArabicFemale: 
       _AudioFile: UI_ReservedArea
@@ -4104,6 +4454,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Shapes
+      _Italian: 
       _Arabic: "\u0623\u0634\u0643\u0627\u0644"
       _ArabicFemale: 
       _AudioFile: 
@@ -4113,6 +4464,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Volume
+      _Italian: 
       _Arabic: "\u062D\u062C\u0645"
       _ArabicFemale: 
       _AudioFile: 
@@ -4122,6 +4474,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Special
+      _Italian: 
       _Arabic: "\u062E\u0627\u0635"
       _ArabicFemale: 
       _AudioFile: UI_Special
@@ -4131,6 +4484,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Sports
+      _Italian: 
       _Arabic: "\u0631\u064A\u0627\u0636\u0629"
       _ArabicFemale: 
       _AudioFile: UI_Sports
@@ -4140,6 +4494,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Stage
+      _Italian: 
       _Arabic: "\u0627\u0644\u0645\u0631\u062D\u0644\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -4149,6 +4504,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Stage and Level
+      _Italian: 
       _Arabic: "\u0627\u0644\u0645\u0631\u062D\u0644\u0629 \u0648\u0627\u0644\u0645\u0633\u062A\u0648\u0649"
       _ArabicFemale: 
       _AudioFile: 
@@ -4158,6 +4514,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Stars
+      _Italian: 
       _Arabic: "\u0646\u062C\u0648\u0645"
       _ArabicFemale: 
       _AudioFile: 
@@ -4167,6 +4524,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Symbols
+      _Italian: 
       _Arabic: "\u0631\u0645\u0648\u0632"
       _ArabicFemale: 
       _AudioFile: UI_Symbols
@@ -4176,6 +4534,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Things
+      _Italian: 
       _Arabic: "\u0623\u0634\u064A\u0627\u0621"
       _ArabicFemale: 
       _AudioFile: UI_Things
@@ -4185,6 +4544,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Time
+      _Italian: 
       _Arabic: "\u0627\u0644\u0632\u0645\u0646"
       _ArabicFemale: 
       _AudioFile: UI_Time
@@ -4194,6 +4554,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Playing Time
+      _Italian: 
       _Arabic: "\u0632\u0645\u0646 \u0627\u0644\u0644\u0639\u0628"
       _ArabicFemale: 
       _AudioFile: 
@@ -4203,6 +4564,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Today
+      _Italian: 
       _Arabic: "\u0627\u0644\u064A\u064E\u0648\u0652\u0645\u064E"
       _ArabicFemale: 
       _AudioFile: 
@@ -4212,6 +4574,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Tomorrow
+      _Italian: 
       _Arabic: "\u064A\u064E\u0648\u0652\u0645\u064E \u063A\u064E\u062F\u064D"
       _ArabicFemale: 
       _AudioFile: 
@@ -4221,6 +4584,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Unlocked Letters
+      _Italian: 
       _Arabic: "\u062D\u0631\u0648\u0641 \u063A\u064A\u0631 \u0645\u0642\u0641\u0644\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -4230,6 +4594,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Unlocked Levels
+      _Italian: 
       _Arabic: "\u0645\u0633\u062A\u0648\u064A\u0627\u062A \u063A\u064A\u0631 \u0645\u0642\u0641\u0644\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -4239,6 +4604,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Unlocked Phrases
+      _Italian: 
       _Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u063A\u064A\u0631 \u0645\u0642\u0641\u0644\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -4248,6 +4614,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Unlocked Words
+      _Italian: 
       _Arabic: "\u0643\u0644\u0645\u0627\u062A \u063A\u064A\u0631 \u0645\u0642\u0641\u0644\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -4257,6 +4624,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Vehicles
+      _Italian: 
       _Arabic: "\u0627\u0644\u0645\u0631\u0643\u0628\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: UI_Vehicles
@@ -4266,6 +4634,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Verb
+      _Italian: 
       _Arabic: "\u0641\u0639\u0644"
       _ArabicFemale: 
       _AudioFile: UI_Verb
@@ -4275,6 +4644,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Adjectives
+      _Italian: 
       _Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: 
@@ -4284,6 +4654,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Expressions
+      _Italian: 
       _Arabic: "\u0645\u0635\u0637\u0644\u062D\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: 
@@ -4293,6 +4664,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Greetings
+      _Italian: 
       _Arabic: "\u062A\u062D\u064A\u0629 \u0637\u064A\u0628\u0629"
       _ArabicFemale: 
       _AudioFile: 
@@ -4302,6 +4674,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Names
+      _Italian: 
       _Arabic: "\u0623\u0633\u0645\u0627\u0621"
       _ArabicFemale: 
       _AudioFile: 
@@ -4311,6 +4684,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Verbs
+      _Italian: 
       _Arabic: "\u0641\u0639\u0644"
       _ArabicFemale: 
       _AudioFile: 
@@ -4320,6 +4694,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Weather
+      _Italian: 
       _Arabic: "\u0627\u0644\u0637\u0642\u0633"
       _ArabicFemale: 
       _AudioFile: 
@@ -4329,6 +4704,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Words
+      _Italian: 
       _Arabic: "\u0643\u0644\u0645\u0627\u062A"
       _ArabicFemale: 
       _AudioFile: UI_Words
@@ -4338,6 +4714,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Yes
+      _Italian: 
       _Arabic: "\u0646\u0639\u0645"
       _ArabicFemale: 
       _AudioFile: UI_Yes
@@ -4347,6 +4724,7 @@ MonoBehaviour:
       _When: 
       _Context: 
       _English: Yesterday
+      _Italian: 
       _Arabic: "\u0627\u0644\u0628\u064E\u0627\u0631\u0650\u062D\u064E\u0629"
       _ArabicFemale: 
       _AudioFile: 

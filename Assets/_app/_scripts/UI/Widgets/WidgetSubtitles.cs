@@ -136,7 +136,7 @@ namespace Antura.UI
 
             TextUI.text = string.IsNullOrEmpty(localizedText) ? data.Id : ReverseText(ArabicFixer.Fix(localizedText));
             if (AppManager.I.AppSettings.EnglishSubtitles) {
-                TextUItranslation.text = string.IsNullOrEmpty(localizedText) ? data.Id : data.English;
+                TextUItranslation.text = string.IsNullOrEmpty(localizedText) ? data.Id : data.GetSubtitleTranslation();
             }
             this.StartCoroutine(DisplayTextCoroutine(_duration));
 
