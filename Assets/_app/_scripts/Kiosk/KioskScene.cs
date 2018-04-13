@@ -29,7 +29,6 @@ namespace Antura.Scenes
         public WebPanel WebPanel;
         public TextMeshProUGUI ButtonTextDonate;
         public TextMeshProUGUI ButtonTextPlay;
-        public TextMeshProUGUI WebViewTitle;
 
         protected override void Start()
         {
@@ -84,12 +83,10 @@ namespace Antura.Scenes
                 case AppLanguages.English:
                     ButtonTextDonate.text = "Help us!\nDonate";
                     ButtonTextPlay.text = "Play Demo";
-                    WebViewTitle.text = "Loading\nwww.antura.org ...";
                     break;
                 case AppLanguages.Italian:
                     ButtonTextDonate.text = "Aiutaci!\nDonazione";
                     ButtonTextPlay.text = "Gioca Demo";
-                    WebViewTitle.text = "Caricando\nwww.antura.org ...";
                     break;
             }
         }
