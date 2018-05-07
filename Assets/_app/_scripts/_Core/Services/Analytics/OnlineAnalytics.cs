@@ -44,14 +44,25 @@ namespace Antura.Core.Services.OnlineAnalytics
             return AppConfig.UnityAnalyticsEnabled && !Application.isEditor && AppManager.I.AppSettings.OnlineAnalyticsEnabled;
         }
 
-        public void TrackEvent(LogGamePlayData _data)
+        public void TrackEvent(string eventName)
+        {
+            if (areUnityAnalyticsEnabled()) {
+                var eventData = new Dictionary<string, object>{
+                    { "app", "kiosk" },
+                    {"lang", (AppManager.I.AppSettings.AppLanguage == AppLanguages.Italian ? "it" : "en")}
+            };
+                Analytics.CustomEvent(eventName, eventData);
+            }
+        }
+
+        public void TrackGameEvent(LogGamePlayData _data)
         {
             if (areUnityAnalyticsEnabled()) {
                 var eventName = "GamePlay";
                 var evetData = new Dictionary<string, object>{
-                { "uuid", _data.Uuid },
-                 { "app", 2 },
-                 { "player", 3 }
+                    { "uuid", _data.Uuid },
+                    { "app", 2 },
+                    { "player", 3 }
             };
                 Analytics.CustomEvent(eventName, evetData);
             }

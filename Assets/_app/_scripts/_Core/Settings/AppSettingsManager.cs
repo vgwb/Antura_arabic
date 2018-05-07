@@ -33,8 +33,8 @@ namespace Antura.Core
         {
             if (PlayerPrefs.HasKey(SETTINGS_PREFS_KEY)) {
                 var serializedObjs = PlayerPrefs.GetString(SETTINGS_PREFS_KEY);
-                //Debug.Log("LoadSettings() " + serializedObjs);
                 Settings = JsonUtility.FromJson<AppSettings>(serializedObjs);
+                //Debug.Log("LoadSettings() " + serializedObjs);
             } else {
                 // FIRST INSTALLATION
                 isFirstIstall = true;

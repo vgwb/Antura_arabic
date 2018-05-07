@@ -5,6 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/* this class is used as interface to text objects, to manage any type of renderer (UI text or TextMeshPro), LTR or RTL,
+ * so we just need to reference the TextRender as controller
+ */
+
 // TODO refactor: remove reference to Arabic
 namespace Antura.UI
 {
