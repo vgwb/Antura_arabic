@@ -7,6 +7,7 @@ using Antura.Minigames;
 using Antura.UI;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 namespace Antura.Scenes
 {
@@ -29,6 +30,10 @@ namespace Antura.Scenes
         public WebPanel WebPanel;
         public TextMeshProUGUI ButtonTextDonate;
         public TextMeshProUGUI ButtonTextPlay;
+
+        public GameObject ButtonItalian;
+        public GameObject ButtonEnglish;
+
 
         protected override void Start()
         {
@@ -90,10 +95,14 @@ namespace Antura.Scenes
                 case AppLanguages.English:
                     ButtonTextDonate.text = "Help us!\nDonate";
                     ButtonTextPlay.text = "Play Demo";
+                    ButtonItalian.transform.DOScale(1.0f, 0.3f);
+                    ButtonEnglish.transform.DOScale(1.2f, 0.3f);
                     break;
                 case AppLanguages.Italian:
                     ButtonTextDonate.text = "Aiutaci!\nDonazione";
                     ButtonTextPlay.text = "Gioca Demo";
+                    ButtonItalian.transform.DOScale(1.2f, 0.3f);
+                    ButtonEnglish.transform.DOScale(1.0f, 0.3f);
                     break;
             }
         }

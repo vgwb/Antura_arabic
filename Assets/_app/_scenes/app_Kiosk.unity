@@ -4852,11 +4852,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -5541,6 +5541,8 @@ MonoBehaviour:
   WebPanel: {fileID: 1724966586}
   ButtonTextDonate: {fileID: 507281255}
   ButtonTextPlay: {fileID: 883271663}
+  ButtonItalian: {fileID: 1750275732}
+  ButtonEnglish: {fileID: 1855955035}
 --- !u!4 &1465923915
 Transform:
   m_ObjectHideFlags: 0
