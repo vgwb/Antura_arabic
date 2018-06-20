@@ -6,7 +6,7 @@ the open source project for game "Antura and the Letters", part of the [EduApp4S
 
 ## Project references
 
-- **Developer Docs:** [vgwb.github.io/Antura_arabic](https://vgwb.github.io/Antura_arabic)
+- **Antura Docs:** [docs.antura.org](http://docs.antura.org)
 - **Source Code:** [github.com/vgwb/Antura_arabic](https://github.com/vgwb/Antura_arabic)
 - **Public Website:** [www.antura.org](http://www.antura.org)
 

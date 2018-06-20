@@ -1,6 +1,6 @@
 this documentation website is dedicated to Teachers, Designers and Developers, maintained by the Antura Core Team directly inside the project repository as an handbook for whatever can't be put inside the Source Code itself.
 
-- **Developer Book:** [vgwb.github.io/Antura_arabic](https://vgwb.github.io/Antura_arabic)
+- **Antura Docs:** [docs.antura.org](http://docs.antura.org)
 - **GitHub project:** [github.com/vgwb/Antura_arabic](https://github.com/vgwb/Antura_arabic)
 - **Public Website:** [www.antura.org](http://www.antura.org)
 
