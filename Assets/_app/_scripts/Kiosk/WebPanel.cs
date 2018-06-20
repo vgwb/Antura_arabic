@@ -10,7 +10,7 @@ namespace Antura.Kiosk
     {
         public TextMeshProUGUI WebViewTitle;
         private float idleTime;
-        private const int idleTimeDuration = 3;
+        private const int idleTimeDuration = 5;
 
         public void Open(string url)
         {
