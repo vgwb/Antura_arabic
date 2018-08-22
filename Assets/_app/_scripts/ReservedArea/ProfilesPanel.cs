@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using Antura.Book;
 using Antura.Core;
 using Antura.Profile;
 using Antura.Teacher;
 using Antura.UI;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Antura.ReservedArea
