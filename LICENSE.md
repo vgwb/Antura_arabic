@@ -1,7 +1,15 @@
+# License
+The content of this project is licensed under the Creative Commons Attribution 4.0 International license (CC-BY-4.0), and the underlying source code is licensed under the Simplified BSD License (BSD-2-Clause)
+
+## Assets
+Unless mentioned otherwise, all digital assets (images, 3D models, animations, sounds, musics) are distributed under the [Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/) license (CC-BY-4.0).
+
+## Source Code
+All scripts are distributed under the Simplified BSD License (BSD-2-Clause).
+
 BSD 2-Clause License
 
 Copyright (c) 2017, TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
-All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
