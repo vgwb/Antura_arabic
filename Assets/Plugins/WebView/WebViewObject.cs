@@ -24,6 +24,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
 using System.IO;
 using System.Text.RegularExpressions;
@@ -49,10 +50,7 @@ public class WebViewObject : MonoBehaviour
     Callback onError;
     Callback onLoaded;
     bool visibility;
-    int mMarginLeft;
-    int mMarginTop;
-    int mMarginRight;
-    int mMarginBottom;
+
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
     IntPtr webView;
     Rect rect;
@@ -62,6 +60,11 @@ public class WebViewObject : MonoBehaviour
 #elif UNITY_IPHONE
     IntPtr webView;
 #elif UNITY_ANDROID
+    int mMarginLeft;
+    int mMarginTop;
+    int mMarginRight;
+    int mMarginBottom;
+
     AndroidJavaObject webView;
     
     bool mVisibility;
@@ -132,8 +135,7 @@ public class WebViewObject : MonoBehaviour
 
     public bool IsKeyboardVisible
     {
-        get
-        {
+        get {
 #if !UNITY_EDITOR && UNITY_ANDROID
             return mIsKeyboardVisible;
 #elif !UNITY_EDITOR && UNITY_IPHONE
@@ -405,8 +407,8 @@ public class WebViewObject : MonoBehaviour
 #elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
         //TODO: UNSUPPORTED
 #elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-        rect.x = center.x + (Screen.width - scale.x)/2;
-        rect.y = center.y + (Screen.height - scale.y)/2;
+        rect.x = center.x + (Screen.width - scale.x) / 2;
+        rect.y = center.y + (Screen.height - scale.y) / 2;
         rect.width = scale.x;
         rect.height = scale.y;
 #elif UNITY_IPHONE
@@ -427,13 +429,14 @@ public class WebViewObject : MonoBehaviour
         if (webView == IntPtr.Zero)
             return;
 #elif UNITY_ANDROID
-        if (webView == null)
-            return;
-#endif
+        if (webView == null){ return; }
+
         mMarginLeft = left;
         mMarginTop = top;
         mMarginRight = right;
         mMarginBottom = bottom;
+#endif
+
 #if UNITY_WEBPLAYER
         Application.ExternalCall("unityWebView.setMargins", name, left, top, right, bottom);
 #elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
@@ -628,24 +631,21 @@ public class WebViewObject : MonoBehaviour
 
     public void CallOnError(string error)
     {
-        if (onError != null)
-        {
+        if (onError != null) {
             onError(error);
         }
     }
 
     public void CallOnLoaded(string url)
     {
-        if (onLoaded != null)
-        {
+        if (onLoaded != null) {
             onLoaded(url);
         }
     }
 
     public void CallFromJS(string message)
     {
-        if (onJS != null)
-        {
+        if (onJS != null) {
 #if !UNITY_ANDROID
             message = WWW.UnEscapeURL(message);
 #endif
@@ -682,9 +682,9 @@ public class WebViewObject : MonoBehaviour
         return null;
 #elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX || UNITY_IPHONE
         if (webView == IntPtr.Zero)
-          return null;
-        
-        return _CWebViewPlugin_GetCustomHeaderValue(webView, headerKey);  
+            return null;
+
+        return _CWebViewPlugin_GetCustomHeaderValue(webView, headerKey);
 #elif UNITY_ANDROID
         if (webView == null)
             return null;

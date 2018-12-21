@@ -28,7 +28,7 @@ namespace Antura.Core
 
         public bool OnlineAnalyticsEnabled;
 
-        // if set the app starts is special scene mode, used in museums and demo isntallations
+        // if set the app starts is special scene mode, used in museums and demo installations
         public bool KioskMode = false;
 
         // we save the current AppVersion maybe we should compare when installing updated versions

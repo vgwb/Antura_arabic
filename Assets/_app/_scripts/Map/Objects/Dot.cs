@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using Antura.Tutorial;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace Antura.Map
@@ -27,7 +25,7 @@ namespace Antura.Map
             // DEPRECATED: play button won't show the big Play icon 
             //iconRenderer.material = playDot;
             //iconRenderer.gameObject.SetActive(true);
-            
+
             // Play button is way bigger
             //transform.localScale = Vector3.one * 25;
 

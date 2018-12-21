@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StageCulling : MonoBehaviour
 {
@@ -28,8 +25,7 @@ public class StageCulling : MonoBehaviour
 
     void Update()
     {
-        if (!initialized)
-        {
+        if (!initialized) {
             // Force visibility check
             cullingCamera.Render();
             initialized = true;
@@ -53,8 +49,7 @@ public class StageCulling : MonoBehaviour
         planes[4] = new Plane(n4 / m4, d4 / m4);
         planes[5] = new Plane(n5 / m5, d5 / m5);
 
-        for (int i = 0; i < Stages.Length; ++i)
-        {
+        for (int i = 0; i < Stages.Length; ++i) {
             var s = Stages[i];
 
             bool visible = IsVisible(s.Center.position + s.Offset, s.Size, planes);
@@ -69,8 +64,7 @@ public class StageCulling : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        for (int i = 0; i < Stages.Length; ++i)
-        {
+        for (int i = 0; i < Stages.Length; ++i) {
             var s = Stages[i];
             Gizmos.color = new Color(1, 1, 1, 0.5f);
             Gizmos.DrawCube(s.Center.position + s.Offset, s.Size);

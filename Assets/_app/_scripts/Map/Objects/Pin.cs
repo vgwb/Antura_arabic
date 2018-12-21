@@ -1,9 +1,9 @@
-﻿using Antura.Core;
+﻿using Antura.Animation;
+using Antura.Core;
 using Antura.UI;
 using DG.DeExtensions;
 using DG.Tweening;
 using System.Collections.Generic;
-using Antura.Animation;
 using UnityEngine;
 
 namespace Antura.Map
@@ -100,8 +100,7 @@ namespace Antura.Map
             appeared = false;
             startPinPosition = currentPinMesh.transform.position;
 
-            if (!journeyPosition.IsAssessment())
-            {
+            if (!journeyPosition.IsAssessment()) {
                 currentPinMesh.transform.position = startPinPosition + Vector3.up * 60;
             }
             currentPinMesh.gameObject.SetActive(false);
@@ -113,17 +112,14 @@ namespace Antura.Map
 
         public void InitOptionalsHidden()
         {
-            if (rope != null)
-            {
+            if (rope != null) {
                 startRopeScale = rope.meshRenderer.transform.localScale;
             }
 
-            if (rope != null)
-            {
+            if (rope != null) {
                 rope.meshRenderer.transform.SetLocalScale(0);
             }
-            foreach (var dot in dots)
-            {
+            foreach (var dot in dots) {
                 dot.Disappear();
             }
         }
@@ -135,13 +131,10 @@ namespace Antura.Map
 
             currentPinMesh.gameObject.SetActive(true);
 
-            if (journeyPosition.IsAssessment())
-            {
+            if (journeyPosition.IsAssessment()) {
                 currentPinMesh.transform.localScale = Vector3.zero;
                 currentPinMesh.transform.DOScale(Vector3.one, duration * 0.5f).SetEase(Ease.OutElastic);
-            }
-            else
-            {
+            } else {
                 currentPinMesh.transform.DOMove(startPinPosition, duration * 0.1f);
             }
 
@@ -194,16 +187,14 @@ namespace Antura.Map
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
-            {
+            if (other.gameObject.CompareTag("Player")) {
                 HandlePlayerClose(true);
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
-            {
+            if (other.gameObject.CompareTag("Player")) {
                 HandlePlayerClose(false);
             }
         }
@@ -212,8 +203,7 @@ namespace Antura.Map
 
         void HandlePlayerClose(bool choice)
         {
-            if (playerCloseTween == null)
-            {
+            if (playerCloseTween == null) {
                 float duration = 0.5f;
                 playerCloseTween = DOTween.Sequence();
                 playerCloseTween.Join(currentPinMesh.transform.DOScale(Vector3.zero, duration).SetEase(Ease.InOutCubic));
@@ -222,14 +212,11 @@ namespace Antura.Map
                 playerCloseTween.SetAutoKill(false);
             }
 
-            playSessionFeedback.surpriseGO.GetComponent<Surprise3D>().SetPulsing(choice); 
+            playSessionFeedback.surpriseGO.GetComponent<Surprise3D>().SetPulsing(choice);
 
-            if (choice)
-            {
+            if (choice) {
                 playerCloseTween.PlayForward();
-            }
-            else
-            {
+            } else {
                 playerCloseTween.PlayBackwards();
             }
         }
@@ -249,8 +236,7 @@ namespace Antura.Map
 
         public void Select(bool choice)
         {
-            if (!interactionEnabled)
-            {
+            if (!interactionEnabled) {
                 mainDot.SetAsNothing();
                 return;
             }
@@ -265,17 +251,13 @@ namespace Antura.Map
         void HighlightFeedback(bool choice)
         {
             mainDot.Highlight(choice);
-            if (choice)
-            {
-                if (isLocked)
-                {
+            if (choice) {
+                if (isLocked) {
                     mainDot.SetAsLock();
-                }
-                else {
+                } else {
                     mainDot.SetAsPlay();
                 }
-            }
-            else {
+            } else {
                 mainDot.SetAsNothing();
             }
         }

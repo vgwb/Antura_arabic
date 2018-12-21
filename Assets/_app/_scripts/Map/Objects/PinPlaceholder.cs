@@ -1,10 +1,4 @@
-﻿using Antura.Core;
-using Antura.UI;
-using DG.DeExtensions;
-using DG.Tweening;
-using System.Collections.Generic;
-using Antura.Animation;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Antura.Map
 {
