@@ -75,6 +75,7 @@ namespace Antura.Core
         // public URLs
         public const string UrlWebsite = "http://www.antura.org";
         public const string UrlPrivacy = "http://www.antura.org/en/privacy-policy/";
+        public const string UrlDonate = "http://www.antura.org/donate/";
         public const string UrlUploadData = "https://upload.antura.org";
         public const string UrlStoreiOSApple = "https://itunes.apple.com/us/app/antura-and-the-letters/id1210334699?ls=1&mt=8";
         public const string UrlStoreAndroidGoogle = "https://play.google.com/store/apps/details?id=org.eduapp4syria.antura";

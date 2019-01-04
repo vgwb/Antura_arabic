@@ -71,6 +71,12 @@ namespace Antura.ReservedArea
 
         #endregion
 
+        public void OnOpenDonate()
+        {
+            Application.OpenURL(AppConfig.UrlDonate);
+        }
+
+
         #region RATE
 
         public void OnOpenRateApp()
