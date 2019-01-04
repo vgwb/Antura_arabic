@@ -9,13 +9,16 @@ namespace Antura.Core.Services.OnlineAnalytics
 
         void Awake()
         {
-            if (!AppConfig.UnityAnalyticsEnabled)
-            {
-                Destroy(this);
-                return;
-            }
-
             CheckActivation();
+        }
+
+        private void StopEvents()
+        {
+            if (FB.IsInitialized)
+            {
+                FB.Mobile.SetAutoLogAppEventsEnabled(false);
+                FB.LogOut();   
+            }
         }
 
         void OnApplicationPause(bool pauseStatus)
@@ -29,6 +32,8 @@ namespace Antura.Core.Services.OnlineAnalytics
 
         private void CheckActivation()
         {
+            if (!AppManager.I.AppSettings.OnlineAnalyticsEnabled) return;
+
             if (FB.IsInitialized)
             {
                 Activate();
@@ -55,6 +60,7 @@ namespace Antura.Core.Services.OnlineAnalytics
         private void Activate()
         {
             FB.ActivateApp();
+            FB.Mobile.SetAutoLogAppEventsEnabled(true);
             //FB.LogAppEvent("testEvent");
         }
 
