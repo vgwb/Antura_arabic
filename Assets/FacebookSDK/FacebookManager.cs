@@ -9,8 +9,7 @@ namespace Antura.Core.Services.OnlineAnalytics
 
         void Awake()
         {
-            if (!AppConfig.UnityAnalyticsEnabled)
-            {
+            if (!AppConfig.OnlineAnalyticsEnabled) {
                 Destroy(this);
                 return;
             }
@@ -21,28 +20,23 @@ namespace Antura.Core.Services.OnlineAnalytics
         void OnApplicationPause(bool pauseStatus)
         {
             // Check the pauseStatus to see if we are in the foreground or background
-            if (!pauseStatus)
-            {
+            if (!pauseStatus) {
                 CheckActivation();
             }
         }
 
         private void CheckActivation()
         {
-            if (FB.IsInitialized)
-            {
+            if (FB.IsInitialized) {
                 Activate();
-            }
-            else
-            {
+            } else {
                 FB.Init(OnInitComplete, OnHideUnity);
             }
         }
 
         private void OnInitComplete()
         {
-            if (verbose)
-            {
+            if (verbose) {
                 string logMessage = string.Format(
                     "OnInitComplete IsLoggedIn='{0}' IsInitialized='{1}'",
                     FB.IsLoggedIn,
@@ -60,8 +54,7 @@ namespace Antura.Core.Services.OnlineAnalytics
 
         private void OnHideUnity(bool isGameShown)
         {
-            if (verbose)
-            {
+            if (verbose) {
                 string logMessage = string.Format("Success Response: OnHideUnity {0}\n", isGameShown);
                 Debug.Log(logMessage);
             }
