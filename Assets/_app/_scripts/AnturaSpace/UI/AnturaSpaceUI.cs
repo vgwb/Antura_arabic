@@ -458,6 +458,7 @@ namespace Antura.AnturaSpace.UI
                     }
                 } else {
                     swatch.Toggle(false);
+                    swatch.SetColors(GenericHelper.HexToColor("787878FF"), GenericHelper.HexToColor("494949FF"));
                 }
                 swatch.Lock(swatchData == null);
             }
