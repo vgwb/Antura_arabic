@@ -41,6 +41,16 @@ namespace Antura.ReservedArea
             Application.OpenURL(AppConfig.UrlCommunityFacebook);
         }
 
+        public void OnOpenCommunityTwitter()
+        {
+            Application.OpenURL(AppConfig.UrlCommunityTwitter);
+        }
+
+        public void OnOpenCommunityInstagram()
+        {
+            Application.OpenURL(AppConfig.UrlCommunityInstagram);
+        }
+
         public void OnOpenInstallInstructions()
         {
             GlobalUI.ShowPrompt(LocalizationDataId.UI_Prompt_AndroidInstallPDF);
