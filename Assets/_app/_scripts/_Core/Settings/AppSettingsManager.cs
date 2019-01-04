@@ -96,10 +96,13 @@ namespace Antura.Core
             SaveSettings();
         }
 
+        public Action<bool> onEnableShareAnalytics;
+
         public void EnableShareAnalytics(bool status)
         {
             Settings.ShareAnalyticsEnabled = status;
             SaveSettings();
+            if (onEnableShareAnalytics != null) onEnableShareAnalytics(status);
         }
 
         public void SetKioskMode(bool status)

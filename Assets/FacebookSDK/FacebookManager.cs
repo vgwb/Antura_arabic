@@ -10,6 +10,20 @@ namespace Antura.Core.Services.OnlineAnalytics
         void Awake()
         {
             CheckActivation();
+
+            AppManager.I.AppSettingsManager.onEnableShareAnalytics += HandleEnableShareAnalytics;
+        }
+
+        private void HandleEnableShareAnalytics(bool choice)
+        {
+            if (choice)
+            {
+                CheckActivation();
+            }
+            else
+            {
+                StopEvents();
+            }
         }
 
         private void StopEvents()
