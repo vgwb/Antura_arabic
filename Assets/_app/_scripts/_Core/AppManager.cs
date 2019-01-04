@@ -1,6 +1,7 @@
 using Antura.Audio;
 using Antura.Book;
 using Antura.Core.Services;
+using Antura.Core.Services.OnlineAnalytics;
 using Antura.Database;
 using Antura.Helpers;
 using Antura.Keeper;
@@ -87,6 +88,8 @@ namespace Antura.Core
             GameLauncher = new MiniGameLauncher(Teacher);
             FirstContactManager = new FirstContactManager();
             Services = new ServicesManager();
+            var FacebookManager = gameObject.AddComponent<FacebookManager>();
+            FacebookManager.verbose = true;
 
             // MonoBehaviors
             NavigationManager = gameObject.AddComponent<NavigationManager>();
