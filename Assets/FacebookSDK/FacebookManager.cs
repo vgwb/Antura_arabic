@@ -9,6 +9,12 @@ namespace Antura.Core.Services.OnlineAnalytics
 
         void Awake()
         {
+            if (!AppConfig.UnityAnalyticsEnabled)
+            {
+                Destroy(this);
+                return;
+            }
+
             CheckActivation();
         }
 
@@ -49,7 +55,7 @@ namespace Antura.Core.Services.OnlineAnalytics
         private void Activate()
         {
             FB.ActivateApp();
-            FB.LogAppEvent("testEvent");
+            //FB.LogAppEvent("testEvent");
         }
 
         private void OnHideUnity(bool isGameShown)
