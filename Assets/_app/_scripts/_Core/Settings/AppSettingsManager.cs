@@ -96,9 +96,9 @@ namespace Antura.Core
             SaveSettings();
         }
 
-        public void EnableOnlineAnalytics(bool status)
+        public void EnableShareAnalytics(bool status)
         {
-            Settings.OnlineAnalyticsEnabled = status;
+            Settings.ShareAnalyticsEnabled = status;
             SaveSettings();
         }
 

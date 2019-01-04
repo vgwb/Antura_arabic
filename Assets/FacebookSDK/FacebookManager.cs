@@ -32,7 +32,7 @@ namespace Antura.Core.Services.OnlineAnalytics
 
         private void CheckActivation()
         {
-            if (!AppManager.I.AppSettings.OnlineAnalyticsEnabled) return;
+            if (!AppManager.I.AppSettings.ShareAnalyticsEnabled) return;
 
             if (FB.IsInitialized)
             {

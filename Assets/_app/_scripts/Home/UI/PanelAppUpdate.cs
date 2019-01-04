@@ -25,7 +25,7 @@ namespace Antura.Core
         public void OnBtnContinue()
         {
             gameObject.SetActive(false);
-            if (!AppManager.I.AppSettings.OnlineAnalyticsEnabled) {
+            if (!AppManager.I.AppSettings.ShareAnalyticsEnabled) {
                 OnlineAnalyticsRequest();
             } else {
                 Close();
@@ -35,10 +35,10 @@ namespace Antura.Core
         public void OnlineAnalyticsRequest()
         {
             GlobalUI.ShowPrompt(LocalizationDataId.UI_PromptOnlineAnalytics, () => {
-                AppManager.I.AppSettingsManager.EnableOnlineAnalytics(true);
+                AppManager.I.AppSettingsManager.EnableShareAnalytics(true);
                 Close();
             }, () => {
-                AppManager.I.AppSettingsManager.EnableOnlineAnalytics(false);
+                AppManager.I.AppSettingsManager.EnableShareAnalytics(false);
                 Close();
             });
         }
