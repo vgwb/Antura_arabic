@@ -166,7 +166,14 @@ namespace Antura.AnturaSpace
 
             ShopDecorationsManager.I.ResetSlotHighlights();
 
-            AskForConfirmation(ShopDecorationsManager.I.ConfirmPurchase, ShopDecorationsManager.I.CancelPurchase);
+            if (AnturaSpaceScene.I.TutorialMode)
+            {
+                AskForConfirmation(ShopDecorationsManager.I.ConfirmPurchase, null);
+            }
+            else
+            {
+                AskForConfirmation(ShopDecorationsManager.I.ConfirmPurchase, ShopDecorationsManager.I.CancelPurchase);
+            }
         }
 
         private void HandleDeleteConfirmationRequested()
@@ -197,10 +204,16 @@ namespace Antura.AnturaSpace
         {
             currentYesAction = yesAction;
             currentNoAction = noAction;
+
             confirmationYesButton.onClick.AddListener(yesAction);
             confirmationYesButton.onClick.AddListener(ResetConfirmationButtons);
-            confirmationNoButton.onClick.AddListener(noAction);
-            confirmationNoButton.onClick.AddListener(ResetConfirmationButtons);
+
+            if (noAction != null)
+            {
+                confirmationNoButton.onClick.AddListener(noAction);
+                confirmationNoButton.onClick.AddListener(ResetConfirmationButtons);
+            }
+
             showConfirmationPanelTween.PlayForward();
         }
 
@@ -208,8 +221,11 @@ namespace Antura.AnturaSpace
         {
             confirmationYesButton.onClick.RemoveListener(currentYesAction);
             confirmationYesButton.onClick.RemoveListener(ResetConfirmationButtons);
-            confirmationNoButton.onClick.RemoveListener(currentNoAction);
-            confirmationNoButton.onClick.RemoveListener(ResetConfirmationButtons);
+            if (currentNoAction != null)
+            {
+                confirmationNoButton.onClick.RemoveListener(currentNoAction);
+                confirmationNoButton.onClick.RemoveListener(ResetConfirmationButtons);
+            }
         }
 
         #endregion
