@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Antura.Database;
+using Antura.Tutorial;
 using Antura.UI;
 using DG.Tweening;
 using UnityEngine;
@@ -125,7 +126,7 @@ namespace Antura.AnturaSpace
                     scene.HideBackButton();
                     showPurchasePanelAlwaysAvailableTween.PlayBackwards();
                     showShopPanelTween.PlayBackwards();
-                    showDragPanelTween.PlayForward();
+                    if (!AnturaSpaceScene.I.TutorialMode) showDragPanelTween.PlayForward();
                     showConfirmationPanelTween.PlayBackwards();
                     break;
                 case ShopContext.SpecialAction:
