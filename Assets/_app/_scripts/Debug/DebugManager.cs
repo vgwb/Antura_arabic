@@ -3,6 +3,7 @@ using Antura.Database;
 using Antura.Minigames;
 using Antura.Profile;
 using Antura.Rewards;
+using Antura.Teacher;
 using UnityEngine;
 
 namespace Antura.Debugging
@@ -247,6 +248,13 @@ namespace Antura.Debugging
         {
             AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(Stage, LearningBlock, PlaySession), true, true);
             AppManager.I.Player.UpdatePreviousJourneyPosition();    // Antura is considered as having been there the whole time
+
+            // Unlock everything up to there
+            foreach (var jp in AppManager.I.JourneyHelper.GetAllJourneyPositionsUpTo(new JourneyPosition(Stage, LearningBlock, PlaySession)))
+            {
+                AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(jp);
+            }
+
             GoToMap();
         }
 
