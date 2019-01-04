@@ -85,6 +85,8 @@ namespace Antura.Rewards
     [Serializable]
     public class RewardPack
     {
+        public static bool FORCE_ALL_UNLOCKED = false;
+
         public RewardBaseType BaseType;
 
         public RewardBase RewardBase;
@@ -129,18 +131,26 @@ namespace Antura.Rewards
         {
             get
             {
+                if (FORCE_ALL_UNLOCKED) return false;
                 if (unlockData == null) return true;
                 return unlockData.IsLocked;
             }
         }
         public bool IsUnlocked
         {
-            get { return !IsLocked; }
+            get
+            {
+                return !IsLocked;
+            }
         }
 
         public bool IsNew
         {
-            get { return unlockData.IsNew; }
+            get
+            {
+                if (FORCE_ALL_UNLOCKED) return false;
+                return unlockData.IsNew; 
+            }
         }
 
         public bool IsFoundAtJourneyPosition(JourneyPosition jp)
@@ -152,6 +162,7 @@ namespace Antura.Rewards
 
         public void SetNew(bool b)
         {
+            if (FORCE_ALL_UNLOCKED) return;
             unlockData.IsNew = b;
         }
 
