@@ -46,7 +46,7 @@ namespace Antura.Core
         /// Tracks common events using Unity Analytics.
         /// Set to TRUE for production.
         /// </summary>
-        public static bool UnityAnalyticsEnabled = true;
+        public static bool OnlineAnalyticsEnabled = true;
 
         /// <summary>
         /// Switches on all Debug.Log calls for performance.

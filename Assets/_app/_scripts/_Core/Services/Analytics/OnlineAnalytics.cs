@@ -41,7 +41,7 @@ namespace Antura.Core.Services.OnlineAnalytics
 
         private bool areUnityAnalyticsEnabled()
         {
-            return AppConfig.UnityAnalyticsEnabled && !Application.isEditor && AppManager.I.AppSettings.OnlineAnalyticsEnabled;
+            return AppConfig.OnlineAnalyticsEnabled && !Application.isEditor && AppManager.I.AppSettings.ShareAnalyticsEnabled;
         }
 
         public void TrackEvent(string eventName)
