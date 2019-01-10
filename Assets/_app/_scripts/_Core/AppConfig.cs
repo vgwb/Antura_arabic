@@ -20,7 +20,7 @@ namespace Antura.Core
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public static Version AppVersion = new Version(1, 2, 2, 17);
+        public static Version AppVersion = new Version(1, 2, 2, 18);
 
         /// <summary>
         /// Version of the Static Database Scheme.
@@ -46,7 +46,7 @@ namespace Antura.Core
         /// Tracks common events using Unity Analytics.
         /// Set to TRUE for production.
         /// </summary>
-        public static bool UnityAnalyticsEnabled = true;
+        public static bool OnlineAnalyticsEnabled = true;
 
         /// <summary>
         /// Switches on all Debug.Log calls for performance.
@@ -75,11 +75,14 @@ namespace Antura.Core
         // public URLs
         public const string UrlWebsite = "http://www.antura.org";
         public const string UrlPrivacy = "http://www.antura.org/en/privacy-policy/";
+        public const string UrlDonate = "http://www.antura.org/donate/";
         public const string UrlUploadData = "https://upload.antura.org";
         public const string UrlStoreiOSApple = "https://itunes.apple.com/us/app/antura-and-the-letters/id1210334699?ls=1&mt=8";
         public const string UrlStoreAndroidGoogle = "https://play.google.com/store/apps/details?id=org.eduapp4syria.antura";
         public const string UrlCommunityTelegram = "https://t.me/antura";
         public const string UrlCommunityFacebook = "https://www.facebook.com/antura.initiative";
+        public const string UrlCommunityTwitter = "https://twitter.com/AnturaGame";
+        public const string UrlCommunityInstagram = "https://www.instagram.com/anturagame/";
         public const string UrlSupportForm = "https://docs.google.com/forms/d/e/1FAIpQLScWxs5I0w-k8GlIgPFKoWBitMVJ9gxxJlKvGKOXzZsnAA0qNw/viewform";
         public const string UrlGithubRepository = "https://github.com/vgwb/Antura_arabic";
         public const string UrlDeveloperDocs = "https://vgwb.github.io/Antura_arabic/";

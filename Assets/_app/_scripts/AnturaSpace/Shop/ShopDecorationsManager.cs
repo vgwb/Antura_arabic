@@ -349,7 +349,14 @@ namespace Antura.AnturaSpace
             // If not dragged on anything
             if (!shouldBeDeleted && currentDraggedSlot == null)
             {
-                CancelMovement();
+                if (shopContext == ShopContext.NewPlacement)
+                {
+                    CancelPurchase();
+                }
+                else
+                {
+                    CancelMovement();
+                }
             }
 
             if (shouldBeDeleted) {
@@ -432,8 +439,6 @@ namespace Antura.AnturaSpace
 
         public void CancelPurchase()
         {
-            if (AnturaSpaceScene.I.TutorialMode) return;
-
             if (currentDraggedSlot) { currentDraggedSlot.Despawn(); }
             DeleteDecoration(currentDraggedDecoration);
             if (OnPurchaseCancelled != null) { OnPurchaseCancelled(); }
@@ -443,7 +448,6 @@ namespace Antura.AnturaSpace
         public void ConfirmDeletion()
         {
             if (AnturaSpaceScene.I.TutorialMode) return;
-
             DeleteDecoration(currentDraggedDecoration);
             SaveState();
             SetContextPurchase();

@@ -8,6 +8,7 @@ using Antura.Tutorial;
 using Antura.UI;
 using System.Collections.Generic;
 using System.Linq;
+using Antura.Dog;
 using Antura.Profile;
 using UnityEngine;
 
@@ -118,12 +119,16 @@ namespace Antura.AnturaSpace
             tutorialManager.HandleStart();
         }
 
+        private float anturaSpacePlayTime = 0.0f;
+
         public void Update()
         {
             AnturaHappiness -= Time.deltaTime / 40.0f;
             if (AnturaHappiness < 0) {
                 AnturaHappiness = 0;
             }
+
+            anturaSpacePlayTime += Time.deltaTime;
 
             stateManager.Update(Time.deltaTime);
 
@@ -273,5 +278,11 @@ namespace Antura.AnturaSpace
         }
 
         #endregion
+
+        public void TriggerSceneExit()
+        {
+            AnturaModelManager.I.SaveAnturaCustomization();
+            AppManager.I.Services.Analytics.TrackCustomization(AppManager.I.Player.CurrentAnturaCustomizations, anturaSpacePlayTime);
+        }
     }
 }

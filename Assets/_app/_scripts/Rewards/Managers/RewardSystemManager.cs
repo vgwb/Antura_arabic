@@ -874,15 +874,15 @@ namespace Antura.Rewards
         {
             switch (_categoryId) {
                 case "HEAD":
-                    return 20;
+                    return 40;
                 case "NOSE":
                     return -20;
                 case "BACK":
                     return 200;
                 case "NECK":
-                    return 80;
+                    return -80;
                 case "JAW":
-                    return 30;
+                    return 60;
                 case "TAIL":
                     return 160;
                 case "EAR_R":

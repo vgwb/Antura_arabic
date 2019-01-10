@@ -47,17 +47,17 @@ namespace Antura.Scenes
             LLAnimController.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
 
             AppManager.I.AppSettings.KioskMode = true;
-            AppManager.I.AppSettings.OnlineAnalyticsEnabled = true;
+            AppManager.I.AppSettings.ShareAnalyticsEnabled = true;
             AppManager.I.AppSettings.SubtitlesEnabled = true;
             AppManager.I.AppSettings.EnglishSubtitles = true;
             updateUI();
 
-            AppManager.I.Services.Analytics.TrackEvent("kiosk_home");
+            AppManager.I.Services.Analytics.TrackKioskEvent("kiosk_home");
         }
 
         public void OnBtnPlay()
         {
-            AppManager.I.Services.Analytics.TrackEvent("kiosk_play");
+            AppManager.I.Services.Analytics.TrackKioskEvent("kiosk_play");
 
             AppManager.I.Player.CurrentJourneyPosition.SetPosition(6, 15, 1);
             AppManager.I.GameLauncher.LaunchGame(MiniGameCode.FastCrowd_buildword,
@@ -73,7 +73,7 @@ namespace Antura.Scenes
             } else {
                 WebPanel.Open(UrlKioskEng);
             }
-            AppManager.I.Services.Analytics.TrackEvent("kiosk_donate");
+            AppManager.I.Services.Analytics.TrackKioskEvent("kiosk_donate");
 
         }
 

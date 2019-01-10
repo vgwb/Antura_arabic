@@ -2,6 +2,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Antura.Dog;
+using Antura.Profile;
 using UnityEngine;
 using UnityEngine.Analytics;
 
@@ -39,52 +41,123 @@ namespace Antura.Core.Services.OnlineAnalytics
         /// <param name="eventName">Event name.</param>
         /// 
 
-        private bool areUnityAnalyticsEnabled()
+        private bool AnalyticsEnabled
         {
-            return AppConfig.UnityAnalyticsEnabled && !Application.isEditor && AppManager.I.AppSettings.OnlineAnalyticsEnabled;
+            get
+            {
+                return AppConfig.OnlineAnalyticsEnabled && AppManager.I.AppSettings.ShareAnalyticsEnabled;
+            }
         }
 
-        public void TrackEvent(string eventName)
+        public void TrackCompletedRegistration(PlayerProfile playerProfile)
         {
-            if (areUnityAnalyticsEnabled()) {
-                var eventData = new Dictionary<string, object>{
+            if (!AnalyticsEnabled) return;
+
+            var parameters = new Dictionary<string, object>();
+            parameters["avatar_id"] = playerProfile.AvatarId;
+            parameters["avatar_tint"] = playerProfile.Tint;
+            parameters["gender"] = playerProfile.Gender;
+            parameters["age"] = playerProfile.Age;
+            AppManager.I.FacebookManager.LogAppEvent(Facebook.Unity.AppEventName.CompletedRegistration, parameters: parameters);
+        }
+
+        public void TrackReachedJourneyPosition(JourneyPosition jp)
+        {
+            if (!AnalyticsEnabled) return;
+
+            var parameters = new Dictionary<string, object>();
+            parameters["jp"] = jp.Id;
+            parameters["st"] = jp.Stage;
+            parameters["lb"] = jp.LearningBlock;
+            parameters["ps"] = jp.PlaySession;
+            AppManager.I.FacebookManager.LogAppEvent(Facebook.Unity.AppEventName.AchievedLevel, parameters: parameters);
+        }
+
+        public void TrackCompletedFirstContactPhase(FirstContactPhase phase)
+        {
+            if (!AnalyticsEnabled) return;
+
+            var parameters = new Dictionary<string, object>();
+            parameters["phase"] = (int)phase;
+            parameters["phase_name"] = phase.ToString();
+            AppManager.I.FacebookManager.LogAppEvent(Facebook.Unity.AppEventName.CompletedTutorial, parameters: parameters);
+        }
+
+        public void TrackSpentBones(int nSpent)
+        {
+            if (!AnalyticsEnabled) return;
+
+            AppManager.I.FacebookManager.LogAppEvent(Facebook.Unity.AppEventName.SpentCredits, valueToSum:nSpent);
+        }
+
+        public void TrackCustomization(AnturaCustomization customization, float anturaSpacePlayTime)
+        {
+            if (!AnalyticsEnabled) return;
+
+            var parameters = new Dictionary<string, object>();
+            parameters["customization_json"] = customization.GetJsonListOfIds();
+            parameters["antura_space_play_time"] = anturaSpacePlayTime;
+            AppManager.I.FacebookManager.LogAppEvent("custom_antura_customization", parameters: parameters);
+        }
+
+        public void TrackMiniGameScore(MiniGameCode miniGameCode, int score, JourneyPosition currentJourneyPosition, float duration)
+        {
+            if (!AnalyticsEnabled) return;
+
+            var parameters = new Dictionary<string,object>();
+            parameters["minigame_code"] = miniGameCode.ToString();
+            parameters["duration"] = duration;
+            parameters["duration"] = duration;
+            parameters["journey_position"] = currentJourneyPosition.Id;
+            AppManager.I.FacebookManager.LogAppEvent("custom_minigame_score", score, parameters);
+        }
+
+        #region Older Events
+
+        public void TrackKioskEvent(string eventName)
+        {
+            if (AnalyticsEnabled)
+            {
+                /*var eventData = new Dictionary<string, object>{
                     { "app", "kiosk" },
                     {"lang", (AppManager.I.AppSettings.AppLanguage == AppLanguages.Italian ? "it" : "en")}
-            };
-                Analytics.CustomEvent(eventName, eventData);
+                };
+                Analytics.CustomEvent(eventName, eventData);*/
             }
         }
 
         public void TrackGameEvent(LogGamePlayData _data)
         {
-            if (areUnityAnalyticsEnabled()) {
-                var eventName = "GamePlay";
+            if (AnalyticsEnabled)
+            {
+                /*var eventName = "GamePlay";
                 var evetData = new Dictionary<string, object>{
                     { "uuid", _data.Uuid },
                     { "app", 2 },
                     { "player", 3 }
             };
-                Analytics.CustomEvent(eventName, evetData);
+                Analytics.CustomEvent(eventName, evetData);*/
             }
         }
 
         public void TrackScene(string sceneName)
         {
-            if (areUnityAnalyticsEnabled()) {
-                Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
+            if (AnalyticsEnabled) {
+                //Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
             }
         }
 
         public void TrackPlayerSession(int age, Profile.PlayerGender gender)
         {
-            if (areUnityAnalyticsEnabled()) {
-                Gender playerGender = (gender == Profile.PlayerGender.F ? Gender.Female : Gender.Male);
-                Analytics.SetUserGender(playerGender);
-
-                int birthYear = DateTime.Now.Year - age;
-                Analytics.SetUserBirthYear(birthYear);
+            if (AnalyticsEnabled) {
+                //Gender playerGender = (gender == Profile.PlayerGender.F ? Gender.Female : Gender.Male);
+                //Analytics.SetUserGender(playerGender);
+                //int birthYear = DateTime.Now.Year - age;
+                //Analytics.SetUserBirthYear(birthYear);
             }
         }
+
+        #endregion
 
     }
 }

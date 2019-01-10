@@ -96,10 +96,18 @@ namespace Antura.Core
             SaveSettings();
         }
 
-        public void EnableOnlineAnalytics(bool status)
+        public Action<bool> onEnableShareAnalytics;
+
+        public void EnableShareAnalytics(bool status)
         {
-            Settings.OnlineAnalyticsEnabled = status;
+            Settings.ShareAnalyticsEnabled = status;
             SaveSettings();
+            if (onEnableShareAnalytics != null) onEnableShareAnalytics(status);
+        }
+
+        public void ToggleShareAnalytics()
+        {
+            EnableShareAnalytics(!Settings.ShareAnalyticsEnabled);
         }
 
         public void SetKioskMode(bool status)
@@ -132,5 +140,6 @@ namespace Antura.Core
             Settings.SubtitlesEnabled = !Settings.SubtitlesEnabled;
             SaveSettings();
         }
+
     }
 }

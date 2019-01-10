@@ -167,8 +167,9 @@ namespace Antura.AnturaSpace.UI
         void OnDestroy()
         {
             if (I == this) I = null;
-            // TODO: is better move this in "exit scene" method?
-            AnturaModelManager.I.SaveAnturaCustomization();
+
+            (AnturaSpaceScene.I as AnturaSpaceScene).TriggerSceneExit();
+
             StopAllCoroutines();
             showCategoriesTween.Kill();
             showItemsTween.Kill();
@@ -458,6 +459,7 @@ namespace Antura.AnturaSpace.UI
                     }
                 } else {
                     swatch.Toggle(false);
+                    swatch.SetColors(GenericHelper.HexToColor("787878FF"), GenericHelper.HexToColor("494949FF"));
                 }
                 swatch.Lock(swatchData == null);
             }

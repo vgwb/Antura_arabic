@@ -259,6 +259,7 @@ namespace Antura.Profile
         {
             SetPhaseState(_phase, FirstContactPhaseState.Completed);
             AppManager.I.Player.Save(); // TODO: save only when needed
+            AppManager.I.Services.Analytics.TrackCompletedFirstContactPhase(_phase);
 
             if (VERBOSE) Debug.Log("FirstContact - phase " + _phase + " completed!");
         }

@@ -14,9 +14,12 @@ namespace Antura.ReservedArea
         [Header("References")]
         public TextRender SupportText;
 
+        public CheckIcon AnalyticsCheckIcon;
+
         void Start()
         {
             SupportText.text = AppConfig.GetAppVersionString();
+            AnalyticsCheckIcon.Set(AppManager.I.AppSettings.ShareAnalyticsEnabled);
         }
 
         #region Buttons
@@ -41,6 +44,16 @@ namespace Antura.ReservedArea
             Application.OpenURL(AppConfig.UrlCommunityFacebook);
         }
 
+        public void OnOpenCommunityTwitter()
+        {
+            Application.OpenURL(AppConfig.UrlCommunityTwitter);
+        }
+
+        public void OnOpenCommunityInstagram()
+        {
+            Application.OpenURL(AppConfig.UrlCommunityInstagram);
+        }
+
         public void OnOpenInstallInstructions()
         {
             GlobalUI.ShowPrompt(LocalizationDataId.UI_Prompt_AndroidInstallPDF);
@@ -60,6 +73,24 @@ namespace Antura.ReservedArea
         }
 
         #endregion
+
+        public void OnBtnShareData()
+        {
+            AppManager.I.AppSettingsManager.ToggleShareAnalytics();
+            AnalyticsCheckIcon.Set(AppManager.I.AppSettings.ShareAnalyticsEnabled);
+
+            if (AppManager.I.AppSettings.ShareAnalyticsEnabled) {
+                GlobalUI.ShowPrompt(LocalizationDataId.UI_Prompt_ShareData);
+            }
+
+        }
+
+
+        public void OnOpenDonate()
+        {
+            Application.OpenURL(AppConfig.UrlDonate);
+        }
+
 
         #region RATE
 
