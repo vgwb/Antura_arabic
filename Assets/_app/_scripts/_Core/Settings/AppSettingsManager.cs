@@ -135,5 +135,11 @@ namespace Antura.Core
             Settings.SubtitlesEnabled = !Settings.SubtitlesEnabled;
             SaveSettings();
         }
+
+        public void ToggleShareAnalytics()
+        {
+            Settings.ShareAnalyticsEnabled = !Settings.ShareAnalyticsEnabled;
+            SaveSettings();
+        }
     }
 }
