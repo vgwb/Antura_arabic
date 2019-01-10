@@ -14,9 +14,12 @@ namespace Antura.ReservedArea
         [Header("References")]
         public TextRender SupportText;
 
+        public CheckIcon AnalyticsCheckIcon;
+
         void Start()
         {
             SupportText.text = AppConfig.GetAppVersionString();
+            AnalyticsCheckIcon.Set(AppManager.I.AppSettings.ShareAnalyticsEnabled);
         }
 
         #region Buttons
@@ -70,6 +73,18 @@ namespace Antura.ReservedArea
         }
 
         #endregion
+
+        public void OnBtnShareData()
+        {
+            AppManager.I.AppSettings.ShareAnalyticsEnabled = !AppManager.I.AppSettings.ShareAnalyticsEnabled;
+            AnalyticsCheckIcon.Set(AppManager.I.AppSettings.ShareAnalyticsEnabled);
+
+            if (AppManager.I.AppSettings.ShareAnalyticsEnabled) {
+                GlobalUI.ShowPrompt(LocalizationDataId.UI_Prompt_ShareData);
+            }
+
+        }
+
 
         public void OnOpenDonate()
         {
