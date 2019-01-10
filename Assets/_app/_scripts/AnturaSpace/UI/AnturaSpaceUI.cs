@@ -168,11 +168,7 @@ namespace Antura.AnturaSpace.UI
         {
             if (I == this) I = null;
 
-            // TODO: is better move this in "exit scene" method?
-            AnturaModelManager.I.SaveAnturaCustomization();
-
-            // Customization applied, track it
-            AppManager.I.Services.Analytics.TrackCustomization(AppManager.I.Player.CurrentAnturaCustomizations);
+            (AnturaSpaceScene.I as AnturaSpaceScene).TriggerSceneExit();
 
             StopAllCoroutines();
             showCategoriesTween.Kill();

@@ -90,21 +90,25 @@ namespace Antura.Core.Services.OnlineAnalytics
             AppManager.I.FacebookManager.LogAppEvent(Facebook.Unity.AppEventName.SpentCredits, valueToSum:nSpent);
         }
 
-        public void TrackCustomization(AnturaCustomization customization)
+        public void TrackCustomization(AnturaCustomization customization, float anturaSpacePlayTime)
         {
             if (!AnalyticsEnabled) return;
 
             var parameters = new Dictionary<string, object>();
             parameters["customization_json"] = customization.GetJsonListOfIds();
+            parameters["antura_space_play_time"] = anturaSpacePlayTime;
             AppManager.I.FacebookManager.LogAppEvent("custom_antura_customization", parameters: parameters);
         }
 
-        public void TrackMiniGameScore(MiniGameCode miniGameCode, int score)
+        public void TrackMiniGameScore(MiniGameCode miniGameCode, int score, JourneyPosition currentJourneyPosition, float duration)
         {
             if (!AnalyticsEnabled) return;
 
             var parameters = new Dictionary<string,object>();
             parameters["minigame_code"] = miniGameCode.ToString();
+            parameters["duration"] = duration;
+            parameters["duration"] = duration;
+            parameters["journey_position"] = currentJourneyPosition.Id;
             AppManager.I.FacebookManager.LogAppEvent("custom_minigame_score", score, parameters);
         }
 
