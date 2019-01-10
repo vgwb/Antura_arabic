@@ -88,6 +88,8 @@ namespace Antura.Profile
 
         public int RemoveBones(int _bonesToRemove)
         {
+            AppManager.I.Services.Analytics.TrackSpentBones(_bonesToRemove);
+
             TotalNumberOfBones -= _bonesToRemove;
             Save();
             return TotalNumberOfBones;
@@ -168,6 +170,11 @@ namespace Antura.Profile
                     newJourneyPosition.PlaySession);
                 CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock,
                     newJourneyPosition.PlaySession);
+
+                if (!_forced)
+                {
+                    AppManager.I.Services.Analytics.TrackReachedJourneyPosition(MaxJourneyPosition);
+                }
 
                 if (_save) {
                     Save();

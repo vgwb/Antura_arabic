@@ -52,12 +52,12 @@ namespace Antura.Scenes
             AppManager.I.AppSettings.EnglishSubtitles = true;
             updateUI();
 
-            AppManager.I.Services.Analytics.TrackEvent("kiosk_home");
+            AppManager.I.Services.Analytics.TrackKioskEvent("kiosk_home");
         }
 
         public void OnBtnPlay()
         {
-            AppManager.I.Services.Analytics.TrackEvent("kiosk_play");
+            AppManager.I.Services.Analytics.TrackKioskEvent("kiosk_play");
 
             AppManager.I.Player.CurrentJourneyPosition.SetPosition(6, 15, 1);
             AppManager.I.GameLauncher.LaunchGame(MiniGameCode.FastCrowd_buildword,
@@ -73,7 +73,7 @@ namespace Antura.Scenes
             } else {
                 WebPanel.Open(UrlKioskEng);
             }
-            AppManager.I.Services.Analytics.TrackEvent("kiosk_donate");
+            AppManager.I.Services.Analytics.TrackKioskEvent("kiosk_donate");
 
         }
 

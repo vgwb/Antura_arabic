@@ -1,4 +1,5 @@
-﻿using Facebook.Unity;
+﻿using System.Collections.Generic;
+using Facebook.Unity;
 using UnityEngine;
 
 namespace Antura.Core.Services.OnlineAnalytics
@@ -10,7 +11,6 @@ namespace Antura.Core.Services.OnlineAnalytics
         void Awake()
         {
             CheckActivation();
-
             AppManager.I.AppSettingsManager.onEnableShareAnalytics += HandleEnableShareAnalytics;
         }
 
@@ -75,6 +75,13 @@ namespace Antura.Core.Services.OnlineAnalytics
         {
             FB.ActivateApp();
             FB.Mobile.SetAutoLogAppEventsEnabled(true);
+
+            //if (!FB.IsLoggedIn) FB.LogInWithReadPermissions();
+
+            //var parameters = new Dictionary<string, object>();
+            //parameters[AppEventParameterName.Description] = "Game Activated";
+            //FB.LogAppEvent(AppEventName.UnlockedAchievement, parameters : parameters);
+
             //FB.LogAppEvent("testEvent");
         }
 
@@ -85,6 +92,11 @@ namespace Antura.Core.Services.OnlineAnalytics
                 string logMessage = string.Format("Success Response: OnHideUnity {0}\n", isGameShown);
                 Debug.Log(logMessage);
             }
+        }
+
+        public void LogAppEvent(string logEvent, float? valueToSum = default(float?), Dictionary<string, object> parameters = null)
+        { 
+            FB.LogAppEvent(logEvent, valueToSum, parameters);
         }
 
     }

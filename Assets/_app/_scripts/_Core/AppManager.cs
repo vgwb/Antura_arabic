@@ -33,6 +33,7 @@ namespace Antura.Core
         public FirstContactManager FirstContactManager;
         public PlayerProfileManager PlayerProfileManager;
         public RewardSystemManager RewardSystemManager;
+        public FacebookManager FacebookManager;
 
         [HideInInspector]
         public NavigationManager NavigationManager;
@@ -88,7 +89,7 @@ namespace Antura.Core
             GameLauncher = new MiniGameLauncher(Teacher);
             FirstContactManager = new FirstContactManager();
             Services = new ServicesManager();
-            var FacebookManager = gameObject.AddComponent<FacebookManager>();
+            FacebookManager = gameObject.AddComponent<FacebookManager>();
             FacebookManager.verbose = true;
 
             // MonoBehaviors

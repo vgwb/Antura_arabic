@@ -72,6 +72,8 @@ namespace Antura.Core
             EndMiniGame();
             LogInfo(InfoEvent.GameEnd, JsonUtility.ToJson(new GameResultInfo() { Game = miniGameCode.ToString(), Result = score.ToString() }));
 
+            AppManager.I.Services.Analytics.TrackMiniGameScore(miniGameCode, score);
+
             float duration = (float)(endMiniGameDateTime - startMiniGameDateTime).TotalSeconds;
             //Debug.LogError("DURATION MG: " + duration);
             AppManager.I.Teacher.logAI.LogMiniGameScore(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, score, duration);

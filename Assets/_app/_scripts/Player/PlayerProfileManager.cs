@@ -193,6 +193,8 @@ namespace Antura.Profile
                 OnNewProfileCreated();
             }
 
+            AppManager.I.Services.Analytics.TrackCompletedRegistration(returnProfile);
+
             return returnProfile.Uuid;
         }
 
