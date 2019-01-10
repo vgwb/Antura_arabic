@@ -282,7 +282,7 @@ namespace Antura.AnturaSpace
         public void TriggerSceneExit()
         {
             AnturaModelManager.I.SaveAnturaCustomization();
-            AppManager.I.Services.Analytics.TrackCustomization(AppManager.I.Player.CurrentAnturaCustomizations);
+            AppManager.I.Services.Analytics.TrackCustomization(AppManager.I.Player.CurrentAnturaCustomizations, anturaSpacePlayTime);
         }
     }
 }
