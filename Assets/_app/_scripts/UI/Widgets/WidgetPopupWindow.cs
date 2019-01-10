@@ -53,7 +53,8 @@ namespace Antura.UI
             showTween = this.GetComponent<RectTransform>().DOAnchorPosY(-800, 0.5f).From().SetUpdate(timeIndependent)
                 .SetEase(Ease.OutBack).SetAutoKill(false).Pause()
                 .OnPlay(() => this.gameObject.SetActive(true))
-                .OnRewind(() => this.gameObject.SetActive(false));
+                .OnRewind(() => this.gameObject.SetActive(false))
+                .OnComplete(() => ButtonGO.Pulse());
 
             this.gameObject.SetActive(false);
         }
@@ -238,6 +239,7 @@ namespace Antura.UI
 
             currentCallback = callback;
             ButtonGO.gameObject.SetActive(callback != null);
+
             TutorialImageGO.GetComponent<Image>().sprite = tutorialImage;
             TutorialImageGO.SetActive(true);
 
