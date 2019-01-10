@@ -3,7 +3,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
 
-## [1.2.1] - 
+## [1.2.2] - 2019-01-10
+### Added
+- Facebook Integration to track New Install Ads Campaign
+- Optional share data with Analytics to improve the app
+- Donate button in Reserved Area
+- Instagram and Twitter buttons in Reserved Area
+
+### Fixed
+- several, check https://github.com/vgwb/Antura_arabic/milestone/20?closed=1
+
+
+## [1.2.1] - 2018-05-08
 - Kiosk mode (demo for museums / installations with Android Webview)
 
 ## [1.2.0] - 2018-02-17
