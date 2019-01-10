@@ -100,9 +100,6 @@ namespace Antura.Dog
             returnCustomization.DecalPackId = LoadedDecalPack.UniqueId;
             AppManager.I.Player.SaveAnturaCustomization(returnCustomization);
 
-            // Customization applied, track it
-            AppManager.I.Services.Analytics.TrackCustomization(returnCustomization);
-
             return returnCustomization;
         }
 
