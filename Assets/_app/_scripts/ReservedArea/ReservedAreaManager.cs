@@ -76,7 +76,7 @@ namespace Antura.ReservedArea
 
         public void OnBtnShareData()
         {
-            AppManager.I.AppSettings.ShareAnalyticsEnabled = !AppManager.I.AppSettings.ShareAnalyticsEnabled;
+            AppManager.I.AppSettingsManager.ToggleShareAnalytics();
             AnalyticsCheckIcon.Set(AppManager.I.AppSettings.ShareAnalyticsEnabled);
 
             if (AppManager.I.AppSettings.ShareAnalyticsEnabled) {
