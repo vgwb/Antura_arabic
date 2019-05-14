@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Policy;
 using Antura.Core;
 using Antura.Database;
 using UnityEngine;
@@ -17,7 +16,7 @@ namespace Antura.AnturaSpace
             get { return null; }
         }
 
-        public Sprite iconSprite; 
+        public Sprite iconSprite;
         public int bonesCost;
 
         public virtual bool IsOnTheSide
@@ -32,8 +31,7 @@ namespace Antura.AnturaSpace
 
         public virtual bool IsLocked
         {
-            get
-            {
+            get {
                 return NotEnoughBones;
             }
         }
@@ -45,8 +43,7 @@ namespace Antura.AnturaSpace
 
         public bool NotEnoughBones
         {
-            get
-            {
+            get {
                 return AppManager.I.Player.GetTotalNumberOfBones() < bonesCost;
             }
         }
