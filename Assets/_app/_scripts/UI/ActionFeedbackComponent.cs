@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
@@ -11,6 +11,7 @@ namespace Antura.UI
     public class ActionFeedbackComponent : MonoBehaviour
     {
         public Sprite YesSprite, NoSprite;
+        private Vector2 startPos;
 
         Image img;
         Tween showTween;
@@ -18,6 +19,7 @@ namespace Antura.UI
         void Awake()
         {
             img = this.GetComponent<Image>();
+            startPos = img.GetComponent<RectTransform>().anchoredPosition;
 
             showTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(this.transform.DOPunchScale(Vector3.one * 0.4f, 0.5f, 12))
@@ -38,8 +40,9 @@ namespace Antura.UI
         /// Show feedback positive or negative.
         /// </summary>
         /// <param name="_feedback"></param>
-        public void Show(bool _feedback)
+        public void Show(bool _feedback, Vector2 offset = default)
         {
+            img.GetComponent<RectTransform>().anchoredPosition = startPos + offset;
             img.sprite = _feedback ? YesSprite : NoSprite;
             showTween.Restart();
         }

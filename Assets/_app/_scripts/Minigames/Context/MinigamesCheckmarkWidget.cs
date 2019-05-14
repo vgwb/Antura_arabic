@@ -1,4 +1,5 @@
 using Antura.UI;
+using UnityEngine;
 
 namespace Antura.Minigames
 {
@@ -7,9 +8,9 @@ namespace Antura.Minigames
     /// </summary>
     public class MinigamesCheckmarkWidget : ICheckmarkWidget
     {
-        public void Show(bool correct)
-        {
-            GlobalUI.I.ActionFeedback.Show(correct);
+        public void Show(bool correct, Vector2 pos = default)
+        { 
+            GlobalUI.I.ActionFeedback.Show(correct, pos);
         }
     }
 }

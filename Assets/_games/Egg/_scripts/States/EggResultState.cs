@@ -1,4 +1,5 @@
 using Antura.Minigames;
+using UnityEngine;
 
 namespace Antura.Minigames.Egg
 {
@@ -21,7 +22,7 @@ namespace Antura.Minigames.Egg
 
             if (game.stagePositiveResult) {
                 game.Context.GetAudioManager().PlaySound(Sfx.Win);
-                game.Context.GetCheckmarkWidget().Show(true);
+                game.Context.GetCheckmarkWidget().Show(true, new Vector2(0, 250));
                 toNextState = true;
             } else {
                 game.Context.GetAudioManager().PlaySound(Sfx.Lose);
