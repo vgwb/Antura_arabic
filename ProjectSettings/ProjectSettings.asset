@@ -702,7 +702,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   scriptingDefineSymbols:
     1: SRDebuggerEnabledNO
-    4: SRDebuggerEnabledNO
+    4: FB_SDK;SRDebuggerEnabledNO
     7: SRDebuggerEnabledNO
   platformArchitecture:
     iOS: 2
