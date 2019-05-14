@@ -701,9 +701,9 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   scriptingDefineSymbols:
-    1: SRDebuggerEnabledNO
+    1: FB_SDK;SRDebuggerEnabledNO
     4: FB_SDK;SRDebuggerEnabledNO
-    7: SRDebuggerEnabledNO
+    7: FB_SDK;SRDebuggerEnabledNO
   platformArchitecture:
     iOS: 2
     tvOS: 1
