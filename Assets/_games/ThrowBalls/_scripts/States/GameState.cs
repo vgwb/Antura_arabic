@@ -223,8 +223,8 @@ namespace Antura.Minigames.ThrowBalls
                     wrongData[i] = new LL_ImageData(wrongData[i].Id);
                 }
             }
-            else
-                SayQuestion();
+
+            SayQuestion();
 
             yield return new WaitForSeconds(1f);
 
