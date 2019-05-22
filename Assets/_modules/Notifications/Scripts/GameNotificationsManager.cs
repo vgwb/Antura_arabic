@@ -17,6 +17,8 @@ namespace Antura.Modules.Notifications
     /// </summary>
     public class GameNotificationsManager : MonoBehaviour
     {
+        public static GameNotificationsManager I;
+
         // Default filename for notifications serializer
         private const string DefaultFilename = "notifications.bin";
 
@@ -148,7 +150,13 @@ namespace Antura.Modules.Notifications
 
         void Awake()
         {
-            DontDestroyOnLoad(this);
+            if (I != null) {
+                Debug.LogWarning("Multiple GameNotificationsManager instances were found. The newest one will be destroyed");
+                Destroy(this.gameObject);
+                return;
+            }
+            I = this;
+            if (transform.parent == null) DontDestroyOnLoad(gameObject);
         }
 
         /// <summary>
@@ -161,12 +169,14 @@ namespace Antura.Modules.Notifications
             }
 
             // Check each pending notification for expiry, then remove it
-            for (int i = PendingNotifications.Count - 1; i >= 0; --i) {
-                PendingNotification queuedNotification = PendingNotifications[i];
-                DateTime? time = queuedNotification.Notification.DeliveryTime;
-                if (time != null && time < DateTime.Now) {
-                    PendingNotifications.RemoveAt(i);
-                    LocalNotificationExpired?.Invoke(queuedNotification);
+            if (PendingNotifications.Count > 0) {
+                for (int i = PendingNotifications.Count - 1; i >= 0; --i) {
+                    PendingNotification queuedNotification = PendingNotifications[i];
+                    DateTime? time = queuedNotification.Notification.DeliveryTime;
+                    if (time != null && time < DateTime.Now) {
+                        PendingNotifications.RemoveAt(i);
+                        LocalNotificationExpired?.Invoke(queuedNotification);
+                    }
                 }
             }
         }
@@ -174,7 +184,7 @@ namespace Antura.Modules.Notifications
         /// <summary>
         /// Respond to application foreground/background events.
         /// </summary>
-        protected void OnApplicationFocus(bool hasFocus)
+        public void ChangeApplicationFocus(bool hasFocus)
         {
             if (Platform == null || !Initialized) {
                 return;

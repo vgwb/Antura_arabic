@@ -1,6 +1,5 @@
 ﻿using Antura.Audio;
 using Antura.UI;
-using Antura.Modules.Notifications;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,7 +13,6 @@ namespace Antura.Core
     {
         public GameObject AudioManager;
         public GameObject EventsManager;
-        public GameObject NotificationsManager;
 
         void Awake()
         {
@@ -24,10 +22,6 @@ namespace Antura.Core
 
             if (FindObjectOfType(typeof(EventSystem)) == null) {
                 Instantiate(EventsManager);
-            }
-
-            if (FindObjectOfType(typeof(GameNotificationsManager)) == null) {
-                Instantiate(NotificationsManager);
             }
 
             // init the mighty GlobalUI

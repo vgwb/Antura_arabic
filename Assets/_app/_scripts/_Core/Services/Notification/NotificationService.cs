@@ -1,4 +1,5 @@
 ﻿using Antura.Database;
+using Antura.Modules.Notifications;
 using System;
 using UnityEngine;
 
@@ -6,10 +7,17 @@ namespace Antura.Core.Services.Notification
 {
     public class NotificationService
     {
+        public const string ChannelId = "game_channel0";
 
         public NotificationService()
         {
 
+        }
+
+        public void Init()
+        {
+            var channel = new GameNotificationChannel(ChannelId, "Default Game Channel", "Generic notifications");
+            GameNotificationsManager.I.Initialize(channel);
         }
 
         #region main
@@ -19,6 +27,7 @@ namespace Antura.Core.Services.Notification
         public void AppSuspended()
         {
             PrepareNextLocalNotification();
+            GameNotificationsManager.I.ChangeApplicationFocus(false);
         }
 
         /// <summary>
@@ -26,20 +35,20 @@ namespace Antura.Core.Services.Notification
         /// </summary>
         public void AppResumed()
         {
-            DeleteAllLocalNotifications();
+            GameNotificationsManager.I.CancelAllNotifications();
+            GameNotificationsManager.I.ChangeApplicationFocus(true);
         }
         #endregion
 
         private void PrepareNextLocalNotification()
         {
-            DeleteAllLocalNotifications();
+            //DeleteAllLocalNotifications();
             Debug.Log("Next Local Notifications prepared");
             var arabicString = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Notification_24h);
             ScheduleSimple(
-                TimeSpan.FromSeconds(CalculateSecondsToTomorrow()),
+                GetTomorrow(),
                 "Antura and the Letters",
-                arabicString.Arabic,
-                Color.blue
+                arabicString.Arabic
             );
 
             //NotificationManager.ScheduleSimpleWithAppIcon(
@@ -56,9 +65,13 @@ namespace Antura.Core.Services.Notification
         /// Schedule notification with app icon.
         /// </summary>
         /// <param name="smallIcon">List of build-in small icons: notification_icon_bell (default), notification_icon_clock, notification_icon_heart, notification_icon_message, notification_icon_nut, notification_icon_star, notification_icon_warning.</param>
-        public void ScheduleSimple(TimeSpan delay, string title, string message, Color smallIconColor0)
+        public void ScheduleSimple(DateTime deliveryTime, string title, string message)
         {
-
+            IGameNotification notification = GameNotificationsManager.I.CreateNotification();
+            notification.Title = title;
+            notification.Body = message;
+            notification.DeliveryTime = deliveryTime;
+            GameNotificationsManager.I.ScheduleNotification(notification);
         }
 
         public void DeleteAllLocalNotifications()
@@ -67,11 +80,13 @@ namespace Antura.Core.Services.Notification
         }
         #endregion
 
-        #region utilities
-        private int CalculateSecondsToTomorrow()
+        #region time utilities
+        private DateTime GetTomorrow()
         {
-            return 3600 * 20;
+            //return DateTime.Now.AddDays(1).Date;
+            return DateTime.Now.ToLocalTime() + TimeSpan.FromMinutes(10);
         }
+
         private int CalculateSecondsToTomorrowMidnight()
         {
             TimeSpan ts = DateTime.Today.AddDays(2).Subtract(DateTime.Now);
