@@ -146,6 +146,11 @@ namespace Antura.Modules.Notifications
             inForeground = false;
         }
 
+        void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
+
         /// <summary>
         /// Check pending list for expired notifications, when in queue mode.
         /// </summary>
