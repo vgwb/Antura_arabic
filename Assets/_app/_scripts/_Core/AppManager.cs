@@ -117,6 +117,11 @@ namespace Antura.Core
             // Update settings
             AppSettingsManager.UpdateAppVersion();
         }
+
+        private void Start()
+        {
+            Services.Notifications.Init();
+        }
         #endregion
 
         void Update()
@@ -151,19 +156,29 @@ namespace Antura.Core
             Services.Analytics.TrackPlayerSession(Player.Age, Player.Gender);
         }
 
-        #region Main App Suspend method
-        void OnApplicationPause(bool pauseStatus)
+        #region App Pause Suspend/Resume
+#if UNITY_ANDROID
+        void OnApplicationFocus(bool focus)
         {
-            IsPaused = pauseStatus;
+            PauseApplication(!focus);
+        }
+#endif
 
-            // app is pausing
+#if UNITY_EDITOR || UNITY_IOS
+        void OnApplicationPause(bool pause)
+        {
+            PauseApplication(pause);
+        }
+#endif
+        private void PauseApplication(bool pause)
+        {
+            IsPaused = pause;
             if (IsPaused) {
+                // app is pausing
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
                 Services.Notifications.AppSuspended();
-            }
-
-            //app is resuming
-            if (!IsPaused) {
+            } else {
+                // app is resuming
                 LogManager.I.LogInfo(InfoEvent.AppResume);
                 Services.Notifications.AppResumed();
                 LogManager.I.InitNewSession();

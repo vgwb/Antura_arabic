@@ -7,7 +7,7 @@ namespace Antura.Core.Services.WebView
     {
         public static WebViewComponent I;
         private GameObject webViewGameObject;
-        private WebViewObject webViewObject;
+        //        private WebViewObject webViewObject;
 
         private int marginLeft;
         private int marginTop;
@@ -26,7 +26,7 @@ namespace Antura.Core.Services.WebView
             marginTop = margin_top;
             marginRight = margin_right;
             marginBottom = margin_bottom;
-            StartCoroutine(InitWeb(cleanUrl(url)));
+            //            StartCoroutine(InitWeb(cleanUrl(url)));
         }
 
         public void CloseBrowser()
@@ -36,30 +36,30 @@ namespace Antura.Core.Services.WebView
 
         private IEnumerator InitWeb(string _url)
         {
-            webViewGameObject = new GameObject("WebViewObject");
-            webViewObject = webViewGameObject.AddComponent<WebViewObject>();
-            webViewObject.Init(
-                cb: (msg) => {
-                    Debug.Log(string.Format("CallFromJS[{0}]", msg));
-                },
-                err: (msg) => {
-                    Debug.Log(string.Format("CallOnError[{0}]", msg));
-                },
-                ld: (msg) => {
-                    Debug.Log(string.Format("CallOnLoaded[{0}]", msg));
-                    webViewObject.EvaluateJS(@"Unity.call('ua=' + navigator.userAgent)");
-                },
-                //ua: "custom user agent string",
-                enableWKWebView: true);
+            //            webViewGameObject = new GameObject("WebViewObject");
+            //            webViewObject = webViewGameObject.AddComponent<WebViewObject>();
+            //            webViewObject.Init(
+            //                cb: (msg) => {
+            //                    Debug.Log(string.Format("CallFromJS[{0}]", msg));
+            //                },
+            //                err: (msg) => {
+            //                    Debug.Log(string.Format("CallOnError[{0}]", msg));
+            //                },
+            //                ld: (msg) => {
+            //                    Debug.Log(string.Format("CallOnLoaded[{0}]", msg));
+            //                    webViewObject.EvaluateJS(@"Unity.call('ua=' + navigator.userAgent)");
+            //                },
+            //                //ua: "custom user agent string",
+            //                enableWKWebView: true);
 
-#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-            webViewObject.bitmapRefreshCycle = 1;
-#endif
+            //#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+            //            webViewObject.bitmapRefreshCycle = 1;
+            //#endif
 
-            webViewObject.SetMargins(marginLeft, marginTop, marginRight, marginBottom);
-            webViewObject.SetVisibility(true);
+            //webViewObject.SetMargins(marginLeft, marginTop, marginRight, marginBottom);
+            //webViewObject.SetVisibility(true);
 
-            webViewObject.LoadURL(_url);
+            //webViewObject.LoadURL(_url);
 
             yield break;
         }

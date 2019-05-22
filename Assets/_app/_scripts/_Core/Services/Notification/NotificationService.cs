@@ -1,5 +1,5 @@
 ﻿using Antura.Database;
-using Antura.Plugins.Notification;
+using Antura.Modules.Notifications;
 using System;
 using UnityEngine;
 
@@ -7,17 +7,17 @@ namespace Antura.Core.Services.Notification
 {
     public class NotificationService
     {
-        private NotificationBridge_Interface pluginBridge;
+        public const string ChannelId = "game_channel0";
 
         public NotificationService()
         {
-#if (UNITY_IPHONE && !UNITY_EDITOR)
-            pluginBridge = (NotificationBridge_Interface)new NotificationBridge_iOS();
-#elif (UNITY_ANDROID && !UNITY_EDITOR)
-            pluginBridge = (NotificationBridge_Interface)new NotificationBridge_Android();
-#else
-            pluginBridge = (NotificationBridge_Interface)new NotificationBridge_Editor();
-#endif
+
+        }
+
+        public void Init()
+        {
+            var channel = new GameNotificationChannel(ChannelId, "Default Game Channel", "Generic notifications");
+            GameNotificationsManager.I.Initialize(channel);
         }
 
         #region main
@@ -27,6 +27,7 @@ namespace Antura.Core.Services.Notification
         public void AppSuspended()
         {
             PrepareNextLocalNotification();
+            GameNotificationsManager.I.ChangeApplicationFocus(false);
         }
 
         /// <summary>
@@ -34,20 +35,20 @@ namespace Antura.Core.Services.Notification
         /// </summary>
         public void AppResumed()
         {
-            DeleteAllLocalNotifications();
+            GameNotificationsManager.I.CancelAllNotifications();
+            GameNotificationsManager.I.ChangeApplicationFocus(true);
         }
         #endregion
 
         private void PrepareNextLocalNotification()
         {
-            DeleteAllLocalNotifications();
+            //DeleteAllLocalNotifications();
             Debug.Log("Next Local Notifications prepared");
             var arabicString = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Notification_24h);
-            ScheduleSimpleWithAppIcon(
-                TimeSpan.FromSeconds(CalculateSecondsToTomorrow()),
+            ScheduleSimple(
+                GetTomorrow(),
                 "Antura and the Letters",
-                arabicString.Arabic,
-                Color.blue
+                arabicString.Arabic
             );
 
             //NotificationManager.ScheduleSimpleWithAppIcon(
@@ -59,62 +60,33 @@ namespace Antura.Core.Services.Notification
         }
 
         #region direct plugins methods
-        /// <summary>
-        /// Schedule simple notification without app icon.
-        /// </summary>
-        /// <param name="smallIcon">List of build-in small icons: notification_icon_bell (default), notification_icon_clock, notification_icon_heart, notification_icon_message, notification_icon_nut, notification_icon_star, notification_icon_warning.</param>
-        public int ScheduleSimple(TimeSpan delay, string title, string message, Color smallIconColor, NotificationIcon smallIcon = 0)
-        {
-            return pluginBridge.ScheduleNotification(new NotificationParams
-            {
-                Id = new System.Random().Next(),
-                Delay = delay,
-                Title = title,
-                Message = message,
-                Ticker = message,
-                Sound = true,
-                Vibrate = true,
-                Light = true,
-                SmallIcon = smallIcon,
-                SmallIconColor = smallIconColor,
-                LargeIcon = ""
-            });
-        }
 
         /// <summary>
         /// Schedule notification with app icon.
         /// </summary>
         /// <param name="smallIcon">List of build-in small icons: notification_icon_bell (default), notification_icon_clock, notification_icon_heart, notification_icon_message, notification_icon_nut, notification_icon_star, notification_icon_warning.</param>
-        public int ScheduleSimpleWithAppIcon(TimeSpan delay, string title, string message, Color smallIconColor, NotificationIcon smallIcon = 0)
+        public void ScheduleSimple(DateTime deliveryTime, string title, string message)
         {
-            return pluginBridge.ScheduleNotification(new NotificationParams
-            {
-                Id = new System.Random().Next(),
-                Delay = delay,
-                Title = title,
-                Message = message,
-                Ticker = message,
-                Sound = true,
-                Vibrate = true,
-                Light = true,
-                SmallIcon = smallIcon,
-                SmallIconColor = smallIconColor,
-                LargeIcon = "app_icon"
-            });
+            IGameNotification notification = GameNotificationsManager.I.CreateNotification();
+            notification.Title = title;
+            notification.Body = message;
+            notification.DeliveryTime = deliveryTime;
+            GameNotificationsManager.I.ScheduleNotification(notification);
         }
 
         public void DeleteAllLocalNotifications()
         {
-            //Debug.Log("NotificationService:DeleteNextLocalNotifications()");
-            pluginBridge.CancelAllNotifications();
+
         }
         #endregion
 
-        #region utilities
-        private int CalculateSecondsToTomorrow()
+        #region time utilities
+        private DateTime GetTomorrow()
         {
-            return 3600 * 20;
+            //return DateTime.Now.AddDays(1).Date;
+            return DateTime.Now.ToLocalTime() + TimeSpan.FromMinutes(10);
         }
+
         private int CalculateSecondsToTomorrowMidnight()
         {
             TimeSpan ts = DateTime.Today.AddDays(2).Subtract(DateTime.Now);
