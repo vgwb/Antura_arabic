@@ -83,7 +83,7 @@ namespace Antura.Core.Services.Notification
         #region time utilities
         private DateTime GetTomorrow()
         {
-            return DateTime.Now.AddDays(1).Date;
+            return DateTime.Now.AddHours(20);
         }
 
         private DateTime GetDateTimeInMinues(int minutes)
