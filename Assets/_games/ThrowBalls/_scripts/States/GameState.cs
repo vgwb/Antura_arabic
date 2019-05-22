@@ -1,4 +1,4 @@
-﻿using Antura.Audio;
+using Antura.Audio;
 using Antura.Core;
 using Antura.Helpers;
 using Antura.LivingLetters;
@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Antura.Database;
 
 namespace Antura.Minigames.ThrowBalls
 {
@@ -211,6 +212,7 @@ namespace Antura.Minigames.ThrowBalls
             IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
 
             question = newQuestionPack.GetQuestion();
+
             ILivingLetterData correctDatum = newQuestionPack.GetCorrectAnswers().ToList()[0];
             List<ILivingLetterData> wrongData = newQuestionPack.GetWrongAnswers().ToList();
 
@@ -221,8 +223,8 @@ namespace Antura.Minigames.ThrowBalls
                     wrongData[i] = new LL_ImageData(wrongData[i].Id);
                 }
             }
-            else
-                SayQuestion();
+
+            SayQuestion();
 
             yield return new WaitForSeconds(1f);
 
@@ -311,6 +313,7 @@ namespace Antura.Minigames.ThrowBalls
             }
 
             question = newQuestionPack.GetQuestion();
+
             SayQuestion();
 
             yield return new WaitForSeconds(1f);
@@ -320,15 +323,7 @@ namespace Antura.Minigames.ThrowBalls
             UIController.instance.SetLivingLetterData(question);
 
             var letterToFlash = (LL_LetterData)currentLettersForLettersInWord[0];
-
-            var letterDataToFlash = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, ((LL_WordData)question).Data, letterToFlash.Data, false)[0];
-
-            flashingTextCoroutine = ArabicTextUtilities.GetWordWithFlashingText(((LL_WordData)question).Data, letterDataToFlash.fromCharacterIndex, letterDataToFlash.toCharacterIndex, Color.green, FLASHING_TEXT_CYCLE_DURATION, int.MaxValue,
-                    (string text) => {
-                        UIController.instance.SetText(text);
-                    }, false);
-
-            flashedLettersInLiWVariation.Add(letterToFlash);
+            FlashLetter(letterToFlash);
 
             ThrowBallsGame.instance.StartCoroutine(flashingTextCoroutine);
 
@@ -498,15 +493,11 @@ namespace Antura.Minigames.ThrowBalls
                     string markedText = ArabicTextUtilities.GetWordWithMarkedText(word, Color.green);
                     UIController.instance.SetText(markedText);
                 } else {
-                    var letterToFlash = (LL_LetterData)currentLettersForLettersInWord[currentLettersForLettersInWord.Count - numLettersRemaining];
-                    int numTimesLetterHasBeenFlashed = flashedLettersInLiWVariation.Count(x => x.Id == letterToFlash.Id);
-                    var letterDataToFlash = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word, letterToFlash.Data, false)[numTimesLetterHasBeenFlashed];
-                    flashedLettersInLiWVariation.Add(letterToFlash);
 
-                    flashingTextCoroutine = ArabicTextUtilities.GetWordWithFlashingText(word, letterDataToFlash.fromCharacterIndex, letterDataToFlash.toCharacterIndex, Color.green, FLASHING_TEXT_CYCLE_DURATION, int.MaxValue,
-                        (string text) => {
-                            UIController.instance.SetText(text);
-                        }, true);
+
+                    var letterToFlash = (LL_LetterData)currentLettersForLettersInWord[currentLettersForLettersInWord.Count - numLettersRemaining];
+
+                    FlashLetter(letterToFlash);
 
                     ThrowBallsGame.instance.StartCoroutine(flashingTextCoroutine);
                 }
@@ -522,6 +513,29 @@ namespace Antura.Minigames.ThrowBalls
             } else {
                 OnRoundWon(correctLetterCntrl);
             }
+        }
+
+        private void FlashLetter(LL_LetterData letterToFlash)
+        {
+            var word = ((LL_WordData)question).Data;
+            int numTimesLetterHasBeenFlashed = flashedLettersInLiWVariation.Count(x => x.Id == letterToFlash.Id);
+            var letterPartToFlash = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word, letterToFlash.Data, false)[numTimesLetterHasBeenFlashed];
+            flashedLettersInLiWVariation.Add(letterToFlash);
+
+            int toCharIndex = letterPartToFlash.toCharacterIndex;
+            if (letterPartToFlash.fromCharacterIndex != letterPartToFlash.toCharacterIndex)
+            {
+                var hexCode = ArabicAlphabetHelper.GetHexUnicodeFromChar(word.Arabic[letterPartToFlash.toCharacterIndex]);
+                if (hexCode == "0651")   // Shaddah
+                {
+                    toCharIndex -= 1;
+                }
+            }
+
+            flashingTextCoroutine = ArabicTextUtilities.GetWordWithFlashingText(word, letterPartToFlash.fromCharacterIndex, toCharIndex, Color.green, FLASHING_TEXT_CYCLE_DURATION, int.MaxValue,
+                text => {
+                    UIController.instance.SetText(text);
+                }, true);
         }
 
         private void OnRoundWon(LetterController correctLetterCntrl)

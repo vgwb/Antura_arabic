@@ -1,4 +1,4 @@
-﻿using Antura.Database;
+using Antura.Database;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -114,7 +114,6 @@ namespace Antura.Core.Services.OnlineAnalytics
 
             var parameters = new Dictionary<string, object>();
             parameters["minigame_code"] = miniGameCode.ToString();
-            parameters["duration"] = duration;
             parameters["duration"] = duration;
             parameters["journey_position"] = currentJourneyPosition.Id;
             AppManager.I.FacebookManager.LogAppEvent("custom_minigame_score", score, parameters);
