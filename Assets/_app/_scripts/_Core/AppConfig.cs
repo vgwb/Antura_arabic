@@ -40,7 +40,7 @@ namespace Antura.Core
         /// Enabled the Advanced Debug Panel.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool DebugPanelEnabledAtStartup = false;
+        public static bool DebugPanelEnabledAtStartup = true;
 
         /// <summary>
         /// Tracks common events using Unity Analytics.
