@@ -175,6 +175,14 @@ namespace Antura.Debugging
 
         #endregion
 
+        #region test
+        public void TestLocalNotification()
+        {
+            AppManager.I.Services.Notifications.TestLocalNotification();
+            Close();
+        }
+        #endregion
+
         #region Profiles
 
         public void ResetAll()

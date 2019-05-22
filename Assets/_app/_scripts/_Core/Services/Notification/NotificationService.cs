@@ -43,7 +43,7 @@ namespace Antura.Core.Services.Notification
         private void PrepareNextLocalNotification()
         {
             //DeleteAllLocalNotifications();
-            Debug.Log("Next Local Notifications prepared");
+            //Debug.Log("Next Local Notifications prepared");
             var arabicString = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Notification_24h);
             ScheduleSimple(
                 GetTomorrow(),
@@ -83,8 +83,12 @@ namespace Antura.Core.Services.Notification
         #region time utilities
         private DateTime GetTomorrow()
         {
-            //return DateTime.Now.AddDays(1).Date;
-            return DateTime.Now.ToLocalTime() + TimeSpan.FromMinutes(10);
+            return DateTime.Now.AddDays(1).Date;
+        }
+
+        private DateTime GetDateTimeInMinues(int minutes)
+        {
+            return DateTime.Now.ToLocalTime() + TimeSpan.FromMinutes(minutes);
         }
 
         private int CalculateSecondsToTomorrowMidnight()
@@ -95,9 +99,14 @@ namespace Antura.Core.Services.Notification
         #endregion
 
         #region tests
-        public void TestCalculateSecondsToTomorrowMidnight()
+        public void TestLocalNotification()
         {
-            Debug.Log("Tomorrows midnight is in " + CalculateSecondsToTomorrowMidnight() + " seconds");
+            //Debug.Log("Tomorrows midnight is in " + CalculateSecondsToTomorrowMidnight() + " seconds");
+            ScheduleSimple(
+                GetDateTimeInMinues(2),
+                "Antura and the Letters",
+                "test of a " + 2 + " minutes local notification"
+            );
         }
         #endregion
     }

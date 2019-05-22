@@ -145,7 +145,7 @@ namespace Antura.Debugging
 
                 /// VARIOUS TESTS
                 if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.T)) {
-                    AppManager.I.Services.Notifications.TestCalculateSecondsToTomorrowMidnight();
+                    AppManager.I.Services.Notifications.TestLocalNotification();
                 }
 
             }
@@ -250,8 +250,7 @@ namespace Antura.Debugging
             AppManager.I.Player.UpdatePreviousJourneyPosition();    // Antura is considered as having been there the whole time
 
             // Unlock everything up to there
-            foreach (var jp in AppManager.I.JourneyHelper.GetAllJourneyPositionsUpTo(new JourneyPosition(Stage, LearningBlock, PlaySession)))
-            {
+            foreach (var jp in AppManager.I.JourneyHelper.GetAllJourneyPositionsUpTo(new JourneyPosition(Stage, LearningBlock, PlaySession))) {
                 AppManager.I.RewardSystemManager.UnlockAllRewardPacksForJourneyPosition(jp);
             }
 
