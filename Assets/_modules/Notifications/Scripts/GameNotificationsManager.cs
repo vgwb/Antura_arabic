@@ -310,33 +310,31 @@ namespace Antura.Modules.Notifications
             Initialized = true;
 
 #if UNITY_ANDROID
-			Platform = new AndroidNotificationsPlatform();
+            Platform = new AndroidNotificationsPlatform();
 
-			// Register the notification channels
-			var doneDefault = false;
-			foreach (GameNotificationChannel notificationChannel in channels)
-			{
-				if (!doneDefault)
-				{
-					doneDefault = true;
-					((AndroidNotificationsPlatform)Platform).DefaultChannelId = notificationChannel.Id;
-				}
-				
-				// Wrap channel in Android object
-				var androidChannel = new AndroidNotificationChannel(notificationChannel.Id, notificationChannel.Name,
-				                                                    notificationChannel.Description,
-				                                                    (Importance)notificationChannel.Style)
-				{
-					CanBypassDnd = notificationChannel.HighPriority,
-					CanShowBadge = notificationChannel.ShowsBadge,
-					EnableLights = notificationChannel.ShowLights,
-					EnableVibration = notificationChannel.Vibrates,
-					LockScreenVisibility = (LockScreenVisibility)notificationChannel.Privacy,
-					VibrationPattern = notificationChannel.VibrationPattern
-				};
+            // Register the notification channels
+            var doneDefault = false;
+            foreach (GameNotificationChannel notificationChannel in channels) {
+                if (!doneDefault) {
+                    doneDefault = true;
+                    ((AndroidNotificationsPlatform)Platform).DefaultChannelId = notificationChannel.Id;
+                }
 
-				AndroidNotificationCenter.RegisterNotificationChannel(androidChannel);
-			}
+                // Wrap channel in Android object
+                var androidChannel = new AndroidNotificationChannel(notificationChannel.Id, notificationChannel.Name,
+                                                                    notificationChannel.Description,
+                                                                    (Importance)notificationChannel.Style)
+                {
+                    CanBypassDnd = notificationChannel.HighPriority,
+                    CanShowBadge = notificationChannel.ShowsBadge,
+                    EnableLights = notificationChannel.ShowLights,
+                    EnableVibration = notificationChannel.Vibrates,
+                    LockScreenVisibility = (LockScreenVisibility)notificationChannel.Privacy,
+                    VibrationPattern = notificationChannel.VibrationPattern
+                };
+
+                AndroidNotificationCenter.RegisterNotificationChannel(androidChannel);
+            }
 #elif UNITY_IOS
             Platform = new IosNotificationsPlatform();
 #endif
@@ -398,6 +396,8 @@ namespace Antura.Modules.Notifications
             // Register pending notification
             var result = new PendingNotification(notification);
             PendingNotifications.Add(result);
+
+            Debug.Log("ScheduleNotification " + notification.DeliveryTime);
 
             return result;
         }

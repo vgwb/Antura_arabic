@@ -8,16 +8,20 @@ namespace Antura.Core.Services.Notification
     public class NotificationService
     {
         public const string ChannelId = "game_channel0";
+        private bool inizialized = false;
 
         public NotificationService()
         {
-
         }
 
         public void Init()
         {
-            var channel = new GameNotificationChannel(ChannelId, "Default Game Channel", "Generic notifications");
-            GameNotificationsManager.I.Initialize(channel);
+            if (!inizialized) {
+                Debug.Log("NotificationService Init");
+                var channel = new GameNotificationChannel(ChannelId, "Default Game Channel", "Generic notifications");
+                GameNotificationsManager.I.Initialize(channel);
+                inizialized = true;
+            }
         }
 
         #region main
@@ -35,6 +39,9 @@ namespace Antura.Core.Services.Notification
         /// </summary>
         public void AppResumed()
         {
+            if (!GameNotificationsManager.I.Initialized) {
+                Init();
+            }
             GameNotificationsManager.I.CancelAllNotifications();
             GameNotificationsManager.I.ChangeApplicationFocus(true);
         }
@@ -71,6 +78,7 @@ namespace Antura.Core.Services.Notification
             notification.Title = title;
             notification.Body = message;
             notification.DeliveryTime = deliveryTime;
+            notification.LargeIcon = "icon_antura";
             GameNotificationsManager.I.ScheduleNotification(notification);
         }
 
@@ -101,11 +109,13 @@ namespace Antura.Core.Services.Notification
         #region tests
         public void TestLocalNotification()
         {
+            Debug.Log("TestLocalNotification");
             //Debug.Log("Tomorrows midnight is in " + CalculateSecondsToTomorrowMidnight() + " seconds");
+            var arabicString = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Notification_24h);
             ScheduleSimple(
-                GetDateTimeInMinues(2),
+                GetDateTimeInMinues(1),
                 "Antura and the Letters",
-                "test of a " + 2 + " minutes local notification"
+                arabicString.Arabic
             );
         }
         #endregion
