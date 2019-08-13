@@ -107,10 +107,6 @@ namespace Antura.Rewards
             newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPack);
             newRewardInstantiatedGO.transform.localScale = Vector3.one * 0.001f;
 
-            if (PoofParticle == null || newRewardInstantiatedGO == null) { return; }
-            PoofParticle.transform.position = newRewardInstantiatedGO.transform.position;
-            PoofParticle.Play();
-            AudioManager.I.PlaySound(Sfx.Poof);
             Pedestal.gameObject.SetActive(true);
             Pedestal.transform.localScale = Vector3.one;
 
@@ -119,6 +115,13 @@ namespace Antura.Rewards
                 .AppendInterval(0.1f)
                 .Append(Pedestal.DORotate(new Vector3(0, rotationAngleView, 0), 0.3f, RotateMode.LocalAxisAdd).SetEase(Ease.InExpo))
                 .OnComplete(() => { IsComplete = true; })
+				.AppendCallback(() =>
+                {
+                    if (PoofParticle == null || newRewardInstantiatedGO == null) { return; }
+                    PoofParticle.transform.position = newRewardInstantiatedGO.transform.position;
+                    PoofParticle.Play();
+                    AudioManager.I.PlaySound(Sfx.Poof);
+                })
                 .Append(newRewardInstantiatedGO.transform.DOScale(1f, 0.8f).SetEase(Ease.OutElastic))
                 .AppendInterval(0.3f)
                 .AppendCallback(() => { pedestalTween.Play(); });
