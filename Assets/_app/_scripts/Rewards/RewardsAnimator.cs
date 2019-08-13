@@ -45,7 +45,8 @@ namespace Antura.Rewards
 
             LockClosed.gameObject.SetActive(false);
             LockOpen.gameObject.SetActive(false);
-            Pedestal.gameObject.SetActive(false);
+            Pedestal.gameObject.SetActive(true);
+            Pedestal.transform.localScale = Vector3.one * 0.00001f;
             
             showTween = DOTween.Sequence().Pause()
                 .Append(LockClosed.DOScale(0.0001f, 0.45f).From().SetEase(Ease.OutBack))
@@ -111,6 +112,7 @@ namespace Antura.Rewards
             PoofParticle.Play();
             AudioManager.I.PlaySound(Sfx.Poof);
             Pedestal.gameObject.SetActive(true);
+            Pedestal.transform.localScale = Vector3.one;
 
             showTween2 = DOTween.Sequence().Pause()
                 .Join(Pedestal.DOScale(0.00001f, 1f).From().SetDelay(0.5f).SetEase(Ease.OutBack))
