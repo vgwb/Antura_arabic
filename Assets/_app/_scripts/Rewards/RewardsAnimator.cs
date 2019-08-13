@@ -40,6 +40,9 @@ namespace Antura.Rewards
 
         IEnumerator Start()
         {
+            rewardsSceneController = GetComponent<RewardsScene>();
+            rewardsSceneController.ClearLoadedRewardsOnAntura();
+
             LockClosed.gameObject.SetActive(false);
             LockOpen.gameObject.SetActive(false);
             Pedestal.gameObject.SetActive(false);
@@ -98,12 +101,10 @@ namespace Antura.Rewards
         void SpawnRewardAndPoof()
         {
             // Reward 
-            rewardsSceneController = GetComponent<RewardsScene>();
-            rewardsSceneController.ClearLoadedRewardsOnAntura();
             rewardPack = rewardsSceneController.GetRewardPackToInstantiate();
             rotationAngleView = AppManager.I.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPack.Category);
             newRewardInstantiatedGO = rewardsSceneController.InstantiateReward(rewardPack);
-            newRewardInstantiatedGO.transform.localScale = Vector3.zero;
+            newRewardInstantiatedGO.transform.localScale = Vector3.one * 0.001f;
 
             if (PoofParticle == null || newRewardInstantiatedGO == null) { return; }
             PoofParticle.transform.position = newRewardInstantiatedGO.transform.position;
