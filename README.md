@@ -4,6 +4,8 @@
 
 the open source project for game "Antura and the Letters", part of the [EduApp4Syria (EA4S) initiative](https://www.norad.no/eduapp4syria), produced by [TH Köln / Cologne Game Lab](http://www.colognegamelab.de/), [Video Games Without Borders](http://vgwb.org) & [Wixel Studios](www.wixelstudios.com).
 
+NB: this project has evolved into the multiedition [Antura](https://github.com/vgwb/Antura) game.
+
 ## Project references
 
 - **Antura Docs:** [docs.antura.org](http://docs.antura.org)
