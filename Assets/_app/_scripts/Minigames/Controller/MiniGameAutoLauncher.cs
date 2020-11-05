@@ -1,8 +1,6 @@
 ﻿using Antura.Core;
 using UnityEngine;
 
-#if UNITY_EDITOR
-
 namespace Antura.Minigames
 {
     /// <summary>
@@ -22,16 +20,15 @@ namespace Antura.Minigames
 
         void Start()
         {
+#if UNITY_EDITOR
+
             if (!AppManager.I.NavigationManager.IsInFirstLoadedScene) {
                 return;
             }
             AppManager.I.Player.SetCurrentJourneyPosition(Stage, LearningBlock, PlaySession);
             var config = new MinigameLaunchConfiguration(Difficulty, NumberOfRounds, TutorialEnabled);
             AppManager.I.GameLauncher.LaunchGame(MiniGameCode, config, true);
-
-
+#endif
         }
     }
 }
-
-#endif

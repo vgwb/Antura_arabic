@@ -216,6 +216,9 @@ namespace Antura.Profile
 
         void OnSelectCategory(PlayerCreationUICategory category, UIButton uiButton)
         {
+            AppManager.I.PlayerProfileManager.TemporaryPlayerGender = Categories[CategoryIndex.Gender].SelectedIndex == 0 ? PlayerGender.M : PlayerGender.F;
+            //Debug.Log("set temp Gender to " + AppManager.I.PlayerProfileManager.TemporaryPlayerGender);
+
             switch (State) {
                 case UIState.AvatarCreation:
                     int catIndex = Array.IndexOf(Categories, category);

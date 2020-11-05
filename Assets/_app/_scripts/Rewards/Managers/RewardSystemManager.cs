@@ -604,18 +604,16 @@ namespace Antura.Rewards
 
                         //Debug.Log("locked bases count: " + lockedBases.Count);
 
-                        /*
                         if (allowedCategories != null) {
                             //Debug.Log("Allowed categories: " + allowedCategories.ToDebugString());
                             lockedBases = lockedBases.Where(x => allowedCategories.Contains((x as RewardProp).Category)).ToList();
                         }
-                            */
 
                         if (lockedBases.Count == 0)
                             throw new NullReferenceException(
                                 "We do not have enough rewards to get a new base of type " + baseType);
 
-                        var newBase = lockedBases[0];// lockedBases.RandomSelectOne();
+                        var newBase = lockedBases.RandomSelectOne();
                         var lockedPacks = GetLockedRewardPacksOfBaseType(baseType);
                         var lockedPacksOfNewBase = lockedPacks.Where(x => x.BaseId == newBase.ID).ToList();
 

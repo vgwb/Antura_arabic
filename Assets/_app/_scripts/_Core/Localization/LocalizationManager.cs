@@ -12,7 +12,7 @@ namespace Antura.Core
         private static PlayerGender CurrentPlayerGender
         {
             get {
-                if (AppManager.I.Player == null) {
+                if (AppManager.I.Player == null || AppManager.I.NavigationManager.GetCurrentScene() == AppScene.PlayerCreation) {
                     return AppManager.I.PlayerProfileManager.TemporaryPlayerGender;
                 }
                 return AppManager.I.Player.Gender;
