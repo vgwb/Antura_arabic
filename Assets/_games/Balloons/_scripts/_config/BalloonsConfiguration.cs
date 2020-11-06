@@ -25,8 +25,7 @@ namespace Antura.Minigames.Balloons
         static BalloonsConfiguration instance;
         public static BalloonsConfiguration Instance
         {
-            get
-            {
+            get {
                 if (instance == null) {
                     instance = new BalloonsConfiguration();
                 }
@@ -70,7 +69,7 @@ namespace Antura.Minigames.Balloons
                     builder = new WordsWithLetterQuestionBuilder(nPacks, nPacksPerRound: 1, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
                     break;
                 case BalloonsVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number, null, true);
+                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number, null, false);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
