@@ -488,21 +488,8 @@ namespace Antura.Minigames.Balloons
                 return;
             }
 
-            int numberValue = countingIndex + 1;
-            //var numberId = "number_" + string.Format("{0:00}", numberValue);
-            //.Replace('0', '\u----')
-            //.Replace('1', '\u----')
-            //.Replace('2', '\u----')
-            //.Replace('3', '\u----')
-            //.Replace('4', '\u----')
-            //.Replace('5', '\u----')
-            //.Replace('6', '\u----')
-            //.Replace('7', '\u----')
-            //.Replace('8', '\u----')
-            //.Replace('9', '\u----');
-
             wordFlexibleContainer.gameObject.SetActive(true);
-            wordFlexibleContainer.SetNumber(numberValue - 1);
+            wordFlexibleContainer.SetNumber(countingIndex);
         }
 
         private IEnumerator StartNewRound_Coroutine()
