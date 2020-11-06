@@ -170,7 +170,7 @@ PlayerSettings:
     tvOS: org.eduapp4syria.antura
   buildNumber:
     iOS: 2
-  AndroidBundleVersionCode: 1030200
+  AndroidBundleVersionCode: 1030210
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
