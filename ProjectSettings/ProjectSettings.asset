@@ -247,6 +247,7 @@ PlayerSettings:
   metalEditorSupport: 0
   metalAPIValidation: 1
   iOSRenderExtraFrameOnPause: 1
+  iosCopyPluginsCodeInsteadOfSymlink: 0
   appleDeveloperTeamID: 
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
@@ -262,8 +263,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 1
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: /Users/krur/Documents/Projects/VGWB.Antura/_antura_production/Android_Keystore/antura.keystore
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: /Users/krur/Documents/Projects/VGWB/_antura_production/Android_Keystore/Arabic/antura.keystore
+  AndroidKeyaliasName: antura
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
