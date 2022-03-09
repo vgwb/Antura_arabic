@@ -1,10 +1,10 @@
 # Antura and the Letters (arabic)
 
+NOTE: this repository is now closed because the project is being maintained in the new multiedition [Antura](https://github.com/vgwb/Antura).
+
 ![antura_gametitle](docs/images/antura_gametitle.jpg)
 
 the open source project for game "Antura and the Letters", part of the [EduApp4Syria (EA4S) initiative](https://www.norad.no/eduapp4syria), produced by [TH Köln / Cologne Game Lab](http://www.colognegamelab.de/), [Video Games Without Borders](http://vgwb.org) & [Wixel Studios](www.wixelstudios.com).
-
-NB: this project has evolved into the multiedition [Antura](https://github.com/vgwb/Antura) game.
 
 ## Project references
 
